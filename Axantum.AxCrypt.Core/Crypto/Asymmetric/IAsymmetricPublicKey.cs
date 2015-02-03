@@ -32,7 +32,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
-    public interface IAsymmetricPublicKey
+    public interface IAsymmetricPublicKey : IEquatable<IAsymmetricPublicKey>
     {
         byte[] Transform(byte[] buffer);
     }

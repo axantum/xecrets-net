@@ -86,18 +86,18 @@ namespace Axantum.AxCrypt.Core.Test
 
             IAxCryptDocument nullDocument = null;
             IDataStore nullFileInfo = null;
-            Passphrase nullKey = null;
+            LogOnIdentity nullKey = null;
             ProgressContext nullProgress = null;
-            Passphrase nullPassphrase = null;
+            LogOnIdentity nullPassphrase = null;
             EncryptionParameters nullEncryptionParameters = null;
             Stream nullStream = null;
             string nullString = null;
             Action<Stream> nullStreamAction = null;
 
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(nullFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, nullFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(nullFileInfo, destinationFileInfo, new LogOnIdentity("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, nullFileInfo, new LogOnIdentity("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, nullPassphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new LogOnIdentity("axcrypt"), AxCryptOptions.EncryptWithCompression, nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(nullFileInfo, new MemoryStream(), EncryptionParameters.Empty, AxCryptOptions.None, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, nullStream, EncryptionParameters.Empty, AxCryptOptions.None, new ProgressContext()); });
@@ -108,19 +108,19 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(document, nullFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(nullFileInfo, decryptedFileInfo, Passphrase.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, nullFileInfo, Passphrase.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(nullFileInfo, decryptedFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, nullFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, decryptedFileInfo, nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, decryptedFileInfo, Passphrase.Empty, AxCryptOptions.SetFileTimes, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, decryptedFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(nullFileInfo, Path.Combine(_rootPath, "Directory"), Passphrase.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, nullString, Passphrase.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(nullFileInfo, Path.Combine(_rootPath, "Directory"), LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, nullString, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), Passphrase.Empty, AxCryptOptions.SetFileTimes, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Document(nullFileInfo, Passphrase.Empty, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Document(nullFileInfo, LogOnIdentity.Empty, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Document(sourceFileInfo, nullKey, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Document(sourceFileInfo, Passphrase.Empty, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Document(sourceFileInfo, LogOnIdentity.Empty, nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().WriteToFileWithBackup(null, (Stream stream) => { }, new ProgressContext()); });
             IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
@@ -136,8 +136,8 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
-            TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
-            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(destinationFileInfo, new Passphrase("axcrypt"), new ProgressContext()))
+            TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new LogOnIdentity("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(destinationFileInfo, new LogOnIdentity("axcrypt"), new ProgressContext()))
             {
                 Assert.That(document.PassphraseIsValid, Is.True, "The passphrase should be ok.");
                 Assert.That(document.FileName, Is.EqualTo("test.txt"), "Unexpected file name in headers.");
@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
                 AxCryptFile.Encrypt(sourceFileInfo, destinationStream, parameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
 
-            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(destinationFileInfo, new Passphrase("axcrypt"), new ProgressContext()))
+            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(destinationFileInfo, new LogOnIdentity("axcrypt"), new ProgressContext()))
             {
                 Assert.That(document.PassphraseIsValid, Is.True, "The passphrase should be ok.");
             }
@@ -181,7 +181,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             string destinationDirectory = Path.Combine(_rootPath, "Encrypted");
 
-            string destinationFileName = TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, destinationDirectory, new Passphrase("a"), AxCryptOptions.None, new ProgressContext());
+            string destinationFileName = TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, destinationDirectory, new LogOnIdentity("a"), AxCryptOptions.None, new ProgressContext());
             Assert.That(destinationFileName, Is.EqualTo("HelloWorld-Key-a.txt"), "The correct filename should be returned from decryption.");
         }
 
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             string destinationDirectory = Path.Combine(_rootPath, "Encrypted");
 
-            string destinationFileName = TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, destinationDirectory, new Passphrase("Wrong Passphrase"), AxCryptOptions.None, new ProgressContext());
+            string destinationFileName = TypeMap.Resolve.New<AxCryptFile>().Decrypt(sourceFileInfo, destinationDirectory, new LogOnIdentity("Wrong Passphrase"), AxCryptOptions.None, new ProgressContext());
             Assert.That(destinationFileName, Is.Null, "When the wrong passphrase is given, the returned file name should be null to signal this.");
         }
 
@@ -227,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore sourceRuntimeFileInfo = TypeMap.Resolve.New<IDataStore>(sourceFullName);
             IDataStore destinationRuntimeFileInfo = sourceRuntimeFileInfo.CreateEncryptedName();
-            Passphrase passphrase = new Passphrase("laDabled@tAmeopot33");
+            LogOnIdentity passphrase = new LogOnIdentity("laDabled@tAmeopot33");
 
             TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceRuntimeFileInfo, destinationRuntimeFileInfo, passphrase, AxCryptOptions.SetFileTimes | AxCryptOptions.EncryptWithCompression, new ProgressContext());
 
@@ -263,10 +263,10 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(encryptedFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
-            TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, encryptedFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, encryptedFileInfo, new LogOnIdentity("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
 
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(_rootPath, "decrypted.txt"));
-            bool isPassphraseOk = TypeMap.Resolve.New<AxCryptFile>().Decrypt(encryptedFileInfo, decryptedFileInfo, new Passphrase("wrong"), AxCryptOptions.None, new ProgressContext());
+            bool isPassphraseOk = TypeMap.Resolve.New<AxCryptFile>().Decrypt(encryptedFileInfo, decryptedFileInfo, new LogOnIdentity("wrong"), AxCryptOptions.None, new ProgressContext());
             Assert.That(isPassphraseOk, Is.False, "The passphrase is wrong and should be wrong!");
         }
 
@@ -371,8 +371,8 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFilePath);
             IDataStore nullFileInfo = null;
 
-            Passphrase key = Passphrase.Empty;
-            Passphrase nullKey = null;
+            LogOnIdentity key = LogOnIdentity.Empty;
+            LogOnIdentity nullKey = null;
 
             ProgressContext progress = new ProgressContext();
             ProgressContext nullProgress = null;
@@ -392,7 +392,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(sourceFilePath);
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFilePath);
 
-            Passphrase key = new Passphrase("a");
+            LogOnIdentity key = new LogOnIdentity("a");
 
             ProgressContext progress = new ProgressContext();
 
@@ -410,8 +410,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             string nullFileName = null;
 
-            Passphrase key = new Passphrase(String.Empty);
-            Passphrase nullKey = null;
+            LogOnIdentity key = new LogOnIdentity(String.Empty);
+            LogOnIdentity nullKey = null;
 
             ProgressContext progress = new ProgressContext();
             ProgressContext nullProgress = null;
@@ -428,7 +428,7 @@ namespace Axantum.AxCrypt.Core.Test
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
 
-            Passphrase key = new Passphrase("b");
+            LogOnIdentity key = new LogOnIdentity("b");
             ProgressContext progress = new ProgressContext();
 
             TypeMap.Resolve.New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, key, V2Aes256CryptoFactory.CryptoId, progress);
@@ -444,7 +444,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
-            Passphrase passphrase = new Passphrase("a");
+            LogOnIdentity passphrase = new LogOnIdentity("a");
 
             Assert.That(sourceFileInfo.IsAvailable, Is.True, "The source should exist.");
             Assert.That(destinationFileInfo.IsAvailable, Is.False, "The source should not exist yet.");
@@ -465,7 +465,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataContainer sourceFolderInfo = TypeMap.Resolve.New<IDataContainer>(Path.GetDirectoryName(sourceFileInfo.FullName));
             sourceFolderInfo.CreateFolder();
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
-            Passphrase passphrase = new Passphrase("a");
+            LogOnIdentity passphrase = new LogOnIdentity("a");
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -485,7 +485,7 @@ namespace Axantum.AxCrypt.Core.Test
             sourceFileInfo.Container.CreateFolder();
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.axx"));
 
-            Passphrase passphrase = new Passphrase("allan");
+            LogOnIdentity passphrase = new LogOnIdentity("allan");
 
             TypeMap.Resolve.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase, V1Aes128CryptoFactory.CryptoId, new ProgressContext());
 
@@ -502,7 +502,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore alternateDestinationFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.1.axx"));
 
-            Passphrase passphrase = new Passphrase("allan");
+            LogOnIdentity passphrase = new LogOnIdentity("allan");
 
             TypeMap.Resolve.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase, V2Aes256CryptoFactory.CryptoId, new ProgressContext());
 
@@ -518,7 +518,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataContainer sourceFolderInfo = sourceFileInfo.Container;
             IDataStore destinationFileInfo = sourceFileInfo.Container.FileItemInfo("David Copperfield-txt.axx");
 
-            Passphrase passphrase = new Passphrase("allan");
+            LogOnIdentity passphrase = new LogOnIdentity("allan");
 
             TypeMap.Resolve.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { sourceFolderInfo }, passphrase, V1Aes128CryptoFactory.CryptoId, new ProgressContext());
 
@@ -536,7 +536,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore alternateDestinationFileInfo = sourceFolderInfo.FileItemInfo("David Copperfield-txt.1.axx");
             Assert.That(alternateDestinationFileInfo.IsAvailable, Is.False, "The destination should not be created and exist yet.");
 
-            Passphrase passphrase = new Passphrase("allan");
+            LogOnIdentity passphrase = new LogOnIdentity("allan");
 
             TypeMap.Resolve.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { sourceFolderInfo }, passphrase, V2Aes128CryptoFactory.CryptoId, new ProgressContext());
 
@@ -580,11 +580,11 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestDocumentNullArguments()
         {
             IDataStore nullSourceFile = null;
-            Passphrase nullPassphrase = null;
+            LogOnIdentity nullPassphrase = null;
             IProgressContext nullProgress = null;
 
             IDataStore sourceFile = TypeMap.Resolve.New<IDataStore>(@"C:\Folder\File.txt");
-            Passphrase passphrase = new Passphrase("allan");
+            LogOnIdentity passphrase = new LogOnIdentity("allan");
             IProgressContext progress = new ProgressContext();
 
             IAxCryptDocument document = null;

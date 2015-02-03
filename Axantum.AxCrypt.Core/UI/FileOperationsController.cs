@@ -471,7 +471,7 @@ namespace Axantum.AxCrypt.Core.UI
         private static bool TryFindDecryptionKey(IDataStore fileInfo, FileOperationEventArgs e)
         {
             Guid cryptoId;
-            Passphrase passphrase = fileInfo.TryFindPassphrase(out cryptoId);
+            LogOnIdentity passphrase = fileInfo.TryFindPassphrase(out cryptoId);
             if (passphrase == null)
             {
                 return false;

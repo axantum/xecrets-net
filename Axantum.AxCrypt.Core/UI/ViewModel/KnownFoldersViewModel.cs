@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     knownFolder.Folder.CreateFolder(knownFolder.My.Name);
                 }
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.My.FullName, _knownKeys.DefaultEncryptionKey.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.My.FullName, _knownKeys.DefaultEncryptionKey.Passphrase.Thumbprint));
             }
         }
 

@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="_fileSystemState">The FileSystemState that contains the list of active files.</param>
         /// <param name="key">The newly added key to check the files for a match with.</param>
         /// <returns>True if any file was updated with the new key, False otherwise.</returns>
-        public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(Passphrase key)
+        public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(LogOnIdentity key)
         {
             bool keyMatch = false;
             Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                if (!activeFile.ThumbprintMatch(key))
+                if (!activeFile.ThumbprintMatch(key.Passphrase))
                 {
                     return activeFile;
                 }
@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            Passphrase key = FindKnownKeyOrNull(activeFile);
+            LogOnIdentity key = FindKnownKeyOrNull(activeFile);
             if (activeFile.Key != null)
             {
                 if (key != null)
@@ -193,11 +193,11 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static Passphrase FindKnownKeyOrNull(ActiveFile activeFile)
+        private static LogOnIdentity FindKnownKeyOrNull(ActiveFile activeFile)
         {
-            foreach (Passphrase key in Resolve.KnownKeys.Keys)
+            foreach (LogOnIdentity key in Resolve.KnownKeys.Keys)
             {
-                if (activeFile.ThumbprintMatch(key))
+                if (activeFile.ThumbprintMatch(key.Passphrase))
                 {
                     return key;
                 }

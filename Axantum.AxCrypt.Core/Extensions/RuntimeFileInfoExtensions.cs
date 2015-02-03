@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
         }
 
-        public static Passphrase TryFindPassphrase(this IDataStore fileInfo, out Guid cryptoId)
+        public static LogOnIdentity TryFindPassphrase(this IDataStore fileInfo, out Guid cryptoId)
         {
             cryptoId = Guid.Empty;
             if (!fileInfo.IsEncrypted())
@@ -140,9 +140,9 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return null;
             }
 
-            foreach (Passphrase knownKey in Resolve.KnownKeys.Keys)
+            foreach (LogOnIdentity knownKey in Resolve.KnownKeys.Keys)
             {
-                cryptoId = TypeMap.Resolve.New<AxCryptFactory>().TryFindCryptoId(knownKey, fileInfo, Resolve.CryptoFactory.OrderedIds);
+                cryptoId = TypeMap.Resolve.New<AxCryptFactory>().TryFindCryptoId(knownKey.Passphrase, fileInfo, Resolve.CryptoFactory.OrderedIds);
                 if (cryptoId != Guid.Empty)
                 {
                     return knownKey;

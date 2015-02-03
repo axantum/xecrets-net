@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeDataStore.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, Stream.Null);
 
-            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             Resolve.FileSystemState.Add(activeFile);
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeDataStore.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, Stream.Null);
 
-            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             Resolve.FileSystemState.Add(activeFile);
@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             ActiveFile activeFile;
-            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
             Resolve.KnownKeys.Add(activeFile.Key);
 
@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
-            Passphrase passphrase = new Passphrase("a");
+            LogOnIdentity passphrase = new LogOnIdentity("a");
             TypeMap.Resolve.New<AxCryptFile>().Decrypt(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), passphrase, AxCryptOptions.None, new ProgressContext());
 
             ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), passphrase, ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
-            Passphrase passphrase = new Passphrase("a");
+            LogOnIdentity passphrase = new LogOnIdentity("a");
             TypeMap.Resolve.New<AxCryptFile>().Decrypt(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), passphrase, AxCryptOptions.None, new ProgressContext());
 
             ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), passphrase, ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
@@ -223,8 +223,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
-            Resolve.KnownKeys.Add(new Passphrase("x"));
-            Resolve.KnownKeys.Add(new Passphrase("y"));
+            Resolve.KnownKeys.Add(new LogOnIdentity("x"));
+            Resolve.KnownKeys.Add(new LogOnIdentity("y"));
             TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
@@ -232,7 +232,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(activeFile.Key, Is.Null, "The key should still be null after the checking of active files.");
 
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The file should still be there.");
-            Assert.That(activeFile.ThumbprintMatch(passphrase), Is.True, "The active file should still be known to be decryptable with the original passphrase.");
+            Assert.That(activeFile.ThumbprintMatch(passphrase.Passphrase), Is.True, "The active file should still be known to be decryptable with the original passphrase.");
         }
 
         [Test]
@@ -242,7 +242,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeDataStore.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
-            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
             TypeMap.Resolve.New<IDataStore>(_decryptedFile1).Delete();
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
             Resolve.FileSystemState.Add(activeFile);
@@ -267,7 +267,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeDataStore.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
-            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
             Resolve.KnownKeys.Add(activeFile.Key);
 
@@ -297,7 +297,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
-            Passphrase passphrase = new Passphrase("a");
+            LogOnIdentity passphrase = new LogOnIdentity("a");
             TypeMap.Resolve.New<AxCryptFile>().Decrypt(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), passphrase, AxCryptOptions.None, new ProgressContext());
 
             ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), passphrase, ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
@@ -347,7 +347,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeLauncher fakeLauncher = new FakeLauncher();
             fakeLauncher.Launch(_decryptedFile1);
-            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
             Resolve.FileSystemState.Add(activeFile, fakeLauncher);
             Resolve.KnownKeys.Add(activeFile.Key);
@@ -375,7 +375,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeLauncher fakeLauncher = new FakeLauncher();
             fakeLauncher.Launch(_decryptedFile1);
-            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
             Resolve.FileSystemState.Add(activeFile, fakeLauncher);
 
@@ -402,7 +402,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeDataStore.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
-            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
@@ -450,7 +450,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             bool changedWasRaised = false;
@@ -483,7 +483,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             int timeCalls = 0;
@@ -510,7 +510,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
-            Passphrase key = new Passphrase("passphrase");
+            LogOnIdentity key = new LogOnIdentity("passphrase");
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
@@ -523,14 +523,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
-            Passphrase key = new Passphrase("a");
+            LogOnIdentity key = new LogOnIdentity("a");
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
             Resolve.FileSystemState.Save();
 
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(TypeMap.Resolve.New<IDataStore>(_fileSystemStateFilePath)));
 
-            Passphrase wrongKey = new Passphrase("b");
+            LogOnIdentity wrongKey = new LogOnIdentity("b");
             bool updateWasMade = TypeMap.Resolve.New<ActiveFileAction>().UpdateActiveFileWithKeyIfKeyMatchesThumbprint(wrongKey);
             Assert.That(updateWasMade, Is.False, "Since there are only ActiveFiles with wrong keys in the list, no update should be made.");
         }
@@ -540,7 +540,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
-            Passphrase key = new Passphrase("passphrase");
+            LogOnIdentity key = new LogOnIdentity("passphrase");
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
             Resolve.FileSystemState.Save();
@@ -556,7 +556,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
-            Passphrase key = new Passphrase("passphrase");
+            LogOnIdentity key = new LogOnIdentity("passphrase");
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
@@ -576,7 +576,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
-            Passphrase key = new Passphrase("passphrase");
+            LogOnIdentity key = new LogOnIdentity("passphrase");
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
@@ -596,7 +596,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
-            Passphrase key = new Passphrase("passphrase");
+            LogOnIdentity key = new LogOnIdentity("passphrase");
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
             Resolve.FileSystemState.Save();
@@ -616,7 +616,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
-            Passphrase key = new Passphrase("passphrase");
+            LogOnIdentity key = new LogOnIdentity("passphrase");
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V2Aes256CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
             Resolve.FileSystemState.Save();

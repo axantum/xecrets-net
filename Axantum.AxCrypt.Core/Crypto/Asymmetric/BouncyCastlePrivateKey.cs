@@ -116,5 +116,30 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
         {
             return ToPem();
         }
+
+        public bool Equals(IAsymmetricPrivateKey other)
+        {
+            if ((object)other == null)
+            {
+                return false;
+            }
+            return ToString().Equals(other.ToString());
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !typeof(IAsymmetricPrivateKey).IsAssignableFrom(obj.GetType()))
+            {
+                return false;
+            }
+            IAsymmetricPrivateKey other = (IAsymmetricPrivateKey)obj;
+
+            return Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return ToString().GetHashCode();
+        }
     }
 }

@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return false;
             }
-            _knownKeys.DefaultEncryptionKey = passphrase;
+            _knownKeys.DefaultEncryptionKey = new LogOnIdentity(passphrase, userEmail, _keysStoreFile.UserKeys.KeyPair);
             return true;
         }
 
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Session
             string json = Resolve.Serializer.Serialize(_keysStoreFile.UserKeys);
             using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
-                TypeMap.Resolve.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, passphrase, Resolve.CryptoFactory.Default.Id, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                TypeMap.Resolve.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, new LogOnIdentity(passphrase), Resolve.CryptoFactory.Default.Id, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
         }
 
@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             using (MemoryStream stream = new MemoryStream())
             {
-                if (!TypeMap.Resolve.New<AxCryptFile>().Decrypt(file, stream, passphrase))
+                if (!TypeMap.Resolve.New<AxCryptFile>().Decrypt(file, stream, new LogOnIdentity(passphrase)))
                 {
                     return null;
                 }

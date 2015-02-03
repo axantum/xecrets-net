@@ -292,7 +292,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Passphrase identity = null;
             if (isLoggedOn)
             {
-                identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == Resolve.KnownKeys.DefaultEncryptionKey.Thumbprint);
+                identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == Resolve.KnownKeys.DefaultEncryptionKey.Passphrase.Thumbprint);
                 if (identity == null)
                 {
                     throw new InvalidOperationException("Attempt to log on without a matching identity being defined.");
@@ -341,7 +341,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string folder in folders)
             {
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownKeys.DefaultEncryptionKey.Passphrase.Thumbprint));
             }
             _fileSystemState.Save();
         }

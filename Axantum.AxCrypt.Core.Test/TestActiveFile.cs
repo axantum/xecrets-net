@@ -88,8 +88,8 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore nullFileInfo = null;
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
-            Passphrase key = new Passphrase("key");
-            Passphrase nullKey = null;
+            LogOnIdentity key = new LogOnIdentity("key");
+            LogOnIdentity nullKey = null;
             ActiveFile nullActiveFile = null;
 
             ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
@@ -98,15 +98,15 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(originalActiveFile, nullKey) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, ActiveFileStatus.None) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, DateTime.MinValue, ActiveFileStatus.None) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new Passphrase("a"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, nullFileInfo, new Passphrase("b"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new LogOnIdentity("a"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, nullFileInfo, new LogOnIdentity("b"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
         }
 
         [Test]
         public void TestConstructor()
         {
-            Passphrase key = new Passphrase("key");
+            LogOnIdentity key = new LogOnIdentity("key");
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
 
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(otherFile.EncryptedFileInfo.FullName, Is.EqualTo(activeFile.EncryptedFileInfo.FullName), "This should be copied from the original instance.");
             Assert.That(otherFile.Key, Is.EqualTo(activeFile.Key), "This should be copied from the original instance.");
             Assert.That(otherFile.Properties.LastActivityTimeUtc, Is.GreaterThan(activeFile.Properties.LastActivityTimeUtc), "This should not be copied from the original instance, but should be a later time.");
-            Assert.That(otherFile.ThumbprintMatch(activeFile.Key), Is.True, "The thumbprints should match.");
+            Assert.That(otherFile.ThumbprintMatch(activeFile.Key.Passphrase), Is.True, "The thumbprints should match.");
 
             activeFile.DecryptedFileInfo.LastWriteTimeUtc = activeFile.DecryptedFileInfo.LastWriteTimeUtc.AddDays(1);
             otherFile = new ActiveFile(activeFile, OS.Current.UtcNow, ActiveFileStatus.AssumedOpenAndDecrypted);
@@ -134,11 +134,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestCopyConstructorWithKey()
         {
-            Passphrase key = new Passphrase("key");
+            LogOnIdentity key = new LogOnIdentity("key");
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
-            Passphrase newKey = new Passphrase("newKey");
+            LogOnIdentity newKey = new LogOnIdentity("newKey");
 
             ActiveFile newActiveFile = new ActiveFile(activeFile, newKey);
             Assert.That(activeFile.Key, Is.Not.EqualTo(newKey), "Ensure that it's really a different key.");
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
 
-            Passphrase key = new Passphrase("key");
+            LogOnIdentity key = new LogOnIdentity("key");
 
             using (MemoryStream stream = new MemoryStream())
             {
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Test
                 stream.Position = 0;
                 ActiveFile deserializedActiveFile = (ActiveFile)serializer.ReadObject(stream);
 
-                Assert.That(deserializedActiveFile.ThumbprintMatch(key), Is.True, "The deserialized object should match the thumbprint with the key.");
+                Assert.That(deserializedActiveFile.ThumbprintMatch(key.Passphrase), Is.True, "The deserialized object should match the thumbprint with the key.");
             }
         }
 
@@ -171,7 +171,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
 
-            Passphrase key = new Passphrase("key");
+            LogOnIdentity key = new LogOnIdentity("key");
             using (MemoryStream stream = new MemoryStream())
             {
                 ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
@@ -188,7 +188,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(_rootPath, "doesnotexist.txt"));
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new Passphrase("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new LogOnIdentity("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
         }
 
@@ -196,7 +196,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestVisualState()
         {
             ActiveFile activeFile;
-            Passphrase key = new Passphrase("key");
+            LogOnIdentity key = new LogOnIdentity("key");
 
             activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(@"C:\encrypted.axx"), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));

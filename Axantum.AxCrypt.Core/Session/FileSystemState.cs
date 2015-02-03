@@ -294,7 +294,7 @@ namespace Axantum.AxCrypt.Core.Session
                     continue;
                 }
                 Guid cryptoId;
-                Passphrase passphrase = activeFile.EncryptedFileInfo.TryFindPassphrase(out cryptoId);
+                LogOnIdentity passphrase = activeFile.EncryptedFileInfo.TryFindPassphrase(out cryptoId);
                 if (passphrase == null)
                 {
                     continue;

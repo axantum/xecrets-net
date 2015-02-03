@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownKeys.DefaultEncryptionKey = new Passphrase("aaa");
+            knownKeys.DefaultEncryptionKey = new LogOnIdentity("aaa");
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.True);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.True);
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownKeys.DefaultEncryptionKey = new Passphrase("aaa");
+            knownKeys.DefaultEncryptionKey = new LogOnIdentity("aaa");
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.True);
@@ -153,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownKeys.DefaultEncryptionKey = new Passphrase("aaa");
+            knownKeys.DefaultEncryptionKey = new LogOnIdentity("aaa");
             Assert.That(Resolve.FileSystemState.WatchedFolders.Count(), Is.EqualTo(1));
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);

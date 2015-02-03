@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "A new state should not have any active files.");
 
-                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
                 state.Save();
             }
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
-                Assert.That(reloadedState.ActiveFiles.First().ThumbprintMatch(activeFile.Key), Is.True, "The reloaded thumbprint should  match the key.");
+                Assert.That(reloadedState.ActiveFiles.First().ThumbprintMatch(activeFile.Key.Passphrase), Is.True, "The reloaded thumbprint should  match the key.");
             }
         }
 
@@ -114,7 +114,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 bool wasHere;
                 state.ActiveFileChanged += new EventHandler<ActiveFileChangedEventArgs>((object sender, ActiveFileChangedEventArgs e) => { wasHere = true; });
-                ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new Passphrase("a"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("a"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
 
                 wasHere = false;
                 state.Add(activeFile);
@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
-                ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+                ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
                 state.Save();
 
@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
-                ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+                ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
 
                 ActiveFile byEncryptedPath = state.FindActiveFileFromEncryptedPath(_encryptedAxxPath);
@@ -173,11 +173,11 @@ namespace Axantum.AxCrypt.Core.Test
                 });
 
                 ActiveFile activeFile;
-                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted1AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted1TxtPath), new Passphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted1AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted1TxtPath), new LogOnIdentity("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
-                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted2AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted2TxtPath), new Passphrase("passphrase2"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted2AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted2TxtPath), new LogOnIdentity("passphrase2"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
-                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted3AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted3TxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted3AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted3TxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
                 Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised by the adding of active files.");
 
@@ -218,16 +218,16 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
-                ActiveFile decryptedFile1 = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new Passphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                ActiveFile decryptedFile1 = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
                 state.Add(decryptedFile1);
 
-                ActiveFile decryptedFile2 = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted2AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted2TxtPath), new Passphrase("passphrase2"), ActiveFileStatus.DecryptedIsPendingDelete, new V1Aes128CryptoFactory().Id);
+                ActiveFile decryptedFile2 = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted2AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted2TxtPath), new LogOnIdentity("passphrase2"), ActiveFileStatus.DecryptedIsPendingDelete, new V1Aes128CryptoFactory().Id);
                 state.Add(decryptedFile2);
 
-                ActiveFile notDecryptedFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted3AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted3TxtPath), new Passphrase("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                ActiveFile notDecryptedFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted3AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted3TxtPath), new LogOnIdentity("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
                 state.Add(notDecryptedFile);
 
-                ActiveFile errorFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted4AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted4TxtPath), new Passphrase("passphrase"), ActiveFileStatus.Error, new V1Aes128CryptoFactory().Id);
+                ActiveFile errorFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encrypted4AxxPath), TypeMap.Resolve.New<IDataStore>(_decrypted4TxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.Error, new V1Aes128CryptoFactory().Id);
                 state.Add(errorFile);
 
                 IList<ActiveFile> decryptedFiles = state.DecryptedActiveFiles;
@@ -281,7 +281,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.That(state.ActiveFileCount, Is.EqualTo(0), "After loading damaged state, the count should be zero.");
 
-                ActiveFile decryptedFile1 = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                ActiveFile decryptedFile1 = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
                 state.Add(decryptedFile1);
 
                 Assert.That(state.ActiveFileCount, Is.EqualTo(1), "After adding a file, the count should be one.");
@@ -333,7 +333,7 @@ namespace Axantum.AxCrypt.Core.Test
                 FakeDataStore.AddFile(_encryptedAxxPath, null);
                 Assert.That(state.ActiveFileCount, Is.EqualTo(0));
 
-                state.Add(new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id));
+                state.Add(new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id));
                 Assert.That(state.ActiveFileCount, Is.EqualTo(1));
 
                 TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath).Delete();

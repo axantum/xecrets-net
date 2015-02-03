@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Session
             Key = null;
         }
 
-        public ActiveFile(ActiveFile activeFile, Passphrase key)
+        public ActiveFile(ActiveFile activeFile, LogOnIdentity key)
         {
             if (activeFile == null)
             {
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
         }
 
-        public ActiveFile(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, Passphrase key, ActiveFileStatus status, Guid cryptoId)
+        public ActiveFile(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, LogOnIdentity key, ActiveFileStatus status, Guid cryptoId)
         {
             if (encryptedFileInfo == null)
             {
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.Key, other.Thumbprint, other.Status, other.Properties);
         }
 
-        private void Initialize(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, Passphrase key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
+        private void Initialize(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, LogOnIdentity key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
         {
             EncryptedFileInfo = TypeMap.Resolve.New<IDataStore>(encryptedFileInfo.FullName);
             DecryptedFileInfo = TypeMap.Resolve.New<IDataStore>(decryptedFileInfo.FullName);
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 if (_thumbprint == null && Key != null)
                 {
-                    _thumbprint = Key.Thumbprint;
+                    _thumbprint = Key.Passphrase.Thumbprint;
                 }
                 return _thumbprint;
             }
@@ -234,9 +234,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private Passphrase _key;
+        private LogOnIdentity _key;
 
-        public Passphrase Key
+        public LogOnIdentity Key
         {
             get
             {

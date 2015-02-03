@@ -8,6 +8,8 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class EmailAddress
     {
+        public static readonly EmailAddress Empty = new EmailAddress(String.Empty);
+
         public string Address { get; set; }
 
         public EmailAddress(string address)

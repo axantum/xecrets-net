@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
             Stream stream = Assembly.GetAssembly(typeof(TestV2RegressionCompleteFiles)).GetManifestResourceStream("Axantum.AxCrypt.Core.Test.resources." + resourceName);
             FakeDataStore.AddFile(source, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, stream);
 
-            Passphrase passphrase = new Passphrase(password);
+            LogOnIdentity passphrase = new LogOnIdentity(password);
 
             bool ok = new AxCryptFile().Decrypt(TypeMap.Resolve.New<IDataStore>(source), TypeMap.Resolve.New<IDataStore>(destination), passphrase, AxCryptOptions.SetFileTimes, new ProgressContext());
             Assert.That(ok, Is.True, "The Decrypt() method should return true for ok.");

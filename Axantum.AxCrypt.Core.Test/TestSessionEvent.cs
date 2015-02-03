@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(sessionEvent.FullName, Is.EqualTo(String.Empty));
             Assert.That(sessionEvent.Key.Equals(Passphrase.Empty));
 
-            Passphrase key = new Passphrase("key");
+            LogOnIdentity key = new LogOnIdentity("key");
             sessionEvent = new SessionNotification(SessionNotificationType.KnownKeyChange, key);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.KnownKeyChange));
             Assert.That(sessionEvent.FullName, Is.EqualTo(String.Empty));
@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEquality()
         {
-            Passphrase key = new Passphrase("passphrase1");
+            LogOnIdentity key = new LogOnIdentity("passphrase1");
             string fullName = @"C:\Test\Test.txt";
 
             SessionNotification sessionEventA1 = new SessionNotification(SessionNotificationType.ActiveFileChange);
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotification sessionEventB1 = new SessionNotification(SessionNotificationType.ActiveFileChange, key);
             SessionNotification sessionEventB2 = new SessionNotification(SessionNotificationType.ActiveFileChange, key);
-            SessionNotification sessionEventB3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new Passphrase("passphrase2"));
+            SessionNotification sessionEventB3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new LogOnIdentity("passphrase2"));
 
             SessionNotification sessionEventC1 = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
             SessionNotification sessionEventC2 = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotification sessionEventD1 = new SessionNotification(SessionNotificationType.ActiveFileChange, key, fullName);
             SessionNotification sessionEventD2 = new SessionNotification(SessionNotificationType.ActiveFileChange, key, fullName);
-            SessionNotification sessionEventD3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new Passphrase("passphrase"), fullName);
+            SessionNotification sessionEventD3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new LogOnIdentity("passphrase"), fullName);
 
             SessionNotification nullSessionEvent = null;
             SessionNotification sessionEventA1Alias = sessionEventA1;

@@ -32,7 +32,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
-    public interface IAsymmetricKeyPair
+    public interface IAsymmetricKeyPair : IEquatable<IAsymmetricKeyPair>
     {
         IAsymmetricPublicKey PublicKey { get; }
 

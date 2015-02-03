@@ -95,8 +95,8 @@ namespace Axantum.AxCrypt.Core.Test
             string file = _helloWorldAxxPath;
             string nullFile = null;
 
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
-            IEnumerable<Passphrase> nullKeys = null;
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
+            IEnumerable<LogOnIdentity> nullKeys = null;
 
             ProgressContext context = new ProgressContext();
             ProgressContext nullContext = null;
@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestSimpleOpenAndLaunch()
         {
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
 
             var mock = new Mock<ILauncher>() { CallBase = true };
             string launcherPath = null;
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream stream = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath).OpenRead())
                 {
                     document.Load(new Passphrase("a"), V1Aes128CryptoFactory.CryptoId, stream);
-                    status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new Passphrase("a"), document, new ProgressContext());
+                    status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), document, new ProgressContext());
                 }
             }
 
@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream stream = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath).OpenRead())
                 {
                     document.Load(new Passphrase("a"), V1Aes128CryptoFactory.CryptoId, stream);
-                    status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new Passphrase("a"), document, new ProgressContext());
+                    status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), document, new ProgressContext());
                 }
             }
 
@@ -179,15 +179,15 @@ namespace Axantum.AxCrypt.Core.Test
             ProgressContext nullProgressContext = null;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
 
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, Passphrase.Empty, new V1AxCryptDocument(), new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, Passphrase.Empty, nullDocument, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, Passphrase.Empty, new V1AxCryptDocument(), nullProgressContext); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, LogOnIdentity.Empty, new V1AxCryptDocument(), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, LogOnIdentity.Empty, nullDocument, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, LogOnIdentity.Empty, new V1AxCryptDocument(), nullProgressContext); });
         }
 
         [Test]
         public void TestFileDoesNotExist()
         {
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
 
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_rootPath.PathCombine("Documents", "HelloWorld-NotThere.axx"), keys, new ProgressContext());
@@ -199,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
 
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestFileAlreadyDecryptedButWithUnknownKey()
         {
             TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -236,7 +236,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
 
-            IEnumerable<Passphrase> badKeys = new Passphrase[] { new Passphrase("b") };
+            IEnumerable<LogOnIdentity> badKeys = new LogOnIdentity[] { new LogOnIdentity("b") };
 
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, badKeys, new ProgressContext());
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.InvalidKey), "The launch should fail this time, since the key is not known.");
@@ -247,7 +247,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestInvalidKey()
         {
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("b") };
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("b") };
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
 
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
@@ -257,7 +257,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestNoProcessLaunched()
         {
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
 
             FakeLauncher launcher = new FakeLauncher();
             bool called = false;
@@ -274,7 +274,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestWin32Exception()
         {
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
 
             SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
             {
@@ -290,7 +290,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestImmediateExit()
         {
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
 
             FakeLauncher launcher = new FakeLauncher();
             bool called = false;
@@ -307,7 +307,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestExitEvent()
         {
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
 
             FakeLauncher launcher = new FakeLauncher();
             bool called = false;
@@ -336,7 +336,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
 
-            IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
+            IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
 
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());

@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Test
             store = new UserAsymmetricKeysStore(workFolder, Resolve.KnownKeys);
             store.Load(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
 
-            Assert.That(Resolve.KnownKeys.DefaultEncryptionKey, Is.EqualTo(new Passphrase("secret")));
+            Assert.That(Resolve.KnownKeys.DefaultEncryptionKey, Is.EqualTo(new LogOnIdentity(new Passphrase("secret"), new EmailAddress(@"svante@axantum.com"), keyPair)));
             Assert.That(store.Keys.KeyPair.PrivateKey.ToString(), Is.EqualTo(keyPair.PrivateKey.ToString()));
             Assert.That(store.Keys.KeyPair.PublicKey.ToString(), Is.EqualTo(keyPair.PublicKey.ToString()));
         }
@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp\");
             UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Resolve.KnownKeys);
-            Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("secret");
+            Resolve.KnownKeys.DefaultEncryptionKey = new LogOnIdentity("secret");
 
             store.Create(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
 

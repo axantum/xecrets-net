@@ -33,7 +33,7 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class SessionNotification : IEquatable<SessionNotification>
     {
-        public Passphrase Key { get; private set; }
+        public LogOnIdentity Key { get; private set; }
 
         public string FullName { get; private set; }
 
@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public SessionNotificationType NotificationType { get; private set; }
 
-        public SessionNotification(SessionNotificationType notificationType, Passphrase key, string fullName, string otherFullName)
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity key, string fullName, string otherFullName)
         {
             NotificationType = notificationType;
             Key = key;
@@ -49,28 +49,28 @@ namespace Axantum.AxCrypt.Core.Session
             OtherFullName = otherFullName;
         }
 
-        public SessionNotification(SessionNotificationType notificationType, Passphrase key, string fullName)
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity key, string fullName)
             : this(notificationType, key, fullName, String.Empty)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType, string fullName, string otherFullName)
-            : this(notificationType, Passphrase.Empty, fullName, otherFullName)
+            : this(notificationType, LogOnIdentity.Empty, fullName, otherFullName)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType, string fullName)
-            : this(notificationType, Passphrase.Empty, fullName)
+            : this(notificationType, LogOnIdentity.Empty, fullName)
         {
         }
 
-        public SessionNotification(SessionNotificationType notificationType, Passphrase key)
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity key)
             : this(notificationType, key, String.Empty)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType)
-            : this(notificationType, Passphrase.Empty, String.Empty)
+            : this(notificationType, LogOnIdentity.Empty, String.Empty)
         {
         }
 

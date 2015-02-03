@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Thumbprint).Select(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path)), notification.Key, Resolve.CryptoFactory.Default.Id, progress);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Passphrase.Thumbprint).Select(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path)), notification.Key, Resolve.CryptoFactory.Default.Id, progress);
                     break;
 
                 case SessionNotificationType.SessionStart:

@@ -271,9 +271,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                if (!_fileSystemState.Identities.Any(i => i.Thumbprint == e.Passphrase.Thumbprint))
+                if (!_fileSystemState.Identities.Any(i => i.Thumbprint == e.Passphrase.Passphrase.Thumbprint))
                 {
-                    _fileSystemState.Identities.Add(e.Passphrase);
+                    _fileSystemState.Identities.Add(e.Passphrase.Passphrase);
                     _fileSystemState.Save();
                 }
                 _knownKeys.Add(e.Passphrase);
@@ -339,9 +339,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                if (!_fileSystemState.Identities.Any(i => i.Thumbprint == e.Passphrase.Thumbprint))
+                if (!_fileSystemState.Identities.Any(i => i.Thumbprint == e.Passphrase.Passphrase.Thumbprint))
                 {
-                    _fileSystemState.Identities.Add(e.Passphrase);
+                    _fileSystemState.Identities.Add(e.Passphrase.Passphrase);
                     _fileSystemState.Save();
                 }
                 _knownKeys.DefaultEncryptionKey = e.Passphrase;

@@ -87,5 +87,30 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
             return keyPair;
         }
+
+        public bool Equals(IAsymmetricKeyPair other)
+        {
+            if ((object)other == null)
+            {
+                return false;
+            }
+            return PrivateKey.Equals(other.PrivateKey) && PublicKey.Equals(other.PublicKey);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !typeof(IAsymmetricKeyPair).IsAssignableFrom(obj.GetType()))
+            {
+                return false;
+            }
+            IAsymmetricKeyPair other = (IAsymmetricKeyPair)obj;
+
+            return Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return PrivateKey.GetHashCode() ^ PublicKey.GetHashCode();
+        }
     }
 }

@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify = sessionNotify;
         }
 
-        public FileOperationContext OpenAndLaunchApplication(string file, IEnumerable<Passphrase> keys, IProgressContext progress)
+        public FileOperationContext OpenAndLaunchApplication(string file, IEnumerable<LogOnIdentity> keys, IProgressContext progress)
         {
             if (file == null)
             {
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.UI
             return status;
         }
 
-        public virtual FileOperationContext OpenAndLaunchApplication(string encryptedFile, Passphrase passphrase, IAxCryptDocument document, IProgressContext progress)
+        public virtual FileOperationContext OpenAndLaunchApplication(string encryptedFile, LogOnIdentity passphrase, IAxCryptDocument document, IProgressContext progress)
         {
             if (encryptedFile == null)
             {
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.UI
             return LaunchApplicationForDocument(encryptedActiveFile);
         }
 
-        private static ActiveFile EnsureDecryptedFolder(Passphrase passphrase, IAxCryptDocument document, IDataStore encryptedFileInfo, ActiveFile encryptedActiveFile)
+        private static ActiveFile EnsureDecryptedFolder(LogOnIdentity passphrase, IAxCryptDocument document, IDataStore encryptedFileInfo, ActiveFile encryptedActiveFile)
         {
             if (encryptedActiveFile != null && encryptedActiveFile.DecryptedFileInfo.IsAvailable)
             {
@@ -207,10 +207,10 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
         }
 
-        private static ActiveFile TryDecrypt(IDataStore sourceFileInfo, IDataContainer destinationFolderInfo, IEnumerable<Passphrase> passphrases, IProgressContext progress)
+        private static ActiveFile TryDecrypt(IDataStore sourceFileInfo, IDataContainer destinationFolderInfo, IEnumerable<LogOnIdentity> passphrases, IProgressContext progress)
         {
             ActiveFile destinationActiveFile = null;
-            foreach (Passphrase passphrase in passphrases)
+            foreach (LogOnIdentity passphrase in passphrases)
             {
                 if (Resolve.Log.IsInfoEnabled)
                 {
@@ -246,7 +246,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private static ActiveFile DestinationFileInfoFromDocument(IDataStore sourceFileInfo, IDataContainer destinationFolderInfo, Passphrase passphrase, IAxCryptDocument document)
+        private static ActiveFile DestinationFileInfoFromDocument(IDataStore sourceFileInfo, IDataContainer destinationFolderInfo, LogOnIdentity passphrase, IAxCryptDocument document)
         {
             string destinationName = document.FileName;
             string destinationPath = Resolve.Portable.Path().Combine(destinationFolderInfo.FullName, destinationName);
@@ -278,9 +278,9 @@ namespace Axantum.AxCrypt.Core.UI
             return Resolve.Portable.Path().Combine(destinationFolder, Resolve.Portable.Path().GetFileName(fileName));
         }
 
-        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<Passphrase> keys, IProgressContext progress)
+        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<LogOnIdentity> keys, IProgressContext progress)
         {
-            foreach (Passphrase key in keys)
+            foreach (LogOnIdentity key in keys)
             {
                 using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
                 {

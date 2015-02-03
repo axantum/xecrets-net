@@ -550,6 +550,7 @@ namespace Axantum.AxCrypt
                 }
                 e.DisplayPassphrase = logOnDialog.ShowPassphraseCheckBox.Checked;
                 e.Passphrase = logOnDialog.PassphraseTextBox.Text;
+                e.UserEmail = logOnDialog.EmailTextBox.Text;
             }
             return;
         }

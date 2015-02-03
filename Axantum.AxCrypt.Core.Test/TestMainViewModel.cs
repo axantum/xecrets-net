@@ -185,8 +185,8 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist is not a candidate for recent.");
 
-                Passphrase id = new Passphrase("passphrase1");
-                Resolve.FileSystemState.Identities.Add(id);
+                LogOnIdentity id = new LogOnIdentity("passphrase1");
+                Resolve.FileSystemState.Identities.Add(id.Passphrase);
                 Resolve.KnownKeys.DefaultEncryptionKey = id;
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist, even when logged on, is not droppable as recent.");
@@ -204,8 +204,8 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrpytable file without a valid log on is not droppable as recent.");
 
-                id = new Passphrase("passphrase");
-                Resolve.FileSystemState.Identities.Add(id);
+                id = new LogOnIdentity("passphrase");
+                Resolve.FileSystemState.Identities.Add(id.Passphrase);
                 Resolve.KnownKeys.DefaultEncryptionKey = id;
                 mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.True, "An encryptable existing file with a valid log on should be droppable as recent.");
@@ -252,17 +252,17 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
             FakeDataStore.AddFile(file1, null);
-            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file1), TypeMap.Resolve.New<IDataStore>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file1), TypeMap.Resolve.New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
             FakeDataStore.AddFile(file2, null);
-            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file2), TypeMap.Resolve.New<IDataStore>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file2), TypeMap.Resolve.New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
             FakeDataStore.AddFile(file3, null);
-            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file3), TypeMap.Resolve.New<IDataStore>(decrypted3), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file3), TypeMap.Resolve.New<IDataStore>(decrypted3), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             ActiveFileComparer comparer;
@@ -305,22 +305,22 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
                 FakeDataStore.AddFile(file1, null);
-                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file1), TypeMap.Resolve.New<IDataStore>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file1), TypeMap.Resolve.New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
                 Resolve.FileSystemState.Add(activeFile);
 
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
                 FakeDataStore.AddFile(file2, null);
-                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file2), TypeMap.Resolve.New<IDataStore>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file2), TypeMap.Resolve.New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
                 Resolve.FileSystemState.Add(activeFile);
 
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
                 FakeDataStore.AddFile(file3, null);
-                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file3), TypeMap.Resolve.New<IDataStore>(decrypted3), new Passphrase("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file3), TypeMap.Resolve.New<IDataStore>(decrypted3), new LogOnIdentity("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
                 Resolve.FileSystemState.Add(activeFile);
 
                 Assert.That(mvm.FilesArePending, Is.True);
 
-                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file1), TypeMap.Resolve.New<IDataStore>(decrypted1), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file1), TypeMap.Resolve.New<IDataStore>(decrypted1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
                 Resolve.FileSystemState.Add(activeFile);
 
                 Assert.That(mvm.FilesArePending, Is.False);
@@ -345,15 +345,15 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeDataStore.AddFile(file1, null);
-            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file1), TypeMap.Resolve.New<IDataStore>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file1), TypeMap.Resolve.New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             FakeDataStore.AddFile(file2, null);
-            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file2), TypeMap.Resolve.New<IDataStore>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file2), TypeMap.Resolve.New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             FakeDataStore.AddFile(file3, null);
-            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file3), TypeMap.Resolve.New<IDataStore>(decrypted3), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file3), TypeMap.Resolve.New<IDataStore>(decrypted3), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
@@ -400,12 +400,12 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeDataStore.AddFile(file1, null);
-            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file1), TypeMap.Resolve.New<IDataStore>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(file1), TypeMap.Resolve.New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
-            Resolve.KnownKeys.Add(new Passphrase("passphrase2"));
-            Passphrase id = new Passphrase("passphrase");
-            Resolve.FileSystemState.Identities.Add(id);
+            Resolve.KnownKeys.Add(new LogOnIdentity("passphrase2"));
+            LogOnIdentity id = new LogOnIdentity("passphrase");
+            Resolve.FileSystemState.Identities.Add(id.Passphrase);
             Resolve.KnownKeys.DefaultEncryptionKey = id;
 
             Assert.That(Resolve.FileSystemState.ActiveFileCount, Is.EqualTo(1), "One ActiveFile is expected.");
@@ -436,8 +436,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
-                Passphrase id = new Passphrase("passphrase");
-                mockFileSystemState.Object.Identities.Add(id);
+                LogOnIdentity id = new LogOnIdentity("passphrase");
+                mockFileSystemState.Object.Identities.Add(id.Passphrase);
                 Resolve.KnownKeys.DefaultEncryptionKey = id;
 
                 mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
@@ -458,8 +458,8 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.Throws<InvalidOperationException>(() => mvm.RemoveWatchedFolders.Execute(new string[] { }));
 
-                Passphrase id = new Passphrase("passphrase");
-                fileSystemStateMock.Object.Identities.Add(id);
+                LogOnIdentity id = new LogOnIdentity("passphrase");
+                fileSystemStateMock.Object.Identities.Add(id.Passphrase);
                 Resolve.KnownKeys.DefaultEncryptionKey = id;
 
                 mvm.RemoveWatchedFolders.Execute(new string[] { });
@@ -495,7 +495,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
             }
-            Assert.Throws<InvalidOperationException>(() => Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase"), "Should fail since there is no matching identity.");
+            Assert.Throws<InvalidOperationException>(() => Resolve.KnownKeys.DefaultEncryptionKey = new LogOnIdentity("passphrase"), "Should fail since there is no matching identity.");
         }
 
         [Test]
@@ -565,13 +565,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestNotifyWatchedFolderAdded()
         {
-            Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
+            Resolve.KnownKeys.DefaultEncryptionKey = new LogOnIdentity("passphrase");
             FakeDataStore.AddFolder(@"C:\MyFolders\Folder1");
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(0));
 
-                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownKeys.DefaultEncryptionKey.Passphrase.Thumbprint));
 
                 Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(1));
                 Assert.That(mvm.WatchedFolders.First(), Is.EqualTo(@"C:\MyFolders\Folder1".NormalizeFolderPath()));
@@ -581,12 +581,12 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestSetFilesArePending()
         {
-            Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
+            Resolve.KnownKeys.DefaultEncryptionKey = new LogOnIdentity("passphrase");
             FakeDataStore.AddFolder(@"C:\MyFolders\Folder1");
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.FilesArePending, Is.False);
-                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownKeys.DefaultEncryptionKey.Passphrase.Thumbprint));
                 FakeDataStore.AddFile(@"C:\MyFolders\Folder1\Encryptable.txt", Stream.Null);
                 Assert.That(mvm.FilesArePending, Is.True);
             }
