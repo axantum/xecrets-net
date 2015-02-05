@@ -40,10 +40,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="keyPair">The key pair.</param>
         public LogOnIdentity(Passphrase passphrase, EmailAddress userEmail, IAsymmetricKeyPair keyPair)
         {
-            Passphrase = passphrase;
+            Passphrase = passphrase ?? Passphrase.Empty;
             UserEmail = userEmail;
             KeyPair = keyPair;
         }
+
+        private Passphrase _passphrase;
 
         /// <summary>
         /// Gets the passphrase.
@@ -51,7 +53,17 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// The passphrase.
         /// </value>
-        public Passphrase Passphrase { get; private set; }
+        public Passphrase Passphrase
+        {
+            get
+            {
+                return _passphrase ?? Passphrase.Empty;
+            }
+            private set
+            {
+                _passphrase = value;
+            }
+        }
 
         /// <summary>
         /// Gets the user email.
@@ -117,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override int GetHashCode()
         {
-            return Passphrase.GetHashCode() ^ UserEmail.GetHashCode() ^ KeyPair.GetHashCode();
+            return Passphrase.GetHashCode() ^ UserEmail.GetHashCode() ^ (KeyPair == null ? 0 : KeyPair.GetHashCode());
         }
 
         public static bool operator ==(LogOnIdentity left, LogOnIdentity right)

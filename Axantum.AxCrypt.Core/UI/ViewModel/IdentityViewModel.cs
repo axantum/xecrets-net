@@ -143,14 +143,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return null;
         }
 
-        private Passphrase KeyFromPassphrase(string passphrase)
+        private LogOnIdentity KeyFromPassphrase(string passphrase)
         {
             foreach (Passphrase identity in _fileSystemState.Identities)
             {
                 Passphrase candidate = new Passphrase(passphrase);
                 if (identity.Thumbprint == candidate.Thumbprint)
                 {
-                    return candidate;
+                    return new LogOnIdentity(candidate);
                 }
             }
             return null;
@@ -215,7 +215,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
-            return new LogOnIdentity(KeyFromPassphrase(logOnArgs.Passphrase));
+            return KeyFromPassphrase(logOnArgs.Passphrase);
         }
 
         private LogOnIdentity AskForNewEncryptionPassphrase(string defaultPassphrase, string encryptedFileFullName)

@@ -196,7 +196,7 @@ namespace Axantum.AxCrypt.Core.Test
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             knownKeys.Add(new LogOnIdentity("a"));
 
-            Assert.That(knownKeys.DefaultEncryptionKey.Equals(new Passphrase("a")), "When adding a key that is for a known identity it should be set as the default.");
+            Assert.That(knownKeys.DefaultEncryptionKey.Equals(new LogOnIdentity("a")), "When adding a key that is for a known identity it should be set as the default.");
         }
 
         [Test]
