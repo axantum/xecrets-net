@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings, Resolve.SessionNotify);
             ivm.CryptoId = new V1Aes128CryptoFactory().Id; ;
-            Passphrase id = null;
+            LogOnIdentity id = null;
             ivm.LoggingOn += (sender, e) =>
             {
                 id = e.Identity;
@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Test
             ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
 
             Assert.That(ivm.Passphrase.Passphrase.Text, Is.EqualTo("p"));
-            Assert.That(id.Thumbprint, Is.EqualTo(Passphrase.Empty.Thumbprint));
+            Assert.That(id.Passphrase.Thumbprint, Is.EqualTo(Passphrase.Empty.Thumbprint));
         }
 
         [Test]
@@ -187,7 +187,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(@"C:\Folder\File1-txt.axx"), TypeMap.Resolve.New<IDataStore>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
-            Passphrase id = null;
+            LogOnIdentity id = null;
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings, Resolve.SessionNotify);
             ivm.CryptoId = new V1Aes128CryptoFactory().Id;
             ivm.LoggingOn += (sender, e) =>
@@ -199,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Test
             ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
 
             Assert.That(ivm.Passphrase.Passphrase.Text, Is.EqualTo("p"));
-            Assert.That(id.Thumbprint, Is.EqualTo(Passphrase.Empty.Thumbprint));
+            Assert.That(id.Passphrase.Thumbprint, Is.EqualTo(Passphrase.Empty.Thumbprint));
         }
 
         [Test]
@@ -228,9 +228,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void AskForLogOnPassphraseAction()
         {
-            Passphrase key = new Passphrase("ppp");
+            LogOnIdentity key = new LogOnIdentity("ppp");
 
-            Passphrase id = key;
+            LogOnIdentity id = key;
 
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings, Resolve.SessionNotify);
             ivm.CryptoId = new V1Aes128CryptoFactory().Id;
@@ -242,15 +242,15 @@ namespace Axantum.AxCrypt.Core.Test
             ivm.AskForLogOnPassphrase.Execute(id);
 
             Assert.That(ivm.Passphrase.Passphrase.Text, Is.EqualTo("ppp"));
-            Assert.That(Resolve.KnownKeys.DefaultEncryptionKey.Passphrase.Thumbprint, Is.EqualTo(id.Thumbprint));
+            Assert.That(Resolve.KnownKeys.DefaultEncryptionKey.Passphrase.Thumbprint, Is.EqualTo(id.Passphrase.Thumbprint));
         }
 
         [Test]
         public void AskForLogOnPassphraseActionWithCancel()
         {
-            Passphrase key = new Passphrase("ppp");
+            LogOnIdentity key = new LogOnIdentity("ppp");
 
-            Passphrase id = key;
+            LogOnIdentity id = key;
 
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings, Resolve.SessionNotify);
             ivm.LoggingOn += (sender, e) =>

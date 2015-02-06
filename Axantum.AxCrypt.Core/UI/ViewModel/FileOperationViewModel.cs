@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (!_knownKeys.IsLoggedOn)
             {
-                IdentityViewModel.AskForLogOnPassphrase.Execute(Passphrase.Empty);
+                IdentityViewModel.AskForLogOnPassphrase.Execute(LogOnIdentity.Empty);
             }
             if (!_knownKeys.IsLoggedOn)
             {
@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (!_knownKeys.IsLoggedOn)
             {
-                IdentityViewModel.AskForLogOnPassphrase.Execute(Passphrase.Empty);
+                IdentityViewModel.AskForLogOnPassphrase.Execute(LogOnIdentity.Empty);
             }
             if (!_knownKeys.IsLoggedOn)
             {

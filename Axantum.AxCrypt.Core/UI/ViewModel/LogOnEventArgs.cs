@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public LogOnEventArgs()
         {
             Passphrase = String.Empty;
-            Identity = Axantum.AxCrypt.Core.Crypto.Passphrase.Empty;
+            Identity = LogOnIdentity.Empty;
         }
 
         public bool Cancel { get; set; }
@@ -61,6 +61,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string EncryptedFileFullName { get; set; }
 
-        public Passphrase Identity { get; set; }
+        public LogOnIdentity Identity { get; set; }
     }
 }
