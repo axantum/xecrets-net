@@ -40,14 +40,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         private IDataContainer _folderPath;
 
-        private KnownKeys _knownKeys;
-
         private KeysStoreFile _keysStoreFile;
 
-        public UserAsymmetricKeysStore(IDataContainer folderPath, KnownKeys knownKeys)
+        public UserAsymmetricKeysStore(IDataContainer folderPath)
         {
             _folderPath = folderPath;
-            _knownKeys = knownKeys;
         }
 
         public bool Load(EmailAddress userEmail, Passphrase passphrase)
@@ -57,7 +54,6 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return false;
             }
-            _knownKeys.DefaultEncryptionKey = new LogOnIdentity(passphrase, userEmail, _keysStoreFile.UserKeys.KeyPair);
             return true;
         }
 

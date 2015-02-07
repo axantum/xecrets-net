@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core
         public static void RegisterTypeFactories(string workFolderPath, IEnumerable<Assembly> assemblies)
         {
             TypeMap.Register.Singleton<KnownKeys>(() => new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify));
-            TypeMap.Register.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, Resolve.KnownKeys));
+            TypeMap.Register.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo));
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.xml")));
             TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
