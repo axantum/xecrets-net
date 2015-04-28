@@ -90,6 +90,11 @@ namespace Axantum.AxCrypt.Core.Reader
         public override IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers)
         {
             V1AxCryptDocument v1Document = new V1AxCryptDocument();
+            if (cryptoId != V1Aes128CryptoFactory.CryptoId)
+            {
+                return v1Document;
+            }
+
             v1Document.Load(key, this, headers);
 
             return v1Document;
