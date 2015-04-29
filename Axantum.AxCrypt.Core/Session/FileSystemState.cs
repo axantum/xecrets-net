@@ -36,6 +36,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -484,9 +485,19 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 using (Stream fileSystemStateStream = _path.OpenWrite())
                 {
-                    fileSystemStateStream.SetLength(0);
-                    DataContractSerializer serializer = CreateSerializer();
-                    serializer.WriteObject(fileSystemStateStream, this);
+                    XmlWriterSettings settings = new XmlWriterSettings
+                    {
+#if DEBUG
+                        Indent = true
+#endif
+                    };
+
+                    using (XmlWriter writer = XmlWriter.Create(fileSystemStateStream, settings))
+                    {
+                        fileSystemStateStream.SetLength(0);
+                        DataContractSerializer serializer = CreateSerializer();
+                        serializer.WriteObject(writer, this);
+                    }
                 }
             }
             if (Resolve.Log.IsInfoEnabled)
