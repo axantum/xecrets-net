@@ -61,7 +61,7 @@
     <_AxIsBuildServerBuild>false</_AxIsBuildServerBuild>
     <_AxIsBuildServerBuild Condition=" Exists('$(_AxBuildserverDistinguishingPath)') ">true</_AxIsBuildServerBuild>
     <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
-    <_AxCertificateThumbprint>fc898fdc88b037ff88ea154ff25a24aea11eda9c</_AxCertificateThumbprint>
+    <_AxCertificateThumbprint>64ea53374b30f185e95162e3b4071d35f48fc01a</_AxCertificateThumbprint>
     <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
     <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
     <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(MSBuildThisFileDirectory)Ilmerge.exe') ">$(MSBuildThisFileDirectory)Ilmerge.exe</_AxIlMergePath>
