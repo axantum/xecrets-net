@@ -30,6 +30,17 @@ namespace Axantum.AxCrypt.Core.Header
             return block;
         }
 
+        private IAsymmetricPrivateKey _privateKey;
+
+        /// <summary>
+        /// Sets the private key.
+        /// </summary>
+        /// <param name="privateKey">The private key.</param>
+        public void SetPrivateKey(IAsymmetricPrivateKey privateKey)
+        {
+            _privateKey = privateKey;
+        }
+
         private byte[] _decryptedDataBlock = null;
 
         private byte[] DecryptedDataBlock
@@ -38,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 if (_decryptedDataBlock == null)
                 {
-                    _decryptedDataBlock = Resolve.AsymmetricKeysStore.Keys.KeyPair.PrivateKey.Transform(GetDataBlockBytesReference());
+                    _decryptedDataBlock = _privateKey.Transform(GetDataBlockBytesReference());
                 }
                 return _decryptedDataBlock;
             }
