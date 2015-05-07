@@ -88,15 +88,14 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(ok, Is.True, "The Decrypt() method should return true for ok.");
 
             byte[] hash;
-            using (Stream plainStream = TypeMap.Resolve.New<IDataStore>(destination).OpenRead())
+            HashAlgorithm hashAlgorithm = SHA256.Create();
+            Stream plainStream = TypeMap.Resolve.New<IDataStore>(destination).OpenRead();
+            using (Stream cryptoStream = new CryptoStream(plainStream, hashAlgorithm, CryptoStreamMode.Read))
             {
-                HashAlgorithm hashAlgorithm = SHA256.Create();
-                using (Stream cryptoStream = new CryptoStream(plainStream, hashAlgorithm, CryptoStreamMode.Read))
-                {
-                    cryptoStream.CopyTo(Stream.Null);
-                }
-                hash = hashAlgorithm.Hash;
+                plainStream = null;
+                cryptoStream.CopyTo(Stream.Null);
             }
+            hash = hashAlgorithm.Hash;
 
             Assert.That(hash.IsEquivalentTo(sha256HashValue.FromHex()), "Wrong SHA-256.");
         }

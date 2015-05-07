@@ -117,6 +117,12 @@ namespace Axantum.AxCrypt.Core.Test
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
         }
 
         public IDictionary<string, string> EnvironmentVariables { get; private set; }
