@@ -1,6 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +17,10 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
-        public V2AsymmetricKeyWrapHeaderBlock(SymmetricKey masterKey, SymmetricIV masterIV)
+        public V2AsymmetricKeyWrapHeaderBlock(IAsymmetricPublicKey publicKey, SymmetricKey masterKey, SymmetricIV masterIV)
             : this(Resolve.RandomGenerator.Generate(DATABLOCK_LENGTH))
         {
-            byte[] encrypted = Resolve.AsymmetricKeysStore.Keys.KeyPair.PublicKey.Transform(masterKey + masterIV);
+            byte[] encrypted = publicKey.Transform(masterKey + masterIV);
             GetDataBlockBytesReference().SetFrom(encrypted);
         }
 

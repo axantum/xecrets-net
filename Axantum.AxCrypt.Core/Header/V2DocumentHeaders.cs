@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
@@ -64,9 +65,9 @@ namespace Axantum.AxCrypt.Core.Header
             _headers.HeaderBlocks.Add(new VersionHeaderBlock(_version));
             V2KeyWrapHeaderBlock keyWrap = new V2KeyWrapHeaderBlock(_cryptoFactory, _keyEncryptingKey, keyWrapIterations);
             _headers.HeaderBlocks.Add(keyWrap);
-            if (Resolve.AsymmetricKeysStore.HasKeys)
+            foreach (IAsymmetricPublicKey publicKey in encryptionParameters.PublicKeys)
             {
-                _headers.HeaderBlocks.Add(new V2AsymmetricKeyWrapHeaderBlock(keyWrap.MasterKey, keyWrap.MasterIV));
+                _headers.HeaderBlocks.Add(new V2AsymmetricKeyWrapHeaderBlock(publicKey, keyWrap.MasterKey, keyWrap.MasterIV));
             }
             _headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.FileInfo)));
             _headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.Compression)));
