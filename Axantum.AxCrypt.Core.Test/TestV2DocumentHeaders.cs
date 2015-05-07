@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestFileTimes()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passx"), V2Aes256CryptoFactory.CryptoId, 12))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passx")), 12))
             {
                 DateTime now = DateTime.UtcNow;
                 headers.LastAccessTimeUtc = now;
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestCompression()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2pass"), V2Aes256CryptoFactory.CryptoId, 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2pass")), 10))
             {
                 headers.IsCompressed = true;
                 Assert.That(headers.IsCompressed, Is.True);
@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestUnicodeFileNameShort()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passz"), V2Aes256CryptoFactory.CryptoId, 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passz")), 10))
             {
                 headers.FileName = "My Secret Document.txt";
                 Assert.That(headers.FileName, Is.EqualTo("My Secret Document.txt"));
@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestUnicodeFileNameLong()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passy"), V2Aes256CryptoFactory.CryptoId, 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passy")), 10))
             {
                 string longName = "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.";
                 Assert.That(longName.Length, Is.GreaterThan(256));
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public void TestWriteWithHmac()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passzz"), V2Aes256CryptoFactory.CryptoId, 20))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passzz")), 20))
             {
                 byte[] output;
                 using (MemoryStream outputStream = new MemoryStream())
@@ -159,7 +159,7 @@ namespace Axantum.AxCrypt.Core.Test
             headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new byte[0]));
             headers.HeaderBlocks.Add(new DataHeaderBlock());
 
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new Passphrase("WrongKey"), V2Aes256CryptoFactory.CryptoId, 10))
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("WrongKey")), 10))
             {
                 Assert.That(documentHeaders.Load(headers), Is.False);
             }
@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestWriteStartWithHmacWithNullArgument()
         {
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new Passphrase("Key"), V2Aes256CryptoFactory.CryptoId, 10))
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("Key")), 10))
             {
                 Assert.Throws<ArgumentNullException>(() => documentHeaders.WriteStartWithHmac(null));
             }

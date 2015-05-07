@@ -56,9 +56,9 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
-        public V2AxCryptDocument(Passphrase key, Guid cryptoId, long keyWrapIterations)
+        public V2AxCryptDocument(EncryptionParameters encryptionParameters, long keyWrapIterations)
         {
-            DocumentHeaders = new V2DocumentHeaders(key, cryptoId, keyWrapIterations);
+            DocumentHeaders = new V2DocumentHeaders(encryptionParameters, keyWrapIterations);
         }
 
         public V2DocumentHeaders DocumentHeaders { get; private set; }

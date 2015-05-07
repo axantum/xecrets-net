@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core
             {
                 return new V1AxCryptDocument(parameters.Passphrase, keyWrapIterations);
             }
-            return new V2AxCryptDocument(parameters.Passphrase, parameters.CryptoId, keyWrapIterations);
+            return new V2AxCryptDocument(parameters, keyWrapIterations);
         }
 
         /// <summary>

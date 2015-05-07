@@ -54,10 +54,10 @@ namespace Axantum.AxCrypt.Core.Header
 
         private IDerivedKey _keyEncryptingKey;
 
-        public V2DocumentHeaders(Passphrase passphrase, Guid cryptoId, long keyWrapIterations)
+        public V2DocumentHeaders(EncryptionParameters encryptionParameters, long keyWrapIterations)
         {
-            _cryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
-            _keyEncryptingKey = _cryptoFactory.CreateDerivedKey(passphrase);
+            _cryptoFactory = Resolve.CryptoFactory.Create(encryptionParameters.CryptoId);
+            _keyEncryptingKey = _cryptoFactory.CreateDerivedKey(encryptionParameters.Passphrase);
             _headers = new Headers();
 
             _headers.HeaderBlocks.Add(new PreambleHeaderBlock());

@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
             Headers headers = new Headers();
-            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new Passphrase("passphrase"), V2Aes256CryptoFactory.CryptoId, 10);
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 10);
             using (Stream chainedStream = new MemoryStream())
             {
                 using (V2HmacStream stream = new V2HmacStream(new byte[0], chainedStream))
