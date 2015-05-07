@@ -160,18 +160,23 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (disposing)
             {
-                if (_disposed)
-                {
-                    return;
-                }
-                if (_hmac != null)
-                {
-                    _hmac.Dispose();
-                    _hmac = null;
-                }
-                _disposed = true;
+                DisposeInternal();
             }
             base.Dispose(disposing);
+        }
+
+        private void DisposeInternal()
+        {
+            if (_disposed)
+            {
+                return;
+            }
+            if (_hmac != null)
+            {
+                _hmac.Dispose();
+                _hmac = null;
+            }
+            _disposed = true;
         }
 
         public void ReadFrom(Stream dataStream)

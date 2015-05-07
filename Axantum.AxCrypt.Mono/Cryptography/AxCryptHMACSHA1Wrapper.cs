@@ -113,9 +113,13 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             return _hmac.TransformFinalBlock(inputBuffer, inputOffset, inputCount);
         }
 
-        public override void Dispose()
+        protected override void Dispose(bool disposing)
         {
-            _hmac.Dispose();
+            if (disposing)
+            {
+                _hmac.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

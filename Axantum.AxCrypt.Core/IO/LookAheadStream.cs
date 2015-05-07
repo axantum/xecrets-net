@@ -172,18 +172,19 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (disposing)
             {
-                if (_disposed)
-                {
-                    return;
-                }
-                if (_inputStream != null)
-                {
-                    _inputStream.Dispose();
-                    _inputStream = null;
-                }
-                _disposed = true;
+                DisposeInternal(disposing);
             }
             base.Dispose(disposing);
+        }
+
+        private void DisposeInternal(bool disposing)
+        {
+            if (_inputStream != null)
+            {
+                _inputStream.Dispose();
+                _inputStream = null;
+            }
+            _disposed = true;
         }
 
         private void EnsureNotDisposed()

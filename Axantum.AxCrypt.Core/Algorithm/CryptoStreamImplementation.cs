@@ -223,6 +223,15 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         protected override void Dispose(bool disposing)
         {
+            if (disposing)
+            {
+                DisposeInternal();
+            }
+            base.Dispose(disposing);
+        }
+
+        private void DisposeInternal()
+        {
             if (_outStream != null)
             {
                 byte[] block = _transform.TransformFinalBlock(_blockBuffer.GetBuffer(), 0, _blockBuffer.AvailableForRead);
@@ -238,8 +247,6 @@ namespace Axantum.AxCrypt.Core.Algorithm
                 _inStream.Dispose();
                 _inStream = null;
             }
-
-            base.Dispose(disposing);
         }
     }
 }

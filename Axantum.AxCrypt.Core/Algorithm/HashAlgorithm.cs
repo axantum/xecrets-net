@@ -59,6 +59,14 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         public abstract byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount);
 
-        public abstract void Dispose();
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+        }
     }
 }

@@ -157,9 +157,5 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
             _hmac.BlockUpdate(inputBuffer, inputOffset, inputCount);
             return Hash;
         }
-
-        public override void Dispose()
-        {
-        }
     }
 }

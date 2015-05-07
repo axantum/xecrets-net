@@ -124,24 +124,22 @@ namespace Axantum.AxCrypt.Core.Test
             _stream.Write(buffer, offset, count);
         }
 
-        private bool _disposed = false;
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (_disposed)
-                {
-                    return;
-                }
-                if (_stream != null)
-                {
-                    _stream.Close();
-                    _stream = null;
-                }
-                _disposed = true;
+                DisposeInternal();
             }
             base.Dispose(disposing);
+        }
+
+        private void DisposeInternal()
+        {
+            if (_stream != null)
+            {
+                _stream.Close();
+                _stream = null;
+            }
         }
     }
 }

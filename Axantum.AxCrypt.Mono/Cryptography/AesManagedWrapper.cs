@@ -228,11 +228,11 @@ namespace Axantum.AxCrypt.Mono.Cryptography
 
         protected override void Dispose(bool disposing)
         {
-            if (!disposing)
+            if (disposing)
             {
-                return;
+                _symmetricAlgorithm.Dispose();
             }
-            _symmetricAlgorithm.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

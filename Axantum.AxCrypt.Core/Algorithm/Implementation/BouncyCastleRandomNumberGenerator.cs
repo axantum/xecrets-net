@@ -51,9 +51,5 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
             _rng.NextBytes(data);
             _rng.SetSeed(SecureRandom.GetSeed(16));
         }
-
-        public override void Dispose()
-        {
-        }
     }
 }

@@ -110,8 +110,8 @@ namespace Axantum.AxCrypt.Core.IO
             if (disposing)
             {
                 Flush();
-                base.Dispose(disposing);
             }
+            base.Dispose(disposing);
         }
 
         public override long Length

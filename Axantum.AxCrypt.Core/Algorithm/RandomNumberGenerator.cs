@@ -37,6 +37,14 @@ namespace Axantum.AxCrypt.Core.Algorithm
     {
         public abstract void GetBytes(byte[] data);
 
-        public abstract void Dispose();
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+        }
     }
 }

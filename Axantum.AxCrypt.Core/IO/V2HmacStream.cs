@@ -161,10 +161,6 @@ namespace Axantum.AxCrypt.Core.IO
 
         protected override void Dispose(bool disposing)
         {
-            if (_disposed)
-            {
-                return;
-            }
             if (disposing)
             {
                 DisposeInternal();

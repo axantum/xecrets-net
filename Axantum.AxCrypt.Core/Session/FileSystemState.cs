@@ -479,6 +479,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification="It is not disposed multiple times becuase CloseOutput=false")]
         public virtual void Save()
         {
             lock (_activeFilesByEncryptedPath)
@@ -488,8 +489,9 @@ namespace Axantum.AxCrypt.Core.Session
                     XmlWriterSettings settings = new XmlWriterSettings
                     {
 #if DEBUG
-                        Indent = true
+                        Indent = true,
 #endif
+                        CloseOutput = false,
                     };
 
                     using (XmlWriter writer = XmlWriter.Create(fileSystemStateStream, settings))

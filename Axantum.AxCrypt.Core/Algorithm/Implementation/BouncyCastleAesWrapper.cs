@@ -49,9 +49,9 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         {
             blockSizes = _legalBlockSizes;
             keySizes = _legalKeySizes;
-            BlockSize = 128;
-            FeedbackSize = BlockSize;
-            KeySize = 128;
+            InitializeBlockSize(128);
+            InitializeFeedbackSize(128);
+            InitializeKeySize(128);
         }
 
         /// <summary>

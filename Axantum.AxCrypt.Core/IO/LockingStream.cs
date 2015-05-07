@@ -106,18 +106,23 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (disposing)
             {
-                if (_fileLock != null)
-                {
-                    _fileLock.Dispose();
-                    _fileLock = null;
-                }
-                if (_stream != null)
-                {
-                    _stream.Dispose();
-                    _stream = null;
-                }
+                DisposeInternal();
             }
             base.Dispose(disposing);
+        }
+
+        private void DisposeInternal()
+        {
+            if (_fileLock != null)
+            {
+                _fileLock.Dispose();
+                _fileLock = null;
+            }
+            if (_stream != null)
+            {
+                _stream.Dispose();
+                _stream = null;
+            }
         }
     }
 }

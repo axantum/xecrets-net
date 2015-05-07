@@ -20,9 +20,13 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             _rng.GetBytes(data);
         }
 
-        public override void Dispose()
+        protected override void Dispose(bool disposing)
         {
-            _rng.Dispose();
+            if (disposing)
+            {
+                _rng.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

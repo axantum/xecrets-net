@@ -76,9 +76,13 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             return _hashAlgorithm.TransformFinalBlock(inputBuffer, inputOffset, inputCount);
         }
 
-        public override void Dispose()
+        protected override void Dispose(bool disposing)
         {
-            _hashAlgorithm.Dispose();
+            if (disposing)
+            {
+                _hashAlgorithm.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

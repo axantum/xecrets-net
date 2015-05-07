@@ -38,7 +38,24 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         protected KeySizes[] keySizes;
 
-        public virtual int FeedbackSize { get; set; }
+        private int _feedbackSize;
+
+        public virtual int FeedbackSize
+        {
+            get
+            {
+                return _feedbackSize;
+            }
+            set
+            {
+                InitializeFeedbackSize(value);
+            }
+        }
+
+        protected void InitializeFeedbackSize(int feedbackSize)
+        {
+            _feedbackSize = feedbackSize;
+        }
 
         private byte[] _iv;
 
@@ -87,9 +104,14 @@ namespace Axantum.AxCrypt.Core.Algorithm
             }
             set
             {
-                _keySize = value;
-                _key = null;
+                InitializeKeySize(value);
             }
+        }
+
+        protected void InitializeKeySize(int keySize)
+        {
+            _keySize = keySize;
+            _key = null;
         }
 
         public virtual KeySizes[] LegalBlockSizes
@@ -146,9 +168,14 @@ namespace Axantum.AxCrypt.Core.Algorithm
             }
             set
             {
-                _blockSize = value;
-                _iv = null;
+                InitializeBlockSize(value);
             }
+        }
+
+        protected void InitializeBlockSize(int blockSize)
+        {
+            _blockSize = blockSize;
+            _iv = null;
         }
 
         public virtual ICryptoTransform CreateDecryptor()
