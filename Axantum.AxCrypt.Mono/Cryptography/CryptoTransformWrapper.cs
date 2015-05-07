@@ -56,7 +56,16 @@ namespace Axantum.AxCrypt.Mono.Cryptography
 
         public void Dispose()
         {
-            _cryptoTransform.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _cryptoTransform.Dispose();
+            }
         }
     }
 }
