@@ -24,6 +24,9 @@
     </None>
     <None Include="..\Solution.FxCop" />
     <None Include="AxantumStrongName.pub" />
+    <None Include="Solution.runsettings">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\AboutTheSolutions.txt">

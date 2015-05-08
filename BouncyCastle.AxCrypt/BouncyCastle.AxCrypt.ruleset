@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="BouncyCastly.AxCrypt.ruleset" ToolsVersion="12.0">
+  <Include Path="managedminimumrules.ruleset" Action="Default" />
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1001" Action="None" />
+    <Rule Id="CA2213" Action="None" />
+  </Rules>
+</RuleSet>
