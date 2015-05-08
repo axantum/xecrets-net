@@ -33,6 +33,9 @@
               </Include>
               <Exclude>
                 <ModulePath>.*CPPUnitTestFramework.*</ModulePath>
+                <ModulePath>.*SolutionItems.*</ModulePath>
+                <ModulePath>.*Newtonsoft.Json.Portable40.*</ModulePath>
+                <ModulePath>.*BouncyCastle.AxCrypt.*</ModulePath>
               </Exclude>
             </ModulePaths>
 
