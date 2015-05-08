@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFile
     {
-        public void Encrypt(Stream sourceStream, string sourceFileName, IDataStore destinationFileInfo, LogOnIdentity passphrase, Guid cryptoId, AxCryptOptions options, IProgressContext progress)
+        public void Encrypt(Stream sourceStream, string sourceFileName, IDataStore destinationFileInfo, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceStream == null)
             {
@@ -57,9 +57,9 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("destinationFileInfo");
             }
-            if (passphrase == null)
+            if (encryptionParameters == null)
             {
-                throw new ArgumentNullException("passphrase");
+                throw new ArgumentNullException("encryptionParameters");
             }
             if (progress == null)
             {
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream destinationStream = destinationFileInfo.OpenWrite())
             {
-                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(new EncryptionParameters { Passphrase = passphrase.Passphrase, PublicKeys = passphrase.PublicKeys, CryptoId = cryptoId }))
+                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(encryptionParameters))
                 {
                     document.FileName = sourceFileName;
                     document.CreationTimeUtc = OS.Current.UtcNow;

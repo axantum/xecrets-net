@@ -149,7 +149,8 @@ namespace Axantum.AxCrypt.Core.Session
             string json = Resolve.Serializer.Serialize(_keysStoreFile.UserKeys);
             using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
-                TypeMap.Resolve.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, new LogOnIdentity(passphrase), Resolve.CryptoFactory.Default.Id, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, passphrase);
+                TypeMap.Resolve.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
         }
 
