@@ -39,8 +39,8 @@ namespace Axantum.AxCrypt.Core.Test
         public MockAxCryptFile()
         {
             EncryptMock = (sourceFile, destinationFile, passphrase, options, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            EncryptFilesUniqueWithBackupAndWipeMock = (fileInfo, encryptionKey, cryptoId, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            EncryptFileUniqueWithBackupAndWipeMock = (fileInfo, encryptionKey, cryptoId, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
+            EncryptFilesUniqueWithBackupAndWipeMock = (fileInfo, encryptionParameters, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
+            EncryptFileUniqueWithBackupAndWipeMock = (fileInfo, encryptionParameters, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             DecryptFilesUniqueWithWipeOfOriginalMock = (fileInfo, decryptionKey, statusChecker, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
         }
 
@@ -48,18 +48,18 @@ namespace Axantum.AxCrypt.Core.Test
 
         public Action<IDataStore, IDataStore, LogOnIdentity, AxCryptOptions, IProgressContext> EncryptMock { get; set; }
 
-        public Action<IEnumerable<IDataContainer>, LogOnIdentity, Guid, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
+        public Action<IEnumerable<IDataContainer>, EncryptionParameters, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
 
-        public override void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folderInfos, LogOnIdentity encryptionKey, Guid cryptoId, IProgressContext progress)
+        public override void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            EncryptFilesUniqueWithBackupAndWipeMock(folderInfos, encryptionKey, cryptoId, progress);
+            EncryptFilesUniqueWithBackupAndWipeMock(folderInfos, encryptionParameters, progress);
         }
 
-        public Action<IDataStore, LogOnIdentity, Guid, IProgressContext> EncryptFileUniqueWithBackupAndWipeMock { get; set; }
+        public Action<IDataStore, EncryptionParameters, IProgressContext> EncryptFileUniqueWithBackupAndWipeMock { get; set; }
 
-        public override void EncryptFileUniqueWithBackupAndWipe(IDataStore fileInfo, LogOnIdentity encryptionKey, Guid cryptoId, IProgressContext progress)
+        public override void EncryptFileUniqueWithBackupAndWipe(IDataStore fileInfo, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            EncryptFileUniqueWithBackupAndWipeMock(fileInfo, encryptionKey, cryptoId, progress);
+            EncryptFileUniqueWithBackupAndWipeMock(fileInfo, encryptionParameters, progress);
         }
 
         public Action<IDataContainer, LogOnIdentity, IStatusChecker, IProgressContext> DecryptFilesUniqueWithWipeOfOriginalMock { get; set; }

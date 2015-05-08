@@ -403,7 +403,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Not.Null);
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Not.Null);
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
-            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
+            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
         }
 
         [Test]
@@ -430,7 +430,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
-            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()), Times.Exactly(1));
+            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Exactly(1));
         }
 
         [Test]
@@ -451,7 +451,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
-            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()), Times.Never);
+            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Never);
         }
 
         [Test]
@@ -472,7 +472,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
-            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()), Times.Never);
+            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Never);
         }
 
         [Test]
@@ -811,8 +811,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Not.Null);
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File3-txt.axx"), Is.Null);
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
-            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File1-txt.1.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File1-txt.1.axx".NormalizeFilePath()), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Once);
         }
 
         [Test]

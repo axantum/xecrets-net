@@ -268,7 +268,8 @@ namespace Axantum.AxCrypt.Core.UI
         private bool EncryptFileOperation()
         {
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default.Id;
-            TypeMap.Resolve.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Passphrase, _eventArgs.CryptoId, _progress);
+            EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.Passphrase.Passphrase);
+            TypeMap.Resolve.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             return true;

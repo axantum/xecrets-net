@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, LogOnIdentity encryptionKey, Guid cryptoId, IProgressContext progress) => { called = folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath(); };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) => { called = folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath(); };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
             int folderCount = -1;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, LogOnIdentity encryptionKey, Guid cryptoId, IProgressContext progress) =>
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) =>
             {
                 folderCount = folderInfos.Count();
                 called = true;
@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, LogOnIdentity Passphrase, Guid cryptoId, IProgressContext progress) => { called = true; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) => { called = true; };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             int callTimes = 0;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, LogOnIdentity decryptionKey, Guid cryptoId, IProgressContext progress) => { if (folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath()) ++callTimes; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) => { if (folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath()) ++callTimes; };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -247,7 +247,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeDataStore.AddFolder(@"C:\My Documents\");
             Mock<AxCryptFile> mock = new Mock<AxCryptFile>();
-            mock.Setup(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.IsAny<IEnumerable<IDataContainer>>(), It.IsAny<LogOnIdentity>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()));
+            mock.Setup(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.IsAny<IEnumerable<IDataContainer>>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()));
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -263,7 +263,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 handler.HandleNotification(sessionEvent);
             }
-            mock.Verify(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.Is<IEnumerable<IDataContainer>>(infos => infos.Any((i) => i.FullName == @"C:\My Documents\".NormalizeFolderPath())), It.IsAny<LogOnIdentity>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()), Times.Exactly(1));
+            mock.Verify(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.Is<IEnumerable<IDataContainer>>(infos => infos.Any((i) => i.FullName == @"C:\My Documents\".NormalizeFolderPath())), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Exactly(1));
         }
     }
 }

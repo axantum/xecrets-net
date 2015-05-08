@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
@@ -82,11 +83,13 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 Resolve.Log.LogInfo("Received notification type '{0}'.".InvariantFormat(notification.NotificationType));
             }
+            EncryptionParameters encryptionParameters;
             switch (notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
                     IDataContainer addedFolderInfo = TypeMap.Resolve.New<IDataContainer>(notification.FullName);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { addedFolderInfo }, notification.Key, Resolve.CryptoFactory.Default.Id, progress);
+                    encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, notification.Key.Passphrase);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { addedFolderInfo }, encryptionParameters, progress);
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:
@@ -99,7 +102,8 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Passphrase.Thumbprint).Select(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path)), notification.Key, Resolve.CryptoFactory.Default.Id, progress);
+                    encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, notification.Key.Passphrase);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Passphrase.Thumbprint).Select(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path)), encryptionParameters, progress);
                     break;
 
                 case SessionNotificationType.SessionStart:
@@ -108,7 +112,9 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.EncryptPendingFiles:
                     _activeFileAction.PurgeActiveFiles(progress);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownKeys.LoggedOnWatchedFolders.Select(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path)), _knownKeys.DefaultEncryptionKey, Resolve.CryptoFactory.Default.Id, progress);
+                    Passphrase passphrase = _knownKeys.DefaultEncryptionKey == null ? null : _knownKeys.DefaultEncryptionKey.Passphrase;
+                    encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, passphrase);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownKeys.LoggedOnWatchedFolders.Select(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path)), encryptionParameters, progress);
                     break;
 
                 case SessionNotificationType.PurgeActiveFiles:

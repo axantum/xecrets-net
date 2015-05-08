@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, LogOnIdentity passphrase, Guid cryptoId, IProgressContext progress)
+        public void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -151,9 +151,9 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("destinationFile");
             }
-            if (passphrase == null)
+            if (encryptionParameters == null)
             {
-                throw new ArgumentNullException("passphrase");
+                throw new ArgumentNullException("encryptionParameters");
             }
             if (progress == null)
             {
@@ -161,10 +161,10 @@ namespace Axantum.AxCrypt.Core
             }
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(sourceFile);
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFile);
-            EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, passphrase, cryptoId, progress);
+            EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, encryptionParameters, progress);
         }
 
-        public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folders, LogOnIdentity passphrase, Guid cryptoId, IProgressContext progress)
+        public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folders, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             try
@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core
                 progress.AddTotal(files.Count());
                 foreach (IDataStore file in files)
                 {
-                    EncryptFileUniqueWithBackupAndWipe(file, passphrase, cryptoId, progress);
+                    EncryptFileUniqueWithBackupAndWipe(file, encryptionParameters, progress);
                     progress.AddCount(1);
                 }
             }
@@ -183,19 +183,14 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public static EncryptionParameters GetEncryptionParameters(IDataStore file, LogOnIdentity passphrase, Guid cryptoId)
-        {
-            return new EncryptionParameters { CryptoId = cryptoId, Passphrase = passphrase.Passphrase, PublicKeys = passphrase.PublicKeys };
-        }
-
-        public virtual void EncryptFileUniqueWithBackupAndWipe(IDataStore fileInfo, LogOnIdentity passphrase, Guid cryptoId, IProgressContext progress)
+        public virtual void EncryptFileUniqueWithBackupAndWipe(IDataStore fileInfo, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             IDataStore destinationFileInfo = fileInfo.CreateEncryptedName();
             destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFileInfo.FullName.CreateUniqueFile());
-            EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, passphrase, cryptoId, progress);
+            EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionParameters, progress);
         }
 
-        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceFileInfo, IDataStore destinationFileInfo, LogOnIdentity passphrase, Guid cryptoId, IProgressContext progress)
+        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceFileInfo, IDataStore destinationFileInfo, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (sourceFileInfo == null)
             {
@@ -205,9 +200,9 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("destinationFileInfo");
             }
-            if (passphrase == null)
+            if (encryptionParameters == null)
             {
-                throw new ArgumentNullException("passphrase");
+                throw new ArgumentNullException("encryptionParameters");
             }
             if (progress == null)
             {
@@ -218,7 +213,7 @@ namespace Axantum.AxCrypt.Core
             {
                 WriteToFileWithBackup(destinationFileInfo, (Stream destination) =>
                 {
-                    Encrypt(sourceFileInfo, destination, GetEncryptionParameters(destinationFileInfo, passphrase, cryptoId), AxCryptOptions.EncryptWithCompression, progress);
+                    Encrypt(sourceFileInfo, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
                 }, progress);
             }
             Wipe(sourceFileInfo, progress);
