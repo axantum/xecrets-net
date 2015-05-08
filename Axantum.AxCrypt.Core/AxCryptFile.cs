@@ -43,52 +43,6 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFile
     {
-        /// <summary>
-        /// Encrypt a file
-        /// </summary>
-        /// <param name="file">The file to encrypt</param>
-        /// <param name="destination">The destination file</param>
-        /// <remarks>It is the callers responsibility to ensure that the source file exists, that the destination file
-        /// does not exist and can be created etc.</remarks>
-        public virtual void Encrypt(IDataStore sourceFile, IDataStore destinationFile, LogOnIdentity key, AxCryptOptions options, IProgressContext progress)
-        {
-            if (sourceFile == null)
-            {
-                throw new ArgumentNullException("sourceFile");
-            }
-            if (destinationFile == null)
-            {
-                throw new ArgumentNullException("destinationFile");
-            }
-            if (key == null)
-            {
-                throw new ArgumentNullException("key");
-            }
-            if (progress == null)
-            {
-                throw new ArgumentNullException("progress");
-            }
-
-            using (Stream sourceStream = new ProgressStream(sourceFile.OpenRead(), progress))
-            {
-                using (Stream destinationStream = destinationFile.OpenWrite())
-                {
-                    using (IAxCryptDocument document = new V1AxCryptDocument(key.Passphrase, Resolve.UserSettings.GetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId)))
-                    {
-                        document.FileName = sourceFile.Name;
-                        document.CreationTimeUtc = sourceFile.CreationTimeUtc;
-                        document.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
-                        document.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
-                        document.EncryptTo(sourceStream, destinationStream, options);
-                    }
-                }
-                if (options.HasMask(AxCryptOptions.SetFileTimes))
-                {
-                    destinationFile.SetFileTimes(sourceFile.CreationTimeUtc, sourceFile.LastAccessTimeUtc, sourceFile.LastWriteTimeUtc);
-                }
-            }
-        }
-
         public void Encrypt(Stream sourceStream, string sourceFileName, IDataStore destinationFileInfo, LogOnIdentity passphrase, Guid cryptoId, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceStream == null)
@@ -122,6 +76,35 @@ namespace Axantum.AxCrypt.Core
                     document.LastWriteTimeUtc = document.CreationTimeUtc;
                     document.EncryptTo(sourceStream, destinationStream, options);
                 }
+            }
+        }
+
+        public static void Encrypt(IDataStore sourceFile, IDataStore destinationFile, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
+        {
+            if (sourceFile == null)
+            {
+                throw new ArgumentNullException("sourceFile");
+            }
+            if (destinationFile == null)
+            {
+                throw new ArgumentNullException("destinationFile");
+            }
+            if (encryptionParameters == null)
+            {
+                throw new ArgumentNullException("encryptionParameters");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
+            using (Stream destinationStream = destinationFile.OpenWrite())
+            {
+                Encrypt(sourceFile, destinationStream, encryptionParameters, options, progress);
+            }
+            if (options.HasMask(AxCryptOptions.SetFileTimes))
+            {
+                destinationFile.SetFileTimes(sourceFile.CreationTimeUtc, sourceFile.LastAccessTimeUtc, sourceFile.LastWriteTimeUtc);
             }
         }
 

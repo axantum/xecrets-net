@@ -88,16 +88,15 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore nullFileInfo = null;
             LogOnIdentity nullKey = null;
             ProgressContext nullProgress = null;
-            LogOnIdentity nullPassphrase = null;
             EncryptionParameters nullEncryptionParameters = null;
             Stream nullStream = null;
             string nullString = null;
             Action<Stream> nullStreamAction = null;
 
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(nullFileInfo, destinationFileInfo, new LogOnIdentity("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, nullFileInfo, new LogOnIdentity("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, nullPassphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new LogOnIdentity("axcrypt"), AxCryptOptions.EncryptWithCompression, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(nullFileInfo, destinationFileInfo, new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, nullFileInfo, new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, nullEncryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(nullFileInfo, new MemoryStream(), EncryptionParameters.Empty, AxCryptOptions.None, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, nullStream, EncryptionParameters.Empty, AxCryptOptions.None, new ProgressContext()); });
@@ -136,7 +135,9 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
-            TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new LogOnIdentity("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt"));
+            
+            AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(destinationFileInfo, new LogOnIdentity("axcrypt"), new ProgressContext()))
             {
                 Assert.That(document.PassphraseIsValid, Is.True, "The passphrase should be ok.");
@@ -228,8 +229,9 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceRuntimeFileInfo = TypeMap.Resolve.New<IDataStore>(sourceFullName);
             IDataStore destinationRuntimeFileInfo = sourceRuntimeFileInfo.CreateEncryptedName();
             LogOnIdentity passphrase = new LogOnIdentity("laDabled@tAmeopot33");
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, passphrase.Passphrase);
 
-            TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceRuntimeFileInfo, destinationRuntimeFileInfo, passphrase, AxCryptOptions.SetFileTimes | AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            AxCryptFile.Encrypt(sourceRuntimeFileInfo, destinationRuntimeFileInfo, encryptionParameters, AxCryptOptions.SetFileTimes | AxCryptOptions.EncryptWithCompression, new ProgressContext());
 
             Assert.That(destinationRuntimeFileInfo.CreationTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.CreationTimeUtc), "We're expecting file times to be set as the original from the headers.");
             Assert.That(destinationRuntimeFileInfo.LastAccessTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.LastAccessTimeUtc), "We're expecting file times to be set as the original from the headers.");
@@ -263,7 +265,8 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(encryptedFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
-            TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, encryptedFileInfo, new LogOnIdentity("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt"));
+            AxCryptFile.Encrypt(sourceFileInfo, encryptedFileInfo, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
 
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(_rootPath, "decrypted.txt"));
             bool isPassphraseOk = TypeMap.Resolve.New<AxCryptFile>().Decrypt(encryptedFileInfo, decryptedFileInfo, new LogOnIdentity("wrong"), AxCryptOptions.None, new ProgressContext());

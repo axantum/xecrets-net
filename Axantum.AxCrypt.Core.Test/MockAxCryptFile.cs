@@ -48,11 +48,6 @@ namespace Axantum.AxCrypt.Core.Test
 
         public Action<IDataStore, IDataStore, LogOnIdentity, AxCryptOptions, IProgressContext> EncryptMock { get; set; }
 
-        public override void Encrypt(IDataStore sourceFile, IDataStore destinationFile, LogOnIdentity passphrase, AxCryptOptions options, IProgressContext progress)
-        {
-            EncryptMock(sourceFile, destinationFile, passphrase, options, progress);
-        }
-
         public Action<IEnumerable<IDataContainer>, LogOnIdentity, Guid, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
 
         public override void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folderInfos, LogOnIdentity encryptionKey, Guid cryptoId, IProgressContext progress)
