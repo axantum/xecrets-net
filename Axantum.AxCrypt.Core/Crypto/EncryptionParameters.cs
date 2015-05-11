@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         public EncryptionParameters()
         {
-            PublicKeys = new IAsymmetricPublicKey[0];
+            _publicKeys = new List<IAsymmetricPublicKey>();
         }
 
         /// <summary>
@@ -57,10 +57,15 @@ namespace Axantum.AxCrypt.Core.Crypto
             Passphrase = passphrase;
         }
 
+        public void Add(IEnumerable<IAsymmetricPublicKey> publicKeys)
+        {
+            _publicKeys.AddRange(publicKeys);
+        }
+
         /// <summary>
         /// An empty set of encryption parameters.
         /// </summary>
-        public static readonly EncryptionParameters Empty = new EncryptionParameters { Passphrase = Passphrase.Empty, CryptoId = Guid.Empty, PublicKeys = new IAsymmetricPublicKey[0] };
+        public static readonly EncryptionParameters Empty = new EncryptionParameters { Passphrase = Passphrase.Empty, CryptoId = Guid.Empty, };
 
         /// <summary>
         /// Gets or sets the passphrase. A passphrase is always required.
@@ -70,13 +75,21 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         public Passphrase Passphrase { get; set; }
 
+        private List<IAsymmetricPublicKey> _publicKeys;
+
         /// <summary>
         /// Gets or sets the public keys to also use to encrypt the session key with.
         /// </summary>
         /// <value>
         /// The public keys. The enumeration may be empty.
         /// </value>
-        public IEnumerable<IAsymmetricPublicKey> PublicKeys { get; set; }
+        public IEnumerable<IAsymmetricPublicKey> PublicKeys
+        {
+            get
+            {
+                return _publicKeys;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the crypto identifier to use for the encryption.

@@ -68,14 +68,14 @@ namespace Axantum.AxCrypt.Core
             return false;
         }
 
-        public virtual IAxCryptDocument CreateDocument(EncryptionParameters parameters)
+        public virtual IAxCryptDocument CreateDocument(EncryptionParameters encryptionParameters)
         {
-            long keyWrapIterations = Resolve.UserSettings.GetKeyWrapIterations(parameters.CryptoId);
-            if (parameters.CryptoId == V1Aes128CryptoFactory.CryptoId)
+            long keyWrapIterations = Resolve.UserSettings.GetKeyWrapIterations(encryptionParameters.CryptoId);
+            if (encryptionParameters.CryptoId == V1Aes128CryptoFactory.CryptoId)
             {
-                return new V1AxCryptDocument(parameters.Passphrase, keyWrapIterations);
+                return new V1AxCryptDocument(encryptionParameters.Passphrase, keyWrapIterations);
             }
-            return new V2AxCryptDocument(parameters, keyWrapIterations);
+            return new V2AxCryptDocument(encryptionParameters, keyWrapIterations);
         }
 
         /// <summary>

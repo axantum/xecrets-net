@@ -202,7 +202,9 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
             IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(new EncryptionParameters { Passphrase = passphrase.Passphrase, PublicKeys = passphrase.PublicKeys, CryptoId = cryptoId }))
+            EncryptionParameters encryptionParameters = new EncryptionParameters(cryptoId, passphrase.Passphrase);
+            encryptionParameters.Add(passphrase.PublicKeys);
+            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(encryptionParameters))
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
