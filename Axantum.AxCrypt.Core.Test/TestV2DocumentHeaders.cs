@@ -369,18 +369,23 @@ yhkO4poTyn0zanedSJdPn/kW96j0u3WCoRo4K+eOB7Pcv/qC82Az+AQbTEqQnRea
                 IEnumerable<V2AsymmetricKeyWrapHeaderBlock> wraps = documentHeaders.Headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
                 Assert.That(wraps.Count(), Is.EqualTo(1), "There should be one V2AsymmetricKeyWrapHeaderBlock found.");
 
-                V2AsymmetricKeyWrapHeaderBlock block = wraps.First();
+                V2AsymmetricKeyWrapHeaderBlock block1 = wraps.First();
 
                 ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(encryptionParameters.CryptoId);
 
-                IAsymmetricPrivateKey privateKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey1);
-                block.SetPrivateKey(privateKey);
-                ICrypto cryptoFromAsymmetricKey = block.Crypto(cryptoFactory, 0);
+                IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey1);
+                block1.SetPrivateKey(privateKey1);
+                ICrypto cryptoFromAsymmetricKey = block1.Crypto(cryptoFactory, 0);
                 
                 V2KeyWrapHeaderBlock symmetricKeyWrap = documentHeaders.Headers.HeaderBlocks.OfType<V2KeyWrapHeaderBlock>().First();
                 ICrypto cryptoFromSymmetricKey = cryptoFactory.CreateCrypto(symmetricKeyWrap.MasterKey, symmetricKeyWrap.MasterIV, 0);
 
                 Assert.That(cryptoFromAsymmetricKey.Key, Is.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric and Symmetric should be equal.");
+
+                IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey2);
+                block1.SetPrivateKey(privateKey2);
+                ICrypto cryptoFromAsymmetricKey1WithKey2 = block1.Crypto(cryptoFactory, 0);
+                Assert.That(cryptoFromAsymmetricKey1WithKey2.Key, Is.Not.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 1 decrypted with key 2 and Symmetric should not be equal.");
             }
         }
 
