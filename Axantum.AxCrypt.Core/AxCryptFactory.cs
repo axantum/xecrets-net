@@ -81,18 +81,18 @@ namespace Axantum.AxCrypt.Core
         /// <summary>
         /// Instantiate an instance of IAxCryptDocument appropriate for the file provided, i.e. V1 or V2.
         /// </summary>
-        /// <param name="passphrase">The passphrase.</param>
-        /// <param name="fileInfo">The file to use.</param>
+        /// <param name="decryptionParameters">The possible decryption parameters to try.</param>
+        /// <param name="inputStream">The input stream.</param>
         /// <returns></returns>
-        public virtual IAxCryptDocument CreateDocument(DecryptionParameters parameters, Stream inputStream)
+        public virtual IAxCryptDocument CreateDocument(DecryptionParameters decryptionParameters, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
             IAxCryptDocument document = null;
-            foreach (Guid cryptoId in parameters.CryptoIds)
+            foreach (Guid cryptoId in decryptionParameters.CryptoIds)
             {
-                document = reader.Document(parameters.Passphrase, cryptoId, headers);
+                document = reader.Document(decryptionParameters.Passphrase, cryptoId, headers);
                 if (document.PassphraseIsValid)
                 {
                     return document;

@@ -96,7 +96,6 @@ namespace Axantum.AxCrypt.Core.Reader
             }
 
             v1Document.Load(key, this, headers);
-
             return v1Document;
         }
     }
