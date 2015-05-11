@@ -26,11 +26,13 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -213,6 +215,102 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(key, V2Aes256CryptoFactory.CryptoId))
             {
                 Assert.Throws<InternalErrorException>(() => documentHeaders.Load(headers));
+            }
+        }
+
+        private const string _privateKey1 = @"-----BEGIN RSA PRIVATE KEY-----
+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
+-----END RSA PRIVATE KEY-----
+";
+
+        private const string _publicKey1 = @"-----BEGIN PUBLIC KEY-----
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAnJ8Tk4OBEL61g5iicA2F
+4eEQM2qG+Qoo8BwAVYs8kl6lBNoKGcbyUNcSUw78h05u9OYgMgluFrnbElNxDWa8
+K9XcG3mP60baMEnYrCwvpUK7jw2FaMjvfTipEKuB7vUGzRfvR726/qqoBNKYqGe5
+INYFUL/JyPCuEdKkmzPCvkREgsEI6wsnfJEdqteQYx5hwqXkm01A1Ov2fRISwaO2
+KEZp3mEfZygIaTscpBZyhu/LfsKKvaTe03EgLKciL/oKuHnam4i4NWDOgxvYHdhS
+GhOmDyu4DMc1HmtHTWjI53kVKLvqO3Z5oTe8LmAI8I5uzzzI6jhcOD4BdvblgU87
+AhFQ4jZTlCUsQ0i3wI4J1iNnEkB4+3g5VEypoPOee7zCeMrZyznMnfsIR49vS+Im
+r/A6UhGsAUhQJseZXKkwfTib7xgst+Mz0q0hUw+6z1WRrbMrl6WaDKuk5Q3HDDqN
+xq6pI+MEEDNC6OAh6GA+4+4Fu3N4mqwmhNICjDuaMwPco1JUxhhL1G7Xo9q41yKA
+NkXVQwlbcX385q9ntUSwDKaPF5kzdSRJIRlfLC5ysS4plKRqXBVO4Frv3ejcQFXN
+5x1VQTJJzGHJhsNQ0lVL3MjyFAfiIivJORTk2jNAPkaOl9ei9IS6H7jAQcqrERXI
+vEASZTyAeQlcXprhbyZ2nf0CAwEAAQ==
+-----END PUBLIC KEY-----
+";
+
+        [Test]
+        public void TestAddingSingleV2AsymmetricKeyWrap()
+        {
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey1);
+            encryptionParameters.Add(new IAsymmetricPublicKey[] { publicKey, });
+
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(encryptionParameters, 1000))
+            {
+                IEnumerable<V2AsymmetricKeyWrapHeaderBlock> wraps = documentHeaders.Headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
+                Assert.That(wraps.Count(), Is.EqualTo(1), "There should be one V2AsymmetricKeyWrapHeaderBlock found.");
+
+                V2AsymmetricKeyWrapHeaderBlock block = wraps.First();
+
+                ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(encryptionParameters.CryptoId);
+
+                IAsymmetricPrivateKey privateKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey1);
+                block.SetPrivateKey(privateKey);
+                ICrypto cryptoFromAsymmetricKey = block.Crypto(cryptoFactory, 0);
+                
+                V2KeyWrapHeaderBlock symmetricKeyWrap = documentHeaders.Headers.HeaderBlocks.OfType<V2KeyWrapHeaderBlock>().First();
+                ICrypto cryptoFromSymmetricKey = cryptoFactory.CreateCrypto(symmetricKeyWrap.MasterKey, symmetricKeyWrap.MasterIV, 0);
+
+                Assert.That(cryptoFromAsymmetricKey.Key, Is.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric and Symmetric should be equal.");
             }
         }
     }
