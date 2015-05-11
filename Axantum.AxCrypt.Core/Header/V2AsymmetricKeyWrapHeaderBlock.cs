@@ -39,6 +39,7 @@ namespace Axantum.AxCrypt.Core.Header
         public void SetPrivateKey(IAsymmetricPrivateKey privateKey)
         {
             _privateKey = privateKey;
+            _decryptedDataBlock = null;
         }
 
         private byte[] _decryptedDataBlock = null;
@@ -49,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 if (_decryptedDataBlock == null)
                 {
-                    _decryptedDataBlock = _privateKey.Transform(GetDataBlockBytesReference());
+                    _decryptedDataBlock = _privateKey.Transform(GetDataBlockBytesReference()) ?? new byte[DATABLOCK_LENGTH];
                 }
                 return _decryptedDataBlock;
             }

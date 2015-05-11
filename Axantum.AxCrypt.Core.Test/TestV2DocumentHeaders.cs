@@ -287,6 +287,76 @@ vEASZTyAeQlcXprhbyZ2nf0CAwEAAQ==
 -----END PUBLIC KEY-----
 ";
 
+
+        private const string _privateKey2 = @"-----BEGIN RSA PRIVATE KEY-----
+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
+-----END RSA PRIVATE KEY-----
+";
+
+        private const string _publicKey2 = @"-----BEGIN PUBLIC KEY-----
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAoGjcmNAHjUk2l8bMZ/eL
+upjEhYFOZCbsNiDwITQFTF7j/9v9t4inz2cW4/DFrfWV+gXVBzWzc5w75K2cafSJ
+MbdRfDKzeV9HLRV56SLa1gFphgBtksKadve5pqrn15MozMpfQt8GNYjxHiTyfdm+
+4TDSBYn1QjMKHNuRwHu8AygzlQ2dmW12icWDUjTiWUnw/6wLZMMPoU0ZRyHkr+Lc
+HxYnkS5Q46t15ziDAmHFijSO14y0L6oI70v6joEEFNUsjHFEFVtWxbz0lfoag9vC
+Op9K+ReS7AUFdAifS87HSDHNcevVvRg7MzlG9rcyuFktucOLdQcPv7B86IRvagfJ
+IdbE1e9oOw3irLiE9RT60e0ivNhnusB36paZJnf1k7FMcwWkRvcnzcrdSyElSBSs
+kkwP1gXnUgRe39R/zDSTkqtE3N+r8hjhnCvsqxzQdmQyDGTNZRF+CNWKpk6k4ToL
+nVV9oY3J4GNXQ5NdITUWVMDrUQ2kNO+GdRvPnfRq/r8SJ3rRG2W2co6QTFk5YWvM
+MyZzGpI7jici5x/WM5igA+6ifkotngwpqU16M7yS2xMIxKVTw9CaoIX2jgNolgGA
+yhkO4poTyn0zanedSJdPn/kW96j0u3WCoRo4K+eOB7Pcv/qC82Az+AQbTEqQnRea
+8iTTI65co5+BXSxQvyjM4wMCAwEAAQ==
+-----END PUBLIC KEY-----
+";
+
         [Test]
         public void TestAddingSingleV2AsymmetricKeyWrap()
         {
@@ -311,6 +381,49 @@ vEASZTyAeQlcXprhbyZ2nf0CAwEAAQ==
                 ICrypto cryptoFromSymmetricKey = cryptoFactory.CreateCrypto(symmetricKeyWrap.MasterKey, symmetricKeyWrap.MasterIV, 0);
 
                 Assert.That(cryptoFromAsymmetricKey.Key, Is.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric and Symmetric should be equal.");
+            }
+        }
+
+        [Test]
+        public void TestAddingMultipleV2AsymmetricKeyWraps()
+        {
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("niklas"));
+            IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey1);
+            IAsymmetricPublicKey publicKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey2);
+            encryptionParameters.Add(new IAsymmetricPublicKey[] { publicKey1, publicKey2, });
+
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(encryptionParameters, 1000))
+            {
+                IEnumerable<V2AsymmetricKeyWrapHeaderBlock> wraps = documentHeaders.Headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
+                Assert.That(wraps.Count(), Is.EqualTo(2), "There should be two V2AsymmetricKeyWrapHeaderBlocks found.");
+
+                V2AsymmetricKeyWrapHeaderBlock block1 = wraps.First();
+
+                ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(encryptionParameters.CryptoId);
+
+                IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey1);
+                block1.SetPrivateKey(privateKey1);
+                ICrypto cryptoFromAsymmetricKey1 = block1.Crypto(cryptoFactory, 0);
+
+                V2KeyWrapHeaderBlock symmetricKeyWrap = documentHeaders.Headers.HeaderBlocks.OfType<V2KeyWrapHeaderBlock>().First();
+                ICrypto cryptoFromSymmetricKey = cryptoFactory.CreateCrypto(symmetricKeyWrap.MasterKey, symmetricKeyWrap.MasterIV, 0);
+
+                Assert.That(cryptoFromAsymmetricKey1.Key, Is.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 1 and Symmetric should be equal.");
+
+                V2AsymmetricKeyWrapHeaderBlock block2 = wraps.Last();
+
+                IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey2);
+                block2.SetPrivateKey(privateKey2);
+                ICrypto cryptoFromAsymmetricKey2 = block2.Crypto(cryptoFactory, 0);
+                Assert.That(cryptoFromAsymmetricKey2.Key, Is.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 2 and Symmetric should be equal.");
+
+                block1.SetPrivateKey(privateKey2);
+                ICrypto cryptoFromAsymmetricKey1WithKey2 = block1.Crypto(cryptoFactory, 0);
+                Assert.That(cryptoFromAsymmetricKey1WithKey2.Key, Is.Not.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 1 decrypted with key 2 and Symmetric should not be equal.");
+
+                block2.SetPrivateKey(privateKey1);
+                ICrypto cryptoFromAsymmetricKey2WithKey1 = block2.Crypto(cryptoFactory, 0);
+                Assert.That(cryptoFromAsymmetricKey2WithKey1.Key, Is.Not.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 1 decrypted with key 2 and Symmetric should not be equal.");
             }
         }
     }
