@@ -489,8 +489,8 @@ namespace Axantum.AxCrypt.Core
 
             try
             {
-                DecryptionParameters parameters = new DecryptionParameters(logOnIdentity.Passphrase, logOnIdentity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
-                IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(parameters, new ProgressStream(source, progress));
+                IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { logOnIdentity.Passphrase }, logOnIdentity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
+                IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(decryptionParameters, new ProgressStream(source, progress));
                 return document;
             }
             catch (AxCryptException ace)

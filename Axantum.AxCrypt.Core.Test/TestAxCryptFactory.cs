@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -86,8 +87,8 @@ namespace Axantum.AxCrypt.Core.Test
                         outputStream.Position = 0;
 
                         AxCryptFactory axFactory = new AxCryptFactory();
-                        DecryptionParameters parameters = new DecryptionParameters(new Passphrase("properties"), new IAsymmetricPrivateKey[0], new Guid[] { new V2Aes256CryptoFactory().Id });
-                        IAxCryptDocument decryptedDocument = axFactory.CreateDocument(parameters, outputStream);
+                        IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { new Passphrase("properties") }, null, new Guid[] { new V2Aes256CryptoFactory().Id });
+                        IAxCryptDocument decryptedDocument = axFactory.CreateDocument(decryptionParameters, outputStream);
                         Assert.That(decryptedDocument.PassphraseIsValid);
                     }
                 }

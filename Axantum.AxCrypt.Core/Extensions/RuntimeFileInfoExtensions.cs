@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
@@ -142,8 +143,9 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             foreach (LogOnIdentity knownKey in Resolve.KnownKeys.Keys)
             {
-                cryptoId = TypeMap.Resolve.New<AxCryptFactory>().TryFindCryptoId(knownKey.Passphrase, fileInfo, Resolve.CryptoFactory.OrderedIds);
-                if (cryptoId != Guid.Empty)
+                IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { knownKey.Passphrase }, null, Resolve.CryptoFactory.OrderedIds);
+                DecryptionParameter decryptionParameter = TypeMap.Resolve.New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, fileInfo);
+                if (decryptionParameter != null)
                 {
                     return knownKey;
                 }

@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
@@ -38,34 +39,16 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public virtual Guid TryFindCryptoId(Passphrase passphrase, IDataStore encryptedFileInfo, IEnumerable<Guid> cryptoIds)
-        {
-            foreach (Guid cryptoId in cryptoIds)
-            {
-                if (TryOneCryptoId(passphrase, encryptedFileInfo, cryptoId))
-                {
-                    return cryptoId;
-                }
-            }
-            return Guid.Empty;
-        }
-
-        private static bool TryOneCryptoId(Passphrase passphrase, IDataStore encryptedFileInfo, Guid cryptoId)
+        public virtual DecryptionParameter FindDecryptionParameter(IEnumerable<DecryptionParameter> decryptionParameters, IDataStore encryptedFileInfo)
         {
             using (Stream encryptedStream = encryptedFileInfo.OpenRead())
             {
-                Headers headers = new Headers();
-                AxCryptReader reader = headers.Load(encryptedStream);
-
-                using (IAxCryptDocument document = reader.Document(passphrase, cryptoId, headers))
+                DecryptionParameter foundParameter;
+                using (CreateDocument(decryptionParameters, encryptedStream, out foundParameter))
                 {
-                    if (document.PassphraseIsValid)
-                    {
-                        return true;
-                    }
                 }
+                return foundParameter;
             }
-            return false;
         }
 
         public virtual IAxCryptDocument CreateDocument(EncryptionParameters encryptionParameters)
@@ -84,20 +67,32 @@ namespace Axantum.AxCrypt.Core
         /// <param name="decryptionParameters">The possible decryption parameters to try.</param>
         /// <param name="inputStream">The input stream.</param>
         /// <returns></returns>
-        public virtual IAxCryptDocument CreateDocument(DecryptionParameters decryptionParameters, Stream inputStream)
+        public virtual IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream)
+        {
+            DecryptionParameter foundParameter;
+            return CreateDocument(decryptionParameters, inputStream, out foundParameter);
+        }
+
+        private static IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream, out DecryptionParameter foundParameter)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
             IAxCryptDocument document = null;
-            foreach (Guid cryptoId in decryptionParameters.CryptoIds)
+            foreach (DecryptionParameter decryptionParameter in decryptionParameters)
             {
-                document = reader.Document(decryptionParameters.Passphrase, cryptoId, headers);
+                if (decryptionParameter.Passphrase == null)
+                {
+                    continue;
+                }
+                document = reader.Document(decryptionParameter.Passphrase, decryptionParameter.CryptoId, headers);
                 if (document.PassphraseIsValid)
                 {
+                    foundParameter = decryptionParameter;
                     return document;
                 }
             }
+            foundParameter = null;
             return document;
         }
     }

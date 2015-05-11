@@ -132,9 +132,9 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(_decryptedFile1, utcJustNow, utcJustNow, utcJustNow, Stream.Null);
 
             Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>() { CallBase = true };
-            axCryptFactoryMock.Setup<Guid>(m => m.TryFindCryptoId(It.IsAny<Passphrase>(), It.IsAny<IDataStore>(), It.IsAny<IEnumerable<Guid>>())).Returns((Passphrase passphrase, IDataStore fileInfo, IEnumerable<Guid> cryptoIds) =>
+            axCryptFactoryMock.Setup<DecryptionParameter>(m => m.FindDecryptionParameter(It.IsAny<IEnumerable<DecryptionParameter>>(), It.IsAny<IDataStore>())).Returns((IEnumerable<DecryptionParameter> decryptionParameters, IDataStore fileInfo) =>
             {
-                return V1Aes128CryptoFactory.CryptoId;
+                return new DecryptionParameter(Passphrase.Empty, V1Aes128CryptoFactory.CryptoId);
             });
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
@@ -475,9 +475,9 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
             Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>() { CallBase = true };
-            axCryptFactoryMock.Setup<Guid>(m => m.TryFindCryptoId(It.IsAny<Passphrase>(), It.IsAny<IDataStore>(), It.IsAny<IEnumerable<Guid>>())).Returns((Passphrase passphrase, IDataStore fileInfo, IEnumerable<Guid> cryptoIds) =>
+            axCryptFactoryMock.Setup<DecryptionParameter>(m => m.FindDecryptionParameter(It.IsAny<IEnumerable<DecryptionParameter>>(), It.IsAny<IDataStore>())).Returns((IEnumerable<DecryptionParameter> decryptionParameters, IDataStore fileInfo) =>
             {
-                return V1Aes128CryptoFactory.CryptoId;
+                return new DecryptionParameter(Passphrase.Empty, V1Aes128CryptoFactory.CryptoId);
             });
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
