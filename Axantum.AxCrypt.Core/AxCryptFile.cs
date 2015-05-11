@@ -472,15 +472,15 @@ namespace Axantum.AxCrypt.Core
         /// or
         /// progress
         /// </exception>
-        public IAxCryptDocument Document(Stream source, LogOnIdentity passphrase, string displayContext, IProgressContext progress)
+        public IAxCryptDocument Document(Stream source, LogOnIdentity logOnIdentity, string displayContext, IProgressContext progress)
         {
             if (source == null)
             {
                 throw new ArgumentNullException("source");
             }
-            if (passphrase == null)
+            if (logOnIdentity == null)
             {
-                throw new ArgumentNullException("passphrase");
+                throw new ArgumentNullException("logOnIdentity");
             }
             if (progress == null)
             {
@@ -489,12 +489,7 @@ namespace Axantum.AxCrypt.Core
 
             try
             {
-                DecryptionParameters parameters = new DecryptionParameters
-                {
-                    Passphrase = passphrase.Passphrase,
-                    PrivateKeys = passphrase.PrivateKeys,
-                    CryptoIds = Resolve.CryptoFactory.OrderedIds,
-                };
+                DecryptionParameters parameters = new DecryptionParameters(logOnIdentity.Passphrase, logOnIdentity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
                 IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(parameters, new ProgressStream(source, progress));
                 return document;
             }
