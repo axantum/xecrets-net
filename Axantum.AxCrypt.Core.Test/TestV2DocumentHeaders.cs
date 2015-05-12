@@ -411,7 +411,7 @@ yhkO4poTyn0zanedSJdPn/kW96j0u3WCoRo4K+eOB7Pcv/qC82Az+AQbTEqQnRea
                 IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey2);
                 block1.SetPrivateKey(cryptoFactory, privateKey2);
                 ICrypto cryptoFromAsymmetricKey1WithKey2 = block1.Crypto(0);
-                Assert.That(cryptoFromAsymmetricKey1WithKey2.Key, Is.Not.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 1 decrypted with key 2 and Symmetric should not be equal.");
+                Assert.That(cryptoFromAsymmetricKey1WithKey2, Is.Null, "There should be no valid key set and thus no ICrypto instance returned.");
             }
         }
 
@@ -450,11 +450,11 @@ yhkO4poTyn0zanedSJdPn/kW96j0u3WCoRo4K+eOB7Pcv/qC82Az+AQbTEqQnRea
 
                 block1.SetPrivateKey(cryptoFactory, privateKey2);
                 ICrypto cryptoFromAsymmetricKey1WithKey2 = block1.Crypto(0);
-                Assert.That(cryptoFromAsymmetricKey1WithKey2.Key, Is.Not.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 1 decrypted with key 2 and Symmetric should not be equal.");
+                Assert.That(cryptoFromAsymmetricKey1WithKey2, Is.Null, "There should be no valid key set and thus no ICrypto instance returned.");
 
                 block2.SetPrivateKey(cryptoFactory, privateKey1);
                 ICrypto cryptoFromAsymmetricKey2WithKey1 = block2.Crypto(0);
-                Assert.That(cryptoFromAsymmetricKey2WithKey1.Key, Is.Not.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 1 decrypted with key 2 and Symmetric should not be equal.");
+                Assert.That(cryptoFromAsymmetricKey2WithKey1, Is.Null, "There should be no valid key set and thus no ICrypto instance returned.");
             }
         }
     }

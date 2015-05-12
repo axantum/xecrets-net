@@ -100,12 +100,12 @@ namespace Axantum.AxCrypt.Core
             keyWrap.SetDerivedKey(CryptoFactory, key);
             DocumentHeaders = new V2DocumentHeaders(keyWrap);
             PassphraseIsValid = DocumentHeaders.Load(headers);
-            if (!PassphraseIsValid)
+            if (PassphraseIsValid)
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, AxCryptReader reader, Headers headers)
@@ -116,7 +116,17 @@ namespace Axantum.AxCrypt.Core
             foreach (V2AsymmetricKeyWrapHeaderBlock keyWrap in keyWraps)
             {
                 keyWrap.SetPrivateKey(cryptoFactory, privateKey);
-                V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyWrap);
+                if (keyWrap.Crypto(0) == null)
+                {
+                    continue;
+                }
+
+                DocumentHeaders = new V2DocumentHeaders(keyWrap);
+                PassphraseIsValid = DocumentHeaders.Load(headers);
+                if (PassphraseIsValid)
+                {
+                    return true;
+                }
             }
             return false;
         }

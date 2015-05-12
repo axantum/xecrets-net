@@ -92,7 +92,12 @@ namespace Axantum.AxCrypt.Core
                 }
                 if (decryptionParameter.PrivateKey != null)
                 {
-
+                    document = reader.Document(decryptionParameter.PrivateKey, decryptionParameter.CryptoId, headers);
+                    if (document.PassphraseIsValid)
+                    {
+                        foundParameter = decryptionParameter;
+                        return document;
+                    }
                 }
             }
             foundParameter = null;

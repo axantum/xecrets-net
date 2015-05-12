@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -210,10 +211,20 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        private static bool IsMasterKeyKnown(Headers headers)
+        private bool IsMasterKeyKnown(Headers headers)
         {
             V2KeyWrapHeaderBlock keyHeaderBlock = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-            return keyHeaderBlock.MasterKey != null;
+            if (keyHeaderBlock.MasterKey != null)
+            {
+                return true;
+            }
+
+            if (_keyStreamFactory != null && _keyStreamFactory.Crypto(0) != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public ICrypto CreateDataCrypto()

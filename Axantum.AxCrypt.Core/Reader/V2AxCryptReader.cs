@@ -101,6 +101,8 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 return v2Document;
             }
+
+            v2Document.Load(privateKey, cryptoId, this, headers);
             return v2Document;
         }
     }

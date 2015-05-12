@@ -221,6 +221,10 @@ namespace Axantum.AxCrypt.Core.Header
         /// </returns>
         public ICrypto Crypto(long keyStreamOffset)
         {
+            if (MasterKey == null)
+            {
+                return null;
+            }
             return _cryptoFactory.CreateCrypto(MasterKey, MasterIV, keyStreamOffset);
         }
     }

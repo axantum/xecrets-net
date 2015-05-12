@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 if (_decryptedDataBlock == null)
                 {
-                    _decryptedDataBlock = _privateKey.Transform(GetDataBlockBytesReference()) ?? new byte[DATABLOCK_LENGTH];
+                    _decryptedDataBlock = _privateKey.Transform(GetDataBlockBytesReference()) ?? new byte[0];
                 }
                 return _decryptedDataBlock;
             }
@@ -88,11 +88,16 @@ namespace Axantum.AxCrypt.Core.Header
         /// Create an ICrypto instance from the decrypted asymmetric key wrap.
         /// </summary>
         /// <param name="keyStreamOffset"></param>
-        /// <returns>An ICrypto instance, initialized with key and iv.</returns>
+        /// <returns>An ICrypto instance, initialized with key and iv, or null if no valid key is set.</returns>
         public ICrypto Crypto(long keyStreamOffset)
         {
             byte[] iv = new byte[CryptoFactory.BlockSize / 8];
             byte[] masterKey = new byte[CryptoFactory.KeySize / 8];
+
+            if (DecryptedDataBlock.Length == 0)
+            {
+                return null;
+            }
 
             Array.Copy(DecryptedDataBlock, 0, masterKey, 0, masterKey.Length);
             Array.Copy(DecryptedDataBlock, masterKey.Length, iv, 0, iv.Length);
