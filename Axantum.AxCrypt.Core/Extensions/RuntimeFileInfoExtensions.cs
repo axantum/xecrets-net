@@ -147,6 +147,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 DecryptionParameter decryptionParameter = TypeMap.Resolve.New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, fileInfo);
                 if (decryptionParameter != null)
                 {
+                    cryptoId = decryptionParameter.CryptoId;
                     return knownKey;
                 }
             }
