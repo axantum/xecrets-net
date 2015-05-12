@@ -84,6 +84,11 @@ namespace Axantum.AxCrypt.Core.Header
             _headers = new Headers();
         }
 
+        public V2DocumentHeaders(IKeyStreamCryptoFactory keyStreamCryptoFactory)
+        {
+            throw new NotImplementedException();
+        }
+
         public Headers Headers
         {
             get { return _headers; }

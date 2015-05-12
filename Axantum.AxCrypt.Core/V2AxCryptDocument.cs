@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
@@ -35,6 +36,8 @@ using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -81,8 +84,13 @@ namespace Axantum.AxCrypt.Core
         /// Loads an AxCrypt file from the specified reader. After this, the reader is positioned to
         /// read encrypted data.
         /// </summary>
-        /// <param name="stream">The stream to read from. Will be disposed when this instance is disposed.</param>
-        /// <returns>True if the key was valid, false if it was wrong.</returns>
+        /// <param name="passphrase">The passphrase.</param>
+        /// <param name="cryptoId">The crypto identifier.</param>
+        /// <param name="reader">The reader.</param>
+        /// <param name="headers">The headers.</param>
+        /// <returns>
+        /// True if the key was valid, false if it was wrong.
+        /// </returns>
         public bool Load(Passphrase passphrase, Guid cryptoId, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
@@ -97,6 +105,19 @@ namespace Axantum.AxCrypt.Core
             }
 
             return true;
+        }
+
+        public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, AxCryptReader reader, Headers headers)
+        {
+            ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
+
+            IEnumerable<V2AsymmetricKeyWrapHeaderBlock> keyWraps = headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
+            foreach (V2AsymmetricKeyWrapHeaderBlock keyWrap in keyWraps)
+            {
+                keyWrap.SetPrivateKey(privateKey);
+                V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyWrap);
+            }
+            return false;
         }
 
         /// <summary>
