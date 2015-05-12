@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
@@ -81,6 +82,11 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             public override IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override IAxCryptDocument Document(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers)
             {
                 throw new NotImplementedException();
             }

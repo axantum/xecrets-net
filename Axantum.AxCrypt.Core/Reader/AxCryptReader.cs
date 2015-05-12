@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
@@ -68,7 +69,23 @@ namespace Axantum.AxCrypt.Core.Reader
             CurrentItemType = AxCryptItemType.Data;
         }
 
+        /// <summary>
+        /// Opens an AxCrypt document instance by way of a symmetrical key and algorithm, if possible.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="cryptoId">The crypto identifier.</param>
+        /// <param name="headers">The headers.</param>
+        /// <returns>An instance with a valid passphrase or not.</returns>
         public abstract IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers);
+
+        /// <summary>
+        /// Opens an AxCrypt document instance by way of a asymmetrical private key and algorithm, if possible.
+        /// </summary>
+        /// <param name="privateKey">The private key.</param>
+        /// <param name="cryptoId">The crypto identifier.</param>
+        /// <param name="headers">The headers.</param>
+        /// <returns>An instance with a valid passphrase or not.</returns>
+        public abstract IAxCryptDocument Document(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers);
 
         /// <summary>
         /// Gets the type of the current item

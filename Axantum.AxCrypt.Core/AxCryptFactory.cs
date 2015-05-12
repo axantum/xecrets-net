@@ -81,15 +81,18 @@ namespace Axantum.AxCrypt.Core
             IAxCryptDocument document = null;
             foreach (DecryptionParameter decryptionParameter in decryptionParameters)
             {
-                if (decryptionParameter.Passphrase == null)
+                if (decryptionParameter.Passphrase != null)
                 {
-                    continue;
+                    document = reader.Document(decryptionParameter.Passphrase, decryptionParameter.CryptoId, headers);
+                    if (document.PassphraseIsValid)
+                    {
+                        foundParameter = decryptionParameter;
+                        return document;
+                    }
                 }
-                document = reader.Document(decryptionParameter.Passphrase, decryptionParameter.CryptoId, headers);
-                if (document.PassphraseIsValid)
+                if (decryptionParameter.PrivateKey != null)
                 {
-                    foundParameter = decryptionParameter;
-                    return document;
+
                 }
             }
             foundParameter = null;

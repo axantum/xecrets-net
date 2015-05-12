@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using System;
 using System.IO;
@@ -97,6 +98,11 @@ namespace Axantum.AxCrypt.Core.Reader
 
             v1Document.Load(key, this, headers);
             return v1Document;
+        }
+
+        public override IAxCryptDocument Document(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers)
+        {
+            return new V1AxCryptDocument();
         }
     }
 }
