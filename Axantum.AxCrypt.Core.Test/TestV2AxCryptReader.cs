@@ -78,13 +78,18 @@ namespace Axantum.AxCrypt.Core.Test
                                 headers.HeaderBlocks.Add(reader.CurrentHeaderBlock);
                             }
                         }
+                        SymmetricKey dataEncryptingKey = documentHeaders.Headers.FindHeaderBlock<V2KeyWrapHeaderBlock>().MasterKey;
                         V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-                        SymmetricKey dataEncryptingKey = documentHeaders.DataEncryptingKey;
 
                         IDerivedKey key = new V2Aes256CryptoFactory().RestoreDerivedKey(new Passphrase("passphrase"), keyWrap.DerivationSalt, keyWrap.DerivationIterations);
-                        keyWrap.SetCryptoKey(new V2Aes256CryptoFactory(), key);
+                        keyWrap.SetDerivedKey(new V2Aes256CryptoFactory(), key);
 
-                        Assert.That(dataEncryptingKey.Equals(documentHeaders.DataEncryptingKey));
+                        Assert.That(dataEncryptingKey, Is.EqualTo(keyWrap.MasterKey));
+
+                        key = new V2Aes256CryptoFactory().RestoreDerivedKey(new Passphrase("wrong"), keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+                        keyWrap.SetDerivedKey(new V2Aes256CryptoFactory(), key);
+
+                        Assert.That(dataEncryptingKey, Is.Not.EqualTo(keyWrap.MasterKey));
                     }
                 }
             }

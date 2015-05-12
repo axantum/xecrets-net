@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDerivedKey keyEncryptingKey = new V2DerivedKey(new Passphrase("secret"), new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 125);
 
-            header.SetCryptoKey(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("another secret"), 256));
+            header.SetDerivedKey(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("another secret"), 256));
             SymmetricIV iv = header.MasterIV;
 
             Assert.That(iv, Is.Null);

@@ -51,20 +51,21 @@ namespace Axantum.AxCrypt.Core.Header
 
         private V2HmacStream _hmacStream;
 
-        private ICryptoFactory _cryptoFactory;
-
-        private IDerivedKey _keyEncryptingKey;
+        private IKeyStreamCryptoFactory _keyStreamFactory;
 
         public V2DocumentHeaders(EncryptionParameters encryptionParameters, long keyWrapIterations)
         {
-            _cryptoFactory = Resolve.CryptoFactory.Create(encryptionParameters.CryptoId);
-            _keyEncryptingKey = _cryptoFactory.CreateDerivedKey(encryptionParameters.Passphrase);
             _headers = new Headers();
 
             _headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             _headers.HeaderBlocks.Add(new VersionHeaderBlock(_version));
-            V2KeyWrapHeaderBlock keyWrap = new V2KeyWrapHeaderBlock(_cryptoFactory, _keyEncryptingKey, keyWrapIterations);
+
+            ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(encryptionParameters.CryptoId);
+            IDerivedKey keyEncryptingKey = cryptoFactory.CreateDerivedKey(encryptionParameters.Passphrase);
+            V2KeyWrapHeaderBlock keyWrap = new V2KeyWrapHeaderBlock(cryptoFactory, keyEncryptingKey, keyWrapIterations);
             _headers.HeaderBlocks.Add(keyWrap);
+            _keyStreamFactory = keyWrap;
+            
             foreach (IAsymmetricPublicKey publicKey in encryptionParameters.PublicKeys)
             {
                 _headers.HeaderBlocks.Add(new V2AsymmetricKeyWrapHeaderBlock(publicKey, keyWrap.MasterKey, keyWrap.MasterIV));
@@ -77,16 +78,10 @@ namespace Axantum.AxCrypt.Core.Header
             SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);
         }
 
-        public V2DocumentHeaders(IDerivedKey key, Guid cryptoId)
-        {
-            _cryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
-            _keyEncryptingKey = key;
-            _headers = new Headers();
-        }
-
         public V2DocumentHeaders(IKeyStreamCryptoFactory keyStreamCryptoFactory)
         {
-            throw new NotImplementedException();
+            _keyStreamFactory = keyStreamCryptoFactory;
+            _headers = new Headers();
         }
 
         public Headers Headers
@@ -101,25 +96,23 @@ namespace Axantum.AxCrypt.Core.Header
 
         public bool Load(Headers headers)
         {
-            _headers = headers;
-            _headers.EnsureFileFormatVersion(4, 4);
+            headers.EnsureFileFormatVersion(4, 4);
 
-            V2KeyWrapHeaderBlock v2KeyWrapHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-            v2KeyWrapHeaderBlock.SetCryptoKey(_cryptoFactory, _keyEncryptingKey);
-
-            if (DataEncryptingKey == null)
+            if (!IsMasterKeyKnown(headers))
             {
                 return false;
             }
 
             _hmacStream = new V2HmacStream(GetHmacKey());
             AxCrypt1Guid.Write(_hmacStream);
-            foreach (HeaderBlock header in _headers.HeaderBlocks)
+            foreach (HeaderBlock header in headers.HeaderBlocks)
             {
                 header.Write(_hmacStream);
             }
 
-            SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);
+            SetDataEncryptingCryptoForEncryptedHeaderBlocks(headers.HeaderBlocks);
+
+            _headers = headers;
             return true;
         }
 
@@ -167,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         private ICrypto CreateKeyStreamCrypto(long keyStreamOffset)
         {
-            return _cryptoFactory.CreateCrypto(DataEncryptingKey, DataEncryptingIV, keyStreamOffset);
+            return _keyStreamFactory.Crypto(keyStreamOffset);
         }
 
         public void WriteStartWithHmac(V2HmacStream hmacStream)
@@ -217,22 +210,10 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public SymmetricKey DataEncryptingKey
+        private static bool IsMasterKeyKnown(Headers headers)
         {
-            get
-            {
-                V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-                return keyHeaderBlock.MasterKey;
-            }
-        }
-
-        public SymmetricIV DataEncryptingIV
-        {
-            get
-            {
-                V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-                return keyHeaderBlock.MasterIV;
-            }
+            V2KeyWrapHeaderBlock keyHeaderBlock = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+            return keyHeaderBlock.MasterKey != null;
         }
 
         public ICrypto CreateDataCrypto()

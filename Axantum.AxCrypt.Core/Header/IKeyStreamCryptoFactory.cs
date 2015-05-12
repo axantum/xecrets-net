@@ -38,9 +38,8 @@ namespace Axantum.AxCrypt.Core.Header
         /// <summary>
         /// Create an ICrypto instance from the decrypted key wrap.
         /// </summary>
-        /// <param name="cryptoFactory">The ICryptoFactory to use.</param>
         /// <param name="keyStreamOffset">The key stream offset to use.</param>
         /// <returns>An ICrypto instance, initialized with key and iv.</returns>
-        ICrypto Crypto(ICryptoFactory cryptoFactory, long keyStreamOffset);
+        ICrypto Crypto(long keyStreamOffset);
     }
 }

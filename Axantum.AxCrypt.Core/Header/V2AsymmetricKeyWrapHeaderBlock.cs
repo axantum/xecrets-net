@@ -63,8 +63,9 @@ namespace Axantum.AxCrypt.Core.Header
         /// Sets the private key.
         /// </summary>
         /// <param name="privateKey">The private key.</param>
-        public void SetPrivateKey(IAsymmetricPrivateKey privateKey)
+        public void SetPrivateKey(ICryptoFactory cryptoFactory, IAsymmetricPrivateKey privateKey)
         {
+            CryptoFactory = cryptoFactory;
             _privateKey = privateKey;
             _decryptedDataBlock = null;
         }
@@ -86,19 +87,26 @@ namespace Axantum.AxCrypt.Core.Header
         /// <summary>
         /// Create an ICrypto instance from the decrypted asymmetric key wrap.
         /// </summary>
-        /// <param name="cryptoFactory"></param>
         /// <param name="keyStreamOffset"></param>
         /// <returns>An ICrypto instance, initialized with key and iv.</returns>
-        public ICrypto Crypto(ICryptoFactory cryptoFactory, long keyStreamOffset)
+        public ICrypto Crypto(long keyStreamOffset)
         {
-            byte[] iv = new byte[cryptoFactory.BlockSize / 8];
-            byte[] masterKey = new byte[cryptoFactory.KeySize / 8];
+            byte[] iv = new byte[CryptoFactory.BlockSize / 8];
+            byte[] masterKey = new byte[CryptoFactory.KeySize / 8];
 
             Array.Copy(DecryptedDataBlock, 0, masterKey, 0, masterKey.Length);
             Array.Copy(DecryptedDataBlock, masterKey.Length, iv, 0, iv.Length);
 
-            ICrypto crypto = cryptoFactory.CreateCrypto(new SymmetricKey(masterKey), new SymmetricIV(iv), keyStreamOffset);
+            ICrypto crypto = CryptoFactory.CreateCrypto(new SymmetricKey(masterKey), new SymmetricIV(iv), keyStreamOffset);
             return crypto;
         }
+
+        /// <summary>
+        /// Gets or sets the crypto factory.
+        /// </summary>
+        /// <value>
+        /// The crypto factory.
+        /// </value>
+        public ICryptoFactory CryptoFactory { get; set; }
     }
 }

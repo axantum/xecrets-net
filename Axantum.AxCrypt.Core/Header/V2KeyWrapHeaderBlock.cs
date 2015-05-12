@@ -32,7 +32,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class V2KeyWrapHeaderBlock : HeaderBlock
+    public class V2KeyWrapHeaderBlock : HeaderBlock, IKeyStreamCryptoFactory
     {
         private const int WRAP_MAX_LENGTH = 128 + 16;
         private const int WRAP_SALT_MAX_LENGTH = 64;
@@ -61,8 +61,9 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        private ICryptoFactory _cryptoFactory;
         private IDerivedKey _keyEncryptingKey;
+
+        private ICryptoFactory _cryptoFactory;
 
         public V2KeyWrapHeaderBlock(ICryptoFactory cryptoFactory, IDerivedKey keyEncryptingKey, long keyWrapIterations)
             : this(Resolve.RandomGenerator.Generate(DATABLOCK_LENGTH))
@@ -73,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Header
             Initialize(keyWrapIterations);
         }
 
-        public void SetCryptoKey(ICryptoFactory cryptoFactory, IDerivedKey keyEncryptingKey)
+        public void SetDerivedKey(ICryptoFactory cryptoFactory, IDerivedKey keyEncryptingKey)
         {
             _cryptoFactory = cryptoFactory;
             _keyEncryptingKey = keyEncryptingKey;
@@ -209,6 +210,18 @@ namespace Axantum.AxCrypt.Core.Header
                 Array.Copy(UnwrappedMasterKeyData, _keyEncryptingKey.DerivedKey.Size / 8, masterIVBytes, 0, masterIVBytes.Length);
                 return new SymmetricIV(masterIVBytes);
             }
+        }
+
+        /// <summary>
+        /// Create an ICrypto instance from the decrypted key wrap.
+        /// </summary>
+        /// <param name="keyStreamOffset">The key stream offset to use.</param>
+        /// <returns>
+        /// An ICrypto instance, initialized with key and iv.
+        /// </returns>
+        public ICrypto Crypto(long keyStreamOffset)
+        {
+            return _cryptoFactory.CreateCrypto(MasterKey, MasterIV, keyStreamOffset);
         }
     }
 }

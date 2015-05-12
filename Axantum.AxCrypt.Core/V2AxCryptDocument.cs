@@ -97,7 +97,8 @@ namespace Axantum.AxCrypt.Core
             CryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
             V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
             IDerivedKey key = CryptoFactory.RestoreDerivedKey(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
-            DocumentHeaders = new V2DocumentHeaders(key, cryptoId);
+            keyWrap.SetDerivedKey(CryptoFactory, key);
+            DocumentHeaders = new V2DocumentHeaders(keyWrap);
             PassphraseIsValid = DocumentHeaders.Load(headers);
             if (!PassphraseIsValid)
             {
@@ -114,7 +115,7 @@ namespace Axantum.AxCrypt.Core
             IEnumerable<V2AsymmetricKeyWrapHeaderBlock> keyWraps = headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
             foreach (V2AsymmetricKeyWrapHeaderBlock keyWrap in keyWraps)
             {
-                keyWrap.SetPrivateKey(privateKey);
+                keyWrap.SetPrivateKey(cryptoFactory, privateKey);
                 V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyWrap);
             }
             return false;
