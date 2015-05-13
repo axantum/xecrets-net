@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
             AxCryptFactory axFactory = new AxCryptFactory();
 
             IAxCryptDocument document = null;
-            Assert.Throws<ArgumentException>(() => document = axFactory.CreateDocument(new EncryptionParameters { Passphrase = new Passphrase("toohigh"), CryptoId = Guid.NewGuid() }));
+            Assert.Throws<ArgumentException>(() => document = axFactory.CreateDocument(new EncryptionParameters(Guid.NewGuid(), new Passphrase("toohigh"))));
             Assert.That(document, Is.Null);
         }
 

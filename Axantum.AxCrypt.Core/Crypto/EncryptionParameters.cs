@@ -41,8 +41,9 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// Initializes a new instance of the <see cref="EncryptionParameters"/> class.
         /// </summary>
-        public EncryptionParameters()
+        public EncryptionParameters(Guid cryptoId)
         {
+            CryptoId = cryptoId;
             _publicKeys = new List<IAsymmetricPublicKey>();
         }
 
@@ -51,9 +52,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
         public EncryptionParameters(Guid cryptoId, Passphrase passphrase)
-            : this()
+            : this(cryptoId)
         {
-            CryptoId = cryptoId;
             Passphrase = passphrase;
         }
 
@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// An empty set of encryption parameters.
         /// </summary>
-        public static readonly EncryptionParameters Empty = new EncryptionParameters { Passphrase = Passphrase.Empty, CryptoId = Guid.Empty, };
+        public static readonly EncryptionParameters Empty = new EncryptionParameters(Guid.Empty, Passphrase.Empty);
 
         /// <summary>
         /// Gets or sets the passphrase. A passphrase is always required.

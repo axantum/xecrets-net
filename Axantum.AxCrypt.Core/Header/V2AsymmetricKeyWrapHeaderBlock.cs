@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Header
         }
 
         /// <summary>
-        /// Create an ICrypto instance from the decrypted asymmetric key wrap.
+        /// Create an ICrypto instance from the decrypted asymmetric key wrap if possible.
         /// </summary>
         /// <param name="keyStreamOffset"></param>
         /// <returns>An ICrypto instance, initialized with key and iv, or null if no valid key is set.</returns>

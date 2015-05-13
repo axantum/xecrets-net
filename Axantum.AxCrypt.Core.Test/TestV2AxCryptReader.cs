@@ -26,11 +26,15 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -90,6 +94,108 @@ namespace Axantum.AxCrypt.Core.Test
                         keyWrap.SetDerivedKey(new V2Aes256CryptoFactory(), key);
 
                         Assert.That(dataEncryptingKey, Is.Not.EqualTo(keyWrap.MasterKey));
+                    }
+                }
+            }
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestGetOneAsymmetricCryptoFromHeaders(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            Headers headers = new Headers();
+            
+            EncryptionParameters parameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("secrets"));
+            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            parameters.Add(new IAsymmetricPublicKey[] { publicKey});
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
+            using (Stream chainedStream = new MemoryStream())
+            {
+                using (V2HmacStream stream = new V2HmacStream(new byte[0], chainedStream))
+                {
+                    documentHeaders.WriteStartWithHmac(stream);
+                    stream.Flush();
+                    chainedStream.Position = 0;
+
+                    using (V2AxCryptReader reader = new V2AxCryptReader(chainedStream))
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.CurrentItemType == AxCryptItemType.HeaderBlock)
+                            {
+                                headers.HeaderBlocks.Add(reader.CurrentHeaderBlock);
+                            }
+                        }
+
+                        SymmetricKey dataEncryptingKey = documentHeaders.Headers.FindHeaderBlock<V2KeyWrapHeaderBlock>().MasterKey;
+
+                        V2AsymmetricKeyWrapHeaderBlock readerAsymmetricKey = headers.FindHeaderBlock<V2AsymmetricKeyWrapHeaderBlock>();
+
+                        IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+                        readerAsymmetricKey.SetPrivateKey(new V2Aes256CryptoFactory(), privateKey1);
+                        Assert.That(dataEncryptingKey, Is.EqualTo(readerAsymmetricKey.Crypto(0).Key), "The asymmetric wrapped key should be the one in the ICrypto instance.");
+
+                        IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+                        readerAsymmetricKey.SetPrivateKey(new V2Aes256CryptoFactory(), privateKey2);
+                        Assert.That(readerAsymmetricKey.Crypto(0), Is.Null, "The ICrypto instance should be null, since the private key was wrong.");
+                    }
+                }
+            }
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestGetTwoAsymmetricCryptosFromHeaders(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            Headers headers = new Headers();
+
+            EncryptionParameters parameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("secrets"));
+            IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey publicKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            parameters.Add(new IAsymmetricPublicKey[] { publicKey1, publicKey2 });
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
+            using (Stream chainedStream = new MemoryStream())
+            {
+                using (V2HmacStream stream = new V2HmacStream(new byte[0], chainedStream))
+                {
+                    documentHeaders.WriteStartWithHmac(stream);
+                    stream.Flush();
+                    chainedStream.Position = 0;
+
+                    using (V2AxCryptReader reader = new V2AxCryptReader(chainedStream))
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.CurrentItemType == AxCryptItemType.HeaderBlock)
+                            {
+                                headers.HeaderBlocks.Add(reader.CurrentHeaderBlock);
+                            }
+                        }
+
+                        SymmetricKey dataEncryptingKey = documentHeaders.Headers.FindHeaderBlock<V2KeyWrapHeaderBlock>().MasterKey;
+
+                        IEnumerable<V2AsymmetricKeyWrapHeaderBlock> readerAsymmetricKeys = headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
+                        Assert.That(readerAsymmetricKeys.Count(), Is.EqualTo(2), "There should be two asymmetric keys in the headers.");
+
+                        V2AsymmetricKeyWrapHeaderBlock asymmetricKey1 = readerAsymmetricKeys.First();
+                        IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+                        asymmetricKey1.SetPrivateKey(new V2Aes256CryptoFactory(), privateKey1);
+                        Assert.That(dataEncryptingKey, Is.EqualTo(asymmetricKey1.Crypto(0).Key), "The asymmetric wrapped key should be the one in the ICrypto instance.");
+
+                        IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+                        asymmetricKey1.SetPrivateKey(new V2Aes256CryptoFactory(), privateKey2);
+                        Assert.That(asymmetricKey1.Crypto(0), Is.Null, "The ICrypto instance should be null, since the private key was wrong.");
+
+                        V2AsymmetricKeyWrapHeaderBlock asymmetricKey2 = readerAsymmetricKeys.Last();
+                        asymmetricKey2.SetPrivateKey(new V2Aes256CryptoFactory(), privateKey2);
+                        Assert.That(dataEncryptingKey, Is.EqualTo(asymmetricKey2.Crypto(0).Key), "The asymmetric wrapped key should be the one in the ICrypto instance.");
+
+                        asymmetricKey2.SetPrivateKey(new V2Aes256CryptoFactory(), privateKey1);
+                        Assert.That(asymmetricKey2.Crypto(0), Is.Null, "The ICrypto instance should be null, since the private key was wrong.");
                     }
                 }
             }

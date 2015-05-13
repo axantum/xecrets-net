@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             using (Stream destinationStream = destinationFileInfo.OpenWrite())
             {
-                EncryptionParameters parameters = new EncryptionParameters { Passphrase = new Passphrase("axcrypt"), CryptoId = V2Aes128CryptoFactory.CryptoId, };
+                EncryptionParameters parameters = new EncryptionParameters (V2Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt"));
                 AxCryptFile.Encrypt(sourceFileInfo, destinationStream, parameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
 
