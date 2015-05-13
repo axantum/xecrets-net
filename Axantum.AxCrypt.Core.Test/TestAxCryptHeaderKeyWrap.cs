@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
@@ -68,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
                 V1KeyWrap1HeaderBlock keyWrapHeaderBlock = null;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     int headers = 0;
                     while (axCryptReader.Read())

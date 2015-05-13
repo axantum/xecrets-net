@@ -380,7 +380,7 @@ namespace Axantum.AxCrypt.Core.Test
                         using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
                         {
                             Headers headers = new Headers();
-                            AxCryptReader reader = headers.Load(outputStream);
+                            AxCryptReader reader = headers.Load(new LookAheadStream(outputStream));
 
                             Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, reader, headers), Is.True);
                             reader.SetStartOfData();

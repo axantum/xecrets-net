@@ -45,18 +45,13 @@ namespace Axantum.AxCrypt.Core.Reader
         /// Implement an AxCryptReader based on a Stream.
         /// </summary>
         /// <param name="inputStream">The stream. Will be disposed when this instance is disposed.</param>
-        protected AxCryptReader(Stream inputStream)
+        protected AxCryptReader(LookAheadStream inputStream)
         {
             if (inputStream == null)
             {
                 throw new ArgumentNullException("inputStream");
             }
-            LookAheadStream lookAheadStream = inputStream as LookAheadStream;
-            if (lookAheadStream == null)
-            {
-                lookAheadStream = new LookAheadStream(inputStream);
-            }
-            InputStream = lookAheadStream;
+            InputStream = inputStream;
         }
 
         public virtual void Reinterpret(IList<HeaderBlock> inputHeaders, IList<HeaderBlock> outputHeaders)

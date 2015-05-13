@@ -48,10 +48,8 @@ namespace Axantum.AxCrypt.Core.Header
             TrailerBlocks = new List<HeaderBlock>();
         }
 
-        public AxCryptReader Load(Stream inputStream)
+        public AxCryptReader Load(LookAheadStream inputStream)
         {
-            inputStream = new LookAheadStream(inputStream);
-
             IList<HeaderBlock> headers = LoadUnversionedHeaders(inputStream);
             AxCryptReader reader = CreateVersionedReader(inputStream, headers);
             reader.Reinterpret(headers, HeaderBlocks);
@@ -64,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Header
             HeaderBlocks = LoadFromReader(reader);
         }
 
-        private static IList<HeaderBlock> LoadUnversionedHeaders(Stream inputStream)
+        private static IList<HeaderBlock> LoadUnversionedHeaders(LookAheadStream inputStream)
         {
             using (VXAxCryptReader vxReader = new VXAxCryptReader(inputStream))
             {
@@ -85,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Header
             return headers;
         }
 
-        private static AxCryptReader CreateVersionedReader(Stream inputStream, IList<HeaderBlock> headers)
+        private static AxCryptReader CreateVersionedReader(LookAheadStream inputStream, IList<HeaderBlock> headers)
         {
             AxCryptReader reader;
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>(headers);

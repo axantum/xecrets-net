@@ -653,7 +653,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (MemoryStream encryptedFile = new MemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt))
             {
                 Headers headers = new Headers();
-                AxCryptReader reader = headers.Load(encryptedFile);
+                AxCryptReader reader = headers.Load(new LookAheadStream(encryptedFile));
                 using (V1AxCryptDocument document = new V1AxCryptDocument())
                 {
                     Passphrase key = new Passphrase("Å ä Ö");
@@ -680,7 +680,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                     encryptedFile.Position = 0;
                     Headers headers = new Headers();
-                    AxCryptReader reader = headers.Load(encryptedFile);
+                    AxCryptReader reader = headers.Load(new LookAheadStream(encryptedFile));
                     using (V1AxCryptDocument document = new V1AxCryptDocument())
                     {
                         Passphrase key = new Passphrase("a");

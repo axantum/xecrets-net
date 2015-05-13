@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core
         private static IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream, out DecryptionParameter foundParameter)
         {
             Headers headers = new Headers();
-            AxCryptReader reader = headers.Load(inputStream);
+            AxCryptReader reader = headers.Load(new LookAheadStream(inputStream));
 
             IAxCryptDocument document = null;
             foreach (DecryptionParameter decryptionParameter in decryptionParameters)

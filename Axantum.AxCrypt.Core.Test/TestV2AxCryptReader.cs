@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
                     stream.Flush();
                     chainedStream.Position = 0;
 
-                    using (V2AxCryptReader reader = new V2AxCryptReader(chainedStream))
+                    using (V2AxCryptReader reader = new V2AxCryptReader(new LookAheadStream(chainedStream)))
                     {
                         while (reader.Read())
                         {
@@ -106,10 +106,10 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
             Headers headers = new Headers();
-            
+
             EncryptionParameters parameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("secrets"));
             IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            parameters.Add(new IAsymmetricPublicKey[] { publicKey});
+            parameters.Add(new IAsymmetricPublicKey[] { publicKey });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
             using (Stream chainedStream = new MemoryStream())
             {
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Test
                     stream.Flush();
                     chainedStream.Position = 0;
 
-                    using (V2AxCryptReader reader = new V2AxCryptReader(chainedStream))
+                    using (V2AxCryptReader reader = new V2AxCryptReader(new LookAheadStream(chainedStream)))
                     {
                         while (reader.Read())
                         {
@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
                     stream.Flush();
                     chainedStream.Position = 0;
 
-                    using (V2AxCryptReader reader = new V2AxCryptReader(chainedStream))
+                    using (V2AxCryptReader reader = new V2AxCryptReader(new LookAheadStream(chainedStream)))
                     {
                         while (reader.Read())
                         {

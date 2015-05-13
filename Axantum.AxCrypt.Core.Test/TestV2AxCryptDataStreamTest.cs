@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         private class TestingAxCryptReader : AxCryptReader
         {
-            public TestingAxCryptReader(Stream inputStream)
+            public TestingAxCryptReader(LookAheadStream inputStream)
                 : base(inputStream)
             {
             }
@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Test
                 }
                 new V2HmacHeaderBlock().Write(dataPartStream);
                 dataPartStream.Position = 0;
-                using (AxCryptReader reader = new TestingAxCryptReader(dataPartStream))
+                using (AxCryptReader reader = new TestingAxCryptReader(new LookAheadStream(dataPartStream)))
                 {
                     while (reader.Read()) ;
                     reader.SetStartOfData();
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
                 }
                 new V2HmacHeaderBlock().Write(dataPartStream);
                 dataPartStream.Position = 0;
-                using (AxCryptReader reader = new TestingAxCryptReader(dataPartStream))
+                using (AxCryptReader reader = new TestingAxCryptReader(new LookAheadStream(dataPartStream)))
                 {
                     while (reader.Read()) ;
                     reader.SetStartOfData();
@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
                     axCryptDataStreamWriter.Write(bytes, 0, bytes.Length);
                 }
                 dataPartStream.Position = 0;
-                using (AxCryptReader reader = new TestingAxCryptReader(dataPartStream))
+                using (AxCryptReader reader = new TestingAxCryptReader(new LookAheadStream(dataPartStream)))
                 {
                     while (reader.Read()) ;
                     reader.SetStartOfData();
@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Test
                 }
                 new DataHeaderBlock().Write(dataPartStream);
                 dataPartStream.Position = 0;
-                using (AxCryptReader reader = new TestingAxCryptReader(dataPartStream))
+                using (AxCryptReader reader = new TestingAxCryptReader(new LookAheadStream(dataPartStream)))
                 {
                     while (reader.Read()) ;
                     reader.SetStartOfData();

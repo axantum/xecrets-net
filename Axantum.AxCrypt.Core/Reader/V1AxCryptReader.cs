@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.IO;
 
@@ -40,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// </summary>
         /// <param name="inputStream">The stream to read from, will be disposed when this instance is disposed.</param>
         /// <returns></returns>
-        public V1AxCryptReader(Stream inputStream)
+        public V1AxCryptReader(LookAheadStream inputStream)
             : base(inputStream)
         {
         }

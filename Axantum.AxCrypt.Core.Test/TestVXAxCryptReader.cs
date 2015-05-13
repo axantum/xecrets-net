@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using NUnit.Framework;
 using System;
@@ -64,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
                 headers.WriteWithoutHmac(stream);
                 stream.Position = 0;
 
-                using (VXAxCryptReader reader = new VXAxCryptReader(stream))
+                using (VXAxCryptReader reader = new VXAxCryptReader(new LookAheadStream(stream)))
                 {
                     bool unexpectedHeaderTypeFound = false;
                     while (reader.Read())
@@ -94,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNotImplemented()
         {
-            using (VXAxCryptReader reader = new VXAxCryptReader(Stream.Null))
+            using (VXAxCryptReader reader = new VXAxCryptReader(new LookAheadStream(Stream.Null)))
             {
                 Assert.Throws<NotImplementedException>(() => reader.Document(new Passphrase("test"), V1Aes128CryptoFactory.CryptoId, new Headers()));
             }

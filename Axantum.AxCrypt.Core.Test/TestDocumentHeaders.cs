@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
@@ -53,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         private class AxCryptReaderForTest : V1AxCryptReader
         {
-            public AxCryptReaderForTest(Stream inputStream)
+            public AxCryptReaderForTest(LookAheadStream inputStream)
                 : base(inputStream)
             {
             }
@@ -90,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
                 AxCrypt1Guid.Write(inputStream);
                 new PreambleHeaderBlock().Write(inputStream);
                 inputStream.Position = 0;
-                using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(inputStream))
+                using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(new LookAheadStream(inputStream)))
                 {
                     V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new Passphrase("secret"), 15);
                     Assert.Throws<InternalErrorException>(() =>
@@ -124,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
-                using (AxCryptReader reader = new V1AxCryptReader(testStream))
+                using (AxCryptReader reader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     Passphrase passphrase = new Passphrase("b");
                     V1DocumentHeaders documentHeaders = new V1DocumentHeaders(passphrase, 73);

@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using NUnit.Framework;
 using System;
@@ -64,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
                 headers.WriteWithoutHmac(stream);
                 stream.Position = 0;
 
-                using (V1AxCryptReader reader = new V1AxCryptReader(stream))
+                using (V1AxCryptReader reader = new V1AxCryptReader(new LookAheadStream(stream)))
                 {
                     AxCryptItemType lastItemType = AxCryptItemType.Undefined;
                     while (reader.Read())

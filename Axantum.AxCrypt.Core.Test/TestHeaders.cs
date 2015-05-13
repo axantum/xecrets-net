@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Moq;
@@ -78,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Test
                 new DataHeaderBlock().Write(stream);
                 stream.Position = 0;
 
-                Assert.Throws<FileFormatException>(() => new Headers().Load(stream));
+                Assert.Throws<FileFormatException>(() => new Headers().Load(new LookAheadStream(stream)));
             }
         }
 
@@ -94,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Test
                 new DataHeaderBlock().Write(stream);
                 stream.Position = 0;
 
-                Assert.Throws<FileFormatException>(() => new Headers().Load(stream));
+                Assert.Throws<FileFormatException>(() => new Headers().Load(new LookAheadStream(stream)));
             }
         }
 
@@ -126,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestBadAxCryptReader()
         {
-            Mock<AxCryptReader> mockAxCryptReader = new Mock<AxCryptReader>(Stream.Null);
+            Mock<AxCryptReader> mockAxCryptReader = new Mock<AxCryptReader>(new LookAheadStream(Stream.Null));
             mockAxCryptReader.Setup(r => r.Read()).Returns(true);
             mockAxCryptReader.Setup(r => r.CurrentItemType).Returns(AxCryptItemType.MagicGuid);
 
@@ -137,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEndOfFileAxCryptReader()
         {
-            Mock<AxCryptReader> mockAxCryptReader = new Mock<AxCryptReader>(Stream.Null);
+            Mock<AxCryptReader> mockAxCryptReader = new Mock<AxCryptReader>(new LookAheadStream(Stream.Null));
             mockAxCryptReader.Setup(r => r.Read()).Returns(false);
 
             Headers headers = new Headers();

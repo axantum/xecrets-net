@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.IO;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// Initializes a new instance of the <see cref="VXAxCryptReader"/> class.
         /// </summary>
         /// <param name="inputStream">The stream. Will NOT be disposed when this instance is disposed.</param>
-        public VXAxCryptReader(Stream inputStream)
+        public VXAxCryptReader(LookAheadStream inputStream)
             : base(inputStream)
         {
         }
