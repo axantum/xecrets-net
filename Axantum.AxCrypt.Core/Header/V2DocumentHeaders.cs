@@ -90,10 +90,7 @@ namespace Axantum.AxCrypt.Core.Header
             get { return _headers; }
         }
 
-        public V2HmacStream HmacStream
-        {
-            get { return _hmacStream; }
-        }
+        public V2HmacCalculator HmacCalculator { get; private set; }
 
         public bool Load(Headers headers)
         {
@@ -104,7 +101,8 @@ namespace Axantum.AxCrypt.Core.Header
                 return false;
             }
 
-            _hmacStream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(GetHmacKey())));
+            HmacCalculator = new V2HmacCalculator(new SymmetricKey(GetHmacKey()));
+            _hmacStream = new V2HmacStream(HmacCalculator);
             AxCrypt1Guid.Write(_hmacStream);
             foreach (HeaderBlock header in headers.HeaderBlocks)
             {

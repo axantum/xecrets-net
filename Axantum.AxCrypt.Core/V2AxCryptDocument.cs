@@ -248,7 +248,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             DocumentHeaders.Trailers(_reader);
-            if (DocumentHeaders.HmacStream.Hmac != DocumentHeaders.Hmac)
+            if (DocumentHeaders.HmacCalculator.Hmac != DocumentHeaders.Hmac)
             {
                 throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
@@ -262,7 +262,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             _reader.SetStartOfData();
-            V2AxCryptDataStream encryptedDataStream = new V2AxCryptDataStream(_reader, DocumentHeaders.HmacStream);
+            V2AxCryptDataStream encryptedDataStream = new V2AxCryptDataStream(_reader, new V2HmacStream(DocumentHeaders.HmacCalculator));
             return encryptedDataStream;
         }
 
