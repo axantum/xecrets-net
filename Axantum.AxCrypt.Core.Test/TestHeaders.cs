@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Test
                 new DataHeaderBlock().Write(stream);
                 stream.Position = 0;
 
-                Assert.Throws<FileFormatException>(() => new Headers().Load(new LookAheadStream(stream)));
+                Assert.Throws<FileFormatException>(() => new Headers().CreateReader(new LookAheadStream(stream)));
             }
         }
 
@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Test
                 new DataHeaderBlock().Write(stream);
                 stream.Position = 0;
 
-                Assert.Throws<FileFormatException>(() => new Headers().Load(new LookAheadStream(stream)));
+                Assert.Throws<FileFormatException>(() => new Headers().CreateReader(new LookAheadStream(stream)));
             }
         }
 

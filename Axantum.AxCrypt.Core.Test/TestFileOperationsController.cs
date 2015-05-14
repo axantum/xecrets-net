@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt.Core.Test
             encryptionParameters.Add(passphrase.PublicKeys);
 
             Headers headers = new Headers();
-            AxCryptReader reader = headers.Load(new LookAheadStream(destinationInfo.OpenRead()));
+            AxCryptReader reader = headers.CreateReader(new LookAheadStream(destinationInfo.OpenRead()));
             using (IAxCryptDocument document = AxCryptReader.Document(reader))
             {
                 document.Load(passphrase.Passphrase, cryptoId, headers);

@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core
         public bool Load(Passphrase key, Guid cryptoId, Stream inputStream)
         {
             Headers headers = new Headers();
-            AxCryptReader reader = headers.Load(new LookAheadStream(inputStream));
+            AxCryptReader reader = headers.CreateReader(new LookAheadStream(inputStream));
 
             return Load(key, cryptoId, reader, headers);
         }

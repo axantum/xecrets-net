@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt.Core.Test
                 progress.Cancel = true;
             };
             Headers headers = new Headers();
-            AxCryptReader reader = headers.Load(new LookAheadStream(new ProgressStream(sourceFileInfo.OpenRead(), progress)));
+            AxCryptReader reader = headers.CreateReader(new LookAheadStream(new ProgressStream(sourceFileInfo.OpenRead(), progress)));
             using (IAxCryptDocument document = AxCryptReader.Document(reader))
             {
                 bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, headers);

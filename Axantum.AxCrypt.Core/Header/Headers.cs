@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Header
             TrailerBlocks = new List<HeaderBlock>();
         }
 
-        public AxCryptReader Load(LookAheadStream inputStream)
+        public AxCryptReader CreateReader(LookAheadStream inputStream)
         {
             IList<HeaderBlock> headers = LoadUnversionedHeaders(inputStream);
             AxCryptReader reader = CreateVersionedReader(inputStream, headers);
