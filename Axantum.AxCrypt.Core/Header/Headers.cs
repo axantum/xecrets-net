@@ -57,20 +57,18 @@ namespace Axantum.AxCrypt.Core.Header
             return reader;
         }
 
-        public void Load(AxCryptReader reader)
+        public void Load(AxCryptReaderBase reader)
         {
             HeaderBlocks = LoadFromReader(reader);
         }
 
         private static IList<HeaderBlock> LoadUnversionedHeaders(LookAheadStream inputStream)
         {
-            using (VXAxCryptReader vxReader = new VXAxCryptReader(inputStream))
-            {
-                return LoadFromReader(vxReader);
-            }
+            UnversionedAxCryptReader vxReader = new UnversionedAxCryptReader(inputStream);
+            return LoadFromReader(vxReader);
         }
 
-        private static IList<HeaderBlock> LoadFromReader(AxCryptReader vxReader)
+        private static IList<HeaderBlock> LoadFromReader(AxCryptReaderBase vxReader)
         {
             List<HeaderBlock> headers = new List<HeaderBlock>();
             vxReader.Read();
@@ -111,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Header
             ReadHeadersToLast(TrailerBlocks, reader, HeaderBlockType.V2Hmac);
         }
 
-        private static void ReadHeadersToLast(IList<HeaderBlock> headerBlocks, AxCryptReader axCryptReader, HeaderBlockType last)
+        private static void ReadHeadersToLast(IList<HeaderBlock> headerBlocks, AxCryptReaderBase axCryptReader, HeaderBlockType last)
         {
             while (axCryptReader.Read())
             {

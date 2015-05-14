@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     bool blockFound = false;
                     int headers = 0;

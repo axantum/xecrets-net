@@ -209,8 +209,8 @@ namespace Axantum.AxCrypt.Core.Test
             encryptionParameters.Add(passphrase.PublicKeys);
 
             Headers headers = new Headers();
-            AxCryptReader reader = headers.CreateReader(new LookAheadStream(destinationInfo.OpenRead()));
-            using (IAxCryptDocument document = AxCryptReader.Document(reader))
+            AxCryptReaderBase reader = headers.CreateReader(new LookAheadStream(destinationInfo.OpenRead()));
+            using (IAxCryptDocument document = AxCryptReaderBase.Document(reader))
             {
                 document.Load(passphrase.Passphrase, cryptoId, headers);
                 Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");

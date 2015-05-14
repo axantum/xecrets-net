@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Core
             return PassphraseIsValid;
         }
 
-        public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, AxCryptReader reader, Headers headers)
+        public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, AxCryptReaderBase reader, Headers headers)
         {
             ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
 

@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Header
             V2KeyWrapHeaderBlock keyWrap = new V2KeyWrapHeaderBlock(cryptoFactory, keyEncryptingKey, keyWrapIterations);
             _headers.HeaderBlocks.Add(keyWrap);
             _keyStreamFactory = keyWrap;
-            
+
             foreach (IAsymmetricPublicKey publicKey in encryptionParameters.PublicKeys)
             {
                 _headers.HeaderBlocks.Add(new V2AsymmetricKeyWrapHeaderBlock(publicKey, keyWrap.MasterKey, keyWrap.MasterIV));

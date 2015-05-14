@@ -56,14 +56,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(null)) { }
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(null)) { }
             }, "A non-null input-stream must be specified.");
 
             using (MemoryStream inputStream = new MemoryStream())
             {
                 AxCrypt1Guid.Write(inputStream);
                 inputStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
 
                 // The stream reader supports both externally supplied LookAheadStream or will wrap it if it is not.
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -89,14 +89,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(null)) { }
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(null)) { }
             }, "A non-null input-stream must be specified.");
 
             using (MemoryStream inputStream = new MemoryStream())
             {
                 AxCrypt1Guid.Write(inputStream);
                 inputStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream inputStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
                 {
                     axCryptReader.Dispose();
 
@@ -318,7 +318,7 @@ namespace Axantum.AxCrypt.Core.Test
                 V1KeyWrap2HeaderBlock keyWrap2HeaderBlock = new V1KeyWrap2HeaderBlock(new byte[0]);
                 keyWrap2HeaderBlock.Write(inputStream);
                 inputStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -344,7 +344,7 @@ namespace Axantum.AxCrypt.Core.Test
                 UnrecognizedHeaderBlock unrecognizedHeaderBlock = new UnrecognizedHeaderBlock(HeaderBlockType.Unrecognized, new byte[0]);
                 unrecognizedHeaderBlock.Write(inputStream);
                 inputStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(inputStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");

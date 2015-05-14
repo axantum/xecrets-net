@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,243 +25,19 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public abstract class AxCryptReader : IDisposable
+    public abstract class AxCryptReader : AxCryptReaderBase, IDisposable
     {
-        public LookAheadStream InputStream { get; set; }
-
-        public static IAxCryptDocument Document(AxCryptReader reader)
+        public AxCryptReader(LookAheadStream inputStream)
+            : base(inputStream)
         {
-            return reader.Document();
-        }
-
-        /// <summary>
-        /// Implement an AxCryptReader based on a Stream.
-        /// </summary>
-        /// <param name="inputStream">The stream. Will be disposed when this instance is disposed.</param>
-        protected AxCryptReader(LookAheadStream inputStream)
-            : this()
-        {
-            if (inputStream == null)
-            {
-                throw new ArgumentNullException("inputStream");
-            }
-            InputStream = inputStream;
-        }
-
-        private bool _referencedByDocumentInstance;
-
-        protected AxCryptReader()
-        {
-            _referencedByDocumentInstance = false;
-        }
-
-        public virtual void Reinterpret(IList<HeaderBlock> inputHeaders, IList<HeaderBlock> outputHeaders)
-        {
-            outputHeaders.Clear();
-            foreach (HeaderBlock header in inputHeaders)
-            {
-                outputHeaders.Add(HeaderBlockFactory(header.HeaderBlockType, header.GetDataBlockBytes()));
-            }
-            CurrentItemType = AxCryptItemType.Data;
-        }
-
-        /// <summary>
-        /// Opens an AxCrypt document instance by way of a symmetrical key and algorithm, if possible.
-        /// </summary>
-        /// <param name="key">The key.</param>
-        /// <param name="cryptoId">The crypto identifier.</param>
-        /// <param name="headers">The headers.</param>
-        /// <returns>An instance with a valid passphrase or not.</returns>
-        public abstract IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers);
-
-        /// <summary>
-        /// Opens an AxCrypt document instance by way of a asymmetrical private key and algorithm, if possible.
-        /// </summary>
-        /// <param name="privateKey">The private key.</param>
-        /// <param name="cryptoId">The crypto identifier.</param>
-        /// <param name="headers">The headers.</param>
-        /// <returns>An instance with a valid passphrase or not.</returns>
-        public abstract IAxCryptDocument Document(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers);
-
-        protected virtual IAxCryptDocument Document()
-        {
-            if (_referencedByDocumentInstance)
-            {
-                throw new InvalidOperationException("A single reader instance can only be referenced by a single document instance.");
-            }
-            _referencedByDocumentInstance = true;
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the type of the current item
-        /// </summary>
-        public virtual AxCryptItemType CurrentItemType { get; protected set; }
-
-        public HeaderBlock CurrentHeaderBlock { get; private set; }
-
-        protected abstract HeaderBlock HeaderBlockFactory(HeaderBlockType headerBlockType, byte[] dataBlock);
-
-        /// <summary>
-        /// Read the next item from the stream.
-        /// </summary>
-        /// <returns>true if there was a next item read, false if at end of stream.</returns>
-        /// <exception cref="Axantum.AxCrypt.Core.AxCryptException">Any error except premature end of stream will throw.</exception>
-        public virtual bool Read()
-        {
-            if (InputStream == null)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
-            AxCryptItemType before = CurrentItemType;
-            bool readOk = ReadInternal();
-            AxCryptItemType after = CurrentItemType;
-            if (Resolve.Log.IsDebugEnabled)
-            {
-                Resolve.Log.LogDebug("AxCryptReader.Read() from type {0} to type {1} : {2}.".InvariantFormat(before, after, CurrentHeaderBlock == null ? "(None)" : CurrentHeaderBlock.GetType().ToString()));
-            }
-            return readOk;
-        }
-
-        public void SetEndOfStream()
-        {
-            CurrentItemType = AxCryptItemType.EndOfStream;
-        }
-
-        public void SetStartOfData()
-        {
-            CurrentItemType = AxCryptItemType.HeaderBlock;
-        }
-
-        private bool ReadInternal()
-        {
-            switch (CurrentItemType)
-            {
-                case AxCryptItemType.None:
-                    LookForMagicGuid();
-                    return CurrentItemType != AxCryptItemType.EndOfStream;
-
-                case AxCryptItemType.MagicGuid:
-                case AxCryptItemType.HeaderBlock:
-                    LookForHeaderBlock();
-                    return CurrentItemType != AxCryptItemType.EndOfStream;
-
-                case AxCryptItemType.Data:
-                    return false;
-
-                case AxCryptItemType.EndOfStream:
-                    return false;
-
-                default:
-                    throw new InternalErrorException("An AxCryptItemType that should not be possible to get was found.");
-            }
-        }
-
-        private static readonly byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
-
-        private void LookForMagicGuid()
-        {
-            byte[] buffer = new byte[OS.Current.StreamBufferSize];
-            while (true)
-            {
-                int bytesRead = InputStream.Read(buffer, 0, buffer.Length);
-                if (bytesRead < AxCrypt1Guid.Length)
-                {
-                    InputStream.Pushback(buffer, 0, bytesRead);
-                    CurrentItemType = AxCryptItemType.EndOfStream;
-                    return;
-                }
-
-                int i = buffer.Locate(_axCrypt1GuidBytes, 0, bytesRead);
-                if (i < 0)
-                {
-                    int offsetToBytesToKeep = bytesRead - AxCrypt1Guid.Length + 1;
-                    InputStream.Pushback(buffer, offsetToBytesToKeep, bytesRead - offsetToBytesToKeep);
-                    continue;
-                }
-                int offsetJustAfterTheGuid = i + AxCrypt1Guid.Length;
-                InputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
-                CurrentItemType = AxCryptItemType.MagicGuid;
-                return;
-            }
-        }
-
-        private void LookForHeaderBlock()
-        {
-            byte[] lengthBytes = new byte[sizeof(Int32)];
-            if (!InputStream.ReadExact(lengthBytes))
-            {
-                CurrentItemType = AxCryptItemType.EndOfStream;
-                return;
-            }
-            Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
-            if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
-            {
-                throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength), ErrorStatus.FileFormatError);
-            }
-
-            int blockType = InputStream.ReadByte();
-            if (blockType > 127)
-            {
-                throw new FileFormatException("Invalid block type {0}".InvariantFormat(blockType), ErrorStatus.FileFormatError);
-            }
-            HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
-
-            byte[] dataBlock = new byte[headerBlockLength];
-            if (!InputStream.ReadExact(dataBlock))
-            {
-                CurrentItemType = AxCryptItemType.EndOfStream;
-                return;
-            }
-
-            ParseHeaderBlock(headerBlockType, dataBlock);
-
-            DataHeaderBlock dataHeaderBlock = CurrentHeaderBlock as DataHeaderBlock;
-            if (dataHeaderBlock != null)
-            {
-                CurrentItemType = AxCryptItemType.Data;
-            }
-        }
-
-        private void ParseHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
-        {
-            bool isFirst = CurrentItemType == AxCryptItemType.MagicGuid;
-            switch (headerBlockType)
-            {
-                case HeaderBlockType.Preamble:
-                    if (!isFirst)
-                    {
-                        throw new FileFormatException("Preamble can only be first.", ErrorStatus.FileFormatError);
-                    }
-                    break;
-
-                case HeaderBlockType.Encrypted:
-                case HeaderBlockType.None:
-                case HeaderBlockType.Any:
-                    throw new FileFormatException("Illegal header block type.", ErrorStatus.FileFormatError);
-                default:
-                    if (isFirst)
-                    {
-                        throw new FileFormatException("Preamble must be first.", ErrorStatus.FileFormatError);
-                    }
-                    break;
-            }
-
-            CurrentItemType = AxCryptItemType.HeaderBlock;
-            CurrentHeaderBlock = HeaderBlockFactory(headerBlockType, dataBlock);
-            return;
         }
 
         #region IDisposable Members

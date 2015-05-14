@@ -35,13 +35,13 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public class VXAxCryptReader : AxCryptReader
+    public class UnversionedAxCryptReader : AxCryptReaderBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="VXAxCryptReader"/> class.
+        /// Initializes a new instance of the <see cref="UnversionedAxCryptReader"/> class.
         /// </summary>
         /// <param name="inputStream">The stream. Will NOT be disposed when this instance is disposed.</param>
-        public VXAxCryptReader(LookAheadStream inputStream)
+        public UnversionedAxCryptReader(LookAheadStream inputStream)
             : base(inputStream)
         {
         }
@@ -65,20 +65,6 @@ namespace Axantum.AxCrypt.Core.Reader
                     return new DataHeaderBlock(dataBlock);
             }
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                PreventInputStreamDispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private void PreventInputStreamDispose()
-        {
-            InputStream = null;
         }
 
         public override IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers)

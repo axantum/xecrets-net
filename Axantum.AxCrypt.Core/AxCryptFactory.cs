@@ -73,9 +73,9 @@ namespace Axantum.AxCrypt.Core
         private static IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream, out DecryptionParameter foundParameter)
         {
             Headers headers = new Headers();
-            AxCryptReader reader = headers.CreateReader(new LookAheadStream(inputStream));
+            AxCryptReaderBase reader = headers.CreateReader(new LookAheadStream(inputStream));
 
-            IAxCryptDocument document = AxCryptReader.Document(reader);
+            IAxCryptDocument document = AxCryptReaderBase.Document(reader);
             foreach (DecryptionParameter decryptionParameter in decryptionParameters)
             {
                 if (decryptionParameter.Passphrase != null)

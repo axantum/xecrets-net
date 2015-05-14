@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestBadAxCryptReader()
         {
-            Mock<AxCryptReader> mockAxCryptReader = new Mock<AxCryptReader>(new LookAheadStream(Stream.Null));
+            Mock<AxCryptReaderBase> mockAxCryptReader = new Mock<AxCryptReaderBase>(new LookAheadStream(Stream.Null));
             mockAxCryptReader.Setup(r => r.Read()).Returns(true);
             mockAxCryptReader.Setup(r => r.CurrentItemType).Returns(AxCryptItemType.MagicGuid);
 
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEndOfFileAxCryptReader()
         {
-            Mock<AxCryptReader> mockAxCryptReader = new Mock<AxCryptReader>(new LookAheadStream(Stream.Null));
+            Mock<AxCryptReaderBase> mockAxCryptReader = new Mock<AxCryptReaderBase>(new LookAheadStream(Stream.Null));
             mockAxCryptReader.Setup(r => r.Read()).Returns(false);
 
             Headers headers = new Headers();

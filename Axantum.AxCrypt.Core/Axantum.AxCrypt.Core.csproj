@@ -104,6 +104,7 @@
     <Compile Include="Algorithm\Sha1.cs" />
     <Compile Include="Algorithm\Sha256.cs" />
     <Compile Include="Algorithm\SymmetricAlgorithm.cs" />
+    <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Runtime\Creator.cs" />
     <Compile Include="Runtime\CryptoException.cs" />
     <Compile Include="Runtime\IPlatform.cs" />
@@ -146,9 +147,9 @@
     <Compile Include="Ipc\CommandCompleteEventArgs.cs" />
     <Compile Include="Ipc\CommandHandler.cs" />
     <Compile Include="Ipc\CommandItem.cs" />
-    <Compile Include="Reader\AxCryptReader.cs" />
+    <Compile Include="Reader\AxCryptReaderBase.cs" />
     <Compile Include="Reader\V2AxCryptReader.cs" />
-    <Compile Include="Reader\VxAxCryptReader.cs" />
+    <Compile Include="Reader\UnversionedAxCryptReader.cs" />
     <Compile Include="Runtime\TypeRegister.cs" />
     <Compile Include="Runtime\TypeResolve.cs" />
     <Compile Include="Session\ActiveFileProperties.cs" />

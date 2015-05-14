@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.IO
     {
         public static readonly int WriteChunkSize = 65536;
 
-        private AxCryptReader _reader;
+        private AxCryptReaderBase _reader;
 
         private Stream _hmacStream;
 
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// </summary>
         /// <param name="reader">An AxCrypt reader where EnryptedDataPartBlock parts are read from.</param>
         /// <param name="hmacStream">A stream to pass all data to, typically to calculate an HMAC.</param>
-        public V2AxCryptDataStream(AxCryptReader reader, Stream hmacStream)
+        public V2AxCryptDataStream(AxCryptReaderBase reader, Stream hmacStream)
             : this(hmacStream)
         {
             _reader = reader;

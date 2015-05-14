@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
-                using (AxCryptReader reader = new V1AxCryptReader(new LookAheadStream(testStream)))
+                using (V1AxCryptReader reader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     Passphrase passphrase = new Passphrase("b");
                     V1DocumentHeaders documentHeaders = new V1DocumentHeaders(passphrase, 73);

@@ -65,40 +65,36 @@ namespace Axantum.AxCrypt.Core.Test
                 headers.WriteWithoutHmac(stream);
                 stream.Position = 0;
 
-                using (VXAxCryptReader reader = new VXAxCryptReader(new LookAheadStream(stream)))
+                UnversionedAxCryptReader reader = new UnversionedAxCryptReader(new LookAheadStream(stream));
+                bool unexpectedHeaderTypeFound = false;
+                while (reader.Read())
                 {
-                    bool unexpectedHeaderTypeFound = false;
-                    while (reader.Read())
+                    if (reader.CurrentItemType != AxCryptItemType.HeaderBlock)
                     {
-                        if (reader.CurrentItemType != AxCryptItemType.HeaderBlock)
-                        {
-                            continue;
-                        }
-                        switch (reader.CurrentHeaderBlock.HeaderBlockType)
-                        {
-                            case HeaderBlockType.Preamble:
-                            case HeaderBlockType.Version:
-                            case HeaderBlockType.Data:
-                            case HeaderBlockType.Unrecognized:
-                                break;
-
-                            default:
-                                unexpectedHeaderTypeFound = !(reader.CurrentHeaderBlock is UnrecognizedHeaderBlock);
-                                break;
-                        }
+                        continue;
                     }
-                    Assert.That(unexpectedHeaderTypeFound, Is.False);
+                    switch (reader.CurrentHeaderBlock.HeaderBlockType)
+                    {
+                        case HeaderBlockType.Preamble:
+                        case HeaderBlockType.Version:
+                        case HeaderBlockType.Data:
+                        case HeaderBlockType.Unrecognized:
+                            break;
+
+                        default:
+                            unexpectedHeaderTypeFound = !(reader.CurrentHeaderBlock is UnrecognizedHeaderBlock);
+                            break;
+                    }
                 }
+                Assert.That(unexpectedHeaderTypeFound, Is.False);
             }
         }
 
         [Test]
         public static void TestNotImplemented()
         {
-            using (VXAxCryptReader reader = new VXAxCryptReader(new LookAheadStream(Stream.Null)))
-            {
-                Assert.Throws<NotImplementedException>(() => reader.Document(new Passphrase("test"), V1Aes128CryptoFactory.CryptoId, new Headers()));
-            }
+            UnversionedAxCryptReader reader = new UnversionedAxCryptReader(new LookAheadStream(Stream.Null));
+            Assert.Throws<NotImplementedException>(() => reader.Document(new Passphrase("test"), V1Aes128CryptoFactory.CryptoId, new Headers()));
         }
     }
 }
