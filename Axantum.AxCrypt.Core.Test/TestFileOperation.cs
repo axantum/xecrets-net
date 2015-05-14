@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationContext status;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
-            using (IAxCryptDocument document = new V1AxCryptDocument())
+            using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
                 using (Stream stream = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath).OpenRead())
                 {
@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<ILauncher>(() => { called = true; return launcher; });
             FileOperationContext status;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
-            using (IAxCryptDocument document = new V1AxCryptDocument())
+            using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
                 using (Stream stream = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath).OpenRead())
                 {

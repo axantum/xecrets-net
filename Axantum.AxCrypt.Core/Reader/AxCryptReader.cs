@@ -41,17 +41,30 @@ namespace Axantum.AxCrypt.Core.Reader
     {
         public LookAheadStream InputStream { get; set; }
 
+        public static IAxCryptDocument Document(AxCryptReader reader)
+        {
+            return reader.Document();
+        }
+
         /// <summary>
         /// Implement an AxCryptReader based on a Stream.
         /// </summary>
         /// <param name="inputStream">The stream. Will be disposed when this instance is disposed.</param>
         protected AxCryptReader(LookAheadStream inputStream)
+            : this()
         {
             if (inputStream == null)
             {
                 throw new ArgumentNullException("inputStream");
             }
             InputStream = inputStream;
+        }
+
+        private bool _referencedByDocumentInstance;
+
+        protected AxCryptReader()
+        {
+            _referencedByDocumentInstance = false;
         }
 
         public virtual void Reinterpret(IList<HeaderBlock> inputHeaders, IList<HeaderBlock> outputHeaders)
@@ -81,6 +94,16 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <param name="headers">The headers.</param>
         /// <returns>An instance with a valid passphrase or not.</returns>
         public abstract IAxCryptDocument Document(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers);
+
+        protected virtual IAxCryptDocument Document()
+        {
+            if (_referencedByDocumentInstance)
+            {
+                throw new InvalidOperationException("A single reader instance can only be referenced by a single document instance.");
+            }
+            _referencedByDocumentInstance = true;
+            return null;
+        }
 
         /// <summary>
         /// Gets the type of the current item

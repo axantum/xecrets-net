@@ -26,6 +26,8 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Header;
 using System;
 using System.IO;
 using System.Linq;
@@ -46,7 +48,9 @@ namespace Axantum.AxCrypt.Core
 
         ICryptoFactory CryptoFactory { get; }
 
-        bool Load(Passphrase key, Guid cryptoId, Stream inputStream);
+        bool Load(Passphrase passphrase, Guid cryptoId, Headers headers);
+
+        bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers);
 
         void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options);
 

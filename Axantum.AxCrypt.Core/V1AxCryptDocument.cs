@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
@@ -58,6 +59,12 @@ namespace Axantum.AxCrypt.Core
             CryptoFactory = new V1Aes128CryptoFactory();
         }
 
+        public V1AxCryptDocument(AxCryptReader reader)
+            : this()
+        {
+            _reader = reader;
+        }
+
         public V1AxCryptDocument(Passphrase passphrase, long keyWrapIterations)
             : this()
         {
@@ -68,12 +75,39 @@ namespace Axantum.AxCrypt.Core
 
         public bool PassphraseIsValid { get; set; }
 
-        public bool Load(Passphrase key, Guid cryptoId, Stream inputStream)
+        public bool Load(Passphrase passphrase, Guid cryptoId, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(new LookAheadStream(inputStream));
 
-            return Load(key, reader, headers);
+            return Load(passphrase, reader, headers);
+        }
+
+        public bool Load(Passphrase passphrase, Guid cryptoId, Headers headers)
+        {
+            if (cryptoId != V1Aes128CryptoFactory.CryptoId)
+            {
+                ResetState(passphrase);
+                return false;
+            }
+            return Load(passphrase, _reader, headers);
+        }
+
+        public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers)
+        {
+            ResetState(Passphrase.Empty);
+            return false;
+        }
+
+        private void ResetState(Passphrase passphrase)
+        {
+            DocumentHeaders = new V1DocumentHeaders(passphrase);
+            PassphraseIsValid = false;
+            if (_hmacStream != null)
+            {
+                _hmacStream.Dispose();
+                _hmacStream = null;
+            }
         }
 
         /// <summary>
@@ -82,10 +116,10 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="inputStream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(Passphrase key, AxCryptReader reader, Headers headers)
+        private bool Load(Passphrase passphrase, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
-            DocumentHeaders = new V1DocumentHeaders(key);
+            ResetState(passphrase);
             PassphraseIsValid = DocumentHeaders.Load(headers);
             if (!PassphraseIsValid)
             {

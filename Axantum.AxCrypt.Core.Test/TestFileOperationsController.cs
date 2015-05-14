@@ -26,7 +26,9 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
@@ -94,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = new V2AxCryptDocument())
+            using (V2AxCryptDocument document = new V2AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
@@ -125,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = new V2AxCryptDocument())
+            using (V2AxCryptDocument document = new V2AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
@@ -158,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = new V1AxCryptDocument())
+            using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
@@ -202,15 +204,16 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
             IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
+
             EncryptionParameters encryptionParameters = new EncryptionParameters(cryptoId, passphrase.Passphrase);
             encryptionParameters.Add(passphrase.PublicKeys);
-            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(encryptionParameters))
+
+            Headers headers = new Headers();
+            AxCryptReader reader = headers.Load(new LookAheadStream(destinationInfo.OpenRead()));
+            using (IAxCryptDocument document = AxCryptReader.Document(reader))
             {
-                using (Stream stream = destinationInfo.OpenRead())
-                {
-                    document.Load(passphrase.Passphrase, cryptoId, stream);
-                    Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
-                }
+                document.Load(passphrase.Passphrase, cryptoId, headers);
+                Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
             }
         }
 

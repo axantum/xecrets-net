@@ -650,19 +650,17 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestReaderNotPositionedAtData()
         {
-            using (MemoryStream encryptedFile = new MemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt))
+            MemoryStream encryptedFile = new MemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt);
+            Headers headers = new Headers();
+            AxCryptReader reader = headers.Load(new LookAheadStream(encryptedFile));
+            using (V1AxCryptDocument document = new V1AxCryptDocument(reader))
             {
-                Headers headers = new Headers();
-                AxCryptReader reader = headers.Load(new LookAheadStream(encryptedFile));
-                using (V1AxCryptDocument document = new V1AxCryptDocument())
-                {
-                    Passphrase key = new Passphrase("Å ä Ö");
-                    bool keyIsOk = document.Load(key, reader, headers);
-                    Assert.That(keyIsOk, Is.True);
+                Passphrase key = new Passphrase("Å ä Ö");
+                bool keyIsOk = document.Load(key, V1Aes128CryptoFactory.CryptoId, headers);
+                Assert.That(keyIsOk, Is.True);
 
-                    reader.SetStartOfData();
-                    Assert.Throws<InvalidOperationException>(() => document.DecryptTo(Stream.Null));
-                }
+                reader.SetStartOfData();
+                Assert.Throws<InvalidOperationException>(() => document.DecryptTo(Stream.Null));
             }
         }
 
@@ -671,25 +669,23 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MemoryStream plaintext = new MemoryStream(Resources.uncompressable_zip))
             {
-                using (MemoryStream encryptedFile = new MemoryStream())
+                MemoryStream encryptedFile = new MemoryStream();
+                using (V1AxCryptDocument encryptingDocument = new V1AxCryptDocument(new Passphrase("a"), 10))
                 {
-                    using (V1AxCryptDocument encryptingDocument = new V1AxCryptDocument(new Passphrase("a"), 10))
-                    {
-                        encryptingDocument.EncryptTo(plaintext, encryptedFile, AxCryptOptions.EncryptWithoutCompression);
-                    }
+                    encryptingDocument.EncryptTo(plaintext, encryptedFile, AxCryptOptions.EncryptWithoutCompression);
+                }
 
-                    encryptedFile.Position = 0;
-                    Headers headers = new Headers();
-                    AxCryptReader reader = headers.Load(new LookAheadStream(encryptedFile));
-                    using (V1AxCryptDocument document = new V1AxCryptDocument())
-                    {
-                        Passphrase key = new Passphrase("a");
-                        bool keyIsOk = document.Load(key, reader, headers);
-                        Assert.That(keyIsOk, Is.True);
+                encryptedFile.Position = 0;
+                Headers headers = new Headers();
+                AxCryptReader reader = headers.Load(new LookAheadStream(encryptedFile));
+                using (V1AxCryptDocument document = new V1AxCryptDocument(reader))
+                {
+                    Passphrase key = new Passphrase("a");
+                    bool keyIsOk = document.Load(key, V1Aes128CryptoFactory.CryptoId, headers);
+                    Assert.That(keyIsOk, Is.True);
 
-                        reader.InputStream.Read(new byte[16], 0, 16);
-                        Assert.Throws<InvalidOperationException>(() => document.DecryptTo(Stream.Null));
-                    }
+                    reader.InputStream.Read(new byte[16], 0, 16);
+                    Assert.Throws<InvalidOperationException>(() => document.DecryptTo(Stream.Null));
                 }
             }
         }

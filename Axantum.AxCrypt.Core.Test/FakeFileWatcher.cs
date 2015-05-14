@@ -43,7 +43,10 @@ namespace Axantum.AxCrypt.Core.Test
         public FakeFileWatcher(string path)
         {
             Path = path;
-            _fileWatchers.Add(new KeyValuePair<string, FakeFileWatcher>(path, this));
+            lock (_fileWatchers)
+            {
+                _fileWatchers.Add(new KeyValuePair<string, FakeFileWatcher>(path, this));
+            }
         }
 
         internal virtual void OnChanged(FileWatcherEventArgs eventArgs)
@@ -67,20 +70,23 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 throw new ArgumentNullException("path");
             }
-            foreach (KeyValuePair<string, FakeFileWatcher> fileWatcher in _fileWatchers)
+            lock (_fileWatchers)
             {
-                if (fileWatcher.Value.disposed)
+                foreach (KeyValuePair<string, FakeFileWatcher> fileWatcher in _fileWatchers)
                 {
-                    continue;
-                }
-                string key = fileWatcher.Key;
-                if (!key.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal))
-                {
-                    key += System.IO.Path.DirectorySeparatorChar;
-                }
-                if (((path.Substring(0, path.Length - System.IO.Path.GetFileName(path).Length))).StartsWith(key, StringComparison.Ordinal))
-                {
-                    fileWatcher.Value.OnChanged(new FileWatcherEventArgs(path));
+                    if (fileWatcher.Value.disposed)
+                    {
+                        continue;
+                    }
+                    string key = fileWatcher.Key;
+                    if (!key.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal))
+                    {
+                        key += System.IO.Path.DirectorySeparatorChar;
+                    }
+                    if (((path.Substring(0, path.Length - System.IO.Path.GetFileName(path).Length))).StartsWith(key, StringComparison.Ordinal))
+                    {
+                        fileWatcher.Value.OnChanged(new FileWatcherEventArgs(path));
+                    }
                 }
             }
         }

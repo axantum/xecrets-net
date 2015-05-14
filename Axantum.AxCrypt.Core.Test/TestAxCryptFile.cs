@@ -28,7 +28,9 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using Moq;
@@ -136,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             EncryptionParameters encryptionParameters = new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt"));
-            
+
             AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(destinationFileInfo, new LogOnIdentity("axcrypt"), new ProgressContext()))
             {
@@ -166,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             using (Stream destinationStream = destinationFileInfo.OpenWrite())
             {
-                EncryptionParameters parameters = new EncryptionParameters (V2Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt"));
+                EncryptionParameters parameters = new EncryptionParameters(V2Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt"));
                 AxCryptFile.Encrypt(sourceFileInfo, destinationStream, parameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
 
@@ -201,23 +203,22 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             Passphrase passphrase = new Passphrase("a");
-            using (IAxCryptDocument document = new V1AxCryptDocument())
+            IProgressContext progress = new CancelProgressContext(new ProgressContext(new TimeSpan(0, 0, 0, 0, 100)));
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
-                IProgressContext progress = new CancelProgressContext(new ProgressContext(new TimeSpan(0, 0, 0, 0, 100)));
-                progress.Progressing += (object sender, ProgressEventArgs e) =>
-                {
-                    progress.Cancel = true;
-                };
-                using (Stream sourceStream = new ProgressStream(sourceFileInfo.OpenRead(), progress))
-                {
-                    bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, sourceStream);
-                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                    IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(_rootPath.PathCombine("Destination", "Decrypted.txt"));
+                progress.Cancel = true;
+            };
+            Headers headers = new Headers();
+            AxCryptReader reader = headers.Load(new LookAheadStream(new ProgressStream(sourceFileInfo.OpenRead(), progress)));
+            using (IAxCryptDocument document = AxCryptReader.Document(reader))
+            {
+                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, headers);
+                Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(_rootPath.PathCombine("Destination", "Decrypted.txt"));
 
-                    FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
-                    environment.CurrentTiming.CurrentTiming = new TimeSpan(0, 0, 0, 0, 100);
-                    Assert.Throws<OperationCanceledException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(document, destinationInfo, AxCryptOptions.None, progress); });
-                }
+                FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
+                environment.CurrentTiming.CurrentTiming = new TimeSpan(0, 0, 0, 0, 100);
+                Assert.Throws<OperationCanceledException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(document, destinationInfo, AxCryptOptions.None, progress); });
             }
         }
 

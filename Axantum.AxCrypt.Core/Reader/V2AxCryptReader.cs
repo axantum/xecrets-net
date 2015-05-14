@@ -46,6 +46,12 @@ namespace Axantum.AxCrypt.Core.Reader
         {
         }
 
+        protected override IAxCryptDocument Document()
+        {
+            base.Document();
+            return new V2AxCryptDocument(this);
+        }
+
         protected override HeaderBlock HeaderBlockFactory(HeaderBlockType headerBlockType, byte[] dataBlock)
         {
             switch (headerBlockType)
@@ -88,13 +94,8 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public override IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers)
         {
-            V2AxCryptDocument v2Document = new V2AxCryptDocument();
-            if (cryptoId == V1Aes128CryptoFactory.CryptoId)
-            {
-                return v2Document;
-            }
-
-            v2Document.Load(key, cryptoId, this, headers);
+            V2AxCryptDocument v2Document = new V2AxCryptDocument(this);
+            v2Document.Load(key, cryptoId, headers);
             return v2Document;
         }
 

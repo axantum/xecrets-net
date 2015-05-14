@@ -62,6 +62,11 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
 
+            protected override IAxCryptDocument Document()
+            {
+                throw new NotImplementedException();
+            }
+
             protected override HeaderBlock HeaderBlockFactory(HeaderBlockType headerBlockType, byte[] dataBlock)
             {
                 switch (headerBlockType)

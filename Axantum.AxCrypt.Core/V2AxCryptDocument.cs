@@ -59,6 +59,11 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
+        public V2AxCryptDocument(AxCryptReader reader)
+        {
+            _reader = reader;
+        }
+
         public V2AxCryptDocument(EncryptionParameters encryptionParameters, long keyWrapIterations)
         {
             DocumentHeaders = new V2DocumentHeaders(encryptionParameters, keyWrapIterations);
@@ -80,6 +85,26 @@ namespace Axantum.AxCrypt.Core
             return Load(key, cryptoId, reader, headers);
         }
 
+        public bool Load(Passphrase passphrase, Guid cryptoId, Headers headers)
+        {
+            return Load(passphrase, cryptoId, _reader, headers);
+        }
+
+        public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers)
+        {
+            return Load(privateKey, cryptoId, _reader, headers);
+        }
+
+        private void ResetState()
+        {
+            PassphraseIsValid = false;
+            if (DocumentHeaders != null)
+            {
+                DocumentHeaders.Dispose();
+                DocumentHeaders = null;
+            }
+        }
+
         /// <summary>
         /// Loads an AxCrypt file from the specified reader. After this, the reader is positioned to
         /// read encrypted data.
@@ -91,8 +116,14 @@ namespace Axantum.AxCrypt.Core
         /// <returns>
         /// True if the key was valid, false if it was wrong.
         /// </returns>
-        public bool Load(Passphrase passphrase, Guid cryptoId, AxCryptReader reader, Headers headers)
+        private bool Load(Passphrase passphrase, Guid cryptoId, AxCryptReader reader, Headers headers)
         {
+            ResetState();
+            if (cryptoId == V1Aes128CryptoFactory.CryptoId)
+            {
+                return PassphraseIsValid;
+            }
+
             _reader = reader;
             CryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
             V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
@@ -100,12 +131,8 @@ namespace Axantum.AxCrypt.Core
             keyWrap.SetDerivedKey(CryptoFactory, key);
             DocumentHeaders = new V2DocumentHeaders(keyWrap);
             PassphraseIsValid = DocumentHeaders.Load(headers);
-            if (PassphraseIsValid)
-            {
-                return true;
-            }
 
-            return false;
+            return PassphraseIsValid;
         }
 
         public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, AxCryptReader reader, Headers headers)

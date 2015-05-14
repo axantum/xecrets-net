@@ -41,14 +41,11 @@ namespace Axantum.AxCrypt.Core
     {
         public virtual DecryptionParameter FindDecryptionParameter(IEnumerable<DecryptionParameter> decryptionParameters, IDataStore encryptedFileInfo)
         {
-            using (Stream encryptedStream = encryptedFileInfo.OpenRead())
+            DecryptionParameter foundParameter;
+            using (CreateDocument(decryptionParameters, encryptedFileInfo.OpenRead(), out foundParameter))
             {
-                DecryptionParameter foundParameter;
-                using (CreateDocument(decryptionParameters, encryptedStream, out foundParameter))
-                {
-                }
-                return foundParameter;
             }
+            return foundParameter;
         }
 
         public virtual IAxCryptDocument CreateDocument(EncryptionParameters encryptionParameters)
@@ -78,12 +75,12 @@ namespace Axantum.AxCrypt.Core
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(new LookAheadStream(inputStream));
 
-            IAxCryptDocument document = null;
+            IAxCryptDocument document = AxCryptReader.Document(reader);
             foreach (DecryptionParameter decryptionParameter in decryptionParameters)
             {
                 if (decryptionParameter.Passphrase != null)
                 {
-                    document = reader.Document(decryptionParameter.Passphrase, decryptionParameter.CryptoId, headers);
+                    document.Load(decryptionParameter.Passphrase, decryptionParameter.CryptoId, headers);
                     if (document.PassphraseIsValid)
                     {
                         foundParameter = decryptionParameter;
@@ -92,7 +89,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 if (decryptionParameter.PrivateKey != null)
                 {
-                    document = reader.Document(decryptionParameter.PrivateKey, decryptionParameter.CryptoId, headers);
+                    document.Load(decryptionParameter.PrivateKey, decryptionParameter.CryptoId, headers);
                     if (document.PassphraseIsValid)
                     {
                         foundParameter = decryptionParameter;
