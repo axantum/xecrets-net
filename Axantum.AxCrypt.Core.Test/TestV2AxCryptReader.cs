@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 10);
             using (Stream chainedStream = new MemoryStream())
             {
-                using (V2HmacStream stream = new V2HmacStream(new byte[0], chainedStream))
+                using (V2HmacStream stream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(new byte[0])), chainedStream))
                 {
                     documentHeaders.WriteStartWithHmac(stream);
                     stream.Flush();
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Test
             parameters.Add(new IAsymmetricPublicKey[] { publicKey });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
             MemoryStream chainedStream = new MemoryStream();
-            using (V2HmacStream hmacStream = new V2HmacStream(new byte[0], chainedStream))
+            using (V2HmacStream hmacStream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(new byte[0])), chainedStream))
             {
                 documentHeaders.WriteStartWithHmac(hmacStream);
                 hmacStream.Flush();
@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Test
             parameters.Add(new IAsymmetricPublicKey[] { publicKey1, publicKey2 });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
             MemoryStream chainedStream = new MemoryStream();
-            using (V2HmacStream stream = new V2HmacStream(new byte[0], chainedStream))
+            using (V2HmacStream stream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(new byte[0])), chainedStream))
             {
                 documentHeaders.WriteStartWithHmac(stream);
                 stream.Flush();

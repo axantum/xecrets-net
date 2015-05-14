@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Header
                 return false;
             }
 
-            _hmacStream = new V2HmacStream(GetHmacKey());
+            _hmacStream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(GetHmacKey())));
             AxCrypt1Guid.Write(_hmacStream);
             foreach (HeaderBlock header in headers.HeaderBlocks)
             {

@@ -64,6 +64,7 @@
     <Compile Include="Algorithm\Aes.cs" />
     <Compile Include="Algorithm\AxCryptHMACSHA1.cs" />
     <Compile Include="Algorithm\CipherMode.cs" />
+    <Compile Include="IO\V2HmacCalculator.cs" />
     <Compile Include="Portable\IPortableFactory.cs" />
     <Compile Include="Algorithm\CryptoStream.cs" />
     <Compile Include="Crypto\Asymmetric\BouncyCastleAsymmetricFactory.cs" />

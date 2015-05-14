@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] output;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (V2HmacStream hmacStream = new V2HmacStream(headers.GetHmacKey(), outputStream))
+                    using (V2HmacStream hmacStream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(headers.GetHmacKey())), outputStream))
                     {
                         headers.WriteStartWithHmac(hmacStream);
                         headers.WriteEndWithHmac(hmacStream, 0, 0);
@@ -264,7 +264,7 @@ namespace Axantum.AxCrypt.Core.Test
                 IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
                 block1.SetPrivateKey(cryptoFactory, privateKey1);
                 ICrypto cryptoFromAsymmetricKey = block1.Crypto(0);
-                
+
                 V2KeyWrapHeaderBlock symmetricKeyWrap = documentHeaders.Headers.HeaderBlocks.OfType<V2KeyWrapHeaderBlock>().First();
                 ICrypto cryptoFromSymmetricKey = cryptoFactory.CreateCrypto(symmetricKeyWrap.MasterKey, symmetricKeyWrap.MasterIV, 0);
 

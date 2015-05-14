@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentException("Invalid options, must specify either with or without compression.");
             }
             DocumentHeaders.IsCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
-            using (V2HmacStream outputHmacStream = new V2HmacStream(DocumentHeaders.GetHmacKey(), outputStream))
+            using (V2HmacStream outputHmacStream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey())), outputStream))
             {
                 DocumentHeaders.WriteStartWithHmac(outputHmacStream);
                 using (ICryptoTransform encryptor = DocumentHeaders.CreateDataCrypto().CreateEncryptingTransform())

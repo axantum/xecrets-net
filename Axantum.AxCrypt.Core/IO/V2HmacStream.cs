@@ -34,20 +34,18 @@ namespace Axantum.AxCrypt.Core.IO
 {
     public class V2HmacStream : Stream
     {
-        private HashAlgorithm _hmac;
-
-        public Stream ChainedStream { get; protected set; }
-
-        private long _count = 0;
+        private Stream _chainedStream;
 
         private bool _disposed = false;
+
+        private V2HmacCalculator _calculator;
 
         /// <summary>
         /// A AxCrypt HMAC-calculating stream.
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
-        public V2HmacStream(byte[] key)
-            : this(key, Stream.Null)
+        public V2HmacStream(V2HmacCalculator calculator)
+            : this(calculator, Stream.Null)
         {
         }
 
@@ -56,40 +54,16 @@ namespace Axantum.AxCrypt.Core.IO
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
         /// <param name="chainedStream">A stream where data is chain-written to. This stream is not disposed of when this instance is disposed.</param>
-        public V2HmacStream(byte[] key, Stream chainedStream)
+        public V2HmacStream(V2HmacCalculator calculator, Stream chainedStream)
         {
-            if (key == null)
+            if (calculator == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("calculator");
             }
 
-            _hmac = TypeMap.Resolve.New<HMACSHA512>().Initialize(new SymmetricKey(key));
-
-            ChainedStream = chainedStream;
+            _calculator = calculator;
+            _chainedStream = chainedStream;
         }
-
-        private byte[] _hmacResult = null;
-
-        /// <summary>
-        /// Get the calculated HMAC
-        /// </summary>
-        /// <returns>The HMAC</returns>
-        public Hmac Hmac
-        {
-            get
-            {
-                EnsureNotDisposed();
-                if (_hmacResult == null)
-                {
-                    _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
-                    byte[] result = new byte[_hmac.HashSize / 8];
-                    Array.Copy(_hmac.Hash, 0, result, 0, result.Length);
-                    _hmacResult = result;
-                }
-                return new V2Hmac(_hmacResult);
-            }
-        }
-
         public override bool CanRead
         {
             get { return false; }
@@ -107,14 +81,14 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override long Length
         {
-            get { return _count; }
+            get { return _calculator.Count; }
         }
 
         public override long Position
         {
             get
             {
-                return _count;
+                return _calculator.Count;
             }
             set
             {
@@ -124,7 +98,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override void Flush()
         {
-            ChainedStream.Flush();
+            _chainedStream.Flush();
         }
 
         public override int Read(byte[] buffer, int offset, int count)
@@ -145,19 +119,11 @@ namespace Axantum.AxCrypt.Core.IO
         public override void Write(byte[] buffer, int offset, int count)
         {
             EnsureNotDisposed();
-            WriteInternal(buffer, offset, count);
-            ChainedStream.Write(buffer, offset, count);
+            _calculator.Write(buffer, offset, count);
+            _chainedStream.Write(buffer, offset, count);
         }
 
-        private void WriteInternal(byte[] buffer, int offset, int count)
-        {
-            if (_hmacResult != null)
-            {
-                return;
-            }
-            _hmac.TransformBlock(buffer, offset, count, null, 0);
-            _count += count;
-        }
+        public Hmac Hmac { get { return _calculator.Hmac; } }
 
         protected override void Dispose(bool disposing)
         {
@@ -170,11 +136,6 @@ namespace Axantum.AxCrypt.Core.IO
 
         private void DisposeInternal()
         {
-            if (_hmac != null)
-            {
-                _hmac.Dispose();
-                _hmac = null;
-            }
             _disposed = true;
         }
 
