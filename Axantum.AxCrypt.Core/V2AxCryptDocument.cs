@@ -165,7 +165,6 @@ namespace Axantum.AxCrypt.Core
         /// <param name="outputDocumentHeaders"></param>
         /// <param name="inputStream"></param>
         /// <param name="outputStream"></param>
-        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         public void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options)
         {
             if (inputStream == null)
@@ -184,37 +183,39 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentException("Invalid options, must specify either with or without compression.");
             }
+
             DocumentHeaders.IsCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
             V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey()));
-            using (V2HmacStream<Stream> outputHmacStream = V2HmacStream<Stream>.Create(hmacCalculator, outputStream))
-            {
-                using (Stream axCryptDataStream = new V2AxCryptDataStream(outputHmacStream))
-                {
-                    using (CryptoStream encryptingStream = TypeMap.Resolve.New<CryptoStream>().Initialize(axCryptDataStream, DocumentHeaders.DataCrypto().EncryptingTransform(), CryptoStreamMode.Write))
-                    {
-                        DocumentHeaders.WriteStartWithHmac(outputHmacStream);
-                        if (DocumentHeaders.IsCompressed)
-                        {
-                            using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
-                            {
-                                deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
-                                inputStream.CopyTo(deflatingStream);
-                                deflatingStream.FlushMode = JZlib.Z_FINISH;
-                                deflatingStream.Finish();
+            V2HmacStream<Stream> outputHmacStream = V2HmacStream<Stream>.Create(hmacCalculator, outputStream);
 
-                                _plaintextLength = deflatingStream.TotalIn;
-                                _compressedPlaintextLength = deflatingStream.TotalOut;
-                                encryptingStream.FinalFlush();
-                                DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
-                            }
-                        }
-                        else
-                        {
-                            _compressedPlaintextLength = _plaintextLength = StreamExtensions.CopyTo(inputStream, encryptingStream);
-                            encryptingStream.FinalFlush();
-                            DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
-                        }
-                    }
+            CryptoStream encryptingStream = TypeMap.Resolve.New<CryptoStream>().Initialize(new V2AxCryptDataStream(outputHmacStream), DocumentHeaders.DataCrypto().EncryptingTransform(), CryptoStreamMode.Write);
+            DocumentHeaders.WriteStartWithHmac(outputHmacStream);
+            if (DocumentHeaders.IsCompressed)
+            {
+                using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
+                {
+                    deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
+                    inputStream.CopyTo(deflatingStream);
+                    deflatingStream.FlushMode = JZlib.Z_FINISH;
+                    deflatingStream.Finish();
+
+                    _plaintextLength = deflatingStream.TotalIn;
+                    _compressedPlaintextLength = deflatingStream.TotalOut;
+                    encryptingStream.FinalFlush();
+                    DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
+                }
+            }
+            else
+            {
+                try
+                {
+                    _compressedPlaintextLength = _plaintextLength = StreamExtensions.CopyTo(inputStream, encryptingStream);
+                    encryptingStream.FinalFlush();
+                    DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
+                }
+                finally
+                {
+                    encryptingStream.Dispose();
                 }
             }
         }

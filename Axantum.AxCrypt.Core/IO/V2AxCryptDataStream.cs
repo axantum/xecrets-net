@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// Instantiate an instance of a stream to read from.
         /// </summary>
         /// <param name="reader">An AxCrypt reader where EnryptedDataPartBlock parts are read from.</param>
-        /// <param name="hmacStream">A stream to pass all data to, typically to calculate an HMAC.</param>
+        /// <param name="hmacStream">A stream to pass all data to, typically to calculate an HMAC. It will be disposed of.</param>
         public V2AxCryptDataStream(AxCryptReaderBase reader, Stream hmacStream)
             : this(hmacStream)
         {
@@ -109,7 +109,12 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (disposing)
             {
-                Flush();
+                if (_hmacStream != null)
+                {
+                    Flush();
+                    _hmacStream.Dispose();
+                    _hmacStream = null;
+                }
             }
             base.Dispose(disposing);
         }
