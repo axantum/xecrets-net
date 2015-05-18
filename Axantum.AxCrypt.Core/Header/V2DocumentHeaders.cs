@@ -227,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Header
             return false;
         }
 
-        public ICrypto CreateDataCrypto()
+        public ICrypto DataCrypto()
         {
             return CreateKeyStreamCrypto(DATA_KEYSTREAM_INDEX);
         }

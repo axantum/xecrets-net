@@ -188,39 +188,34 @@ namespace Axantum.AxCrypt.Core
             V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey()));
             using (V2HmacStream<Stream> outputHmacStream = V2HmacStream<Stream>.Create(hmacCalculator, outputStream))
             {
-                DocumentHeaders.WriteStartWithHmac(outputHmacStream);
-                using (ICryptoTransform encryptor = DocumentHeaders.CreateDataCrypto().CreateEncryptingTransform())
+                using (Stream axCryptDataStream = new V2AxCryptDataStream(outputHmacStream))
                 {
-                    using (Stream axCryptDataStream = new V2AxCryptDataStream(outputHmacStream))
+                    using (CryptoStream encryptingStream = TypeMap.Resolve.New<CryptoStream>().Initialize(axCryptDataStream, DocumentHeaders.DataCrypto().EncryptingTransform(), CryptoStreamMode.Write))
                     {
-                        using (Stream encryptingStream = TypeMap.Resolve.New<CryptoStream>().Initialize(new NonClosingStream(axCryptDataStream), encryptor, CryptoStreamMode.Write))
+                        DocumentHeaders.WriteStartWithHmac(outputHmacStream);
+                        if (DocumentHeaders.IsCompressed)
                         {
-                            if (DocumentHeaders.IsCompressed)
+                            using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
                             {
-                                EncryptWithCompressionInternal(inputStream, encryptingStream);
+                                deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
+                                inputStream.CopyTo(deflatingStream);
+                                deflatingStream.FlushMode = JZlib.Z_FINISH;
+                                deflatingStream.Finish();
+
+                                _plaintextLength = deflatingStream.TotalIn;
+                                _compressedPlaintextLength = deflatingStream.TotalOut;
+                                encryptingStream.FinalFlush();
+                                DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
                             }
-                            else
-                            {
-                                _compressedPlaintextLength = _plaintextLength = StreamExtensions.CopyTo(inputStream, encryptingStream);
-                            }
+                        }
+                        else
+                        {
+                            _compressedPlaintextLength = _plaintextLength = StreamExtensions.CopyTo(inputStream, encryptingStream);
+                            encryptingStream.FinalFlush();
+                            DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
                         }
                     }
                 }
-                DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
-            }
-        }
-
-        private void EncryptWithCompressionInternal(Stream inputStream, Stream encryptingStream)
-        {
-            using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
-            {
-                deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
-                inputStream.CopyTo(deflatingStream);
-                deflatingStream.FlushMode = JZlib.Z_FINISH;
-                deflatingStream.Finish();
-
-                _plaintextLength = deflatingStream.TotalIn;
-                _compressedPlaintextLength = deflatingStream.TotalOut;
             }
         }
 
@@ -240,12 +235,9 @@ namespace Axantum.AxCrypt.Core
                 throw new InternalErrorException("Passsphrase is not valid!");
             }
 
-            using (ICryptoTransform decryptor = DocumentHeaders.CreateDataCrypto().CreateDecryptingTransform())
+            using (Stream encryptedDataStream = CreateEncryptedDataStream())
             {
-                using (Stream encryptedDataStream = CreateEncryptedDataStream())
-                {
-                    encryptedDataStream.DecryptTo(outputPlaintextStream, decryptor, DocumentHeaders.IsCompressed);
-                }
+                encryptedDataStream.DecryptTo(outputPlaintextStream, DocumentHeaders.DataCrypto().DecryptingTransform(), DocumentHeaders.IsCompressed);
             }
 
             DocumentHeaders.Trailers(_reader);

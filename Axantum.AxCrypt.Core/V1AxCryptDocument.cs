@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core
             bool isCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
             DocumentHeaders.IsCompressed = isCompressed;
             DocumentHeaders.WriteWithoutHmac(outputStream);
-            using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
+            using (ICryptoTransform encryptor = DataCrypto.EncryptingTransform())
             {
                 long outputStartPosition = outputStream.Position;
                 using (Stream encryptingStream = TypeMap.Resolve.New<CryptoStream>().Initialize(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
@@ -280,7 +280,7 @@ namespace Axantum.AxCrypt.Core
                 throw new InternalErrorException("Passsphrase is not valid!");
             }
 
-            using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
+            using (ICryptoTransform decryptor = DataCrypto.DecryptingTransform())
             {
                 using (V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength))
                 {

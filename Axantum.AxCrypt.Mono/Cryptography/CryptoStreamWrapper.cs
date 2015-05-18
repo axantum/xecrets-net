@@ -13,8 +13,12 @@ namespace Axantum.AxCrypt.Mono.Cryptography
     {
         private System.Security.Cryptography.CryptoStream _cryptoStream;
 
-        public override Stream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
+        private System.Security.Cryptography.ICryptoTransform _cryptoTransform;
+
+        public override CryptoStream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
         {
+            _cryptoTransform = new CryptoTransformUnwrapper(transform);
+
             System.Security.Cryptography.CryptoStreamMode streamMode;
             switch (mode)
             {
@@ -30,7 +34,8 @@ namespace Axantum.AxCrypt.Mono.Cryptography
                     streamMode = (System.Security.Cryptography.CryptoStreamMode)mode;
                     break;
             }
-            _cryptoStream = new System.Security.Cryptography.CryptoStream(stream, new CryptoTransformUnwrapper(transform), streamMode);
+
+            _cryptoStream = new System.Security.Cryptography.CryptoStream(stream, _cryptoTransform, streamMode);
             return this;
         }
 
@@ -56,6 +61,11 @@ namespace Axantum.AxCrypt.Mono.Cryptography
         public override void Flush()
         {
             _cryptoStream.Flush();
+        }
+
+        public override void FinalFlush()
+        {
+            _cryptoStream.FlushFinalBlock();
         }
 
         public override long Length
@@ -126,6 +136,21 @@ namespace Axantum.AxCrypt.Mono.Cryptography
         public override void WriteByte(byte value)
         {
             _cryptoStream.WriteByte(value);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (_cryptoStream != null)
+            {
+                _cryptoStream.Dispose();
+                _cryptoStream = null;
+            }
+            if (_cryptoTransform != null)
+            {
+                _cryptoTransform.Dispose();
+                _cryptoTransform = null;
+            }
+            base.Dispose(disposing);
         }
     }
 }

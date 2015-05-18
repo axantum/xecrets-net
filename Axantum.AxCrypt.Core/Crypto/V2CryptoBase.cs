@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// A new decrypting transformation instance
         /// </returns>
-        public override ICryptoTransform CreateDecryptingTransform()
+        public override ICryptoTransform DecryptingTransform()
         {
             return new CounterModeCryptoTransform(CreateAlgorithmInternal(), _blockCounter, _blockOffset);
         }
@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// A new encrypting transformation instance
         /// </returns>
-        public override ICryptoTransform CreateEncryptingTransform()
+        public override ICryptoTransform EncryptingTransform()
         {
             return new CounterModeCryptoTransform(CreateAlgorithmInternal(), _blockCounter, _blockOffset);
         }

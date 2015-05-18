@@ -511,7 +511,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Stream nullStream = null;
             ICryptoTransform nullEncryptor = null;
-            ICryptoTransform encryptor = new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0).CreateDecryptingTransform();
+            ICryptoTransform encryptor = new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0).DecryptingTransform();
 
             Assert.Throws<ArgumentNullException>(() => nullStream.DecryptTo(Stream.Null, encryptor, true));
             Assert.Throws<ArgumentNullException>(() => Stream.Null.DecryptTo(nullStream, encryptor, true));

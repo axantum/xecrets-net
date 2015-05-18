@@ -35,6 +35,8 @@ namespace Axantum.AxCrypt.Core.Algorithm
 {
     public abstract class CryptoStream : Stream
     {
-        public abstract Stream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode);
+        public abstract CryptoStream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode);
+
+        public abstract void FinalFlush();
     }
 }

@@ -73,12 +73,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Using this instances parameters, create a decryptor
         /// </summary>
         /// <returns>A new decrypting transformation instance</returns>
-        ICryptoTransform CreateDecryptingTransform();
+        ICryptoTransform DecryptingTransform();
 
         /// <summary>
         /// Using this instances parameters, create an encryptor
         /// </summary>
         /// <returns>A new encrypting transformation instance</returns>
-        ICryptoTransform CreateEncryptingTransform();
+        ICryptoTransform EncryptingTransform();
     }
 }

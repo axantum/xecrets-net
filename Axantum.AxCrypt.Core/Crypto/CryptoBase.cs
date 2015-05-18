@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// A new decrypting transformation instance
         /// </returns>
-        public abstract ICryptoTransform CreateDecryptingTransform();
+        public abstract ICryptoTransform DecryptingTransform();
 
         /// <summary>
         /// Using this instances parameters, create an encryptor
@@ -99,6 +99,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// A new encrypting transformation instance
         /// </returns>
-        public abstract ICryptoTransform CreateEncryptingTransform();
+        public abstract ICryptoTransform EncryptingTransform();
     }
 }

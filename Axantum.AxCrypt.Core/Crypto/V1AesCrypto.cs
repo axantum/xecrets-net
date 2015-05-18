@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Using this instances parameters, create a decryptor
         /// </summary>
         /// <returns>A new decrypting transformation instance</returns>
-        public override ICryptoTransform CreateDecryptingTransform()
+        public override ICryptoTransform DecryptingTransform()
         {
             using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
@@ -159,7 +159,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Using this instances parameters, create an encryptor
         /// </summary>
         /// <returns>A new encrypting transformation instance</returns>
-        public override ICryptoTransform CreateEncryptingTransform()
+        public override ICryptoTransform EncryptingTransform()
         {
             using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {

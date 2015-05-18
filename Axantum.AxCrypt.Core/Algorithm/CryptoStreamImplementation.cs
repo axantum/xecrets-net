@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
         {
         }
 
-        public override Stream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
+        public override CryptoStream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
         {
             if (stream == null)
             {
@@ -67,6 +67,8 @@ namespace Axantum.AxCrypt.Core.Algorithm
                 throw new ArgumentException("The transform must have the same input and output block size.", "transform");
             }
 
+            _transform = transform;
+
             if (mode == CryptoStreamMode.Read)
             {
                 _inStream = new LookAheadStream(stream);
@@ -75,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
             {
                 _outStream = stream;
             }
-            _transform = transform;
+
             _blockBuffer = new ByteBuffer(new byte[_transform.InputBlockSize]);
             _blockBuffer.AvailableForRead = 0;
 
@@ -105,6 +107,21 @@ namespace Axantum.AxCrypt.Core.Algorithm
         public override void Flush()
         {
             Stream.Flush();
+        }
+
+        private bool _hasFinalFlushed = false;
+
+        public override void FinalFlush()
+        {
+            if (_hasFinalFlushed)
+            {
+                throw new NotSupportedException("FinalFlush() was called multiple times. This is not supported.");
+            }
+            byte[] block = _transform.TransformFinalBlock(_blockBuffer.GetBuffer(), 0, _blockBuffer.AvailableForRead);
+            _outStream.Write(block, 0, block.Length);
+            _outStream.Flush();
+            _blockBuffer.AvailableForWrite = _blockBuffer.Length;
+            _hasFinalFlushed = true;
         }
 
         public override long Length
@@ -234,9 +251,10 @@ namespace Axantum.AxCrypt.Core.Algorithm
         {
             if (_outStream != null)
             {
-                byte[] block = _transform.TransformFinalBlock(_blockBuffer.GetBuffer(), 0, _blockBuffer.AvailableForRead);
-                _outStream.Write(block, 0, block.Length);
-                _blockBuffer.AvailableForWrite = _blockBuffer.Length;
+                if (!_hasFinalFlushed)
+                {
+                    FinalFlush();
+                }
 
                 _outStream.Dispose();
                 _outStream = null;
@@ -246,6 +264,12 @@ namespace Axantum.AxCrypt.Core.Algorithm
             {
                 _inStream.Dispose();
                 _inStream = null;
+            }
+
+            if (_transform != null)
+            {
+                _transform.Dispose();
+                _transform = null;
             }
         }
     }
