@@ -185,7 +185,8 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentException("Invalid options, must specify either with or without compression.");
             }
             DocumentHeaders.IsCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
-            using (V2HmacStream outputHmacStream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey())), outputStream))
+            V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey()));
+            using (V2HmacStream<Stream> outputHmacStream = V2HmacStream<Stream>.Create(hmacCalculator, outputStream))
             {
                 DocumentHeaders.WriteStartWithHmac(outputHmacStream);
                 using (ICryptoTransform encryptor = DocumentHeaders.CreateDataCrypto().CreateEncryptingTransform())
@@ -205,7 +206,7 @@ namespace Axantum.AxCrypt.Core
                         }
                     }
                 }
-                DocumentHeaders.WriteEndWithHmac(outputHmacStream, _plaintextLength, _compressedPlaintextLength);
+                DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
             }
         }
 
@@ -262,7 +263,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             _reader.SetStartOfData();
-            V2AxCryptDataStream encryptedDataStream = new V2AxCryptDataStream(_reader, new V2HmacStream(DocumentHeaders.HmacCalculator));
+            V2AxCryptDataStream encryptedDataStream = new V2AxCryptDataStream(_reader, V2HmacStream<Stream>.Create(DocumentHeaders.HmacCalculator));
             return encryptedDataStream;
         }
 

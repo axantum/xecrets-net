@@ -79,18 +79,16 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(500);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                using (MemoryStream outputStream = new MemoryStream())
+                byte[] buffer = new byte[2000];
+                using (V2AxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("properties")), 15))
                 {
-                    using (V2AxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("properties")), 15))
-                    {
-                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
-                        outputStream.Position = 0;
-
-                        AxCryptFactory axFactory = new AxCryptFactory();
-                        IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { new Passphrase("properties") }, null, new Guid[] { new V2Aes256CryptoFactory().Id });
-                        IAxCryptDocument decryptedDocument = axFactory.CreateDocument(decryptionParameters, outputStream);
-                        Assert.That(decryptedDocument.PassphraseIsValid);
-                    }
+                    document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
+                }
+                AxCryptFactory axFactory = new AxCryptFactory();
+                IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { new Passphrase("properties") }, null, new Guid[] { new V2Aes256CryptoFactory().Id });
+                using (IAxCryptDocument decryptedDocument = axFactory.CreateDocument(decryptionParameters, new MemoryStream(buffer)))
+                {
+                    Assert.That(decryptedDocument.PassphraseIsValid);
                 }
             }
         }

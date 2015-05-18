@@ -32,20 +32,16 @@ using System.IO;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public class V2HmacStream : Stream
+    /// <summary>
+    /// An AxCrypt HMAC-SHA-512-calculating stream filter
+    /// </summary>
+    /// <typeparam name="T">The type of the stream to actually write to</typeparam>
+    public class V2HmacStream<T> : ChainedStream<T> where T : Stream
     {
-        private Stream _chainedStream;
-
-        private bool _disposed = false;
-
         private V2HmacCalculator _calculator;
 
-        /// <summary>
-        /// A AxCrypt HMAC-calculating stream.
-        /// </summary>
-        /// <param name="key">The key for the HMAC</param>
-        public V2HmacStream(V2HmacCalculator calculator)
-            : this(calculator, Stream.Null)
+        private V2HmacStream(V2HmacCalculator calculator)
+            : this(calculator, Stream.Null as T)
         {
         }
 
@@ -53,8 +49,9 @@ namespace Axantum.AxCrypt.Core.IO
         /// An AxCrypt HMAC-SHA-512-calculating stream.
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
-        /// <param name="chainedStream">A stream where data is chain-written to. This stream is not disposed of when this instance is disposed.</param>
-        public V2HmacStream(V2HmacCalculator calculator, Stream chainedStream)
+        /// <param name="chainedStream">A stream where data is written to. This stream is disposed of when this instance is disposed.</param>
+        private V2HmacStream(V2HmacCalculator calculator, T chainedStream)
+            : base(chainedStream)
         {
             if (calculator == null)
             {
@@ -62,8 +59,32 @@ namespace Axantum.AxCrypt.Core.IO
             }
 
             _calculator = calculator;
-            _chainedStream = chainedStream;
         }
+
+        /// <summary>
+        /// Creates a AxCrypt HMAC-SHA-512 calculating stream.
+        /// </summary>
+        /// <typeparam name="V">The type of the chained actual output stream.</typeparam>
+        /// <param name="hmacCalculator">The hmac calculator to use.</param>
+        /// <param name="chainedStream">The chained stream. Will be disposed when this instance is disposed.</param>
+        /// <returns>A stream to write data to calculate HMAC for to.</returns>
+        /// <remarks>This factory method is used instead of a constructor in order to use type inference and offer a cleaner syntax for the comsumer.</remarks>
+        public static V2HmacStream<V> Create<V>(V2HmacCalculator hmacCalculator, V chainedStream) where V : Stream
+        {
+            return ChainedStream<V>.Create((chained) => new V2HmacStream<V>(hmacCalculator, chainedStream), chainedStream);
+        }
+
+        /// <summary>
+        /// Instantiate an AxCrypt HMAC-calculating stream.
+        /// </summary>
+        /// <param name="hmacCalculator">The hmac calculator to use.</param>
+        /// <returns>A stream to write data to calculate HMAC for to.</returns>
+        /// <remarks>This factory method is used instead of a constructor in order to use type inference and offer a cleaner syntax for the comsumer.</remarks>
+        public static V2HmacStream<Stream> Create(V2HmacCalculator hmacCalculator)
+        {
+            return Create<Stream>(hmacCalculator, Stream.Null);
+        }
+
         public override bool CanRead
         {
             get { return false; }
@@ -98,7 +119,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override void Flush()
         {
-            _chainedStream.Flush();
+            Chained.Flush();
         }
 
         public override int Read(byte[] buffer, int offset, int count)
@@ -120,28 +141,14 @@ namespace Axantum.AxCrypt.Core.IO
         {
             EnsureNotDisposed();
             _calculator.Write(buffer, offset, count);
-            _chainedStream.Write(buffer, offset, count);
+            Chained.Write(buffer, offset, count);
         }
 
         public Hmac Hmac { get { return _calculator.Hmac; } }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                DisposeInternal();
-            }
-            base.Dispose(disposing);
-        }
-
-        private void DisposeInternal()
-        {
-            _disposed = true;
-        }
-
         private void EnsureNotDisposed()
         {
-            if (_disposed)
+            if (Chained == null)
             {
                 throw new ObjectDisposedException(GetType().FullName);
             }

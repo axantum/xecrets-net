@@ -33,6 +33,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
@@ -50,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         private Headers _headers;
 
-        private V2HmacStream _hmacStream;
+        private Stream _hmacStream;
 
         private IKeyStreamCryptoFactory _keyStreamFactory;
 
@@ -102,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
 
             HmacCalculator = new V2HmacCalculator(new SymmetricKey(GetHmacKey()));
-            _hmacStream = new V2HmacStream(HmacCalculator);
+            _hmacStream = V2HmacStream<Stream>.Create(HmacCalculator);
             AxCrypt1Guid.Write(_hmacStream);
             foreach (HeaderBlock header in headers.HeaderBlocks)
             {
@@ -162,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Header
             return _keyStreamFactory.Crypto(keyStreamOffset);
         }
 
-        public void WriteStartWithHmac(V2HmacStream hmacStream)
+        public void WriteStartWithHmac(Stream hmacStream)
         {
             if (hmacStream == null)
             {
@@ -180,7 +181,7 @@ namespace Axantum.AxCrypt.Core.Header
             dataHeaderBlock.Write(hmacStream);
         }
 
-        public void WriteEndWithHmac(V2HmacStream hmacStream, long plaintextLength, long compressedPlaintextLength)
+        public void WriteEndWithHmac(V2HmacCalculator hmacCalculator, Stream hmacStream, long plaintextLength, long compressedPlaintextLength)
         {
             WriteGeneralHeaders(hmacStream);
 
@@ -188,13 +189,14 @@ namespace Axantum.AxCrypt.Core.Header
             lengths.PlaintextLength = plaintextLength;
             lengths.CompressedPlaintextLength = compressedPlaintextLength;
             lengths.Write(hmacStream);
+            hmacStream.Flush();
 
             V2HmacHeaderBlock hmac = new V2HmacHeaderBlock();
-            hmac.Hmac = hmacStream.Hmac;
+            hmac.Hmac = hmacCalculator.Hmac;
             hmac.Write(hmacStream);
         }
 
-        private void WriteGeneralHeaders(V2HmacStream hmacStream)
+        private void WriteGeneralHeaders(Stream hmacStream)
         {
             foreach (HeaderBlock headerBlock in _headers.HeaderBlocks)
             {

@@ -238,26 +238,22 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(length);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                using (MemoryStream outputStream = new MemoryStream())
+                byte[] buffer = new byte[4000 + length];
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
+                    document.EncryptTo(inputStream, new MemoryStream(buffer), options);
+                }
+                using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
+                {
+                    Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, new MemoryStream(buffer)), Is.True);
+                    byte[] plain;
+                    using (MemoryStream decryptedStream = new MemoryStream())
                     {
-                        document.EncryptTo(inputStream, outputStream, options);
-
-                        outputStream.Position = 0;
-                        using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
-                        {
-                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, outputStream), Is.True);
-                            byte[] plain;
-                            using (MemoryStream decryptedStream = new MemoryStream())
-                            {
-                                decryptedDocument.DecryptTo(decryptedStream);
-                                plain = decryptedStream.ToArray();
-                            }
-
-                            Assert.That(plain.IsEquivalentTo(text));
-                        }
+                        decryptedDocument.DecryptTo(decryptedStream);
+                        plain = decryptedStream.ToArray();
                     }
+
+                    Assert.That(plain.IsEquivalentTo(text));
                 }
             }
         }
@@ -284,18 +280,15 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                using (MemoryStream outputStream = new MemoryStream())
+                byte[] buffer = new byte[2000];
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
-                    {
-                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
+                    document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
+                }
 
-                        outputStream.Position = 0;
-                        using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
-                        {
-                            Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), V2Aes256CryptoFactory.CryptoId, outputStream), Is.False);
-                        }
-                    }
+                using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
+                {
+                    Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), V2Aes256CryptoFactory.CryptoId, new MemoryStream(buffer)), Is.False);
                 }
             }
         }
@@ -315,18 +308,14 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                using (MemoryStream outputStream = new MemoryStream())
+                byte[] buffer = new byte[2000];
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
+                    document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
+                    using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
                     {
-                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
-
-                        outputStream.Position = 0;
-                        using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
-                        {
-                            Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), V2Aes256CryptoFactory.CryptoId, outputStream), Is.False);
-                            Assert.Throws<InternalErrorException>(() => decryptedDocument.DecryptTo(Stream.Null));
-                        }
+                        Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), V2Aes256CryptoFactory.CryptoId, new MemoryStream(buffer)), Is.False);
+                        Assert.Throws<InternalErrorException>(() => decryptedDocument.DecryptTo(Stream.Null));
                     }
                 }
             }
@@ -340,23 +329,17 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                using (MemoryStream outputStream = new MemoryStream())
+                byte[] buffer = new byte[2000];
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
+                    document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithoutCompression);
+
+                    buffer[1000] = (byte)(buffer[1000] + 1);
+
+                    using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
                     {
-                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
-
-                        outputStream.Position = 1000;
-                        int b = outputStream.ReadByte();
-                        outputStream.Position = 1000;
-                        outputStream.WriteByte((byte)(b + 1));
-                        outputStream.Position = 0;
-
-                        using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
-                        {
-                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, outputStream), Is.True);
-                            Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() => decryptedDocument.DecryptTo(Stream.Null));
-                        }
+                        Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, new MemoryStream(buffer)), Is.True);
+                        Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() => decryptedDocument.DecryptTo(Stream.Null));
                     }
                 }
             }
@@ -370,14 +353,13 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                MemoryStream outputStream = new MemoryStream();
+                byte[] buffer = new byte[2000];
                 using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
                 {
-                    document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
+                    document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
 
-                    outputStream.Position = 0;
                     Headers headers = new Headers();
-                    AxCryptReader reader = headers.CreateReader(new LookAheadStream(outputStream));
+                    AxCryptReader reader = headers.CreateReader(new LookAheadStream(new MemoryStream(buffer)));
                     using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument(reader))
                     {
                         Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, headers), Is.True);
@@ -396,32 +378,29 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(500);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                using (MemoryStream outputStream = new MemoryStream())
+                byte[] buffer = new byte[2000];
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("properties")), 15))
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("properties")), 15))
+                    DateTime utcNow = OS.Current.UtcNow;
+                    DateTime lastWrite = utcNow.AddHours(1);
+                    DateTime lastAccess = utcNow.AddHours(2);
+                    DateTime create = utcNow.AddHours(3);
+
+                    document.CreationTimeUtc = create;
+                    document.LastAccessTimeUtc = lastAccess;
+                    document.LastWriteTimeUtc = lastWrite;
+
+                    document.FileName = "Property Test.txt";
+                    document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
+
+                    using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
                     {
-                        DateTime utcNow = OS.Current.UtcNow;
-                        DateTime lastWrite = utcNow.AddHours(1);
-                        DateTime lastAccess = utcNow.AddHours(2);
-                        DateTime create = utcNow.AddHours(3);
+                        Assert.That(decryptedDocument.Load(new Passphrase("properties"), V2Aes256CryptoFactory.CryptoId, new MemoryStream(buffer)), Is.True);
 
-                        document.CreationTimeUtc = create;
-                        document.LastAccessTimeUtc = lastAccess;
-                        document.LastWriteTimeUtc = lastWrite;
-
-                        document.FileName = "Property Test.txt";
-                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
-
-                        outputStream.Position = 0;
-                        using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
-                        {
-                            Assert.That(decryptedDocument.Load(new Passphrase("properties"), V2Aes256CryptoFactory.CryptoId, outputStream), Is.True);
-
-                            Assert.That(decryptedDocument.CreationTimeUtc, Is.EqualTo(create));
-                            Assert.That(decryptedDocument.LastAccessTimeUtc, Is.EqualTo(lastAccess));
-                            Assert.That(decryptedDocument.LastWriteTimeUtc, Is.EqualTo(lastWrite));
-                            Assert.That(decryptedDocument.FileName, Is.EqualTo("Property Test.txt"));
-                        }
+                        Assert.That(decryptedDocument.CreationTimeUtc, Is.EqualTo(create));
+                        Assert.That(decryptedDocument.LastAccessTimeUtc, Is.EqualTo(lastAccess));
+                        Assert.That(decryptedDocument.LastWriteTimeUtc, Is.EqualTo(lastWrite));
+                        Assert.That(decryptedDocument.FileName, Is.EqualTo("Property Test.txt"));
                     }
                 }
             }

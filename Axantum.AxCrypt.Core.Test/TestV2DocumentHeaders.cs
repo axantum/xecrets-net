@@ -124,14 +124,13 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passzz")), 20))
             {
                 byte[] output;
-                using (MemoryStream outputStream = new MemoryStream())
+                V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(headers.GetHmacKey()));
+                using (V2HmacStream<MemoryStream> hmacStream = V2HmacStream<MemoryStream>.Create(hmacCalculator, new MemoryStream()))
                 {
-                    using (V2HmacStream hmacStream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(headers.GetHmacKey())), outputStream))
-                    {
-                        headers.WriteStartWithHmac(hmacStream);
-                        headers.WriteEndWithHmac(hmacStream, 0, 0);
-                    }
-                    output = outputStream.ToArray();
+                    headers.WriteStartWithHmac(hmacStream);
+                    headers.WriteEndWithHmac(hmacCalculator, hmacStream, 0, 0);
+                    hmacStream.Flush();
+                    output = hmacStream.Chained.ToArray();
                 }
 
                 byte[] hmacBytesFromHeaders = new byte[V2Hmac.RequiredLength];

@@ -65,36 +65,33 @@ namespace Axantum.AxCrypt.Core.Test
 
             Headers headers = new Headers();
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 10);
-            using (Stream chainedStream = new MemoryStream())
+            using (V2HmacStream<MemoryStream> stream = V2HmacStream<MemoryStream>.Create(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
             {
-                using (V2HmacStream stream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(new byte[0])), chainedStream))
+                documentHeaders.WriteStartWithHmac(stream);
+                stream.Flush();
+                stream.Chained.Position = 0;
+
+                using (V2AxCryptReader reader = new V2AxCryptReader(new LookAheadStream(stream.Chained)))
                 {
-                    documentHeaders.WriteStartWithHmac(stream);
-                    stream.Flush();
-                    chainedStream.Position = 0;
-
-                    using (V2AxCryptReader reader = new V2AxCryptReader(new LookAheadStream(chainedStream)))
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        if (reader.CurrentItemType == AxCryptItemType.HeaderBlock)
                         {
-                            if (reader.CurrentItemType == AxCryptItemType.HeaderBlock)
-                            {
-                                headers.HeaderBlocks.Add(reader.CurrentHeaderBlock);
-                            }
+                            headers.HeaderBlocks.Add(reader.CurrentHeaderBlock);
                         }
-                        SymmetricKey dataEncryptingKey = documentHeaders.Headers.FindHeaderBlock<V2KeyWrapHeaderBlock>().MasterKey;
-                        V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-
-                        IDerivedKey key = new V2Aes256CryptoFactory().RestoreDerivedKey(new Passphrase("passphrase"), keyWrap.DerivationSalt, keyWrap.DerivationIterations);
-                        keyWrap.SetDerivedKey(new V2Aes256CryptoFactory(), key);
-
-                        Assert.That(dataEncryptingKey, Is.EqualTo(keyWrap.MasterKey));
-
-                        key = new V2Aes256CryptoFactory().RestoreDerivedKey(new Passphrase("wrong"), keyWrap.DerivationSalt, keyWrap.DerivationIterations);
-                        keyWrap.SetDerivedKey(new V2Aes256CryptoFactory(), key);
-
-                        Assert.That(dataEncryptingKey, Is.Not.EqualTo(keyWrap.MasterKey));
                     }
+                    SymmetricKey dataEncryptingKey = documentHeaders.Headers.FindHeaderBlock<V2KeyWrapHeaderBlock>().MasterKey;
+                    V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+
+                    IDerivedKey key = new V2Aes256CryptoFactory().RestoreDerivedKey(new Passphrase("passphrase"), keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+                    keyWrap.SetDerivedKey(new V2Aes256CryptoFactory(), key);
+
+                    Assert.That(dataEncryptingKey, Is.EqualTo(keyWrap.MasterKey));
+
+                    key = new V2Aes256CryptoFactory().RestoreDerivedKey(new Passphrase("wrong"), keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+                    keyWrap.SetDerivedKey(new V2Aes256CryptoFactory(), key);
+
+                    Assert.That(dataEncryptingKey, Is.Not.EqualTo(keyWrap.MasterKey));
                 }
             }
         }
@@ -111,14 +108,13 @@ namespace Axantum.AxCrypt.Core.Test
             IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             parameters.Add(new IAsymmetricPublicKey[] { publicKey });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
-            MemoryStream chainedStream = new MemoryStream();
-            using (V2HmacStream hmacStream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(new byte[0])), chainedStream))
+            using (V2HmacStream<MemoryStream> hmacStream = V2HmacStream<MemoryStream>.Create(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
             {
                 documentHeaders.WriteStartWithHmac(hmacStream);
                 hmacStream.Flush();
-                chainedStream.Position = 0;
+                hmacStream.Chained.Position = 0;
 
-                using (V2AxCryptReader reader = new V2AxCryptReader(new LookAheadStream(chainedStream)))
+                using (V2AxCryptReader reader = new V2AxCryptReader(new LookAheadStream(hmacStream.Chained)))
                 {
                     while (reader.Read())
                     {
@@ -156,14 +152,13 @@ namespace Axantum.AxCrypt.Core.Test
             IAsymmetricPublicKey publicKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             parameters.Add(new IAsymmetricPublicKey[] { publicKey1, publicKey2 });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
-            MemoryStream chainedStream = new MemoryStream();
-            using (V2HmacStream stream = new V2HmacStream(new V2HmacCalculator(new SymmetricKey(new byte[0])), chainedStream))
+            using (V2HmacStream<MemoryStream> stream = V2HmacStream<MemoryStream>.Create(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
             {
                 documentHeaders.WriteStartWithHmac(stream);
                 stream.Flush();
-                chainedStream.Position = 0;
+                stream.Chained.Position = 0;
 
-                using (V2AxCryptReader reader = new V2AxCryptReader(new LookAheadStream(chainedStream)))
+                using (V2AxCryptReader reader = new V2AxCryptReader(new LookAheadStream(stream.Chained)))
                 {
                     while (reader.Read())
                     {
