@@ -98,11 +98,7 @@ namespace Axantum.AxCrypt.Core
         private void ResetState()
         {
             PassphraseIsValid = false;
-            if (DocumentHeaders != null)
-            {
-                DocumentHeaders.Dispose();
-                DocumentHeaders = null;
-            }
+            DocumentHeaders = null;
         }
 
         /// <summary>
@@ -304,11 +300,6 @@ namespace Axantum.AxCrypt.Core
             {
                 _reader.Dispose();
                 _reader = null;
-            }
-            if (DocumentHeaders != null)
-            {
-                DocumentHeaders.Dispose();
-                DocumentHeaders = null;
             }
         }
     }

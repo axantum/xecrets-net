@@ -38,7 +38,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class V2DocumentHeaders : IDisposable
+    public class V2DocumentHeaders
     {
         private const int HMACKEY_KEYSTREAM_INDEX = 0;
         private const int FILEINFO_KEYSTREAM_INDEX = 256;
@@ -50,8 +50,6 @@ namespace Axantum.AxCrypt.Core.Header
         private static readonly byte[] _version = new byte[] { 4, 0, 2, 0, 0 };
 
         private Headers _headers;
-
-        private Stream _hmacStream;
 
         private IKeyStreamCryptoFactory _keyStreamFactory;
 
@@ -103,11 +101,13 @@ namespace Axantum.AxCrypt.Core.Header
             }
 
             HmacCalculator = new V2HmacCalculator(new SymmetricKey(GetHmacKey()));
-            _hmacStream = V2HmacStream<Stream>.Create(HmacCalculator);
-            AxCrypt1Guid.Write(_hmacStream);
-            foreach (HeaderBlock header in headers.HeaderBlocks)
+            using (Stream hmacStream = V2HmacStream<Stream>.Create(HmacCalculator))
             {
-                header.Write(_hmacStream);
+                AxCrypt1Guid.Write(hmacStream);
+                foreach (HeaderBlock header in headers.HeaderBlocks)
+                {
+                    header.Write(hmacStream);
+                }
             }
 
             SetDataEncryptingCryptoForEncryptedHeaderBlocks(headers.HeaderBlocks);
@@ -119,13 +119,16 @@ namespace Axantum.AxCrypt.Core.Header
         public void Trailers(AxCryptReader axCryptReader)
         {
             _headers.Trailers(axCryptReader);
-            foreach (HeaderBlock header in _headers.TrailerBlocks)
+            using (Stream hmacStream = V2HmacStream<Stream>.Create(HmacCalculator))
             {
-                if (header.HeaderBlockType == HeaderBlockType.V2Hmac)
+                foreach (HeaderBlock header in _headers.TrailerBlocks)
                 {
-                    continue;
+                    if (header.HeaderBlockType == HeaderBlockType.V2Hmac)
+                    {
+                        continue;
+                    }
+                    header.Write(hmacStream);
                 }
-                header.Write(_hmacStream);
             }
         }
 
@@ -319,30 +322,6 @@ namespace Axantum.AxCrypt.Core.Header
                 V2HmacHeaderBlock hmacHeaderBlock = _headers.FindTrailerBlock<V2HmacHeaderBlock>();
                 return hmacHeaderBlock.Hmac;
             }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                DisposeInternal();
-            }
-        }
-
-        private void DisposeInternal()
-        {
-            if (_hmacStream == null)
-            {
-                return;
-            }
-            _hmacStream.Dispose();
-            _hmacStream = null;
         }
     }
 }
