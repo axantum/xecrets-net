@@ -133,14 +133,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationContext status;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
-            using (V1AxCryptDocument document = new V1AxCryptDocument())
-            {
-                using (Stream stream = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath).OpenRead())
-                {
-                    document.Load(new Passphrase("a"), V1Aes128CryptoFactory.CryptoId, stream);
-                    status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), document, new ProgressContext());
-                }
-            }
+            IDataStore axCryptDataStore = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), axCryptDataStore, new ProgressContext());
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
             Assert.That(called, Is.True, "There should be a call to launch.");
@@ -157,14 +151,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<ILauncher>(() => { called = true; return launcher; });
             FileOperationContext status;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
-            using (V1AxCryptDocument document = new V1AxCryptDocument())
-            {
-                using (Stream stream = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath).OpenRead())
-                {
-                    document.Load(new Passphrase("a"), V1Aes128CryptoFactory.CryptoId, stream);
-                    status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), document, new ProgressContext());
-                }
-            }
+            IDataStore axCryptDataStore = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), axCryptDataStore, new ProgressContext());
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
             Assert.That(called, Is.True, "There should be a call to launch.");
@@ -175,13 +163,14 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestOpenAndLaunchOfAxCryptDocumentArgumentNullException()
         {
             string nullString = null;
-            IAxCryptDocument nullDocument = null;
+            IDataStore nullDataStore = null;
             ProgressContext nullProgressContext = null;
+            IDataStore axCryptDataStore = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
 
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, LogOnIdentity.Empty, new V1AxCryptDocument(), new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, LogOnIdentity.Empty, nullDocument, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, LogOnIdentity.Empty, new V1AxCryptDocument(), nullProgressContext); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, LogOnIdentity.Empty, axCryptDataStore, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, LogOnIdentity.Empty, nullDataStore, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, LogOnIdentity.Empty, axCryptDataStore, nullProgressContext); });
         }
 
         [Test]

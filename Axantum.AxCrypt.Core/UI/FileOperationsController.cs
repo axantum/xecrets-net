@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <returns>FileOperationStatus.Success if  the file is encrypted with a known key.</returns>
         public FileOperationContext VerifyEncrypted(IDataStore fileInfo)
         {
-            return DoFile(fileInfo, DecryptAndLaunchPreparation, GetDocumentInfo);
+            return DoFile(fileInfo, DecryptAndLaunchPreparation, GetAxCryptFileNameAsSaveFileName);
         }
 
         /// <summary>
@@ -288,8 +288,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            IDataStore destination = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.FileName));
-            _eventArgs.SaveFileFullName = destination.FullName;
+            IDataStore destination = TypeMap.Resolve.New<IDataStore>(_eventArgs.SaveFileFullName);
             if (destination.IsAvailable)
             {
                 OnQuerySaveFileAs(_eventArgs);
@@ -306,17 +305,11 @@ namespace Axantum.AxCrypt.Core.UI
         private bool DecryptFileOperation()
         {
             _progress.NotifyLevelStart();
-            try
+            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.Passphrase, _progress))
             {
-                TypeMap.Resolve.New<AxCryptFile>().DecryptFile(_eventArgs.AxCryptDocument, _eventArgs.SaveFileFullName, _progress);
+                TypeMap.Resolve.New<AxCryptFile>().DecryptFile(document, _eventArgs.SaveFileFullName, _progress);
+                TypeMap.Resolve.New<AxCryptFile>().Wipe(TypeMap.Resolve.New<IDataStore>(_eventArgs.OpenFileFullName), _progress);
             }
-            finally
-            {
-                _eventArgs.AxCryptDocument.Dispose();
-                _eventArgs.AxCryptDocument = null;
-            }
-            TypeMap.Resolve.New<AxCryptFile>().Wipe(TypeMap.Resolve.New<IDataStore>(_eventArgs.OpenFileFullName), _progress);
-
             _progress.NotifyLevelFinished();
 
             _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
@@ -333,22 +326,11 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private bool GetDocumentInfo()
+        private bool GetAxCryptFileNameAsSaveFileName()
         {
-            try
+            if (!_eventArgs.Skip)
             {
-                if (!_eventArgs.Skip)
-                {
-                    _eventArgs.SaveFileFullName = _eventArgs.AxCryptDocument.FileName;
-                }
-            }
-            finally
-            {
-                if (_eventArgs.AxCryptDocument != null)
-                {
-                    _eventArgs.AxCryptDocument.Dispose();
-                    _eventArgs.AxCryptDocument = null;
-                }
+                _eventArgs.SaveFileFullName = _eventArgs.AxCryptFile.FullName;
             }
 
             _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
@@ -357,15 +339,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool DecryptAndLaunchFileOperation()
         {
-            try
-            {
-                _eventArgs.Status = TypeMap.Resolve.New<FileOperation>().OpenAndLaunchApplication(_eventArgs.OpenFileFullName, _eventArgs.Passphrase, _eventArgs.AxCryptDocument, _progress);
-            }
-            finally
-            {
-                _eventArgs.AxCryptDocument.Dispose();
-                _eventArgs.AxCryptDocument = null;
-            }
+            _eventArgs.Status = TypeMap.Resolve.New<FileOperation>().OpenAndLaunchApplication(_eventArgs.OpenFileFullName, _eventArgs.Passphrase, _eventArgs.AxCryptFile, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             return true;
@@ -417,17 +391,16 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool OpenAxCryptDocument(IDataStore sourceFileInfo, FileOperationEventArgs e)
         {
-            e.AxCryptDocument = null;
             try
             {
                 _progress.NotifyLevelStart();
                 e.OpenFileFullName = sourceFileInfo.FullName;
                 if (TryFindDecryptionKey(sourceFileInfo, e))
                 {
-                    e.AxCryptDocument = TypeMap.Resolve.New<AxCryptFile>().Document(sourceFileInfo, e.Passphrase, _progress);
+                    return InfoFromDecryptedDocument(sourceFileInfo, e);
                 }
 
-                while (e.AxCryptDocument == null)
+                while (true)
                 {
                     OnQueryDecryptionPassphrase(e);
                     if (e.Cancel)
@@ -440,24 +413,15 @@ namespace Axantum.AxCrypt.Core.UI
                         e.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
                         return true;
                     }
-                    e.AxCryptDocument = TypeMap.Resolve.New<AxCryptFile>().Document(sourceFileInfo, e.Passphrase, _progress);
-                    if (!e.AxCryptDocument.PassphraseIsValid)
+                    if (InfoFromDecryptedDocument(sourceFileInfo, e))
                     {
-                        e.AxCryptDocument.Dispose();
-                        e.AxCryptDocument = null;
-                        continue;
+                        OnKnownKeyAdded(e);
+                        return true;
                     }
-                    e.CryptoId = e.AxCryptDocument.CryptoFactory.Id;
-                    OnKnownKeyAdded(e);
                 }
             }
             catch (IOException ioex)
             {
-                if (e.AxCryptDocument != null)
-                {
-                    e.AxCryptDocument.Dispose();
-                    e.AxCryptDocument = null;
-                }
                 FileOperationContext status = new FileOperationContext(sourceFileInfo.FullName, ioex is FileNotFoundException ? FileOperationStatus.FileDoesNotExist : FileOperationStatus.Exception);
                 e.Status = status;
                 return false;
@@ -466,6 +430,21 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _progress.NotifyLevelFinished();
             }
+        }
+
+        private bool InfoFromDecryptedDocument(IDataStore sourceFileInfo, FileOperationEventArgs e)
+        {
+            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(sourceFileInfo, e.Passphrase, _progress))
+            {
+                if (!document.PassphraseIsValid)
+                {
+                    return false;
+                }
+                e.CryptoId = document.CryptoFactory.Id;
+                IDataStore destination = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceFileInfo.FullName), document.FileName));
+                e.SaveFileFullName = destination.FullName;
+            }
+            e.AxCryptFile = sourceFileInfo;
             return true;
         }
 
@@ -487,6 +466,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             try
             {
+                _progress.NotifyLevelStart();
                 bool ok = RunOnUIThread(fileInfo, preparation);
                 if (ok)
                 {
@@ -496,6 +476,7 @@ namespace Axantum.AxCrypt.Core.UI
             finally
             {
                 OnCompleted(_eventArgs);
+                _progress.NotifyLevelFinished();
             }
 
             return _eventArgs.Status;

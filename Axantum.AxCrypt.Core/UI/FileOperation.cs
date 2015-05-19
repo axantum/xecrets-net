@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.UI
             return status;
         }
 
-        public virtual FileOperationContext OpenAndLaunchApplication(string encryptedFile, LogOnIdentity passphrase, IAxCryptDocument document, IProgressContext progress)
+        public virtual FileOperationContext OpenAndLaunchApplication(string encryptedFile, LogOnIdentity passphrase, IDataStore axCryptDataStore, IProgressContext progress)
         {
             if (encryptedFile == null)
             {
@@ -107,9 +107,9 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new ArgumentNullException("passphrase");
             }
-            if (document == null)
+            if (axCryptDataStore == null)
             {
-                throw new ArgumentNullException("document");
+                throw new ArgumentNullException("axCryptDataStore");
             }
             if (progress == null)
             {
@@ -119,13 +119,16 @@ namespace Axantum.AxCrypt.Core.UI
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(encryptedFile);
 
             ActiveFile encryptedActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
-            encryptedActiveFile = EnsureDecryptedFolder(passphrase, document, encryptedFileInfo, encryptedActiveFile);
-            _fileSystemState.Add(encryptedActiveFile);
-            _fileSystemState.Save();
-
-            if (!encryptedActiveFile.DecryptedFileInfo.IsAvailable)
+            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(axCryptDataStore, passphrase, progress))
             {
-                DecryptActiveFileDocument(encryptedActiveFile, document, progress);
+                encryptedActiveFile = EnsureDecryptedFolder(passphrase, document, encryptedFileInfo, encryptedActiveFile);
+                _fileSystemState.Add(encryptedActiveFile);
+                _fileSystemState.Save();
+
+                if (!encryptedActiveFile.DecryptedFileInfo.IsAvailable)
+                {
+                    DecryptActiveFileDocument(encryptedActiveFile, document, progress);
+                }
             }
             return LaunchApplicationForDocument(encryptedActiveFile);
         }

@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public bool Skip { get; set; }
 
-        public IAxCryptDocument AxCryptDocument { get; set; }
+        public IDataStore AxCryptFile { get; set; }
 
         public FileOperationContext Status { get; set; }
     }

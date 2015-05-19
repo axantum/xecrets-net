@@ -860,8 +860,8 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
-            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IAxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Once);
-            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IAxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Once);
+            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
+            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.True);
             Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(1));
         }
@@ -912,8 +912,8 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
-            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IAxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Once);
-            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IAxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Never);
+            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
+            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.True, "Should be logged on.");
             Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(1), "One known key.");
         }
