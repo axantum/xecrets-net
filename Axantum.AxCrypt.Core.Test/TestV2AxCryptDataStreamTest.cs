@@ -97,61 +97,57 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
+        [Test]
         public static void TestSimpleReadWrite()
         {
             byte[] buffer = new byte[2000];
-            using (MemoryStream dataPartStream = new MemoryStream(buffer))
+
+            using (V2AxCryptDataStream axCryptDataStreamWriter = V2AxCryptDataStream.Create(new MemoryStream(buffer)))
             {
-                AxCrypt1Guid.Write(dataPartStream);
-                new PreambleHeaderBlock().Write(dataPartStream);
-                new DataHeaderBlock().Write(dataPartStream);
-                using (V2AxCryptDataStream axCryptDataStreamWriter = new V2AxCryptDataStream(dataPartStream))
-                {
-                    byte[] bytes = Encoding.UTF8.GetBytes("This is a short text.");
-                    axCryptDataStreamWriter.Write(bytes, 0, bytes.Length);
-                    axCryptDataStreamWriter.Flush();
-                    new V2HmacHeaderBlock().Write(dataPartStream);
-                }
+                AxCrypt1Guid.Write(axCryptDataStreamWriter.Chained);
+                new PreambleHeaderBlock().Write(axCryptDataStreamWriter.Chained);
+                new DataHeaderBlock().Write(axCryptDataStreamWriter.Chained);
+
+                byte[] bytes = Encoding.UTF8.GetBytes("This is a short text.");
+                axCryptDataStreamWriter.Write(bytes, 0, bytes.Length);
+                axCryptDataStreamWriter.Flush();
+
+                new V2HmacHeaderBlock().Write(axCryptDataStreamWriter.Chained);
             }
+
             using (AxCryptReader reader = new TestingAxCryptReader(new LookAheadStream(new MemoryStream(buffer))))
             {
                 while (reader.Read()) ;
                 reader.SetStartOfData();
-                using (V2AxCryptDataStream axCryptDataStreamReader = new V2AxCryptDataStream(reader, Stream.Null))
+                using (TextReader textReader = new StreamReader(V2AxCryptDataStream.Create(reader, Stream.Null), Encoding.UTF8))
                 {
-                    using (TextReader textReader = new StreamReader(axCryptDataStreamReader, Encoding.UTF8))
-                    {
-                        string text = textReader.ReadToEnd();
-                        Assert.That(text, Is.EqualTo("This is a short text."));
-                    }
+                    string text = textReader.ReadToEnd();
+                    Assert.That(text, Is.EqualTo("This is a short text."));
                 }
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
+        [Test]
         public static void TestLongerReadWrite()
         {
             byte[] bytesToWrite = new FakeRandomGenerator().Generate(V2AxCryptDataStream.WriteChunkSize + V2AxCryptDataStream.WriteChunkSize / 2);
             byte[] buffer = new byte[bytesToWrite.Length + 2000];
-            using (MemoryStream dataPartStream = new MemoryStream(buffer))
+            using (V2AxCryptDataStream axCryptDataStreamWriter = V2AxCryptDataStream.Create(new MemoryStream(buffer)))
             {
-                AxCrypt1Guid.Write(dataPartStream);
-                new PreambleHeaderBlock().Write(dataPartStream);
-                new DataHeaderBlock().Write(dataPartStream);
-                using (V2AxCryptDataStream axCryptDataStreamWriter = new V2AxCryptDataStream(dataPartStream))
-                {
-                    axCryptDataStreamWriter.Write(bytesToWrite, 0, bytesToWrite.Length);
-                    axCryptDataStreamWriter.Flush();
-                    new V2HmacHeaderBlock().Write(dataPartStream);
-                }
+                AxCrypt1Guid.Write(axCryptDataStreamWriter.Chained);
+                new PreambleHeaderBlock().Write(axCryptDataStreamWriter.Chained);
+                new DataHeaderBlock().Write(axCryptDataStreamWriter.Chained);
+
+                axCryptDataStreamWriter.Write(bytesToWrite, 0, bytesToWrite.Length);
+                axCryptDataStreamWriter.Flush();
+                new V2HmacHeaderBlock().Write(axCryptDataStreamWriter.Chained);
             }
 
             using (AxCryptReader reader = new TestingAxCryptReader(new LookAheadStream(new MemoryStream(buffer))))
             {
                 while (reader.Read()) ;
                 reader.SetStartOfData();
-                using (V2AxCryptDataStream axCryptDataStreamReader = new V2AxCryptDataStream(reader, Stream.Null))
+                using (V2AxCryptDataStream axCryptDataStreamReader = V2AxCryptDataStream.Create(reader, Stream.Null))
                 {
                     byte[] bytesRead = new byte[bytesToWrite.Length];
                     int offset = 0;
@@ -166,59 +162,25 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
+        [Test]
         public static void TestUnexpectedEndOfFile()
         {
             byte[] buffer = new byte[2000];
-            using (MemoryStream dataPartStream = new MemoryStream(buffer))
+            using (V2AxCryptDataStream axCryptDataStreamWriter = V2AxCryptDataStream.Create(new MemoryStream(buffer)))
             {
-                AxCrypt1Guid.Write(dataPartStream);
-                new PreambleHeaderBlock().Write(dataPartStream);
-                new DataHeaderBlock().Write(dataPartStream);
-                using (V2AxCryptDataStream axCryptDataStreamWriter = new V2AxCryptDataStream(dataPartStream))
-                {
-                    byte[] bytes = Encoding.UTF8.GetBytes("This is a short text.");
-                    axCryptDataStreamWriter.Write(bytes, 0, bytes.Length);
-                }
-            }
-            using (AxCryptReader reader = new TestingAxCryptReader(new LookAheadStream(new MemoryStream(buffer))))
-            {
-                while (reader.Read()) ;
-                reader.SetStartOfData();
-                using (V2AxCryptDataStream axCryptDataStreamReader = new V2AxCryptDataStream(reader, Stream.Null))
-                {
-                    using (TextReader textReader = new StreamReader(axCryptDataStreamReader, Encoding.UTF8))
-                    {
-                        string text = null;
-                        Assert.Throws<FileFormatException>(() => text = textReader.ReadToEnd());
-                        Assert.That(text, Is.Null);
-                    }
-                }
-            }
-        }
+                AxCrypt1Guid.Write(axCryptDataStreamWriter.Chained);
+                new PreambleHeaderBlock().Write(axCryptDataStreamWriter.Chained);
+                new DataHeaderBlock().Write(axCryptDataStreamWriter.Chained);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
-        public static void TestUnexpectedBlockType()
-        {
-            byte[] buffer = new byte[2000];
-            using (MemoryStream dataPartStream = new MemoryStream(buffer))
-            {
-                AxCrypt1Guid.Write(dataPartStream);
-                new PreambleHeaderBlock().Write(dataPartStream);
-                new DataHeaderBlock().Write(dataPartStream);
-                using (V2AxCryptDataStream axCryptDataStreamWriter = new V2AxCryptDataStream(dataPartStream))
-                {
-                    byte[] bytes = Encoding.UTF8.GetBytes("This is a short text.");
-                    axCryptDataStreamWriter.Write(bytes, 0, bytes.Length);
-                    axCryptDataStreamWriter.Flush();
-                    new DataHeaderBlock().Write(dataPartStream);
-                }
+                byte[] bytes = Encoding.UTF8.GetBytes("This is a short text.");
+                axCryptDataStreamWriter.Write(bytes, 0, bytes.Length);
             }
+
             using (AxCryptReader reader = new TestingAxCryptReader(new LookAheadStream(new MemoryStream(buffer))))
             {
                 while (reader.Read()) ;
                 reader.SetStartOfData();
-                using (V2AxCryptDataStream axCryptDataStreamReader = new V2AxCryptDataStream(reader, Stream.Null))
+                using (V2AxCryptDataStream axCryptDataStreamReader = V2AxCryptDataStream.Create(reader, Stream.Null))
                 {
                     using (TextReader textReader = new StreamReader(axCryptDataStreamReader, Encoding.UTF8))
                     {
@@ -231,9 +193,37 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestUnexpectedBlockType()
+        {
+            byte[] buffer = new byte[2000];
+            using (V2AxCryptDataStream axCryptDataStreamWriter = V2AxCryptDataStream.Create(new MemoryStream(buffer)))
+            {
+                AxCrypt1Guid.Write(axCryptDataStreamWriter.Chained);
+                new PreambleHeaderBlock().Write(axCryptDataStreamWriter.Chained);
+                new DataHeaderBlock().Write(axCryptDataStreamWriter.Chained);
+
+                byte[] bytes = Encoding.UTF8.GetBytes("This is a short text.");
+                axCryptDataStreamWriter.Write(bytes, 0, bytes.Length);
+                axCryptDataStreamWriter.Flush();
+                new DataHeaderBlock().Write(axCryptDataStreamWriter.Chained);
+            }
+            using (AxCryptReader reader = new TestingAxCryptReader(new LookAheadStream(new MemoryStream(buffer))))
+            {
+                while (reader.Read()) ;
+                reader.SetStartOfData();
+                using (TextReader textReader = new StreamReader(V2AxCryptDataStream.Create(reader, Stream.Null), Encoding.UTF8))
+                {
+                    string text = null;
+                    Assert.Throws<FileFormatException>(() => text = textReader.ReadToEnd());
+                    Assert.That(text, Is.Null);
+                }
+            }
+        }
+
+        [Test]
         public static void TestNotSupportedMethods()
         {
-            using (V2AxCryptDataStream stream = new V2AxCryptDataStream(Stream.Null))
+            using (V2AxCryptDataStream stream = V2AxCryptDataStream.Create(Stream.Null))
             {
                 long position;
                 Assert.Throws<NotSupportedException>(() => position = stream.Position);

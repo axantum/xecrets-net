@@ -38,34 +38,60 @@ namespace Axantum.AxCrypt.Core.IO
     /// Read and Write data to an encrypted data stream, wrapping the data during write in EncryptedDataPartBlock
     /// blocks. During read, interpret and strip the EncryptedDataPartBlock structure, returning raw data.
     /// </summary>
-    public class V2AxCryptDataStream : Stream
+    public class V2AxCryptDataStream : V2AxCryptDataStream<Stream>
     {
+        /// <summary>
+        /// The suggest default write chunk size
+        /// </summary>
         public static readonly int WriteChunkSize = 65536;
 
-        private AxCryptReaderBase _reader;
+        private V2AxCryptDataStream(AxCryptReaderBase reader, Stream chainedStream)
+            : base(reader, chainedStream)
+        {
+        }
 
-        private Stream _hmacStream;
+        /// <summary>
+        /// Creates the specified data stream for reading from, ensuring proper disposal.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="chainedStream">The chained stream.</param>
+        /// <returns></returns>
+        public static V2AxCryptDataStream Create(AxCryptReaderBase reader, Stream chainedStream)
+        {
+            return V2AxCryptDataStream<Stream>.Create((chained) => new V2AxCryptDataStream(reader, chainedStream), chainedStream);
+        }
+
+        /// <summary>
+        /// Creates the specified data stream for writing to, ensuring proper disposal.
+        /// </summary>
+        /// <param name="chainedStream">The chained stream.</param>
+        /// <returns></returns>
+        public static V2AxCryptDataStream Create(Stream chainedStream)
+        {
+            return Create(null, chainedStream);
+        }
+    }
+
+    /// <summary>
+    /// Read and Write data to an encrypted data stream, wrapping the data during write in EncryptedDataPartBlock
+    /// blocks. During read, interpret and strip the EncryptedDataPartBlock structure, returning raw data. This class is
+    /// for internal use only, and is not intended to be instantiated directly.
+    /// </summary>
+    public abstract class V2AxCryptDataStream<T> : ChainedStream<T> where T : Stream
+    {
+        private AxCryptReaderBase _reader;
 
         private byte[] _buffer;
 
         private int _offset;
 
         /// <summary>
-        /// Instantiate an instance of a stream to write to.
+        /// Instantiate an instance of a stream to read or write from.
         /// </summary>
-        /// <param name="hmacStream">A stream to pass all data to, typically to calculate an HMAC.</param>
-        public V2AxCryptDataStream(Stream hmacStream)
-        {
-            _hmacStream = hmacStream;
-        }
-
-        /// <summary>
-        /// Instantiate an instance of a stream to read from.
-        /// </summary>
-        /// <param name="reader">An AxCrypt reader where EnryptedDataPartBlock parts are read from.</param>
-        /// <param name="hmacStream">A stream to pass all data to, typically to calculate an HMAC. It will be disposed of.</param>
-        public V2AxCryptDataStream(AxCryptReaderBase reader, Stream hmacStream)
-            : this(hmacStream)
+        /// <param name="reader">An AxCrypt reader where EnryptedDataPartBlock parts are read from. If null, the stream is intended for writing.</param>
+        /// <param name="chained">A stream to read blocked data from or write blocks to. It will be disposed of.</param>
+        protected V2AxCryptDataStream(AxCryptReaderBase reader, T chained)
+            : base(chained)
         {
             _reader = reader;
         }
@@ -82,7 +108,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override bool CanWrite
         {
-            get { return _hmacStream.CanWrite; }
+            get { return Chained.CanWrite; }
         }
 
         public override void Flush()
@@ -102,19 +128,14 @@ namespace Axantum.AxCrypt.Core.IO
             _offset = 0;
 
             EncryptedDataPartBlock dataPart = new EncryptedDataPartBlock(buffer);
-            dataPart.Write(_hmacStream);
+            dataPart.Write(Chained);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (_hmacStream != null)
-                {
-                    Flush();
-                    _hmacStream.Dispose();
-                    _hmacStream = null;
-                }
+                Flush();
             }
             base.Dispose(disposing);
         }
@@ -197,7 +218,7 @@ namespace Axantum.AxCrypt.Core.IO
                 return false;
             }
 
-            _reader.CurrentHeaderBlock.Write(_hmacStream);
+            _reader.CurrentHeaderBlock.Write(Chained);
             return true;
         }
 
@@ -225,7 +246,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (_buffer == null)
             {
-                _buffer = new byte[WriteChunkSize];
+                _buffer = new byte[V2AxCryptDataStream.WriteChunkSize];
                 _offset = 0;
             }
 
