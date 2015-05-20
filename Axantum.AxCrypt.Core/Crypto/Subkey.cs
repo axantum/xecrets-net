@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                     break;
 
                 default:
-                    throw new InternalErrorException("headerSubkey");
+                    throw new InternalErrorException("Invalid header sub key.");
             }
 
             block[0] = subKeyValue;

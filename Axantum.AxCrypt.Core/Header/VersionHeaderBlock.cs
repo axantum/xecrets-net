@@ -44,6 +44,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public void SetCurrentVersion(byte[] version)
         {
+            if (version == null)
+            {
+                throw new ArgumentNullException("version");
+            }
+
             Array.Copy(version, GetDataBlockBytesReference(), version.Length);
         }
 

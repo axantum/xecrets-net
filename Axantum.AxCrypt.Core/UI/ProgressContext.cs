@@ -212,7 +212,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 if (_progressLevel == 0)
                 {
-                    throw new InvalidOperationException("Call to NotifyLevelFinished() without prior call to NotifyLevelStart().");
+                    throw new InvalidOperationException("Call to decrease notification level was called without prior call start a notification level.");
                 }
                 if (--_progressLevel > 0)
                 {

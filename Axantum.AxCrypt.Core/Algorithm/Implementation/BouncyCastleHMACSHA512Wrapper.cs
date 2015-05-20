@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
                 throw new ArgumentNullException("key");
             }
 
-            Key = key.GetBytes();
+            SetKey(key.GetBytes());
             return this;
         }
 
@@ -71,22 +71,20 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 
         private byte[] _key;
 
-        public override byte[] Key
+        public override byte[] Key()
         {
-            get
-            {
-                return (byte[])_key.Clone();
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
+            return (byte[])_key.Clone();
+        }
 
-                _key = (byte[])value.Clone();
-                _hmac.Init(new KeyParameter(_key));
+        public override void SetKey(byte[] value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
             }
+
+            _key = (byte[])value.Clone();
+            _hmac.Init(new KeyParameter(_key));
         }
 
         public override byte[] ComputeHash(byte[] buffer)

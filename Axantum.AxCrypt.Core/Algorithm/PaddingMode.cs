@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
 {
     public enum PaddingMode
     {
-        None = 1,
+        None = 0,
         PKCS7,
         Zeros,
         ANSIX923,

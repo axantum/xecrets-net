@@ -121,6 +121,23 @@ namespace Axantum.AxCrypt.Core.Crypto
             return hashcode;
         }
 
+        public byte[] Add(SymmetricIV right)
+        {
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
+
+            byte[] leftBytes = GetBytes();
+            byte[] rightBytes = right.GetBytes();
+            byte[] result = new byte[leftBytes.Length + rightBytes.Length];
+
+            leftBytes.CopyTo(result, 0);
+            rightBytes.CopyTo(result, leftBytes.Length);
+
+            return result;
+        }
+
         public static bool operator ==(SymmetricKey left, SymmetricKey right)
         {
             if (Object.ReferenceEquals(left, right))
@@ -141,14 +158,16 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public static byte[] operator +(SymmetricKey left, SymmetricIV right)
         {
-            byte[] leftBytes = left.GetBytes();
-            byte[] rightBytes = right.GetBytes();
-            byte[] result = new byte[leftBytes.Length + rightBytes.Length];
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
 
-            leftBytes.CopyTo(result, 0);
-            rightBytes.CopyTo(result, leftBytes.Length);
-
-            return result;
+            return left.Add(right);
         }
     }
 }

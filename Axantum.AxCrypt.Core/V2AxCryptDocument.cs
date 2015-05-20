@@ -90,11 +90,6 @@ namespace Axantum.AxCrypt.Core
             return Load(passphrase, cryptoId, _reader, headers);
         }
 
-        public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers)
-        {
-            return Load(privateKey, cryptoId, _reader, headers);
-        }
-
         private void ResetState()
         {
             PassphraseIsValid = false;
@@ -131,8 +126,13 @@ namespace Axantum.AxCrypt.Core
             return PassphraseIsValid;
         }
 
-        public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, AxCryptReaderBase reader, Headers headers)
+        public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers)
         {
+            if (headers == null)
+            {
+                throw new ArgumentNullException("headers");
+            }
+
             ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
 
             IEnumerable<V2AsymmetricKeyWrapHeaderBlock> keyWraps = headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
@@ -229,7 +229,7 @@ namespace Axantum.AxCrypt.Core
 
             if (!PassphraseIsValid)
             {
-                throw new InternalErrorException("Passsphrase is not valid!");
+                throw new InternalErrorException("Passphrase is not valid!");
             }
 
             using (Stream encryptedDataStream = CreateEncryptedDataStream())
@@ -248,7 +248,7 @@ namespace Axantum.AxCrypt.Core
         {
             if (_reader.CurrentItemType != AxCryptItemType.Data)
             {
-                throw new InvalidOperationException("GetEncryptedDataStream() was called when the reader is not positioned at the data.");
+                throw new InvalidOperationException("An attempt was made to create an encrypted data stream when the reader is not positioned at the data.");
             }
 
             _reader.SetStartOfData();

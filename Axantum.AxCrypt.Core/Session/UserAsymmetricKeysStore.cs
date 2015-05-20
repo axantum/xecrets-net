@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Session
             return _folderPath.Files.Where(f => IdFromFileName(f.Name).Length > 0);
         }
 
-        private string IdFromFileName(string fileName)
+        private static string IdFromFileName(string fileName)
         {
             Match match = _filePattern.Match(fileName);
             if (!match.Success)
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private string UniqueFilePart()
+        private static string UniqueFilePart()
         {
             DateTime now = OS.Current.UtcNow;
             TimeSpan timeSince = now - new DateTime(now.Year, 1, 1);
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private UserAsymmetricKeys TryLoadKeys(IDataStore file, Passphrase passphrase)
+        private static UserAsymmetricKeys TryLoadKeys(IDataStore file, Passphrase passphrase)
         {
             using (MemoryStream stream = new MemoryStream())
             {

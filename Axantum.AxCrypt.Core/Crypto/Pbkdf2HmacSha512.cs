@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             if (_bytes == null)
             {
-                throw new InternalErrorException("GetBytes() can only be called once.");
+                throw new InternalErrorException("The key bytes can only be read once.");
             }
 
             byte[] bytes = _bytes;

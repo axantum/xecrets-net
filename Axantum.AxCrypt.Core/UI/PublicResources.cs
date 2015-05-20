@@ -67,6 +67,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "Bouncycastle")]
         public static string BouncycastleLicense
         {
             get

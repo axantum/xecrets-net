@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.IO
     /// Read and Write data to an encrypted data stream, wrapping the data during write in EncryptedDataPartBlock
     /// blocks. During read, interpret and strip the EncryptedDataPartBlock structure, returning raw data.
     /// </summary>
-    public class V2AxCryptDataStream : V2AxCryptDataStream<Stream>
+    public sealed class V2AxCryptDataStream : V2AxCryptDataStream<Stream>
     {
         /// <summary>
         /// The suggest default write chunk size

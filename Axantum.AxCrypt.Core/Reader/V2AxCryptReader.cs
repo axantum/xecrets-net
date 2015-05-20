@@ -92,10 +92,10 @@ namespace Axantum.AxCrypt.Core.Reader
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }
 
-        public override IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers)
+        public override IAxCryptDocument Document(Passphrase passphrase, Guid cryptoId, Headers headers)
         {
             V2AxCryptDocument v2Document = new V2AxCryptDocument(this);
-            v2Document.Load(key, cryptoId, headers);
+            v2Document.Load(passphrase, cryptoId, headers);
             return v2Document;
         }
 
@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 return v2Document;
             }
 
-            v2Document.Load(privateKey, cryptoId, this, headers);
+            v2Document.Load(privateKey, cryptoId, headers);
             return v2Document;
         }
     }

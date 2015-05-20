@@ -132,6 +132,11 @@ namespace Axantum.AxCrypt.Core.Header
             }
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
                 Array.Copy(value.GetBytes(), 0, GetDataBlockBytesReference(), PASSPHRASE_DERIVATION_SALT_OFFSET, value.Length);
             }
         }

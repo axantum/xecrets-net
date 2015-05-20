@@ -72,6 +72,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public WatchedFolder(WatchedFolder watchedFolder)
         {
+            if (watchedFolder == null)
+            {
+                throw new ArgumentNullException("watchedFolder");
+            }
+
             Path = watchedFolder.Path;
             Thumbprint = watchedFolder.Thumbprint;
             Initialize(new StreamingContext());

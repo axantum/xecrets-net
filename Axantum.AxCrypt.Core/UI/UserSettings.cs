@@ -48,6 +48,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         public UserSettings(IDataStore fileInfo, IterationCalculator keyWrapIterationCalculator)
         {
+            if (fileInfo == null)
+            {
+                throw new ArgumentNullException("fileInfo");
+            }
+
             _persistanceFileInfo = fileInfo;
 
             _keyWrapIterationCalculator = keyWrapIterationCalculator;
@@ -92,13 +97,29 @@ namespace Axantum.AxCrypt.Core.UI
         public Uri AxCrypt2VersionCheckUrl
         {
             get { return Load("AxCrypt2VersionCheckUrl", new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/windows")); }
-            set { Store("AxCrypt2VersionCheckUrl", value.ToString()); }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                Store("AxCrypt2VersionCheckUrl", value.ToString());
+            }
         }
 
         public Uri UpdateUrl
         {
             get { return Load("UpdateUrl", new Uri("http://www.axantum.com/")); }
-            set { Store("UpdateUrl", value.ToString()); }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                Store("UpdateUrl", value.ToString());
+            }
         }
 
         public DateTime LastUpdateCheckUtc
@@ -122,7 +143,15 @@ namespace Axantum.AxCrypt.Core.UI
         public Uri AxCrypt2HelpUrl
         {
             get { return Load("AxCrypt2HelpUrl", new Uri("http://www.axantum.com/AxCrypt/AxCryptNetHelp.html")); }
-            set { Store("AxCrypt2HelpUrl", value.ToString()); }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                Store("AxCrypt2HelpUrl", value.ToString());
+            }
         }
 
         public bool DisplayEncryptPassphrase
@@ -209,6 +238,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         public T Load<T>(string key, Func<T> fallbackAction)
         {
+            if (fallbackAction == null)
+            {
+                throw new ArgumentNullException("fallbackAction");
+            }
+
             string value;
             if (_settings.TryGetValue(key, out value))
             {
@@ -228,6 +262,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Salt Load(string key, Func<Salt> fallbackAction)
         {
+            if (fallbackAction == null)
+            {
+                throw new ArgumentNullException("fallbackAction");
+            }
+
             string value;
             if (_settings.TryGetValue(key, out value))
             {

@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             /// </summary>
             public void Join()
             {
-                throw new InvalidOperationException("This instance is managed by a WorkerGroup, and Join() cannot be called explicitly.");
+                throw new InvalidOperationException("This instance is managed by a worker group, and join cannot be called explicitly.");
             }
 
             /// <summary>
@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             /// </summary>
             public bool HasCompleted
             {
-                get { throw new InvalidOperationException("This instance is managed by a WorkerGroup, and HasCompleted cannot be called explicitly."); }
+                get { throw new InvalidOperationException("This instance is managed by a worker group, and completed status cannot be gotten explicitly."); }
             }
 
             /// <summary>
@@ -169,6 +169,11 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <param name="progress">The ProgressContext that receives progress notifications</param>
         public WorkerGroup(int maxConcurrent, IProgressContext progress)
         {
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             _concurrencyControlSemaphore = Resolve.Portable.Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
             _singleThread = Resolve.Portable.SingleThread();
@@ -202,7 +207,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 if (_finished)
                 {
-                    throw new InvalidOperationException("NotifyFinished() must only be called once, but was called twice.");
+                    throw new InvalidOperationException("A worker group can only be finished once, but was called twice.");
                 }
                 NotifyFinishedInternal();
             }

@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Header
                 int end = Array.IndexOf<byte>(rawFileName, 0);
                 if (end == -1)
                 {
-                    throw new InvalidOperationException("Could not find terminating nul byte in file name");
+                    throw new InvalidOperationException("Could not find terminating null byte in file name");
                 }
 
                 string fileName = Encoding.GetEncoding("us-ascii").GetString(rawFileName, 0, end);

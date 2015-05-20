@@ -48,8 +48,8 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 
         public BouncyCastleAesWrapper()
         {
-            blockSizes = _legalBlockSizes;
-            keySizes = _legalKeySizes;
+            BlockSizes = _legalBlockSizes;
+            KeySizes = _legalKeySizes;
             InitializeBlockSize(128);
             InitializeFeedbackSize(128);
             InitializeKeySize(128);
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         /// <param name="key">The key.</param>
         /// <param name="iv">The iv.</param>
         /// <returns></returns>
-        public override ICryptoTransform CreateDecryptor(byte[] key, byte[] iv)
+        public override ICryptoTransform CreateDecryptingTransform(byte[] key, byte[] iv)
         {
             return new BouncyCastleAesTransform(key, iv, false, Mode, Padding);
         }
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         /// <param name="key">The key.</param>
         /// <param name="iv">The iv.</param>
         /// <returns></returns>
-        public override ICryptoTransform CreateEncryptor(byte[] key, byte[] iv)
+        public override ICryptoTransform CreateEncryptingTransform(byte[] key, byte[] iv)
         {
             return new BouncyCastleAesTransform(key, iv, true, Mode, Padding);
         }

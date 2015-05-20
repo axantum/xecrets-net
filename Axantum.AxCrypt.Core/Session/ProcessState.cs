@@ -40,6 +40,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Add(ILauncher launcher, ActiveFile activeFile)
         {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+
             PurgeInactive();
             lock (_lock)
             {

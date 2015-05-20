@@ -105,6 +105,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public byte[] UnwrapMasterKey(SymmetricKey keyEncryptingKey, byte fileVersionMajor)
         {
+            if (keyEncryptingKey == null)
+            {
+                throw new ArgumentNullException("keyEncryptingKey");
+            }
+
             byte[] wrappedKeyData = GetKeyData();
             Salt salt = Salt;
             SymmetricKey masterKeyEncryptingKey = keyEncryptingKey;
@@ -133,6 +138,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey, long keyWrapIterations)
         {
+            if (masterKey == null)
+            {
+                throw new ArgumentNullException("masterKey");
+            }
+
             Salt salt = new Salt(masterKey.Size);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
             byte[] wrappedKeyData = keyWrap.Wrap(Resolve.CryptoFactory.Legacy.CreateCrypto(keyEncryptingKey, null, 0), masterKey);

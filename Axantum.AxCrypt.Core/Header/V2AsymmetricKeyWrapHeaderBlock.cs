@@ -47,6 +47,11 @@ namespace Axantum.AxCrypt.Core.Header
         public V2AsymmetricKeyWrapHeaderBlock(IAsymmetricPublicKey publicKey, SymmetricKey masterKey, SymmetricIV masterIV)
             : this(Resolve.RandomGenerator.Generate(DATABLOCK_LENGTH))
         {
+            if (publicKey == null)
+            {
+                throw new ArgumentNullException("publicKey");
+            }
+
             byte[] encrypted = publicKey.Transform(masterKey + masterIV);
             GetDataBlockBytesReference().SetFrom(encrypted);
         }

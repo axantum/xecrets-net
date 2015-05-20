@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Core.IO
             while (count > 0 && _pushBack.Count > 0)
             {
                 ByteBuffer byteBuffer = _pushBack.Pop();
-                int length = byteBuffer.Read(buffer, offset, count);                
+                int length = byteBuffer.Read(buffer, offset, count);
                 offset += length;
                 count -= length;
                 bytesRead += length;
@@ -125,6 +125,11 @@ namespace Axantum.AxCrypt.Core.IO
 
         public bool ReadExact(byte[] buffer)
         {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
             int bytesRead = Read(buffer, 0, buffer.Length);
 
             return bytesRead == buffer.Length;
@@ -172,12 +177,12 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (disposing)
             {
-                DisposeInternal(disposing);
+                DisposeInternal();
             }
             base.Dispose(disposing);
         }
 
-        private void DisposeInternal(bool disposing)
+        private void DisposeInternal()
         {
             if (_inputStream != null)
             {

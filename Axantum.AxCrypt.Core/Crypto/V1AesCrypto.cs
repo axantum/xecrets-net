@@ -110,11 +110,16 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The decrypted result minus any padding</returns>
         public override byte[] Decrypt(byte[] cipherText)
         {
+            if (cipherText == null)
+            {
+                throw new ArgumentNullException("cipherText");
+            }
+
             using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.None;
-                using (ICryptoTransform decryptor = aes.CreateDecryptor())
+                using (ICryptoTransform decryptor = aes.CreateDecryptingTransform())
                 {
                     byte[] plaintext = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
                     return plaintext;
@@ -129,11 +134,16 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The cipher text, complete with any padding</returns>
         public override byte[] Encrypt(byte[] plaintext)
         {
+            if (plaintext == null)
+            {
+                throw new ArgumentNullException("plaintext");
+            }
+
             using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.None;
-                using (ICryptoTransform encryptor = aes.CreateEncryptor())
+                using (ICryptoTransform encryptor = aes.CreateEncryptingTransform())
                 {
                     byte[] cipherText = encryptor.TransformFinalBlock(plaintext, 0, plaintext.Length);
                     return cipherText;
@@ -151,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.PKCS7;
-                return aes.CreateDecryptor();
+                return aes.CreateDecryptingTransform();
             }
         }
 
@@ -165,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.PKCS7;
-                return aes.CreateEncryptor();
+                return aes.CreateEncryptingTransform();
             }
         }
     }

@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
             if (keyWrapIterations < 6)
             {
-                throw new InternalErrorException("keyWrapIterations");
+                throw new InternalErrorException("Key wrap iterations must be at least 6.");
             }
             if (mode != KeyWrapMode.Specification && mode != KeyWrapMode.AxCrypt)
             {
@@ -160,6 +160,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The unwrapped key data, or a zero-length array if the unwrap was unsuccessful due to wrong key</returns>
         public byte[] Unwrap(ICrypto crypto, byte[] wrapped)
         {
+            if (wrapped == null)
+            {
+                throw new ArgumentNullException("wrapped");
+            }
+
             if (crypto == null)
             {
                 throw new ArgumentNullException("crypto");
@@ -170,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
             if (wrapped.Length < 24)
             {
-                throw new InternalErrorException("The length of the wrapped data must be large enough to accomodate at least a 128-bit key.");
+                throw new InternalErrorException("The length of the wrapped data must be large enough to accommodate at least a 128-bit key.");
             }
 
             using (IKeyWrapTransform decryptor = crypto.CreateKeyWrapTransform(_salt, KeyWrapDirection.Decrypt))

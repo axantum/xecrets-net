@@ -101,6 +101,11 @@ namespace Axantum.AxCrypt.Core.Header
 
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
                 EnsureDataBlock();
                 byte[] rawData = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
 

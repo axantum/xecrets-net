@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             BlockLength = _algorithm.BlockSize / 8;
 
-            _transform = keyWrapDirection == KeyWrapDirection.Encrypt ? _algorithm.CreateEncryptor() : _algorithm.CreateDecryptor();
+            _transform = keyWrapDirection == KeyWrapDirection.Encrypt ? _algorithm.CreateEncryptingTransform() : _algorithm.CreateDecryptingTransform();
         }
 
         public byte[] TransformBlock(byte[] block)

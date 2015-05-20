@@ -38,6 +38,7 @@ using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
 using Axantum.AxCrypt.Core.IO;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -46,6 +47,8 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public static class Resolve
     {
+        [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "This is not really complex.")]
+        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "This is not really complex.")]
         public static void RegisterTypeFactories(string workFolderPath, IEnumerable<Assembly> assemblies)
         {
             TypeMap.Register.Singleton<KnownKeys>(() => new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify));

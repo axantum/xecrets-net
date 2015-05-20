@@ -30,11 +30,13 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Unversioned")]
     public class UnversionedAxCryptReader : AxCryptReaderBase
     {
         /// <summary>
@@ -67,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Reader
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }
 
-        public override IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers)
+        public override IAxCryptDocument Document(Passphrase passphrase, Guid cryptoId, Headers headers)
         {
             throw new NotImplementedException();
         }

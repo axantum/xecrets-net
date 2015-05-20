@@ -28,16 +28,14 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             }
         }
 
-        public override byte[] Key
+        public override byte[] Key()
         {
-            get
-            {
-                return _hmac.Key;
-            }
-            set
-            {
-                _hmac.Key = EnsureBlockSizeForKeyDueToBugInMonoKeyPropertySetter(value);
-            }
+            return _hmac.Key;
+        }
+
+        public override void SetKey(byte[] value)
+        {
+            _hmac.Key = EnsureBlockSizeForKeyDueToBugInMonoKeyPropertySetter(value);
         }
 
         private byte[] EnsureBlockSizeForKeyDueToBugInMonoKeyPropertySetter(byte[] key)
@@ -87,7 +85,7 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             }
 
             Initialize();
-            Key = key.GetBytes();
+            SetKey(key.GetBytes());
             return this;
         }
 

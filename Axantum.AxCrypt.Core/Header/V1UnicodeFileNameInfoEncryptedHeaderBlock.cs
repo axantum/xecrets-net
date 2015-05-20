@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Header
                 int end = rawFileName.Locate(new byte[] { 0, 0, }, 0, rawFileName.Length, 2);
                 if (end == -1)
                 {
-                    throw new InvalidOperationException("Could not find terminating double nul byte in file name");
+                    throw new InvalidOperationException("Could not find terminating double null byte in file name");
                 }
 
                 string fileName = Encoding.Unicode.GetString(rawFileName, 0, end);

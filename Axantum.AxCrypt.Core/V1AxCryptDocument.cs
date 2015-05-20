@@ -36,6 +36,7 @@ using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace Axantum.AxCrypt.Core
@@ -75,6 +76,7 @@ namespace Axantum.AxCrypt.Core
 
         public bool PassphraseIsValid { get; set; }
 
+        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "cryptoId", Justification = "Part of contract, and is used for other implementations.")]
         public bool Load(Passphrase passphrase, Guid cryptoId, Stream inputStream)
         {
             Headers headers = new Headers();
@@ -277,7 +279,7 @@ namespace Axantum.AxCrypt.Core
         {
             if (!PassphraseIsValid)
             {
-                throw new InternalErrorException("Passsphrase is not valid!");
+                throw new InternalErrorException("Passphrase is not valid!");
             }
 
             using (ICryptoTransform decryptor = DataCrypto.DecryptingTransform())
@@ -298,7 +300,7 @@ namespace Axantum.AxCrypt.Core
         {
             if (_reader.CurrentItemType != AxCryptItemType.Data)
             {
-                throw new InvalidOperationException("GetEncryptedDataStream() was called when the reader is not positioned at the data.");
+                throw new InvalidOperationException("An attempt to create an encrypted data stream was made when the reader is not positioned at the data.");
             }
 
             _reader.SetEndOfStream();

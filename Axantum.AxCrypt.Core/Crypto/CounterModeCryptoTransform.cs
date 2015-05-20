@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             _startBlockCounter = _currentBlockCounter = blockCounter;
             _startBlockOffset = _currentBlockOffset = blockOffset;
 
-            _cryptoTransform = _algorithm.CreateEncryptor();
+            _cryptoTransform = _algorithm.CreateEncryptingTransform();
             _blockLength = _cryptoTransform.InputBlockSize;
         }
 

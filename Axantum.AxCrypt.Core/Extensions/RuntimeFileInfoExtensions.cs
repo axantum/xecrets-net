@@ -43,6 +43,11 @@ namespace Axantum.AxCrypt.Core.Extensions
     {
         public static FileInfoTypes Type(this IDataItem fileInfo)
         {
+            if (fileInfo == null)
+            {
+                throw new ArgumentNullException("fileInfo");
+            }
+
             if (!fileInfo.IsAvailable)
             {
                 return FileInfoTypes.NonExisting;
@@ -82,17 +87,32 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static bool IsEncrypted(this IDataItem fullName)
         {
+            if (fullName == null)
+            {
+                throw new ArgumentNullException("fullName");
+            }
+
             return String.Compare(Resolve.Portable.Path().GetExtension(fullName.Name), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
         public static IEnumerable<IDataStore> ListEncryptable(this IDataContainer folderPath)
         {
+            if (folderPath == null)
+            {
+                throw new ArgumentNullException("folderPath");
+            }
+
             return folderPath.Files.Where((IDataStore fileInfo) => { return fileInfo.IsEncryptable(); });
         }
 
         public static IEnumerable<IDataStore> ListEncrypted(this IDataContainer folderPath)
         {
+            if (folderPath == null)
+            {
+                throw new ArgumentNullException("folderPath");
+            }
+
             return folderPath.Files.Where((IDataStore fileInfo) => { return fileInfo.IsEncrypted(); });
         }
 
@@ -103,8 +123,13 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <param name="fileInfo">A file name representing a file that is not encrypted</param>
         /// <returns>A corresponding file name representing the encrypted version of the original</returns>
         /// <exception cref="InternalErrorException">Can't get encrypted name for a file that already has the encrypted extension.</exception>
-        public static IDataStore CreateEncryptedName(this IDataStore fullName)
+        public static IDataStore CreateEncryptedName(this IDataItem fullName)
         {
+            if (fullName == null)
+            {
+                throw new ArgumentNullException("fullName");
+            }
+
             if (fullName.IsEncrypted())
             {
                 throw new InternalErrorException("Can't get encrypted name for a file that cannot be encrypted.");
@@ -119,8 +144,13 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// </summary>
         /// <param name="fileInfo">The file information representing the new unique random name.</param>
         /// <returns></returns>
-        public static IDataStore CreateRandomUniqueName(this IDataStore fileInfo)
+        public static IDataStore CreateRandomUniqueName(this IDataItem fileInfo)
         {
+            if (fileInfo == null)
+            {
+                throw new ArgumentNullException("fileInfo");
+            }
+
             while (true)
             {
                 int r = Math.Abs(BitConverter.ToInt32(Resolve.RandomGenerator.Generate(sizeof(int)), 0));
@@ -133,6 +163,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "1#", Justification = "The Out pattern is used in the .NET framework.")]
         public static LogOnIdentity TryFindPassphrase(this IDataStore fileInfo, out Guid cryptoId)
         {
             cryptoId = Guid.Empty;

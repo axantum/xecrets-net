@@ -29,16 +29,14 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             }
         }
 
-        public override byte[] Key
+        public override byte[] Key()
         {
-            get
-            {
-                return _hmac.Key;
-            }
-            set
-            {
-                _hmac.Key = value;
-            }
+            return _hmac.Key;
+        }
+
+        public override void SetKey(byte[] value)
+        {
+            _hmac.Key = value;
         }
 
         public override byte[] ComputeHash(byte[] buffer)

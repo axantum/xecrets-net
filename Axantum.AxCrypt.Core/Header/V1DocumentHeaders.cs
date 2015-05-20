@@ -71,6 +71,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public V1DocumentHeaders(V1DocumentHeaders documentHeaders)
         {
+            if (documentHeaders == null)
+            {
+                throw new ArgumentNullException("documentHeaders");
+            }
+
             _keyEncryptingKey = documentHeaders._keyEncryptingKey;
             foreach (HeaderBlock headerBlock in documentHeaders._headers.HeaderBlocks)
             {
@@ -88,6 +93,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public bool Load(Headers headers)
         {
+            if (headers == null)
+            {
+                throw new ArgumentNullException("headers");
+            }
+
             _headers = headers;
             _headers.EnsureFileFormatVersion(1, 3);
 
@@ -182,6 +192,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public void RewrapMasterKey(IDerivedKey keyEncryptingKey, long keyWrapIterations)
         {
+            if (keyEncryptingKey == null)
+            {
+                throw new ArgumentNullException("keyEncryptingKey");
+            }
+
             V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
             keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingKey.DerivedKey, keyWrapIterations);
             _keyEncryptingKey = keyEncryptingKey;

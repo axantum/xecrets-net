@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
             SymmetricKey key = new SymmetricKey(128);
             HMAC hmac = TypeMap.Resolve.New<AxCryptHMACSHA1>().Initialize(key);
 
-            Assert.That(hmac.Key, Is.EquivalentTo(key.GetBytes()), "Ensure that we're using the specified key.");
+            Assert.That(hmac.Key(), Is.EquivalentTo(key.GetBytes()), "Ensure that we're using the specified key.");
         }
     }
 }

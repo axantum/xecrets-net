@@ -55,6 +55,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public V2DocumentHeaders(EncryptionParameters encryptionParameters, long keyWrapIterations)
         {
+            if (encryptionParameters == null)
+            {
+                throw new ArgumentNullException("encryptionParameters");
+            }
+
             _headers = new Headers();
 
             _headers.HeaderBlocks.Add(new PreambleHeaderBlock());
@@ -93,6 +98,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public bool Load(Headers headers)
         {
+            if (headers == null)
+            {
+                throw new ArgumentNullException("headers");
+            }
+
             headers.EnsureFileFormatVersion(4, 4);
 
             if (!IsMasterKeyKnown(headers))
@@ -116,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Header
             return true;
         }
 
-        public void Trailers(AxCryptReader axCryptReader)
+        public void Trailers(AxCryptReaderBase axCryptReader)
         {
             _headers.Trailers(axCryptReader);
             using (Stream hmacStream = V2HmacStream<Stream>.Create(HmacCalculator))
@@ -158,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Header
                 case HeaderBlockType.UnicodeFileNameInfo:
                     return CreateKeyStreamCrypto(FILENAMEINFO_KEYSTREAM_INDEX);
             }
-            throw new InternalErrorException("Unexpected header block type. Can't determine Header Cryptop.");
+            throw new InternalErrorException("Unexpected header block type. Can't determine Header Crypto.");
         }
 
         private ICrypto CreateKeyStreamCrypto(long keyStreamOffset)
@@ -186,6 +196,15 @@ namespace Axantum.AxCrypt.Core.Header
 
         public void WriteEndWithHmac(V2HmacCalculator hmacCalculator, Stream hmacStream, long plaintextLength, long compressedPlaintextLength)
         {
+            if (hmacCalculator == null)
+            {
+                throw new ArgumentNullException("hmacCalculator");
+            }
+            if (hmacStream == null)
+            {
+                throw new ArgumentNullException("hmacStream");
+            }
+
             WriteGeneralHeaders(hmacStream);
 
             V2PlaintextLengthsEncryptedHeaderBlock lengths = new V2PlaintextLengthsEncryptedHeaderBlock(CreateKeyStreamCrypto(LENGTHSINFO_KEYSTREAM_INDEX));

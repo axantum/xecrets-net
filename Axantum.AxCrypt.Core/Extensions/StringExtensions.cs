@@ -70,6 +70,11 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <returns>A corresponding file name representing the encrypted version of the original</returns>
         public static string CreateEncryptedName(this string fullName)
         {
+            if (fullName == null)
+            {
+                throw new ArgumentNullException("fullName");
+            }
+
             string extension = Resolve.Portable.Path().GetExtension(fullName);
             string encryptedName = fullName;
             encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
@@ -117,6 +122,11 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// </remarks>
         public static string TrimLogMessage(this string message)
         {
+            if (message == null)
+            {
+                throw new ArgumentNullException("message");
+            }
+
             int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal);
             skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex;
             skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex;
@@ -150,6 +160,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static string NormalizeFilePath(this string filePath)
         {
+            if (filePath == null)
+            {
+                throw new ArgumentNullException("filePath");
+            }
+
             filePath = filePath.Replace(Resolve.Portable.Path().DirectorySeparatorChar == '/' ? '\\' : '/', Resolve.Portable.Path().DirectorySeparatorChar);
             return filePath;
         }

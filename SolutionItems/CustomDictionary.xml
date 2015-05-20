@@ -18,6 +18,7 @@
     <Compound>
       <Term CompoundAlternate="BouncyCastle">bouncycastle</Term>
       <Term CompoundAlternate="bouncycastle">bouncycastle</Term>
+      <Term CompoundAlternate="PostOn">poston</Term>
     </Compound>
     <DiscreteExceptions>
       <Term></Term>

@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -34,9 +35,9 @@ namespace Axantum.AxCrypt.Core.Algorithm
 {
     public abstract class SymmetricAlgorithm : IDisposable
     {
-        protected KeySizes[] blockSizes;
+        protected KeySizes[] BlockSizes { get; set; }
 
-        protected KeySizes[] keySizes;
+        protected KeySizes[] KeySizes { get; set; }
 
         private int _feedbackSize;
 
@@ -71,6 +72,11 @@ namespace Axantum.AxCrypt.Core.Algorithm
             }
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
                 _iv = (byte[])value.Clone();
             }
         }
@@ -89,6 +95,11 @@ namespace Axantum.AxCrypt.Core.Algorithm
             }
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
                 _key = (byte[])value.Clone();
                 _keySize = _key.Length * 8;
             }
@@ -118,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
         {
             get
             {
-                return blockSizes;
+                return BlockSizes;
             }
         }
 
@@ -126,7 +137,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
         {
             get
             {
-                return keySizes;
+                return KeySizes;
             }
         }
 
@@ -136,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         public virtual bool ValidKeySize(int bitLength)
         {
-            foreach (KeySizes sizes in keySizes)
+            foreach (KeySizes sizes in KeySizes)
             {
                 for (int length = sizes.MinSize; length <= sizes.MaxSize; length += sizes.SkipSize)
                 {
@@ -178,19 +189,21 @@ namespace Axantum.AxCrypt.Core.Algorithm
             _iv = null;
         }
 
-        public virtual ICryptoTransform CreateDecryptor()
+        public virtual ICryptoTransform CreateDecryptingTransform()
         {
-            return CreateDecryptor(Key, IV);
+            return CreateDecryptingTransform(Key, IV);
         }
 
-        public abstract ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV);
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "rgb")]
+        public abstract ICryptoTransform CreateDecryptingTransform(byte[] rgbKey, byte[] rgbIV);
 
-        public virtual ICryptoTransform CreateEncryptor()
+        public virtual ICryptoTransform CreateEncryptingTransform()
         {
-            return CreateEncryptor(Key, IV);
+            return CreateEncryptingTransform(Key, IV);
         }
 
-        public abstract ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV);
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "rgb")]
+        public abstract ICryptoTransform CreateEncryptingTransform(byte[] rgbKey, byte[] rgbIV);
 
         public abstract void GenerateIV();
 

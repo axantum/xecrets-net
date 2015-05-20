@@ -191,22 +191,22 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             }
         }
 
-        public override ICryptoTransform CreateDecryptor()
+        public override ICryptoTransform CreateDecryptingTransform()
         {
             return new CryptoTransformWrapper(_symmetricAlgorithm.CreateDecryptor());
         }
 
-        public override ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV)
+        public override ICryptoTransform CreateDecryptingTransform(byte[] rgbKey, byte[] rgbIV)
         {
             return new CryptoTransformWrapper(_symmetricAlgorithm.CreateDecryptor(rgbKey, rgbIV));
         }
 
-        public override ICryptoTransform CreateEncryptor()
+        public override ICryptoTransform CreateEncryptingTransform()
         {
             return new CryptoTransformWrapper(_symmetricAlgorithm.CreateEncryptor());
         }
 
-        public override ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV)
+        public override ICryptoTransform CreateEncryptingTransform(byte[] rgbKey, byte[] rgbIV)
         {
             return new CryptoTransformWrapper(_symmetricAlgorithm.CreateEncryptor(rgbKey, rgbIV));
         }

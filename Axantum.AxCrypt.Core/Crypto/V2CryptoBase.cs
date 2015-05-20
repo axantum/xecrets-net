@@ -32,6 +32,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("key");
             }
+            if (algorithm == null)
+            {
+                throw new ArgumentNullException("algorithm");
+            }
+
             if (!algorithm.ValidKeySize(key.Size))
             {
                 throw new ArgumentException("Key length is invalid.");

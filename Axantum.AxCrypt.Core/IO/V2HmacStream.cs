@@ -64,14 +64,14 @@ namespace Axantum.AxCrypt.Core.IO
         /// <summary>
         /// Creates a AxCrypt HMAC-SHA-512 calculating stream.
         /// </summary>
-        /// <typeparam name="V">The type of the chained actual output stream.</typeparam>
+        /// <typeparam name="TChained">The type of the chained actual output stream.</typeparam>
         /// <param name="hmacCalculator">The hmac calculator to use.</param>
         /// <param name="chainedStream">The chained stream. Will be disposed when this instance is disposed.</param>
         /// <returns>A stream to write data to calculate HMAC for to.</returns>
         /// <remarks>This factory method is used instead of a constructor in order to use type inference and offer a cleaner syntax for the comsumer.</remarks>
-        public static V2HmacStream<V> Create<V>(V2HmacCalculator hmacCalculator, V chainedStream) where V : Stream
+        public static V2HmacStream<TChained> Create<TChained>(V2HmacCalculator hmacCalculator, TChained chainedStream) where TChained : Stream
         {
-            return ChainedStream<V>.Create((chained) => new V2HmacStream<V>(hmacCalculator, chainedStream), chainedStream);
+            return ChainedStream<TChained>.Create((chained) => new V2HmacStream<TChained>(hmacCalculator, chainedStream), chainedStream);
         }
 
         /// <summary>

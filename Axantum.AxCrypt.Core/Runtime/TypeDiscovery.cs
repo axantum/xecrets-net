@@ -36,6 +36,11 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         public static IEnumerable<Type> Interface(Type interfaceToDiscover, IEnumerable<Assembly> extraAssemblies)
         {
+            if (interfaceToDiscover == null)
+            {
+                throw new ArgumentNullException("interfaceToDiscover");
+            }
+
             List<Type> interfaces = new List<Type>();
             foreach (Assembly assembly in new Assembly[] { interfaceToDiscover.Assembly }.Concat(extraAssemblies))
             {

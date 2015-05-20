@@ -29,7 +29,7 @@ namespace Axantum.AxCrypt.Core.Header
                 int end = rawValue.Locate(new byte[] { 0, 0, }, 0, rawValue.Length, 1);
                 if (end == -1)
                 {
-                    throw new InvalidOperationException("Could not find terminating double nul byte in string value");
+                    throw new InvalidOperationException("Could not find terminating double null byte in string value");
                 }
 
                 string stringValue = Encoding.UTF8.GetString(rawValue, 0, end);

@@ -61,6 +61,15 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static long CopyTo(this Stream inputStream, Stream outputStream)
         {
+            if (inputStream == null)
+            {
+                throw new ArgumentNullException("inputStream");
+            }
+            if (outputStream == null)
+            {
+                throw new ArgumentNullException("outputStream");
+            }
+
             long totalDone = 0;
             byte[] buffer = new byte[OS.Current.StreamBufferSize];
             int bufferWrittenCount = 0;

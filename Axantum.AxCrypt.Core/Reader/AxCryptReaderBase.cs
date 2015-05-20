@@ -94,11 +94,11 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <summary>
         /// Opens an AxCrypt document instance by way of a symmetrical key and algorithm, if possible.
         /// </summary>
-        /// <param name="key">The key.</param>
+        /// <param name="passphrase">The key.</param>
         /// <param name="cryptoId">The crypto identifier.</param>
         /// <param name="headers">The headers.</param>
         /// <returns>An instance with a valid passphrase or not.</returns>
-        public abstract IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers);
+        public abstract IAxCryptDocument Document(Passphrase passphrase, Guid cryptoId, Headers headers);
 
         /// <summary>
         /// Opens an AxCrypt document instance by way of a asymmetrical private key and algorithm, if possible.

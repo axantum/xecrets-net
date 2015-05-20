@@ -34,6 +34,8 @@ namespace Axantum.AxCrypt.Core.Algorithm
 {
     public abstract class KeyedHashAlgorithm : HashAlgorithm
     {
-        public abstract byte[] Key { get; set; }
+        public abstract byte[] Key();
+
+        public abstract void SetKey(byte[] value);
     }
 }
