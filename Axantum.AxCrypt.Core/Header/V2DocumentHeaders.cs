@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
 
             HmacCalculator = new V2HmacCalculator(new SymmetricKey(GetHmacKey()));
-            using (Stream hmacStream = V2HmacStream<Stream>.Create(HmacCalculator))
+            using (Stream hmacStream = V2HmacStream.Create(HmacCalculator))
             {
                 AxCrypt1Guid.Write(hmacStream);
                 foreach (HeaderBlock header in headers.HeaderBlocks)
@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Header
         public void Trailers(AxCryptReaderBase axCryptReader)
         {
             _headers.Trailers(axCryptReader);
-            using (Stream hmacStream = V2HmacStream<Stream>.Create(HmacCalculator))
+            using (Stream hmacStream = V2HmacStream.Create(HmacCalculator))
             {
                 foreach (HeaderBlock header in _headers.TrailerBlocks)
                 {

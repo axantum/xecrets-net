@@ -149,7 +149,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         private byte[] GetCounterBlock(long blockCounter)
         {
             byte[] counterBytes = blockCounter.GetBigEndianBytes();
-            byte[] counterBlock = ((byte[])_algorithm.IV.Clone()).Xor(_algorithm.IV.Length - counterBytes.Length, counterBytes, 0, counterBytes.Length);
+            byte[] iv = _algorithm.IV();
+            byte[] counterBlock = iv.Xor(iv.Length - counterBytes.Length, counterBytes, 0, counterBytes.Length);
             return counterBlock;
         }
 

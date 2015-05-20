@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.Header
     public class VersionHeaderBlock : HeaderBlock
     {
         public VersionHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.Version, (byte[])dataBlock.Clone())
+            : base(HeaderBlockType.Version, dataBlock)
         {
         }
 

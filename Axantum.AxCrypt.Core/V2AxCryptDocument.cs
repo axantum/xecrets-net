@@ -182,7 +182,7 @@ namespace Axantum.AxCrypt.Core
 
             DocumentHeaders.IsCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
             V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey()));
-            V2HmacStream<Stream> outputHmacStream = V2HmacStream<Stream>.Create(hmacCalculator, outputStream);
+            V2HmacStream<Stream> outputHmacStream = V2HmacStream.Create(hmacCalculator, outputStream);
 
             CryptoStream encryptingStream = TypeMap.Resolve.New<CryptoStream>().Initialize(V2AxCryptDataStream.Create(outputHmacStream), DocumentHeaders.DataCrypto().EncryptingTransform(), CryptoStreamMode.Write);
             DocumentHeaders.WriteStartWithHmac(outputHmacStream);
@@ -252,7 +252,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             _reader.SetStartOfData();
-            return V2AxCryptDataStream.Create(_reader, V2HmacStream<Stream>.Create(DocumentHeaders.HmacCalculator));
+            return V2AxCryptDataStream.Create(_reader, V2HmacStream.Create(DocumentHeaders.HmacCalculator));
         }
 
         public string FileName

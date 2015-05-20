@@ -20,16 +20,13 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private class KeysStoreFile
         {
-            public KeysStoreFile(UserAsymmetricKeys userKeys, string id, IDataStore file)
+            public KeysStoreFile(UserAsymmetricKeys userKeys, IDataStore file)
             {
                 UserKeys = userKeys;
-                Id = id;
                 File = file;
             }
 
             public UserAsymmetricKeys UserKeys { get; private set; }
-
-            public string Id { get; private set; }
 
             public IDataStore File { get; private set; }
         }
@@ -68,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Session
             string id = UniqueFilePart();
             IDataStore file = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(id)).CreateEncryptedName());
 
-            _keysStoreFile = new KeysStoreFile(userKeys, id, file);
+            _keysStoreFile = new KeysStoreFile(userKeys, file);
 
             Save(passphrase);
         }
@@ -86,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     continue;
                 }
-                return new KeysStoreFile(keys, IdFromFileName(file.Name), file);
+                return new KeysStoreFile(keys, file);
             }
             return null;
         }

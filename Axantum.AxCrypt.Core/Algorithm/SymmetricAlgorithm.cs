@@ -35,9 +35,29 @@ namespace Axantum.AxCrypt.Core.Algorithm
 {
     public abstract class SymmetricAlgorithm : IDisposable
     {
-        protected KeySizes[] BlockSizes { get; set; }
+        private KeySizes[] _blockSizes;
 
-        protected KeySizes[] KeySizes { get; set; }
+        protected KeySizes[] BlockSizes()
+        {
+            return _blockSizes;
+        }
+
+        protected void SetBlockSizes(KeySizes[] blockSizes)
+        {
+            _blockSizes = blockSizes;
+        }
+
+        private KeySizes[] _keySizes;
+
+        protected KeySizes[] KeySizes()
+        {
+            return _keySizes;
+        }
+
+        protected void SetKeySizes(KeySizes[] keySizes)
+        {
+            _keySizes = keySizes;
+        }
 
         private int _feedbackSize;
 
@@ -60,49 +80,46 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         private byte[] _iv;
 
-        public virtual byte[] IV
+        public virtual byte[] IV()
         {
-            get
+            if (_iv == null)
             {
-                if (_iv == null)
-                {
-                    GenerateIV();
-                }
-                return (byte[])_iv.Clone();
+                GenerateIV();
             }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
+            return (byte[])_iv.Clone();
+        }
 
-                _iv = (byte[])value.Clone();
+        public virtual void SetIV(byte[] value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
             }
+
+            _iv = (byte[])value.Clone();
         }
 
         private byte[] _key;
 
-        public virtual byte[] Key
+        public virtual byte[] Key()
         {
-            get
+            if (_key == null)
             {
-                if (_key == null)
-                {
-                    GenerateKey();
-                }
-                return (byte[])_key.Clone();
+                GenerateKey();
             }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
 
-                _key = (byte[])value.Clone();
-                _keySize = _key.Length * 8;
+            return (byte[])_key.Clone();
+        }
+
+        public virtual void SetKey(byte[] value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
             }
+
+            _key = (byte[])value.Clone();
+            _keySize = _key.Length * 8;
         }
 
         private int _keySize;
@@ -125,20 +142,14 @@ namespace Axantum.AxCrypt.Core.Algorithm
             _key = null;
         }
 
-        public virtual KeySizes[] LegalBlockSizes
+        public virtual KeySizes[] LegalBlockSizes()
         {
-            get
-            {
-                return BlockSizes;
-            }
+            return BlockSizes();
         }
 
-        public virtual KeySizes[] LegalKeySizes
+        public virtual KeySizes[] LegalKeySizes()
         {
-            get
-            {
-                return KeySizes;
-            }
+            return KeySizes();
         }
 
         public virtual CipherMode Mode { get; set; }
@@ -147,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         public virtual bool ValidKeySize(int bitLength)
         {
-            foreach (KeySizes sizes in KeySizes)
+            foreach (KeySizes sizes in KeySizes())
             {
                 for (int length = sizes.MinSize; length <= sizes.MaxSize; length += sizes.SkipSize)
                 {
@@ -191,7 +202,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         public virtual ICryptoTransform CreateDecryptingTransform()
         {
-            return CreateDecryptingTransform(Key, IV);
+            return CreateDecryptingTransform(Key(), IV());
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "rgb")]
@@ -199,7 +210,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         public virtual ICryptoTransform CreateEncryptingTransform()
         {
-            return CreateEncryptingTransform(Key, IV);
+            return CreateEncryptingTransform(Key(), IV());
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "rgb")]

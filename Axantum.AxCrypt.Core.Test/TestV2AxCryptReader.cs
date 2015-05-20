@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Headers headers = new Headers();
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 10);
-            using (V2HmacStream<MemoryStream> stream = V2HmacStream<MemoryStream>.Create(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
+            using (V2HmacStream<MemoryStream> stream = V2HmacStream.Create<MemoryStream>(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
             {
                 documentHeaders.WriteStartWithHmac(stream);
                 stream.Flush();
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Test
             IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             parameters.Add(new IAsymmetricPublicKey[] { publicKey });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
-            using (V2HmacStream<MemoryStream> hmacStream = V2HmacStream<MemoryStream>.Create(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
+            using (V2HmacStream<MemoryStream> hmacStream = V2HmacStream.Create<MemoryStream>(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
             {
                 documentHeaders.WriteStartWithHmac(hmacStream);
                 hmacStream.Flush();
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core.Test
             IAsymmetricPublicKey publicKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             parameters.Add(new IAsymmetricPublicKey[] { publicKey1, publicKey2 });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
-            using (V2HmacStream<MemoryStream> stream = V2HmacStream<MemoryStream>.Create(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
+            using (V2HmacStream<MemoryStream> stream = V2HmacStream.Create<MemoryStream>(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
             {
                 documentHeaders.WriteStartWithHmac(stream);
                 stream.Flush();

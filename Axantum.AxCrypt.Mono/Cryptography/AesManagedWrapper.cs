@@ -45,28 +45,24 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             }
         }
 
-        public override byte[] IV
+        public override byte[] IV()
         {
-            get
-            {
-                return _symmetricAlgorithm.IV;
-            }
-            set
-            {
-                _symmetricAlgorithm.IV = value;
-            }
+            return _symmetricAlgorithm.IV;
         }
 
-        public override byte[] Key
+        public override void SetIV(byte[] value)
         {
-            get
-            {
-                return _symmetricAlgorithm.Key;
-            }
-            set
-            {
-                _symmetricAlgorithm.Key = value;
-            }
+            _symmetricAlgorithm.IV = value;
+        }
+
+        public override byte[] Key()
+        {
+            return _symmetricAlgorithm.Key;
+        }
+
+        public override void SetKey(byte[] value)
+        {
+            _symmetricAlgorithm.Key = value;
         }
 
         public override int KeySize
@@ -81,14 +77,14 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             }
         }
 
-        public override KeySizes[] LegalBlockSizes
+        public override KeySizes[] LegalBlockSizes()
         {
-            get { return _symmetricAlgorithm.LegalBlockSizes.Select(k => new KeySizes() { MaxSize = k.MaxSize, MinSize = k.MinSize, SkipSize = k.SkipSize }).ToArray(); }
+            return _symmetricAlgorithm.LegalBlockSizes.Select(k => new KeySizes() { MaxSize = k.MaxSize, MinSize = k.MinSize, SkipSize = k.SkipSize }).ToArray();
         }
 
-        public override KeySizes[] LegalKeySizes
+        public override KeySizes[] LegalKeySizes()
         {
-            get { return _symmetricAlgorithm.LegalKeySizes.Select(k => new KeySizes() { MaxSize = k.MaxSize, MinSize = k.MinSize, SkipSize = k.SkipSize }).ToArray(); }
+            return _symmetricAlgorithm.LegalKeySizes.Select(k => new KeySizes() { MaxSize = k.MaxSize, MinSize = k.MinSize, SkipSize = k.SkipSize }).ToArray();
         }
 
         public override CipherMode Mode

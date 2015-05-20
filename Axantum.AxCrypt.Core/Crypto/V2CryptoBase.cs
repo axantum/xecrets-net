@@ -76,8 +76,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         private SymmetricAlgorithm CreateAlgorithmInternal()
         {
             SymmetricAlgorithm algorithm = CreateAlgorithm();
-            algorithm.Key = Key.GetBytes();
-            algorithm.IV = _iv.GetBytes();
+            algorithm.SetKey(Key.GetBytes());
+            algorithm.SetIV(_iv.GetBytes());
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
 

@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
         private class NewHeaderBlock : HeaderBlock
         {
             public NewHeaderBlock(byte[] dataBlock)
-                : base((HeaderBlockType)99, (byte[])dataBlock.Clone())
+                : base((HeaderBlockType)99, dataBlock)
             {
             }
 

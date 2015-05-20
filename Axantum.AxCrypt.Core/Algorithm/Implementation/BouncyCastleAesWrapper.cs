@@ -48,8 +48,8 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 
         public BouncyCastleAesWrapper()
         {
-            BlockSizes = _legalBlockSizes;
-            KeySizes = _legalKeySizes;
+            SetBlockSizes(_legalBlockSizes);
+            SetKeySizes(_legalKeySizes);
             InitializeBlockSize(128);
             InitializeFeedbackSize(128);
             InitializeKeySize(128);
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         /// </summary>
         public override void GenerateIV()
         {
-            IV = Resolve.RandomGenerator.Generate(BlockSize / 8);
+            SetIV(Resolve.RandomGenerator.Generate(BlockSize / 8));
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         /// </summary>
         public override void GenerateKey()
         {
-            Key = Resolve.RandomGenerator.Generate(KeySize / 8);
+            SetKey(Resolve.RandomGenerator.Generate(KeySize / 8));
         }
 
         /// <summary>

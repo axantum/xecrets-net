@@ -32,35 +32,8 @@ using System.IO;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    /// <summary>
-    /// An AxCrypt HMAC-SHA-512-calculating stream filter
-    /// </summary>
-    /// <typeparam name="T">The type of the stream to actually write to</typeparam>
-    public class V2HmacStream<T> : ChainedStream<T> where T : Stream
+    public sealed class V2HmacStream : V2HmacStream<Stream>
     {
-        private V2HmacCalculator _calculator;
-
-        private V2HmacStream(V2HmacCalculator calculator)
-            : this(calculator, Stream.Null as T)
-        {
-        }
-
-        /// <summary>
-        /// An AxCrypt HMAC-SHA-512-calculating stream.
-        /// </summary>
-        /// <param name="key">The key for the HMAC</param>
-        /// <param name="chainedStream">A stream where data is written to. This stream is disposed of when this instance is disposed.</param>
-        private V2HmacStream(V2HmacCalculator calculator, T chainedStream)
-            : base(chainedStream)
-        {
-            if (calculator == null)
-            {
-                throw new ArgumentNullException("calculator");
-            }
-
-            _calculator = calculator;
-        }
-
         /// <summary>
         /// Creates a AxCrypt HMAC-SHA-512 calculating stream.
         /// </summary>
@@ -83,6 +56,41 @@ namespace Axantum.AxCrypt.Core.IO
         public static V2HmacStream<Stream> Create(V2HmacCalculator hmacCalculator)
         {
             return Create<Stream>(hmacCalculator, Stream.Null);
+        }
+    }
+
+    /// <summary>
+    /// An AxCrypt HMAC-SHA-512-calculating stream filter
+    /// </summary>
+    /// <typeparam name="T">The type of the stream to actually write to</typeparam>
+    public class V2HmacStream<T> : ChainedStream<T> where T : Stream
+    {
+        private V2HmacCalculator _calculator;
+
+        protected V2HmacStream()
+            : base(Stream.Null as T)
+        {
+        }
+
+        protected V2HmacStream(V2HmacCalculator calculator)
+            : this(calculator, Stream.Null as T)
+        {
+        }
+
+        /// <summary>
+        /// An AxCrypt HMAC-SHA-512-calculating stream.
+        /// </summary>
+        /// <param name="key">The key for the HMAC</param>
+        /// <param name="chainedStream">A stream where data is written to. This stream is disposed of when this instance is disposed.</param>
+        internal V2HmacStream(V2HmacCalculator calculator, T chainedStream)
+            : base(chainedStream)
+        {
+            if (calculator == null)
+            {
+                throw new ArgumentNullException("calculator");
+            }
+
+            _calculator = calculator;
         }
 
         public override bool CanRead

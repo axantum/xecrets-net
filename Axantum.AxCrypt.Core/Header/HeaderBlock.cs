@@ -38,8 +38,13 @@ namespace Axantum.AxCrypt.Core.Header
 
         protected HeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
         {
+            if (dataBlock == null)
+            {
+                throw new ArgumentNullException("dataBlock");
+            }
+
             HeaderBlockType = headerBlockType;
-            _dataBlock = dataBlock;
+            _dataBlock = (byte[])dataBlock.Clone();
         }
 
         protected HeaderBlock(HeaderBlockType headerBlockType)

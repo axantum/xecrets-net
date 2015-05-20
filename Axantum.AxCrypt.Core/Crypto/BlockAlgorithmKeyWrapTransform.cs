@@ -50,15 +50,15 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("salt");
             }
 
-            if (salt.Length != 0 && salt.Length < symmetricAlgorithm.Key.Length)
+            if (salt.Length != 0 && salt.Length < symmetricAlgorithm.Key().Length)
             {
                 throw new InternalErrorException("Salt is too short. It must be at least as long as the algorithm key, or empty for no salt.");
             }
             _algorithm = symmetricAlgorithm;
 
-            byte[] saltedKey = _algorithm.Key;
+            byte[] saltedKey = _algorithm.Key();
             saltedKey.Xor(salt.GetBytes().Reduce(saltedKey.Length));
-            _algorithm.Key = saltedKey;
+            _algorithm.SetKey(saltedKey);
 
             _algorithm.Mode = CipherMode.ECB;
             _algorithm.Padding = PaddingMode.None;
