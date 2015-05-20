@@ -59,11 +59,6 @@ namespace Axantum.AxCrypt.Mono
             _file = new FileInfo(path.NormalizeFilePath());
         }
 
-        private DataStore(FileInfo fileInfo)
-        {
-            _file = fileInfo;
-        }
-
         protected override string Location
         {
             get
@@ -72,7 +67,7 @@ namespace Axantum.AxCrypt.Mono
             }
             set
             {
-                throw new NotSupportedException("The location cannot be set explictly.");
+                throw new NotSupportedException("The location cannot be set explicitly.");
             }
         }
 

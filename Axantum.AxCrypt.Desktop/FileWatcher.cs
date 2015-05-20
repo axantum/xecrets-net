@@ -48,6 +48,11 @@ namespace Axantum.AxCrypt.Desktop
 
         public FileWatcher(string path, DelayedAction delayedAction)
         {
+            if (delayedAction == null)
+            {
+                throw new ArgumentNullException("delayedAction");
+            }
+
             _delayedAction = delayedAction;
             _delayedAction.Action += (sender, e) => { OnDelayedNotification(); };
 

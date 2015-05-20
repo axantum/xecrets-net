@@ -195,9 +195,9 @@ namespace Axantum.AxCrypt.Mono
             Environment.Exit(exitCode);
         }
 
-        public void DebugMode(bool enabled)
+        public void DebugMode(bool enable)
         {
-            if (enabled)
+            if (enable)
             {
                 ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
                 {

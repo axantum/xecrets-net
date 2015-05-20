@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             _hmac.Key = EnsureBlockSizeForKeyDueToBugInMonoKeyPropertySetter(value);
         }
 
-        private byte[] EnsureBlockSizeForKeyDueToBugInMonoKeyPropertySetter(byte[] key)
+        private static byte[] EnsureBlockSizeForKeyDueToBugInMonoKeyPropertySetter(byte[] key)
         {
             if (key.Length <= 128)
             {

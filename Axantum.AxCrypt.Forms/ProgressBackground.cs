@@ -45,6 +45,11 @@ namespace Axantum.AxCrypt.Forms
 
         public ProgressBackground(IContainer container)
         {
+            if (container == null)
+            {
+                throw new ArgumentNullException("container");
+            }
+
             container.Add(this);
         }
 

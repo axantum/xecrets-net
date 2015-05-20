@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Desktop
 {
-    public class DesktopFactory
+    public static class DesktopFactory
     {
         public static void RegisterTypeFactories()
         {
