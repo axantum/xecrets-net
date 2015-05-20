@@ -44,6 +44,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public static void Write(Stream stream)
         {
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream");
+            }
+
             stream.Write(_axCrypt1GuidBytes, 0, _axCrypt1GuidBytes.Length);
         }
 

@@ -41,6 +41,6 @@ namespace Axantum.AxCrypt.Core
         DataError,
         Cancel,
         FileExists,
-        CryptographicErorr,
+        CryptographicError,
     }
 }

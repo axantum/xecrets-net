@@ -46,6 +46,11 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 
         public override byte[] ComputeHash(byte[] buffer)
         {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
             return ComputeHash(buffer, 0, buffer.Length);
         }
 
@@ -53,11 +58,16 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         {
             _hashAlgorithm.Reset();
             _hashAlgorithm.BlockUpdate(buffer, offset, count);
-            return Hash;
+            return Hash();
         }
 
         public override byte[] ComputeHash(Stream inputStream)
         {
+            if (inputStream == null)
+            {
+                throw new ArgumentNullException("inputStream");
+            }
+
             _hashAlgorithm.Reset();
             byte[] block = new byte[_hashAlgorithm.GetByteLength()];
             int count;
@@ -65,22 +75,19 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
             {
                 _hashAlgorithm.BlockUpdate(block, 0, count);
             }
-            return Hash;
+            return Hash();
         }
 
         private byte[] _hash;
 
-        public override byte[] Hash
+        public override byte[] Hash()
         {
-            get
+            if (_hash == null)
             {
-                if (_hash == null)
-                {
-                    _hash = new byte[_hashAlgorithm.GetDigestSize()];
-                    _hashAlgorithm.DoFinal(_hash, 0);
-                }
-                return _hash;
+                _hash = new byte[_hashAlgorithm.GetDigestSize()];
+                _hashAlgorithm.DoFinal(_hash, 0);
             }
+            return _hash;
         }
 
         public override int HashSize
@@ -122,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         public override byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
         {
             _hashAlgorithm.BlockUpdate(inputBuffer, inputOffset, inputCount);
-            return Hash;
+            return Hash();
         }
     }
 }

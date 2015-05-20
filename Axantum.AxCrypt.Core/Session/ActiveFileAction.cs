@@ -51,6 +51,11 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="progress">The context where progress may be reported.</param>
         public virtual void PurgeActiveFiles(IProgressContext progress)
         {
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             progress.NotifyLevelStart();
             Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
             {
@@ -88,6 +93,11 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="progress">The ProgressContext to provide visual progress feedback via.</param>
         public virtual void CheckActiveFiles(ChangedEventMode mode, IProgressContext progress)
         {
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             progress.NotifyLevelStart();
             progress.AddTotal(Resolve.FileSystemState.ActiveFileCount);
             Resolve.FileSystemState.ForEach(mode, (ActiveFile activeFile) =>
@@ -106,6 +116,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual ActiveFile CheckActiveFile(ActiveFile activeFile, IProgressContext progress)
         {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+
             if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
             {
                 return activeFile;
@@ -144,6 +159,15 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void RemoveRecentFiles(IEnumerable<IDataStore> encryptedPaths, IProgressContext progress)
         {
+            if (encryptedPaths == null)
+            {
+                throw new ArgumentNullException("encryptedPaths");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             progress.NotifyLevelStart();
             progress.AddTotal(encryptedPaths.Count());
             foreach (IDataStore encryptedPath in encryptedPaths)

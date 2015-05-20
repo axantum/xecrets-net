@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.IO
                 {
                     _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
                     byte[] result = new byte[16];
-                    Array.Copy(_hmac.Hash, 0, result, 0, result.Length);
+                    Array.Copy(_hmac.Hash(), 0, result, 0, result.Length);
                     _hmacResult = new V1Hmac(result);
                 }
                 return _hmacResult;

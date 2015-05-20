@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFile
     {
-        public void Encrypt(Stream sourceStream, string sourceFileName, IDataStore destinationFileInfo, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
+        public static void Encrypt(Stream sourceStream, string sourceFileName, IDataStore destinationFileInfo, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceStream == null)
             {
@@ -166,6 +166,11 @@ namespace Axantum.AxCrypt.Core
 
         public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folders, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             progress.NotifyLevelStart();
             try
             {
@@ -283,7 +288,7 @@ namespace Axantum.AxCrypt.Core
             return true;
         }
 
-        public void Decrypt(Stream source, Stream destination, LogOnIdentity passphrase, string displayContext, IProgressContext progress)
+        public static void Decrypt(Stream source, Stream destination, LogOnIdentity passphrase, string displayContext, IProgressContext progress)
         {
             using (IAxCryptDocument document = Document(source, passphrase, displayContext, progress))
             {
@@ -397,6 +402,15 @@ namespace Axantum.AxCrypt.Core
 
         public FileOperationContext DecryptFileUniqueWithWipeOfOriginal(IDataStore fileInfo, LogOnIdentity decryptionKey, IProgressContext progress)
         {
+            if (fileInfo == null)
+            {
+                throw new ArgumentNullException("fileInfo");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             progress.NotifyLevelStart();
             using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(fileInfo, decryptionKey, progress))
             {
@@ -472,7 +486,7 @@ namespace Axantum.AxCrypt.Core
         /// or
         /// progress
         /// </exception>
-        public IAxCryptDocument Document(Stream source, LogOnIdentity logOnIdentity, string displayContext, IProgressContext progress)
+        public static IAxCryptDocument Document(Stream source, LogOnIdentity logOnIdentity, string displayContext, IProgressContext progress)
         {
             if (source == null)
             {
@@ -557,7 +571,7 @@ namespace Axantum.AxCrypt.Core
             return alternatePath.CreateUniqueFile();
         }
 
-        public static string MakeAxCryptFileName(IDataStore fileInfo)
+        public static string MakeAxCryptFileName(IDataItem fileInfo)
         {
             if (fileInfo == null)
             {
@@ -585,6 +599,11 @@ namespace Axantum.AxCrypt.Core
 
         public virtual void Wipe(IDataStore fileInfo, IProgressContext progress)
         {
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             if (fileInfo == null)
             {
                 throw new ArgumentNullException("fileInfo");

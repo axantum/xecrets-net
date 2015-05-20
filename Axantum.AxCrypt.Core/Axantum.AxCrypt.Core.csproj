@@ -24,7 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,13 +48,14 @@
     <Compile Include="Algorithm\Implementation\BouncyCastleAesWrapper.cs" />
     <Compile Include="Algorithm\Implementation\BouncyCastleSha1Wrapper.cs" />
     <Compile Include="Algorithm\Implementation\BouncyCastleSha256Wrapper.cs" />
-    <Compile Include="Algorithm\CryptoStreamImplementation.cs" />
+    <Compile Include="Algorithm\CryptoTransformingStream.cs" />
     <Compile Include="Algorithm\Implementation\BouncyCastleCryptoFactory.cs" />
     <Compile Include="AxCryptFactory.cs" />
     <Compile Include="Crypto\Asymmetric\UserPublicKey.cs" />
     <Compile Include="Crypto\DecryptionParameter.cs" />
     <Compile Include="Crypto\EncryptionParameters.cs" />
     <Compile Include="Crypto\LogOnIdentity.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Header\IKeyStreamCryptoFactory.cs" />
     <Compile Include="Header\Recipients.cs" />
     <Compile Include="IO\ByteBuffer.cs" />
@@ -74,7 +76,6 @@
     <Compile Include="Crypto\Asymmetric\IAsymmetricKeyPair.cs" />
     <Compile Include="Crypto\Asymmetric\IAsymmetricPrivateKey.cs" />
     <Compile Include="Crypto\Asymmetric\IAsymmetricPublicKey.cs" />
-    <Compile Include="Crypto\Asymmetric\IAsymmetricPaddingHash.cs" />
     <Compile Include="Crypto\Asymmetric\BouncyCastlePaddingHash.cs" />
     <Compile Include="Crypto\CryptoPolicy.cs" />
     <Compile Include="Crypto\ICryptoHash.cs" />

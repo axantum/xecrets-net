@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Reader
 {
     public abstract class AxCryptReader : AxCryptReaderBase, IDisposable
     {
-        public AxCryptReader(LookAheadStream inputStream)
+        protected AxCryptReader(LookAheadStream inputStream)
             : base(inputStream)
         {
         }

@@ -8,7 +8,7 @@ namespace Axantum.AxCrypt.Core.Portable
 {
     public interface IPortableFactory
     {
-        ISemaphore Semaphore(int initialCount, int maximumCoiunt);
+        ISemaphore Semaphore(int initialCount, int maximumCount);
 
         IPath Path();
 

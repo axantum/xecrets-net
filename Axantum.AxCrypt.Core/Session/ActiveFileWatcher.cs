@@ -14,8 +14,13 @@ namespace Axantum.AxCrypt.Core.Session
         {
         }
 
-        public void Add(IDataStore file)
+        public void Add(IDataItem file)
         {
+            if (file == null)
+            {
+                throw new ArgumentNullException("file");
+            }
+
             string folder = Resolve.Portable.Path().GetDirectoryName(file.FullName);
             lock (_activeFileFolderWatchers)
             {

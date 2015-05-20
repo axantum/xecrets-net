@@ -38,7 +38,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Algorithm
 {
-    public class CryptoStreamImplementation : CryptoStream
+    public class CryptoTransformingStream : CryptoStream
     {
         private Stream _outStream;
 
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         private ByteBuffer _blockBuffer;
 
-        public CryptoStreamImplementation()
+        public CryptoTransformingStream()
         {
         }
 
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
         {
             if (_hasFinalFlushed)
             {
-                throw new NotSupportedException("FinalFlush() was called multiple times. This is not supported.");
+                throw new NotSupportedException("Final flush was called multiple times. This is not supported.");
             }
             byte[] block = _transform.TransformFinalBlock(_blockBuffer.GetBuffer(), 0, _blockBuffer.AvailableForRead);
             _outStream.Write(block, 0, block.Length);

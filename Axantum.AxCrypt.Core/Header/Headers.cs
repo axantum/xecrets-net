@@ -103,8 +103,13 @@ namespace Axantum.AxCrypt.Core.Header
             return reader;
         }
 
-        public void Trailers(AxCryptReader reader)
+        public void Trailers(AxCryptReaderBase reader)
         {
+            if (reader == null)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
             TrailerBlocks.Add(reader.CurrentHeaderBlock);
             ReadHeadersToLast(TrailerBlocks, reader, HeaderBlockType.V2Hmac);
         }
@@ -120,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Header
                         break;
 
                     default:
-                        throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
+                        throw new InternalErrorException("The reader returned an item type it should not be possible for it to return.");
                 }
 
                 headerBlocks.Add(axCryptReader.CurrentHeaderBlock);

@@ -41,6 +41,11 @@ namespace Axantum.AxCrypt.Core
     {
         public virtual DecryptionParameter FindDecryptionParameter(IEnumerable<DecryptionParameter> decryptionParameters, IDataStore encryptedFileInfo)
         {
+            if (encryptedFileInfo == null)
+            {
+                throw new ArgumentNullException("encryptedFileInfo");
+            }
+
             DecryptionParameter foundParameter;
             using (CreateDocument(decryptionParameters, encryptedFileInfo.OpenRead(), out foundParameter))
             {
@@ -50,6 +55,11 @@ namespace Axantum.AxCrypt.Core
 
         public virtual IAxCryptDocument CreateDocument(EncryptionParameters encryptionParameters)
         {
+            if (encryptionParameters == null)
+            {
+                throw new ArgumentNullException("encryptionParameters");
+            }
+
             long keyWrapIterations = Resolve.UserSettings.GetKeyWrapIterations(encryptionParameters.CryptoId);
             if (encryptionParameters.CryptoId == V1Aes128CryptoFactory.CryptoId)
             {

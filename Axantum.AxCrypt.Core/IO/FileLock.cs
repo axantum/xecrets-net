@@ -65,6 +65,11 @@ namespace Axantum.AxCrypt.Core.IO
 
         public static bool IsLocked(params IDataStore[] fileInfoParameters)
         {
+            if (fileInfoParameters == null)
+            {
+                throw new ArgumentNullException("fileInfoParameters");
+            }
+
             foreach (IDataStore fileInfo in fileInfoParameters)
             {
                 if (fileInfo == null)

@@ -14,6 +14,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         public EmailAddress(string address)
         {
+            if (address == null)
+            {
+                throw new ArgumentNullException("address");
+            }
+
             Address = address.Trim().ToLowerInvariant();
         }
 

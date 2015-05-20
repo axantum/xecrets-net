@@ -30,13 +30,18 @@ using Axantum.AxCrypt.Core.Portable;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Macs;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 {
-    public class BouncyCastleCryptoFactory
+    public sealed class BouncyCastleCryptoFactory
     {
+        private BouncyCastleCryptoFactory()
+        {
+        }
+
         public static AxCryptHMACSHA1 AxCryptHMACSHA1()
         {
             AxCryptHMACSHA1 hmac = new BouncyCastleAxCryptHmacSha1Wrapper();
@@ -57,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 
         public static CryptoStream CryptoStream()
         {
-            return new CryptoStreamImplementation();
+            return new CryptoTransformingStream();
         }
 
         public static Sha1 Sha1()

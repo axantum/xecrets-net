@@ -22,6 +22,7 @@
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
+
 using System.Reflection;
 using Axantum.AxCrypt.Core.Runtime;
 
@@ -55,6 +56,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public void Add(CryptoFactoryCreator factory)
         {
+            if (factory == null)
+            {
+                throw new ArgumentNullException("factory");
+            }
+
             _factories.Add(factory().Id, factory);
         }
 
@@ -79,6 +85,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public ICryptoFactory Create(ICryptoPolicy policy)
         {
+            if (policy == null)
+            {
+                throw new ArgumentNullException("policy");
+            }
+
             return policy.DefaultCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
         }
 

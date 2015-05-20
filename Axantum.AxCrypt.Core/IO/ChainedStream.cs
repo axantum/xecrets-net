@@ -21,12 +21,17 @@ namespace Axantum.AxCrypt.Core.IO
         /// <param name="chained">The chained stream. It will be disposed when this instance is disposed.</param>
         /// <returns></returns>
         /// <remarks>This factory method is used instead of a constructor in order to use type inference and offer a cleaner syntax for the comsumer.</remarks>
-        protected static V Create<V>(Func<T, V> creator, T chained) where V : Stream
+        protected static TResult Create<TResult>(Func<T, TResult> creator, T chained) where TResult : Stream
         {
+            if (creator == null)
+            {
+                throw new ArgumentNullException("creator");
+            }
+
             T stream = chained;
             try
             {
-                V created = creator(chained);
+                TResult created = creator(chained);
                 stream = null;
                 return created;
             }

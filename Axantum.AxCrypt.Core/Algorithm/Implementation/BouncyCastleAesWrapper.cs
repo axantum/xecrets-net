@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Portable;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Algorithm.Implementation
@@ -96,6 +97,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         /// Creates this instance.
         /// </summary>
         /// <returns></returns>
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This method is part of a general pattern.")]
         public static BouncyCastleAesWrapper Create()
         {
             return Create("Axantum.AxCrypt.Core.Algorithm.Implementation.Aes");
@@ -107,6 +109,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         /// <param name="algorithmName">Name of the algorithm.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">algorithmName</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This method is part of a general pattern.")]
         public static BouncyCastleAesWrapper Create(string algorithmName)
         {
             if (algorithmName == null)

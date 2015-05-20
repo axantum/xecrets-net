@@ -41,6 +41,15 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public BlockAlgorithmKeyWrapTransform(SymmetricAlgorithm symmetricAlgorithm, Salt salt, KeyWrapDirection keyWrapDirection)
         {
+            if (symmetricAlgorithm == null)
+            {
+                throw new ArgumentNullException("symmetricAlgorithm");
+            }
+            if (salt == null)
+            {
+                throw new ArgumentNullException("salt");
+            }
+
             if (salt.Length != 0 && salt.Length < symmetricAlgorithm.Key.Length)
             {
                 throw new InternalErrorException("Salt is too short. It must be at least as long as the algorithm key, or empty for no salt.");

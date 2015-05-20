@@ -47,6 +47,11 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public void NextBytes(byte[] buffer)
         {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
             byte[] random = Resolve.RandomGenerator.Generate(buffer.Length);
             random.CopyTo(buffer, 0);
         }

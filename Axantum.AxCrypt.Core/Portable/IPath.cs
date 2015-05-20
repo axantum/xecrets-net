@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -21,6 +22,7 @@ namespace Axantum.AxCrypt.Core.Portable
 
         string GetPathRoot(string path);
 
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "This is not a property, and the .NET analogue is also a method.")]
         string GetRandomFileName();
     }
 }

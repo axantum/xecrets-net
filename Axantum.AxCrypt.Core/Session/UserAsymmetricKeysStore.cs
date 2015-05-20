@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.Session
             using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
                 EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, passphrase);
-                TypeMap.Resolve.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                AxCryptFile.Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
         }
 

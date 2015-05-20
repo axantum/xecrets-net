@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Newtonsoft.Json;
 using System;
@@ -71,12 +72,12 @@ namespace Axantum.AxCrypt.Core.Test
             return _factory.CreateKeyPair(n, e, d, p, q, dp, dq, qinv);
         }
 
-        public IPaddingHash CreatePaddingHash()
+        public ICryptoHash CreatePaddingHash()
         {
             return new FakePaddingHash(_paddingHashAlgorithm);
         }
 
-        private class FakePaddingHash : IPaddingHash
+        private class FakePaddingHash : ICryptoHash
         {
             private HashAlgorithm _hash;
 

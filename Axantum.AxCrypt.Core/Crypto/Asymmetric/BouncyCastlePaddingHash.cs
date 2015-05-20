@@ -32,7 +32,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
-    internal class BouncyCastlePaddingHash : IPaddingHash
+    internal class BouncyCastlePaddingHash : ICryptoHash
     {
         private Org.BouncyCastle.Crypto.IDigest _digest;
 

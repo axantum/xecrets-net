@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (!CanExecute(parameter))
             {
-                throw new InvalidOperationException("Execute() invoked when CanExecute() is false.");
+                throw new InvalidOperationException("Execute() invoked when it cannot execute.");
             }
             _executeMethod((T)parameter);
         }

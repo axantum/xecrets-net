@@ -50,6 +50,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public CounterModeCryptoTransform(SymmetricAlgorithm algorithm, long blockCounter, int blockOffset)
         {
+            if (algorithm == null)
+            {
+                throw new ArgumentNullException("algorithm");
+            }
+
             if (algorithm.Mode != CipherMode.ECB)
             {
                 algorithm.Clear();

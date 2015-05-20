@@ -42,6 +42,11 @@ namespace Axantum.AxCrypt.Core.IO
 
         public ByteBuffer(byte[] buffer)
         {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
             _buffer = buffer;
             _nextWriteOffset = buffer.Length;
         }

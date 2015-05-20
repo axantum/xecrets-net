@@ -43,6 +43,11 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public static IAxCryptDocument Document(AxCryptReaderBase reader)
         {
+            if (reader == null)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
             return reader.Document();
         }
 
@@ -69,6 +74,15 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public virtual void Reinterpret(IList<HeaderBlock> inputHeaders, IList<HeaderBlock> outputHeaders)
         {
+            if (inputHeaders == null)
+            {
+                throw new ArgumentNullException("inputHeaders");
+            }
+            if (outputHeaders == null)
+            {
+                throw new ArgumentNullException("outputHeaders");
+            }
+
             outputHeaders.Clear();
             foreach (HeaderBlock header in inputHeaders)
             {
@@ -165,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     return false;
 
                 default:
-                    throw new InternalErrorException("An AxCryptItemType that should not be possible to get was found.");
+                    throw new InternalErrorException("An item type that should not be possible to get was found.");
             }
         }
 

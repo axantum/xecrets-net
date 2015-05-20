@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             hmacsha512.TransformBlock(iBytes, 0, iBytes.Length, null, 0);
             hmacsha512.TransformFinalBlock(_empty, 0, 0);
 
-            byte[] u = hmacsha512.Hash;
+            byte[] u = hmacsha512.Hash();
             byte[] un = u;
 
             for (int c = 2; c <= derivationIterations; ++c)
@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 hmacsha512.Initialize();
                 hmacsha512.TransformBlock(u, 0, u.Length, null, 0);
                 hmacsha512.TransformFinalBlock(_empty, 0, 0);
-                u = hmacsha512.Hash;
+                u = hmacsha512.Hash();
                 for (int i = 0; i < u.Length; i++)
                 {
                     un[i] ^= u[i];

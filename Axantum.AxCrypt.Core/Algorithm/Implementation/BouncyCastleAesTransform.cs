@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
             _cipher.Init(encrypting, keyParameter);
         }
 
-        private IBufferedCipher GetCipherWithModeAndPadding(CipherMode cipherMode, PaddingMode paddingMode)
+        private static IBufferedCipher GetCipherWithModeAndPadding(CipherMode cipherMode, PaddingMode paddingMode)
         {
             if (cipherMode == CipherMode.ECB && paddingMode == PaddingMode.None)
             {
@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
             }
             catch (CryptoException ce)
             {
-                throw new Core.Runtime.CryptoException("Error in cryptographic transformation.", ErrorStatus.CryptographicErorr, ce);
+                throw new Core.Runtime.CryptoException("Error in cryptographic transformation.", ErrorStatus.CryptographicError, ce);
             }
         }
 

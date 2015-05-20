@@ -56,9 +56,9 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             return _hmac.ComputeHash(inputStream);
         }
 
-        public override byte[] Hash
+        public override byte[] Hash()
         {
-            get { return _hmac.Hash; }
+            return _hmac.Hash;
         }
 
         public override int HashSize

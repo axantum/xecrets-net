@@ -31,9 +31,9 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             return _hashAlgorithm.ComputeHash(inputStream);
         }
 
-        public override byte[] Hash
+        public override byte[] Hash()
         {
-            get { return _hashAlgorithm.Hash; }
+            return _hashAlgorithm.Hash;
         }
 
         public override int HashSize

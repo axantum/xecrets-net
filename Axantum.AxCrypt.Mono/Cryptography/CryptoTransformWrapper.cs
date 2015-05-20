@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             }
             catch (System.Security.Cryptography.CryptographicException ce)
             {
-                throw new CryptoException("Error in cryptographic transformation.", ErrorStatus.CryptographicErorr, ce);
+                throw new CryptoException("Error in cryptographic transformation.", ErrorStatus.CryptographicError, ce);
             }
         }
 

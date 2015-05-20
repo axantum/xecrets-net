@@ -34,6 +34,7 @@ using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.OpenSsl;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -44,6 +45,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
     [JsonObject(MemberSerialization.OptIn)]
     internal class BouncyCastlePublicKey : IAsymmetricPublicKey
     {
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Json.NET serializer uses it.")]
         [JsonProperty("pem")]
         private string _serializedKey
         {
@@ -74,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             Key = FromPem(publicKeyPem);
         }
 
-        private AsymmetricKeyParameter FromPem(string pem)
+        private static AsymmetricKeyParameter FromPem(string pem)
         {
             using (TextReader reader = new StringReader(pem))
             {
@@ -96,6 +98,11 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public byte[] Transform(byte[] buffer)
         {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
             IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePaddingHash()));
 
             cipher.Init(true, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));

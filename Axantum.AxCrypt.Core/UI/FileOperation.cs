@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -145,6 +146,7 @@ namespace Axantum.AxCrypt.Core.UI
             return encryptedActiveFile;
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Launching of external application can cause just about anything.")]
         private FileOperationContext LaunchApplicationForDocument(ActiveFile destinationActiveFile)
         {
             ActiveFileStatus status = ActiveFileStatus.AssumedOpenAndDecrypted;

@@ -36,6 +36,11 @@ namespace Axantum.AxCrypt.Core.Ipc
 
         public void RequestReceived(object sender, CommandServiceEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException("e");
+            }
+
             switch (e.Verb)
             {
                 case CommandVerb.Unknown:

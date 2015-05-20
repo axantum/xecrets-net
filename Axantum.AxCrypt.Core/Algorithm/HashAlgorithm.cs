@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         public abstract byte[] ComputeHash(Stream inputStream);
 
-        public abstract byte[] Hash { get; }
+        public abstract byte[] Hash();
 
         public abstract int HashSize { get; }
 

@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         }
 
         public CryptoException(string message)
-            : this(message, ErrorStatus.CryptographicErorr)
+            : this(message, ErrorStatus.CryptographicError)
         {
         }
 
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         }
 
         public CryptoException(string message, Exception innerException)
-            : this(message, ErrorStatus.CryptographicErorr, innerException)
+            : this(message, ErrorStatus.CryptographicError, innerException)
         {
         }
 

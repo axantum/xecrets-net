@@ -51,6 +51,11 @@ namespace Axantum.AxCrypt.Core.Ipc
 
         public void AddArguments(int bundleId, IEnumerable<string> argumentsToAdd)
         {
+            if (argumentsToAdd == null)
+            {
+                throw new ArgumentNullException("argumentsToAdd");
+            }
+
             List<string> arguments;
             lock (_bundles)
             {

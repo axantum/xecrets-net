@@ -87,6 +87,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         protected void WritePrefix(Stream stream)
         {
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream");
+            }
+
             byte[] headerPrefixBytes = GetPrefixBytes();
             stream.Write(headerPrefixBytes, 0, headerPrefixBytes.Length);
         }

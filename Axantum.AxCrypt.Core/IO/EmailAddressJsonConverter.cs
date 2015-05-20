@@ -38,11 +38,25 @@ namespace Axantum.AxCrypt.Core.IO
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
+            if (writer == null)
+            {
+                throw new ArgumentNullException("writer");
+            }
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
             writer.WriteValue(value.ToString());
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            if (reader == null)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
             EmailAddress mailAddress = new EmailAddress((string)reader.Value);
             return mailAddress;
         }

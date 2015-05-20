@@ -27,11 +27,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Algorithm
 {
+    [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "HMACSHA", Justification = "This is standard casing in the .NET framework.")]
     public abstract class AxCryptHMACSHA1 : HMAC
     {
     }

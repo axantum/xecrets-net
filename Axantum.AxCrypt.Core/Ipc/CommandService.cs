@@ -38,6 +38,11 @@ namespace Axantum.AxCrypt.Core.Ipc
 
         public CommandService(IRequestServer server, IRequestClient client)
         {
+            if (server == null)
+            {
+                throw new ArgumentNullException("server");
+            }
+
             _server = server;
             _client = client;
 

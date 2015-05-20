@@ -77,6 +77,11 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
             }
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
                 _key = (byte[])value.Clone();
                 _hmac.Init(new KeyParameter(_key));
             }
@@ -84,9 +89,14 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 
         public override byte[] ComputeHash(byte[] buffer)
         {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
             _hmac.Init(new KeyParameter(_key));
             _hmac.BlockUpdate(buffer, 0, buffer.Length);
-            return Hash;
+            return Hash();
         }
 
         public override byte[] ComputeHash(byte[] buffer, int offset, int count)
@@ -102,17 +112,14 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 
         private byte[] _hash;
 
-        public override byte[] Hash
+        public override byte[] Hash()
         {
-            get
+            if (_hash == null)
             {
-                if (_hash == null)
-                {
-                    _hash = new byte[OutputBlockSize];
-                    _hmac.DoFinal(_hash, 0);
-                }
-                return (byte[])_hash.Clone();
+                _hash = new byte[OutputBlockSize];
+                _hmac.DoFinal(_hash, 0);
             }
+            return (byte[])_hash.Clone();
         }
 
         public override int HashSize
@@ -158,7 +165,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         public override byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
         {
             _hmac.BlockUpdate(inputBuffer, inputOffset, inputCount);
-            return Hash;
+            return Hash();
         }
     }
 }

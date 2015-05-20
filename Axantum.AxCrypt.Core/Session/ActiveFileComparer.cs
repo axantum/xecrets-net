@@ -39,6 +39,15 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
+                if (x == null)
+                {
+                    throw new ArgumentNullException("x");
+                }
+                if (y == null)
+                {
+                    throw new ArgumentNullException("y");
+                }
+
                 return (ReverseSort ? -1 : 1) * String.Compare(x.EncryptedFileInfo.FullName, y.EncryptedFileInfo.FullName, StringComparison.OrdinalIgnoreCase);
             }
         }
@@ -47,6 +56,15 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
+                if (x == null)
+                {
+                    throw new ArgumentNullException("x");
+                }
+                if (y == null)
+                {
+                    throw new ArgumentNullException("y");
+                }
+
                 return (ReverseSort ? -1 : 1) * String.Compare(Resolve.Portable.Path().GetFileName(x.DecryptedFileInfo.FullName), Resolve.Portable.Path().GetFileName(y.DecryptedFileInfo.FullName), StringComparison.OrdinalIgnoreCase);
             }
         }
@@ -55,6 +73,15 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
+                if (x == null)
+                {
+                    throw new ArgumentNullException("x");
+                }
+                if (y == null)
+                {
+                    throw new ArgumentNullException("y");
+                }
+
                 return (ReverseSort ? -1 : 1) * x.Properties.LastActivityTimeUtc.CompareTo(y.Properties.LastActivityTimeUtc);
             }
         }
@@ -63,6 +90,15 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
+                if (x == null)
+                {
+                    throw new ArgumentNullException("x");
+                }
+                if (y == null)
+                {
+                    throw new ArgumentNullException("y");
+                }
+
                 return (ReverseSort ? -1 : 1) * String.Compare(Resolve.CryptoFactory.Create(x.Properties.CryptoId).Name, Resolve.CryptoFactory.Create(y.Properties.CryptoId).Name, StringComparison.OrdinalIgnoreCase);
             }
         }

@@ -117,6 +117,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void AddWatchedFolder(WatchedFolder watchedFolder)
         {
+            if (watchedFolder == null)
+            {
+                throw new ArgumentNullException("watchedFolder");
+            }
+
             if (AddWatchedFolderInternal(watchedFolder))
             {
                 Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Resolve.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
@@ -188,6 +193,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void RemoveWatchedFolder(IDataItem folderInfo)
         {
+            if (folderInfo == null)
+            {
+                throw new ArgumentNullException("folderInfo");
+            }
+
             WatchedFoldersInternal.Remove(new WatchedFolder(folderInfo.FullName, SymmetricKeyThumbprint.Zero));
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownKeys.DefaultEncryptionKey, folderInfo.FullName));
         }
@@ -479,7 +489,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification="It is not disposed multiple times becuase CloseOutput=false")]
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "It is not disposed multiple times becuase CloseOutput=false")]
         public virtual void Save()
         {
             lock (_activeFilesByEncryptedPath)
