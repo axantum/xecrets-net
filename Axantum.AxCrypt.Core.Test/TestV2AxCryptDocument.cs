@@ -26,13 +26,17 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -157,6 +161,68 @@ namespace Axantum.AxCrypt.Core.Test
             V2Hmac hmacFromCalculation = new V2Hmac(hmac.Hash);
 
             Assert.That(hmacFromHeaders, Is.EqualTo(hmacFromCalculation));
+        }
+
+        private static byte[] EncrytionHelper(EncryptionParameters encryptionParameters, string fileName, AxCryptOptions options, byte[] plainText)
+        {
+            byte[] output;
+            using (MemoryStream inputStream = new MemoryStream(plainText))
+            {
+                using (MemoryStream outputStream = new MemoryStream())
+                {
+                    using (V2AxCryptDocument document = new V2AxCryptDocument(encryptionParameters, 1000))
+                    {
+                        document.FileName = fileName;
+                        document.CreationTimeUtc = OS.Current.UtcNow;
+                        document.LastAccessTimeUtc = document.CreationTimeUtc;
+                        document.LastWriteTimeUtc = document.CreationTimeUtc;
+
+                        document.EncryptTo(inputStream, outputStream, options);
+                        output = outputStream.ToArray();
+                    }
+                }
+            }
+            return output;
+        }
+
+        private static byte[] DecryptionHelper(IEnumerable<DecryptionParameter> decryptionParameters, byte[] input)
+        {
+            using (MemoryStream inputStream = new MemoryStream(input))
+            {
+                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(decryptionParameters, inputStream))
+                {
+                    if (!document.PassphraseIsValid)
+                    {
+                        return null;
+                    }
+
+                    using (MemoryStream outputStream = new MemoryStream())
+                    {
+                        document.DecryptTo(outputStream);
+
+                        return outputStream.ToArray();
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestEncryptWithOneAsymmetricKey()
+        {
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            encryptionParameters.Add(new IAsymmetricPublicKey[] { publicKey, });
+
+            byte[] plainText = Resolve.RandomGenerator.Generate(25000);
+
+            byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
+
+            IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            DecryptionParameter decryptionParameter = new DecryptionParameter(privateKey1, V2Aes256CryptoFactory.CryptoId);
+            byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter }, output);
+
+            Assert.That(decryptedText, Is.Not.Null, "The deryption failed because no valid decryption parameter was found.");
+            Assert.That(decryptedText, Is.EquivalentTo(plainText), "The decrypted text should be the same as was originally encrypted.");
         }
 
         [Test]

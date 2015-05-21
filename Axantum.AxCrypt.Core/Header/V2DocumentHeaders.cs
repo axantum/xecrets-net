@@ -254,6 +254,10 @@ namespace Axantum.AxCrypt.Core.Header
             return CreateKeyStreamCrypto(DATA_KEYSTREAM_INDEX);
         }
 
+        /// <summary>
+        /// Gets the hmac key.
+        /// </summary>
+        /// <returns>64 bytes to use as key for the HMACSHA512 authentication.</returns>
         public byte[] GetHmacKey()
         {
             ICrypto hmacKeyCrypto = CreateKeyStreamCrypto(HMACKEY_KEYSTREAM_INDEX);

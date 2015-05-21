@@ -41,6 +41,9 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core
 {
+    /// <summary>
+    /// File-centric methods for encryption and decryption.
+    /// </summary>
     public class AxCryptFile
     {
         public static void Encrypt(Stream sourceStream, string sourceFileName, IDataStore destinationFileInfo, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
@@ -74,6 +77,7 @@ namespace Axantum.AxCrypt.Core
                     document.CreationTimeUtc = OS.Current.UtcNow;
                     document.LastAccessTimeUtc = document.CreationTimeUtc;
                     document.LastWriteTimeUtc = document.CreationTimeUtc;
+
                     document.EncryptTo(sourceStream, destinationStream, options);
                 }
             }
