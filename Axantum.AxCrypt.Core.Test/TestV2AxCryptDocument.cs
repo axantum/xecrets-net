@@ -226,6 +226,70 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestEncryptWithOneAsymmetricKeyAndWrongPassphraseButCorrectPrivateKey()
+        {
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            encryptionParameters.Add(new IAsymmetricPublicKey[] { publicKey, });
+
+            byte[] plainText = Resolve.RandomGenerator.Generate(25000);
+
+            byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKeyAndWrongPassphraseButCorrectPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
+
+            DecryptionParameter decryptionParameter1 = new DecryptionParameter(new Passphrase("niklas"), V2Aes256CryptoFactory.CryptoId);
+            IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey1, V2Aes256CryptoFactory.CryptoId);
+            byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter1, decryptionParameter2, }, output);
+
+            Assert.That(decryptedText, Is.Not.Null, "The deryption failed because no valid decryption parameter was found.");
+            Assert.That(decryptedText, Is.EquivalentTo(plainText), "The decrypted text should be the same as was originally encrypted.");
+        }
+
+        [Test]
+        public static void TestEncryptWithOneAsymmetricKeyAndCorrectPassphraseButWrongPrivateKey()
+        {
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            encryptionParameters.Add(new IAsymmetricPublicKey[] { publicKey1, });
+
+            byte[] plainText = Resolve.RandomGenerator.Generate(25000);
+
+            byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKeyAndWrongPassphraseButCorrectPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
+
+            DecryptionParameter decryptionParameter1 = new DecryptionParameter(new Passphrase("allan"), V2Aes256CryptoFactory.CryptoId);
+            IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+            DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey2, V2Aes256CryptoFactory.CryptoId);
+            byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter1, decryptionParameter2, }, output);
+
+            Assert.That(decryptedText, Is.Not.Null, "The deryption failed because no valid decryption parameter was found.");
+            Assert.That(decryptedText, Is.EquivalentTo(plainText), "The decrypted text should be the same as was originally encrypted.");
+        }
+
+        [Test]
+        public static void TestEncryptWithTwoAsymmetricKeysAndOneCorrectPrivateKey()
+        {
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            encryptionParameters.Add(new IAsymmetricPublicKey[] { publicKey1, });
+            IAsymmetricPublicKey publicKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            encryptionParameters.Add(new IAsymmetricPublicKey[] { publicKey2, });
+
+            byte[] plainText = Resolve.RandomGenerator.Generate(25000);
+
+            byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithTwoAsymmetricKeysAndOneCorrectPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
+
+            DecryptionParameter decryptionParameter0 = new DecryptionParameter(new Passphrase("niklas"), V2Aes256CryptoFactory.CryptoId);
+            IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            DecryptionParameter decryptionParameter1 = new DecryptionParameter(privateKey1, V2Aes256CryptoFactory.CryptoId);
+            IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+            DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey2, V2Aes256CryptoFactory.CryptoId);
+            byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter0, decryptionParameter1, decryptionParameter2, }, output);
+
+            Assert.That(decryptedText, Is.Not.Null, "The deryption failed because no valid decryption parameter was found.");
+            Assert.That(decryptedText, Is.EquivalentTo(plainText), "The decrypted text should be the same as was originally encrypted.");
+        }
+
+        [Test]
         public void TestEncryptDecryptSmall()
         {
             TestEncryptDecryptHelper(15, AxCryptOptions.EncryptWithoutCompression);
