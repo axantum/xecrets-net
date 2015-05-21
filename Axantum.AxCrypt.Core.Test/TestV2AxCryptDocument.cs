@@ -254,7 +254,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
 
-            byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKeyAndWrongPassphraseButCorrectPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
+            byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKeyAndCorrectPassphraseButWrongPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
 
             DecryptionParameter decryptionParameter1 = new DecryptionParameter(new Passphrase("allan"), V2Aes256CryptoFactory.CryptoId);
             IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
