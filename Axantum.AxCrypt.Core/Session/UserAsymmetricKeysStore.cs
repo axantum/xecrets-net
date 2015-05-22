@@ -37,17 +37,18 @@ namespace Axantum.AxCrypt.Core.Session
 
         private IDataContainer _folderPath;
 
-        private KeysStoreFile _keysStoreFile;
+        private List<KeysStoreFile> _keysStoreFiles;
 
         public UserAsymmetricKeysStore(IDataContainer folderPath)
         {
             _folderPath = folderPath;
+            _keysStoreFiles = new List<KeysStoreFile>();
         }
 
         public bool Load(EmailAddress userEmail, Passphrase passphrase)
         {
-            _keysStoreFile = TryLoadKeyStoreFile(userEmail, passphrase);
-            if (_keysStoreFile == null)
+            _keysStoreFiles = new List<KeysStoreFile>(TryLoadKeyStoreFiles(userEmail, passphrase));
+            if (!_keysStoreFiles.Any())
             {
                 return false;
             }
@@ -56,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public bool IsValidAccountLogOn(EmailAddress userEmail, Passphrase passphrase)
         {
-            return TryLoadKeyStoreFile(userEmail, passphrase) != null;
+            return TryLoadKeyStoreFiles(userEmail, passphrase).Any();
         }
 
         private void CreateInternal(EmailAddress userEmail, Passphrase passphrase)
@@ -65,13 +66,14 @@ namespace Axantum.AxCrypt.Core.Session
             string id = UniqueFilePart();
             IDataStore file = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(id)).CreateEncryptedName());
 
-            _keysStoreFile = new KeysStoreFile(userKeys, file);
+            _keysStoreFiles.Add(new KeysStoreFile(userKeys, file));
 
             Save(passphrase);
         }
 
-        private KeysStoreFile TryLoadKeyStoreFile(EmailAddress userEmail, Passphrase passphrase)
+        private IEnumerable<KeysStoreFile> TryLoadKeyStoreFiles(EmailAddress userEmail, Passphrase passphrase)
         {
+            List<KeysStoreFile> keyStoreFiles = new List<KeysStoreFile>();
             foreach (IDataStore file in AsymmetricKeyFiles())
             {
                 UserAsymmetricKeys keys = TryLoadKeys(file, passphrase);
@@ -83,9 +85,9 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     continue;
                 }
-                return new KeysStoreFile(keys, file);
+                keyStoreFiles.Add(new KeysStoreFile(keys, file));
             }
-            return null;
+            return keyStoreFiles;
         }
 
         private IEnumerable<IDataStore> AsymmetricKeyFiles()
@@ -105,19 +107,19 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Create(EmailAddress userEmail, Passphrase passphrase)
         {
-            _keysStoreFile = TryLoadKeyStoreFile(userEmail, passphrase);
-            if (_keysStoreFile != null)
+            _keysStoreFiles = new List<KeysStoreFile>(TryLoadKeyStoreFiles(userEmail, passphrase));
+            if (_keysStoreFiles.Any())
             {
                 return;
             }
             CreateInternal(userEmail, passphrase);
         }
 
-        public UserAsymmetricKeys Keys
+        public IEnumerable<UserAsymmetricKeys> Keys
         {
             get
             {
-                return _keysStoreFile.UserKeys;
+                return _keysStoreFiles.OrderBy((ksf) => ksf.UserKeys.TimeStamp).Select(ksf => ksf.UserKeys);
             }
         }
 
@@ -138,16 +140,19 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Save(Passphrase passphrase)
         {
-            if (_keysStoreFile == null)
+            if (!_keysStoreFiles.Any())
             {
                 return;
             }
 
-            string json = Resolve.Serializer.Serialize(_keysStoreFile.UserKeys);
-            using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
+            foreach (KeysStoreFile keysStoreFile in _keysStoreFiles)
             {
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, passphrase);
-                AxCryptFile.Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                string json = Resolve.Serializer.Serialize(keysStoreFile.UserKeys);
+                using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
+                {
+                    EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, passphrase);
+                    AxCryptFile.Encrypt(stream, keysStoreFile.File.Name, keysStoreFile.File, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                }
             }
         }
 

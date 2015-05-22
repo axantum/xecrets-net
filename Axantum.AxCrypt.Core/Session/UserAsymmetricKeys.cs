@@ -13,8 +13,7 @@ namespace Axantum.AxCrypt.Core.Session
 {
     /// <summary>
     /// A respository for a single user e-mail. A user has a single active key pair, with both a public
-    /// key for encryption and the matching private key for decryption. There may also be a list of
-    /// previously used private keys, in order to be able to decrypt files encrypted with older key pairs.
+    /// key for encryption and the matching private key for decryption.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public class UserAsymmetricKeys
@@ -22,22 +21,21 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonConstructor]
         private UserAsymmetricKeys()
         {
-            RecalledPrivateKeys = new List<IAsymmetricPrivateKey>();
+            TimeStamp = Resolve.Environment.UtcNow;
         }
 
         public UserAsymmetricKeys(EmailAddress userEmail, int bits)
         {
             UserEmail = userEmail;
-            RecalledPrivateKeys = new List<IAsymmetricPrivateKey>();
             KeyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(bits);
         }
+
+        [JsonProperty("timestamp")]
+        public DateTime TimeStamp { get; private set; }
 
         [JsonProperty("useremail")]
         [JsonConverter(typeof(EmailAddressJsonConverter))]
         public EmailAddress UserEmail { get; private set; }
-
-        [JsonProperty("recalledprivatekeys")]
-        public IList<IAsymmetricPrivateKey> RecalledPrivateKeys { get; private set; }
 
         [JsonProperty("keypair")]
         public IAsymmetricKeyPair KeyPair { get; private set; }
