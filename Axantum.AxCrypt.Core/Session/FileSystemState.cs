@@ -65,20 +65,20 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserializing]
         private void Initialize(StreamingContext context)
         {
-            Identities = new List<Passphrase>();
+            KnownPassphrases = new List<Passphrase>();
             _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
         }
 
         [OnDeserialized]
         private void Finalize(StreamingContext context)
         {
-            Identities = new List<Passphrase>(Identities);
+            KnownPassphrases = new List<Passphrase>(KnownPassphrases);
         }
 
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath;
 
         [DataMember(Name = "PassphraseIdentities")]
-        public virtual IList<Passphrase> Identities
+        public virtual IList<Passphrase> KnownPassphrases
         {
             get;
             private set;
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             if (AddWatchedFolderInternal(watchedFolder))
             {
-                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Resolve.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Resolve.KnownKeys.DefaultEncryptionIdentity, watchedFolder.Path));
             }
             else
             {
@@ -199,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             WatchedFoldersInternal.Remove(new WatchedFolder(folderInfo.FullName, SymmetricKeyThumbprint.Zero));
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownKeys.DefaultEncryptionKey, folderInfo.FullName));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownKeys.DefaultEncryptionIdentity, folderInfo.FullName));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> ActiveFileChanged;

@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _identities = new List<Passphrase>();
             Mock<FileSystemState> fileSystemStateMock = new Mock<FileSystemState>();
-            fileSystemStateMock.Setup<IList<Passphrase>>(f => f.Identities).Returns(_identities);
+            fileSystemStateMock.Setup<IList<Passphrase>>(f => f.KnownPassphrases).Returns(_identities);
             TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());

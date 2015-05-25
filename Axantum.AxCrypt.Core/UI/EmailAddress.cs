@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
+    /// <summary>
+    /// A strongly typed representation of an e-mail address.
+    /// </summary>
+    /// <remarks>Instances of this type are immutable.</remarks>
     public class EmailAddress
     {
         public static readonly EmailAddress Empty = new EmailAddress(String.Empty);
 
-        public string Address { get; set; }
+        public string Address { get; private set; }
 
         public EmailAddress(string address)
         {

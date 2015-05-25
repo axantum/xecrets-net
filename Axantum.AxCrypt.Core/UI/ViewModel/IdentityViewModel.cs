@@ -36,26 +36,26 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private FileSystemState _fileSystemState;
 
-        private KnownKeys _knownKeys;
+        private KnownIdentities _knownIdentities;
 
         private IUserSettings _userSettings;
 
         private SessionNotify _sessionNotify;
 
-        public IdentityViewModel(FileSystemState fileSystemState, KnownKeys knownKeys, IUserSettings userSettings, SessionNotify sessionNotify)
+        public IdentityViewModel(FileSystemState fileSystemState, KnownIdentities knownIdentities, IUserSettings userSettings, SessionNotify sessionNotify)
         {
             _fileSystemState = fileSystemState;
-            _knownKeys = knownKeys;
+            _knownIdentities = knownIdentities;
             _userSettings = userSettings;
             _sessionNotify = sessionNotify;
 
-            Passphrase = null;
+            LogOnIdentity = null;
 
-            LogOn = new DelegateAction<Guid>((cryptoId) => Passphrase = LogOnAction(cryptoId), (o) => !_knownKeys.IsLoggedOn);
-            LogOff = new DelegateAction<object>((p) => { LogOffAction(); Passphrase = null; }, (o) => _knownKeys.IsLoggedOn);
-            LogOnLogOff = new DelegateAction<Guid>((cryptoId) => Passphrase = LogOnLogOffAction(cryptoId));
-            AskForDecryptPassphrase = new DelegateAction<string>((name) => Passphrase = AskForDecryptPassphraseAction(name));
-            AskForLogOnPassphrase = new DelegateAction<LogOnIdentity>((id) => Passphrase = AskForLogOnPassphraseAction(id, String.Empty));
+            LogOn = new DelegateAction<Guid>((cryptoId) => LogOnIdentity = LogOnAction(cryptoId), (o) => !_knownIdentities.IsLoggedOn);
+            LogOff = new DelegateAction<object>((p) => { LogOffAction(); LogOnIdentity = null; }, (o) => _knownIdentities.IsLoggedOn);
+            LogOnLogOff = new DelegateAction<Guid>((cryptoId) => LogOnIdentity = LogOnLogOffAction(cryptoId));
+            AskForDecryptPassphrase = new DelegateAction<string>((name) => LogOnIdentity = AskForDecryptPassphraseAction(name));
+            AskForLogOnPassphrase = new DelegateAction<LogOnIdentity>((id) => LogOnIdentity = AskForLogOnPassphraseAction(id, String.Empty));
             CryptoId = Resolve.CryptoFactory.Default.Id;
 
             _sessionNotify.Notification += HandleLogOnLogOffNotifications;
@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        public LogOnIdentity Passphrase { get { return GetProperty<LogOnIdentity>("Passphrase"); } set { SetProperty("Passphrase", value); } }
+        public LogOnIdentity LogOnIdentity { get { return GetProperty<LogOnIdentity>("LogOnIdentity"); } set { SetProperty("LogOnIdentity", value); } }
 
         public Guid CryptoId { get { return GetProperty<Guid>("CryptoId"); } set { SetProperty("CryptoId", value); } }
 
@@ -100,42 +100,42 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity LogOnAction(Guid cryptoId)
         {
-            if (_knownKeys.IsLoggedOn)
+            if (_knownIdentities.IsLoggedOn)
             {
-                return _knownKeys.DefaultEncryptionKey;
+                return _knownIdentities.DefaultEncryptionIdentity;
             }
 
             CryptoId = cryptoId != Guid.Empty ? cryptoId : Resolve.CryptoFactory.Default.Id;
 
-            LogOnIdentity passphrase;
-            if (_fileSystemState.Identities.Any())
+            LogOnIdentity logOnIdentity;
+            if (_fileSystemState.KnownPassphrases.Any() || Resolve.AsymmetricKeysStore.HasStore)
             {
-                passphrase = AskForLogOnPassphraseAction(LogOnIdentity.Empty, String.Empty);
-                return passphrase;
+                logOnIdentity = AskForLogOnPassphraseAction(LogOnIdentity.Empty, String.Empty);
+                return logOnIdentity;
             }
 
-            passphrase = AskForNewEncryptionPassphrase(String.Empty, String.Empty);
-            if (passphrase == null)
+            logOnIdentity = AskForNewEncryptionPassphrase(String.Empty, String.Empty);
+            if (logOnIdentity == null)
             {
                 return null;
             }
 
-            _knownKeys.DefaultEncryptionKey = passphrase;
-            return _knownKeys.DefaultEncryptionKey;
+            _knownIdentities.DefaultEncryptionIdentity = logOnIdentity;
+            return _knownIdentities.DefaultEncryptionIdentity;
         }
 
         private void LogOffAction()
         {
-            if (!_knownKeys.IsLoggedOn)
+            if (!_knownIdentities.IsLoggedOn)
             {
                 return;
             }
-            _knownKeys.Clear();
+            _knownIdentities.Clear();
         }
 
         private LogOnIdentity LogOnLogOffAction(Guid cryptoId)
         {
-            if (!_knownKeys.IsLoggedOn)
+            if (!_knownIdentities.IsLoggedOn)
             {
                 return LogOnAction(cryptoId);
             }
@@ -143,14 +143,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return null;
         }
 
-        private LogOnIdentity KeyFromPassphrase(string passphrase)
+        private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
         {
-            foreach (Passphrase identity in _fileSystemState.Identities)
+            if (Resolve.AsymmetricKeysStore.Load(emailAddress, passphrase))
             {
-                Passphrase candidate = new Passphrase(passphrase);
-                if (identity.Thumbprint == candidate.Thumbprint)
+                return new LogOnIdentity(Resolve.AsymmetricKeysStore.Keys.First(), passphrase);
+            }
+
+            foreach (Passphrase candidate in _fileSystemState.KnownPassphrases)
+            {
+                if (candidate.Thumbprint == passphrase.Thumbprint)
                 {
-                    return new LogOnIdentity(candidate);
+                    return new LogOnIdentity(passphrase);
                 }
             }
             return null;
@@ -178,19 +182,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity AskForLogOnPassphraseAction(LogOnIdentity identity, string encryptedFileFullName)
         {
-            LogOnIdentity passphrase = AskForLogOnOrEncryptionPassphrase(identity, encryptedFileFullName);
-            if (passphrase == null)
+            LogOnIdentity logOnIdentity = AskForLogOnOrEncryptionPassphrase(identity, encryptedFileFullName);
+            if (logOnIdentity == null)
             {
                 return null;
             }
 
-            _knownKeys.DefaultEncryptionKey = passphrase;
-            return passphrase;
+            _knownIdentities.DefaultEncryptionIdentity = logOnIdentity;
+            return logOnIdentity;
         }
 
         private LogOnIdentity AskForLogOnOrEncryptionPassphrase(LogOnIdentity identity, string encryptedFileFullName)
         {
-            if (!_fileSystemState.Identities.Any())
+            if (!_fileSystemState.KnownPassphrases.Any())
             {
                 return AskForNewEncryptionPassphrase(String.Empty, encryptedFileFullName);
             }
@@ -215,7 +219,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
-            return KeyFromPassphrase(logOnArgs.Passphrase);
+            return LogOnIdentityFromCredentials(new EmailAddress(logOnArgs.UserEmail), new Passphrase(logOnArgs.Passphrase));
         }
 
         private LogOnIdentity AskForNewEncryptionPassphrase(string defaultPassphrase, string encryptedFileFullName)
@@ -237,14 +241,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
             Passphrase passphrase = new Passphrase(logOnArgs.Passphrase);
-            Passphrase identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.Thumbprint);
+            Passphrase identity = _fileSystemState.KnownPassphrases.FirstOrDefault(i => i.Thumbprint == passphrase.Thumbprint);
             if (identity != null)
             {
                 return new LogOnIdentity(passphrase);
             }
 
             identity = passphrase;
-            _fileSystemState.Identities.Add(identity);
+            _fileSystemState.KnownPassphrases.Add(identity);
             _fileSystemState.Save();
 
             return new LogOnIdentity(passphrase);

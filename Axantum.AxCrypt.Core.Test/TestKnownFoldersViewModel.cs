@@ -67,8 +67,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestConstructor()
         {
-            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
-            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);
+            KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
+            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownIdentities);
 
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(0));
         }
@@ -76,8 +76,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestSettingKnownFoldersAndLoggingOnAndOff()
         {
-            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
-            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);
+            KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
+            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownIdentities);
 
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(0));
 
@@ -93,12 +93,12 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownKeys.DefaultEncryptionKey = new LogOnIdentity("aaa");
+            knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("aaa");
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.True);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.True);
 
-            knownKeys.DefaultEncryptionKey = null;
+            knownIdentities.DefaultEncryptionIdentity = null;
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
@@ -117,8 +117,8 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.My.FullName, new Passphrase("PassPhrase").Thumbprint));
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.My.FullName, new Passphrase("aaa").Thumbprint));
 
-            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
-            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);
+            KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
+            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownIdentities);
 
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(0));
 
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownKeys.DefaultEncryptionKey = new LogOnIdentity("aaa");
+            knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("aaa");
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.True);
@@ -143,8 +143,8 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(@"C:\BetterCloud\My AxCrypt", Stream.Null);
             FakeDataStore.AddFolder(folder2.My.FullName);
 
-            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
-            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);
+            KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
+            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownIdentities);
 
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(0));
 
@@ -153,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownKeys.DefaultEncryptionKey = new LogOnIdentity("aaa");
+            knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("aaa");
             Assert.That(Resolve.FileSystemState.WatchedFolders.Count(), Is.EqualTo(1));
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);

@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -28,21 +29,19 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
         public LogOnIdentity(Passphrase passphrase)
-            : this(passphrase, EmailAddress.Empty, null)
+            : this(null, passphrase)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogOnIdentity"/> class.
         /// </summary>
+        /// <param name="userKeys">The user keys.</param>
         /// <param name="passphrase">The passphrase.</param>
-        /// <param name="userEmail">The user email.</param>
-        /// <param name="keyPair">The key pair.</param>
-        public LogOnIdentity(Passphrase passphrase, EmailAddress userEmail, IAsymmetricKeyPair keyPair)
+        public LogOnIdentity(UserAsymmetricKeys userKeys, Passphrase passphrase)
         {
+            UserKeys = userKeys;
             Passphrase = passphrase ?? Passphrase.Empty;
-            UserEmail = userEmail;
-            KeyPair = keyPair;
         }
 
         private Passphrase _passphrase;
@@ -66,44 +65,38 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         /// <summary>
-        /// Gets the user email.
+        /// Gets the user keys.
         /// </summary>
         /// <value>
-        /// The user email or EmailAddress.Empty if none.
+        /// The user keys.
         /// </value>
-        public EmailAddress UserEmail { get; private set; }
-
-        /// <summary>
-        /// Gets the key pair.
-        /// </summary>
-        /// <value>
-        /// The key pair, or null if none.
-        /// </value>
-        public IAsymmetricKeyPair KeyPair { get; private set; }
-
-        public IEnumerable<IAsymmetricPublicKey> PublicKeys
+        public UserAsymmetricKeys UserKeys
         {
-            get
-            {
-                if (KeyPair == null)
-                {
-                    return new IAsymmetricPublicKey[0];
-                }
-
-                return new IAsymmetricPublicKey[] { KeyPair.PublicKey };
-            }
+            get;
+            private set;
         }
 
         public IEnumerable<IAsymmetricPrivateKey> PrivateKeys
         {
             get
             {
-                if (KeyPair == null)
+                if (UserKeys == null)
                 {
                     return new IAsymmetricPrivateKey[0];
                 }
+                return new IAsymmetricPrivateKey[] { UserKeys.KeyPair.PrivateKey, };
+            }
+        }
 
-                return new IAsymmetricPrivateKey[] { KeyPair.PrivateKey };
+        public IEnumerable<IAsymmetricPublicKey> PublicKeys
+        {
+            get
+            {
+                if (UserKeys == null)
+                {
+                    return new IAsymmetricPublicKey[0];
+                }
+                return new IAsymmetricPublicKey[] { UserKeys.KeyPair.PublicKey, };
             }
         }
 
@@ -113,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            return Passphrase.Equals(other.Passphrase) && UserEmail.Equals(other.UserEmail) && (Object.ReferenceEquals(KeyPair, other.KeyPair) || (KeyPair != null && KeyPair.Equals(other.KeyPair)));
+            return Passphrase.Equals(other.Passphrase) && ((UserKeys == null && other.UserKeys == null) || (UserKeys != null && UserKeys.Equals(other.UserKeys)));
         }
 
         public override bool Equals(object obj)
@@ -129,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override int GetHashCode()
         {
-            return Passphrase.GetHashCode() ^ UserEmail.GetHashCode() ^ (KeyPair == null ? 0 : KeyPair.GetHashCode());
+            return Passphrase.GetHashCode() ^ (UserKeys == null ? 0 : UserKeys.GetHashCode());
         }
 
         public static bool operator ==(LogOnIdentity left, LogOnIdentity right)

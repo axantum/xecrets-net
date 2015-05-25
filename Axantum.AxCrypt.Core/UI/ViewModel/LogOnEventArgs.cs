@@ -38,6 +38,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             Passphrase = String.Empty;
             Identity = LogOnIdentity.Empty;
+            UserEmail = String.Empty;
         }
 
         public bool Cancel { get; set; }

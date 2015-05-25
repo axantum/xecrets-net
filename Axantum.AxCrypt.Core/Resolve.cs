@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "This is not really complex.")]
         public static void RegisterTypeFactories(string workFolderPath, IEnumerable<Assembly> assemblies)
         {
-            TypeMap.Register.Singleton<KnownKeys>(() => new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify));
+            TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo));
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.xml")));
@@ -80,9 +80,9 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
         }
 
-        public static KnownKeys KnownKeys
+        public static KnownIdentities KnownKeys
         {
-            get { return TypeMap.Resolve.Singleton<KnownKeys>(); }
+            get { return TypeMap.Resolve.Singleton<KnownIdentities>(); }
         }
 
         public static UserAsymmetricKeysStore AsymmetricKeysStore

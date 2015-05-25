@@ -94,8 +94,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             LogOnIdentity id = new LogOnIdentity("asdf");
-            Resolve.FileSystemState.Identities.Add(id.Passphrase);
-            Resolve.KnownKeys.DefaultEncryptionKey = id;
+            Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
+            Resolve.KnownKeys.DefaultEncryptionIdentity = id;
             mvm.AddRecentFiles.Execute(new string[] { file1, file2, decrypted1 });
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
@@ -217,13 +217,13 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestLogOnLogOffWhenLoggedOn()
         {
             LogOnIdentity id = new LogOnIdentity("logonwhenloggedon");
-            Resolve.FileSystemState.Identities.Add(id.Passphrase);
-            Resolve.KnownKeys.DefaultEncryptionKey = id;
+            Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
+            Resolve.KnownKeys.DefaultEncryptionIdentity = id;
 
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.IdentityViewModel.LogOnLogOff.Execute(Guid.Empty);
 
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(0));
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(0));
         }
 
         [Test]
@@ -232,7 +232,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
 
             Passphrase identity = passphrase;
-            Resolve.FileSystemState.Identities.Add(identity);
+            Resolve.FileSystemState.KnownPassphrases.Add(identity);
 
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.IdentityViewModel.CryptoId = new V1Aes128CryptoFactory().Id; ;
@@ -243,7 +243,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.IdentityViewModel.LogOnLogOff.Execute(Guid.Empty);
 
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(1), "There should be one known key now.");
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(1), "There should be one known key now.");
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.True, "It should be logged on now.");
         }
 
@@ -258,9 +258,9 @@ namespace Axantum.AxCrypt.Core.Test
             };
             mvm.IdentityViewModel.LogOnLogOff.Execute(Guid.Empty);
 
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(1));
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(1));
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.True);
-            Assert.That(Resolve.FileSystemState.Identities.Count, Is.EqualTo(1));
+            Assert.That(Resolve.FileSystemState.KnownPassphrases.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -274,17 +274,17 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.IdentityViewModel.LogOnLogOff.Execute(Guid.Empty);
 
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(0));
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(0));
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.False);
-            Assert.That(Resolve.FileSystemState.Identities.Count, Is.EqualTo(0));
+            Assert.That(Resolve.FileSystemState.KnownPassphrases.Count, Is.EqualTo(0));
         }
 
         [Test]
         public void TestDecryptFoldersWhenLoggedIn()
         {
             LogOnIdentity id = new LogOnIdentity("a");
-            Resolve.FileSystemState.Identities.Add(id.Passphrase);
-            Resolve.KnownKeys.DefaultEncryptionKey = id;
+            Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
+            Resolve.KnownKeys.DefaultEncryptionIdentity = id;
 
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" });
@@ -347,7 +347,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestOpenFilesFromFolderWithCancelWhenLoggedOn()
         {
-            Resolve.KnownKeys.DefaultEncryptionKey = new LogOnIdentity("b");
+            Resolve.KnownKeys.DefaultEncryptionIdentity = new LogOnIdentity("b");
 
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -363,7 +363,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestOpenFilesFromFolderWhenLoggedOn()
         {
-            Resolve.KnownKeys.DefaultEncryptionKey = new LogOnIdentity("c");
+            Resolve.KnownKeys.DefaultEncryptionIdentity = new LogOnIdentity("c");
 
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -525,7 +525,7 @@ namespace Axantum.AxCrypt.Core.Test
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.True);
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(1));
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -601,7 +601,7 @@ namespace Axantum.AxCrypt.Core.Test
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Never);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.True);
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(1));
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -626,7 +626,7 @@ namespace Axantum.AxCrypt.Core.Test
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Never);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.False);
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(0));
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(0));
         }
 
         [Test]
@@ -657,7 +657,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.True);
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(1));
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -690,7 +690,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.False);
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(0));
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(0));
             Assert.That(logonTries, Is.EqualTo(1), "There should be only one logon try, since the first one cancels.");
         }
 
@@ -792,8 +792,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             LogOnIdentity id = new LogOnIdentity("d");
-            Resolve.FileSystemState.Identities.Add(id.Passphrase);
-            Resolve.KnownKeys.DefaultEncryptionKey = id;
+            Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
+            Resolve.KnownKeys.DefaultEncryptionIdentity = id;
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
@@ -863,7 +863,7 @@ namespace Axantum.AxCrypt.Core.Test
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.True);
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(1));
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -915,7 +915,7 @@ namespace Axantum.AxCrypt.Core.Test
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Resolve.KnownKeys.IsLoggedOn, Is.True, "Should be logged on.");
-            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(1), "One known key.");
+            Assert.That(Resolve.KnownKeys.Identities.Count(), Is.EqualTo(1), "One known key.");
         }
 
         [Test]
@@ -928,8 +928,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
             LogOnIdentity id = new LogOnIdentity("e");
-            Resolve.FileSystemState.Identities.Add(id.Passphrase);
-            Resolve.KnownKeys.DefaultEncryptionKey = id;
+            Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
+            Resolve.KnownKeys.DefaultEncryptionIdentity = id;
 
             FakeDataStore.AddFile(@"C:\Folder1\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder1\File2-txt.axx", null);

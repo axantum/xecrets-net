@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return _keysStoreFiles.OrderBy((ksf) => ksf.UserKeys.TimeStamp).Select(ksf => ksf.UserKeys);
+                return _keysStoreFiles.OrderBy((ksf) => ksf.UserKeys.Timestamp).Select(ksf => ksf.UserKeys);
             }
         }
 

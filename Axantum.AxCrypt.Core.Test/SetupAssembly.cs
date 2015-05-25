@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<ILogging>(() => new FakeLogging());
             TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt"), TypeMap.Resolve.New<IterationCalculator>()));
-            TypeMap.Register.Singleton<KnownKeys>(() => new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify));
+            TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
             TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
             TypeMap.Register.Singleton<IProgressBackground>(() => new FakeProgressBackground());

@@ -92,8 +92,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     {
                         return true;
                     }
-                    bool isKnownIdentity = IsKnownIdentity();
-                    if (!isKnownIdentity)
+                    bool isKnownPassphrase = IsKnownPassphrase();
+                    if (!isKnownPassphrase)
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
@@ -114,11 +114,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return Resolve.AsymmetricKeysStore.IsValidAccountLogOn(new EmailAddress(UserEmail), new Passphrase(Passphrase));
         }
 
-        private bool IsKnownIdentity()
+        private bool IsKnownPassphrase()
         {
             SymmetricKeyThumbprint thumbprint = new Passphrase(Passphrase).Thumbprint;
-            Passphrase identity = Resolve.FileSystemState.Identities.FirstOrDefault(id => id.Thumbprint == thumbprint);
-            if (identity != null)
+            Passphrase knownPassphrase = Resolve.FileSystemState.KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
+            if (knownPassphrase != null)
             {
                 return true;
             }

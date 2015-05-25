@@ -303,7 +303,7 @@
     <Compile Include="UI\IProgressContext.cs" />
     <Compile Include="UI\IStatusChecker.cs" />
     <Compile Include="UI\IUIThread.cs" />
-    <Compile Include="UI\KnownKeys.cs" />
+    <Compile Include="UI\KnownIdentities.cs" />
     <Compile Include="UI\ProgressContext.cs" />
     <Compile Include="UI\ProgressEventArgs.cs" />
     <Compile Include="UI\ViewModel\NewPassphraseViewModel.cs" />

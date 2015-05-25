@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
@@ -84,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
             string destinationPath = String.Empty;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
-                    e.Passphrase = new LogOnIdentity("allan");
+                    e.LogOnIdentity = new LogOnIdentity("allan");
                 };
             controller.Completed += (object sender, FileOperationEventArgs e) =>
             {
@@ -112,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationsController controller = new FileOperationsController();
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
-                e.Passphrase = new LogOnIdentity("allan");
+                e.LogOnIdentity = new LogOnIdentity("allan");
             };
             string destinationPath = String.Empty;
             FileOperationContext status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
@@ -141,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestEncryptFileWithDefaultEncryptionKey()
         {
             TypeMap.Register.Singleton<ICryptoPolicy>(() => new LegacyCryptoPolicy());
-            Resolve.KnownKeys.DefaultEncryptionKey = new LogOnIdentity("default");
+            Resolve.KnownKeys.DefaultEncryptionIdentity = new LogOnIdentity("default");
             FileOperationsController controller = new FileOperationsController();
             bool queryEncryptionPassphraseWasCalled = false;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -181,10 +182,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationsController controller = new FileOperationsController();
             string destinationPath = String.Empty;
-            LogOnIdentity passphrase = null;
+            LogOnIdentity logOnIdentity = null;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
-                e.Passphrase = new LogOnIdentity("allan");
+                e.LogOnIdentity = new LogOnIdentity("allan");
             };
             controller.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
@@ -194,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
             controller.Completed += (object sender, FileOperationEventArgs e) =>
             {
                 destinationPath = e.SaveFileFullName;
-                passphrase = e.Passphrase;
+                logOnIdentity = e.LogOnIdentity;
                 cryptoId = e.CryptoId;
             };
 
@@ -205,14 +206,14 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
 
-            EncryptionParameters encryptionParameters = new EncryptionParameters(cryptoId, passphrase.Passphrase);
-            encryptionParameters.Add(passphrase.PublicKeys);
+            EncryptionParameters encryptionParameters = new EncryptionParameters(cryptoId, logOnIdentity.Passphrase);
+            encryptionParameters.Add(logOnIdentity.PublicKeys);
 
             Headers headers = new Headers();
             AxCryptReaderBase reader = headers.CreateReader(new LookAheadStream(destinationInfo.OpenRead()));
             using (IAxCryptDocument document = AxCryptReaderBase.Document(reader))
             {
-                document.Load(passphrase.Passphrase, cryptoId, headers);
+                document.Load(logOnIdentity.Passphrase, cryptoId, headers);
                 Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
             }
         }
@@ -255,12 +256,12 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
-                    e.Passphrase = new LogOnIdentity("a");
+                    e.LogOnIdentity = new LogOnIdentity("a");
                 };
             bool knownKeyWasAdded = false;
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
                 {
-                    knownKeyWasAdded = e.Passphrase.Equals(new LogOnIdentity("a"));
+                    knownKeyWasAdded = e.LogOnIdentity.Equals(new LogOnIdentity("a"));
                 };
             string destinationPath = String.Empty;
             controller.Completed += (object sender, FileOperationEventArgs e) =>
@@ -288,12 +289,12 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
-                e.Passphrase = new LogOnIdentity("a");
+                e.LogOnIdentity = new LogOnIdentity("a");
             };
             bool knownKeyWasAdded = false;
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                knownKeyWasAdded = e.Passphrase.Equals(new LogOnIdentity("a"));
+                knownKeyWasAdded = e.LogOnIdentity.Equals(new LogOnIdentity("a"));
             };
             string destinationPath = String.Empty;
             FileOperationContext status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
@@ -363,7 +364,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
-                    e.Passphrase = new LogOnIdentity("a");
+                    e.LogOnIdentity = new LogOnIdentity("a");
                 };
             controller.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
                 {
@@ -385,7 +386,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
-                e.Passphrase = new LogOnIdentity("a");
+                e.LogOnIdentity = new LogOnIdentity("a");
             };
             controller.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
@@ -419,7 +420,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
-                e.Passphrase = new LogOnIdentity("a");
+                e.LogOnIdentity = new LogOnIdentity("a");
             };
             FileOperationContext status = controller.DecryptAndLaunch(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
@@ -450,7 +451,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
-                e.Passphrase = new LogOnIdentity("a");
+                e.LogOnIdentity = new LogOnIdentity("a");
             };
             FileOperationContext status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
             controller.Completed += (object sender, FileOperationEventArgs e) =>
@@ -538,19 +539,19 @@ namespace Axantum.AxCrypt.Core.Test
                 switch (++passphraseTry)
                 {
                     case 1:
-                        e.Passphrase = new LogOnIdentity("b");
+                        e.LogOnIdentity = new LogOnIdentity("b");
                         break;
 
                     case 2:
-                        e.Passphrase = new LogOnIdentity("d");
+                        e.LogOnIdentity = new LogOnIdentity("d");
                         break;
 
                     case 3:
-                        e.Passphrase = new LogOnIdentity("a");
+                        e.LogOnIdentity = new LogOnIdentity("a");
                         break;
 
                     case 4:
-                        e.Passphrase = new LogOnIdentity("e");
+                        e.LogOnIdentity = new LogOnIdentity("e");
                         break;
                 };
             };
@@ -562,7 +563,7 @@ namespace Axantum.AxCrypt.Core.Test
             bool knownKeyWasAdded = false;
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                knownKeyWasAdded = e.Passphrase.Equals(new LogOnIdentity("a"));
+                knownKeyWasAdded = e.LogOnIdentity.Equals(new LogOnIdentity("a"));
             };
             FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
@@ -586,7 +587,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
-                    e.Passphrase = new LogOnIdentity("a");
+                    e.LogOnIdentity = new LogOnIdentity("a");
                 };
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
                 {
@@ -758,7 +759,7 @@ namespace Axantum.AxCrypt.Core.Test
             controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
-                e.Passphrase = new LogOnIdentity("a");
+                e.LogOnIdentity = new LogOnIdentity("a");
             };
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {

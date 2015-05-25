@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp\");
             UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder);
-            Resolve.KnownKeys.DefaultEncryptionKey = new LogOnIdentity("secret");
+            Resolve.KnownKeys.DefaultEncryptionIdentity = new LogOnIdentity("secret");
 
             store.Create(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
 

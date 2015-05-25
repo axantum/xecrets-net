@@ -253,7 +253,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), mock.Object, mockStatusChecker.Object);
             LogOnIdentity defaultKey = new LogOnIdentity("default");
-            Resolve.KnownKeys.DefaultEncryptionKey = defaultKey;
+            Resolve.KnownKeys.DefaultEncryptionIdentity = defaultKey;
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\", defaultKey.Passphrase.Thumbprint));
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();

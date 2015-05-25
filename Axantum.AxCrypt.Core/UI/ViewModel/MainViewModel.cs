@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string Title { get { return GetProperty<string>("Title"); } set { SetProperty("Title", value); } }
 
-        public Passphrase Identity { get { return GetProperty<Passphrase>("Identity"); } set { SetProperty("Identity", value); } }
+        public LogOnIdentity Identity { get { return GetProperty<LogOnIdentity>("Identity"); } set { SetProperty("Identity", value); } }
 
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
 
@@ -289,16 +289,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetLogOnState(bool isLoggedOn)
         {
-            Passphrase identity = null;
-            if (isLoggedOn)
-            {
-                identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == Resolve.KnownKeys.DefaultEncryptionKey.Passphrase.Thumbprint);
-                if (identity == null)
-                {
-                    throw new InvalidOperationException("Attempt to log on without a matching identity being defined.");
-                }
-            }
-            Identity = identity;
+            Identity = ValidateLogOnIdentity(isLoggedOn);
             LoggedOn = isLoggedOn;
             EncryptFileEnabled = isLoggedOn;
             DecryptFileEnabled = isLoggedOn;
@@ -306,12 +297,33 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             WatchedFoldersEnabled = isLoggedOn;
         }
 
+        private LogOnIdentity ValidateLogOnIdentity(bool isLoggedOn)
+        {
+            if (!isLoggedOn)
+            {
+                return null;
+            }
+
+            if (Resolve.KnownKeys.DefaultEncryptionIdentity.UserKeys != null)
+            {
+                return Resolve.KnownKeys.DefaultEncryptionIdentity;
+            }
+
+            Passphrase identity = _fileSystemState.KnownPassphrases.FirstOrDefault(i => i.Thumbprint == Resolve.KnownKeys.DefaultEncryptionIdentity.Passphrase.Thumbprint);
+            if (identity == null)
+            {
+                throw new InvalidOperationException("Attempt to log on without a matching identity being defined.");
+            }
+
+            return Resolve.KnownKeys.DefaultEncryptionIdentity;
+        }
+
         private void ClearPassphraseMemoryAction()
         {
             IDataStore fileSystemStateInfo = Resolve.FileSystemState.PathInfo;
             TypeMap.Resolve.New<AxCryptFile>().Wipe(fileSystemStateInfo, new ProgressContext());
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(fileSystemStateInfo));
-            TypeMap.Register.Singleton<KnownKeys>(() => new KnownKeys(_fileSystemState, Resolve.SessionNotify));
+            TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(_fileSystemState, Resolve.SessionNotify));
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
@@ -341,7 +353,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string folder in folders)
             {
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownKeys.DefaultEncryptionKey.Passphrase.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownKeys.DefaultEncryptionIdentity.Passphrase.Thumbprint));
             }
             _fileSystemState.Save();
         }

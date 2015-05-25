@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private FileSystemState _fileSystemState;
 
-        private KnownKeys _knownKeys;
+        private KnownIdentities _knownIdentities;
 
         private ActiveFileAction _activeFileAction;
 
@@ -46,10 +46,10 @@ namespace Axantum.AxCrypt.Core.Session
 
         private IStatusChecker _statusChecker;
 
-        public SessionNotificationHandler(FileSystemState fileSystemState, KnownKeys knownKeys, ActiveFileAction activeFileAction, AxCryptFile axCryptFile, IStatusChecker statusChecker)
+        public SessionNotificationHandler(FileSystemState fileSystemState, KnownIdentities knownIdentities, ActiveFileAction activeFileAction, AxCryptFile axCryptFile, IStatusChecker statusChecker)
         {
             _fileSystemState = fileSystemState;
-            _knownKeys = knownKeys;
+            _knownIdentities = knownIdentities;
             _activeFileAction = activeFileAction;
             _axCryptFile = axCryptFile;
             _statusChecker = statusChecker;
@@ -112,9 +112,9 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.EncryptPendingFiles:
                     _activeFileAction.PurgeActiveFiles(progress);
-                    Passphrase passphrase = _knownKeys.DefaultEncryptionKey == null ? null : _knownKeys.DefaultEncryptionKey.Passphrase;
+                    Passphrase passphrase = _knownIdentities.DefaultEncryptionIdentity == null ? null : _knownIdentities.DefaultEncryptionIdentity.Passphrase;
                     encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, passphrase);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownKeys.LoggedOnWatchedFolders.Select(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path)), encryptionParameters, progress);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownIdentities.LoggedOnWatchedFolders.Select(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path)), encryptionParameters, progress);
                     break;
 
                 case SessionNotificationType.PurgeActiveFiles:

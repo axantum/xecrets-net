@@ -110,15 +110,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return true;
             }
-            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[]{new Passphrase(passphrase)}, new IAsymmetricPrivateKey[0], Resolve.CryptoFactory.OrderedIds);
+            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { new Passphrase(passphrase) }, new IAsymmetricPrivateKey[0], Resolve.CryptoFactory.OrderedIds);
             return TypeMap.Resolve.New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, TypeMap.Resolve.New<IDataStore>(encryptedFileFullName)) != null;
         }
 
         private bool IsKnownIdentity()
         {
             SymmetricKeyThumbprint thumbprint = new Passphrase(Passphrase).Thumbprint;
-            Passphrase identity = Resolve.FileSystemState.Identities.FirstOrDefault(id => id.Thumbprint == thumbprint);
-            if (identity != null)
+            Passphrase passphrase = Resolve.FileSystemState.KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
+            if (passphrase != null)
             {
                 return true;
             }

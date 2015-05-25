@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public string OpenFileFullName { get; set; }
 
-        public LogOnIdentity Passphrase { get; set; }
+        public LogOnIdentity LogOnIdentity { get; set; }
 
         public Guid CryptoId { get; set; }
 
