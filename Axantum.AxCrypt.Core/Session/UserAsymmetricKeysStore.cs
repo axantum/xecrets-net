@@ -45,6 +45,10 @@ namespace Axantum.AxCrypt.Core.Session
             _keysStoreFiles = new List<KeysStoreFile>();
         }
 
+        protected UserAsymmetricKeysStore()
+        {
+        }
+
         public bool Load(EmailAddress userEmail, Passphrase passphrase)
         {
             _keysStoreFiles = new List<KeysStoreFile>(TryLoadKeyStoreFiles(userEmail, passphrase));
@@ -115,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Session
             CreateInternal(userEmail, passphrase);
         }
 
-        public IEnumerable<UserAsymmetricKeys> Keys
+        public virtual IEnumerable<UserAsymmetricKeys> Keys
         {
             get
             {
@@ -123,7 +127,13 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public bool HasStore
+        /// <summary>
+        /// Gets a value indicating whether this instance has any shareable identities, i.e. key pairs.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has a store; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool HasStore
         {
             get
             {
@@ -138,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Session
             return ((int)timeSince.TotalSeconds).ToString();
         }
 
-        public void Save(Passphrase passphrase)
+        public virtual void Save(Passphrase passphrase)
         {
             if (!_keysStoreFiles.Any())
             {

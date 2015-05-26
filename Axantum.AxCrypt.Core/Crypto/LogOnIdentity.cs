@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            return Passphrase.Equals(other.Passphrase) && ((UserKeys == null && other.UserKeys == null) || (UserKeys != null && UserKeys.Equals(other.UserKeys)));
+            return Passphrase.Equals(other.Passphrase) && (Object.ReferenceEquals(UserKeys, other.UserKeys) || (UserKeys != null && UserKeys.Equals(other.UserKeys)));
         }
 
         public override bool Equals(object obj)
