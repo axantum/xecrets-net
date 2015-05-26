@@ -99,6 +99,12 @@
     <Compile Include="LogOnAccountDialog.Designer.cs">
       <DependentUpon>LogOnAccountDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageAccountDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageAccountDialog.Designer.cs">
+      <DependentUpon>ManageAccountDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="WatchedFoldersDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LogOnAccountDialog.resx">
       <DependentUpon>LogOnAccountDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageAccountDialog.resx">
+      <DependentUpon>ManageAccountDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WatchedFoldersDialog.resx">
       <DependentUpon>WatchedFoldersDialog.cs</DependentUpon>

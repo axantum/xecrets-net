@@ -380,6 +380,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _encryptionKeyToolStripButton.Image = loggedOn ? Resources.encryptionkeyred32 : Resources.encryptionkeygreen32; });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _encryptionKeyToolStripButton.ToolTipText = loggedOn ? Resources.DefaultEncryptionKeyIsIsetToolTip : Resources.NoDefaultEncryptionKeySetToolTip; });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { SetWindowTextWithLogonStatus(loggedOn); });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _manageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.HasStore; });
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
@@ -1404,6 +1405,14 @@ namespace Axantum.AxCrypt
         private void createAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, String.Empty))
+            {
+                dialog.ShowDialog();
+            }
+        }
+
+        private void _manageAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ManageAccountDialog dialog = new ManageAccountDialog(Resolve.AsymmetricKeysStore, Resolve.UserSettings))
             {
                 dialog.ShowDialog();
             }

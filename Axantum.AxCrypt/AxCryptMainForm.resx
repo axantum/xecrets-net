@@ -492,6 +492,12 @@
   <data name="createAccountToolStripMenuItem.Text" xml:space="preserve">
     <value>Create &amp;Account</value>
   </data>
+  <data name="_manageAccountToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="_manageAccountToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Manage Account</value>
+  </data>
   <data name="_debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 20</value>
   </data>
@@ -1396,6 +1402,12 @@
   <data name="&gt;&gt;loggingToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;createAccountToolStripMenuItem.Name" xml:space="preserve">
+    <value>createAccountToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;createAccountToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;_helpToolStripMenuItem.Name" xml:space="preserve">
     <value>_helpToolStripMenuItem</value>
   </data>
@@ -1486,10 +1498,10 @@
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.Forms.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
-  <data name="&gt;&gt;createAccountToolStripMenuItem.Name" xml:space="preserve">
-    <value>createAccountToolStripMenuItem</value>
+  <data name="&gt;&gt;_manageAccountToolStripMenuItem.Name" xml:space="preserve">
+    <value>_manageAccountToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;createAccountToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_manageAccountToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

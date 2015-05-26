@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// </summary>
     public class ManageAccountViewModel : ViewModelBase
     {
-        public IEnumerable<string> AccountEmails { get { return GetProperty<IEnumerable<string>>("AccountEmails"); } private set { SetProperty("AccountEmails", value); } }
+        public IEnumerable<AccountEmail> AccountEmails { get { return GetProperty<IEnumerable<AccountEmail>>("AccountEmails"); } private set { SetProperty("AccountEmails", value); } }
 
         public IAction ChangePassphrase { get; private set; }
 
@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            AccountEmails = _keysStore.Keys.Select(key => key.UserEmail.ToString());
+            AccountEmails = _keysStore.Keys.Select(key => new AccountEmail(key.UserEmail, key.Timestamp));
 
             ChangePassphrase = new DelegateAction<string>((password) => ChangePassphraseAction(password), (password) => _keysStore.HasStore);
         }
