@@ -147,5 +147,10 @@ namespace Axantum.AxCrypt.Core.Header
         /// 2.x - Json-encoded array of e-mail adresses representing key sharing recipients.
         /// </summary>
         AsymmetricRecipients = 102,
+
+        /// <summary>
+        /// 2.x - The algorithm verifier header/trailer. Consists of a 16-byte random sequence, followed by 16 bytes 1's complement.
+        /// </summary>
+        AlgorithmVerifier = 103,
     }
 }

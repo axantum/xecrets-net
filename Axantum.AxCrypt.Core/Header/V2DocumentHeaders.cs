@@ -45,6 +45,8 @@ namespace Axantum.AxCrypt.Core.Header
         private const int COMPRESSIONINFO_KEYSTREAM_INDEX = 512;
         private const int FILENAMEINFO_KEYSTREAM_INDEX = 768;
         private const int LENGTHSINFO_KEYSTREAM_INDEX = 2048;
+        private const int ASYMMETRICRECIPIENTS_KEYSTREAM_INDEX = 3072;
+        private const int ALGORITHMVERIFIER_KEYSTREAM_INDEX = 4096;
         private const int DATA_KEYSTREAM_INDEX = 1048576;
 
         private static readonly byte[] _version = new byte[] { 4, 0, 2, 0, 0 };
@@ -167,6 +169,12 @@ namespace Axantum.AxCrypt.Core.Header
 
                 case HeaderBlockType.UnicodeFileNameInfo:
                     return CreateKeyStreamCrypto(FILENAMEINFO_KEYSTREAM_INDEX);
+
+                case HeaderBlockType.AsymmetricRecipients:
+                    return CreateKeyStreamCrypto(ASYMMETRICRECIPIENTS_KEYSTREAM_INDEX);
+
+                case HeaderBlockType.AlgorithmVerifier:
+                    return CreateKeyStreamCrypto(ALGORITHMVERIFIER_KEYSTREAM_INDEX);
             }
             throw new InternalErrorException("Unexpected header block type. Can't determine Header Crypto.");
         }
