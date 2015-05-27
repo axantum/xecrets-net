@@ -23,11 +23,12 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonConstructor]
         private UserAsymmetricKeys()
         {
-            Timestamp = Resolve.Environment.UtcNow;
         }
 
         public UserAsymmetricKeys(EmailAddress userEmail, int bits)
+            : this()
         {
+            Timestamp = Resolve.Environment.UtcNow;
             UserEmail = userEmail;
             KeyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(bits);
         }

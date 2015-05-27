@@ -177,10 +177,12 @@
             // 
             // LogOnAccountDialog
             // 
+            this.AcceptButton = this._buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CancelButton = this._buttonCancel;
             this.ClientSize = new System.Drawing.Size(337, 213);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.EmailPanel);

@@ -40,6 +40,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private FileSystemState _fileSystemState;
 
+        private IUserSettings _userSettings;
+
         private UpdateCheck _updateCheck;
 
         public bool LoggedOn { get { return GetProperty<bool>("LoggedOn"); } set { SetProperty("LoggedOn", value); } }
@@ -102,9 +104,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction UpdateCheck { get; private set; }
 
-        public MainViewModel(FileSystemState fileSystemState)
+        public MainViewModel(FileSystemState fileSystemState, IUserSettings userSettings)
         {
             _fileSystemState = fileSystemState;
+            _userSettings = userSettings;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
@@ -119,7 +122,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RecentFiles = new ActiveFile[0];
             SelectedRecentFiles = new string[0];
             SelectedWatchedFolders = new string[0];
-            DebugMode = false;
+            DebugMode = _userSettings.DebugMode;
             Title = String.Empty;
             VersionUpdateStatus = UI.VersionUpdateStatus.Unknown;
 
@@ -152,10 +155,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _fileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
-        private static void UpdateDebugMode(bool enabled)
+        private void UpdateDebugMode(bool enabled)
         {
             Resolve.Log.SetLevel(enabled ? LogLevel.Debug : LogLevel.Error);
             OS.Current.DebugMode(enabled);
+            _userSettings.DebugMode = enabled;
         }
 
         private void UpdateUpdateCheck(Version currentVersion)
@@ -163,14 +167,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DisposeUpdateCheck();
             _updateCheck = TypeMap.Resolve.New<Version, UpdateCheck>(currentVersion);
             _updateCheck.VersionUpdate += Handle_VersionUpdate;
-            UpdateCheckAction(Resolve.UserSettings.LastUpdateCheckUtc);
+            UpdateCheckAction(_userSettings.LastUpdateCheckUtc);
         }
 
         private void Handle_VersionUpdate(object sender, VersionEventArgs e)
         {
-            Resolve.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
-            Resolve.UserSettings.NewestKnownVersion = e.Version.ToString();
-            Resolve.UserSettings.UpdateUrl = e.UpdateWebpageUrl;
+            _userSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
+            _userSettings.NewestKnownVersion = e.Version.ToString();
+            _userSettings.UpdateUrl = e.UpdateWebpageUrl;
 
             UpdatedVersion = e.Version;
             VersionUpdateStatus = e.VersionUpdateStatus;
@@ -378,7 +382,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void UpdateCheckAction(DateTime lastUpdateCheckUtc)
         {
-            _updateCheck.CheckInBackground(lastUpdateCheckUtc, Resolve.UserSettings.NewestKnownVersion, Resolve.UserSettings.AxCrypt2VersionCheckUrl, Resolve.UserSettings.UpdateUrl);
+            _updateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.AxCrypt2VersionCheckUrl, _userSettings.UpdateUrl);
         }
 
         public void Dispose()

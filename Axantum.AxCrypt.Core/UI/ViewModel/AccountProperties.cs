@@ -32,9 +32,9 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class AccountEmail
+    public class AccountProperties
     {
-        internal AccountEmail(EmailAddress emailAddress, DateTime timestamp)
+        internal AccountProperties(EmailAddress emailAddress, DateTime timestamp)
         {
             EmailAddress = emailAddress.Address.ToString();
             Timestamp = timestamp;

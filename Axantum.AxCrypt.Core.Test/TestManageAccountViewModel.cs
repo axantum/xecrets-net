@@ -55,8 +55,8 @@ namespace Axantum.AxCrypt.Core.Test
                 });
 
             ManageAccountViewModel viewModel = new ManageAccountViewModel(mock.Object);
-            IEnumerable<AccountEmail> emailsList = null;
-            viewModel.BindPropertyChanged("AccountEmails", (IEnumerable<AccountEmail> emails) => emailsList = emails);
+            IEnumerable<AccountProperties> emailsList = null;
+            viewModel.BindPropertyChanged("AccountEmails", (IEnumerable<AccountProperties> emails) => emailsList = emails);
             Assert.That(emailsList.Count(), Is.EqualTo(2), "There should be two accounts now.");
             Assert.That(emailsList.First().EmailAddress, Is.EqualTo("svante@axantum.com"), "The first should be 'svante@axantum.com'");
             Assert.That(emailsList.Last().EmailAddress, Is.EqualTo("svante@axantum.com"), "The last should be 'svante@axantum.com'");

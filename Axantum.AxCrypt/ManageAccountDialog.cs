@@ -26,23 +26,28 @@ namespace Axantum.AxCrypt
 
             _userSettings = userSettings;
             _viewModel = new ManageAccountViewModel(keysStore);
-            _viewModel.BindPropertyChanged<IEnumerable<AccountEmail>>("AccountEmails", ListAccountEmails);
+            _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>("AccountEmails", ListAccountEmails);
         }
 
-        private void ListAccountEmails(IEnumerable<AccountEmail> emails)
+        private void ListAccountEmails(IEnumerable<AccountProperties> emails)
         {
             _accountEmailsListView.Items.Clear();
-            foreach (AccountEmail email in emails)
+            foreach (AccountProperties email in emails)
             {
-                ListViewItem item = new ListViewItem(email.EmailAddress);
-                item.Name = "Email";
-
-                ListViewItem.ListViewSubItem timestampColumn = item.SubItems.Add(String.Empty);
-                timestampColumn.Name = "Timestamp";
-                timestampColumn.Text = email.Timestamp.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+                ListViewItem item = new ListViewItem(email.Timestamp.ToLocalTime().ToString(CultureInfo.CurrentCulture));
+                item.Name = "Timestamp";
 
                 _accountEmailsListView.Items.Add(item);
             }
+
+            if (_accountEmailsListView.Items.Count == 0)
+            {
+                _emailLabel.Text = String.Empty;
+                return;
+            }
+
+            _accountEmailsListView.Columns[0].Width = _accountEmailsListView.ClientSize.Width;
+            _emailLabel.Text = emails.First().EmailAddress;
         }
 
         private void _changePassphraseButton_Click(object sender, EventArgs e)
@@ -63,6 +68,10 @@ namespace Axantum.AxCrypt
         }
 
         private void ManageAccountDialog_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void _accountEmailsListView_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
     }
