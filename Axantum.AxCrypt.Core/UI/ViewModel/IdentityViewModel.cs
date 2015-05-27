@@ -194,7 +194,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity AskForLogOnOrEncryptionPassphrase(LogOnIdentity identity, string encryptedFileFullName)
         {
-            if (!_fileSystemState.KnownPassphrases.Any())
+            if (!_fileSystemState.KnownPassphrases.Any() && !Resolve.AsymmetricKeysStore.HasStore)
             {
                 return AskForNewEncryptionPassphrase(String.Empty, encryptedFileFullName);
             }
