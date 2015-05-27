@@ -35,54 +35,54 @@ namespace Axantum.AxCrypt.Core.IO
     {
         private static Collection<string> _lockedFiles = new Collection<string>();
 
-        private string _fullPath;
-
-        private FileLock(string fullPath)
+        private FileLock(IDataStore dataStore)
         {
-            _fullPath = fullPath;
+            DataStore = dataStore;
         }
 
-        public static FileLock Lock(IDataStore fileInfo)
+        public IDataStore DataStore { get; private set; }
+
+        public static FileLock Lock(IDataStore dataStore)
         {
-            if (fileInfo == null)
+            if (dataStore == null)
             {
-                throw new ArgumentNullException("fileInfo");
+                throw new ArgumentNullException("dataStore");
             }
             lock (_lockedFiles)
             {
-                if (IsLocked(fileInfo))
+                if (IsLocked(dataStore))
                 {
                     return null;
                 }
-                _lockedFiles.Add(fileInfo.FullName);
+                _lockedFiles.Add(dataStore.FullName);
                 if (Resolve.Log.IsInfoEnabled)
                 {
-                    Resolve.Log.LogInfo("Locking file '{0}'.".InvariantFormat(fileInfo.FullName));
+                    Resolve.Log.LogInfo("Locking file '{0}'.".InvariantFormat(dataStore.FullName));
                 }
-                return new FileLock(fileInfo.FullName);
+                return new FileLock(dataStore);
             }
         }
 
-        public static bool IsLocked(params IDataStore[] fileInfoParameters)
+        public static bool IsLocked(params IDataStore[] dataStoreParameters)
         {
-            if (fileInfoParameters == null)
+            if (dataStoreParameters == null)
             {
-                throw new ArgumentNullException("fileInfoParameters");
+                throw new ArgumentNullException("dataStoreParameters");
             }
 
-            foreach (IDataStore fileInfo in fileInfoParameters)
+            foreach (IDataStore dataStore in dataStoreParameters)
             {
-                if (fileInfo == null)
+                if (dataStore == null)
                 {
-                    throw new ArgumentNullException("fileInfoParameters");
+                    throw new ArgumentNullException("dataStoreParameters");
                 }
                 lock (_lockedFiles)
                 {
-                    if (_lockedFiles.Contains(fileInfo.FullName))
+                    if (_lockedFiles.Contains(dataStore.FullName))
                     {
                         if (Resolve.Log.IsInfoEnabled)
                         {
-                            Resolve.Log.LogInfo("File '{0}' was found to be locked.".InvariantFormat(fileInfo.FullName));
+                            Resolve.Log.LogInfo("File '{0}' was found to be locked.".InvariantFormat(dataStore.FullName));
                         }
                         return true;
                     }
@@ -101,16 +101,16 @@ namespace Axantum.AxCrypt.Core.IO
         {
             lock (_lockedFiles)
             {
-                if (_fullPath == null)
+                if (DataStore == null)
                 {
                     return;
                 }
-                _lockedFiles.Remove(_fullPath);
+                _lockedFiles.Remove(DataStore.FullName);
                 if (Resolve.Log.IsInfoEnabled)
                 {
-                    Resolve.Log.LogInfo("Unlocking file '{0}'.".InvariantFormat(_fullPath));
+                    Resolve.Log.LogInfo("Unlocking file '{0}'.".InvariantFormat(DataStore.FullName));
                 }
-                _fullPath = null;
+                DataStore = null;
             }
         }
     }
