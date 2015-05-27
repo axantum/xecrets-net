@@ -262,8 +262,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 case SessionNotificationType.ProcessExit:
                 case SessionNotificationType.SessionChange:
                 case SessionNotificationType.SessionStart:
-                case SessionNotificationType.KnownKeyChange:
                 case SessionNotificationType.ActiveFileChange:
+                case SessionNotificationType.KnownKeyChange:
                 default:
                     break;
             }

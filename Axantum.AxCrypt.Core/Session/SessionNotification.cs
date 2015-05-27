@@ -33,7 +33,7 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class SessionNotification : IEquatable<SessionNotification>
     {
-        public LogOnIdentity Key { get; private set; }
+        public LogOnIdentity Identity { get; private set; }
 
         public string FullName { get; private set; }
 
@@ -41,16 +41,16 @@ namespace Axantum.AxCrypt.Core.Session
 
         public SessionNotificationType NotificationType { get; private set; }
 
-        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity key, string fullName, string otherFullName)
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, string fullName, string otherFullName)
         {
             NotificationType = notificationType;
-            Key = key;
+            Identity = identity;
             FullName = fullName;
             OtherFullName = otherFullName;
         }
 
-        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity key, string fullName)
-            : this(notificationType, key, fullName, String.Empty)
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, string fullName)
+            : this(notificationType, identity, fullName, String.Empty)
         {
         }
 
@@ -64,8 +64,8 @@ namespace Axantum.AxCrypt.Core.Session
         {
         }
 
-        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity key)
-            : this(notificationType, key, String.Empty)
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity)
+            : this(notificationType, identity, String.Empty)
         {
         }
 
@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return false;
             }
 
-            if (!other.Key.Equals(Key))
+            if (!other.Identity.Equals(Identity))
             {
                 return false;
             }
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             int hashcode;
 
-            hashcode = Key != null ? Key.GetHashCode() : 0;
+            hashcode = Identity != null ? Identity.GetHashCode() : 0;
             hashcode ^= FullName != null ? FullName.GetHashCode() : 0;
             hashcode ^= NotificationType.GetHashCode();
 

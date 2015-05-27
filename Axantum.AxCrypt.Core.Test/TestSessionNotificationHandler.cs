@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.EncryptPendingFiles, new LogOnIdentity("passphrase")));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
 
             Assert.That(called, Is.True);
         }

@@ -57,6 +57,18 @@ namespace Axantum.AxCrypt.Core.Crypto
             Passphrase = passphrase;
         }
 
+        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)
+            : this(cryptoId)
+        {
+            if (identity == null)
+            {
+                throw new ArgumentNullException("identity");
+            }
+
+            Passphrase = identity.Passphrase;
+            Add(identity.PublicKeys);
+        }
+
         public void Add(IEnumerable<IAsymmetricPublicKey> publicKeys)
         {
             _publicKeys.AddRange(publicKeys);

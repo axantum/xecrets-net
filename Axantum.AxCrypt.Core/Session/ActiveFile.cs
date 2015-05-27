@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             Initialize(activeFile);
             Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
-            Key = null;
+            Identity = null;
         }
 
         public ActiveFile(ActiveFile activeFile, LogOnIdentity key)
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             Initialize(activeFile);
             Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
-            Key = key;
+            Identity = key;
         }
 
         public ActiveFile(ActiveFile activeFile, IDataStore encryptedFileInfo)
@@ -127,14 +127,14 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Initialize(ActiveFile other)
         {
-            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.Key, other.Thumbprint, other.Status, other.Properties);
+            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.Identity, other.Thumbprint, other.Status, other.Properties);
         }
 
         private void Initialize(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, LogOnIdentity key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
         {
             EncryptedFileInfo = TypeMap.Resolve.New<IDataStore>(encryptedFileInfo.FullName);
             DecryptedFileInfo = TypeMap.Resolve.New<IDataStore>(decryptedFileInfo.FullName);
-            Key = key;
+            Identity = key;
             Thumbprint = thumbprint;
             Status = status;
             Properties = new ActiveFileProperties(OS.Current.UtcNow, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
@@ -159,9 +159,9 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                if (_thumbprint == null && Key != null)
+                if (_thumbprint == null && Identity != null)
                 {
-                    _thumbprint = Key.Passphrase.Thumbprint;
+                    _thumbprint = Identity.Passphrase.Thumbprint;
                 }
                 return _thumbprint;
             }
@@ -234,17 +234,17 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private LogOnIdentity _key;
+        private LogOnIdentity _identity;
 
-        public LogOnIdentity Key
+        public LogOnIdentity Identity
         {
             get
             {
-                return _key;
+                return _identity;
             }
             private set
             {
-                _key = value;
+                _identity = value;
             }
         }
 
@@ -286,15 +286,15 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 if (Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
                 {
-                    return Key != null ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+                    return Identity != null ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
                 }
                 if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                 {
-                    return Key != null ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+                    return Identity != null ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
                 }
                 if (Status.HasMask(ActiveFileStatus.NotDecrypted))
                 {
-                    return Key != null ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
+                    return Identity != null ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
                 }
                 throw new InvalidOperationException("ActiveFile in an unhandled visual state.".InvariantFormat());
             }

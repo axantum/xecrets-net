@@ -174,7 +174,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             foreach (LogOnIdentity knownKey in Resolve.KnownIdentities.Identities)
             {
-                IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { knownKey.Passphrase }, null, Resolve.CryptoFactory.OrderedIds);
+                IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { knownKey.Passphrase }, knownKey.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
                 DecryptionParameter decryptionParameter = TypeMap.Resolve.New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, fileInfo);
                 if (decryptionParameter != null)
                 {

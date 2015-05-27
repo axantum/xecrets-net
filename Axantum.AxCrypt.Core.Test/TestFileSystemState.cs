@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
-                Assert.That(reloadedState.ActiveFiles.First().ThumbprintMatch(activeFile.Key.Passphrase), Is.True, "The reloaded thumbprint should  match the key.");
+                Assert.That(reloadedState.ActiveFiles.First().ThumbprintMatch(activeFile.Identity.Passphrase), Is.True, "The reloaded thumbprint should  match the key.");
             }
         }
 

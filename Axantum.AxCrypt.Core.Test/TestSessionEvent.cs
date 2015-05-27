@@ -56,25 +56,25 @@ namespace Axantum.AxCrypt.Core.Test
             sessionEvent = new SessionNotification(SessionNotificationType.ProcessExit);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.ProcessExit));
             Assert.That(sessionEvent.FullName, Is.EqualTo(String.Empty));
-            Assert.That(sessionEvent.Key.Equals(LogOnIdentity.Empty));
+            Assert.That(sessionEvent.Identity.Equals(LogOnIdentity.Empty));
 
             LogOnIdentity key = new LogOnIdentity("key");
             sessionEvent = new SessionNotification(SessionNotificationType.KnownKeyChange, key);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.KnownKeyChange));
             Assert.That(sessionEvent.FullName, Is.EqualTo(String.Empty));
-            Assert.That(sessionEvent.Key, Is.EqualTo(key));
+            Assert.That(sessionEvent.Identity, Is.EqualTo(key));
 
             string fullName = @"C:\Test\Test.txt";
             sessionEvent = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.ActiveFileChange));
             Assert.That(sessionEvent.FullName, Is.EqualTo(fullName));
-            Assert.That(sessionEvent.Key.Equals(LogOnIdentity.Empty));
+            Assert.That(sessionEvent.Identity.Equals(LogOnIdentity.Empty));
 
             fullName = @"C:\Test\";
             sessionEvent = new SessionNotification(SessionNotificationType.WatchedFolderAdded, key, fullName);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.WatchedFolderAdded));
             Assert.That(sessionEvent.FullName, Is.EqualTo(fullName));
-            Assert.That(sessionEvent.Key, Is.EqualTo(key));
+            Assert.That(sessionEvent.Identity, Is.EqualTo(key));
         }
 
         [Test]

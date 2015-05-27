@@ -121,9 +121,9 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(otherFile.Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "The status should be as given in the constructor.");
             Assert.That(otherFile.DecryptedFileInfo.FullName, Is.EqualTo(activeFile.DecryptedFileInfo.FullName), "This should be copied from the original instance.");
             Assert.That(otherFile.EncryptedFileInfo.FullName, Is.EqualTo(activeFile.EncryptedFileInfo.FullName), "This should be copied from the original instance.");
-            Assert.That(otherFile.Key, Is.EqualTo(activeFile.Key), "This should be copied from the original instance.");
+            Assert.That(otherFile.Identity, Is.EqualTo(activeFile.Identity), "This should be copied from the original instance.");
             Assert.That(otherFile.Properties.LastActivityTimeUtc, Is.GreaterThan(activeFile.Properties.LastActivityTimeUtc), "This should not be copied from the original instance, but should be a later time.");
-            Assert.That(otherFile.ThumbprintMatch(activeFile.Key.Passphrase), Is.True, "The thumbprints should match.");
+            Assert.That(otherFile.ThumbprintMatch(activeFile.Identity.Passphrase), Is.True, "The thumbprints should match.");
 
             activeFile.DecryptedFileInfo.LastWriteTimeUtc = activeFile.DecryptedFileInfo.LastWriteTimeUtc.AddDays(1);
             otherFile = new ActiveFile(activeFile, OS.Current.UtcNow, ActiveFileStatus.AssumedOpenAndDecrypted);
@@ -141,8 +141,8 @@ namespace Axantum.AxCrypt.Core.Test
             LogOnIdentity newKey = new LogOnIdentity("newKey");
 
             ActiveFile newActiveFile = new ActiveFile(activeFile, newKey);
-            Assert.That(activeFile.Key, Is.Not.EqualTo(newKey), "Ensure that it's really a different key.");
-            Assert.That(newActiveFile.Key, Is.EqualTo(newKey), "The constructor should assign the new key to the new ActiveFile instance.");
+            Assert.That(activeFile.Identity, Is.Not.EqualTo(newKey), "Ensure that it's really a different key.");
+            Assert.That(newActiveFile.Identity, Is.EqualTo(newKey), "The constructor should assign the new key to the new ActiveFile instance.");
         }
 
         [Test]
