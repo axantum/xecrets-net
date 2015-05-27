@@ -308,7 +308,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
-                e.SaveFileFullName = TypeMap.Resolve.New<IDataStore>(e.SaveFileFullName).FullName.CreateUniqueFile();
+                using (FileLock lockedSave = e.SaveFileFullName.CreateUniqueFile())
+                {
+                    e.SaveFileFullName = lockedSave.DataStore.FullName;
+                    lockedSave.DataStore.Delete();
+                }
             };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>

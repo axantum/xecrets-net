@@ -195,8 +195,10 @@ namespace Axantum.AxCrypt.Core
         public virtual void EncryptFileUniqueWithBackupAndWipe(IDataStore fileInfo, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             IDataStore destinationFileInfo = fileInfo.CreateEncryptedName();
-            destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFileInfo.FullName.CreateUniqueFile());
-            EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionParameters, progress);
+            using (FileLock lockedDestination = destinationFileInfo.FullName.CreateUniqueFile())
+            {
+                EncryptFileWithBackupAndWipe(fileInfo, lockedDestination.DataStore, encryptionParameters, progress);
+            }
         }
 
         public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceFileInfo, IDataStore destinationFileInfo, EncryptionParameters encryptionParameters, IProgressContext progress)
@@ -423,9 +425,11 @@ namespace Axantum.AxCrypt.Core
                     return new FileOperationContext(fileInfo.FullName, FileOperationStatus.Canceled);
                 }
 
-                IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), document.FileName));
-                destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFileInfo.FullName.CreateUniqueFile());
-                DecryptFile(document, destinationFileInfo.FullName, progress);
+                IDataStore destinationStore = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), document.FileName));
+                using (FileLock lockedDestination = destinationStore.FullName.CreateUniqueFile())
+                {
+                    DecryptFile(document, lockedDestination.DataStore.FullName, progress);
+                }
             }
             Wipe(fileInfo, progress);
             progress.NotifyLevelFinished();
@@ -535,41 +539,43 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("writeFileStreamTo");
             }
 
-            string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
-            IDataStore temporaryFileInfo = TypeMap.Resolve.New<IDataStore>(temporaryFilePath);
-
-            try
+            using (FileLock lockedTemporary = MakeAlternatePath(destinationFileInfo, ".tmp"))
             {
-                using (Stream temporaryStream = temporaryFileInfo.OpenWrite())
+                try
                 {
-                    writeFileStreamTo(temporaryStream);
+                    using (Stream temporaryStream = lockedTemporary.DataStore.OpenWrite())
+                    {
+                        writeFileStreamTo(temporaryStream);
+                    }
                 }
-            }
-            catch (Exception)
-            {
-                if (temporaryFileInfo.IsAvailable)
+                catch (Exception)
                 {
-                    Wipe(temporaryFileInfo, progress);
+                    if (lockedTemporary.DataStore.IsAvailable)
+                    {
+                        Wipe(lockedTemporary.DataStore, progress);
+                    }
+                    throw;
                 }
-                throw;
-            }
 
-            if (destinationFileInfo.IsAvailable)
-            {
-                string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
-                IDataStore backupFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFileInfo.FullName);
+                if (destinationFileInfo.IsAvailable)
+                {
+                    using (FileLock lockedAlternate = MakeAlternatePath(destinationFileInfo, ".bak"))
+                    {
+                        IDataStore backupFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFileInfo.FullName);
 
-                backupFileInfo.MoveTo(backupFilePath);
-                temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
-                Wipe(backupFileInfo, progress);
-            }
-            else
-            {
-                temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
+                        backupFileInfo.MoveTo(lockedAlternate.DataStore.FullName);
+                        lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
+                        Wipe(backupFileInfo, progress);
+                    }
+                }
+                else
+                {
+                    lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
+                }
             }
         }
 
-        private static string MakeAlternatePath(IDataStore fileInfo, string extension)
+        private static FileLock MakeAlternatePath(IDataStore fileInfo, string extension)
         {
             string alternatePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), Resolve.Portable.Path().GetFileNameWithoutExtension(fileInfo.Name) + extension);
             return alternatePath.CreateUniqueFile();

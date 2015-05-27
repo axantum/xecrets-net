@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return encryptedName;
         }
 
-        public static string CreateUniqueFile(this string fullName)
+        public static FileLock CreateUniqueFile(this string fullName)
         {
             IDataStore pathInfo = TypeMap.Resolve.New<IDataStore>(fullName);
             string extension = Resolve.Portable.Path().GetExtension(fullName);
@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                     string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
                     string alternateName = Resolve.Portable.Path().GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension;
                     IDataStore alternateFileInfo = pathInfo.Container.CreateNewFile(alternateName);
-                    return alternateFileInfo.FullName;
+                    return FileLock.Lock(alternateFileInfo);
                 }
                 catch (AxCryptException ace)
                 {

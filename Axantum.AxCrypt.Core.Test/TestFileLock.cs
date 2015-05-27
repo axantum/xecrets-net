@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.IO;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.IO;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -83,12 +83,6 @@ namespace Axantum.AxCrypt.Core.Test
             using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
                 Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should be a lock for this file.");
-                using (FileLock lock1a = FileLock.Lock(fileInfo))
-                {
-                    Assert.That(lock1a, Is.Null, "When trying to get a lock for a locked file, this should return null.");
-                    Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should still be a lock for this file.");
-                }
-                Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should still be a lock for this file.");
             }
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file now.");
         }

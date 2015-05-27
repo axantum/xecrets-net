@@ -212,25 +212,25 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
         }
 
-        private static ActiveFile TryDecrypt(IDataStore sourceFileInfo, IDataContainer destinationFolderInfo, IEnumerable<LogOnIdentity> passphrases, IProgressContext progress)
+        private static ActiveFile TryDecrypt(IDataStore sourceDataStore, IDataContainer destinationContainer, IEnumerable<LogOnIdentity> passphrases, IProgressContext progress)
         {
             ActiveFile destinationActiveFile = null;
             foreach (LogOnIdentity passphrase in passphrases)
             {
                 if (Resolve.Log.IsInfoEnabled)
                 {
-                    Resolve.Log.LogInfo("Decrypting '{0}'".InvariantFormat(sourceFileInfo.FullName));
+                    Resolve.Log.LogInfo("Decrypting '{0}'".InvariantFormat(sourceDataStore.FullName));
                 }
-                using (FileLock sourceLock = FileLock.Lock(sourceFileInfo))
+                using (FileLock sourceLock = FileLock.Lock(sourceDataStore))
                 {
-                    using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(sourceFileInfo, passphrase, new ProgressContext()))
+                    using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(sourceDataStore, passphrase, new ProgressContext()))
                     {
                         if (!document.PassphraseIsValid)
                         {
                             continue;
                         }
 
-                        destinationActiveFile = DestinationFileInfoFromDocument(sourceFileInfo, destinationFolderInfo, passphrase, document);
+                        destinationActiveFile = DestinationFileInfoFromDocument(sourceDataStore, destinationContainer, passphrase, document);
                         DecryptActiveFileDocument(destinationActiveFile, document, progress);
                         break;
                     }
