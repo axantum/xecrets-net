@@ -219,7 +219,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static LogOnIdentity FindKnownKeyOrNull(ActiveFile activeFile)
         {
-            foreach (LogOnIdentity key in Resolve.KnownKeys.Identities)
+            foreach (LogOnIdentity key in Resolve.KnownIdentities.Identities)
             {
                 if (activeFile.ThumbprintMatch(key.Passphrase))
                 {

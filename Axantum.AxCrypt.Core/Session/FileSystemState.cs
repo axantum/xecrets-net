@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             if (AddWatchedFolderInternal(watchedFolder))
             {
-                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Resolve.KnownKeys.DefaultEncryptionIdentity, watchedFolder.Path));
+                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Resolve.KnownIdentities.DefaultEncryptionIdentity, watchedFolder.Path));
             }
             else
             {
@@ -199,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             WatchedFoldersInternal.Remove(new WatchedFolder(folderInfo.FullName, SymmetricKeyThumbprint.Zero));
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownKeys.DefaultEncryptionIdentity, folderInfo.FullName));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, folderInfo.FullName));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> ActiveFileChanged;

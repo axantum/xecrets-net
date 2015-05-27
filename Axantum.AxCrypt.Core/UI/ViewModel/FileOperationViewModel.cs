@@ -385,7 +385,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void AddRecentFilesAction(IEnumerable<string> files)
         {
             IEnumerable<IDataStore> fileInfos = files.Select(f => TypeMap.Resolve.New<IDataStore>(f)).ToList();
-            ProcessEncryptableFilesDroppedInRecentList(fileInfos.Where(fileInfo => Resolve.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+            ProcessEncryptableFilesDroppedInRecentList(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
             ProcessEncryptedFilesDroppedInRecentList(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
         }
 

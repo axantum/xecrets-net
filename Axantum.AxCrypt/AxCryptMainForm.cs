@@ -179,12 +179,12 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IUIThread>(() => new UIThread(this));
             TypeMap.Register.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
             TypeMap.Register.Singleton<IStatusChecker>(() => this);
-            TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), TypeMap.Resolve.New<AxCryptFile>(), this));
+            TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, TypeMap.Resolve.New<ActiveFileAction>(), TypeMap.Resolve.New<AxCryptFile>(), this));
 
-            TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings, Resolve.SessionNotify));
-            TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownKeys, Resolve.ParallelFileOperation, TypeMap.Resolve.Singleton<IStatusChecker>(), TypeMap.Resolve.New<IdentityViewModel>()));
+            TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
+            TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities, Resolve.ParallelFileOperation, TypeMap.Resolve.Singleton<IStatusChecker>(), TypeMap.Resolve.New<IdentityViewModel>()));
             TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState, Resolve.UserSettings));
-            TypeMap.Register.New<KnownFoldersViewModel>(() => new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownKeys));
+            TypeMap.Register.New<KnownFoldersViewModel>(() => new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities));
             TypeMap.Register.New<WatchedFoldersViewModel>(() => new WatchedFoldersViewModel(Resolve.FileSystemState));
         }
 
@@ -690,7 +690,7 @@ namespace Axantum.AxCrypt
 
         private void DoRequest(CommandCompleteEventArgs e)
         {
-            if ((e.Verb == CommandVerb.Encrypt) && !Resolve.KnownKeys.IsLoggedOn)
+            if ((e.Verb == CommandVerb.Encrypt) && !Resolve.KnownIdentities.IsLoggedOn)
             {
                 RestoreWindowWithFocus();
                 _pendingRequest = e;
@@ -1412,7 +1412,7 @@ namespace Axantum.AxCrypt
 
         private void _manageAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ManageAccountDialog dialog = new ManageAccountDialog(Resolve.AsymmetricKeysStore, Resolve.UserSettings))
+            using (ManageAccountDialog dialog = new ManageAccountDialog(Resolve.AsymmetricKeysStore, Resolve.KnownIdentities, Resolve.UserSettings))
             {
                 dialog.ShowDialog();
             }

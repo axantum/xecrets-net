@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
             SetWatchedFolders();
-            SetLogOnState(Resolve.KnownKeys.IsLoggedOn);
+            SetLogOnState(Resolve.KnownIdentities.IsLoggedOn);
         }
 
         private void InitializePropertyValues()
@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    SetLogOnState(Resolve.KnownKeys.IsLoggedOn);
+                    SetLogOnState(Resolve.KnownIdentities.IsLoggedOn);
                     SetWatchedFolders();
                     break;
             }
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetWatchedFolders()
         {
-            WatchedFolders = Resolve.KnownKeys.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
+            WatchedFolders = Resolve.KnownIdentities.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string folder in folders)
             {
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownKeys.DefaultEncryptionIdentity.Passphrase.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Thumbprint));
             }
             _fileSystemState.Save();
         }

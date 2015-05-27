@@ -44,17 +44,19 @@ namespace Axantum.AxCrypt.Core.Test
             UserAsymmetricKeys key1 = new UserAsymmetricKeys(new EmailAddress("svante@axantum.com"), 512);
             UserAsymmetricKeys key2 = new UserAsymmetricKeys(new EmailAddress("svante@axantum.com"), 512);
 
-            var mock = new Mock<UserAsymmetricKeysStore>();
-            mock.Setup<IEnumerable<UserAsymmetricKeys>>(f => f.Keys).Returns(new UserAsymmetricKeys[] { key1, key2 });
-            mock.Setup<bool>(f => f.HasStore).Returns(true);
+            var mockUserAsymmetricKeysStore = new Mock<UserAsymmetricKeysStore>();
+            mockUserAsymmetricKeysStore.Setup<IEnumerable<UserAsymmetricKeys>>(f => f.Keys).Returns(new UserAsymmetricKeys[] { key1, key2 });
+            mockUserAsymmetricKeysStore.Setup<bool>(f => f.HasStore).Returns(true);
             string passphraseUsed = String.Empty;
-            mock.Setup(f => f.Save(It.IsAny<Passphrase>()))
+            mockUserAsymmetricKeysStore.Setup(f => f.Save(It.IsAny<Passphrase>()))
                 .Callback<Passphrase>((passphrase) =>
                 {
                     passphraseUsed = passphrase.Text;
                 });
 
-            ManageAccountViewModel viewModel = new ManageAccountViewModel(mock.Object);
+            var mockKnownIdentities = new Mock<KnownIdentities>();
+
+            ManageAccountViewModel viewModel = new ManageAccountViewModel(mockUserAsymmetricKeysStore.Object, mockKnownIdentities.Object);
             IEnumerable<AccountProperties> emailsList = null;
             viewModel.BindPropertyChanged("AccountEmails", (IEnumerable<AccountProperties> emails) => emailsList = emails);
             Assert.That(emailsList.Count(), Is.EqualTo(2), "There should be two accounts now.");

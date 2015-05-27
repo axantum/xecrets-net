@@ -20,12 +20,12 @@ namespace Axantum.AxCrypt
 
         private IUserSettings _userSettings;
 
-        public ManageAccountDialog(UserAsymmetricKeysStore keysStore, IUserSettings userSettings)
+        public ManageAccountDialog(UserAsymmetricKeysStore keysStore, KnownIdentities knownIdentities, IUserSettings userSettings)
         {
             InitializeComponent();
 
             _userSettings = userSettings;
-            _viewModel = new ManageAccountViewModel(keysStore);
+            _viewModel = new ManageAccountViewModel(keysStore, knownIdentities);
             _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>("AccountEmails", ListAccountEmails);
         }
 

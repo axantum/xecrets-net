@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
 
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             TypeMap.Register.New<AxCryptFile>(() => mock);
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
 
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
             FakeDataStore.AddFolder(@"C:\WatchedFolder");
             LogOnIdentity key = new LogOnIdentity("passphrase");
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Passphrase.Thumbprint));
@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new LogOnIdentity("passphrase")));
 
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.ActiveFileChange, new LogOnIdentity("passphrase")));
 
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionStart, new LogOnIdentity("passphrase")));
 
@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.EncryptPendingFiles, new LogOnIdentity("passphrase")));
 
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
 
             Assert.DoesNotThrow(() =>
             {
@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object);
 
             Assert.Throws<InvalidOperationException>(() =>
             {
@@ -226,7 +226,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
             sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase1"), @"C:\My Documents\"));
@@ -251,9 +251,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), mock.Object, mockStatusChecker.Object);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, TypeMap.Resolve.New<ActiveFileAction>(), mock.Object, mockStatusChecker.Object);
             LogOnIdentity defaultKey = new LogOnIdentity("default");
-            Resolve.KnownKeys.DefaultEncryptionIdentity = defaultKey;
+            Resolve.KnownIdentities.DefaultEncryptionIdentity = defaultKey;
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\", defaultKey.Passphrase.Thumbprint));
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();

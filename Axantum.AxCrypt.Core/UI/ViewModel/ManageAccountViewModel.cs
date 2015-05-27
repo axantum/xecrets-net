@@ -46,9 +46,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private UserAsymmetricKeysStore _keysStore;
 
-        public ManageAccountViewModel(UserAsymmetricKeysStore keysStore)
+        private KnownIdentities _knownIdenties;
+
+        public ManageAccountViewModel(UserAsymmetricKeysStore keysStore, KnownIdentities knownIdentities)
         {
             _keysStore = keysStore;
+            _knownIdenties = knownIdentities;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
@@ -73,6 +76,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private object ChangePassphraseAction(string passphrase)
         {
             _keysStore.Save(new Passphrase(passphrase));
+            _knownIdenties.DefaultEncryptionIdentity = new LogOnIdentity(_keysStore.Keys.First(), new Passphrase(passphrase));
 
             return null;
         }

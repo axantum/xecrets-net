@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         /// <summary>
-        /// Raised when a valid decryption passphrase was not found among the KnownKeys collection.
+        /// Raised when a valid decryption passphrase was not found.
         /// </summary>
         public event EventHandler<FileOperationEventArgs> QueryDecryptionPassphrase;
 
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         /// <summary>
-        /// Raised when the KnownKeys.DefaultEncryptionKey is not set.
+        /// Raised when the no default encryption identity is known.
         /// </summary>
         public event EventHandler<FileOperationEventArgs> QueryEncryptionPassphrase;
 
@@ -248,7 +248,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
             }
 
-            if (Resolve.KnownKeys.DefaultEncryptionIdentity == null)
+            if (Resolve.KnownIdentities.DefaultEncryptionIdentity == null)
             {
                 OnQueryEncryptionPassphrase(_eventArgs);
                 if (_eventArgs.Cancel)
@@ -259,7 +259,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             else
             {
-                _eventArgs.LogOnIdentity = Resolve.KnownKeys.DefaultEncryptionIdentity;
+                _eventArgs.LogOnIdentity = Resolve.KnownIdentities.DefaultEncryptionIdentity;
             }
 
             return true;

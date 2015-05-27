@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static bool DetermineDroppableAsRecent(IEnumerable<IDataItem> files)
         {
-            return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Resolve.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+            return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Resolve.KnownIdentities.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
         }
 
         private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IDataItem> files)
@@ -245,12 +245,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     break;
 
                 case SessionNotificationType.LogOn:
-                    SetLogOnState(Resolve.KnownKeys.IsLoggedOn);
+                    SetLogOnState(Resolve.KnownIdentities.IsLoggedOn);
                     SetWatchedFolders();
                     break;
 
                 case SessionNotificationType.LogOff:
-                    SetLogOnState(Resolve.KnownKeys.IsLoggedOn);
+                    SetLogOnState(Resolve.KnownIdentities.IsLoggedOn);
                     SetWatchedFolders();
                     break;
 
@@ -271,7 +271,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetWatchedFolders()
         {
-            WatchedFolders = Resolve.KnownKeys.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
+            WatchedFolders = Resolve.KnownIdentities.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
         }
 
         private void SetRecentFiles()
@@ -288,7 +288,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
-            FilesArePending = openFiles.Count > 0 || Resolve.KnownKeys.LoggedOnWatchedFolders.SelectMany(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path).ListEncryptable()).Any();
+            FilesArePending = openFiles.Count > 0 || Resolve.KnownIdentities.LoggedOnWatchedFolders.SelectMany(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path).ListEncryptable()).Any();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -308,18 +308,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            if (Resolve.KnownKeys.DefaultEncryptionIdentity.UserKeys != null)
+            if (Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null)
             {
-                return Resolve.KnownKeys.DefaultEncryptionIdentity;
+                return Resolve.KnownIdentities.DefaultEncryptionIdentity;
             }
 
-            Passphrase identity = _fileSystemState.KnownPassphrases.FirstOrDefault(i => i.Thumbprint == Resolve.KnownKeys.DefaultEncryptionIdentity.Passphrase.Thumbprint);
+            Passphrase identity = _fileSystemState.KnownPassphrases.FirstOrDefault(i => i.Thumbprint == Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Thumbprint);
             if (identity == null)
             {
                 throw new InvalidOperationException("Attempt to log on without a matching identity being defined.");
             }
 
-            return Resolve.KnownKeys.DefaultEncryptionIdentity;
+            return Resolve.KnownIdentities.DefaultEncryptionIdentity;
         }
 
         private void ClearPassphraseMemoryAction()
@@ -357,7 +357,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string folder in folders)
             {
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownKeys.DefaultEncryptionIdentity.Passphrase.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Thumbprint));
             }
             _fileSystemState.Save();
         }

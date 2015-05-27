@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestEncryptFileWithDefaultEncryptionKey()
         {
             TypeMap.Register.Singleton<ICryptoPolicy>(() => new LegacyCryptoPolicy());
-            Resolve.KnownKeys.DefaultEncryptionIdentity = new LogOnIdentity("default");
+            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("default");
             FileOperationsController controller = new FileOperationsController();
             bool queryEncryptionPassphraseWasCalled = false;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -494,10 +494,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestDecryptWithKnownKey()
         {
             FileOperationsController controller = new FileOperationsController();
-            Resolve.KnownKeys.Add(new LogOnIdentity("b"));
-            Resolve.KnownKeys.Add(new LogOnIdentity("c"));
-            Resolve.KnownKeys.Add(new LogOnIdentity("a"));
-            Resolve.KnownKeys.Add(new LogOnIdentity("e"));
+            Resolve.KnownIdentities.Add(new LogOnIdentity("b"));
+            Resolve.KnownIdentities.Add(new LogOnIdentity("c"));
+            Resolve.KnownIdentities.Add(new LogOnIdentity("a"));
+            Resolve.KnownIdentities.Add(new LogOnIdentity("e"));
             bool passphraseWasQueried = false;
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
@@ -766,8 +766,8 @@ namespace Axantum.AxCrypt.Core.Test
                 knownKeyWasAdded = true;
             };
 
-            Resolve.KnownKeys.Add(new LogOnIdentity("b"));
-            Resolve.KnownKeys.Add(new LogOnIdentity("c"));
+            Resolve.KnownIdentities.Add(new LogOnIdentity("b"));
+            Resolve.KnownIdentities.Add(new LogOnIdentity("c"));
 
             status = controller.VerifyEncrypted(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success));

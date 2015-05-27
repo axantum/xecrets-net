@@ -41,6 +41,13 @@ namespace Axantum.AxCrypt.Core.UI
 
         private SessionNotify _notificationMonitor;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KnownIdentities"/> class. Only for use by mocking frameork.
+        /// </summary>
+        protected KnownIdentities()
+        {
+        }
+
         public KnownIdentities(FileSystemState fileSystemState, SessionNotify notificationMonitor)
         {
             _fileSystemState = fileSystemState;
@@ -115,7 +122,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <value>
         /// The default encryption key, or null if none is known.
         /// </value>
-        public LogOnIdentity DefaultEncryptionIdentity
+        public virtual LogOnIdentity DefaultEncryptionIdentity
         {
             get
             {

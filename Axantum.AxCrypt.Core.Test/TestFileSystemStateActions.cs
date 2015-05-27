@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
             activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.KnownKeys.Add(activeFile.Key);
+            Resolve.KnownIdentities.Add(activeFile.Key);
 
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
             decryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
 
-            Resolve.KnownKeys.Add(passphrase);
+            Resolve.KnownIdentities.Add(passphrase);
             TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
 
@@ -223,8 +223,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
-            Resolve.KnownKeys.Add(new LogOnIdentity("x"));
-            Resolve.KnownKeys.Add(new LogOnIdentity("y"));
+            Resolve.KnownIdentities.Add(new LogOnIdentity("x"));
+            Resolve.KnownIdentities.Add(new LogOnIdentity("y"));
             TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
@@ -246,7 +246,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Resolve.New<IDataStore>(_decryptedFile1).Delete();
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.KnownKeys.Add(activeFile.Key);
+            Resolve.KnownIdentities.Add(activeFile.Key);
 
             bool changedWasRaised = false;
             Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
@@ -269,7 +269,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.KnownKeys.Add(activeFile.Key);
+            Resolve.KnownIdentities.Add(activeFile.Key);
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
@@ -313,7 +313,7 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = true;
             });
 
-            Resolve.KnownKeys.Add(passphrase);
+            Resolve.KnownIdentities.Add(passphrase);
 
             EventHandler eventHandler = ((object sender, EventArgs e) =>
             {
@@ -350,7 +350,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
             Resolve.FileSystemState.Add(activeFile, fakeLauncher);
-            Resolve.KnownKeys.Add(activeFile.Key);
+            Resolve.KnownIdentities.Add(activeFile.Key);
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;

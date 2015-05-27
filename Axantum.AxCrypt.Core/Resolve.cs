@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
         }
 
-        public static KnownIdentities KnownKeys
+        public static KnownIdentities KnownIdentities
         {
             get { return TypeMap.Resolve.Singleton<KnownIdentities>(); }
         }
