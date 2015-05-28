@@ -1437,5 +1437,32 @@ namespace Axantum.AxCrypt
             }
             viewModel.ChangePassphrase.Execute(passphrase);
         }
+
+        private void _exportSharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fileName;
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Title = "Export sharing key";
+                sfd.DefaultExt = ".txt";
+                sfd.AddExtension = true;
+                sfd.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                sfd.CheckPathExists = true;
+                sfd.FileName = "AxCrypt Sharing Key - {0}.txt".InvariantFormat(Resolve.AsymmetricKeysStore.UserEmail);
+                sfd.InitialDirectory = Environment.CurrentDirectory;
+                sfd.ValidateNames = true;
+                sfd.OverwritePrompt = true;
+                sfd.RestoreDirectory = false;
+                DialogResult saveAsResult = sfd.ShowDialog();
+                if (saveAsResult != DialogResult.OK)
+                {
+                    return;
+                }
+                fileName = sfd.FileName;
+            }
+
+            string publicKey = Resolve.Serializer.Serialize(Resolve.AsymmetricKeysStore.Keys.First().KeyPair.PublicKey);
+            File.WriteAllText(fileName, publicKey);
+        }
     }
 }

@@ -45,6 +45,7 @@
             this._languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._englishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._changePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._clearPassphraseMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +80,7 @@
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
-            this._changePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._exportSharingKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -268,6 +269,7 @@
             this._optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._languageToolStripMenuItem,
             this._changePassphraseToolStripMenuItem,
+            this._exportSharingKeyToolStripMenuItem,
             this._debugOptionsToolStripMenuItem,
             this._clearPassphraseMemoryToolStripMenuItem});
             resources.ApplyResources(this._optionsToolStripMenuItem, "_optionsToolStripMenuItem");
@@ -295,6 +297,12 @@
             resources.ApplyResources(this._swedishLanguageToolStripMenuItem, "_swedishLanguageToolStripMenuItem");
             this._swedishLanguageToolStripMenuItem.Tag = "sv";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.SwedishLanguageToolStripMenuItem_Click);
+            // 
+            // _changePassphraseToolStripMenuItem
+            // 
+            this._changePassphraseToolStripMenuItem.Name = "_changePassphraseToolStripMenuItem";
+            resources.ApplyResources(this._changePassphraseToolStripMenuItem, "_changePassphraseToolStripMenuItem");
+            this._changePassphraseToolStripMenuItem.Click += new System.EventHandler(this._changePassphraseToolStripMenuItem_Click);
             // 
             // _debugOptionsToolStripMenuItem
             // 
@@ -516,11 +524,11 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // _changePassphraseToolStripMenuItem
+            // _exportSharingKeyToolStripMenuItem
             // 
-            this._changePassphraseToolStripMenuItem.Name = "_changePassphraseToolStripMenuItem";
-            resources.ApplyResources(this._changePassphraseToolStripMenuItem, "_changePassphraseToolStripMenuItem");
-            this._changePassphraseToolStripMenuItem.Click += new System.EventHandler(this._changePassphraseToolStripMenuItem_Click);
+            this._exportSharingKeyToolStripMenuItem.Name = "_exportSharingKeyToolStripMenuItem";
+            resources.ApplyResources(this._exportSharingKeyToolStripMenuItem, "_exportSharingKeyToolStripMenuItem");
+            this._exportSharingKeyToolStripMenuItem.Click += new System.EventHandler(this._exportSharingKeyToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
@@ -614,6 +622,7 @@
         private System.Windows.Forms.ToolStripMenuItem createAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _manageAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _changePassphraseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _exportSharingKeyToolStripMenuItem;
     }
 }
 
