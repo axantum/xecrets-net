@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             AccountEmails = _keysStore.Keys.Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
 
-            ChangePassphrase = new DelegateAction<string>((password) => ChangePassphraseAction(password), (password) => _keysStore.HasStore);
+            ChangePassphrase = new DelegateAction<string>((password) => ChangePassphraseAction(password), (password) => _keysStore.Keys.Any());
         }
 
         private static void BindPropertyChangedEvents()

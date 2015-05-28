@@ -360,4 +360,10 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Incorrect e-mail address</value>
     <comment>Displayed when e-mail format validation fails.</comment>
   </data>
+  <data name="ChangePassphraseDialogTitle" xml:space="preserve">
+    <value>Change Passphrase</value>
+  </data>
+  <data name="NewPassphraseDialogTitle" xml:space="preserve">
+    <value>Create a New Passphrase</value>
+  </data>
 </root>

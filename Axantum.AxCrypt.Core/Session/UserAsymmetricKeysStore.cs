@@ -59,6 +59,11 @@ namespace Axantum.AxCrypt.Core.Session
             return true;
         }
 
+        public void Unload()
+        {
+            _keysStoreFiles.Clear();
+        }
+
         public bool IsValidAccountLogOn(EmailAddress userEmail, Passphrase passphrase)
         {
             return TryLoadKeyStoreFiles(userEmail, passphrase).Any();

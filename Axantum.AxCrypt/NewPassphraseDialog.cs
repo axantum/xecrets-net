@@ -38,10 +38,11 @@ namespace Axantum.AxCrypt
     {
         private NewPassphraseViewModel _viewModel;
 
-        public NewPassphraseDialog(Form parent, string passphrase, string encryptedFileFullName)
+        public NewPassphraseDialog(Form parent, string title, string passphrase, string encryptedFileFullName)
         {
             InitializeComponent();
 
+            Text = title;
             _viewModel = new NewPassphraseViewModel(passphrase, encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };
@@ -114,7 +115,6 @@ namespace Axantum.AxCrypt
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
         }
     }
 }

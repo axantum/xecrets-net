@@ -131,6 +131,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
             _knownIdentities.Clear();
+            Resolve.AsymmetricKeysStore.Unload();
         }
 
         private LogOnIdentity LogOnLogOffAction(Guid cryptoId)

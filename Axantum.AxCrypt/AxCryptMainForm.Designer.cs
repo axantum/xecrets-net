@@ -54,6 +54,7 @@
             this.cryptoPolicyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._manageAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +79,7 @@
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
-            this._manageAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._changePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -266,6 +267,7 @@
             // 
             this._optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._languageToolStripMenuItem,
+            this._changePassphraseToolStripMenuItem,
             this._debugOptionsToolStripMenuItem,
             this._clearPassphraseMemoryToolStripMenuItem});
             resources.ApplyResources(this._optionsToolStripMenuItem, "_optionsToolStripMenuItem");
@@ -351,6 +353,12 @@
             this.createAccountToolStripMenuItem.Name = "createAccountToolStripMenuItem";
             resources.ApplyResources(this.createAccountToolStripMenuItem, "createAccountToolStripMenuItem");
             this.createAccountToolStripMenuItem.Click += new System.EventHandler(this.createAccountToolStripMenuItem_Click);
+            // 
+            // _manageAccountToolStripMenuItem
+            // 
+            this._manageAccountToolStripMenuItem.Name = "_manageAccountToolStripMenuItem";
+            resources.ApplyResources(this._manageAccountToolStripMenuItem, "_manageAccountToolStripMenuItem");
+            this._manageAccountToolStripMenuItem.Click += new System.EventHandler(this._manageAccountToolStripMenuItem_Click);
             // 
             // _helpToolStripMenuItem
             // 
@@ -508,11 +516,11 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // _manageAccountToolStripMenuItem
+            // _changePassphraseToolStripMenuItem
             // 
-            this._manageAccountToolStripMenuItem.Name = "_manageAccountToolStripMenuItem";
-            resources.ApplyResources(this._manageAccountToolStripMenuItem, "_manageAccountToolStripMenuItem");
-            this._manageAccountToolStripMenuItem.Click += new System.EventHandler(this._manageAccountToolStripMenuItem_Click);
+            this._changePassphraseToolStripMenuItem.Name = "_changePassphraseToolStripMenuItem";
+            resources.ApplyResources(this._changePassphraseToolStripMenuItem, "_changePassphraseToolStripMenuItem");
+            this._changePassphraseToolStripMenuItem.Click += new System.EventHandler(this._changePassphraseToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
@@ -605,6 +613,7 @@
         private System.Windows.Forms.ToolStripMenuItem encryptedFoldersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _manageAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _changePassphraseToolStripMenuItem;
     }
 }
 

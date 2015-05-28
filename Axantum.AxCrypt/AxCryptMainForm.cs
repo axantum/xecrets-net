@@ -380,7 +380,8 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _encryptionKeyToolStripButton.Image = loggedOn ? Resources.encryptionkeyred32 : Resources.encryptionkeygreen32; });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _encryptionKeyToolStripButton.ToolTipText = loggedOn ? Resources.DefaultEncryptionKeyIsIsetToolTip : Resources.NoDefaultEncryptionKeySetToolTip; });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { SetWindowTextWithLogonStatus(loggedOn); });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _manageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.HasStore; });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _manageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _changePassphraseToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
@@ -477,7 +478,7 @@ namespace Axantum.AxCrypt
         private void HandleCreateNewLogOn(LogOnEventArgs e)
         {
             RestoreWindowWithFocus();
-            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, e.Passphrase, e.EncryptedFileFullName))
+            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, Resources.NewPassphraseDialogTitle, e.Passphrase, e.EncryptedFileFullName))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(this);
@@ -1416,6 +1417,25 @@ namespace Axantum.AxCrypt
             {
                 dialog.ShowDialog();
             }
+        }
+
+        private void _changePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageAccountViewModel viewModel = new ManageAccountViewModel(Resolve.AsymmetricKeysStore, Resolve.KnownIdentities);
+
+            string passphrase;
+            using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Resources.ChangePassphraseDialogTitle, String.Empty, String.Empty))
+            {
+                dialog.ShowPassphraseCheckBox.Checked = Resolve.UserSettings.DisplayEncryptPassphrase;
+                DialogResult dialogResult = dialog.ShowDialog(this);
+                if (dialogResult != DialogResult.OK || dialog.PassphraseTextBox.Text.Length == 0)
+                {
+                    return;
+                }
+                Resolve.UserSettings.DisplayEncryptPassphrase = dialog.ShowPassphraseCheckBox.Checked;
+                passphrase = dialog.PassphraseTextBox.Text;
+            }
+            viewModel.ChangePassphrase.Execute(passphrase);
         }
     }
 }
