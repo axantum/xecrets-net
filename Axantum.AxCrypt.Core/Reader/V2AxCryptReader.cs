@@ -86,6 +86,9 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.V2Hmac:
                     return new V2HmacHeaderBlock(dataBlock);
 
+                case HeaderBlockType.AlgorithmVerifier:
+                    return new V2AlgorithmVerifierEncryptedHeaderBlock(dataBlock);
+
                 case HeaderBlockType.EncryptedDataPart:
                     return new EncryptedDataPartBlock(dataBlock);
             }

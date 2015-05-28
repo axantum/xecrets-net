@@ -80,6 +80,7 @@ namespace Axantum.AxCrypt.Core.Header
             _headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.FileInfo)));
             _headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.Compression)));
             _headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.UnicodeFileNameInfo)));
+            _headers.HeaderBlocks.Add(new V2AlgorithmVerifierEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.AlgorithmVerifier)));
             _headers.HeaderBlocks.Add(new DataHeaderBlock());
 
             SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);

@@ -58,6 +58,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Header\IKeyStreamCryptoFactory.cs" />
     <Compile Include="Header\Recipients.cs" />
+    <Compile Include="Header\V2AlgorithmVerifierEncryptedHeaderBlock.cs" />
     <Compile Include="IO\ByteBuffer.cs" />
     <Compile Include="IO\ChainedStream.cs" />
     <Compile Include="IO\IDataContainer.cs" />
