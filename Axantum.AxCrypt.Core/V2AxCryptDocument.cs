@@ -133,19 +133,27 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("headers");
             }
 
-            ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
+            ResetState();
+
+            CryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
 
             IEnumerable<V2AsymmetricKeyWrapHeaderBlock> keyWraps = headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
             foreach (V2AsymmetricKeyWrapHeaderBlock keyWrap in keyWraps)
             {
-                keyWrap.SetPrivateKey(cryptoFactory, privateKey);
+                keyWrap.SetPrivateKey(CryptoFactory, privateKey);
                 if (keyWrap.Crypto(0) == null)
                 {
                     continue;
                 }
 
                 DocumentHeaders = new V2DocumentHeaders(keyWrap);
-                PassphraseIsValid = DocumentHeaders.Load(headers);
+                if (!DocumentHeaders.Load(headers))
+                {
+                    throw new InvalidOperationException("If the master key was decrypted with the private key, the load should not be able to fail.");
+                }
+
+                V2AlgorithmVerifierEncryptedHeaderBlock algorithmVerifier = DocumentHeaders.Headers.FindHeaderBlock<V2AlgorithmVerifierEncryptedHeaderBlock>();
+                PassphraseIsValid = algorithmVerifier != null && algorithmVerifier.IsVerified;
                 if (PassphraseIsValid)
                 {
                     return true;
