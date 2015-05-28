@@ -146,6 +146,14 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public EmailAddress UserEmail
+        {
+            get
+            {
+                return Keys.First().UserEmail;
+            }
+        }
+
         private static string UniqueFilePart()
         {
             DateTime now = OS.Current.UtcNow;

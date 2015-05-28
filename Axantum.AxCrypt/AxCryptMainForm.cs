@@ -838,7 +838,7 @@ namespace Axantum.AxCrypt
             string logonStatus;
             if (isLoggedOn)
             {
-                logonStatus = Resources.LoggedOnStatusText.InvariantFormat(String.Empty);
+                logonStatus = Resolve.AsymmetricKeysStore.Keys.Any() ? Resources.AccountLoggedOnStatusText.InvariantFormat(Resolve.AsymmetricKeysStore.UserEmail) : Resources.LoggedOnStatusText.InvariantFormat(String.Empty);
             }
             else
             {
