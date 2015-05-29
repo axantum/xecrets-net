@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
@@ -382,6 +383,9 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { SetWindowTextWithLogonStatus(loggedOn); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _manageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _changePassphraseToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
+
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
@@ -1438,7 +1442,7 @@ namespace Axantum.AxCrypt
             viewModel.ChangePassphrase.Execute(passphrase);
         }
 
-        private void _exportSharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void _exportMySharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string fileName;
             using (SaveFileDialog sfd = new SaveFileDialog())
@@ -1449,7 +1453,6 @@ namespace Axantum.AxCrypt
                 sfd.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
                 sfd.CheckPathExists = true;
                 sfd.FileName = "AxCrypt Sharing Key - {0}.txt".InvariantFormat(Resolve.AsymmetricKeysStore.UserEmail);
-                sfd.InitialDirectory = Environment.CurrentDirectory;
                 sfd.ValidateNames = true;
                 sfd.OverwritePrompt = true;
                 sfd.RestoreDirectory = false;
@@ -1461,8 +1464,13 @@ namespace Axantum.AxCrypt
                 fileName = sfd.FileName;
             }
 
-            string publicKey = Resolve.Serializer.Serialize(Resolve.AsymmetricKeysStore.Keys.First().KeyPair.PublicKey);
-            File.WriteAllText(fileName, publicKey);
+            UserPublicKey userPublicKey = new UserPublicKey(Resolve.AsymmetricKeysStore.UserEmail, Resolve.AsymmetricKeysStore.Keys.First().KeyPair.PublicKey);
+            string serialized = Resolve.Serializer.Serialize(userPublicKey);
+            File.WriteAllText(fileName, serialized);
+        }
+
+        private void _importOthersSharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
     }
 }
