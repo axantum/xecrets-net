@@ -262,6 +262,8 @@
     <Content Include="resources\axcrypticon.ico" />
     <Content Include="resources\closeremovestandbygreen32.png" />
     <Content Include="resources\closeremovestandbyred32.png" />
+    <None Include="resources\cleanupneededred32.png" />
+    <None Include="resources\cleanupneededred16.png" />
     <None Include="resources\SkyDrive.ico" />
     <None Include="resources\trashred16.png" />
     <None Include="resources\encryptlock32.png" />

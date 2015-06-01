@@ -370,4 +370,16 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Create a New Passphrase</value>
   </data>
+  <data name="cleanupneededred16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\cleanupneededred16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cleanupneededred32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\cleanupneededred32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CleanUpNeededToolTip" xml:space="preserve">
+    <value>File is decrypted, and may need to be cleaned. Close any open applications, and click the Clean Up button.</value>
+  </data>
+  <data name="DoubleClickToOpenToolTip" xml:space="preserve">
+    <value>Double click to open. If required you will be prompted for a passphrase.</value>
+  </data>
 </root>

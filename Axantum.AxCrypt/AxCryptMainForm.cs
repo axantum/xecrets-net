@@ -316,6 +316,7 @@ namespace Axantum.AxCrypt
             smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
             smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
             smallImageList.Images.Add("ActiveFileKnownKey", Resources.fileknownkeygreen16);
+            smallImageList.Images.Add("CleanUpNeeded", Resources.cleanupneededred16);
             smallImageList.TransparentColor = System.Drawing.Color.Transparent;
 
             return smallImageList;
@@ -1028,23 +1029,15 @@ namespace Axantum.AxCrypt
             switch (activeFile.VisualState)
             {
                 case ActiveFileVisualState.DecryptedWithKnownKey:
-                    item.ImageKey = "DecryptedFile";
-                    item.ToolTipText = Resources.DecryptedFileToolTip;
-                    break;
-
                 case ActiveFileVisualState.DecryptedWithoutKnownKey:
-                    item.ImageKey = "DecryptedUnknownKeyFile";
-                    item.ToolTipText = Resources.DecryptedUnknownKeyFileToolTip;
+                    item.ImageKey = "CleanUpNeeded";
+                    item.ToolTipText = Resources.CleanUpNeededToolTip;
                     break;
 
                 case ActiveFileVisualState.EncryptedWithoutKnownKey:
-                    item.ImageKey = "ActiveFile";
-                    item.ToolTipText = Resources.ActiveFileToolTip;
-                    break;
-
                 case ActiveFileVisualState.EncryptedWithKnownKey:
-                    item.ImageKey = "ActiveFileKnownKey";
-                    item.ToolTipText = Resources.ActiveFileKnownKeyToolTip;
+                    item.ImageKey = String.Empty;
+                    item.ToolTipText = Resources.DoubleClickToOpenToolTip;
                     break;
 
                 default:

@@ -192,6 +192,35 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cleanupneededred16 {
+            get {
+                object obj = ResourceManager.GetObject("cleanupneededred16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cleanupneededred32 {
+            get {
+                object obj = ResourceManager.GetObject("cleanupneededred32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File is decrypted, and may need to be cleaned. Close any open applications, and click the Clean Up button..
+        /// </summary>
+        internal static string CleanUpNeededToolTip {
+            get {
+                return ResourceManager.GetString("CleanUpNeededToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to check for a newer version..
         /// </summary>
         internal static string ClickToCheckForNewerVersionTooltip {
@@ -311,6 +340,15 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("DocumentsLibrary", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double click to open. If required you will be prompted for a passphrase..
+        /// </summary>
+        internal static string DoubleClickToOpenToolTip {
+            get {
+                return ResourceManager.GetString("DoubleClickToOpenToolTip", resourceCulture);
             }
         }
         
