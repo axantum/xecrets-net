@@ -95,5 +95,10 @@ namespace Axantum.AxCrypt
         {
             CenterToParent();
         }
+
+        private void _buttonCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.No;
+        }
     }
 }

@@ -18,8 +18,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AxCryptMainForm));
             this._mainToolStrip = new System.Windows.Forms.ToolStrip();
-            this._encryptionKeyToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this._encryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._decryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -79,6 +77,7 @@
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
+            this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -97,8 +96,6 @@
             this._mainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this._mainToolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this._mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._encryptionKeyToolStripButton,
-            this._toolStripSeparator7,
             this._encryptToolStripButton,
             this._decryptToolStripButton,
             this._toolStripSeparator1,
@@ -108,18 +105,6 @@
             this._knownFoldersSeparator});
             this._mainToolStrip.Name = "_mainToolStrip";
             this._mainToolStrip.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainToolStrip_DragDrop);
-            // 
-            // _encryptionKeyToolStripButton
-            // 
-            this._encryptionKeyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._encryptionKeyToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.encryptionkeygreen32;
-            resources.ApplyResources(this._encryptionKeyToolStripButton, "_encryptionKeyToolStripButton");
-            this._encryptionKeyToolStripButton.Name = "_encryptionKeyToolStripButton";
-            // 
-            // _toolStripSeparator7
-            // 
-            this._toolStripSeparator7.Name = "_toolStripSeparator7";
-            resources.ApplyResources(this._toolStripSeparator7, "_toolStripSeparator7");
             // 
             // _encryptToolStripButton
             // 
@@ -513,10 +498,17 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
+            // _logOnLogOffLabel
+            // 
+            resources.ApplyResources(this._logOnLogOffLabel, "_logOnLogOffLabel");
+            this._logOnLogOffLabel.Name = "_logOnLogOffLabel";
+            this._logOnLogOffLabel.TabStop = true;
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this._logOnLogOffLabel);
             this.Controls.Add(this._progressTableLayoutPanel);
             this.Controls.Add(this._statusTabControl);
             this.Controls.Add(this._mainToolStrip);
@@ -576,11 +568,9 @@
         private System.Windows.Forms.ToolStripMenuItem _aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _viewHelpMenuItem;
         private Axantum.AxCrypt.Forms.ProgressBackground _progressBackgroundWorker;
-        private System.Windows.Forms.ToolStripButton _encryptionKeyToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem _decryptAndRemoveFromListToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem _wipeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator _toolStripSeparator7;
         private System.Windows.Forms.ContextMenuStrip _watchedFoldersContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersRemoveMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersdecryptTemporarilyMenuItem;
@@ -604,6 +594,7 @@
         private System.Windows.Forms.ToolStripMenuItem _changePassphraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _exportSharingKeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _importOthersSharingKeyToolStripMenuItem;
+        private System.Windows.Forms.LinkLabel _logOnLogOffLabel;
     }
 }
 

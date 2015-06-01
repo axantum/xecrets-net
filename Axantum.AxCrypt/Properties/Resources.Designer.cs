@@ -634,11 +634,29 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LogOff.
+        /// </summary>
+        internal static string LogOffText {
+            get {
+                return ResourceManager.GetString("LogOffText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This AxCrypt Identity already exists.
         /// </summary>
         internal static string LogOnExists {
             get {
                 return ResourceManager.GetString("LogOnExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log On.
+        /// </summary>
+        internal static string LogOnText {
+            get {
+                return ResourceManager.GetString("LogOnText", resourceCulture);
             }
         }
         

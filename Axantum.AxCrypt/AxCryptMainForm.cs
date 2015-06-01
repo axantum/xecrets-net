@@ -108,6 +108,8 @@ namespace Axantum.AxCrypt
             BindToFileOperationViewModel();
             SetupCommandService();
             SendStartSessionNotification();
+
+            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
         }
 
         private void LogOnOrExit()
@@ -378,13 +380,14 @@ namespace Axantum.AxCrypt
             _mainViewModel.Title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
             _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _encryptionKeyToolStripButton.Image = loggedOn ? Resources.encryptionkeyred32 : Resources.encryptionkeygreen32; });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _encryptionKeyToolStripButton.ToolTipText = loggedOn ? Resources.DefaultEncryptionKeyIsIsetToolTip : Resources.NoDefaultEncryptionKeySetToolTip; });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { SetWindowTextWithLogonStatus(loggedOn); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _manageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _changePassphraseToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _logOnLogOffLabel.Visible = Resolve.AsymmetricKeysStore.HasStore; });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { if (!loggedOn) _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id); });
 
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
@@ -431,7 +434,7 @@ namespace Axantum.AxCrypt
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
-            _encryptionKeyToolStripButton.Click += (sender, e) => { _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id); };
+            _logOnLogOffLabel.LinkClicked += (sender, e) => { _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
@@ -544,6 +547,11 @@ namespace Axantum.AxCrypt
                     e.UserEmail = logOnDialog.EmailTextBox.Text;
                     e.IsAskingForPreviouslyUnknownPassphrase = true;
                     return;
+                }
+
+                if (dialogResult == DialogResult.Cancel)
+                {
+                    CloseAndExit();
                 }
 
                 if (dialogResult != DialogResult.OK || logOnDialog.PassphraseTextBox.Text.Length == 0)
@@ -722,7 +730,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case CommandVerb.Exit:
-                    Application.Exit();
+                    CloseAndExit();
                     break;
 
                 case CommandVerb.Show:
@@ -1104,6 +1112,11 @@ namespace Axantum.AxCrypt
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CloseAndExit();
+        }
+
+        private void CloseAndExit()
+        {
             if (_debugOutput != null)
             {
                 _debugOutput.AllowClose = true;
@@ -1240,7 +1253,7 @@ namespace Axantum.AxCrypt
             SetLanguage("sv-SE");
         }
 
-        private static void SetLanguage(string cultureName)
+        private void SetLanguage(string cultureName)
         {
             Resolve.UserSettings.CultureName = cultureName;
             if (Resolve.Log.IsInfoEnabled)
@@ -1248,7 +1261,7 @@ namespace Axantum.AxCrypt
                 Resolve.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Resolve.UserSettings.CultureName));
             }
             Resources.LanguageChangeRestartPrompt.ShowWarning();
-            Application.Exit();
+            CloseAndExit();
         }
 
         private void LanguageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -1342,7 +1355,7 @@ namespace Axantum.AxCrypt
         private void ClearPassphraseMemoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ClearAllSettingsAndReinitialize();
-            Application.Exit();
+            CloseAndExit();
         }
 
         private static void ClearAllSettingsAndReinitialize()
