@@ -120,8 +120,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            _knownIdentities.DefaultEncryptionIdentity = logOnIdentity;
-            return _knownIdentities.DefaultEncryptionIdentity;
+            _knownIdentities.Add(logOnIdentity);
+            return logOnIdentity;
         }
 
         private void LogOffAction()
@@ -189,7 +189,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            _knownIdentities.DefaultEncryptionIdentity = logOnIdentity;
+            _knownIdentities.Add(logOnIdentity);
             return logOnIdentity;
         }
 

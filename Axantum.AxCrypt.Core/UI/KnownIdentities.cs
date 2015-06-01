@@ -46,14 +46,15 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         protected KnownIdentities()
         {
+            _logOnIdentities = new List<LogOnIdentity>();
+            _knownThumbprints = new List<SymmetricKeyThumbprint>();
         }
 
         public KnownIdentities(FileSystemState fileSystemState, SessionNotify notificationMonitor)
+            : this()
         {
             _fileSystemState = fileSystemState;
             _notificationMonitor = notificationMonitor;
-            _logOnIdentities = new List<LogOnIdentity>();
-            _knownThumbprints = new List<SymmetricKeyThumbprint>();
         }
 
         public bool IsLoggedOn
@@ -69,7 +70,7 @@ namespace Axantum.AxCrypt.Core.UI
             DefaultEncryptionIdentity = null;
         }
 
-        public void Add(LogOnIdentity logOnIdentity)
+        public virtual void Add(LogOnIdentity logOnIdentity)
         {
             bool changed = false;
             lock (_logOnIdentities)

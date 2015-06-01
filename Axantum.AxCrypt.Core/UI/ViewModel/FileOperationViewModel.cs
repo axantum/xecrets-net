@@ -348,7 +348,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     _fileSystemState.KnownPassphrases.Add(e.LogOnIdentity.Passphrase);
                     _fileSystemState.Save();
                 }
-                _knownIdentities.DefaultEncryptionIdentity = e.LogOnIdentity;
+                _knownIdentities.Add(e.LogOnIdentity);
             };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
