@@ -142,7 +142,6 @@
             this.MinimizeBox = false;
             this.Name = "LogOnDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.TopMost = true;
             this.Activated += new System.EventHandler(this.LogOnDialog_Activated);
             this.Load += new System.EventHandler(this.EncryptPassphraseDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();

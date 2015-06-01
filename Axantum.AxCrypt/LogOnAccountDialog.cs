@@ -81,7 +81,6 @@ namespace Axantum.AxCrypt
 
         private void LogOnAccountDialog_Activated(object sender, EventArgs e)
         {
-            TopMost = true;
             BringToFront();
             Focus();
         }
