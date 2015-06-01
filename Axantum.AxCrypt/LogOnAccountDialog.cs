@@ -91,8 +91,9 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
         }
 
-        private void EmailTextBox_TextChanged(object sender, EventArgs e)
+        private void LogOnAccountDialog_ResizeAndMoveEnd(object sender, EventArgs e)
         {
+            CenterToParent();
         }
     }
 }

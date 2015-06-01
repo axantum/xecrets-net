@@ -169,7 +169,6 @@
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(242, 20);
             this.EmailTextBox.TabIndex = 1;
-            this.EmailTextBox.TextChanged += new System.EventHandler(this.EmailTextBox_TextChanged);
             // 
             // _errorProvider2
             // 
@@ -186,10 +185,12 @@
             this.ClientSize = new System.Drawing.Size(337, 213);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.EmailPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "LogOnAccountDialog";
             this.Text = "Log On";
             this.Activated += new System.EventHandler(this.LogOnAccountDialog_Activated);
             this.Load += new System.EventHandler(this.LogOnAccountDialog_Load);
+            this.ResizeEnd += new System.EventHandler(this.LogOnAccountDialog_ResizeAndMoveEnd);
             this.panel1.ResumeLayout(false);
             this.PassphraseGroupBox.ResumeLayout(false);
             this.PassphraseGroupBox.PerformLayout();
