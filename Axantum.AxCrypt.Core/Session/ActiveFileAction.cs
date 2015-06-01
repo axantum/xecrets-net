@@ -357,7 +357,10 @@ namespace Axantum.AxCrypt.Core.Session
                     Resolve.Log.LogInfo("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 TypeMap.Resolve.New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
-                activeFile.DecryptedFileInfo.Container.Delete();
+                if (activeFile.DecryptedFileInfo.Container.IsAvailable)
+                {
+                    activeFile.DecryptedFileInfo.Container.Delete();
+                }
             }
             catch (IOException)
             {
