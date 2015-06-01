@@ -536,7 +536,7 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingAccountLogOn(LogOnEventArgs e)
         {
-            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this))
+            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, Resolve.UserSettings))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);

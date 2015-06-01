@@ -16,9 +16,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// </summary>
     public class LogOnAccountViewModel : ViewModelBase
     {
-        public LogOnAccountViewModel(string userEmail)
+        private IUserSettings _userSettings;
+
+        public LogOnAccountViewModel(IUserSettings userSettings)
         {
-            InitializePropertyValues(userEmail);
+            if (userSettings == null)
+            {
+                throw new ArgumentNullException("userSettings");
+            }
+
+            _userSettings = userSettings;
+
+            InitializePropertyValues(_userSettings.UserEmail);
             BindPropertyChangedEvents();
         }
 
@@ -34,6 +43,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             BindPropertyChangedInternal("ShowPassphrase", (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
             BindPropertyChangedInternal("ShowEmail", (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
+            BindPropertyChangedInternal("UserEmail", (string userEmail) => { if (String.IsNullOrEmpty(Validate("UserEmail"))) { _userSettings.UserEmail = userEmail; } });
         }
 
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }

@@ -78,5 +78,7 @@ namespace Axantum.AxCrypt.Core.UI
         int CurrentSettingsVersion { get; }
 
         int AsymmetricKeyBits { get; set; }
+
+        string UserEmail { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.UI.ViewModel;
+﻿using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
@@ -20,11 +21,13 @@ namespace Axantum.AxCrypt
 
         private LogOnAccountViewModel _viewModel;
 
-        public LogOnAccountDialog(Form parent)
+        public LogOnAccountDialog(Form parent, IUserSettings userSettings)
         {
             InitializeComponent();
 
-            _viewModel = new LogOnAccountViewModel(String.Empty);
+            _viewModel = new LogOnAccountViewModel(userSettings);
+
+            _viewModel.BindPropertyChanged("UserEmail", (string userEmail) => { EmailTextBox.Text = userEmail; });
 
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
@@ -82,7 +85,14 @@ namespace Axantum.AxCrypt
         private void LogOnAccountDialog_Activated(object sender, EventArgs e)
         {
             BringToFront();
-            Focus();
+            if (String.IsNullOrEmpty(EmailTextBox.Text))
+            {
+                EmailTextBox.Focus();
+            }
+            else
+            {
+                PassphraseTextBox.Focus();
+            }
         }
 
         private void PassphraseTextBox_Enter(object sender, EventArgs e)

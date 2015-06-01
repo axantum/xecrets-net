@@ -200,6 +200,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("AsymmetricKeyBits", value); }
         }
 
+        public string UserEmail
+        {
+            get { return Load("UserEmail", String.Empty); }
+            set { Store("UserEmail", value); }
+        }
+
         public string this[string key]
         {
             get
