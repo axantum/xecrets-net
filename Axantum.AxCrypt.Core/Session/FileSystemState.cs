@@ -295,23 +295,26 @@ namespace Axantum.AxCrypt.Core.Session
         {
             foreach (ActiveFile activeFile in ActiveFiles)
             {
-                if (!activeFile.EncryptedFileInfo.IsAvailable)
+                using (FileLock fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
                 {
-                    RemoveActiveFile(activeFile);
-                    continue;
+                    if (!activeFile.EncryptedFileInfo.IsAvailable)
+                    {
+                        RemoveActiveFile(activeFile);
+                        continue;
+                    }
+                    if (!activeFile.Status.HasFlag(ActiveFileStatus.Inactive))
+                    {
+                        continue;
+                    }
+                    Guid cryptoId;
+                    LogOnIdentity passphrase = activeFile.EncryptedFileInfo.TryFindPassphrase(out cryptoId);
+                    if (passphrase == null)
+                    {
+                        continue;
+                    }
+                    ActiveFile resurrectedActiveFile = new ActiveFile(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, passphrase, activeFile.Status & ~ActiveFileStatus.Inactive, cryptoId);
+                    Add(resurrectedActiveFile);
                 }
-                if (!activeFile.Status.HasFlag(ActiveFileStatus.Inactive))
-                {
-                    continue;
-                }
-                Guid cryptoId;
-                LogOnIdentity passphrase = activeFile.EncryptedFileInfo.TryFindPassphrase(out cryptoId);
-                if (passphrase == null)
-                {
-                    continue;
-                }
-                ActiveFile resurrectedActiveFile = new ActiveFile(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, passphrase, activeFile.Status & ~ActiveFileStatus.Inactive, cryptoId);
-                Add(resurrectedActiveFile);
             }
             Save();
         }
