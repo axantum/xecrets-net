@@ -20,7 +20,6 @@
             this._mainToolStrip = new System.Windows.Forms.ToolStrip();
             this._encryptionKeyToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this._openEncryptedToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._encryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._decryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -28,8 +27,6 @@
             this._toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this._updateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this._toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this._helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this._fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._openEncryptedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +44,7 @@
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._changePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._exportSharingKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._importOthersSharingKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._clearPassphraseMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +79,6 @@
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
-            this._importOthersSharingKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -102,16 +99,13 @@
             this._mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._encryptionKeyToolStripButton,
             this._toolStripSeparator7,
-            this._openEncryptedToolStripButton,
             this._encryptToolStripButton,
             this._decryptToolStripButton,
             this._toolStripSeparator1,
             this._closeAndRemoveOpenFilesToolStripButton,
             this._toolStripSeparator4,
             this._updateToolStripButton,
-            this._knownFoldersSeparator,
-            this._toolStripSeparator8,
-            this._helpToolStripButton});
+            this._knownFoldersSeparator});
             this._mainToolStrip.Name = "_mainToolStrip";
             this._mainToolStrip.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainToolStrip_DragDrop);
             // 
@@ -127,24 +121,18 @@
             this._toolStripSeparator7.Name = "_toolStripSeparator7";
             resources.ApplyResources(this._toolStripSeparator7, "_toolStripSeparator7");
             // 
-            // _openEncryptedToolStripButton
-            // 
-            resources.ApplyResources(this._openEncryptedToolStripButton, "_openEncryptedToolStripButton");
-            this._openEncryptedToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._openEncryptedToolStripButton.Name = "_openEncryptedToolStripButton";
-            this._openEncryptedToolStripButton.Tag = "";
-            // 
             // _encryptToolStripButton
             // 
             resources.ApplyResources(this._encryptToolStripButton, "_encryptToolStripButton");
             this._encryptToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._encryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.encryptlock32;
+            this._encryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.addforencryptionred32;
             this._encryptToolStripButton.Name = "_encryptToolStripButton";
             // 
             // _decryptToolStripButton
             // 
             resources.ApplyResources(this._decryptToolStripButton, "_decryptToolStripButton");
             this._decryptToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._decryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.removeanddecryptgreen32;
             this._decryptToolStripButton.Name = "_decryptToolStripButton";
             // 
             // _toolStripSeparator1
@@ -177,19 +165,6 @@
             // 
             this._knownFoldersSeparator.Name = "_knownFoldersSeparator";
             resources.ApplyResources(this._knownFoldersSeparator, "_knownFoldersSeparator");
-            // 
-            // _toolStripSeparator8
-            // 
-            this._toolStripSeparator8.Name = "_toolStripSeparator8";
-            resources.ApplyResources(this._toolStripSeparator8, "_toolStripSeparator8");
-            // 
-            // _helpToolStripButton
-            // 
-            this._helpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._helpToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.helpquestiongreen32;
-            resources.ApplyResources(this._helpToolStripButton, "_helpToolStripButton");
-            this._helpToolStripButton.Name = "_helpToolStripButton";
-            this._helpToolStripButton.Click += new System.EventHandler(this.HelpToolStripButton_Click);
             // 
             // _mainMenuStrip
             // 
@@ -311,6 +286,12 @@
             this._exportSharingKeyToolStripMenuItem.Name = "_exportSharingKeyToolStripMenuItem";
             resources.ApplyResources(this._exportSharingKeyToolStripMenuItem, "_exportSharingKeyToolStripMenuItem");
             this._exportSharingKeyToolStripMenuItem.Click += new System.EventHandler(this._exportMySharingKeyToolStripMenuItem_Click);
+            // 
+            // _importOthersSharingKeyToolStripMenuItem
+            // 
+            this._importOthersSharingKeyToolStripMenuItem.Name = "_importOthersSharingKeyToolStripMenuItem";
+            resources.ApplyResources(this._importOthersSharingKeyToolStripMenuItem, "_importOthersSharingKeyToolStripMenuItem");
+            this._importOthersSharingKeyToolStripMenuItem.Click += new System.EventHandler(this._importOthersSharingKeyToolStripMenuItem_Click);
             // 
             // _debugOptionsToolStripMenuItem
             // 
@@ -532,12 +513,6 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // _importOthersSharingKeyToolStripMenuItem
-            // 
-            this._importOthersSharingKeyToolStripMenuItem.Name = "_importOthersSharingKeyToolStripMenuItem";
-            resources.ApplyResources(this._importOthersSharingKeyToolStripMenuItem, "_importOthersSharingKeyToolStripMenuItem");
-            this._importOthersSharingKeyToolStripMenuItem.Click += new System.EventHandler(this._importOthersSharingKeyToolStripMenuItem_Click);
-            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -569,7 +544,6 @@
 
         private System.Windows.Forms.ToolStrip _mainToolStrip;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton _helpToolStripButton;
         private System.Windows.Forms.ToolStripButton _encryptToolStripButton;
         private System.Windows.Forms.ToolStripButton _decryptToolStripButton;
         private System.Windows.Forms.MenuStrip _mainMenuStrip;
@@ -577,7 +551,6 @@
         private System.Windows.Forms.ToolStripMenuItem _encryptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _decryptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton _openEncryptedToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem _openEncryptedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator2;
@@ -613,7 +586,6 @@
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersdecryptTemporarilyMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersOpenExplorerHereMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _clearPassphraseMemoryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator _toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem cryptoPolicyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loggingToolStripMenuItem;
         private System.Windows.Forms.TabPage _watchedFoldersTabPage;

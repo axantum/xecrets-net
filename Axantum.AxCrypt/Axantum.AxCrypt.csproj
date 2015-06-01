@@ -281,6 +281,8 @@
     <None Include="resources\encryptionkeyred32.png" />
     <None Include="resources\DropBox.ico" />
     <Content Include="resources\inactivefilegreen16.png" />
+    <None Include="resources\addforencryptionred32.png" />
+    <Content Include="resources\removeanddecryptgreen32.png" />
     <Content Include="resources\refreshred.png" />
     <Content Include="resources\axcrypticon128.png" />
     <None Include="Properties\Settings.settings">

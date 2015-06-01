@@ -250,7 +250,6 @@ namespace Axantum.AxCrypt
             };
 
             _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
-            _openEncryptedToolStripButton.Tag = FileInfoTypes.EncryptedFile;
             _decryptToolStripButton.Tag = FileInfoTypes.EncryptedFile;
 
             _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
@@ -391,7 +390,6 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("FilesArePending", (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; });
             _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
@@ -436,7 +434,6 @@ namespace Axantum.AxCrypt
             _encryptionKeyToolStripButton.Click += (sender, e) => { _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
-            _openEncryptedToolStripButton.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
             _openEncryptedToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
             _wipeToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.WipeFiles.Execute(null); };
 
@@ -450,7 +447,6 @@ namespace Axantum.AxCrypt
             _fileOperationViewModel.SelectingFiles += (sender, e) => { HandleFileSelection(e); };
 
             _decryptToolStripButton.Tag = _fileOperationViewModel.DecryptFiles;
-            _openEncryptedToolStripButton.Tag = _fileOperationViewModel.OpenFiles;
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
         }
 
@@ -810,7 +806,7 @@ namespace Axantum.AxCrypt
                     return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
                 }
             }
-            if (button == _decryptToolStripButton || button == _openEncryptedToolStripButton)
+            if (button == _decryptToolStripButton)
             {
                 if ((_mainViewModel.DragAndDropFilesTypes & FileInfoTypes.EncryptedFile) == FileInfoTypes.EncryptedFile)
                 {
@@ -996,7 +992,7 @@ namespace Axantum.AxCrypt
             List<ToolStripItem> buttons = new List<ToolStripItem>();
             int i = _mainToolStrip.Items.IndexOf(_knownFoldersSeparator);
             buttons.Add(_mainToolStrip.Items[i++]);
-            while (_mainToolStrip.Items[i] is ToolStripButton)
+            while (i < _mainToolStrip.Items.Count && _mainToolStrip.Items[i] is ToolStripButton)
             {
                 buttons.Add(_mainToolStrip.Items[i++]);
             }

@@ -107,6 +107,16 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap addforencryptionred32 {
+            get {
+                object obj = ResourceManager.GetObject("addforencryptionred32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Source Document Encryption by Axantum Software AB
         ///
         ///Includes software from http://www.bouncycastle.org/ ..
@@ -757,6 +767,16 @@ namespace Axantum.AxCrypt.Properties {
         internal static System.Drawing.Bitmap refreshred {
             get {
                 object obj = ResourceManager.GetObject("refreshred", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap removeanddecryptgreen32 {
+            get {
+                object obj = ResourceManager.GetObject("removeanddecryptgreen32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
