@@ -386,7 +386,6 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { if (!loggedOn) _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id); });
 
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
@@ -433,7 +432,7 @@ namespace Axantum.AxCrypt
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
-            _logOnLogOffLabel.LinkClicked += (sender, e) => { _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id); };
+            _logOnLogOffLabel.LinkClicked += (sender, e) => { LogOnOrLogOffAndLogOnAgain(); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
@@ -450,6 +449,15 @@ namespace Axantum.AxCrypt
 
             _decryptToolStripButton.Tag = _fileOperationViewModel.DecryptFiles;
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
+        }
+
+        private void LogOnOrLogOffAndLogOnAgain()
+        {
+            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
+            if (!Resolve.KnownIdentities.IsLoggedOn)
+            {
+                _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
+            }
         }
 
         private void DropFilesOrFoldersInRecentFilesListView()
@@ -846,7 +854,8 @@ namespace Axantum.AxCrypt
             string logonStatus;
             if (isLoggedOn)
             {
-                logonStatus = Resolve.AsymmetricKeysStore.Keys.Any() ? Resources.AccountLoggedOnStatusText.InvariantFormat(Resolve.AsymmetricKeysStore.UserEmail) : Resources.LoggedOnStatusText.InvariantFormat(String.Empty);
+                UserAsymmetricKeys userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
+                logonStatus = userKeys != null ? Resources.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Resources.LoggedOnStatusText.InvariantFormat(String.Empty);
             }
             else
             {

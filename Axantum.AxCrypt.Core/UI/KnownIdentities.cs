@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             set
             {
-                if (_defaultEncryptionIdentity != null && value != null && _defaultEncryptionIdentity == value)
+                if (_defaultEncryptionIdentity == value)
                 {
                     return;
                 }
