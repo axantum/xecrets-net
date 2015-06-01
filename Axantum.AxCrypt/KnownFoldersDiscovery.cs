@@ -118,12 +118,7 @@ namespace Axantum.AxCrypt
 
         private static void CheckGoogleDrive(IList<KnownFolder> knownFolders)
         {
-            RegistryKey googleDriveKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{56D4499E-AC3E-4B8D-91C9-C700C148C44B}");
-            if (googleDriveKey == null)
-            {
-                googleDriveKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{56D4499E-AC3E-4B8D-91C9-C700C148C44B}");
-            }
-            if (googleDriveKey == null)
+            if (!IsGoogleDriveInstalled)
             {
                 return;
             }
@@ -140,6 +135,30 @@ namespace Axantum.AxCrypt
             IDataContainer googleDriveFolderInfo = TypeMap.Resolve.New<IDataContainer>(googleDriveFolder);
             KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Resources.MyAxCryptFolderName, icon.ToBitmap(), url);
             knownFolders.Add(knownFolder);
+        }
+
+        private static string[] _googleDriveRegistryKeyNames = new string[]
+        {
+            @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{56D4499E-AC3E-4B8D-91C9-C700C148C44B}",
+            @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{56D4499E-AC3E-4B8D-91C9-C700C148C44B}",
+            @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{35574F09-89F9-4B16-B69B-64F3E25901B8}",
+            @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{35574F09-89F9-4B16-B69B-64F3E25901B8}",
+        };
+
+        private static bool IsGoogleDriveInstalled
+        {
+            get
+            {
+                foreach (string driveRegistryKeyName in _googleDriveRegistryKeyNames)
+                {
+                    RegistryKey googleDriveKey = Registry.LocalMachine.OpenSubKey(driveRegistryKeyName);
+                    if (googleDriveKey != null)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
     }
 }
