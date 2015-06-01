@@ -385,7 +385,6 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _changePassphraseToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _logOnLogOffLabel.Visible = Resolve.AsymmetricKeysStore.HasStore; });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { if (!loggedOn) _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id); });
 
