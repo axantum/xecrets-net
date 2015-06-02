@@ -27,9 +27,11 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -128,6 +130,40 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(knownPublicKeys.PublicKeys.First(), Is.Not.EqualTo(userPublicKey1), "The instances should not compare equal");
                 Assert.That(knownPublicKeys.PublicKeys.First(), Is.EqualTo(userPublicKey2), "The instances should compare equal");
             }
+        }
+
+        [Test]
+        public void TestAddingIdentiticalPublicKey()
+        {
+            Mock<FakeInMemoryDataStoreItem> storeMock = new Mock<FakeInMemoryDataStoreItem>("KnownPublicKeys.txt") { CallBase = true, };
+
+            IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            UserPublicKey userPublicKey1 = new UserPublicKey(new EmailAddress("test@test.com"), key1);
+            IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            UserPublicKey userPublicKey2 = new UserPublicKey(new EmailAddress("test2@test.com"), key2);
+
+            using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(storeMock.Object, Resolve.Serializer))
+            {
+                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(0), "There should be no entries now.");
+
+                knownPublicKeys.AddOrReplace(userPublicKey1);
+                knownPublicKeys.AddOrReplace(userPublicKey2);
+                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(2), "There should be two entries now.");
+            }
+            storeMock.Verify(m => m.OpenWrite(), Times.Once);
+
+            Assert.That(userPublicKey1, Is.Not.EqualTo(userPublicKey2), "Checking that the two public keys really are different.");
+
+            storeMock.ResetCalls();
+            using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(storeMock.Object, Resolve.Serializer))
+            {
+                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(2), "There should be two entries now.");
+
+                knownPublicKeys.AddOrReplace(userPublicKey2);
+                knownPublicKeys.AddOrReplace(userPublicKey1);
+                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(2), "There should be two entries now.");
+            }
+            storeMock.Verify(m => m.OpenWrite(), Times.Never);
         }
     }
 }

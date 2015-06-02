@@ -77,15 +77,20 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("publicKey");
             }
 
-            dirty = true;
             for (int i = 0; i < _publicKeys.Count; ++i)
             {
+                if (_publicKeys[i] == publicKey)
+                {
+                    return;
+                }
                 if (_publicKeys[i].Email == publicKey.Email)
                 {
+                    dirty = true;
                     _publicKeys[i] = publicKey;
                     return;
                 }
             }
+            dirty = true;
             _publicKeys.Add(publicKey);
         }
 

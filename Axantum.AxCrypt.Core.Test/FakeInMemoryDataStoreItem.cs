@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt.Core.Test
             return new NonClosingStream(_dataStream);
         }
 
-        public Stream OpenWrite()
+        public virtual Stream OpenWrite()
         {
             _dataStream.Position = 0;
             return new NonClosingStream(_dataStream);
