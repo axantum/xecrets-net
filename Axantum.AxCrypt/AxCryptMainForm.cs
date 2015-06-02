@@ -453,8 +453,10 @@ namespace Axantum.AxCrypt
 
         private void LogOnOrLogOffAndLogOnAgain()
         {
+            bool wasLoggedOn = Resolve.KnownIdentities.IsLoggedOn;
             _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
-            if (!Resolve.KnownIdentities.IsLoggedOn)
+            bool didLogOff = wasLoggedOn && !Resolve.KnownIdentities.IsLoggedOn;
+            if (didLogOff)
             {
                 _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
             }
@@ -468,8 +470,6 @@ namespace Axantum.AxCrypt
             }
             if (_mainViewModel.DroppableAsWatchedFolder)
             {
-                //_mainViewModel.AddWatchedFolders.Execute(_mainViewModel.DragAndDropFiles);
-                //_statusTabControl.SelectedTab = _watchedFoldersTabPage;
                 ShowWatchedFolders(_mainViewModel.DragAndDropFiles);
             }
         }
