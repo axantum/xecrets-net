@@ -13,7 +13,7 @@ namespace Axantum.AxCrypt.Core.Session
     [JsonObject(MemberSerialization.OptIn)]
     public class KnownPublicKeys : IDisposable
     {
-        private IDataStore _persistentStore;
+        private IDataStore _store;
 
         private IStringSerializer _serializer;
 
@@ -52,17 +52,20 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("serializer");
             }
 
-            string json;
-            using (StreamReader reader = new StreamReader(store.OpenRead(), Encoding.UTF8))
+            string json = String.Empty;
+            if (store.IsAvailable)
             {
-                json = reader.ReadToEnd();
+                using (StreamReader reader = new StreamReader(store.OpenRead(), Encoding.UTF8))
+                {
+                    json = reader.ReadToEnd();
+                }
             }
             KnownPublicKeys knownPublicKeys = serializer.Deserialize<KnownPublicKeys>(json);
             if (knownPublicKeys == null)
             {
                 knownPublicKeys = new KnownPublicKeys();
             }
-            knownPublicKeys._persistentStore = store;
+            knownPublicKeys._store = store;
             knownPublicKeys._serializer = serializer;
             return knownPublicKeys;
         }
@@ -99,20 +102,20 @@ namespace Axantum.AxCrypt.Core.Session
                 return;
             }
 
-            if (_persistentStore == null)
+            if (_store == null)
             {
                 return;
             }
             if (dirty)
             {
                 string json = _serializer.Serialize(this);
-                using (StreamWriter writer = new StreamWriter(_persistentStore.OpenWrite(), Encoding.UTF8))
+                using (StreamWriter writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8))
                 {
                     writer.Write(json);
                 }
             }
             dirty = false;
-            _persistentStore = null;
+            _store = null;
         }
     }
 }

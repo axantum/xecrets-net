@@ -652,6 +652,14 @@ namespace Axantum.AxCrypt
                         ofd.CheckPathExists = true;
                         break;
 
+                    case FileSelectionType.ImportPublicKeys:
+                        ofd.Title = Resources.ImportPublicKeysFileSelectionTitle;
+                        ofd.Multiselect = true;
+                        ofd.CheckFileExists = true;
+                        ofd.CheckPathExists = true;
+                        ofd.Filter = Resources.ImportPublicKeysFileFilter;
+                        break;
+
                     default:
                         break;
                 }
@@ -1481,6 +1489,12 @@ namespace Axantum.AxCrypt
 
         private void _importOthersSharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FileSelectionViewModel fileSelection = new FileSelectionViewModel();
+            fileSelection.SelectingFiles += (sfsender, sfe) => { HandleOpenFileSelection(sfe); };
+            fileSelection.SelectFiles.Execute(FileSelectionType.ImportPublicKeys);
+
+            ImportPublicKeysViewModel importPublicKeys = new ImportPublicKeysViewModel(Resolve.WorkFolder.FileInfo.FileItemInfo("KnownPublicKeys.txt"), Resolve.Serializer);
+            importPublicKeys.ImportFiles.Execute(fileSelection.SelectedFiles);
         }
     }
 }

@@ -40,5 +40,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         WipeConfirm,
         SaveAsEncrypted,
         SaveAsDecrypted,
+        ImportPublicKeys,
     }
 }

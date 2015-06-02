@@ -561,6 +561,24 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text Files (*.txt)|*.txt|All Files (*.*)|*.*.
+        /// </summary>
+        internal static string ImportPublicKeysFileFilter {
+            get {
+                return ResourceManager.GetString("ImportPublicKeysFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select files to import.
+        /// </summary>
+        internal static string ImportPublicKeysFileSelectionTitle {
+            get {
+                return ResourceManager.GetString("ImportPublicKeysFileSelectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap inactivefilegreen16 {

@@ -55,6 +55,7 @@
     <Compile Include="Crypto\DecryptionParameter.cs" />
     <Compile Include="Crypto\EncryptionParameters.cs" />
     <Compile Include="Crypto\LogOnIdentity.cs" />
+    <Compile Include="Extensions\SerializerExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Header\IKeyStreamCryptoFactory.cs" />
     <Compile Include="Header\Recipients.cs" />
@@ -165,6 +166,8 @@
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="UI\ViewModel\AccountProperties.cs" />
     <Compile Include="UI\ViewModel\CreateNewAccountViewModel.cs" />
+    <Compile Include="UI\ViewModel\FileSelectionViewModel.cs" />
+    <Compile Include="UI\ViewModel\ImportPublicKeysViewModel.cs" />
     <Compile Include="UI\ViewModel\LogOnAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\ManageAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\WatchedFoldersViewModel.cs" />
