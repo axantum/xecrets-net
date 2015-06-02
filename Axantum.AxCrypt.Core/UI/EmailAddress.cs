@@ -10,7 +10,7 @@ namespace Axantum.AxCrypt.Core.UI
     /// A strongly typed representation of an e-mail address.
     /// </summary>
     /// <remarks>Instances of this type are immutable.</remarks>
-    public class EmailAddress
+    public class EmailAddress : IEquatable<EmailAddress>
     {
         public static readonly EmailAddress Empty = new EmailAddress(String.Empty);
 
@@ -33,13 +33,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public override bool Equals(object obj)
         {
-            if (obj == null || obj.GetType() != typeof(EmailAddress))
-            {
-                return false;
-            }
-
-            EmailAddress right = (EmailAddress)obj;
-            return right.Address == Address;
+            return Equals(obj as EmailAddress);
         }
 
         public override int GetHashCode()
@@ -49,12 +43,27 @@ namespace Axantum.AxCrypt.Core.UI
 
         public static bool operator ==(EmailAddress left, EmailAddress right)
         {
-            return Object.Equals(left, right);
+            if (Object.ReferenceEquals(left, null))
+            {
+                return Object.ReferenceEquals(right, null);
+            }
+
+            return left.Equals(right);
         }
 
         public static bool operator !=(EmailAddress left, EmailAddress right)
         {
             return !(left == right);
+        }
+
+        public bool Equals(EmailAddress other)
+        {
+            if (Object.ReferenceEquals(other, null) || GetType() != other.GetType())
+            {
+                return false;
+            }
+
+            return Address == other.Address;
         }
     }
 }

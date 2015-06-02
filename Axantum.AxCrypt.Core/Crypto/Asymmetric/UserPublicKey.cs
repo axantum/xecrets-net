@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
     /// Holder of the public key for a user, associated with an e-mail.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class UserPublicKey
+    public class UserPublicKey : IEquatable<UserPublicKey>
     {
         private UserPublicKey()
         {
@@ -56,5 +56,39 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         [JsonProperty("publickey")]
         public IAsymmetricPublicKey PublicKey { get; private set; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as UserPublicKey);
+        }
+
+        public override int GetHashCode()
+        {
+            return Email.GetHashCode() ^ PublicKey.GetHashCode();
+        }
+
+        public static bool operator ==(UserPublicKey left, UserPublicKey right)
+        {
+            if (Object.ReferenceEquals(left, null))
+            {
+                return Object.ReferenceEquals(right, null);
+            }
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(UserPublicKey left, UserPublicKey right)
+        {
+            return !(left == right);
+        }
+
+        public bool Equals(UserPublicKey other)
+        {
+            if (Object.ReferenceEquals(other, null) || GetType() != other.GetType())
+            {
+                return false;
+            }
+
+            return Email == other.Email && PublicKey != null && PublicKey.Equals(other.PublicKey);
+        }
     }
 }

@@ -158,6 +158,7 @@
     <Compile Include="Runtime\TypeResolve.cs" />
     <Compile Include="Session\ActiveFileProperties.cs" />
     <Compile Include="Session\ActiveFileWatcher.cs" />
+    <Compile Include="Session\KnownPublicKeys.cs" />
     <Compile Include="Session\UserAsymmetricKeys.cs" />
     <Compile Include="Session\UserAsymmetricKeysStore.cs" />
     <Compile Include="UI\EmailAddress.cs" />

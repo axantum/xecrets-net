@@ -60,6 +60,7 @@
     <Compile Include="FakeDataProtection.cs" />
     <Compile Include="FakeDelayTimer.cs" />
     <Compile Include="FakeFileWatcher.cs" />
+    <Compile Include="FakeInMemoryDataStoreItem.cs" />
     <Compile Include="FakeIterationCalculator.cs" />
     <Compile Include="FakePseudoRandomGenerator.cs" />
     <Compile Include="FakeRandomGenerator.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="FakeTiming.cs" />
     <Compile Include="FakeWebCaller.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="TestKnownPublicKeys.cs" />
     <Compile Include="TestManageAccountViewModel.cs" />
     <Compile Include="MockAxCryptFile.cs" />
     <Compile Include="MockFileSystemStateActions.cs" />

@@ -118,22 +118,16 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public bool Equals(IAsymmetricPublicKey other)
         {
-            if ((object)other == null)
+            if (Object.ReferenceEquals(other, null) || !typeof(IAsymmetricPublicKey).IsAssignableFrom(other.GetType()))
             {
                 return false;
             }
-            return ToString().Equals(other.ToString());
+            return ToString() == other.ToString();
         }
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !typeof(IAsymmetricPublicKey).IsAssignableFrom(obj.GetType()))
-            {
-                return false;
-            }
-            IAsymmetricPublicKey other = (IAsymmetricPublicKey)obj;
-
-            return Equals(other);
+            return Equals(obj as IAsymmetricPublicKey);
         }
 
         public override int GetHashCode()

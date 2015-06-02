@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>true if the keys are equivalent</returns>
         public bool Equals(IDerivedKey other)
         {
-            if ((object)other == null)
+            if (Object.ReferenceEquals(other, null))
             {
                 return false;
             }
@@ -70,8 +70,8 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            IDerivedKey other = (IDerivedKey)obj;
 
+            IDerivedKey other = (IDerivedKey)obj;
             return Equals(other);
         }
 
