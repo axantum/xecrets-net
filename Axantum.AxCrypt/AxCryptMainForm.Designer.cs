@@ -72,6 +72,7 @@
             this._recentFilesTabPage = new System.Windows.Forms.TabPage();
             this._recentFilesListView = new System.Windows.Forms.ListView();
             this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._sharingIndicatorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -459,6 +460,7 @@
             this._recentFilesListView.AllowDrop = true;
             this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this._decryptedFileColumnHeader,
+            this._sharingIndicatorColumnHeader,
             this._lastAccessTimeColumnHeader,
             this._encryptedPathColumnHeader,
             this._cryptoName});
@@ -472,6 +474,10 @@
             // _decryptedFileColumnHeader
             // 
             resources.ApplyResources(this._decryptedFileColumnHeader, "_decryptedFileColumnHeader");
+            // 
+            // _sharingIndicatorColumnHeader
+            // 
+            resources.ApplyResources(this._sharingIndicatorColumnHeader, "_sharingIndicatorColumnHeader");
             // 
             // _lastAccessTimeColumnHeader
             // 
@@ -595,6 +601,7 @@
         private System.Windows.Forms.ToolStripMenuItem _exportSharingKeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _importOthersSharingKeyToolStripMenuItem;
         private System.Windows.Forms.LinkLabel _logOnLogOffLabel;
+        private System.Windows.Forms.ColumnHeader _sharingIndicatorColumnHeader;
     }
 }
 

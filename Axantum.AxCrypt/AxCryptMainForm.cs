@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -342,15 +342,15 @@ namespace Axantum.AxCrypt
                     Preferences.RecentFilesDocumentWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
                     break;
 
-                case 1:
+                case 2:
                     Preferences.RecentFilesDateTimeWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
                     break;
 
-                case 2:
+                case 3:
                     Preferences.RecentFilesEncryptedPathWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
                     break;
 
-                case 3:
+                case 4:
                     Preferences.RecentFilesCryptoNameWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
                     break;
             }
@@ -368,9 +368,9 @@ namespace Axantum.AxCrypt
             }
 
             _recentFilesListView.Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(_recentFilesListView.Columns[0].Width);
-            _recentFilesListView.Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_recentFilesListView.Columns[1].Width);
-            _recentFilesListView.Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_recentFilesListView.Columns[2].Width);
-            _recentFilesListView.Columns[3].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(_recentFilesListView.Columns[3].Width);
+            _recentFilesListView.Columns[2].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_recentFilesListView.Columns[2].Width);
+            _recentFilesListView.Columns[3].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_recentFilesListView.Columns[3].Width);
+            _recentFilesListView.Columns[4].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(_recentFilesListView.Columns[4].Width);
 
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
         }
@@ -950,6 +950,9 @@ namespace Axantum.AxCrypt
                     ListViewItem item = new ListViewItem(text);
                     item.Name = file.EncryptedFileInfo.FullName;
 
+                    ListViewItem.ListViewSubItem sharingIndicatorColumn = item.SubItems.Add(String.Empty);
+                    sharingIndicatorColumn.Name = "SharingIndicator";
+
                     ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
                     dateColumn.Name = "Date";
 
@@ -1183,6 +1186,10 @@ namespace Axantum.AxCrypt
         private void SetSortOrder(int column)
         {
             ActiveFileComparer comparer = GetComparer(column, Preferences.RecentFilesSortColumn == column ? Preferences.RecentFilesAscending : false);
+            if (comparer == null)
+            {
+                return;
+            }
             Preferences.RecentFilesAscending = !comparer.ReverseSort;
             Preferences.RecentFilesSortColumn = column;
             _mainViewModel.RecentFilesComparer = comparer;
@@ -1198,14 +1205,17 @@ namespace Axantum.AxCrypt
                     break;
 
                 case 1:
+                    return null;
+
+                case 2:
                     comparer = ActiveFileComparer.DateComparer;
                     break;
 
-                case 2:
+                case 3:
                     comparer = ActiveFileComparer.EncryptedNameComparer;
                     break;
 
-                case 3:
+                case 4:
                     comparer = ActiveFileComparer.CryptoNameComparer;
                     break;
 
