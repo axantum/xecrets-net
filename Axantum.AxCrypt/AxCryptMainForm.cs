@@ -985,47 +985,6 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void UpdateKnownFolders(IEnumerable<KnownFolder> folders)
-        {
-            GetKnownFoldersToolItems().Skip(1).ToList().ForEach(f => _mainToolStrip.Items.Remove(f));
-
-            bool anyFolders = folders.Any();
-            GetKnownFoldersToolItems().First().Visible = anyFolders;
-
-            if (!anyFolders)
-            {
-                return;
-            }
-
-            int i = _mainToolStrip.Items.IndexOf(GetKnownFoldersToolItems().First()) + 1;
-            foreach (KnownFolder knownFolder in folders)
-            {
-                ToolStripButton button = new ToolStripButton((Image)knownFolder.Image);
-                button.Tag = knownFolder;
-                button.Click += (sender, e) =>
-                {
-                    ToolStripItem item = sender as ToolStripItem;
-                    _fileOperationViewModel.OpenFilesFromFolder.Execute(((KnownFolder)item.Tag).My.FullName);
-                };
-                button.Image = (Image)knownFolder.Image;
-                button.Enabled = knownFolder.Enabled;
-                _mainToolStrip.Items.Insert(i, button);
-                ++i;
-            }
-        }
-
-        private List<ToolStripItem> GetKnownFoldersToolItems()
-        {
-            List<ToolStripItem> buttons = new List<ToolStripItem>();
-            int i = _mainToolStrip.Items.IndexOf(_knownFoldersSeparator);
-            buttons.Add(_mainToolStrip.Items[i++]);
-            while (i < _mainToolStrip.Items.Count && _mainToolStrip.Items[i] is ToolStripButton)
-            {
-                buttons.Add(_mainToolStrip.Items[i++]);
-            }
-            return buttons;
-        }
-
         private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
         {
             UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
@@ -1066,6 +1025,47 @@ namespace Axantum.AxCrypt
                 default:
                     throw new InvalidOperationException("Unexpected ActiveFileVisualState value.");
             }
+        }
+
+        private void UpdateKnownFolders(IEnumerable<KnownFolder> folders)
+        {
+            GetKnownFoldersToolItems().Skip(1).ToList().ForEach(f => _mainToolStrip.Items.Remove(f));
+
+            bool anyFolders = folders.Any();
+            GetKnownFoldersToolItems().First().Visible = anyFolders;
+
+            if (!anyFolders)
+            {
+                return;
+            }
+
+            int i = _mainToolStrip.Items.IndexOf(GetKnownFoldersToolItems().First()) + 1;
+            foreach (KnownFolder knownFolder in folders)
+            {
+                ToolStripButton button = new ToolStripButton((Image)knownFolder.Image);
+                button.Tag = knownFolder;
+                button.Click += (sender, e) =>
+                {
+                    ToolStripItem item = sender as ToolStripItem;
+                    _fileOperationViewModel.OpenFilesFromFolder.Execute(((KnownFolder)item.Tag).My.FullName);
+                };
+                button.Image = (Image)knownFolder.Image;
+                button.Enabled = knownFolder.Enabled;
+                _mainToolStrip.Items.Insert(i, button);
+                ++i;
+            }
+        }
+
+        private List<ToolStripItem> GetKnownFoldersToolItems()
+        {
+            List<ToolStripItem> buttons = new List<ToolStripItem>();
+            int i = _mainToolStrip.Items.IndexOf(_knownFoldersSeparator);
+            buttons.Add(_mainToolStrip.Items[i++]);
+            while (i < _mainToolStrip.Items.Count && _mainToolStrip.Items[i] is ToolStripButton)
+            {
+                buttons.Add(_mainToolStrip.Items[i++]);
+            }
+            return buttons;
         }
 
         public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
