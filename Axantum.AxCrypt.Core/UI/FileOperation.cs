@@ -158,7 +158,10 @@ namespace Axantum.AxCrypt.Core.UI
                     Resolve.Log.LogInfo("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
                 }
                 process = TypeMap.Resolve.New<ILauncher>();
-                process.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
+                using (FileLock decryptedFileLock = FileLock.Lock(destinationActiveFile.DecryptedFileInfo))
+                {
+                    process.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
+                }
                 if (process.WasStarted)
                 {
                     process.Exited += new EventHandler(process_Exited);
