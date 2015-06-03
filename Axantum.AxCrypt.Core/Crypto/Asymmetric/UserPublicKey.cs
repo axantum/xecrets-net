@@ -41,6 +41,28 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
     [JsonObject(MemberSerialization.OptIn)]
     public class UserPublicKey : IEquatable<UserPublicKey>
     {
+        private class EmailAddressComparer : IEqualityComparer<UserPublicKey>
+        {
+            public bool Equals(UserPublicKey x, UserPublicKey y)
+            {
+                if (Object.ReferenceEquals(x, null))
+                {
+                    return Object.ReferenceEquals(y, null);
+                }
+                return !Object.ReferenceEquals(y, null) && x.Email == y.Email;
+            }
+
+            public int GetHashCode(UserPublicKey upk)
+            {
+                if (upk == null)
+                {
+                    throw new ArgumentNullException("upk");
+                }
+
+                return upk.Email.GetHashCode();
+            }
+        }
+
         private UserPublicKey()
         {
         }
@@ -50,6 +72,8 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             Email = email;
             PublicKey = publicKey;
         }
+
+        public static readonly IEqualityComparer<UserPublicKey> EmailComparer = new EmailAddressComparer();
 
         [JsonProperty("email"), JsonConverter(typeof(EmailAddressJsonConverter))]
         public EmailAddress Email { get; private set; }

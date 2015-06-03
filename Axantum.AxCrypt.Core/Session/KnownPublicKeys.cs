@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
 using System;
@@ -68,6 +69,24 @@ namespace Axantum.AxCrypt.Core.Session
             knownPublicKeys._store = store;
             knownPublicKeys._serializer = serializer;
             return knownPublicKeys;
+        }
+
+        public bool AddOrReplace(IDataStore publicKeyStore)
+        {
+            UserPublicKey publicKey = null;
+            try
+            {
+                publicKey = _serializer.Deserialize<UserPublicKey>(publicKeyStore);
+            }
+            catch (JsonException)
+            {
+            }
+            if (publicKey == null)
+            {
+                return false;
+            }
+            AddOrReplace(publicKey);
+            return true;
         }
 
         public void AddOrReplace(UserPublicKey publicKey)

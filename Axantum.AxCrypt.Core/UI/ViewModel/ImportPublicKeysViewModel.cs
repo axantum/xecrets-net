@@ -39,14 +39,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class ImportPublicKeysViewModel : ViewModelBase
     {
-        private IDataStore _store;
+        private Func<KnownPublicKeys> _createKnownPublicKeys;
 
-        private IStringSerializer _serializer;
-
-        public ImportPublicKeysViewModel(IDataStore store, IStringSerializer serializer)
+        public ImportPublicKeysViewModel(Func<KnownPublicKeys> createKnownPublicKeys)
         {
-            _store = store;
-            _serializer = serializer;
+            _createKnownPublicKeys = createKnownPublicKeys;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
@@ -73,25 +70,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void ImportFilesAction(IEnumerable<string> files)
         {
             List<string> failed = new List<string>();
-            using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(_store, _serializer))
+            using (KnownPublicKeys knownPublicKeys = _createKnownPublicKeys())
             {
                 foreach (string file in files)
                 {
                     IDataStore publicKeyData = TypeMap.Resolve.New<IDataStore>(file);
-                    UserPublicKey publicKey = null;
-                    try
-                    {
-                        publicKey = _serializer.Deserialize<UserPublicKey>(publicKeyData);
-                    }
-                    catch (JsonException)
-                    {
-                    }
-                    if (publicKey == null)
+                    if (!knownPublicKeys.AddOrReplace(publicKeyData))
                     {
                         failed.Add(file);
-                        continue;
                     }
-                    knownPublicKeys.AddOrReplace(publicKey);
                 }
             }
             FailedFiles = failed;

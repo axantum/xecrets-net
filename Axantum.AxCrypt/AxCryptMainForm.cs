@@ -1493,7 +1493,7 @@ namespace Axantum.AxCrypt
             fileSelection.SelectingFiles += (sfsender, sfe) => { HandleOpenFileSelection(sfe); };
             fileSelection.SelectFiles.Execute(FileSelectionType.ImportPublicKeys);
 
-            ImportPublicKeysViewModel importPublicKeys = new ImportPublicKeysViewModel(Resolve.WorkFolder.FileInfo.FileItemInfo("KnownPublicKeys.txt"), Resolve.Serializer);
+            ImportPublicKeysViewModel importPublicKeys = new ImportPublicKeysViewModel(TypeMap.Resolve.New<KnownPublicKeys>);
             importPublicKeys.ImportFiles.Execute(fileSelection.SelectedFiles);
         }
     }

@@ -101,13 +101,27 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         /// <summary>
-        /// Raised when the no default encryption identity is known.
+        /// Occurs when no default encryption identity is known.
         /// </summary>
         public event EventHandler<FileOperationEventArgs> QueryEncryptionPassphrase;
 
         protected virtual void OnQueryEncryptionPassphrase(FileOperationEventArgs e)
         {
             EventHandler<FileOperationEventArgs> handler = QueryEncryptionPassphrase;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Occurs when sharing keys may be added for an encryption.
+        /// </summary>
+        public event EventHandler<FileOperationEventArgs> QuerySharedPublicKeys;
+
+        protected virtual void OnQuerySharedPublicKeys(FileOperationEventArgs e)
+        {
+            EventHandler<FileOperationEventArgs> handler = QuerySharedPublicKeys;
             if (handler != null)
             {
                 handler(this, e);
@@ -261,6 +275,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _eventArgs.LogOnIdentity = Resolve.KnownIdentities.DefaultEncryptionIdentity;
             }
+            OnQuerySharedPublicKeys(_eventArgs);
 
             return true;
         }
@@ -269,6 +284,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default.Id;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
+            encryptionParameters.Add(_eventArgs.SharedPublicKeys.Select(spk => spk.PublicKey));
             TypeMap.Resolve.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
