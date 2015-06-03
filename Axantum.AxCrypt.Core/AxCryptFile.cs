@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public class AxCryptFile
     {
-        public static void Encrypt(Stream sourceStream, string sourceFileName, IDataStore destinationFileInfo, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
+        public static void Encrypt(Stream sourceStream, string sourceFileName, IDataStore destinationStore, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceStream == null)
             {
@@ -56,9 +56,9 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("sourceFileName");
             }
-            if (destinationFileInfo == null)
+            if (destinationStore == null)
             {
-                throw new ArgumentNullException("destinationFileInfo");
+                throw new ArgumentNullException("destinationStore");
             }
             if (encryptionParameters == null)
             {
@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            using (Stream destinationStream = destinationFileInfo.OpenWrite())
+            using (Stream destinationStream = destinationStore.OpenWrite())
             {
                 using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(encryptionParameters))
                 {
@@ -83,15 +83,15 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public static void Encrypt(IDataStore sourceFile, IDataStore destinationFile, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
+        public static void Encrypt(IDataStore sourceStore, IDataStore destinationStore, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
         {
-            if (sourceFile == null)
+            if (sourceStore == null)
             {
-                throw new ArgumentNullException("sourceFile");
+                throw new ArgumentNullException("sourceStore");
             }
-            if (destinationFile == null)
+            if (destinationStore == null)
             {
-                throw new ArgumentNullException("destinationFile");
+                throw new ArgumentNullException("destinationStore");
             }
             if (encryptionParameters == null)
             {
@@ -102,13 +102,13 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            using (Stream destinationStream = destinationFile.OpenWrite())
+            using (Stream destinationStream = destinationStore.OpenWrite())
             {
-                Encrypt(sourceFile, destinationStream, encryptionParameters, options, progress);
+                Encrypt(sourceStore, destinationStream, encryptionParameters, options, progress);
             }
             if (options.HasMask(AxCryptOptions.SetFileTimes))
             {
-                destinationFile.SetFileTimes(sourceFile.CreationTimeUtc, sourceFile.LastAccessTimeUtc, sourceFile.LastWriteTimeUtc);
+                destinationStore.SetFileTimes(sourceStore.CreationTimeUtc, sourceStore.LastAccessTimeUtc, sourceStore.LastWriteTimeUtc);
             }
         }
 
@@ -145,15 +145,15 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public void EncryptFileWithBackupAndWipe(string sourceFileName, string destinationFileName, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            if (sourceFile == null)
+            if (sourceFileName == null)
             {
-                throw new ArgumentNullException("sourceFile");
+                throw new ArgumentNullException("sourceFileName");
             }
-            if (destinationFile == null)
+            if (destinationFileName == null)
             {
-                throw new ArgumentNullException("destinationFile");
+                throw new ArgumentNullException("destinationFileName");
             }
             if (encryptionParameters == null)
             {
@@ -163,13 +163,17 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
-            IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(sourceFile);
-            IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFile);
+            IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(sourceFileName);
+            IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFileName);
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, encryptionParameters, progress);
         }
 
-        public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folders, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> containers, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
+            if (containers == null)
+            {
+                throw new ArgumentNullException("containers");
+            }
             if (progress == null)
             {
                 throw new ArgumentNullException("progress");
@@ -178,7 +182,7 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                IEnumerable<IDataStore> files = folders.SelectMany((folder) => folder.ListEncryptable());
+                IEnumerable<IDataStore> files = containers.SelectMany((folder) => folder.ListEncryptable());
                 progress.AddTotal(files.Count());
                 foreach (IDataStore file in files)
                 {
@@ -192,24 +196,24 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public virtual void EncryptFileUniqueWithBackupAndWipe(IDataStore fileInfo, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual void EncryptFileUniqueWithBackupAndWipe(IDataStore sourceStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            IDataStore destinationFileInfo = fileInfo.CreateEncryptedName();
+            IDataStore destinationFileInfo = sourceStore.CreateEncryptedName();
             using (FileLock lockedDestination = destinationFileInfo.FullName.CreateUniqueFile())
             {
-                EncryptFileWithBackupAndWipe(fileInfo, lockedDestination.DataStore, encryptionParameters, progress);
+                EncryptFileWithBackupAndWipe(sourceStore, lockedDestination.DataStore, encryptionParameters, progress);
             }
         }
 
-        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceFileInfo, IDataStore destinationFileInfo, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceStore, IDataStore destinationStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            if (sourceFileInfo == null)
+            if (sourceStore == null)
             {
-                throw new ArgumentNullException("sourceFileInfo");
+                throw new ArgumentNullException("sourceStore");
             }
-            if (destinationFileInfo == null)
+            if (destinationStore == null)
             {
-                throw new ArgumentNullException("destinationFileInfo");
+                throw new ArgumentNullException("destinationStore");
             }
             if (encryptionParameters == null)
             {
@@ -220,22 +224,22 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
             progress.NotifyLevelStart();
-            using (Stream activeFileStream = sourceFileInfo.OpenRead())
+            using (Stream activeFileStream = sourceStore.OpenRead())
             {
-                WriteToFileWithBackup(destinationFileInfo, (Stream destination) =>
+                WriteToFileWithBackup(destinationStore, (Stream destination) =>
                 {
-                    Encrypt(sourceFileInfo, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
+                    Encrypt(sourceStore, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
                 }, progress);
             }
-            Wipe(sourceFileInfo, progress);
+            Wipe(sourceStore, progress);
             progress.NotifyLevelFinished();
         }
 
-        public bool Decrypt(IDataStore sourceFile, Stream destinationStream, LogOnIdentity passphrase)
+        public bool Decrypt(IDataStore sourceStore, Stream destinationStream, LogOnIdentity passphrase)
         {
-            if (sourceFile == null)
+            if (sourceStore == null)
             {
-                throw new ArgumentNullException("sourceFile");
+                throw new ArgumentNullException("sourceStore");
             }
             if (destinationStream == null)
             {
@@ -246,13 +250,13 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("passphrase");
             }
 
-            using (IAxCryptDocument document = Document(sourceFile, passphrase, new ProgressContext()))
+            using (IAxCryptDocument document = Document(sourceStore, passphrase, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
                     return false;
                 }
-                Decrypt(sourceFile.OpenRead(), destinationStream, passphrase, sourceFile.FullName, new ProgressContext());
+                Decrypt(sourceStore.OpenRead(), destinationStream, passphrase, sourceStore.FullName, new ProgressContext());
             }
             return true;
         }
@@ -260,45 +264,45 @@ namespace Axantum.AxCrypt.Core
         /// <summary>
         /// Decrypt a source file to a destination file, given a passphrase
         /// </summary>
-        /// <param name="sourceFile">The source file</param>
-        /// <param name="destinationFile">The destination file</param>
-        /// <param name="passphrase">The passphrase</param>
+        /// <param name="sourceStore">The source file</param>
+        /// <param name="destinationStore">The destination file</param>
+        /// <param name="logOnIdentity">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public bool Decrypt(IDataStore sourceFile, IDataStore destinationFile, LogOnIdentity passphrase, AxCryptOptions options, IProgressContext progress)
+        public bool Decrypt(IDataStore sourceStore, IDataStore destinationStore, LogOnIdentity logOnIdentity, AxCryptOptions options, IProgressContext progress)
         {
-            if (sourceFile == null)
+            if (sourceStore == null)
             {
-                throw new ArgumentNullException("sourceFile");
+                throw new ArgumentNullException("sourceStore");
             }
-            if (destinationFile == null)
+            if (destinationStore == null)
             {
-                throw new ArgumentNullException("destinationFile");
+                throw new ArgumentNullException("destinationStore");
             }
-            if (passphrase == null)
+            if (logOnIdentity == null)
             {
-                throw new ArgumentNullException("passphrase");
+                throw new ArgumentNullException("logOnIdentity");
             }
             if (progress == null)
             {
                 throw new ArgumentNullException("progress");
             }
 
-            using (IAxCryptDocument document = Document(sourceFile, passphrase, new ProgressContext()))
+            using (IAxCryptDocument document = Document(sourceStore, logOnIdentity, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
                     return false;
                 }
-                Decrypt(document, destinationFile, options, progress);
+                Decrypt(document, destinationStore, options, progress);
             }
             return true;
         }
 
-        public static void Decrypt(Stream source, Stream destination, LogOnIdentity passphrase, string displayContext, IProgressContext progress)
+        public static void Decrypt(Stream sourceStream, Stream destinationStream, LogOnIdentity logOnIdentity, string displayContext, IProgressContext progress)
         {
-            using (IAxCryptDocument document = Document(source, passphrase, displayContext, progress))
+            using (IAxCryptDocument document = Document(sourceStream, logOnIdentity, displayContext, progress))
             {
-                document.DecryptTo(destination);
+                document.DecryptTo(destinationStream);
             }
         }
 
@@ -306,16 +310,25 @@ namespace Axantum.AxCrypt.Core
         /// Decrypt from loaded AxCryptDocument to a destination file
         /// </summary>
         /// <param name="document">The loaded AxCryptDocument</param>
-        /// <param name="destinationFile">The destination file</param>
-        public void Decrypt(IAxCryptDocument document, IDataStore destinationFile, AxCryptOptions options, IProgressContext progress)
+        /// <param name="destinationStore">The destination file</param>
+        /// <param name="options">The options.</param>
+        /// <param name="progress">The progress.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// document
+        /// or
+        /// destinationStore
+        /// or
+        /// progress
+        /// </exception>
+        public void Decrypt(IAxCryptDocument document, IDataStore destinationStore, AxCryptOptions options, IProgressContext progress)
         {
             if (document == null)
             {
                 throw new ArgumentNullException("document");
             }
-            if (destinationFile == null)
+            if (destinationStore == null)
             {
-                throw new ArgumentNullException("destinationFile");
+                throw new ArgumentNullException("destinationStore");
             }
             if (progress == null)
             {
@@ -325,79 +338,90 @@ namespace Axantum.AxCrypt.Core
             {
                 if (Resolve.Log.IsInfoEnabled)
                 {
-                    Resolve.Log.LogInfo("Decrypting to '{0}'.".InvariantFormat(destinationFile.Name));
+                    Resolve.Log.LogInfo("Decrypting to '{0}'.".InvariantFormat(destinationStore.Name));
                 }
 
-                using (Stream destinationStream = destinationFile.OpenWrite())
+                using (Stream destinationStream = destinationStore.OpenWrite())
                 {
                     document.DecryptTo(destinationStream);
                 }
 
                 if (Resolve.Log.IsInfoEnabled)
                 {
-                    Resolve.Log.LogInfo("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
+                    Resolve.Log.LogInfo("Decrypted to '{0}'.".InvariantFormat(destinationStore.Name));
                 }
             }
             catch (Exception)
             {
-                if (destinationFile.IsAvailable)
+                if (destinationStore.IsAvailable)
                 {
-                    Wipe(destinationFile, progress);
+                    Wipe(destinationStore, progress);
                 }
                 throw;
             }
             if (options.HasMask(AxCryptOptions.SetFileTimes))
             {
-                destinationFile.SetFileTimes(document.CreationTimeUtc, document.LastAccessTimeUtc, document.LastWriteTimeUtc);
+                destinationStore.SetFileTimes(document.CreationTimeUtc, document.LastAccessTimeUtc, document.LastWriteTimeUtc);
             }
         }
 
         /// <summary>
         /// Decrypt a source file to a destination file, given a passphrase
         /// </summary>
-        /// <param name="sourceFile">The source file</param>
-        /// <param name="destinationFile">The destination file</param>
-        /// <param name="passphrase">The passphrase</param>
-        /// <returns>true if the passphrase was correct</returns>
-        public string Decrypt(IDataStore sourceFile, string destinationDirectory, LogOnIdentity key, AxCryptOptions options, IProgressContext progress)
+        /// <param name="sourceStore">The source file</param>
+        /// <param name="destinationContainerName">Name of the destination container.</param>
+        /// <param name="logOnIdentity">The key.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="progress">The progress.</param>
+        /// <returns>
+        /// true if the passphrase was correct
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">sourceStore
+        /// or
+        /// destinationContainerName
+        /// or
+        /// key
+        /// or
+        /// progress</exception>
+        public string Decrypt(IDataStore sourceStore, string destinationContainerName, LogOnIdentity logOnIdentity, AxCryptOptions options, IProgressContext progress)
         {
-            if (sourceFile == null)
+            if (sourceStore == null)
             {
-                throw new ArgumentNullException("sourceFile");
+                throw new ArgumentNullException("sourceStore");
             }
-            if (destinationDirectory == null)
+            if (destinationContainerName == null)
             {
-                throw new ArgumentNullException("destinationDirectory");
+                throw new ArgumentNullException("destinationContainerName");
             }
-            if (key == null)
+            if (logOnIdentity == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("logOnIdentity");
             }
             if (progress == null)
             {
                 throw new ArgumentNullException("progress");
             }
             string destinationFileName = null;
-            using (IAxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
+            using (IAxCryptDocument document = Document(sourceStore, logOnIdentity, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
                     return destinationFileName;
                 }
                 destinationFileName = document.FileName;
-                IDataStore destinationFullPath = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(destinationDirectory, destinationFileName));
+                IDataStore destinationFullPath = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(destinationContainerName, destinationFileName));
                 Decrypt(document, destinationFullPath, options, progress);
             }
             return destinationFileName;
         }
 
-        public virtual void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IDataContainer folderInfo, LogOnIdentity decryptionKey, IStatusChecker statusChecker, IProgressContext progress)
+        public virtual void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IDataContainer sourceContainer, LogOnIdentity logOnIdentity, IStatusChecker statusChecker, IProgressContext progress)
         {
-            IEnumerable<IDataStore> files = folderInfo.ListEncrypted();
+            IEnumerable<IDataStore> files = sourceContainer.ListEncrypted();
             Resolve.ParallelFileOperation.DoFiles(files, (file, context) =>
             {
                 context.LeaveSingleThread();
-                return DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, context);
+                return DecryptFileUniqueWithWipeOfOriginal(file, logOnIdentity, context);
             },
             (status) =>
             {
@@ -406,11 +430,11 @@ namespace Axantum.AxCrypt.Core
             });
         }
 
-        public FileOperationContext DecryptFileUniqueWithWipeOfOriginal(IDataStore fileInfo, LogOnIdentity decryptionKey, IProgressContext progress)
+        public FileOperationContext DecryptFileUniqueWithWipeOfOriginal(IDataStore sourceStore, LogOnIdentity logOnIdentity, IProgressContext progress)
         {
-            if (fileInfo == null)
+            if (sourceStore == null)
             {
-                throw new ArgumentNullException("fileInfo");
+                throw new ArgumentNullException("sourceStore");
             }
             if (progress == null)
             {
@@ -418,20 +442,20 @@ namespace Axantum.AxCrypt.Core
             }
 
             progress.NotifyLevelStart();
-            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(fileInfo, decryptionKey, progress))
+            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(sourceStore, logOnIdentity, progress))
             {
                 if (!document.PassphraseIsValid)
                 {
-                    return new FileOperationContext(fileInfo.FullName, FileOperationStatus.Canceled);
+                    return new FileOperationContext(sourceStore.FullName, FileOperationStatus.Canceled);
                 }
 
-                IDataStore destinationStore = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), document.FileName));
+                IDataStore destinationStore = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceStore.FullName), document.FileName));
                 using (FileLock lockedDestination = destinationStore.FullName.CreateUniqueFile())
                 {
                     DecryptFile(document, lockedDestination.DataStore.FullName, progress);
                 }
             }
-            Wipe(fileInfo, progress);
+            Wipe(sourceStore, progress);
             progress.NotifyLevelFinished();
             return new FileOperationContext(String.Empty, FileOperationStatus.Success);
         }
@@ -458,42 +482,50 @@ namespace Axantum.AxCrypt.Core
         /// <summary>
         /// Load an AxCryptDocument from a source file with a passphrase
         /// </summary>
-        /// <param name="sourceFile">The source file</param>
-        /// <param name="passphrase">The passphrase</param>
-        /// <returns>An instance of AxCryptDocument. Use IsPassphraseValid property to determine validity.</returns>
-        public virtual IAxCryptDocument Document(IDataStore sourceFile, LogOnIdentity key, IProgressContext progress)
+        /// <param name="sourceStore">The source file</param>
+        /// <param name="logOnIdentity">The log on identity.</param>
+        /// <param name="progress">The progress.</param>
+        /// <returns>
+        /// An instance of AxCryptDocument. Use IsPassphraseValid property to determine validity.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// sourceStore
+        /// or
+        /// logOnIdentity
+        /// or
+        /// progress
+        /// </exception>
+        public virtual IAxCryptDocument Document(IDataStore sourceStore, LogOnIdentity logOnIdentity, IProgressContext progress)
         {
-            if (sourceFile == null)
+            if (sourceStore == null)
             {
-                throw new ArgumentNullException("sourceFile");
+                throw new ArgumentNullException("sourceStore");
             }
-            if (key == null)
+            if (logOnIdentity == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("logOnIdentity");
             }
             if (progress == null)
             {
                 throw new ArgumentNullException("progress");
             }
 
-            return Document(sourceFile.OpenRead(), key, sourceFile.FullName, progress);
+            return Document(sourceStore.OpenRead(), logOnIdentity, sourceStore.FullName, progress);
         }
 
         /// <summary>
         /// Creates an IAxCryptDocument instance from the specified source stream.
         /// </summary>
         /// <param name="source">The source stream. Ownership is passed to the IAxCryptDocument instance which disposes the stream when it is.</param>
-        /// <param name="key">The passphrase.</param>
+        /// <param name="logOnIdentity">The log on identity.</param>
         /// <param name="displayContext">The display context.</param>
         /// <param name="progress">The progress.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">
-        /// source
+        /// <exception cref="System.ArgumentNullException">source
         /// or
         /// key
         /// or
-        /// progress
-        /// </exception>
+        /// progress</exception>
         public static IAxCryptDocument Document(Stream source, LogOnIdentity logOnIdentity, string displayContext, IProgressContext progress)
         {
             if (source == null)
@@ -575,56 +607,56 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private static FileLock MakeAlternatePath(IDataStore fileInfo, string extension)
+        private static FileLock MakeAlternatePath(IDataStore store, string extension)
         {
-            string alternatePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), Resolve.Portable.Path().GetFileNameWithoutExtension(fileInfo.Name) + extension);
+            string alternatePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(store.FullName), Resolve.Portable.Path().GetFileNameWithoutExtension(store.Name) + extension);
             return alternatePath.CreateUniqueFile();
         }
 
-        public static string MakeAxCryptFileName(IDataItem fileInfo)
+        public static string MakeAxCryptFileName(IDataItem item)
         {
-            if (fileInfo == null)
+            if (item == null)
             {
-                throw new ArgumentNullException("fileInfo");
+                throw new ArgumentNullException("item");
             }
 
-            string axCryptFileName = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), MakeAxCryptFileName(fileInfo.Name));
+            string axCryptFileName = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(item.FullName), MakeAxCryptFileName(item.Name));
             return axCryptFileName;
         }
 
-        public static string MakeAxCryptFileName(string name)
+        public static string MakeAxCryptFileName(string fileName)
         {
-            if (name == null)
+            if (fileName == null)
             {
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException("fileName");
             }
 
             string axCryptExtension = OS.Current.AxCryptExtension;
-            string originalExtension = Resolve.Portable.Path().GetExtension(name);
+            string originalExtension = Resolve.Portable.Path().GetExtension(fileName);
             string modifiedExtension = originalExtension.Length == 0 ? String.Empty : "-" + originalExtension.Substring(1);
-            string axCryptFileName = Resolve.Portable.Path().GetFileNameWithoutExtension(name) + modifiedExtension + axCryptExtension;
+            string axCryptFileName = Resolve.Portable.Path().GetFileNameWithoutExtension(fileName) + modifiedExtension + axCryptExtension;
 
             return axCryptFileName;
         }
 
-        public virtual void Wipe(IDataStore fileInfo, IProgressContext progress)
+        public virtual void Wipe(IDataStore store, IProgressContext progress)
         {
             if (progress == null)
             {
                 throw new ArgumentNullException("progress");
             }
 
-            if (fileInfo == null)
+            if (store == null)
             {
-                throw new ArgumentNullException("fileInfo");
+                throw new ArgumentNullException("store");
             }
-            if (!fileInfo.IsAvailable)
+            if (!store.IsAvailable)
             {
                 return;
             }
             if (Resolve.Log.IsInfoEnabled)
             {
-                Resolve.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
+                Resolve.Log.LogInfo("Wiping '{0}'.".InvariantFormat(store.Name));
             }
             bool cancelPending = false;
             progress.NotifyLevelStart();
@@ -632,9 +664,9 @@ namespace Axantum.AxCrypt.Core
             string randomName;
             do
             {
-                randomName = GenerateRandomFileName(fileInfo.FullName);
+                randomName = GenerateRandomFileName(store.FullName);
             } while (TypeMap.Resolve.New<IDataStore>(randomName).IsAvailable);
-            IDataStore moveToFileInfo = TypeMap.Resolve.New<IDataStore>(fileInfo.FullName);
+            IDataStore moveToFileInfo = TypeMap.Resolve.New<IDataStore>(store.FullName);
             moveToFileInfo.MoveTo(randomName);
 
             using (Stream stream = moveToFileInfo.OpenWrite())
