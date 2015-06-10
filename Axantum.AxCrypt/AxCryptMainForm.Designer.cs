@@ -79,6 +79,7 @@
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -87,6 +88,7 @@
             this._watchedFoldersTabPage.SuspendLayout();
             this._recentFilesTabPage.SuspendLayout();
             this._statusTabControl.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _mainToolStrip
@@ -94,6 +96,7 @@
             this._mainToolStrip.AllowDrop = true;
             this._mainToolStrip.AllowMerge = false;
             resources.ApplyResources(this._mainToolStrip, "_mainToolStrip");
+            this._mainToolStrip.BackColor = System.Drawing.SystemColors.Control;
             this._mainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this._mainToolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this._mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -154,6 +157,7 @@
             // 
             // _mainMenuStrip
             // 
+            this._mainMenuStrip.BackColor = System.Drawing.SystemColors.Control;
             this._mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._fileToolStripMenuItem,
             this._debugToolStripMenuItem,
@@ -507,18 +511,25 @@
             // _logOnLogOffLabel
             // 
             resources.ApplyResources(this._logOnLogOffLabel, "_logOnLogOffLabel");
+            this._logOnLogOffLabel.BackColor = System.Drawing.SystemColors.Control;
             this._logOnLogOffLabel.Name = "_logOnLogOffLabel";
             this._logOnLogOffLabel.TabStop = true;
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this._logOnLogOffLabel);
+            this.panel1.Controls.Add(this._mainToolStrip);
+            this.panel1.Controls.Add(this._mainMenuStrip);
+            this.panel1.Name = "panel1";
             // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._logOnLogOffLabel);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this._progressTableLayoutPanel);
             this.Controls.Add(this._statusTabControl);
-            this.Controls.Add(this._mainToolStrip);
-            this.Controls.Add(this._mainMenuStrip);
             this.MainMenuStrip = this._mainMenuStrip;
             this.Name = "AxCryptMainForm";
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
@@ -533,8 +544,9 @@
             this._watchedFoldersTabPage.ResumeLayout(false);
             this._recentFilesTabPage.ResumeLayout(false);
             this._statusTabControl.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -600,8 +612,9 @@
         private System.Windows.Forms.ToolStripMenuItem _changePassphraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _exportSharingKeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _importOthersSharingKeyToolStripMenuItem;
-        private System.Windows.Forms.LinkLabel _logOnLogOffLabel;
         private System.Windows.Forms.ColumnHeader _sharingIndicatorColumnHeader;
+        private System.Windows.Forms.LinkLabel _logOnLogOffLabel;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
