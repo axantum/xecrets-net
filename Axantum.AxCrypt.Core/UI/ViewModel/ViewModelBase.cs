@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -124,6 +125,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private static object GetProperty(object me, string name)
         {
             PropertyInfo pi = me.GetType().GetProperty(name);
+            if (pi == null)
+            {
+                throw new InvalidOperationException("No property named '{0}' was found. Probably an error in the name argument to GetProperty() or SetProperty().".InvariantFormat(name));
+            }
             return pi.GetValue(me, null);
         }
 
