@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Properties;
 using System;
@@ -41,6 +42,7 @@ namespace Axantum.AxCrypt
         public NewPassphraseDialog(Form parent, string title, string passphrase, string encryptedFileFullName)
         {
             InitializeComponent();
+            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
 
             Text = title;
             _viewModel = new NewPassphraseViewModel(passphrase, encryptedFileFullName);

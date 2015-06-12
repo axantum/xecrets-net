@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Properties;
@@ -40,6 +41,7 @@ namespace Axantum.AxCrypt
 
         public LogOnDialog(Form parent, string encryptedFileFullName)
         {
+            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
             InitializeComponent();
 
             _viewModel = new LogOnViewModel(encryptedFileFullName);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,6 +11,7 @@ namespace Axantum.AxCrypt
         public ConfirmWipeDialog()
         {
             InitializeComponent();
+            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
             StartPosition = FormStartPosition.CenterParent;
         }
 

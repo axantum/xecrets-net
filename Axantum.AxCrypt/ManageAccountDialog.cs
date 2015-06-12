@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Session;
+﻿using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Properties;
@@ -24,6 +25,7 @@ namespace Axantum.AxCrypt
         public ManageAccountDialog(UserAsymmetricKeysStore keysStore, KnownIdentities knownIdentities, IUserSettings userSettings)
         {
             InitializeComponent();
+            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
 
             _userSettings = userSettings;
             _viewModel = new ManageAccountViewModel(keysStore, knownIdentities);

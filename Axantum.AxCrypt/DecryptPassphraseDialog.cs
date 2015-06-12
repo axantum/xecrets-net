@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
 using System.IO;
 using System.Windows.Forms;
 
@@ -35,6 +36,7 @@ namespace Axantum.AxCrypt
         public DecryptPassphraseDialog(string fullName)
         {
             InitializeComponent();
+            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
             StartPosition = FormStartPosition.CenterParent;
             _fileNameLabel.Text = Path.GetFileName(fullName);
         }

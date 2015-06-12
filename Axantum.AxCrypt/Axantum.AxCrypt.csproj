@@ -75,6 +75,7 @@
     <Compile Include="AxCryptMainForm.Designer.cs">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="ConfirmWipeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +94,7 @@
     <Compile Include="DebugLogOutputDialog.Designer.cs">
       <DependentUpon>DebugLogOutputDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="FontLoader.cs" />
     <Compile Include="LogOnAccountDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +266,10 @@
     <Content Include="resources\closeremovestandbyred32.png" />
     <None Include="resources\cleanupneededred32.png" />
     <None Include="resources\cleanupneededred16.png" />
+    <None Include="resources\OpenSans-Bold.ttf" />
+    <None Include="resources\OpenSans-Light.ttf" />
+    <None Include="resources\OpenSans-Regular.ttf" />
+    <None Include="resources\OpenSans-Semibold.ttf" />
     <None Include="resources\SkyDrive.ico" />
     <None Include="resources\trashred16.png" />
     <None Include="resources\encryptlock32.png" />

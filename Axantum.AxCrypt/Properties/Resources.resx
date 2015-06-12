@@ -400,4 +400,16 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="LogOnText" xml:space="preserve">
     <value>Log On</value>
   </data>
+  <data name="OpenSans_Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\OpenSans-Bold.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OpenSans_Light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\OpenSans-Light.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OpenSans_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\OpenSans-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OpenSans_Semibold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\OpenSans-Semibold.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

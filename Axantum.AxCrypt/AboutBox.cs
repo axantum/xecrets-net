@@ -16,6 +16,7 @@ namespace Axantum.AxCrypt
         public AboutBox()
         {
             InitializeComponent();
+            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
         }
 
         private void AboutBox_Load(object sender, EventArgs e)

@@ -19,6 +19,8 @@ namespace Axantum.AxCrypt
         public CreateNewAccountDialog(Form parent, string passphrase)
         {
             InitializeComponent();
+            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
+
             _viewModel = new CreateNewAccountViewModel(Resolve.AsymmetricKeysStore, passphrase);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };

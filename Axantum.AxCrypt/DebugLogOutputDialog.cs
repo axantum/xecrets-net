@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,7 @@ namespace Axantum.AxCrypt
         public DebugLogOutputDialog()
         {
             InitializeComponent();
+            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
         }
 
         private void DebugLogOutputDialog_Load(object sender, EventArgs e)

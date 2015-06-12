@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.UI;
+﻿using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Properties;
 using System;
@@ -17,14 +18,22 @@ namespace Axantum.AxCrypt
         public LogOnAccountDialog()
         {
             InitializeComponent();
+            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
+
+            groupBox1.Font = TypeMap.Resolve.Singleton<FontLoader>().PromptText;
+            PassphraseGroupBox.Font = groupBox1.Font;
+
+            EmailTextBox.Font = Font;
+            PassphraseTextBox.Font = Font;
+            ShowPassphraseCheckBox.Font = Font;
+            _panel1.Font = Font;
         }
 
         private LogOnAccountViewModel _viewModel;
 
         public LogOnAccountDialog(Form parent, IUserSettings userSettings)
+            : this()
         {
-            InitializeComponent();
-
             _viewModel = new LogOnAccountViewModel(userSettings);
 
             _viewModel.BindPropertyChanged("UserEmail", (string userEmail) => { EmailTextBox.Text = userEmail; });
