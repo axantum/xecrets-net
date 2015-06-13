@@ -652,7 +652,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LogOff.
+        ///   Looks up a localized string similar to Log Off.
         /// </summary>
         internal static string LogOffText {
             get {

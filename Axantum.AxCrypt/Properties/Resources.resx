@@ -395,7 +395,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Select files to import</value>
   </data>
   <data name="LogOffText" xml:space="preserve">
-    <value>LogOff</value>
+    <value>Log Off</value>
   </data>
   <data name="LogOnText" xml:space="preserve">
     <value>Log On</value>

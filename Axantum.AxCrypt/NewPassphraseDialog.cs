@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt
         public NewPassphraseDialog(Form parent, string title, string passphrase, string encryptedFileFullName)
         {
             InitializeComponent();
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
+            new Styling().Style(this);
 
             Text = title;
             _viewModel = new NewPassphraseViewModel(passphrase, encryptedFileFullName);

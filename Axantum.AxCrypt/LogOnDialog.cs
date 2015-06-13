@@ -41,8 +41,8 @@ namespace Axantum.AxCrypt
 
         public LogOnDialog(Form parent, string encryptedFileFullName)
         {
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
             InitializeComponent();
+            new Styling().Style(this);
 
             _viewModel = new LogOnViewModel(encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };

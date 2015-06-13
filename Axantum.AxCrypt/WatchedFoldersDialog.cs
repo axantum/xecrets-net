@@ -20,7 +20,7 @@ namespace Axantum.AxCrypt
         public WatchedFoldersDialog(Form parent, IEnumerable<string> additional)
         {
             InitializeComponent();
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
+            new Styling().Style(this);
 
             _additional = additional;
             _viewModel = TypeMap.Resolve.New<WatchedFoldersViewModel>();

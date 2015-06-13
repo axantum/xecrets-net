@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt
         public DecryptPassphraseDialog(string fullName)
         {
             InitializeComponent();
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
+            new Styling().Style(this);
             StartPosition = FormStartPosition.CenterParent;
             _fileNameLabel.Text = Path.GetFileName(fullName);
         }

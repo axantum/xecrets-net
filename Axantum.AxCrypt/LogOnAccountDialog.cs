@@ -18,15 +18,7 @@ namespace Axantum.AxCrypt
         public LogOnAccountDialog()
         {
             InitializeComponent();
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
-
-            groupBox1.Font = TypeMap.Resolve.Singleton<FontLoader>().PromptText;
-            PassphraseGroupBox.Font = groupBox1.Font;
-
-            EmailTextBox.Font = Font;
-            PassphraseTextBox.Font = Font;
-            ShowPassphraseCheckBox.Font = Font;
-            _panel1.Font = Font;
+            new Styling().Style(this);
         }
 
         private LogOnAccountViewModel _viewModel;

@@ -11,7 +11,7 @@ namespace Axantum.AxCrypt
         public ConfirmWipeDialog()
         {
             InitializeComponent();
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
+            new Styling().Style(this);
             StartPosition = FormStartPosition.CenterParent;
         }
 

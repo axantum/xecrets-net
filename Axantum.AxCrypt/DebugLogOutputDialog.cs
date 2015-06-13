@@ -15,7 +15,7 @@ namespace Axantum.AxCrypt
         public DebugLogOutputDialog()
         {
             InitializeComponent();
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
+            new Styling().Style(this);
         }
 
         private void DebugLogOutputDialog_Load(object sender, EventArgs e)

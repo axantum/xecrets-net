@@ -19,7 +19,7 @@ namespace Axantum.AxCrypt
         public CreateNewAccountDialog(Form parent, string passphrase)
         {
             InitializeComponent();
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
+            new Styling().Style(this);
 
             _viewModel = new CreateNewAccountViewModel(Resolve.AsymmetricKeysStore, passphrase);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };

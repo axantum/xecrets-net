@@ -25,7 +25,7 @@ namespace Axantum.AxCrypt
         public ManageAccountDialog(UserAsymmetricKeysStore keysStore, KnownIdentities knownIdentities, IUserSettings userSettings)
         {
             InitializeComponent();
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
+            new Styling().Style(this);
 
             _userSettings = userSettings;
             _viewModel = new ManageAccountViewModel(keysStore, knownIdentities);

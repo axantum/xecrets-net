@@ -11,7 +11,7 @@ namespace Axantum.AxCrypt
         public DebugOptionsDialog()
         {
             InitializeComponent();
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
+            new Styling().Style(this);
         }
 
         private void UpdateCheckServiceUrl_Validating(object sender, CancelEventArgs e)

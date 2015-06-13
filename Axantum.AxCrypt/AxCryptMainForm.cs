@@ -75,12 +75,7 @@ namespace Axantum.AxCrypt
         public AxCryptMainForm()
         {
             InitializeComponent();
-
-            Font = TypeMap.Resolve.Singleton<FontLoader>().ContentText;
-            MainMenuStrip.Font = Font;
-            _recentFilesContextMenuStrip.Font = Font;
-            _watchedFoldersContextMenuStrip.Font = Font;
-            _mainToolStrip.Font = Font;
+            new Styling().Style(this, _recentFilesContextMenuStrip, _watchedFoldersContextMenuStrip);
         }
 
         private void AxCryptMainForm_Load(object sender, EventArgs e)
