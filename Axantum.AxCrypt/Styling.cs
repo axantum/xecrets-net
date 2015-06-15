@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -37,7 +38,9 @@ namespace Axantum.AxCrypt
 
             if (control is Form)
             {
-                control.Font = fontLoader.ContentText;
+                Form form = (Form)control;
+                form.Font = fontLoader.ContentText;
+                form.Icon = Resources.axcrypticon;
             }
 
             switch (control.GetType().ToString())
