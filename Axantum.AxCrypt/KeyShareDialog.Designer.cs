@@ -30,15 +30,15 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this._selectAllButton = new System.Windows.Forms.Button();
+            this._unshareButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this._shareButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this._contactsComboBox = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this._sharedKeysCheckListBox = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -70,38 +70,38 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this._selectAllButton);
+            this.panel1.Controls.Add(this._unshareButton);
             this.panel1.Location = new System.Drawing.Point(3, 213);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(194, 45);
             this.panel1.TabIndex = 13;
             // 
-            // button2
+            // _selectAllButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.AutoSize = true;
-            this.button2.Location = new System.Drawing.Point(11, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 33);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Select All";
-            this.button2.UseVisualStyleBackColor = true;
+            this._selectAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._selectAllButton.AutoSize = true;
+            this._selectAllButton.Location = new System.Drawing.Point(11, 3);
+            this._selectAllButton.Name = "_selectAllButton";
+            this._selectAllButton.Size = new System.Drawing.Size(75, 33);
+            this._selectAllButton.TabIndex = 15;
+            this._selectAllButton.Text = "Toggle All";
+            this._selectAllButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // _unshareButton
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.AutoSize = true;
-            this.button3.Location = new System.Drawing.Point(92, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 33);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Unshare";
-            this.button3.UseVisualStyleBackColor = true;
+            this._unshareButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._unshareButton.AutoSize = true;
+            this._unshareButton.Location = new System.Drawing.Point(92, 3);
+            this._unshareButton.Name = "_unshareButton";
+            this._unshareButton.Size = new System.Drawing.Size(75, 33);
+            this._unshareButton.TabIndex = 14;
+            this._unshareButton.Text = "Unshare";
+            this._unshareButton.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this._shareButton);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
@@ -109,27 +109,27 @@
             this.panel2.Size = new System.Drawing.Size(378, 80);
             this.panel2.TabIndex = 7;
             // 
-            // button1
+            // _shareButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.AutoSize = true;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(134)))), ((int)(((byte)(185)))), ((int)(((byte)(110)))));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(157)))), ((int)(((byte)(83)))));
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(324, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 33);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Share";
-            this.button1.UseVisualStyleBackColor = false;
+            this._shareButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._shareButton.AutoSize = true;
+            this._shareButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(134)))), ((int)(((byte)(185)))), ((int)(((byte)(110)))));
+            this._shareButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._shareButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(157)))), ((int)(((byte)(83)))));
+            this._shareButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this._shareButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._shareButton.Location = new System.Drawing.Point(324, 21);
+            this._shareButton.Name = "_shareButton";
+            this._shareButton.Size = new System.Drawing.Size(48, 33);
+            this._shareButton.TabIndex = 5;
+            this._shareButton.Text = "Share";
+            this._shareButton.UseVisualStyleBackColor = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this._contactsComboBox);
             this.groupBox1.Location = new System.Drawing.Point(9, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(307, 58);
@@ -137,15 +137,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Contacts";
             // 
-            // comboBox1
+            // _contactsComboBox
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._contactsComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(295, 21);
-            this.comboBox1.TabIndex = 0;
+            this._contactsComboBox.FormattingEnabled = true;
+            this._contactsComboBox.Location = new System.Drawing.Point(6, 19);
+            this._contactsComboBox.Name = "_contactsComboBox";
+            this._contactsComboBox.Size = new System.Drawing.Size(295, 21);
+            this._contactsComboBox.TabIndex = 0;
             // 
             // panel3
             // 
@@ -158,7 +158,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkedListBox1);
+            this.groupBox2.Controls.Add(this._sharedKeysCheckListBox);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
@@ -167,14 +167,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Keys Shared With";
             // 
-            // checkedListBox1
+            // _sharedKeysCheckListBox
             // 
-            this.checkedListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(3, 16);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(372, 99);
-            this.checkedListBox1.TabIndex = 9;
+            this._sharedKeysCheckListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._sharedKeysCheckListBox.FormattingEnabled = true;
+            this._sharedKeysCheckListBox.Location = new System.Drawing.Point(3, 16);
+            this._sharedKeysCheckListBox.Name = "_sharedKeysCheckListBox";
+            this._sharedKeysCheckListBox.Size = new System.Drawing.Size(372, 99);
+            this._sharedKeysCheckListBox.TabIndex = 9;
             // 
             // KeyShareDialog
             // 
@@ -204,14 +204,14 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button _selectAllButton;
+        private System.Windows.Forms.Button _unshareButton;
+        private System.Windows.Forms.Button _shareButton;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox _contactsComboBox;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox _sharedKeysCheckListBox;
 
     }
 }
