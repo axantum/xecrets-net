@@ -1507,5 +1507,13 @@ namespace Axantum.AxCrypt
             ImportPublicKeysViewModel importPublicKeys = new ImportPublicKeysViewModel(TypeMap.Resolve.New<KnownPublicKeys>);
             importPublicKeys.ImportFiles.Execute(fileSelection.SelectedFiles);
         }
+
+        private void shareKeysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (KeyShareDialog dialog = new KeyShareDialog())
+            {
+                dialog.ShowDialog(this);
+            }
+        }
     }
 }

@@ -15,15 +15,8 @@ namespace Axantum.AxCrypt
         public KeyShareDialog()
         {
             InitializeComponent();
+
             new Styling().Style(this);
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
     }
 }

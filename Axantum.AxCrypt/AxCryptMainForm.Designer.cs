@@ -80,6 +80,7 @@
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.shareKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -377,7 +378,8 @@
             // 
             this._recentFilesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._removeRecentFileToolStripMenuItem,
-            this._decryptAndRemoveFromListToolStripMenuItem});
+            this._decryptAndRemoveFromListToolStripMenuItem,
+            this.shareKeysToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
             resources.ApplyResources(this._recentFilesContextMenuStrip, "_recentFilesContextMenuStrip");
             // 
@@ -523,6 +525,12 @@
             this.panel1.Controls.Add(this._mainMenuStrip);
             this.panel1.Name = "panel1";
             // 
+            // shareKeysToolStripMenuItem
+            // 
+            this.shareKeysToolStripMenuItem.Name = "shareKeysToolStripMenuItem";
+            resources.ApplyResources(this.shareKeysToolStripMenuItem, "shareKeysToolStripMenuItem");
+            this.shareKeysToolStripMenuItem.Click += new System.EventHandler(this.shareKeysToolStripMenuItem_Click);
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -615,6 +623,7 @@
         private System.Windows.Forms.ColumnHeader _sharingIndicatorColumnHeader;
         private System.Windows.Forms.LinkLabel _logOnLogOffLabel;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem shareKeysToolStripMenuItem;
     }
 }
 
