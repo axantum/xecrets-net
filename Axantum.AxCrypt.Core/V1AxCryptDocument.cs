@@ -34,8 +34,10 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
@@ -58,6 +60,7 @@ namespace Axantum.AxCrypt.Core
         public V1AxCryptDocument()
         {
             CryptoFactory = new V1Aes128CryptoFactory();
+            AsymmetricRecipients = new EmailAddress[0];
         }
 
         public V1AxCryptDocument(AxCryptReader reader)
@@ -75,6 +78,8 @@ namespace Axantum.AxCrypt.Core
         public V1DocumentHeaders DocumentHeaders { get; private set; }
 
         public bool PassphraseIsValid { get; set; }
+
+        public IEnumerable<EmailAddress> AsymmetricRecipients { get; private set; }
 
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "cryptoId", Justification = "Part of contract, and is used for other implementations.")]
         public bool Load(Passphrase passphrase, Guid cryptoId, Stream inputStream)

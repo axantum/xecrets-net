@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,49 +25,34 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.UI;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public class ProgressStream : WrappedBaseStream
+    public class LockedStream : WrappedBaseStream
     {
-        private IProgressContext _progress;
+        private FileLock _fileLock;
 
-        public ProgressStream(Stream stream, IProgressContext progress)
+        public static LockedStream OpenWrite(IDataStore dataStore)
         {
-            if (stream == null)
-            {
-                throw new ArgumentNullException("stream");
-            }
-            if (progress == null)
-            {
-                throw new ArgumentNullException("progress");
-            }
-            WrappedStream = stream;
-            _progress = progress;
+            LockedStream lockedStream = new LockedStream();
+            lockedStream._fileLock = FileLock.Lock(dataStore);
+            lockedStream.WrappedStream = dataStore.OpenWrite();
 
-            _progress.NotifyLevelStart();
-            if (stream.CanSeek)
-            {
-                _progress.AddTotal(WrappedStream.Length - WrappedStream.Position);
-            }
+            return lockedStream;
         }
 
-        public override int Read(byte[] buffer, int offset, int count)
+        public static LockedStream OpenRead(IDataStore dataStore)
         {
-            int bytes = base.Read(buffer, offset, count);
+            LockedStream lockedStream = new LockedStream();
+            lockedStream._fileLock = FileLock.Lock(dataStore);
+            lockedStream.WrappedStream = dataStore.OpenRead();
 
-            _progress.AddCount(bytes);
-            return bytes;
-        }
-
-        public override void Write(byte[] buffer, int offset, int count)
-        {
-            base.Write(buffer, offset, count);
-
-            _progress.AddCount(count);
+            return lockedStream;
         }
 
         protected override void Dispose(bool disposing)
@@ -76,17 +61,21 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 DisposeInternal();
             }
-            base.Dispose(disposing);
         }
 
         private void DisposeInternal()
         {
-            if (IsDisposed)
+            try
             {
-                return;
+                base.Dispose(true);
             }
-
-            _progress.NotifyLevelFinished();
+            finally
+            {
+                if (_fileLock != null)
+                {
+                    _fileLock.Dispose();
+                }
+            }
         }
     }
 }

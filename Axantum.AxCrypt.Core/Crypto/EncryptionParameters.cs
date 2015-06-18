@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         public EncryptionParameters(Guid cryptoId)
         {
             CryptoId = cryptoId;
-            _publicKeys = new List<IAsymmetricPublicKey>();
+            _publicKeys = new List<UserPublicKey>();
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             Add(identity.PublicKeys);
         }
 
-        public void Add(IEnumerable<IAsymmetricPublicKey> publicKeys)
+        public void Add(IEnumerable<UserPublicKey> publicKeys)
         {
             _publicKeys.AddRange(publicKeys);
         }
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         public Passphrase Passphrase { get; set; }
 
-        private List<IAsymmetricPublicKey> _publicKeys;
+        private List<UserPublicKey> _publicKeys;
 
         /// <summary>
         /// Gets or sets the public keys to also use to encrypt the session key with.
@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// The public keys. The enumeration may be empty.
         /// </value>
-        public IEnumerable<IAsymmetricPublicKey> PublicKeys
+        public IEnumerable<UserPublicKey> PublicKeys
         {
             get
             {

@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -106,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             EncryptionParameters parameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("secrets"));
             IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            parameters.Add(new IAsymmetricPublicKey[] { publicKey });
+            parameters.Add(new UserPublicKey[] { new UserPublicKey(new EmailAddress("test@test.com"), publicKey), });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
             using (V2HmacStream<MemoryStream> hmacStream = V2HmacStream.Create<MemoryStream>(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
             {
@@ -150,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptionParameters parameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("secrets"));
             IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             IAsymmetricPublicKey publicKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            parameters.Add(new IAsymmetricPublicKey[] { publicKey1, publicKey2 });
+            parameters.Add(new UserPublicKey[] { new UserPublicKey(new EmailAddress("test1@test.com"), publicKey1), new UserPublicKey(new EmailAddress("test2@test.com"), publicKey2), });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
             using (V2HmacStream<MemoryStream> stream = V2HmacStream.Create<MemoryStream>(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
             {

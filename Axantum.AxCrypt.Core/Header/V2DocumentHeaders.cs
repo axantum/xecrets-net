@@ -73,10 +73,11 @@ namespace Axantum.AxCrypt.Core.Header
             _headers.HeaderBlocks.Add(keyWrap);
             _keyStreamFactory = keyWrap;
 
-            foreach (IAsymmetricPublicKey publicKey in encryptionParameters.PublicKeys)
+            foreach (UserPublicKey publicKey in encryptionParameters.PublicKeys)
             {
                 _headers.HeaderBlocks.Add(new V2AsymmetricKeyWrapHeaderBlock(publicKey, keyWrap.MasterKey, keyWrap.MasterIV));
             }
+            _headers.HeaderBlocks.Add(new V2AsymmetricRecipientsEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.AsymmetricRecipients)) { Recipients = new Recipients(encryptionParameters.PublicKeys) });
             _headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.FileInfo)));
             _headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.Compression)));
             _headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.UnicodeFileNameInfo)));

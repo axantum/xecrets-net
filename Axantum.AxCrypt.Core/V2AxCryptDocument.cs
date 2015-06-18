@@ -34,6 +34,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.Collections;
@@ -60,11 +61,13 @@ namespace Axantum.AxCrypt.Core
         }
 
         public V2AxCryptDocument(AxCryptReader reader)
+            : this()
         {
             _reader = reader;
         }
 
         public V2AxCryptDocument(EncryptionParameters encryptionParameters, long keyWrapIterations)
+            : this()
         {
             DocumentHeaders = new V2DocumentHeaders(encryptionParameters, keyWrapIterations);
         }
@@ -76,6 +79,19 @@ namespace Axantum.AxCrypt.Core
         private AxCryptReader _reader;
 
         public bool PassphraseIsValid { get; set; }
+
+        public IEnumerable<EmailAddress> AsymmetricRecipients
+        {
+            get
+            {
+                V2AsymmetricRecipientsEncryptedHeaderBlock headerBlock = DocumentHeaders.Headers.FindHeaderBlock<V2AsymmetricRecipientsEncryptedHeaderBlock>();
+                if (headerBlock == null)
+                {
+                    return new EmailAddress[0];
+                }
+                return headerBlock.Recipients.PublicKeys.Select(r => r.Email);
+            }
+        }
 
         public bool Load(Passphrase key, Guid cryptoId, Stream inputStream)
         {

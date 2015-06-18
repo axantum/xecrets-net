@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -33,73 +33,89 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public class LockingStream : Stream
+    public abstract class WrappedBaseStream : Stream
     {
-        private Stream _stream;
+        private Stream _wrappedStream;
 
-        private FileLock _fileLock;
-
-        public LockingStream(IDataStore fileInfo, Stream stream)
+        protected Stream WrappedStream
         {
-            _stream = stream;
-            _fileLock = FileLock.Lock(fileInfo);
+            get
+            {
+                if (_wrappedStream == null)
+                {
+                    throw new ObjectDisposedException(GetType().ToString());
+                }
+                return _wrappedStream;
+            }
+            set
+            {
+                _wrappedStream = value;
+            }
+        }
+
+        protected bool IsDisposed
+        {
+            get
+            {
+                return _wrappedStream == null;
+            }
         }
 
         public override bool CanRead
         {
-            get { return _stream.CanRead; }
+            get { return WrappedStream.CanRead; }
         }
 
         public override bool CanSeek
         {
-            get { return _stream.CanSeek; }
+            get { return WrappedStream.CanSeek; }
         }
 
         public override bool CanWrite
         {
-            get { return _stream.CanWrite; }
+            get { return WrappedStream.CanWrite; }
         }
 
         public override void Flush()
         {
-            _stream.Flush();
+            WrappedStream.Flush();
         }
 
         public override long Length
         {
-            get { return _stream.Length; }
+            get { return WrappedStream.Length; }
         }
 
         public override long Position
         {
             get
             {
-                return _stream.Position;
+                return WrappedStream.Position;
             }
             set
             {
-                _stream.Position = value;
+                WrappedStream.Position = value;
             }
         }
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            return _stream.Read(buffer, offset, count);
+            return WrappedStream.Read(buffer, offset, count);
         }
 
         public override long Seek(long offset, SeekOrigin origin)
         {
-            return _stream.Seek(offset, origin);
+            return WrappedStream.Seek(offset, origin);
         }
 
         public override void SetLength(long value)
         {
-            _stream.SetLength(value);
+            WrappedStream.SetLength(value);
         }
 
         public override void Write(byte[] buffer, int offset, int count)
         {
-            _stream.Write(buffer, offset, count);
+            WrappedStream.Write(buffer, offset, count);
         }
 
         protected override void Dispose(bool disposing)
@@ -113,15 +129,10 @@ namespace Axantum.AxCrypt.Core.IO
 
         private void DisposeInternal()
         {
-            if (_fileLock != null)
+            if (_wrappedStream != null)
             {
-                _fileLock.Dispose();
-                _fileLock = null;
-            }
-            if (_stream != null)
-            {
-                _stream.Dispose();
-                _stream = null;
+                _wrappedStream.Dispose();
+                _wrappedStream = null;
             }
         }
     }

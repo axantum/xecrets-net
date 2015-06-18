@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -227,7 +228,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            encryptionParameters.Add(new IAsymmetricPublicKey[] { publicKey, });
+            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(new EmailAddress("test@test.com"), publicKey), });
 
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(encryptionParameters, 1000);
             IEnumerable<V2AsymmetricKeyWrapHeaderBlock> wraps = documentHeaders.Headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
@@ -258,7 +259,7 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("niklas"));
             IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             IAsymmetricPublicKey publicKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            encryptionParameters.Add(new IAsymmetricPublicKey[] { publicKey1, publicKey2, });
+            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(new EmailAddress("test1@test.com"), publicKey1), new UserPublicKey(new EmailAddress("test2@test.com"), publicKey2), });
 
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(encryptionParameters, 1000);
             IEnumerable<V2AsymmetricKeyWrapHeaderBlock> wraps = documentHeaders.Headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();

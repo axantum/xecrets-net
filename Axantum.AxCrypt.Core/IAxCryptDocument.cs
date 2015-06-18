@@ -28,7 +28,9 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.UI;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -47,6 +49,8 @@ namespace Axantum.AxCrypt.Core
         DateTime LastWriteTimeUtc { get; set; }
 
         ICryptoFactory CryptoFactory { get; }
+
+        IEnumerable<EmailAddress> AsymmetricRecipients { get; }
 
         bool Load(Passphrase passphrase, Guid cryptoId, Headers headers);
 

@@ -68,6 +68,9 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.V2AsymmetricKeyWrap:
                     return new V2AsymmetricKeyWrapHeaderBlock(dataBlock);
 
+                case HeaderBlockType.AsymmetricRecipients:
+                    return new V2AsymmetricRecipientsEncryptedHeaderBlock(dataBlock);
+
                 case HeaderBlockType.Data:
                     return new DataHeaderBlock(dataBlock);
 

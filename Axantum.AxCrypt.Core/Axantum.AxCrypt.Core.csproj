@@ -65,6 +65,8 @@
     <Compile Include="IO\IDataContainer.cs" />
     <Compile Include="IO\IDataItem.cs" />
     <Compile Include="IO\IStringSerializer.cs" />
+    <Compile Include="IO\LockedStream.cs" />
+    <Compile Include="IO\WrappedBaseStream.cs" />
     <Compile Include="IO\StringSerializer.cs" />
     <Compile Include="Algorithm\Aes.cs" />
     <Compile Include="Algorithm\AxCryptHMACSHA1.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="Runtime\TypeResolve.cs" />
     <Compile Include="Session\ActiveFileProperties.cs" />
     <Compile Include="Session\ActiveFileWatcher.cs" />
+    <Compile Include="Session\EncryptedProperties.cs" />
     <Compile Include="Session\KnownPublicKeys.cs" />
     <Compile Include="Session\UserAsymmetricKeys.cs" />
     <Compile Include="Session\UserAsymmetricKeysStore.cs" />
@@ -188,7 +191,6 @@
     <Compile Include="IO\FileWatcherEventArgs.cs" />
     <Compile Include="IO\IFileWatcher.cs" />
     <Compile Include="IO\IWebCaller.cs" />
-    <Compile Include="IO\LockingStream.cs" />
     <Compile Include="Ipc\IRequestServer.cs" />
     <Compile Include="Ipc\IRequestClient.cs" />
     <Compile Include="Ipc\CommandServiceEventArgs.cs" />

@@ -63,41 +63,41 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSimple()
         {
-            using (MemoryStream stream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A short dummy stream")))
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
+            LockedStream lockedStreamCopy;
+            using (LockedStream lockedStream = LockedStream.OpenWrite(fileInfo))
             {
-                IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
-                using (LockingStream lockingStream = new LockingStream(fileInfo, stream))
-                {
-                    Assert.That(FileLock.IsLocked(fileInfo), "The file should be locked now.");
-                    Assert.That(lockingStream.CanRead, "The stream should be readable.");
-                    Assert.That(lockingStream.CanSeek, "The stream should be seekable.");
-                    Assert.That(lockingStream.CanWrite, "The stream should be writeable.");
-                    Assert.That(lockingStream.Length, Is.EqualTo("A short dummy stream".Length), "The length should be the same as the string.");
+                lockedStreamCopy = lockedStream;
+                Assert.That(FileLock.IsLocked(fileInfo), "The file should be locked now.");
+                Assert.That(lockedStream.CanRead, "The stream should be readable.");
+                Assert.That(lockedStream.CanSeek, "The stream should be seekable.");
+                Assert.That(lockedStream.CanWrite, "The stream should be writeable.");
+                Assert.That(lockedStream.Length, Is.EqualTo(Resources.david_copperfield.Length), "The length should be the same as the string.");
 
-                    byte[] b = new byte[1];
-                    int read = lockingStream.Read(b, 0, 1);
-                    Assert.That(read, Is.EqualTo(1), "There should be one byte read.");
-                    Assert.That(b[0], Is.EqualTo(Encoding.UTF8.GetBytes("A")[0]), "The byte read should be an 'A'.");
-                    Assert.That(lockingStream.Position, Is.EqualTo(1), "After reading the first byte, the position should be at one.");
+                byte[] b = new byte[1];
+                int read = lockedStream.Read(b, 0, 1);
+                Assert.That(read, Is.EqualTo(1), "There should be one byte read.");
+                Assert.That(b[0], Is.EqualTo(Encoding.UTF8.GetBytes(Resources.david_copperfield.Substring(0, 1))[0]), "The byte read should be the first character of the resource.");
+                Assert.That(lockedStream.Position, Is.EqualTo(1), "After reading the first byte, the position should be at one.");
 
-                    lockingStream.Write(b, 0, 1);
-                    lockingStream.Position = 1;
-                    read = lockingStream.Read(b, 0, 1);
-                    Assert.That(read, Is.EqualTo(1), "There should be one byte read.");
-                    Assert.That(b[0], Is.EqualTo(Encoding.UTF8.GetBytes("A")[0]), "The byte read should be an 'A'.");
+                lockedStream.Write(b, 0, 1);
+                lockedStream.Position = 1;
+                read = lockedStream.Read(b, 0, 1);
+                Assert.That(read, Is.EqualTo(1), "There should be one byte read.");
+                Assert.That(b[0], Is.EqualTo(Encoding.UTF8.GetBytes(Resources.david_copperfield.Substring(0, 1))[0]), "The byte read should be the first character of the resource.");
+                Assert.That(lockedStream.Position, Is.EqualTo(2), "After reading the second byte, the position should be at two.");
 
-                    lockingStream.Seek(-1, SeekOrigin.End);
-                    Assert.That(lockingStream.Position, Is.EqualTo(lockingStream.Length - 1), "The position should be set by the Seek().");
+                lockedStream.Seek(-1, SeekOrigin.End);
+                Assert.That(lockedStream.Position, Is.EqualTo(lockedStream.Length - 1), "The position should be set by the Seek().");
 
-                    lockingStream.SetLength(5);
-                    lockingStream.Seek(0, SeekOrigin.End);
-                    Assert.That(lockingStream.Position, Is.EqualTo(5), "After setting the length to 5, seeking to the end should set the position at 5.");
+                lockedStream.SetLength(5);
+                lockedStream.Seek(0, SeekOrigin.End);
+                Assert.That(lockedStream.Position, Is.EqualTo(5), "After setting the length to 5, seeking to the end should set the position at 5.");
 
-                    Assert.DoesNotThrow(() => { lockingStream.Flush(); }, "It's hard to test Flush() behavior here, not worth the trouble, but it should not throw!");
-                }
-                Assert.That(!FileLock.IsLocked(fileInfo), "The file should be unlocked now.");
-                Assert.Throws<ObjectDisposedException>(() => { stream.Position = 0; }, "The underlying stream should be disposed.");
+                Assert.DoesNotThrow(() => { lockedStream.Flush(); }, "It's hard to test Flush() behavior here, not worth the trouble, but it should not throw!");
             }
+            Assert.That(!FileLock.IsLocked(fileInfo), "The file should be unlocked now.");
+            Assert.Throws<ObjectDisposedException>(() => { lockedStreamCopy.Position = 0; }, "The underlying stream should be disposed.");
         }
     }
 }

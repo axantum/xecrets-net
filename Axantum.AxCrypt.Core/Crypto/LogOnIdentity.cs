@@ -88,15 +88,15 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
-        public IEnumerable<IAsymmetricPublicKey> PublicKeys
+        public IEnumerable<UserPublicKey> PublicKeys
         {
             get
             {
                 if (UserKeys == null)
                 {
-                    return new IAsymmetricPublicKey[0];
+                    return new UserPublicKey[0];
                 }
-                return new IAsymmetricPublicKey[] { UserKeys.KeyPair.PublicKey, };
+                return new UserPublicKey[] { new UserPublicKey(UserKeys.UserEmail, UserKeys.KeyPair.PublicKey), };
             }
         }
 

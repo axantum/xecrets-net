@@ -992,6 +992,7 @@ namespace Axantum.AxCrypt
             UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
 
             item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
+            item.SubItems["SharingIndicator"].Text = EncryptedProperties.Create(activeFile.EncryptedFileInfo).SharedKeyHolders.Count().ToString();
             item.SubItems["Date"].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems["Date"].Tag = activeFile.Properties.LastActivityTimeUtc;
 

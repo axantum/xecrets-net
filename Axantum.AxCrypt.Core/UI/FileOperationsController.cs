@@ -284,7 +284,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default.Id;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
-            encryptionParameters.Add(_eventArgs.SharedPublicKeys.Select(spk => spk.PublicKey));
+            encryptionParameters.Add(_eventArgs.SharedPublicKeys);
             TypeMap.Resolve.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
