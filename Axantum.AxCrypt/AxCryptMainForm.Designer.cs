@@ -80,7 +80,7 @@
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.shareKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._shareKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -379,7 +379,7 @@
             this._recentFilesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._removeRecentFileToolStripMenuItem,
             this._decryptAndRemoveFromListToolStripMenuItem,
-            this.shareKeysToolStripMenuItem});
+            this._shareKeysToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
             resources.ApplyResources(this._recentFilesContextMenuStrip, "_recentFilesContextMenuStrip");
             // 
@@ -527,9 +527,9 @@
             // 
             // shareKeysToolStripMenuItem
             // 
-            this.shareKeysToolStripMenuItem.Name = "shareKeysToolStripMenuItem";
-            resources.ApplyResources(this.shareKeysToolStripMenuItem, "shareKeysToolStripMenuItem");
-            this.shareKeysToolStripMenuItem.Click += new System.EventHandler(this.shareKeysToolStripMenuItem_Click);
+            this._shareKeysToolStripMenuItem.Name = "shareKeysToolStripMenuItem";
+            resources.ApplyResources(this._shareKeysToolStripMenuItem, "shareKeysToolStripMenuItem");
+            this._shareKeysToolStripMenuItem.Click += new System.EventHandler(this.shareKeysToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
@@ -623,7 +623,7 @@
         private System.Windows.Forms.ColumnHeader _sharingIndicatorColumnHeader;
         private System.Windows.Forms.LinkLabel _logOnLogOffLabel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripMenuItem shareKeysToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _shareKeysToolStripMenuItem;
     }
 }
 

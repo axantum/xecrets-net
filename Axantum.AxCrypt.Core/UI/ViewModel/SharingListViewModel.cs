@@ -90,8 +90,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             MoveKeyShares(keySharesToRemove, fromSet, toSet);
 
-            AddedKeyShares = fromSet;
-            KnownKeyShares = toSet;
+            AddedKeyShares = fromSet.OrderBy(a => a.Address);
+            KnownKeyShares = toSet.OrderBy(a => a.Address);
         }
 
         private void AddKeySharesAction(IEnumerable<EmailAddress> keySharesToAdd)
@@ -102,8 +102,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             FectchMissingUnsharedPublicKeysFromServer(keySharesToAdd, fromSet);
             MoveKeyShares(keySharesToAdd, fromSet, toSet);
 
-            KnownKeyShares = fromSet;
-            AddedKeyShares = toSet;
+            KnownKeyShares = fromSet.OrderBy(a => a.Address);
+            AddedKeyShares = toSet.OrderBy(a => a.Address);
         }
 
         private static void FectchMissingUnsharedPublicKeysFromServer(IEnumerable<EmailAddress> keySharesToAdd, HashSet<EmailAddress> fromSet)
