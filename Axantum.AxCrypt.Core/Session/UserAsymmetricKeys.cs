@@ -25,6 +25,8 @@ namespace Axantum.AxCrypt.Core.Session
         {
         }
 
+        public static readonly UserAsymmetricKeys Empty = new UserAsymmetricKeys { UserEmail = EmailAddress.Empty, };
+
         public UserAsymmetricKeys(EmailAddress userEmail, int bits)
             : this()
         {

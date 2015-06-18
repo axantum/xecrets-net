@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
@@ -64,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
             {
             }
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>());
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
             Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.KnownKeyShares.Any(), Is.False, "There are no known public kyes, so none can be unshared either.");
         }
@@ -79,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>());
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
             Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(1), "There is one known public key, so this should be available as unshared.");
         }
@@ -98,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>());
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
             Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
         }
@@ -117,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>());
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
             Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
@@ -140,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>());
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
             Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
@@ -163,7 +164,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>());
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
             Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
@@ -190,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>());
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
             Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 

@@ -1510,7 +1510,7 @@ namespace Axantum.AxCrypt
 
         private void shareKeysToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>());
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), Resolve.KnownIdentities.DefaultEncryptionIdentity);
 
             using (KeyShareDialog dialog = new KeyShareDialog(TypeMap.Resolve.New<KnownPublicKeys>))
             {

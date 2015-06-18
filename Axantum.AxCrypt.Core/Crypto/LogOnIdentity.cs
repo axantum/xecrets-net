@@ -17,7 +17,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// The empty, or undefined, LogOnIdentity instance
         /// </summary>
-        public static readonly LogOnIdentity Empty = new LogOnIdentity(Passphrase.Empty);
+        public static readonly LogOnIdentity Empty = new LogOnIdentity(UserAsymmetricKeys.Empty, Passphrase.Empty);
 
         public LogOnIdentity(string passphraseText)
             : this(new Passphrase(passphraseText))

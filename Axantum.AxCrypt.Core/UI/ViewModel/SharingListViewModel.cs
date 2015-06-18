@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
@@ -40,7 +41,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// </summary>
     public class SharingListViewModel : ViewModelBase
     {
-        private Func<KnownPublicKeys> _createKnownPublicKeys;
+        private Func<KnownPublicKeys> _knownPublicKeysFactory;
+
+        private LogOnIdentity _logOnIdentity;
 
         public IEnumerable<EmailAddress> AddedKeyShares { get { return GetProperty<IEnumerable<EmailAddress>>("AddedKeyShares"); } private set { SetProperty("AddedKeyShares", value); } }
 
@@ -50,9 +53,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction RemoveKeyShares { get; private set; }
 
-        public SharingListViewModel(Func<KnownPublicKeys> createKnownPublicKeys)
+        public SharingListViewModel(Func<KnownPublicKeys> knownPublicKeysFactory, LogOnIdentity logOnIdentity)
         {
-            _createKnownPublicKeys = createKnownPublicKeys;
+            _knownPublicKeysFactory = knownPublicKeysFactory;
+            _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
@@ -64,9 +68,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AddedKeyShares = new List<EmailAddress>();
             AddKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesAction(upks));
             RemoveKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => RemoveKeySharesAction(upks));
-            using (KnownPublicKeys knownPublicKeys = _createKnownPublicKeys())
+            using (KnownPublicKeys knownPublicKeys = _knownPublicKeysFactory())
             {
-                KnownKeyShares = knownPublicKeys.PublicKeys.Select(upk => upk.Email).OrderBy(e => e.Address);
+                EmailAddress userEmail = _logOnIdentity.UserKeys.UserEmail;
+                KnownKeyShares = knownPublicKeys.PublicKeys.Select(upk => upk.Email).Where(upk => upk != userEmail).OrderBy(e => e.Address);
             }
         }
 
