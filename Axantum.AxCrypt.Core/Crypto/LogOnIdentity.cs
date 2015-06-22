@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Gets the passphrase.
         /// </summary>
         /// <value>
-        /// The passphrase.
+        /// The passphrase or Passphrase.Empty if not known.
         /// </value>
         public Passphrase Passphrase
         {
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Gets the user keys.
         /// </summary>
         /// <value>
-        /// The user keys.
+        /// The user keys or null if not known.
         /// </value>
         public UserAsymmetricKeys UserKeys
         {

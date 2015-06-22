@@ -162,6 +162,7 @@
     <Compile Include="Session\ActiveFileProperties.cs" />
     <Compile Include="Session\ActiveFileWatcher.cs" />
     <Compile Include="Session\EncryptedProperties.cs" />
+    <Compile Include="Session\IdentityPublicTag.cs" />
     <Compile Include="Session\KnownPublicKeys.cs" />
     <Compile Include="Session\UserAsymmetricKeys.cs" />
     <Compile Include="Session\UserAsymmetricKeysStore.cs" />
