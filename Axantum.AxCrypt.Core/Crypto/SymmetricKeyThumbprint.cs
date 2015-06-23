@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Extensions;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
@@ -39,15 +40,16 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// passphrase will have the same thumbprint regardless of which crypto is actually used when encrypting data
     /// with the corresponding passphrase.
     /// </summary>
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
+    [JsonObject(MemberSerialization.OptIn)]
     public class SymmetricKeyThumbprint : IEquatable<SymmetricKeyThumbprint>
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This class is immutable.")]
         public static readonly SymmetricKeyThumbprint Zero = new SymmetricKeyThumbprint();
 
-        [DataMember(Name = "Thumbprint")]
+        [JsonProperty("thumbprint")]
         private byte[] _bytes;
 
+        [JsonConstructor]
         private SymmetricKeyThumbprint()
         {
             _bytes = new byte[8];

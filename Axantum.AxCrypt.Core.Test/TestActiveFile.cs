@@ -155,11 +155,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (MemoryStream stream = new MemoryStream())
             {
-                DataContractSerializer serializer = new DataContractSerializer(typeof(ActiveFile));
                 ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
-                serializer.WriteObject(stream, activeFile);
-                stream.Position = 0;
-                ActiveFile deserializedActiveFile = (ActiveFile)serializer.ReadObject(stream);
+                string json = Resolve.Serializer.Serialize(activeFile);
+                ActiveFile deserializedActiveFile = Resolve.Serializer.Deserialize<ActiveFile>(json);
 
                 Assert.That(deserializedActiveFile.ThumbprintMatch(key.Passphrase), Is.True, "The deserialized object should match the thumbprint with the key.");
             }

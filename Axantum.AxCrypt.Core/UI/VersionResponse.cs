@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -35,37 +36,37 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    [DataContract]
+    [JsonObject(MemberSerialization.OptIn)]
     public class VersionResponse
     {
         /// <summary>
         /// Status
         /// </summary>
-        [DataMember(Name = "S")]
+        [JsonProperty("S")]
         public int Status { get; set; }
 
         /// <summary>
         /// Message
         /// </summary>
-        [DataMember(Name = "M")]
+        [JsonProperty("M")]
         public string Message { get; set; }
 
         /// <summary>
         /// Url where new version may be found
         /// </summary>
-        [DataMember(Name = "U")]
+        [JsonProperty("U")]
         public string WebReference { get; set; }
 
         /// <summary>
         /// String serialization of the full version
         /// </summary>
-        [DataMember(Name = "V")]
+        [JsonProperty("V")]
         public string Version { get; set; }
 
         /// <summary>
         /// The revision only
         /// </summary>
-        [DataMember(Name = "R")]
+        [JsonProperty("R")]
         public int Revision { get; set; }
     }
 }

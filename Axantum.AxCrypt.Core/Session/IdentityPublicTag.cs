@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.UI;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,13 +42,13 @@ namespace Axantum.AxCrypt.Core.Session
     /// contain any secret information, but can be used to recognize an identity. Instances
     /// of this class are immutable.
     /// </summary>
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
+    [JsonObject(MemberSerialization.OptIn)]
     public class IdentityPublicTag
     {
-        [DataMember(Name = "Thumbprint")]
+        [JsonProperty("thumbprint")]
         private SymmetricKeyThumbprint _thumprint;
 
-        [DataMember(Name = "EmailAddress")]
+        [JsonProperty("email")]
         private EmailAddress _email;
 
         private IdentityPublicTag()

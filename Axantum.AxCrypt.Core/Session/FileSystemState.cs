@@ -30,19 +30,22 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
 using System.Xml;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
+    [JsonObject(MemberSerialization.OptIn)]
     public class FileSystemState : IDisposable
     {
+        [JsonConstructor]
         public FileSystemState()
         {
             Initialize(new StreamingContext());
@@ -67,17 +70,20 @@ namespace Axantum.AxCrypt.Core.Session
         {
             KnownPassphrases = new List<Passphrase>();
             _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
+            _watchedFolders = new List<WatchedFolder>();
         }
 
         [OnDeserialized]
         private void Finalize(StreamingContext context)
         {
             KnownPassphrases = new List<Passphrase>(KnownPassphrases);
+            SetRangeInternal(_activeFilesForSerialization, ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
+            _activeFilesForSerialization = null;
         }
 
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath;
 
-        [DataMember(Name = "PassphraseIdentities")]
+        [JsonProperty("knownPassphrases")]
         public virtual IList<Passphrase> KnownPassphrases
         {
             get;
@@ -86,31 +92,24 @@ namespace Axantum.AxCrypt.Core.Session
 
         private List<WatchedFolder> _watchedFolders;
 
-        private IList<WatchedFolder> WatchedFoldersInternal
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Json.NET")]
+        [JsonProperty("watchedFolders")]
+        private IList<WatchedFolder> WatchedFoldersForSerialization
         {
             get
             {
-                if (_watchedFolders == null)
-                {
-                    _watchedFolders = new List<WatchedFolder>();
-                }
                 return _watchedFolders;
             }
         }
 
-        [DataMember(Name = "WatchedFolders")]
         public IEnumerable<WatchedFolder> WatchedFolders
         {
             get
             {
-                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => TypeMap.Resolve.New<IDataContainer>(folder.Path).IsAvailable).ToList();
-                return folders;
-            }
-            private set
-            {
-                foreach (WatchedFolder watchedFolder in value)
+                lock (_watchedFolders)
                 {
-                    AddWatchedFolderInternal(watchedFolder);
+                    IEnumerable<WatchedFolder> folders = _watchedFolders.Where(folder => TypeMap.Resolve.New<IDataContainer>(folder.Path).IsAvailable).ToList();
+                    return folders;
                 }
             }
         }
@@ -134,18 +133,21 @@ namespace Axantum.AxCrypt.Core.Session
 
         private bool AddWatchedFolderInternal(WatchedFolder watchedFolder)
         {
-            if (WatchedFoldersInternal.Contains(watchedFolder))
+            lock (_watchedFolders)
             {
-                return false;
-            }
-            if (!TypeMap.Resolve.New<IDataContainer>(watchedFolder.Path).IsAvailable)
-            {
-                return false;
-            }
+                if (_watchedFolders.Contains(watchedFolder))
+                {
+                    return false;
+                }
+                if (!TypeMap.Resolve.New<IDataContainer>(watchedFolder.Path).IsAvailable)
+                {
+                    return false;
+                }
 
-            WatchedFolder copy = new WatchedFolder(watchedFolder);
-            copy.Changed += watchedFolder_Changed;
-            WatchedFoldersInternal.Add(copy);
+                WatchedFolder copy = new WatchedFolder(watchedFolder);
+                copy.Changed += watchedFolder_Changed;
+                _watchedFolders.Add(copy);
+            }
             return true;
         }
 
@@ -198,7 +200,19 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("folderInfo");
             }
 
-            WatchedFoldersInternal.Remove(new WatchedFolder(folderInfo.FullName, SymmetricKeyThumbprint.Zero));
+            lock (_watchedFolders)
+            {
+                for (int i = 0; i < _watchedFolders.Count; )
+                {
+                    if (!_watchedFolders[i].Matches(folderInfo.FullName))
+                    {
+                        ++i;
+                        continue;
+                    }
+                    _watchedFolders[i].Dispose();
+                    _watchedFolders.RemoveAt(i);
+                }
+            }
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, folderInfo.FullName));
         }
 
@@ -371,19 +385,18 @@ namespace Axantum.AxCrypt.Core.Session
             TypeMap.Resolve.Singleton<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
         }
 
-        [DataMember(Name = "ActiveFiles")]
-        private ICollection<ActiveFile> ActiveFilesForSerialization
+        private List<ActiveFile> _activeFilesForSerialization;
+
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Json.NET")]
+        [JsonProperty("activeFiles")]
+        private IList<ActiveFile> ActiveFilesForSerialization
         {
             get
             {
                 lock (_activeFilesByEncryptedPath)
                 {
-                    return new ActiveFileCollection(_activeFilesByEncryptedPath.Values);
+                    return _activeFilesForSerialization = _activeFilesByEncryptedPath.Values.ToList();
                 }
-            }
-            set
-            {
-                SetRangeInternal(value, ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
             }
         }
 
@@ -467,52 +480,35 @@ namespace Axantum.AxCrypt.Core.Session
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "If the state can't be read, the software is rendered useless, so it's better to revert to empty here.")]
         private static FileSystemState CreateFileSystemState(IDataStore path)
         {
-            using (Stream fileSystemStateStream = path.OpenRead())
+            FileSystemState fileSystemState;
+            try
             {
-                FileSystemState fileSystemState;
-                try
-                {
-                    DataContractSerializer serializer = CreateSerializer();
-                    fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
-                }
-                catch (Exception ex)
-                {
-                    if (Resolve.Log.IsErrorEnabled)
-                    {
-                        Resolve.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));
-                    }
-                    return new FileSystemState(path);
-                }
-                if (Resolve.Log.IsInfoEnabled)
-                {
-                    Resolve.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(path));
-                }
-                fileSystemState._path = path;
-                return fileSystemState;
+                fileSystemState = Resolve.Serializer.Deserialize<FileSystemState>(path);
             }
+            catch (Exception ex)
+            {
+                if (Resolve.Log.IsErrorEnabled)
+                {
+                    Resolve.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));
+                }
+                return new FileSystemState(path);
+            }
+            if (Resolve.Log.IsInfoEnabled)
+            {
+                Resolve.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(path));
+            }
+            fileSystemState._path = path;
+            return fileSystemState;
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "It is not disposed multiple times because CloseOutput=false")]
         public virtual void Save()
         {
             lock (_activeFilesByEncryptedPath)
             {
-                using (Stream fileSystemStateStream = _path.OpenWrite())
+                string json = Resolve.Serializer.Serialize(this);
+                using (StreamWriter writer = new StreamWriter(_path.OpenWrite(), Encoding.UTF8))
                 {
-                    XmlWriterSettings settings = new XmlWriterSettings
-                    {
-#if DEBUG
-                        Indent = true,
-#endif
-                        CloseOutput = false,
-                    };
-
-                    using (XmlWriter writer = XmlWriter.Create(fileSystemStateStream, settings))
-                    {
-                        fileSystemStateStream.SetLength(0);
-                        DataContractSerializer serializer = CreateSerializer();
-                        serializer.WriteObject(writer, this);
-                    }
+                    writer.Write(json);
                 }
             }
             if (Resolve.Log.IsInfoEnabled)
@@ -524,12 +520,6 @@ namespace Axantum.AxCrypt.Core.Session
         public void Delete()
         {
             _path.Delete();
-        }
-
-        private static DataContractSerializer CreateSerializer()
-        {
-            DataContractSerializer serializer = new DataContractSerializer(typeof(FileSystemState), "FileSystemState", "http://www.axantum.com/Serialization/");
-            return serializer;
         }
 
         #region IDisposable Members

@@ -25,13 +25,14 @@
 
 #endregion Coypright and License
 
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
+    [JsonObject(MemberSerialization.OptIn)]
     public class ActiveFileProperties
     {
         public ActiveFileProperties(DateTime lastActivityTimeUtc, DateTime lastEncryptionWriteTimeUtc, Guid cryptoId)
@@ -41,20 +42,21 @@ namespace Axantum.AxCrypt.Core.Session
             CryptoId = cryptoId;
         }
 
-        [DataMember(Name = "CryptoId")]
+        [JsonProperty("cryptoId")]
         public Guid CryptoId
         {
             get;
             private set;
         }
 
-        [DataMember]
+        [JsonProperty("lastActivityTimeUtc")]
         public DateTime LastActivityTimeUtc { get; private set; }
 
         /// <summary>
         /// Records the Last Write Time that was valid at the most recent encryption update of the encrypted file.
         /// </summary>
-        [DataMember]
+
+        [JsonProperty("lastEncryptionWriteTimeUtc")]
         public DateTime LastEncryptionWriteTimeUtc { get; private set; }
     }
 }

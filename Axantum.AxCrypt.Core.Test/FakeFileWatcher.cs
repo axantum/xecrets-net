@@ -49,6 +49,11 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
+        internal static void Clear()
+        {
+            _fileWatchers.Clear();
+        }
+
         internal virtual void OnChanged(FileWatcherEventArgs eventArgs)
         {
             EventHandler<FileWatcherEventArgs> fileChanged = FileChanged;

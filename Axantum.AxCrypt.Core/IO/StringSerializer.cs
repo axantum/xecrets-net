@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public string Serialize<T>(T value)
         {
-            return JsonConvert.SerializeObject(value, Formatting.None, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Include, NullValueHandling = NullValueHandling.Ignore, });
+            return JsonConvert.SerializeObject(value, Formatting.Indented, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Include, NullValueHandling = NullValueHandling.Ignore, });
         }
     }
 }

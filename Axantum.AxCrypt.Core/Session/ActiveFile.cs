@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -42,9 +43,14 @@ namespace Axantum.AxCrypt.Core.Session
     /// immutable.
     /// </summary>
     ///
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
+    [JsonObject(MemberSerialization.OptIn)]
     public sealed class ActiveFile
     {
+        [JsonConstructor]
+        private ActiveFile()
+        {
+        }
+
         public ActiveFile(ActiveFile activeFile)
         {
             if (activeFile == null)
@@ -154,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private SymmetricKeyThumbprint _thumbprint;
 
-        [DataMember(Name = "Thumbprint")]
+        [JsonProperty("thumbprint")]
         public SymmetricKeyThumbprint Thumbprint
         {
             get
@@ -173,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private string _decryptedFolder;
 
-        [DataMember]
+        [JsonProperty("decryptedFolder")]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
         private string DecryptedFolder
         {
@@ -189,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private string _decryptedName;
 
-        [DataMember]
+        [JsonProperty("protectedDecryptedName")]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
         private byte[] ProtectedDecryptedName
         {
@@ -204,7 +210,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        [DataMember]
+        [JsonProperty("encryptedPath")]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
         private string EncryptedPath
         {
@@ -218,10 +224,10 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        [DataMember]
+        [JsonProperty("status")]
         public ActiveFileStatus Status { get; private set; }
 
-        [DataMember]
+        [JsonProperty("properties")]
         public ActiveFileProperties Properties { get; private set; }
 
         [OnDeserialized]

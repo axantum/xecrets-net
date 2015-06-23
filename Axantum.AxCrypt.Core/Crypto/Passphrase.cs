@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -32,7 +33,7 @@ using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/", Name = "PassphraseIdentity")]
+    [JsonObject(MemberSerialization.OptIn)]
     public class Passphrase : IEquatable<Passphrase>
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is in fact immutable.")]
@@ -51,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private SymmetricKeyThumbprint _thumbprint;
 
-        [DataMember(Name = "Thumbprint")]
+        [JsonProperty("thumbprint")]
         public SymmetricKeyThumbprint Thumbprint
         {
             get

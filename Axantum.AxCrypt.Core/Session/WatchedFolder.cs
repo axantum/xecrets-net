@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -39,15 +40,20 @@ namespace Axantum.AxCrypt.Core.Session
     /// automatic encryption of files for example. Instances of this class are
     /// immutable
     /// </summary>
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
+    [JsonObject(MemberSerialization.OptIn)]
     public class WatchedFolder : IEquatable<WatchedFolder>, IDisposable
     {
-        [DataMember(Name = "Path")]
+        [JsonProperty("path")]
         public string Path { get; private set; }
 
         private IFileWatcher _fileWatcher;
 
         public event EventHandler<FileWatcherEventArgs> Changed;
+
+        [JsonConstructor]
+        private WatchedFolder()
+        {
+        }
 
         public WatchedFolder(string path, SymmetricKeyThumbprint thumbprint)
         {
@@ -82,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(new StreamingContext());
         }
 
-        [DataMember(Name = "Thumbprint")]
+        [JsonProperty("thumbprint")]
         public SymmetricKeyThumbprint Thumbprint
         {
             get;
@@ -111,6 +117,11 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 handler(this, e);
             }
+        }
+
+        public bool Matches(string path)
+        {
+            return String.Compare(Path, path, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         public bool Equals(WatchedFolder other)
