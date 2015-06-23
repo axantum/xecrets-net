@@ -79,7 +79,11 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("other");
             }
 
-            return _email == other._email || _thumprint == other._thumprint;
+            if (_email != EmailAddress.Empty || other._email != EmailAddress.Empty)
+            {
+                return _email == other._email;
+            }
+            return _thumprint == other._thumprint;
         }
     }
 }
