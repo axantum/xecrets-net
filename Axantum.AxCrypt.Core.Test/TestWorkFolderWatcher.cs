@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
                 TypeMap.Resolve.New<IDataStore>(fileName).Delete();
                 Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileName)), Times.Exactly(2));
 
-                IDataStore fileSystemStateInfo = Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.xml");
+                IDataStore fileSystemStateInfo = Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt");
                 fileSystemStateInfo.Delete();
                 Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileSystemStateInfo.FullName)), Times.Never);
             }

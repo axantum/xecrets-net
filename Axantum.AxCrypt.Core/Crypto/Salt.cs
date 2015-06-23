@@ -47,9 +47,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'Salt' is, in fact, immutable.")]
         public static readonly Salt Zero = new Salt(new byte[0]);
 
-        /// <summary>
-        /// Required for DataContract deserialization
-        /// </summary>
+        [JsonConstructor]
         private Salt()
         {
         }

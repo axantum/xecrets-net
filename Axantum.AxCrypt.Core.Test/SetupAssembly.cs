@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
             TypeMap.Register.Singleton<IProgressBackground>(() => new FakeProgressBackground());
             TypeMap.Register.Singleton<SessionNotify>(() => new SessionNotify());
-            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.xml")));
+            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt")));
             TypeMap.Register.Singleton<IStatusChecker>(() => new FakeStatusChecker());
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory());

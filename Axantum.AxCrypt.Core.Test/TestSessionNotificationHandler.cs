@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestSessionNotificationHandler
     {
-        private static readonly string _fileSystemStateFilePath = Path.Combine(Path.GetTempPath(), "DummyFileSystemState.xml");
+        private static readonly string _fileSystemStateFilePath = Path.Combine(Path.GetTempPath(), "DummyFileSystemState.txt");
 
         [SetUp]
         public static void Setup()

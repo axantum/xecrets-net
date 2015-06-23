@@ -266,14 +266,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestInvalidXml()
+        public void TestInvalidJson()
         {
-            string badXml = @"<FileSystemState xmlns=""http://www.axantum.com/Serialization/"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"">";
+            string badJson = @"{abc:1{}";
 
             IDataStore stateInfo = Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt");
             using (Stream stream = stateInfo.OpenWrite())
             {
-                byte[] bytes = Encoding.UTF8.GetBytes(badXml);
+                byte[] bytes = Encoding.UTF8.GetBytes(badJson);
                 stream.Write(bytes, 0, bytes.Length);
             }
 

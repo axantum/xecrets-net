@@ -143,6 +143,8 @@ namespace Axantum.AxCrypt
             @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{56D4499E-AC3E-4B8D-91C9-C700C148C44B}",
             @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{35574F09-89F9-4B16-B69B-64F3E25901B8}",
             @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{35574F09-89F9-4B16-B69B-64F3E25901B8}",
+            @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{CBC9F5FD-5CFA-4A33-81CD-369EAB77E3A6}",
+            @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{CBC9F5FD-5CFA-4A33-81CD-369EAB77E3A6}",
         };
 
         private static bool IsGoogleDriveInstalled

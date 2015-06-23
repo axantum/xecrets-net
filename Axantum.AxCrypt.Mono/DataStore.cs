@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -92,7 +91,8 @@ namespace Axantum.AxCrypt.Mono
         public Stream OpenWrite()
         {
             Directory.CreateDirectory(Path.GetDirectoryName(_file.FullName));
-            Stream stream = new FileStream(_file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, OS.Current.StreamBufferSize);
+            FileStream stream = new FileStream(_file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, OS.Current.StreamBufferSize);
+            stream.SetLength(0);
             return stream;
         }
 
