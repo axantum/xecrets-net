@@ -149,10 +149,6 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return false;
             }
-            if (!TypeMap.Resolve.New<IDataContainer>(watchedFolder.Path).IsAvailable)
-            {
-                return false;
-            }
 
             watchedFolder.Changed += watchedFolder_Changed;
             _watchedFolders.Add(watchedFolder);
