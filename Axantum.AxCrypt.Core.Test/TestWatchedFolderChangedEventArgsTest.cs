@@ -53,18 +53,24 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructor()
         {
-            List<WatchedFolder> addedFolders = new List<WatchedFolder>();
-            addedFolders.Add(new WatchedFolder(@"C:\Folder1\", SymmetricKeyThumbprint.Zero));
-            List<WatchedFolder> removedFolders = new List<WatchedFolder>();
-            removedFolders.Add(new WatchedFolder(@"C:\Folder2\", SymmetricKeyThumbprint.Zero));
+            using (WatchedFolder folder1 = new WatchedFolder(@"C:\Folder1\", SymmetricKeyThumbprint.Zero))
+            {
+                using (WatchedFolder folder2 = new WatchedFolder(@"C:\Folder2\", SymmetricKeyThumbprint.Zero))
+                {
+                    List<WatchedFolder> addedFolders = new List<WatchedFolder>();
+                    addedFolders.Add(folder1);
+                    List<WatchedFolder> removedFolders = new List<WatchedFolder>();
+                    removedFolders.Add(folder2);
 
-            WatchedFolderChangedEventArgs e = new WatchedFolderChangedEventArgs(addedFolders, removedFolders);
+                    WatchedFolderChangedEventArgs e = new WatchedFolderChangedEventArgs(addedFolders, removedFolders);
 
-            List<WatchedFolder> eventArgsAddedFolders = new List<WatchedFolder>(e.Added);
-            List<WatchedFolder> eventArgsRemovedFolders = new List<WatchedFolder>(e.Removed);
+                    List<WatchedFolder> eventArgsAddedFolders = new List<WatchedFolder>(e.Added);
+                    List<WatchedFolder> eventArgsRemovedFolders = new List<WatchedFolder>(e.Removed);
 
-            Assert.That(eventArgsAddedFolders, Is.EquivalentTo(addedFolders));
-            Assert.That(eventArgsRemovedFolders, Is.EquivalentTo(removedFolders));
+                    Assert.That(eventArgsAddedFolders, Is.EquivalentTo(addedFolders));
+                    Assert.That(eventArgsRemovedFolders, Is.EquivalentTo(removedFolders));
+                }
+            }
         }
     }
 }

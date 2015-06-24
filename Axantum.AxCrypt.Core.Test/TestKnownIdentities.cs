@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             FakeDataStore.AddFolder(@"C:\WatchedFolder\");
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\"));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\", SymmetricKeyThumbprint.Zero));
             IEnumerable<WatchedFolder> watchedFolders = knownIdentities.LoggedOnWatchedFolders;
 
             Assert.That(watchedFolders.Count(), Is.EqualTo(0), "When not logged on, no watched folders should be known.");

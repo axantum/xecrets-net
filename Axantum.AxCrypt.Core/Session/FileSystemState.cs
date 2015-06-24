@@ -134,19 +134,28 @@ namespace Axantum.AxCrypt.Core.Session
         {
             lock (_watchedFolders)
             {
-                if (_watchedFolders.Contains(watchedFolder))
+                if (!AddWatchedFolderInternalUnsafe(watchedFolder))
                 {
+                    watchedFolder.Dispose();
                     return false;
                 }
-                if (!TypeMap.Resolve.New<IDataContainer>(watchedFolder.Path).IsAvailable)
-                {
-                    return false;
-                }
-
-                WatchedFolder copy = new WatchedFolder(watchedFolder);
-                copy.Changed += watchedFolder_Changed;
-                _watchedFolders.Add(copy);
             }
+            return true;
+        }
+
+        private bool AddWatchedFolderInternalUnsafe(WatchedFolder watchedFolder)
+        {
+            if (_watchedFolders.Contains(watchedFolder))
+            {
+                return false;
+            }
+            if (!TypeMap.Resolve.New<IDataContainer>(watchedFolder.Path).IsAvailable)
+            {
+                return false;
+            }
+
+            watchedFolder.Changed += watchedFolder_Changed;
+            _watchedFolders.Add(watchedFolder);
             return true;
         }
 

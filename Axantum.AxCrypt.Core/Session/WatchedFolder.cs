@@ -53,6 +53,7 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonConstructor]
         private WatchedFolder()
         {
+            Thumbprint = SymmetricKeyThumbprint.Zero;
         }
 
         public WatchedFolder(string path, SymmetricKeyThumbprint thumbprint)
@@ -68,23 +69,6 @@ namespace Axantum.AxCrypt.Core.Session
 
             Path = path.NormalizeFolderPath();
             Thumbprint = thumbprint;
-            Initialize(new StreamingContext());
-        }
-
-        public WatchedFolder(string fullName)
-            : this(fullName, SymmetricKeyThumbprint.Zero)
-        {
-        }
-
-        public WatchedFolder(WatchedFolder watchedFolder)
-        {
-            if (watchedFolder == null)
-            {
-                throw new ArgumentNullException("watchedFolder");
-            }
-
-            Path = watchedFolder.Path;
-            Thumbprint = watchedFolder.Thumbprint;
             Initialize(new StreamingContext());
         }
 
