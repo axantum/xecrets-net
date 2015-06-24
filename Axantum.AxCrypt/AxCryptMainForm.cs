@@ -48,6 +48,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
@@ -964,7 +965,7 @@ namespace Axantum.AxCrypt
                     ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
                     cryptoNameColumn.Name = "CryptoName";
 
-                    UpdateListViewItem(item, file);
+                    UpdateListViewItemAsync(item, file);
                     int i;
                     if (currentFiles.TryGetValue(item.Name, out i))
                     {
@@ -987,12 +988,14 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
+        private static async void UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile)
         {
             UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
 
+            EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(activeFile);
+
             item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
-            item.SubItems["SharingIndicator"].Text = EncryptedProperties.Create(activeFile.EncryptedFileInfo).SharedKeyHolders.Count().ToString();
+            item.SubItems["SharingIndicator"].Text = encryptedProperties.SharedKeyHolders.Count().ToString();
             item.SubItems["Date"].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems["Date"].Tag = activeFile.Properties.LastActivityTimeUtc;
 
@@ -1007,6 +1010,11 @@ namespace Axantum.AxCrypt
             catch (ArgumentException)
             {
             }
+        }
+
+        private static async Task<EncryptedProperties> EncryptedPropertiesAsync(ActiveFile activeFile)
+        {
+            return await Task.Run(() => EncryptedProperties.Create(activeFile.EncryptedFileInfo));
         }
 
         private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)
