@@ -37,20 +37,20 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this._sharedKeysCheckListBox = new System.Windows.Forms.CheckedListBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this._cancelButton = new System.Windows.Forms.Button();
+            this._okButton = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this._selectAllButton = new System.Windows.Forms.Button();
             this._unshareButton = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this._okButton = new System.Windows.Forms.Button();
-            this._cancelButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -161,6 +161,40 @@
             this.panel1.Size = new System.Drawing.Size(378, 53);
             this.panel1.TabIndex = 999;
             // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.Controls.Add(this._cancelButton);
+            this.panel5.Controls.Add(this._okButton);
+            this.panel5.Location = new System.Drawing.Point(196, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(179, 47);
+            this.panel5.TabIndex = 16;
+            // 
+            // _cancelButton
+            // 
+            this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._cancelButton.AutoSize = true;
+            this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._cancelButton.Location = new System.Drawing.Point(104, 4);
+            this._cancelButton.Name = "_cancelButton";
+            this._cancelButton.Size = new System.Drawing.Size(75, 33);
+            this._cancelButton.TabIndex = 7;
+            this._cancelButton.Text = "Cancel";
+            this._cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // _okButton
+            // 
+            this._okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._okButton.Location = new System.Drawing.Point(23, 4);
+            this._okButton.Name = "_okButton";
+            this._okButton.Size = new System.Drawing.Size(75, 33);
+            this._okButton.TabIndex = 6;
+            this._okButton.Text = "OK";
+            this._okButton.UseVisualStyleBackColor = true;
+            this._okButton.Click += new System.EventHandler(this._okButton_Click);
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this._selectAllButton);
@@ -192,39 +226,6 @@
             this._unshareButton.Text = "Unshare";
             this._unshareButton.UseVisualStyleBackColor = true;
             // 
-            // panel5
-            // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel5.Controls.Add(this._cancelButton);
-            this.panel5.Controls.Add(this._okButton);
-            this.panel5.Location = new System.Drawing.Point(196, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(179, 47);
-            this.panel5.TabIndex = 16;
-            // 
-            // _okButton
-            // 
-            this._okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this._okButton.Location = new System.Drawing.Point(23, 4);
-            this._okButton.Name = "_okButton";
-            this._okButton.Size = new System.Drawing.Size(75, 33);
-            this._okButton.TabIndex = 6;
-            this._okButton.Text = "OK";
-            this._okButton.UseVisualStyleBackColor = true;
-            // 
-            // _cancelButton
-            // 
-            this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._cancelButton.AutoSize = true;
-            this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancelButton.Location = new System.Drawing.Point(104, 4);
-            this._cancelButton.Name = "_cancelButton";
-            this._cancelButton.Size = new System.Drawing.Size(75, 33);
-            this._cancelButton.TabIndex = 7;
-            this._cancelButton.Text = "Cancel";
-            this._cancelButton.UseVisualStyleBackColor = true;
-            // 
             // KeyShareDialog
             // 
             this.AcceptButton = this._okButton;
@@ -245,10 +246,10 @@
             this.panel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

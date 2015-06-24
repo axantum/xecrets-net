@@ -529,7 +529,6 @@
             // 
             this._shareKeysToolStripMenuItem.Name = "shareKeysToolStripMenuItem";
             resources.ApplyResources(this._shareKeysToolStripMenuItem, "shareKeysToolStripMenuItem");
-            this._shareKeysToolStripMenuItem.Click += new System.EventHandler(this.shareKeysToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 

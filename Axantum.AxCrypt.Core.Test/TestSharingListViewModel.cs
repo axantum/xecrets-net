@@ -37,7 +37,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -65,9 +64,9 @@ namespace Axantum.AxCrypt.Core.Test
             using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
             {
             }
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
-            Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
-            Assert.That(model.KnownKeyShares.Any(), Is.False, "There are no known public kyes, so none can be unshared either.");
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new EmailAddress[0], LogOnIdentity.Empty);
+            Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
+            Assert.That(model.NotSharedWith.Any(), Is.False, "There are no known public kyes, so none can be unshared either.");
         }
 
         [Test]
@@ -80,9 +79,9 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
-            Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(1), "There is one known public key, so this should be available as unshared.");
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new EmailAddress[0], LogOnIdentity.Empty);
+            Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "There is one known public key, so this should be available as unshared.");
         }
 
         [Test]
@@ -99,9 +98,9 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
-            Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new EmailAddress[0], LogOnIdentity.Empty);
+            Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
         }
 
         [Test]
@@ -118,13 +117,13 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
-            Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new EmailAddress[0], LogOnIdentity.Empty);
+            Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
             model.AddKeyShares.Execute(new EmailAddress[] { userPublicKey2.Email });
-            Assert.That(model.AddedKeyShares.Count(), Is.EqualTo(1), "One was set as shared, so there should be one here now.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(1), "One unshared was set as shared, so there should be only one here now.");
+            Assert.That(model.SharedWith.Count(), Is.EqualTo(1), "One was set as shared, so there should be one here now.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "One unshared was set as shared, so there should be only one here now.");
         }
 
         [Test]
@@ -141,13 +140,13 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
-            Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new EmailAddress[0], LogOnIdentity.Empty);
+            Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
             model.AddKeyShares.Execute(new EmailAddress[] { userPublicKey2.Email, userPublicKey1.Email });
-            Assert.That(model.AddedKeyShares.Count(), Is.EqualTo(2), "Two were set as shared, so there should be two here now.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(0), "Both unshared were set as shared, so there should be none here now.");
+            Assert.That(model.SharedWith.Count(), Is.EqualTo(2), "Two were set as shared, so there should be two here now.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(0), "Both unshared were set as shared, so there should be none here now.");
         }
 
         [Test]
@@ -164,17 +163,17 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
-            Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new EmailAddress[0], LogOnIdentity.Empty);
+            Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
             model.AddKeyShares.Execute(new EmailAddress[] { userPublicKey2.Email, userPublicKey1.Email });
-            Assert.That(model.AddedKeyShares.Count(), Is.EqualTo(2), "Two were set as shared, so there should be two here now.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(0), "Both unshared were set as shared, so there should be none here now.");
+            Assert.That(model.SharedWith.Count(), Is.EqualTo(2), "Two were set as shared, so there should be two here now.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(0), "Both unshared were set as shared, so there should be none here now.");
 
             model.RemoveKeyShares.Execute(new EmailAddress[] { userPublicKey1.Email });
-            Assert.That(model.AddedKeyShares.Count(), Is.EqualTo(1), "One shared of two was removed, so there should be one here now.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(1), "One shared of two was removed, so there should be one here now.");
+            Assert.That(model.SharedWith.Count(), Is.EqualTo(1), "One shared of two was removed, so there should be one here now.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "One shared of two was removed, so there should be one here now.");
         }
 
         [Test]
@@ -191,17 +190,17 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), LogOnIdentity.Empty);
-            Assert.That(model.AddedKeyShares.Any(), Is.False, "There are no known public keys, and none are set as shared.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
+            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new EmailAddress[0], LogOnIdentity.Empty);
+            Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
             model.AddKeyShares.Execute(new EmailAddress[] { userPublicKey1.Email });
-            Assert.That(model.AddedKeyShares.Count(), Is.EqualTo(1), "One was set as shared, so there should be one here now.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(1), "One unshared was set as shared, so there should be one here now.");
+            Assert.That(model.SharedWith.Count(), Is.EqualTo(1), "One was set as shared, so there should be one here now.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "One unshared was set as shared, so there should be one here now.");
 
             model.RemoveKeyShares.Execute(new EmailAddress[] { userPublicKey2.Email });
-            Assert.That(model.AddedKeyShares.Count(), Is.EqualTo(1), "A key that was not set as shared was attempted to remove, nothing should happen.");
-            Assert.That(model.KnownKeyShares.Count(), Is.EqualTo(1), "A key that was not set as shared was attempted to remove, nothing should happen.");
+            Assert.That(model.SharedWith.Count(), Is.EqualTo(1), "A key that was not set as shared was attempted to remove, nothing should happen.");
+            Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "A key that was not set as shared was attempted to remove, nothing should happen.");
         }
     }
 }

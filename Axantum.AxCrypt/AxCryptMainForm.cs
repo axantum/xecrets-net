@@ -429,6 +429,7 @@ namespace Axantum.AxCrypt
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = _recentFilesListView.SelectedItems.Count == 1 && Resolve.KnownIdentities.IsLoggedOn; };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
 
+            _shareKeysToolStripMenuItem.Click += (sender, e) => { ShareKeys(_mainViewModel.SelectedRecentFiles); };
             _mainToolStrip.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForMainToolStrip(e); };
 
             _knownFoldersViewModel.BindPropertyChanged("KnownFolders", (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
@@ -1001,7 +1002,7 @@ namespace Axantum.AxCrypt
         {
             UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
 
-            EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(activeFile);
+            EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(activeFile.EncryptedFileInfo);
 
             item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
             item.SubItems["SharingIndicator"].Text = encryptedProperties.SharedKeyHolders.Count().ToString();
@@ -1021,9 +1022,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static async Task<EncryptedProperties> EncryptedPropertiesAsync(ActiveFile activeFile)
+        private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore)
         {
-            return await Task.Run(() => EncryptedProperties.Create(activeFile.EncryptedFileInfo));
+            return await Task.Run(() => EncryptedProperties.Create(dataStore));
         }
 
         private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)
@@ -1527,11 +1528,20 @@ namespace Axantum.AxCrypt
             importPublicKeys.ImportFiles.Execute(fileSelection.SelectedFiles);
         }
 
-        private void shareKeysToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void ShareKeys(IEnumerable<string> fileNames)
         {
-            using (KeyShareDialog dialog = new KeyShareDialog(TypeMap.Resolve.New<KnownPublicKeys>, Resolve.KnownIdentities.DefaultEncryptionIdentity))
+            foreach (string file in fileNames)
             {
-                dialog.ShowDialog(this);
+                EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(TypeMap.Resolve.New<IDataStore>(file));
+                IEnumerable<EmailAddress> sharedWith = encryptedProperties.SharedKeyHolders;
+                using (KeyShareDialog dialog = new KeyShareDialog(TypeMap.Resolve.New<KnownPublicKeys>, sharedWith, Resolve.KnownIdentities.DefaultEncryptionIdentity))
+                {
+                    if (dialog.ShowDialog(this) != DialogResult.OK)
+                    {
+                        continue;
+                    }
+                    sharedWith = dialog.SharedWith;
+                }
             }
         }
     }

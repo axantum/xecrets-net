@@ -26,8 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -45,34 +43,36 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity _logOnIdentity;
 
-        public IEnumerable<EmailAddress> AddedKeyShares { get { return GetProperty<IEnumerable<EmailAddress>>("AddedKeyShares"); } private set { SetProperty("AddedKeyShares", value); } }
+        public IEnumerable<EmailAddress> SharedWith { get { return GetProperty<IEnumerable<EmailAddress>>("SharedWith"); } private set { SetProperty("SharedWith", value); } }
 
-        public IEnumerable<EmailAddress> KnownKeyShares { get { return GetProperty<IEnumerable<EmailAddress>>("KnownKeyShares"); } private set { SetProperty("KnownKeyShares", value); } }
+        public IEnumerable<EmailAddress> NotSharedWith { get { return GetProperty<IEnumerable<EmailAddress>>("NotSharedWith"); } private set { SetProperty("NotSharedWith", value); } }
 
         public IAction AddKeyShares { get; private set; }
 
         public IAction RemoveKeyShares { get; private set; }
 
-        public SharingListViewModel(Func<KnownPublicKeys> knownPublicKeysFactory, LogOnIdentity logOnIdentity)
+        public SharingListViewModel(Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<EmailAddress> sharedWith, LogOnIdentity logOnIdentity)
         {
             _knownPublicKeysFactory = knownPublicKeysFactory;
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
 
-            InitializePropertyValues();
+            InitializePropertyValues(sharedWith);
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
         }
 
-        private void InitializePropertyValues()
+        private void InitializePropertyValues(IEnumerable<EmailAddress> sharedWith)
         {
-            AddedKeyShares = new List<EmailAddress>();
-            AddKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesAction(upks));
-            RemoveKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => RemoveKeySharesAction(upks));
+            EmailAddress userEmail = _logOnIdentity.UserKeys.UserEmail;
+            SharedWith = sharedWith.Where(sw => sw != userEmail).ToList();
+
             using (KnownPublicKeys knownPublicKeys = _knownPublicKeysFactory())
             {
-                EmailAddress userEmail = _logOnIdentity.UserKeys.UserEmail;
-                KnownKeyShares = knownPublicKeys.PublicKeys.Select(upk => upk.Email).Where(upk => upk != userEmail).OrderBy(e => e.Address);
+                NotSharedWith = knownPublicKeys.PublicKeys.Select(upk => upk.Email).Where(upk => upk != userEmail && !sharedWith.Any(sw => upk == sw)).OrderBy(e => e.Address);
             }
+
+            AddKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesAction(upks));
+            RemoveKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => RemoveKeySharesAction(upks));
         }
 
         private static void BindPropertyChangedEvents()
@@ -85,25 +85,25 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void RemoveKeySharesAction(IEnumerable<EmailAddress> keySharesToRemove)
         {
-            HashSet<EmailAddress> fromSet = new HashSet<EmailAddress>(AddedKeyShares);
-            HashSet<EmailAddress> toSet = new HashSet<EmailAddress>(KnownKeyShares);
+            HashSet<EmailAddress> fromSet = new HashSet<EmailAddress>(SharedWith);
+            HashSet<EmailAddress> toSet = new HashSet<EmailAddress>(NotSharedWith);
 
             MoveKeyShares(keySharesToRemove, fromSet, toSet);
 
-            AddedKeyShares = fromSet.OrderBy(a => a.Address);
-            KnownKeyShares = toSet.OrderBy(a => a.Address);
+            SharedWith = fromSet.OrderBy(a => a.Address);
+            NotSharedWith = toSet.OrderBy(a => a.Address);
         }
 
         private void AddKeySharesAction(IEnumerable<EmailAddress> keySharesToAdd)
         {
-            HashSet<EmailAddress> fromSet = new HashSet<EmailAddress>(KnownKeyShares);
-            HashSet<EmailAddress> toSet = new HashSet<EmailAddress>(AddedKeyShares);
+            HashSet<EmailAddress> fromSet = new HashSet<EmailAddress>(NotSharedWith);
+            HashSet<EmailAddress> toSet = new HashSet<EmailAddress>(SharedWith);
 
             FectchMissingUnsharedPublicKeysFromServer(keySharesToAdd, fromSet);
             MoveKeyShares(keySharesToAdd, fromSet, toSet);
 
-            KnownKeyShares = fromSet.OrderBy(a => a.Address);
-            AddedKeyShares = toSet.OrderBy(a => a.Address);
+            NotSharedWith = fromSet.OrderBy(a => a.Address);
+            SharedWith = toSet.OrderBy(a => a.Address);
         }
 
         private static void FectchMissingUnsharedPublicKeysFromServer(IEnumerable<EmailAddress> keySharesToAdd, HashSet<EmailAddress> fromSet)
