@@ -45,5 +45,7 @@ namespace Axantum.AxCrypt.Core.UI
         void RunOnUIThread(Action action);
 
         void PostOnUIThread(Action action);
+
+        void Yield();
     }
 }

@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt
 {
@@ -75,6 +75,11 @@ namespace Axantum.AxCrypt
             {
                 throw new InvalidOperationException("Exception on UI Thread", exception);
             }
+        }
+
+        public void Yield()
+        {
+            Application.DoEvents();
         }
     }
 }
