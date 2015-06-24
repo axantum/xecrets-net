@@ -80,7 +80,7 @@
   </PropertyGroup>
 
   <!-- Use the parameter AxAuthenticodeFile to determine the file name. -->
-  <Target Name="AxAuthenticodeSignOneFile" Condition=" '$(_AxIsBuildServerBuild)' == 'true' Or '$(Configuration)' != 'Debug' ">
+  <Target Name="AxAuthenticodeSignOneFile">
     <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot;"
           Condition=" Exists('$(_AxSignToolPath)') "
           ContinueOnError="true">
@@ -112,7 +112,7 @@
              AssemblyFile="..\SolutionItems\MSBuild.Axantum.Tasks.dll" />
 
   <Target Name="_AxMergeExe"
-            Condition="'$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != ''">
+            Condition="'$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != '' ">
     <PropertyGroup>
       <_AxIlMergeStrongNameArguments Condition=" '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">/delaysign &quot;/keyfile:$(MSBuildThisFileDirectory)AxantumStrongName.pub&quot;</_AxIlMergeStrongNameArguments>
     </PropertyGroup>
@@ -144,7 +144,7 @@
           Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(_AxIlMergeAssemblies)"
           Outputs="$(OutputPath)$(_AxMergedBaseFileName).exe"
           DependsOnTargets="_AxMergeExe;_AxSignExe;_AxRecopyMerged"
-          Condition=" '$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != '' ">
+          Condition=" '$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != '' And ( '$(_AxIsBuildServerBuild)' == 'true' Or '$(Configuration)' != 'Debug' ) ">
   </Target>
 
   <Target Name="_AxSetVersionedFileName">
