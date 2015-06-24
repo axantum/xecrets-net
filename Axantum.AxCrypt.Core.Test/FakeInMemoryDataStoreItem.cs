@@ -1,13 +1,14 @@
 ﻿using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
 {
+    [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Fake test code and MemoryStream does not need disposal.")]
     internal class FakeInMemoryDataStoreItem : IDataStore
     {
         private MemoryStream _dataStream;
