@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             FakeDataStore.AddFolder(@"C:\WatchedFolder\");
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\", SymmetricKeyThumbprint.Zero));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\", IdentityPublicTag.Empty));
             IEnumerable<WatchedFolder> watchedFolders = knownIdentities.LoggedOnWatchedFolders;
 
             Assert.That(watchedFolders.Count(), Is.EqualTo(0), "When not logged on, no watched folders should be known.");
@@ -218,13 +218,13 @@ namespace Axantum.AxCrypt.Core.Test
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             FakeDataStore.AddFolder(@"C:\WatchedFolder1\");
             FakeDataStore.AddFolder(@"C:\WatchedFolder2\");
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder1\", key1.Thumbprint));
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.Passphrase.Thumbprint));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder1\", new LogOnIdentity(key1).Tag));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.Tag));
             knownIdentities.DefaultEncryptionIdentity = key2;
             IEnumerable<WatchedFolder> watchedFolders = knownIdentities.LoggedOnWatchedFolders;
 
             Assert.That(watchedFolders.Count(), Is.EqualTo(1), "Only one of the two watched folders should be shown.");
-            Assert.That(watchedFolders.First().Thumbprint, Is.EqualTo(key2.Passphrase.Thumbprint), "The returned watched folder should be number 2.");
+            Assert.That(watchedFolders.First().Tag.Matches(key2.Tag), "The returned watched folder should be number 2.");
         }
     }
 }

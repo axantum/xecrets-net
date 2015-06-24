@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
@@ -41,7 +40,7 @@ namespace Axantum.AxCrypt.Core.Session
     /// immutable
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class WatchedFolder : IEquatable<WatchedFolder>, IDisposable
+    public class WatchedFolder : IDisposable
     {
         [JsonProperty("path")]
         public string Path { get; private set; }
@@ -53,27 +52,27 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonConstructor]
         private WatchedFolder()
         {
-            Thumbprint = SymmetricKeyThumbprint.Zero;
+            Tag = IdentityPublicTag.Empty;
         }
 
-        public WatchedFolder(string path, SymmetricKeyThumbprint thumbprint)
+        public WatchedFolder(string path, IdentityPublicTag tag)
         {
             if (path == null)
             {
                 throw new ArgumentNullException("path");
             }
-            if (thumbprint == null)
+            if (tag == null)
             {
-                throw new ArgumentNullException("thumbprint");
+                throw new ArgumentNullException("tag");
             }
 
             Path = path.NormalizeFolderPath();
-            Thumbprint = thumbprint;
+            Tag = tag;
             Initialize(new StreamingContext());
         }
 
-        [JsonProperty("thumbprint")]
-        public SymmetricKeyThumbprint Thumbprint
+        [JsonProperty("publicTag")]
+        public IdentityPublicTag Tag
         {
             get;
             private set;
@@ -108,50 +107,14 @@ namespace Axantum.AxCrypt.Core.Session
             return String.Compare(Path, path, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
-        public bool Equals(WatchedFolder other)
+        public bool Matches(WatchedFolder watchedFolder)
         {
-            if (other == null)
-            {
-                return false;
-            }
-
-            if (Object.ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            return String.Compare(Path, other.Path, StringComparison.OrdinalIgnoreCase) == 0;
-        }
-
-        public override bool Equals(object obj)
-        {
-            WatchedFolder watchedFolder = obj as WatchedFolder;
             if (watchedFolder == null)
             {
-                return false;
+                throw new ArgumentNullException("watchedFolder");
             }
 
-            return Equals(watchedFolder);
-        }
-
-        public override int GetHashCode()
-        {
-            return Path.GetHashCode();
-        }
-
-        public static bool operator ==(WatchedFolder left, WatchedFolder right)
-        {
-            if ((object)left == null || ((object)right == null))
-            {
-                return Object.Equals(left, right);
-            }
-
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(WatchedFolder left, WatchedFolder right)
-        {
-            return !(left == right);
+            return Matches(watchedFolder.Path);
         }
 
         #region IDisposable Members

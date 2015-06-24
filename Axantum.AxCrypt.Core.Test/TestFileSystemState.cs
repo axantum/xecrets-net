@@ -297,10 +297,10 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders.");
 
                 FakeDataStore.AddFolder(_rootPath);
-                state.AddWatchedFolder(new WatchedFolder(_rootPath, SymmetricKeyThumbprint.Zero));
+                state.AddWatchedFolder(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should be one Watched Folder.");
 
-                state.AddWatchedFolder(new WatchedFolder(_rootPath, SymmetricKeyThumbprint.Zero));
+                state.AddWatchedFolder(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should still only be one Watched Folder.");
 
                 state.Save();
@@ -326,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
                 FakeDataStore.AddFolder(_rootPath);
-                state.AddWatchedFolder(new WatchedFolder(_rootPath, SymmetricKeyThumbprint.Zero));
+                state.AddWatchedFolder(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
 
                 Assert.That(state.ActiveFileCount, Is.EqualTo(0));
 
@@ -348,7 +348,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
                 FakeDataStore.AddFolder(_rootPath);
-                state.AddWatchedFolder(new WatchedFolder(_rootPath, SymmetricKeyThumbprint.Zero));
+                state.AddWatchedFolder(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
 
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1));
 

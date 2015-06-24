@@ -1,6 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,6 +96,14 @@ namespace Axantum.AxCrypt.Core.Crypto
                     return new UserPublicKey[0];
                 }
                 return new UserPublicKey[] { new UserPublicKey(UserKeys.UserEmail, UserKeys.KeyPair.PublicKey), };
+            }
+        }
+
+        public IdentityPublicTag Tag
+        {
+            get
+            {
+                return new IdentityPublicTag(this);
             }
         }
 

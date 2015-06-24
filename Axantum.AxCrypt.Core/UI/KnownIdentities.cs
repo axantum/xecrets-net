@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     return new WatchedFolder[0];
                 }
-                return _fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == DefaultEncryptionIdentity.Passphrase.Thumbprint);
+                return _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(DefaultEncryptionIdentity.Tag));
             }
         }
     }

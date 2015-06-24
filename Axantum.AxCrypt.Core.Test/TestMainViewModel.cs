@@ -571,7 +571,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(0));
 
-                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Thumbprint));
+                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
 
                 Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(1));
                 Assert.That(mvm.WatchedFolders.First(), Is.EqualTo(@"C:\MyFolders\Folder1".NormalizeFolderPath()));
@@ -586,7 +586,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.FilesArePending, Is.False);
-                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Thumbprint));
+                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
                 FakeDataStore.AddFile(@"C:\MyFolders\Folder1\Encryptable.txt", Stream.Null);
                 Assert.That(mvm.FilesArePending, Is.True);
             }

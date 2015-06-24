@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private bool AddWatchedFolderInternalUnsafe(WatchedFolder watchedFolder)
         {
-            if (_watchedFolders.Contains(watchedFolder))
+            if (_watchedFolders.Any(wf => wf.Matches(watchedFolder)))
             {
                 return false;
             }

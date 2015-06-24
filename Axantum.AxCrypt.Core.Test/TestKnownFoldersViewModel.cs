@@ -114,8 +114,8 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFolder(folder1.My.FullName);
             FakeDataStore.AddFolder(folder2.My.FullName);
 
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.My.FullName, new Passphrase("PassPhrase").Thumbprint));
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.My.FullName, new Passphrase("aaa").Thumbprint));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.My.FullName, new LogOnIdentity("PassPhrase").Tag));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.My.FullName, new LogOnIdentity(new Passphrase("aaa")).Tag));
 
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownIdentities);

@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Test
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, TypeMap.Resolve.New<ActiveFileAction>(), mock, mockStatusChecker.Object);
             FakeDataStore.AddFolder(@"C:\WatchedFolder");
             LogOnIdentity key = new LogOnIdentity("passphrase");
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Passphrase.Thumbprint));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, key));
 
@@ -254,7 +254,7 @@ namespace Axantum.AxCrypt.Core.Test
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, TypeMap.Resolve.New<ActiveFileAction>(), mock.Object, mockStatusChecker.Object);
             LogOnIdentity defaultKey = new LogOnIdentity("default");
             Resolve.KnownIdentities.DefaultEncryptionIdentity = defaultKey;
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\", defaultKey.Passphrase.Thumbprint));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\", defaultKey.Tag));
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
             sessionEvents.Add(new SessionNotification(SessionNotificationType.EncryptPendingFiles));

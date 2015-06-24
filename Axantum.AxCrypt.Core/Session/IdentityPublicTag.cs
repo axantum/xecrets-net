@@ -31,7 +31,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -45,15 +44,17 @@ namespace Axantum.AxCrypt.Core.Session
     [JsonObject(MemberSerialization.OptIn)]
     public class IdentityPublicTag
     {
+        public static readonly IdentityPublicTag Empty = new IdentityPublicTag();
+
         [JsonProperty("thumbprint")]
-        private SymmetricKeyThumbprint _thumprint;
+        private SymmetricKeyThumbprint _thumbprint;
 
         [JsonProperty("email")]
         private EmailAddress _email;
 
         private IdentityPublicTag()
         {
-            _thumprint = SymmetricKeyThumbprint.Zero;
+            _thumbprint = SymmetricKeyThumbprint.Zero;
             _email = EmailAddress.Empty;
         }
 
@@ -64,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("identity");
             }
 
-            _thumprint = identity.Passphrase.Thumbprint;
+            _thumbprint = identity.Passphrase.Thumbprint;
             _email = identity.UserKeys == null ? EmailAddress.Empty : identity.UserKeys.UserEmail;
         }
 
@@ -84,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return _email == other._email;
             }
-            return _thumprint == other._thumprint;
+            return _thumbprint == other._thumbprint;
         }
     }
 }

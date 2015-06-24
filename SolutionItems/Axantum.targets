@@ -80,7 +80,7 @@
   </PropertyGroup>
 
   <!-- Use the parameter AxAuthenticodeFile to determine the file name. -->
-  <Target Name="AxAuthenticodeSignOneFile">
+  <Target Name="AxAuthenticodeSignOneFile" Condition=" '$(_AxIsBuildServerBuild)' == 'true' Or '$(Configuration)' != 'Debug' ">
     <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot;"
           Condition=" Exists('$(_AxSignToolPath)') "
           ContinueOnError="true">

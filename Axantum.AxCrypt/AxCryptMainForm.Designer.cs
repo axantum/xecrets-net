@@ -541,7 +541,6 @@
             this.MainMenuStrip = this._mainMenuStrip;
             this.Name = "AxCryptMainForm";
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
-            this.Shown += new System.EventHandler(this.AxCryptMainForm_Shown);
             this._mainToolStrip.ResumeLayout(false);
             this._mainToolStrip.PerformLayout();
             this._mainMenuStrip.ResumeLayout(false);

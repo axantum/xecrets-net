@@ -100,6 +100,11 @@ namespace Axantum.AxCrypt
         private void InitializeProgram()
         {
             RegisterTypeFactories();
+            if (!ValidateSettings())
+            {
+                return;
+            }
+
             SetupViewModels();
             AttachLogListener();
             ConfigureUiOptions();
@@ -112,6 +117,19 @@ namespace Axantum.AxCrypt
             SendStartSessionNotification();
 
             _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
+        }
+
+        private bool ValidateSettings()
+        {
+            if (Resolve.UserSettings.SettingsVersion >= Resolve.UserSettings.CurrentSettingsVersion)
+            {
+                return true;
+            }
+
+            Resources.UserSettingsFormatChangeNeedsReset.ShowWarning();
+            ClearAllSettingsAndReinitialize();
+            CloseAndExit();
+            return false;
         }
 
         private void LogOnOrExit()
@@ -168,15 +186,6 @@ namespace Axantum.AxCrypt
             _mainViewModel = TypeMap.Resolve.New<MainViewModel>();
             _fileOperationViewModel = TypeMap.Resolve.New<FileOperationViewModel>();
             _knownFoldersViewModel = TypeMap.Resolve.New<KnownFoldersViewModel>();
-        }
-
-        private void AxCryptMainForm_Shown(object sender, EventArgs e)
-        {
-            if (Resolve.UserSettings.SettingsVersion < Resolve.UserSettings.CurrentSettingsVersion)
-            {
-                Resources.UserSettingsFormatChangeNeedsReset.ShowWarning();
-                ClearPassphraseMemoryToolStripMenuItem_Click(sender, e);
-            }
         }
 
         private void RegisterTypeFactories()
