@@ -44,7 +44,19 @@ namespace Axantum.AxCrypt.Core.Session
             SharedKeyHolders = new EmailAddress[0];
         }
 
+        public bool IsValid { get; private set; }
+
         public IEnumerable<EmailAddress> SharedKeyHolders { get; private set; }
+
+        public string FileName { get; private set; }
+
+        public DecryptionParameter DecryptionParameter { get; private set; }
+
+        public DateTime CreationTimeUtc { get; set; }
+
+        public DateTime LastAccessTimeUtc { get; set; }
+
+        public DateTime LastWriteTimeUtc { get; set; }
 
         public static EncryptedProperties Create(IDataStore dataStore)
         {
@@ -56,14 +68,26 @@ namespace Axantum.AxCrypt.Core.Session
 
         public static EncryptedProperties Create(Stream stream)
         {
-            EncryptedProperties properties = new EncryptedProperties();
             if (!Resolve.KnownIdentities.IsLoggedOn)
             {
-                return properties;
+                return new EncryptedProperties();
             }
 
-            LogOnIdentity logOnIdentity = Resolve.KnownIdentities.DefaultEncryptionIdentity;
-            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { logOnIdentity.Passphrase }, logOnIdentity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
+            return Create(stream, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+        }
+
+        public static EncryptedProperties Create(IDataStore encrypted, LogOnIdentity identity)
+        {
+            using (Stream stream = encrypted.OpenRead())
+            {
+                return Create(stream, identity);
+            }
+        }
+
+        public static EncryptedProperties Create(Stream stream, LogOnIdentity identity)
+        {
+            EncryptedProperties properties = new EncryptedProperties();
+            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { identity.Passphrase }, identity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
 
             using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(decryptionParameters, stream))
             {
@@ -73,6 +97,12 @@ namespace Axantum.AxCrypt.Core.Session
                 }
 
                 properties.SharedKeyHolders = document.AsymmetricRecipients;
+                properties.FileName = document.FileName;
+                properties.DecryptionParameter = document.DecryptionParameter;
+                properties.CreationTimeUtc = document.CreationTimeUtc;
+                properties.LastWriteTimeUtc = document.LastWriteTimeUtc;
+                properties.LastAccessTimeUtc = document.LastAccessTimeUtc;
+                properties.IsValid = true;
             }
 
             return properties;

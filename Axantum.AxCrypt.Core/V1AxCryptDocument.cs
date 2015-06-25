@@ -31,7 +31,6 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
@@ -80,6 +79,8 @@ namespace Axantum.AxCrypt.Core
         public bool PassphraseIsValid { get; set; }
 
         public IEnumerable<EmailAddress> AsymmetricRecipients { get; private set; }
+
+        public DecryptionParameter DecryptionParameter { get; set; }
 
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "cryptoId", Justification = "Part of contract, and is used for other implementations.")]
         public bool Load(Passphrase passphrase, Guid cryptoId, Stream inputStream)

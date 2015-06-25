@@ -31,7 +31,6 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
@@ -79,6 +78,8 @@ namespace Axantum.AxCrypt.Core
         private AxCryptReader _reader;
 
         public bool PassphraseIsValid { get; set; }
+
+        public DecryptionParameter DecryptionParameter { get; set; }
 
         public IEnumerable<EmailAddress> AsymmetricRecipients
         {

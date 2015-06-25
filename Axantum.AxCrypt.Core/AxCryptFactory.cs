@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
@@ -93,7 +92,7 @@ namespace Axantum.AxCrypt.Core
                     document.Load(decryptionParameter.Passphrase, decryptionParameter.CryptoId, headers);
                     if (document.PassphraseIsValid)
                     {
-                        foundParameter = decryptionParameter;
+                        document.DecryptionParameter = foundParameter = decryptionParameter;
                         return document;
                     }
                 }
@@ -102,7 +101,7 @@ namespace Axantum.AxCrypt.Core
                     document.Load(decryptionParameter.PrivateKey, decryptionParameter.CryptoId, headers);
                     if (document.PassphraseIsValid)
                     {
-                        foundParameter = decryptionParameter;
+                        document.DecryptionParameter = foundParameter = decryptionParameter;
                         return document;
                     }
                 }

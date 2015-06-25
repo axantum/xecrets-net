@@ -48,6 +48,8 @@ namespace Axantum.AxCrypt.Core
 
         DateTime LastWriteTimeUtc { get; set; }
 
+        DecryptionParameter DecryptionParameter { get; set; }
+
         ICryptoFactory CryptoFactory { get; }
 
         IEnumerable<EmailAddress> AsymmetricRecipients { get; }

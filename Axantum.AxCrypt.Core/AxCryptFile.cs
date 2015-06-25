@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -38,6 +37,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -145,6 +145,36 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public static void Encrypt(Stream sourceStream, Stream destinationStream, EncryptedProperties properties, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
+        {
+            if (sourceStream == null)
+            {
+                throw new ArgumentNullException("sourceStream");
+            }
+            if (destinationStream == null)
+            {
+                throw new ArgumentNullException("destinationStream");
+            }
+            if (encryptionParameters == null)
+            {
+                throw new ArgumentNullException("encryptionParameters");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
+            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(encryptionParameters))
+            {
+                document.FileName = properties.FileName;
+                document.CreationTimeUtc = properties.CreationTimeUtc;
+                document.LastAccessTimeUtc = properties.LastAccessTimeUtc;
+                document.LastWriteTimeUtc = properties.LastWriteTimeUtc;
+
+                document.EncryptTo(sourceStream, destinationStream, options);
+            }
+        }
+
         public void EncryptFileWithBackupAndWipe(string sourceFileName, string destinationFileName, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (sourceFileName == null)
@@ -233,6 +263,30 @@ namespace Axantum.AxCrypt.Core
             }
             Wipe(sourceStore, progress);
             progress.NotifyLevelFinished();
+        }
+
+        public void ReEncrypt(IDataStore from, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
+        {
+            using (PipelineStream pipeline = new PipelineStream())
+            {
+                EncryptedProperties properties = EncryptedProperties.Create(from, identity);
+
+                Task decryption = Task.Factory.StartNew(() =>
+                {
+                    Decrypt(from, pipeline, identity);
+                    pipeline.Complete();
+                });
+
+                Task encryption = Task.Factory.StartNew(() =>
+                {
+                    WriteToFileWithBackup(from, (Stream s) =>
+                    {
+                        Encrypt(pipeline, s, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
+                    }, progress);
+                });
+
+                Task.WaitAll(decryption, encryption);
+            }
         }
 
         public bool Decrypt(IDataStore sourceStore, Stream destinationStream, LogOnIdentity passphrase)

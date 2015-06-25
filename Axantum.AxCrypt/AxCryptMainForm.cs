@@ -1542,6 +1542,19 @@ namespace Axantum.AxCrypt
                     }
                     sharedWith = dialog.SharedWith;
                 }
+
+                EncryptionParameters encryptionParameters = new EncryptionParameters(encryptedProperties.DecryptionParameter.CryptoId);
+                encryptionParameters.Passphrase = encryptedProperties.DecryptionParameter.Passphrase;
+                encryptionParameters.Add(TypeMap.Resolve.New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s == pk.Email)));
+
+                Resolve.ProgressBackground.Work((IProgressContext progress) =>
+                {
+                    TypeMap.Resolve.New<AxCryptFile>().ReEncrypt(TypeMap.Resolve.New<IDataStore>(file), Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                    return new FileOperationContext(file, FileOperationStatus.Success);
+                },
+                (FileOperationContext foc) =>
+                {
+                });
             }
         }
     }
