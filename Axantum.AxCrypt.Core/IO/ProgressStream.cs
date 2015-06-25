@@ -35,6 +35,16 @@ namespace Axantum.AxCrypt.Core.IO
     {
         private IProgressContext _progress;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProgressStream"/> class.
+        /// </summary>
+        /// <param name="stream">The stream. Will be disposed of when this instance is disposed.</param>
+        /// <param name="progress">The progress.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// stream
+        /// or
+        /// progress
+        /// </exception>
         public ProgressStream(Stream stream, IProgressContext progress)
         {
             if (stream == null)

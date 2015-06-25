@@ -25,60 +25,70 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
-namespace Axantum.AxCrypt.Mono
+namespace Axantum.AxCrypt.Mono.Portable
 {
-    public abstract class DataItem : IDataItem
+    public class BlockingBuffer : IBlockingBuffer
     {
-        public static IDataItem Create(string location)
+        private BlockingCollection<byte[]> _blockingCollection = new BlockingCollection<byte[]>(10);
+
+        public BlockingBuffer()
         {
-            if (File.GetAttributes(location).HasFlag(FileAttributes.Directory))
+        }
+
+        public void Put(byte[] buffer)
+        {
+            if (buffer.Length == 0)
             {
-                return new DataContainer(location);
+                return;
             }
-            return new DataStore(location);
+
+            _blockingCollection.Add(buffer);
         }
 
-        protected virtual string Location { get; set; }
-
-        public abstract bool IsAvailable
+        public byte[] Take()
         {
-            get;
-        }
-
-        public abstract bool IsFile
-        {
-            get;
-        }
-
-        public abstract bool IsFolder
-        {
-            get;
-        }
-
-        public abstract string Name
-        {
-            get;
-        }
-
-        public abstract string FullName
-        {
-            get;
-        }
-
-        public abstract void Delete();
-
-        public IDataContainer Container
-        {
-            get
+            byte[] item;
+            if (_blockingCollection.TryTake(out item, Timeout.Infinite))
             {
-                return new DataContainer(Path.GetDirectoryName(Location));
+                return item;
+            }
+
+            return new byte[0];
+        }
+
+        public void Complete()
+        {
+            _blockingCollection.CompleteAdding();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                DisposeInternal();
+            }
+        }
+
+        private void DisposeInternal()
+        {
+            if (_blockingCollection != null)
+            {
+                _blockingCollection.Dispose();
+                _blockingCollection = null;
             }
         }
     }

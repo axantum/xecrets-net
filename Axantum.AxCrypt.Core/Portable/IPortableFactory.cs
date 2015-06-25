@@ -1,7 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
-using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Portable
@@ -15,5 +14,7 @@ namespace Axantum.AxCrypt.Core.Portable
         IThreadWorker ThreadWorker(IProgressContext progress, bool startSerializedOnUIThread);
 
         ISingleThread SingleThread();
+
+        IBlockingBuffer BlockingBuffer();
     }
 }

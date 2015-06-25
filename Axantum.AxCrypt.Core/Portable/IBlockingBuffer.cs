@@ -25,61 +25,19 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Mono
+namespace Axantum.AxCrypt.Core.Portable
 {
-    public abstract class DataItem : IDataItem
+    public interface IBlockingBuffer : IDisposable
     {
-        public static IDataItem Create(string location)
-        {
-            if (File.GetAttributes(location).HasFlag(FileAttributes.Directory))
-            {
-                return new DataContainer(location);
-            }
-            return new DataStore(location);
-        }
+        void Put(byte[] buffer);
 
-        protected virtual string Location { get; set; }
+        byte[] Take();
 
-        public abstract bool IsAvailable
-        {
-            get;
-        }
-
-        public abstract bool IsFile
-        {
-            get;
-        }
-
-        public abstract bool IsFolder
-        {
-            get;
-        }
-
-        public abstract string Name
-        {
-            get;
-        }
-
-        public abstract string FullName
-        {
-            get;
-        }
-
-        public abstract void Delete();
-
-        public IDataContainer Container
-        {
-            get
-            {
-                return new DataContainer(Path.GetDirectoryName(Location));
-            }
-        }
+        void Complete();
     }
 }

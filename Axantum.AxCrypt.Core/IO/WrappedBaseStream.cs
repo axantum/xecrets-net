@@ -37,6 +37,13 @@ namespace Axantum.AxCrypt.Core.IO
     {
         private Stream _wrappedStream;
 
+        /// <summary>
+        /// Gets or sets the wrapped stream.
+        /// </summary>
+        /// <value>
+        /// The wrapped stream. It will be disposed when this instance is disposed.
+        /// </value>
+        /// <exception cref="System.ObjectDisposedException"></exception>
         protected Stream WrappedStream
         {
             get

@@ -114,6 +114,7 @@
     <Compile Include="TestPassphraseBase.cs" />
     <Compile Include="TestPbkdf2HmacSha512.cs" />
     <Compile Include="TestAsymmetricCrypto.cs" />
+    <Compile Include="TestPipelineStreamTest.cs" />
     <Compile Include="TestRandomGenerator.cs" />
     <Compile Include="TestAsymmetricUserKeysStore.cs" />
     <Compile Include="TestSharingListViewModel.cs" />

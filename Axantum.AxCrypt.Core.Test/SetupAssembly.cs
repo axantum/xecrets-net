@@ -138,7 +138,6 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeDataStore.ClearFiles();
             TypeMap.Register.Clear();
-            //FakeFileWatcher.Clear();
         }
 
         internal static FakeRuntimeEnvironment FakeRuntimeEnvironment
