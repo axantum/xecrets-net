@@ -35,5 +35,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
     public interface IAsymmetricPublicKey : IEquatable<IAsymmetricPublicKey>
     {
         byte[] Transform(byte[] buffer);
+
+        string Tag { get; }
     }
 }

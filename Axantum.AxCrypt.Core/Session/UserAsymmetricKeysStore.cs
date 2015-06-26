@@ -72,8 +72,7 @@ namespace Axantum.AxCrypt.Core.Session
         private void CreateInternal(EmailAddress userEmail, Passphrase passphrase)
         {
             UserAsymmetricKeys userKeys = new UserAsymmetricKeys(userEmail, Resolve.UserSettings.AsymmetricKeyBits);
-            string id = UniqueFilePart();
-            IDataStore file = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(id)).CreateEncryptedName());
+            IDataStore file = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(userKeys.KeyPair.PublicKey.Tag)).CreateEncryptedName());
 
             _keysStoreFiles.Add(new KeysStoreFile(userKeys, file));
 
@@ -128,7 +127,31 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return _keysStoreFiles.OrderBy((ksf) => ksf.UserKeys.Timestamp).Select(ksf => ksf.UserKeys);
+                return KeysStoreFiles.Select(ksf => ksf.UserKeys);
+            }
+        }
+
+        public UserAsymmetricKeys CurrentKeys
+        {
+            get
+            {
+                return CurrentKeysStore.UserKeys;
+            }
+        }
+
+        private KeysStoreFile CurrentKeysStore
+        {
+            get
+            {
+                return KeysStoreFiles.First();
+            }
+        }
+
+        private IEnumerable<KeysStoreFile> KeysStoreFiles
+        {
+            get
+            {
+                return _keysStoreFiles.OrderBy((ksf) => ksf.UserKeys.Timestamp);
             }
         }
 
@@ -154,13 +177,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private static string UniqueFilePart()
-        {
-            DateTime now = OS.Current.UtcNow;
-            TimeSpan timeSince = now - new DateTime(now.Year, 1, 1);
-            return ((int)timeSince.TotalSeconds).ToString();
-        }
-
         public virtual void Save(Passphrase passphrase)
         {
             if (!_keysStoreFiles.Any())
@@ -170,13 +186,33 @@ namespace Axantum.AxCrypt.Core.Session
 
             foreach (KeysStoreFile keysStoreFile in _keysStoreFiles)
             {
-                string json = Resolve.Serializer.Serialize(keysStoreFile.UserKeys);
-                using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
+                string originalFileName = _fileFormat.InvariantFormat(IdFromFileName(keysStoreFile.File.Name));
+                byte[] save = GetSaveDataForKeys(keysStoreFile.UserKeys, originalFileName, passphrase);
+                using (Stream exportStream = keysStoreFile.File.OpenWrite())
                 {
-                    EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, passphrase);
-                    AxCryptFile.Encrypt(stream, keysStoreFile.File.Name, keysStoreFile.File, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                    exportStream.Write(save, 0, save.Length);
                 }
             }
+        }
+
+        private byte[] GetSaveDataForKeys(UserAsymmetricKeys keys, string originalFileName, Passphrase passphrase)
+        {
+            string json = Resolve.Serializer.Serialize(keys);
+            using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
+            {
+                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, passphrase);
+                EncryptedProperties properties = new EncryptedProperties(originalFileName);
+                using (MemoryStream exportStream = new MemoryStream())
+                {
+                    AxCryptFile.Encrypt(stream, exportStream, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                    return exportStream.ToArray();
+                }
+            }
+        }
+
+        public byte[] ExportCurrentKeys(Passphrase passphrase)
+        {
+            return GetSaveDataForKeys(CurrentKeys, _fileFormat.InvariantFormat(CurrentKeys.KeyPair.PublicKey.Tag), passphrase);
         }
 
         private static UserAsymmetricKeys TryLoadKeys(IDataStore file, Passphrase passphrase)

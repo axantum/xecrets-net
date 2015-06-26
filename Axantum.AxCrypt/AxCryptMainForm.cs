@@ -395,6 +395,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _manageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _changePassphraseToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportMyPrivateKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
 
@@ -1493,6 +1494,8 @@ namespace Axantum.AxCrypt
 
         private void _exportMySharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            EmailAddress userEmail = Resolve.AsymmetricKeysStore.UserEmail;
+            IAsymmetricPublicKey publicKey = Resolve.AsymmetricKeysStore.Keys.First().KeyPair.PublicKey;
             string fileName;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
@@ -1501,7 +1504,7 @@ namespace Axantum.AxCrypt
                 sfd.AddExtension = true;
                 sfd.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
                 sfd.CheckPathExists = true;
-                sfd.FileName = "AxCrypt Sharing Key - {0}.txt".InvariantFormat(Resolve.AsymmetricKeysStore.UserEmail);
+                sfd.FileName = "AxCrypt Sharing Key (#{1}) - {0}.txt".InvariantFormat(userEmail.Address, publicKey.Tag);
                 sfd.ValidateNames = true;
                 sfd.OverwritePrompt = true;
                 sfd.RestoreDirectory = false;
@@ -1513,7 +1516,7 @@ namespace Axantum.AxCrypt
                 fileName = sfd.FileName;
             }
 
-            UserPublicKey userPublicKey = new UserPublicKey(Resolve.AsymmetricKeysStore.UserEmail, Resolve.AsymmetricKeysStore.Keys.First().KeyPair.PublicKey);
+            UserPublicKey userPublicKey = new UserPublicKey(userEmail, publicKey);
             string serialized = Resolve.Serializer.Serialize(userPublicKey);
             File.WriteAllText(fileName, serialized);
         }
@@ -1556,6 +1559,35 @@ namespace Axantum.AxCrypt
                 {
                 });
             }
+        }
+
+        private void _exportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmailAddress userEmail = Resolve.AsymmetricKeysStore.UserEmail;
+            IAsymmetricPublicKey publicKey = Resolve.AsymmetricKeysStore.Keys.First().KeyPair.PublicKey;
+
+            string fileName;
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Title = "Export private key";
+                sfd.DefaultExt = ".axx";
+                sfd.AddExtension = true;
+                sfd.Filter = "AxCrypt Files (*.axx)|*.axx|All Files (*.*)|*.*";
+                sfd.CheckPathExists = true;
+                sfd.FileName = "AxCrypt Private Key (#{1}) - {0}.axx".InvariantFormat(userEmail.Address, publicKey.Tag);
+                sfd.ValidateNames = true;
+                sfd.OverwritePrompt = true;
+                sfd.RestoreDirectory = false;
+                DialogResult saveAsResult = sfd.ShowDialog();
+                if (saveAsResult != DialogResult.OK)
+                {
+                    return;
+                }
+                fileName = sfd.FileName;
+            }
+
+            byte[] export = Resolve.AsymmetricKeysStore.ExportCurrentKeys(Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase);
+            File.WriteAllBytes(fileName, export);
         }
     }
 }

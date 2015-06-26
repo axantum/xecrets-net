@@ -111,6 +111,20 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             return transformed;
         }
 
+        public string Tag
+        {
+            get
+            {
+                int notSoImportantToBeUniqueTag = GetHashCode();
+                if (notSoImportantToBeUniqueTag < 0)
+                {
+                    notSoImportantToBeUniqueTag = -(notSoImportantToBeUniqueTag + 1);
+                }
+
+                return notSoImportantToBeUniqueTag.ToString(CultureInfo.InvariantCulture);
+            }
+        }
+
         public override string ToString()
         {
             return ToPem();

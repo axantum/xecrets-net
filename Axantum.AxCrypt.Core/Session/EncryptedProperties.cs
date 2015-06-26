@@ -42,6 +42,17 @@ namespace Axantum.AxCrypt.Core.Session
         private EncryptedProperties()
         {
             SharedKeyHolders = new EmailAddress[0];
+
+            DateTime utcNow = DateTime.UtcNow;
+            CreationTimeUtc = utcNow;
+            LastAccessTimeUtc = utcNow;
+            LastWriteTimeUtc = utcNow;
+        }
+
+        public EncryptedProperties(string fileName)
+            : this()
+        {
+            FileName = fileName;
         }
 
         public bool IsValid { get; private set; }
