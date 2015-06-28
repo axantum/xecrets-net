@@ -18,6 +18,7 @@ namespace Axantum.AxCrypt.Core.Header
             : this(blockType, new byte[0])
         {
             HeaderCrypto = headerCrypto;
+            StringValue = String.Empty;
         }
 
         protected string StringValue

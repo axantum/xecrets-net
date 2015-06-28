@@ -397,6 +397,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportMyPrivateKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importMyPrivateKeyToolStripMenuItem.Enabled = !loggedOn; });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
 
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
@@ -672,6 +673,14 @@ namespace Axantum.AxCrypt
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.Filter = Resources.ImportPublicKeysFileFilter;
+                        break;
+
+                    case FileSelectionType.ImportPrivateKeys:
+                        ofd.Title = Resources.ImportPrivateKeysFileSelectionTitle;
+                        ofd.Multiselect = false;
+                        ofd.CheckFileExists = true;
+                        ofd.CheckPathExists = true;
+                        ofd.Filter = Resources.ImportPrivateKeysFileFilter;
                         break;
 
                     default:
@@ -1529,6 +1538,14 @@ namespace Axantum.AxCrypt
 
             ImportPublicKeysViewModel importPublicKeys = new ImportPublicKeysViewModel(TypeMap.Resolve.New<KnownPublicKeys>);
             importPublicKeys.ImportFiles.Execute(fileSelection.SelectedFiles);
+        }
+
+        private void _importMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImportPrivateKeysViewModel viewModel = new ImportPrivateKeysViewModel(Resolve.AsymmetricKeysStore, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            viewModel.SelectingFiles += (ssender, se) => { HandleOpenFileSelection(se); };
+
+            viewModel.ImportFiles.Execute(null);
         }
 
         private async void ShareKeys(IEnumerable<string> fileNames)

@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(500);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                byte[] buffer = new byte[2000];
+                byte[] buffer = new byte[2500];
                 using (V2AxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("properties")), 15))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);

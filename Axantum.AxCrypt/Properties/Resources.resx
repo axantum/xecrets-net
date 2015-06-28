@@ -412,4 +412,10 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="OpenSans_Semibold" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\OpenSans-Semibold.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
+    <value>Text Files (*.txt)|*.txt|All Files (*.*)|*.*</value>
+  </data>
+  <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
+    <value>Select private key file to import</value>
+  </data>
 </root>

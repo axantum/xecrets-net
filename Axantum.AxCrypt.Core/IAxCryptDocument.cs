@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,8 @@ namespace Axantum.AxCrypt.Core
         DateTime LastWriteTimeUtc { get; set; }
 
         DecryptionParameter DecryptionParameter { get; set; }
+
+        EncryptedProperties Properties { get; }
 
         ICryptoFactory CryptoFactory { get; }
 

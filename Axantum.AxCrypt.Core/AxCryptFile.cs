@@ -315,6 +315,18 @@ namespace Axantum.AxCrypt.Core
             return true;
         }
 
+        public EncryptedProperties Decrypt(Stream encryptedStream, Stream decryptedStream, LogOnIdentity identity)
+        {
+            using (IAxCryptDocument document = Document(encryptedStream, identity, String.Empty, new ProgressContext()))
+            {
+                if (!document.PassphraseIsValid)
+                {
+                    return document.Properties;
+                }
+                return document.Properties;
+            }
+        }
+
         /// <summary>
         /// Decrypt a source file to a destination file, given a passphrase
         /// </summary>

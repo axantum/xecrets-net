@@ -82,6 +82,7 @@
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this._importMyPrivateKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -240,6 +241,7 @@
             this._exportSharingKeyToolStripMenuItem,
             this._exportMyPrivateKeyToolStripMenuItem,
             this._importOthersSharingKeyToolStripMenuItem,
+            this._importMyPrivateKeyToolStripMenuItem,
             this._debugOptionsToolStripMenuItem,
             this._clearPassphraseMemoryToolStripMenuItem});
             resources.ApplyResources(this._optionsToolStripMenuItem, "_optionsToolStripMenuItem");
@@ -538,6 +540,12 @@
             this.panel1.Controls.Add(this._mainMenuStrip);
             this.panel1.Name = "panel1";
             // 
+            // _importMyPrivateKeyToolStripMenuItem
+            // 
+            this._importMyPrivateKeyToolStripMenuItem.Name = "_importMyPrivateKeyToolStripMenuItem";
+            resources.ApplyResources(this._importMyPrivateKeyToolStripMenuItem, "_importMyPrivateKeyToolStripMenuItem");
+            this._importMyPrivateKeyToolStripMenuItem.Click += new System.EventHandler(this._importMyPrivateKeyToolStripMenuItem_Click);
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -631,6 +639,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem _shareKeysToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _exportMyPrivateKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _importMyPrivateKeyToolStripMenuItem;
     }
 }
 

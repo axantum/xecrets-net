@@ -563,6 +563,24 @@ namespace Axantum.AxCrypt.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Text Files (*.txt)|*.txt|All Files (*.*)|*.*.
         /// </summary>
+        internal static string ImportPrivateKeysFileFilter {
+            get {
+                return ResourceManager.GetString("ImportPrivateKeysFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select private key file to import.
+        /// </summary>
+        internal static string ImportPrivateKeysFileSelectionTitle {
+            get {
+                return ResourceManager.GetString("ImportPrivateKeysFileSelectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Files (*.txt)|*.txt|All Files (*.*)|*.*.
+        /// </summary>
         internal static string ImportPublicKeysFileFilter {
             get {
                 return ResourceManager.GetString("ImportPublicKeysFileFilter", resourceCulture);

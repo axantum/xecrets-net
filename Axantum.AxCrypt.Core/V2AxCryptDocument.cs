@@ -33,6 +33,7 @@ using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
@@ -94,6 +95,8 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public EncryptedProperties Properties { get; private set; }
+
         public bool Load(Passphrase key, Guid cryptoId, Stream inputStream)
         {
             Headers headers = new Headers();
@@ -111,6 +114,7 @@ namespace Axantum.AxCrypt.Core
         {
             PassphraseIsValid = false;
             DocumentHeaders = null;
+            Properties = EncryptedProperties.Create(this);
         }
 
         /// <summary>
@@ -139,6 +143,7 @@ namespace Axantum.AxCrypt.Core
             keyWrap.SetDerivedKey(CryptoFactory, key);
             DocumentHeaders = new V2DocumentHeaders(keyWrap);
             PassphraseIsValid = DocumentHeaders.Load(headers);
+            Properties = EncryptedProperties.Create(this);
 
             return PassphraseIsValid;
         }
@@ -173,6 +178,7 @@ namespace Axantum.AxCrypt.Core
                 PassphraseIsValid = algorithmVerifier != null && algorithmVerifier.IsVerified;
                 if (PassphraseIsValid)
                 {
+                    Properties = EncryptedProperties.Create(this);
                     return true;
                 }
             }

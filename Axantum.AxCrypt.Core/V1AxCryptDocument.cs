@@ -33,6 +33,7 @@ using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
@@ -82,6 +83,8 @@ namespace Axantum.AxCrypt.Core
 
         public DecryptionParameter DecryptionParameter { get; set; }
 
+        public EncryptedProperties Properties { get; private set; }
+
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "cryptoId", Justification = "Part of contract, and is used for other implementations.")]
         public bool Load(Passphrase passphrase, Guid cryptoId, Stream inputStream)
         {
@@ -111,6 +114,7 @@ namespace Axantum.AxCrypt.Core
         {
             DocumentHeaders = new V1DocumentHeaders(passphrase);
             PassphraseIsValid = false;
+            Properties = EncryptedProperties.Create(this);
             if (_hmacStream != null)
             {
                 _hmacStream.Dispose();
@@ -142,6 +146,8 @@ namespace Axantum.AxCrypt.Core
                     header.Write(_hmacStream);
                 }
             }
+
+            Properties = EncryptedProperties.Create(this);
             return true;
         }
 

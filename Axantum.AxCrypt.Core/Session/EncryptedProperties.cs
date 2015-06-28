@@ -118,5 +118,24 @@ namespace Axantum.AxCrypt.Core.Session
 
             return properties;
         }
+
+        public static EncryptedProperties Create(IAxCryptDocument document)
+        {
+            EncryptedProperties properties = new EncryptedProperties();
+
+            if (!document.PassphraseIsValid)
+            {
+                return properties;
+            }
+
+            properties.DecryptionParameter = document.DecryptionParameter;
+            properties.FileName = document.FileName;
+            properties.IsValid = document.PassphraseIsValid;
+            properties.CreationTimeUtc = document.CreationTimeUtc;
+            properties.LastAccessTimeUtc = document.LastAccessTimeUtc;
+            properties.LastWriteTimeUtc = document.LastWriteTimeUtc;
+
+            return properties;
+        }
     }
 }

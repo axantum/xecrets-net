@@ -369,7 +369,7 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(length);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                byte[] buffer = new byte[5000 + length];
+                byte[] buffer = new byte[5500 + length];
                 using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), options);
@@ -411,7 +411,7 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                byte[] buffer = new byte[2000];
+                byte[] buffer = new byte[2500];
                 using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
@@ -439,7 +439,7 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                byte[] buffer = new byte[2000];
+                byte[] buffer = new byte[2500];
                 using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
@@ -484,7 +484,7 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
-                byte[] buffer = new byte[2000];
+                byte[] buffer = new byte[2500];
                 using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);

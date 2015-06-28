@@ -363,6 +363,12 @@
   <data name="_importOthersSharingKeyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Import Others Sharing Key</value>
   </data>
+  <data name="_importMyPrivateKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 22</value>
+  </data>
+  <data name="_importMyPrivateKeyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import My P&amp;rivate Key</value>
+  </data>
   <data name="_debugOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 22</value>
   </data>
@@ -4256,6 +4262,12 @@
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.Forms.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+  </data>
+  <data name="&gt;&gt;_importMyPrivateKeyToolStripMenuItem.Name" xml:space="preserve">
+    <value>_importMyPrivateKeyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;_importMyPrivateKeyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

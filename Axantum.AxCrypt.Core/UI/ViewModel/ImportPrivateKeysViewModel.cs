@@ -1,0 +1,160 @@
+﻿#region Coypright and License
+
+/*
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
+ *
+ * This file is part of AxCrypt.
+ *
+ * AxCrypt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * AxCrypt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
+ * updates, contributions and contact with the author. You may also visit
+ * http://www.axantum.com for more information about the author.
+*/
+
+#endregion Coypright and License
+
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Session;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+namespace Axantum.AxCrypt.Core.UI.ViewModel
+{
+    public class ImportPrivateKeysViewModel : ViewModelBase
+    {
+        private UserAsymmetricKeysStore _keysStore;
+
+        private LogOnIdentity _identity;
+
+        public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
+
+        public string Passphrase { get { return GetProperty<string>("Passphrase"); } set { SetProperty("Passphrase", value); } }
+
+        public event EventHandler<FileSelectionEventArgs> SelectingFiles;
+
+        protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
+        {
+            EventHandler<FileSelectionEventArgs> handler = SelectingFiles;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        public ImportPrivateKeysViewModel(UserAsymmetricKeysStore keysStore, LogOnIdentity identity)
+        {
+            _keysStore = keysStore;
+            _identity = identity;
+
+            InitializePropertyValues();
+            BindPropertyChangedEvents();
+            SubscribeToModelEvents();
+        }
+
+        public IAction ImportFiles { get; private set; }
+
+        public IEnumerable<string> FailedFiles { get { return GetProperty<IEnumerable<string>>("FailedFiles"); } set { SetProperty("FailedFiles", value); } }
+
+        private void InitializePropertyValues()
+        {
+            ImportFiles = new DelegateAction<IEnumerable<string>>((files) => ImportFilesAction(files));
+        }
+
+        private static void BindPropertyChangedEvents()
+        {
+        }
+
+        private static void SubscribeToModelEvents()
+        {
+        }
+
+        public override string this[string columnName]
+        {
+            get
+            {
+                string error = base[columnName];
+                if (String.IsNullOrEmpty(error))
+                {
+                    error = Validate(columnName);
+                }
+
+                return error;
+            }
+        }
+
+        private string Validate(string columnName)
+        {
+            if (ValidateInternal(columnName))
+            {
+                return String.Empty;
+            }
+            return ValidationError.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private bool ValidateInternal(string columnName)
+        {
+            switch (columnName)
+            {
+                case "Passphrase":
+                    return true;
+
+                default:
+                    throw new ArgumentException("Cannot validate property.", columnName);
+            }
+        }
+
+        private void ImportFilesAction(IEnumerable<string> files)
+        {
+            files = files ?? SelectFiles(FileSelectionType.Encrypt);
+            if (!files.Any())
+            {
+                return;
+            }
+
+            List<string> failed = new List<string>();
+            foreach (string file in files)
+            {
+                IDataStore privateKeyData = TypeMap.Resolve.New<IDataStore>(file);
+                using (Stream stream = privateKeyData.OpenRead())
+                {
+                    if (!_keysStore.ImportKeysStore(stream, _identity.Passphrase))
+                    {
+                        failed.Add(file);
+                    }
+                }
+            }
+            FailedFiles = failed;
+        }
+
+        private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
+        {
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+            {
+                FileSelectionType = fileSelectionType,
+            };
+            OnSelectingFiles(fileSelectionArgs);
+            if (fileSelectionArgs.Cancel)
+            {
+                return new string[0];
+            }
+            return fileSelectionArgs.SelectedFiles;
+        }
+    }
+}

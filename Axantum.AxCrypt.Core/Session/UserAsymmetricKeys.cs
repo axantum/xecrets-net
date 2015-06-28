@@ -18,7 +18,7 @@ namespace Axantum.AxCrypt.Core.Session
     /// </summary>
     /// <remarks>Instances of this type are immutable.</remarks>
     [JsonObject(MemberSerialization.OptIn)]
-    public class UserAsymmetricKeys
+    public class UserAsymmetricKeys : IEquatable<UserAsymmetricKeys>
     {
         [JsonConstructor]
         private UserAsymmetricKeys()
@@ -45,5 +45,40 @@ namespace Axantum.AxCrypt.Core.Session
 
         [JsonProperty("keypair")]
         public IAsymmetricKeyPair KeyPair { get; private set; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as UserAsymmetricKeys);
+        }
+
+        public override int GetHashCode()
+        {
+            return Timestamp.GetHashCode() ^ UserEmail.GetHashCode() ^ (KeyPair == null ? 0 : KeyPair.GetHashCode());
+        }
+
+        public static bool operator ==(UserAsymmetricKeys left, UserAsymmetricKeys right)
+        {
+            if (Object.ReferenceEquals(left, null))
+            {
+                return Object.ReferenceEquals(right, null);
+            }
+
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(UserAsymmetricKeys left, UserAsymmetricKeys right)
+        {
+            return !(left == right);
+        }
+
+        public bool Equals(UserAsymmetricKeys other)
+        {
+            if (Object.ReferenceEquals(other, null) || GetType() != other.GetType())
+            {
+                return false;
+            }
+
+            return Timestamp == other.Timestamp && UserEmail == other.UserEmail && KeyPair == other.KeyPair;
+        }
     }
 }

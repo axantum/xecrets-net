@@ -62,6 +62,8 @@ namespace Axantum.AxCrypt.Core.Header
             V1EncryptionInfoEncryptedHeaderBlock encryptionInfoHeaderBlock = _headers.FindHeaderBlock<V1EncryptionInfoEncryptedHeaderBlock>();
             encryptionInfoHeaderBlock.IV = new SymmetricIV(128);
             encryptionInfoHeaderBlock.PlaintextLength = 0;
+
+            FileName = String.Empty;
         }
 
         public V1DocumentHeaders(Passphrase passphrase)

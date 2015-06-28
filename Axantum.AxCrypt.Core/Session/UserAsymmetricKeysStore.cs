@@ -72,11 +72,25 @@ namespace Axantum.AxCrypt.Core.Session
         private void CreateInternal(EmailAddress userEmail, Passphrase passphrase)
         {
             UserAsymmetricKeys userKeys = new UserAsymmetricKeys(userEmail, Resolve.UserSettings.AsymmetricKeyBits);
-            IDataStore file = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(userKeys.KeyPair.PublicKey.Tag)).CreateEncryptedName());
+            AddKeys(userKeys, passphrase);
+        }
 
-            _keysStoreFiles.Add(new KeysStoreFile(userKeys, file));
+        private void AddKeys(UserAsymmetricKeys userKeys, Passphrase passphrase)
+        {
+            if (_keysStoreFiles.Any(k => k.UserKeys == userKeys))
+            {
+                return;
+            }
+
+            _keysStoreFiles.Add(new KeysStoreFile(userKeys, FileForUserKeys(userKeys)));
 
             Save(passphrase);
+        }
+
+        private IDataStore FileForUserKeys(UserAsymmetricKeys userKeys)
+        {
+            IDataStore file = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(userKeys.KeyPair.PublicKey.Tag)).CreateEncryptedName());
+            return file;
         }
 
         private IEnumerable<KeysStoreFile> TryLoadKeyStoreFiles(EmailAddress userEmail, Passphrase passphrase)
@@ -179,19 +193,19 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void Save(Passphrase passphrase)
         {
-            if (!_keysStoreFiles.Any())
-            {
-                return;
-            }
-
             foreach (KeysStoreFile keysStoreFile in _keysStoreFiles)
             {
-                string originalFileName = _fileFormat.InvariantFormat(IdFromFileName(keysStoreFile.File.Name));
-                byte[] save = GetSaveDataForKeys(keysStoreFile.UserKeys, originalFileName, passphrase);
-                using (Stream exportStream = keysStoreFile.File.OpenWrite())
-                {
-                    exportStream.Write(save, 0, save.Length);
-                }
+                SaveKeysStoreFile(keysStoreFile.File, keysStoreFile.UserKeys, passphrase);
+            }
+        }
+
+        private void SaveKeysStoreFile(IDataStore saveFile, UserAsymmetricKeys userKeys, Passphrase passphrase)
+        {
+            string originalFileName = _fileFormat.InvariantFormat(IdFromFileName(saveFile.Name));
+            byte[] save = GetSaveDataForKeys(userKeys, originalFileName, passphrase);
+            using (Stream exportStream = saveFile.OpenWrite())
+            {
+                exportStream.Write(save, 0, save.Length);
             }
         }
 
@@ -213,6 +227,32 @@ namespace Axantum.AxCrypt.Core.Session
         public byte[] ExportCurrentKeys(Passphrase passphrase)
         {
             return GetSaveDataForKeys(CurrentKeys, _fileFormat.InvariantFormat(CurrentKeys.KeyPair.PublicKey.Tag), passphrase);
+        }
+
+        public bool ImportKeysStore(Stream keysStore, Passphrase passphrase)
+        {
+            UserAsymmetricKeys keys = TryLoadKeys(keysStore, passphrase);
+            if (keys == null)
+            {
+                return false;
+            }
+
+            SaveKeysStoreFile(FileForUserKeys(keys), keys, passphrase);
+            return true;
+        }
+
+        private static UserAsymmetricKeys TryLoadKeys(Stream encryptedStream, Passphrase passphrase)
+        {
+            using (MemoryStream decryptedStream = new MemoryStream())
+            {
+                if (!TypeMap.Resolve.New<AxCryptFile>().Decrypt(encryptedStream, decryptedStream, new LogOnIdentity(passphrase)).IsValid)
+                {
+                    return null;
+                }
+
+                string json = Encoding.UTF8.GetString(decryptedStream.ToArray(), 0, (int)decryptedStream.Length);
+                return Resolve.Serializer.Deserialize<UserAsymmetricKeys>(json);
+            }
         }
 
         private static UserAsymmetricKeys TryLoadKeys(IDataStore file, Passphrase passphrase)
