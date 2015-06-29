@@ -398,6 +398,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportMyPrivateKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importMyPrivateKeyToolStripMenuItem.Enabled = !loggedOn; });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _createAccountToolStripMenuItem.Enabled = !loggedOn; });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
 
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
@@ -1466,7 +1467,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void createAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CreateAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, String.Empty))
             {
@@ -1474,7 +1475,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void _manageAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ManageAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (ManageAccountDialog dialog = new ManageAccountDialog(Resolve.AsymmetricKeysStore, Resolve.KnownIdentities, Resolve.UserSettings))
             {
@@ -1482,7 +1483,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void _changePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ManageAccountViewModel viewModel = new ManageAccountViewModel(Resolve.AsymmetricKeysStore, Resolve.KnownIdentities);
 
@@ -1501,7 +1502,7 @@ namespace Axantum.AxCrypt
             viewModel.ChangePassphrase.Execute(passphrase);
         }
 
-        private void _exportMySharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExportMySharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EmailAddress userEmail = Resolve.AsymmetricKeysStore.UserEmail;
             IAsymmetricPublicKey publicKey = Resolve.AsymmetricKeysStore.Keys.First().KeyPair.PublicKey;
@@ -1530,7 +1531,7 @@ namespace Axantum.AxCrypt
             File.WriteAllText(fileName, serialized);
         }
 
-        private void _importOthersSharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ImportOthersSharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileSelectionViewModel fileSelection = new FileSelectionViewModel();
             fileSelection.SelectingFiles += (sfsender, sfe) => { HandleOpenFileSelection(sfe); };
@@ -1540,12 +1541,17 @@ namespace Axantum.AxCrypt
             importPublicKeys.ImportFiles.Execute(fileSelection.SelectedFiles);
         }
 
-        private void _importMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ImportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImportPrivateKeysViewModel viewModel = new ImportPrivateKeysViewModel(Resolve.AsymmetricKeysStore, Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            viewModel.SelectingFiles += (ssender, se) => { HandleOpenFileSelection(se); };
+            using (ImportPrivatePasswordDialog dialog = new ImportPrivatePasswordDialog(this, Resolve.AsymmetricKeysStore, Resolve.UserSettings))
+            {
+                dialog.ShowDialog();
+            }
+        }
 
-            viewModel.ImportFiles.Execute(null);
+        private void HandleRequestPrivateKeyPassword(LogOnEventArgs re)
+        {
+            throw new NotImplementedException();
         }
 
         private async void ShareKeys(IEnumerable<string> fileNames)
@@ -1578,7 +1584,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void _exportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EmailAddress userEmail = Resolve.AsymmetricKeysStore.UserEmail;
             IAsymmetricPublicKey publicKey = Resolve.AsymmetricKeysStore.Keys.First().KeyPair.PublicKey;

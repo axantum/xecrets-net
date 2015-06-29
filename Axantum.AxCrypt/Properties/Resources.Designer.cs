@@ -477,6 +477,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import failed. Probably not a valid private key file..
+        /// </summary>
+        internal static string FailedPrivateImport {
+            get {
+                return ResourceManager.GetString("FailedPrivateImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The document &apos;{0}&apos; is already encrypted..
         /// </summary>
         internal static string FileAlreadyEncrypted {
@@ -523,6 +532,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File does not exist..
+        /// </summary>
+        internal static string FileNotFound {
+            get {
+                return ResourceManager.GetString("FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed &apos;{0}&apos;..
         /// </summary>
         internal static string FileOperationFailed {
@@ -561,7 +579,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text Files (*.txt)|*.txt|All Files (*.*)|*.*.
+        ///   Looks up a localized string similar to Text Files (*.axx)|*.axx|All Files (*.*)|*.*.
         /// </summary>
         internal static string ImportPrivateKeysFileFilter {
             get {

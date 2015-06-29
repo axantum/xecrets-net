@@ -323,6 +323,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     return document.Properties;
                 }
+                document.DecryptTo(decryptedStream);
                 return document.Properties;
             }
         }

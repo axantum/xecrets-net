@@ -41,18 +41,24 @@
             this._englishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._changePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._exportSharingKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._exportMyPrivateKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._importOthersSharingKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._clearPassphraseMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.keyManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._importOthersSharingKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._exportSharingKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this._importMyPrivateKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._exportMyPrivateKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this._createAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._checkVersionNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._setUpdateCheckUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cryptoPolicyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._manageAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +88,6 @@
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this._importMyPrivateKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -181,6 +186,9 @@
             this._wipeToolStripMenuItem,
             this._toolStripSeparator2,
             this._optionsToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.keyManagementToolStripMenuItem,
+            this.toolStripSeparator2,
             this._exitToolStripMenuItem});
             this._fileToolStripMenuItem.Name = "_fileToolStripMenuItem";
             resources.ApplyResources(this._fileToolStripMenuItem, "_fileToolStripMenuItem");
@@ -238,10 +246,6 @@
             this._optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._languageToolStripMenuItem,
             this._changePassphraseToolStripMenuItem,
-            this._exportSharingKeyToolStripMenuItem,
-            this._exportMyPrivateKeyToolStripMenuItem,
-            this._importOthersSharingKeyToolStripMenuItem,
-            this._importMyPrivateKeyToolStripMenuItem,
             this._debugOptionsToolStripMenuItem,
             this._clearPassphraseMemoryToolStripMenuItem});
             resources.ApplyResources(this._optionsToolStripMenuItem, "_optionsToolStripMenuItem");
@@ -274,25 +278,7 @@
             // 
             this._changePassphraseToolStripMenuItem.Name = "_changePassphraseToolStripMenuItem";
             resources.ApplyResources(this._changePassphraseToolStripMenuItem, "_changePassphraseToolStripMenuItem");
-            this._changePassphraseToolStripMenuItem.Click += new System.EventHandler(this._changePassphraseToolStripMenuItem_Click);
-            // 
-            // _exportSharingKeyToolStripMenuItem
-            // 
-            this._exportSharingKeyToolStripMenuItem.Name = "_exportSharingKeyToolStripMenuItem";
-            resources.ApplyResources(this._exportSharingKeyToolStripMenuItem, "_exportSharingKeyToolStripMenuItem");
-            this._exportSharingKeyToolStripMenuItem.Click += new System.EventHandler(this._exportMySharingKeyToolStripMenuItem_Click);
-            // 
-            // _exportMyPrivateKeyToolStripMenuItem
-            // 
-            this._exportMyPrivateKeyToolStripMenuItem.Name = "_exportMyPrivateKeyToolStripMenuItem";
-            resources.ApplyResources(this._exportMyPrivateKeyToolStripMenuItem, "_exportMyPrivateKeyToolStripMenuItem");
-            this._exportMyPrivateKeyToolStripMenuItem.Click += new System.EventHandler(this._exportMyPrivateKeyToolStripMenuItem_Click);
-            // 
-            // _importOthersSharingKeyToolStripMenuItem
-            // 
-            this._importOthersSharingKeyToolStripMenuItem.Name = "_importOthersSharingKeyToolStripMenuItem";
-            resources.ApplyResources(this._importOthersSharingKeyToolStripMenuItem, "_importOthersSharingKeyToolStripMenuItem");
-            this._importOthersSharingKeyToolStripMenuItem.Click += new System.EventHandler(this._importOthersSharingKeyToolStripMenuItem_Click);
+            this._changePassphraseToolStripMenuItem.Click += new System.EventHandler(this.ChangePassphraseToolStripMenuItem_Click);
             // 
             // _debugOptionsToolStripMenuItem
             // 
@@ -304,6 +290,69 @@
             this._clearPassphraseMemoryToolStripMenuItem.Name = "_clearPassphraseMemoryToolStripMenuItem";
             resources.ApplyResources(this._clearPassphraseMemoryToolStripMenuItem, "_clearPassphraseMemoryToolStripMenuItem");
             this._clearPassphraseMemoryToolStripMenuItem.Click += new System.EventHandler(this.ClearPassphraseMemoryToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // keyManagementToolStripMenuItem
+            // 
+            this.keyManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._importOthersSharingKeyToolStripMenuItem,
+            this._exportSharingKeyToolStripMenuItem,
+            this.toolStripSeparator3,
+            this._importMyPrivateKeyToolStripMenuItem,
+            this._exportMyPrivateKeyToolStripMenuItem,
+            this.toolStripSeparator4,
+            this._createAccountToolStripMenuItem});
+            this.keyManagementToolStripMenuItem.Name = "keyManagementToolStripMenuItem";
+            resources.ApplyResources(this.keyManagementToolStripMenuItem, "keyManagementToolStripMenuItem");
+            // 
+            // _importOthersSharingKeyToolStripMenuItem
+            // 
+            this._importOthersSharingKeyToolStripMenuItem.Name = "_importOthersSharingKeyToolStripMenuItem";
+            resources.ApplyResources(this._importOthersSharingKeyToolStripMenuItem, "_importOthersSharingKeyToolStripMenuItem");
+            this._importOthersSharingKeyToolStripMenuItem.Click += new System.EventHandler(this.ImportOthersSharingKeyToolStripMenuItem_Click);
+            // 
+            // _exportSharingKeyToolStripMenuItem
+            // 
+            this._exportSharingKeyToolStripMenuItem.Name = "_exportSharingKeyToolStripMenuItem";
+            resources.ApplyResources(this._exportSharingKeyToolStripMenuItem, "_exportSharingKeyToolStripMenuItem");
+            this._exportSharingKeyToolStripMenuItem.Click += new System.EventHandler(this.ExportMySharingKeyToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+            // 
+            // _importMyPrivateKeyToolStripMenuItem
+            // 
+            this._importMyPrivateKeyToolStripMenuItem.Name = "_importMyPrivateKeyToolStripMenuItem";
+            resources.ApplyResources(this._importMyPrivateKeyToolStripMenuItem, "_importMyPrivateKeyToolStripMenuItem");
+            this._importMyPrivateKeyToolStripMenuItem.Click += new System.EventHandler(this.ImportMyPrivateKeyToolStripMenuItem_Click);
+            // 
+            // _exportMyPrivateKeyToolStripMenuItem
+            // 
+            this._exportMyPrivateKeyToolStripMenuItem.Name = "_exportMyPrivateKeyToolStripMenuItem";
+            resources.ApplyResources(this._exportMyPrivateKeyToolStripMenuItem, "_exportMyPrivateKeyToolStripMenuItem");
+            this._exportMyPrivateKeyToolStripMenuItem.Click += new System.EventHandler(this.ExportMyPrivateKeyToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
+            // 
+            // _createAccountToolStripMenuItem
+            // 
+            this._createAccountToolStripMenuItem.Name = "_createAccountToolStripMenuItem";
+            resources.ApplyResources(this._createAccountToolStripMenuItem, "_createAccountToolStripMenuItem");
+            this._createAccountToolStripMenuItem.Click += new System.EventHandler(this.CreateAccountToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // _exitToolStripMenuItem
             // 
@@ -318,7 +367,6 @@
             this._setUpdateCheckUrlToolStripMenuItem,
             this.cryptoPolicyToolStripMenuItem,
             this.loggingToolStripMenuItem,
-            this.createAccountToolStripMenuItem,
             this._manageAccountToolStripMenuItem});
             this._debugToolStripMenuItem.Name = "_debugToolStripMenuItem";
             resources.ApplyResources(this._debugToolStripMenuItem, "_debugToolStripMenuItem");
@@ -346,17 +394,11 @@
             resources.ApplyResources(this.loggingToolStripMenuItem, "loggingToolStripMenuItem");
             this.loggingToolStripMenuItem.Click += new System.EventHandler(this.loggingToolStripMenuItem_Click);
             // 
-            // createAccountToolStripMenuItem
-            // 
-            this.createAccountToolStripMenuItem.Name = "createAccountToolStripMenuItem";
-            resources.ApplyResources(this.createAccountToolStripMenuItem, "createAccountToolStripMenuItem");
-            this.createAccountToolStripMenuItem.Click += new System.EventHandler(this.createAccountToolStripMenuItem_Click);
-            // 
             // _manageAccountToolStripMenuItem
             // 
             this._manageAccountToolStripMenuItem.Name = "_manageAccountToolStripMenuItem";
             resources.ApplyResources(this._manageAccountToolStripMenuItem, "_manageAccountToolStripMenuItem");
-            this._manageAccountToolStripMenuItem.Click += new System.EventHandler(this._manageAccountToolStripMenuItem_Click);
+            this._manageAccountToolStripMenuItem.Click += new System.EventHandler(this.ManageAccountToolStripMenuItem_Click);
             // 
             // _helpToolStripMenuItem
             // 
@@ -540,12 +582,6 @@
             this.panel1.Controls.Add(this._mainMenuStrip);
             this.panel1.Name = "panel1";
             // 
-            // _importMyPrivateKeyToolStripMenuItem
-            // 
-            this._importMyPrivateKeyToolStripMenuItem.Name = "_importMyPrivateKeyToolStripMenuItem";
-            resources.ApplyResources(this._importMyPrivateKeyToolStripMenuItem, "_importMyPrivateKeyToolStripMenuItem");
-            this._importMyPrivateKeyToolStripMenuItem.Click += new System.EventHandler(this._importMyPrivateKeyToolStripMenuItem_Click);
-            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -629,17 +665,22 @@
         private System.Windows.Forms.ColumnHeader _cryptoName;
         private System.Windows.Forms.TabControl _statusTabControl;
         private System.Windows.Forms.ToolStripMenuItem encryptedFoldersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _manageAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _changePassphraseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _exportSharingKeyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _importOthersSharingKeyToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader _sharingIndicatorColumnHeader;
         private System.Windows.Forms.LinkLabel _logOnLogOffLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem _shareKeysToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _exportMyPrivateKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem keyManagementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _importOthersSharingKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _exportSharingKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem _importMyPrivateKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _exportMyPrivateKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem _createAccountToolStripMenuItem;
     }
 }
 

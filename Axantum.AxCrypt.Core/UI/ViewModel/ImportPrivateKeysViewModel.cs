@@ -41,44 +41,38 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private UserAsymmetricKeysStore _keysStore;
 
-        private LogOnIdentity _identity;
+        private IUserSettings _userSettings;
 
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
 
         public string Passphrase { get { return GetProperty<string>("Passphrase"); } set { SetProperty("Passphrase", value); } }
 
-        public event EventHandler<FileSelectionEventArgs> SelectingFiles;
+        public string PrivateKeyFileName { get { return GetProperty<string>("PrivateKeyFileName"); } set { SetProperty("PrivateKeyFileName", value); } }
 
-        protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
-        {
-            EventHandler<FileSelectionEventArgs> handler = SelectingFiles;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
+        public bool ImportSuccessful { get { return GetProperty<bool>("ImportSuccessful"); } set { SetProperty("ImportSuccessful", value); } }
 
-        public ImportPrivateKeysViewModel(UserAsymmetricKeysStore keysStore, LogOnIdentity identity)
+        public ImportPrivateKeysViewModel(UserAsymmetricKeysStore keysStore, IUserSettings userSettings)
         {
             _keysStore = keysStore;
-            _identity = identity;
+            _userSettings = userSettings;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
         }
 
-        public IAction ImportFiles { get; private set; }
-
-        public IEnumerable<string> FailedFiles { get { return GetProperty<IEnumerable<string>>("FailedFiles"); } set { SetProperty("FailedFiles", value); } }
+        public IAction ImportFile { get; private set; }
 
         private void InitializePropertyValues()
         {
-            ImportFiles = new DelegateAction<IEnumerable<string>>((files) => ImportFilesAction(files));
+            ImportFile = new DelegateAction<object>((o) => ImportFileAction());
+            ImportSuccessful = true;
+            ShowPassphrase = _userSettings.DisplayDecryptPassphrase;
         }
 
-        private static void BindPropertyChangedEvents()
+        private void BindPropertyChangedEvents()
         {
+            BindPropertyChangedInternal("ShowPassphrase", (bool show) => _userSettings.DisplayDecryptPassphrase = show);
         }
 
         private static void SubscribeToModelEvents()
@@ -110,51 +104,45 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool ValidateInternal(string columnName)
         {
+            IDataStore privateKeyDataStore;
             switch (columnName)
             {
+                case "PrivateKeyFileName":
+                    if (String.IsNullOrEmpty(PrivateKeyFileName))
+                    {
+                        return false;
+                    }
+                    privateKeyDataStore = TypeMap.Resolve.New<IDataStore>(PrivateKeyFileName);
+                    return privateKeyDataStore.IsAvailable;
+
                 case "Passphrase":
-                    return true;
+                    if (!ValidateInternal("PrivateKeyFileName"))
+                    {
+                        return false;
+                    }
+                    privateKeyDataStore = TypeMap.Resolve.New<IDataStore>(PrivateKeyFileName);
+
+                    if (String.IsNullOrEmpty(Passphrase))
+                    {
+                        return false;
+                    }
+                    LogOnIdentity identity = new LogOnIdentity(Passphrase);
+
+                    EncryptedProperties properties = EncryptedProperties.Create(privateKeyDataStore, identity);
+                    return properties.IsValid;
 
                 default:
                     throw new ArgumentException("Cannot validate property.", columnName);
             }
         }
 
-        private void ImportFilesAction(IEnumerable<string> files)
+        private void ImportFileAction()
         {
-            files = files ?? SelectFiles(FileSelectionType.Encrypt);
-            if (!files.Any())
+            IDataStore privateKeyData = TypeMap.Resolve.New<IDataStore>(PrivateKeyFileName);
+            using (Stream stream = privateKeyData.OpenRead())
             {
-                return;
+                ImportSuccessful = _keysStore.ImportKeysStore(stream, new Passphrase(Passphrase));
             }
-
-            List<string> failed = new List<string>();
-            foreach (string file in files)
-            {
-                IDataStore privateKeyData = TypeMap.Resolve.New<IDataStore>(file);
-                using (Stream stream = privateKeyData.OpenRead())
-                {
-                    if (!_keysStore.ImportKeysStore(stream, _identity.Passphrase))
-                    {
-                        failed.Add(file);
-                    }
-                }
-            }
-            FailedFiles = failed;
-        }
-
-        private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
-        {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
-            {
-                FileSelectionType = fileSelectionType,
-            };
-            OnSelectingFiles(fileSelectionArgs);
-            if (fileSelectionArgs.Cancel)
-            {
-                return new string[0];
-            }
-            return fileSelectionArgs.SelectedFiles;
         }
     }
 }

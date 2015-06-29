@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             TypeMap.Register.New<IterationCalculator>(() => new IterationCalculator());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
-            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(TypeMap.Resolve.New<IDataStore>("UserPublicKeys.txt"), TypeMap.Resolve.New<IStringSerializer>()));
+            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(Resolve.WorkFolder.FileInfo.FileItemInfo("UserPublicKeys.txt"), TypeMap.Resolve.New<IStringSerializer>()));
         }
 
         public static KnownIdentities KnownIdentities
