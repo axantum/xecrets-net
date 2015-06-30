@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestDefaultEncryptionKey()
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
-            LogOnIdentity key = new LogOnIdentity(String.Empty);
+            LogOnIdentity key = new LogOnIdentity("a");
             knownIdentities.DefaultEncryptionIdentity = key;
             Assert.That(knownIdentities.DefaultEncryptionIdentity, Is.EqualTo(key), "The DefaultEncryptionKey should be the one just set as it.");
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(1), "Only one key should be in the collection.");
@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(2), "Setting the DefaultEncryptionKey should also add it as a known key.");
 
-            knownIdentities.DefaultEncryptionIdentity = null;
+            knownIdentities.DefaultEncryptionIdentity = LogOnIdentity.Empty;
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(2), "Setting the DefaultEncryptionKey to null should not affect the known keys.");
         }
 

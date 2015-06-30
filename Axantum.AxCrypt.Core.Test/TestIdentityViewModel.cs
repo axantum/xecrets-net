@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ivm.LogOnLogOff.Execute(Guid.Empty);
 
-            Assert.That(ivm.LogOnIdentity, Is.Null);
+            Assert.That(ivm.LogOnIdentity == LogOnIdentity.Empty);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
         }
 
@@ -159,7 +159,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False, "Not logged on.");
             Assert.That(Resolve.FileSystemState.KnownPassphrases.Count(), Is.EqualTo(0));
-            Assert.That(ivm.LogOnIdentity, Is.Null);
+            Assert.That(ivm.LogOnIdentity == LogOnIdentity.Empty);
         }
 
         [Test]
@@ -261,8 +261,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             ivm.AskForLogOnPassphrase.Execute(id);
 
-            Assert.That(ivm.LogOnIdentity, Is.Null);
-            Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity, Is.Null);
+            Assert.That(ivm.LogOnIdentity == LogOnIdentity.Empty);
+            Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity == LogOnIdentity.Empty);
         }
 
         [Test]
@@ -341,8 +341,8 @@ namespace Axantum.AxCrypt.Core.Test
             ivm.AskForLogOnPassphrase.Execute(null);
 
             Assert.That(defaultPassphrase, Is.EqualTo("xxx"));
-            Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity, Is.Null);
-            Assert.That(ivm.LogOnIdentity, Is.Null);
+            Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity == LogOnIdentity.Empty);
+            Assert.That(ivm.LogOnIdentity == LogOnIdentity.Empty);
 
             Passphrase id = Resolve.FileSystemState.KnownPassphrases.FirstOrDefault(i => i.Thumbprint == new Passphrase("xxx").Thumbprint);
             Assert.That(id, Is.Null);
@@ -407,7 +407,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ivm.AskForLogOnPassphrase.Execute(null);
 
-            Assert.That(ivm.LogOnIdentity, Is.Null);
+            Assert.That(ivm.LogOnIdentity == LogOnIdentity.Empty);
             Assert.That(Resolve.FileSystemState.KnownPassphrases.Count(), Is.EqualTo(1));
         }
     }

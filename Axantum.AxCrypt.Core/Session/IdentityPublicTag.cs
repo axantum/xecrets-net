@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             _thumbprint = identity.Passphrase.Thumbprint;
-            _email = identity.UserKeys == null ? EmailAddress.Empty : identity.UserKeys.UserEmail;
+            _email = identity.UserKeys.UserEmail;
         }
 
         /// <summary>

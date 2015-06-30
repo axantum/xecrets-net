@@ -262,7 +262,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
             }
 
-            if (Resolve.KnownIdentities.DefaultEncryptionIdentity == null)
+            if (Resolve.KnownIdentities.DefaultEncryptionIdentity == LogOnIdentity.Empty)
             {
                 OnQueryEncryptionPassphrase(_eventArgs);
                 if (_eventArgs.Cancel)

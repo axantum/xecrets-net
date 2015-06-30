@@ -193,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist, even when logged on, is not droppable as recent.");
 
                 FakeDataStore.AddFile(encryptedFilePath, null);
-                Resolve.KnownIdentities.DefaultEncryptionIdentity = null;
+                Resolve.KnownIdentities.DefaultEncryptionIdentity = LogOnIdentity.Empty;
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.True, "An encrypted file that exist is droppable as recent even when not logged on.");
 
@@ -411,7 +411,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(Resolve.FileSystemState.ActiveFileCount, Is.EqualTo(1), "One ActiveFile is expected.");
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(2), "Two known keys are expected.");
-            Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity, Is.Not.Null, "There should be a non-null default encryption key");
+            Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity != LogOnIdentity.Empty, "There should be a non-null default encryption key");
 
             var sessionNotificationMonitorMock = new Mock<SessionNotify>();
             TypeMap.Register.Singleton<SessionNotify>(() => sessionNotificationMonitorMock.Object);
@@ -422,7 +422,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(Resolve.FileSystemState.ActiveFileCount, Is.EqualTo(0));
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
-            Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity, Is.Null);
+            Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity == LogOnIdentity.Empty);
 
             sessionNotificationMonitorMock.Verify(x => x.Notify(It.Is<SessionNotification>(sn => sn.NotificationType == SessionNotificationType.SessionStart)), Times.Once);
         }

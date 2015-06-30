@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
         public LogOnIdentity(Passphrase passphrase)
-            : this(null, passphrase)
+            : this(UserAsymmetricKeys.Empty, passphrase)
         {
         }
 
@@ -39,6 +39,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="passphrase">The passphrase.</param>
         public LogOnIdentity(UserAsymmetricKeys userKeys, Passphrase passphrase)
         {
+            if (userKeys == null)
+            {
+                throw new ArgumentNullException("userKeys");
+            }
+
             UserKeys = userKeys;
             Passphrase = passphrase ?? Passphrase.Empty;
         }
@@ -79,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                if (UserKeys == null)
+                if (UserKeys == UserAsymmetricKeys.Empty)
                 {
                     return new IAsymmetricPrivateKey[0];
                 }
@@ -91,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                if (UserKeys == null)
+                if (UserKeys == UserAsymmetricKeys.Empty)
                 {
                     return new UserPublicKey[0];
                 }

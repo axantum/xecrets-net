@@ -308,7 +308,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            if (Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null)
+            if (Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != UserAsymmetricKeys.Empty)
             {
                 return Resolve.KnownIdentities.DefaultEncryptionIdentity;
             }

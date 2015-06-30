@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _userSettings = userSettings;
             _sessionNotify = sessionNotify;
 
-            LogOnIdentity = null;
+            LogOnIdentity = LogOnIdentity.Empty;
 
             LogOn = new DelegateAction<Guid>((cryptoId) => LogOnIdentity = LogOnAction(cryptoId), (o) => !_knownIdentities.IsLoggedOn);
             LogOff = new DelegateAction<object>((p) => { LogOffAction(); LogOnIdentity = null; }, (o) => _knownIdentities.IsLoggedOn);
@@ -112,9 +112,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             if (_fileSystemState.KnownPassphrases.Any() || Resolve.AsymmetricKeysStore.HasStore)
             {
                 logOnIdentity = AskForLogOnPassphraseAction(LogOnIdentity.Empty, String.Empty);
-                if (logOnIdentity == null)
+                if (logOnIdentity == LogOnIdentity.Empty)
                 {
-                    return null;
+                    return LogOnIdentity.Empty;
                 }
                 foreach (UserPublicKey userPublicKey in logOnIdentity.PublicKeys)
                 {
@@ -127,9 +127,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             logOnIdentity = AskForNewEncryptionPassphrase(String.Empty, String.Empty);
-            if (logOnIdentity == null)
+            if (logOnIdentity == LogOnIdentity.Empty)
             {
-                return null;
+                return LogOnIdentity.Empty;
             }
 
             _knownIdentities.Add(logOnIdentity);
@@ -153,7 +153,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return LogOnAction(cryptoId);
             }
             LogOffAction();
-            return null;
+            return LogOnIdentity.Empty;
         }
 
         private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return new LogOnIdentity(passphrase);
                 }
             }
-            return null;
+            return LogOnIdentity.Empty;
         }
 
         private LogOnIdentity AskForDecryptPassphraseAction(string encryptedFileFullName)
@@ -187,7 +187,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
             {
-                return null;
+                return LogOnIdentity.Empty;
             }
 
             return new LogOnIdentity(new Passphrase(logOnArgs.Passphrase));
@@ -196,9 +196,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private LogOnIdentity AskForLogOnPassphraseAction(LogOnIdentity identity, string encryptedFileFullName)
         {
             LogOnIdentity logOnIdentity = AskForLogOnOrEncryptionPassphrase(identity, encryptedFileFullName);
-            if (logOnIdentity == null)
+            if (logOnIdentity == LogOnIdentity.Empty)
             {
-                return null;
+                return LogOnIdentity.Empty;
             }
 
             _knownIdentities.Add(logOnIdentity);
@@ -227,7 +227,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
             {
-                return null;
+                return LogOnIdentity.Empty;
             }
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
@@ -248,7 +248,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
             {
-                return null;
+                return LogOnIdentity.Empty;
             }
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;

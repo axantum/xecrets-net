@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -61,13 +62,13 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get
             {
-                return DefaultEncryptionIdentity != null;
+                return DefaultEncryptionIdentity != LogOnIdentity.Empty;
             }
         }
 
         public void LogOff()
         {
-            DefaultEncryptionIdentity = null;
+            DefaultEncryptionIdentity = LogOnIdentity.Empty;
         }
 
         public virtual void Add(LogOnIdentity logOnIdentity)
@@ -115,7 +116,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private LogOnIdentity _defaultEncryptionIdentity;
+        private LogOnIdentity _defaultEncryptionIdentity = LogOnIdentity.Empty;
 
         /// <summary>
         /// Gets or sets the default encryption key.
@@ -131,17 +132,22 @@ namespace Axantum.AxCrypt.Core.UI
             }
             set
             {
+                if (Object.ReferenceEquals(value, null))
+                {
+                    throw new ArgumentNullException("value");
+                }
+
                 if (_defaultEncryptionIdentity == value)
                 {
                     return;
                 }
-                if (_defaultEncryptionIdentity != null)
+                if (_defaultEncryptionIdentity != LogOnIdentity.Empty)
                 {
                     LogOnIdentity oldKey = _defaultEncryptionIdentity;
-                    _defaultEncryptionIdentity = null;
+                    _defaultEncryptionIdentity = LogOnIdentity.Empty;
                     _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOff, oldKey));
                 }
-                if (value == null)
+                if (value == LogOnIdentity.Empty)
                 {
                     return;
                 }

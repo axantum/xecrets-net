@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.EncryptPendingFiles:
                     _activeFileAction.PurgeActiveFiles(progress);
-                    if (_knownIdentities.DefaultEncryptionIdentity != null)
+                    if (_knownIdentities.DefaultEncryptionIdentity != LogOnIdentity.Empty)
                     {
                         encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, _knownIdentities.DefaultEncryptionIdentity);
                         _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownIdentities.LoggedOnWatchedFolders.Select(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path)), encryptionParameters, progress);

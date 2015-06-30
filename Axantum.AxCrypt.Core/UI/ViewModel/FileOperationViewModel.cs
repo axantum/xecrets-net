@@ -294,7 +294,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
         {
             IdentityViewModel.AskForDecryptPassphrase.Execute(e.OpenFileFullName);
-            if (IdentityViewModel.LogOnIdentity == null)
+            if (IdentityViewModel.LogOnIdentity == LogOnIdentity.Empty)
             {
                 e.Cancel = true;
                 return;
