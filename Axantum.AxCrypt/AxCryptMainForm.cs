@@ -1576,7 +1576,7 @@ namespace Axantum.AxCrypt
 
                 Resolve.ProgressBackground.Work((IProgressContext progress) =>
                 {
-                    TypeMap.Resolve.New<AxCryptFile>().ReEncrypt(TypeMap.Resolve.New<IDataStore>(file), Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                    TypeMap.Resolve.New<AxCryptFile>().ChangeEncryption(TypeMap.Resolve.New<IDataStore>(file), Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
                     return new FileOperationContext(file, FileOperationStatus.Success);
                 },
                 (FileOperationContext foc) =>

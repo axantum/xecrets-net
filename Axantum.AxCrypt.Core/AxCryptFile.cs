@@ -156,6 +156,10 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("destinationStream");
             }
+            if (properties == null)
+            {
+                throw new ArgumentNullException("properties");
+            }
             if (encryptionParameters == null)
             {
                 throw new ArgumentNullException("encryptionParameters");
@@ -275,7 +279,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="identity">The identity.</param>
         /// <param name="encryptionParameters">The encryption parameters.</param>
         /// <param name="progress">The progress.</param>
-        public void ReEncrypt(IDataStore from, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public void ChangeEncryption(IDataStore from, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             using (CancellationTokenSource tokenSource = new CancellationTokenSource())
             {
@@ -341,7 +345,7 @@ namespace Axantum.AxCrypt.Core
             return true;
         }
 
-        public EncryptedProperties Decrypt(Stream encryptedStream, Stream decryptedStream, LogOnIdentity identity)
+        public virtual EncryptedProperties Decrypt(Stream encryptedStream, Stream decryptedStream, LogOnIdentity identity)
         {
             using (IAxCryptDocument document = Document(encryptedStream, identity, String.Empty, new ProgressContext()))
             {

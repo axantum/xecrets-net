@@ -1,9 +1,7 @@
 ﻿using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -199,7 +197,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private void SaveKeysStoreFile(IDataStore saveFile, UserAsymmetricKeys userKeys, Passphrase passphrase)
+        private static void SaveKeysStoreFile(IDataStore saveFile, UserAsymmetricKeys userKeys, Passphrase passphrase)
         {
             string originalFileName = _fileFormat.InvariantFormat(IdFromFileName(saveFile.Name));
             byte[] save = GetSaveDataForKeys(userKeys, originalFileName, passphrase);
@@ -209,7 +207,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private byte[] GetSaveDataForKeys(UserAsymmetricKeys keys, string originalFileName, Passphrase passphrase)
+        private static byte[] GetSaveDataForKeys(UserAsymmetricKeys keys, string originalFileName, Passphrase passphrase)
         {
             string json = Resolve.Serializer.Serialize(keys);
             using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))

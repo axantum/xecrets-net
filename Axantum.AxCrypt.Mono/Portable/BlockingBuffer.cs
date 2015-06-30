@@ -45,6 +45,11 @@ namespace Axantum.AxCrypt.Mono.Portable
 
         public void Put(byte[] buffer)
         {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
             if (buffer.Length == 0)
             {
                 return;

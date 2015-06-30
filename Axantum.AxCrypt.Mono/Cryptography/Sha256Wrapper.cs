@@ -11,9 +11,9 @@ namespace Axantum.AxCrypt.Mono.Cryptography
     {
         private System.Security.Cryptography.HashAlgorithm _hashAlgorithm;
 
-        public Sha256Wrapper(System.Security.Cryptography.HashAlgorithm hashAlgoritm)
+        public Sha256Wrapper(System.Security.Cryptography.HashAlgorithm hashAlgorithm)
         {
-            _hashAlgorithm = hashAlgoritm;
+            _hashAlgorithm = hashAlgorithm;
         }
 
         public override byte[] ComputeHash(byte[] buffer)

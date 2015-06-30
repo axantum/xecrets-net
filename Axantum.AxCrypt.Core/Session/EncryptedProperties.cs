@@ -89,6 +89,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public static EncryptedProperties Create(IDataStore encrypted, LogOnIdentity identity)
         {
+            if (encrypted == null)
+            {
+                throw new ArgumentNullException("encrypted");
+            }
+
             using (Stream stream = encrypted.OpenRead())
             {
                 return Create(stream, identity);
@@ -97,6 +102,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public static EncryptedProperties Create(Stream stream, LogOnIdentity identity)
         {
+            if (identity == null)
+            {
+                throw new ArgumentNullException("identity");
+            }
+
             EncryptedProperties properties = new EncryptedProperties();
             IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { identity.Passphrase }, identity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
 
@@ -121,6 +131,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public static EncryptedProperties Create(IAxCryptDocument document)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException("document");
+            }
+
             EncryptedProperties properties = new EncryptedProperties();
 
             if (!document.PassphraseIsValid)
