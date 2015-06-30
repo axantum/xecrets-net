@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             Initialize(activeFile);
             Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
-            Identity = null;
+            Identity = LogOnIdentity.Empty;
         }
 
         public ActiveFile(ActiveFile activeFile, LogOnIdentity key)
@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                if (_thumbprint == null && Identity != null)
+                if (_thumbprint == null && Identity != LogOnIdentity.Empty)
                 {
                     _thumbprint = Identity.Passphrase.Thumbprint;
                 }
@@ -240,7 +240,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private LogOnIdentity _identity;
+        private LogOnIdentity _identity = LogOnIdentity.Empty;
 
         public LogOnIdentity Identity
         {
@@ -250,6 +250,11 @@ namespace Axantum.AxCrypt.Core.Session
             }
             private set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
                 _identity = value;
             }
         }
@@ -292,15 +297,15 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 if (Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
                 {
-                    return Identity != null ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+                    return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
                 }
                 if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                 {
-                    return Identity != null ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+                    return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
                 }
                 if (Status.HasMask(ActiveFileStatus.NotDecrypted))
                 {
-                    return Identity != null ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
+                    return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
                 }
                 throw new InvalidOperationException("ActiveFile in an unhandled visual state.".InvariantFormat());
             }

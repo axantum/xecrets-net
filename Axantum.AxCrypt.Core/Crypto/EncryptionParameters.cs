@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public void Add(IEnumerable<UserPublicKey> publicKeys)
         {
-            _publicKeys.AddRange(publicKeys);
+            _publicKeys.AddRange(publicKeys.Where(pk => !_publicKeys.Contains(pk)));
         }
 
         /// <summary>

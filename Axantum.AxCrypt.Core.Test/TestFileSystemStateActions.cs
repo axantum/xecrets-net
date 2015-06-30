@@ -184,14 +184,14 @@ namespace Axantum.AxCrypt.Core.Test
             });
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
-            Assert.That(activeFile.Identity, Is.Null, "The key should be null after loading of new FileSystemState");
+            Assert.That(activeFile.Identity == LogOnIdentity.Empty, "The key should be null after loading of new FileSystemState");
 
             Resolve.KnownIdentities.Add(passphrase);
             TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
-            Assert.That(activeFile.Identity, Is.Not.Null, "The key should not be null after the checking of active files.");
+            Assert.That(activeFile.Identity != LogOnIdentity.Empty, "The key should not be null after the checking of active files.");
         }
 
         [Test]
@@ -219,7 +219,7 @@ namespace Axantum.AxCrypt.Core.Test
             });
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
-            Assert.That(activeFile.Identity, Is.Null, "The key should be null after loading of new FileSystemState");
+            Assert.That(activeFile.Identity == LogOnIdentity.Empty, "The key should be null after loading of new FileSystemState");
 
             TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
@@ -230,7 +230,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
-            Assert.That(activeFile.Identity, Is.Null, "The key should still be null after the checking of active files.");
+            Assert.That(activeFile.Identity == LogOnIdentity.Empty, "The key should still be null after the checking of active files.");
 
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The file should still be there.");
             Assert.That(activeFile.ThumbprintMatch(passphrase.Passphrase), Is.True, "The active file should still be known to be decryptable with the original passphrase.");

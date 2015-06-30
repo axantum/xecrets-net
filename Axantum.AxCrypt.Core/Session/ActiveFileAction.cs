@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Session
             bool keyMatch = false;
             Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
             {
-                if (activeFile.Identity != null)
+                if (activeFile.Identity != LogOnIdentity.Empty)
                 {
                     return activeFile;
                 }
@@ -208,7 +208,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             LogOnIdentity key = FindKnownKeyOrNull(activeFile);
-            if (activeFile.Identity != null)
+            if (activeFile.Identity != LogOnIdentity.Empty)
             {
                 if (key != null)
                 {
@@ -277,7 +277,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            if (activeFile.Identity == null)
+            if (activeFile.Identity == LogOnIdentity.Empty)
             {
                 return activeFile;
             }
@@ -293,6 +293,10 @@ namespace Axantum.AxCrypt.Core.Session
                     TypeMap.Resolve.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
                         EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
+                        if (Resolve.KnownIdentities.IsLoggedOn)
+                        {
+                            parameters.Add(Resolve.KnownIdentities.DefaultEncryptionIdentity.PublicKeys);
+                        }
                         AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
                     }, progress);
                 }
