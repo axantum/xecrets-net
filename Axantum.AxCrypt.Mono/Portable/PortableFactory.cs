@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Mono.Portable
 
         public static Aes AesManaged()
         {
-            return new Mono.Cryptography.AesManagedWrapper();
+            return new Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesManaged());
         }
 
         public static CryptoStream CryptoStream()

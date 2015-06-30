@@ -37,6 +37,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
     [TestFixture(CryptoImplementation.BouncyCastle)]
     [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "Both HMAC and SHA1 are meaningful acronyms and this is the way .NET does the naming.")]
     public class TestAxCryptHMACSHA1

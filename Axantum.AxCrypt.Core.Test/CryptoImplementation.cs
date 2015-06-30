@@ -10,6 +10,7 @@ namespace Axantum.AxCrypt.Core.Test
     {
         Unknown,
         Mono,
+        WindowsDesktop,
         BouncyCastle
     }
 }

@@ -7,13 +7,13 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    internal class AesManagedWrapper : Axantum.AxCrypt.Core.Algorithm.Aes
+    public class AesWrapper : Axantum.AxCrypt.Core.Algorithm.Aes
     {
         private System.Security.Cryptography.SymmetricAlgorithm _symmetricAlgorithm;
 
-        public AesManagedWrapper()
+        public AesWrapper(System.Security.Cryptography.SymmetricAlgorithm symmetricAlgorithm)
         {
-            _symmetricAlgorithm = new System.Security.Cryptography.AesManaged();
+            _symmetricAlgorithm = symmetricAlgorithm;
         }
 
         public override void Clear()

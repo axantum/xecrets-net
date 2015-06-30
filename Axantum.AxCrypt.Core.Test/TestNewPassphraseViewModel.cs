@@ -69,6 +69,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
         public static void TestConstructorWithKnownDefaultIdentity(CryptoImplementation cryptoImplementation)
         {
@@ -146,6 +147,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
         public static void TestValidateWrongPassphraseWithRealFile(CryptoImplementation cryptoImplementation)
         {

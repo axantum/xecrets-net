@@ -36,6 +36,7 @@ using System.Linq;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
     [TestFixture(CryptoImplementation.BouncyCastle)]
     public class TestCounterModeCryptoTransform
     {
@@ -62,18 +63,22 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestConstructorWithBadArguments()
         {
-            SymmetricAlgorithm algorithm = TypeMap.Resolve.New<Aes>();
+            SymmetricAlgorithm algorithm;
             ICryptoTransform transform = null;
 
             try
             {
+                algorithm = TypeMap.Resolve.New<Aes>();
                 algorithm.Mode = CipherMode.CBC;
-                Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
+                Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(TypeMap.Resolve.New<Aes>(), 0, 0));
 
+                algorithm = TypeMap.Resolve.New<Aes>();
                 algorithm.Mode = CipherMode.ECB;
                 algorithm.Padding = PaddingMode.PKCS7;
                 Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
 
+                algorithm = TypeMap.Resolve.New<Aes>();
+                algorithm.Mode = CipherMode.ECB;
                 algorithm.Padding = PaddingMode.None;
                 Assert.DoesNotThrow(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
             }

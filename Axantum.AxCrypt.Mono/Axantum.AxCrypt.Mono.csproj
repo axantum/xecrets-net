@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Portable\BlockingBuffer.cs" />
-    <Compile Include="Cryptography\AesManagedWrapper.cs" />
+    <Compile Include="Cryptography\AesWrapper.cs" />
     <Compile Include="Cryptography\CryptoStreamWrapper.cs" />
     <Compile Include="Cryptography\Sha1Wrapper.cs" />
     <Compile Include="Cryptography\Sha256Wrapper.cs" />

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    internal class Sha1Wrapper : Sha1
+    public class Sha1Wrapper : Sha1
     {
         private System.Security.Cryptography.HashAlgorithm _hashAlgorithm;
 

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
     [TestFixture(CryptoImplementation.BouncyCastle)]
     public class TestIdentityPublicTag
     {

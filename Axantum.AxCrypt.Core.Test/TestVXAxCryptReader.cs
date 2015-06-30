@@ -54,6 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
         public static void TestHeaderBlockFactory(CryptoImplementation cryptoImplementation)
         {

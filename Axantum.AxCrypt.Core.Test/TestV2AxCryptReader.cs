@@ -59,6 +59,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
         public static void TestGetCryptoFromHeaders(CryptoImplementation cryptoImplementation)
         {
@@ -98,6 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
         public static void TestGetOneAsymmetricCryptoFromHeaders(CryptoImplementation cryptoImplementation)
         {
@@ -141,6 +143,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
         public static void TestGetTwoAsymmetricCryptosFromHeaders(CryptoImplementation cryptoImplementation)
         {

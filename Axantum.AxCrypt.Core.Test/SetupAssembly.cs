@@ -104,6 +104,15 @@ namespace Axantum.AxCrypt.Core.Test
                     TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
                     break;
 
+                case CryptoImplementation.WindowsDesktop:
+                    TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+                    TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+                    TypeMap.Register.New<Aes>(() => new Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
+                    TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
+                    TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
+                    TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+                    break;
+
                 case CryptoImplementation.BouncyCastle:
                     TypeMap.Register.New<AxCryptHMACSHA1>(() => BouncyCastleCryptoFactory.AxCryptHMACSHA1());
                     TypeMap.Register.New<HMACSHA512>(() => BouncyCastleCryptoFactory.HMACSHA512());

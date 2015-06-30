@@ -65,6 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
         public static void TestNonTerminatingFileName(CryptoImplementation cryptoImplementation)
         {
