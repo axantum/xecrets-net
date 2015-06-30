@@ -18,7 +18,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private IStringSerializer _serializer;
 
-        private bool dirty;
+        private bool _dirty;
 
         private List<UserPublicKey> _publicKeys;
 
@@ -104,12 +104,12 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 if (_publicKeys[i].Email == publicKey.Email)
                 {
-                    dirty = true;
+                    _dirty = true;
                     _publicKeys[i] = publicKey;
                     return;
                 }
             }
-            dirty = true;
+            _dirty = true;
             _publicKeys.Add(publicKey);
         }
 
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return;
             }
-            if (dirty)
+            if (_dirty)
             {
                 string json = _serializer.Serialize(this);
                 using (StreamWriter writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8))
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Session
                     writer.Write(json);
                 }
             }
-            dirty = false;
+            _dirty = false;
             _store = null;
         }
     }

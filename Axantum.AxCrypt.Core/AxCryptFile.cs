@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core
@@ -265,27 +266,52 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelFinished();
         }
 
+        /// <summary>
+        /// Re-encrypt a file, using the provided original identity to decrypt and the provided encryption parameters
+        /// for the new encryption. This can for example be used to change passhrase for a file, or to add or remove
+        /// sharing recipients.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="identity">The identity.</param>
+        /// <param name="encryptionParameters">The encryption parameters.</param>
+        /// <param name="progress">The progress.</param>
         public void ReEncrypt(IDataStore from, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            using (PipelineStream pipeline = new PipelineStream())
+            using (CancellationTokenSource tokenSource = new CancellationTokenSource())
             {
-                EncryptedProperties properties = EncryptedProperties.Create(from, identity);
-
-                Task decryption = Task.Factory.StartNew(() =>
+                using (PipelineStream pipeline = new PipelineStream(tokenSource.Token))
                 {
-                    Decrypt(from, pipeline, identity);
-                    pipeline.Complete();
-                });
+                    EncryptedProperties properties = EncryptedProperties.Create(from, identity);
 
-                Task encryption = Task.Factory.StartNew(() =>
-                {
-                    WriteToFileWithBackup(from, (Stream s) =>
+                    Task decryption = Task.Factory.StartNew(() =>
                     {
-                        Encrypt(pipeline, s, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
-                    }, progress);
-                });
+                        Decrypt(from, pipeline, identity);
+                        pipeline.Complete();
+                    });
+                    decryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
-                Task.WaitAll(decryption, encryption);
+                    Task encryption = Task.Factory.StartNew(() =>
+                    {
+                        WriteToFileWithBackup(from, (Stream s) =>
+                        {
+                            Encrypt(pipeline, s, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
+                        }, progress);
+                    });
+                    encryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+
+                    try
+                    {
+                        Task.WaitAll(decryption, encryption);
+                    }
+                    catch (AggregateException ae)
+                    {
+                        IEnumerable<Exception> exceptions = ae.InnerExceptions.Where(ex => ex.GetType() != typeof(OperationCanceledException));
+                        if (exceptions.Any())
+                        {
+                            throw exceptions.First();
+                        }
+                    }
+                }
             }
         }
 

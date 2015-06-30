@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -33,7 +34,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] result = null;
             bool complete = false;
 
-            using (PipelineStream pipeline = new PipelineStream())
+            using (PipelineStream pipeline = new PipelineStream(new CancellationToken()))
             {
                 Task producerTask = Task.Run(() =>
                 {
@@ -67,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (MemoryStream destination = new MemoryStream())
             {
-                using (PipelineStream pipeline = new PipelineStream())
+                using (PipelineStream pipeline = new PipelineStream(new CancellationToken()))
                 {
                     Task producerTask = Task.Run(() =>
                     {
@@ -111,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (MemoryStream destination = new MemoryStream())
                 {
-                    using (PipelineStream pipeline = new PipelineStream())
+                    using (PipelineStream pipeline = new PipelineStream(new CancellationToken()))
                     {
                         Task producerTask = Task.Run(() =>
                         {

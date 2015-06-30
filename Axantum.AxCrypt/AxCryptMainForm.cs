@@ -1570,8 +1570,9 @@ namespace Axantum.AxCrypt
                 }
 
                 EncryptionParameters encryptionParameters = new EncryptionParameters(encryptedProperties.DecryptionParameter.CryptoId);
-                encryptionParameters.Passphrase = encryptedProperties.DecryptionParameter.Passphrase;
+                encryptionParameters.Passphrase = Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase;
                 encryptionParameters.Add(TypeMap.Resolve.New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s == pk.Email)));
+                encryptionParameters.Add(Resolve.KnownIdentities.DefaultEncryptionIdentity.PublicKeys);
 
                 Resolve.ProgressBackground.Work((IProgressContext progress) =>
                 {

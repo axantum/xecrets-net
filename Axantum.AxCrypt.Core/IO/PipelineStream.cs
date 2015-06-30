@@ -4,18 +4,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.IO
 {
     public class PipelineStream : Stream
     {
+        private CancellationToken _cancellationToken;
+
         private IBlockingBuffer _blockingBuffer;
 
         private ByteBuffer _overflowBuffer = new ByteBuffer(new byte[0]);
 
-        public PipelineStream()
+        public PipelineStream(CancellationToken cancellationToken)
         {
             _blockingBuffer = Resolve.Portable.BlockingBuffer();
+            _cancellationToken = cancellationToken;
         }
 
         public override bool CanRead
@@ -56,6 +60,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override int Read(byte[] buffer, int offset, int count)
         {
+            CheckCancellation();
             if (_overflowBuffer.AvailableForRead == 0)
             {
                 _overflowBuffer = new ByteBuffer(_blockingBuffer.Take());
@@ -76,6 +81,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override void Write(byte[] buffer, int offset, int count)
         {
+            CheckCancellation();
             byte[] copy = new byte[count];
             Array.Copy(buffer, offset, copy, 0, count);
 
@@ -84,6 +90,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public void Complete()
         {
+            CheckCancellation();
             _blockingBuffer.Complete();
         }
 
@@ -102,6 +109,14 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 _blockingBuffer.Dispose();
                 _blockingBuffer = null;
+            }
+        }
+
+        private void CheckCancellation()
+        {
+            if (_cancellationToken.IsCancellationRequested)
+            {
+                _cancellationToken.ThrowIfCancellationRequested();
             }
         }
     }

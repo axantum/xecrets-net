@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Linq;
@@ -111,6 +112,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             if (_fileSystemState.KnownPassphrases.Any() || Resolve.AsymmetricKeysStore.HasStore)
             {
                 logOnIdentity = AskForLogOnPassphraseAction(LogOnIdentity.Empty, String.Empty);
+                if (logOnIdentity == null)
+                {
+                    return null;
+                }
+                foreach (UserPublicKey userPublicKey in logOnIdentity.PublicKeys)
+                {
+                    using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
+                    {
+                        knownPublicKeys.AddOrReplace(userPublicKey);
+                    }
+                }
                 return logOnIdentity;
             }
 
