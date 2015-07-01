@@ -38,6 +38,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
@@ -114,12 +115,18 @@ namespace Axantum.AxCrypt.Core.Test
             });
             using (FileLock fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
             {
-                TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                Task.Run(() =>
+                {
+                    TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                }).Wait();
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the encrypted file is locked.");
             using (FileLock fileLock = FileLock.Lock(activeFile.DecryptedFileInfo))
             {
-                TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                Task.Run(() =>
+                {
+                    TypeMap.Resolve.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                }).Wait();
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the decrypted file is locked.");
         }
@@ -462,7 +469,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (FileLock fileLock = FileLock.Lock(decryptedFileInfo))
             {
-                TypeMap.Resolve.New<ActiveFileAction>().PurgeActiveFiles(new ProgressContext());
+                Task.Run(() => TypeMap.Resolve.New<ActiveFileAction>().PurgeActiveFiles(new ProgressContext())).Wait();
             }
 
             Assert.That(changedWasRaised, Is.False, "A changed event should not be raised because the decrypted file is locked.");

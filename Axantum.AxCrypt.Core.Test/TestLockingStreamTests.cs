@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
@@ -33,6 +32,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (LockedStream lockedStream = LockedStream.OpenWrite(fileInfo))
             {
                 lockedStreamCopy = lockedStream;
-                Assert.That(FileLock.IsLocked(fileInfo), "The file should be locked now.");
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, "The file should be locked now.");
                 Assert.That(lockedStream.CanRead, "The stream should be readable.");
                 Assert.That(lockedStream.CanSeek, "The stream should be seekable.");
                 Assert.That(lockedStream.CanWrite, "The stream should be writeable.");
@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Assert.DoesNotThrow(() => { lockedStream.Flush(); }, "It's hard to test Flush() behavior here, not worth the trouble, but it should not throw!");
             }
-            Assert.That(!FileLock.IsLocked(fileInfo), "The file should be unlocked now.");
+            Assert.That(!Task.Run(() => FileLock.IsLocked(fileInfo)).Result, "The file should be unlocked now.");
             Assert.Throws<ObjectDisposedException>(() => { lockedStreamCopy.Position = 0; }, "The underlying stream should be disposed.");
         }
     }

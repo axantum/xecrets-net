@@ -33,6 +33,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -67,23 +68,37 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
 
-            Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file yet.");
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file yet.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
-                Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should be now be a lock for this file.");
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.True, "There should be now be a lock for this file.");
             }
-            Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file again.");
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file again.");
         }
 
         [Test]
         public static void TestFileLockWhenLocked()
         {
             IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file to start with.");
+            using (FileLock lock1 = FileLock.Lock(fileInfo))
+            {
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.True, "There should be a lock for this file.");
+            }
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file now.");
+        }
+
+        [Test]
+        public static void TestFileLockWhenLockedOnSameThread()
+        {
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file to start with.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
-                Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should be a lock for this file.");
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.True, "There should be a lock for this from a different thread.");
+                Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this from the same thread.");
             }
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file now.");
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file now.");
         }
 
@@ -97,8 +112,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(FileLock.IsLocked(fileInfo2), Is.False, "There should be no lock for this file yet.");
             using (FileLock lock1 = FileLock.Lock(fileInfo1))
             {
-                Assert.That(FileLock.IsLocked(fileInfo1), Is.True, "There should be now be a lock for this file.");
-                Assert.That(FileLock.IsLocked(fileInfo2), Is.False, "There should be no lock for this file still.");
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo1)).Result, Is.True, "There should be now be a lock for this file.");
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo2)).Result, Is.False, "There should be no lock for this file still.");
             }
             Assert.That(FileLock.IsLocked(fileInfo1), Is.False, "There should be no lock for this file again.");
         }

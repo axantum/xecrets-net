@@ -27,24 +27,28 @@
 
 using Axantum.AxCrypt.Core.Extensions;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.IO
 {
     public class FileLock : IDisposable
     {
-        private static Collection<string> _lockedFiles = new Collection<string>();
+        private static Dictionary<string, FileLock> _lockedFiles = new Dictionary<string, FileLock>();
 
-        private FileLock(IDataStore dataStore)
-        {
-            DataStore = dataStore;
-            _originalLockedFileName = dataStore.FullName;
-            _lockedFiles.Add(dataStore.FullName);
-        }
+        private object _lock = new object();
+
+        private int _referenceCount = 0;
 
         private string _originalLockedFileName;
 
-        public IDataStore DataStore { get; private set; }
+        private FileLock(string fullName)
+        {
+            _originalLockedFileName = fullName;
+        }
+
+        public IDataStore DataStore { get { return TypeMap.Resolve.New<IDataStore>(_originalLockedFileName); } }
 
         public static FileLock Lock(IDataStore dataStore)
         {
@@ -57,15 +61,16 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 lock (_lockedFiles)
                 {
-                    if (IsLocked(dataStore))
-                    {
-                        continue;
-                    }
-
-                    FileLock fileLock = null;
+                    FileLock fileLock = GetOrCreateFileLock(dataStore.FullName);
+                    bool lockTaken = false;
                     try
                     {
-                        fileLock = new FileLock(dataStore);
+                        Monitor.TryEnter(fileLock._lock, ref lockTaken);
+                        if (!lockTaken)
+                        {
+                            continue;
+                        }
+                        ++fileLock._referenceCount;
                         if (Resolve.Log.IsInfoEnabled)
                         {
                             Resolve.Log.LogInfo("Locking file '{0}'.".InvariantFormat(dataStore.FullName));
@@ -74,7 +79,7 @@ namespace Axantum.AxCrypt.Core.IO
                     }
                     catch
                     {
-                        if (fileLock != null)
+                        if (lockTaken)
                         {
                             fileLock.Dispose();
                         }
@@ -82,6 +87,17 @@ namespace Axantum.AxCrypt.Core.IO
                     }
                 }
             }
+        }
+
+        private static FileLock GetOrCreateFileLock(string fullName)
+        {
+            FileLock fileLock = null;
+            if (!_lockedFiles.TryGetValue(fullName, out fileLock))
+            {
+                fileLock = new FileLock(fullName);
+                _lockedFiles[fullName] = fileLock;
+            }
+            return fileLock;
         }
 
         public static bool IsLocked(params IDataStore[] dataStoreParameters)
@@ -97,19 +113,42 @@ namespace Axantum.AxCrypt.Core.IO
                 {
                     throw new ArgumentNullException("dataStoreParameters");
                 }
-                lock (_lockedFiles)
+
+                if (TestLocked(dataStore.FullName))
                 {
-                    if (_lockedFiles.Contains(dataStore.FullName))
+                    if (Resolve.Log.IsInfoEnabled)
                     {
-                        if (Resolve.Log.IsInfoEnabled)
-                        {
-                            Resolve.Log.LogInfo("File '{0}' was found to be locked.".InvariantFormat(dataStore.FullName));
-                        }
-                        return true;
+                        Resolve.Log.LogInfo("File '{0}' was found to be locked.".InvariantFormat(dataStore.FullName));
                     }
+                    return true;
                 }
             }
             return false;
+        }
+
+        private static bool TestLocked(string fullName)
+        {
+            lock (_lockedFiles)
+            {
+                if (!_lockedFiles.Keys.Contains(fullName))
+                {
+                    return false;
+                }
+
+                bool lockTaken = false;
+                try
+                {
+                    Monitor.TryEnter(_lockedFiles[fullName]._lock, ref lockTaken);
+                }
+                finally
+                {
+                    if (lockTaken)
+                    {
+                        Monitor.Exit(_lockedFiles[fullName]._lock);
+                    }
+                }
+                return !lockTaken;
+            }
         }
 
         public void Dispose()
@@ -122,17 +161,21 @@ namespace Axantum.AxCrypt.Core.IO
         {
             lock (_lockedFiles)
             {
-                if (DataStore == null)
+                if (_referenceCount == 0)
                 {
                     return;
                 }
-                _lockedFiles.Remove(_originalLockedFileName);
+
+                Monitor.Exit(_lock);
+                if (--_referenceCount == 0)
+                {
+                    _lockedFiles.Remove(_originalLockedFileName);
+                }
+
                 if (Resolve.Log.IsInfoEnabled)
                 {
                     Resolve.Log.LogInfo("Unlocking file '{0}'.".InvariantFormat(DataStore.FullName));
                 }
-                DataStore = null;
-                _originalLockedFileName = null;
             }
         }
     }
