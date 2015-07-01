@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public static void Encrypt(IDataStore sourceStore, IDataStore destinationStore, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
+        public virtual void Encrypt(IDataStore sourceStore, IDataStore destinationStore, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceStore == null)
             {
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public static void Encrypt(IDataStore sourceFile, Stream destinationStream, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
+        public virtual void Encrypt(IDataStore sourceFile, Stream destinationStream, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {

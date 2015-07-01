@@ -286,36 +286,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            try
-            {
-                using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
-                {
-                    TypeMap.Resolve.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
-                    {
-                        EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
-                        if (Resolve.KnownIdentities.IsLoggedOn)
-                        {
-                            parameters.Add(Resolve.KnownIdentities.DefaultEncryptionIdentity.PublicKeys);
-                        }
-                        AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
-                    }, progress);
-                }
-            }
-            catch (IOException)
-            {
-                if (Resolve.Log.IsWarningEnabled)
-                {
-                    Resolve.Log.LogWarning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
-                }
-                activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable);
-                return activeFile;
-            }
-            if (Resolve.Log.IsInfoEnabled)
-            {
-                Resolve.Log.LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
-            }
-            activeFile = new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
-            return activeFile;
+            return activeFile.UpdateDecrypted(progress);
         }
 
         private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, IProgressContext progress)

@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -55,7 +54,7 @@ namespace Axantum.AxCrypt.Core
 
         ICryptoFactory CryptoFactory { get; }
 
-        IEnumerable<EmailAddress> AsymmetricRecipients { get; }
+        IEnumerable<UserPublicKey> AsymmetricRecipients { get; }
 
         bool Load(Passphrase passphrase, Guid cryptoId, Headers headers);
 

@@ -161,6 +161,7 @@
     <Compile Include="Reader\UnversionedAxCryptReader.cs" />
     <Compile Include="Runtime\TypeRegister.cs" />
     <Compile Include="Runtime\TypeResolve.cs" />
+    <Compile Include="Session\ActiveFileExtensions.cs" />
     <Compile Include="Session\ActiveFileProperties.cs" />
     <Compile Include="Session\ActiveFileWatcher.cs" />
     <Compile Include="Session\EncryptedProperties.cs" />

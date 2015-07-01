@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
@@ -14,9 +15,9 @@ namespace Axantum.AxCrypt
     {
         private SharingListViewModel _viewModel;
 
-        public IEnumerable<EmailAddress> SharedWith { get; private set; }
+        public IEnumerable<UserPublicKey> SharedWith { get; private set; }
 
-        public KeyShareDialog(Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<EmailAddress> sharedWith, LogOnIdentity logOnIdentity)
+        public KeyShareDialog(Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
             InitializeComponent();
             new Styling().Style(this);

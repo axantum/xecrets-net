@@ -34,7 +34,6 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.Collections;
@@ -82,16 +81,16 @@ namespace Axantum.AxCrypt.Core
 
         public DecryptionParameter DecryptionParameter { get; set; }
 
-        public IEnumerable<EmailAddress> AsymmetricRecipients
+        public IEnumerable<UserPublicKey> AsymmetricRecipients
         {
             get
             {
                 V2AsymmetricRecipientsEncryptedHeaderBlock headerBlock = DocumentHeaders.Headers.FindHeaderBlock<V2AsymmetricRecipientsEncryptedHeaderBlock>();
                 if (headerBlock == null)
                 {
-                    return new EmailAddress[0];
+                    return new UserPublicKey[0];
                 }
-                return headerBlock.Recipients.PublicKeys.Select(r => r.Email);
+                return headerBlock.Recipients.PublicKeys;
             }
         }
 

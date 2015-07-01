@@ -39,6 +39,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             DataStore = dataStore;
             _originalLockedFileName = dataStore.FullName;
+            _lockedFiles.Add(dataStore.FullName);
         }
 
         private string _originalLockedFileName;
@@ -61,12 +62,24 @@ namespace Axantum.AxCrypt.Core.IO
                         continue;
                     }
 
-                    _lockedFiles.Add(dataStore.FullName);
-                    if (Resolve.Log.IsInfoEnabled)
+                    FileLock fileLock = null;
+                    try
                     {
-                        Resolve.Log.LogInfo("Locking file '{0}'.".InvariantFormat(dataStore.FullName));
+                        fileLock = new FileLock(dataStore);
+                        if (Resolve.Log.IsInfoEnabled)
+                        {
+                            Resolve.Log.LogInfo("Locking file '{0}'.".InvariantFormat(dataStore.FullName));
+                        }
+                        return fileLock;
                     }
-                    return new FileLock(dataStore);
+                    catch
+                    {
+                        if (fileLock != null)
+                        {
+                            fileLock.Dispose();
+                        }
+                        throw;
+                    }
                 }
             }
         }

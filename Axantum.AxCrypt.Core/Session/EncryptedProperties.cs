@@ -1,6 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
 using System;
 
 #region Coypright and License
@@ -34,6 +33,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private EncryptedProperties()
         {
-            SharedKeyHolders = new EmailAddress[0];
+            SharedKeyHolders = new UserPublicKey[0];
 
             DateTime utcNow = DateTime.UtcNow;
             CreationTimeUtc = utcNow;
@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public bool IsValid { get; private set; }
 
-        public IEnumerable<EmailAddress> SharedKeyHolders { get; private set; }
+        public IEnumerable<UserPublicKey> SharedKeyHolders { get; private set; }
 
         public string FileName { get; private set; }
 
@@ -69,8 +69,19 @@ namespace Axantum.AxCrypt.Core.Session
 
         public DateTime LastWriteTimeUtc { get; set; }
 
+        /// <summary>
+        /// Factory method to instantiate an EncryptedProperties instance. It is required and assumed that the
+        /// currently logged on user has the required keys to decrypt the file.
+        /// </summary>
+        /// <param name="dataStore">The data store to instantiate from.</param>
+        /// <returns>The properties or an empty set if the data store does not exist, or no-one is logged on.</returns>
         public static EncryptedProperties Create(IDataStore dataStore)
         {
+            if (!dataStore.IsAvailable)
+            {
+                return new EncryptedProperties();
+            }
+
             using (Stream stream = LockedStream.OpenRead(dataStore))
             {
                 return Create(stream);

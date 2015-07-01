@@ -34,7 +34,6 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.Collections.Generic;
@@ -60,7 +59,7 @@ namespace Axantum.AxCrypt.Core
         public V1AxCryptDocument()
         {
             CryptoFactory = new V1Aes128CryptoFactory();
-            AsymmetricRecipients = new EmailAddress[0];
+            AsymmetricRecipients = new UserPublicKey[0];
         }
 
         public V1AxCryptDocument(AxCryptReader reader)
@@ -79,7 +78,7 @@ namespace Axantum.AxCrypt.Core
 
         public bool PassphraseIsValid { get; set; }
 
-        public IEnumerable<EmailAddress> AsymmetricRecipients { get; private set; }
+        public IEnumerable<UserPublicKey> AsymmetricRecipients { get; private set; }
 
         public DecryptionParameter DecryptionParameter { get; set; }
 
