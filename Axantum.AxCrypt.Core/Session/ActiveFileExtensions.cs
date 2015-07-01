@@ -47,10 +47,9 @@ namespace Axantum.AxCrypt.Core.Session
                     TypeMap.Resolve.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
                         EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
-                        if (Resolve.KnownIdentities.IsLoggedOn)
-                        {
-                            parameters.Add(Resolve.KnownIdentities.DefaultEncryptionIdentity.PublicKeys);
-                        }
+                        EncryptedProperties properties = EncryptedProperties.Create(activeFile.EncryptedFileInfo);
+                        parameters.Add(properties.SharedKeyHolders);
+
                         TypeMap.Resolve.New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
                     }, progress);
                 }

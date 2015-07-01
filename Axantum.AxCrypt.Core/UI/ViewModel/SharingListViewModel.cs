@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 NotSharedWith = knownPublicKeys.PublicKeys.Where(upk => upk.Email != userEmail && !sharedWith.Any(sw => upk.Email == sw.Email)).OrderBy(e => e.Email.Address);
             }
 
-            AddKeyShares = new DelegateAction<IEnumerable<UserPublicKey>>((upks) => AddKeySharesAction(upks));
+            AddKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesAction(upks));
             RemoveKeyShares = new DelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesAction(upks));
         }
 
@@ -95,27 +95,35 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             NotSharedWith = toSet.OrderBy(a => a.Email.Address);
         }
 
-        private void AddKeySharesAction(IEnumerable<UserPublicKey> keySharesToAdd)
+        private void AddKeySharesAction(IEnumerable<EmailAddress> keySharesToAdd)
         {
+            IEnumerable<UserPublicKey> publicKeysToAdd = TryAddMissingUnsharedPublicKeysFromServer(keySharesToAdd);
+
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(NotSharedWith);
             HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(SharedWith);
 
-            FectchMissingUnsharedPublicKeysFromServer(keySharesToAdd, fromSet);
-            MoveKeyShares(keySharesToAdd, fromSet, toSet);
+            MoveKeyShares(publicKeysToAdd, fromSet, toSet);
 
             NotSharedWith = fromSet.OrderBy(a => a.Email.Address);
             SharedWith = toSet.OrderBy(a => a.Email.Address);
         }
 
-        private static void FectchMissingUnsharedPublicKeysFromServer(IEnumerable<UserPublicKey> keySharesToAdd, HashSet<UserPublicKey> fromSet)
+        private IEnumerable<UserPublicKey> TryAddMissingUnsharedPublicKeysFromServer(IEnumerable<EmailAddress> keySharesToAdd)
         {
-            foreach (UserPublicKey keyShareToAdd in keySharesToAdd)
+            List<UserPublicKey> publicKeys = new List<UserPublicKey>();
+            using (KnownPublicKeys knownPublicKeys = _knownPublicKeysFactory())
             {
-                if (fromSet.Contains(keyShareToAdd))
+                foreach (EmailAddress keyShareToAdd in keySharesToAdd)
                 {
-                    continue;
+                    UserPublicKey userPublicKey = knownPublicKeys.PublicKeys.FirstOrDefault(pk => pk.Email == keyShareToAdd);
+                    if (userPublicKey == null)
+                    {
+                        continue;
+                    }
+                    publicKeys.Add(userPublicKey);
                 }
             }
+            return publicKeys;
         }
 
         private static void MoveKeyShares(IEnumerable<UserPublicKey> keySharesToMove, HashSet<UserPublicKey> fromSet, HashSet<UserPublicKey> toSet)

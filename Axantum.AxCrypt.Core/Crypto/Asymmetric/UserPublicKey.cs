@@ -81,6 +81,11 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
         [JsonProperty("publickey")]
         public IAsymmetricPublicKey PublicKey { get; private set; }
 
+        public override string ToString()
+        {
+            return Email.ToString();
+        }
+
         public override bool Equals(object obj)
         {
             return Equals(obj as UserPublicKey);
