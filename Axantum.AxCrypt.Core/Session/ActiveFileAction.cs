@@ -207,24 +207,24 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            LogOnIdentity key = FindKnownKeyOrNull(activeFile);
+            LogOnIdentity key = FindKnownKeyOrEmpty(activeFile);
             if (activeFile.Identity != LogOnIdentity.Empty)
             {
-                if (key != null)
+                if (key != LogOnIdentity.Empty)
                 {
                     return activeFile;
                 }
                 return new ActiveFile(activeFile);
             }
 
-            if (key != null)
+            if (key != LogOnIdentity.Empty)
             {
                 return new ActiveFile(activeFile, key);
             }
             return activeFile;
         }
 
-        private static LogOnIdentity FindKnownKeyOrNull(ActiveFile activeFile)
+        private static LogOnIdentity FindKnownKeyOrEmpty(ActiveFile activeFile)
         {
             foreach (LogOnIdentity key in Resolve.KnownIdentities.Identities)
             {
@@ -233,7 +233,7 @@ namespace Axantum.AxCrypt.Core.Session
                     return key;
                 }
             }
-            return null;
+            return LogOnIdentity.Empty;
         }
 
         private static ActiveFile CheckIfCreated(ActiveFile activeFile)
