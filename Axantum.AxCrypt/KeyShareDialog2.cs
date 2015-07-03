@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class KeyShareDialog : Form
+    public partial class KeyShareDialog2 : Form
     {
         private SharingListViewModel _viewModel;
 
         public IEnumerable<UserPublicKey> SharedWith { get; private set; }
 
-        public KeyShareDialog(Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
+        public KeyShareDialog2(Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
             InitializeComponent();
             new Styling().Style(this);

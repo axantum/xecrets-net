@@ -1,6 +1,6 @@
 ﻿namespace Axantum.AxCrypt
 {
-    partial class KeyShareDialog
+    partial class KeyShareDialog2
     {
         /// <summary>
         /// Required designer variable.
