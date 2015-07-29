@@ -661,6 +661,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sharing and Secret Key Pair.
+        /// </summary>
+        internal static string KeyPairTerm {
+            get {
+                return ResourceManager.GetString("KeyPairTerm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt must be restarted in order for the language change to take effect..
         /// </summary>
         internal static string LanguageChangeRestartPrompt {
@@ -851,6 +860,24 @@ namespace Axantum.AxCrypt.Properties {
         internal static string PassphraseVerificationMismatch {
             get {
                 return ResourceManager.GetString("PassphraseVerificationMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Private Secret Key.
+        /// </summary>
+        internal static string PrivateKeyTerm {
+            get {
+                return ResourceManager.GetString("PrivateKeyTerm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Public Sharing Key.
+        /// </summary>
+        internal static string PublicKeyTerm {
+            get {
+                return ResourceManager.GetString("PublicKeyTerm", resourceCulture);
             }
         }
         

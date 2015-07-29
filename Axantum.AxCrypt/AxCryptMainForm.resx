@@ -353,16 +353,16 @@
     <value>&amp;Import Someone's Public Sharing Key</value>
   </data>
   <data name="_importOthersSharingKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Ask your contact to export and send his/her public sharing key to you and import it here. Then you can share encrypted files.</value>
+    <value>Ask your contact to export and send his/her Public Sharing Key to you and import it here. Then you can share encrypted files.</value>
   </data>
   <data name="_exportSharingKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>277, 22</value>
   </data>
   <data name="_exportSharingKeyToolStripMenuItem.Text" xml:space="preserve">
-    <value>E&amp;xport My Public Sharing Key</value>
+    <value>E&amp;xport my Public Sharing Key</value>
   </data>
   <data name="_exportSharingKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Send the exported key to others you want to be able to share encrypted files with you.</value>
+    <value>Send the exported Public Sharing Key to others you want to be able to share encrypted files with you.</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>274, 6</value>
@@ -371,19 +371,19 @@
     <value>277, 22</value>
   </data>
   <data name="_importMyPrivateKeyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Import Account P&amp;rivate Secret Key Pair</value>
+    <value>Import &amp;Account Secret and Sharing Key Pair</value>
   </data>
   <data name="_importMyPrivateKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>To move an account, export it and then import it here.</value>
+    <value>To move an account, export the Secret and Sharing Key Pair and then import it here.</value>
   </data>
   <data name="_exportMyPrivateKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>277, 22</value>
   </data>
   <data name="_exportMyPrivateKeyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Export Account Private &amp;Secret Key Pair</value>
+    <value>Export Account &amp;Secret and Sharing Key Pair</value>
   </data>
   <data name="_exportMyPrivateKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>To move an account, export it and then import it.</value>
+    <value>To move an account, export the Secret and Sharing Key Pair and then import it elsewhere.</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>274, 6</value>
@@ -395,7 +395,7 @@
     <value>Create &amp;Account</value>
   </data>
   <data name="_createAccountToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Create an account with private and public keys so you can share encrypted files with others.</value>
+    <value>Create an Account with a Secret and Sharing Key Pair so you can share encrypted files with others.</value>
   </data>
   <data name="keyManagementToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 22</value>
