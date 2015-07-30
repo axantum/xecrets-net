@@ -1200,7 +1200,7 @@ namespace Axantum.AxCrypt
             return false;
         }
 
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CloseAndExit();
         }
@@ -1405,7 +1405,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void _aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (AboutBox aboutBox = new AboutBox())
             {
@@ -1418,7 +1418,7 @@ namespace Axantum.AxCrypt
             Process.Start(Resolve.UserSettings.AxCrypt2HelpUrl.ToString());
         }
 
-        private void ViewHelpMenuItem_Click(object sender, EventArgs e)
+        private void _viewHelpMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(Resolve.UserSettings.AxCrypt2HelpUrl.ToString());
         }
@@ -1651,6 +1651,11 @@ namespace Axantum.AxCrypt
 
             byte[] export = Resolve.AsymmetricKeysStore.ExportCurrentKeys(Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase);
             File.WriteAllBytes(fileName, export);
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
