@@ -195,18 +195,20 @@
             // 
             // _openEncryptedToolStripMenuItem
             // 
-            resources.ApplyResources(this._openEncryptedToolStripMenuItem, "_openEncryptedToolStripMenuItem");
             this._openEncryptedToolStripMenuItem.Name = "_openEncryptedToolStripMenuItem";
+            resources.ApplyResources(this._openEncryptedToolStripMenuItem, "_openEncryptedToolStripMenuItem");
             // 
             // _encryptToolStripMenuItem
             // 
-            resources.ApplyResources(this._encryptToolStripMenuItem, "_encryptToolStripMenuItem");
+            this._encryptToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.plus_40px;
             this._encryptToolStripMenuItem.Name = "_encryptToolStripMenuItem";
+            resources.ApplyResources(this._encryptToolStripMenuItem, "_encryptToolStripMenuItem");
             // 
             // _decryptToolStripMenuItem
             // 
-            resources.ApplyResources(this._decryptToolStripMenuItem, "_decryptToolStripMenuItem");
+            this._decryptToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.minus_40px;
             this._decryptToolStripMenuItem.Name = "_decryptToolStripMenuItem";
+            resources.ApplyResources(this._decryptToolStripMenuItem, "_decryptToolStripMenuItem");
             // 
             // encryptedFoldersToolStripMenuItem
             // 
@@ -221,8 +223,9 @@
             // 
             // _closeOpenFilesToolStripMenuItem
             // 
-            resources.ApplyResources(this._closeOpenFilesToolStripMenuItem, "_closeOpenFilesToolStripMenuItem");
+            this._closeOpenFilesToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_red_40px;
             this._closeOpenFilesToolStripMenuItem.Name = "_closeOpenFilesToolStripMenuItem";
+            resources.ApplyResources(this._closeOpenFilesToolStripMenuItem, "_closeOpenFilesToolStripMenuItem");
             this._closeOpenFilesToolStripMenuItem.Click += new System.EventHandler(this.CloseOpenFilesToolStripMenuItem_Click);
             // 
             // _toolStripSeparator3
@@ -232,7 +235,6 @@
             // 
             // _wipeToolStripMenuItem
             // 
-            this._wipeToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.trashred16;
             this._wipeToolStripMenuItem.Name = "_wipeToolStripMenuItem";
             resources.ApplyResources(this._wipeToolStripMenuItem, "_wipeToolStripMenuItem");
             // 
@@ -248,8 +250,8 @@
             this._changePassphraseToolStripMenuItem,
             this._debugOptionsToolStripMenuItem,
             this._clearPassphraseMemoryToolStripMenuItem});
-            resources.ApplyResources(this._optionsToolStripMenuItem, "_optionsToolStripMenuItem");
             this._optionsToolStripMenuItem.Name = "_optionsToolStripMenuItem";
+            resources.ApplyResources(this._optionsToolStripMenuItem, "_optionsToolStripMenuItem");
             // 
             // _languageToolStripMenuItem
             // 
