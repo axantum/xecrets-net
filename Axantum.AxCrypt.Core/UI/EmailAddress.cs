@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -12,18 +11,44 @@ namespace Axantum.AxCrypt.Core.UI
     /// <remarks>Instances of this type are immutable.</remarks>
     public class EmailAddress : IEquatable<EmailAddress>
     {
-        public static readonly EmailAddress Empty = new EmailAddress(String.Empty);
+        public static readonly EmailAddress Empty = new EmailAddress();
 
         public string Address { get; private set; }
 
-        public EmailAddress(string address)
+        private EmailAddress()
+        {
+            Address = String.Empty;
+        }
+
+        private EmailAddress(string address)
         {
             if (address == null)
             {
                 throw new ArgumentNullException("address");
             }
 
-            Address = address.Trim().ToLowerInvariant();
+            string parsed;
+            if (!TypeMap.Resolve.Singleton<IEmailParser>().TryParse(address, out parsed))
+            {
+                throw new FormatException("Not recognized as a valid e-mail.");
+            }
+
+            Address = parsed;
+        }
+
+        public static EmailAddress Parse(string address)
+        {
+            if (address == null)
+            {
+                throw new ArgumentNullException("address");
+            }
+
+            if (address.Length == 0)
+            {
+                return Empty;
+            }
+
+            return new EmailAddress(address);
         }
 
         public override string ToString()

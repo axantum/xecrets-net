@@ -211,7 +211,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Logged Off</value>
   </data>
   <data name="LoggedOnStatusText" xml:space="preserve">
-    <value>Logged On</value>
+    <value>Current Passphrase</value>
     <comment>Shown in the title bar to display the log on status.</comment>
   </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
@@ -392,7 +392,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Text Files (*.txt)|*.txt|All Files (*.*)|*.*</value>
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
-    <value>Select files to import</value>
+    <value>Select Sharing Key Files</value>
   </data>
   <data name="LogOffText" xml:space="preserve">
     <value>Log Off</value>
@@ -416,12 +416,12 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Text Files (*.axx)|*.axx|All Files (*.*)|*.*</value>
   </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
-    <value>Select private key file to import</value>
+    <value>Select Account Secret and Sharing Key Pair File</value>
   </data>
   <data name="FileNotFound" xml:space="preserve">
     <value>File does not exist.</value>
   </data>
   <data name="FailedPrivateImport" xml:space="preserve">
-    <value>Import failed. Probably not a valid private key file.</value>
+    <value>Import failed. Probably not a valid Account Secret and Sharing Key Pair File.</value>
   </data>
 </root>

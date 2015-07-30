@@ -191,6 +191,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LogOnDialog.resx">
       <DependentUpon>LogOnDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LogOnDialog.sv.resx">
       <DependentUpon>LogOnDialog.cs</DependentUpon>

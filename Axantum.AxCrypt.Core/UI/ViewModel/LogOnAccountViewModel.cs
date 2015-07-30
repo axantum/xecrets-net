@@ -27,7 +27,6 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -63,7 +62,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             UserEmail = userEmail;
             Passphrase = String.Empty;
             ShowPassphrase = Resolve.UserSettings.DisplayEncryptPassphrase;
-            ShowEmail = Resolve.AsymmetricKeysStore.HasStore;
+            ShowEmail = true;
         }
 
         private void BindPropertyChangedEvents()
@@ -148,7 +147,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool IsValidAccountLogOn()
         {
-            return Resolve.AsymmetricKeysStore.IsValidAccountLogOn(new EmailAddress(UserEmail), new Passphrase(Passphrase));
+            return Resolve.AsymmetricKeysStore.IsValidAccountLogOn(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase));
         }
 
         private bool IsKnownPassphrase()

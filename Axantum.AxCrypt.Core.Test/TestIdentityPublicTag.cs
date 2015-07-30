@@ -4,10 +4,8 @@ using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
@@ -53,8 +51,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestSimpleAsymmetricIdentityMatches()
         {
-            UserAsymmetricKeys key1 = new UserAsymmetricKeys(new EmailAddress("svante@axantum.com"), 512);
-            UserAsymmetricKeys key2 = new UserAsymmetricKeys(new EmailAddress("svante@axantum.com"), 512);
+            UserAsymmetricKeys key1 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
+            UserAsymmetricKeys key2 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
 
             IdentityPublicTag tag1 = new IdentityPublicTag(new LogOnIdentity(key1, new Passphrase("allan")));
             IdentityPublicTag tag2 = new IdentityPublicTag(new LogOnIdentity(key2, new Passphrase("allan")));
@@ -68,8 +66,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestAsymmetricIdentityButDifferentPassphraseMatches()
         {
-            UserAsymmetricKeys key1 = new UserAsymmetricKeys(new EmailAddress("svante@axantum.com"), 512);
-            UserAsymmetricKeys key2 = new UserAsymmetricKeys(new EmailAddress("svante@axantum.com"), 512);
+            UserAsymmetricKeys key1 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
+            UserAsymmetricKeys key2 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
 
             IdentityPublicTag tag1 = new IdentityPublicTag(new LogOnIdentity(key1, new Passphrase("allan")));
             IdentityPublicTag tag2 = new IdentityPublicTag(new LogOnIdentity(key2, new Passphrase("niklas")));
@@ -83,8 +81,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestDifferentAsymmetricIdentityAndSamePassphraseDoesNotMatch()
         {
-            UserAsymmetricKeys key1 = new UserAsymmetricKeys(new EmailAddress("svante1@axantum.com"), 512);
-            UserAsymmetricKeys key2 = new UserAsymmetricKeys(new EmailAddress("svante2@axantum.com"), 512);
+            UserAsymmetricKeys key1 = new UserAsymmetricKeys(EmailAddress.Parse("svante1@axantum.com"), 512);
+            UserAsymmetricKeys key2 = new UserAsymmetricKeys(EmailAddress.Parse("svante2@axantum.com"), 512);
 
             IdentityPublicTag tag1 = new IdentityPublicTag(new LogOnIdentity(key1, new Passphrase("allan")));
             IdentityPublicTag tag2 = new IdentityPublicTag(new LogOnIdentity(key2, new Passphrase("allan")));

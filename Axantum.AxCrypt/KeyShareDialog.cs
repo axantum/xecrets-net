@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt
 
             _shareButton.Enabled = false;
             _contactsComboBox.SelectedIndexChanged += (sender, e) => _shareButton.Enabled = _contactsComboBox.SelectedIndex >= 0;
-            _shareButton.Click += (sender, e) => _viewModel.AddKeyShares.Execute(new EmailAddress[] { new EmailAddress(_contactsComboBox.Text) });
+            _shareButton.Click += (sender, e) => _viewModel.AddKeyShares.Execute(new EmailAddress[] { EmailAddress.Parse(_contactsComboBox.Text) });
             _selectAllButton.Click += (sender, e) => { for (int i = 0; i < _sharedKeysCheckListBox.Items.Count; ++i) _sharedKeysCheckListBox.SetItemChecked(i, !_sharedKeysCheckListBox.GetItemChecked(i)); };
             _unshareButton.Click += (sender, e) => { _viewModel.RemoveKeyShares.Execute(_sharedKeysCheckListBox.CheckedItems.Cast<UserPublicKey>()); };
 

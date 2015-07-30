@@ -477,7 +477,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import failed. Probably not a valid private key file..
+        ///   Looks up a localized string similar to Import failed. Probably not a valid Account Secret and Sharing Key Pair File..
         /// </summary>
         internal static string FailedPrivateImport {
             get {
@@ -588,7 +588,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select private key file to import.
+        ///   Looks up a localized string similar to Select Account Secret and Sharing Key Pair File.
         /// </summary>
         internal static string ImportPrivateKeysFileSelectionTitle {
             get {
@@ -606,7 +606,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select files to import.
+        ///   Looks up a localized string similar to Select Sharing Key Files.
         /// </summary>
         internal static string ImportPublicKeysFileSelectionTitle {
             get {
@@ -661,15 +661,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sharing and Secret Key Pair.
-        /// </summary>
-        internal static string KeyPairTerm {
-            get {
-                return ResourceManager.GetString("KeyPairTerm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to AxCrypt must be restarted in order for the language change to take effect..
         /// </summary>
         internal static string LanguageChangeRestartPrompt {
@@ -688,7 +679,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logged On.
+        ///   Looks up a localized string similar to Current Passphrase.
         /// </summary>
         internal static string LoggedOnStatusText {
             get {
@@ -860,24 +851,6 @@ namespace Axantum.AxCrypt.Properties {
         internal static string PassphraseVerificationMismatch {
             get {
                 return ResourceManager.GetString("PassphraseVerificationMismatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Private Secret Key.
-        /// </summary>
-        internal static string PrivateKeyTerm {
-            get {
-                return ResourceManager.GetString("PrivateKeyTerm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Public Sharing Key.
-        /// </summary>
-        internal static string PublicKeyTerm {
-            get {
-                return ResourceManager.GetString("PublicKeyTerm", resourceCulture);
             }
         }
         

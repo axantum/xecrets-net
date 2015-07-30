@@ -171,6 +171,7 @@
     <Compile Include="Session\UserAsymmetricKeysStore.cs" />
     <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
+    <Compile Include="UI\IEmailParser.cs" />
     <Compile Include="UI\ViewModel\AccountProperties.cs" />
     <Compile Include="UI\ViewModel\CreateNewAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\FileSelectionViewModel.cs" />

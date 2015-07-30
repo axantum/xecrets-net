@@ -30,7 +30,6 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Extensions
@@ -222,7 +221,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             try
             {
-                new EmailAddress(email);
+                EmailAddress.Parse(email);
                 return true;
             }
             catch (FormatException)

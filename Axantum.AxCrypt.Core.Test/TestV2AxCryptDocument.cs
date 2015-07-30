@@ -36,7 +36,6 @@ using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -213,7 +212,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(new EmailAddress("test@test.com"), publicKey), });
+            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
 
@@ -232,7 +231,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(new EmailAddress("test@test.com"), publicKey), });
+            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
 
@@ -252,7 +251,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(new EmailAddress("tes1t@test.com"), publicKey1), });
+            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("tes1t@test.com"), publicKey1), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
 
@@ -272,9 +271,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(new EmailAddress("test1@test.com"), publicKey1), });
+            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), });
             IAsymmetricPublicKey publicKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(new EmailAddress("test2@test.com"), publicKey2), });
+            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
 

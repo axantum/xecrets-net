@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DecryptFolders = new DelegateAction<IEnumerable<string>>((folders) => DecryptFoldersAction(folders), (folders) => _knownIdentities.IsLoggedOn);
             WipeFiles = new DelegateAction<IEnumerable<string>>((files) => WipeFilesAction(files));
             RandomRenameFiles = new DelegateAction<IEnumerable<string>>((files) => RandomRenameFilesAction(files));
-            OpenFilesFromFolder = new DelegateAction<string>((folder) => OpenFilesFromFolderAction(folder), (folder) => _knownIdentities.IsLoggedOn);
+            OpenFilesFromFolder = new DelegateAction<string>((folder) => OpenFilesFromFolderAction(folder), (folder) => true);
             AddRecentFiles = new DelegateAction<IEnumerable<string>>((files) => AddRecentFilesAction(files));
         }
 
@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (!_knownIdentities.IsLoggedOn)
             {
-                IdentityViewModel.AskForLogOnPassphrase.Execute(LogOnIdentity.Empty);
+                IdentityViewModel.AskForDecryptPassphrase.Execute(files.First());
             }
             if (!_knownIdentities.IsLoggedOn)
             {

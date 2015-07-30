@@ -73,6 +73,8 @@ namespace Axantum.AxCrypt
 
         private TabPage _hiddenWatchedFoldersTabPage;
 
+        private bool _shownFirstTime = false;
+
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -115,8 +117,6 @@ namespace Axantum.AxCrypt
             BindToFileOperationViewModel();
             SetupCommandService();
             SendStartSessionNotification();
-
-            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
         }
 
         private bool ValidateSettings()
@@ -130,6 +130,16 @@ namespace Axantum.AxCrypt
             ClearAllSettingsAndReinitialize();
             CloseAndExit();
             return false;
+        }
+
+        private void AxCryptMainForm_Shown(object sender, EventArgs e)
+        {
+            if (_shownFirstTime)
+            {
+                return;
+            }
+            _shownFirstTime = true;
+            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
         }
 
         private void LogOnOrExit()
@@ -537,7 +547,15 @@ namespace Axantum.AxCrypt
         {
             using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, e.Passphrase))
             {
-                dialog.ShowDialog();
+                DialogResult dialogResult = dialog.ShowDialog(this);
+                if (dialogResult != DialogResult.OK)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                e.DisplayPassphrase = dialog.ShowPassphraseCheckBox.Checked;
+                e.Passphrase = dialog.PassphraseTextBox.Text;
+                e.UserEmail = dialog.EmailTextBox.Text;
             }
         }
 
@@ -907,7 +925,7 @@ namespace Axantum.AxCrypt
             if (isLoggedOn)
             {
                 UserAsymmetricKeys userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
-                logonStatus = userKeys != null ? Resources.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Resources.LoggedOnStatusText.InvariantFormat(String.Empty);
+                logonStatus = userKeys != UserAsymmetricKeys.Empty ? Resources.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Resources.LoggedOnStatusText.InvariantFormat(String.Empty);
             }
             else
             {
@@ -1613,12 +1631,12 @@ namespace Axantum.AxCrypt
             string fileName;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.Title = "Export Secret Private Key";
+                sfd.Title = "Export Account Secret and Sharing Key Pair";
                 sfd.DefaultExt = ".axx";
                 sfd.AddExtension = true;
-                sfd.Filter = "AxCrypt Private Key Files (*.axx)|*.axx|All Files (*.*)|*.*";
+                sfd.Filter = "AxCrypt Account Secret and Sharing Key Pair Files (*.axx)|*.axx|All Files (*.*)|*.*";
                 sfd.CheckPathExists = true;
-                sfd.FileName = "AxCrypt Private Key (#{1}) - {0}.axx".InvariantFormat(userEmail.Address, publicKey.Tag);
+                sfd.FileName = "AxCrypt Account Key Pair (#{1}) - {0}.axx".InvariantFormat(userEmail.Address, publicKey.Tag);
                 sfd.ValidateNames = true;
                 sfd.OverwritePrompt = true;
                 sfd.RestoreDirectory = false;

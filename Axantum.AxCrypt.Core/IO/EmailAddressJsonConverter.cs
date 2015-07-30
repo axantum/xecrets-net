@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.IO
                 throw new ArgumentNullException("reader");
             }
 
-            EmailAddress mailAddress = new EmailAddress((string)reader.Value);
+            EmailAddress mailAddress = EmailAddress.Parse((string)reader.Value);
             return mailAddress;
         }
 

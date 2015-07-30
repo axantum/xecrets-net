@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
@@ -42,8 +41,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestChangePassword()
         {
-            UserAsymmetricKeys key1 = new UserAsymmetricKeys(new EmailAddress("svante@axantum.com"), 512);
-            UserAsymmetricKeys key2 = new UserAsymmetricKeys(new EmailAddress("svante@axantum.com"), 512);
+            UserAsymmetricKeys key1 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
+            UserAsymmetricKeys key2 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
 
             var mockUserAsymmetricKeysStore = new Mock<UserAsymmetricKeysStore>();
             mockUserAsymmetricKeysStore.Setup<IEnumerable<UserAsymmetricKeys>>(f => f.Keys).Returns(new UserAsymmetricKeys[] { key1, key2 });

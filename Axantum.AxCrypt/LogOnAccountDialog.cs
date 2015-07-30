@@ -1,12 +1,8 @@
-﻿using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.UI;
+﻿using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -30,9 +26,9 @@ namespace Axantum.AxCrypt
 
             _viewModel.BindPropertyChanged("UserEmail", (string userEmail) => { EmailTextBox.Text = userEmail; });
 
-            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
+            PassphraseTextBox.LostFocus += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
-            EmailTextBox.TextChanged += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; };
+            EmailTextBox.LostFocus += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocValidateEmail(); };
 
             Owner = parent;
             StartPosition = FormStartPosition.CenterParent;
@@ -61,21 +57,31 @@ namespace Axantum.AxCrypt
 
         private bool AdHocValidationDueToMonoLimitations()
         {
-            bool validated = true;
-            _errorProvider1.Clear();
-            _errorProvider2.Clear();
+            bool validated = AdHocValidatePassphrase() & AdHocValidateEmail();
 
+            return validated;
+        }
+
+        private bool AdHocValidatePassphrase()
+        {
+            _errorProvider2.Clear();
             if (_viewModel["Passphrase"].Length != 0)
             {
                 _errorProvider1.SetError(PassphraseTextBox, EmailTextBox.Text.Length > 0 ? Resources.WrongPassphrase : Resources.UnkownLogOn);
-                validated = false;
+                return false;
             }
+            return true;
+        }
+
+        private bool AdHocValidateEmail()
+        {
+            _errorProvider1.Clear();
             if (_viewModel["UserEmail"].Length != 0)
             {
                 _errorProvider2.SetError(EmailTextBox, Resources.BadEmail);
-                validated = false;
+                return false;
             }
-            return validated;
+            return true;
         }
 
         private void NewButton_Click(object sender, EventArgs e)

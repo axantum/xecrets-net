@@ -134,7 +134,7 @@
             this.groupBox1.Size = new System.Drawing.Size(286, 57);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Private Key File";
+            this.groupBox1.Text = "Secret and Sharing Key Pair";
             // 
             // tableLayoutPanel1
             // 
@@ -193,7 +193,7 @@
             this.MaximumSize = new System.Drawing.Size(500, 235);
             this.MinimumSize = new System.Drawing.Size(300, 235);
             this.Name = "ImportPrivatePasswordDialog";
-            this.Text = "Import Private Key";
+            this.Text = "Import Account Secret and Sharing Key Pair";
             this.PassphraseGroupBox.ResumeLayout(false);
             this.PassphraseGroupBox.PerformLayout();
             this._panel1.ResumeLayout(false);
