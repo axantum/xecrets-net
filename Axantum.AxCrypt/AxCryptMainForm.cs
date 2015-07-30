@@ -945,20 +945,20 @@ namespace Axantum.AxCrypt
 
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
                     _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
-                    _updateToolStripButton.Image = Resources.refreshred;
+                    _updateToolStripButton.Image = Resources.refresh_40px;
                     _updateToolStripButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
                     _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.UpdatedVersion);
-                    _updateToolStripButton.Image = Resources.refreshred;
+                    _updateToolStripButton.Image = Resources.refresh_40px;
                     _updateToolStripButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.Unknown:
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                     _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
-                    _updateToolStripButton.Image = Resources.refreshgreen;
+                    _updateToolStripButton.Image = Resources.refresh_grey_40px;
                     _updateToolStripButton.Enabled = true;
                     break;
             }
@@ -1113,6 +1113,7 @@ namespace Axantum.AxCrypt
             foreach (KnownFolder knownFolder in folders)
             {
                 ToolStripButton button = new ToolStripButton((Image)knownFolder.Image);
+                button.ImageScaling = ToolStripItemImageScaling.None;
                 button.Tag = knownFolder;
                 button.Click += (sender, e) =>
                 {

@@ -166,6 +166,16 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bulb_red_40px {
+            get {
+                object obj = ResourceManager.GetObject("bulb_red_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Canceled &apos;{0}&apos;..
         /// </summary>
         internal static string Canceled {
@@ -373,6 +383,16 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dropbox_40px {
+            get {
+                object obj = ResourceManager.GetObject("dropbox_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt Documents (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         internal static string EncryptedFileDialogFilterPattern {
@@ -550,11 +570,31 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder_40px {
+            get {
+                object obj = ResourceManager.GetObject("folder_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder &apos;{0}&apos; already watched..
         /// </summary>
         internal static string FolderAlreadyWatched {
             get {
                 return ResourceManager.GetString("FolderAlreadyWatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap google_40px {
+            get {
+                object obj = ResourceManager.GetObject("google_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -715,6 +755,16 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minus_40px {
+            get {
+                object obj = ResourceManager.GetObject("minus_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My AxCrypt.
         /// </summary>
         internal static string MyAxCryptFolderName {
@@ -855,11 +905,41 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus_40px {
+            get {
+                object obj = ResourceManager.GetObject("plus_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Purging Active Files.
         /// </summary>
         internal static string PurgingActiveFiles {
             get {
                 return ResourceManager.GetString("PurgingActiveFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh_40px {
+            get {
+                object obj = ResourceManager.GetObject("refresh_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh_grey_40px {
+            get {
+                object obj = ResourceManager.GetObject("refresh_grey_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -900,6 +980,16 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("SkyDrive", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap skydrive_40px {
+            get {
+                object obj = ResourceManager.GetObject("skydrive_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

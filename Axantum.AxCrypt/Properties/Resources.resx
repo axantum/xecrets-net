@@ -424,4 +424,31 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="FailedPrivateImport" xml:space="preserve">
     <value>Import failed. Probably not a valid Account Secret and Sharing Key Pair File.</value>
   </data>
+  <data name="bulb_red_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\bulb_red_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dropbox_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dropbox_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\folder_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="google_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\google_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\minus_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plus_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refresh_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\refresh_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refresh_grey_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\refresh_grey_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="skydrive_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\skydrive_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -133,7 +133,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="_encryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 47</value>
+    <value>46, 47</value>
   </data>
   <data name="_encryptToolStripButton.ToolTipText" xml:space="preserve">
     <value>Click to select documents to encrypt</value>
@@ -141,11 +141,14 @@
   <data name="_decryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="_decryptToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="_decryptToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="_decryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 47</value>
+    <value>46, 47</value>
   </data>
   <data name="_decryptToolStripButton.ToolTipText" xml:space="preserve">
     <value>Click to select documents to decrypt</value>
@@ -159,11 +162,14 @@
   <data name="_closeAndRemoveOpenFilesToolStripButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="_closeAndRemoveOpenFilesToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="_closeAndRemoveOpenFilesToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="_closeAndRemoveOpenFilesToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 47</value>
+    <value>46, 47</value>
   </data>
   <data name="_closeAndRemoveOpenFilesToolStripButton.ToolTipText" xml:space="preserve">
     <value>Click to clean and remove any open decrypted files, but ensure they are not in use first.</value>
@@ -177,11 +183,14 @@
   <data name="_updateToolStripButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="_updateToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="_updateToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="_updateToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 47</value>
+    <value>46, 47</value>
   </data>
   <data name="_knownFoldersSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>

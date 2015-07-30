@@ -106,7 +106,7 @@
             resources.ApplyResources(this._mainToolStrip, "_mainToolStrip");
             this._mainToolStrip.BackColor = System.Drawing.SystemColors.Control;
             this._mainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this._mainToolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this._mainToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
             this._mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._encryptToolStripButton,
             this._decryptToolStripButton,
@@ -122,14 +122,14 @@
             // 
             resources.ApplyResources(this._encryptToolStripButton, "_encryptToolStripButton");
             this._encryptToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._encryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.addforencryptionred32;
+            this._encryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.plus_40px;
             this._encryptToolStripButton.Name = "_encryptToolStripButton";
             // 
             // _decryptToolStripButton
             // 
             resources.ApplyResources(this._decryptToolStripButton, "_decryptToolStripButton");
             this._decryptToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._decryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.removeanddecryptgreen32;
+            this._decryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.minus_40px;
             this._decryptToolStripButton.Name = "_decryptToolStripButton";
             // 
             // _toolStripSeparator1
@@ -141,7 +141,7 @@
             // 
             resources.ApplyResources(this._closeAndRemoveOpenFilesToolStripButton, "_closeAndRemoveOpenFilesToolStripButton");
             this._closeAndRemoveOpenFilesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.cleanupneededred32;
+            this._closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_red_40px;
             this._closeAndRemoveOpenFilesToolStripButton.Name = "_closeAndRemoveOpenFilesToolStripButton";
             this._closeAndRemoveOpenFilesToolStripButton.Click += new System.EventHandler(this.CloseAndRemoveOpenFilesToolStripButton_Click);
             // 
@@ -154,7 +154,7 @@
             // 
             resources.ApplyResources(this._updateToolStripButton, "_updateToolStripButton");
             this._updateToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._updateToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.refreshgreen;
+            this._updateToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.refresh_40px;
             this._updateToolStripButton.Name = "_updateToolStripButton";
             this._updateToolStripButton.Click += new System.EventHandler(this.UpdateToolStripButton_Click);
             // 
