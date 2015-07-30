@@ -86,8 +86,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void RemoveKeySharesAction(IEnumerable<UserPublicKey> keySharesToRemove)
         {
-            HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(SharedWith);
-            HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(NotSharedWith);
+            HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
+            HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
 
             MoveKeyShares(keySharesToRemove, fromSet, toSet);
 
@@ -99,8 +99,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             IEnumerable<UserPublicKey> publicKeysToAdd = TryAddMissingUnsharedPublicKeysFromServer(keySharesToAdd);
 
-            HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(NotSharedWith);
-            HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(SharedWith);
+            HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
+            HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
 
             MoveKeyShares(publicKeysToAdd, fromSet, toSet);
 

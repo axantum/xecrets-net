@@ -1560,7 +1560,7 @@ namespace Axantum.AxCrypt
             {
                 EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(TypeMap.Resolve.New<IDataStore>(file));
                 IEnumerable<UserPublicKey> sharedWith = encryptedProperties.SharedKeyHolders;
-                using (KeyShareDialog2 dialog = new KeyShareDialog2(TypeMap.Resolve.New<KnownPublicKeys>, sharedWith, Resolve.KnownIdentities.DefaultEncryptionIdentity))
+                using (KeyShareDialog dialog = new KeyShareDialog(TypeMap.Resolve.New<KnownPublicKeys>, sharedWith, Resolve.KnownIdentities.DefaultEncryptionIdentity))
                 {
                     if (dialog.ShowDialog(this) != DialogResult.OK)
                     {

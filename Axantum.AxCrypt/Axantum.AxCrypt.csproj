@@ -81,11 +81,11 @@
     <Compile Include="ImportPrivatePasswordDialog.Designer.cs">
       <DependentUpon>ImportPrivatePasswordDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyShareDialog2.cs">
+    <Compile Include="KeyShareDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KeyShareDialog2.Designer.cs">
-      <DependentUpon>KeyShareDialog2.cs</DependentUpon>
+    <Compile Include="KeyShareDialog.Designer.cs">
+      <DependentUpon>KeyShareDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="NativeMethods.cs" />
     <Compile Include="ConfirmWipeDialog.cs">
@@ -177,8 +177,8 @@
     <EmbeddedResource Include="ImportPrivatePasswordDialog.resx">
       <DependentUpon>ImportPrivatePasswordDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KeyShareDialog2.resx">
-      <DependentUpon>KeyShareDialog2.cs</DependentUpon>
+    <EmbeddedResource Include="KeyShareDialog.resx">
+      <DependentUpon>KeyShareDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogOnAccountDialog.resx">
       <DependentUpon>LogOnAccountDialog.cs</DependentUpon>
