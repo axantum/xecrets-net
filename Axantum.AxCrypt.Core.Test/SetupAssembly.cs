@@ -41,6 +41,7 @@ using Axantum.AxCrypt.Mono.Portable;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Algorithm.Implementation;
+using Axantum.AxCrypt.Mono;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -70,6 +71,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
             TypeMap.Register.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo));
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
+            TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());

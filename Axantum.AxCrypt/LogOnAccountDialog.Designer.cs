@@ -188,7 +188,7 @@
             this.Controls.Add(this.EmailPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "LogOnAccountDialog";
-            this.Text = "Log On";
+            this.Text = "Account Log On";
             this.Activated += new System.EventHandler(this.LogOnAccountDialog_Activated);
             this.Load += new System.EventHandler(this.LogOnAccountDialog_Load);
             this.ResizeEnd += new System.EventHandler(this.LogOnAccountDialog_ResizeAndMoveEnd);

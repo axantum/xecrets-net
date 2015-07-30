@@ -73,6 +73,8 @@ namespace Axantum.AxCrypt
 
         private TabPage _hiddenWatchedFoldersTabPage;
 
+        private bool _shownFirstTime = false;
+
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -115,8 +117,6 @@ namespace Axantum.AxCrypt
             BindToFileOperationViewModel();
             SetupCommandService();
             SendStartSessionNotification();
-
-            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
         }
 
         private bool ValidateSettings()
@@ -130,6 +130,16 @@ namespace Axantum.AxCrypt
             ClearAllSettingsAndReinitialize();
             CloseAndExit();
             return false;
+        }
+
+        private void AxCryptMainForm_Shown(object sender, EventArgs e)
+        {
+            if (_shownFirstTime)
+            {
+                return;
+            }
+            _shownFirstTime = true;
+            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
         }
 
         private void LogOnOrExit()
@@ -505,6 +515,18 @@ namespace Axantum.AxCrypt
         private void HandleCreateNewLogOn(LogOnEventArgs e)
         {
             RestoreWindowWithFocus();
+            if (!String.IsNullOrEmpty(e.EncryptedFileFullName))
+            {
+                HandleCreateNewLogOnForEncryptedFile(e);
+            }
+            else
+            {
+                HandleCreateNewAccount(e);
+            }
+        }
+
+        private void HandleCreateNewLogOnForEncryptedFile(LogOnEventArgs e)
+        {
             using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, Resources.NewPassphraseDialogTitle, e.Passphrase, e.EncryptedFileFullName))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
@@ -519,6 +541,22 @@ namespace Axantum.AxCrypt
                 e.Name = String.Empty;
             }
             return;
+        }
+
+        private void HandleCreateNewAccount(LogOnEventArgs e)
+        {
+            using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, e.Passphrase))
+            {
+                DialogResult dialogResult = dialog.ShowDialog(this);
+                if (dialogResult != DialogResult.OK)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                e.DisplayPassphrase = dialog.ShowPassphraseCheckBox.Checked;
+                e.Passphrase = dialog.PassphraseTextBox.Text;
+                e.UserEmail = dialog.EmailTextBox.Text;
+            }
         }
 
         private void HandleExistingLogOn(LogOnEventArgs e)
@@ -887,7 +925,7 @@ namespace Axantum.AxCrypt
             if (isLoggedOn)
             {
                 UserAsymmetricKeys userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
-                logonStatus = userKeys != null ? Resources.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Resources.LoggedOnStatusText.InvariantFormat(String.Empty);
+                logonStatus = userKeys != UserAsymmetricKeys.Empty ? Resources.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Resources.LoggedOnStatusText.InvariantFormat(String.Empty);
             }
             else
             {
@@ -1509,10 +1547,10 @@ namespace Axantum.AxCrypt
             string fileName;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.Title = "Export sharing key";
+                sfd.Title = "Export Public Sharing Key";
                 sfd.DefaultExt = ".txt";
                 sfd.AddExtension = true;
-                sfd.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                sfd.Filter = "AxCrypt Public Sharing Key Files (*.txt)|*.txt|All Files (*.*)|*.*";
                 sfd.CheckPathExists = true;
                 sfd.FileName = "AxCrypt Sharing Key (#{1}) - {0}.txt".InvariantFormat(userEmail.Address, publicKey.Tag);
                 sfd.ValidateNames = true;
@@ -1593,12 +1631,12 @@ namespace Axantum.AxCrypt
             string fileName;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.Title = "Export private key";
+                sfd.Title = "Export Account Secret and Sharing Key Pair";
                 sfd.DefaultExt = ".axx";
                 sfd.AddExtension = true;
-                sfd.Filter = "AxCrypt Files (*.axx)|*.axx|All Files (*.*)|*.*";
+                sfd.Filter = "AxCrypt Account Secret and Sharing Key Pair Files (*.axx)|*.axx|All Files (*.*)|*.*";
                 sfd.CheckPathExists = true;
-                sfd.FileName = "AxCrypt Private Key (#{1}) - {0}.axx".InvariantFormat(userEmail.Address, publicKey.Tag);
+                sfd.FileName = "AxCrypt Account Key Pair (#{1}) - {0}.axx".InvariantFormat(userEmail.Address, publicKey.Tag);
                 sfd.ValidateNames = true;
                 sfd.OverwritePrompt = true;
                 sfd.RestoreDirectory = false;

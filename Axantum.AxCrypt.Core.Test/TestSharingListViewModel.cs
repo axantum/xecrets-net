@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Mono;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void SetUp()
         {
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
+            TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
             FakeInMemoryDataStoreItem store = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
             TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(store, Resolve.Serializer));
@@ -73,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestInitialOneKeyState()
         {
             IAsymmetricPublicKey key = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            UserPublicKey userPublicKey = new UserPublicKey(new EmailAddress("test@test.com"), key);
+            UserPublicKey userPublicKey = new UserPublicKey(EmailAddress.Parse("test@test.com"), key);
             using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey);
@@ -88,10 +90,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestInitialTwoKeyState()
         {
             IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            UserPublicKey userPublicKey1 = new UserPublicKey(new EmailAddress("test1@test.com"), key1);
+            UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
 
             IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            UserPublicKey userPublicKey2 = new UserPublicKey(new EmailAddress("test2@test.com"), key2);
+            UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
             using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey1);
@@ -107,10 +109,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestMoveOneFromUnsharedToShared()
         {
             IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            UserPublicKey userPublicKey1 = new UserPublicKey(new EmailAddress("test1@test.com"), key1);
+            UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
 
             IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            UserPublicKey userPublicKey2 = new UserPublicKey(new EmailAddress("test2@test.com"), key2);
+            UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
             using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey1);
@@ -130,10 +132,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestMoveTwoFromUnsharedToShared()
         {
             IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            UserPublicKey userPublicKey1 = new UserPublicKey(new EmailAddress("test1@test.com"), key1);
+            UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
 
             IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            UserPublicKey userPublicKey2 = new UserPublicKey(new EmailAddress("test2@test.com"), key2);
+            UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
             using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey1);
@@ -153,10 +155,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestRemoveOneFromShared()
         {
             IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            UserPublicKey userPublicKey1 = new UserPublicKey(new EmailAddress("test1@test.com"), key1);
+            UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
 
             IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            UserPublicKey userPublicKey2 = new UserPublicKey(new EmailAddress("test2@test.com"), key2);
+            UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
             using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey1);
@@ -180,10 +182,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestRemoveNonexistingFromShared()
         {
             IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            UserPublicKey userPublicKey1 = new UserPublicKey(new EmailAddress("test1@test.com"), key1);
+            UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
 
             IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            UserPublicKey userPublicKey2 = new UserPublicKey(new EmailAddress("test2@test.com"), key2);
+            UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
             using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey1);

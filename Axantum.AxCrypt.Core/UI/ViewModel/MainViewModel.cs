@@ -133,6 +133,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
             UpdateCheck = new DelegateAction<DateTime>((utc) => UpdateCheckAction(utc), (utc) => _updateCheck != null);
+
+            DecryptFileEnabled = true;
+            OpenEncryptedEnabled = true;
         }
 
         private void BindPropertyChangedEvents()
@@ -296,8 +299,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Identity = ValidateLogOnIdentity(isLoggedOn);
             LoggedOn = isLoggedOn;
             EncryptFileEnabled = isLoggedOn;
-            DecryptFileEnabled = isLoggedOn;
-            OpenEncryptedEnabled = isLoggedOn;
             WatchedFoldersEnabled = isLoggedOn;
         }
 

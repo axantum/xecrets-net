@@ -109,30 +109,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             CryptoId = cryptoId != Guid.Empty ? cryptoId : Resolve.CryptoFactory.Default.Id;
 
             LogOnIdentity logOnIdentity;
-            if (_fileSystemState.KnownPassphrases.Any() || Resolve.AsymmetricKeysStore.HasStore)
-            {
-                logOnIdentity = AskForLogOnPassphraseAction(LogOnIdentity.Empty, String.Empty);
-                if (logOnIdentity == LogOnIdentity.Empty)
-                {
-                    return LogOnIdentity.Empty;
-                }
-                foreach (UserPublicKey userPublicKey in logOnIdentity.PublicKeys)
-                {
-                    using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
-                    {
-                        knownPublicKeys.AddOrReplace(userPublicKey);
-                    }
-                }
-                return logOnIdentity;
-            }
-
-            logOnIdentity = AskForNewEncryptionPassphrase(String.Empty, String.Empty);
+            logOnIdentity = AskForLogOnPassphraseAction(LogOnIdentity.Empty, String.Empty);
             if (logOnIdentity == LogOnIdentity.Empty)
             {
                 return LogOnIdentity.Empty;
             }
-
-            _knownIdentities.Add(logOnIdentity);
+            foreach (UserPublicKey userPublicKey in logOnIdentity.PublicKeys)
+            {
+                using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
+                {
+                    knownPublicKeys.AddOrReplace(userPublicKey);
+                }
+            }
             return logOnIdentity;
         }
 
@@ -190,7 +178,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return LogOnIdentity.Empty;
             }
 
-            return new LogOnIdentity(new Passphrase(logOnArgs.Passphrase));
+            LogOnIdentity identity = new LogOnIdentity(new Passphrase(logOnArgs.Passphrase));
+            _knownIdentities.Add(identity);
+            return identity;
         }
 
         private LogOnIdentity AskForLogOnPassphraseAction(LogOnIdentity identity, string encryptedFileFullName)
@@ -220,9 +210,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
             OnLoggingOn(logOnArgs);
 
-            if (logOnArgs.IsAskingForPreviouslyUnknownPassphrase)
+            while (logOnArgs.IsAskingForPreviouslyUnknownPassphrase)
             {
-                return AskForNewEncryptionPassphrase(logOnArgs.Passphrase, encryptedFileFullName);
+                LogOnIdentity newIdentity = AskForNewEncryptionPassphrase(logOnArgs.Passphrase, encryptedFileFullName);
+                if (newIdentity != LogOnIdentity.Empty)
+                {
+                    return newIdentity;
+                }
+                logOnArgs.IsAskingForPreviouslyUnknownPassphrase = false;
+                OnLoggingOn(logOnArgs);
             }
 
             if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
@@ -232,7 +228,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
-            return LogOnIdentityFromCredentials(new EmailAddress(logOnArgs.UserEmail), new Passphrase(logOnArgs.Passphrase));
+            return LogOnIdentityFromCredentials(EmailAddress.Parse(logOnArgs.UserEmail), new Passphrase(logOnArgs.Passphrase));
         }
 
         private LogOnIdentity AskForNewEncryptionPassphrase(string defaultPassphrase, string encryptedFileFullName)

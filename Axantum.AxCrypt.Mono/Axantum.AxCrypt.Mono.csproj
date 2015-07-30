@@ -47,6 +47,7 @@
     <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailParser.cs" />
     <Compile Include="Portable\BlockingBuffer.cs" />
     <Compile Include="Cryptography\AesWrapper.cs" />
     <Compile Include="Cryptography\CryptoStreamWrapper.cs" />

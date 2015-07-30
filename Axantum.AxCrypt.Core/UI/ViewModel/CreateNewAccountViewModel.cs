@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (columnName)
             {
                 case "UserEmail":
-                    if (!UserEmail.IsValidEmailOrEmpty())
+                    if (!UserEmail.IsValidEmail())
                     {
                         ValidationError = (int)ViewModel.ValidationError.InvalidEmail;
                         return false;
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return null;
             }
-            _keysStore.Create(new EmailAddress(UserEmail), new Passphrase(Passphrase));
+            _keysStore.Create(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase));
 
             return null;
         }

@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Desktop;
 using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Mono;
@@ -92,6 +93,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());
 
             TypeMap.Register.Singleton<FontLoader>(() => new FontLoader());
+            TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

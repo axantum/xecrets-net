@@ -477,7 +477,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import failed. Probably not a valid private key file..
+        ///   Looks up a localized string similar to Import failed. Probably not a valid Account Secret and Sharing Key Pair File..
         /// </summary>
         internal static string FailedPrivateImport {
             get {
@@ -588,7 +588,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select private key file to import.
+        ///   Looks up a localized string similar to Select Account Secret and Sharing Key Pair File.
         /// </summary>
         internal static string ImportPrivateKeysFileSelectionTitle {
             get {
@@ -606,7 +606,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select files to import.
+        ///   Looks up a localized string similar to Select Sharing Key Files.
         /// </summary>
         internal static string ImportPublicKeysFileSelectionTitle {
             get {
@@ -679,7 +679,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logged On.
+        ///   Looks up a localized string similar to Current Passphrase.
         /// </summary>
         internal static string LoggedOnStatusText {
             get {

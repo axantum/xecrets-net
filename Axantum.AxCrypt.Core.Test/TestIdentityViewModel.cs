@@ -238,6 +238,7 @@ namespace Axantum.AxCrypt.Core.Test
             ivm.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "ppp";
+                e.IsAskingForPreviouslyUnknownPassphrase = true;
             };
 
             ivm.AskForLogOnPassphrase.Execute(id);
@@ -326,8 +327,14 @@ namespace Axantum.AxCrypt.Core.Test
             string defaultPassphrase = null;
             Resolve.FileSystemState.KnownPassphrases.Add(new Passphrase());
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
+            bool isCancelling = false;
             ivm.LoggingOn += (sender, e) =>
             {
+                if (isCancelling)
+                {
+                    e.Cancel = true;
+                    return;
+                }
                 if (!e.IsAskingForPreviouslyUnknownPassphrase)
                 {
                     e.IsAskingForPreviouslyUnknownPassphrase = true;
@@ -335,7 +342,7 @@ namespace Axantum.AxCrypt.Core.Test
                     return;
                 }
                 defaultPassphrase = e.Passphrase;
-                e.Cancel = true;
+                e.Cancel = isCancelling = true;
             };
 
             ivm.AskForLogOnPassphrase.Execute(null);

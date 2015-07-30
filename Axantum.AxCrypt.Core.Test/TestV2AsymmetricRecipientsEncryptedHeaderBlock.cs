@@ -6,6 +6,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
         }
 
@@ -41,17 +43,17 @@ namespace Axantum.AxCrypt.Core.Test
             IAsymmetricKeyPair bobKeyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(512);
 
             List<UserPublicKey> publicKeys = new List<UserPublicKey>();
-            publicKeys.Add(new UserPublicKey(new EmailAddress("alice@email.com"), aliceKeyPair.PublicKey));
-            publicKeys.Add(new UserPublicKey(new EmailAddress("bob@email.com"), bobKeyPair.PublicKey));
+            publicKeys.Add(new UserPublicKey(EmailAddress.Parse("alice@email.com"), aliceKeyPair.PublicKey));
+            publicKeys.Add(new UserPublicKey(EmailAddress.Parse("bob@email.com"), bobKeyPair.PublicKey));
             Recipients recipients = new Recipients(publicKeys);
             headerBlock.Recipients = recipients;
-            Assert.That(headerBlock.Recipients.PublicKeys.ToList()[0].Email, Is.EqualTo(new EmailAddress("alice@email.com")));
-            Assert.That(headerBlock.Recipients.PublicKeys.ToList()[1].Email, Is.EqualTo(new EmailAddress("bob@email.com")));
+            Assert.That(headerBlock.Recipients.PublicKeys.ToList()[0].Email, Is.EqualTo(EmailAddress.Parse("alice@email.com")));
+            Assert.That(headerBlock.Recipients.PublicKeys.ToList()[1].Email, Is.EqualTo(EmailAddress.Parse("bob@email.com")));
 
             V2AsymmetricRecipientsEncryptedHeaderBlock clone = (V2AsymmetricRecipientsEncryptedHeaderBlock)headerBlock.Clone();
-            Assert.That(clone.Recipients.PublicKeys.ToList()[0].Email, Is.EqualTo(new EmailAddress("alice@email.com")));
+            Assert.That(clone.Recipients.PublicKeys.ToList()[0].Email, Is.EqualTo(EmailAddress.Parse("alice@email.com")));
             Assert.That(clone.Recipients.PublicKeys.ToList()[0].PublicKey.ToString(), Is.EqualTo(aliceKeyPair.PublicKey.ToString()));
-            Assert.That(clone.Recipients.PublicKeys.ToList()[1].Email, Is.EqualTo(new EmailAddress("bob@email.com")));
+            Assert.That(clone.Recipients.PublicKeys.ToList()[1].Email, Is.EqualTo(EmailAddress.Parse("bob@email.com")));
             Assert.That(clone.Recipients.PublicKeys.ToList()[1].PublicKey.ToString(), Is.EqualTo(bobKeyPair.PublicKey.ToString()));
         }
     }

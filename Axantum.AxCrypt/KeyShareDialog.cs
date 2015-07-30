@@ -5,12 +5,8 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
@@ -27,31 +23,16 @@ namespace Axantum.AxCrypt
             new Styling().Style(this);
 
             _viewModel = new SharingListViewModel(knownPublicKeysFactory, sharedWith, logOnIdentity);
-            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>("SharedWith", (aks) => { _sharedWithListBox.Items.Clear(); _sharedWithListBox.Items.AddRange(aks.ToArray()); });
-            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>("NotSharedWith", (aks) => { _notSharedWithListBox.Items.Clear(); _notSharedWithListBox.Items.AddRange(aks.ToArray()); });
+            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>("SharedWith", (aks) => { _sharedKeysCheckListBox.Items.Clear(); _sharedKeysCheckListBox.Items.AddRange(aks.ToArray()); });
+            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>("NotSharedWith", (aks) => { _contactsComboBox.Items.Clear(); _contactsComboBox.Items.AddRange(aks.ToArray()); _contactsComboBox.Text = String.Empty; });
 
-            _sharedWithListBox.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
-            _notSharedWithListBox.SelectedIndexChanged += (sender, e) => SetShareButtonState();
+            _shareButton.Enabled = false;
+            _contactsComboBox.SelectedIndexChanged += (sender, e) => _shareButton.Enabled = _contactsComboBox.SelectedIndex >= 0;
+            _shareButton.Click += (sender, e) => _viewModel.AddKeyShares.Execute(new EmailAddress[] { EmailAddress.Parse(_contactsComboBox.Text) });
+            _selectAllButton.Click += (sender, e) => { for (int i = 0; i < _sharedKeysCheckListBox.Items.Count; ++i) _sharedKeysCheckListBox.SetItemChecked(i, !_sharedKeysCheckListBox.GetItemChecked(i)); };
+            _unshareButton.Click += (sender, e) => { _viewModel.RemoveKeyShares.Execute(_sharedKeysCheckListBox.CheckedItems.Cast<UserPublicKey>()); };
 
-            _shareButton.Click += (sender, e) => _viewModel.AddKeyShares.Execute(_notSharedWithListBox.SelectedIndices.Cast<int>().Select(i => new EmailAddress(_notSharedWithListBox.Items[i].ToString())));
-            _shareButton.Click += (sender, e) => SetShareButtonState();
-            _unshareButton.Click += (sender, e) => _viewModel.RemoveKeyShares.Execute(_sharedWithListBox.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWithListBox.Items[i]));
-            _unshareButton.Click += (sender, e) => SetUnshareButtonState();
-
-            SetShareButtonState();
-            SetUnshareButtonState();
-
-            _notSharedWithListBox.Focus();
-        }
-
-        private void SetShareButtonState()
-        {
-            _shareButton.Enabled = _notSharedWithListBox.SelectedIndices.Count > 0;
-        }
-
-        private void SetUnshareButtonState()
-        {
-            _unshareButton.Enabled = _sharedWithListBox.SelectedIndices.Count > 0;
+            _contactsComboBox.Focus();
         }
 
         private void _okButton_Click(object sender, EventArgs e)
