@@ -281,6 +281,8 @@ namespace Axantum.AxCrypt
             _recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
             _recentFilesListView.ColumnWidthChanged += RecentFilesListView_ColumnWidthChanged;
 
+            _updateToolStripButton.Click += _updateToolStripButton_Click;
+
             InitializePolicyMenu();
         }
 
@@ -1385,7 +1387,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void UpdateToolStripButton_Click(object sender, EventArgs e)
+        private void _updateToolStripButton_Click(object sender, EventArgs e)
         {
             Resolve.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
             Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
@@ -1651,11 +1653,6 @@ namespace Axantum.AxCrypt
 
             byte[] export = Resolve.AsymmetricKeysStore.ExportCurrentKeys(Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase);
             File.WriteAllBytes(fileName, export);
-        }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
