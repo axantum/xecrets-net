@@ -319,6 +319,7 @@
             this.encryptedFoldersToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.folder;
             this.encryptedFoldersToolStripMenuItem.Name = "encryptedFoldersToolStripMenuItem";
             resources.ApplyResources(this.encryptedFoldersToolStripMenuItem, "encryptedFoldersToolStripMenuItem");
+            this.encryptedFoldersToolStripMenuItem.Click += new System.EventHandler(this.encryptedFoldersToolStripMenuItem_Click);
             // 
             // _toolStripSeparator6
             // 
