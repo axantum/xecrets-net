@@ -86,11 +86,11 @@
             this._decryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._closeAndRemoveOpenFilesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this._updateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this._updateStatusToolStrip = new System.Windows.Forms.ToolStrip();
+            this._updateStatusButton = new System.Windows.Forms.ToolStripButton();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -103,6 +103,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this._mainToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this._updateStatusToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _progressTableLayoutPanel
@@ -514,6 +515,7 @@
             this.tableLayoutPanel3.Controls.Add(this._mainToolStrip, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this._logOnLogOffLabel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this._updateStatusToolStrip, 3, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             // 
             // _mainToolStrip
@@ -529,8 +531,6 @@
             this._decryptToolStripButton,
             this._toolStripSeparator1,
             this._closeAndRemoveOpenFilesToolStripButton,
-            this._toolStripSeparator4,
-            this._updateToolStripButton,
             this._knownFoldersSeparator});
             this._mainToolStrip.Name = "_mainToolStrip";
             // 
@@ -560,18 +560,6 @@
             this._closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.refresh_40px;
             this._closeAndRemoveOpenFilesToolStripButton.Name = "_closeAndRemoveOpenFilesToolStripButton";
             // 
-            // _toolStripSeparator4
-            // 
-            this._toolStripSeparator4.Name = "_toolStripSeparator4";
-            resources.ApplyResources(this._toolStripSeparator4, "_toolStripSeparator4");
-            // 
-            // _updateToolStripButton
-            // 
-            resources.ApplyResources(this._updateToolStripButton, "_updateToolStripButton");
-            this._updateToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._updateToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_red_40px;
-            this._updateToolStripButton.Name = "_updateToolStripButton";
-            // 
             // _knownFoldersSeparator
             // 
             this._knownFoldersSeparator.Name = "_knownFoldersSeparator";
@@ -581,6 +569,8 @@
             // 
             resources.ApplyResources(this._logOnLogOffLabel, "_logOnLogOffLabel");
             this._logOnLogOffLabel.BackColor = System.Drawing.SystemColors.Control;
+            this._logOnLogOffLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this._logOnLogOffLabel.LinkColor = System.Drawing.SystemColors.ControlText;
             this._logOnLogOffLabel.Name = "_logOnLogOffLabel";
             this._logOnLogOffLabel.TabStop = true;
             // 
@@ -590,6 +580,24 @@
             this.pictureBox1.Image = global::Axantum.AxCrypt.Properties.Resources.logo_text_retina;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
+            // 
+            // _updateStatusToolStrip
+            // 
+            this._updateStatusToolStrip.AllowMerge = false;
+            resources.ApplyResources(this._updateStatusToolStrip, "_updateStatusToolStrip");
+            this._updateStatusToolStrip.BackColor = System.Drawing.SystemColors.Control;
+            this._updateStatusToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this._updateStatusToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this._updateStatusToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._updateStatusButton});
+            this._updateStatusToolStrip.Name = "_updateStatusToolStrip";
+            // 
+            // _updateStatusButton
+            // 
+            resources.ApplyResources(this._updateStatusButton, "_updateStatusButton");
+            this._updateStatusButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._updateStatusButton.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_green_40px;
+            this._updateStatusButton.Name = "_updateStatusButton";
             // 
             // AxCryptMainForm
             // 
@@ -618,6 +626,8 @@
             this._mainToolStrip.ResumeLayout(false);
             this._mainToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this._updateStatusToolStrip.ResumeLayout(false);
+            this._updateStatusToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -693,11 +703,11 @@
         private System.Windows.Forms.ToolStripButton _decryptToolStripButton;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton _closeAndRemoveOpenFilesToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator _toolStripSeparator4;
-        private System.Windows.Forms.ToolStripButton _updateToolStripButton;
         private System.Windows.Forms.ToolStripSeparator _knownFoldersSeparator;
         private System.Windows.Forms.LinkLabel _logOnLogOffLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStrip _updateStatusToolStrip;
+        private System.Windows.Forms.ToolStripButton _updateStatusButton;
     }
 }
 

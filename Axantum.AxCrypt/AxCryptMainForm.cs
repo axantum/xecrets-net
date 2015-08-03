@@ -281,7 +281,7 @@ namespace Axantum.AxCrypt
             _recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
             _recentFilesListView.ColumnWidthChanged += RecentFilesListView_ColumnWidthChanged;
 
-            _updateToolStripButton.Click += _updateToolStripButton_Click;
+            _updateStatusButton.Click += _updateToolStripButton_Click;
 
             InitializePolicyMenu();
         }
@@ -941,28 +941,28 @@ namespace Axantum.AxCrypt
             switch (status)
             {
                 case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
-                    _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
-                    _updateToolStripButton.Image = Resources.bulb_green_40px;
-                    _updateToolStripButton.Enabled = false;
+                    _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
+                    _updateStatusButton.Image = Resources.bulb_green_40px;
+                    _updateStatusButton.Enabled = false;
                     break;
 
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
-                    _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
-                    _updateToolStripButton.Image = Resources.bulb_red_40px;
-                    _updateToolStripButton.Enabled = true;
+                    _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
+                    _updateStatusButton.Image = Resources.bulb_red_40px;
+                    _updateStatusButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
-                    _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.UpdatedVersion);
-                    _updateToolStripButton.Image = Resources.bulb_red_40px;
-                    _updateToolStripButton.Enabled = true;
+                    _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.UpdatedVersion);
+                    _updateStatusButton.Image = Resources.bulb_red_40px;
+                    _updateStatusButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.Unknown:
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
-                    _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
-                    _updateToolStripButton.Image = Resources.bulb_red_40px;
-                    _updateToolStripButton.Enabled = true;
+                    _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
+                    _updateStatusButton.Image = Resources.bulb_red_40px;
+                    _updateStatusButton.Enabled = true;
                     break;
             }
         }
