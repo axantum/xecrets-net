@@ -127,13 +127,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="_progressTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 249</value>
+    <value>0, 259</value>
   </data>
   <data name="_progressTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="_progressTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>611, 20</value>
+    <value>634, 20</value>
   </data>
   <data name="_progressTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -322,7 +322,7 @@
     <value>3, 3</value>
   </data>
   <data name="_recentFilesListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>594, 145</value>
+    <value>617, 155</value>
   </data>
   <data name="_recentFilesListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -346,7 +346,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="_recentFilesTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>600, 151</value>
+    <value>623, 161</value>
   </data>
   <data name="_recentFilesTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -373,7 +373,7 @@
     <value>0, 77</value>
   </data>
   <data name="_statusTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>608, 177</value>
+    <value>631, 187</value>
   </data>
   <data name="_statusTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -610,13 +610,13 @@
     <value>&amp;Debug</value>
   </data>
   <data name="_viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>127, 22</value>
   </data>
   <data name="_viewHelpMenuItem.Text" xml:space="preserve">
     <value>&amp;View Help</value>
   </data>
   <data name="_aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>127, 22</value>
   </data>
   <data name="_aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About</value>
@@ -658,7 +658,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>605, 24</value>
+    <value>628, 24</value>
   </data>
   <data name="tableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -822,6 +822,33 @@
   <data name="&gt;&gt;_logOnLogOffLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="pictureBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 32</value>
+  </data>
+  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 33</value>
   </data>
@@ -847,7 +874,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="_mainToolStrip" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="_logOnLogOffLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,200,Percent,100,Absolute,61" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="_mainToolStrip" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="_logOnLogOffLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pictureBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,200,Percent,100,Absolute,61" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -859,7 +886,7 @@
     <value>2</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>611, 71</value>
+    <value>634, 71</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -889,7 +916,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>611, 266</value>
+    <value>634, 276</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4000,6 +4027,9 @@
         +4R9HIpI0iDV7J532GGC2vthAz4BAECmqINwlNMGo/y3jb5n2OegiP8fayt4ClBHMmkAAAAASUVORK5C
         YII=
 </value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>650, 300</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt</value>

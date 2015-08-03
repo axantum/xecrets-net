@@ -90,6 +90,7 @@
             this._updateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -101,6 +102,7 @@
             this._mainMenuStrip.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this._mainToolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // _progressTableLayoutPanel
@@ -511,6 +513,7 @@
             resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
             this.tableLayoutPanel3.Controls.Add(this._mainToolStrip, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this._logOnLogOffLabel, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             // 
             // _mainToolStrip
@@ -581,6 +584,13 @@
             this._logOnLogOffLabel.Name = "_logOnLogOffLabel";
             this._logOnLogOffLabel.TabStop = true;
             // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Image = global::Axantum.AxCrypt.Properties.Resources.logo_text_retina;
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -607,6 +617,7 @@
             this.tableLayoutPanel3.PerformLayout();
             this._mainToolStrip.ResumeLayout(false);
             this._mainToolStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -686,6 +697,7 @@
         private System.Windows.Forms.ToolStripButton _updateToolStripButton;
         private System.Windows.Forms.ToolStripSeparator _knownFoldersSeparator;
         private System.Windows.Forms.LinkLabel _logOnLogOffLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
