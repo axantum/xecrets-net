@@ -39,7 +39,7 @@
             this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
-            this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
+            this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this._mainMenuStrip = new System.Windows.Forms.MenuStrip();
@@ -512,10 +512,10 @@
             // tableLayoutPanel3
             // 
             resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this._updateStatusToolStrip, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this._mainToolStrip, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this._logOnLogOffLabel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this._updateStatusToolStrip, 3, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             // 
             // _mainToolStrip
@@ -524,6 +524,8 @@
             this._mainToolStrip.AllowMerge = false;
             resources.ApplyResources(this._mainToolStrip, "_mainToolStrip");
             this._mainToolStrip.BackColor = System.Drawing.SystemColors.Control;
+            this._mainToolStrip.CanOverflow = false;
+            this._mainToolStrip.GripMargin = new System.Windows.Forms.Padding(0);
             this._mainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this._mainToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
             this._mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -532,6 +534,7 @@
             this._toolStripSeparator1,
             this._closeAndRemoveOpenFilesToolStripButton,
             this._knownFoldersSeparator});
+            this._mainToolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this._mainToolStrip.Name = "_mainToolStrip";
             // 
             // _encryptToolStripButton
@@ -586,6 +589,8 @@
             this._updateStatusToolStrip.AllowMerge = false;
             resources.ApplyResources(this._updateStatusToolStrip, "_updateStatusToolStrip");
             this._updateStatusToolStrip.BackColor = System.Drawing.SystemColors.Control;
+            this._updateStatusToolStrip.CanOverflow = false;
+            this._updateStatusToolStrip.GripMargin = new System.Windows.Forms.Padding(0);
             this._updateStatusToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this._updateStatusToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
             this._updateStatusToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -639,7 +644,7 @@
         private System.Windows.Forms.TableLayoutPanel _progressTableLayoutPanel;
         private System.Windows.Forms.ContextMenuStrip _progressContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem _progressContextCancelToolStripMenuItem;
-        private Axantum.AxCrypt.Forms.ProgressBackground _progressBackgroundWorker;
+        private Axantum.AxCrypt.Forms.Implementation.ProgressBackground _progressBackgroundWorker;
         private System.Windows.Forms.ToolStripMenuItem _decryptAndRemoveFromListToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip _watchedFoldersContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersRemoveMenuItem;

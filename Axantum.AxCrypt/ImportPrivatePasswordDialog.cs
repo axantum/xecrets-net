@@ -1,6 +1,7 @@
 ﻿using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Axantum.AxCrypt
         public ImportPrivatePasswordDialog()
         {
             InitializeComponent();
-            new Styling().Style(this);
+            new Styling(Resources.axcrypticon).Style(this);
         }
 
         public ImportPrivatePasswordDialog(Form parent, UserAsymmetricKeysStore keysStore, IUserSettings userSettings)

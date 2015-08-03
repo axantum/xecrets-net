@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Axantum.AxCrypt
         public CreateNewAccountDialog(Form parent, string passphrase)
         {
             InitializeComponent();
-            new Styling().Style(this);
+            new Styling(Resources.axcrypticon).Style(this);
 
             _viewModel = new CreateNewAccountViewModel(Resolve.AsymmetricKeysStore, passphrase);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };

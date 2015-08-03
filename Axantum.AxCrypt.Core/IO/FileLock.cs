@@ -50,18 +50,18 @@ namespace Axantum.AxCrypt.Core.IO
 
         public IDataStore DataStore { get { return TypeMap.Resolve.New<IDataStore>(_originalLockedFileName); } }
 
-        public static FileLock Lock(IDataStore dataStore)
+        public static FileLock Lock(IDataItem dataItem)
         {
-            if (dataStore == null)
+            if (dataItem == null)
             {
-                throw new ArgumentNullException("dataStore");
+                throw new ArgumentNullException("dataItem");
             }
 
             while (true)
             {
                 lock (_lockedFiles)
                 {
-                    FileLock fileLock = GetOrCreateFileLock(dataStore.FullName);
+                    FileLock fileLock = GetOrCreateFileLock(dataItem.FullName);
                     bool lockTaken = false;
                     try
                     {
@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.IO
                         ++fileLock._referenceCount;
                         if (Resolve.Log.IsInfoEnabled)
                         {
-                            Resolve.Log.LogInfo("Locking file '{0}'.".InvariantFormat(dataStore.FullName));
+                            Resolve.Log.LogInfo("Locking file '{0}'.".InvariantFormat(dataItem.FullName));
                         }
                         return fileLock;
                     }

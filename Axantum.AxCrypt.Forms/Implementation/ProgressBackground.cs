@@ -34,7 +34,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Axantum.AxCrypt.Forms
+namespace Axantum.AxCrypt.Forms.Implementation
 {
     /// <summary>
     /// Background thread operations with progress bar support

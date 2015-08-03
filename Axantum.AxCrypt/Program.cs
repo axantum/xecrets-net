@@ -33,6 +33,8 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Desktop;
 using Axantum.AxCrypt.Forms;
+using Axantum.AxCrypt.Forms.Implementation;
+using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Mono.Portable;
 using System;

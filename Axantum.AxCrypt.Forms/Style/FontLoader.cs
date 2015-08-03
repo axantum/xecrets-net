@@ -1,4 +1,4 @@
-﻿using Axantum.AxCrypt.Properties;
+﻿using Axantum.AxCrypt.Forms.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Forms.Style
 {
     public class FontLoader : IDisposable
     {

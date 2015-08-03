@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace Axantum.AxCrypt
         public LogOnDialog(Form parent, string encryptedFileFullName)
         {
             InitializeComponent();
-            new Styling().Style(this);
+            new Styling(Resources.axcrypticon).Style(this);
 
             _viewModel = new LogOnViewModel(encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };

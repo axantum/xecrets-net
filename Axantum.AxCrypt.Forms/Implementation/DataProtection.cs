@@ -32,7 +32,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Axantum.AxCrypt.Forms
+namespace Axantum.AxCrypt.Forms.Implementation
 {
     public class DataProtection : IDataProtection
     {

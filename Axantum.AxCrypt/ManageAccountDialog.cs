@@ -2,6 +2,7 @@
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace Axantum.AxCrypt
         public ManageAccountDialog(UserAsymmetricKeysStore keysStore, KnownIdentities knownIdentities, IUserSettings userSettings)
         {
             InitializeComponent();
-            new Styling().Style(this);
+            new Styling(Resources.axcrypticon).Style(this);
 
             _userSettings = userSettings;
             _viewModel = new ManageAccountViewModel(keysStore, knownIdentities);

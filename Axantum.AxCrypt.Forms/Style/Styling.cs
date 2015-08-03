@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Properties;
+using Axantum.AxCrypt.Forms.Style;
+using Axantum.AxCrypt.Forms.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Forms.Style
 {
     public class Styling
     {
@@ -20,12 +21,20 @@ namespace Axantum.AxCrypt
 
         private Color _buttonMouseOverColor = Color.FromArgb(232, 232, 232);
 
-        public Styling()
+        private Icon _icon;
+
+        public Styling(Icon icon)
         {
+            _icon = icon;
         }
 
         public void Style(params Control[] controls)
         {
+            if (controls == null)
+            {
+                throw new ArgumentNullException("controls");
+            }
+
             foreach (Control control in controls)
             {
                 StyleInternal(control);
@@ -40,7 +49,7 @@ namespace Axantum.AxCrypt
             {
                 Form form = (Form)control;
                 form.Font = fontLoader.ContentText;
-                form.Icon = Resources.axcrypticon;
+                form.Icon = _icon;
             }
 
             switch (control.GetType().ToString())

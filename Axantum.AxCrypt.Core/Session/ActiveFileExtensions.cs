@@ -40,6 +40,11 @@ namespace Axantum.AxCrypt.Core.Session
     {
         public static ActiveFile UpdateDecrypted(this ActiveFile activeFile, IProgressContext progress)
         {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+
             try
             {
                 using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())

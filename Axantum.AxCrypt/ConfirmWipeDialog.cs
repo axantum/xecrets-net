@@ -1,4 +1,6 @@
 ﻿using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Forms.Style;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace Axantum.AxCrypt
         public ConfirmWipeDialog()
         {
             InitializeComponent();
-            new Styling().Style(this);
+            new Styling(Resources.axcrypticon).Style(this);
             StartPosition = FormStartPosition.CenterParent;
         }
 

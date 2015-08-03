@@ -1,4 +1,6 @@
 ﻿using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Forms.Style;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +17,7 @@ namespace Axantum.AxCrypt
         public DebugLogOutputDialog()
         {
             InitializeComponent();
-            new Styling().Style(this);
+            new Styling(Resources.axcrypticon).Style(this);
         }
 
         private void DebugLogOutputDialog_Load(object sender, EventArgs e)

@@ -77,6 +77,11 @@ namespace Axantum.AxCrypt.Core.Session
         /// <returns>The properties or an empty set if the data store does not exist, or no-one is logged on.</returns>
         public static EncryptedProperties Create(IDataStore dataStore)
         {
+            if (dataStore == null)
+            {
+                throw new ArgumentNullException("dataStore");
+            }
+
             if (!dataStore.IsAvailable)
             {
                 return new EncryptedProperties();

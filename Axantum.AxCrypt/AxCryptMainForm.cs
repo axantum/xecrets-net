@@ -35,6 +35,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections;
@@ -78,7 +79,7 @@ namespace Axantum.AxCrypt
         public AxCryptMainForm()
         {
             InitializeComponent();
-            new Styling().Style(this, _recentFilesContextMenuStrip, _watchedFoldersContextMenuStrip);
+            new Styling(Resources.axcrypticon).Style(this, _recentFilesContextMenuStrip, _watchedFoldersContextMenuStrip);
         }
 
         private void AxCryptMainForm_Load(object sender, EventArgs e)
