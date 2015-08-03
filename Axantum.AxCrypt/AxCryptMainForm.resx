@@ -156,15 +156,6 @@
   <metadata name="_recentFilesContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>290, 17</value>
   </metadata>
-  <data name="_recentFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 70</value>
-  </data>
-  <data name="&gt;&gt;_recentFilesContextMenuStrip.Name" xml:space="preserve">
-    <value>_recentFilesContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;_recentFilesContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="_removeRecentFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>326, 22</value>
   </data>
@@ -183,9 +174,24 @@
   <data name="_shareKeysToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Share Keys</value>
   </data>
+  <data name="_recentFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 70</value>
+  </data>
+  <data name="&gt;&gt;_recentFilesContextMenuStrip.Name" xml:space="preserve">
+    <value>_recentFilesContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;_recentFilesContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="_progressContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>712, 17</value>
   </metadata>
+  <data name="_progressContextCancelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 22</value>
+  </data>
+  <data name="_progressContextCancelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="_progressContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 26</value>
   </data>
@@ -195,24 +201,9 @@
   <data name="&gt;&gt;_progressContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="_progressContextCancelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 22</value>
-  </data>
-  <data name="_progressContextCancelToolStripMenuItem.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
   <metadata name="_watchedFoldersContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>915, 17</value>
   </metadata>
-  <data name="_watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 70</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Name" xml:space="preserve">
-    <value>_watchedFoldersContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="_watchedFoldersRemoveMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
   </data>
@@ -230,6 +221,33 @@
   </data>
   <data name="_watchedFoldersOpenExplorerHereMenuItem.Text" xml:space="preserve">
     <value>Open &amp;Explorer Here</value>
+  </data>
+  <data name="_watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 70</value>
+  </data>
+  <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Name" xml:space="preserve">
+    <value>_watchedFoldersContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_watchedFolderColumnHeader.Text" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="_watchedFolderColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>368</value>
+  </data>
+  <data name="_watchedFoldersListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_watchedFoldersListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="_watchedFoldersListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>614, 144</value>
+  </data>
+  <data name="_watchedFoldersListView.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;_watchedFoldersListView.Name" xml:space="preserve">
     <value>_watchedFoldersListView</value>
@@ -270,35 +288,44 @@
   <data name="&gt;&gt;_watchedFoldersTabPage.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="_watchedFoldersListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="_decryptedFileColumnHeader.Text" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="_decryptedFileColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>159</value>
+  </data>
+  <data name="_sharingIndicatorColumnHeader.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_sharingIndicatorColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="_lastAccessTimeColumnHeader.Text" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="_lastAccessTimeColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>180</value>
+  </data>
+  <data name="_encryptedPathColumnHeader.Text" xml:space="preserve">
+    <value>Encrypted</value>
+  </data>
+  <data name="_encryptedPathColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>169</value>
+  </data>
+  <data name="_cryptoName.Text" xml:space="preserve">
+    <value>Algorithm</value>
+  </data>
+  <data name="_recentFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="_watchedFoldersListView.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_recentFilesListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="_watchedFoldersListView.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_recentFilesListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>614, 144</value>
   </data>
-  <data name="_watchedFoldersListView.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersListView.Name" xml:space="preserve">
-    <value>_watchedFoldersListView</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersListView.Parent" xml:space="preserve">
-    <value>_watchedFoldersTabPage</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersListView.ZOrder" xml:space="preserve">
+  <data name="_recentFilesListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="_watchedFolderColumnHeader.Text" xml:space="preserve">
-    <value>Folder</value>
-  </data>
-  <data name="_watchedFolderColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>368</value>
   </data>
   <data name="&gt;&gt;_recentFilesListView.Name" xml:space="preserve">
     <value>_recentFilesListView</value>
@@ -339,57 +366,6 @@
   <data name="&gt;&gt;_recentFilesTabPage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="_recentFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_recentFilesListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="_recentFilesListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>614, 144</value>
-  </data>
-  <data name="_recentFilesListView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;_recentFilesListView.Name" xml:space="preserve">
-    <value>_recentFilesListView</value>
-  </data>
-  <data name="&gt;&gt;_recentFilesListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_recentFilesListView.Parent" xml:space="preserve">
-    <value>_recentFilesTabPage</value>
-  </data>
-  <data name="&gt;&gt;_recentFilesListView.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="_decryptedFileColumnHeader.Text" xml:space="preserve">
-    <value>Document</value>
-  </data>
-  <data name="_decryptedFileColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>159</value>
-  </data>
-  <data name="_sharingIndicatorColumnHeader.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="_sharingIndicatorColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="_lastAccessTimeColumnHeader.Text" xml:space="preserve">
-    <value>Time</value>
-  </data>
-  <data name="_lastAccessTimeColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>180</value>
-  </data>
-  <data name="_encryptedPathColumnHeader.Text" xml:space="preserve">
-    <value>Encrypted</value>
-  </data>
-  <data name="_encryptedPathColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>169</value>
-  </data>
-  <data name="_cryptoName.Text" xml:space="preserve">
-    <value>Algorithm</value>
-  </data>
   <data name="_statusTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -420,14 +396,242 @@
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <metadata name="_mainMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1116, 56</value>
-  </metadata>
   <data name="tableLayoutPanel2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="tableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <metadata name="_mainMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1116, 56</value>
+  </metadata>
+  <data name="_mainMenuStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="_openEncryptedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="_openEncryptedToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Open Encrypted</value>
+  </data>
+  <data name="_encryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="_encryptToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Encrypt</value>
+  </data>
+  <data name="_decryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="_decryptToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Decrypt</value>
+  </data>
+  <data name="encryptedFoldersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="encryptedFoldersToolStripMenuItem.Text" xml:space="preserve">
+    <value>Encrypted &amp;Folders</value>
+  </data>
+  <data name="_toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 6</value>
+  </data>
+  <data name="_closeOpenFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="_closeOpenFilesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Clean Decrypted</value>
+  </data>
+  <data name="_toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 6</value>
+  </data>
+  <data name="_wipeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="_wipeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Secure Delete</value>
+  </data>
+  <data name="_toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 6</value>
+  </data>
+  <data name="_englishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="_englishLanguageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;English</value>
+  </data>
+  <data name="_swedishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="_swedishLanguageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Svenska</value>
+  </data>
+  <data name="_languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="_languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Language</value>
+  </data>
+  <data name="_changePassphraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="_changePassphraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Change &amp;Passphrase</value>
+  </data>
+  <data name="_debugOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="_debugOptionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Debug</value>
+  </data>
+  <data name="_clearPassphraseMemoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="_clearPassphraseMemoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Clear All Settings and Exit</value>
+  </data>
+  <data name="_optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="_optionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>O&amp;ptions</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 6</value>
+  </data>
+  <data name="_importOthersSharingKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 22</value>
+  </data>
+  <data name="_importOthersSharingKeyToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Import Someone's Public Sharing Key</value>
+  </data>
+  <data name="_importOthersSharingKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Ask your contact to export and send his/her Public Sharing Key to you and import it here. Then you can share encrypted files.</value>
+  </data>
+  <data name="_exportSharingKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 22</value>
+  </data>
+  <data name="_exportSharingKeyToolStripMenuItem.Text" xml:space="preserve">
+    <value>E&amp;xport my Public Sharing Key</value>
+  </data>
+  <data name="_exportSharingKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Send the exported Public Sharing Key to others you want to be able to share encrypted files with you.</value>
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 6</value>
+  </data>
+  <data name="_importMyPrivateKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 22</value>
+  </data>
+  <data name="_importMyPrivateKeyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import &amp;Account Secret and Sharing Key Pair</value>
+  </data>
+  <data name="_importMyPrivateKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>To move an account, export the Secret and Sharing Key Pair and then import it here.</value>
+  </data>
+  <data name="_exportMyPrivateKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 22</value>
+  </data>
+  <data name="_exportMyPrivateKeyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Export Account &amp;Secret and Sharing Key Pair</value>
+  </data>
+  <data name="_exportMyPrivateKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>To move an account, export the Secret and Sharing Key Pair and then import it elsewhere.</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 6</value>
+  </data>
+  <data name="_createAccountToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 22</value>
+  </data>
+  <data name="_createAccountToolStripMenuItem.Text" xml:space="preserve">
+    <value>Create &amp;Account</value>
+  </data>
+  <data name="_createAccountToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Create an Account with a Secret and Sharing Key Pair so you can share encrypted files with others.</value>
+  </data>
+  <data name="keyManagementToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="keyManagementToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Key Management</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 6</value>
+  </data>
+  <data name="_exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="_exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>E&amp;xit</value>
+  </data>
+  <data name="_fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="_fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="_checkVersionNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="_checkVersionNowToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Check Version Now</value>
+  </data>
+  <data name="_setUpdateCheckUrlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="_setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Options</value>
+  </data>
+  <data name="cryptoPolicyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="cryptoPolicyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Crypto &amp;Policy</value>
+  </data>
+  <data name="loggingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="loggingToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Logging</value>
+  </data>
+  <data name="_manageAccountToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="_manageAccountToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Manage Account</value>
+  </data>
+  <data name="_debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 20</value>
+  </data>
+  <data name="_debugToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Debug</value>
+  </data>
+  <data name="_viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="_viewHelpMenuItem.Text" xml:space="preserve">
+    <value>&amp;View Help</value>
+  </data>
+  <data name="_aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="_aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;About</value>
+  </data>
+  <data name="_helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="_helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="_mainMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_mainMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 24</value>
+  </data>
+  <data name="_mainMenuStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;_mainMenuStrip.Name" xml:space="preserve">
     <value>_mainMenuStrip</value>
@@ -548,6 +752,63 @@
   </data>
   <data name="_mainToolStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
+  </data>
+  <data name="_encryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="_encryptToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="_encryptToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>White</value>
+  </data>
+  <data name="_encryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 47</value>
+  </data>
+  <data name="_encryptToolStripButton.ToolTipText" xml:space="preserve">
+    <value>Click to select documents to encrypt</value>
+  </data>
+  <data name="_decryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="_decryptToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="_decryptToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="_decryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 47</value>
+  </data>
+  <data name="_decryptToolStripButton.ToolTipText" xml:space="preserve">
+    <value>Click to select documents to decrypt</value>
+  </data>
+  <data name="_toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 40</value>
+  </data>
+  <data name="_closeAndRemoveOpenFilesToolStripButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="_closeAndRemoveOpenFilesToolStripButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="_closeAndRemoveOpenFilesToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="_closeAndRemoveOpenFilesToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="_closeAndRemoveOpenFilesToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 47</value>
+  </data>
+  <data name="_closeAndRemoveOpenFilesToolStripButton.ToolTipText" xml:space="preserve">
+    <value>Click to clean and remove any open decrypted files, but ensure they are not in use first.</value>
+  </data>
+  <data name="_knownFoldersSeparator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 40</value>
+  </data>
+  <data name="_knownFoldersSeparator.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="_mainToolStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>209, 1</value>
@@ -692,306 +953,6 @@
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tableLayoutPanel2" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel3" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,Absolute,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <metadata name="_mainMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1116, 56</value>
-  </metadata>
-  <data name="_mainMenuStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="_mainMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_mainMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 24</value>
-  </data>
-  <data name="_mainMenuStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;_mainMenuStrip.Name" xml:space="preserve">
-    <value>_mainMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;_mainMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_mainMenuStrip.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;_mainMenuStrip.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="_fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="_fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;File</value>
-  </data>
-  <data name="_openEncryptedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="_openEncryptedToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Open Encrypted</value>
-  </data>
-  <data name="_encryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="_encryptToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Encrypt</value>
-  </data>
-  <data name="_decryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="_decryptToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Decrypt</value>
-  </data>
-  <data name="encryptedFoldersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="encryptedFoldersToolStripMenuItem.Text" xml:space="preserve">
-    <value>Encrypted &amp;Folders</value>
-  </data>
-  <data name="_toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 6</value>
-  </data>
-  <data name="_closeOpenFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="_closeOpenFilesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Clean Decrypted</value>
-  </data>
-  <data name="_toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 6</value>
-  </data>
-  <data name="_wipeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="_wipeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Secure Delete</value>
-  </data>
-  <data name="_toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 6</value>
-  </data>
-  <data name="_optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="_optionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>O&amp;ptions</value>
-  </data>
-  <data name="_languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 22</value>
-  </data>
-  <data name="_languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Language</value>
-  </data>
-  <data name="_englishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 22</value>
-  </data>
-  <data name="_englishLanguageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;English</value>
-  </data>
-  <data name="_swedishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 22</value>
-  </data>
-  <data name="_swedishLanguageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Svenska</value>
-  </data>
-  <data name="_changePassphraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 22</value>
-  </data>
-  <data name="_changePassphraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Change &amp;Passphrase</value>
-  </data>
-  <data name="_debugOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 22</value>
-  </data>
-  <data name="_debugOptionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Debug</value>
-  </data>
-  <data name="_clearPassphraseMemoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 22</value>
-  </data>
-  <data name="_clearPassphraseMemoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Clear All Settings and Exit</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 6</value>
-  </data>
-  <data name="keyManagementToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="keyManagementToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Key Management</value>
-  </data>
-  <data name="_importOthersSharingKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 22</value>
-  </data>
-  <data name="_importOthersSharingKeyToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Import Someone's Public Sharing Key</value>
-  </data>
-  <data name="_importOthersSharingKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Ask your contact to export and send his/her Public Sharing Key to you and import it here. Then you can share encrypted files.</value>
-  </data>
-  <data name="_exportSharingKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 22</value>
-  </data>
-  <data name="_exportSharingKeyToolStripMenuItem.Text" xml:space="preserve">
-    <value>E&amp;xport my Public Sharing Key</value>
-  </data>
-  <data name="_exportSharingKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Send the exported Public Sharing Key to others you want to be able to share encrypted files with you.</value>
-  </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 6</value>
-  </data>
-  <data name="_importMyPrivateKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 22</value>
-  </data>
-  <data name="_importMyPrivateKeyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Import &amp;Account Secret and Sharing Key Pair</value>
-  </data>
-  <data name="_importMyPrivateKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>To move an account, export the Secret and Sharing Key Pair and then import it here.</value>
-  </data>
-  <data name="_exportMyPrivateKeyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 22</value>
-  </data>
-  <data name="_exportMyPrivateKeyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Export Account &amp;Secret and Sharing Key Pair</value>
-  </data>
-  <data name="_exportMyPrivateKeyToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>To move an account, export the Secret and Sharing Key Pair and then import it elsewhere.</value>
-  </data>
-  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 6</value>
-  </data>
-  <data name="_createAccountToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 22</value>
-  </data>
-  <data name="_createAccountToolStripMenuItem.Text" xml:space="preserve">
-    <value>Create &amp;Account</value>
-  </data>
-  <data name="_createAccountToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Create an Account with a Secret and Sharing Key Pair so you can share encrypted files with others.</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 6</value>
-  </data>
-  <data name="_exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="_exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>E&amp;xit</value>
-  </data>
-  <data name="_debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 20</value>
-  </data>
-  <data name="_debugToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Debug</value>
-  </data>
-  <data name="_checkVersionNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="_checkVersionNowToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Check Version Now</value>
-  </data>
-  <data name="_setUpdateCheckUrlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="_setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Options</value>
-  </data>
-  <data name="cryptoPolicyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="cryptoPolicyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Crypto &amp;Policy</value>
-  </data>
-  <data name="loggingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="loggingToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Logging</value>
-  </data>
-  <data name="_manageAccountToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="_manageAccountToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Manage Account</value>
-  </data>
-  <data name="_helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="_helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <data name="_viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="_viewHelpMenuItem.Text" xml:space="preserve">
-    <value>&amp;View Help</value>
-  </data>
-  <data name="_aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="_aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;About</value>
-  </data>
-  <data name="_encryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="_encryptToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="_encryptToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>White</value>
-  </data>
-  <data name="_encryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 47</value>
-  </data>
-  <data name="_encryptToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Click to select documents to encrypt</value>
-  </data>
-  <data name="_decryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="_decryptToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="_decryptToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="_decryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 47</value>
-  </data>
-  <data name="_decryptToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Click to select documents to decrypt</value>
-  </data>
-  <data name="_toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 38</value>
-  </data>
-  <data name="_closeAndRemoveOpenFilesToolStripButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="_closeAndRemoveOpenFilesToolStripButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="_closeAndRemoveOpenFilesToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="_closeAndRemoveOpenFilesToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="_closeAndRemoveOpenFilesToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 47</value>
-  </data>
-  <data name="_closeAndRemoveOpenFilesToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Click to clean and remove any open decrypted files, but ensure they are not in use first.</value>
-  </data>
-  <data name="_knownFoldersSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 38</value>
-  </data>
-  <data name="_knownFoldersSeparator.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -4203,7 +4164,7 @@
     <value>_progressBackgroundWorker</value>
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.Forms.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+    <value>Axantum.AxCrypt.Forms.Implementation.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;_fileToolStripMenuItem.Name" xml:space="preserve">
     <value>_fileToolStripMenuItem</value>
@@ -4427,6 +4388,12 @@
   <data name="&gt;&gt;_aboutToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;_updateStatusButton.Name" xml:space="preserve">
+    <value>_updateStatusButton</value>
+  </data>
+  <data name="&gt;&gt;_updateStatusButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;_encryptToolStripButton.Name" xml:space="preserve">
     <value>_encryptToolStripButton</value>
   </data>
@@ -4456,12 +4423,6 @@
   </data>
   <data name="&gt;&gt;_knownFoldersSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_updateStatusButton.Name" xml:space="preserve">
-    <value>_updateStatusButton</value>
-  </data>
-  <data name="&gt;&gt;_updateStatusButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

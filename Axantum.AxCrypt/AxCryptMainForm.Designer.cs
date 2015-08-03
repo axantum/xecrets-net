@@ -81,6 +81,8 @@
             this._viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this._updateStatusToolStrip = new System.Windows.Forms.ToolStrip();
+            this._updateStatusButton = new System.Windows.Forms.ToolStripButton();
             this._mainToolStrip = new System.Windows.Forms.ToolStrip();
             this._encryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._decryptToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -89,8 +91,6 @@
             this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this._updateStatusToolStrip = new System.Windows.Forms.ToolStrip();
-            this._updateStatusButton = new System.Windows.Forms.ToolStripButton();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -101,9 +101,9 @@
             this.tableLayoutPanel2.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this._updateStatusToolStrip.SuspendLayout();
             this._mainToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this._updateStatusToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _progressTableLayoutPanel
@@ -298,23 +298,25 @@
             // 
             // _openEncryptedToolStripMenuItem
             // 
+            this._openEncryptedToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.open_encrypted;
             this._openEncryptedToolStripMenuItem.Name = "_openEncryptedToolStripMenuItem";
             resources.ApplyResources(this._openEncryptedToolStripMenuItem, "_openEncryptedToolStripMenuItem");
             // 
             // _encryptToolStripMenuItem
             // 
-            this._encryptToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.plus_40px;
+            this._encryptToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.encrypt;
             this._encryptToolStripMenuItem.Name = "_encryptToolStripMenuItem";
             resources.ApplyResources(this._encryptToolStripMenuItem, "_encryptToolStripMenuItem");
             // 
             // _decryptToolStripMenuItem
             // 
-            this._decryptToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.minus_40px;
+            this._decryptToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.decrypt;
             this._decryptToolStripMenuItem.Name = "_decryptToolStripMenuItem";
             resources.ApplyResources(this._decryptToolStripMenuItem, "_decryptToolStripMenuItem");
             // 
             // encryptedFoldersToolStripMenuItem
             // 
+            this.encryptedFoldersToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.folder;
             this.encryptedFoldersToolStripMenuItem.Name = "encryptedFoldersToolStripMenuItem";
             resources.ApplyResources(this.encryptedFoldersToolStripMenuItem, "encryptedFoldersToolStripMenuItem");
             // 
@@ -325,7 +327,7 @@
             // 
             // _closeOpenFilesToolStripMenuItem
             // 
-            this._closeOpenFilesToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.refresh_40px;
+            this._closeOpenFilesToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.clean_broom;
             this._closeOpenFilesToolStripMenuItem.Name = "_closeOpenFilesToolStripMenuItem";
             resources.ApplyResources(this._closeOpenFilesToolStripMenuItem, "_closeOpenFilesToolStripMenuItem");
             // 
@@ -336,6 +338,7 @@
             // 
             // _wipeToolStripMenuItem
             // 
+            this._wipeToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.delete;
             this._wipeToolStripMenuItem.Name = "_wipeToolStripMenuItem";
             resources.ApplyResources(this._wipeToolStripMenuItem, "_wipeToolStripMenuItem");
             // 
@@ -351,6 +354,7 @@
             this._changePassphraseToolStripMenuItem,
             this._debugOptionsToolStripMenuItem,
             this._clearPassphraseMemoryToolStripMenuItem});
+            this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
             this._optionsToolStripMenuItem.Name = "_optionsToolStripMenuItem";
             resources.ApplyResources(this._optionsToolStripMenuItem, "_optionsToolStripMenuItem");
             // 
@@ -404,6 +408,7 @@
             this._exportMyPrivateKeyToolStripMenuItem,
             this.toolStripSeparator4,
             this._createAccountToolStripMenuItem});
+            this.keyManagementToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.key_management;
             this.keyManagementToolStripMenuItem.Name = "keyManagementToolStripMenuItem";
             resources.ApplyResources(this.keyManagementToolStripMenuItem, "keyManagementToolStripMenuItem");
             // 
@@ -449,6 +454,7 @@
             // 
             // _exitToolStripMenuItem
             // 
+            this._exitToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.exit;
             this._exitToolStripMenuItem.Name = "_exitToolStripMenuItem";
             resources.ApplyResources(this._exitToolStripMenuItem, "_exitToolStripMenuItem");
             this._exitToolStripMenuItem.Click += new System.EventHandler(this._exitToolStripMenuItem_Click);
@@ -518,6 +524,26 @@
             this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             // 
+            // _updateStatusToolStrip
+            // 
+            this._updateStatusToolStrip.AllowMerge = false;
+            resources.ApplyResources(this._updateStatusToolStrip, "_updateStatusToolStrip");
+            this._updateStatusToolStrip.BackColor = System.Drawing.SystemColors.Control;
+            this._updateStatusToolStrip.CanOverflow = false;
+            this._updateStatusToolStrip.GripMargin = new System.Windows.Forms.Padding(0);
+            this._updateStatusToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this._updateStatusToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this._updateStatusToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._updateStatusButton});
+            this._updateStatusToolStrip.Name = "_updateStatusToolStrip";
+            // 
+            // _updateStatusButton
+            // 
+            resources.ApplyResources(this._updateStatusButton, "_updateStatusButton");
+            this._updateStatusButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._updateStatusButton.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_green_40px;
+            this._updateStatusButton.Name = "_updateStatusButton";
+            // 
             // _mainToolStrip
             // 
             this._mainToolStrip.AllowDrop = true;
@@ -584,26 +610,6 @@
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
-            // _updateStatusToolStrip
-            // 
-            this._updateStatusToolStrip.AllowMerge = false;
-            resources.ApplyResources(this._updateStatusToolStrip, "_updateStatusToolStrip");
-            this._updateStatusToolStrip.BackColor = System.Drawing.SystemColors.Control;
-            this._updateStatusToolStrip.CanOverflow = false;
-            this._updateStatusToolStrip.GripMargin = new System.Windows.Forms.Padding(0);
-            this._updateStatusToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this._updateStatusToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
-            this._updateStatusToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._updateStatusButton});
-            this._updateStatusToolStrip.Name = "_updateStatusToolStrip";
-            // 
-            // _updateStatusButton
-            // 
-            resources.ApplyResources(this._updateStatusButton, "_updateStatusButton");
-            this._updateStatusButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._updateStatusButton.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_green_40px;
-            this._updateStatusButton.Name = "_updateStatusButton";
-            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -628,11 +634,11 @@
             this._mainMenuStrip.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this._updateStatusToolStrip.ResumeLayout(false);
+            this._updateStatusToolStrip.PerformLayout();
             this._mainToolStrip.ResumeLayout(false);
             this._mainToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this._updateStatusToolStrip.ResumeLayout(false);
-            this._updateStatusToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -234,6 +234,26 @@ namespace Axantum.AxCrypt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap clean_broom {
+            get {
+                object obj = ResourceManager.GetObject("clean_broom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clean_recycle {
+            get {
+                object obj = ResourceManager.GetObject("clean_recycle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cleanupneededred16 {
             get {
                 object obj = ResourceManager.GetObject("cleanupneededred16", resourceCulture);
@@ -285,6 +305,16 @@ namespace Axantum.AxCrypt.Properties {
         internal static System.Drawing.Bitmap closeremovestandbyred32 {
             get {
                 object obj = ResourceManager.GetObject("closeremovestandbyred32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap decrypt {
+            get {
+                object obj = ResourceManager.GetObject("decrypt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -374,6 +404,16 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap delete {
+            get {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon DocumentsLibrary {
@@ -408,6 +448,16 @@ namespace Axantum.AxCrypt.Properties {
         internal static System.Drawing.Bitmap dropbox_40px {
             get {
                 object obj = ResourceManager.GetObject("dropbox_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap encrypt {
+            get {
+                object obj = ResourceManager.GetObject("encrypt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -517,6 +567,26 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap exit {
+            get {
+                object obj = ResourceManager.GetObject("exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap exit_red {
+            get {
+                object obj = ResourceManager.GetObject("exit_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import failed. Probably not a valid Account Secret and Sharing Key Pair File..
         /// </summary>
         internal static string FailedPrivateImport {
@@ -586,6 +656,16 @@ namespace Axantum.AxCrypt.Properties {
         internal static string FileOperationFailed {
             get {
                 return ResourceManager.GetString("FileOperationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder {
+            get {
+                object obj = ResourceManager.GetObject("folder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -721,6 +801,16 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key_management {
+            get {
+                object obj = ResourceManager.GetObject("key_management", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt must be restarted in order for the language change to take effect..
         /// </summary>
         internal static string LanguageChangeRestartPrompt {
@@ -851,6 +941,16 @@ namespace Axantum.AxCrypt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap open_encrypted {
+            get {
+                object obj = ResourceManager.GetObject("open_encrypted", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap opendocument32 {
             get {
                 object obj = ResourceManager.GetObject("opendocument32", resourceCulture);
@@ -873,6 +973,16 @@ namespace Axantum.AxCrypt.Properties {
         internal static string OpenFileColumnHeader {
             get {
                 return ResourceManager.GetString("OpenFileColumnHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap options {
+            get {
+                object obj = ResourceManager.GetObject("options", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
