@@ -97,6 +97,7 @@ namespace Axantum.AxCrypt.Forms.Style
                 case "System.Windows.Forms.ToolStrip":
                     ToolStrip toolStrip = (ToolStrip)control;
                     toolStrip.Font = fontLoader.ContentText;
+                    toolStrip.Renderer = new AxCryptToolStripProfessionalRenderer();
                     break;
             }
 
