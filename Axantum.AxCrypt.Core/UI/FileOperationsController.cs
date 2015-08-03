@@ -293,15 +293,18 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool DecryptFilePreparation(IDataStore fileInfo)
         {
-            if (fileInfo.IsLocked)
+            using (FileLock fileLock = FileLock.Lock(fileInfo))
             {
-                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, FileOperationStatus.FileLocked);
-                return false;
-            }
+                if (fileInfo.IsLocked)
+                {
+                    _eventArgs.Status = new FileOperationContext(fileInfo.FullName, FileOperationStatus.FileLocked);
+                    return false;
+                }
 
-            if (!OpenAxCryptDocument(fileInfo, _eventArgs) || _eventArgs.Skip)
-            {
-                return false;
+                if (!OpenAxCryptDocument(fileInfo, _eventArgs) || _eventArgs.Skip)
+                {
+                    return false;
+                }
             }
 
             IDataStore destination = TypeMap.Resolve.New<IDataStore>(_eventArgs.SaveFileFullName);

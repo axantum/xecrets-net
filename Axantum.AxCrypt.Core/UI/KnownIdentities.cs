@@ -83,12 +83,15 @@ namespace Axantum.AxCrypt.Core.UI
                     changed = true;
                 }
             }
+            
             changed |= AddKnownThumbprint(logOnIdentity);
-            if (changed)
+            if (!changed)
             {
-                DefaultEncryptionIdentity = logOnIdentity;
-                _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange, logOnIdentity));
+                return;
             }
+
+            _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange, logOnIdentity));
+            DefaultEncryptionIdentity = logOnIdentity;
         }
 
         public void Clear()
@@ -102,7 +105,6 @@ namespace Axantum.AxCrypt.Core.UI
                 _logOnIdentities.Clear();
             }
             LogOff();
-            _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange));
         }
 
         public IEnumerable<LogOnIdentity> Identities

@@ -261,12 +261,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     SetFilesArePending();
                     break;
 
+                case SessionNotificationType.KnownKeyChange:
+                    if (e.Notification.Identity == LogOnIdentity.Empty)
+                    {
+                        throw new InvalidOperationException("Attempt to add the empty identity as a known key.");
+                    }
+                    _fileSystemState.KnownPassphrases.Add(e.Notification.Identity.Passphrase);
+                    _fileSystemState.Save();
+                    break;
+
                 case SessionNotificationType.WorkFolderChange:
                 case SessionNotificationType.ProcessExit:
                 case SessionNotificationType.SessionChange:
                 case SessionNotificationType.SessionStart:
                 case SessionNotificationType.ActiveFileChange:
-                case SessionNotificationType.KnownKeyChange:
                 default:
                     break;
             }
@@ -296,30 +304,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetLogOnState(bool isLoggedOn)
         {
-            Identity = ValidateLogOnIdentity(isLoggedOn);
+            Identity = GetLogOnIdentity(isLoggedOn);
             LoggedOn = isLoggedOn;
             EncryptFileEnabled = isLoggedOn;
             WatchedFoldersEnabled = isLoggedOn;
         }
 
-        private LogOnIdentity ValidateLogOnIdentity(bool isLoggedOn)
+        private LogOnIdentity GetLogOnIdentity(bool isLoggedOn)
         {
             if (!isLoggedOn)
             {
                 return null;
             }
-
-            if (Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != UserAsymmetricKeys.Empty)
-            {
-                return Resolve.KnownIdentities.DefaultEncryptionIdentity;
-            }
-
-            Passphrase identity = _fileSystemState.KnownPassphrases.FirstOrDefault(i => i.Thumbprint == Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Thumbprint);
-            if (identity == null)
-            {
-                throw new InvalidOperationException("Attempt to log on without a matching identity being defined.");
-            }
-
             return Resolve.KnownIdentities.DefaultEncryptionIdentity;
         }
 

@@ -440,6 +440,7 @@ namespace Axantum.AxCrypt.Core.Test
                 LogOnIdentity id = new LogOnIdentity("passphrase");
                 mockFileSystemState.Object.KnownPassphrases.Add(id.Passphrase);
                 Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
+                mockFileSystemState.ResetCalls();
 
                 mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
             }
@@ -462,6 +463,7 @@ namespace Axantum.AxCrypt.Core.Test
                 LogOnIdentity id = new LogOnIdentity("passphrase");
                 fileSystemStateMock.Object.KnownPassphrases.Add(id.Passphrase);
                 Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
+                fileSystemStateMock.ResetCalls();
 
                 mvm.RemoveWatchedFolders.Execute(new string[] { });
 
@@ -496,7 +498,10 @@ namespace Axantum.AxCrypt.Core.Test
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
             }
-            Assert.Throws<InvalidOperationException>(() => Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("passphrase"), "Should fail since there is no matching identity.");
+            LogOnIdentity identity = new LogOnIdentity("passphrase");
+            Assert.That(!Resolve.FileSystemState.KnownPassphrases.Any(kp => kp.Thumbprint == identity.Passphrase.Thumbprint));
+            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("passphrase");
+            Assert.That(Resolve.FileSystemState.KnownPassphrases.Any(kp => kp.Thumbprint == identity.Passphrase.Thumbprint));
         }
 
         [Test]
