@@ -324,7 +324,7 @@
             // 
             // _closeOpenFilesToolStripMenuItem
             // 
-            this._closeOpenFilesToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_red_40px;
+            this._closeOpenFilesToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.refresh_40px;
             this._closeOpenFilesToolStripMenuItem.Name = "_closeOpenFilesToolStripMenuItem";
             resources.ApplyResources(this._closeOpenFilesToolStripMenuItem, "_closeOpenFilesToolStripMenuItem");
             // 
@@ -557,7 +557,7 @@
             // 
             resources.ApplyResources(this._closeAndRemoveOpenFilesToolStripButton, "_closeAndRemoveOpenFilesToolStripButton");
             this._closeAndRemoveOpenFilesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_red_40px;
+            this._closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.refresh_40px;
             this._closeAndRemoveOpenFilesToolStripButton.Name = "_closeAndRemoveOpenFilesToolStripButton";
             // 
             // _toolStripSeparator4
@@ -569,7 +569,7 @@
             // 
             resources.ApplyResources(this._updateToolStripButton, "_updateToolStripButton");
             this._updateToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._updateToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.refresh_40px;
+            this._updateToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_red_40px;
             this._updateToolStripButton.Name = "_updateToolStripButton";
             // 
             // _knownFoldersSeparator

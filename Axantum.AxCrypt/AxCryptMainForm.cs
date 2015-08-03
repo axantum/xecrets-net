@@ -942,25 +942,26 @@ namespace Axantum.AxCrypt
             {
                 case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
                     _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
+                    _updateToolStripButton.Image = Resources.bulb_green_40px;
                     _updateToolStripButton.Enabled = false;
                     break;
 
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
                     _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
-                    _updateToolStripButton.Image = Resources.refresh_40px;
+                    _updateToolStripButton.Image = Resources.bulb_red_40px;
                     _updateToolStripButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
                     _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.UpdatedVersion);
-                    _updateToolStripButton.Image = Resources.refresh_40px;
+                    _updateToolStripButton.Image = Resources.bulb_red_40px;
                     _updateToolStripButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.Unknown:
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                     _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
-                    _updateToolStripButton.Image = Resources.refresh_grey_40px;
+                    _updateToolStripButton.Image = Resources.bulb_red_40px;
                     _updateToolStripButton.Enabled = true;
                     break;
             }
