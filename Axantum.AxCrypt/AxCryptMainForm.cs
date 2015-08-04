@@ -283,6 +283,8 @@ namespace Axantum.AxCrypt
             _recentFilesListView.ColumnWidthChanged += RecentFilesListView_ColumnWidthChanged;
 
             _updateStatusButton.Click += _updateToolStripButton_Click;
+            _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
+            _closeOpenFilesToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
 
             InitializePolicyMenu();
         }

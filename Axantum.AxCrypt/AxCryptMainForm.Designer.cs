@@ -587,7 +587,7 @@
             // 
             resources.ApplyResources(this._closeAndRemoveOpenFilesToolStripButton, "_closeAndRemoveOpenFilesToolStripButton");
             this._closeAndRemoveOpenFilesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.refresh_40px;
+            this._closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.broom_40pxs;
             this._closeAndRemoveOpenFilesToolStripButton.Name = "_closeAndRemoveOpenFilesToolStripButton";
             // 
             // _knownFoldersSeparator
