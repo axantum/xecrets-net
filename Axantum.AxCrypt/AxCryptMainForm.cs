@@ -285,6 +285,7 @@ namespace Axantum.AxCrypt
             _updateStatusButton.Click += _updateToolStripButton_Click;
             _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _closeOpenFilesToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
+            _changePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
 
             InitializePolicyMenu();
         }
@@ -343,7 +344,7 @@ namespace Axantum.AxCrypt
             smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
             smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
             smallImageList.Images.Add("ActiveFileKnownKey", Resources.fileknownkeygreen16);
-            smallImageList.Images.Add("CleanUpNeeded", Resources.cleanupneededred16);
+            smallImageList.Images.Add("CleanUpNeeded", Resources.clean_broom);
             smallImageList.TransparentColor = System.Drawing.Color.Transparent;
 
             return smallImageList;
@@ -1060,7 +1061,7 @@ namespace Axantum.AxCrypt
             EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(activeFile.EncryptedFileInfo);
 
             item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
-            item.SubItems["SharingIndicator"].Text = encryptedProperties.SharedKeyHolders.Count().ToString();
+            item.SubItems["SharingIndicator"].Text = SharingIndicator(encryptedProperties.SharedKeyHolders.Count());
             item.SubItems["Date"].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems["Date"].Tag = activeFile.Properties.LastActivityTimeUtc;
 
@@ -1075,6 +1076,15 @@ namespace Axantum.AxCrypt
             catch (ArgumentException)
             {
             }
+        }
+
+        private static string SharingIndicator(int count)
+        {
+            if (count == 0)
+            {
+                return String.Empty;
+            }
+            return count.ToString(CultureInfo.CurrentCulture);
         }
 
         private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore)
