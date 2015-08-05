@@ -940,6 +940,24 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This may take a few minutes. Please be patient..
+        /// </summary>
+        internal static string OfflineAccountBePatient {
+            get {
+                return ResourceManager.GetString("OfflineAccountBePatient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Offline Account Creation..
+        /// </summary>
+        internal static string OfflineAccountTitle {
+            get {
+                return ResourceManager.GetString("OfflineAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your version is old. Please click to check for a newer version..
         /// </summary>
         internal static string OldVersionTooltip {

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
@@ -13,6 +14,8 @@ namespace Axantum.AxCrypt
     public partial class CreateNewAccountDialog : Form
     {
         private CreateNewAccountViewModel _viewModel;
+
+        private bool _isCreating = false;
 
         public CreateNewAccountDialog(Form parent, string passphrase)
         {
@@ -46,12 +49,31 @@ namespace Axantum.AxCrypt
 
         private void _buttonOk_Click(object sender, EventArgs e)
         {
-            if (!AdHocValidationDueToMonoLimitations())
+            if (_isCreating || !AdHocValidationDueToMonoLimitations())
             {
                 DialogResult = DialogResult.None;
                 return;
             }
-            _viewModel.CreateAccount.Execute(null);
+
+            CreateAccountAsync();
+        }
+
+        private async void CreateAccountAsync()
+        {
+            UseWaitCursor = true;
+            _isCreating = true;
+
+            try
+            {
+                await Task.Run(() => _viewModel.CreateAccount.Execute(null));
+            }
+            finally
+            {
+                _isCreating = false;
+                UseWaitCursor = false;
+            }
+
+            DialogResult = DialogResult.OK;
         }
 
         private bool AdHocValidationDueToMonoLimitations()
@@ -96,6 +118,16 @@ namespace Axantum.AxCrypt
                 return false;
             }
             return true;
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (_isCreating)
+            {
+                e.Cancel = true;
+                MessageBox.Show(this, Resources.OfflineAccountBePatient, Resources.OfflineAccountTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            base.OnFormClosing(e);
         }
     }
 }
