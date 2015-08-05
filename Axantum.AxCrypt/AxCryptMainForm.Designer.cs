@@ -372,17 +372,20 @@
             this._englishLanguageToolStripMenuItem.Name = "_englishLanguageToolStripMenuItem";
             resources.ApplyResources(this._englishLanguageToolStripMenuItem, "_englishLanguageToolStripMenuItem");
             this._englishLanguageToolStripMenuItem.Tag = "en";
+            this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.EnglishLanguageToolStripMenuItem_Click);
             // 
             // _swedishLanguageToolStripMenuItem
             // 
             this._swedishLanguageToolStripMenuItem.Name = "_swedishLanguageToolStripMenuItem";
             resources.ApplyResources(this._swedishLanguageToolStripMenuItem, "_swedishLanguageToolStripMenuItem");
             this._swedishLanguageToolStripMenuItem.Tag = "sv";
+            this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.SwedishLanguageToolStripMenuItem_Click);
             // 
             // _changePassphraseToolStripMenuItem
             // 
             this._changePassphraseToolStripMenuItem.Name = "_changePassphraseToolStripMenuItem";
             resources.ApplyResources(this._changePassphraseToolStripMenuItem, "_changePassphraseToolStripMenuItem");
+            this._changePassphraseToolStripMenuItem.Click += new System.EventHandler(this.ChangePassphraseToolStripMenuItem_Click);
             // 
             // _debugOptionsToolStripMenuItem
             // 
@@ -393,6 +396,7 @@
             // 
             this._clearPassphraseMemoryToolStripMenuItem.Name = "_clearPassphraseMemoryToolStripMenuItem";
             resources.ApplyResources(this._clearPassphraseMemoryToolStripMenuItem, "_clearPassphraseMemoryToolStripMenuItem");
+            this._clearPassphraseMemoryToolStripMenuItem.Click += new System.EventHandler(this.ClearPassphraseMemoryToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -417,11 +421,13 @@
             // 
             this._importOthersSharingKeyToolStripMenuItem.Name = "_importOthersSharingKeyToolStripMenuItem";
             resources.ApplyResources(this._importOthersSharingKeyToolStripMenuItem, "_importOthersSharingKeyToolStripMenuItem");
+            this._importOthersSharingKeyToolStripMenuItem.Click += new System.EventHandler(this.ImportOthersSharingKeyToolStripMenuItem_Click);
             // 
             // _exportSharingKeyToolStripMenuItem
             // 
             this._exportSharingKeyToolStripMenuItem.Name = "_exportSharingKeyToolStripMenuItem";
             resources.ApplyResources(this._exportSharingKeyToolStripMenuItem, "_exportSharingKeyToolStripMenuItem");
+            this._exportSharingKeyToolStripMenuItem.Click += new System.EventHandler(this.ExportMySharingKeyToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -432,11 +438,13 @@
             // 
             this._importMyPrivateKeyToolStripMenuItem.Name = "_importMyPrivateKeyToolStripMenuItem";
             resources.ApplyResources(this._importMyPrivateKeyToolStripMenuItem, "_importMyPrivateKeyToolStripMenuItem");
+            this._importMyPrivateKeyToolStripMenuItem.Click += new System.EventHandler(this.ImportMyPrivateKeyToolStripMenuItem_Click);
             // 
             // _exportMyPrivateKeyToolStripMenuItem
             // 
             this._exportMyPrivateKeyToolStripMenuItem.Name = "_exportMyPrivateKeyToolStripMenuItem";
             resources.ApplyResources(this._exportMyPrivateKeyToolStripMenuItem, "_exportMyPrivateKeyToolStripMenuItem");
+            this._exportMyPrivateKeyToolStripMenuItem.Click += new System.EventHandler(this.ExportMyPrivateKeyToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
@@ -447,6 +455,7 @@
             // 
             this._createAccountToolStripMenuItem.Name = "_createAccountToolStripMenuItem";
             resources.ApplyResources(this._createAccountToolStripMenuItem, "_createAccountToolStripMenuItem");
+            this._createAccountToolStripMenuItem.Click += new System.EventHandler(this.CreateAccountToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 

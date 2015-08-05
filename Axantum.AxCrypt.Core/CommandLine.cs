@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core
 
         private void Run(IList<CommandItem> commandItems)
         {
-            if (commandItems.Count == 0)
+            if (commandItems.Count == 0)                                                                                                                                                                                                                                                                  
             {
                 EnsureFirstInstanceRunning();
                 return;
@@ -100,21 +100,57 @@ namespace Axantum.AxCrypt.Core
 
         private void CallService(CommandVerb verb, int batchId, IEnumerable<string> files)
         {
-            bool firstIsRunning = OS.Current.FirstInstanceRunning(TimeSpan.Zero);
-            if (verb == CommandVerb.Exit && !firstIsRunning)
+            if (EnsureRunningAndShowState(verb))
             {
                 return;
             }
-            if (!firstIsRunning)
-            {
-                StartFirstInstance();
-            }
+
             CommandStatus status = Resolve.CommandService.Call(verb, batchId, files);
             if (status == CommandStatus.Success)
             {
                 return;
             }
             OS.Current.ExitApplication(1);
+        }
+
+        private bool EnsureRunningAndShowState(CommandVerb verb)
+        {
+            if (OS.Current.FirstInstanceRunning(TimeSpan.Zero))
+            {
+                return false;
+            }
+
+            if (verb == CommandVerb.Exit)
+            {
+                return true;
+            }
+
+            StartFirstInstance();
+
+            switch (verb)
+            {
+                case CommandVerb.Register:
+                case CommandVerb.Show:
+                    return true;
+
+                case CommandVerb.Unknown:
+                case CommandVerb.AddFiles:
+                case CommandVerb.Encrypt:
+                case CommandVerb.Decrypt:
+                case CommandVerb.Open:
+                case CommandVerb.Exit:
+                case CommandVerb.Wipe:
+                case CommandVerb.RandomRename:
+                case CommandVerb.About:
+                case CommandVerb.UseForOpen:
+                case CommandVerb.ShowLogOn:
+                case CommandVerb.SetPassphrase:
+                case CommandVerb.SetKeyFile:
+                case CommandVerb.LogOn:
+                    return false;
+            }
+
+            return false;
         }
 
         private void EnsureFirstInstanceRunning()
