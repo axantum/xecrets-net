@@ -73,6 +73,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         public virtual void Add(LogOnIdentity logOnIdentity)
         {
+            if (logOnIdentity == LogOnIdentity.Empty)
+            {
+                return;
+            }
+
             bool changed = false;
             lock (_logOnIdentities)
             {

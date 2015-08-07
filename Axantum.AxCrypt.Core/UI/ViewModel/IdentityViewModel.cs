@@ -250,17 +250,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
             Passphrase passphrase = new Passphrase(logOnArgs.Passphrase);
-            Passphrase identity = _fileSystemState.KnownPassphrases.FirstOrDefault(i => i.Thumbprint == passphrase.Thumbprint);
-            if (identity != null)
+            LogOnIdentity identity = LogOnIdentityFromCredentials(EmailAddress.Parse(logOnArgs.UserEmail), passphrase);
+            if (identity == LogOnIdentity.Empty)
             {
-                return new LogOnIdentity(passphrase);
+                identity = new LogOnIdentity(passphrase);
+                _fileSystemState.KnownPassphrases.Add(passphrase);
+                _fileSystemState.Save();
             }
-
-            identity = passphrase;
-            _fileSystemState.KnownPassphrases.Add(identity);
-            _fileSystemState.Save();
-
-            return new LogOnIdentity(passphrase);
+            _knownIdentities.Add(identity);
+            return identity;
         }
     }
 }

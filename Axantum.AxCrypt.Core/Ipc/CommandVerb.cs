@@ -51,5 +51,6 @@ namespace Axantum.AxCrypt.Core.Ipc
         SetPassphrase,
         SetKeyFile,
         LogOn,
+        StartUp,
     }
 }

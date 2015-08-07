@@ -80,6 +80,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
                 _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
             }
+            _fileSystemState.Save();
         }
 
         private IEnumerable<KnownFolder> UpdateEnabledState(IEnumerable<KnownFolder> knownFolders)

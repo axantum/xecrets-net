@@ -266,8 +266,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     {
                         throw new InvalidOperationException("Attempt to add the empty identity as a known key.");
                     }
-                    _fileSystemState.KnownPassphrases.Add(e.Notification.Identity.Passphrase);
-                    _fileSystemState.Save();
+                    if (!_fileSystemState.KnownPassphrases.Any(p => p.Thumbprint == e.Notification.Identity.Passphrase.Thumbprint))
+                    {
+                        _fileSystemState.KnownPassphrases.Add(e.Notification.Identity.Passphrase);
+                        _fileSystemState.Save();
+                    }
                     break;
 
                 case SessionNotificationType.WorkFolderChange:

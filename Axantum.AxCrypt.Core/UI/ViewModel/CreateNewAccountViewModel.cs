@@ -74,6 +74,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void BindPropertyChangedEvents()
         {
             BindPropertyChangedInternal("ShowPassphrase", (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
+            BindPropertyChangedInternal("UserEmail", (string userEmail) => { if (String.IsNullOrEmpty(Validate("UserEmail"))) { Resolve.UserSettings.UserEmail = userEmail; } });
         }
 
         public override string this[string columnName]

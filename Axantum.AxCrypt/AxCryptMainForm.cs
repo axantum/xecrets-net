@@ -140,23 +140,18 @@ namespace Axantum.AxCrypt
                 return;
             }
             _shownFirstTime = true;
-            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
+            _pendingRequest = new CommandCompleteEventArgs(CommandVerb.StartUp, new string[0]);
+            LogOnAndDoPendingRequest();
         }
 
-        private void LogOnOrExit()
+        private void LogOnAndDoPendingRequest()
         {
-            if (_pendingRequest == null)
-            {
-                return;
-            }
             _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
-            if (!_mainViewModel.LoggedOn)
+            if (_mainViewModel.LoggedOn)
             {
-                _pendingRequest = null;
-                return;
+                DoRequest(_pendingRequest);
             }
-            DoRequest(_pendingRequest);
-            _pendingRequest = null;
+            _pendingRequest = new CommandCompleteEventArgs(CommandVerb.Unknown, new string[0]);
         }
 
         private static void SendStartSessionNotification()
@@ -568,7 +563,7 @@ namespace Axantum.AxCrypt
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
             RestoreWindowWithFocus();
-            if (!String.IsNullOrEmpty(e.EncryptedFileFullName))
+            if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
             {
                 HandleExistingLogOnForEncryptedFile(e);
             }
@@ -779,16 +774,29 @@ namespace Axantum.AxCrypt
             Resolve.UIThread.RunOnUIThread(() => DoRequest(e));
         }
 
-        private CommandCompleteEventArgs _pendingRequest;
+        private CommandCompleteEventArgs _pendingRequest = new CommandCompleteEventArgs(CommandVerb.Unknown, new string[0]);
 
         private void DoRequest(CommandCompleteEventArgs e)
         {
-            if ((e.Verb == CommandVerb.Encrypt) && !Resolve.KnownIdentities.IsLoggedOn)
+            if (!Resolve.KnownIdentities.IsLoggedOn)
             {
-                RestoreWindowWithFocus();
-                _pendingRequest = e;
-                LogOnOrExit();
-                return;
+                switch (e.Verb)
+                {
+                    case CommandVerb.Encrypt:
+                    case CommandVerb.Decrypt:
+                    case CommandVerb.Open:
+                    case CommandVerb.ShowLogOn:
+                        if (_pendingRequest.Verb == CommandVerb.StartUp)
+                        {
+                            _pendingRequest = e;
+                            return;
+                        }
+                        _pendingRequest = e;
+                        LogOnAndDoPendingRequest();
+                        return;
+                    default:
+                        break;
+                }
             }
             switch (e.Verb)
             {
@@ -831,6 +839,9 @@ namespace Axantum.AxCrypt
                         aboutBox.ShowDialog();
                     }
                     break;
+
+                default:
+                    break;
             }
         }
 
@@ -854,20 +865,11 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            if (ContainsFocus && !OwnedForms.Any())
-            {
-                return;
-            }
-            if (!ContainsFocus)
-            {
-                if (WindowState == FormWindowState.Normal)
-                {
-                    WindowState = FormWindowState.Minimized;
-                }
-                Show();
-                WindowState = FormWindowState.Normal;
-                Activate();
-            }
+            
+            Show();
+            WindowState = FormWindowState.Normal;
+            Activate();
+
             if (OwnedForms.Any())
             {
                 OwnedForms.First().Focus();

@@ -87,10 +87,20 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestAddSameKeyTwice()
+        public void TestAddEmptyKey()
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             LogOnIdentity key = new LogOnIdentity(String.Empty);
+            knownIdentities.Add(key);
+            knownIdentities.Add(key);
+            Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(0), "No key should be in the collection even if added twice, since it is empty.");
+        }
+
+        [Test]
+        public void TestAddSameKeyTwice()
+        {
+            KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
+            LogOnIdentity key = new LogOnIdentity("abc");
             knownIdentities.Add(key);
             knownIdentities.Add(key);
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(1), "Only one key should be in the collection even if added twice.");
@@ -141,6 +151,21 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public void TestChangedEventWhenAddingEmptyIdentity()
+        {
+            bool wasChanged = false;
+            SessionNotify notificationMonitor = new SessionNotify();
+            KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, notificationMonitor);
+            notificationMonitor.Notification += (object sender, SessionNotificationEventArgs e) =>
+            {
+                wasChanged |= e.Notification.NotificationType == SessionNotificationType.KnownKeyChange;
+            };
+            LogOnIdentity key1 = new LogOnIdentity(String.Empty);
+            knownIdentities.Add(key1);
+            Assert.That(wasChanged, Is.False, "A new key should not trigger the Changed event.");
+        }
+
+        [Test]
         public void TestChangedEvent()
         {
             bool wasChanged = false;
@@ -150,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 wasChanged |= e.Notification.NotificationType == SessionNotificationType.KnownKeyChange;
             };
-            LogOnIdentity key1 = LogOnIdentity.Empty;
+            LogOnIdentity key1 = new LogOnIdentity("abc");
             knownIdentities.Add(key1);
             Assert.That(wasChanged, Is.True, "A new key should trigger the Changed event.");
             wasChanged = false;

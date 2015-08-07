@@ -243,10 +243,13 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            if (sourceFileInfo.IsLocked)
+            using (FileLock fileLock = FileLock.Lock(sourceFileInfo))
             {
-                _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, FileOperationStatus.FileLocked);
-                return false;
+                if (sourceFileInfo.IsLocked)
+                {
+                    _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, FileOperationStatus.FileLocked);
+                    return false;
+                }
             }
 
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
@@ -366,10 +369,13 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool WipeFilePreparation(IDataStore fileInfo)
         {
-            if (fileInfo.IsLocked)
+            using (FileLock fileLock = FileLock.Lock(fileInfo))
             {
-                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, FileOperationStatus.FileLocked);
-                return false;
+                if (fileInfo.IsLocked)
+                {
+                    _eventArgs.Status = new FileOperationContext(fileInfo.FullName, FileOperationStatus.FileLocked);
+                    return false;
+                }
             }
 
             _eventArgs.OpenFileFullName = fileInfo.FullName;
