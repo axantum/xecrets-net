@@ -279,8 +279,8 @@ namespace Axantum.AxCrypt
 
             _updateStatusButton.Click += _updateToolStripButton_Click;
             _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
-            _closeOpenFilesToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
-            _changePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
+            _cleanDecryptedToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
+            _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
 
             InitializePolicyMenu();
         }
@@ -294,7 +294,7 @@ namespace Axantum.AxCrypt
                 item.Text = policyName;
                 item.Checked = policyName == currentPolicyName;
                 item.Click += PolicyMenuItem_Click;
-                cryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
+                _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
             }
         }
 
@@ -403,8 +403,8 @@ namespace Axantum.AxCrypt
             _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { SetWindowTextWithLogonStatus(loggedOn); });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _manageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _changePassphraseToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _debugManageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
+            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _optionsChangePassphraseToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportMyPrivateKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
             _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.AsymmetricKeysStore.Keys.Any(); });
@@ -420,14 +420,14 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("FilesArePending", (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; });
             _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
-            _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { encryptedFoldersToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { _encryptedFoldersToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("RecentFiles", (IEnumerable<ActiveFile> files) => { UpdateRecentFiles(files); });
             _mainViewModel.BindPropertyChanged("VersionUpdateStatus", (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
             _mainViewModel.BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
 
-            _checkVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck.Execute(DateTime.MinValue); };
-            _clearPassphraseMemoryToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
-            _debugOptionsToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
+            _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck.Execute(DateTime.MinValue); };
+            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
+            _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _removeRecentFileToolStripMenuItem.Click += (sender, e) => { _mainViewModel.RemoveRecentFiles.Execute(_mainViewModel.SelectedRecentFiles); };
 
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
@@ -463,7 +463,7 @@ namespace Axantum.AxCrypt
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
-            _wipeToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.WipeFiles.Execute(null); };
+            _secureDeleteToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.WipeFiles.Execute(null); };
 
             _watchedFoldersListView.MouseDoubleClick += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
             _watchedFoldersdecryptTemporarilyMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFolders.Execute(_mainViewModel.SelectedWatchedFolders); };
@@ -794,6 +794,7 @@ namespace Axantum.AxCrypt
                         _pendingRequest = e;
                         LogOnAndDoPendingRequest();
                         return;
+
                     default:
                         break;
                 }
@@ -865,7 +866,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            
+
             Show();
             WindowState = FormWindowState.Normal;
             Activate();
@@ -975,7 +976,7 @@ namespace Axantum.AxCrypt
 
         private void UpdateDebugMode(bool enabled)
         {
-            _debugOptionsToolStripMenuItem.Checked = enabled;
+            _optionsDebugToolStripMenuItem.Checked = enabled;
             _debugToolStripMenuItem.Visible = enabled;
         }
 
