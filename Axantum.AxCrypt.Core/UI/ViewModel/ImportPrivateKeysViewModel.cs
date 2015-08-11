@@ -139,10 +139,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void ImportFileAction()
         {
             IDataStore privateKeyData = TypeMap.Resolve.New<IDataStore>(PrivateKeyFileName);
+            EmailAddress userEmail;
             using (Stream stream = privateKeyData.OpenRead())
             {
-                ImportSuccessful = _keysStore.ImportKeysStore(stream, new Passphrase(Passphrase));
+                userEmail = _keysStore.ImportKeysStore(stream, new Passphrase(Passphrase));
             }
+            if (userEmail == EmailAddress.Empty)
+            {
+                return;
+            }
+            _userSettings.UserEmail = userEmail.Address;
         }
     }
 }

@@ -227,16 +227,16 @@ namespace Axantum.AxCrypt.Core.Session
             return GetSaveDataForKeys(CurrentKeys, _fileFormat.InvariantFormat(CurrentKeys.KeyPair.PublicKey.Tag), passphrase);
         }
 
-        public bool ImportKeysStore(Stream keysStore, Passphrase passphrase)
+        public EmailAddress ImportKeysStore(Stream keysStore, Passphrase passphrase)
         {
             UserAsymmetricKeys keys = TryLoadKeys(keysStore, passphrase);
             if (keys == null)
             {
-                return false;
+                return EmailAddress.Empty;
             }
 
             SaveKeysStoreFile(FileForUserKeys(keys), keys, passphrase);
-            return true;
+            return keys.UserEmail;
         }
 
         private static UserAsymmetricKeys TryLoadKeys(Stream encryptedStream, Passphrase passphrase)
