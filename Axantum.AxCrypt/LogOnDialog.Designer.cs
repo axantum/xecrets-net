@@ -100,6 +100,7 @@
             // 
             // _buttonOk
             // 
+            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this._buttonOk, "_buttonOk");
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;

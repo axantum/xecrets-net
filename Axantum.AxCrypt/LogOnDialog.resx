@@ -136,7 +136,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="_buttonOk.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>0</value>
   </data>
   <data name="_buttonOk.Text" xml:space="preserve">
     <value>OK</value>
@@ -172,7 +172,7 @@
     <value>75, 23</value>
   </data>
   <data name="_buttonCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>1</value>
   </data>
   <data name="_buttonCancel.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -208,7 +208,7 @@
     <value>111, 17</value>
   </data>
   <data name="ShowPassphraseCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>1</value>
   </data>
   <data name="ShowPassphraseCheckBox.Text" xml:space="preserve">
     <value>Show Passphrase</value>
@@ -238,7 +238,7 @@
     <value>75, 23</value>
   </data>
   <data name="_newButton.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>2</value>
   </data>
   <data name="_newButton.Text" xml:space="preserve">
     <value>&amp;New</value>
@@ -262,7 +262,7 @@
     <value>273, 37</value>
   </data>
   <data name="_panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;_panel1.Name" xml:space="preserve">
     <value>_panel1</value>
@@ -307,7 +307,7 @@
     <value>298, 131</value>
   </data>
   <data name="PassphraseGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>0</value>
   </data>
   <data name="PassphraseGroupBox.Text" xml:space="preserve">
     <value>Enter Passphrase</value>
@@ -334,7 +334,7 @@
     <value>376, 161</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;panel1.Name" xml:space="preserve">
     <value>panel1</value>
@@ -361,7 +361,7 @@
     <value>242, 20</value>
   </data>
   <data name="FileNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;FileNameTextBox.Name" xml:space="preserve">
     <value>FileNameTextBox</value>
@@ -412,7 +412,7 @@
     <value>376, 59</value>
   </data>
   <data name="FileNamePanel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;FileNamePanel.Name" xml:space="preserve">
     <value>FileNamePanel</value>

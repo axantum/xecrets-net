@@ -68,7 +68,7 @@
             this.PassphraseGroupBox.Location = new System.Drawing.Point(2, 47);
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
             this.PassphraseGroupBox.Size = new System.Drawing.Size(280, 125);
-            this.PassphraseGroupBox.TabIndex = 1;
+            this.PassphraseGroupBox.TabIndex = 2;
             this.PassphraseGroupBox.TabStop = false;
             this.PassphraseGroupBox.Text = "Enter Passphrase";
             // 
@@ -107,7 +107,7 @@
             this._panel1.Location = new System.Drawing.Point(42, 177);
             this._panel1.Name = "_panel1";
             this._panel1.Size = new System.Drawing.Size(200, 37);
-            this._panel1.TabIndex = 1;
+            this._panel1.TabIndex = 0;
             // 
             // _buttonCancel
             // 
@@ -117,7 +117,7 @@
             this._buttonCancel.Location = new System.Drawing.Point(103, 11);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this._buttonCancel.TabIndex = 0;
+            this._buttonCancel.TabIndex = 1;
             this._buttonCancel.Text = "Cancel";
             this._buttonCancel.UseVisualStyleBackColor = true;
             // 
@@ -148,7 +148,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(280, 44);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Email";
             // 

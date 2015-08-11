@@ -28,8 +28,10 @@ namespace Axantum.AxCrypt
             _viewModel.BindPropertyChanged("UserEmail", (string userEmail) => { EmailTextBox.Text = userEmail; });
 
             PassphraseTextBox.LostFocus += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
+            PassphraseTextBox.Validating += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
             EmailTextBox.LostFocus += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocValidateEmail(); };
+            EmailTextBox.Validating += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocValidateEmail(); };
 
             Owner = parent;
             StartPosition = FormStartPosition.CenterParent;
@@ -65,7 +67,7 @@ namespace Axantum.AxCrypt
 
         private bool AdHocValidatePassphrase()
         {
-            _errorProvider2.Clear();
+            _errorProvider1.Clear();
             if (_viewModel["Passphrase"].Length != 0)
             {
                 _errorProvider1.SetError(PassphraseTextBox, EmailTextBox.Text.Length > 0 ? Resources.WrongPassphrase : Resources.UnkownLogOn);
@@ -76,8 +78,8 @@ namespace Axantum.AxCrypt
 
         private bool AdHocValidateEmail()
         {
-            _errorProvider1.Clear();
-            if (_viewModel["UserEmail"].Length != 0)
+            _errorProvider2.Clear();
+            if (EmailTextBox.Text.Length == 0 || _viewModel["UserEmail"].Length != 0)
             {
                 _errorProvider2.SetError(EmailTextBox, Resources.BadEmail);
                 return false;

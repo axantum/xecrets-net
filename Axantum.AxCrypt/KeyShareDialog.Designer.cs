@@ -61,7 +61,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.Size = new System.Drawing.Size(484, 161);
-            this.tableLayoutPanel3.TabIndex = 1;
+            this.tableLayoutPanel3.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
@@ -81,7 +81,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(478, 120);
-            this.tableLayoutPanel1.TabIndex = 3;
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -90,7 +90,7 @@
             this.groupBox2.Location = new System.Drawing.Point(292, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(183, 114);
-            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Not Shared With";
             // 
@@ -102,7 +102,7 @@
             this._notSharedWithListBox.Name = "_notSharedWithListBox";
             this._notSharedWithListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this._notSharedWithListBox.Size = new System.Drawing.Size(177, 95);
-            this._notSharedWithListBox.TabIndex = 1;
+            this._notSharedWithListBox.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
@@ -118,7 +118,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(64, 58);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutPanel2.TabIndex = 2;
             // 
             // _unshareButton
             // 
@@ -163,7 +163,7 @@
             this._sharedWithListBox.Name = "_sharedWithListBox";
             this._sharedWithListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this._sharedWithListBox.Size = new System.Drawing.Size(177, 95);
-            this._sharedWithListBox.TabIndex = 1;
+            this._sharedWithListBox.TabIndex = 0;
             // 
             // tableLayoutPanel4
             // 
@@ -179,7 +179,7 @@
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(162, 29);
-            this.tableLayoutPanel4.TabIndex = 4;
+            this.tableLayoutPanel4.TabIndex = 1;
             // 
             // _cancelButton
             // 

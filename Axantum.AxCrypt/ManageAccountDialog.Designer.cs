@@ -36,10 +36,11 @@
             // 
             // _changePassphraseButton
             // 
+            this._changePassphraseButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._changePassphraseButton.Location = new System.Drawing.Point(76, 128);
             this._changePassphraseButton.Name = "_changePassphraseButton";
             this._changePassphraseButton.Size = new System.Drawing.Size(135, 23);
-            this._changePassphraseButton.TabIndex = 1;
+            this._changePassphraseButton.TabIndex = 2;
             this._changePassphraseButton.Text = "Change Passphrase";
             this._changePassphraseButton.UseVisualStyleBackColor = true;
             this._changePassphraseButton.Click += new System.EventHandler(this._changePassphraseButton_Click);
@@ -54,7 +55,7 @@
             this._accountEmailsListView.Name = "_accountEmailsListView";
             this._accountEmailsListView.ShowGroups = false;
             this._accountEmailsListView.Size = new System.Drawing.Size(260, 97);
-            this._accountEmailsListView.TabIndex = 2;
+            this._accountEmailsListView.TabIndex = 1;
             this._accountEmailsListView.UseCompatibleStateImageBehavior = false;
             this._accountEmailsListView.View = System.Windows.Forms.View.Details;
             this._accountEmailsListView.SelectedIndexChanged += new System.EventHandler(this._accountEmailsListView_SelectedIndexChanged);
@@ -69,7 +70,7 @@
             this._emailLabel.Location = new System.Drawing.Point(12, 9);
             this._emailLabel.Name = "_emailLabel";
             this._emailLabel.Size = new System.Drawing.Size(108, 13);
-            this._emailLabel.TabIndex = 3;
+            this._emailLabel.TabIndex = 0;
             this._emailLabel.Text = "email@company.com";
             // 
             // ManageAccountDialog

@@ -85,7 +85,7 @@
             this._panel1.Location = new System.Drawing.Point(57, 68);
             this._panel1.Name = "_panel1";
             this._panel1.Size = new System.Drawing.Size(173, 36);
-            this._panel1.TabIndex = 1;
+            this._panel1.TabIndex = 2;
             // 
             // _buttonCancel
             // 
@@ -159,7 +159,7 @@
             this._privateKeyFileTextBox.Location = new System.Drawing.Point(3, 5);
             this._privateKeyFileTextBox.Name = "_privateKeyFileTextBox";
             this._privateKeyFileTextBox.Size = new System.Drawing.Size(216, 20);
-            this._privateKeyFileTextBox.TabIndex = 11;
+            this._privateKeyFileTextBox.TabIndex = 0;
             // 
             // _browsePrivateKeyFileButton
             // 
@@ -170,7 +170,7 @@
             this._browsePrivateKeyFileButton.Location = new System.Drawing.Point(225, 3);
             this._browsePrivateKeyFileButton.Name = "_browsePrivateKeyFileButton";
             this._browsePrivateKeyFileButton.Size = new System.Drawing.Size(27, 24);
-            this._browsePrivateKeyFileButton.TabIndex = 12;
+            this._browsePrivateKeyFileButton.TabIndex = 1;
             this._browsePrivateKeyFileButton.Text = "...";
             this._browsePrivateKeyFileButton.UseVisualStyleBackColor = true;
             this._browsePrivateKeyFileButton.Click += new System.EventHandler(this._browsePrivateKeyFileButton_Click);

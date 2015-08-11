@@ -70,7 +70,7 @@
             this.PassphraseGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 13);
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
             this.PassphraseGroupBox.Size = new System.Drawing.Size(298, 131);
-            this.PassphraseGroupBox.TabIndex = 6;
+            this.PassphraseGroupBox.TabIndex = 0;
             this.PassphraseGroupBox.TabStop = false;
             this.PassphraseGroupBox.Text = "Enter Passphrase";
             // 
@@ -122,6 +122,7 @@
             // 
             // _buttonOk
             // 
+            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._buttonOk.Location = new System.Drawing.Point(17, 7);
             this._buttonOk.Name = "_buttonOk";
@@ -133,6 +134,7 @@
             // 
             // PassphraseTextBox
             // 
+            this.PassphraseTextBox.AcceptsReturn = true;
             this.PassphraseTextBox.Location = new System.Drawing.Point(7, 20);
             this.PassphraseTextBox.Name = "PassphraseTextBox";
             this.PassphraseTextBox.Size = new System.Drawing.Size(242, 20);
@@ -169,7 +171,7 @@
             this.EmailTextBox.Location = new System.Drawing.Point(9, 18);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(242, 20);
-            this.EmailTextBox.TabIndex = 1;
+            this.EmailTextBox.TabIndex = 0;
             // 
             // _errorProvider2
             // 
