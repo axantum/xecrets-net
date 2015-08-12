@@ -91,6 +91,7 @@
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
+            this._recentFilesOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -115,6 +116,7 @@
             // _recentFilesContextMenuStrip
             // 
             this._recentFilesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._recentFilesOpenToolStripMenuItem,
             this._removeRecentFileToolStripMenuItem,
             this._decryptAndRemoveFromListToolStripMenuItem,
             this._shareKeysToolStripMenuItem});
@@ -623,6 +625,11 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
+            // _recentFilesOpenToolStripMenuItem
+            // 
+            this._recentFilesOpenToolStripMenuItem.Name = "_recentFilesOpenToolStripMenuItem";
+            resources.ApplyResources(this._recentFilesOpenToolStripMenuItem, "_recentFilesOpenToolStripMenuItem");
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -732,6 +739,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStrip _updateStatusToolStrip;
         private System.Windows.Forms.ToolStripButton _updateStatusButton;
+        private System.Windows.Forms.ToolStripMenuItem _recentFilesOpenToolStripMenuItem;
     }
 }
 
