@@ -1602,7 +1602,7 @@ namespace Axantum.AxCrypt
 
         private void ImportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ImportPrivatePasswordDialog dialog = new ImportPrivatePasswordDialog(this, Resolve.AsymmetricKeysStore, Resolve.UserSettings))
+            using (ImportPrivatePasswordDialog dialog = new ImportPrivatePasswordDialog(this, Resolve.AsymmetricKeysStore, Resolve.UserSettings, Resolve.KnownIdentities))
             {
                 dialog.ShowDialog();
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,12 @@ namespace Axantum.AxCrypt.Core.UI
     /// A strongly typed representation of an e-mail address.
     /// </summary>
     /// <remarks>Instances of this type are immutable.</remarks>
+    [JsonObject(MemberSerialization.OptIn)]
     public class EmailAddress : IEquatable<EmailAddress>
     {
         public static readonly EmailAddress Empty = new EmailAddress();
 
+        [JsonProperty("address")]
         public string Address { get; private set; }
 
         private EmailAddress()

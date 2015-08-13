@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -43,6 +44,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private IUserSettings _userSettings;
 
+        private KnownIdentities _knownIdentities;
+
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
 
         public string Passphrase { get { return GetProperty<string>("Passphrase"); } set { SetProperty("Passphrase", value); } }
@@ -51,10 +54,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool ImportSuccessful { get { return GetProperty<bool>("ImportSuccessful"); } set { SetProperty("ImportSuccessful", value); } }
 
-        public ImportPrivateKeysViewModel(UserAsymmetricKeysStore keysStore, IUserSettings userSettings)
+        public ImportPrivateKeysViewModel(UserAsymmetricKeysStore keysStore, IUserSettings userSettings, KnownIdentities knownIdentities)
         {
             _keysStore = keysStore;
             _userSettings = userSettings;
+            _knownIdentities = knownIdentities;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
@@ -140,15 +144,23 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             IDataStore privateKeyData = TypeMap.Resolve.New<IDataStore>(PrivateKeyFileName);
             EmailAddress userEmail;
+            Passphrase passphrase = new Passphrase(Passphrase);
             using (Stream stream = privateKeyData.OpenRead())
             {
-                userEmail = _keysStore.ImportKeysStore(stream, new Passphrase(Passphrase));
+                userEmail = _keysStore.ImportKeysStore(stream, passphrase);
             }
             if (userEmail == EmailAddress.Empty)
             {
+                ImportSuccessful = false;
                 return;
             }
+            if (!_keysStore.Load(userEmail, passphrase))
+            {
+                throw new InvalidOperationException("Could not load the just imported keys for '{0}'.".InvariantFormat(userEmail.Address));
+            }
+            ImportSuccessful = true;
             _userSettings.UserEmail = userEmail.Address;
+            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(_keysStore.CurrentKeys, passphrase);
         }
     }
 }

@@ -21,10 +21,10 @@ namespace Axantum.AxCrypt
             new Styling(Resources.axcrypticon).Style(this);
         }
 
-        public ImportPrivatePasswordDialog(Form parent, UserAsymmetricKeysStore keysStore, IUserSettings userSettings)
+        public ImportPrivatePasswordDialog(Form parent, UserAsymmetricKeysStore keysStore, IUserSettings userSettings, KnownIdentities knownIdentities)
             : this()
         {
-            _viewModel = new ImportPrivateKeysViewModel(keysStore, userSettings);
+            _viewModel = new ImportPrivateKeysViewModel(keysStore, userSettings, knownIdentities);
 
             _privateKeyFileTextBox.TextChanged += (sender, e) => { _viewModel.PrivateKeyFileName = _privateKeyFileTextBox.Text; };
             _passphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = _passphraseTextBox.Text; _privateKeyFileTextBox.ScrollToCaret(); };
