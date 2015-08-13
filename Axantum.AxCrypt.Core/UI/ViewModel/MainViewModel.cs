@@ -290,7 +290,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetRecentFiles()
         {
-            List<ActiveFile> activeFiles = new List<ActiveFile>(_fileSystemState.ActiveFiles).Where(af => !af.Status.HasFlag(ActiveFileStatus.Inactive)).ToList();
+            List<ActiveFile> activeFiles = new List<ActiveFile>(_fileSystemState.ActiveFiles).ToList();
             if (RecentFilesComparer != null)
             {
                 activeFiles.Sort(RecentFilesComparer);
@@ -341,7 +341,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             foreach (string file in files)
             {
                 ActiveFile activeFile = _fileSystemState.FindActiveFileFromEncryptedPath(file);
-                if (activeFile != null && !activeFile.Status.HasFlag(ActiveFileStatus.Inactive))
+                if (activeFile != null)
                 {
                     _fileSystemState.RemoveActiveFile(activeFile);
                 }

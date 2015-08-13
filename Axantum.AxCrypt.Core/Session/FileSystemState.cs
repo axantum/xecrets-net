@@ -318,20 +318,7 @@ namespace Axantum.AxCrypt.Core.Session
                     if (!activeFile.EncryptedFileInfo.IsAvailable)
                     {
                         RemoveActiveFile(activeFile);
-                        continue;
                     }
-                    if (!activeFile.Status.HasFlag(ActiveFileStatus.Inactive))
-                    {
-                        continue;
-                    }
-                    Guid cryptoId;
-                    LogOnIdentity passphrase = activeFile.EncryptedFileInfo.TryFindPassphrase(out cryptoId);
-                    if (passphrase == null)
-                    {
-                        continue;
-                    }
-                    ActiveFile resurrectedActiveFile = new ActiveFile(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, passphrase, activeFile.Status & ~ActiveFileStatus.Inactive, cryptoId);
-                    Add(resurrectedActiveFile);
                 }
             }
             Save();
@@ -349,10 +336,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
             lock (_activeFilesByEncryptedPath)
             {
-                activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.Inactive);
-                _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
+                _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
-            OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));
+            OnActiveFileChanged(new ActiveFileChangedEventArgs(new ActiveFile(activeFile, ActiveFileStatus.None)));
         }
 
         public virtual void ChangeActiveFile(string oldFullName, string newFullName)
@@ -386,7 +372,6 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
-            TypeMap.Resolve.Singleton<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
         }
 
         private List<ActiveFile> _activeFilesForSerialization;

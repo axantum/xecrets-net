@@ -615,8 +615,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Resolve.New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { TypeMap.Resolve.New<IDataStore>(encryptedFileInfo.FullName) }, new ProgressContext());
 
             ActiveFile afterRemoval = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
-            Assert.That(afterRemoval, Is.Not.Null, "After being removed, the ActiveFile should still be possible to find.");
-            Assert.That(afterRemoval.Status.HasFlag(ActiveFileStatus.Inactive), "But after the Remove(), the active file should have the inactive flag set.");
+            Assert.That(afterRemoval, Is.Null, "After being removed, the ActiveFile should not be possible to find.");
         }
 
         [Test]

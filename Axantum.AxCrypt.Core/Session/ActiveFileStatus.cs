@@ -45,7 +45,6 @@ namespace Axantum.AxCrypt.Core.Session
         NotShareable = 16,
 
         IgnoreChange = 32,
-        Inactive = 64,
 
         /// <summary>
         /// Set when an application was launched for the file, but no process could be seen to be started. This typically happens
