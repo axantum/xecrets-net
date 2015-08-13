@@ -95,25 +95,55 @@ namespace Axantum.AxCrypt
 
         private static void CheckSkyDrive(IList<KnownFolder> knownFolders)
         {
-            RegistryKey skyDriveKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\SkyDrive");
-            if (skyDriveKey == null)
-            {
-                return;
-            }
-
-            string skyDriveFolder = skyDriveKey.GetValue("UserFolder") as string;
+            string skyDriveFolder = FindOneDriveFolder();
             if (String.IsNullOrEmpty(skyDriveFolder) || !Directory.Exists(skyDriveFolder))
             {
                 return;
             }
 
-            Uri url = new Uri("https://skydrive.live.com/");
+            Uri url = new Uri("https://onedrive.live.com/");
 
             Bitmap bitmap = Resources.skydrive_40px;
             IDataContainer skyDriveFolderInfo = TypeMap.Resolve.New<IDataContainer>(skyDriveFolder);
             KnownFolder knownFolder = new KnownFolder(skyDriveFolderInfo, Resources.MyAxCryptFolderName, bitmap, url);
 
             knownFolders.Add(knownFolder);
+        }
+
+        private static string FindOneDriveFolder()
+        {
+            string skyDriveFolder = null;
+
+            skyDriveFolder = TryRegistryLocationForOneDriveFolder(@"Software\Microsoft\OneDrive");
+            if (skyDriveFolder != null)
+            {
+                return skyDriveFolder;
+            }
+
+            skyDriveFolder = TryRegistryLocationForOneDriveFolder(@"Software\Microsoft\Windows\CurrentVersion\SkyDrive");
+            if (skyDriveFolder != null)
+            {
+                return skyDriveFolder;
+            }
+
+            return null;
+        }
+
+        private static string TryRegistryLocationForOneDriveFolder(string name)
+        {
+            RegistryKey skyDriveKey = Registry.CurrentUser.OpenSubKey(name);
+            if (skyDriveKey == null)
+            {
+                return null;
+            }
+
+            string skyDriveFolder = skyDriveKey.GetValue("UserFolder") as string;
+            if (String.IsNullOrEmpty(skyDriveFolder))
+            {
+                return null;
+            }
+
+            return skyDriveFolder;
         }
 
         private static void CheckGoogleDrive(IList<KnownFolder> knownFolders)
