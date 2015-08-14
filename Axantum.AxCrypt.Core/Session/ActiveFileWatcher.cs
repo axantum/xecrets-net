@@ -1,7 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -36,13 +35,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void HandleActiveFileFolderChangedEvent(object sender, FileWatcherEventArgs e)
         {
-            if (String.IsNullOrEmpty(e.OldName))
-            {
-                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles, e.FullName));
-                return;
-            }
-
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.FileMove, e.FullName, e.OldName));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.UpdateActiveFiles, e.FullNames));
         }
 
         public void Dispose()

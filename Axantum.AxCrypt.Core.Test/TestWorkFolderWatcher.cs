@@ -60,14 +60,14 @@ namespace Axantum.AxCrypt.Core.Test
                 string fileName = Resolve.WorkFolder.FileInfo.FileItemInfo("New File.txt").FullName;
                 FakeDataStore.AddFile(fileName, null);
 
-                Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileName)), Times.Once);
+                Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullNames.SequenceEqual(new string[] { fileName }))), Times.Once);
 
                 TypeMap.Resolve.New<IDataStore>(fileName).Delete();
-                Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileName)), Times.Exactly(2));
+                Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullNames.SequenceEqual(new string[] { fileName }))), Times.Exactly(2));
 
                 IDataStore fileSystemStateInfo = Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt");
                 fileSystemStateInfo.Delete();
-                Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileSystemStateInfo.FullName)), Times.Never);
+                Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullNames.SequenceEqual(new string[] { fileSystemStateInfo.FullName }))), Times.Never);
             }
         }
     }

@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -35,46 +36,43 @@ namespace Axantum.AxCrypt.Core.Session
     {
         public LogOnIdentity Identity { get; private set; }
 
-        public string FullName { get; private set; }
-
-        public string OtherFullName { get; private set; }
+        public IEnumerable<string> FullNames { get; private set; }
 
         public SessionNotificationType NotificationType { get; private set; }
 
-        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, string fullName, string otherFullName)
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, IEnumerable<string> fullNames)
         {
             NotificationType = notificationType;
             Identity = identity;
-            FullName = fullName;
-            OtherFullName = otherFullName;
+            FullNames = fullNames;
         }
 
         public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, string fullName)
-            : this(notificationType, identity, fullName, String.Empty)
+            : this(notificationType, identity, new string[] { fullName })
         {
         }
 
-        public SessionNotification(SessionNotificationType notificationType, string fullName, string otherFullName)
-            : this(notificationType, LogOnIdentity.Empty, fullName, otherFullName)
+        public SessionNotification(SessionNotificationType notificationType, IEnumerable<string> fullNames)
+            : this(notificationType, LogOnIdentity.Empty, fullNames)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType, string fullName)
-            : this(notificationType, LogOnIdentity.Empty, fullName)
+            : this(notificationType, LogOnIdentity.Empty, new string[] { fullName })
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity)
-            : this(notificationType, identity, String.Empty)
+            : this(notificationType, identity, new string[0])
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType)
-            : this(notificationType, LogOnIdentity.Empty, String.Empty)
+            : this(notificationType, LogOnIdentity.Empty, new string[0])
         {
         }
 
-        #region IEquatable<AesKey> Members
+        #region IEquatable<SessionNotification> Members
 
         public bool Equals(SessionNotification other)
         {
@@ -93,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return false;
             }
 
-            if (other.FullName != FullName)
+            if (!other.FullNames.SequenceEqual(FullNames))
             {
                 return false;
             }
@@ -101,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Session
             return true;
         }
 
-        #endregion IEquatable<AesKey> Members
+        #endregion IEquatable<SessionNotification> Members
 
         public override bool Equals(object obj)
         {
@@ -119,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Session
             int hashcode;
 
             hashcode = Identity != null ? Identity.GetHashCode() : 0;
-            hashcode ^= FullName != null ? FullName.GetHashCode() : 0;
+            hashcode ^= FullNames.Aggregate(0, (i, s) => i ^ s.GetHashCode());
             hashcode ^= NotificationType.GetHashCode();
 
             return hashcode;

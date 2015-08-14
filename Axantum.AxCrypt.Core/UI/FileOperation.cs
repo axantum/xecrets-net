@@ -33,7 +33,6 @@ using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -266,18 +265,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         private static IDataContainer GetTemporaryDestinationFolder(ActiveFile destinationActiveFile)
         {
-            string destinationFolder;
             if (destinationActiveFile != null)
             {
-                destinationFolder = Resolve.Portable.Path().GetDirectoryName(destinationActiveFile.DecryptedFileInfo.FullName);
+                return destinationActiveFile.DecryptedFileInfo.Container;
             }
-            else
-            {
-                destinationFolder = Resolve.Portable.Path().Combine(TypeMap.Resolve.Singleton<WorkFolder>().FileInfo.FullName, Resolve.Portable.Path().GetFileNameWithoutExtension(Resolve.Portable.Path().GetRandomFileName()) + Resolve.Portable.Path().DirectorySeparatorChar);
-            }
-            IDataContainer destinationFolderInfo = TypeMap.Resolve.New<IDataContainer>(destinationFolder);
-            destinationFolderInfo.CreateFolder();
-            return destinationFolderInfo;
+            return TypeMap.Resolve.Singleton<WorkFolder>().CreateTemporaryFolder();
         }
 
         public static string GetTemporaryDestinationName(string fileName)

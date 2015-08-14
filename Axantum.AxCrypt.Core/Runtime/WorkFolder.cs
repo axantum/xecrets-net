@@ -40,5 +40,14 @@ namespace Axantum.AxCrypt.Core.Runtime
         }
 
         public IDataContainer FileInfo { get; private set; }
+
+        public IDataContainer CreateTemporaryFolder()
+        {
+            string destinationFolder = Resolve.Portable.Path().Combine(TypeMap.Resolve.Singleton<WorkFolder>().FileInfo.FullName, Resolve.Portable.Path().GetFileNameWithoutExtension(Resolve.Portable.Path().GetRandomFileName()) + Resolve.Portable.Path().DirectorySeparatorChar);
+            IDataContainer destinationFolderInfo = TypeMap.Resolve.New<IDataContainer>(destinationFolder);
+            destinationFolderInfo.CreateFolder();
+
+            return destinationFolderInfo;
+        }
     }
 }

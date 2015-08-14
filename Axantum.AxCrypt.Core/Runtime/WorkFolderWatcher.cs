@@ -45,11 +45,15 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
         {
-            if (e.FullName == Resolve.FileSystemState.PathInfo.FullName)
+            foreach (string fullName in e.FullNames)
             {
-                return;
+                if (fullName == Resolve.FileSystemState.PathInfo.FullName)
+                {
+                    continue;
+                }
+
+                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, fullName));
             }
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, e.FullName));
         }
 
         public void Dispose()

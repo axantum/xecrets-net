@@ -158,9 +158,12 @@ namespace Axantum.AxCrypt.Core.Session
         private void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
         {
             WatchedFolder watchedFolder = (WatchedFolder)sender;
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(e.FullName);
-            HandleWatchedFolderChanges(watchedFolder, fileInfo);
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
+            foreach (string fullName in e.FullNames)
+            {
+                IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(fullName);
+                HandleWatchedFolderChanges(watchedFolder, fileInfo);
+                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
+            }
         }
 
         private void HandleWatchedFolderChanges(WatchedFolder watchedFolder, IDataItem fileInfo)
@@ -309,10 +312,14 @@ namespace Axantum.AxCrypt.Core.Session
             Add(activeFile);
         }
 
-        public virtual void PurgeActiveFiles()
+        public virtual void UpdateActiveFiles(IEnumerable<string> fullNames)
         {
             foreach (ActiveFile activeFile in ActiveFiles)
             {
+                if (!fullNames.Contains(activeFile.EncryptedFileInfo.FullName))
+                {
+                    continue;
+                }
                 using (FileLock fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
                 {
                     if (!activeFile.EncryptedFileInfo.IsAvailable)
@@ -320,6 +327,31 @@ namespace Axantum.AxCrypt.Core.Session
                         RemoveActiveFile(activeFile);
                     }
                 }
+            }
+            foreach (string fullName in fullNames)
+            {
+                IDataStore item = TypeMap.Resolve.New<IDataStore>(fullName);
+                if (!item.IsEncrypted())
+                {
+                    continue;
+                }
+                if (!item.IsAvailable)
+                {
+                    continue;
+                }
+                EncryptedProperties properties = EncryptedProperties.Create(item);
+                if (!properties.IsValid)
+                {
+                    continue;
+                }
+                ActiveFile activeFile = FindActiveFileFromEncryptedPath(fullName);
+                if (activeFile != null)
+                {
+                    continue;
+                }
+                IDataStore destination = Resolve.WorkFolder.CreateTemporaryFolder().FileItemInfo(properties.FileName);
+                activeFile = new ActiveFile(item, destination, Resolve.KnownIdentities.DefaultEncryptionIdentity, ActiveFileStatus.NotDecrypted, properties.DecryptionParameter.CryptoId);
+                Add(activeFile);
             }
             Save();
         }
@@ -334,36 +366,16 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("activeFile");
             }
+            if (!activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted))
+            {
+                return;
+            }
+
             lock (_activeFilesByEncryptedPath)
             {
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
             OnActiveFileChanged(new ActiveFileChangedEventArgs(new ActiveFile(activeFile, ActiveFileStatus.None)));
-        }
-
-        public virtual void ChangeActiveFile(string oldFullName, string newFullName)
-        {
-            ActiveFile activeFile;
-            lock (_activeFilesByEncryptedPath)
-            {
-                activeFile = FindActiveFileFromEncryptedPath(oldFullName);
-                if (activeFile == null)
-                {
-                    return;
-                }
-
-                IDataStore newFileInfo = TypeMap.Resolve.New<IDataStore>(newFullName);
-                if (!newFileInfo.IsEncrypted())
-                {
-                    RemoveActiveFile(activeFile);
-                    return;
-                }
-
-                _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
-                activeFile = new ActiveFile(activeFile, TypeMap.Resolve.New<IDataStore>(newFullName));
-                _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
-            }
-            OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
         private void AddInternal(ActiveFile activeFile)
@@ -372,6 +384,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
+            TypeMap.Resolve.Singleton<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
         }
 
         private List<ActiveFile> _activeFilesForSerialization;

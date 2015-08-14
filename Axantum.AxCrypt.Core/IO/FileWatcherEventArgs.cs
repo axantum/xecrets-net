@@ -26,25 +26,23 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.IO
 {
     public class FileWatcherEventArgs : EventArgs
     {
-        public string FullName { get; private set; }
+        public IEnumerable<string> FullNames { get; private set; }
 
-        public string OldName { get; private set; }
-
-        public FileWatcherEventArgs(string fullName)
-            : this(String.Empty, fullName)
+        public FileWatcherEventArgs(IEnumerable<string> fullNames)
         {
+            FullNames = fullNames;
         }
 
-        public FileWatcherEventArgs(string oldName, string fullName)
+        public FileWatcherEventArgs(string fullName)
+            : this(new string[] { fullName })
         {
-            OldName = oldName;
-            FullName = fullName;
         }
     }
 }

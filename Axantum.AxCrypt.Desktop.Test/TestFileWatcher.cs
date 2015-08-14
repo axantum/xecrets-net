@@ -34,6 +34,7 @@ using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -106,7 +107,7 @@ namespace Axantum.AxCrypt.Desktop.Test
             using (IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(_tempPath))
             {
                 string fileName = String.Empty;
-                fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
+                fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullNames.First()); };
                 using (Stream stream = File.Create(Path.Combine(_tempPath, "CreatedFile.txt")))
                 {
                 }
@@ -123,22 +124,24 @@ namespace Axantum.AxCrypt.Desktop.Test
         {
             using (IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(_tempPath))
             {
-                string fileName = String.Empty;
-                fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
+                List<string> fileNames = null;
+                fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileNames = e.FullNames.Select(f => Path.GetFileName(f)).ToList(); };
                 using (Stream stream = File.Create(Path.Combine(_tempPath, "NewFile.txt")))
                 {
                 }
-                for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
+                for (int i = 0; fileNames == null && i < 20; ++i)
                 {
                     new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
                 }
-                fileName = String.Empty;
+                fileNames = null;
                 File.Move(Path.Combine(_tempPath, "NewFile.txt"), Path.Combine(_tempPath, "MovedFile.txt"));
-                for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
+                for (int i = 0; fileNames == null && i < 20; ++i)
                 {
                     new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
                 }
-                Assert.That(fileName, Is.EqualTo("MovedFile.txt"), "The watcher should detect the newly created file.");
+                Assert.That(fileNames.Contains("MovedFile.txt"), "The watcher should detect the newly created file.");
+                Assert.That(fileNames.Contains("NewFile.txt"), "The watcher should detect the original file.");
+                Assert.That(fileNames.Count, Is.EqualTo(2), "There should be exactly two files detectedd.");
             }
         }
 

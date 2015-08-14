@@ -87,16 +87,22 @@ namespace Axantum.AxCrypt.Core.Session
             switch (notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
-                    IDataContainer addedFolderInfo = TypeMap.Resolve.New<IDataContainer>(notification.FullName);
-                    encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, notification.Identity);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { addedFolderInfo }, encryptionParameters, progress);
+                    foreach (string fullName in notification.FullNames)
+                    {
+                        IDataContainer addedFolderInfo = TypeMap.Resolve.New<IDataContainer>(fullName);
+                        encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, notification.Identity);
+                        _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { addedFolderInfo }, encryptionParameters, progress);
+                    }
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:
-                    IDataContainer removedFolderInfo = TypeMap.Resolve.New<IDataContainer>(notification.FullName);
-                    if (removedFolderInfo.IsAvailable)
+                    foreach (string fullName in notification.FullNames)
                     {
-                        _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(removedFolderInfo, notification.Identity, _statusChecker, progress);
+                        IDataContainer removedFolderInfo = TypeMap.Resolve.New<IDataContainer>(fullName);
+                        if (removedFolderInfo.IsAvailable)
+                        {
+                            _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(removedFolderInfo, notification.Identity, _statusChecker, progress);
+                        }
                     }
                     break;
 
@@ -119,12 +125,8 @@ namespace Axantum.AxCrypt.Core.Session
                     }
                     break;
 
-                case SessionNotificationType.PurgeActiveFiles:
-                    _fileSystemState.PurgeActiveFiles();
-                    break;
-
-                case SessionNotificationType.FileMove:
-                    _fileSystemState.ChangeActiveFile(notification.OtherFullName, notification.FullName);
+                case SessionNotificationType.UpdateActiveFiles:
+                    _fileSystemState.UpdateActiveFiles(notification.FullNames);
                     break;
 
                 case SessionNotificationType.WatchedFolderChange:

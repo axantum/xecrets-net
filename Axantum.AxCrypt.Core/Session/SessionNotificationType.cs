@@ -44,7 +44,6 @@ namespace Axantum.AxCrypt.Core.Session
         WorkFolderChange,
         EncryptPendingFiles,
         WatchedFolderChange,
-        PurgeActiveFiles,
-        FileMove,
+        UpdateActiveFiles,
     }
 }

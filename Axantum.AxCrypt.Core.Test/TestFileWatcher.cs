@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
             string fullName = String.Empty;
             watcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
                 {
-                    fullName = e.FullName;
+                    fullName = e.FullNames.First();
                 };
 
             FakeFileWatcher fakeWatcher = (FakeFileWatcher)watcher;

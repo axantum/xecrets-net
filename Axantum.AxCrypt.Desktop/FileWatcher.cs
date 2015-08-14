@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Desktop
             _fileSystemWatcher = new FileSystemWatcher(_fileInfo.FullName);
             _fileSystemWatcher.Created += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
             _fileSystemWatcher.Deleted += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
-            _fileSystemWatcher.Renamed += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.OldFullPath, e.FullPath));
+            _fileSystemWatcher.Renamed += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(new string[] { e.OldFullPath, e.FullPath }));
             _fileSystemWatcher.Error += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(_fileInfo.FullName));
 
             _fileSystemWatcher.Filter = String.Empty;
@@ -95,10 +95,18 @@ namespace Axantum.AxCrypt.Desktop
                 _notifications.Clear();
             }
 
+            HashSet<string> allFiles = new HashSet<string>();
             foreach (FileWatcherEventArgs notification in notifications)
             {
-                OnChanged(notification);
+                allFiles.UnionWith(notification.FullNames);
             }
+
+            if (!allFiles.Any())
+            {
+                return;
+            }
+
+            OnChanged(new FileWatcherEventArgs(allFiles));
         }
 
         protected virtual void OnChanged(FileWatcherEventArgs eventArgs)
@@ -114,7 +122,7 @@ namespace Axantum.AxCrypt.Desktop
         {
             if (Resolve.Log.IsInfoEnabled)
             {
-                Resolve.Log.LogInfo("Watcher says '{0}' changed.".InvariantFormat(e.FullName));
+                Resolve.Log.LogInfo("Watcher says {0} changed.".InvariantFormat(e.FullNames.Aggregate(String.Empty, (acc, fullName) => acc + "'" + fullName + "' ")));
             }
             lock (_notifications)
             {

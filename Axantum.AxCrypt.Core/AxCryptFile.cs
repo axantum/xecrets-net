@@ -522,7 +522,7 @@ namespace Axantum.AxCrypt.Core
             },
             (status) =>
             {
-                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles));
+                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.UpdateActiveFiles));
                 statusChecker.CheckStatusAndShowMessage(status.Status, status.FullName);
             });
         }
