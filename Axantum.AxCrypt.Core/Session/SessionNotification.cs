@@ -32,7 +32,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public class SessionNotification : IEquatable<SessionNotification>
+    public class SessionNotification
     {
         public LogOnIdentity Identity { get; private set; }
 
@@ -70,75 +70,6 @@ namespace Axantum.AxCrypt.Core.Session
         public SessionNotification(SessionNotificationType notificationType)
             : this(notificationType, LogOnIdentity.Empty, new string[0])
         {
-        }
-
-        #region IEquatable<SessionNotification> Members
-
-        public bool Equals(SessionNotification other)
-        {
-            if ((object)other == null)
-            {
-                return false;
-            }
-
-            if (other.NotificationType != NotificationType)
-            {
-                return false;
-            }
-
-            if (!other.Identity.Equals(Identity))
-            {
-                return false;
-            }
-
-            if (!other.FullNames.SequenceEqual(FullNames))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion IEquatable<SessionNotification> Members
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null || typeof(SessionNotification) != obj.GetType())
-            {
-                return false;
-            }
-            SessionNotification other = (SessionNotification)obj;
-
-            return Equals(other);
-        }
-
-        public override int GetHashCode()
-        {
-            int hashcode;
-
-            hashcode = Identity != null ? Identity.GetHashCode() : 0;
-            hashcode ^= FullNames.Aggregate(0, (i, s) => i ^ s.GetHashCode());
-            hashcode ^= NotificationType.GetHashCode();
-
-            return hashcode;
-        }
-
-        public static bool operator ==(SessionNotification left, SessionNotification right)
-        {
-            if (Object.ReferenceEquals(left, right))
-            {
-                return true;
-            }
-            if ((object)left == null)
-            {
-                return false;
-            }
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(SessionNotification left, SessionNotification right)
-        {
-            return !(left == right);
         }
     }
 }
