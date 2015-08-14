@@ -124,8 +124,19 @@ namespace Axantum.AxCrypt.Core.Test
 
                 wasHere = false;
                 state.RemoveActiveFile(activeFile);
-                Assert.That(wasHere, Is.True, "After the Remove(), the changed event should have been raised.");
-                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "After the Remove() the state have one less active files.");
+                Assert.That(!wasHere, "After the Remove(), the changed event should not have been raised, since it is marked as open.");
+                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the Remove() the state have the same number of active files.");
+
+                activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
+                wasHere = false;
+                state.Add(activeFile);
+                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the second Add() the state should have one active file.");
+                Assert.That(wasHere, "After the second Add(), the changed event should have been raised.");
+
+                wasHere = false;
+                state.RemoveActiveFile(activeFile);
+                Assert.That(wasHere, "After the Remove(), the changed event should have been raised, since it is marked as not decrypted now.");
+                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "After the Remove() the state have no active files.");
             }
         }
 

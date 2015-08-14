@@ -612,6 +612,9 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile beforeRemoval = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
 
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
+            Resolve.FileSystemState.Add(activeFile);
+
             TypeMap.Resolve.New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { TypeMap.Resolve.New<IDataStore>(encryptedFileInfo.FullName) }, new ProgressContext());
 
             ActiveFile afterRemoval = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);

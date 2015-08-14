@@ -78,6 +78,11 @@ namespace Axantum.AxCrypt.Core.Session
             KnownPassphrases = new List<Passphrase>(KnownPassphrases);
             SetRangeInternal(_activeFilesForSerialization, ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
             _activeFilesForSerialization = null;
+
+            foreach (WatchedFolder watchedFolder in _watchedFolders)
+            {
+                watchedFolder.Changed += watchedFolder_Changed;
+            }
         }
 
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath;
