@@ -32,7 +32,6 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Desktop;
-using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Implementation;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Mono;
@@ -69,6 +68,7 @@ namespace Axantum.AxCrypt
             else
             {
                 new CommandLine(commandLineArgs[0], commandLineArgs.Skip(1)).Execute();
+                ExplorerRefresh.Notify();
             }
 
             Resolve.CommandService.Dispose();

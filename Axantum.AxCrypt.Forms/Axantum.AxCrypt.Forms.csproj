@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Style\AxCryptProfessionalColorTable.cs" />
     <Compile Include="Style\AxCryptToolStripProfessionalRenderer.cs" />
+    <Compile Include="Style\ExplorerRefresh.cs" />
     <Compile Include="Style\FontLoader.cs" />
     <Compile Include="Style\Styling.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
