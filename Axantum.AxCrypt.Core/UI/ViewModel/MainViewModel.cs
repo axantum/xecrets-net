@@ -313,7 +313,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             WatchedFoldersEnabled = isLoggedOn;
         }
 
-        private LogOnIdentity GetLogOnIdentity(bool isLoggedOn)
+        private static LogOnIdentity GetLogOnIdentity(bool isLoggedOn)
         {
             if (!isLoggedOn)
             {

@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt
                 return;
             }
             _shownFirstTime = true;
-            _pendingRequest = new CommandCompleteEventArgs(CommandVerb.StartUp, new string[0]);
+            _pendingRequest = new CommandCompleteEventArgs(CommandVerb.Startup, new string[0]);
             LogOnAndDoPendingRequest();
         }
 
@@ -787,7 +787,7 @@ namespace Axantum.AxCrypt
                     case CommandVerb.Decrypt:
                     case CommandVerb.Open:
                     case CommandVerb.ShowLogOn:
-                        if (_pendingRequest.Verb == CommandVerb.StartUp)
+                        if (_pendingRequest.Verb == CommandVerb.Startup)
                         {
                             _pendingRequest = e;
                             return;

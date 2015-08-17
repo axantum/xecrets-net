@@ -319,6 +319,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void UpdateActiveFiles(IEnumerable<string> fullNames)
         {
+            if (fullNames == null)
+            {
+                throw new ArgumentNullException("fullNames");
+            }
+
             foreach (ActiveFile activeFile in ActiveFiles)
             {
                 if (!fullNames.Contains(activeFile.EncryptedFileInfo.FullName))
