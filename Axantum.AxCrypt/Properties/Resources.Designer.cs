@@ -61,6 +61,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status &apos;Aborted&apos; with &apos;{0}&apos;..
+        /// </summary>
+        internal static string AbortedFileStatus {
+            get {
+                return ResourceManager.GetString("AbortedFileStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About {0}.
         /// </summary>
         internal static string About {
@@ -615,6 +624,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File &apos;{0}&apos; is already encrypted..
+        /// </summary>
+        internal static string FileAlreadyEncryptedStatus {
+            get {
+                return ResourceManager.GetString("FileAlreadyEncryptedStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document &apos;{0}&apos; already exists..
         /// </summary>
         internal static string FileAlreadyExists {
@@ -1150,6 +1168,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status &apos;Unknown&apos; with &apos;{0}&apos;..
+        /// </summary>
+        internal static string UnknownFileStatus {
+            get {
+                return ResourceManager.GetString("UnknownFileStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passphrase is not previously known. Click &apos;New&apos; to create a new Log On..
         /// </summary>
         internal static string UnkownLogOn {
@@ -1191,6 +1218,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string WipeFileSelectFileDialogTitle {
             get {
                 return ResourceManager.GetString("WipeFileSelectFileDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status &apos;Working&apos; with &apos;{0}&apos;..
+        /// </summary>
+        internal static string WorkingFileStatus {
+            get {
+                return ResourceManager.GetString("WorkingFileStatus", resourceCulture);
             }
         }
         

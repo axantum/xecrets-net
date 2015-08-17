@@ -1213,9 +1213,24 @@ namespace Axantum.AxCrypt
                     Resources.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                default:
-                    Resources.UnrecognizedError.InvariantFormat(displayContext).ShowWarning();
+                case FileOperationStatus.Unknown:
+                    Resources.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning();
                     break;
+
+                case FileOperationStatus.Working:
+                    Resources.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning();
+                    break;
+
+                case FileOperationStatus.Aborted:
+                    Resources.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning();
+                    break;
+
+                case FileOperationStatus.FileAlreadyEncrypted:
+                    Resources.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning();
+                    break;
+
+                default:
+                    throw new InvalidOperationException(Resources.UnrecognizedError.InvariantFormat(status));
             }
             return false;
         }

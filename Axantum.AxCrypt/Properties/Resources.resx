@@ -490,4 +490,16 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>AxCrypt Offline Account Creation.</value>
   </data>
+  <data name="AbortedFileStatus" xml:space="preserve">
+    <value>Status 'Aborted' with '{0}'.</value>
+  </data>
+  <data name="FileAlreadyEncryptedStatus" xml:space="preserve">
+    <value>File '{0}' is already encrypted.</value>
+  </data>
+  <data name="UnknownFileStatus" xml:space="preserve">
+    <value>Status 'Unknown' with '{0}'.</value>
+  </data>
+  <data name="WorkingFileStatus" xml:space="preserve">
+    <value>Status 'Working' with '{0}'.</value>
+  </data>
 </root>
