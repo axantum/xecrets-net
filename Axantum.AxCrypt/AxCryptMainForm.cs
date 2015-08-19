@@ -564,7 +564,7 @@ namespace Axantum.AxCrypt
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
             RestoreWindowWithFocus();
-            if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
+            if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
             {
                 HandleExistingLogOnForEncryptedFile(e);
             }
