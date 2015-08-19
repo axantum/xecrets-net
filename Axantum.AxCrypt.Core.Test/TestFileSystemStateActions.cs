@@ -549,6 +549,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_uncompressedAxxPath);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
             LogOnIdentity key = new LogOnIdentity("passphrase");
+            FakeDataStore.AddFile(_uncompressedAxxPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, Stream.Null);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
             Resolve.FileSystemState.Save();

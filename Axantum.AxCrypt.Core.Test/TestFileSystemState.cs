@@ -87,7 +87,31 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestLoadExisting()
+        public void TestLoadExistingWithExistingFile()
+        {
+            ActiveFile activeFile;
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
+            {
+                Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
+                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "A new state should not have any active files.");
+
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                state.Add(activeFile);
+                state.Save();
+            }
+
+            FakeDataStore.AddFile(_encryptedAxxPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, Stream.Null);
+
+            using (FileSystemState reloadedState = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
+            {
+                Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
+                Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
+                Assert.That(reloadedState.ActiveFiles.First().ThumbprintMatch(activeFile.Identity.Passphrase), Is.True, "The reloaded thumbprint should  match the key.");
+            }
+        }
+
+        [Test]
+        public void TestLoadExistingWithNonExistingFile()
         {
             ActiveFile activeFile;
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
@@ -103,8 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (FileSystemState reloadedState = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
                 Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
-                Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
-                Assert.That(reloadedState.ActiveFiles.First().ThumbprintMatch(activeFile.Identity.Passphrase), Is.True, "The reloaded thumbprint should  match the key.");
+                Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(0), "The reloaded state should not have an active file, since it is non-existing.");
             }
         }
 
@@ -145,6 +168,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
+                FakeDataStore.AddFile(_encryptedAxxPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, Stream.Null);
                 ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedAxxPath), TypeMap.Resolve.New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
                 state.Save();
