@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogWarning("Tried to open non-existing '{0}'.".InvariantFormat(fileInfo.FullName));
                 }
-                return new FileOperationContext(fileInfo.FullName, FileOperationStatus.FileDoesNotExist);
+                return new FileOperationContext(fileInfo.FullName, ErrorStatus.FileDoesNotExist);
             }
 
             ActiveFile destinationActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (destinationActiveFile == null)
             {
-                return new FileOperationContext(fileInfo.FullName, FileOperationStatus.InvalidKey);
+                return new FileOperationContext(fileInfo.FullName, ErrorStatus.InvalidKey);
             }
 
             _fileSystemState.Add(destinationActiveFile);
@@ -180,7 +180,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogError("Could not launch application for '{0}', Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName, ex.Message));
                 }
-                return new FileOperationContext(destinationActiveFile.DecryptedFileInfo.FullName, FileOperationStatus.CannotStartApplication);
+                return new FileOperationContext(destinationActiveFile.DecryptedFileInfo.FullName, ErrorStatus.CannotStartApplication);
             }
 
             if (Resolve.Log.IsWarningEnabled)
@@ -200,7 +200,7 @@ namespace Axantum.AxCrypt.Core.UI
             _fileSystemState.Add(destinationActiveFile, process);
             _fileSystemState.Save();
 
-            return new FileOperationContext(String.Empty, FileOperationStatus.Success);
+            return new FileOperationContext(String.Empty, ErrorStatus.Success);
         }
 
         private void process_Exited(object sender, EventArgs e)

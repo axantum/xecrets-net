@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.UI
     {
         public FileOperationEventArgs()
         {
-            Status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
+            Status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
             SharedPublicKeys = new UserPublicKey[0];
         }
 

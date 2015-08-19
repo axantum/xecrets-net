@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestSimple()
         {
             int workThreadId = -1;
-            FileOperationContext returnedStatus = new FileOperationContext(String.Empty, FileOperationStatus.UnspecifiedError);
+            FileOperationContext returnedStatus = new FileOperationContext(String.Empty, ErrorStatus.UnspecifiedError);
 
             bool done = false;
             using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         workThreadId = Thread.CurrentThread.ManagedThreadId;
-                        e.Result = new FileOperationContext(String.Empty, FileOperationStatus.Success);
+                        e.Result = new FileOperationContext(String.Empty, ErrorStatus.Success);
                     };
                 worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
                 worker.Join();
             }
 
-            Assert.That(returnedStatus.Status, Is.EqualTo(FileOperationStatus.Success), "The status should be returned as successful.");
+            Assert.That(returnedStatus.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should be returned as successful.");
             Assert.That(workThreadId, Is.Not.EqualTo(Thread.CurrentThread.ManagedThreadId), "The work should not be performed on the caller thread.");
             Assert.That(done, Is.True, "The background work must have executed the completed handler now.");
         }
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         environment.CurrentTiming.CurrentTiming = TimeSpan.FromSeconds(1);
                         e.Progress.AddCount(1);
-                        e.Result = new FileOperationContext(String.Empty, FileOperationStatus.Success);
+                        e.Result = new FileOperationContext(String.Empty, ErrorStatus.Success);
                     };
                 progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
             IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false);
             worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
-                    e.Result = new FileOperationContext(String.Empty, FileOperationStatus.Success);
+                    e.Result = new FileOperationContext(String.Empty, ErrorStatus.Success);
                 };
             try
             {
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
                     };
                 worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {
-                        wasCanceled = e.Result.Status == FileOperationStatus.Canceled;
+                        wasCanceled = e.Result.ErrorStatus == ErrorStatus.Canceled;
                     };
                 worker.Run();
                 worker.Join();
@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt.Core.Test
                 };
                 worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                 {
-                    wasCanceled = e.Result.Status == FileOperationStatus.Canceled;
+                    wasCanceled = e.Result.ErrorStatus == ErrorStatus.Canceled;
                 };
                 worker.Run();
                 worker.Join();
@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Test
                 };
                 worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                 {
-                    errorInWork = e.Result.Status == FileOperationStatus.Exception;
+                    errorInWork = e.Result.ErrorStatus == ErrorStatus.Exception;
                 };
                 worker.Run();
                 worker.Join();
@@ -238,7 +238,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestExceptionDuringWork()
         {
-            FileOperationContext status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
+            FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
             using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
             {
                 worker.Work += (sender, e) =>
@@ -253,7 +253,7 @@ namespace Axantum.AxCrypt.Core.Test
                 worker.Join();
             }
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Exception));
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Exception));
         }
     }
 }

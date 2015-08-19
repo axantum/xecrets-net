@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
@@ -100,7 +101,7 @@ namespace Axantum.AxCrypt.Mono
         /// </summary>
         public void Abort()
         {
-            _e.Result = new FileOperationContext(String.Empty, FileOperationStatus.Aborted);
+            _e.Result = new FileOperationContext(String.Empty, ErrorStatus.Aborted);
             OnCompleting(_e);
             CompleteWorker();
         }
@@ -133,11 +134,11 @@ namespace Axantum.AxCrypt.Mono
             }
             catch (OperationCanceledException)
             {
-                e.Result = new FileOperationContext(String.Empty, FileOperationStatus.Canceled);
+                e.Result = new FileOperationContext(String.Empty, ErrorStatus.Canceled);
             }
             catch (AxCryptException ace)
             {
-                e.Result = new FileOperationContext(ace.DisplayContext, FileOperationStatus.Exception);
+                e.Result = new FileOperationContext(ace.DisplayContext, ErrorStatus.Exception);
                 throw;
             }
         }
@@ -154,7 +155,7 @@ namespace Axantum.AxCrypt.Mono
                     {
                         displayContext = ace.DisplayContext;
                     }
-                    _e.Result = new FileOperationContext(displayContext, FileOperationStatus.Exception);
+                    _e.Result = new FileOperationContext(displayContext, ErrorStatus.Exception);
                 }
                 else
                 {

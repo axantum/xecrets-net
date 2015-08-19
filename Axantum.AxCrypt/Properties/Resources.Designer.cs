@@ -1186,7 +1186,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unrecognized error code failing with &apos;{0}&apos;..
+        ///   Looks up a localized string similar to {1} for &apos;{0}&apos;..
         /// </summary>
         internal static string UnrecognizedError {
             get {

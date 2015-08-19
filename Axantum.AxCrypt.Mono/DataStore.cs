@@ -90,9 +90,21 @@ namespace Axantum.AxCrypt.Mono
         /// </returns>
         public Stream OpenWrite()
         {
+            Stream stream = OpenUpdate();
+            stream.SetLength(0);
+            return stream;
+        }
+
+        /// <summary>
+        /// Opens a stream in update mode for the underlying file.
+        /// </summary>
+        /// <returns>
+        /// A stream opened for updating, keeping existing data if any.
+        /// </returns>
+        public Stream OpenUpdate()
+        {
             Directory.CreateDirectory(Path.GetDirectoryName(_file.FullName));
             FileStream stream = new FileStream(_file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, OS.Current.StreamBufferSize);
-            stream.SetLength(0);
             return stream;
         }
 

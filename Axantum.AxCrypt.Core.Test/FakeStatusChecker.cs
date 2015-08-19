@@ -43,9 +43,9 @@ namespace Axantum.AxCrypt.Core.Test
         /// <returns>
         /// True if the status indicated success, false otherwise.
         /// </returns>
-        public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
+        public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext)
         {
-            return status == FileOperationStatus.Success;
+            return status == ErrorStatus.Success;
         }
     }
 }

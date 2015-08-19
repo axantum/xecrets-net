@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
@@ -59,7 +58,7 @@ namespace Axantum.AxCrypt.Core.UI
                         foreach (T file in files)
                         {
                             IThreadWorker worker = workerGroup.CreateWorker(true);
-                            if (workerGroup.FirstError.Status != FileOperationStatus.Success)
+                            if (workerGroup.FirstError.ErrorStatus != ErrorStatus.Success)
                             {
                                 worker.Abort();
                                 break;

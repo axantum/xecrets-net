@@ -88,6 +88,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool DebugMode { get { return GetProperty<bool>("DebugMode"); } set { SetProperty("DebugMode", value); } }
 
+        public bool TryBrokenFile { get { return GetProperty<bool>("TryBrokenFile"); } set { SetProperty("TryBrokenFile", value); } }
+
         public bool Working { get { return GetProperty<bool>("Working"); } set { SetProperty("Working", value); } }
 
         public IAction RemoveRecentFiles { get; private set; }
@@ -123,6 +125,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SelectedRecentFiles = new string[0];
             SelectedWatchedFolders = new string[0];
             DebugMode = _userSettings.DebugMode;
+            TryBrokenFile = _userSettings.TryBrokenFile;
             Title = String.Empty;
             VersionUpdateStatus = UI.VersionUpdateStatus.Unknown;
 
@@ -145,6 +148,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IDataItem>(f))); });
             BindPropertyChangedInternal("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
             BindPropertyChangedInternal("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
+            BindPropertyChangedInternal("TryBrokenFile", (bool enabled) => { _userSettings.TryBrokenFile = enabled; });
             BindPropertyChangedInternal("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
         }
 

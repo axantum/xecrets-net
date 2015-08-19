@@ -424,6 +424,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("RecentFiles", (IEnumerable<ActiveFile> files) => { UpdateRecentFiles(files); });
             _mainViewModel.BindPropertyChanged("VersionUpdateStatus", (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
             _mainViewModel.BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
+            _mainViewModel.BindPropertyChanged("TryBrokenFile", (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
 
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck.Execute(DateTime.MinValue); };
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
@@ -1159,78 +1160,79 @@ namespace Axantum.AxCrypt
             return buttons;
         }
 
-        public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
+        public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext)
         {
             switch (status)
             {
-                case FileOperationStatus.Success:
+                case ErrorStatus.Success:
                     return true;
 
-                case FileOperationStatus.UnspecifiedError:
+                case ErrorStatus.UnspecifiedError:
                     Resources.FileOperationFailed.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.FileAlreadyExists:
+                case ErrorStatus.FileAlreadyExists:
                     Resources.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.FileDoesNotExist:
+                case ErrorStatus.FileDoesNotExist:
                     Resources.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.CannotWriteDestination:
+                case ErrorStatus.CannotWriteDestination:
                     Resources.CannotWrite.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.CannotStartApplication:
+                case ErrorStatus.CannotStartApplication:
                     Resources.CannotStartApplication.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.InconsistentState:
+                case ErrorStatus.InconsistentState:
                     Resources.InconsistentState.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.InvalidKey:
+                case ErrorStatus.InvalidKey:
                     Resources.InvalidKey.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.Canceled:
+                case ErrorStatus.Canceled:
                     break;
 
-                case FileOperationStatus.Exception:
+                case ErrorStatus.Exception:
                     Resources.Exception.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.InvalidPath:
+                case ErrorStatus.InvalidPath:
                     Resources.InvalidPath.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.FolderAlreadyWatched:
+                case ErrorStatus.FolderAlreadyWatched:
                     Resources.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.FileLocked:
+                case ErrorStatus.FileLocked:
                     Resources.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.Unknown:
+                case ErrorStatus.Unknown:
                     Resources.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.Working:
+                case ErrorStatus.Working:
                     Resources.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.Aborted:
+                case ErrorStatus.Aborted:
                     Resources.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning();
                     break;
 
-                case FileOperationStatus.FileAlreadyEncrypted:
+                case ErrorStatus.FileAlreadyEncrypted:
                     Resources.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 default:
-                    throw new InvalidOperationException(Resources.UnrecognizedError.InvariantFormat(status));
+                    Resources.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning();
+                    break;
             }
             return false;
         }
@@ -1651,7 +1653,7 @@ namespace Axantum.AxCrypt
                 Resolve.ProgressBackground.Work((IProgressContext progress) =>
                 {
                     TypeMap.Resolve.New<AxCryptFile>().ChangeEncryption(TypeMap.Resolve.New<IDataStore>(file), Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
-                    return new FileOperationContext(file, FileOperationStatus.Success);
+                    return new FileOperationContext(file, ErrorStatus.Success);
                 },
                 (FileOperationContext foc) =>
                 {
@@ -1686,6 +1688,11 @@ namespace Axantum.AxCrypt
 
             byte[] export = Resolve.AsymmetricKeysStore.ExportCurrentKeys(Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase);
             File.WriteAllBytes(fileName, export);
+        }
+
+        private void tryBrokenFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainViewModel.TryBrokenFile = !_mainViewModel.TryBrokenFile;
         }
     }
 }

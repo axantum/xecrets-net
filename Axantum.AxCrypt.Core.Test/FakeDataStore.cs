@@ -216,6 +216,13 @@ namespace Axantum.AxCrypt.Core.Test
 
         public Stream OpenWrite()
         {
+            Stream stream = OpenUpdate();
+            stream.Position = 0;
+            return stream;
+        }
+
+        public Stream OpenUpdate()
+        {
             FakeFileInfo fakeFileInfo = FindFileInfo();
             if (fakeFileInfo == null)
             {
@@ -223,7 +230,6 @@ namespace Axantum.AxCrypt.Core.Test
                 _file = fakeFileInfo = FindFileInfo();
             }
             OnOpeningForWrite();
-            fakeFileInfo.Stream.Position = 0;
             EnsureDateTimes(fakeFileInfo);
             return new NonClosingStream(fakeFileInfo.Stream);
         }

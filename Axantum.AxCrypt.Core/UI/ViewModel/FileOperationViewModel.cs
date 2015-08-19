@@ -215,7 +215,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.Status.FullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName))
                 {
                     TypeMap.Resolve.New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { TypeMap.Resolve.New<IDataStore>(e.OpenFileFullName) }, progress);
                 }
@@ -247,7 +247,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     return;
                 }
-                if (Resolve.StatusChecker.CheckStatusAndShowMessage(e.Status.Status, e.Status.FullName))
+                if (Resolve.StatusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName))
                 {
                     TypeMap.Resolve.New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { TypeMap.Resolve.New<IDataStore>(e.SaveFileFullName) }, progress);
                 }
@@ -260,7 +260,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             file.MoveTo(file.CreateRandomUniqueName().FullName);
 
-            return new FileOperationContext(file.FullName, FileOperationStatus.Success);
+            return new FileOperationContext(file.FullName, ErrorStatus.Success);
         }
 
         private FileOperationContext OpenEncryptedWork(IDataStore file, IProgressContext progress)
@@ -281,11 +281,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (e.Status.Status == FileOperationStatus.Canceled)
+                if (e.Status.ErrorStatus == ErrorStatus.Canceled)
                 {
                     return;
                 }
-                _statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName);
+                _statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.OpenFileFullName);
             };
 
             return operationsController.DecryptAndLaunch(file);
@@ -317,12 +317,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (e.Status.Status == FileOperationStatus.FileAlreadyEncrypted)
+                if (e.Status.ErrorStatus == ErrorStatus.FileAlreadyEncrypted)
                 {
-                    e.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
+                    e.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
                     return;
                 }
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.Status.FullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName))
                 {
                     IDataStore encryptedInfo = TypeMap.Resolve.New<IDataStore>(e.SaveFileFullName);
                     IDataStore decryptedInfo = TypeMap.Resolve.New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
@@ -353,7 +353,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.OpenFileFullName))
                 {
                     IDataStore encryptedInfo = TypeMap.Resolve.New<IDataStore>(e.OpenFileFullName);
                     IDataStore decryptedInfo = TypeMap.Resolve.New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.SaveFileFullName));
@@ -383,7 +383,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private FileOperationContext DecryptFolderWork(IDataContainer folder, IProgressContext progress)
         {
             TypeMap.Resolve.New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(folder, _knownIdentities.DefaultEncryptionIdentity, _statusChecker, progress);
-            return new FileOperationContext(String.Empty, FileOperationStatus.Success);
+            return new FileOperationContext(String.Empty, ErrorStatus.Success);
         }
 
         private void AddRecentFilesAction(IEnumerable<string> files)

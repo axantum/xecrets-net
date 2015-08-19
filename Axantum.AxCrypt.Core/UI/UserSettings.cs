@@ -206,6 +206,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("UserEmail", value); }
         }
 
+        public bool TryBrokenFile
+        {
+            get { return Load("TryBrokenFile", false); }
+            set { Store("TryBrokenFile", value); }
+        }
+
         public string this[string key]
         {
             get

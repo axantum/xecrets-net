@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
+    /// <summary>
+    ///
+    /// </summary>
     [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Fake test code and MemoryStream does not need disposal.")]
     internal class FakeInMemoryDataStoreItem : IDataStore
     {
@@ -32,6 +35,11 @@ namespace Axantum.AxCrypt.Core.Test
         public virtual Stream OpenWrite()
         {
             _dataStream.Position = 0;
+            return new NonClosingStream(_dataStream);
+        }
+
+        public Stream OpenUpdate()
+        {
             return new NonClosingStream(_dataStream);
         }
 

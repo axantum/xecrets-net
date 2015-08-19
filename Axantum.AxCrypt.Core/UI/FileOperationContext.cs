@@ -34,14 +34,14 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class FileOperationContext
     {
-        public FileOperationContext(string fullName, FileOperationStatus status)
+        public FileOperationContext(string fullName, ErrorStatus errorStatus)
         {
             FullName = fullName;
-            Status = status;
+            ErrorStatus = errorStatus;
         }
 
         public string FullName { get; private set; }
 
-        public FileOperationStatus Status { get; private set; }
+        public ErrorStatus ErrorStatus { get; private set; }
     }
 }

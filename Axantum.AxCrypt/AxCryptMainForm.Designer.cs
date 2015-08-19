@@ -19,6 +19,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AxCryptMainForm));
             this._progressTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this._recentFilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this._recentFilesOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._removeRecentFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._decryptAndRemoveFromListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._shareKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,7 +92,7 @@
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
-            this._recentFilesOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tryBrokenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -122,6 +123,11 @@
             this._shareKeysToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
             resources.ApplyResources(this._recentFilesContextMenuStrip, "_recentFilesContextMenuStrip");
+            // 
+            // _recentFilesOpenToolStripMenuItem
+            // 
+            this._recentFilesOpenToolStripMenuItem.Name = "_recentFilesOpenToolStripMenuItem";
+            resources.ApplyResources(this._recentFilesOpenToolStripMenuItem, "_recentFilesOpenToolStripMenuItem");
             // 
             // _removeRecentFileToolStripMenuItem
             // 
@@ -473,7 +479,8 @@
             this._debugOptionsToolStripMenuItem,
             this._debugCryptoPolicyToolStripMenuItem,
             this._debugLoggingToolStripMenuItem,
-            this._debugManageAccountToolStripMenuItem});
+            this._debugManageAccountToolStripMenuItem,
+            this.tryBrokenFileToolStripMenuItem});
             this._debugToolStripMenuItem.Name = "_debugToolStripMenuItem";
             resources.ApplyResources(this._debugToolStripMenuItem, "_debugToolStripMenuItem");
             // 
@@ -625,10 +632,11 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // _recentFilesOpenToolStripMenuItem
+            // tryBrokenFileToolStripMenuItem
             // 
-            this._recentFilesOpenToolStripMenuItem.Name = "_recentFilesOpenToolStripMenuItem";
-            resources.ApplyResources(this._recentFilesOpenToolStripMenuItem, "_recentFilesOpenToolStripMenuItem");
+            this.tryBrokenFileToolStripMenuItem.Name = "tryBrokenFileToolStripMenuItem";
+            resources.ApplyResources(this.tryBrokenFileToolStripMenuItem, "tryBrokenFileToolStripMenuItem");
+            this.tryBrokenFileToolStripMenuItem.Click += new System.EventHandler(this.tryBrokenFileToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
@@ -740,6 +748,7 @@
         private System.Windows.Forms.ToolStrip _updateStatusToolStrip;
         private System.Windows.Forms.ToolStripButton _updateStatusButton;
         private System.Windows.Forms.ToolStripMenuItem _recentFilesOpenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tryBrokenFileToolStripMenuItem;
     }
 }
 

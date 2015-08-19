@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -39,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         public ThreadWorkerEventArgs(IProgressContext progress)
         {
             Progress = progress;
-            Result = new FileOperationContext(String.Empty, FileOperationStatus.Success);
+            Result = new FileOperationContext(String.Empty, ErrorStatus.Success);
         }
 
         public int ProgressPercentage { get; set; }

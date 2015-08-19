@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
             Assert.DoesNotThrow(() => mock.Verify(x => x.Launch(launcherPath)));
         }
 
@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore axCryptDataStore = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), axCryptDataStore, new ProgressContext());
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
             Assert.That(called, Is.True, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
         }
@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore axCryptDataStore = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), axCryptDataStore, new ProgressContext());
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
             Assert.That(called, Is.True, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
         }
@@ -181,7 +181,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
 
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_rootPath.PathCombine("Documents", "HelloWorld-NotThere.axx"), keys, new ProgressContext());
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.FileDoesNotExist), "The launch should fail with status FileDoesNotExist.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.FileDoesNotExist), "The launch should fail with status FileDoesNotExist.");
         }
 
         [Test]
@@ -196,14 +196,14 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
 
             IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed this time too.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed this time too.");
             destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(utcNow), "There should be no decryption again necessary, and thus the time stamp should be as just set.");
         }
@@ -219,7 +219,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
 
             IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
@@ -229,7 +229,7 @@ namespace Axantum.AxCrypt.Core.Test
             IEnumerable<LogOnIdentity> badKeys = new LogOnIdentity[] { new LogOnIdentity("b") };
 
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, badKeys, new ProgressContext());
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.InvalidKey), "The launch should fail this time, since the key is not known.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.InvalidKey), "The launch should fail this time, since the key is not known.");
             destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(utcNow), "There should be no decryption, and thus the time stamp should be as just set.");
         }
@@ -241,7 +241,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
 
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.InvalidKey), "The key is invalid, so the launch should fail with that status.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.InvalidKey), "The key is invalid, so the launch should fail with that status.");
         }
 
         [Test]
@@ -256,7 +256,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed even if no process was actually launched.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed even if no process was actually launched.");
             Assert.That(called, Is.True, "There should be a call to launch to try launching.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
         }
@@ -274,7 +274,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.CannotStartApplication), "The launch should fail since the launch throws a Win32Exception.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.CannotStartApplication), "The launch should fail since the launch throws a Win32Exception.");
         }
 
         [Test]
@@ -289,7 +289,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed even if the process exits immediately.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed even if the process exits immediately.");
             Assert.That(called, Is.True, "There should be a call to launch to try launching.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
         }
@@ -308,7 +308,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, notificationMonitor);
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
             Assert.That(called, Is.True, "There should be a call to launch to try launching.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
@@ -331,7 +331,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
 
             IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
@@ -341,7 +341,7 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.Save();
 
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
-            Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should once again succeed.");
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should once again succeed.");
         }
 
         [Test]

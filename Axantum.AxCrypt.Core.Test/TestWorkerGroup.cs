@@ -146,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         private static void ThreadWorkerEventHandler(object sender, ThreadWorkerEventArgs e)
         {
-            e.Result = new FileOperationContext(String.Empty, FileOperationStatus.UnspecifiedError);
+            e.Result = new FileOperationContext(String.Empty, ErrorStatus.UnspecifiedError);
         }
 
         [Test]
@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Test
                 worker.Run();
                 workerGroup.WaitAllAndFinish();
 
-                Assert.That(workerGroup.FirstError.Status, Is.EqualTo(FileOperationStatus.UnspecifiedError), "The status should be set by one of the event handlers.");
+                Assert.That(workerGroup.FirstError.ErrorStatus, Is.EqualTo(ErrorStatus.UnspecifiedError), "The status should be set by one of the event handlers.");
             }
 
             using (WorkerGroup workerGroup = new WorkerGroup())
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
                 worker.Run();
                 workerGroup.WaitAllAndFinish();
 
-                Assert.That(workerGroup.FirstError.Status, Is.EqualTo(FileOperationStatus.Success), "None of the event handlers should have been called, so the status should not have been set there.");
+                Assert.That(workerGroup.FirstError.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "None of the event handlers should have been called, so the status should not have been set there.");
             }
         }
 

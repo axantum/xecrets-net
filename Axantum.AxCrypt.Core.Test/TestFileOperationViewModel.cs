@@ -68,9 +68,9 @@ namespace Axantum.AxCrypt.Core.Test
             var mockParallelFile = new Mock<ParallelFileOperation>();
             _allCompleted = false;
             mockParallelFile.Setup(x => x.DoFiles<IDataContainer>(It.IsAny<IEnumerable<IDataContainer>>(), It.IsAny<Func<IDataContainer, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()))
-                .Callback<IEnumerable<IDataContainer>, Func<IDataContainer, IProgressContext, FileOperationContext>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, FileOperationStatus.Success)); _allCompleted = true; });
+                .Callback<IEnumerable<IDataContainer>, Func<IDataContainer, IProgressContext, FileOperationContext>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, ErrorStatus.Success)); _allCompleted = true; });
             mockParallelFile.Setup(x => x.DoFiles<IDataStore>(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()))
-                .Callback<IEnumerable<IDataStore>, Func<IDataStore, IProgressContext, FileOperationContext>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, FileOperationStatus.Success)); _allCompleted = true; });
+                .Callback<IEnumerable<IDataStore>, Func<IDataStore, IProgressContext, FileOperationContext>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, ErrorStatus.Success)); _allCompleted = true; });
             TypeMap.Register.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
         }
 
@@ -490,12 +490,12 @@ namespace Axantum.AxCrypt.Core.Test
                 acd.FileName = fileInfo.FullName.Replace("-txt.axx", ".txt");
                 return acd;
             });
-            axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<IProgressContext>())).Returns((IDataStore fileInfo, LogOnIdentity key, IProgressContext progress) =>
+            axCryptFileMock.Setup<EncryptedProperties>(m => m.CreateEncryptedProperties(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument(key.Passphrase, 117);
-                acd.PassphraseIsValid = true;
-                acd.FileName = fileInfo.FullName.Replace("-txt.axx", ".txt");
-                return acd;
+                EncryptedProperties properties = new EncryptedProperties(fileInfo.FullName.Replace("-txt.axx", ".txt"));
+                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, V1Aes128CryptoFactory.CryptoId);
+                properties.IsValid = true;
+                return properties;
             });
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
@@ -542,6 +542,13 @@ namespace Axantum.AxCrypt.Core.Test
                 acd.PassphraseIsValid = true;
                 acd.DocumentHeaders.FileName = Path.GetFileName(fileInfo.FullName.Replace("-txt.axx", ".txt"));
                 return acd;
+            });
+            axCryptFileMock.Setup<EncryptedProperties>(m => m.CreateEncryptedProperties(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase) =>
+            {
+                EncryptedProperties properties = new EncryptedProperties(fileInfo.FullName.Replace("-txt.axx", ".txt"));
+                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, V1Aes128CryptoFactory.CryptoId);
+                properties.IsValid = true;
+                return properties;
             });
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
@@ -830,12 +837,12 @@ namespace Axantum.AxCrypt.Core.Test
                 acd.DocumentHeaders.FileName = fileInfo.FullName.Replace("-txt.axx", ".txt");
                 return acd;
             });
-            axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<IProgressContext>())).Returns((IDataStore fileInfo, LogOnIdentity key, IProgressContext progress) =>
+            axCryptFileMock.Setup<EncryptedProperties>(m => m.CreateEncryptedProperties(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument(key.Passphrase, 87);
-                acd.PassphraseIsValid = true;
-                acd.DocumentHeaders.FileName = fileInfo.FullName.Replace("-txt.axx", ".txt");
-                return acd;
+                EncryptedProperties properties = new EncryptedProperties(fileInfo.FullName.Replace("-txt.axx", ".txt"));
+                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, V1Aes128CryptoFactory.CryptoId);
+                properties.IsValid = true;
+                return properties;
             });
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
@@ -875,14 +882,14 @@ namespace Axantum.AxCrypt.Core.Test
 
             int count = 0;
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
-            axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<IProgressContext>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase, IProgressContext progress) =>
+            axCryptFileMock.Setup<EncryptedProperties>(m => m.CreateEncryptedProperties(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument(passphrase.Passphrase, 17);
-                count++;
-                acd.PassphraseIsValid = true;
-                acd.DocumentHeaders.FileName = fileInfo.FullName.Replace("-txt.axx", ".txt");
-                return acd;
+                EncryptedProperties properties = new EncryptedProperties(fileInfo.FullName.Replace("-txt.axx", ".txt"));
+                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, V1Aes128CryptoFactory.CryptoId);
+                properties.IsValid = true;
+                return properties;
             });
+
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
             Mock<FileOperation> fileOperationMock = new Mock<FileOperation>(Resolve.FileSystemState, Resolve.SessionNotify);
@@ -900,7 +907,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.IdentityViewModel.CryptoId = new V1Aes128CryptoFactory().Id;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                if (count == 2)
+                if (count == 1)
                 {
                     e.Cancel = true;
                     return;
@@ -908,8 +915,8 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = "b";
             };
 
-            FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
-            FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
+            FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", Stream.Null);
+            FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", Stream.Null);
             mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));

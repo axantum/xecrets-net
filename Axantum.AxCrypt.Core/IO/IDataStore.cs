@@ -45,8 +45,14 @@ namespace Axantum.AxCrypt.Core.IO
         /// <summary>
         /// Opens a stream in write mode for the underlying file.
         /// </summary>
-        /// <returns>A stream opened for writing.</returns>
+        /// <returns>A stream opened for writing, always truncatd to zero length.</returns>
         Stream OpenWrite();
+
+        /// <summary>
+        /// Opens a stream in update mode for the underlying file.
+        /// </summary>
+        /// <returns>A stream opened for updating, keeping existing data if any.</returns>
+        Stream OpenUpdate();
 
         /// <summary>
         /// Determine if the file is currently unavailable for exclusive locking.

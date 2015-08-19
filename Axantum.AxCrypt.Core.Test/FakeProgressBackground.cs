@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -37,14 +37,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Busy = true;
             OnWorkStatusChanged();
-            FileOperationContext status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
+            FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
             try
             {
                 status = work(new ProgressContext());
             }
             catch (OperationCanceledException)
             {
-                status = new FileOperationContext(String.Empty, FileOperationStatus.Canceled);
+                status = new FileOperationContext(String.Empty, ErrorStatus.Canceled);
             }
             complete(status);
             Busy = false;

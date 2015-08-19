@@ -450,7 +450,7 @@ namespace Axantum.AxCrypt.Core
             }
             catch (Exception)
             {
-                if (destinationStore.IsAvailable)
+                if (destinationStore.IsAvailable && !Resolve.UserSettings.TryBrokenFile)
                 {
                     Wipe(destinationStore, progress);
                 }
@@ -523,7 +523,7 @@ namespace Axantum.AxCrypt.Core
             (status) =>
             {
                 Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.UpdateActiveFiles));
-                statusChecker.CheckStatusAndShowMessage(status.Status, status.FullName);
+                statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName);
             });
         }
 
@@ -543,7 +543,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (!document.PassphraseIsValid)
                 {
-                    return new FileOperationContext(sourceStore.FullName, FileOperationStatus.Canceled);
+                    return new FileOperationContext(sourceStore.FullName, ErrorStatus.Canceled);
                 }
 
                 IDataStore destinationStore = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceStore.FullName), document.FileName));
@@ -554,7 +554,7 @@ namespace Axantum.AxCrypt.Core
             }
             Wipe(sourceStore, progress);
             progress.NotifyLevelFinished();
-            return new FileOperationContext(String.Empty, FileOperationStatus.Success);
+            return new FileOperationContext(String.Empty, ErrorStatus.Success);
         }
 
         public virtual void DecryptFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
@@ -608,6 +608,17 @@ namespace Axantum.AxCrypt.Core
             }
 
             return Document(sourceStore.OpenRead(), logOnIdentity, sourceStore.FullName, progress);
+        }
+
+        /// <summary>
+        /// Creates encrypted properties for an encrypted file.
+        /// </summary>
+        /// <param name="dataStore">The data store.</param>
+        /// <param name="identity">The identity.</param>
+        /// <returns>The EncrypedProperties, if possible.</returns>
+        public virtual EncryptedProperties CreateEncryptedProperties(IDataStore dataStore, LogOnIdentity identity)
+        {
+            return EncryptedProperties.Create(dataStore, identity);
         }
 
         /// <summary>
@@ -766,7 +777,7 @@ namespace Axantum.AxCrypt.Core
             IDataStore moveToFileInfo = TypeMap.Resolve.New<IDataStore>(store.FullName);
             moveToFileInfo.MoveTo(randomName);
 
-            using (Stream stream = moveToFileInfo.OpenWrite())
+            using (Stream stream = moveToFileInfo.OpenUpdate())
             {
                 long length = stream.Length + OS.Current.StreamBufferSize - stream.Length % OS.Current.StreamBufferSize;
                 progress.AddTotal(length);

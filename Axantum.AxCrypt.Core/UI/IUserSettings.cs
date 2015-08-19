@@ -80,5 +80,7 @@ namespace Axantum.AxCrypt.Core.UI
         int AsymmetricKeyBits { get; set; }
 
         string UserEmail { get; set; }
+
+        bool TryBrokenFile { get; set; }
     }
 }

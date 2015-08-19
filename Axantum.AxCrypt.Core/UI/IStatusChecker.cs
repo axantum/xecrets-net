@@ -40,6 +40,6 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="status">The status to check.</param>
         /// <param name="displayContext">A language independent context for the error, typically a file name.</param>
         /// <returns>True if the status indicated success, false otherwise.</returns>
-        bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext);
+        bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext);
     }
 }

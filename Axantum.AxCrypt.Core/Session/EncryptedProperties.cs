@@ -55,13 +55,13 @@ namespace Axantum.AxCrypt.Core.Session
             FileName = fileName;
         }
 
-        public bool IsValid { get; private set; }
+        public bool IsValid { get; set; }
 
         public IEnumerable<UserPublicKey> SharedKeyHolders { get; private set; }
 
         public string FileName { get; private set; }
 
-        public DecryptionParameter DecryptionParameter { get; private set; }
+        public DecryptionParameter DecryptionParameter { get; set; }
 
         public DateTime CreationTimeUtc { get; set; }
 
@@ -77,20 +77,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <returns>The properties or an empty set if the data store does not exist, or no-one is logged on.</returns>
         public static EncryptedProperties Create(IDataStore dataStore)
         {
-            if (dataStore == null)
-            {
-                throw new ArgumentNullException("dataStore");
-            }
-
-            if (!dataStore.IsAvailable)
-            {
-                return new EncryptedProperties();
-            }
-
-            using (Stream stream = LockedStream.OpenRead(dataStore))
-            {
-                return Create(stream);
-            }
+            return Create(dataStore, Resolve.KnownIdentities.DefaultEncryptionIdentity);
         }
 
         public static EncryptedProperties Create(Stream stream)
@@ -121,6 +108,11 @@ namespace Axantum.AxCrypt.Core.Session
             if (identity == null)
             {
                 throw new ArgumentNullException("identity");
+            }
+
+            if (identity == LogOnIdentity.Empty)
+            {
+                return new EncryptedProperties();
             }
 
             EncryptedProperties properties = new EncryptedProperties();

@@ -243,7 +243,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
-    <value>Unrecognized error code failing with '{0}'.</value>
+    <value>{1} for '{0}'.</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Updating Status</value>

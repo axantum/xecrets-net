@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         progress.NotifyLevelFinished();
                     }
-                    return new FileOperationContext(String.Empty, FileOperationStatus.Success);
+                    return new FileOperationContext(String.Empty, ErrorStatus.Success);
                 },
                 (FileOperationContext status) =>
                 {

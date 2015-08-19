@@ -181,7 +181,7 @@
     <value>&amp;Share Keys</value>
   </data>
   <data name="_recentFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 114</value>
+    <value>327, 92</value>
   </data>
   <data name="&gt;&gt;_recentFilesContextMenuStrip.Name" xml:space="preserve">
     <value>_recentFilesContextMenuStrip</value>
@@ -603,6 +603,12 @@
   <data name="_debugManageAccountToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Manage Account</value>
   </data>
+  <data name="tryBrokenFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="tryBrokenFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Try Broken File</value>
+  </data>
   <data name="_debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 20</value>
   </data>
@@ -631,7 +637,7 @@
     <value>0, 0</value>
   </data>
   <data name="_mainMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 24</value>
+    <value>235, 24</value>
   </data>
   <data name="_mainMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -4091,6 +4097,12 @@
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt</value>
   </data>
+  <data name="&gt;&gt;_recentFilesOpenToolStripMenuItem.Name" xml:space="preserve">
+    <value>_recentFilesOpenToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;_recentFilesOpenToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;_removeRecentFileToolStripMenuItem.Name" xml:space="preserve">
     <value>_removeRecentFileToolStripMenuItem</value>
   </data>
@@ -4433,10 +4445,10 @@
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.Forms.Implementation.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
-  <data name="&gt;&gt;_recentFilesOpenToolStripMenuItem.Name" xml:space="preserve">
-    <value>_recentFilesOpenToolStripMenuItem</value>
+  <data name="&gt;&gt;tryBrokenFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>tryBrokenFileToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;_recentFilesOpenToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;tryBrokenFileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

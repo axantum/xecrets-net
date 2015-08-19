@@ -314,7 +314,6 @@
     <Compile Include="UI\FileOperation.cs" />
     <Compile Include="UI\FileOperationEventArgs.cs" />
     <Compile Include="UI\FileOperationsController.cs" />
-    <Compile Include="UI\FileOperationStatus.cs" />
     <Compile Include="UI\IProgressBackground.cs" />
     <Compile Include="UI\IProgressContext.cs" />
     <Compile Include="UI\IStatusChecker.cs" />

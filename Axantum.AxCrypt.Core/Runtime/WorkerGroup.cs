@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
-using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -177,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             _concurrencyControlSemaphore = Resolve.Portable.Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
             _singleThread = Resolve.Portable.SingleThread();
-            FirstError = new FileOperationContext(String.Empty, FileOperationStatus.Success);
+            FirstError = new FileOperationContext(String.Empty, ErrorStatus.Success);
             progress.NotifyLevelStart();
             Progress = new WorkerGroupProgressContext(progress, _singleThread);
         }
@@ -255,13 +254,18 @@ namespace Axantum.AxCrypt.Core.Runtime
             return new ThreadWorkerWrapper(threadWorker);
         }
 
+        /// <summary>
+        /// Handles the thread worker completed event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="ThreadWorkerEventArgs"/> instance containing the event data.</param>
         private void HandleThreadWorkerCompletedEvent(object sender, ThreadWorkerEventArgs e)
         {
-            if (e.Result.Status != FileOperationStatus.Success)
+            if (e.Result.ErrorStatus != ErrorStatus.Success)
             {
                 lock (_firstErrorLock)
                 {
-                    if (FirstError.Status == FileOperationStatus.Success)
+                    if (FirstError.ErrorStatus == ErrorStatus.Success)
                     {
                         FirstError = e.Result;
                     }
