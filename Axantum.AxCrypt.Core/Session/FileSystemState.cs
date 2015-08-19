@@ -75,6 +75,7 @@ namespace Axantum.AxCrypt.Core.Session
         private void Finalize(StreamingContext context)
         {
             KnownPassphrases = new List<Passphrase>(KnownPassphrases);
+            _activeFilesForSerialization = _activeFilesForSerialization.Where(af => af.EncryptedFileInfo.IsAvailable).ToList();
             SetRangeInternal(_activeFilesForSerialization, ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
             _activeFilesForSerialization = null;
 

@@ -80,16 +80,6 @@ namespace Axantum.AxCrypt.Core.Session
             return Create(dataStore, Resolve.KnownIdentities.DefaultEncryptionIdentity);
         }
 
-        public static EncryptedProperties Create(Stream stream)
-        {
-            if (!Resolve.KnownIdentities.IsLoggedOn)
-            {
-                return new EncryptedProperties();
-            }
-
-            return Create(stream, Resolve.KnownIdentities.DefaultEncryptionIdentity);
-        }
-
         public static EncryptedProperties Create(IDataStore encrypted, LogOnIdentity identity)
         {
             if (encrypted == null)
@@ -97,9 +87,16 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("encrypted");
             }
 
-            using (Stream stream = encrypted.OpenRead())
+            try
             {
-                return Create(stream, identity);
+                using (Stream stream = encrypted.OpenRead())
+                {
+                    return Create(stream, identity);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                return new EncryptedProperties();
             }
         }
 

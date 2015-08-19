@@ -1070,7 +1070,6 @@ namespace Axantum.AxCrypt
             item.SubItems["Date"].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems["Date"].Tag = activeFile.Properties.LastActivityTimeUtc;
 
-            item.SubItems["CryptoName"].Text = Resources.UnknownCrypto;
             try
             {
                 if (activeFile.Properties.CryptoId != Guid.Empty)
@@ -1080,6 +1079,7 @@ namespace Axantum.AxCrypt
             }
             catch (ArgumentException)
             {
+                item.SubItems["CryptoName"].Text = Resources.UnknownCrypto;
             }
         }
 
