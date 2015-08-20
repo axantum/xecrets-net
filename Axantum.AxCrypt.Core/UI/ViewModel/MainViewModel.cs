@@ -277,11 +277,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     break;
 
+                case SessionNotificationType.ActiveFileChange:
+                    SetRecentFiles();
+                    break;
+
                 case SessionNotificationType.WorkFolderChange:
                 case SessionNotificationType.ProcessExit:
                 case SessionNotificationType.SessionChange:
                 case SessionNotificationType.SessionStart:
-                case SessionNotificationType.ActiveFileChange:
                 default:
                     break;
             }

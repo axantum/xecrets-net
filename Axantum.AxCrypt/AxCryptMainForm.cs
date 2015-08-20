@@ -1657,6 +1657,10 @@ namespace Axantum.AxCrypt
                 },
                 (FileOperationContext foc) =>
                 {
+                    if (foc.ErrorStatus == ErrorStatus.Success)
+                    {
+                        Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
+                    }
                 });
             }
         }
