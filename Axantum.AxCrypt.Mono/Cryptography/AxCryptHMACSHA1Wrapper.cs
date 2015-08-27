@@ -76,8 +76,8 @@ namespace Axantum.AxCrypt.Mono.Cryptography
                 throw new ArgumentNullException("key");
             }
 
-            _hmac.Initialize();
             _hmac.Key = key.GetBytes();
+            _hmac.Initialize();
             return this;
         }
 

@@ -545,7 +545,7 @@ namespace Axantum.AxCrypt.Core.Test
             });
             axCryptFileMock.Setup<EncryptedProperties>(m => m.CreateEncryptedProperties(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase) =>
             {
-                EncryptedProperties properties = new EncryptedProperties(fileInfo.FullName.Replace("-txt.axx", ".txt"));
+                EncryptedProperties properties = new EncryptedProperties(fileInfo.Name.Replace("-txt.axx", ".txt"));
                 properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, V1Aes128CryptoFactory.CryptoId);
                 properties.IsValid = true;
                 return properties;
