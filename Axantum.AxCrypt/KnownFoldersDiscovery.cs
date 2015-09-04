@@ -67,28 +67,15 @@ namespace Axantum.AxCrypt
 
         private static void CheckDropBox(IList<KnownFolder> knownFolders)
         {
-            RegistryKey dropBoxKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Dropbox");
-            if (dropBoxKey == null)
-            {
-                return;
-            }
-
             string dropBoxFolder = Path.Combine(Environment.GetEnvironmentVariable("HOMEDRIVE") + Environment.GetEnvironmentVariable("HOMEPATH"), "DropBox");
             if (!Directory.Exists(dropBoxFolder))
             {
                 return;
             }
 
-            Uri url = null;
-            string urlInfoAbout = dropBoxKey.GetValue(@"URLInfoAbout") as string;
-            if (!String.IsNullOrEmpty(urlInfoAbout))
-            {
-                Uri.TryCreate(urlInfoAbout, UriKind.Absolute, out url);
-            }
-
             Bitmap bitmap = Resources.dropbox_40px;
             IDataContainer dropBoxFolderInfo = TypeMap.Resolve.New<IDataContainer>(dropBoxFolder);
-            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Resources.MyAxCryptFolderName, bitmap, url);
+            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Resources.MyAxCryptFolderName, bitmap, null);
 
             knownFolders.Add(knownFolder);
         }
