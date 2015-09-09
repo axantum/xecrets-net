@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 
         public BouncyCastleSha256Wrapper()
         {
-            _hashAlgorithm = new Sha1Digest();
+            _hashAlgorithm = new Sha256Digest();
         }
 
         public override byte[] ComputeHash(byte[] buffer)
