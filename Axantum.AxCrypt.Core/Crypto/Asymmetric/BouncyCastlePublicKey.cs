@@ -27,7 +27,6 @@
 
 using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto;
-using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Encodings;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Parameters;
@@ -122,6 +121,34 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
                 }
 
                 return notSoImportantToBeUniqueTag.ToString(CultureInfo.InvariantCulture);
+            }
+        }
+
+        private PublicKeyThumbprint _thumbprint = null;
+
+        /// <summary>
+        /// Gets the thumbprint of the public key.
+        /// </summary>
+        /// <value>
+        /// The thumbprint.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException">Attempt to get a public key thumbprint from a private key.</exception>
+        public PublicKeyThumbprint Thumbprint
+        {
+            get
+            {
+                if (_thumbprint == null)
+                {
+                    RsaKeyParameters rsaKey = (RsaKeyParameters)Key;
+                    if (rsaKey.IsPrivate)
+                    {
+                        throw new InvalidOperationException("Attempt to get a public key thumbprint from a private key.");
+                    }
+                    byte[] modulus = rsaKey.Modulus.ToByteArray();
+                    byte[] exponent = rsaKey.Exponent.ToByteArray();
+                    _thumbprint = new PublicKeyThumbprint(modulus, exponent);
+                }
+                return _thumbprint;
             }
         }
 

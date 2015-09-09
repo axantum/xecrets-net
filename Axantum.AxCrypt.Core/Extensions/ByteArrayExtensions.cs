@@ -255,6 +255,14 @@ namespace Axantum.AxCrypt.Core.Extensions
             return value;
         }
 
+        /// <summary>
+        /// Reduces the byte array to the specified length by xoring each byte[index modulo the length].
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="length">The length.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">value</exception>
+        /// <exception cref="System.ArgumentException">Can't reduce a byte array that is already shorter than the target length.</exception>
         public static byte[] Reduce(this byte[] value, int length)
         {
             if (value == null)

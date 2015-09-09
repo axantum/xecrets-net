@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CryptoImplementation.cs" />
     <Compile Include="CryptoValidation\TestRsaOeap.cs" />
+    <Compile Include="CryptoValidation\TestSha256.cs" />
     <Compile Include="Endian.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FakeDataProtection.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="TestPbkdf2HmacSha512.cs" />
     <Compile Include="TestAsymmetricCrypto.cs" />
     <Compile Include="TestPipelineStreamTest.cs" />
+    <Compile Include="TestPublicKeyThumbprint.cs" />
     <Compile Include="TestRandomGenerator.cs" />
     <Compile Include="TestAsymmetricUserKeysStore.cs" />
     <Compile Include="TestSharingListViewModel.cs" />

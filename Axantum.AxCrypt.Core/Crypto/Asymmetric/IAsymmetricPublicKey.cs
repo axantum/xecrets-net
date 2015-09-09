@@ -37,5 +37,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
         byte[] Transform(byte[] buffer);
 
         string Tag { get; }
+
+        PublicKeyThumbprint Thumbprint { get; }
     }
 }
