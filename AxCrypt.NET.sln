@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Mono", "Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj", "{CE9E8614-8DC5-4757-9384-3C416AB61A47}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Desktop", "Axantum.AxCrypt.Desktop\Axantum.AxCrypt.Desktop.csproj", "{D64DE570-3A36-49D3-95AA-9262647B04EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Desktop.Test", "Axantum.AxCrypt.Desktop.Test\Axantum.AxCrypt.Desktop.Test.csproj", "{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Api", "Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj", "{6EA275D5-2372-4FCF-BB4F-5C48F5901350}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,10 @@ Global
 		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
