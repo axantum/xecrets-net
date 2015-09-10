@@ -50,11 +50,27 @@ namespace Axantum.AxCrypt.Mono
             {
                 throw new ArgumentNullException("method");
             }
+            if (url == null)
+            {
+                throw new ArgumentNullException("url");
+            }
+            if (identity == null)
+            {
+                throw new ArgumentNullException("identity");
+            }
+            if (content == null)
+            {
+                throw new ArgumentNullException("content");
+            }
+            if (headers == null)
+            {
+                throw new ArgumentNullException("headers");
+            }
 
             switch (method)
             {
                 case "GET":
-                    if (content != null)
+                    if (content == WebContent.Empty)
                     {
                         throw new ArgumentException("You can't send content with a GET request.", "content");
                     }
