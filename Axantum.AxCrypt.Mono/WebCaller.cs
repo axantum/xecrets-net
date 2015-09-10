@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Linq;
@@ -41,7 +42,24 @@ namespace Axantum.AxCrypt.Mono
 
         #region IWebCaller Members
 
-        public string Go(Uri url)
+        public string Send(string method, Uri url)
+        {
+            if (method == null)
+            {
+                throw new ArgumentNullException("method");
+            }
+
+            switch (method)
+            {
+                case "GET":
+                    return SendGet(url);
+
+                default:
+                    throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(method));
+            }
+        }
+
+        private static string SendGet(Uri url)
         {
             string response = String.Empty;
             using (WebClient client = new WebClient())

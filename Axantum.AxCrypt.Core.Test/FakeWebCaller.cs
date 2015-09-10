@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         #region IWebCaller Members
 
-        public string Go(Uri url)
+        public string Send(string method, Uri url)
         {
             OnCalling();
             return _result;

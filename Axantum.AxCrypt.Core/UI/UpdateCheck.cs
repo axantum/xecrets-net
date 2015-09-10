@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.UI
             try
             {
                 IWebCaller webCaller = OS.Current.CreateWebCaller();
-                string result = webCaller.Go(webServiceUrl);
+                string result = webCaller.Send("GET", webServiceUrl);
 
                 VersionResponse versionResponse = JsonConvert.DeserializeObject<VersionResponse>(result);
 
