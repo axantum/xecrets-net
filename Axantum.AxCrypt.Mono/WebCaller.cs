@@ -32,7 +32,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Cache;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -70,25 +72,38 @@ namespace Axantum.AxCrypt.Mono
             switch (method)
             {
                 case "GET":
-                    if (content == WebContent.Empty)
+                    if (content != WebContent.Empty)
                     {
                         throw new ArgumentException("You can't send content with a GET request.", "content");
                     }
-                    return SendGet(url, headers);
+                    return SendGet(url, headers).Result;
 
                 default:
                     throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(method));
             }
         }
 
-        private static WebAnswer SendGet(Uri url, WebHeaders headers)
+        private async static Task<WebAnswer> SendGet(Uri url, WebHeaders headers)
         {
             string content = String.Empty;
-            using (WebClient client = new WebClient())
+            using (HttpClient client = new HttpClient())
             {
-                client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
-                content = client.DownloadString(url);
+                client.BaseAddress = new Uri(url.GetLeftPart(UriPartial.Authority));
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage httpResponse = await client.GetAsync(url.PathAndQuery);
+                if (!httpResponse.IsSuccessStatusCode)
+                {
+                    return new WebAnswer(httpResponse.StatusCode, String.Empty);
+                }
+                content = await httpResponse.Content.ReadAsStringAsync();
             }
+            //using (WebClient client = new WebClient())
+            //{
+            //    client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+            //    content = client.DownloadString(url);
+            //}
             return new WebAnswer(HttpStatusCode.OK, content);
         }
 

@@ -7,8 +7,6 @@ namespace Axantum.AxCrypt.Core.IO
 {
     public class WebHeaders
     {
-        public static WebHeaders Empty = new WebHeaders(new Dictionary<string, string>());
-
         public IDictionary<string, string> Collection { get; private set; }
 
         public WebHeaders()
