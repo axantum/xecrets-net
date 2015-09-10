@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
@@ -130,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI
             try
             {
                 IWebCaller webCaller = OS.Current.CreateWebCaller();
-                string result = webCaller.Send("GET", webServiceUrl, null, null);
+                string result = webCaller.Send("GET", webServiceUrl, LogOnIdentity.Empty, null, null);
 
                 VersionResponse versionResponse = JsonConvert.DeserializeObject<VersionResponse>(result);
 

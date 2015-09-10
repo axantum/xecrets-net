@@ -69,6 +69,8 @@
     <Compile Include="IO\IStringSerializer.cs" />
     <Compile Include="IO\LockedStream.cs" />
     <Compile Include="IO\PipelineStream.cs" />
+    <Compile Include="IO\WebContent.cs" />
+    <Compile Include="IO\WebHeaders.cs" />
     <Compile Include="IO\WrappedBaseStream.cs" />
     <Compile Include="IO\StringSerializer.cs" />
     <Compile Include="Algorithm\Aes.cs" />

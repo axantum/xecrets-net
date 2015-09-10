@@ -25,43 +25,22 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Core.IO
 {
-    internal class FakeWebCaller : IWebCaller
+    public class WebContent
     {
-        private string _result;
+        public static readonly WebContent Empty = new WebContent(String.Empty);
 
-        public event EventHandler<EventArgs> Calling;
+        public string Text { get; private set; }
 
-        public FakeWebCaller(string result)
+        public WebContent(string text)
         {
-            _result = result;
-        }
-
-        #region IWebCaller Members
-
-        public string Send(string method, Uri url, LogOnIdentity identity, WebContent content, WebHeaders headers)
-        {
-            OnCalling();
-            return _result;
-        }
-
-        #endregion IWebCaller Members
-
-        private void OnCalling()
-        {
-            EventHandler<EventArgs> handler = Calling;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
+            Text = text;
         }
     }
 }

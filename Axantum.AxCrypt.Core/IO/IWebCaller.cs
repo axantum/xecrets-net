@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,6 @@ namespace Axantum.AxCrypt.Core.IO
 {
     public interface IWebCaller
     {
-        string Send(string method, Uri url, string content, IDictionary<string, string> headers);
+        string Send(string method, Uri url, LogOnIdentity identity, WebContent content, WebHeaders headers);
     }
 }

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using System;
@@ -43,14 +44,12 @@ namespace Axantum.AxCrypt.Mono
 
         #region IWebCaller Members
 
-        public string Send(string method, Uri url, string content, IDictionary<string, string> headers)
+        public string Send(string method, Uri url, LogOnIdentity identity, WebContent content, WebHeaders headers)
         {
             if (method == null)
             {
                 throw new ArgumentNullException("method");
             }
-
-            headers = headers ?? new Dictionary<string, string>();
 
             switch (method)
             {
@@ -66,7 +65,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private static string SendGet(Uri url, IDictionary<string, string> headers)
+        private static string SendGet(Uri url, WebHeaders headers)
         {
             string response = String.Empty;
             using (WebClient client = new WebClient())

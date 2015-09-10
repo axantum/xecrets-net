@@ -1,8 +1,4 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using System;
-
-#region Coypright and License
+﻿#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
@@ -29,11 +25,14 @@ using System;
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.IO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 
 namespace Axantum.AxCrypt.Core.Session
 {
