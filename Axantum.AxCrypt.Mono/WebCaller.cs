@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Cache;
@@ -42,24 +43,30 @@ namespace Axantum.AxCrypt.Mono
 
         #region IWebCaller Members
 
-        public string Send(string method, Uri url)
+        public string Send(string method, Uri url, string content, IDictionary<string, string> headers)
         {
             if (method == null)
             {
                 throw new ArgumentNullException("method");
             }
 
+            headers = headers ?? new Dictionary<string, string>();
+
             switch (method)
             {
                 case "GET":
-                    return SendGet(url);
+                    if (content != null)
+                    {
+                        throw new ArgumentException("You can't send content with a GET request.", "content");
+                    }
+                    return SendGet(url, headers);
 
                 default:
                     throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(method));
             }
         }
 
-        private static string SendGet(Uri url)
+        private static string SendGet(Uri url, IDictionary<string, string> headers)
         {
             string response = String.Empty;
             using (WebClient client = new WebClient())

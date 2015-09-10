@@ -34,6 +34,6 @@ namespace Axantum.AxCrypt.Core.IO
 {
     public interface IWebCaller
     {
-        string Send(string method, Uri url);
+        string Send(string method, Uri url, string content, IDictionary<string, string> headers);
     }
 }

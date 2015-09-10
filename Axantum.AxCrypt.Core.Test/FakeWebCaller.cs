@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         #region IWebCaller Members
 
-        public string Send(string method, Uri url)
+        public string Send(string method, Uri url, string content, IDictionary<string, string> headers)
         {
             OnCalling();
             return _result;
