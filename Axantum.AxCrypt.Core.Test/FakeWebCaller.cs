@@ -30,24 +30,25 @@ using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeWebCaller : IWebCaller
     {
-        private string _result;
+        private WebAnswer _result;
 
         public event EventHandler<EventArgs> Calling;
 
         public FakeWebCaller(string result)
         {
-            _result = result;
+            _result = new WebAnswer(HttpStatusCode.OK, result);
         }
 
         #region IWebCaller Members
 
-        public string Send(string method, Uri url, LogOnIdentity identity, WebContent content, WebHeaders headers)
+        public WebAnswer Send(string method, Uri url, LogOnIdentity identity, WebContent content, WebHeaders headers)
         {
             OnCalling();
             return _result;

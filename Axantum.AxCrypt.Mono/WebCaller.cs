@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Mono
 
         #region IWebCaller Members
 
-        public string Send(string method, Uri url, LogOnIdentity identity, WebContent content, WebHeaders headers)
+        public WebAnswer Send(string method, Uri url, LogOnIdentity identity, WebContent content, WebHeaders headers)
         {
             if (method == null)
             {
@@ -81,15 +81,15 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private static string SendGet(Uri url, WebHeaders headers)
+        private static WebAnswer SendGet(Uri url, WebHeaders headers)
         {
-            string response = String.Empty;
+            string content = String.Empty;
             using (WebClient client = new WebClient())
             {
                 client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
-                response = client.DownloadString(url);
+                content = client.DownloadString(url);
             }
-            return response;
+            return new WebAnswer(HttpStatusCode.OK, content);
         }
 
         #endregion IWebCaller Members

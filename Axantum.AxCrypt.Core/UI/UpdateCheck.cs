@@ -131,9 +131,9 @@ namespace Axantum.AxCrypt.Core.UI
             try
             {
                 IWebCaller webCaller = OS.Current.CreateWebCaller();
-                string result = webCaller.Send("GET", webServiceUrl, LogOnIdentity.Empty, null, null);
+                WebAnswer answer = webCaller.Send("GET", webServiceUrl, LogOnIdentity.Empty, null, null);
 
-                VersionResponse versionResponse = JsonConvert.DeserializeObject<VersionResponse>(result);
+                VersionResponse versionResponse = JsonConvert.DeserializeObject<VersionResponse>(answer.Content);
 
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);
