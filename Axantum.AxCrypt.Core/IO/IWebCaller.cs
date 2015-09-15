@@ -35,6 +35,6 @@ namespace Axantum.AxCrypt.Core.IO
 {
     public interface IWebCaller
     {
-        WebAnswer Send(string method, Uri url, LogOnIdentity identity, WebContent content, WebHeaders headers);
+        WebCallerResponse Send(LogOnIdentity identity, WebCallerRequest request);
     }
 }

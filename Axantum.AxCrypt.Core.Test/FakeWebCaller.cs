@@ -37,18 +37,18 @@ namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeWebCaller : IWebCaller
     {
-        private WebAnswer _result;
+        private WebCallerResponse _result;
 
         public event EventHandler<EventArgs> Calling;
 
         public FakeWebCaller(string result)
         {
-            _result = new WebAnswer(HttpStatusCode.OK, result);
+            _result = new WebCallerResponse(HttpStatusCode.OK, result);
         }
 
         #region IWebCaller Members
 
-        public WebAnswer Send(string method, Uri url, LogOnIdentity identity, WebContent content, WebHeaders headers)
+        public WebCallerResponse Send(LogOnIdentity identity, WebCallerRequest request)
         {
             OnCalling();
             return _result;

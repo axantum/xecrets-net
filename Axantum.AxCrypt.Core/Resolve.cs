@@ -170,5 +170,10 @@ namespace Axantum.AxCrypt.Core
         {
             get { return TypeMap.Resolve.New<IStringSerializer>(); }
         }
+
+        public static IWebCaller WebCaller
+        {
+            get { return TypeMap.Resolve.New<IWebCaller>(); }
+        }
     }
 }

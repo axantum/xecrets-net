@@ -34,9 +34,12 @@ namespace Axantum.AxCrypt.Core.IO
 {
     public class WebContent
     {
-        public static readonly WebContent Empty = new WebContent(String.Empty);
-
         public string Text { get; private set; }
+
+        public WebContent()
+        {
+            Text = String.Empty;
+        }
 
         public WebContent(string text)
         {

@@ -46,65 +46,54 @@ namespace Axantum.AxCrypt.Mono
 
         #region IWebCaller Members
 
-        public WebAnswer Send(string method, Uri url, LogOnIdentity identity, WebContent content, WebHeaders headers)
+        public WebCallerResponse Send(LogOnIdentity identity, WebCallerRequest request)
         {
-            if (method == null)
-            {
-                throw new ArgumentNullException("method");
-            }
-            if (url == null)
-            {
-                throw new ArgumentNullException("url");
-            }
             if (identity == null)
             {
                 throw new ArgumentNullException("identity");
             }
-            if (content == null)
+            if (request == null)
             {
-                throw new ArgumentNullException("content");
-            }
-            if (headers == null)
-            {
-                throw new ArgumentNullException("headers");
+                throw new ArgumentNullException("request");
             }
 
-            switch (method)
+            switch (request.Method)
             {
                 case "GET":
-                    if (content != WebContent.Empty)
+                    if (request.Content.Text.Length > 0)
                     {
                         throw new ArgumentException("You can't send content with a GET request.", "content");
                     }
-                    return SendGet(url, headers).Result;
+                    return SendGet(request).Result;
 
                 default:
-                    throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(method));
+                    throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
             }
         }
 
-        private async static Task<WebAnswer> SendGet(Uri url, WebHeaders headers)
+        private async static Task<WebCallerResponse> SendGet(WebCallerRequest request)
         {
             string content = String.Empty;
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri(url.GetLeftPart(UriPartial.Authority));
-                client.DefaultRequestHeaders.Accept.Clear();
+                client.BaseAddress = new Uri(request.Url.GetLeftPart(UriPartial.Authority));
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue();
+                client.DefaultRequestHeaders.CacheControl.NoCache = true;
+                client.DefaultRequestHeaders.CacheControl.NoStore = true;
+                foreach (string key in request.Headers.Collection.Keys)
+                {
+                    client.DefaultRequestHeaders.Add(key, request.Headers.Collection[key]);
+                }
 
-                HttpResponseMessage httpResponse = await client.GetAsync(url.PathAndQuery);
+                HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery);
                 if (!httpResponse.IsSuccessStatusCode)
                 {
-                    return new WebAnswer(httpResponse.StatusCode, String.Empty);
+                    return new WebCallerResponse(httpResponse.StatusCode, String.Empty);
                 }
                 content = await httpResponse.Content.ReadAsStringAsync();
             }
-            //using (WebClient client = new WebClient())
-            //{
-            //    client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
-            //    content = client.DownloadString(url);
-            //}
-            return new WebAnswer(HttpStatusCode.OK, content);
+            return new WebCallerResponse(HttpStatusCode.OK, content);
         }
 
         #endregion IWebCaller Members
