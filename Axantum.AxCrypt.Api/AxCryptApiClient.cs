@@ -15,10 +15,10 @@ namespace Axantum.AxCrypt.Api
         /// <summary>
         /// Get a user summary, typically as an initial call to validate the passphrase with the account etc.
         /// </summary>
+        /// <param name="identity">The identity on whos behalf to make the call.</param>
         /// <param name="email">The user name/email</param>
-        /// <param name="passphrase">The credentials to use</param>
         /// <returns></returns>
-        public UserSummary User(EmailAddress email, LogOnIdentity identity)
+        public virtual UserSummary User(LogOnIdentity identity, EmailAddress email)
         {
             WebCallerResponse answer = Resolve.WebCaller.Send(identity, new WebCallerRequest(new Uri(String.Empty)));
             UserSummary summary = Resolve.Serializer.Deserialize<UserSummary>(answer.Content);

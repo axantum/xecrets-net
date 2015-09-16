@@ -11,7 +11,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public WebHeaders Headers { get; private set; }
 
-        public TimeSpan TimeOut { get; private set; }
+        public TimeSpan Timeout { get; private set; }
 
         public string Method { get; private set; }
 
@@ -21,7 +21,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             Content = new WebContent();
             Headers = new WebHeaders();
-            TimeOut = TimeSpan.FromSeconds(1);
+            Timeout = TimeSpan.FromSeconds(1);
         }
 
         public WebCallerRequest(string method, Uri url)

@@ -14,7 +14,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public WebCallerResponse(HttpStatusCode statusCode, string content)
         {
-            StatusCode = HttpStatusCode.OK;
+            StatusCode = statusCode;
             Content = content;
         }
     }

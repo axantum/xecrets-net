@@ -10,6 +10,11 @@ namespace Axantum.AxCrypt.Core.Extensions
     {
         public static string ToFileString(this PublicKeyThumbprint thumbprint)
         {
+            if (thumbprint == null)
+            {
+                throw new ArgumentNullException("thumbprint");
+            }
+
             string base64 = Convert.ToBase64String(thumbprint.ToByteArray());
             string fileString = base64.Substring(0, base64.Length - 2).Replace('/', '-');
 

@@ -4,9 +4,6 @@ using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -70,6 +67,11 @@ namespace Axantum.AxCrypt
 
         public DragDropEffects GetEffectsForWatchedFolders(DragEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException("e");
+            }
+
             if (!_viewModel.DroppableAsWatchedFolder)
             {
                 return DragDropEffects.None;

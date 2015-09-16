@@ -466,7 +466,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private bool InfoFromDecryptedDocument(IDataStore sourceFileInfo, FileOperationEventArgs e)
+        private static bool InfoFromDecryptedDocument(IDataStore sourceFileInfo, FileOperationEventArgs e)
         {
             EncryptedProperties properties = TypeMap.Resolve.New<AxCryptFile>().CreateEncryptedProperties(sourceFileInfo, e.LogOnIdentity);
             if (!properties.IsValid)

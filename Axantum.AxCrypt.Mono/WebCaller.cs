@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Mono
                 case "GET":
                     if (request.Content.Text.Length > 0)
                     {
-                        throw new ArgumentException("You can't send content with a GET request.", "content");
+                        throw new ArgumentException("You can't send content with a GET request.", "request");
                     }
                     return SendGet(request).Result;
 

@@ -122,6 +122,11 @@ namespace Axantum.AxCrypt
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException("e");
+            }
+
             if (_isCreating)
             {
                 e.Cancel = true;

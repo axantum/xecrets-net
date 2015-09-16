@@ -38,7 +38,6 @@ using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -58,6 +57,8 @@ namespace Axantum.AxCrypt
     /// All code here is expected to execute on the GUI thread. If code may be called on another thread, this call
     /// must be made through ThreadSafeUi() .
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Ax")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     public partial class AxCryptMainForm : Form, IStatusChecker
     {
         private NotifyIcon _notifyIcon = null;
@@ -397,6 +398,8 @@ namespace Axantum.AxCrypt
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         private void BindToViewModels()
         {
             _mainViewModel.Title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
@@ -451,7 +454,7 @@ namespace Axantum.AxCrypt
             _knownFoldersViewModel.KnownFolders = KnownFoldersDiscovery.Discover();
         }
 
-        private void BindToWatchedFoldersViewModel()
+        private static void BindToWatchedFoldersViewModel()
         {
         }
 
@@ -923,6 +926,11 @@ namespace Axantum.AxCrypt
 
         public DragDropEffects GetEffectsForWatchedFolders(DragEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException("e");
+            }
+
             if (!_mainViewModel.DroppableAsWatchedFolder)
             {
                 return DragDropEffects.None;
@@ -1007,7 +1015,7 @@ namespace Axantum.AxCrypt
             {
                 HashSet<string> newFiles = new HashSet<string>(files.Select(f => f.DecryptedFileInfo.FullName));
                 Dictionary<string, int> currentFiles = new Dictionary<string, int>();
-                for (int i = 0; i < _recentFilesListView.Items.Count; )
+                for (int i = 0; i < _recentFilesListView.Items.Count;)
                 {
                     if (!newFiles.Contains(_recentFilesListView.Items[i].Name))
                     {
@@ -1625,7 +1633,8 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void HandleRequestPrivateKeyPassword(LogOnEventArgs re)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "re")]
+        private static void HandleRequestPrivateKeyPassword(LogOnEventArgs re)
         {
             throw new NotImplementedException();
         }
