@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Axantum.AxCrypt.Abstractions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {

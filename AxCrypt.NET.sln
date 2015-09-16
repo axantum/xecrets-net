@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Api", "Axan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Api.Test", "Axantum.AxCrypt.Api.Test\Axantum.AxCrypt.Api.Test.csproj", "{D34E5E80-BFF9-4300-8ADA-9085D0EC65BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Abstractions", "Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj", "{61E59383-C053-4416-9981-0DCFB8D89DC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{D34E5E80-BFF9-4300-8ADA-9085D0EC65BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D34E5E80-BFF9-4300-8ADA-9085D0EC65BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D34E5E80-BFF9-4300-8ADA-9085D0EC65BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

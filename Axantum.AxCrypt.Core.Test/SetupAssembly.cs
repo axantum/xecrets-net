@@ -42,6 +42,7 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Algorithm.Implementation;
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Abstractions;
 
 namespace Axantum.AxCrypt.Core.Test
 {

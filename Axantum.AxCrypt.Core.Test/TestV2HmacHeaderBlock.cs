@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using NUnit.Framework;
@@ -41,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             V2HmacHeaderBlock headerBlock = null;
             Assert.Throws<ArgumentNullException>(() => headerBlock = new V2HmacHeaderBlock(null));
-			Assert.That(headerBlock, Is.Null);
+            Assert.That(headerBlock, Is.Null);
         }
 
         [Test]

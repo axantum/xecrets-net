@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using NDesk.Options;
@@ -87,7 +88,7 @@ namespace Axantum.AxCrypt.Core
 
         private void Run(IList<CommandItem> commandItems)
         {
-            if (commandItems.Count == 0)                                                                                                                                                                                                                                                                  
+            if (commandItems.Count == 0)
             {
                 EnsureFirstInstanceRunning();
                 return;

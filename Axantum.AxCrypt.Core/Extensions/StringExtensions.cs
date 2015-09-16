@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;

@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 using System;
@@ -387,7 +387,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateUniqueFileUnexpectedAxCryptException()
         {
-            EventHandler handler = delegate(object sender, EventArgs e)
+            EventHandler handler = delegate (object sender, EventArgs e)
             {
                 if (((FakeDataStore)sender).TestTag == "CreateNewFile")
                 {

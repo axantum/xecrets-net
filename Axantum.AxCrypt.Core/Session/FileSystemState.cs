@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -214,7 +215,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             lock (_watchedFolders)
             {
-                for (int i = 0; i < _watchedFolders.Count; )
+                for (int i = 0; i < _watchedFolders.Count;)
                 {
                     if (!_watchedFolders[i].Matches(folderInfo.FullName))
                     {

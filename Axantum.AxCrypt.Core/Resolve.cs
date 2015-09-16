@@ -39,6 +39,7 @@ using System;
 using System.Linq;
 using Axantum.AxCrypt.Core.IO;
 using System.Diagnostics.CodeAnalysis;
+using Axantum.AxCrypt.Abstractions;
 
 namespace Axantum.AxCrypt.Core
 {

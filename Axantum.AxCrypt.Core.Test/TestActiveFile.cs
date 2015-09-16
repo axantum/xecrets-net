@@ -25,8 +25,8 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
@@ -34,7 +34,6 @@ using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.

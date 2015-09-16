@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Moq">
@@ -51,6 +53,10 @@
     <Compile Include="TestAxCryptApiClient.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
+      <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
+      <Name>Axantum.AxCrypt.Abstractions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj">
       <Project>{6ea275d5-2372-4fcf-bb4f-5c48f5901350}</Project>
       <Name>Axantum.AxCrypt.Api</Name>

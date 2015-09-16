@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -29,13 +29,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.Extensions;
 
-namespace Axantum.AxCrypt.Core.Runtime
+namespace Axantum.AxCrypt.Abstractions
 {
     public class TypeResolve
     {
-        IDictionary<Type, object> _mapping;
+        private IDictionary<Type, object> _mapping;
 
         public TypeResolve(IDictionary<Type, object> mapping)
         {
@@ -53,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             object o;
             if (!_mapping.TryGetValue(typeof(TResult), out o))
             {
-                throw new ArgumentException("Unregistered singleton. Initialize with 'FactoryRegistry.Singleton<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
+                throw new ArgumentException("Unregistered singleton. Initialize with 'FactoryRegistry.Singleton<{0}>(() => {{ return new {0}(); }});'".Format(typeof(TResult)));
             }
 
             TResult value = o as TResult;
@@ -122,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             object function;
             if (!_mapping.TryGetValue(typeof(TResult), out function))
             {
-                throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
+                throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}>(() => {{ return new {0}(); }});'".Format(typeof(TResult)));
             }
             return (Func<TResult>)function;
         }
@@ -132,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             object function;
             if (!_mapping.TryGetValue(typeof(TResult), out function))
             {
-                throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}, {1}>((argument) => {{ return new {0}(argument); }});'".InvariantFormat(typeof(TArgument), typeof(TResult)));
+                throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}, {1}>((argument) => {{ return new {0}(argument); }});'".Format(typeof(TArgument), typeof(TResult)));
             }
             return (Func<TArgument, TResult>)function;
         }

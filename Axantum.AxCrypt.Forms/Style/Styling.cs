@@ -1,6 +1,4 @@
-﻿using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Forms.Properties;
+﻿using Axantum.AxCrypt.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

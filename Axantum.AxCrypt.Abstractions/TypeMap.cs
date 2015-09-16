@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,13 +25,11 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core
+namespace Axantum.AxCrypt.Abstractions
 {
     /// <summary>
     /// Map a type to a class factory creating instances of that type. This is used as a simple dependency injection vehicle

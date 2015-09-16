@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,36 +25,23 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.UI;
-using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Abstractions
 {
-    [TestFixture]
-    public static class TestInstance
+    public class Creator<T>
     {
-        [SetUp]
-        public static void Setup()
-        {
-            SetupAssembly.AssemblySetup();
-        }
+        public Func<T> CreateFunc { get; set; }
 
-        [TearDown]
-        public static void Teardown()
-        {
-            SetupAssembly.AssemblyTeardown();
-        }
+        public Action PostAction { get; set; }
 
-        [Test]
-        public static void TestStatusChecker()
+        public Creator(Func<T> creator, Action postAction)
         {
-            TypeMap.Register.Singleton<IStatusChecker>(() => new FakeStatusChecker());
-
-            IStatusChecker sc = Resolve.StatusChecker;
-            Assert.That(sc is FakeStatusChecker, Is.True);
+            CreateFunc = creator;
+            PostAction = postAction;
         }
     }
 }

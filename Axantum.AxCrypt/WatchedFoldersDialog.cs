@@ -1,4 +1,4 @@
-﻿using Axantum.AxCrypt.Core;
+﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;

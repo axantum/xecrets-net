@@ -121,7 +121,6 @@
     <Compile Include="Algorithm\Sha256.cs" />
     <Compile Include="Algorithm\SymmetricAlgorithm.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
-    <Compile Include="Runtime\Creator.cs" />
     <Compile Include="Runtime\CryptoException.cs" />
     <Compile Include="Runtime\IPlatform.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />
@@ -166,8 +165,6 @@
     <Compile Include="Reader\AxCryptReaderBase.cs" />
     <Compile Include="Reader\V2AxCryptReader.cs" />
     <Compile Include="Reader\UnversionedAxCryptReader.cs" />
-    <Compile Include="Runtime\TypeRegister.cs" />
-    <Compile Include="Runtime\TypeResolve.cs" />
     <Compile Include="Session\ActiveFileExtensions.cs" />
     <Compile Include="Session\ActiveFileProperties.cs" />
     <Compile Include="Session\ActiveFileWatcher.cs" />
@@ -198,7 +195,6 @@
     <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Crypto\IterationCalculator.cs" />
-    <Compile Include="TypeMap.cs" />
     <Compile Include="Header\Headers.cs" />
     <Compile Include="Resolve.cs" />
     <Compile Include="IO\FileWatcherEventArgs.cs" />
@@ -368,6 +364,10 @@
   </Target>
   -->
   <ItemGroup>
+    <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
+      <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
+      <Name>Axantum.AxCrypt.Abstractions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj">
       <Project>{3680C939-B21F-4444-B646-42FB4B29A786}</Project>
       <Name>BouncyCastle.AxCrypt</Name>

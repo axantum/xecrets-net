@@ -25,15 +25,13 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Abstractions;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto;
-using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Encodings;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.OpenSsl;
-using Org.BouncyCastle.Security;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;

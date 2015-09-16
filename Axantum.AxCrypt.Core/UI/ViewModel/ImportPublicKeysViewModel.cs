@@ -25,11 +25,9 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
