@@ -64,14 +64,26 @@ namespace Axantum.AxCrypt.Mono
                     {
                         throw new ArgumentException("You can't send content with a GET request.", "request");
                     }
-                    return SendGet(request).Result;
+                    return SendGet(identity, request).Result;
 
                 default:
                     throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
             }
         }
 
-        private async static Task<WebCallerResponse> SendGet(WebCallerRequest request)
+        public string HtmlEncode(string value)
+        {
+            return WebUtility.HtmlEncode(value);
+        }
+
+        public string UrlEncode(string value)
+        {
+            return WebUtility.UrlEncode(value);
+        }
+
+        #endregion IWebCaller Members
+
+        private async static Task<WebCallerResponse> SendGet(LogOnIdentity identity, WebCallerRequest request)
         {
             string content = String.Empty;
             using (HttpClient client = new HttpClient())
@@ -85,6 +97,9 @@ namespace Axantum.AxCrypt.Mono
                 {
                     client.DefaultRequestHeaders.Add(key, request.Headers.Collection[key]);
                 }
+                if (identity != LogOnIdentity.Empty)
+                {
+                }
 
                 HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery);
                 if (!httpResponse.IsSuccessStatusCode)
@@ -95,7 +110,5 @@ namespace Axantum.AxCrypt.Mono
             }
             return new WebCallerResponse(HttpStatusCode.OK, content);
         }
-
-        #endregion IWebCaller Members
     }
 }

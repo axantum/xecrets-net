@@ -64,5 +64,15 @@ namespace Axantum.AxCrypt.Core.Test
                 handler(this, new EventArgs());
             }
         }
+
+        public string HtmlEncode(string value)
+        {
+            return value;
+        }
+
+        public string UrlEncode(string value)
+        {
+            return value;
+        }
     }
 }

@@ -36,5 +36,19 @@ namespace Axantum.AxCrypt.Core.IO
     public interface IWebCaller
     {
         WebCallerResponse Send(LogOnIdentity identity, WebCallerRequest request);
+
+        /// <summary>
+        /// HTML-Encodes the specified string.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        string HtmlEncode(string value);
+
+        /// <summary>
+        /// URL encodes the string.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        string UrlEncode(string value);
     }
 }

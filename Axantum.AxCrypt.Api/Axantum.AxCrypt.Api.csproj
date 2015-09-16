@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AxCryptApi.cs" />
     <Compile Include="AxCryptApiClient.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Model\SubscriptionLevel.cs" />
     <Compile Include="Model\UserSummary.cs" />
