@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;

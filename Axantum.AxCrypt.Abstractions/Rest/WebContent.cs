@@ -30,12 +30,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.IO
+namespace Axantum.AxCrypt.Abstractions.Rest
 {
-    public interface IStringSerializer
+    public class WebContent
     {
-        T Deserialize<T>(string serialized);
+        public string Text { get; private set; }
 
-        string Serialize<T>(T value);
+        public WebContent()
+        {
+            Text = String.Empty;
+        }
+
+        public WebContent(string text)
+        {
+            Text = text;
+        }
     }
 }

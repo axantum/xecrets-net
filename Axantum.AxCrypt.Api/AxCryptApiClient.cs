@@ -1,7 +1,6 @@
-﻿using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
+using Axantum.AxCrypt.Api.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace Axantum.AxCrypt.Api
 {
     public class AxCryptApiClient
     {
-        private LogOnIdentity _identity;
+        private RestIdentity _identity;
 
         private Uri _baseUrl;
 
@@ -19,7 +18,7 @@ namespace Axantum.AxCrypt.Api
         /// Initializes a new instance of the <see cref="AxCryptApiClient"/> class.
         /// </summary>
         /// <param name="identity">The identity on whos behalf to make the call.</param>
-        public AxCryptApiClient(LogOnIdentity identity, Uri baseUrl)
+        public AxCryptApiClient(RestIdentity identity, Uri baseUrl)
         {
             _identity = identity;
             _baseUrl = baseUrl;
@@ -34,8 +33,8 @@ namespace Axantum.AxCrypt.Api
         {
             Uri resource = _baseUrl.PathCombine("/api/summary");
 
-            WebCallerResponse answer = Resolve.WebCaller.Send(_identity, new WebCallerRequest(resource));
-            UserSummary summary = Resolve.Serializer.Deserialize<UserSummary>(answer.Content);
+            WebCallerResponse answer = TypeMap.Resolve.New<IWebCaller>().Send(_identity, new WebCallerRequest(resource));
+            UserSummary summary = TypeMap.Resolve.New<IStringSerializer>().Deserialize<UserSummary>(answer.Content);
             return summary;
         }
     }

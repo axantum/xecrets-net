@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.IO
+namespace Axantum.AxCrypt.Abstractions.Rest
 {
     public class WebHeaders
     {

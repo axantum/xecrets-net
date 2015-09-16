@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,17 +25,16 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.IO
+namespace Axantum.AxCrypt.Abstractions.Rest
 {
     public interface IWebCaller
     {
-        WebCallerResponse Send(LogOnIdentity identity, WebCallerRequest request);
+        WebCallerResponse Send(RestIdentity identity, WebCallerRequest request);
 
         /// <summary>
         /// HTML-Encodes the specified string.

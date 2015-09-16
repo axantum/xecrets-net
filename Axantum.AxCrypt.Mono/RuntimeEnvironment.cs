@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Portable;
@@ -54,6 +55,7 @@ namespace Axantum.AxCrypt.Mono
             TypeMap.Register.New<string, IDataStore>((path) => new DataStore(path));
             TypeMap.Register.New<string, IDataContainer>((path) => new DataContainer(path));
             TypeMap.Register.New<string, IDataItem>((path) => DataItem.Create(path));
+            TypeMap.Register.New<IWebCaller>(() => new WebCaller());
         }
 
         public RuntimeEnvironment(string extension)

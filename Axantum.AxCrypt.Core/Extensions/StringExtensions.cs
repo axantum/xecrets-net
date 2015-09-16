@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -60,6 +61,11 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             string formatted = String.Format(cultureInfo, format, parameters);
             return formatted;
+        }
+
+        public static string ToUtf8Base64(this string passphrase)
+        {
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(passphrase));
         }
 
         /// <summary>

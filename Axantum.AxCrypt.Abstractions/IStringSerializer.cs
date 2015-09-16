@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -30,20 +30,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.IO
+namespace Axantum.AxCrypt.Abstractions
 {
-    public class WebContent
+    public interface IStringSerializer
     {
-        public string Text { get; private set; }
+        T Deserialize<T>(string serialized);
 
-        public WebContent()
-        {
-            Text = String.Empty;
-        }
-
-        public WebContent(string text)
-        {
-            Text = text;
-        }
+        string Serialize<T>(T value);
     }
 }

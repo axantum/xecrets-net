@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -48,7 +49,7 @@ namespace Axantum.AxCrypt.Mono
 
         #region IWebCaller Members
 
-        public WebCallerResponse Send(LogOnIdentity identity, WebCallerRequest request)
+        public WebCallerResponse Send(RestIdentity identity, WebCallerRequest request)
         {
             if (identity == null)
             {
@@ -85,7 +86,7 @@ namespace Axantum.AxCrypt.Mono
 
         #endregion IWebCaller Members
 
-        private async static Task<WebCallerResponse> SendGet(LogOnIdentity identity, WebCallerRequest request)
+        private async static Task<WebCallerResponse> SendGet(RestIdentity identity, WebCallerRequest request)
         {
             string content = String.Empty;
             using (HttpClient client = new HttpClient())
@@ -102,9 +103,9 @@ namespace Axantum.AxCrypt.Mono
                     client.DefaultRequestHeaders.Add(key, request.Headers.Collection[key]);
                 }
 
-                if (identity.UserEmail != EmailAddress.Empty)
+                if (identity.User.Length > 0)
                 {
-                    string credentials = "{0}:{1}".InvariantFormat(identity.UserEmail, identity.Passphrase.ToUtf8Base64());
+                    string credentials = "{0}:{1}".InvariantFormat(identity.User, identity.Password.ToUtf8Base64());
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Convert.ToBase64String(Encoding.ASCII.GetBytes(credentials)));
                 }
 

@@ -67,13 +67,8 @@
     <Compile Include="IO\ChainedStream.cs" />
     <Compile Include="IO\IDataContainer.cs" />
     <Compile Include="IO\IDataItem.cs" />
-    <Compile Include="IO\IStringSerializer.cs" />
     <Compile Include="IO\LockedStream.cs" />
     <Compile Include="IO\PipelineStream.cs" />
-    <Compile Include="IO\WebCallerResponse.cs" />
-    <Compile Include="IO\WebCallerRequest.cs" />
-    <Compile Include="IO\WebContent.cs" />
-    <Compile Include="IO\WebHeaders.cs" />
     <Compile Include="IO\WrappedBaseStream.cs" />
     <Compile Include="IO\StringSerializer.cs" />
     <Compile Include="Algorithm\Aes.cs" />
@@ -199,7 +194,6 @@
     <Compile Include="Resolve.cs" />
     <Compile Include="IO\FileWatcherEventArgs.cs" />
     <Compile Include="IO\IFileWatcher.cs" />
-    <Compile Include="IO\IWebCaller.cs" />
     <Compile Include="Ipc\IRequestServer.cs" />
     <Compile Include="Ipc\IRequestClient.cs" />
     <Compile Include="Ipc\CommandServiceEventArgs.cs" />

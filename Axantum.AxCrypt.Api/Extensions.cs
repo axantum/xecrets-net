@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Axantum.AxCrypt.Api
     {
         public static string UrlEncode(this string value)
         {
-            return Resolve.WebCaller.UrlEncode(value);
+            return TypeMap.Resolve.New<IWebCaller>().UrlEncode(value);
         }
 
         public static Uri PathCombine(this Uri baseUrl, string path)

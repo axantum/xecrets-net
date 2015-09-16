@@ -39,9 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
-      <Project>{966e9510-1a1d-46c7-97b5-460a0ff9b89f}</Project>
-      <Name>Axantum.AxCrypt.Core</Name>
+    <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
+      <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
+      <Name>Axantum.AxCrypt.Abstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj">
       <Project>{959f7f85-c98b-4876-971a-9036224578e4}</Project>

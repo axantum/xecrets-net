@@ -45,11 +45,19 @@
   <ItemGroup>
     <Compile Include="Creator.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="IStringSerializer.cs" />
+    <Compile Include="Rest\IWebCaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rest\RestIdentity.cs" />
+    <Compile Include="Rest\WebCallerRequest.cs" />
+    <Compile Include="Rest\WebCallerResponse.cs" />
+    <Compile Include="Rest\WebContent.cs" />
+    <Compile Include="Rest\WebHeaders.cs" />
     <Compile Include="TypeMap.cs" />
     <Compile Include="TypeRegister.cs" />
     <Compile Include="TypeResolve.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

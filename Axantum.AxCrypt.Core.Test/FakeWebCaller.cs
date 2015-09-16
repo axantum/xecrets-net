@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using System;
@@ -48,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         #region IWebCaller Members
 
-        public WebCallerResponse Send(LogOnIdentity identity, WebCallerRequest request)
+        public WebCallerResponse Send(RestIdentity identity, WebCallerRequest request)
         {
             OnCalling();
             return _result;

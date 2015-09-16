@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -130,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI
             Version newVersion = VersionUnknown;
             try
             {
-                WebCallerResponse answer = Resolve.WebCaller.Send(LogOnIdentity.Empty, new WebCallerRequest(webServiceUrl));
+                WebCallerResponse answer = Resolve.WebCaller.Send(new RestIdentity(), new WebCallerRequest(webServiceUrl));
 
                 VersionResponse versionResponse = JsonConvert.DeserializeObject<VersionResponse>(answer.Content);
 
