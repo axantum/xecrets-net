@@ -98,11 +98,6 @@ namespace Axantum.AxCrypt.Mono
             return new Timing();
         }
 
-        public IWebCaller CreateWebCaller()
-        {
-            return new WebCaller();
-        }
-
         public bool CanTrackProcess
         {
             get { return Platform == Platform.WindowsDesktop; }

@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
@@ -102,13 +101,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         public FakeTiming CurrentTiming { get; set; }
-
-        public Func<IWebCaller> WebCallerCreator { get; set; }
-
-        public IWebCaller CreateWebCaller()
-        {
-            return WebCallerCreator();
-        }
 
         public bool CanTrackProcess
         {

@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Threading;
 
@@ -44,8 +43,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         DateTime UtcNow { get; }
 
         ITiming StartTiming();
-
-        IWebCaller CreateWebCaller();
 
         bool CanTrackProcess { get; }
 
