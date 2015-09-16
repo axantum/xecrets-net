@@ -43,9 +43,19 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             _thumbprint = (byte[])thumbprint.Clone();
         }
 
+        public PublicKeyThumbprint(string value)
+            : this(Convert.FromBase64String(value))
+        {
+        }
+
         public byte[] ToByteArray()
         {
             return (byte[])_thumbprint.Clone();
+        }
+
+        public override string ToString()
+        {
+            return Convert.ToBase64String(_thumbprint);
         }
 
         public bool Equals(PublicKeyThumbprint other)

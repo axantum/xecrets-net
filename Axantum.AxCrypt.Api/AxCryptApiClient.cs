@@ -1,9 +1,7 @@
 ﻿using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +30,9 @@ namespace Axantum.AxCrypt.Api
         /// </summary>
         /// <param name="email">The user name/email</param>
         /// <returns></returns>
-        public UserSummary User(EmailAddress email)
+        public UserSummary User()
         {
-            Uri resource = _baseUrl.PathCombine("/api/summary/{0}".InvariantFormat(email.Address.UrlEncode()));
+            Uri resource = _baseUrl.PathCombine("/api/summary");
 
             WebCallerResponse answer = Resolve.WebCaller.Send(_identity, new WebCallerRequest(resource));
             UserSummary summary = Resolve.Serializer.Deserialize<UserSummary>(answer.Content);
