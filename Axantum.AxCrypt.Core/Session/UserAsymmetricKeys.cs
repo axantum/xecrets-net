@@ -1,5 +1,4 @@
 ﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using Newtonsoft.Json;
@@ -76,6 +75,10 @@ namespace Axantum.AxCrypt.Core.Session
             if (Object.ReferenceEquals(other, null) || GetType() != other.GetType())
             {
                 return false;
+            }
+            if (Object.ReferenceEquals(other, this))
+            {
+                return true;
             }
 
             return Timestamp == other.Timestamp && UserEmail == other.UserEmail && KeyPair == other.KeyPair;

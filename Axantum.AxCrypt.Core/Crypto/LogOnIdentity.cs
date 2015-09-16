@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,20 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         /// <summary>
+        /// Gets the user email associated with the identity, or Empty if none.
+        /// </summary>
+        /// <value>
+        /// The user email.
+        /// </value>
+        public EmailAddress UserEmail
+        {
+            get
+            {
+                return UserKeys.UserEmail;
+            }
+        }
+
+        /// <summary>
         /// Gets the user keys.
         /// </summary>
         /// <value>
@@ -118,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            return Passphrase.Equals(other.Passphrase) && (Object.ReferenceEquals(UserKeys, other.UserKeys) || (UserKeys != null && UserKeys.Equals(other.UserKeys)));
+            return Passphrase == other.Passphrase && UserKeys == other.UserKeys;
         }
 
         public override bool Equals(object obj)
@@ -134,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override int GetHashCode()
         {
-            return Passphrase.GetHashCode() ^ (UserKeys == null ? 0 : UserKeys.GetHashCode());
+            return Passphrase.GetHashCode() ^ UserKeys.GetHashCode();
         }
 
         public static bool operator ==(LogOnIdentity left, LogOnIdentity right)

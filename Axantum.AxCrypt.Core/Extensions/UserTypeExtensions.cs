@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,11 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             return new PublicKeyThumbprint(bytes);
+        }
+
+        public static string ToUtf8Base64(this Passphrase passphrase)
+        {
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(passphrase.Text));
         }
     }
 }

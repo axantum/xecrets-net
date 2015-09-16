@@ -28,12 +28,14 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono
@@ -93,12 +95,16 @@ namespace Axantum.AxCrypt.Mono
                 client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue();
                 client.DefaultRequestHeaders.CacheControl.NoCache = true;
                 client.DefaultRequestHeaders.CacheControl.NoStore = true;
+
                 foreach (string key in request.Headers.Collection.Keys)
                 {
                     client.DefaultRequestHeaders.Add(key, request.Headers.Collection[key]);
                 }
-                if (identity != LogOnIdentity.Empty)
+
+                if (identity.UserEmail != EmailAddress.Empty)
                 {
+                    string credentials = "{0}:{1}".InvariantFormat(identity.UserEmail, identity.Passphrase.ToUtf8Base64());
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Convert.ToBase64String(Encoding.ASCII.GetBytes(credentials)));
                 }
 
                 HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery);
