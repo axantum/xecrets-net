@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt.Api
         /// Get a user summary, typically as an initial call to validate the passphrase with the account etc.
         /// </summary>
         /// <param name="email">The user name/email</param>
-        /// <returns></returns>
+        /// <returns>The user summary</returns>
         public UserSummary User()
         {
             Uri resource = _baseUrl.PathCombine("api/summary");
@@ -39,6 +39,10 @@ namespace Axantum.AxCrypt.Api
             return summary;
         }
 
+        /// <summary>
+        /// Checks for the most current version of AxCrypt 2.
+        /// </summary>
+        /// <returns>The current version information</returns>
         public CurrentVersion CheckVersion()
         {
             Uri resource = _baseUrl.PathCombine("axcrypt2version/windows");
