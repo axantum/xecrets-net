@@ -33,8 +33,8 @@ namespace Axantum.AxCrypt.Api
         {
             Uri resource = _baseUrl.PathCombine("/api/summary");
 
-            WebCallerResponse answer = TypeMap.Resolve.New<IWebCaller>().Send(_identity, new WebCallerRequest(resource));
-            UserSummary summary = TypeMap.Resolve.New<IStringSerializer>().Deserialize<UserSummary>(answer.Content);
+            RestResponse response = TypeMap.Resolve.New<IRestCaller>().Send(_identity, new RestRequest(resource));
+            UserSummary summary = TypeMap.Resolve.New<IStringSerializer>().Deserialize<UserSummary>(response.Content);
             return summary;
         }
     }

@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI
             Version newVersion = VersionUnknown;
             try
             {
-                WebCallerResponse answer = Resolve.WebCaller.Send(new RestIdentity(), new WebCallerRequest(webServiceUrl));
+                RestResponse answer = Resolve.RestCaller.Send(new RestIdentity(), new RestRequest(webServiceUrl));
 
                 VersionResponse versionResponse = JsonConvert.DeserializeObject<VersionResponse>(answer.Content);
 

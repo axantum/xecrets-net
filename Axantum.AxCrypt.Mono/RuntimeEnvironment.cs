@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Mono
             TypeMap.Register.New<string, IDataStore>((path) => new DataStore(path));
             TypeMap.Register.New<string, IDataContainer>((path) => new DataContainer(path));
             TypeMap.Register.New<string, IDataItem>((path) => DataItem.Create(path));
-            TypeMap.Register.New<IWebCaller>(() => new WebCaller());
+            TypeMap.Register.New<IRestCaller>(() => new RestCaller());
         }
 
         public RuntimeEnvironment(string extension)

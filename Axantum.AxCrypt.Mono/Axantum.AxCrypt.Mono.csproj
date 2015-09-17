@@ -82,7 +82,7 @@
     <Compile Include="Sleep.cs" />
     <Compile Include="ThreadWorker.cs" />
     <Compile Include="Timing.cs" />
-    <Compile Include="WebCaller.cs" />
+    <Compile Include="RestCaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">

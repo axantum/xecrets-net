@@ -32,9 +32,9 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Abstractions.Rest
 {
-    public interface IWebCaller
+    public interface IRestCaller
     {
-        WebCallerResponse Send(RestIdentity identity, WebCallerRequest request);
+        RestResponse Send(RestIdentity identity, RestRequest request);
 
         /// <summary>
         /// HTML-Encodes the specified string.

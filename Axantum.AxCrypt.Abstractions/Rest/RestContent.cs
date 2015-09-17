@@ -32,16 +32,16 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Abstractions.Rest
 {
-    public class WebContent
+    public class RestContent
     {
         public string Text { get; private set; }
 
-        public WebContent()
+        public RestContent()
         {
             Text = String.Empty;
         }
 
-        public WebContent(string text)
+        public RestContent(string text)
         {
             Text = text;
         }

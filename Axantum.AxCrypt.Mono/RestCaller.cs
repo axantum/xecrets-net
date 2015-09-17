@@ -26,10 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions.Rest;
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,15 +38,15 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono
 {
-    internal class WebCaller : IWebCaller
+    internal class RestCaller : IRestCaller
     {
-        public WebCaller()
+        public RestCaller()
         {
         }
 
-        #region IWebCaller Members
+        #region IRestCaller Members
 
-        public WebCallerResponse Send(RestIdentity identity, WebCallerRequest request)
+        public RestResponse Send(RestIdentity identity, RestRequest request)
         {
             if (identity == null)
             {
@@ -84,9 +81,9 @@ namespace Axantum.AxCrypt.Mono
             return WebUtility.UrlEncode(value);
         }
 
-        #endregion IWebCaller Members
+        #endregion IRestCaller Members
 
-        private async static Task<WebCallerResponse> SendGet(RestIdentity identity, WebCallerRequest request)
+        private async static Task<RestResponse> SendGet(RestIdentity identity, RestRequest request)
         {
             string content = String.Empty;
             using (HttpClient client = new HttpClient())
@@ -112,11 +109,11 @@ namespace Axantum.AxCrypt.Mono
                 HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery);
                 if (!httpResponse.IsSuccessStatusCode)
                 {
-                    return new WebCallerResponse(httpResponse.StatusCode, String.Empty);
+                    return new RestResponse(httpResponse.StatusCode, String.Empty);
                 }
                 content = await httpResponse.Content.ReadAsStringAsync();
             }
-            return new WebCallerResponse(HttpStatusCode.OK, content);
+            return new RestResponse(HttpStatusCode.OK, content);
         }
     }
 }

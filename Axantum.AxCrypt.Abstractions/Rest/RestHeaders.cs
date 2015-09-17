@@ -5,16 +5,16 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Abstractions.Rest
 {
-    public class WebHeaders
+    public class RestHeaders
     {
         public IDictionary<string, string> Collection { get; private set; }
 
-        public WebHeaders()
+        public RestHeaders()
             : this(new Dictionary<string, string>())
         {
         }
 
-        private WebHeaders(IDictionary<string, string> collection)
+        private RestHeaders(IDictionary<string, string> collection)
         {
             Collection = collection;
         }

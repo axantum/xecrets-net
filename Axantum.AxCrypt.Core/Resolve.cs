@@ -173,9 +173,9 @@ namespace Axantum.AxCrypt.Core
             get { return TypeMap.Resolve.New<IStringSerializer>(); }
         }
 
-        public static IWebCaller WebCaller
+        public static IRestCaller RestCaller
         {
-            get { return TypeMap.Resolve.New<IWebCaller>(); }
+            get { return TypeMap.Resolve.New<IRestCaller>(); }
         }
     }
 }

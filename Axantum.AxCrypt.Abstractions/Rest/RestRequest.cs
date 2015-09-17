@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Abstractions.Rest
 {
-    public class WebCallerRequest
+    public class RestRequest
     {
-        public WebContent Content { get; private set; }
+        public RestContent Content { get; private set; }
 
-        public WebHeaders Headers { get; private set; }
+        public RestHeaders Headers { get; private set; }
 
         public TimeSpan Timeout { get; private set; }
 
@@ -17,21 +17,21 @@ namespace Axantum.AxCrypt.Abstractions.Rest
 
         public Uri Url { get; private set; }
 
-        public WebCallerRequest()
+        public RestRequest()
         {
-            Content = new WebContent();
-            Headers = new WebHeaders();
+            Content = new RestContent();
+            Headers = new RestHeaders();
             Timeout = TimeSpan.FromSeconds(1);
         }
 
-        public WebCallerRequest(string method, Uri url)
+        public RestRequest(string method, Uri url)
             : this()
         {
             Method = method;
             Url = url;
         }
 
-        public WebCallerRequest(Uri url) : this("GET", url)
+        public RestRequest(Uri url) : this("GET", url)
         {
         }
     }

@@ -26,8 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions.Rest;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,26 +34,26 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class FakeWebCaller : IWebCaller
+    internal class FakeRestCaller : IRestCaller
     {
-        private WebCallerResponse _result;
+        private RestResponse _result;
 
         public event EventHandler<EventArgs> Calling;
 
-        public FakeWebCaller(string result)
+        public FakeRestCaller(string result)
         {
-            _result = new WebCallerResponse(HttpStatusCode.OK, result);
+            _result = new RestResponse(HttpStatusCode.OK, result);
         }
 
-        #region IWebCaller Members
+        #region IRestCaller Members
 
-        public WebCallerResponse Send(RestIdentity identity, WebCallerRequest request)
+        public RestResponse Send(RestIdentity identity, RestRequest request)
         {
             OnCalling();
             return _result;
         }
 
-        #endregion IWebCaller Members
+        #endregion IRestCaller Members
 
         private void OnCalling()
         {

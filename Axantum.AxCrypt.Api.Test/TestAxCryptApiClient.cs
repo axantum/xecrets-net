@@ -6,7 +6,6 @@ using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Mono.Portable;
@@ -50,11 +49,11 @@ namespace Axantum.AxCrypt.Api.Test
             UserSummary value = new UserSummary(identity.User, "Free", new string[] { Convert.ToBase64String(new byte[16]) });
             string content = Resolve.Serializer.Serialize(value);
 
-            WebCallerResponse response = new WebCallerResponse(HttpStatusCode.OK, content);
+            RestResponse response = new RestResponse(HttpStatusCode.OK, content);
 
-            Mock<IWebCaller> mockWebCaller = new Mock<IWebCaller>();
-            mockWebCaller.Setup<WebCallerResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<WebCallerRequest>((r) => r.Url == new Uri("http://localhost/api/summary")))).Returns(() => new WebCallerResponse(HttpStatusCode.OK, content));
-            TypeMap.Register.New<IWebCaller>(() => mockWebCaller.Object);
+            Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
+            mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/summary")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
+            TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
             AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost"));
             UserSummary userSummary = client.User();

@@ -11,7 +11,7 @@ namespace Axantum.AxCrypt.Api
     {
         public static string UrlEncode(this string value)
         {
-            return TypeMap.Resolve.New<IWebCaller>().UrlEncode(value);
+            return TypeMap.Resolve.New<IRestCaller>().UrlEncode(value);
         }
 
         public static Uri PathCombine(this Uri baseUrl, string path)
