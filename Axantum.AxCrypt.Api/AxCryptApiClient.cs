@@ -33,10 +33,28 @@ namespace Axantum.AxCrypt.Api
         {
             Uri resource = _baseUrl.PathCombine("api/summary");
 
-            RestResponse response = TypeMap.Resolve.New<IRestCaller>().Send(_identity, new RestRequest(resource));
-            UserSummary summary = TypeMap.Resolve.New<IStringSerializer>().Deserialize<UserSummary>(response.Content);
+            RestResponse restResponse = RestCaller.Send(_identity, new RestRequest(resource));
+            SummaryResponse response = Serializer.Deserialize<SummaryResponse>(restResponse.Content);
+            if (response.Status != 0)
+            {
+                throw new ApiException(response.Message, ErrorStatus.ApiError);
+            }
 
-            return summary;
+            return response.Summary;
+        }
+
+        public void UploadKeyPairs(IEnumerable<KeyPair> keyPairs)
+        {
+            Uri resource = _baseUrl.PathCombine("api/keypairs");
+
+            RestContent content = new RestContent(Serializer.Serialize(keyPairs));
+            RestResponse restResponse = RestCaller.Send(_identity, new RestRequest("PUT", resource, content));
+            CommonResponse response = Serializer.Deserialize<CommonResponse>(restResponse.Content);
+
+            if (response.Status != 0)
+            {
+                throw new ApiException(response.Message, ErrorStatus.ApiError);
+            }
         }
 
         /// <summary>
@@ -47,10 +65,31 @@ namespace Axantum.AxCrypt.Api
         {
             Uri resource = _baseUrl.PathCombine("axcrypt2version/windows");
 
-            RestResponse response = TypeMap.Resolve.New<IRestCaller>().Send(_identity, new RestRequest(resource));
-            CurrentVersion currentVersion = TypeMap.Resolve.New<IStringSerializer>().Deserialize<CurrentVersion>(response.Content);
+            RestResponse restResponse = RestCaller.Send(_identity, new RestRequest(resource));
+            CurrentVersion response = Serializer.Deserialize<CurrentVersion>(restResponse.Content);
 
-            return currentVersion;
+            if (response.Status != 0)
+            {
+                throw new ApiException(response.Message, ErrorStatus.ApiError);
+            }
+
+            return response;
+        }
+
+        private static IRestCaller RestCaller
+        {
+            get
+            {
+                return TypeMap.Resolve.New<IRestCaller>();
+            }
+        }
+
+        private static IStringSerializer Serializer
+        {
+            get
+            {
+                return TypeMap.Resolve.New<IStringSerializer>();
+            }
         }
     }
 }

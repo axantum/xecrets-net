@@ -46,21 +46,22 @@ namespace Axantum.AxCrypt.Api.Test
         {
             RestIdentity identity = new RestIdentity("svante@axcrypt.net", "a");
 
-            UserSummary value = new UserSummary(identity.User, "Free", new string[] { Convert.ToBase64String(new byte[16]) });
-            string content = Resolve.Serializer.Serialize(value);
+            UserSummary summary = new UserSummary(identity.User, "Free", new string[] { Convert.ToBase64String(new byte[16]) });
+            SummaryResponse response = new SummaryResponse(summary);
+            string content = Resolve.Serializer.Serialize(response);
 
-            RestResponse response = new RestResponse(HttpStatusCode.OK, content);
+            RestResponse restResponse = new RestResponse(HttpStatusCode.OK, content);
 
             Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
             mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/summary")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
-            AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost"));
+            AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/"));
             UserSummary userSummary = client.User();
 
             Assert.That(userSummary.UserName, Is.EqualTo(identity.User));
             Assert.That(userSummary.PublicKeyThumbprints.Count(), Is.EqualTo(1));
-            Assert.That(userSummary.PublicKeyThumbprints.First(), Is.EqualTo(value.PublicKeyThumbprints.First()));
+            Assert.That(userSummary.PublicKeyThumbprints.First(), Is.EqualTo(summary.PublicKeyThumbprints.First()));
         }
     }
 }

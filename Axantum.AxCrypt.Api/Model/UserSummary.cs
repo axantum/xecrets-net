@@ -10,7 +10,7 @@ namespace Axantum.AxCrypt.Api.Model
     /// A summary of information we know about a user, typically fetched at the start of a session.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class UserSummary
+    public class UserSummary : CommonResponse
     {
         public UserSummary(string userName, string level, IEnumerable<string> thumbprints)
         {

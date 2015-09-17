@@ -219,7 +219,6 @@
     <Compile Include="Session\ActiveFileComparer.cs" />
     <Compile Include="Session\ActiveFileVisualState.cs" />
     <Compile Include="Session\ChangedEventMode.cs" />
-    <Compile Include="Runtime\AxCryptException.cs" />
     <Compile Include="AxCryptFile.cs" />
     <Compile Include="AxCryptOptions.cs" />
     <Compile Include="Crypto\V1AesCrypto.cs" />
@@ -234,7 +233,6 @@
     <Compile Include="Crypto\V1DerivedKey.cs" />
     <Compile Include="Crypto\Subkey.cs" />
     <Compile Include="OS.cs" />
-    <Compile Include="ErrorStatus.cs" />
     <Compile Include="Runtime\FileFormatException.cs" />
     <Compile Include="Header\AxCrypt1Guid.cs" />
     <Compile Include="Header\V1CompressionEncryptedHeaderBlock.cs" />

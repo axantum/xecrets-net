@@ -34,20 +34,8 @@ using System.Text;
 namespace Axantum.AxCrypt.Api.Model
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class CurrentVersion
+    public class CurrentVersion : CommonResponse
     {
-        /// <summary>
-        /// Status
-        /// </summary>
-        [JsonProperty("S")]
-        public int Status { get; set; }
-
-        /// <summary>
-        /// Message
-        /// </summary>
-        [JsonProperty("M")]
-        public string Message { get; set; }
-
         /// <summary>
         /// Url where new version may be found
         /// </summary>

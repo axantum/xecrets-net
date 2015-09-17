@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;

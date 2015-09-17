@@ -25,8 +25,7 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Algorithm;
-using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Abstractions;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Modes;

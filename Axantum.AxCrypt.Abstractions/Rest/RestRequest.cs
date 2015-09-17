@@ -17,18 +17,19 @@ namespace Axantum.AxCrypt.Abstractions.Rest
 
         public Uri Url { get; private set; }
 
-        public RestRequest()
+        public RestRequest(string method, Uri url, RestContent content)
         {
-            Content = new RestContent();
+            Method = method;
+            Url = url;
+            Content = content;
+
             Headers = new RestHeaders();
             Timeout = TimeSpan.FromSeconds(1);
         }
 
         public RestRequest(string method, Uri url)
-            : this()
+            : this(method, url, new RestContent())
         {
-            Method = method;
-            Url = url;
         }
 
         public RestRequest(Uri url) : this("GET", url)

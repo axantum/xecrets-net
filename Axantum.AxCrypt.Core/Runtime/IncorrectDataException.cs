@@ -25,8 +25,8 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using System;
-using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {

@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,22 +25,32 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using System;
-using System.Linq;
 
-namespace Axantum.AxCrypt.Core.UI
+namespace Axantum.AxCrypt.Abstractions
 {
-    public interface IStatusChecker
+    public abstract class AxCryptException : Exception
     {
-        /// <summary>
-        /// Check if a status is deemed a success. If not, possibly display an interactive message
-        /// to a user, incorporating the displayContext-string in the message. This is typically
-        /// a file name or some other language independent context.
-        /// </summary>
-        /// <param name="status">The status to check.</param>
-        /// <param name="displayContext">A language independent context for the error, typically a file name.</param>
-        /// <returns>True if the status indicated success, false otherwise.</returns>
-        bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext);
+        public ErrorStatus ErrorStatus { get; set; }
+
+        public string DisplayContext { get; set; }
+
+        protected AxCryptException()
+            : base()
+        {
+            ErrorStatus = ErrorStatus.Unknown;
+        }
+
+        protected AxCryptException(string message, ErrorStatus errorStatus)
+            : base(message)
+        {
+            ErrorStatus = errorStatus;
+        }
+
+        protected AxCryptException(string message, ErrorStatus errorStatus, Exception innerException)
+            : base(message, innerException)
+        {
+            ErrorStatus = errorStatus;
+        }
     }
 }

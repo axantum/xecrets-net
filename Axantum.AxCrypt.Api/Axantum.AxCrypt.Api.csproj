@@ -50,12 +50,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiException.cs" />
     <Compile Include="AxCryptApi.cs" />
     <Compile Include="AxCryptApiClient.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Implementation\AbstractTypeSerializer.cs" />
     <Compile Include="Implementation\CustomSerializer.cs" />
+    <Compile Include="Model\CommonResponse.cs" />
+    <Compile Include="Model\KeyPair.cs" />
+    <Compile Include="Model\SummaryResponse.cs" />
     <Compile Include="Model\UserSummary.cs" />
     <Compile Include="Model\CurrentVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

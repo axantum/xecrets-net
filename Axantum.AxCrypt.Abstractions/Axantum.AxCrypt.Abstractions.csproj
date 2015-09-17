@@ -43,7 +43,9 @@
     <None Include="AxantumStrongName.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AxCryptException.cs" />
     <Compile Include="Creator.cs" />
+    <Compile Include="ErrorStatus.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IStringSerializer.cs" />
     <Compile Include="Rest\IRestCaller.cs" />

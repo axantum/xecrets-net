@@ -1,4 +1,4 @@
-﻿using Axantum.AxCrypt.Core;
+﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Runtime;
 using System;

@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,33 +25,36 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using System;
-using System.Runtime.Serialization;
 
-namespace Axantum.AxCrypt.Core.Runtime
+namespace Axantum.AxCrypt.Api
 {
-    public abstract class AxCryptException : Exception
+    public class ApiException : AxCryptException
     {
-        public ErrorStatus ErrorStatus { get; set; }
-
-        public string DisplayContext { get; set; }
-
-        protected AxCryptException()
+        public ApiException()
             : base()
         {
-            ErrorStatus = ErrorStatus.Unknown;
         }
 
-        protected AxCryptException(string message, ErrorStatus errorStatus)
-            : base(message)
+        public ApiException(string message)
+            : this(message, ErrorStatus.CryptographicError)
         {
-            ErrorStatus = errorStatus;
         }
 
-        protected AxCryptException(string message, ErrorStatus errorStatus, Exception innerException)
-            : base(message, innerException)
+        public ApiException(string message, ErrorStatus errorStatus)
+            : base(message, errorStatus)
         {
-            ErrorStatus = errorStatus;
+        }
+
+        public ApiException(string message, Exception innerException)
+            : this(message, ErrorStatus.CryptographicError, innerException)
+        {
+        }
+
+        public ApiException(string message, ErrorStatus errorStatus, Exception innerException)
+            : base(message, errorStatus, innerException)
+        {
         }
     }
 }
