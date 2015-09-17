@@ -94,7 +94,6 @@
     <Compile Include="Header\StringEncryptedHeaderBlockBase.cs" />
     <Compile Include="Header\V2AsymmetricKeyWrapHeaderBlock.cs" />
     <Compile Include="Header\V2AsymmetricRecipientsEncryptedHeaderBlock.cs" />
-    <Compile Include="IO\AbstractJsonConverter.cs" />
     <Compile Include="IO\EmailAddressJsonConverter.cs" />
     <Compile Include="Algorithm\CryptoStreamMode.cs" />
     <Compile Include="Algorithm\HashAlgorithm.cs" />

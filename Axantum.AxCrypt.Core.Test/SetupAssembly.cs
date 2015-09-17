@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<string, IFileWatcher>((path) => new FakeFileWatcher(path));
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetSerializers()));
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;

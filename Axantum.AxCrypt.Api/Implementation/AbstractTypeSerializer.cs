@@ -31,9 +31,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.IO
+namespace Axantum.AxCrypt.Api.Implementation
 {
-    public class AbstractJsonConverter<TAbstract, TConcrete> : JsonConverter
+    public class AbstractTypeSerializer<TAbstract, TConcrete> : CustomSerializer
     {
         public override bool CanConvert(Type objectType)
         {

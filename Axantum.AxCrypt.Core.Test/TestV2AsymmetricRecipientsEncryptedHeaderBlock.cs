@@ -23,7 +23,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetSerializers()));
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());

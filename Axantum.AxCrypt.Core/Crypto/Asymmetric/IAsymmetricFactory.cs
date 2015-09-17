@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
+using Axantum.AxCrypt.Api.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
     public interface IAsymmetricFactory
     {
-        JsonConverter[] GetConverters();
+        CustomSerializer[] GetSerializers();
 
         IAsymmetricPrivateKey CreatePrivateKey(string privateKeyPem);
 

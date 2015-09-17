@@ -38,13 +38,13 @@ namespace Axantum.AxCrypt.Api.Implementation
     {
         private JsonConverter[] _converters;
 
-        public StringSerializer(IEnumerable<JsonConverter> converters)
+        public StringSerializer(IEnumerable<CustomSerializer> converters)
         {
             _converters = converters.ToArray();
         }
 
         public StringSerializer()
-            : this(new JsonConverter[0])
+            : this(new CustomSerializer[0])
         {
         }
 

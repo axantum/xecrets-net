@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt.Api.Test
         {
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IRandomGenerator>(() => new RandomGenerator());
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(new BouncyCastleAsymmetricFactory().GetConverters()));
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(new BouncyCastleAsymmetricFactory().GetSerializers()));
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
             TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());

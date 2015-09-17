@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,9 +47,9 @@ namespace Axantum.AxCrypt.Core.Test
             _paddingHashAlgorithm = paddingHashAlgorithm;
         }
 
-        public JsonConverter[] GetConverters()
+        public CustomSerializer[] GetSerializers()
         {
-            return _factory.GetConverters();
+            return _factory.GetSerializers();
         }
 
         public IAsymmetricPrivateKey CreatePrivateKey(string privateKeyPem)

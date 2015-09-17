@@ -25,9 +25,7 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
+using Axantum.AxCrypt.Api.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,13 +35,13 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
     public class BouncyCastleAsymmetricFactory : IAsymmetricFactory
     {
-        public JsonConverter[] GetConverters()
+        public CustomSerializer[] GetSerializers()
         {
-            JsonConverter[] jsonConverters = new JsonConverter[]
+            CustomSerializer[] jsonConverters = new CustomSerializer[]
             {
-                new AbstractJsonConverter<IAsymmetricPublicKey, BouncyCastlePublicKey>(),
-                new AbstractJsonConverter<IAsymmetricPrivateKey, BouncyCastlePrivateKey>(),
-                new AbstractJsonConverter<IAsymmetricKeyPair, BouncyCastleKeyPair>(),
+                new AbstractTypeSerializer<IAsymmetricPublicKey, BouncyCastlePublicKey>(),
+                new AbstractTypeSerializer<IAsymmetricPrivateKey, BouncyCastlePrivateKey>(),
+                new AbstractTypeSerializer<IAsymmetricKeyPair, BouncyCastleKeyPair>(),
             };
             return jsonConverters;
         }
