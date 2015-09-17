@@ -26,9 +26,9 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;

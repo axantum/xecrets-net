@@ -1,9 +1,9 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;

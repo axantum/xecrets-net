@@ -70,7 +70,6 @@
     <Compile Include="IO\LockedStream.cs" />
     <Compile Include="IO\PipelineStream.cs" />
     <Compile Include="IO\WrappedBaseStream.cs" />
-    <Compile Include="IO\StringSerializer.cs" />
     <Compile Include="Algorithm\Aes.cs" />
     <Compile Include="Algorithm\AxCryptHMACSHA1.cs" />
     <Compile Include="Algorithm\CipherMode.cs" />
@@ -361,6 +360,10 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
       <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
       <Name>Axantum.AxCrypt.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj">
+      <Project>{6ea275d5-2372-4fcf-bb4f-5c48f5901350}</Project>
+      <Name>Axantum.AxCrypt.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj">
       <Project>{3680C939-B21F-4444-B646-42FB4B29A786}</Project>

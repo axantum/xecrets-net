@@ -26,15 +26,13 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.IO
+namespace Axantum.AxCrypt.Api.Implementation
 {
     public class StringSerializer : IStringSerializer
     {

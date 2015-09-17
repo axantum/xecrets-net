@@ -37,10 +37,10 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
-using Axantum.AxCrypt.Core.IO;
 using System.Diagnostics.CodeAnalysis;
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Rest;
+using Axantum.AxCrypt.Api.Implementation;
 
 namespace Axantum.AxCrypt.Core
 {
