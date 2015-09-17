@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Forms.Style;
+﻿using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.ComponentModel;
@@ -16,19 +15,19 @@ namespace Axantum.AxCrypt
             new Styling(Resources.axcrypticon).Style(this);
         }
 
-        private void UpdateCheckServiceUrl_Validating(object sender, CancelEventArgs e)
+        private void RestApiBaseUrl_Validating(object sender, CancelEventArgs e)
         {
-            if (!Uri.IsWellFormedUriString(UpdateCheckServiceUrl.Text, UriKind.Absolute))
+            if (!Uri.IsWellFormedUriString(_restApiBaseUrl.Text, UriKind.Absolute))
             {
                 e.Cancel = true;
-                UpdateCheckServiceUrl.SelectAll();
-                _errorProvider1.SetError(UpdateCheckServiceUrl, Axantum.AxCrypt.Properties.Resources.Invalid_URL);
+                _restApiBaseUrl.SelectAll();
+                _errorProvider1.SetError(_restApiBaseUrl, Axantum.AxCrypt.Properties.Resources.Invalid_URL);
             }
         }
 
-        private void UpdateCheckServiceUrl_Validated(object sender, EventArgs e)
+        private void RestApiBaseUrl_Validated(object sender, EventArgs e)
         {
-            _errorProvider1.SetError(UpdateCheckServiceUrl, String.Empty);
+            _errorProvider1.SetError(_restApiBaseUrl, String.Empty);
         }
     }
 }

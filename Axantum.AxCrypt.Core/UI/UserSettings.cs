@@ -95,9 +95,9 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("CultureName", value); }
         }
 
-        public Uri AxCrypt2VersionCheckUrl
+        public Uri RestApiBaseUrl
         {
-            get { return Load("AxCrypt2VersionCheckUrl", new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/windows")); }
+            get { return Load("RestApiBaseUrl", new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/")); }
             set
             {
                 if (value == null)
@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.UI
                     throw new ArgumentNullException("value");
                 }
 
-                Store("AxCrypt2VersionCheckUrl", value.ToString());
+                Store("RestApiBaseUrl", value.ToString());
             }
         }
 

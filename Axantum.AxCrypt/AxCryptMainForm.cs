@@ -1437,17 +1437,17 @@ namespace Axantum.AxCrypt
             Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
         }
 
-        private void SetUpdateCheckUrlToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SetOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (DebugOptionsDialog dialog = new DebugOptionsDialog())
             {
-                dialog.UpdateCheckServiceUrl.Text = Resolve.UserSettings.AxCrypt2VersionCheckUrl.ToString();
+                dialog._restApiBaseUrl.Text = Resolve.UserSettings.RestApiBaseUrl.ToString();
                 DialogResult result = dialog.ShowDialog();
                 if (result != DialogResult.OK)
                 {
                     return;
                 }
-                Resolve.UserSettings.AxCrypt2VersionCheckUrl = new Uri(dialog.UpdateCheckServiceUrl.Text);
+                Resolve.UserSettings.RestApiBaseUrl = new Uri(dialog._restApiBaseUrl.Text);
             }
         }
 

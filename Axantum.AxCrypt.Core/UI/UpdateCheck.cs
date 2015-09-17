@@ -26,10 +26,9 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions.Rest;
-using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Api;
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -131,9 +130,7 @@ namespace Axantum.AxCrypt.Core.UI
             Version newVersion = VersionUnknown;
             try
             {
-                RestResponse answer = Resolve.RestCaller.Send(new RestIdentity(), new RestRequest(webServiceUrl));
-
-                VersionResponse versionResponse = JsonConvert.DeserializeObject<VersionResponse>(answer.Content);
+                CurrentVersion versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl).CheckVersion();
 
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);

@@ -73,8 +73,8 @@ namespace Axantum.AxCrypt.Core.Test
             settings.CultureName = "sv-SE";
             Assert.That(settings.CultureName, Is.EqualTo("sv-SE"), "The value should be this.");
 
-            settings.AxCrypt2VersionCheckUrl = new Uri("http://localhost/versioncheck");
-            Assert.That(settings.AxCrypt2VersionCheckUrl, Is.EqualTo(new Uri("http://localhost/versioncheck")), "The value should be this.");
+            settings.RestApiBaseUrl = new Uri("http://localhost/versioncheck/");
+            Assert.That(settings.RestApiBaseUrl, Is.EqualTo(new Uri("http://localhost/versioncheck/")), "The value should be this.");
 
             settings.UpdateUrl = new Uri("http://localhost/update");
             Assert.That(settings.UpdateUrl, Is.EqualTo(new Uri("http://localhost/update")), "The value should be this.");

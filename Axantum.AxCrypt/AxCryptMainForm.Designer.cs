@@ -493,7 +493,7 @@
             // 
             this._debugOptionsToolStripMenuItem.Name = "_debugOptionsToolStripMenuItem";
             resources.ApplyResources(this._debugOptionsToolStripMenuItem, "_debugOptionsToolStripMenuItem");
-            this._debugOptionsToolStripMenuItem.Click += new System.EventHandler(this.SetUpdateCheckUrlToolStripMenuItem_Click);
+            this._debugOptionsToolStripMenuItem.Click += new System.EventHandler(this.SetOptionsToolStripMenuItem_Click);
             // 
             // _debugCryptoPolicyToolStripMenuItem
             // 

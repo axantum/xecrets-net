@@ -57,6 +57,7 @@
     <Compile Include="Implementation\AbstractTypeSerializer.cs" />
     <Compile Include="Implementation\CustomSerializer.cs" />
     <Compile Include="Model\UserSummary.cs" />
+    <Compile Include="Model\CurrentVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementation\StringSerializer.cs" />
   </ItemGroup>

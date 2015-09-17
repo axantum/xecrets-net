@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         string CultureName { get; set; }
 
-        Uri AxCrypt2VersionCheckUrl { get; set; }
+        Uri RestApiBaseUrl { get; set; }
 
         Uri UpdateUrl { get; set; }
 

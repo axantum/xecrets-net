@@ -390,7 +390,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void UpdateCheckAction(DateTime lastUpdateCheckUtc)
         {
-            _updateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.AxCrypt2VersionCheckUrl, _userSettings.UpdateUrl);
+            _updateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.RestApiBaseUrl, _userSettings.UpdateUrl);
         }
 
         public void Dispose()

@@ -31,11 +31,22 @@ namespace Axantum.AxCrypt.Api
         /// <returns></returns>
         public UserSummary User()
         {
-            Uri resource = _baseUrl.PathCombine("/api/summary");
+            Uri resource = _baseUrl.PathCombine("api/summary");
 
             RestResponse response = TypeMap.Resolve.New<IRestCaller>().Send(_identity, new RestRequest(resource));
             UserSummary summary = TypeMap.Resolve.New<IStringSerializer>().Deserialize<UserSummary>(response.Content);
+
             return summary;
+        }
+
+        public CurrentVersion CheckVersion()
+        {
+            Uri resource = _baseUrl.PathCombine("axcrypt2version/windows");
+
+            RestResponse response = TypeMap.Resolve.New<IRestCaller>().Send(_identity, new RestRequest(resource));
+            CurrentVersion currentVersion = TypeMap.Resolve.New<IStringSerializer>().Deserialize<CurrentVersion>(response.Content);
+
+            return currentVersion;
         }
     }
 }
