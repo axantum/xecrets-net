@@ -253,6 +253,10 @@
       <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
       <Name>Axantum.AxCrypt.Abstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj">
+      <Project>{6ea275d5-2372-4fcf-bb4f-5c48f5901350}</Project>
+      <Name>Axantum.AxCrypt.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
       <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
