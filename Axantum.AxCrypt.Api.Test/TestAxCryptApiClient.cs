@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Api.Test
             mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/summary")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
-            AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/"));
+            AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"));
             UserSummary userSummary = client.User();
 
             Assert.That(userSummary.UserName, Is.EqualTo(identity.User));

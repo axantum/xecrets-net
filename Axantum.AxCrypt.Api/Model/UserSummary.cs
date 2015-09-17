@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class UserSummary : CommonResponse
     {
-        public UserSummary(string userName, string level, IEnumerable<string> thumbprints)
+        public UserSummary(string userName, string level, IList<string> thumbprints)
         {
             UserName = userName;
             PublicKeyThumbprints = thumbprints;
@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Api.Model
         /// The public key thumbprints without any particular order.
         /// </value>
         [JsonProperty("thumbprints")]
-        public IEnumerable<string> PublicKeyThumbprints { get; private set; }
+        public IList<string> PublicKeyThumbprints { get; private set; }
 
         /// <summary>
         /// Gets the currently valid subscription level.

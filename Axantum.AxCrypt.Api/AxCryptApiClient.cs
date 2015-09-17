@@ -31,30 +31,63 @@ namespace Axantum.AxCrypt.Api
         /// <returns>The user summary</returns>
         public UserSummary User()
         {
-            Uri resource = _baseUrl.PathCombine("api/summary");
+            Uri resource = _baseUrl.PathCombine("summary");
 
-            RestResponse restResponse = RestCaller.Send(_identity, new RestRequest(resource));
+            RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
             SummaryResponse response = Serializer.Deserialize<SummaryResponse>(restResponse.Content);
-            if (response.Status != 0)
-            {
-                throw new ApiException(response.Message, ErrorStatus.ApiError);
-            }
+            EnsureStatusOk(response);
 
             return response.Summary;
         }
 
-        public void UploadKeyPairs(IEnumerable<KeyPair> keyPairs)
+        /// <summary>
+        /// Fetches a users current public key. The server will always return one, auto-signing up the
+        /// user if required.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns>The users public key. If the caller does not have the apprpriate subscription level, and empty instance is returned.</returns>
+        public UserPublicKey PublicKey(string user)
         {
-            Uri resource = _baseUrl.PathCombine("api/keypairs");
+            Uri resource = _baseUrl.PathCombine("publickey/{0}".With(RestCaller.UrlEncode(user)));
 
-            RestContent content = new RestContent(Serializer.Serialize(keyPairs));
-            RestResponse restResponse = RestCaller.Send(_identity, new RestRequest("PUT", resource, content));
-            CommonResponse response = Serializer.Deserialize<CommonResponse>(restResponse.Content);
-
-            if (response.Status != 0)
+            RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
+            UserPublicKeyResponse response = Serializer.Deserialize<UserPublicKeyResponse>(restResponse.Content);
+            if (response.Status == (int)CommonStatus.PaymentRequired)
             {
-                throw new ApiException(response.Message, ErrorStatus.ApiError);
+                return new UserPublicKey();
             }
+            EnsureStatusOk(response);
+
+            return response.PublicKey;
+        }
+
+        /// <summary>
+        /// Uploads a key pair to server. The operation is idempotent.
+        /// </summary>
+        /// <param name="keyPairs">The key pair.</param>
+        public void UploadKeyPair(KeyPair keyPair)
+        {
+            Uri resource = _baseUrl.PathCombine("keypair/{0}".With(RestCaller.UrlEncode(keyPair.Thumbprint)));
+
+            RestContent content = new RestContent(Serializer.Serialize(keyPair));
+            RestResponse restResponse = RestCallInternal(_identity, new RestRequest("PUT", resource, content));
+            CommonResponse response = Serializer.Deserialize<CommonResponse>(restResponse.Content);
+            EnsureStatusOk(response);
+        }
+
+        /// <summary>
+        /// Downloads a key pair.
+        /// </summary>
+        /// <param name="thumbprint">The thumbprint of the key pair to download.</param>
+        /// <returns>The keypair</returns>
+        public KeyPair DownloadKeyPair(string thumbprint)
+        {
+            Uri resource = _baseUrl.PathCombine("keypair/{0}".With(RestCaller.UrlEncode(thumbprint)));
+            RestResponse restResponse = RestCallInternal(_identity, new RestRequest("GET", resource));
+            KeyPairResponse response = Serializer.Deserialize<KeyPairResponse>(restResponse.Content);
+            EnsureStatusOk(response);
+
+            return response.KeyPair;
         }
 
         /// <summary>
@@ -65,15 +98,31 @@ namespace Axantum.AxCrypt.Api
         {
             Uri resource = _baseUrl.PathCombine("axcrypt2version/windows");
 
-            RestResponse restResponse = RestCaller.Send(_identity, new RestRequest(resource));
+            RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
             CurrentVersion response = Serializer.Deserialize<CurrentVersion>(restResponse.Content);
+            EnsureStatusOk(response);
 
+            return response;
+        }
+
+        private static RestResponse RestCallInternal(RestIdentity identity, RestRequest request)
+        {
+            try
+            {
+                return RestCaller.Send(identity, request);
+            }
+            catch (Exception ex)
+            {
+                throw new ApiException("REST call failed with exception.", ex);
+            }
+        }
+
+        private static void EnsureStatusOk(CommonResponse response)
+        {
             if (response.Status != 0)
             {
                 throw new ApiException(response.Message, ErrorStatus.ApiError);
             }
-
-            return response;
         }
 
         private static IRestCaller RestCaller

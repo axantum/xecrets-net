@@ -58,8 +58,12 @@
     <Compile Include="Implementation\AbstractTypeSerializer.cs" />
     <Compile Include="Implementation\CustomSerializer.cs" />
     <Compile Include="Model\CommonResponse.cs" />
+    <Compile Include="Model\CommonStatus.cs" />
     <Compile Include="Model\KeyPair.cs" />
+    <Compile Include="Model\KeyPairResponse.cs" />
     <Compile Include="Model\SummaryResponse.cs" />
+    <Compile Include="Model\UserPublicKey.cs" />
+    <Compile Include="Model\UserPublicKeyResponse.cs" />
     <Compile Include="Model\UserSummary.cs" />
     <Compile Include="Model\CurrentVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

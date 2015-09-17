@@ -89,11 +89,8 @@ namespace Axantum.AxCrypt.Mono
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(request.Url.GetLeftPart(UriPartial.Authority));
+                client.Timeout = request.Timeout;
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue();
-                client.DefaultRequestHeaders.CacheControl.NoCache = true;
-                client.DefaultRequestHeaders.CacheControl.NoStore = true;
 
                 foreach (string key in request.Headers.Collection.Keys)
                 {
