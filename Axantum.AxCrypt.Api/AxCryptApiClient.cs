@@ -51,11 +51,11 @@ namespace Axantum.AxCrypt.Api
         /// Uploads a key pair to server. The operation is idempotent.
         /// </summary>
         /// <param name="keyPairs">The key pair.</param>
-        public void PutKeyPair(KeyPair keyPair)
+        public void PutKeyPairs(string thumbprint, IEnumerable<KeyPair> keyPairs)
         {
-            Uri resource = _baseUrl.PathCombine("User/{0}/KeyPair/{1}".With(UrlEncode(_identity.User), UrlEncode(keyPair.Thumbprint)));
+            Uri resource = _baseUrl.PathCombine("User/{0}/KeyPairs/{1}".With(UrlEncode(_identity.User), UrlEncode(thumbprint)));
 
-            RestContent content = new RestContent(Serializer.Serialize(keyPair));
+            RestContent content = new RestContent(Serializer.Serialize(keyPairs));
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest("PUT", resource, content));
             EnsureStatusOk(restResponse);
 
@@ -68,9 +68,9 @@ namespace Axantum.AxCrypt.Api
         /// </summary>
         /// <param name="thumbprint">The thumbprint of the key pair to download.</param>
         /// <returns>The keypair</returns>
-        public KeyPair GetKeyPair(string thumbprint)
+        public IList<KeyPair> GetKeyPair(string thumbprint)
         {
-            Uri resource = _baseUrl.PathCombine("User/{0}/KeyPair/{1}".With(UrlEncode(_identity.User), UrlEncode(thumbprint)));
+            Uri resource = _baseUrl.PathCombine("User/{0}/KeyPairs/{1}".With(UrlEncode(_identity.User), UrlEncode(thumbprint)));
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest("GET", resource));
             EnsureStatusOk(restResponse);
 

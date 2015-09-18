@@ -12,10 +12,10 @@ namespace Axantum.AxCrypt.Api.Response
     {
         public KeyPairResponse()
         {
-            KeyPair = new KeyPair();
+            KeyPair = new KeyPair[0];
         }
 
         [JsonProperty("keypair")]
-        public KeyPair KeyPair { get; private set; }
+        public IList<KeyPair> KeyPair { get; private set; }
     }
 }
