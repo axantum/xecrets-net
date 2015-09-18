@@ -32,6 +32,16 @@ namespace Axantum.AxCrypt.Api.Model
         }
 
         /// <summary>
+        /// Gets the timestamp, when the key pair was last encrypted (not generated). The thumbprint
+        /// remains as the unique identifier to recognize identical key pairs, but the timestamp
+        /// determines the most recent encryption, i.e. the most recent should be preferred.
+        /// </summary>
+        /// <value>
+        /// The timestamp.
+        /// </value>
+        public DateTime Timestamp { get; private set; }
+
+        /// <summary>
         /// Gets the thumbprint.
         /// </summary>
         /// <value>

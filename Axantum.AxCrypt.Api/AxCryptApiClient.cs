@@ -1,6 +1,7 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Api.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +72,7 @@ namespace Axantum.AxCrypt.Api
 
             RestContent content = new RestContent(Serializer.Serialize(keyPair));
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest("PUT", resource, content));
-            CommonResponse response = Serializer.Deserialize<CommonResponse>(restResponse.Content);
+            ResponseBase response = Serializer.Deserialize<ResponseBase>(restResponse.Content);
             EnsureStatusOk(response);
         }
 
@@ -94,12 +95,12 @@ namespace Axantum.AxCrypt.Api
         /// Checks for the most current version of AxCrypt 2.
         /// </summary>
         /// <returns>The current version information</returns>
-        public CurrentVersion CheckVersion()
+        public CurrentVersionResponse CheckVersion()
         {
             Uri resource = _baseUrl.PathCombine("axcrypt2version/windows");
 
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
-            CurrentVersion response = Serializer.Deserialize<CurrentVersion>(restResponse.Content);
+            CurrentVersionResponse response = Serializer.Deserialize<CurrentVersionResponse>(restResponse.Content);
             EnsureStatusOk(response);
 
             return response;
@@ -117,7 +118,7 @@ namespace Axantum.AxCrypt.Api
             }
         }
 
-        private static void EnsureStatusOk(CommonResponse response)
+        private static void EnsureStatusOk(ResponseBase response)
         {
             if (response.Status != 0)
             {

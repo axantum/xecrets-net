@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Api.Response;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ using System.Text;
 namespace Axantum.AxCrypt.Api.Model
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class CurrentVersion : CommonResponse
+    public class CurrentVersionResponse : ResponseBase
     {
         /// <summary>
         /// Url where new version may be found

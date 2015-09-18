@@ -57,21 +57,22 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Implementation\AbstractTypeSerializer.cs" />
     <Compile Include="Implementation\CustomSerializer.cs" />
-    <Compile Include="Model\CommonResponse.cs" />
+    <Compile Include="Response\ResponseBase.cs" />
     <Compile Include="Model\CommonStatus.cs" />
     <Compile Include="Model\KeyPair.cs" />
-    <Compile Include="Model\KeyPairResponse.cs" />
-    <Compile Include="Model\SummaryResponse.cs" />
+    <Compile Include="Response\KeyPairResponse.cs" />
+    <Compile Include="Response\SummaryResponse.cs" />
     <Compile Include="Model\UserPublicKey.cs" />
-    <Compile Include="Model\UserPublicKeyResponse.cs" />
+    <Compile Include="Response\UserPublicKeyResponse.cs" />
     <Compile Include="Model\UserSummary.cs" />
-    <Compile Include="Model\CurrentVersion.cs" />
+    <Compile Include="Response\CurrentVersionResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementation\StringSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
