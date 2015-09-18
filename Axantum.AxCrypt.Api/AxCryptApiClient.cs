@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Api
 
         /// <summary>
         /// Fetches a users current public key. The server will always return one, auto-signing up the
-        /// user if required.
+        /// user if required and relevant.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <returns>The users public key. If the caller does not have the apprpriate subscription level, and empty instance is returned.</returns>
@@ -103,9 +103,14 @@ namespace Axantum.AxCrypt.Api
         /// Checks for the most current version of AxCrypt 2.
         /// </summary>
         /// <returns>The current version information</returns>
-        public CurrentVersionResponse CheckVersion()
+        public CurrentVersionResponse CheckVersion(string currentVersion)
         {
-            Uri resource = _baseUrl.PathCombine("axcrypt2version/windows");
+            if (currentVersion == null)
+            {
+                throw new ArgumentNullException("currentVersion");
+            }
+
+            Uri resource = _baseUrl.PathCombine("axcrypt2version/windows?current={0}".With(RestCaller.UrlEncode(currentVersion)));
 
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
             EnsureStatusOk(restResponse);

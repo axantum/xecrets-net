@@ -125,12 +125,12 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
-        private static Pair<Version, Uri> CheckWebForNewVersion(Uri webServiceUrl, Uri updateWebpageUrl)
+        private Pair<Version, Uri> CheckWebForNewVersion(Uri webServiceUrl, Uri updateWebpageUrl)
         {
             Version newVersion = VersionUnknown;
             try
             {
-                CurrentVersionResponse versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl).CheckVersion();
+                CurrentVersionResponse versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl).CheckVersion(_currentVersion.ToString());
 
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);
