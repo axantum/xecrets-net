@@ -12,11 +12,11 @@ namespace Axantum.AxCrypt.Api.Model
         public static readonly KeyPair Empty = new KeyPair();
 
         public KeyPair()
-            : this(String.Empty, String.Empty)
+            : this(String.Empty, String.Empty, DateTime.MinValue)
         {
         }
 
-        public KeyPair(string thumbprint, string axCryptBytes)
+        public KeyPair(string thumbprint, string axCryptBytes, DateTime timestamp)
         {
             if (thumbprint == null)
             {
@@ -29,10 +29,11 @@ namespace Axantum.AxCrypt.Api.Model
 
             Thumbprint = thumbprint;
             AxCryptBytes = axCryptBytes;
+            Timestamp = timestamp;
         }
 
         /// <summary>
-        /// Gets the timestamp, when the key pair was last encrypted (not generated). The thumbprint
+        /// Gets the timestamp, when the key pair was encrypted (not generated). The thumbprint
         /// remains as the unique identifier to recognize identical key pairs, but the timestamp
         /// determines the most recent encryption, i.e. the most recent should be preferred.
         /// </summary>

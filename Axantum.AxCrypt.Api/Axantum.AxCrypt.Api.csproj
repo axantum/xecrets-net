@@ -68,6 +68,7 @@
     <Compile Include="Response\CurrentVersionResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementation\StringSerializer.cs" />
+    <Compile Include="UnauthorizedApiException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

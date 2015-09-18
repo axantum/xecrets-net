@@ -104,13 +104,10 @@ namespace Axantum.AxCrypt.Mono
                 }
 
                 HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery);
-                if (!httpResponse.IsSuccessStatusCode)
-                {
-                    return new RestResponse(httpResponse.StatusCode, String.Empty);
-                }
                 content = await httpResponse.Content.ReadAsStringAsync();
+
+                return new RestResponse(httpResponse.StatusCode, content);
             }
-            return new RestResponse(HttpStatusCode.OK, content);
         }
     }
 }

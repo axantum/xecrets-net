@@ -31,42 +31,36 @@ using System.Net;
 
 namespace Axantum.AxCrypt.Api
 {
-    public class ApiException : AxCryptException
+    public class UnauthorizedApiException : ApiException
     {
-        public HttpStatusCode HttpStatusCode { get; private set; }
-
-        public ApiException()
+        public UnauthorizedApiException()
             : base()
         {
-            HttpStatusCode = HttpStatusCode.OK;
         }
 
-        public ApiException(string message)
-            : this(message, ErrorStatus.ApiError)
+        public UnauthorizedApiException(string message)
+            : this(message, ErrorStatus.CryptographicError)
         {
         }
 
-        public ApiException(string message, ErrorStatus errorStatus)
+        public UnauthorizedApiException(string message, ErrorStatus errorStatus)
             : base(message, errorStatus)
         {
-            HttpStatusCode = HttpStatusCode.OK;
         }
 
-        public ApiException(string message, HttpStatusCode httpStatusCode)
-            : this(message, ErrorStatus.ApiHttpResponseError)
+        public UnauthorizedApiException(string message, HttpStatusCode httpStatusCode)
+            : base(message, httpStatusCode)
         {
-            HttpStatusCode = httpStatusCode;
         }
 
-        public ApiException(string message, Exception innerException)
+        public UnauthorizedApiException(string message, Exception innerException)
             : this(message, ErrorStatus.CryptographicError, innerException)
         {
         }
 
-        public ApiException(string message, ErrorStatus errorStatus, Exception innerException)
+        public UnauthorizedApiException(string message, ErrorStatus errorStatus, Exception innerException)
             : base(message, errorStatus, innerException)
         {
-            HttpStatusCode = HttpStatusCode.OK;
         }
     }
 }

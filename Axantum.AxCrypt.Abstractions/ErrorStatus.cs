@@ -57,5 +57,6 @@ namespace Axantum.AxCrypt.Abstractions
         FileExists,
         CryptographicError,
         ApiError,
+        ApiHttpResponseError,
     }
 }

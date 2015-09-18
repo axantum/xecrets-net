@@ -35,10 +35,12 @@ namespace Axantum.AxCrypt.Api
             Uri resource = _baseUrl.PathCombine("summary");
 
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
-            SummaryResponse response = Serializer.Deserialize<SummaryResponse>(restResponse.Content);
-            EnsureStatusOk(response);
+            EnsureStatusOk(restResponse);
 
-            return response.Summary;
+            SummaryResponse apiResponse = Serializer.Deserialize<SummaryResponse>(restResponse.Content);
+            EnsureStatusOk(apiResponse);
+
+            return apiResponse.Summary;
         }
 
         /// <summary>
@@ -52,14 +54,16 @@ namespace Axantum.AxCrypt.Api
             Uri resource = _baseUrl.PathCombine("publickey/{0}".With(RestCaller.UrlEncode(user)));
 
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
-            UserPublicKeyResponse response = Serializer.Deserialize<UserPublicKeyResponse>(restResponse.Content);
-            if (response.Status == (int)CommonStatus.PaymentRequired)
+            EnsureStatusOk(restResponse);
+
+            UserPublicKeyResponse apiResponse = Serializer.Deserialize<UserPublicKeyResponse>(restResponse.Content);
+            if (apiResponse.Status == (int)CommonStatus.PaymentRequired)
             {
                 return new UserPublicKey();
             }
-            EnsureStatusOk(response);
+            EnsureStatusOk(apiResponse);
 
-            return response.PublicKey;
+            return apiResponse.PublicKey;
         }
 
         /// <summary>
@@ -72,12 +76,14 @@ namespace Axantum.AxCrypt.Api
 
             RestContent content = new RestContent(Serializer.Serialize(keyPair));
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest("PUT", resource, content));
-            ResponseBase response = Serializer.Deserialize<ResponseBase>(restResponse.Content);
-            EnsureStatusOk(response);
+            EnsureStatusOk(restResponse);
+
+            ResponseBase apiResponse = Serializer.Deserialize<ResponseBase>(restResponse.Content);
+            EnsureStatusOk(apiResponse);
         }
 
         /// <summary>
-        /// Downloads a key pair.
+        /// Downloads a key pair. The download is the most recently known with the given thumbprint, if any.
         /// </summary>
         /// <param name="thumbprint">The thumbprint of the key pair to download.</param>
         /// <returns>The keypair</returns>
@@ -85,6 +91,8 @@ namespace Axantum.AxCrypt.Api
         {
             Uri resource = _baseUrl.PathCombine("keypair/{0}".With(RestCaller.UrlEncode(thumbprint)));
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest("GET", resource));
+            EnsureStatusOk(restResponse);
+
             KeyPairResponse response = Serializer.Deserialize<KeyPairResponse>(restResponse.Content);
             EnsureStatusOk(response);
 
@@ -100,10 +108,12 @@ namespace Axantum.AxCrypt.Api
             Uri resource = _baseUrl.PathCombine("axcrypt2version/windows");
 
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
-            CurrentVersionResponse response = Serializer.Deserialize<CurrentVersionResponse>(restResponse.Content);
-            EnsureStatusOk(response);
+            EnsureStatusOk(restResponse);
 
-            return response;
+            CurrentVersionResponse apiResponse = Serializer.Deserialize<CurrentVersionResponse>(restResponse.Content);
+            EnsureStatusOk(apiResponse);
+
+            return apiResponse;
         }
 
         private static RestResponse RestCallInternal(RestIdentity identity, RestRequest request)
@@ -118,11 +128,24 @@ namespace Axantum.AxCrypt.Api
             }
         }
 
-        private static void EnsureStatusOk(ResponseBase response)
+        private void EnsureStatusOk(RestResponse restResponse)
         {
-            if (response.Status != 0)
+            if (restResponse.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                throw new ApiException(response.Message, ErrorStatus.ApiError);
+                throw new UnauthorizedApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
+            }
+
+            if (restResponse.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                throw new ApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
+            }
+        }
+
+        private static void EnsureStatusOk(ResponseBase apiResponse)
+        {
+            if (apiResponse.Status != 0)
+            {
+                throw new ApiException(apiResponse.Message, ErrorStatus.ApiError);
             }
         }
 
