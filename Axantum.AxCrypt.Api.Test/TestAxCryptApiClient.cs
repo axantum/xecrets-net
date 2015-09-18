@@ -47,18 +47,19 @@ namespace Axantum.AxCrypt.Api.Test
         {
             RestIdentity identity = new RestIdentity("svante@axcrypt.net", "a");
 
-            UserSummary summary = new UserSummary(identity.User, "Free", new string[] { Convert.ToBase64String(new byte[16]) });
-            SummaryResponse response = new SummaryResponse(summary);
+            UserInformation summary = new UserInformation(identity.User, "Free", new string[] { Convert.ToBase64String(new byte[16]) }, new Model.UserPublicKey());
+            UserInformationResponse response = new UserInformationResponse(summary);
             string content = Resolve.Serializer.Serialize(response);
 
             RestResponse restResponse = new RestResponse(HttpStatusCode.OK, content);
 
             Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
-            mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/summary")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
+            mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/User/svante%40axcrypt.net")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
+            mockRestCaller.Setup<string>(wc => wc.UrlEncode(It.IsAny<string>())).Returns<string>((url) => WebUtility.UrlEncode(url));
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
             AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"));
-            UserSummary userSummary = client.User();
+            UserInformation userSummary = client.GetUserInformation("svante@axcrypt.net");
 
             Assert.That(userSummary.UserName, Is.EqualTo(identity.User));
             Assert.That(userSummary.PublicKeyThumbprints.Count(), Is.EqualTo(1));

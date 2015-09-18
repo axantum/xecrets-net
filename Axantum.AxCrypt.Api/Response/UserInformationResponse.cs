@@ -8,14 +8,14 @@ using System.Text;
 namespace Axantum.AxCrypt.Api.Response
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class SummaryResponse : ResponseBase
+    public class UserInformationResponse : ResponseBase
     {
-        public SummaryResponse(UserSummary summary)
+        public UserInformationResponse(UserInformation summary)
         {
             Summary = summary;
         }
 
         [JsonProperty("S")]
-        public UserSummary Summary { get; private set; }
+        public UserInformation Summary { get; private set; }
     }
 }

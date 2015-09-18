@@ -30,49 +30,30 @@ namespace Axantum.AxCrypt.Api
         /// </summary>
         /// <param name="email">The user name/email</param>
         /// <returns>The user summary</returns>
-        public UserSummary User()
+        public UserInformation GetUserInformation(string userName)
         {
-            Uri resource = _baseUrl.PathCombine("summary");
+            Uri resource = _baseUrl.PathCombine("User/{0}".With(UrlEncode(userName)));
 
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
             EnsureStatusOk(restResponse);
 
-            SummaryResponse apiResponse = Serializer.Deserialize<SummaryResponse>(restResponse.Content);
+            UserInformationResponse apiResponse = Serializer.Deserialize<UserInformationResponse>(restResponse.Content);
+            if (apiResponse.Status == (int)ApiStatus.PaymentRequired)
+            {
+                return new UserInformation();
+            }
             EnsureStatusOk(apiResponse);
 
             return apiResponse.Summary;
         }
 
         /// <summary>
-        /// Fetches a users current public key. The server will always return one, auto-signing up the
-        /// user if required and relevant.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        /// <returns>The users public key. If the caller does not have the apprpriate subscription level, and empty instance is returned.</returns>
-        public UserPublicKey PublicKey(string user)
-        {
-            Uri resource = _baseUrl.PathCombine("publickey/{0}".With(RestCaller.UrlEncode(user)));
-
-            RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
-            EnsureStatusOk(restResponse);
-
-            UserPublicKeyResponse apiResponse = Serializer.Deserialize<UserPublicKeyResponse>(restResponse.Content);
-            if (apiResponse.Status == (int)CommonStatus.PaymentRequired)
-            {
-                return new UserPublicKey();
-            }
-            EnsureStatusOk(apiResponse);
-
-            return apiResponse.PublicKey;
-        }
-
-        /// <summary>
         /// Uploads a key pair to server. The operation is idempotent.
         /// </summary>
         /// <param name="keyPairs">The key pair.</param>
-        public void UploadKeyPair(KeyPair keyPair)
+        public void PutKeyPair(KeyPair keyPair)
         {
-            Uri resource = _baseUrl.PathCombine("keypair/{0}".With(RestCaller.UrlEncode(keyPair.Thumbprint)));
+            Uri resource = _baseUrl.PathCombine("User/{0}/KeyPair/{1}".With(UrlEncode(_identity.User), UrlEncode(keyPair.Thumbprint)));
 
             RestContent content = new RestContent(Serializer.Serialize(keyPair));
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest("PUT", resource, content));
@@ -87,9 +68,9 @@ namespace Axantum.AxCrypt.Api
         /// </summary>
         /// <param name="thumbprint">The thumbprint of the key pair to download.</param>
         /// <returns>The keypair</returns>
-        public KeyPair DownloadKeyPair(string thumbprint)
+        public KeyPair GetKeyPair(string thumbprint)
         {
-            Uri resource = _baseUrl.PathCombine("keypair/{0}".With(RestCaller.UrlEncode(thumbprint)));
+            Uri resource = _baseUrl.PathCombine("User/{0}/KeyPair/{1}".With(UrlEncode(_identity.User), UrlEncode(thumbprint)));
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest("GET", resource));
             EnsureStatusOk(restResponse);
 
@@ -110,7 +91,7 @@ namespace Axantum.AxCrypt.Api
                 throw new ArgumentNullException("currentVersion");
             }
 
-            Uri resource = _baseUrl.PathCombine("axcrypt2version/windows?current={0}".With(RestCaller.UrlEncode(currentVersion)));
+            Uri resource = _baseUrl.PathCombine("axcrypt2version/windows?current={0}".With(UrlEncode(currentVersion)));
 
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
             EnsureStatusOk(restResponse);
@@ -160,6 +141,11 @@ namespace Axantum.AxCrypt.Api
             {
                 return TypeMap.Resolve.New<IRestCaller>();
             }
+        }
+
+        private static string UrlEncode(string value)
+        {
+            return RestCaller.UrlEncode(value);
         }
 
         private static IStringSerializer Serializer

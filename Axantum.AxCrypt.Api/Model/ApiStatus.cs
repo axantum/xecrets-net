@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Api.Model
 {
-    public enum CommonStatus
+    public enum ApiStatus
     {
         Success = 0,
         PaymentRequired = 1,

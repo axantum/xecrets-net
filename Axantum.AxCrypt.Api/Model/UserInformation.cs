@@ -10,19 +10,29 @@ namespace Axantum.AxCrypt.Api.Model
     /// A summary of information we know about a user, typically fetched at the start of a session.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class UserSummary
+    public class UserInformation
     {
-        public UserSummary(string userName, string level, IList<string> thumbprints)
+        public UserInformation(string userName, string level, IList<string> thumbprints, UserPublicKey publicKey)
         {
             UserName = userName;
             PublicKeyThumbprints = thumbprints;
             SubscriptionLevel = level;
+            PublicKey = publicKey;
         }
 
-        public UserSummary()
-            : this(String.Empty, String.Empty, new string[0])
+        public UserInformation()
+            : this(String.Empty, String.Empty, new string[0], new UserPublicKey())
         {
         }
+
+        /// <summary>
+        /// Gets the public key.
+        /// </summary>
+        /// <value>
+        /// The public key.
+        /// </value>
+        [JsonProperty("publickey")]
+        public UserPublicKey PublicKey { get; private set; }
 
         /// <summary>
         /// Gets the email address of the user.

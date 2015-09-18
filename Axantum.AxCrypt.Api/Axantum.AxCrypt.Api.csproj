@@ -58,13 +58,13 @@
     <Compile Include="Implementation\AbstractTypeSerializer.cs" />
     <Compile Include="Implementation\CustomSerializer.cs" />
     <Compile Include="Response\ResponseBase.cs" />
-    <Compile Include="Model\CommonStatus.cs" />
+    <Compile Include="Model\ApiStatus.cs" />
     <Compile Include="Model\KeyPair.cs" />
     <Compile Include="Response\KeyPairResponse.cs" />
-    <Compile Include="Response\SummaryResponse.cs" />
+    <Compile Include="Response\UserInformationResponse.cs" />
     <Compile Include="Model\UserPublicKey.cs" />
     <Compile Include="Response\UserPublicKeyResponse.cs" />
-    <Compile Include="Model\UserSummary.cs" />
+    <Compile Include="Model\UserInformation.cs" />
     <Compile Include="Response\CurrentVersionResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementation\StringSerializer.cs" />
