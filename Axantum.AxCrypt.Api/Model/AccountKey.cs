@@ -52,8 +52,23 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("thumbprint")]
         public string Thumbprint { get; private set; }
 
+        /// <summary>
+        /// Gets the key pair.
+        /// </summary>
+        /// <value>
+        /// The key pair.
+        /// </value>
         [JsonProperty("keypair")]
         public KeyPair KeyPair { get; private set; }
+
+        /// <summary>
+        /// Gets the user name, typically the e-mail.
+        /// </summary>
+        /// <value>
+        /// The user name (e-mail).
+        /// </value>
+        [JsonProperty("user")]
+        public string User { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is empty.
@@ -76,7 +91,7 @@ namespace Axantum.AxCrypt.Api.Model
                 return false;
             }
 
-            return Timestamp == other.Timestamp && Thumbprint == other.Thumbprint && KeyPair == other.KeyPair;
+            return Timestamp == other.Timestamp && User == other.User && Thumbprint == other.Thumbprint && KeyPair == other.KeyPair;
         }
 
         public override bool Equals(object obj)
@@ -92,7 +107,7 @@ namespace Axantum.AxCrypt.Api.Model
 
         public override int GetHashCode()
         {
-            return Timestamp.GetHashCode() ^ Thumbprint.GetHashCode() ^ KeyPair.GetHashCode();
+            return Timestamp.GetHashCode() ^ User.GetHashCode() ^ Thumbprint.GetHashCode() ^ KeyPair.GetHashCode();
         }
 
         public static bool operator ==(AccountKey left, AccountKey right)

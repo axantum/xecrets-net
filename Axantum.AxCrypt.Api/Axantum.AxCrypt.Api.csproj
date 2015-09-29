@@ -60,6 +60,7 @@
     <Compile Include="Model\AccountStatus.cs" />
     <Compile Include="Model\KeyPair.cs" />
     <Compile Include="Model\SubscriptionLevel.cs" />
+    <Compile Include="Model\UserAccounts.cs" />
     <Compile Include="Response\ResponseBase.cs" />
     <Compile Include="Model\ApiStatus.cs" />
     <Compile Include="Model\AccountKey.cs" />
