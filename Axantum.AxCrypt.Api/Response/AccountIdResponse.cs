@@ -8,14 +8,14 @@ using System.Text;
 namespace Axantum.AxCrypt.Api.Response
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class KeyPairResponse : ResponseBase
+    public class AccountIdResponse : ResponseBase
     {
-        public KeyPairResponse()
+        public AccountIdResponse()
         {
-            KeyPair = new KeyPair[0];
+            AccountId = new AccountKey();
         }
 
-        [JsonProperty("keypair")]
-        public IList<KeyPair> KeyPair { get; private set; }
+        [JsonProperty("id")]
+        public AccountKey AccountId { get; private set; }
     }
 }

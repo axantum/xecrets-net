@@ -47,23 +47,23 @@ namespace Axantum.AxCrypt.Api.Test
         {
             RestIdentity identity = new RestIdentity("svante@axcrypt.net", "a");
 
-            UserInformation summary = new UserInformation(identity.User, "Free", new string[] { Convert.ToBase64String(new byte[16]) }, new Model.UserPublicKey());
-            UserInformationResponse response = new UserInformationResponse(summary);
+            UserAccount summary = new UserAccount(identity.User, SubscriptionLevel.Free, new AccountKey[] { new AccountKey(Convert.ToBase64String(new byte[16]), KeyPair.Empty, DateTime.MinValue), });
+            UserAccountResponse response = new UserAccountResponse(summary);
             string content = Resolve.Serializer.Serialize(response);
 
             RestResponse restResponse = new RestResponse(HttpStatusCode.OK, content);
 
             Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
-            mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/User/svante%40axcrypt.net")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
+            mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/users/svante%40axcrypt.net")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
             mockRestCaller.Setup<string>(wc => wc.UrlEncode(It.IsAny<string>())).Returns<string>((url) => WebUtility.UrlEncode(url));
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
             AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"));
-            UserInformation userSummary = client.GetUserInformation("svante@axcrypt.net");
+            UserAccount userSummary = client.GetUserAccount("svante@axcrypt.net");
 
             Assert.That(userSummary.UserName, Is.EqualTo(identity.User));
-            Assert.That(userSummary.PublicKeyThumbprints.Count(), Is.EqualTo(1));
-            Assert.That(userSummary.PublicKeyThumbprints.First(), Is.EqualTo(summary.PublicKeyThumbprints.First()));
+            Assert.That(userSummary.AccountKeys.Count(), Is.EqualTo(1));
+            Assert.That(userSummary.AccountKeys.First(), Is.EqualTo(summary.AccountKeys.First()));
         }
     }
 }

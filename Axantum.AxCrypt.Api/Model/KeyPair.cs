@@ -7,67 +7,119 @@ using System.Text;
 namespace Axantum.AxCrypt.Api.Model
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class KeyPair
+    public class KeyPair : IEquatable<KeyPair>
     {
-        public static readonly KeyPair Empty = new KeyPair();
-
-        public KeyPair()
-            : this(String.Empty, String.Empty, DateTime.MinValue)
+        [JsonConstructor()]
+        private KeyPair()
         {
         }
 
-        public KeyPair(string thumbprint, string axCryptBytes, DateTime timestamp)
+        /// <summary>
+        /// The empty instance.
+        /// </summary>
+        public static readonly KeyPair Empty = new KeyPair(String.Empty, String.Empty);
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KeyPair"/> class.
+        /// </summary>
+        /// <param name="publicBytes">The public bytes.</param>
+        /// <param name="privateBytes">The private bytes.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// publicBytes
+        /// or
+        /// privateBytes
+        /// </exception>
+        public KeyPair(string publicBytes, string privateBytes)
         {
-            if (thumbprint == null)
+            if (publicBytes == null)
             {
-                throw new ArgumentNullException("thumbprint");
+                throw new ArgumentNullException("publicBytes");
             }
-            if (axCryptBytes == null)
+            if (privateBytes == null)
             {
-                throw new ArgumentNullException("bytes");
+                throw new ArgumentNullException("privateBytes");
             }
 
-            Thumbprint = thumbprint;
-            AxCryptBytes = axCryptBytes;
-            Timestamp = timestamp;
+            PublicBytes = publicBytes;
+            PrivateBytes = privateBytes;
         }
 
         /// <summary>
-        /// Gets the timestamp, when the key pair was encrypted (not generated). The thumbprint
-        /// remains as the unique identifier to recognize identical key pairs, but the timestamp
-        /// determines the most recent encryption, i.e. the most recent should be preferred.
+        /// Gets the public key bytes.
         /// </summary>
         /// <value>
-        /// The timestamp.
+        /// The public key bytes, base64 encoded.
         /// </value>
-        public DateTime Timestamp { get; private set; }
+        [JsonProperty("public")]
+        public string PublicBytes { get; private set; }
 
         /// <summary>
-        /// Gets the thumbprint.
+        /// Gets the AxCrypt-encrypted private key bytes.
         /// </summary>
         /// <value>
-        /// The thumbprint of the public key in the key pair for identification purposes.
-        /// </value>
-        [JsonProperty("thumbprint")]
-        public string Thumbprint { get; private set; }
-
-        /// <summary>
-        /// Gets the AxCrypt bytes.
-        /// </summary>
-        /// <value>
-        /// In order to minimize exposure of the keys on the server, the key pair is stored as an
+        /// In order to minimize exposure of the keys on the server, the private key is stored as an
         /// AxCrypt-encrypted blob. This also enables the future possibility to have the server operate
-        /// on zero knowledge of the private keys.
+        /// on zero knowledge of the private keys. It is Base64-encoded.
         /// </value>
-        [JsonProperty("bytes")]
-        public string AxCryptBytes { get; private set; }
+        [JsonProperty("private")]
+        public string PrivateBytes { get; private set; }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is empty.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+        /// </value>
         public bool IsEmpty
         {
             get
             {
-                return Thumbprint.Length == 0 && AxCryptBytes.Length == 0;
+                return PublicBytes.Length == 0 && PrivateBytes.Length == 0;
             }
+        }
+
+        public bool Equals(KeyPair other)
+        {
+            if ((object)other == null)
+            {
+                return false;
+            }
+
+            return PublicBytes == other.PublicBytes && PrivateBytes == other.PrivateBytes;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || typeof(KeyPair) != obj.GetType())
+            {
+                return false;
+            }
+            KeyPair other = (KeyPair)obj;
+
+            return Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return PublicBytes.GetHashCode() ^ PrivateBytes.GetHashCode();
+        }
+
+        public static bool operator ==(KeyPair left, KeyPair right)
+        {
+            if (Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if ((object)left == null)
+            {
+                return false;
+            }
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(KeyPair left, KeyPair right)
+        {
+            return !(left == right);
         }
     }
 }

@@ -30,32 +30,32 @@ namespace Axantum.AxCrypt.Api
         /// </summary>
         /// <param name="email">The user name/email</param>
         /// <returns>The user summary</returns>
-        public UserInformation GetUserInformation(string userName)
+        public UserAccount GetUserAccount(string userName)
         {
-            Uri resource = _baseUrl.PathCombine("User/{0}".With(UrlEncode(userName)));
+            Uri resource = _baseUrl.PathCombine("users/{0}".With(UrlEncode(userName)));
 
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
             EnsureStatusOk(restResponse);
 
-            UserInformationResponse apiResponse = Serializer.Deserialize<UserInformationResponse>(restResponse.Content);
+            UserAccountResponse apiResponse = Serializer.Deserialize<UserAccountResponse>(restResponse.Content);
             if (apiResponse.Status == (int)ApiStatus.PaymentRequired)
             {
-                return new UserInformation();
+                return new UserAccount();
             }
             EnsureStatusOk(apiResponse);
 
-            return apiResponse.Summary;
+            return apiResponse.UserAccount;
         }
 
         /// <summary>
         /// Uploads a key pair to server. The operation is idempotent.
         /// </summary>
-        /// <param name="keyPairs">The key pair.</param>
-        public void PutKeyPairs(string thumbprint, IEnumerable<KeyPair> keyPairs)
+        /// <param name="accountKeys">The account keys to upload.</param>
+        public void PutAccountKeys(IEnumerable<AccountKey> accountKeys)
         {
-            Uri resource = _baseUrl.PathCombine("User/{0}/KeyPairs/{1}".With(UrlEncode(_identity.User), UrlEncode(thumbprint)));
+            Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(_identity.User)));
 
-            RestContent content = new RestContent(Serializer.Serialize(keyPairs));
+            RestContent content = new RestContent(Serializer.Serialize(accountKeys));
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest("PUT", resource, content));
             EnsureStatusOk(restResponse);
 
@@ -64,17 +64,16 @@ namespace Axantum.AxCrypt.Api
         }
 
         /// <summary>
-        /// Downloads a key pair. The download is the most recently known with the given thumbprint, if any.
+        /// Downloads the account keys of the user.
         /// </summary>
-        /// <param name="thumbprint">The thumbprint of the key pair to download.</param>
-        /// <returns>The keypair</returns>
-        public IList<KeyPair> GetKeyPair(string thumbprint)
+        /// <returns>The account keys of the account.</returns>
+        public IList<AccountKey> GetAccountKeys()
         {
-            Uri resource = _baseUrl.PathCombine("User/{0}/KeyPairs/{1}".With(UrlEncode(_identity.User), UrlEncode(thumbprint)));
+            Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(_identity.User)));
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest("GET", resource));
             EnsureStatusOk(restResponse);
 
-            KeyPairResponse response = Serializer.Deserialize<KeyPairResponse>(restResponse.Content);
+            AccountKeyResponse response = Serializer.Deserialize<AccountKeyResponse>(restResponse.Content);
             EnsureStatusOk(response);
 
             return response.KeyPair;

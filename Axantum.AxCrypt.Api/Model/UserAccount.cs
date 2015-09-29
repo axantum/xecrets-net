@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +11,17 @@ namespace Axantum.AxCrypt.Api.Model
     /// A summary of information we know about a user, typically fetched at the start of a session.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class UserInformation
+    public class UserAccount
     {
-        public UserInformation(string userName, string level, IList<string> thumbprints, UserPublicKey publicKey)
+        public UserAccount(string userName, SubscriptionLevel level, IEnumerable<AccountKey> accountKeys)
         {
             UserName = userName;
-            PublicKeyThumbprints = thumbprints;
             SubscriptionLevel = level;
-            PublicKey = publicKey;
+            AccountKeys = accountKeys.ToList();
         }
 
-        public UserInformation()
-            : this(String.Empty, String.Empty, new string[0], new UserPublicKey())
+        public UserAccount()
+            : this(String.Empty, SubscriptionLevel.Unknown, new AccountKey[0])
         {
         }
 
@@ -31,8 +31,8 @@ namespace Axantum.AxCrypt.Api.Model
         /// <value>
         /// The public key.
         /// </value>
-        [JsonProperty("publickey")]
-        public UserPublicKey PublicKey { get; private set; }
+        [JsonProperty("keys")]
+        public IList<AccountKey> AccountKeys { get; private set; }
 
         /// <summary>
         /// Gets the email address of the user.
@@ -44,21 +44,23 @@ namespace Axantum.AxCrypt.Api.Model
         public string UserName { get; private set; }
 
         /// <summary>
-        /// Gets the known public key thumbprints for this user in Base64 encoding.
-        /// </summary>
-        /// <value>
-        /// The public key thumbprints without any particular order.
-        /// </value>
-        [JsonProperty("thumbprints")]
-        public IList<string> PublicKeyThumbprints { get; private set; }
-
-        /// <summary>
         /// Gets the currently valid subscription level.
         /// </summary>
         /// <value>
         /// The subscription level. Valid values are "" (unknown), "Free" and "Premium".
         /// </value>
+        [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("level")]
-        public string SubscriptionLevel { get; private set; }
+        public SubscriptionLevel SubscriptionLevel { get; private set; }
+
+        /// <summary>
+        /// Gets the account status.
+        /// </summary>
+        /// <value>
+        /// The status (Unknown, Unverified, Verified).
+        /// </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty("status")]
+        public AccountStatus AccountStatus { get; private set; }
     }
 }
