@@ -22,26 +22,26 @@ namespace Axantum.AxCrypt.Api.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyPair"/> class.
         /// </summary>
-        /// <param name="publicBytes">The public bytes.</param>
-        /// <param name="privateBytes">The private bytes.</param>
+        /// <param name="publicPem">The public key as a PEM string.</param>
+        /// <param name="privateAxCryptPem">The private key as a Basea64-encoded AxCrypt-encrypted PEM string.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// publicBytes
+        /// publicPem
         /// or
-        /// privateBytes
+        /// privateAxCryptPem
         /// </exception>
-        public KeyPair(string publicBytes, string privateBytes)
+        public KeyPair(string publicPem, string privateAxCryptPem)
         {
-            if (publicBytes == null)
+            if (publicPem == null)
             {
-                throw new ArgumentNullException("publicBytes");
+                throw new ArgumentNullException("publicPem");
             }
-            if (privateBytes == null)
+            if (privateAxCryptPem == null)
             {
-                throw new ArgumentNullException("privateBytes");
+                throw new ArgumentNullException("privateAxCryptPem");
             }
 
-            PublicBytes = publicBytes;
-            PrivateBytes = privateBytes;
+            PublicPem = publicPem;
+            PrivateEncryptedPem = privateAxCryptPem;
         }
 
         /// <summary>
@@ -51,10 +51,10 @@ namespace Axantum.AxCrypt.Api.Model
         /// The public key bytes, base64 encoded.
         /// </value>
         [JsonProperty("public")]
-        public string PublicBytes { get; private set; }
+        public string PublicPem { get; private set; }
 
         /// <summary>
-        /// Gets the AxCrypt-encrypted private key bytes.
+        /// Gets the AxCrypt-encrypted private key PEM.
         /// </summary>
         /// <value>
         /// In order to minimize exposure of the keys on the server, the private key is stored as an
@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Api.Model
         /// on zero knowledge of the private keys. It is Base64-encoded.
         /// </value>
         [JsonProperty("private")]
-        public string PrivateBytes { get; private set; }
+        public string PrivateEncryptedPem { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is empty.
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Api.Model
         {
             get
             {
-                return PublicBytes.Length == 0 && PrivateBytes.Length == 0;
+                return PublicPem.Length == 0 && PrivateEncryptedPem.Length == 0;
             }
         }
 
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Api.Model
                 return false;
             }
 
-            return PublicBytes == other.PublicBytes && PrivateBytes == other.PrivateBytes;
+            return PublicPem == other.PublicPem && PrivateEncryptedPem == other.PrivateEncryptedPem;
         }
 
         public override bool Equals(object obj)
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Api.Model
 
         public override int GetHashCode()
         {
-            return PublicBytes.GetHashCode() ^ PrivateBytes.GetHashCode();
+            return PublicPem.GetHashCode() ^ PrivateEncryptedPem.GetHashCode();
         }
 
         public static bool operator ==(KeyPair left, KeyPair right)

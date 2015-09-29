@@ -59,10 +59,10 @@ namespace Axantum.AxCrypt.Core.Extensions
                 {
                     EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, passphrase);
                     EncryptedProperties properties = new EncryptedProperties("private-key.pem");
-                    using (MemoryStream exportStream = new MemoryStream())
+                    using (MemoryStream encryptedStream = new MemoryStream())
                     {
-                        AxCryptFile.Encrypt(stream, exportStream, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
-                        writer.Write(Convert.ToBase64String(exportStream.ToArray()));
+                        AxCryptFile.Encrypt(stream, encryptedStream, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                        writer.Write(Convert.ToBase64String(encryptedStream.ToArray()));
                     }
                 }
             }
@@ -76,21 +76,21 @@ namespace Axantum.AxCrypt.Core.Extensions
         public static UserAsymmetricKeys ToUserAsymmetricKeys(this Api.Model.AccountKey accountKey, Passphrase passphrase)
         {
             string privateKeyPem;
-            byte[] privateKeyEncryptedBytes = Convert.FromBase64String(accountKey.KeyPair.PrivateBytes);
-            using (MemoryStream encryptedStream = new MemoryStream(privateKeyEncryptedBytes))
+            byte[] privateKeyEncryptedPem = Convert.FromBase64String(accountKey.KeyPair.PrivateEncryptedPem);
+            using (MemoryStream encryptedPrivateKeyStream = new MemoryStream(privateKeyEncryptedPem))
             {
-                using (MemoryStream decryptedStream = new MemoryStream())
+                using (MemoryStream decryptedPrivateKeyStream = new MemoryStream())
                 {
-                    if (!TypeMap.Resolve.New<AxCryptFile>().Decrypt(encryptedStream, decryptedStream, new LogOnIdentity(passphrase)).IsValid)
+                    if (!TypeMap.Resolve.New<AxCryptFile>().Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream, new LogOnIdentity(passphrase)).IsValid)
                     {
                         return null;
                     }
 
-                    privateKeyPem = Encoding.UTF8.GetString(decryptedStream.ToArray(), 0, (int)decryptedStream.Length);
+                    privateKeyPem = Encoding.UTF8.GetString(decryptedPrivateKeyStream.ToArray(), 0, (int)decryptedPrivateKeyStream.Length);
                 }
             }
 
-            IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(privateKeyPem, accountKey.KeyPair.PublicBytes);
+            IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(privateKeyPem, accountKey.KeyPair.PublicPem);
             UserAsymmetricKeys userAsymmetricKeys = new UserAsymmetricKeys(EmailAddress.Parse(accountKey.User), accountKey.Timestamp, keyPair);
 
             return userAsymmetricKeys;
