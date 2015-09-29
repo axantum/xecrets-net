@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Api.Test
         {
             RestIdentity identity = new RestIdentity("svante@axcrypt.net", "a");
 
-            UserAccount summary = new UserAccount(identity.User, SubscriptionLevel.Free, new AccountKey[] { new AccountKey(Convert.ToBase64String(new byte[16]), KeyPair.Empty, DateTime.MinValue), });
+            UserAccount summary = new UserAccount(identity.User, SubscriptionLevel.Free, new AccountKey[] { new AccountKey("svante@axcrypt.net", Convert.ToBase64String(new byte[16]), KeyPair.Empty, DateTime.MinValue), });
             UserAccountResponse response = new UserAccountResponse(summary);
             string content = Resolve.Serializer.Serialize(response);
 

@@ -62,6 +62,11 @@ namespace Axantum.AxCrypt.Core.Test
             return _factory.CreatePublicKey(publicKeyPem);
         }
 
+        public IAsymmetricKeyPair CreateKeyPair(string publicKeyPem, string privateKeyPem)
+        {
+            return _factory.CreateKeyPair(publicKeyPem, privateKeyPem);
+        }
+
         public IAsymmetricKeyPair CreateKeyPair(int bits)
         {
             return _factory.CreateKeyPair(bits);

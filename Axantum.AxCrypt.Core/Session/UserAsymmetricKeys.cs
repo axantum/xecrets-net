@@ -35,6 +35,13 @@ namespace Axantum.AxCrypt.Core.Session
             KeyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(bits);
         }
 
+        public UserAsymmetricKeys(EmailAddress userEmail, DateTime timestamp, IAsymmetricKeyPair keyPair)
+        {
+            UserEmail = userEmail;
+            Timestamp = timestamp;
+            KeyPair = keyPair;
+        }
+
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Used by Json.NET serializer.")]
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; private set; }

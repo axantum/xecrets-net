@@ -12,12 +12,16 @@ namespace Axantum.AxCrypt.Api.Model
         public static readonly AccountKey Empty = new AccountKey();
 
         public AccountKey()
-            : this(String.Empty, KeyPair.Empty, DateTime.MinValue)
+            : this(String.Empty, String.Empty, KeyPair.Empty, DateTime.MinValue)
         {
         }
 
-        public AccountKey(string thumbprint, KeyPair keyPair, DateTime timestamp)
+        public AccountKey(string user, string thumbprint, KeyPair keyPair, DateTime timestamp)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
             if (thumbprint == null)
             {
                 throw new ArgumentNullException("thumbprint");
@@ -27,6 +31,7 @@ namespace Axantum.AxCrypt.Api.Model
                 throw new ArgumentNullException("keyPair");
             }
 
+            User = user;
             Thumbprint = thumbprint;
             KeyPair = keyPair;
             Timestamp = timestamp;

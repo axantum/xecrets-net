@@ -177,5 +177,10 @@ namespace Axantum.AxCrypt.Core
         {
             get { return TypeMap.Resolve.New<IRestCaller>(); }
         }
+
+        public static IAsymmetricFactory AsymmetricFactory
+        {
+            get { return TypeMap.Resolve.New<IAsymmetricFactory>(); }
+        }
     }
 }

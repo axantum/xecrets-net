@@ -44,6 +44,8 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         IAsymmetricKeyPair CreateKeyPair(int bits);
 
+        IAsymmetricKeyPair CreateKeyPair(string publicKeyPem, string privateKeyPem);
+
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "d", Justification = "Standard nomenclature.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "q", Justification = "Standard nomenclature.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "qinv", Justification = "Standard nomenclature.")]

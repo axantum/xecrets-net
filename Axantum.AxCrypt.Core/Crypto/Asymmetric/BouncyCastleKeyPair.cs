@@ -25,21 +25,13 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1;
-using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Crypto;
-using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Math;
-using Org.BouncyCastle.OpenSsl;
-using Org.BouncyCastle.Security;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -57,6 +49,12 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
         {
             AsymmetricCipherKeyPair keyPair = GenerateKeyPair(bits);
             SetKeys(keyPair.Public, keyPair.Private);
+        }
+
+        public BouncyCastleKeyPair(BouncyCastlePublicKey publicKey, BouncyCastlePrivateKey privateKey)
+        {
+            PublicKey = publicKey;
+            PrivateKey = privateKey;
         }
 
         public BouncyCastleKeyPair(byte[] n, byte[] e, byte[] d, byte[] p, byte[] q, byte[] dp, byte[] dq, byte[] qinv)
