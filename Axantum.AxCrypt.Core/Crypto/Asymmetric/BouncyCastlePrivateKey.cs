@@ -146,5 +146,20 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
         {
             return ToString().GetHashCode();
         }
+
+        public static bool operator ==(BouncyCastlePrivateKey left, BouncyCastlePrivateKey right)
+        {
+            if (Object.ReferenceEquals(left, null))
+            {
+                return Object.ReferenceEquals(right, null);
+            }
+
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(BouncyCastlePrivateKey left, BouncyCastlePrivateKey right)
+        {
+            return !(left == right);
+        }
     }
 }

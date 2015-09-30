@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -26,11 +26,15 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -525,6 +529,51 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => nullStream.DecryptTo(Stream.Null, encryptor, true));
             Assert.Throws<ArgumentNullException>(() => Stream.Null.DecryptTo(nullStream, encryptor, true));
             Assert.Throws<ArgumentNullException>(() => Stream.Null.DecryptTo(Stream.Null, nullEncryptor, true));
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestUserAsymmetricKeysToAccountKeyAndBack(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            UserAsymmetricKeys originalKeys = new UserAsymmetricKeys(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            AccountKey accountKey = originalKeys.ToAccountKey(new Passphrase("password"));
+            UserAsymmetricKeys roundtripKeys = accountKey.ToUserAsymmetricKeys(new Passphrase("password"));
+
+            Assert.That(originalKeys, Is.EqualTo(roundtripKeys));
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestAccountKeyToUserAsymmetricKeysWithWrongPassphrase(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            UserAsymmetricKeys originalKeys = new UserAsymmetricKeys(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            AccountKey accountKey = originalKeys.ToAccountKey(new Passphrase("password"));
+            UserAsymmetricKeys roundtripKeys = accountKey.ToUserAsymmetricKeys(new Passphrase("wrong password"));
+
+            Assert.That(roundtripKeys, Is.Null);
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestAccountKeyToUserAsymmericKeysWithOnlyPublicKey(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            UserAsymmetricKeys originalKeys = new UserAsymmetricKeys(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            IAsymmetricKeyPair partialKeyPair = Resolve.AsymmetricFactory.CreateKeyPair(originalKeys.KeyPair.PublicKey.ToString(), String.Empty);
+            UserAsymmetricKeys originalPartialKeys = new UserAsymmetricKeys(originalKeys.UserEmail, originalKeys.Timestamp, partialKeyPair);
+
+            AccountKey accountKey = originalPartialKeys.ToAccountKey(Passphrase.Empty);
+            UserAsymmetricKeys roundtripKeys = accountKey.ToUserAsymmetricKeys(Passphrase.Empty);
+
+            Assert.That(roundtripKeys, Is.EqualTo(originalPartialKeys));
         }
     }
 }

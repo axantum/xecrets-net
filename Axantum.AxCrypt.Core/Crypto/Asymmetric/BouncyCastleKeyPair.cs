@@ -92,6 +92,10 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             {
                 return false;
             }
+            if (Object.ReferenceEquals(PrivateKey, null))
+            {
+                return Object.ReferenceEquals(other.PrivateKey, null);
+            }
             return PrivateKey.Equals(other.PrivateKey) && PublicKey.Equals(other.PublicKey);
         }
 
@@ -109,6 +113,21 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
         public override int GetHashCode()
         {
             return PrivateKey.GetHashCode() ^ PublicKey.GetHashCode();
+        }
+
+        public static bool operator ==(BouncyCastleKeyPair left, BouncyCastleKeyPair right)
+        {
+            if (Object.ReferenceEquals(left, null))
+            {
+                return Object.ReferenceEquals(right, null);
+            }
+
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(BouncyCastleKeyPair left, BouncyCastleKeyPair right)
+        {
+            return !(left == right);
         }
     }
 }

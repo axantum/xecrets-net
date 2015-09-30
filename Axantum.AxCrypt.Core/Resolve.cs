@@ -180,7 +180,7 @@ namespace Axantum.AxCrypt.Core
 
         public static IAsymmetricFactory AsymmetricFactory
         {
-            get { return TypeMap.Resolve.New<IAsymmetricFactory>(); }
+            get { return TypeMap.Resolve.Singleton<IAsymmetricFactory>(); }
         }
     }
 }

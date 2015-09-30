@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return true;
             }
 
-            return Timestamp == other.Timestamp && UserEmail == other.UserEmail && KeyPair == other.KeyPair;
+            return Timestamp == other.Timestamp && UserEmail == other.UserEmail && KeyPair.Equals(KeyPair);
         }
     }
 }

@@ -49,8 +49,29 @@ namespace Axantum.AxCrypt.Core.Extensions
             return new PublicKeyThumbprint(bytes);
         }
 
+        /// <summary>
+        /// Convert the internal representation of a key pair to the external account key representation.
+        /// </summary>
+        /// <param name="keys">The key pair.</param>
+        /// <param name="passphrase">The passphrase to encrypt it with.</param>
+        /// <returns>A representation suitable for serialization and external storage.</returns>
         public static Api.Model.AccountKey ToAccountKey(this UserAsymmetricKeys keys, Passphrase passphrase)
         {
+            string encryptedPrivateKey = EncryptPrivateKey(keys, passphrase);
+
+            Api.Model.KeyPair keyPair = new Api.Model.KeyPair(keys.KeyPair.PublicKey.ToString(), encryptedPrivateKey);
+            Api.Model.AccountKey accountKey = new Api.Model.AccountKey(keys.UserEmail.Address, keys.KeyPair.PublicKey.Thumbprint.ToString(), keyPair, keys.Timestamp);
+
+            return accountKey;
+        }
+
+        private static string EncryptPrivateKey(UserAsymmetricKeys keys, Passphrase passphrase)
+        {
+            if (keys.KeyPair.PrivateKey == null || passphrase == Passphrase.Empty)
+            {
+                return String.Empty;
+            }
+
             StringBuilder encryptedPrivateKey = new StringBuilder();
             using (StringWriter writer = new StringWriter(encryptedPrivateKey))
             {
@@ -66,17 +87,37 @@ namespace Axantum.AxCrypt.Core.Extensions
                     }
                 }
             }
-
-            Api.Model.KeyPair keyPair = new Api.Model.KeyPair(keys.KeyPair.PublicKey.ToString(), encryptedPrivateKey.ToString());
-            Api.Model.AccountKey accountKey = new Api.Model.AccountKey(keys.UserEmail.Address, keys.KeyPair.PublicKey.Thumbprint.ToString(), keyPair, keys.Timestamp);
-
-            return accountKey;
+            return encryptedPrivateKey.ToString();
         }
 
+        /// <summary>
+        /// Convert an external representation of a key-pair to an internal representation that is suitable for actual use.
+        /// </summary>
+        /// <param name="accountKey">The account key.</param>
+        /// <param name="passphrase">The passphrase to decrypt the private key, if any, with.</param>
+        /// <returns></returns>
         public static UserAsymmetricKeys ToUserAsymmetricKeys(this Api.Model.AccountKey accountKey, Passphrase passphrase)
         {
-            string privateKeyPem;
-            byte[] privateKeyEncryptedPem = Convert.FromBase64String(accountKey.KeyPair.PrivateEncryptedPem);
+            string privateKeyPem = DecryptPrivateKeyPem(accountKey.KeyPair.PrivateEncryptedPem, passphrase);
+            if (privateKeyPem == null)
+            {
+                return null;
+            }
+
+            IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(accountKey.KeyPair.PublicPem, privateKeyPem);
+            UserAsymmetricKeys userAsymmetricKeys = new UserAsymmetricKeys(EmailAddress.Parse(accountKey.User), accountKey.Timestamp, keyPair);
+
+            return userAsymmetricKeys;
+        }
+
+        private static string DecryptPrivateKeyPem(string privateEncryptedPem, Passphrase passphrase)
+        {
+            if (privateEncryptedPem.Length == 0 || passphrase == Passphrase.Empty)
+            {
+                return String.Empty;
+            }
+
+            byte[] privateKeyEncryptedPem = Convert.FromBase64String(privateEncryptedPem);
             using (MemoryStream encryptedPrivateKeyStream = new MemoryStream(privateKeyEncryptedPem))
             {
                 using (MemoryStream decryptedPrivateKeyStream = new MemoryStream())
@@ -86,14 +127,9 @@ namespace Axantum.AxCrypt.Core.Extensions
                         return null;
                     }
 
-                    privateKeyPem = Encoding.UTF8.GetString(decryptedPrivateKeyStream.ToArray(), 0, (int)decryptedPrivateKeyStream.Length);
+                    return Encoding.UTF8.GetString(decryptedPrivateKeyStream.ToArray(), 0, (int)decryptedPrivateKeyStream.Length);
                 }
             }
-
-            IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(privateKeyPem, accountKey.KeyPair.PublicPem);
-            UserAsymmetricKeys userAsymmetricKeys = new UserAsymmetricKeys(EmailAddress.Parse(accountKey.User), accountKey.Timestamp, keyPair);
-
-            return userAsymmetricKeys;
         }
     }
 }
