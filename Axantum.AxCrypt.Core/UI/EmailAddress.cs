@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            return Address == other.Address;
+            return String.Compare(Address, other.Address, StringComparison.OrdinalIgnoreCase) == 0;
         }
     }
 }

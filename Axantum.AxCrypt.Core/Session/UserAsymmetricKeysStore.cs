@@ -57,11 +57,11 @@ namespace Axantum.AxCrypt.Core.Session
         private IList<UserAsymmetricKeys> TryLoadUserKeys(EmailAddress userEmail, Passphrase passphrase)
         {
             UserAccounts accounts = LoadUserAccounts();
-            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => ua.UserName == userEmail.Address);
+            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == userEmail);
             IEnumerable<AccountKey> accountKeys = users.SelectMany(u => u.AccountKeys);
 
             IEnumerable<UserAsymmetricKeys> userKeys = TryLoadKeyStoreFiles(userEmail, passphrase).Select(ksf => ksf.UserKeys);
-            userKeys = userKeys.Where(uk => !accountKeys.Any(ak => ak.User == uk.UserEmail.Address));
+            userKeys = userKeys.Where(uk => !accountKeys.Any(ak => EmailAddress.Parse(ak.User) == uk.UserEmail));
             userKeys = userKeys.Union(accountKeys.Select(ak => ak.ToUserAsymmetricKeys(passphrase)).Where(ak => ak != null));
 
             return userKeys.OrderByDescending(uk => uk.Timestamp).ToList();
@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     continue;
                 }
-                if (String.Compare(userEmail.Address, keys.UserEmail.Address, StringComparison.OrdinalIgnoreCase) != 0)
+                if (userEmail != keys.UserEmail)
                 {
                     continue;
                 }
@@ -208,7 +208,7 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual void Save(EmailAddress userEmail, Passphrase passphrase)
         {
             UserAccounts userAccounts = LoadUserAccounts();
-            UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => ua.UserName == userEmail.Address);
+            UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == userEmail);
             if (userAccount == null)
             {
                 userAccount = new UserAccount(userEmail.Address, SubscriptionLevel.Unknown, new AccountKey[0]);
