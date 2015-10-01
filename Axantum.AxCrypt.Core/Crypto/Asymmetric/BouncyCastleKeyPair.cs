@@ -40,17 +40,13 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
     [JsonObject(MemberSerialization.OptIn)]
     internal class BouncyCastleKeyPair : IAsymmetricKeyPair
     {
-        [JsonConstructor]
-        private BouncyCastleKeyPair()
-        {
-        }
-
         public BouncyCastleKeyPair(int bits)
         {
             AsymmetricCipherKeyPair keyPair = GenerateKeyPair(bits);
             SetKeys(keyPair.Public, keyPair.Private);
         }
 
+        [JsonConstructor]
         public BouncyCastleKeyPair(BouncyCastlePublicKey publicKey, BouncyCastlePrivateKey privateKey)
         {
             PublicKey = publicKey;

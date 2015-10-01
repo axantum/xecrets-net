@@ -39,13 +39,15 @@ namespace Axantum.AxCrypt.Core.Crypto
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is in fact immutable.")]
         public static readonly Passphrase Empty = new Passphrase(String.Empty);
 
-        public Passphrase()
-        {
-        }
-
         public Passphrase(string text)
         {
             Text = text;
+        }
+
+        [JsonConstructor]
+        private Passphrase(SymmetricKeyThumbprint thumbprint)
+        {
+            Thumbprint = thumbprint;
         }
 
         public string Text { get; private set; }

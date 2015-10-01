@@ -56,19 +56,19 @@ namespace Axantum.AxCrypt.Core.Session
             Tag = IdentityPublicTag.Empty;
         }
 
-        public WatchedFolder(string path, IdentityPublicTag tag)
+        public WatchedFolder(string path, IdentityPublicTag publicTag)
         {
             if (path == null)
             {
                 throw new ArgumentNullException("path");
             }
-            if (tag == null)
+            if (publicTag == null)
             {
-                throw new ArgumentNullException("tag");
+                throw new ArgumentNullException("publicTag");
             }
 
             Path = path.NormalizeFolderPath();
-            Tag = tag;
+            Tag = publicTag;
             Initialize(new StreamingContext());
         }
 

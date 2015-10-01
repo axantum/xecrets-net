@@ -21,14 +21,15 @@ namespace Axantum.AxCrypt.Core.Session
     public class UserAsymmetricKeys : IEquatable<UserAsymmetricKeys>
     {
         [JsonConstructor]
-        private UserAsymmetricKeys()
+        private UserAsymmetricKeys(EmailAddress emailAddress)
         {
+            UserEmail = emailAddress;
         }
 
-        public static readonly UserAsymmetricKeys Empty = new UserAsymmetricKeys { UserEmail = EmailAddress.Empty, };
+        public static readonly UserAsymmetricKeys Empty = new UserAsymmetricKeys(EmailAddress.Empty);
 
         public UserAsymmetricKeys(EmailAddress userEmail, int bits)
-            : this()
+            : this(userEmail)
         {
             Timestamp = Resolve.Environment.UtcNow;
             UserEmail = userEmail;

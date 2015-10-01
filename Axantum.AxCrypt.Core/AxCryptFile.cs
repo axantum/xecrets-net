@@ -349,11 +349,29 @@ namespace Axantum.AxCrypt.Core
         {
             using (IAxCryptDocument document = Document(encryptedStream, identity, String.Empty, new ProgressContext()))
             {
-                if (!document.PassphraseIsValid)
+                if (document.PassphraseIsValid)
                 {
-                    return document.Properties;
+                    document.DecryptTo(decryptedStream);
                 }
-                document.DecryptTo(decryptedStream);
+                return document.Properties;
+            }
+        }
+
+        /// <summary>
+        /// Decrypts the specified encrypted stream using the provided decryption parameters.
+        /// </summary>
+        /// <param name="encryptedStream">The encrypted stream.</param>
+        /// <param name="decryptedStream">The decrypted stream.</param>
+        /// <param name="decryptionParameters">The decryption parameters.</param>
+        /// <returns></returns>
+        public virtual EncryptedProperties Decrypt(Stream encryptedStream, Stream decryptedStream, IEnumerable<DecryptionParameter> decryptionParameters)
+        {
+            using (IAxCryptDocument document = Document(encryptedStream, decryptionParameters, String.Empty, new ProgressContext()))
+            {
+                if (document.PassphraseIsValid)
+                {
+                    document.DecryptTo(decryptedStream);
+                }
                 return document.Properties;
             }
         }
@@ -634,15 +652,42 @@ namespace Axantum.AxCrypt.Core
         /// key
         /// or
         /// progress</exception>
-        public static IAxCryptDocument Document(Stream source, LogOnIdentity logOnIdentity, string displayContext, IProgressContext progress)
+        private static IAxCryptDocument Document(Stream source, LogOnIdentity logOnIdentity, string displayContext, IProgressContext progress)
+        {
+            if (logOnIdentity == null)
+            {
+                throw new ArgumentNullException("logOnIdentity");
+            }
+
+            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { logOnIdentity.Passphrase }, logOnIdentity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
+            IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(decryptionParameters, new ProgressStream(source, progress));
+            return document;
+        }
+
+        /// <summary>
+        /// Decrypts the header part of specified source stream.
+        /// </summary>
+        /// <param name="source">The source stream.</param>
+        /// <param name="decryptionParameters">The decryption parameters.</param>
+        /// <param name="displayContext">The display context.</param>
+        /// <param name="progress">The progress.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// source
+        /// or
+        /// decryptionParameters
+        /// or
+        /// progress
+        /// </exception>
+        private static IAxCryptDocument Document(Stream source, IEnumerable<DecryptionParameter> decryptionParameters, string displayContext, IProgressContext progress)
         {
             if (source == null)
             {
                 throw new ArgumentNullException("source");
             }
-            if (logOnIdentity == null)
+            if (decryptionParameters == null)
             {
-                throw new ArgumentNullException("logOnIdentity");
+                throw new ArgumentNullException("decryptionParameters");
             }
             if (progress == null)
             {
@@ -651,7 +696,6 @@ namespace Axantum.AxCrypt.Core
 
             try
             {
-                IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { logOnIdentity.Passphrase }, logOnIdentity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
                 IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(decryptionParameters, new ProgressStream(source, progress));
                 return document;
             }

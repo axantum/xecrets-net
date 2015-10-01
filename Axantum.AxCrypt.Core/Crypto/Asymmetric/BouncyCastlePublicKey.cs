@@ -61,19 +61,15 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         private AsymmetricKeyParameter Key { get; set; }
 
-        [JsonConstructor]
-        private BouncyCastlePublicKey()
-        {
-        }
-
         internal BouncyCastlePublicKey(AsymmetricKeyParameter publicKeyParameter)
         {
             Key = publicKeyParameter;
         }
 
-        public BouncyCastlePublicKey(string publicKeyPem)
+        [JsonConstructor]
+        public BouncyCastlePublicKey(string pem)
         {
-            Key = FromPem(publicKeyPem);
+            Key = FromPem(pem);
         }
 
         private static AsymmetricKeyParameter FromPem(string pem)

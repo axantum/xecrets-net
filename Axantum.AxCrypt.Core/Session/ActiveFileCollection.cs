@@ -34,12 +34,6 @@ namespace Axantum.AxCrypt.Core.Session
     [JsonObject(MemberSerialization.OptIn)]
     public class ActiveFileCollection : List<ActiveFile>
     {
-        [JsonConstructor]
-        public ActiveFileCollection()
-            : base()
-        {
-        }
-
         public ActiveFileCollection(IEnumerable<ActiveFile> collection)
             : base(collection)
         {

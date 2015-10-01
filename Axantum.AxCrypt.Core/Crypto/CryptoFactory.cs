@@ -62,12 +62,18 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("factory");
             }
 
-            _factories.Add(factory().Id, factory);
+            lock (_factories)
+            {
+                _factories.Add(factory().Id, factory);
+            }
         }
 
         public bool TypeNameExists(string fullName)
         {
-            return _factories.Any(c => c.Value().GetType().FullName == fullName);
+            lock (_factories)
+            {
+                return _factories.Any(c => c.Value().GetType().FullName == fullName);
+            }
         }
 
         public ICryptoFactory Create(Guid id)
@@ -77,9 +83,12 @@ namespace Axantum.AxCrypt.Core.Crypto
                 return Default;
             }
             CryptoFactoryCreator factory;
-            if (_factories.TryGetValue(id, out factory))
+            lock (_factories)
             {
-                return factory();
+                if (_factories.TryGetValue(id, out factory))
+                {
+                    return factory();
+                }
             }
             throw new ArgumentException("CryptoFactory not found.", "id");
         }
@@ -91,7 +100,10 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("policy");
             }
 
-            return policy.DefaultCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
+            lock (_factories)
+            {
+                return policy.DefaultCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
+            }
         }
 
         /// <summary>
@@ -108,7 +120,10 @@ namespace Axantum.AxCrypt.Core.Crypto
 
                 List<Guid> orderedIds = new List<Guid>();
                 orderedIds.Add(defaultId);
-                orderedIds.AddRange(_factories.Values.Where(f => f().Id != defaultId && f().Id != legacyId).Select(f => f().Id));
+                lock (_factories)
+                {
+                    orderedIds.AddRange(_factories.Values.Where(f => f().Id != defaultId && f().Id != legacyId).Select(f => f().Id));
+                }
                 orderedIds.Add(legacyId);
 
                 return orderedIds;
@@ -120,6 +135,17 @@ namespace Axantum.AxCrypt.Core.Crypto
             get
             {
                 return Create(TypeMap.Resolve.Singleton<ICryptoPolicy>());
+            }
+        }
+
+        public ICryptoFactory Preferred
+        {
+            get
+            {
+                lock (_factories)
+                {
+                    return TypeMap.Resolve.Singleton<ICryptoPolicy>().PreferredCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
+                }
             }
         }
 

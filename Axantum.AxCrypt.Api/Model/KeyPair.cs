@@ -9,11 +9,6 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class KeyPair : IEquatable<KeyPair>
     {
-        [JsonConstructor()]
-        private KeyPair()
-        {
-        }
-
         /// <summary>
         /// The empty instance.
         /// </summary>
@@ -22,26 +17,27 @@ namespace Axantum.AxCrypt.Api.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyPair"/> class.
         /// </summary>
-        /// <param name="publicPem">The public key as a PEM string.</param>
-        /// <param name="privateAxCryptPem">The private key as a Basea64-encoded AxCrypt-encrypted PEM string.</param>
+        /// <param name="public">The public key as a PEM string.</param>
+        /// <param name="private">The private key as a Basea64-encoded AxCrypt-encrypted PEM string.</param>
         /// <exception cref="System.ArgumentNullException">
         /// publicPem
         /// or
         /// privateAxCryptPem
         /// </exception>
-        public KeyPair(string publicPem, string privateAxCryptPem)
+        [JsonConstructor]
+        public KeyPair(string @public, string @private)
         {
-            if (publicPem == null)
+            if (@public == null)
             {
                 throw new ArgumentNullException("publicPem");
             }
-            if (privateAxCryptPem == null)
+            if (@private == null)
             {
                 throw new ArgumentNullException("privateAxCryptPem");
             }
 
-            PublicPem = publicPem;
-            PrivateEncryptedPem = privateAxCryptPem;
+            PublicPem = @public;
+            PrivateEncryptedPem = @private;
         }
 
         /// <summary>

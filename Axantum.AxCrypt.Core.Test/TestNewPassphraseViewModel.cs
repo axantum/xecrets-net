@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
-            _identities.Add(new Passphrase());
+            _identities.Add(Passphrase.Empty);
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
 
             Assert.That(npvm.Passphrase, Is.EqualTo(String.Empty));

@@ -14,21 +14,22 @@ namespace Axantum.AxCrypt.Core.UI
     [JsonObject(MemberSerialization.OptIn)]
     public class EmailAddress : IEquatable<EmailAddress>
     {
-        public static readonly EmailAddress Empty = new EmailAddress();
+        public static readonly EmailAddress Empty = new EmailAddress(String.Empty);
 
         [JsonProperty("address")]
         public string Address { get; private set; }
-
-        private EmailAddress()
-        {
-            Address = String.Empty;
-        }
 
         private EmailAddress(string address)
         {
             if (address == null)
             {
                 throw new ArgumentNullException("address");
+            }
+
+            if (address.Length == 0)
+            {
+                Address = String.Empty;
+                return;
             }
 
             string parsed;

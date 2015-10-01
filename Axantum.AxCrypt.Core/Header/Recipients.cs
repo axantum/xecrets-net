@@ -37,12 +37,7 @@ namespace Axantum.AxCrypt.Core.Header
     [JsonObject(MemberSerialization.OptIn)]
     public class Recipients
     {
-        public static readonly Recipients Empty = new Recipients();
-
-        private Recipients()
-        {
-            PublicKeys = new UserPublicKey[0];
-        }
+        public static readonly Recipients Empty = new Recipients(new UserPublicKey[0]);
 
         public Recipients(IEnumerable<UserPublicKey> publicKeys)
         {

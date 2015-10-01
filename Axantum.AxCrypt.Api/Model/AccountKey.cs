@@ -9,12 +9,7 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class AccountKey : IEquatable<AccountKey>
     {
-        public static readonly AccountKey Empty = new AccountKey();
-
-        public AccountKey()
-            : this(String.Empty, String.Empty, KeyPair.Empty, DateTime.MinValue)
-        {
-        }
+        public static readonly AccountKey Empty = new AccountKey(String.Empty, String.Empty, KeyPair.Empty, DateTime.MinValue);
 
         public AccountKey(string user, string thumbprint, KeyPair keyPair, DateTime timestamp)
         {

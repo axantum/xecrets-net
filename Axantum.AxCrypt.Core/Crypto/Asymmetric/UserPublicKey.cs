@@ -63,10 +63,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             }
         }
 
-        private UserPublicKey()
-        {
-        }
-
+        [JsonConstructor]
         public UserPublicKey(EmailAddress email, IAsymmetricPublicKey publicKey)
         {
             Email = email;

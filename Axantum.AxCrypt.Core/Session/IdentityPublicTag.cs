@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Session
     [JsonObject(MemberSerialization.OptIn)]
     public class IdentityPublicTag
     {
-        public static readonly IdentityPublicTag Empty = new IdentityPublicTag();
+        public static readonly IdentityPublicTag Empty = new IdentityPublicTag(SymmetricKeyThumbprint.Zero, EmailAddress.Empty);
 
         [JsonProperty("thumbprint")]
         private SymmetricKeyThumbprint _thumbprint;
@@ -52,10 +52,11 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonProperty("email")]
         private EmailAddress _email;
 
-        private IdentityPublicTag()
+        [JsonConstructor]
+        private IdentityPublicTag(SymmetricKeyThumbprint thumbprint, EmailAddress emailAddress)
         {
-            _thumbprint = SymmetricKeyThumbprint.Zero;
-            _email = EmailAddress.Empty;
+            _thumbprint = thumbprint;
+            _email = emailAddress;
         }
 
         public IdentityPublicTag(LogOnIdentity identity)

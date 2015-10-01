@@ -44,15 +44,15 @@ namespace Axantum.AxCrypt.Core.Crypto
     public class SymmetricKeyThumbprint : IEquatable<SymmetricKeyThumbprint>
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This class is immutable.")]
-        public static readonly SymmetricKeyThumbprint Zero = new SymmetricKeyThumbprint();
+        public static readonly SymmetricKeyThumbprint Zero = new SymmetricKeyThumbprint(new byte[8]);
 
         [JsonProperty("thumbprint")]
         private byte[] _bytes;
 
         [JsonConstructor]
-        private SymmetricKeyThumbprint()
+        private SymmetricKeyThumbprint(byte[] bytes)
         {
-            _bytes = new byte[8];
+            _bytes = bytes;
         }
 
         /// <summary>

@@ -271,7 +271,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void AskForNewLogOnPassphrase()
         {
             string defaultPassphrase = null;
-            Resolve.FileSystemState.KnownPassphrases.Add(new Passphrase());
+            Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Empty);
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
             ivm.CryptoId = new V1Aes128CryptoFactory().Id;
             ivm.LoggingOn += (sender, e) =>
@@ -326,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void AskForNewLogOnPassphraseWithCancel()
         {
             string defaultPassphrase = null;
-            Resolve.FileSystemState.KnownPassphrases.Add(new Passphrase());
+            Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Empty);
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
             bool isCancelling = false;
             ivm.LoggingOn += (sender, e) =>

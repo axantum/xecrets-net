@@ -40,5 +40,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         string Name { get; }
 
         ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);
+
+        ICryptoFactory PreferredCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);
     }
 }

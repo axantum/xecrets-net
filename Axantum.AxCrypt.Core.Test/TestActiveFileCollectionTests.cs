@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestActiveFileCollectionSimpleConstructor()
         {
-            ActiveFileCollection collection = new ActiveFileCollection();
+            ActiveFileCollection collection = new ActiveFileCollection(new ActiveFile[0]);
 
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);

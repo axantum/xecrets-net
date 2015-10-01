@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt.Api.Response
     {
         public AccountIdResponse()
         {
-            AccountId = new AccountKey();
+            AccountId = AccountKey.Empty;
         }
 
         [JsonProperty("id")]

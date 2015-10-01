@@ -1,6 +1,7 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
@@ -56,26 +57,46 @@ namespace Axantum.AxCrypt.Core.Session
 
         private IList<UserAsymmetricKeys> TryLoadUserKeys(EmailAddress userEmail, Passphrase passphrase)
         {
-            UserAccounts accounts = LoadUserAccounts();
-            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == userEmail);
-            IEnumerable<AccountKey> accountKeys = users.SelectMany(u => u.AccountKeys);
-
-            IEnumerable<UserAsymmetricKeys> userKeys = TryLoadKeyStoreFiles(userEmail, passphrase).Select(ksf => ksf.UserKeys);
-            userKeys = userKeys.Where(uk => !accountKeys.Any(ak => EmailAddress.Parse(ak.User) == uk.UserEmail));
-            userKeys = userKeys.Union(accountKeys.Select(ak => ak.ToUserAsymmetricKeys(passphrase)).Where(ak => ak != null));
+            IEnumerable<AccountKey> userAccountKeys = LoadAllAccountKeysForUser(userEmail);
+            IEnumerable<UserAsymmetricKeys> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys, passphrase);
+            if (!userKeys.Any())
+            {
+                userKeys = LoadValidUserKeysLegacyKeyStoreFiles(userEmail, passphrase);
+                userKeys = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
+            }
 
             return userKeys.OrderByDescending(uk => uk.Timestamp).ToList();
         }
 
+        private static IEnumerable<UserAsymmetricKeys> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys, Passphrase passphrase)
+        {
+            return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(passphrase)).Where(ak => ak != null);
+        }
+
+        private static IEnumerable<AccountKey> LoadAllAccountKeysForUser(EmailAddress userEmail)
+        {
+            UserAccounts accounts = LoadUserAccounts();
+            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == userEmail);
+            IEnumerable<AccountKey> accountKeys = users.SelectMany(u => u.AccountKeys);
+            return accountKeys;
+        }
+
+        private static IDataStore UserAccountsStore
+        {
+            get
+            {
+                return Resolve.WorkFolder.FileInfo.FileItemInfo("UserAccounts.txt");
+            }
+        }
+
         private static UserAccounts LoadUserAccounts()
         {
-            IDataStore userAccountsStore = Resolve.WorkFolder.FileInfo.FileItemInfo("UserAccounts.txt");
-            if (!userAccountsStore.IsAvailable)
+            if (!UserAccountsStore.IsAvailable)
             {
                 return new UserAccounts();
             }
 
-            using (StreamReader reader = new StreamReader(userAccountsStore.OpenRead()))
+            using (StreamReader reader = new StreamReader(UserAccountsStore.OpenRead()))
             {
                 return UserAccounts.DeserializeFrom(reader);
             }
@@ -115,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Session
             return file;
         }
 
-        private IEnumerable<KeysStoreFile> TryLoadKeyStoreFiles(EmailAddress userEmail, Passphrase passphrase)
+        private IEnumerable<UserAsymmetricKeys> LoadValidUserKeysLegacyKeyStoreFiles(EmailAddress userEmail, Passphrase passphrase)
         {
             List<KeysStoreFile> keyStoreFiles = new List<KeysStoreFile>();
             foreach (IDataStore file in AsymmetricKeyFiles())
@@ -131,7 +152,7 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 keyStoreFiles.Add(new KeysStoreFile(keys, file));
             }
-            return keyStoreFiles;
+            return keyStoreFiles.Select(ksf => ksf.UserKeys);
         }
 
         private IEnumerable<IDataStore> AsymmetricKeyFiles()
@@ -193,7 +214,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return AsymmetricKeyFiles().Any();
+                return UserAccountsStore.IsAvailable || AsymmetricKeyFiles().Any();
             }
         }
 
@@ -214,8 +235,12 @@ namespace Axantum.AxCrypt.Core.Session
                 userAccount = new UserAccount(userEmail.Address, SubscriptionLevel.Unknown, new AccountKey[0]);
                 userAccounts.Accounts.Add(userAccount);
             }
-            IEnumerable<AccountKey> accountKeys = _userKeysList.Select(uk => uk.ToAccountKey(passphrase)).Except(userAccount.AccountKeys);
 
+            IEnumerable<AccountKey> accountKeysToUpdate = _userKeysList.Select(uk => uk.ToAccountKey(passphrase));
+            IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Except(accountKeysToUpdate);
+            accountKeys = accountKeys.Union(accountKeysToUpdate);
+
+            userAccount.AccountKeys.Clear();
             foreach (AccountKey accountKey in accountKeys)
             {
                 userAccount.AccountKeys.Add(accountKey);
@@ -242,7 +267,7 @@ namespace Axantum.AxCrypt.Core.Session
             string json = Resolve.Serializer.Serialize(keys);
             using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, passphrase);
+                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.Id, passphrase);
                 EncryptedProperties properties = new EncryptedProperties(originalFileName);
                 using (MemoryStream exportStream = new MemoryStream())
                 {
@@ -285,15 +310,19 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static UserAsymmetricKeys TryLoadKeys(IDataStore file, Passphrase passphrase)
         {
-            using (MemoryStream stream = new MemoryStream())
+            using (Stream encryptedStream = file.OpenRead())
             {
-                if (!TypeMap.Resolve.New<AxCryptFile>().Decrypt(file, stream, new LogOnIdentity(passphrase)))
+                using (MemoryStream decryptedStream = new MemoryStream())
                 {
-                    return null;
-                }
+                    EncryptedProperties properties = TypeMap.Resolve.New<AxCryptFile>().Decrypt(encryptedStream, decryptedStream, new DecryptionParameter[] { new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.Id) });
+                    if (!properties.IsValid)
+                    {
+                        return null;
+                    }
 
-                string json = Encoding.UTF8.GetString(stream.ToArray(), 0, (int)stream.Length);
-                return Resolve.Serializer.Deserialize<UserAsymmetricKeys>(json);
+                    string json = Encoding.UTF8.GetString(decryptedStream.ToArray(), 0, (int)decryptedStream.Length);
+                    return Resolve.Serializer.Deserialize<UserAsymmetricKeys>(json);
+                }
             }
         }
     }
