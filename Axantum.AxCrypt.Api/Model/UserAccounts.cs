@@ -11,6 +11,11 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class UserAccounts
     {
+        public UserAccounts()
+        {
+            Accounts = new List<UserAccount>();
+        }
+
         [JsonProperty("accounts")]
         public IList<UserAccount> Accounts { get; private set; }
 

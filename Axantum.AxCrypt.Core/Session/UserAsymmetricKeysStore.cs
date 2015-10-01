@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -36,12 +37,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         private IDataContainer _folderPath;
 
-        private List<KeysStoreFile> _keysStoreFiles;
+        private IList<UserAsymmetricKeys> _userKeysList = new List<UserAsymmetricKeys>();
 
         public UserAsymmetricKeysStore(IDataContainer folderPath)
         {
             _folderPath = folderPath;
-            _keysStoreFiles = new List<KeysStoreFile>();
         }
 
         protected UserAsymmetricKeysStore()
@@ -50,22 +50,45 @@ namespace Axantum.AxCrypt.Core.Session
 
         public bool Load(EmailAddress userEmail, Passphrase passphrase)
         {
-            _keysStoreFiles = new List<KeysStoreFile>(TryLoadKeyStoreFiles(userEmail, passphrase));
-            if (!_keysStoreFiles.Any())
+            _userKeysList = TryLoadUserKeys(userEmail, passphrase);
+            return _userKeysList.Any();
+        }
+
+        private IList<UserAsymmetricKeys> TryLoadUserKeys(EmailAddress userEmail, Passphrase passphrase)
+        {
+            UserAccounts accounts = LoadUserAccounts();
+            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => ua.UserName == userEmail.Address);
+            IEnumerable<AccountKey> accountKeys = users.SelectMany(u => u.AccountKeys);
+
+            IEnumerable<UserAsymmetricKeys> userKeys = TryLoadKeyStoreFiles(userEmail, passphrase).Select(ksf => ksf.UserKeys);
+            userKeys = userKeys.Where(uk => !accountKeys.Any(ak => ak.User == uk.UserEmail.Address));
+            userKeys = userKeys.Union(accountKeys.Select(ak => ak.ToUserAsymmetricKeys(passphrase)).Where(ak => ak != null));
+
+            return userKeys.OrderByDescending(uk => uk.Timestamp).ToList();
+        }
+
+        private static UserAccounts LoadUserAccounts()
+        {
+            IDataStore userAccountsStore = Resolve.WorkFolder.FileInfo.FileItemInfo("UserAccounts.txt");
+            if (!userAccountsStore.IsAvailable)
             {
-                return false;
+                return new UserAccounts();
             }
-            return true;
+
+            using (StreamReader reader = new StreamReader(userAccountsStore.OpenRead()))
+            {
+                return UserAccounts.DeserializeFrom(reader);
+            }
         }
 
         public void Unload()
         {
-            _keysStoreFiles.Clear();
+            _userKeysList.Clear();
         }
 
         public bool IsValidAccountLogOn(EmailAddress userEmail, Passphrase passphrase)
         {
-            return TryLoadKeyStoreFiles(userEmail, passphrase).Any();
+            return TryLoadUserKeys(userEmail, passphrase).Any();
         }
 
         private void CreateInternal(EmailAddress userEmail, Passphrase passphrase)
@@ -76,14 +99,14 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void AddKeys(UserAsymmetricKeys userKeys, Passphrase passphrase)
         {
-            if (_keysStoreFiles.Any(k => k.UserKeys == userKeys))
+            if (_userKeysList.Any(k => k == userKeys))
             {
                 return;
             }
 
-            _keysStoreFiles.Add(new KeysStoreFile(userKeys, FileForUserKeys(userKeys)));
+            _userKeysList.Add(userKeys);
 
-            Save(passphrase);
+            Save(userKeys.UserEmail, passphrase);
         }
 
         private IDataStore FileForUserKeys(UserAsymmetricKeys userKeys)
@@ -128,11 +151,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Create(EmailAddress userEmail, Passphrase passphrase)
         {
-            _keysStoreFiles = new List<KeysStoreFile>(TryLoadKeyStoreFiles(userEmail, passphrase));
-            if (_keysStoreFiles.Any())
+            if (Load(userEmail, passphrase))
             {
                 return;
             }
+
             CreateInternal(userEmail, passphrase);
         }
 
@@ -140,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return KeysStoreFiles.Select(ksf => ksf.UserKeys);
+                return _userKeysList;
             }
         }
 
@@ -148,23 +171,15 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return CurrentKeysStore.UserKeys;
+                return CurrentKeysStore;
             }
         }
 
-        private KeysStoreFile CurrentKeysStore
+        private UserAsymmetricKeys CurrentKeysStore
         {
             get
             {
-                return KeysStoreFiles.First();
-            }
-        }
-
-        private IEnumerable<KeysStoreFile> KeysStoreFiles
-        {
-            get
-            {
-                return _keysStoreFiles.OrderBy((ksf) => ksf.UserKeys.Timestamp);
+                return _userKeysList.First();
             }
         }
 
@@ -190,11 +205,25 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual void Save(Passphrase passphrase)
+        public virtual void Save(EmailAddress userEmail, Passphrase passphrase)
         {
-            foreach (KeysStoreFile keysStoreFile in _keysStoreFiles)
+            UserAccounts userAccounts = LoadUserAccounts();
+            UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => ua.UserName == userEmail.Address);
+            if (userAccount == null)
             {
-                SaveKeysStoreFile(keysStoreFile.File, keysStoreFile.UserKeys, passphrase);
+                userAccount = new UserAccount(userEmail.Address, SubscriptionLevel.Unknown, new AccountKey[0]);
+                userAccounts.Accounts.Add(userAccount);
+            }
+            IEnumerable<AccountKey> accountKeys = _userKeysList.Select(uk => uk.ToAccountKey(passphrase)).Except(userAccount.AccountKeys);
+
+            foreach (AccountKey accountKey in accountKeys)
+            {
+                userAccount.AccountKeys.Add(accountKey);
+            }
+
+            using (StreamWriter writer = new StreamWriter(Resolve.WorkFolder.FileInfo.FileItemInfo("UserAccounts.txt").OpenWrite()))
+            {
+                userAccounts.SerializeTo(writer);
             }
         }
 

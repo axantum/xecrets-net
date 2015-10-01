@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Api.Model
                 return false;
             }
 
-            return PublicPem == other.PublicPem && PrivateEncryptedPem == other.PrivateEncryptedPem;
+            return PublicPem == other.PublicPem && ((PrivateEncryptedPem.Length == 0 && other.PrivateEncryptedPem.Length == 0) || (PrivateEncryptedPem.Length > 0 && other.PrivateEncryptedPem.Length > 0));
         }
 
         public override bool Equals(object obj)
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Api.Model
 
         public override int GetHashCode()
         {
-            return PublicPem.GetHashCode() ^ PrivateEncryptedPem.GetHashCode();
+            return PublicPem.GetHashCode();
         }
 
         public static bool operator ==(KeyPair left, KeyPair right)
