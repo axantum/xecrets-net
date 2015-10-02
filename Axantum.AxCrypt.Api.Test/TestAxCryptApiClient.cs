@@ -51,8 +51,6 @@ namespace Axantum.AxCrypt.Api.Test
             UserAccountResponse response = new UserAccountResponse(summary);
             string content = Resolve.Serializer.Serialize(response);
 
-            RestResponse restResponse = new RestResponse(HttpStatusCode.OK, content);
-
             Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
             mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/users/svante%40axcrypt.net")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
             mockRestCaller.Setup<string>(wc => wc.UrlEncode(It.IsAny<string>())).Returns<string>((url) => WebUtility.UrlEncode(url));
