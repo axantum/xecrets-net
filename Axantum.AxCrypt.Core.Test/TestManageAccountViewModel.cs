@@ -49,8 +49,8 @@ namespace Axantum.AxCrypt.Core.Test
             mockUserAsymmetricKeysStore.Setup<IEnumerable<UserKeyPair>>(f => f.UserKeyPairs).Returns(new UserKeyPair[] { key1, key2 });
             mockUserAsymmetricKeysStore.Setup<bool>(f => f.HasStore).Returns(true);
             string passphraseUsed = String.Empty;
-            mockUserAsymmetricKeysStore.Setup(f => f.Save(It.IsAny<EmailAddress>(), It.IsAny<Passphrase>()))
-                .Callback<EmailAddress, Passphrase>((email, passphrase) =>
+            mockUserAsymmetricKeysStore.Setup(f => f.Save(It.IsAny<Passphrase>()))
+                .Callback<Passphrase>((passphrase) =>
                 {
                     passphraseUsed = passphrase.Text;
                 });

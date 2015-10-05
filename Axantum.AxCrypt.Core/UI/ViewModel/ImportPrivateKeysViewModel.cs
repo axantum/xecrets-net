@@ -40,8 +40,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class ImportPrivateKeysViewModel : ViewModelBase
     {
-        private UserAsymmetricKeysStore _keysStore;
-
         private IUserSettings _userSettings;
 
         private KnownIdentities _knownIdentities;
@@ -56,7 +54,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public ImportPrivateKeysViewModel(IUserSettings userSettings, KnownIdentities knownIdentities)
         {
-            _keysStore = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, knownIdentities.DefaultEncryptionIdentity.UserEmail, knownIdentities.DefaultEncryptionIdentity.Passphrase);
             _userSettings = userSettings;
             _knownIdentities = knownIdentities;
 
@@ -151,11 +148,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            _keysStore.Import(keyPair, passphrase);
+            UserAsymmetricKeysStore keysStore = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, _knownIdentities.DefaultEncryptionIdentity.UserEmail, _knownIdentities.DefaultEncryptionIdentity.Passphrase);
+            keysStore.Import(keyPair);
             ImportSuccessful = true;
 
             _userSettings.UserEmail = keyPair.UserEmail.Address;
-            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(_keysStore.UserKeyPair, passphrase);
+            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(keysStore.UserKeyPair, passphrase);
         }
     }
 }

@@ -33,31 +33,31 @@ namespace Axantum.AxCrypt.Core.Session
             _workContainer = workContainer;
             _userEmail = userEmail;
             _passphrase = passphrase;
-            _userKeyPairs = new Lazy<IList<UserKeyPair>>(() => TryLoadUserKeyPairs(userEmail, passphrase));
+            _userKeyPairs = new Lazy<IList<UserKeyPair>>(() => TryLoadUserKeyPairs());
         }
 
-        private IList<UserKeyPair> TryLoadUserKeyPairs(EmailAddress userEmail, Passphrase passphrase)
+        private IList<UserKeyPair> TryLoadUserKeyPairs()
         {
-            IEnumerable<AccountKey> userAccountKeys = LoadAllAccountKeysForUser(userEmail);
-            IEnumerable<UserKeyPair> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys, passphrase);
+            IEnumerable<AccountKey> userAccountKeys = LoadAllAccountKeysForUser();
+            IEnumerable<UserKeyPair> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys);
             if (!userKeys.Any())
             {
-                userKeys = UserKeyPair.Load(UserKeyPairFiles(_workContainer), userEmail, passphrase);
+                userKeys = UserKeyPair.Load(UserKeyPairFiles(_workContainer), _userEmail, _passphrase);
                 userKeys = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
             }
 
             return userKeys.OrderByDescending(uk => uk.Timestamp).ToList();
         }
 
-        private static IEnumerable<UserKeyPair> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys, Passphrase passphrase)
+        private IEnumerable<UserKeyPair> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys)
         {
-            return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(passphrase)).Where(ak => ak != null);
+            return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(_passphrase)).Where(ak => ak != null);
         }
 
-        private static IEnumerable<AccountKey> LoadAllAccountKeysForUser(EmailAddress userEmail)
+        private IEnumerable<AccountKey> LoadAllAccountKeysForUser()
         {
             UserAccounts accounts = LoadUserAccounts();
-            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == userEmail);
+            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == _userEmail);
             IEnumerable<AccountKey> accountKeys = users.SelectMany(u => u.AccountKeys);
             return accountKeys;
         }
@@ -83,23 +83,18 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public void Unload()
-        {
-            _userKeyPairs.Value.Clear();
-        }
-
         public bool IsValidAccountLogOn()
         {
             return _userKeyPairs.Value.Any();
         }
 
-        private void CreateInternal(EmailAddress userEmail, Passphrase passphrase)
+        private void CreateInternal()
         {
-            UserKeyPair userKeys = new UserKeyPair(userEmail, Resolve.UserSettings.AsymmetricKeyBits);
-            Import(userKeys, passphrase);
+            UserKeyPair userKeys = new UserKeyPair(_userEmail, Resolve.UserSettings.AsymmetricKeyBits);
+            Import(userKeys);
         }
 
-        public void Import(UserKeyPair keyPair, Passphrase passphrase)
+        public void Import(UserKeyPair keyPair)
         {
             if (_userKeyPairs.Value.Any(k => k == keyPair))
             {
@@ -107,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             _userKeyPairs.Value.Add(keyPair);
-            Save(keyPair.UserEmail, passphrase);
+            Save(_passphrase);
         }
 
         private static IEnumerable<IDataStore> UserKeyPairFiles(IDataContainer workContainer)
@@ -122,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return;
             }
 
-            CreateInternal(_userEmail, _passphrase);
+            CreateInternal();
         }
 
         public virtual IEnumerable<UserKeyPair> UserKeyPairs
@@ -178,17 +173,19 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual void Save(EmailAddress userEmail, Passphrase passphrase)
+        public virtual void Save(Passphrase passphrase)
         {
+            _passphrase = passphrase;
+
             UserAccounts userAccounts = LoadUserAccounts();
-            UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == userEmail);
+            UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == _userEmail);
             if (userAccount == null)
             {
-                userAccount = new UserAccount(userEmail.Address, SubscriptionLevel.Unknown, new AccountKey[0]);
+                userAccount = new UserAccount(_userEmail.Address, SubscriptionLevel.Unknown, new AccountKey[0]);
                 userAccounts.Accounts.Add(userAccount);
             }
 
-            IEnumerable<AccountKey> accountKeysToUpdate = _userKeyPairs.Value.Select(uk => uk.ToAccountKey(passphrase));
+            IEnumerable<AccountKey> accountKeysToUpdate = _userKeyPairs.Value.Select(uk => uk.ToAccountKey(_passphrase));
             IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Except(accountKeysToUpdate);
             accountKeys = accountKeys.Union(accountKeysToUpdate);
 
