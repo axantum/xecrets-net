@@ -41,11 +41,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestChangePassword()
         {
-            UserAsymmetricKeys key1 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
-            UserAsymmetricKeys key2 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
+            UserKeyPair key1 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
+            UserKeyPair key2 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
             var mockUserAsymmetricKeysStore = new Mock<UserAsymmetricKeysStore>();
-            mockUserAsymmetricKeysStore.Setup<IEnumerable<UserAsymmetricKeys>>(f => f.Keys).Returns(new UserAsymmetricKeys[] { key1, key2 });
+            mockUserAsymmetricKeysStore.Setup<IEnumerable<UserKeyPair>>(f => f.UserKeyPairs).Returns(new UserKeyPair[] { key1, key2 });
             mockUserAsymmetricKeysStore.Setup<bool>(f => f.HasStore).Returns(true);
             string passphraseUsed = String.Empty;
             mockUserAsymmetricKeysStore.Setup(f => f.Save(It.IsAny<EmailAddress>(), It.IsAny<Passphrase>()))

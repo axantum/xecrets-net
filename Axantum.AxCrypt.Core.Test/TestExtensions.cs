@@ -538,9 +538,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
-            UserAsymmetricKeys originalKeys = new UserAsymmetricKeys(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
             AccountKey accountKey = originalKeys.ToAccountKey(new Passphrase("password"));
-            UserAsymmetricKeys roundtripKeys = accountKey.ToUserAsymmetricKeys(new Passphrase("password"));
+            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(new Passphrase("password"));
 
             Assert.That(originalKeys, Is.EqualTo(roundtripKeys));
         }
@@ -552,9 +552,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
-            UserAsymmetricKeys originalKeys = new UserAsymmetricKeys(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
             AccountKey accountKey = originalKeys.ToAccountKey(new Passphrase("password"));
-            UserAsymmetricKeys roundtripKeys = accountKey.ToUserAsymmetricKeys(new Passphrase("wrong password"));
+            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(new Passphrase("wrong password"));
 
             Assert.That(roundtripKeys, Is.Null);
         }
@@ -566,12 +566,12 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
-            UserAsymmetricKeys originalKeys = new UserAsymmetricKeys(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
             IAsymmetricKeyPair partialKeyPair = Resolve.AsymmetricFactory.CreateKeyPair(originalKeys.KeyPair.PublicKey.ToString(), String.Empty);
-            UserAsymmetricKeys originalPartialKeys = new UserAsymmetricKeys(originalKeys.UserEmail, originalKeys.Timestamp, partialKeyPair);
+            UserKeyPair originalPartialKeys = new UserKeyPair(originalKeys.UserEmail, originalKeys.Timestamp, partialKeyPair);
 
             AccountKey accountKey = originalPartialKeys.ToAccountKey(Passphrase.Empty);
-            UserAsymmetricKeys roundtripKeys = accountKey.ToUserAsymmetricKeys(Passphrase.Empty);
+            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(Passphrase.Empty);
 
             Assert.That(roundtripKeys, Is.EqualTo(originalPartialKeys));
         }

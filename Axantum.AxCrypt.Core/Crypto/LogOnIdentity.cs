@@ -17,7 +17,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// The empty, or undefined, LogOnIdentity instance
         /// </summary>
-        public static readonly LogOnIdentity Empty = new LogOnIdentity(UserAsymmetricKeys.Empty, Passphrase.Empty);
+        public static readonly LogOnIdentity Empty = new LogOnIdentity(UserKeyPair.Empty, Passphrase.Empty);
 
         public LogOnIdentity(string passphraseText)
             : this(new Passphrase(passphraseText))
@@ -29,7 +29,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
         public LogOnIdentity(Passphrase passphrase)
-            : this(UserAsymmetricKeys.Empty, passphrase)
+            : this(UserKeyPair.Empty, passphrase)
         {
         }
 
@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="userKeys">The user keys.</param>
         /// <param name="passphrase">The passphrase.</param>
-        public LogOnIdentity(UserAsymmetricKeys userKeys, Passphrase passphrase)
+        public LogOnIdentity(UserKeyPair userKeys, Passphrase passphrase)
         {
             if (userKeys == null)
             {
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// The user keys or null if not known.
         /// </value>
-        public UserAsymmetricKeys UserKeys
+        public UserKeyPair UserKeys
         {
             get;
             private set;
@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                if (UserKeys == UserAsymmetricKeys.Empty)
+                if (UserKeys == UserKeyPair.Empty)
                 {
                     return new IAsymmetricPrivateKey[0];
                 }
@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                if (UserKeys == UserAsymmetricKeys.Empty)
+                if (UserKeys == UserKeyPair.Empty)
                 {
                     return new UserPublicKey[0];
                 }

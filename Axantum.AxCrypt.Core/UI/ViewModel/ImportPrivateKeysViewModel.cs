@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             ImportSuccessful = true;
             _userSettings.UserEmail = userEmail.Address;
-            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(_keysStore.CurrentKeys, passphrase);
+            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(_keysStore.UserKeyPair, passphrase);
         }
     }
 }

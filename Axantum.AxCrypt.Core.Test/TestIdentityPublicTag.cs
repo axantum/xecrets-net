@@ -51,8 +51,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestSimpleAsymmetricIdentityMatches()
         {
-            UserAsymmetricKeys key1 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
-            UserAsymmetricKeys key2 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
+            UserKeyPair key1 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
+            UserKeyPair key2 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
             IdentityPublicTag tag1 = new IdentityPublicTag(new LogOnIdentity(key1, new Passphrase("allan")));
             IdentityPublicTag tag2 = new IdentityPublicTag(new LogOnIdentity(key2, new Passphrase("allan")));
@@ -66,8 +66,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestAsymmetricIdentityButDifferentPassphraseMatches()
         {
-            UserAsymmetricKeys key1 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
-            UserAsymmetricKeys key2 = new UserAsymmetricKeys(EmailAddress.Parse("svante@axantum.com"), 512);
+            UserKeyPair key1 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
+            UserKeyPair key2 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
             IdentityPublicTag tag1 = new IdentityPublicTag(new LogOnIdentity(key1, new Passphrase("allan")));
             IdentityPublicTag tag2 = new IdentityPublicTag(new LogOnIdentity(key2, new Passphrase("niklas")));
@@ -81,8 +81,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestDifferentAsymmetricIdentityAndSamePassphraseDoesNotMatch()
         {
-            UserAsymmetricKeys key1 = new UserAsymmetricKeys(EmailAddress.Parse("svante1@axantum.com"), 512);
-            UserAsymmetricKeys key2 = new UserAsymmetricKeys(EmailAddress.Parse("svante2@axantum.com"), 512);
+            UserKeyPair key1 = new UserKeyPair(EmailAddress.Parse("svante1@axantum.com"), 512);
+            UserKeyPair key2 = new UserKeyPair(EmailAddress.Parse("svante2@axantum.com"), 512);
 
             IdentityPublicTag tag1 = new IdentityPublicTag(new LogOnIdentity(key1, new Passphrase("allan")));
             IdentityPublicTag tag2 = new IdentityPublicTag(new LogOnIdentity(key2, new Passphrase("allan")));

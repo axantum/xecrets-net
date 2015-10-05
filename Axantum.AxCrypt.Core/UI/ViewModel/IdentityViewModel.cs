@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (Resolve.AsymmetricKeysStore.Load(emailAddress, passphrase))
             {
-                return new LogOnIdentity(Resolve.AsymmetricKeysStore.Keys.First(), passphrase);
+                return new LogOnIdentity(Resolve.AsymmetricKeysStore.UserKeyPairs.First(), passphrase);
             }
 
             foreach (Passphrase candidate in _fileSystemState.KnownPassphrases)

@@ -21,13 +21,13 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private class KeysStoreFile
         {
-            public KeysStoreFile(UserAsymmetricKeys userKeys, IDataStore file)
+            public KeysStoreFile(UserKeyPair userKeys, IDataStore file)
             {
                 UserKeys = userKeys;
                 File = file;
             }
 
-            public UserAsymmetricKeys UserKeys { get; private set; }
+            public UserKeyPair UserKeys { get; private set; }
 
             public IDataStore File { get; private set; }
         }
@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private IDataContainer _folderPath;
 
-        private IList<UserAsymmetricKeys> _userKeysList = new List<UserAsymmetricKeys>();
+        private IList<UserKeyPair> _userKeyPairs = new List<UserKeyPair>();
 
         public UserAsymmetricKeysStore(IDataContainer folderPath)
         {
@@ -51,14 +51,14 @@ namespace Axantum.AxCrypt.Core.Session
 
         public bool Load(EmailAddress userEmail, Passphrase passphrase)
         {
-            _userKeysList = TryLoadUserKeys(userEmail, passphrase);
-            return _userKeysList.Any();
+            _userKeyPairs = TryLoadUserKeys(userEmail, passphrase);
+            return _userKeyPairs.Any();
         }
 
-        private IList<UserAsymmetricKeys> TryLoadUserKeys(EmailAddress userEmail, Passphrase passphrase)
+        private IList<UserKeyPair> TryLoadUserKeys(EmailAddress userEmail, Passphrase passphrase)
         {
             IEnumerable<AccountKey> userAccountKeys = LoadAllAccountKeysForUser(userEmail);
-            IEnumerable<UserAsymmetricKeys> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys, passphrase);
+            IEnumerable<UserKeyPair> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys, passphrase);
             if (!userKeys.Any())
             {
                 userKeys = LoadValidUserKeysLegacyKeyStoreFiles(userEmail, passphrase);
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Session
             return userKeys.OrderByDescending(uk => uk.Timestamp).ToList();
         }
 
-        private static IEnumerable<UserAsymmetricKeys> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys, Passphrase passphrase)
+        private static IEnumerable<UserKeyPair> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys, Passphrase passphrase)
         {
             return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(passphrase)).Where(ak => ak != null);
         }
@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Unload()
         {
-            _userKeysList.Clear();
+            _userKeyPairs.Clear();
         }
 
         public bool IsValidAccountLogOn(EmailAddress userEmail, Passphrase passphrase)
@@ -114,34 +114,34 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void CreateInternal(EmailAddress userEmail, Passphrase passphrase)
         {
-            UserAsymmetricKeys userKeys = new UserAsymmetricKeys(userEmail, Resolve.UserSettings.AsymmetricKeyBits);
-            AddKeys(userKeys, passphrase);
+            UserKeyPair userKeys = new UserKeyPair(userEmail, Resolve.UserSettings.AsymmetricKeyBits);
+            AddKeyPair(userKeys, passphrase);
         }
 
-        private void AddKeys(UserAsymmetricKeys userKeys, Passphrase passphrase)
+        private void AddKeyPair(UserKeyPair keyPair, Passphrase passphrase)
         {
-            if (_userKeysList.Any(k => k == userKeys))
+            if (_userKeyPairs.Any(k => k == keyPair))
             {
                 return;
             }
 
-            _userKeysList.Add(userKeys);
+            _userKeyPairs.Add(keyPair);
 
-            Save(userKeys.UserEmail, passphrase);
+            Save(keyPair.UserEmail, passphrase);
         }
 
-        private IDataStore FileForUserKeys(UserAsymmetricKeys userKeys)
+        private IDataStore FileForUserKeys(UserKeyPair userKeys)
         {
             IDataStore file = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(userKeys.KeyPair.PublicKey.Tag)).CreateEncryptedName());
             return file;
         }
 
-        private IEnumerable<UserAsymmetricKeys> LoadValidUserKeysLegacyKeyStoreFiles(EmailAddress userEmail, Passphrase passphrase)
+        private IEnumerable<UserKeyPair> LoadValidUserKeysLegacyKeyStoreFiles(EmailAddress userEmail, Passphrase passphrase)
         {
             List<KeysStoreFile> keyStoreFiles = new List<KeysStoreFile>();
             foreach (IDataStore file in AsymmetricKeyFiles())
             {
-                UserAsymmetricKeys keys = TryLoadKeys(file, passphrase);
+                UserKeyPair keys = TryLoadKeys(file, passphrase);
                 if (keys == null)
                 {
                     continue;
@@ -180,27 +180,19 @@ namespace Axantum.AxCrypt.Core.Session
             CreateInternal(userEmail, passphrase);
         }
 
-        public virtual IEnumerable<UserAsymmetricKeys> Keys
+        public virtual IEnumerable<UserKeyPair> UserKeyPairs
         {
             get
             {
-                return _userKeysList;
+                return _userKeyPairs;
             }
         }
 
-        public UserAsymmetricKeys CurrentKeys
+        public UserKeyPair UserKeyPair
         {
             get
             {
-                return CurrentKeysStore;
-            }
-        }
-
-        private UserAsymmetricKeys CurrentKeysStore
-        {
-            get
-            {
-                return _userKeysList.First();
+                return _userKeyPairs.First();
             }
         }
 
@@ -222,7 +214,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return Keys.First().UserEmail;
+                return UserKeyPairs.First().UserEmail;
             }
         }
 
@@ -236,7 +228,7 @@ namespace Axantum.AxCrypt.Core.Session
                 userAccounts.Accounts.Add(userAccount);
             }
 
-            IEnumerable<AccountKey> accountKeysToUpdate = _userKeysList.Select(uk => uk.ToAccountKey(passphrase));
+            IEnumerable<AccountKey> accountKeysToUpdate = _userKeyPairs.Select(uk => uk.ToAccountKey(passphrase));
             IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Except(accountKeysToUpdate);
             accountKeys = accountKeys.Union(accountKeysToUpdate);
 
@@ -252,49 +244,28 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private static void SaveKeysStoreFile(IDataStore saveFile, UserAsymmetricKeys userKeys, Passphrase passphrase)
+        private static void SaveKeysStoreFile(IDataStore saveFile, UserKeyPair userKeys, Passphrase passphrase)
         {
-            string originalFileName = _fileFormat.InvariantFormat(IdFromFileName(saveFile.Name));
-            byte[] save = GetSaveDataForKeys(userKeys, originalFileName, passphrase);
+            byte[] save = userKeys.ToArray(passphrase);
             using (Stream exportStream = saveFile.OpenWrite())
             {
                 exportStream.Write(save, 0, save.Length);
             }
         }
 
-        private static byte[] GetSaveDataForKeys(UserAsymmetricKeys keys, string originalFileName, Passphrase passphrase)
-        {
-            string json = Resolve.Serializer.Serialize(keys);
-            using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
-            {
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.Id, passphrase);
-                EncryptedProperties properties = new EncryptedProperties(originalFileName);
-                using (MemoryStream exportStream = new MemoryStream())
-                {
-                    AxCryptFile.Encrypt(stream, exportStream, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
-                    return exportStream.ToArray();
-                }
-            }
-        }
-
-        public byte[] ExportCurrentKeys(Passphrase passphrase)
-        {
-            return GetSaveDataForKeys(CurrentKeys, _fileFormat.InvariantFormat(CurrentKeys.KeyPair.PublicKey.Tag), passphrase);
-        }
-
         public EmailAddress ImportKeysStore(Stream keysStore, Passphrase passphrase)
         {
-            UserAsymmetricKeys keys = TryLoadKeys(keysStore, passphrase);
-            if (keys == null)
+            UserKeyPair keyPair = TryLoadKeys(keysStore, passphrase);
+            if (keyPair == null)
             {
                 return EmailAddress.Empty;
             }
 
-            SaveKeysStoreFile(FileForUserKeys(keys), keys, passphrase);
-            return keys.UserEmail;
+            AddKeyPair(keyPair, passphrase);
+            return keyPair.UserEmail;
         }
 
-        private static UserAsymmetricKeys TryLoadKeys(Stream encryptedStream, Passphrase passphrase)
+        private static UserKeyPair TryLoadKeys(Stream encryptedStream, Passphrase passphrase)
         {
             using (MemoryStream decryptedStream = new MemoryStream())
             {
@@ -304,11 +275,11 @@ namespace Axantum.AxCrypt.Core.Session
                 }
 
                 string json = Encoding.UTF8.GetString(decryptedStream.ToArray(), 0, (int)decryptedStream.Length);
-                return Resolve.Serializer.Deserialize<UserAsymmetricKeys>(json);
+                return Resolve.Serializer.Deserialize<UserKeyPair>(json);
             }
         }
 
-        private static UserAsymmetricKeys TryLoadKeys(IDataStore file, Passphrase passphrase)
+        private static UserKeyPair TryLoadKeys(IDataStore file, Passphrase passphrase)
         {
             using (Stream encryptedStream = file.OpenRead())
             {
@@ -321,7 +292,7 @@ namespace Axantum.AxCrypt.Core.Session
                     }
 
                     string json = Encoding.UTF8.GetString(decryptedStream.ToArray(), 0, (int)decryptedStream.Length);
-                    return Resolve.Serializer.Deserialize<UserAsymmetricKeys>(json);
+                    return Resolve.Serializer.Deserialize<UserKeyPair>(json);
                 }
             }
         }
