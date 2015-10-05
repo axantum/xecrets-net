@@ -52,12 +52,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction CreateAccount { get { return new DelegateAction<object>((o) => CreateAccountAction()); } }
 
-        private UserAsymmetricKeysStore _keysStore;
-
-        public CreateNewAccountViewModel(UserAsymmetricKeysStore keysStore, string passphrase)
+        public CreateNewAccountViewModel(string passphrase)
         {
-            _keysStore = keysStore;
-
             InitializePropertyValues(passphrase);
             BindPropertyChangedEvents();
         }
@@ -132,7 +128,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return null;
             }
-            _keysStore.Create(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase));
+
+            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, EmailAddress.Parse(UserEmail), new Passphrase(Passphrase));
+            userKeyPairs.Create();
 
             return null;
         }

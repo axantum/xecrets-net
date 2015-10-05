@@ -71,7 +71,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory());
             TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
-            TypeMap.Register.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo));
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
 

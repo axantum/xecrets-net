@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
+﻿using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
@@ -21,10 +20,10 @@ namespace Axantum.AxCrypt
             new Styling(Resources.axcrypticon).Style(this);
         }
 
-        public ImportPrivatePasswordDialog(Form parent, UserAsymmetricKeysStore keysStore, IUserSettings userSettings, KnownIdentities knownIdentities)
+        public ImportPrivatePasswordDialog(Form parent, IUserSettings userSettings, KnownIdentities knownIdentities)
             : this()
         {
-            _viewModel = new ImportPrivateKeysViewModel(keysStore, userSettings, knownIdentities);
+            _viewModel = new ImportPrivateKeysViewModel(userSettings, knownIdentities);
 
             _privateKeyFileTextBox.TextChanged += (sender, e) => { _viewModel.PrivateKeyFileName = _privateKeyFileTextBox.Text; };
             _passphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = _passphraseTextBox.Text; _privateKeyFileTextBox.ScrollToCaret(); };

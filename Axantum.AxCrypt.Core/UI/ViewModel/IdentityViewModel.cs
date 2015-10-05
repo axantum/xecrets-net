@@ -132,7 +132,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
             _knownIdentities.Clear();
-            Resolve.AsymmetricKeysStore.Unload();
         }
 
         private LogOnIdentity LogOnLogOffAction(Guid cryptoId)
@@ -147,9 +146,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
         {
-            if (Resolve.AsymmetricKeysStore.Load(emailAddress, passphrase))
+            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, emailAddress, passphrase);
+            if (userKeyPairs.IsValidAccountLogOn())
             {
-                return new LogOnIdentity(Resolve.AsymmetricKeysStore.UserKeyPairs.First(), passphrase);
+                return new LogOnIdentity(userKeyPairs.UserKeyPair, passphrase);
             }
 
             foreach (Passphrase candidate in _fileSystemState.KnownPassphrases)
@@ -189,7 +189,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity AskForLogOnOrEncryptionPassphrase(LogOnIdentity identity, string encryptedFileFullName)
         {
-            if (!_fileSystemState.KnownPassphrases.Any() && !Resolve.AsymmetricKeysStore.HasStore)
+            if (!_fileSystemState.KnownPassphrases.Any() && !UserAsymmetricKeysStore.HasKeyPairs(Resolve.WorkFolder.FileInfo))
             {
                 return AskForNewEncryptionPassphrase(String.Empty, encryptedFileFullName);
             }

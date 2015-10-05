@@ -57,6 +57,32 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonProperty("keypair")]
         public IAsymmetricKeyPair KeyPair { get; private set; }
 
+        /// <summary>
+        /// Loads the specified key pairs for the given user from the provided set of candiates in the form of IDataStore instances.
+        /// </summary>
+        /// <param name="stores">The stores.</param>
+        /// <param name="userEmail">The user email.</param>
+        /// <param name="passphrase">The passphrase.</param>
+        /// <returns>Valid key pairs for the user.</returns>
+        public static IEnumerable<UserKeyPair> Load(IEnumerable<IDataStore> stores, EmailAddress userEmail, Passphrase passphrase)
+        {
+            List<UserKeyPair> userKeyPairs = new List<UserKeyPair>();
+            foreach (IDataStore store in stores)
+            {
+                UserKeyPair userKeyPair;
+                if (!TryLoad(store.ToArray(), passphrase, out userKeyPair))
+                {
+                    continue;
+                }
+                if (userEmail != userKeyPair.UserEmail)
+                {
+                    continue;
+                }
+                userKeyPairs.Add(userKeyPair);
+            }
+            return userKeyPairs;
+        }
+
         private const string _fileFormat = "Keys-{0}.txt";
 
         public byte[] ToArray(Passphrase passphrase)
@@ -64,6 +90,13 @@ namespace Axantum.AxCrypt.Core.Session
             return GetSaveDataForKeys(this, _fileFormat.InvariantFormat(KeyPair.PublicKey.Tag), passphrase);
         }
 
+        /// <summary>
+        /// Tries to load a key pair from the serialized byte array.
+        /// </summary>
+        /// <param name="bytes">The bytes.</param>
+        /// <param name="passphrase">The passphrase.</param>
+        /// <param name="keyPair">The key pair.</param>
+        /// <returns>True if the pair was successfully loaded, and set in the keyPair parameter.</returns>
         public static bool TryLoad(byte[] bytes, Passphrase passphrase, out UserKeyPair keyPair)
         {
             using (MemoryStream encryptedStream = new MemoryStream(bytes))

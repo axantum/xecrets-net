@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Test
             UserKeyPair key1 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
             UserKeyPair key2 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
-            var mockUserAsymmetricKeysStore = new Mock<UserAsymmetricKeysStore>((IDataContainer)null);
+            var mockUserAsymmetricKeysStore = new Mock<UserAsymmetricKeysStore>((IDataContainer)null, EmailAddress.Empty, Passphrase.Empty);
             mockUserAsymmetricKeysStore.Setup<IEnumerable<UserKeyPair>>(f => f.UserKeyPairs).Returns(new UserKeyPair[] { key1, key2 });
             mockUserAsymmetricKeysStore.Setup<bool>(f => f.HasStore).Returns(true);
             string passphraseUsed = String.Empty;

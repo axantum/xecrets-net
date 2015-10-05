@@ -460,6 +460,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 
+        // Fails intermittently at "The source should be wiped". Problably a race situation. Must be investigated.
         [Test]
         public void TestDecryptFilesUniqueWithWipeOfOriginal()
         {

@@ -33,7 +33,6 @@ using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -55,9 +54,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool ImportSuccessful { get { return GetProperty<bool>("ImportSuccessful"); } set { SetProperty("ImportSuccessful", value); } }
 
-        public ImportPrivateKeysViewModel(UserAsymmetricKeysStore keysStore, IUserSettings userSettings, KnownIdentities knownIdentities)
+        public ImportPrivateKeysViewModel(IUserSettings userSettings, KnownIdentities knownIdentities)
         {
-            _keysStore = keysStore;
+            _keysStore = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, knownIdentities.DefaultEncryptionIdentity.UserEmail, knownIdentities.DefaultEncryptionIdentity.Passphrase);
             _userSettings = userSettings;
             _knownIdentities = knownIdentities;
 
@@ -144,23 +143,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void ImportFileAction()
         {
             IDataStore privateKeyData = TypeMap.Resolve.New<IDataStore>(PrivateKeyFileName);
-            EmailAddress userEmail;
             Passphrase passphrase = new Passphrase(Passphrase);
-            using (Stream stream = privateKeyData.OpenRead())
-            {
-                userEmail = _keysStore.ImportKeysStore(stream, passphrase);
-            }
-            if (userEmail == EmailAddress.Empty)
+            UserKeyPair keyPair;
+            if (!UserKeyPair.TryLoad(privateKeyData.ToArray(), passphrase, out keyPair))
             {
                 ImportSuccessful = false;
                 return;
             }
-            if (!_keysStore.Load(userEmail, passphrase))
-            {
-                throw new InvalidOperationException("Could not load the just imported keys for '{0}'.".InvariantFormat(userEmail.Address));
-            }
+
+            _keysStore.Import(keyPair, passphrase);
             ImportSuccessful = true;
-            _userSettings.UserEmail = userEmail.Address;
+
+            _userSettings.UserEmail = keyPair.UserEmail.Address;
             _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(_keysStore.UserKeyPair, passphrase);
         }
     }

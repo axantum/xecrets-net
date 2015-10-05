@@ -48,9 +48,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private KnownIdentities _knownIdenties;
 
-        public ManageAccountViewModel(UserAsymmetricKeysStore keysStore, KnownIdentities knownIdentities)
+        public ManageAccountViewModel(UserAsymmetricKeysStore userKeyPairs, KnownIdentities knownIdentities)
         {
-            _keysStore = keysStore;
+            _keysStore = userKeyPairs;
             _knownIdenties = knownIdentities;
 
             InitializePropertyValues();

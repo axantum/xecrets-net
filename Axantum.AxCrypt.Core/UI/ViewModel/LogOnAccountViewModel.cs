@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -147,7 +148,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool IsValidAccountLogOn()
         {
-            return Resolve.AsymmetricKeysStore.IsValidAccountLogOn(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase));
+            UserAsymmetricKeysStore keyPairs = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, EmailAddress.Parse(UserEmail), new Passphrase(Passphrase));
+
+            return keyPairs.IsValidAccountLogOn();
         }
 
         private bool IsKnownPassphrase()

@@ -6,9 +6,6 @@ using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -23,13 +20,14 @@ namespace Axantum.AxCrypt
 
         private IUserSettings _userSettings;
 
-        public ManageAccountDialog(UserAsymmetricKeysStore keysStore, KnownIdentities knownIdentities, IUserSettings userSettings)
+        public ManageAccountDialog(KnownIdentities knownIdentities, IUserSettings userSettings)
         {
             InitializeComponent();
             new Styling(Resources.axcrypticon).Style(this);
 
             _userSettings = userSettings;
-            _viewModel = new ManageAccountViewModel(keysStore, knownIdentities);
+            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, knownIdentities.DefaultEncryptionIdentity.UserEmail, knownIdentities.DefaultEncryptionIdentity.Passphrase);
+            _viewModel = new ManageAccountViewModel(userKeyPairs, knownIdentities);
             _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>("AccountEmails", ListAccountEmails);
         }
 

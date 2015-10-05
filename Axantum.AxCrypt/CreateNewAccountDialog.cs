@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.UI.ViewModel;
+﻿using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
@@ -22,7 +21,7 @@ namespace Axantum.AxCrypt
             InitializeComponent();
             new Styling(Resources.axcrypticon).Style(this);
 
-            _viewModel = new CreateNewAccountViewModel(Resolve.AsymmetricKeysStore, passphrase);
+            _viewModel = new CreateNewAccountViewModel(passphrase);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };
             EmailTextBox.LostFocus += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocValidateUserEmail(); };

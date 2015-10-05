@@ -54,7 +54,6 @@ namespace Axantum.AxCrypt.Core
         public static void RegisterTypeFactories(string workFolderPath, IEnumerable<Assembly> assemblies)
         {
             TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify));
-            TypeMap.Register.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo));
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt")));
             TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
@@ -86,11 +85,6 @@ namespace Axantum.AxCrypt.Core
         public static KnownIdentities KnownIdentities
         {
             get { return TypeMap.Resolve.Singleton<KnownIdentities>(); }
-        }
-
-        public static UserAsymmetricKeysStore AsymmetricKeysStore
-        {
-            get { return TypeMap.Resolve.Singleton<UserAsymmetricKeysStore>(); }
         }
 
         public static IUIThread UIThread
