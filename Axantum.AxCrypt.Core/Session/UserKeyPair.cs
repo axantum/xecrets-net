@@ -64,6 +64,26 @@ namespace Axantum.AxCrypt.Core.Session
             return GetSaveDataForKeys(this, _fileFormat.InvariantFormat(KeyPair.PublicKey.Tag), passphrase);
         }
 
+        public static bool TryLoad(byte[] bytes, Passphrase passphrase, out UserKeyPair keyPair)
+        {
+            using (MemoryStream encryptedStream = new MemoryStream(bytes))
+            {
+                using (MemoryStream decryptedStream = new MemoryStream())
+                {
+                    EncryptedProperties properties = TypeMap.Resolve.New<AxCryptFile>().Decrypt(encryptedStream, decryptedStream, new DecryptionParameter[] { new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.Id) });
+                    if (!properties.IsValid)
+                    {
+                        keyPair = null;
+                        return false;
+                    }
+
+                    string json = Encoding.UTF8.GetString(decryptedStream.ToArray(), 0, (int)decryptedStream.Length);
+                    keyPair = Resolve.Serializer.Deserialize<UserKeyPair>(json);
+                    return true;
+                }
+            }
+        }
+
         private static byte[] GetSaveDataForKeys(UserKeyPair keys, string originalFileName, Passphrase passphrase)
         {
             string json = Resolve.Serializer.Serialize(keys);

@@ -33,13 +33,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
-    public static class RuntimeFileInfoExtensions
+    public static class DataStoreExtensions
     {
         public static FileInfoTypes Type(this IDataItem fileInfo)
         {
@@ -183,6 +184,23 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Reads the entire data store and returns the content as a byte array.
+        /// </summary>
+        /// <param name="dataStore">The data store.</param>
+        /// <returns>All of the content as a byte array</returns>
+        public static byte[] ToArray(this IDataStore dataStore)
+        {
+            using (Stream source = dataStore.OpenRead())
+            {
+                using (MemoryStream destination = new MemoryStream())
+                {
+                    source.CopyTo(destination);
+                    return destination.ToArray();
+                }
+            }
         }
     }
 }
