@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
         {
             UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, emailAddress, passphrase);
-            if (userKeyPairs.IsValidAccountLogOn())
+            if (userKeyPairs.HasKeyPair)
             {
                 return new LogOnIdentity(userKeyPairs.UserKeyPair, passphrase);
             }

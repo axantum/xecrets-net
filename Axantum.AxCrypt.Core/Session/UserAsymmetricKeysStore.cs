@@ -83,19 +83,21 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public bool IsValidAccountLogOn()
+        public bool HasKeyPair
         {
-            return _userKeyPairs.Value.Any();
-        }
-
-        private void CreateInternal()
-        {
-            UserKeyPair userKeys = new UserKeyPair(_userEmail, Resolve.UserSettings.AsymmetricKeyBits);
-            Import(userKeys);
+            get
+            {
+                return _userKeyPairs.Value.Any();
+            }
         }
 
         public void Import(UserKeyPair keyPair)
         {
+            if (keyPair.UserEmail != _userEmail)
+            {
+                throw new ArgumentException("User email mismatch in key pair and store.", nameof(keyPair));
+            }
+
             if (_userKeyPairs.Value.Any(k => k == keyPair))
             {
                 return;
@@ -108,16 +110,6 @@ namespace Axantum.AxCrypt.Core.Session
         private static IEnumerable<IDataStore> UserKeyPairFiles(IDataContainer workContainer)
         {
             return workContainer.Files.Where(f => _userKeyPairFilePattern.Match(f.Name).Success);
-        }
-
-        public void Create()
-        {
-            if (_userKeyPairs.Value.Any())
-            {
-                return;
-            }
-
-            CreateInternal();
         }
 
         public virtual IEnumerable<UserKeyPair> UserKeyPairs
@@ -169,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return UserKeyPairs.First().UserEmail;
+                return UserKeyPair.UserEmail;
             }
         }
 

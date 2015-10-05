@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             UserAsymmetricKeysStore keyPairs = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, EmailAddress.Parse(UserEmail), new Passphrase(Passphrase));
 
-            return keyPairs.IsValidAccountLogOn();
+            return keyPairs.HasKeyPair;
         }
 
         private bool IsKnownPassphrase()

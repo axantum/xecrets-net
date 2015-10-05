@@ -130,7 +130,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, EmailAddress.Parse(UserEmail), new Passphrase(Passphrase));
-            userKeyPairs.Create();
+            UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), Resolve.UserSettings.AsymmetricKeyBits);
+            userKeyPairs.Import(userKeys);
 
             return null;
         }
