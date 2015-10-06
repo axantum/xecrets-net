@@ -11,12 +11,12 @@ namespace Axantum.AxCrypt.Abstractions
         /// <summary>
         /// Extension for String.Format using InvariantCulture
         /// </summary>
-        /// <param name="format"></param>
+        /// <param name="pattern"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public static string Format(this string format, params object[] parameters)
+        public static string Format(this string pattern, params object[] parameters)
         {
-            string formatted = String.Format(CultureInfo.InvariantCulture, format, parameters);
+            string formatted = String.Format(CultureInfo.InvariantCulture, pattern, parameters);
             return formatted;
         }
     }

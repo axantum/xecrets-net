@@ -46,6 +46,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Import(UserKeyPair keyPair)
         {
+            if (keyPair == null)
+            {
+                throw new ArgumentNullException(nameof(keyPair));
+            }
+
             if (keyPair.UserEmail != _userEmail)
             {
                 throw new ArgumentException("User email mismatch in key pair and store.", nameof(keyPair));
@@ -92,6 +97,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public static bool HasKeyPairs(IDataContainer workFolder)
         {
+            if (workFolder == null)
+            {
+                throw new ArgumentNullException(nameof(workFolder));
+            }
+
             if (!workFolder.IsAvailable)
             {
                 return false;

@@ -11,6 +11,7 @@
       <Word>bouncycastle</Word>
       <Word>sha</Word>
       <Word>pem</Word>
+      <Word>api</Word>
     </Recognized>
     <Deprecated>
       <Term PreferredAlternate=""></Term>

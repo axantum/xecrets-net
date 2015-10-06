@@ -22,6 +22,11 @@ namespace Axantum.AxCrypt
 
         public ManageAccountDialog(KnownIdentities knownIdentities, IUserSettings userSettings)
         {
+            if (knownIdentities == null)
+            {
+                throw new ArgumentNullException(nameof(knownIdentities));
+            }
+
             InitializeComponent();
             new Styling(Resources.axcrypticon).Style(this);
 

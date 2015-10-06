@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Api
         /// Downloads the account keys of the user.
         /// </summary>
         /// <returns>The account keys of the account.</returns>
-        public IList<AccountKey> GetAccountKeys()
+        public IList<AccountKey> AccountKeys()
         {
             Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(_identity.User)));
             RestResponse restResponse = RestCallInternal(_identity, new RestRequest("GET", resource));
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Api
             }
         }
 
-        private void EnsureStatusOk(RestResponse restResponse)
+        private static void EnsureStatusOk(RestResponse restResponse)
         {
             if (restResponse.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {

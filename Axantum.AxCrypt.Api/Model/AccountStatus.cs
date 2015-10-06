@@ -9,6 +9,6 @@ namespace Axantum.AxCrypt.Api.Model
     {
         Unknown,
         Unverified,
-        Verfied,
+        Verified,
     }
 }

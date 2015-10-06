@@ -29,11 +29,11 @@ namespace Axantum.AxCrypt.Api.Model
         {
             if (@public == null)
             {
-                throw new ArgumentNullException("publicPem");
+                throw new ArgumentNullException(nameof(@public));
             }
             if (@private == null)
             {
-                throw new ArgumentNullException("privateAxCryptPem");
+                throw new ArgumentNullException(nameof(@private));
             }
 
             PublicPem = @public;

@@ -57,6 +57,11 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <returns>A representation suitable for serialization and external storage.</returns>
         public static Api.Model.AccountKey ToAccountKey(this UserKeyPair keys, Passphrase passphrase)
         {
+            if (keys == null)
+            {
+                throw new ArgumentNullException(nameof(keys));
+            }
+
             string encryptedPrivateKey = EncryptPrivateKey(keys, passphrase);
 
             Api.Model.KeyPair keyPair = new Api.Model.KeyPair(keys.KeyPair.PublicKey.ToString(), encryptedPrivateKey);
@@ -98,6 +103,11 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <returns></returns>
         public static UserKeyPair ToUserAsymmetricKeys(this Api.Model.AccountKey accountKey, Passphrase passphrase)
         {
+            if (accountKey == null)
+            {
+                throw new ArgumentNullException(nameof(accountKey));
+            }
+
             string privateKeyPem = DecryptPrivateKeyPem(accountKey.KeyPair.PrivateEncryptedPem, passphrase);
             if (privateKeyPem == null)
             {

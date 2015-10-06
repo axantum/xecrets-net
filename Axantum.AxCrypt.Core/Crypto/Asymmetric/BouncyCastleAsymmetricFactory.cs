@@ -63,6 +63,11 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public IAsymmetricKeyPair CreateKeyPair(string publicKeyPem, string privateKeyPem)
         {
+            if (privateKeyPem == null)
+            {
+                throw new ArgumentNullException(nameof(privateKeyPem));
+            }
+
             return new BouncyCastleKeyPair(new BouncyCastlePublicKey(publicKeyPem), privateKeyPem.Length == 0 ? null : new BouncyCastlePrivateKey(privateKeyPem));
         }
 

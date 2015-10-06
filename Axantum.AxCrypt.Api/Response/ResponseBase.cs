@@ -12,12 +12,14 @@ namespace Axantum.AxCrypt.Api.Response
         /// <summary>
         /// Status. 0 Means success, everything else is an error.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Serialization")]
         [JsonProperty("S")]
         public int Status { get; private set; }
 
         /// <summary>
         /// Message
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Serialization")]
         [JsonProperty("M")]
         public string Message { get; private set; }
     }

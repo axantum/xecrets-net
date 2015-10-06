@@ -59,6 +59,7 @@ namespace Axantum.AxCrypt.Api.Model
         /// <value>
         /// The status (Unknown, Unverified, Verified).
         /// </value>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Serialization")]
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("status")]
         public AccountStatus AccountStatus { get; private set; }

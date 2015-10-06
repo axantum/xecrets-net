@@ -193,6 +193,11 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <returns>All of the content as a byte array</returns>
         public static byte[] ToArray(this IDataStore dataStore)
         {
+            if (dataStore == null)
+            {
+                throw new ArgumentNullException(nameof(dataStore));
+            }
+
             using (Stream source = dataStore.OpenRead())
             {
                 using (MemoryStream destination = new MemoryStream())

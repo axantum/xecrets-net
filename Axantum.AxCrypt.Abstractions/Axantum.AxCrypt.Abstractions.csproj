@@ -41,6 +41,7 @@
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <None Include="AxantumStrongName.pfx" />
+    <None Include="Properties\AssemblyInfo.template" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptException.cs" />
@@ -59,7 +60,11 @@
     <Compile Include="TypeRegister.cs" />
     <Compile Include="TypeResolve.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\SolutionItems\CustomDictionary.xml">
+      <Link>CustomDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

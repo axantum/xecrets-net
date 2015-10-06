@@ -66,6 +66,11 @@ namespace Axantum.AxCrypt.Core.Session
         /// <returns>Valid key pairs for the user.</returns>
         public static IEnumerable<UserKeyPair> Load(IEnumerable<IDataStore> stores, EmailAddress userEmail, Passphrase passphrase)
         {
+            if (stores == null)
+            {
+                throw new ArgumentNullException(nameof(stores));
+            }
+
             List<UserKeyPair> userKeyPairs = new List<UserKeyPair>();
             foreach (IDataStore store in stores)
             {
@@ -93,13 +98,13 @@ namespace Axantum.AxCrypt.Core.Session
         /// <summary>
         /// Tries to load a key pair from the serialized byte array.
         /// </summary>
-        /// <param name="bytes">The bytes.</param>
+        /// <param name="value">The bytes.</param>
         /// <param name="passphrase">The passphrase.</param>
         /// <param name="keyPair">The key pair.</param>
         /// <returns>True if the pair was successfully loaded, and set in the keyPair parameter.</returns>
-        public static bool TryLoad(byte[] bytes, Passphrase passphrase, out UserKeyPair keyPair)
+        public static bool TryLoad(byte[] value, Passphrase passphrase, out UserKeyPair keyPair)
         {
-            using (MemoryStream encryptedStream = new MemoryStream(bytes))
+            using (MemoryStream encryptedStream = new MemoryStream(value))
             {
                 using (MemoryStream decryptedStream = new MemoryStream())
                 {

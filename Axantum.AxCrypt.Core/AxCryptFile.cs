@@ -647,11 +647,12 @@ namespace Axantum.AxCrypt.Core
         /// <param name="displayContext">The display context.</param>
         /// <param name="progress">The progress.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">source
+        /// <exception cref="ArgumentNullException">source
         /// or
         /// key
         /// or
         /// progress</exception>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "displayContext")]
         private static IAxCryptDocument Document(Stream source, LogOnIdentity logOnIdentity, string displayContext, IProgressContext progress)
         {
             if (logOnIdentity == null)
