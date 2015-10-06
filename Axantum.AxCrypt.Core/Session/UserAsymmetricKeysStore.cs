@@ -36,53 +36,6 @@ namespace Axantum.AxCrypt.Core.Session
             _userKeyPairs = new Lazy<IList<UserKeyPair>>(() => TryLoadUserKeyPairs());
         }
 
-        private IList<UserKeyPair> TryLoadUserKeyPairs()
-        {
-            IEnumerable<AccountKey> userAccountKeys = LoadAllAccountKeysForUser();
-            IEnumerable<UserKeyPair> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys);
-            if (!userKeys.Any())
-            {
-                userKeys = UserKeyPair.Load(UserKeyPairFiles(_workContainer), _userEmail, _passphrase);
-                userKeys = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
-            }
-
-            return userKeys.OrderByDescending(uk => uk.Timestamp).ToList();
-        }
-
-        private IEnumerable<UserKeyPair> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys)
-        {
-            return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(_passphrase)).Where(ak => ak != null);
-        }
-
-        private IEnumerable<AccountKey> LoadAllAccountKeysForUser()
-        {
-            UserAccounts accounts = LoadUserAccounts();
-            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == _userEmail);
-            IEnumerable<AccountKey> accountKeys = users.SelectMany(u => u.AccountKeys);
-            return accountKeys;
-        }
-
-        private static IDataStore UserAccountsStore
-        {
-            get
-            {
-                return Resolve.WorkFolder.FileInfo.FileItemInfo("UserAccounts.txt");
-            }
-        }
-
-        private static UserAccounts LoadUserAccounts()
-        {
-            if (!UserAccountsStore.IsAvailable)
-            {
-                return new UserAccounts();
-            }
-
-            using (StreamReader reader = new StreamReader(UserAccountsStore.OpenRead()))
-            {
-                return UserAccounts.DeserializeFrom(reader);
-            }
-        }
-
         public bool HasKeyPair
         {
             get
@@ -105,11 +58,6 @@ namespace Axantum.AxCrypt.Core.Session
 
             _userKeyPairs.Value.Add(keyPair);
             Save(_passphrase);
-        }
-
-        private static IEnumerable<IDataStore> UserKeyPairFiles(IDataContainer workContainer)
-        {
-            return workContainer.Files.Where(f => _userKeyPairFilePattern.Match(f.Name).Success);
         }
 
         public virtual IEnumerable<UserKeyPair> UserKeyPairs
@@ -190,6 +138,58 @@ namespace Axantum.AxCrypt.Core.Session
             using (StreamWriter writer = new StreamWriter(Resolve.WorkFolder.FileInfo.FileItemInfo("UserAccounts.txt").OpenWrite()))
             {
                 userAccounts.SerializeTo(writer);
+            }
+        }
+
+        private static IEnumerable<IDataStore> UserKeyPairFiles(IDataContainer workContainer)
+        {
+            return workContainer.Files.Where(f => _userKeyPairFilePattern.Match(f.Name).Success);
+        }
+
+        private IList<UserKeyPair> TryLoadUserKeyPairs()
+        {
+            IEnumerable<AccountKey> userAccountKeys = LoadAllAccountKeysForUser();
+            IEnumerable<UserKeyPair> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys);
+            if (!userKeys.Any())
+            {
+                userKeys = UserKeyPair.Load(UserKeyPairFiles(_workContainer), _userEmail, _passphrase);
+                userKeys = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
+            }
+
+            return userKeys.OrderByDescending(uk => uk.Timestamp).ToList();
+        }
+
+        private IEnumerable<UserKeyPair> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys)
+        {
+            return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(_passphrase)).Where(ak => ak != null);
+        }
+
+        private IEnumerable<AccountKey> LoadAllAccountKeysForUser()
+        {
+            UserAccounts accounts = LoadUserAccounts();
+            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == _userEmail);
+            IEnumerable<AccountKey> accountKeys = users.SelectMany(u => u.AccountKeys);
+            return accountKeys;
+        }
+
+        private static IDataStore UserAccountsStore
+        {
+            get
+            {
+                return Resolve.WorkFolder.FileInfo.FileItemInfo("UserAccounts.txt");
+            }
+        }
+
+        private static UserAccounts LoadUserAccounts()
+        {
+            if (!UserAccountsStore.IsAvailable)
+            {
+                return new UserAccounts();
+            }
+
+            using (StreamReader reader = new StreamReader(UserAccountsStore.OpenRead()))
+            {
+                return UserAccounts.DeserializeFrom(reader);
             }
         }
     }
