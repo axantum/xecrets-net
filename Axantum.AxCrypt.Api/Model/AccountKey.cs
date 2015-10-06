@@ -33,9 +33,9 @@ namespace Axantum.AxCrypt.Api.Model
         }
 
         /// <summary>
-        /// Gets the timestamp, when the key pair was encrypted (not generated). The thumbprint
+        /// Gets the timestamp, when the key pair was generated. The thumbprint
         /// remains as the unique identifier to recognize identical key pairs, but the timestamp
-        /// determines the most recent encryption, i.e. the most recent should be preferred.
+        /// determines the most recently generated, and the most recent should be preferred.
         /// </summary>
         /// <value>
         /// The timestamp.
@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Api.Model
         public string Thumbprint { get; private set; }
 
         /// <summary>
-        /// Gets the key pair.
+        /// Gets the key pair. If the KeyPair is Empty, it has been permanently deleted including the private key.
         /// </summary>
         /// <value>
         /// The key pair.
