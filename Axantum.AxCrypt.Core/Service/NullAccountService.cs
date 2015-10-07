@@ -15,6 +15,14 @@ namespace Axantum.AxCrypt.Core.Service
             Identity = identity;
         }
 
+        public bool HasAccounts
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         public RestIdentity Identity
         {
             get; private set;
@@ -42,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Service
             return true;
         }
 
-        public IEnumerable<UserKeyPair> List()
+        public IList<UserKeyPair> List()
         {
             return new UserKeyPair[0];
         }

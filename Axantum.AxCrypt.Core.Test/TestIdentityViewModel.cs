@@ -312,7 +312,7 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             };
 
-            ivm.AskForLogOnPassphrase.Execute(null);
+            ivm.AskForLogOnPassphrase.Execute(LogOnIdentity.Empty);
 
             Assert.That(defaultPassphrase, Is.EqualTo(String.Empty));
             Assert.That(ivm.LogOnIdentity.Passphrase.Text, Is.EqualTo("aaa"));

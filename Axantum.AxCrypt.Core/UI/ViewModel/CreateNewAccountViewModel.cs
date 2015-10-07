@@ -25,8 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -129,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, EmailAddress.Parse(UserEmail), new Passphrase(Passphrase));
+            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(UserEmail, Passphrase)));
             UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), Resolve.UserSettings.AsymmetricKeyBits);
             userKeyPairs.Import(userKeys);
 

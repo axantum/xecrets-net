@@ -26,8 +26,10 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Linq;
@@ -146,7 +148,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
         {
-            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, emailAddress, passphrase);
+            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(emailAddress.Address, passphrase.Text)));
             if (userKeyPairs.HasKeyPair)
             {
                 return new LogOnIdentity(userKeyPairs.UserKeyPair, passphrase);
@@ -189,7 +191,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity AskForLogOnOrEncryptionPassphrase(LogOnIdentity identity, string encryptedFileFullName)
         {
-            if (!_fileSystemState.KnownPassphrases.Any() && !UserAsymmetricKeysStore.HasKeyPairs(Resolve.WorkFolder.FileInfo))
+            if (!_fileSystemState.KnownPassphrases.Any() && !TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(identity.UserEmail.Address, identity.Passphrase.Text)).HasAccounts)
             {
                 return AskForNewEncryptionPassphrase(String.Empty, encryptedFileFullName);
             }

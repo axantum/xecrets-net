@@ -45,7 +45,25 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public IEnumerable<UserKeyPair> List()
+        public bool HasAccounts
+        {
+            get
+            {
+                if (LoadUserAccounts().Accounts.Any())
+                {
+                    return true;
+                }
+
+                if (UserKeyPairFiles().Any())
+                {
+                    return true;
+                }
+
+                return _service.HasAccounts;
+            }
+        }
+
+        public IList<UserKeyPair> List()
         {
             return TryLoadUserKeyPairs();
         }
@@ -60,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Service
                 userAccounts.Accounts.Add(userAccount);
             }
 
-            IEnumerable<AccountKey> accountKeysToUpdate = List().Select(uk => uk.ToAccountKey(new Passphrase(_service.Identity.Password)));
+            IEnumerable<AccountKey> accountKeysToUpdate = keyPairs.Select(uk => uk.ToAccountKey(new Passphrase(_service.Identity.Password)));
             IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Except(accountKeysToUpdate);
             accountKeys = accountKeys.Union(accountKeysToUpdate);
 
@@ -70,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Service
                 userAccount.AccountKeys.Add(accountKey);
             }
 
-            using (StreamWriter writer = new StreamWriter(Resolve.WorkFolder.FileInfo.FileItemInfo("UserAccounts.txt").OpenWrite()))
+            using (StreamWriter writer = new StreamWriter(_workContainer.FileItemInfo("UserAccounts.txt").OpenWrite()))
             {
                 userAccounts.SerializeTo(writer);
             }
@@ -93,16 +111,16 @@ namespace Axantum.AxCrypt.Core.Service
             IEnumerable<UserKeyPair> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys);
             if (!userKeys.Any())
             {
-                userKeys = UserKeyPair.Load(UserKeyPairFiles(_workContainer), EmailAddress.Parse(_service.Identity.User), new Passphrase(_service.Identity.Password));
+                userKeys = UserKeyPair.Load(UserKeyPairFiles(), EmailAddress.Parse(_service.Identity.User), new Passphrase(_service.Identity.Password));
                 userKeys = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
             }
 
             return userKeys.OrderByDescending(uk => uk.Timestamp).ToList();
         }
 
-        private static IEnumerable<IDataStore> UserKeyPairFiles(IDataContainer workContainer)
+        private IEnumerable<IDataStore> UserKeyPairFiles()
         {
-            return workContainer.Files.Where(f => _userKeyPairFilePattern.Match(f.Name).Success);
+            return _workContainer.Files.Where(f => _userKeyPairFilePattern.Match(f.Name).Success);
         }
 
         private IEnumerable<UserKeyPair> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys)
@@ -122,11 +140,11 @@ namespace Axantum.AxCrypt.Core.Service
             return users.First();
         }
 
-        private static IDataStore UserAccountsStore
+        private IDataStore UserAccountsStore
         {
             get
             {
-                return Resolve.WorkFolder.FileInfo.FileItemInfo("UserAccounts.txt");
+                return _workContainer.FileItemInfo("UserAccounts.txt");
             }
         }
 
@@ -138,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        private static UserAccounts LoadUserAccounts()
+        private UserAccounts LoadUserAccounts()
         {
             if (!UserAccountsStore.IsAvailable)
             {

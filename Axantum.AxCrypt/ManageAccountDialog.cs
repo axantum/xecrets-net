@@ -1,4 +1,7 @@
-﻿using Axantum.AxCrypt.Core;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
@@ -31,7 +34,7 @@ namespace Axantum.AxCrypt
             new Styling(Resources.axcrypticon).Style(this);
 
             _userSettings = userSettings;
-            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, knownIdentities.DefaultEncryptionIdentity.UserEmail, knownIdentities.DefaultEncryptionIdentity.Passphrase);
+            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail.Address, Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Text)));
             _viewModel = new ManageAccountViewModel(userKeyPairs, knownIdentities);
             _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>("AccountEmails", ListAccountEmails);
         }

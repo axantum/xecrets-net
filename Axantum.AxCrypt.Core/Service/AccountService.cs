@@ -26,10 +26,24 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
+        /// Gets a value indicating whether this instance has any at all accounts.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance has accounts; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasAccounts
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Lists all UserKeyPairs available for the user.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<UserKeyPair> List()
+        public IList<UserKeyPair> List()
         {
             return new UserKeyPair[0];
         }
