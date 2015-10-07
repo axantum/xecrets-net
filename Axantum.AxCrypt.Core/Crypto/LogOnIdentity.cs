@@ -25,6 +25,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
         }
 
+        public LogOnIdentity(EmailAddress userEmail, Passphrase passphrase)
+            : this(passphrase)
+        {
+            UserEmail = userEmail;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LogOnIdentity"/> class.
         /// </summary>
@@ -48,6 +54,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             UserKeys = userKeys;
             Passphrase = passphrase ?? Passphrase.Empty;
+            UserEmail = userKeys.UserEmail;
         }
 
         private Passphrase _passphrase;
@@ -78,10 +85,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         public EmailAddress UserEmail
         {
-            get
-            {
-                return UserKeys.UserEmail;
-            }
+            get; private set;
         }
 
         /// <summary>
