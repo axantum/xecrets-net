@@ -1,6 +1,7 @@
-﻿using Axantum.AxCrypt.Abstractions.Rest;
-using Axantum.AxCrypt.Api;
+﻿using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// <returns>
         /// true if the password was successfully changed.
         /// </returns>
-        public bool ChangePassphrase(string passphrase)
+        public bool ChangePassphrase(Passphrase passphrase)
         {
             return false;
         }
@@ -101,11 +102,11 @@ namespace Axantum.AxCrypt.Core.Service
         /// <value>
         /// The identity.
         /// </value>
-        public RestIdentity Identity
+        public LogOnIdentity Identity
         {
             get
             {
-                return _apiClient.Identity;
+                return new LogOnIdentity(EmailAddress.Parse(_apiClient.Identity.User), new Passphrase(_apiClient.Identity.Password));
             }
         }
     }

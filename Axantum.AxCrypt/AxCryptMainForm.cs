@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
@@ -1572,7 +1571,7 @@ namespace Axantum.AxCrypt
 
         private void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccountStorage userKeyPairs = new AccountStorage(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail.Address, Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Text)));
+            AccountStorage userKeyPairs = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             ManageAccountViewModel viewModel = new ManageAccountViewModel(userKeyPairs, Resolve.KnownIdentities);
 
             string passphrase;

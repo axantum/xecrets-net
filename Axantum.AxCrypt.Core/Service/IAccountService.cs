@@ -1,5 +1,5 @@
-﻿using Axantum.AxCrypt.Abstractions.Rest;
-using Axantum.AxCrypt.Api.Model;
+﻿using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// <value>
         /// The identity.
         /// </value>
-        RestIdentity Identity { get; }
+        LogOnIdentity Identity { get; }
 
         /// <summary>
         /// Gets the subscription level.
@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
         /// <returns>true if the passphrase was successfully changed.</returns>
-        bool ChangePassphrase(string passphrase);
+        bool ChangePassphrase(Passphrase passphrase);
 
         /// <summary>
         /// Gets a value indicating whether the service has any accounts at all.

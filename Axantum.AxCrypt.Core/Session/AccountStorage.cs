@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException(nameof(keyPair));
             }
 
-            if (keyPair.UserEmail != EmailAddress.Parse(_service.Identity.User))
+            if (keyPair.UserEmail != _service.Identity.UserEmail)
             {
                 throw new ArgumentException("User email mismatch in key pair and store.", nameof(keyPair));
             }
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return EmailAddress.Parse(_service.Identity.User);
+                return _service.Identity.UserEmail;
             }
         }
 
@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException(nameof(passphrase));
             }
 
-            _service.ChangePassphrase(passphrase.Text);
+            _service.ChangePassphrase(passphrase);
             _service.Save(AllKeyPairs);
         }
     }

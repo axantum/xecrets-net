@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Abstractions.Rest;
-using Axantum.AxCrypt.Api.Model;
+﻿using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
@@ -70,14 +69,14 @@ namespace Axantum.AxCrypt.Core.Service
         public void Save(IEnumerable<UserKeyPair> keyPairs)
         {
             UserAccounts userAccounts = LoadUserAccounts();
-            UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == EmailAddress.Parse(_service.Identity.User));
+            UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == _service.Identity.UserEmail);
             if (userAccount == null)
             {
-                userAccount = new UserAccount(_service.Identity.User, SubscriptionLevel.Unknown, new AccountKey[0]);
+                userAccount = new UserAccount(_service.Identity.UserEmail.Address, SubscriptionLevel.Unknown, new AccountKey[0]);
                 userAccounts.Accounts.Add(userAccount);
             }
 
-            IEnumerable<AccountKey> accountKeysToUpdate = keyPairs.Select(uk => uk.ToAccountKey(new Passphrase(_service.Identity.Password)));
+            IEnumerable<AccountKey> accountKeysToUpdate = keyPairs.Select(uk => uk.ToAccountKey(_service.Identity.Passphrase));
             IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Except(accountKeysToUpdate);
             accountKeys = accountKeys.Union(accountKeysToUpdate);
 
@@ -93,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public bool ChangePassphrase(string passphrase)
+        public bool ChangePassphrase(Passphrase passphrase)
         {
             if (!_service.ChangePassphrase(passphrase))
             {
@@ -110,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Service
             IEnumerable<UserKeyPair> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys);
             if (!userKeys.Any())
             {
-                userKeys = UserKeyPair.Load(UserKeyPairFiles(), EmailAddress.Parse(_service.Identity.User), new Passphrase(_service.Identity.Password));
+                userKeys = UserKeyPair.Load(UserKeyPairFiles(), _service.Identity.UserEmail, _service.Identity.Passphrase);
                 userKeys = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
             }
 
@@ -124,16 +123,16 @@ namespace Axantum.AxCrypt.Core.Service
 
         private IEnumerable<UserKeyPair> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys)
         {
-            return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(new Passphrase(_service.Identity.Password))).Where(ak => ak != null);
+            return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(_service.Identity.Passphrase)).Where(ak => ak != null);
         }
 
         private UserAccount LoadUserAccount()
         {
             UserAccounts accounts = LoadUserAccounts();
-            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == EmailAddress.Parse(_service.Identity.User));
+            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == _service.Identity.UserEmail);
             if (!users.Any())
             {
-                return new UserAccount(_service.Identity.User, SubscriptionLevel.Unknown, new AccountKey[0]);
+                return new UserAccount(_service.Identity.UserEmail.Address, SubscriptionLevel.Unknown, new AccountKey[0]);
             }
 
             return users.First();
@@ -147,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public RestIdentity Identity
+        public LogOnIdentity Identity
         {
             get
             {

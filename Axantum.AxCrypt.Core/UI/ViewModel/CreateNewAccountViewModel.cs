@@ -26,7 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Abstractions.Rest;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(UserEmail, Passphrase)));
+            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
             UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), Resolve.UserSettings.AsymmetricKeyBits);
             store.Import(userKeys);
 

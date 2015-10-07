@@ -1,6 +1,6 @@
 ﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt
             new Styling(Resources.axcrypticon).Style(this);
 
             _userSettings = userSettings;
-            AccountStorage userKeyPairs = new AccountStorage(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail.Address, Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Text)));
+            AccountStorage userKeyPairs = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             _viewModel = new ManageAccountViewModel(userKeyPairs, knownIdentities);
             _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>("AccountEmails", ListAccountEmails);
         }

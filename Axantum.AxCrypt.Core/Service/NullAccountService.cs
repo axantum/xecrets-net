@@ -1,5 +1,5 @@
-﻿using Axantum.AxCrypt.Abstractions.Rest;
-using Axantum.AxCrypt.Api.Model;
+﻿using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Axantum.AxCrypt.Core.Service
 {
     public class NullAccountService : IAccountService
     {
-        public NullAccountService(RestIdentity identity)
+        public NullAccountService(LogOnIdentity identity)
         {
             Identity = identity;
         }
@@ -22,7 +22,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public RestIdentity Identity
+        public LogOnIdentity Identity
         {
             get; private set;
         }
@@ -43,9 +43,9 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public bool ChangePassphrase(string passphrase)
+        public bool ChangePassphrase(Passphrase passphrase)
         {
-            Identity = new RestIdentity(Identity.User, passphrase);
+            Identity = new LogOnIdentity(Identity.UserEmail, passphrase);
             return true;
         }
 

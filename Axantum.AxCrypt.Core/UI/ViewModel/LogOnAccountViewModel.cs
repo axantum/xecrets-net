@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
@@ -151,7 +150,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool IsValidAccountLogOn()
         {
-            AccountStorage keyPairs = new AccountStorage(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(UserEmail, Passphrase)));
+            AccountStorage keyPairs = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
 
             return keyPairs.HasKeyPair;
         }

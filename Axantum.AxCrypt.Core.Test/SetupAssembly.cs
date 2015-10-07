@@ -44,7 +44,6 @@ using Axantum.AxCrypt.Core.Algorithm.Implementation;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api.Implementation;
-using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.Service;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -90,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetSerializers()));
-            TypeMap.Register.New<RestIdentity, IAccountService>((RestIdentity identity) => new LocalAccountService(new NullAccountService(identity), Resolve.WorkFolder.FileInfo));
+            TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new LocalAccountService(new NullAccountService(identity), Resolve.WorkFolder.FileInfo));
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;

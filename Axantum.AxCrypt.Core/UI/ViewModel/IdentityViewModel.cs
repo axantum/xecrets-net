@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Service;
@@ -148,7 +147,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
         {
-            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(emailAddress.Address, passphrase.Text)));
+            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
             if (store.HasKeyPair)
             {
                 return new LogOnIdentity(store.ActiveKeyPair, passphrase);
@@ -191,7 +190,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity AskForLogOnOrEncryptionPassphrase(LogOnIdentity identity, string encryptedFileFullName)
         {
-            if (!_fileSystemState.KnownPassphrases.Any() && !TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(identity.UserEmail.Address, identity.Passphrase.Text)).HasAccounts)
+            if (!_fileSystemState.KnownPassphrases.Any() && !TypeMap.Resolve.New<LogOnIdentity, IAccountService>(identity).HasAccounts)
             {
                 return AskForNewEncryptionPassphrase(String.Empty, encryptedFileFullName);
             }
