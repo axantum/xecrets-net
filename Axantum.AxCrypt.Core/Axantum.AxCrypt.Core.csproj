@@ -160,6 +160,9 @@
     <Compile Include="Reader\V2AxCryptReader.cs" />
     <Compile Include="Reader\UnversionedAxCryptReader.cs" />
     <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\IAccountService.cs" />
+    <Compile Include="Service\LocalAccountService.cs" />
+    <Compile Include="Service\NullAccountService.cs" />
     <Compile Include="Session\ActiveFileExtensions.cs" />
     <Compile Include="Session\ActiveFileProperties.cs" />
     <Compile Include="Session\ActiveFileWatcher.cs" />

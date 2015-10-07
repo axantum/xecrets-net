@@ -11,8 +11,6 @@ namespace Axantum.AxCrypt.Api
 {
     public class AxCryptApiClient
     {
-        private RestIdentity _identity;
-
         private Uri _baseUrl;
 
         /// <summary>
@@ -21,9 +19,11 @@ namespace Axantum.AxCrypt.Api
         /// <param name="identity">The identity on whos behalf to make the call.</param>
         public AxCryptApiClient(RestIdentity identity, Uri baseUrl)
         {
-            _identity = identity;
+            Identity = identity;
             _baseUrl = baseUrl;
         }
+
+        public RestIdentity Identity { get; private set; }
 
         /// <summary>
         /// Get a user summary, typically as an initial call to validate the passphrase with the account etc.
@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt.Api
         {
             Uri resource = _baseUrl.PathCombine("users/{0}".With(UrlEncode(userName)));
 
-            RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
+            RestResponse restResponse = RestCallInternal(Identity, new RestRequest(resource));
             EnsureStatusOk(restResponse);
 
             UserAccountResponse apiResponse = Serializer.Deserialize<UserAccountResponse>(restResponse.Content);
@@ -53,10 +53,10 @@ namespace Axantum.AxCrypt.Api
         /// <param name="accountKeys">The account keys to upload.</param>
         public void PutAccountKeys(IEnumerable<AccountKey> accountKeys)
         {
-            Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(_identity.User)));
+            Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(Identity.User)));
 
             RestContent content = new RestContent(Serializer.Serialize(accountKeys));
-            RestResponse restResponse = RestCallInternal(_identity, new RestRequest("PUT", resource, content));
+            RestResponse restResponse = RestCallInternal(Identity, new RestRequest("PUT", resource, content));
             EnsureStatusOk(restResponse);
 
             ResponseBase apiResponse = Serializer.Deserialize<ResponseBase>(restResponse.Content);
@@ -69,8 +69,8 @@ namespace Axantum.AxCrypt.Api
         /// <returns>The account keys of the account.</returns>
         public IList<AccountKey> AccountKeys()
         {
-            Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(_identity.User)));
-            RestResponse restResponse = RestCallInternal(_identity, new RestRequest("GET", resource));
+            Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(Identity.User)));
+            RestResponse restResponse = RestCallInternal(Identity, new RestRequest("GET", resource));
             EnsureStatusOk(restResponse);
 
             AccountKeyResponse response = Serializer.Deserialize<AccountKeyResponse>(restResponse.Content);
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("axcrypt2version/windows?current={0}".With(UrlEncode(currentVersion)));
 
-            RestResponse restResponse = RestCallInternal(_identity, new RestRequest(resource));
+            RestResponse restResponse = RestCallInternal(Identity, new RestRequest(resource));
             EnsureStatusOk(restResponse);
 
             CurrentVersionResponse apiResponse = Serializer.Deserialize<CurrentVersionResponse>(restResponse.Content);
