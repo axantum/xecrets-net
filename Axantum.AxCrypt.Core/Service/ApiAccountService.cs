@@ -12,15 +12,15 @@ namespace Axantum.AxCrypt.Core.Service
     /// <summary>
     /// Provide basic account services using the AxCrypt API
     /// </summary>
-    public class AccountService : IAccountService
+    public class ApiAccountService : IAccountService
     {
         private AxCryptApiClient _apiClient;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountService"/> class.
+        /// Initializes a new instance of the <see cref="ApiAccountService"/> class.
         /// </summary>
         /// <param name="apiClient">The API client to use.</param>
-        public AccountService(AxCryptApiClient apiClient)
+        public ApiAccountService(AxCryptApiClient apiClient)
         {
             _apiClient = apiClient;
         }

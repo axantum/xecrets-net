@@ -159,7 +159,7 @@
     <Compile Include="Reader\AxCryptReaderBase.cs" />
     <Compile Include="Reader\V2AxCryptReader.cs" />
     <Compile Include="Reader\UnversionedAxCryptReader.cs" />
-    <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\ApiAccountService.cs" />
     <Compile Include="Service\IAccountService.cs" />
     <Compile Include="Service\LocalAccountService.cs" />
     <Compile Include="Service\NullAccountService.cs" />

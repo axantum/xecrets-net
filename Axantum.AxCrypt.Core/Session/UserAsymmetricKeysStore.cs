@@ -92,6 +92,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void Save(Passphrase passphrase)
         {
+            if (passphrase == null)
+            {
+                throw new ArgumentNullException(nameof(passphrase));
+            }
+
             _service.ChangePassword(passphrase.Text);
             _service.Save(UserKeyPairs);
         }
