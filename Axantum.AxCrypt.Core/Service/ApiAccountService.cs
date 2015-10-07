@@ -1,7 +1,6 @@
 ﻿using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,11 +58,11 @@ namespace Axantum.AxCrypt.Core.Service
         /// <summary>
         /// Changes the password for the account.
         /// </summary>
-        /// <param name="password">The password.</param>
+        /// <param name="passphrase">The password.</param>
         /// <returns>
         /// true if the password was successfully changed.
         /// </returns>
-        public bool ChangePassword(string password)
+        public bool ChangePassphrase(string passphrase)
         {
             return false;
         }

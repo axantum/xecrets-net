@@ -1,6 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,14 +49,14 @@ namespace Axantum.AxCrypt.Core.Service
         void Save(IEnumerable<UserKeyPair> keyPairs);
 
         /// <summary>
-        /// Changes the password for the account.
+        /// Changes the passphrase for the account.
         /// </summary>
-        /// <param name="password">The password.</param>
-        /// <returns>true if the password was successfully changed.</returns>
-        bool ChangePassword(string password);
+        /// <param name="passphrase">The passphrase.</param>
+        /// <returns>true if the passphrase was successfully changed.</returns>
+        bool ChangePassphrase(string passphrase);
 
         /// <summary>
-        /// Gets a value indicating whether this instance has any at all accounts.
+        /// Gets a value indicating whether the service has any accounts at all.
         /// </summary>
         /// <value>
         /// <c>true</c> if this instance has accounts; otherwise, <c>false</c>.

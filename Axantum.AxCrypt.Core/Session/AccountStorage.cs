@@ -9,25 +9,22 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Session
 {
     /// <summary>
-    /// Persists a users asymmetric keys in the file system, encrypted with AxCrypt
+    /// Persists a users account information using an IAccountService instance as medium
     /// </summary>
-    public class UserAsymmetricKeysStore
+    public class AccountStorage
     {
         private IAccountService _service;
 
-        private Lazy<IList<UserKeyPair>> _userKeyPairs;
-
-        public UserAsymmetricKeysStore(IAccountService service)
+        public AccountStorage(IAccountService service)
         {
             _service = service;
-            _userKeyPairs = new Lazy<IList<UserKeyPair>>(() => _service.List());
         }
 
         public bool HasKeyPair
         {
             get
             {
-                return _userKeyPairs.Value.Any();
+                return _service.List().Any();
             }
         }
 
@@ -43,42 +40,29 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentException("User email mismatch in key pair and store.", nameof(keyPair));
             }
 
-            if (_userKeyPairs.Value.Any(k => k == keyPair))
+            IList<UserKeyPair> keyPairs = _service.List();
+            if (keyPairs.Any(k => k == keyPair))
             {
                 return;
             }
 
-            _userKeyPairs.Value.Add(keyPair);
-            _service.Save(_userKeyPairs.Value);
+            keyPairs.Add(keyPair);
+            _service.Save(keyPairs);
         }
 
-        public virtual IEnumerable<UserKeyPair> UserKeyPairs
+        public virtual IEnumerable<UserKeyPair> AllKeyPairs
         {
             get
             {
-                return _userKeyPairs.Value;
+                return _service.List().OrderByDescending(uk => uk.Timestamp);
             }
         }
 
-        public UserKeyPair UserKeyPair
+        public UserKeyPair ActiveKeyPair
         {
             get
             {
-                return UserKeyPairs.First();
-            }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance has any shareable identities, i.e. key pairs.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance has a store; otherwise, <c>false</c>.
-        /// </value>
-        public virtual bool HasStore
-        {
-            get
-            {
-                return _service.List().Any();
+                return AllKeyPairs.First();
             }
         }
 
@@ -86,19 +70,19 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return UserKeyPair.UserEmail;
+                return EmailAddress.Parse(_service.Identity.User);
             }
         }
 
-        public virtual void Save(Passphrase passphrase)
+        public virtual void ChangePassphrase(Passphrase passphrase)
         {
             if (passphrase == null)
             {
                 throw new ArgumentNullException(nameof(passphrase));
             }
 
-            _service.ChangePassword(passphrase.Text);
-            _service.Save(UserKeyPairs);
+            _service.ChangePassphrase(passphrase.Text);
+            _service.Save(AllKeyPairs);
         }
     }
 }

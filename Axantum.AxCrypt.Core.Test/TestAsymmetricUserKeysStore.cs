@@ -77,12 +77,12 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp");
-            UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(new LocalAccountService(new NullAccountService(new RestIdentity(@"svante@axantum.com", "secret")), workFolder));
+            AccountStorage store = new AccountStorage(new LocalAccountService(new NullAccountService(new RestIdentity(@"svante@axantum.com", "secret")), workFolder));
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
             store.Import(userKeyPair);
-            Assert.That(store.UserKeyPair.KeyPair.PrivateKey, Is.Not.Null);
-            Assert.That(store.UserKeyPair.KeyPair.PublicKey, Is.Not.Null);
+            Assert.That(store.ActiveKeyPair.KeyPair.PrivateKey, Is.Not.Null);
+            Assert.That(store.ActiveKeyPair.KeyPair.PublicKey, Is.Not.Null);
         }
 
         [Test]
@@ -90,19 +90,19 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp\");
-            UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(new LocalAccountService(new NullAccountService(new RestIdentity(@"svante@axantum.com", "secret")), workFolder));
+            AccountStorage store = new AccountStorage(new LocalAccountService(new NullAccountService(new RestIdentity(@"svante@axantum.com", "secret")), workFolder));
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
             store.Import(userKeyPair);
-            Assert.That(store.UserKeyPair.KeyPair.PrivateKey, Is.Not.Null);
-            Assert.That(store.UserKeyPair.KeyPair.PublicKey, Is.Not.Null);
+            Assert.That(store.ActiveKeyPair.KeyPair.PrivateKey, Is.Not.Null);
+            Assert.That(store.ActiveKeyPair.KeyPair.PublicKey, Is.Not.Null);
 
-            IAsymmetricKeyPair keyPair = store.UserKeyPair.KeyPair;
+            IAsymmetricKeyPair keyPair = store.ActiveKeyPair.KeyPair;
 
-            store = new UserAsymmetricKeysStore(new LocalAccountService(new NullAccountService(new RestIdentity(@"svante@axantum.com", "secret")), workFolder));
+            store = new AccountStorage(new LocalAccountService(new NullAccountService(new RestIdentity(@"svante@axantum.com", "secret")), workFolder));
 
-            Assert.That(store.UserKeyPair.KeyPair.PrivateKey.ToString(), Is.EqualTo(keyPair.PrivateKey.ToString()));
-            Assert.That(store.UserKeyPair.KeyPair.PublicKey.ToString(), Is.EqualTo(keyPair.PublicKey.ToString()));
+            Assert.That(store.ActiveKeyPair.KeyPair.PrivateKey.ToString(), Is.EqualTo(keyPair.PrivateKey.ToString()));
+            Assert.That(store.ActiveKeyPair.KeyPair.PublicKey.ToString(), Is.EqualTo(keyPair.PublicKey.ToString()));
         }
 
         [Test]
@@ -110,18 +110,18 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp\");
-            UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(new LocalAccountService(new NullAccountService(new RestIdentity(@"svante@axantum.com", "secret")), workFolder));
+            AccountStorage store = new AccountStorage(new LocalAccountService(new NullAccountService(new RestIdentity(@"svante@axantum.com", "secret")), workFolder));
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("secret");
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
             store.Import(userKeyPair);
 
             string text = "AxCrypt encryption rules!";
-            byte[] encryptedBytes = store.UserKeyPair.KeyPair.PublicKey.Transform(Encoding.UTF8.GetBytes(text));
+            byte[] encryptedBytes = store.ActiveKeyPair.KeyPair.PublicKey.Transform(Encoding.UTF8.GetBytes(text));
 
-            store = new UserAsymmetricKeysStore(new LocalAccountService(new NullAccountService(new RestIdentity(@"svante@axantum.com", "secret")), workFolder));
+            store = new AccountStorage(new LocalAccountService(new NullAccountService(new RestIdentity(@"svante@axantum.com", "secret")), workFolder));
 
-            byte[] decryptedBytes = store.UserKeyPair.KeyPair.PrivateKey.Transform(encryptedBytes);
+            byte[] decryptedBytes = store.ActiveKeyPair.KeyPair.PrivateKey.Transform(encryptedBytes);
             Assert.That(decryptedBytes != null);
             string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
 

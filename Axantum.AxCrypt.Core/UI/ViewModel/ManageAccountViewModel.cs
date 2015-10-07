@@ -40,15 +40,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// </summary>
     public class ManageAccountViewModel : ViewModelBase
     {
-        public IEnumerable<AccountProperties> AccountEmails { get { return GetProperty<IEnumerable<AccountProperties>>("AccountEmails"); } private set { SetProperty("AccountEmails", value); } }
+        public IEnumerable<AccountProperties> AccountProperties { get { return GetProperty<IEnumerable<AccountProperties>>(nameof(AccountProperties)); } private set { SetProperty(nameof(AccountProperties), value); } }
 
         public IAction ChangePassphrase { get; private set; }
 
-        private UserAsymmetricKeysStore _keysStore;
+        private AccountStorage _keysStore;
 
         private KnownIdentities _knownIdenties;
 
-        public ManageAccountViewModel(UserAsymmetricKeysStore userKeyPairs, KnownIdentities knownIdentities)
+        public ManageAccountViewModel(AccountStorage userKeyPairs, KnownIdentities knownIdentities)
         {
             _keysStore = userKeyPairs;
             _knownIdenties = knownIdentities;
@@ -60,9 +60,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            AccountEmails = _keysStore.UserKeyPairs.Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
+            AccountProperties = _keysStore.AllKeyPairs.Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
 
-            ChangePassphrase = new DelegateAction<string>((password) => ChangePassphraseAction(password), (password) => _keysStore.UserKeyPairs.Any());
+            ChangePassphrase = new DelegateAction<string>((password) => ChangePassphraseAction(password), (password) => _keysStore.AllKeyPairs.Any());
         }
 
         private static void BindPropertyChangedEvents()
@@ -75,9 +75,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private object ChangePassphraseAction(string passphrase)
         {
-            _keysStore.Save(new Passphrase(passphrase));
+            _keysStore.ChangePassphrase(new Passphrase(passphrase));
 
-            LogOnIdentity identity = new LogOnIdentity(_keysStore.UserKeyPair, new Passphrase(passphrase));
+            LogOnIdentity identity = new LogOnIdentity(_keysStore.ActiveKeyPair, new Passphrase(passphrase));
             _knownIdenties.Add(identity);
 
             return null;

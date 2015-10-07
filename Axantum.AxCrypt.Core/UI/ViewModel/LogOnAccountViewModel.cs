@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool IsValidAccountLogOn()
         {
-            UserAsymmetricKeysStore keyPairs = new UserAsymmetricKeysStore(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(UserEmail, Passphrase)));
+            AccountStorage keyPairs = new AccountStorage(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(UserEmail, Passphrase)));
 
             return keyPairs.HasKeyPair;
         }

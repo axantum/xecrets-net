@@ -45,11 +45,10 @@ namespace Axantum.AxCrypt.Core.Test
             UserKeyPair key1 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
             UserKeyPair key2 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
-            var mockUserAsymmetricKeysStore = new Mock<UserAsymmetricKeysStore>((IAccountService)null);
-            mockUserAsymmetricKeysStore.Setup<IEnumerable<UserKeyPair>>(f => f.UserKeyPairs).Returns(new UserKeyPair[] { key1, key2 });
-            mockUserAsymmetricKeysStore.Setup<bool>(f => f.HasStore).Returns(true);
+            var mockUserAsymmetricKeysStore = new Mock<AccountStorage>((IAccountService)null);
+            mockUserAsymmetricKeysStore.Setup<IEnumerable<UserKeyPair>>(f => f.AllKeyPairs).Returns(new UserKeyPair[] { key1, key2 });
             string passphraseUsed = String.Empty;
-            mockUserAsymmetricKeysStore.Setup(f => f.Save(It.IsAny<Passphrase>()))
+            mockUserAsymmetricKeysStore.Setup(f => f.ChangePassphrase(It.IsAny<Passphrase>()))
                 .Callback<Passphrase>((passphrase) =>
                 {
                     passphraseUsed = passphrase.Text;
@@ -59,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ManageAccountViewModel viewModel = new ManageAccountViewModel(mockUserAsymmetricKeysStore.Object, mockKnownIdentities.Object);
             IEnumerable<AccountProperties> emailsList = null;
-            viewModel.BindPropertyChanged("AccountEmails", (IEnumerable<AccountProperties> emails) => emailsList = emails);
+            viewModel.BindPropertyChanged(nameof(ManageAccountViewModel.AccountProperties), (IEnumerable<AccountProperties> emails) => emailsList = emails);
             Assert.That(emailsList.Count(), Is.EqualTo(2), "There should be two accounts now.");
             Assert.That(emailsList.First().EmailAddress, Is.EqualTo("svante@axantum.com"), "The first should be 'svante@axantum.com'");
             Assert.That(emailsList.Last().EmailAddress, Is.EqualTo("svante@axantum.com"), "The last should be 'svante@axantum.com'");

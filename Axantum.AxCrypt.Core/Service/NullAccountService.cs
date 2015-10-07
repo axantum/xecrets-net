@@ -1,6 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,9 +43,9 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public bool ChangePassword(string password)
+        public bool ChangePassphrase(string passphrase)
         {
-            Identity = new RestIdentity(Identity.User, password);
+            Identity = new RestIdentity(Identity.User, passphrase);
             return true;
         }
 

@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;

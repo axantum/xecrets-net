@@ -150,12 +150,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            UserAsymmetricKeysStore keysStore = new UserAsymmetricKeysStore(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(_knownIdentities.DefaultEncryptionIdentity.UserEmail.Address, _knownIdentities.DefaultEncryptionIdentity.Passphrase.Text)));
-            keysStore.Import(keyPair);
+            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(_knownIdentities.DefaultEncryptionIdentity.UserEmail.Address, _knownIdentities.DefaultEncryptionIdentity.Passphrase.Text)));
+            store.Import(keyPair);
             ImportSuccessful = true;
 
             _userSettings.UserEmail = keyPair.UserEmail.Address;
-            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(keysStore.UserKeyPair, passphrase);
+            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(store.ActiveKeyPair, passphrase);
         }
     }
 }

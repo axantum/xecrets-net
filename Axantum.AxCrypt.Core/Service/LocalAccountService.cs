@@ -4,7 +4,6 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -94,9 +93,9 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public bool ChangePassword(string password)
+        public bool ChangePassphrase(string passphrase)
         {
-            if (!_service.ChangePassword(password))
+            if (!_service.ChangePassphrase(passphrase))
             {
                 return false;
             }
@@ -115,7 +114,7 @@ namespace Axantum.AxCrypt.Core.Service
                 userKeys = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
             }
 
-            return userKeys.OrderByDescending(uk => uk.Timestamp).ToList();
+            return userKeys.ToList();
         }
 
         private IEnumerable<IDataStore> UserKeyPairFiles()

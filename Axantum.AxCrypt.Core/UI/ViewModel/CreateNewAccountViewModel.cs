@@ -131,9 +131,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(UserEmail, Passphrase)));
+            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(UserEmail, Passphrase)));
             UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), Resolve.UserSettings.AsymmetricKeyBits);
-            userKeyPairs.Import(userKeys);
+            store.Import(userKeys);
 
             return null;
         }

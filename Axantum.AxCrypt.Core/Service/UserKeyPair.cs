@@ -3,6 +3,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -13,7 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Session
+namespace Axantum.AxCrypt.Core.Service
 {
     /// <summary>
     /// A respository for a single user e-mail. A user has a single active key pair, with both a public

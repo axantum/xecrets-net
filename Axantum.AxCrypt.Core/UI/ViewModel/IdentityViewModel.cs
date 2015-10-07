@@ -148,10 +148,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
         {
-            UserAsymmetricKeysStore userKeyPairs = new UserAsymmetricKeysStore(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(emailAddress.Address, passphrase.Text)));
-            if (userKeyPairs.HasKeyPair)
+            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<RestIdentity, IAccountService>(new RestIdentity(emailAddress.Address, passphrase.Text)));
+            if (store.HasKeyPair)
             {
-                return new LogOnIdentity(userKeyPairs.UserKeyPair, passphrase);
+                return new LogOnIdentity(store.ActiveKeyPair, passphrase);
             }
 
             foreach (Passphrase candidate in _fileSystemState.KnownPassphrases)
