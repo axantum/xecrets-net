@@ -190,6 +190,7 @@ namespace Axantum.AxCrypt
                 return true;
             }
 
+            TypeMap.Resolve.Singleton<KeyPairService>().Start();
             using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, String.Empty, EmailAddress.Parse(Resolve.UserSettings.UserEmail)))
             {
                 DialogResult dialogResult = dialog.ShowDialog(this);

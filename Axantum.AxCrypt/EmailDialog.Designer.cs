@@ -68,8 +68,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(301, 41);
             this.label1.TabIndex = 0;
-            this.label1.Text = "The first time you start AxCrypt, please enter your email address. Click help for" +
-    " more information.";
+            this.label1.Text = "The first time you start AxCrypt, please enter your real email address. Click hel" +
+    "p for more information.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2

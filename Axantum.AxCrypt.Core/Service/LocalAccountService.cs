@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Service
         {
             get
             {
-                if (LoadUserAccounts().Accounts.Any(a => EmailAddress.Parse(a.UserName) == _service.Identity.UserEmail))
+                if (LoadUserAccounts().Accounts.Any(a => EmailAddress.Parse(a.UserName) == _service.Identity.UserEmail) || UserKeyPairFiles().Any())
                 {
                     return AccountStatus.Verified;
                 }
