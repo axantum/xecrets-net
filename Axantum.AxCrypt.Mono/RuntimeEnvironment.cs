@@ -169,13 +169,25 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private EventWaitHandle _firstInstanceRunning = new EventWaitHandle(false, EventResetMode.ManualReset, "Axantum.AxCrypt.NET-FirstInstanceRunning");
+        private EventWaitHandle _firstInstanceRunning;
+
+        private EventWaitHandle FirstInstanceRunningEventWait
+        {
+            get
+            {
+                if (_firstInstanceRunning == null)
+                {
+                    _firstInstanceRunning = new EventWaitHandle(false, EventResetMode.ManualReset, "Axantum.AxCrypt.NET-FirstInstanceRunning");
+                }
+                return _firstInstanceRunning;
+            }
+        }
 
         private Mutex _firstInstanceMutex;
 
         private bool _isFirstInstance;
 
-        public bool IsFirstInstance
+        public virtual bool IsFirstInstance
         {
             get
             {
@@ -184,7 +196,7 @@ namespace Axantum.AxCrypt.Mono
                     _firstInstanceMutex = new Mutex(true, "Axantum.AxCrypt.NET-FirstInstance", out _isFirstInstance);
                     if (_isFirstInstance)
                     {
-                        _firstInstanceRunning.Set();
+                        FirstInstanceRunningEventWait.Set();
                     }
                 }
                 return _isFirstInstance;
@@ -193,7 +205,7 @@ namespace Axantum.AxCrypt.Mono
 
         public bool FirstInstanceRunning(TimeSpan timeout)
         {
-            return _firstInstanceRunning.WaitOne(timeout, false);
+            return FirstInstanceRunningEventWait.WaitOne(timeout, false);
         }
 
         public void ExitApplication(int exitCode)
