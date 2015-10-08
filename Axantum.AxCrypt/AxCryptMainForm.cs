@@ -111,6 +111,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            StartKeyPairService();
             SetupViewModels();
             AttachLogListener();
             ConfigureUiOptions();
@@ -121,6 +122,15 @@ namespace Axantum.AxCrypt
             BindToFileOperationViewModel();
             SetupCommandService();
             SendStartSessionNotification();
+        }
+
+        private void StartKeyPairService()
+        {
+            if (!String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
+            {
+                return;
+            }
+            TypeMap.Resolve.Singleton<KeyPairService>().Start();
         }
 
         private bool ValidateSettings()

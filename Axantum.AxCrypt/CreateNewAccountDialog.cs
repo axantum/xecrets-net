@@ -1,4 +1,6 @@
-﻿using Axantum.AxCrypt.Core.UI.ViewModel;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Service;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
@@ -54,12 +56,24 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            if (!TypeMap.Resolve.Singleton<KeyPairService>().IsAnyAvailable)
+            {
+                MessageBox.Show(this, Resources.OfflineAccountBePatient, Resources.OfflineAccountTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             CreateAccountAsync();
         }
 
         private async void CreateAccountAsync()
         {
             UseWaitCursor = true;
+
+            EmailTextBox.Enabled = false;
+            PassphraseTextBox.Enabled = false;
+            VerifyPassphraseTextbox.Enabled = false;
+            ShowPassphraseCheckBox.Enabled = false;
+            _buttonOk.Enabled = false;
+            _buttonCancel.Enabled = false;
+
             _isCreating = true;
 
             try
@@ -129,7 +143,6 @@ namespace Axantum.AxCrypt
             if (_isCreating)
             {
                 e.Cancel = true;
-                MessageBox.Show(this, Resources.OfflineAccountBePatient, Resources.OfflineAccountTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             base.OnFormClosing(e);
         }

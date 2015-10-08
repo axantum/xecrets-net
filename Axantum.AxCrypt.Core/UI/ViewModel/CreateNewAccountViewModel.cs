@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             AccountStorage store = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
-            UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), Resolve.UserSettings.AsymmetricKeyBits);
+            UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), DateTime.UtcNow, TypeMap.Resolve.Singleton<KeyPairService>().New());
             store.Import(userKeys);
 
             return null;
