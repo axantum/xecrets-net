@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public bool FirstInstanceRunning(TimeSpan timeout)
+        public virtual bool FirstInstanceRunning(TimeSpan timeout)
         {
             return FirstInstanceRunningEventWait.WaitOne(timeout, false);
         }
