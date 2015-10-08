@@ -76,6 +76,12 @@
     <Compile Include="AxCryptMainForm.Designer.cs">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmailDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailDialog.Designer.cs">
+      <DependentUpon>EmailDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ImportPrivatePasswordDialog.cs">
       <SubType>Form</SubType>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DebugLogOutputDialog.resx">
       <DependentUpon>DebugLogOutputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailDialog.resx">
+      <DependentUpon>EmailDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportPrivatePasswordDialog.resx">
       <DependentUpon>ImportPrivatePasswordDialog.cs</DependentUpon>

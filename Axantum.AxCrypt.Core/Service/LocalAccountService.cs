@@ -66,7 +66,11 @@ namespace Axantum.AxCrypt.Core.Service
         {
             get
             {
-                return AccountStatus.Offline;
+                if (LoadUserAccounts().Accounts.Any(a => EmailAddress.Parse(a.UserName) == _service.Identity.UserEmail))
+                {
+                    return AccountStatus.Verified;
+                }
+                return _service.Status;
             }
         }
 

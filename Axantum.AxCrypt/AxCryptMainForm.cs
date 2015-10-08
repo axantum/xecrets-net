@@ -148,6 +148,12 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
+            if (!EnsureEmailAccount() || !EnsureCreateAccount())
+            {
+                Application.Exit();
+                return;
+            }
+
             if (_shownFirstTime)
             {
                 return;
@@ -157,9 +163,59 @@ namespace Axantum.AxCrypt
             LogOnAndDoPendingRequest();
         }
 
+        private bool EnsureEmailAccount()
+        {
+            if (!String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
+            {
+                return true;
+            }
+
+            using (EmailDialog dialog = new EmailDialog(this))
+            {
+                DialogResult result = dialog.ShowDialog(this);
+                if (result != DialogResult.OK)
+                {
+                    return false;
+                }
+                Resolve.UserSettings.UserEmail = dialog.EmailTextBox.Text;
+            }
+            return true;
+        }
+
+        private bool EnsureCreateAccount()
+        {
+            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(Resolve.UserSettings.UserEmail), Passphrase.Empty)));
+            if (store.Status == Api.Model.AccountStatus.Verified)
+            {
+                return true;
+            }
+
+            using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, String.Empty, EmailAddress.Parse(Resolve.UserSettings.UserEmail)))
+            {
+                DialogResult dialogResult = dialog.ShowDialog(this);
+                if (dialogResult != DialogResult.OK)
+                {
+                    return false;
+                }
+
+                Passphrase passphrase = new Passphrase(dialog.PassphraseTextBox.Text);
+                EmailAddress emailAddress = EmailAddress.Parse(dialog.EmailTextBox.Text);
+                store = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
+                if (!store.HasKeyPair)
+                {
+                    return false;
+                }
+                Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(store.ActiveKeyPair, passphrase);
+            }
+            return true;
+        }
+
         private void LogOnAndDoPendingRequest()
         {
-            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
+            if (!_mainViewModel.LoggedOn)
+            {
+                _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
+            }
             if (_mainViewModel.LoggedOn)
             {
                 DoRequest(_pendingRequest);
@@ -563,7 +619,7 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewAccount(LogOnEventArgs e)
         {
-            using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, e.Passphrase))
+            using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, e.Passphrase, EmailAddress.Empty))
             {
                 DialogResult dialogResult = dialog.ShowDialog(this);
                 if (dialogResult != DialogResult.OK)
@@ -1565,7 +1621,7 @@ namespace Axantum.AxCrypt
 
         private void CreateAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, String.Empty))
+            using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, String.Empty, EmailAddress.Empty))
             {
                 dialog.ShowDialog();
             }

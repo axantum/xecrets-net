@@ -44,35 +44,35 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// </summary>
     public class CreateNewAccountViewModel : ViewModelBase
     {
-        public string Passphrase { get { return GetProperty<string>("Passphrase"); } set { SetProperty("Passphrase", value); } }
+        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
 
-        public string Verification { get { return GetProperty<string>("Verification"); } set { SetProperty("Verification", value); } }
+        public string Verification { get { return GetProperty<string>(nameof(Verification)); } set { SetProperty(nameof(Verification), value); } }
 
-        public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
+        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
 
-        public string UserEmail { get { return GetProperty<string>("UserEmail"); } set { SetProperty("UserEmail", value); } }
+        public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
 
         public IAction CreateAccount { get { return new DelegateAction<object>((o) => CreateAccountAction()); } }
 
-        public CreateNewAccountViewModel(string passphrase)
+        public CreateNewAccountViewModel(string passphrase, EmailAddress email)
         {
-            InitializePropertyValues(passphrase);
+            InitializePropertyValues(passphrase, email);
             BindPropertyChangedEvents();
         }
 
-        private void InitializePropertyValues(string passphrase)
+        private void InitializePropertyValues(string passphrase, EmailAddress email)
         {
             Passphrase = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
 
-            UserEmail = String.Empty;
+            UserEmail = email.Address;
             ShowPassphrase = Resolve.UserSettings.DisplayEncryptPassphrase;
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal("ShowPassphrase", (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
-            BindPropertyChangedInternal("UserEmail", (string userEmail) => { if (String.IsNullOrEmpty(Validate("UserEmail"))) { Resolve.UserSettings.UserEmail = userEmail; } });
+            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (String.IsNullOrEmpty(Validate(nameof(UserEmail)))) { Resolve.UserSettings.UserEmail = userEmail; } });
         }
 
         public override string this[string columnName]
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (columnName)
             {
-                case "UserEmail":
+                case nameof(UserEmail):
                     if (!UserEmail.IsValidEmail())
                     {
                         ValidationError = (int)ViewModel.ValidationError.InvalidEmail;
@@ -109,14 +109,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     return true;
 
-                case "Verification":
+                case nameof(Verification):
                     if (String.IsNullOrEmpty(Verification))
                     {
                         return false;
                     }
                     return String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0;
 
-                case "Passphrase":
+                case nameof(Passphrase):
                     return !String.IsNullOrEmpty(Passphrase);
 
                 default:

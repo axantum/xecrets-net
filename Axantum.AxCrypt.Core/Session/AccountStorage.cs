@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
@@ -98,6 +99,14 @@ namespace Axantum.AxCrypt.Core.Session
             get
             {
                 return _service.Identity.UserEmail;
+            }
+        }
+
+        public AccountStatus Status
+        {
+            get
+            {
+                return _service.Status;
             }
         }
 
