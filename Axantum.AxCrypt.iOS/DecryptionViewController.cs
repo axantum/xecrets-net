@@ -19,7 +19,7 @@ namespace Axantum.AxCrypt.iOS
 		ProgressContext context;
 		ThreadWorker worker;
 		IRuntimeFileInfo sourceFile;
-		AesKey key;
+		IPassphrase passPhraseObj; 
 		string targetFilePath;
 
 		public DecryptionViewController (string sourceFilePath)
@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt.iOS
 			//			context.Progressing += (sender, e) => {
 			//				SetProgress(e.Percent, "Decrypting ...");
 			//			};
-			this.sourceFile = OS.Current.FileInfo (sourceFilePath);
+			this.sourceFile = Factory.New<IRuntimeFileInfo>(sourceFilePath); 
 		}
 
 		void CreateWorker() {
@@ -41,10 +41,10 @@ namespace Axantum.AxCrypt.iOS
 		void Work(object sender, ThreadWorkerEventArgs args) {
 			using (NSAutoreleasePool pool = new NSAutoreleasePool()) {
 				string targetDirectory = Path.GetTempPath();
-				string extractedFileName = AxCryptFile.Decrypt (
+				string extractedFileName = Factory.New<AxCryptFile>().Decrypt (
 					this.sourceFile, 
 					targetDirectory, 
-					this.key, 
+					this.passPhraseObj, 
 					AxCryptOptions.None, 
 					this.context);
 
@@ -68,10 +68,10 @@ namespace Axantum.AxCrypt.iOS
 			Succeeded(this.targetFilePath);
 		}
 
-		public void Decrypt(Passphrase passphrase) {
+		public void Decrypt(V1Passphrase passphrase) {
 			BTProgressHUD.Show ("Opening ...", maskType: BTProgressHUD.MaskType.Gradient);
 			CreateWorker ();
-			this.key = passphrase.DerivedPassphrase;
+			this.passPhraseObj = passphrase;
 			worker.Run();
 		}
 	}

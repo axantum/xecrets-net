@@ -5,6 +5,9 @@ using MonoTouch.MessageUI;
 using MonoTouch.UIKit;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.iOS.Infrastructure;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.MonoTouch;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -50,7 +53,13 @@ namespace Axantum.AxCrypt.iOS
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			AppDelegate.Current = this;
-			OS.Current = new Axantum.AxCrypt.MonoTouch.RuntimeEnvironment();
+			
+			Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment()); 
+			Factory.Instance.Singleton<ILogging>(() => new Logging());
+            Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
+            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
+            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new Axantum.AxCrypt.Mono.RuntimeFileInfo(path));
+			
 			appViewController = new MainViewController();
 			appViewController.OnAboutButtonTapped += ShowAbout;
 			appViewController.OnFaqButtonTapped += ShowFaq;

@@ -123,6 +123,13 @@ namespace Axantum.AxCrypt.MonoTouch
                 Console.WriteLine("{1} Debug: {0}".InvariantFormat(message, AppName));
             }
         }
+		
+		public void Dispose()
+        {
+            
+        }
+		
+		public event EventHandler<LoggingEventArgs> Logged;
         
         #endregion ILogging Members
         
