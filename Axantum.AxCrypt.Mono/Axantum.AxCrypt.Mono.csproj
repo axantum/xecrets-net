@@ -42,6 +42,10 @@
     <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -93,13 +97,10 @@
       <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj">
-      <Project>{959F7F85-C98B-4876-971A-9036224578E4}</Project>
-      <Name>Newtonsoft.Json.Portable40</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.template" />
   </ItemGroup>
   <ItemGroup>

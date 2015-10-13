@@ -44,10 +44,6 @@
       <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
       <Name>Axantum.AxCrypt.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj">
-      <Project>{959f7f85-c98b-4876-971a-9036224578e4}</Project>
-      <Name>Newtonsoft.Json.Portable40</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiException.cs" />
@@ -75,12 +71,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.template" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\SolutionItems\CustomDictionary.xml">
       <Link>CustomDictionary.xml</Link>
     </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />

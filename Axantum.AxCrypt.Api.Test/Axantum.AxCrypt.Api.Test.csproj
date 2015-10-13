@@ -35,6 +35,10 @@
     <Reference Include="Moq">
       <HintPath>..\SolutionItems\Moq\lib\net40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\SolutionItems\nunit.framework.dll</HintPath>
     </Reference>
@@ -69,13 +73,12 @@
       <Project>{ce9e8614-8dc5-4757-9384-3c416ab61a47}</Project>
       <Name>Axantum.AxCrypt.Mono</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj">
-      <Project>{959f7f85-c98b-4876-971a-9036224578e4}</Project>
-      <Name>Newtonsoft.Json.Portable40</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -43,6 +43,10 @@
     <Reference Include="Moq">
       <HintPath>..\SolutionItems\Moq\lib\net40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -208,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
+    <None Include="packages.config" />
     <None Include="resources\david copperfield-key-%27aa ae oe%27-ulu-txt.axx" />
     <EmbeddedResource Include="resources\Frankenstein-txt-AES256.axx" />
     <EmbeddedResource Include="resources\Frankenstein-txt-V2AES128.axx" />
@@ -235,10 +240,6 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
       <Project>{ce9e8614-8dc5-4757-9384-3c416ab61a47}</Project>
       <Name>Axantum.AxCrypt.Mono</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj">
-      <Project>{959F7F85-C98B-4876-971A-9036224578E4}</Project>
-      <Name>Newtonsoft.Json.Portable40</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
