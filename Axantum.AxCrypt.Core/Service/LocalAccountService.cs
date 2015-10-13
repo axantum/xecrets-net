@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Service
             UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == _service.Identity.UserEmail);
             if (userAccount == null)
             {
-                userAccount = new UserAccount(_service.Identity.UserEmail.Address, SubscriptionLevel.Unknown, new AccountKey[0]);
+                userAccount = new UserAccount(_service.Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown, new AccountKey[0]);
                 userAccounts.Accounts.Add(userAccount);
             }
 
@@ -163,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Service
             IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == _service.Identity.UserEmail);
             if (!users.Any())
             {
-                return new UserAccount(_service.Identity.UserEmail.Address, SubscriptionLevel.Unknown, new AccountKey[0]);
+                return new UserAccount(_service.Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown, new AccountKey[0]);
             }
 
             return users.First();

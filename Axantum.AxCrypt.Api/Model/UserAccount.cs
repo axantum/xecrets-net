@@ -13,15 +13,16 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class UserAccount
     {
-        public UserAccount(string userName, SubscriptionLevel level, IEnumerable<AccountKey> keys)
+        public UserAccount(string userName, SubscriptionLevel level, AccountStatus status, IEnumerable<AccountKey> keys)
         {
             UserName = userName;
             SubscriptionLevel = level;
             AccountKeys = keys.ToList();
+            AccountStatus = status;
         }
 
         public UserAccount()
-            : this(String.Empty, SubscriptionLevel.Unknown, new AccountKey[0])
+            : this(String.Empty, SubscriptionLevel.Unknown, AccountStatus.Unknown, new AccountKey[0])
         {
         }
 
