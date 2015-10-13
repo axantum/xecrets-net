@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Newtonsoft.Json</RootNamespace>
-    <AssemblyName>Newtonsoft.Json</AssemblyName>
+    <AssemblyName>Newtonsoft.Json.Portable40</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile344</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -40,7 +40,7 @@
     <DefineConstants>TRACE;CODE_ANALYSIS;PORTABLE40</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Portable40\Newtonsoft.Json.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Portable40\Newtonsoft.Json.Portable40.xml</DocumentationFile>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>Newtonsoft.Json.ruleset</CodeAnalysisRuleSet>
     <NoWarn>419</NoWarn>
