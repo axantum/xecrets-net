@@ -71,7 +71,7 @@
     <MtouchI18n>west</MtouchI18n>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchLink>Full</MtouchLink>
-    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
+    <AssemblyName>AxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -89,7 +89,7 @@
     <CodesignProvision>9DA52B33-9272-40CD-9415-64FF17ADC82E</CodesignProvision>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchUseThumb>True</MtouchUseThumb>
-    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
+    <AssemblyName>AxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -106,7 +106,7 @@
     </IpaPackageName>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchUseThumb>True</MtouchUseThumb>
-    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
+    <AssemblyName>AxCryptiOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
