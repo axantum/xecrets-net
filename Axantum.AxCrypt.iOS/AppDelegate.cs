@@ -75,15 +75,15 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		void ShowAbout() {
-			PresentWebViewController ("http://monodeveloper.org/axcrypt-for-ios/");
+            PresentWebViewController ("http://www.axcrypt.net/");
 		}
 
 		void ShowFaq() {
-			PresentWebViewController ("http://monodeveloper.org/axcrypt-ios-faq/");
+            PresentWebViewController ("http://www.axcrypt.net/support/faq/");
 		}
 
 		void ShowTroubleshooting() {
-			PresentWebViewController ("http://monodeveloper.org/axcrypt-ios-troubleshooting/");
+            PresentWebViewController ("http://www.axcrypt.net/forums/forum/bugs-issues/");
 		}
 
 		void FreeWebViewController() {
@@ -99,14 +99,14 @@ namespace Axantum.AxCrypt.iOS
 
 		void ShowFeedbackUi() {
 			if (!MFMailComposeViewController.CanSendMail) {
-				PresentWebViewController ("http://monodeveloper.org/axcrypt-ios-feedback/");
+                PresentWebViewController ("http://www.axcrypt.net/");
 				return;
 			}
 
 			FreeFeedbackViewController ();
 			feedbackMailViewController = new MFMailComposeViewController ();
-			feedbackMailViewController.SetToRecipients (new[] { "sami.lamti+axcrypt-ios-feedback@tretton37.com" });
-			feedbackMailViewController.SetSubject (String.Concat ("Feedback on AxCrypt for iOS v", AppVersion));
+			feedbackMailViewController.SetToRecipients (new[] { "info@axcrypt.net" });
+			feedbackMailViewController.SetSubject (String.Concat ("Feedback on AxCrypt 2 for iOS v", AppVersion));
 			feedbackMailViewController.Finished += delegate {
 				FreeFeedbackViewController ();
 			}; 
