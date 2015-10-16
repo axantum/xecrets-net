@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.iOS
 				},
 			});
 
-			TableView.ScrollEnabled = receivedDocumentsSection.Count + receivedDocumentsSection.Count > 20;
+			TableView.ScrollEnabled = true;
 			base.ViewWillAppear (animated);
 		}
 
