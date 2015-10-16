@@ -16,9 +16,7 @@
 		<string>Images/Spotlight &amp; Settings Icons/logo 100x100.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.tretton37.axantum.axcrypt</string>
-	<key>CFBundleVersion</key>
-	<string>1.2</string>
+	<string>net.axcrypt.axcrypt</string>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>UIDeviceFamily</key>
@@ -87,5 +85,9 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleShortVersionString</key>
+	<string>2.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>

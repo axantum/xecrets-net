@@ -3,14 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3773A07A-71B7-474C-A622-21ED8B8492DD}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Axantum.AxCrypt.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
+    <ReleaseVersion>2.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -23,9 +23,10 @@
     <ConsolePause>False</ConsolePause>
     <MtouchDebug>True</MtouchDebug>
     <MtouchLink>None</MtouchLink>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchArch>i386</MtouchArch>
     <MtouchI18n>west</MtouchI18n>
-	<CodesignResourceRules>ResourceRules.plist</CodesignResourceRules>
+    <CodesignResourceRules>ResourceRules.plist</CodesignResourceRules>
+    <AssemblyName>AxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -37,7 +38,9 @@
     <MtouchLink>None</MtouchLink>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchArch>ARMv7</MtouchArch>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
+    <AssemblyName>AxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
@@ -51,9 +54,10 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
     <MtouchArch>ARMv7</MtouchArch>
-    <IpaPackageName />
+    <IpaPackageName>
+    </IpaPackageName>
     <MtouchI18n>west</MtouchI18n>
-    <CodesignProvision>9DA52B33-9272-40CD-9415-64FF17ADC82E</CodesignProvision>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -65,14 +69,9 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchI18n>west</MtouchI18n>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
-        <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Release/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
-      </CustomCommands>
-    </CustomCommands>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchLink>Full</MtouchLink>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -85,10 +84,12 @@
     <CodesignKey>iPhone Developer: Martina Gawell (RYTWD8L3NQ)</CodesignKey>
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchI18n>west</MtouchI18n>
-    <IpaPackageName />
+    <IpaPackageName>
+    </IpaPackageName>
     <CodesignProvision>9DA52B33-9272-40CD-9415-64FF17ADC82E</CodesignProvision>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchUseThumb>True</MtouchUseThumb>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -101,9 +102,11 @@
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchI18n>west</MtouchI18n>
-    <IpaPackageName />
+    <IpaPackageName>
+    </IpaPackageName>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchUseThumb>True</MtouchUseThumb>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -118,7 +121,7 @@
     <Reference Include="BTProgressHUD">
       <HintPath>Components\btprogresshud-1.5\lib\ios\BTProgressHUD.dll</HintPath>
     </Reference>
-	<Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
       <HintPath>..\SolutionItems\NewtonsoftJsonPCL\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -665,7 +668,6 @@
     <Compile Include="AxCrypt.Mono\DataProtection.cs" />
     <Compile Include="AxCrypt.Mono\FileWatcher.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="Images\logo.png" />
     <Content Include="Images\App Icons\logo 57x57.png" />
@@ -705,9 +707,9 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="btprogresshud">
-      <InstallationInProgress>False</InstallationInProgress>
       <Version>1.5</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
 </Project>

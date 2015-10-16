@@ -27,6 +27,10 @@ Global
 		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Axantum.AxCrypt.iOS.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		version = 2.0
 	EndGlobalSection
 EndGlobal
