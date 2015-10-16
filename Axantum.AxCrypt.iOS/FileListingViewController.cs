@@ -22,11 +22,12 @@ namespace Axantum.AxCrypt.iOS
 		{
 			basePathId = pathId;
 			fileSection = new Section ();
-			Root.Add (fileSection);
+            fileSection.AddAll(ReadFileSystem());
+            Root.Add(fileSection);
 
 			if (Utilities.UserInterfaceIdiomIsPhone) {
-				ModalPresentationStyle = UIModalPresentationStyle.FullScreen;
-				ModalTransitionStyle = UIModalTransitionStyle.PartialCurl;
+				ModalPresentationStyle = UIModalPresentationStyle.CurrentContext;
+				ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal;
 			} else {
 				ModalPresentationStyle = UIModalPresentationStyle.CurrentContext;
 				ModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
@@ -63,8 +64,7 @@ namespace Axantum.AxCrypt.iOS
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			Root [0].Clear ();
-			Root [0].AddAll (ReadFileSystem ());
+            NavigationItem.SetHidesBackButton(false, false);
 		}
 
 		public override void ViewDidDisappear (bool animated)

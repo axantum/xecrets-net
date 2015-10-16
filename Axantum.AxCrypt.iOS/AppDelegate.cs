@@ -36,6 +36,7 @@ namespace Axantum.AxCrypt.iOS
 		FilePresenter filePresenter;
 		MFMailComposeViewController feedbackMailViewController;
 		WebViewController webViewController;
+        UINavigationController navigationController;
 		bool isReceivingFile = false;
 
 		public override UIWindow Window {
@@ -68,8 +69,9 @@ namespace Axantum.AxCrypt.iOS
 			appViewController.OnRecentFilesButtonTapped += ShowRecentFiles;
 			appViewController.OnTroubleshootingButtonTapped += ShowTroubleshooting;
 
-			Window = new UIWindow(UIScreen.MainScreen.Bounds);
-			Window.RootViewController = appViewController;
+            navigationController = new UINavigationController(appViewController);
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+			Window.RootViewController = navigationController;
 			Window.MakeKeyAndVisible ();
 			return true;
 		}
@@ -130,7 +132,7 @@ namespace Axantum.AxCrypt.iOS
 			fileListingViewController.Done += FreeFileListingViewController;
 
 			if (Utilities.UserInterfaceIdiomIsPhone) {
-				appViewController.PresentViewController (fileListingViewController, true, null);
+                navigationController.PushViewController(fileListingViewController, true);
 			} else {
 				pop = new UIPopoverController (fileListingViewController);
 				pop.PresentFromRect(
@@ -228,7 +230,9 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		public void HandleOpenFile(string filePath) {
- 			FreePassphraseViewController ();
+            navigationController.PopToViewController(appViewController, true);
+
+            FreePassphraseViewController ();
 			FreeDecryptionViewController ();
 			FreeFilePresenter ();
 			FreeFeedbackViewController ();
