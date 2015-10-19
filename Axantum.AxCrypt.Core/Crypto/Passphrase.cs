@@ -29,7 +29,6 @@ using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -48,6 +47,16 @@ namespace Axantum.AxCrypt.Core.Crypto
         private Passphrase(SymmetricKeyThumbprint thumbprint)
         {
             Thumbprint = thumbprint;
+        }
+
+        public static Passphrase Create(string text)
+        {
+            if (String.IsNullOrEmpty(text))
+            {
+                return Passphrase.Empty;
+            }
+
+            return new Passphrase(text);
         }
 
         public string Text { get; private set; }
