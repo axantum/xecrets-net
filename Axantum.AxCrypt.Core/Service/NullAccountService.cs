@@ -41,6 +41,14 @@ namespace Axantum.AxCrypt.Core.Service
             Identity = identity;
         }
 
+        public UserAccount Account
+        {
+            get
+            {
+                return new UserAccount(Identity.UserEmail.Address);
+            }
+        }
+
         public bool HasAccounts
         {
             get

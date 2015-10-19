@@ -1,6 +1,7 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
@@ -73,16 +74,23 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         private static string EncryptPrivateKey(UserKeyPair keys, Passphrase passphrase)
         {
-            if (keys.KeyPair.PrivateKey == null || passphrase == Passphrase.Empty)
+            if (keys.KeyPair.PrivateKey == null)
             {
                 return String.Empty;
+            }
+
+            byte[] privateKeyPemBytes = Encoding.UTF8.GetBytes(keys.KeyPair.PrivateKey.ToString());
+
+            if (passphrase == Passphrase.Empty)
+            {
+                byte[] encryptedPrivateKeyBytes = TypeMap.Resolve.New<IDataProtection>().Protect(privateKeyPemBytes);
+                return Convert.ToBase64String(encryptedPrivateKeyBytes);
             }
 
             StringBuilder encryptedPrivateKey = new StringBuilder();
             using (StringWriter writer = new StringWriter(encryptedPrivateKey))
             {
-                string privateKeyPem = keys.KeyPair.PrivateKey.ToString();
-                using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(privateKeyPem)))
+                using (Stream stream = new MemoryStream(privateKeyPemBytes))
                 {
                     EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.Id, passphrase);
                     EncryptedProperties properties = new EncryptedProperties("private-key.pem");
@@ -123,12 +131,19 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         private static string DecryptPrivateKeyPem(string privateEncryptedPem, Passphrase passphrase)
         {
-            if (privateEncryptedPem.Length == 0 || passphrase == Passphrase.Empty)
+            if (privateEncryptedPem.Length == 0)
             {
                 return String.Empty;
             }
 
             byte[] privateKeyEncryptedPem = Convert.FromBase64String(privateEncryptedPem);
+
+            if (passphrase == Passphrase.Empty)
+            {
+                byte[] decryptedPrivateKeyBytes = TypeMap.Resolve.New<IDataProtection>().Unprotect(privateKeyEncryptedPem);
+                return Encoding.UTF8.GetString(decryptedPrivateKeyBytes, 0, decryptedPrivateKeyBytes.Length);
+            }
+
             using (MemoryStream encryptedPrivateKeyStream = new MemoryStream(privateKeyEncryptedPem))
             {
                 using (MemoryStream decryptedPrivateKeyStream = new MemoryStream())

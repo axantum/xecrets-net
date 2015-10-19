@@ -134,6 +134,33 @@ namespace Axantum.AxCrypt.Core.Service
             return true;
         }
 
+        /// <summary>
+        /// Gets the full account of the user this instance works with.
+        /// </summary>
+        /// <value>
+        /// The account.
+        /// </value>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public UserAccount Account
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Gets public information about the account.
+        /// </summary>
+        /// <param name="email">The email identifier of the account.</param>
+        /// <returns>
+        /// The user accoiunt with only the public inforamation.
+        /// </returns>
+        public UserAccount PublicAccount(EmailAddress email)
+        {
+            return null;
+        }
+
         private IList<UserKeyPair> TryLoadUserKeyPairs()
         {
             IEnumerable<AccountKey> userAccountKeys = LoadUserAccount().AccountKeys;

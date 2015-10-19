@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Api.Model
         /// </summary>
         /// <value>
         /// In order to minimize exposure of the keys on the server, the private key is stored as an
-        /// AxCrypt-encrypted blob. This also enables the future possibility to have the server operate
+        /// encrypted blob. This also enables the future possibility to have the server operate
         /// on zero knowledge of the private keys. It is Base64-encoded.
         /// </value>
         [JsonProperty("private")]

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
@@ -39,12 +40,12 @@ namespace Axantum.AxCrypt.Core.Test
 
         public byte[] Protect(byte[] unprotectedData)
         {
-            return (byte[])unprotectedData.Clone();
+            return (byte[])unprotectedData.Xor(new byte[unprotectedData.Length].Fill(0xff));
         }
 
         public byte[] Unprotect(byte[] protectedData)
         {
-            return (byte[])protectedData.Clone();
+            return (byte[])protectedData.Xor(new byte[protectedData.Length].Fill(0xff));
         }
 
         #endregion IDataProtection Members

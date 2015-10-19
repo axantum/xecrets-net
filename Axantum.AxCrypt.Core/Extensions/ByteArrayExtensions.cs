@@ -161,6 +161,21 @@ namespace Axantum.AxCrypt.Core.Extensions
             return concatenatedArray;
         }
 
+        public static byte[] Fill(this byte[] left, byte value)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException(nameof(left));
+            }
+
+            for (int i = 0; i < left.Length; ++i)
+            {
+                left[i] = value;
+            }
+
+            return left;
+        }
+
         public static bool IsEquivalentTo(this byte[] left, int leftOffset, byte[] right, int rightOffset, int length)
         {
             if (left == null)

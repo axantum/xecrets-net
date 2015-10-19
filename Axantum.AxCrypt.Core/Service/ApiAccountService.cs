@@ -53,6 +53,21 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
+        /// Gets the full account of the user this instance works with.
+        /// </summary>
+        /// <value>
+        /// The account.
+        /// </value>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public UserAccount Account
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
         /// Gets a value indicating whether this instance has any at all accounts.
         /// </summary>
         /// <value>
@@ -67,45 +82,16 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
-        /// Lists all UserKeyPairs available for the user.
-        /// </summary>
-        /// <returns></returns>
-        public IList<UserKeyPair> List()
-        {
-            return new UserKeyPair[0];
-        }
-
-        /// <summary>
-        /// Saves the specified key pairs.
-        /// </summary>
-        /// <param name="keyPairs">The key pairs.</param>
-        public void Save(IEnumerable<UserKeyPair> keyPairs)
-        {
-        }
-
-        /// <summary>
-        /// Changes the password for the account.
-        /// </summary>
-        /// <param name="passphrase">The password.</param>
-        /// <returns>
-        /// true if the password was successfully changed.
-        /// </returns>
-        public bool ChangePassphrase(Passphrase passphrase)
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// Gets the status of the account.
+        /// Gets the identity this instance works with.
         /// </summary>
         /// <value>
-        /// The status.
+        /// The identity.
         /// </value>
-        public AccountStatus Status
+        public LogOnIdentity Identity
         {
             get
             {
-                return AccountStatus.Offline;
+                return new LogOnIdentity(EmailAddress.Parse(_apiClient.Identity.User), new Passphrase(_apiClient.Identity.Password));
             }
         }
 
@@ -124,17 +110,46 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
-        /// Gets the identity this instance works with.
+        /// Gets the status of the account.
         /// </summary>
         /// <value>
-        /// The identity.
+        /// The status.
         /// </value>
-        public LogOnIdentity Identity
+        public AccountStatus Status
         {
             get
             {
-                return new LogOnIdentity(EmailAddress.Parse(_apiClient.Identity.User), new Passphrase(_apiClient.Identity.Password));
+                return AccountStatus.Offline;
             }
+        }
+
+        /// <summary>
+        /// Changes the password for the account.
+        /// </summary>
+        /// <param name="passphrase">The password.</param>
+        /// <returns>
+        /// true if the password was successfully changed.
+        /// </returns>
+        public bool ChangePassphrase(Passphrase passphrase)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Lists all UserKeyPairs available for the user.
+        /// </summary>
+        /// <returns></returns>
+        public IList<UserKeyPair> List()
+        {
+            return new UserKeyPair[0];
+        }
+
+        /// <summary>
+        /// Saves the specified key pairs.
+        /// </summary>
+        /// <param name="keyPairs">The key pairs.</param>
+        public void Save(IEnumerable<UserKeyPair> keyPairs)
+        {
         }
     }
 }

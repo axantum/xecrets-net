@@ -40,6 +40,22 @@ namespace Axantum.AxCrypt.Core.Service
     public interface IAccountService
     {
         /// <summary>
+        /// Gets the full account of the user this instance works with.
+        /// </summary>
+        /// <value>
+        /// The account.
+        /// </value>
+        UserAccount Account { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the service has any accounts at all.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance has accounts; otherwise, <c>false</c>.
+        /// </value>
+        bool HasAccounts { get; }
+
+        /// <summary>
         /// Gets the identity this instance works with.
         /// </summary>
         /// <value>
@@ -64,6 +80,13 @@ namespace Axantum.AxCrypt.Core.Service
         AccountStatus Status { get; }
 
         /// <summary>
+        /// Changes the passphrase for the account.
+        /// </summary>
+        /// <param name="passphrase">The passphrase.</param>
+        /// <returns>true if the passphrase was successfully changed.</returns>
+        bool ChangePassphrase(Passphrase passphrase);
+
+        /// <summary>
         /// Lists all UserKeyPairs available for the user.
         /// </summary>
         /// <returns></returns>
@@ -74,20 +97,5 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <param name="keyPairs">The key pairs.</param>
         void Save(IEnumerable<UserKeyPair> keyPairs);
-
-        /// <summary>
-        /// Changes the passphrase for the account.
-        /// </summary>
-        /// <param name="passphrase">The passphrase.</param>
-        /// <returns>true if the passphrase was successfully changed.</returns>
-        bool ChangePassphrase(Passphrase passphrase);
-
-        /// <summary>
-        /// Gets a value indicating whether the service has any accounts at all.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this instance has accounts; otherwise, <c>false</c>.
-        /// </value>
-        bool HasAccounts { get; }
     }
 }

@@ -548,6 +548,21 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestUserAsymmetricKeysToAccountKeyAndBackUsingDataProtection(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            AccountKey accountKey = originalKeys.ToAccountKey(Passphrase.Empty);
+            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(Passphrase.Empty);
+
+            Assert.That(accountKey.KeyPair.PrivateEncryptedPem.Length, Is.GreaterThan(0));
+            Assert.That(originalKeys, Is.EqualTo(roundtripKeys));
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
         public static void TestAccountKeyToUserAsymmetricKeysWithWrongPassphrase(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
