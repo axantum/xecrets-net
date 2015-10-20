@@ -11,5 +11,6 @@ namespace Axantum.AxCrypt.Api.Model
         Free,
         Premium,
         DefinedByServer,
+        Undisclosed,
     }
 }
