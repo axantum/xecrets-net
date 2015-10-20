@@ -12,5 +12,6 @@ namespace Axantum.AxCrypt.Api.Model
         Verified,
         Offline,
         Unauthenticated,
+        DefinedByServer,
     }
 }

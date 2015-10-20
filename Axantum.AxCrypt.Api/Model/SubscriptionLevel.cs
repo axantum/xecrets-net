@@ -10,5 +10,6 @@ namespace Axantum.AxCrypt.Api.Model
         Unknown,
         Free,
         Premium,
+        DefinedByServer,
     }
 }

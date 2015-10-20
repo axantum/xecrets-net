@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Api.Model
         /// The timestamp.
         /// </value>
         [JsonProperty("timestamp")]
-        public DateTime Timestamp { get; private set; }
+        public DateTime Timestamp { get; }
 
         /// <summary>
         /// Gets the thumbprint.
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Api.Model
         /// The thumbprint of the public key in the key pair for identification purposes.
         /// </value>
         [JsonProperty("thumbprint")]
-        public string Thumbprint { get; private set; }
+        public string Thumbprint { get; }
 
         /// <summary>
         /// Gets the key pair. If the KeyPair is Empty, it has been permanently deleted including the private key.
@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Api.Model
         /// The key pair.
         /// </value>
         [JsonProperty("keypair")]
-        public KeyPair KeyPair { get; private set; }
+        public KeyPair KeyPair { get; }
 
         /// <summary>
         /// Gets the user name, typically the e-mail.
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Api.Model
         /// The user name (e-mail).
         /// </value>
         [JsonProperty("user")]
-        public string User { get; private set; }
+        public string User { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is empty.

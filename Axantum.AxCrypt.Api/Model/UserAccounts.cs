@@ -21,6 +21,20 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("accounts")]
         public IList<UserAccount> Accounts { get; private set; }
 
+        public void SetAccount(UserAccount account)
+        {
+            for (int i = 0; i < Accounts.Count; ++i)
+            {
+                if (Accounts[i].UserName != account.UserName)
+                {
+                    continue;
+                }
+                Accounts[i] = account;
+                return;
+            }
+            Accounts.Add(account);
+        }
+
         public void SerializeTo(TextWriter writer)
         {
             if (writer == null)

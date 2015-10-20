@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// </summary>
         /// <param name="accountKey">The account key.</param>
         /// <param name="passphrase">The passphrase to decrypt the private key, if any, with.</param>
-        /// <returns></returns>
+        /// <returns>A UserKeyPair or null if it was not possible to decrypt it.</returns>
         public static UserKeyPair ToUserAsymmetricKeys(this Api.Model.AccountKey accountKey, Passphrase passphrase)
         {
             if (accountKey == null)
@@ -143,6 +143,10 @@ namespace Axantum.AxCrypt.Core.Extensions
             if (passphrase == Passphrase.Empty)
             {
                 byte[] decryptedPrivateKeyBytes = New<IDataProtection>().Unprotect(privateKeyEncryptedPem);
+                if (decryptedPrivateKeyBytes == null)
+                {
+                    return null;
+                }
                 return Encoding.UTF8.GetString(decryptedPrivateKeyBytes, 0, decryptedPrivateKeyBytes.Length);
             }
 
