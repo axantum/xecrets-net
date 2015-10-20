@@ -35,6 +35,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Desktop
 {
     public class FileWatcher : IFileWatcher
@@ -57,7 +59,7 @@ namespace Axantum.AxCrypt.Desktop
             _delayedAction = delayedAction;
             _delayedAction.Action += (sender, e) => { OnDelayedNotification(); };
 
-            _fileInfo = TypeMap.Resolve.New<IDataStore>(path);
+            _fileInfo = New<IDataStore>(path);
             _fileSystemWatcher = new FileSystemWatcher(_fileInfo.FullName);
             _fileSystemWatcher.Created += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
             _fileSystemWatcher.Deleted += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));

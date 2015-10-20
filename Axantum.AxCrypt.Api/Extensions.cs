@@ -1,10 +1,8 @@
-﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Abstractions.Rest;
+﻿using Axantum.AxCrypt.Abstractions.Rest;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Api
 {
@@ -13,7 +11,7 @@ namespace Axantum.AxCrypt.Api
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings")]
         public static string UrlEncode(this string value)
         {
-            return TypeMap.Resolve.New<IRestCaller>().UrlEncode(value);
+            return New<IRestCaller>().UrlEncode(value);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2234:PassSystemUriObjectsInsteadOfStrings")]

@@ -36,6 +36,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     /// <summary>
@@ -131,8 +133,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
-            UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), DateTime.UtcNow, TypeMap.Resolve.Singleton<KeyPairService>().New());
+            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
+            UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), DateTime.UtcNow, New<KeyPairService>().New());
             store.Import(userKeys);
 
             return null;

@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt
 {
     public partial class CreateNewAccountDialog : Form
@@ -58,7 +60,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            if (!TypeMap.Resolve.Singleton<KeyPairService>().IsAnyAvailable)
+            if (!New<KeyPairService>().IsAnyAvailable)
             {
                 MessageBox.Show(this, Resources.OfflineAccountBePatient, Resources.OfflineAccountTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

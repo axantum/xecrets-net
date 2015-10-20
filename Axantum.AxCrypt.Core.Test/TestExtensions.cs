@@ -43,6 +43,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -281,24 +283,24 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
             string fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document.docx");
-            string encryptedFileName = TypeMap.Resolve.New<IDataStore>(fileName).CreateEncryptedName().FullName;
+            string encryptedFileName = New<IDataStore>(fileName).CreateEncryptedName().FullName;
             Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document-docx.axx")), "Standard conversion of file name to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
                  {
-                     string encryptedEncryptedFileName = TypeMap.Resolve.New<IDataStore>(encryptedFileName).CreateEncryptedName().FullName;
+                     string encryptedEncryptedFileName = New<IDataStore>(encryptedFileName).CreateEncryptedName().FullName;
 
                      // Use the instance to avoid FxCop errors.
                      Object.Equals(encryptedEncryptedFileName, null);
                  });
 
             fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Extensionless File");
-            encryptedFileName = TypeMap.Resolve.New<IDataStore>(fileName).CreateEncryptedName().FullName;
+            encryptedFileName = New<IDataStore>(fileName).CreateEncryptedName().FullName;
             Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Extensionless File.axx")), "Conversion of file name without extension to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
-                string encryptedEncryptedFileName = TypeMap.Resolve.New<IDataStore>(encryptedFileName).CreateEncryptedName().FullName;
+                string encryptedEncryptedFileName = New<IDataStore>(encryptedFileName).CreateEncryptedName().FullName;
 
                 // Use the instance to avoid FxCop errors.
                 Object.Equals(encryptedEncryptedFileName, null);
@@ -364,7 +366,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateUniqueFileFirstIsNotOk()
         {
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(@"C:\temp\test.txt");
+            IDataStore fileInfo = New<IDataStore>(@"C:\temp\test.txt");
             using (Stream stream = fileInfo.OpenWrite())
             {
             }
@@ -416,9 +418,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             OS.PathFilters.Add(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
 
-            Assert.That(TypeMap.Resolve.New<IDataStore>(@"C:\Temp\test.txt").IsEncryptable(), Is.True);
-            Assert.That(TypeMap.Resolve.New<IDataStore>(@"C:\Windows\test.txt").IsEncryptable(), Is.False);
-            Assert.That(TypeMap.Resolve.New<IDataStore>(@"C:\Temp\test-txt.axx").IsEncryptable(), Is.False);
+            Assert.That(New<IDataStore>(@"C:\Temp\test.txt").IsEncryptable(), Is.True);
+            Assert.That(New<IDataStore>(@"C:\Windows\test.txt").IsEncryptable(), Is.False);
+            Assert.That(New<IDataStore>(@"C:\Temp\test-txt.axx").IsEncryptable(), Is.False);
 
             IDataStore nullFileInfo = null;
             Assert.Throws<ArgumentNullException>(() => nullFileInfo.IsEncryptable());
@@ -428,10 +430,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestNormalizeFolder()
         {
             string expected = @"C:\Documents\".Replace('\\', Path.DirectorySeparatorChar);
-            Assert.That(TypeMap.Resolve.New<IDataContainer>(@"C:\Documents\").FullName, Is.EqualTo(expected));
-            Assert.That(TypeMap.Resolve.New<IDataContainer>(@"C:/Documents\").FullName, Is.EqualTo(expected));
-            Assert.That(TypeMap.Resolve.New<IDataContainer>(@"C:\Documents").FullName, Is.EqualTo(expected));
-            Assert.That(TypeMap.Resolve.New<IDataContainer>(@"C:\Documents\\//").FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:\Documents\").FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:/Documents\").FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:\Documents").FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:\Documents\\//").FullName, Is.EqualTo(expected));
         }
 
         [Test]
@@ -459,23 +461,23 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestFileInfoTypeExtension()
         {
             FakeDataStore.AddFile(@"c:\test.txt", null);
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(@"c:\test.txt");
+            IDataStore fileInfo = New<IDataStore>(@"c:\test.txt");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.EncryptableFile));
 
             FakeDataStore.AddFile(@"c:\test-txt.axx", null);
-            fileInfo = TypeMap.Resolve.New<IDataStore>(@"c:\test-txt.axx");
+            fileInfo = New<IDataStore>(@"c:\test-txt.axx");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.EncryptedFile));
 
             FakeDataStore.AddFolder(@"c:\test\");
-            IDataContainer folderInfo = TypeMap.Resolve.New<IDataContainer>(@"c:\test\");
+            IDataContainer folderInfo = New<IDataContainer>(@"c:\test\");
             Assert.That(folderInfo.Type(), Is.EqualTo(FileInfoTypes.Folder));
 
-            fileInfo = TypeMap.Resolve.New<IDataStore>(@"c:\not-there.txt");
+            fileInfo = New<IDataStore>(@"c:\not-there.txt");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.NonExisting));
 
             OS.PathFilters.Add(new Regex(@"^C:\{0}Windows\{0}".InvariantFormat(Path.DirectorySeparatorChar)));
             FakeDataStore.AddFile(@"C:\Windows\System.drv", null);
-            fileInfo = TypeMap.Resolve.New<IDataStore>(@"C:\Windows\System.drv");
+            fileInfo = New<IDataStore>(@"C:\Windows\System.drv");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.OtherFile));
         }
 

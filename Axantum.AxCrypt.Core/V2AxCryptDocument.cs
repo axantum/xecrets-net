@@ -41,6 +41,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core
 {
     /// <summary>
@@ -213,7 +215,7 @@ namespace Axantum.AxCrypt.Core
             V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey()));
             V2HmacStream<Stream> outputHmacStream = V2HmacStream.Create(hmacCalculator, outputStream);
 
-            CryptoStream encryptingStream = TypeMap.Resolve.New<CryptoStream>().Initialize(V2AxCryptDataStream.Create(outputHmacStream), DocumentHeaders.DataCrypto().EncryptingTransform(), CryptoStreamMode.Write);
+            CryptoStream encryptingStream = New<CryptoStream>().Initialize(V2AxCryptDataStream.Create(outputHmacStream), DocumentHeaders.DataCrypto().EncryptingTransform(), CryptoStreamMode.Write);
             DocumentHeaders.WriteStartWithHmac(outputHmacStream);
             if (DocumentHeaders.IsCompressed)
             {

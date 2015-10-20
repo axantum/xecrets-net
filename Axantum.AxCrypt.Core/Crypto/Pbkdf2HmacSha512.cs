@@ -33,6 +33,8 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>Implements password-based key derivation functionality, PBKDF2, by using a pseudo-random number generator based on <see cref="T:System.Security.Cryptography.HMACSHA512" />.</summary>
@@ -83,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static byte[] F(string password, Salt salt, int derivationIterations)
         {
-            HMAC hmacsha512 = TypeMap.Resolve.New<HMACSHA512>().Initialize(new SymmetricKey(new UTF8Encoding(false).GetBytes(password)));
+            HMAC hmacsha512 = New<HMACSHA512>().Initialize(new SymmetricKey(new UTF8Encoding(false).GetBytes(password)));
 
             hmacsha512.TransformBlock(salt.GetBytes(), 0, salt.Length, null, 0);
             byte[] iBytes = 1.GetBigEndianBytes();

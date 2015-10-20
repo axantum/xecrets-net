@@ -33,6 +33,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.IO
 {
     public class V2HmacCalculator
@@ -43,7 +45,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public V2HmacCalculator(SymmetricKey key)
         {
-            _hmac = TypeMap.Resolve.New<HMACSHA512>().Initialize(key);
+            _hmac = New<HMACSHA512>().Initialize(key);
         }
 
         private byte[] _hmacResult = null;

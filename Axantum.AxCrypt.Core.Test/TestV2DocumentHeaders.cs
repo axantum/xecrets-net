@@ -40,6 +40,8 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -229,7 +231,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestAddingSingleV2AsymmetricKeyWrap()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
-            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(encryptionParameters, 1000);
@@ -240,7 +242,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(encryptionParameters.CryptoId);
 
-            IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            IAsymmetricPrivateKey privateKey1 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
             block1.SetPrivateKey(cryptoFactory, privateKey1);
             ICrypto cryptoFromAsymmetricKey = block1.Crypto(0);
 
@@ -249,7 +251,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(cryptoFromAsymmetricKey.Key, Is.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric and Symmetric should be equal.");
 
-            IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+            IAsymmetricPrivateKey privateKey2 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
             block1.SetPrivateKey(cryptoFactory, privateKey2);
             ICrypto cryptoFromAsymmetricKey1WithKey2 = block1.Crypto(0);
             Assert.That(cryptoFromAsymmetricKey1WithKey2, Is.Null, "There should be no valid key set and thus no ICrypto instance returned.");
@@ -259,8 +261,8 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestAddingMultipleV2AsymmetricKeyWraps()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("niklas"));
-            IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            IAsymmetricPublicKey publicKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey publicKey2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });
 
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(encryptionParameters, 1000);
@@ -271,7 +273,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(encryptionParameters.CryptoId);
 
-            IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            IAsymmetricPrivateKey privateKey1 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
             block1.SetPrivateKey(cryptoFactory, privateKey1);
             ICrypto cryptoFromAsymmetricKey1 = block1.Crypto(0);
 
@@ -282,7 +284,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             V2AsymmetricKeyWrapHeaderBlock block2 = wraps.Last();
 
-            IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+            IAsymmetricPrivateKey privateKey2 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
             block2.SetPrivateKey(cryptoFactory, privateKey2);
             ICrypto cryptoFromAsymmetricKey2 = block2.Crypto(0);
             Assert.That(cryptoFromAsymmetricKey2.Key, Is.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 2 and Symmetric should be equal.");

@@ -46,6 +46,8 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Core.Service;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     /// <summary>
@@ -60,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(Path.GetPathRoot(Environment.CurrentDirectory) + @"WorkFolder\"));
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<ILogging>(() => new FakeLogging());
-            TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt"), TypeMap.Resolve.New<IterationCalculator>()));
+            TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt"), New<IterationCalculator>()));
             TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
             TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
@@ -80,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<ActiveFileAction>(() => new ActiveFileAction());
             TypeMap.Register.New<FileOperation>(() => new FileOperation(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
-            TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities, Resolve.ParallelFileOperation, TypeMap.Resolve.Singleton<IStatusChecker>(), TypeMap.Resolve.New<IdentityViewModel>()));
+            TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities, Resolve.ParallelFileOperation, New<IStatusChecker>(), New<IdentityViewModel>()));
             TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState, Resolve.UserSettings));
             TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));
             TypeMap.Register.New<string, IDataContainer>((path) => new FakeDataContainer(path));
@@ -88,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<string, IFileWatcher>((path) => new FakeFileWatcher(path));
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetSerializers()));
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new LocalAccountService(new NullAccountService(identity), Resolve.WorkFolder.FileInfo));
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);

@@ -38,6 +38,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt
 {
     internal static class KnownFoldersDiscovery
@@ -61,7 +63,7 @@ namespace Axantum.AxCrypt
         private static void CheckDocumentsLibrary(IList<KnownFolder> knownFolders)
         {
             Bitmap bitmap = Resources.folder_40px;
-            IDataContainer myDocumentsInfo = TypeMap.Resolve.New<IDataContainer>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            IDataContainer myDocumentsInfo = New<IDataContainer>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
             KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, Resources.MyAxCryptFolderName, bitmap, null);
             knownFolders.Add(windowsDesktopFolder);
         }
@@ -75,7 +77,7 @@ namespace Axantum.AxCrypt
             }
 
             Bitmap bitmap = Resources.dropbox_40px;
-            IDataContainer dropBoxFolderInfo = TypeMap.Resolve.New<IDataContainer>(dropBoxFolder);
+            IDataContainer dropBoxFolderInfo = New<IDataContainer>(dropBoxFolder);
             KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Resources.MyAxCryptFolderName, bitmap, null);
 
             knownFolders.Add(knownFolder);
@@ -92,7 +94,7 @@ namespace Axantum.AxCrypt
             Uri url = new Uri("https://onedrive.live.com/");
 
             Bitmap bitmap = Resources.skydrive_40px;
-            IDataContainer skyDriveFolderInfo = TypeMap.Resolve.New<IDataContainer>(skyDriveFolder);
+            IDataContainer skyDriveFolderInfo = New<IDataContainer>(skyDriveFolder);
             KnownFolder knownFolder = new KnownFolder(skyDriveFolderInfo, Resources.MyAxCryptFolderName, bitmap, url);
 
             knownFolders.Add(knownFolder);
@@ -150,7 +152,7 @@ namespace Axantum.AxCrypt
             Uri url = new Uri("https://drive.google.com/");
 
             Bitmap bitmap = Resources.google_40px;
-            IDataContainer googleDriveFolderInfo = TypeMap.Resolve.New<IDataContainer>(googleDriveFolder);
+            IDataContainer googleDriveFolderInfo = New<IDataContainer>(googleDriveFolder);
             KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Resources.MyAxCryptFolderName, bitmap, url);
             knownFolders.Add(knownFolder);
         }

@@ -42,23 +42,59 @@ namespace Axantum.AxCrypt.Abstractions
         }
 
         /// <summary>
-        /// Resolve a singleton instance of the given type. The method delegate registered to provide the instance is
+        /// Resolve an instance of the given type. If the type was registered as a singleton, the method delegate registered to provide the instance is
         /// only called once, on the first call.
         /// </summary>
-        /// <typeparam name="TResult">The type of the singleton to resolve.</typeparam>
-        /// <returns>A singleton instance of the given type.</returns>
-        public TResult Singleton<TResult>() where TResult : class
+        /// <typeparam name="TResult">The type to resolve.</typeparam>
+        /// <returns>An instance of the given type.</returns>
+        public static TResult New<TResult>() where TResult : class
+        {
+            return TypeMap.Create.NewInternal<TResult>();
+        }
+
+        /// <summary>
+        /// Create an instance of a registered type.
+        /// </summary>
+        /// <typeparam name="TResult">The type to create an instance of.</typeparam>
+        /// <param name="argument">The string argument to the constructor.</param>
+        /// <returns>
+        /// An instance of the type, according to the rules of the factory. It may be a singleton.
+        /// </returns>
+        public static TResult New<TResult>(string argument)
+        {
+            return TypeMap.Create.NewInternal<TResult>(argument);
+        }
+
+        /// <summary>
+        /// Create an instance of a registered type with an argument to the constructor.
+        /// </summary>
+        /// <typeparam name="TArgument">The type of the argument to the constructor.</typeparam>
+        /// <typeparam name="TResult">The type to create an instance of.</typeparam>
+        /// <param name="argument">The argument.</param>
+        /// <returns>An instance of the type, according to the rules of the factory. It may be a singleton.</returns>
+        public static TResult New<TArgument, TResult>(TArgument argument)
+        {
+            return TypeMap.Create.NewInternal<TArgument, TResult>(argument);
+        }
+
+        private TResult NewInternal<TResult>() where TResult : class
         {
             object o;
             if (!_mapping.TryGetValue(typeof(TResult), out o))
             {
-                throw new ArgumentException("Unregistered singleton. Initialize with 'FactoryRegistry.Singleton<{0}>(() => {{ return new {0}(); }});'".Format(typeof(TResult)));
+                throw new ArgumentException("Unregistered type. Initialize with 'TypeMap.Register.[Singleton|New]<{0}>(() => {{ return new {0}(); }});'".Format(typeof(TResult)));
             }
 
             TResult value = o as TResult;
             if (value != null)
             {
                 return value;
+            }
+
+            Func<TResult> function = o as Func<TResult>;
+            if (function != null)
+            {
+                return function();
             }
 
             Creator<TResult> creator = (Creator<TResult>)o;
@@ -69,71 +105,25 @@ namespace Axantum.AxCrypt.Abstractions
             return value;
         }
 
-        /// <summary>
-        /// Create an instance of a registered type.
-        /// </summary>
-        /// <typeparam name="TResult">The type to create an instance of.</typeparam>
-        /// <returns>An instance of the type, according to the rules of the factory. It may be a singleton.</returns>
-        public TResult New<TResult>()
-        {
-            return CreateInternal<TResult>();
-        }
-
-        /// <summary>
-        /// Create an instance of a registered type.
-        /// </summary>
-        /// <typeparam name="TResult">The type to create an instance of.</typeparam>
-        /// <param name="argument">The argument to the constructor.</param>
-        /// <returns>
-        /// An instance of the type, according to the rules of the factory. It may be a singleton.
-        /// </returns>
-        public TResult New<TResult>(string argument)
+        private TResult NewInternal<TResult>(string argument)
         {
             return CreateInternal<string, TResult>(argument);
         }
 
-        /// <summary>
-        /// Create an instance of a registered type with an argument to the constructor.
-        /// </summary>
-        /// <typeparam name="TArgument">The type of the argument to the constructor.</typeparam>
-        /// <typeparam name="TResult">The type to create an instance of.</typeparam>
-        /// <param name="argument">The argument.</param>
-        /// <returns>An instance of the type, according to the rules of the factory. It may be a singleton.</returns>
-        public TResult New<TArgument, TResult>(TArgument argument)
+        private TResult NewInternal<TArgument, TResult>(TArgument argument)
         {
             return CreateInternal<TArgument, TResult>(argument);
         }
 
-        private TResult CreateInternal<TResult>()
-        {
-            Func<TResult> function = GetTypeFactory<TResult>();
-            return function();
-        }
-
         private TResult CreateInternal<TArgument, TResult>(TArgument argument)
         {
-            Func<TArgument, TResult> function = GetTypeFactory<TArgument, TResult>();
+            object o;
+            if (!_mapping.TryGetValue(typeof(TResult), out o))
+            {
+                throw new ArgumentException("Unregistered type factory. Initialize with 'TypeMap.Register<{0}, {1}>((argument) => {{ return new {0}(argument); }});'".Format(typeof(TArgument), typeof(TResult)));
+            }
+            Func<TArgument, TResult> function = (Func<TArgument, TResult>)o;
             return function(argument);
-        }
-
-        private Func<TResult> GetTypeFactory<TResult>()
-        {
-            object function;
-            if (!_mapping.TryGetValue(typeof(TResult), out function))
-            {
-                throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}>(() => {{ return new {0}(); }});'".Format(typeof(TResult)));
-            }
-            return (Func<TResult>)function;
-        }
-
-        private Func<TArgument, TResult> GetTypeFactory<TArgument, TResult>()
-        {
-            object function;
-            if (!_mapping.TryGetValue(typeof(TResult), out function))
-            {
-                throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}, {1}>((argument) => {{ return new {0}(argument); }});'".Format(typeof(TArgument), typeof(TResult)));
-            }
-            return (Func<TArgument, TResult>)function;
         }
     }
 }

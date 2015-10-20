@@ -37,6 +37,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -83,8 +85,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(0));
 
-            IDataContainer betterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\BetterCloud");
-            IDataContainer fasterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\FasterCloud");
+            IDataContainer betterCloudInfo = New<IDataContainer>(@"C:\BetterCloud");
+            IDataContainer fasterCloudInfo = New<IDataContainer>(@"C:\FasterCloud");
             KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
             KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
             FakeDataStore.AddFolder(folder1.My.FullName);
@@ -109,8 +111,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestAlreadyKnownFoldersAndLoggingOn()
         {
-            IDataContainer betterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\BetterCloud");
-            IDataContainer fasterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\FasterCloud");
+            IDataContainer betterCloudInfo = New<IDataContainer>(@"C:\BetterCloud");
+            IDataContainer fasterCloudInfo = New<IDataContainer>(@"C:\FasterCloud");
             KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
             KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
             FakeDataStore.AddFolder(folder1.My.FullName);
@@ -138,8 +140,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestFileWasCreatedWhereAKnownFolderWasExpected()
         {
-            IDataContainer betterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\BetterCloud");
-            IDataContainer fasterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\FasterCloud");
+            IDataContainer betterCloudInfo = New<IDataContainer>(@"C:\BetterCloud");
+            IDataContainer fasterCloudInfo = New<IDataContainer>(@"C:\FasterCloud");
             KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
             KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
             FakeDataStore.AddFile(@"C:\BetterCloud\My AxCrypt", Stream.Null);

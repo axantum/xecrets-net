@@ -34,6 +34,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class FileOperationViewModel : ViewModelBase
@@ -110,7 +112,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void DecryptFoldersAction(IEnumerable<string> folders)
         {
-            _fileOperation.DoFiles(folders.Select(f => TypeMap.Resolve.New<IDataContainer>(f)).ToList(), DecryptFolderWork, (status) => { });
+            _fileOperation.DoFiles(folders.Select(f => New<IDataContainer>(f)).ToList(), DecryptFolderWork, (status) => { });
         }
 
         private void EncryptFilesAction(IEnumerable<string> files)
@@ -128,7 +130,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            _fileOperation.DoFiles(files.Select(f => TypeMap.Resolve.New<IDataStore>(f)).ToList(), EncryptFileWork, (status) => { });
+            _fileOperation.DoFiles(files.Select(f => New<IDataStore>(f)).ToList(), EncryptFileWork, (status) => { });
         }
 
         private void DecryptFilesAction(IEnumerable<string> files)
@@ -146,7 +148,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            _fileOperation.DoFiles(files.Select(f => TypeMap.Resolve.New<IDataStore>(f)).ToList(), DecryptFileWork, (status) => { });
+            _fileOperation.DoFiles(files.Select(f => New<IDataStore>(f)).ToList(), DecryptFileWork, (status) => { });
         }
 
         private void WipeFilesAction(IEnumerable<string> files)
@@ -156,7 +158,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            _fileOperation.DoFiles(files.Select(f => TypeMap.Resolve.New<IDataStore>(f)).ToList(), WipeFileWork, (status) => { });
+            _fileOperation.DoFiles(files.Select(f => New<IDataStore>(f)).ToList(), WipeFileWork, (status) => { });
         }
 
         private void RandomRenameFilesAction(IEnumerable<string> files)
@@ -166,7 +168,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            _fileOperation.DoFiles(files.Select(f => TypeMap.Resolve.New<IDataStore>(f)).ToList(), RandomRenameFileWork, (status) => { });
+            _fileOperation.DoFiles(files.Select(f => New<IDataStore>(f)).ToList(), RandomRenameFileWork, (status) => { });
         }
 
         private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
@@ -185,7 +187,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void OpenFilesAction(IEnumerable<string> files)
         {
-            _fileOperation.DoFiles(files.Select(f => TypeMap.Resolve.New<IDataStore>(f)).ToList(), OpenEncryptedWork, (status) => { });
+            _fileOperation.DoFiles(files.Select(f => New<IDataStore>(f)).ToList(), OpenEncryptedWork, (status) => { });
         }
 
         private FileOperationContext DecryptFileWork(IDataStore file, IProgressContext progress)
@@ -218,7 +220,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName))
                 {
-                    TypeMap.Resolve.New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { TypeMap.Resolve.New<IDataStore>(e.OpenFileFullName) }, progress);
+                    New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(e.OpenFileFullName) }, progress);
                 }
             };
 
@@ -250,7 +252,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
                 if (Resolve.StatusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName))
                 {
-                    TypeMap.Resolve.New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { TypeMap.Resolve.New<IDataStore>(e.SaveFileFullName) }, progress);
+                    New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(e.SaveFileFullName) }, progress);
                 }
             };
 
@@ -305,7 +307,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private FileOperationContext EncryptFileWork(IDataStore file, IProgressContext progress)
         {
-            FileOperationsController operationsController = TypeMap.Resolve.New<IProgressContext, FileOperationsController>(progress);
+            FileOperationsController operationsController = New<IProgressContext, FileOperationsController>(progress);
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
@@ -325,8 +327,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
                 if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName))
                 {
-                    IDataStore encryptedInfo = TypeMap.Resolve.New<IDataStore>(e.SaveFileFullName);
-                    IDataStore decryptedInfo = TypeMap.Resolve.New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
+                    IDataStore encryptedInfo = New<IDataStore>(e.SaveFileFullName);
+                    IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.LogOnIdentity, ActiveFileStatus.NotDecrypted, e.CryptoId);
                     _fileSystemState.Add(activeFile);
                     _fileSystemState.Save();
@@ -356,8 +358,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.OpenFileFullName))
                 {
-                    IDataStore encryptedInfo = TypeMap.Resolve.New<IDataStore>(e.OpenFileFullName);
-                    IDataStore decryptedInfo = TypeMap.Resolve.New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.SaveFileFullName));
+                    IDataStore encryptedInfo = New<IDataStore>(e.OpenFileFullName);
+                    IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.SaveFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.LogOnIdentity, ActiveFileStatus.NotDecrypted, e.CryptoId);
                     _fileSystemState.Add(activeFile);
                     _fileSystemState.Save();
@@ -383,13 +385,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private FileOperationContext DecryptFolderWork(IDataContainer folder, IProgressContext progress)
         {
-            TypeMap.Resolve.New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(folder, _knownIdentities.DefaultEncryptionIdentity, _statusChecker, progress);
+            New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(folder, _knownIdentities.DefaultEncryptionIdentity, _statusChecker, progress);
             return new FileOperationContext(String.Empty, ErrorStatus.Success);
         }
 
         private void AddRecentFilesAction(IEnumerable<string> files)
         {
-            IEnumerable<IDataStore> fileInfos = files.Select(f => TypeMap.Resolve.New<IDataStore>(f)).ToList();
+            IEnumerable<IDataStore> fileInfos = files.Select(f => New<IDataStore>(f)).ToList();
             ProcessEncryptableFilesDroppedInRecentList(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
             ProcessEncryptedFilesDroppedInRecentList(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
         }

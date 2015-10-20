@@ -33,6 +33,8 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -54,10 +56,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestDateComparer()
         {
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2013, 01, 01);
-            ActiveFile activeFile1a = new ActiveFile(TypeMap.Resolve.New<IDataStore>((@"C:\encrypted1.axx")), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted1.txt"), new LogOnIdentity("activeFile1a"), ActiveFileStatus.NotDecrypted, new V2Aes256CryptoFactory().Id);
+            ActiveFile activeFile1a = new ActiveFile(New<IDataStore>((@"C:\encrypted1.axx")), New<IDataStore>(@"C:\decrypted1.txt"), new LogOnIdentity("activeFile1a"), ActiveFileStatus.NotDecrypted, new V2Aes256CryptoFactory().Id);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2013, 01, 01);
-            ActiveFile activeFile1b = new ActiveFile(TypeMap.Resolve.New<IDataStore>((@"C:\encrypted2.axx")), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted2.txt"), new LogOnIdentity("activeFile1b"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile1b = new ActiveFile(New<IDataStore>((@"C:\encrypted2.axx")), New<IDataStore>(@"C:\decrypted2.txt"), new LogOnIdentity("activeFile1b"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
 
             ActiveFileComparer comparer = ActiveFileComparer.DateComparer;
             Assert.That(comparer.ReverseSort, Is.False);
@@ -70,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
             comparer.ReverseSort = false;
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2013, 01, 02);
-            ActiveFile activeFile2 = new ActiveFile(TypeMap.Resolve.New<IDataStore>((@"C:\encrypted3.axx")), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted3.txt"), new LogOnIdentity("activeFile2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile2 = new ActiveFile(New<IDataStore>((@"C:\encrypted3.axx")), New<IDataStore>(@"C:\decrypted3.txt"), new LogOnIdentity("activeFile2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
 
             Assert.That(comparer.Compare(activeFile1a, activeFile2), Is.LessThan(0));
             Assert.That(comparer.Compare(activeFile2, activeFile1a), Is.GreaterThan(0));
@@ -83,8 +85,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptedNameComparer()
         {
-            ActiveFile activeFile1a = new ActiveFile(TypeMap.Resolve.New<IDataStore>((@"C:\encrypted1.axx")), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted1a.txt"), new LogOnIdentity("activeFile1a"), ActiveFileStatus.NotDecrypted, new V2Aes256CryptoFactory().Id);
-            ActiveFile activeFile1b = new ActiveFile(TypeMap.Resolve.New<IDataStore>((@"C:\encrypted1.axx")), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted1b.txt"), new LogOnIdentity("activeFile1b"), ActiveFileStatus.NotDecrypted, new V2Aes256CryptoFactory().Id);
+            ActiveFile activeFile1a = new ActiveFile(New<IDataStore>((@"C:\encrypted1.axx")), New<IDataStore>(@"C:\decrypted1a.txt"), new LogOnIdentity("activeFile1a"), ActiveFileStatus.NotDecrypted, new V2Aes256CryptoFactory().Id);
+            ActiveFile activeFile1b = new ActiveFile(New<IDataStore>((@"C:\encrypted1.axx")), New<IDataStore>(@"C:\decrypted1b.txt"), new LogOnIdentity("activeFile1b"), ActiveFileStatus.NotDecrypted, new V2Aes256CryptoFactory().Id);
 
             ActiveFileComparer comparer = ActiveFileComparer.EncryptedNameComparer;
             Assert.That(comparer.ReverseSort, Is.False);
@@ -96,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(comparer.Compare(activeFile1b, activeFile1a), Is.EqualTo(0));
             comparer.ReverseSort = false;
 
-            ActiveFile activeFile2 = new ActiveFile(TypeMap.Resolve.New<IDataStore>((@"C:\encrypted2.axx")), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted1a.txt"), new LogOnIdentity("activeFile2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile2 = new ActiveFile(New<IDataStore>((@"C:\encrypted2.axx")), New<IDataStore>(@"C:\decrypted1a.txt"), new LogOnIdentity("activeFile2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
 
             Assert.That(comparer.Compare(activeFile1a, activeFile2), Is.LessThan(0));
             Assert.That(comparer.Compare(activeFile2, activeFile1a), Is.GreaterThan(0));
@@ -109,8 +111,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptedNameComparer()
         {
-            ActiveFile activeFile1a = new ActiveFile(TypeMap.Resolve.New<IDataStore>((@"C:\encrypted1a.axx")), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted1.txt"), new LogOnIdentity("activeFile1a"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            ActiveFile activeFile1b = new ActiveFile(TypeMap.Resolve.New<IDataStore>((@"C:\encrypted1b.axx")), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted1.txt"), new LogOnIdentity("activeFile1b"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile1a = new ActiveFile(New<IDataStore>((@"C:\encrypted1a.axx")), New<IDataStore>(@"C:\decrypted1.txt"), new LogOnIdentity("activeFile1a"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile1b = new ActiveFile(New<IDataStore>((@"C:\encrypted1b.axx")), New<IDataStore>(@"C:\decrypted1.txt"), new LogOnIdentity("activeFile1b"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
 
             ActiveFileComparer comparer = ActiveFileComparer.DecryptedNameComparer;
             Assert.That(comparer.ReverseSort, Is.False);
@@ -122,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(comparer.Compare(activeFile1b, activeFile1a), Is.EqualTo(0));
             comparer.ReverseSort = false;
 
-            ActiveFile activeFile2 = new ActiveFile(TypeMap.Resolve.New<IDataStore>((@"C:\encrypted1a.axx")), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted2.txt"), new LogOnIdentity("activeFile2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile2 = new ActiveFile(New<IDataStore>((@"C:\encrypted1a.axx")), New<IDataStore>(@"C:\decrypted2.txt"), new LogOnIdentity("activeFile2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
 
             Assert.That(comparer.Compare(activeFile1a, activeFile2), Is.LessThan(0));
             Assert.That(comparer.Compare(activeFile2, activeFile1a), Is.GreaterThan(0));

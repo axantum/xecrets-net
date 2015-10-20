@@ -31,6 +31,8 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -51,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void SimpleTest()
         {
-            IFileWatcher watcher = TypeMap.Resolve.New<IFileWatcher>("c:\temp");
+            IFileWatcher watcher = New<IFileWatcher>("c:\temp");
             string fullName = String.Empty;
             watcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
                 {

@@ -41,6 +41,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -135,7 +137,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationContext status;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
-            IDataStore axCryptDataStore = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore axCryptDataStore = New<IDataStore>(_helloWorldAxxPath);
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), axCryptDataStore, new ProgressContext());
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
@@ -153,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<ILauncher>(() => { called = true; return launcher; });
             FileOperationContext status;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
-            IDataStore axCryptDataStore = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore axCryptDataStore = New<IDataStore>(_helloWorldAxxPath);
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), axCryptDataStore, new ProgressContext());
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
@@ -167,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
             string nullString = null;
             IDataStore nullDataStore = null;
             ProgressContext nullProgressContext = null;
-            IDataStore axCryptDataStore = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore axCryptDataStore = New<IDataStore>(_helloWorldAxxPath);
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
 
             Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, LogOnIdentity.Empty, axCryptDataStore, new ProgressContext()); });
@@ -199,7 +201,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
 
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore fileInfo = New<IDataStore>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -222,7 +224,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
 
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore fileInfo = New<IDataStore>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -334,7 +336,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
 
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore fileInfo = New<IDataStore>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             destinationActiveFile.DecryptedFileInfo.Delete();
             destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.NotDecrypted);
@@ -350,7 +352,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string temporaryDestinationName = FileOperation.GetTemporaryDestinationName(_davidCopperfieldTxtPath);
 
-            Assert.That(temporaryDestinationName.StartsWith(Path.GetDirectoryName(TypeMap.Resolve.Singleton<WorkFolder>().FileInfo.FullName), StringComparison.OrdinalIgnoreCase), "The temporary destination should be in the temporary directory.");
+            Assert.That(temporaryDestinationName.StartsWith(Path.GetDirectoryName(New<WorkFolder>().FileInfo.FullName), StringComparison.OrdinalIgnoreCase), "The temporary destination should be in the temporary directory.");
             Assert.That(Path.GetFileName(temporaryDestinationName), Is.EqualTo(Path.GetFileName(_davidCopperfieldTxtPath)), "The temporary destination should have the same file name.");
         }
     }

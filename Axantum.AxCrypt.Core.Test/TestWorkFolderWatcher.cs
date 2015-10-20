@@ -34,6 +34,8 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -63,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullNames.SequenceEqual(new string[] { fileName }))), Times.Once);
 
-                TypeMap.Resolve.New<IDataStore>(fileName).Delete();
+                New<IDataStore>(fileName).Delete();
                 Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullNames.SequenceEqual(new string[] { fileName }))), Times.Exactly(2));
 
                 IDataStore fileSystemStateInfo = Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt");

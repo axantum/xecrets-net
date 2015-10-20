@@ -8,13 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Desktop
 {
     public static class DesktopFactory
     {
         public static void RegisterTypeFactories()
         {
-            TypeMap.Register.New<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(TypeMap.Resolve.New<IDelayTimer>(), Resolve.UserSettings.SessionNotificationMinimumIdle)));
+            TypeMap.Register.New<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(New<IDelayTimer>(), Resolve.UserSettings.SessionNotificationMinimumIdle)));
         }
     }
 }

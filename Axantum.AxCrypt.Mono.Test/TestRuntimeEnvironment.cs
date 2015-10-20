@@ -39,6 +39,8 @@ using System;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Mono.Test
 {
     [TestFixture]
@@ -96,19 +98,19 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestRuntimeFileInfo()
         {
-            IDataStore runtimeFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetTempPath(), "A File.txt"));
+            IDataStore runtimeFileInfo = New<IDataStore>(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo is DataStore, "The instance returned should be of type DataStore");
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
-            runtimeFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetTempPath(), "A File.txt"));
+            runtimeFileInfo = New<IDataStore>(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
         }
 
         [Test]
         public static void TestTemporaryDirectoryInfo()
         {
-            IDataContainer tempInfo = TypeMap.Resolve.Singleton<WorkFolder>().FileInfo;
+            IDataContainer tempInfo = New<WorkFolder>().FileInfo;
             Assert.That(tempInfo is DataContainer, "The instance returned should be of type DataStore");
-            IDataStore tempFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
+            IDataStore tempFileInfo = New<IDataStore>(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
             Assert.DoesNotThrow(() =>
             {
                 try

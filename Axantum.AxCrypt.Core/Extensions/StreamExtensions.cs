@@ -33,6 +33,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Extensions
 {
     public static class StreamExtensions
@@ -118,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
                 if (isCompressed)
                 {
-                    using (Stream deflatedPlaintextStream = TypeMap.Resolve.New<CryptoStream>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read))
+                    using (Stream deflatedPlaintextStream = New<CryptoStream>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read))
                     {
                         using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
                         {
@@ -136,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
                 else
                 {
-                    using (Stream plainStream = TypeMap.Resolve.New<CryptoStream>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read))
+                    using (Stream plainStream = New<CryptoStream>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read))
                     {
                         try
                         {

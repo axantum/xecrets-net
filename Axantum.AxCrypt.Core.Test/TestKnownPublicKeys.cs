@@ -38,6 +38,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -76,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeInMemoryDataStoreItem store = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
 
-            IAsymmetricPublicKey key = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey key = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey = new UserPublicKey(EmailAddress.Parse("test@test.com"), key);
             using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(store, Resolve.Serializer))
             {
@@ -99,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeInMemoryDataStoreItem store = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
 
-            IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test@test.com"), key1);
             using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(store, Resolve.Serializer))
             {
@@ -109,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(1), "There should be one entry now.");
             }
 
-            IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test@test.com"), key2);
 
             Assert.That(userPublicKey1, Is.Not.EqualTo(userPublicKey2), "Checking that the two public keys really are different.");
@@ -137,9 +139,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Mock<FakeInMemoryDataStoreItem> storeMock = new Mock<FakeInMemoryDataStoreItem>("KnownPublicKeys.txt") { CallBase = true, };
 
-            IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test@test.com"), key1);
-            IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
 
             using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(storeMock.Object, Resolve.Serializer))

@@ -33,6 +33,8 @@ using System;
 using System.Linq;
 using System.Runtime.Serialization;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Session
 {
     /// <summary>
@@ -82,9 +84,9 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void Initialize(StreamingContext context)
         {
-            if (TypeMap.Resolve.New<IDataContainer>(Path).IsAvailable)
+            if (New<IDataContainer>(Path).IsAvailable)
             {
-                _fileWatcher = TypeMap.Resolve.New<IFileWatcher>(Path);
+                _fileWatcher = New<IFileWatcher>(Path);
                 _fileWatcher.FileChanged += _fileWatcher_FileChanged;
             }
         }

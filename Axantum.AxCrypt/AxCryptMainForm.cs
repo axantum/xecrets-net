@@ -53,6 +53,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt
 {
     /// <summary>
@@ -130,7 +132,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            TypeMap.Resolve.Singleton<KeyPairService>().Start();
+            New<KeyPairService>().Start();
         }
 
         private bool ValidateSettings()
@@ -184,13 +186,13 @@ namespace Axantum.AxCrypt
 
         private bool EnsureCreateAccount()
         {
-            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(Resolve.UserSettings.UserEmail), Passphrase.Empty)));
+            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(Resolve.UserSettings.UserEmail), Passphrase.Empty)));
             if (store.Status == Api.Model.AccountStatus.Verified)
             {
                 return true;
             }
 
-            TypeMap.Resolve.Singleton<KeyPairService>().Start();
+            New<KeyPairService>().Start();
             using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, String.Empty, EmailAddress.Parse(Resolve.UserSettings.UserEmail)))
             {
                 DialogResult dialogResult = dialog.ShowDialog(this);
@@ -201,7 +203,7 @@ namespace Axantum.AxCrypt
 
                 Passphrase passphrase = new Passphrase(dialog.PassphraseTextBox.Text);
                 EmailAddress emailAddress = EmailAddress.Parse(dialog.EmailTextBox.Text);
-                store = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
+                store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
                 if (!store.HasKeyPair)
                 {
                     return false;
@@ -231,9 +233,9 @@ namespace Axantum.AxCrypt
 
         private void SetupCommandService()
         {
-            Resolve.CommandService.Received += TypeMap.Resolve.Singleton<CommandHandler>().RequestReceived;
+            Resolve.CommandService.Received += New<CommandHandler>().RequestReceived;
             Resolve.CommandService.StartListening();
-            TypeMap.Resolve.Singleton<CommandHandler>().CommandComplete += AxCryptMainForm_CommandComplete;
+            New<CommandHandler>().CommandComplete += AxCryptMainForm_CommandComplete;
         }
 
         private void ConfigureUiOptions()
@@ -259,9 +261,9 @@ namespace Axantum.AxCrypt
 
         private void SetupViewModels()
         {
-            _mainViewModel = TypeMap.Resolve.New<MainViewModel>();
-            _fileOperationViewModel = TypeMap.Resolve.New<FileOperationViewModel>();
-            _knownFoldersViewModel = TypeMap.Resolve.New<KnownFoldersViewModel>();
+            _mainViewModel = New<MainViewModel>();
+            _fileOperationViewModel = New<FileOperationViewModel>();
+            _knownFoldersViewModel = New<KnownFoldersViewModel>();
         }
 
         private void RegisterTypeFactories()
@@ -269,10 +271,10 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IUIThread>(() => new UIThread(this));
             TypeMap.Register.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
             TypeMap.Register.Singleton<IStatusChecker>(() => this);
-            TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, TypeMap.Resolve.New<ActiveFileAction>(), TypeMap.Resolve.New<AxCryptFile>(), this));
+            TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
 
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
-            TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities, Resolve.ParallelFileOperation, TypeMap.Resolve.Singleton<IStatusChecker>(), TypeMap.Resolve.New<IdentityViewModel>()));
+            TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities, Resolve.ParallelFileOperation, New<IStatusChecker>(), New<IdentityViewModel>()));
             TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState, Resolve.UserSettings));
             TypeMap.Register.New<KnownFoldersViewModel>(() => new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities));
             TypeMap.Register.New<WatchedFoldersViewModel>(() => new WatchedFoldersViewModel(Resolve.FileSystemState));
@@ -357,8 +359,8 @@ namespace Axantum.AxCrypt
 
         private void InitializePolicyMenu()
         {
-            string currentPolicyName = TypeMap.Resolve.Singleton<ICryptoPolicy>().Name;
-            foreach (string policyName in TypeMap.Resolve.Singleton<CryptoPolicy>().PolicyNames)
+            string currentPolicyName = New<ICryptoPolicy>().Name;
+            foreach (string policyName in New<CryptoPolicy>().PolicyNames)
             {
                 ToolStripMenuItem item = new ToolStripMenuItem();
                 item.Text = policyName;
@@ -740,7 +742,7 @@ namespace Axantum.AxCrypt
             {
                 if (e.SelectedFiles != null && e.SelectedFiles.Count > 0 && !String.IsNullOrEmpty(e.SelectedFiles[0]))
                 {
-                    IDataContainer initialFolder = TypeMap.Resolve.New<IDataContainer>(e.SelectedFiles[0]);
+                    IDataContainer initialFolder = New<IDataContainer>(e.SelectedFiles[0]);
                     if (initialFolder.IsAvailable)
                     {
                         ofd.InitialDirectory = initialFolder.FullName;
@@ -1580,7 +1582,7 @@ namespace Axantum.AxCrypt
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
             SetCheckedToolStripMenuItem(item);
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => TypeMap.Resolve.Singleton<CryptoPolicy>().Create(item.Text));
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => New<CryptoPolicy>().Create(item.Text));
         }
 
         private static void SetCheckedToolStripMenuItem(ToolStripMenuItem item)
@@ -1638,7 +1640,7 @@ namespace Axantum.AxCrypt
 
         private void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccountStorage userKeyPairs = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
+            AccountStorage userKeyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             ManageAccountViewModel viewModel = new ManageAccountViewModel(userKeyPairs, Resolve.KnownIdentities);
 
             string passphrase;
@@ -1692,7 +1694,7 @@ namespace Axantum.AxCrypt
             fileSelection.SelectingFiles += (sfsender, sfe) => { HandleOpenFileSelection(sfe); };
             fileSelection.SelectFiles.Execute(FileSelectionType.ImportPublicKeys);
 
-            ImportPublicKeysViewModel importPublicKeys = new ImportPublicKeysViewModel(TypeMap.Resolve.New<KnownPublicKeys>);
+            ImportPublicKeysViewModel importPublicKeys = new ImportPublicKeysViewModel(New<KnownPublicKeys>);
             importPublicKeys.ImportFiles.Execute(fileSelection.SelectedFiles);
         }
 
@@ -1714,9 +1716,9 @@ namespace Axantum.AxCrypt
         {
             foreach (string file in fileNames)
             {
-                EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(TypeMap.Resolve.New<IDataStore>(file));
+                EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(New<IDataStore>(file));
                 IEnumerable<UserPublicKey> sharedWith = encryptedProperties.SharedKeyHolders;
-                using (KeyShareDialog dialog = new KeyShareDialog(TypeMap.Resolve.New<KnownPublicKeys>, sharedWith, Resolve.KnownIdentities.DefaultEncryptionIdentity))
+                using (KeyShareDialog dialog = new KeyShareDialog(New<KnownPublicKeys>, sharedWith, Resolve.KnownIdentities.DefaultEncryptionIdentity))
                 {
                     if (dialog.ShowDialog(this) != DialogResult.OK)
                     {
@@ -1727,14 +1729,14 @@ namespace Axantum.AxCrypt
 
                 EncryptionParameters encryptionParameters = new EncryptionParameters(encryptedProperties.DecryptionParameter.CryptoId);
                 encryptionParameters.Passphrase = Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase;
-                encryptionParameters.Add(TypeMap.Resolve.New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s.Email == pk.Email)));
+                encryptionParameters.Add(New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s.Email == pk.Email)));
                 encryptionParameters.Add(Resolve.KnownIdentities.DefaultEncryptionIdentity.PublicKeys);
 
-                Resolve.ProgressBackground.Work((IProgressContext progress) =>
+                Resolve.ProgressBackground.Work((Func<IProgressContext, FileOperationContext>)((IProgressContext progress) =>
                 {
-                    TypeMap.Resolve.New<AxCryptFile>().ChangeEncryption(TypeMap.Resolve.New<IDataStore>(file), Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                    New<AxCryptFile>().ChangeEncryption(New<IDataStore>(file), Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
                     return new FileOperationContext(file, ErrorStatus.Success);
-                },
+                }),
                 (FileOperationContext foc) =>
                 {
                     if (foc.ErrorStatus == ErrorStatus.Success)

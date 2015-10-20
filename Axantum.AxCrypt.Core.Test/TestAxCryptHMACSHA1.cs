@@ -32,6 +32,8 @@ using NUnit.Framework;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -66,10 +68,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestInvalidArguments()
         {
             HMAC hmac = null;
-            Assert.Throws<ArgumentNullException>(() =>
+            Assert.Throws<ArgumentNullException>((TestDelegate)(() =>
             {
-                hmac = TypeMap.Resolve.New<AxCryptHMACSHA1>().Initialize(null);
-            });
+                hmac = New<AxCryptHMACSHA1>().Initialize(null);
+            }));
 
             // Use the instance to avoid FxCop errors.
             Object.Equals(hmac, null);
@@ -79,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestMethods()
         {
             SymmetricKey key = new SymmetricKey(128);
-            HMAC hmac = TypeMap.Resolve.New<AxCryptHMACSHA1>().Initialize(key);
+            HMAC hmac = New<AxCryptHMACSHA1>().Initialize(key);
 
             Assert.That(hmac.Key(), Is.EquivalentTo(key.GetBytes()), "Ensure that we're using the specified key.");
         }

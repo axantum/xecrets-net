@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class WatchedFoldersViewModel : ViewModelBase
@@ -59,7 +61,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IDataItem>(f))); });
+            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => New<IDataItem>(f))); });
         }
 
         private void SubscribeToModelEvents()
@@ -137,14 +139,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IDataContainer>(watchedFolderPath));
+                _fileSystemState.RemoveWatchedFolder(New<IDataContainer>(watchedFolderPath));
             }
             _fileSystemState.Save();
         }
 
         private static void OpenSelectedFolderAction(string folder)
         {
-            TypeMap.Resolve.New<ILauncher>().Launch(folder);
+            New<ILauncher>().Launch(folder);
         }
     }
 }

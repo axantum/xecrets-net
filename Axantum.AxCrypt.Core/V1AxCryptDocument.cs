@@ -41,6 +41,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core
 {
     /// <summary>
@@ -186,7 +188,7 @@ namespace Axantum.AxCrypt.Core
             using (ICryptoTransform encryptor = DataCrypto.EncryptingTransform())
             {
                 long outputStartPosition = outputStream.Position;
-                using (Stream encryptingStream = TypeMap.Resolve.New<CryptoStream>().Initialize(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
+                using (Stream encryptingStream = New<CryptoStream>().Initialize(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
                 {
                     if (isCompressed)
                     {

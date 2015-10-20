@@ -38,6 +38,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Desktop.Test
 {
     [TestFixture]
@@ -70,13 +72,13 @@ namespace Axantum.AxCrypt.Desktop.Test
         public static void TestFileWatcherSimple()
         {
             bool wasHere = false;
-            using (IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(_tempPath))
+            using (IFileWatcher fileWatcher = New<IFileWatcher>(_tempPath))
             {
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
                 {
                     wasHere = true;
                 };
-                IDataStore tempFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(_tempPath, "AxCryptTestTemp.tmp"));
+                IDataStore tempFileInfo = New<IDataStore>(Path.Combine(_tempPath, "AxCryptTestTemp.tmp"));
                 try
                 {
                     using (Stream stream = tempFileInfo.OpenWrite())
@@ -104,7 +106,7 @@ namespace Axantum.AxCrypt.Desktop.Test
         [Test]
         public static void TestCreated()
         {
-            using (IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(_tempPath))
+            using (IFileWatcher fileWatcher = New<IFileWatcher>(_tempPath))
             {
                 string fileName = String.Empty;
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullNames.First()); };
@@ -122,7 +124,7 @@ namespace Axantum.AxCrypt.Desktop.Test
         [Test]
         public static void TestMoved()
         {
-            using (IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(_tempPath))
+            using (IFileWatcher fileWatcher = New<IFileWatcher>(_tempPath))
             {
                 List<string> fileNames = null;
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileNames = e.FullNames.Select(f => Path.GetFileName(f)).ToList(); };
@@ -150,7 +152,7 @@ namespace Axantum.AxCrypt.Desktop.Test
         {
             Assert.DoesNotThrow(() =>
             {
-                using (IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(_tempPath))
+                using (IFileWatcher fileWatcher = New<IFileWatcher>(_tempPath))
                 {
                     fileWatcher.Dispose();
                 }

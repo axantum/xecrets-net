@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
     public class PublicKeyThumbprint : IEquatable<PublicKeyThumbprint>
@@ -23,7 +25,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
                 throw new ArgumentNullException("exponent");
             }
 
-            Sha256 sha256 = TypeMap.Resolve.New<Sha256>();
+            Sha256 sha256 = New<Sha256>();
 
             byte[] bytes = modulus.Append(exponent);
             byte[] hash = sha256.ComputeHash(bytes);

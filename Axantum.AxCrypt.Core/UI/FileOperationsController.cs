@@ -35,6 +35,8 @@ using System;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI
 {
     /// <summary>
@@ -255,7 +257,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
             }
 
-            IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
+            IDataStore destinationFileInfo = New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
             _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
             if (destinationFileInfo.IsAvailable)
@@ -291,7 +293,7 @@ namespace Axantum.AxCrypt.Core.UI
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default.Id;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
             encryptionParameters.Add(_eventArgs.SharedPublicKeys);
-            TypeMap.Resolve.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
+            New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return true;
@@ -313,7 +315,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
             }
 
-            IDataStore destination = TypeMap.Resolve.New<IDataStore>(_eventArgs.SaveFileFullName);
+            IDataStore destination = New<IDataStore>(_eventArgs.SaveFileFullName);
             if (destination.IsAvailable)
             {
                 OnQuerySaveFileAs(_eventArgs);
@@ -332,11 +334,11 @@ namespace Axantum.AxCrypt.Core.UI
             try
             {
                 _progress.NotifyLevelStart();
-                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
+                using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
                 {
-                    TypeMap.Resolve.New<AxCryptFile>().DecryptFile(document, _eventArgs.SaveFileFullName, _progress);
+                    New<AxCryptFile>().DecryptFile(document, _eventArgs.SaveFileFullName, _progress);
                 }
-                TypeMap.Resolve.New<AxCryptFile>().Wipe(TypeMap.Resolve.New<IDataStore>(_eventArgs.OpenFileFullName), _progress);
+                New<AxCryptFile>().Wipe(New<IDataStore>(_eventArgs.OpenFileFullName), _progress);
                 _progress.NotifyLevelFinished();
             }
             catch (AxCryptException ace)
@@ -371,7 +373,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool DecryptAndLaunchFileOperation()
         {
-            _eventArgs.Status = TypeMap.Resolve.New<FileOperation>().OpenAndLaunchApplication(_eventArgs.OpenFileFullName, _eventArgs.LogOnIdentity, _eventArgs.AxCryptFile, _progress);
+            _eventArgs.Status = New<FileOperation>().OpenAndLaunchApplication(_eventArgs.OpenFileFullName, _eventArgs.LogOnIdentity, _eventArgs.AxCryptFile, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return true;
@@ -417,7 +419,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             _progress.NotifyLevelStart();
-            TypeMap.Resolve.New<AxCryptFile>().Wipe(TypeMap.Resolve.New<IDataStore>(_eventArgs.SaveFileFullName), _progress);
+            New<AxCryptFile>().Wipe(New<IDataStore>(_eventArgs.SaveFileFullName), _progress);
             _progress.NotifyLevelFinished();
 
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
@@ -469,14 +471,14 @@ namespace Axantum.AxCrypt.Core.UI
 
         private static bool InfoFromDecryptedDocument(IDataStore sourceFileInfo, FileOperationEventArgs e)
         {
-            EncryptedProperties properties = TypeMap.Resolve.New<AxCryptFile>().CreateEncryptedProperties(sourceFileInfo, e.LogOnIdentity);
+            EncryptedProperties properties = New<AxCryptFile>().CreateEncryptedProperties(sourceFileInfo, e.LogOnIdentity);
             if (!properties.IsValid)
             {
                 return false;
             }
 
             e.CryptoId = properties.DecryptionParameter.CryptoId;
-            IDataStore destination = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceFileInfo.FullName), properties.FileName));
+            IDataStore destination = New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceFileInfo.FullName), properties.FileName));
             e.SaveFileFullName = destination.FullName;
             e.AxCryptFile = sourceFileInfo;
             return true;

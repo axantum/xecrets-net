@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test.CryptoValidation
@@ -47,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Test.CryptoValidation
         {
             byte[] bytes = Encoding.ASCII.GetBytes("abc");
 
-            Sha256 hash = TypeMap.Resolve.New<Sha256>();
+            Sha256 hash = New<Sha256>();
 
             byte[] actual;
             actual = hash.ComputeHash(bytes);
@@ -59,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test.CryptoValidation
         {
             byte[] bytes = Encoding.ASCII.GetBytes("abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq");
 
-            Sha256 hash = TypeMap.Resolve.New<Sha256>();
+            Sha256 hash = New<Sha256>();
 
             byte[] actual;
             actual = hash.ComputeHash(bytes);
@@ -71,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test.CryptoValidation
         {
             byte[] bytes = new byte[] { 97, 97, 97, 97, 97, 97, 97 };
 
-            Sha256 hash = TypeMap.Resolve.New<Sha256>();
+            Sha256 hash = New<Sha256>();
 
             for (int i = 0; i < 1000000; i += bytes.Length)
             {

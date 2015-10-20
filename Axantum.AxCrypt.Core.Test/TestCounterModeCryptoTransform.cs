@@ -32,6 +32,8 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -69,16 +71,16 @@ namespace Axantum.AxCrypt.Core.Test
 
             try
             {
-                algorithm = TypeMap.Resolve.New<Aes>();
+                algorithm = New<Aes>();
                 algorithm.Mode = CipherMode.CBC;
-                Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(TypeMap.Resolve.New<Aes>(), 0, 0));
+                Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(New<Aes>(), 0, 0));
 
-                algorithm = TypeMap.Resolve.New<Aes>();
+                algorithm = New<Aes>();
                 algorithm.Mode = CipherMode.ECB;
                 algorithm.Padding = PaddingMode.PKCS7;
                 Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
 
-                algorithm = TypeMap.Resolve.New<Aes>();
+                algorithm = New<Aes>();
                 algorithm.Mode = CipherMode.ECB;
                 algorithm.Padding = PaddingMode.None;
                 Assert.DoesNotThrow(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
@@ -95,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestCanReuseTransform()
         {
-            SymmetricAlgorithm algorithm = TypeMap.Resolve.New<Aes>();
+            SymmetricAlgorithm algorithm = New<Aes>();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
             using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, 0, 0))
@@ -107,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestTransformBlockWithBadArgument()
         {
-            SymmetricAlgorithm algorithm = TypeMap.Resolve.New<Aes>();
+            SymmetricAlgorithm algorithm = New<Aes>();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
             using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, 0, 0))

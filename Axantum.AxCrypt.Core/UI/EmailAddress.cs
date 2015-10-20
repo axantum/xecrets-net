@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI
 {
     /// <summary>
@@ -33,7 +35,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             string parsed;
-            if (!TypeMap.Resolve.Singleton<IEmailParser>().TryParse(address, out parsed))
+            if (!New<IEmailParser>().TryParse(address, out parsed))
             {
                 throw new FormatException("Not recognized as a valid e-mail.");
             }

@@ -38,6 +38,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Extensions
 {
     public static class DataStoreExtensions
@@ -137,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             string encryptedName = fullName.FullName.CreateEncryptedName();
-            return TypeMap.Resolve.New<IDataStore>(encryptedName);
+            return New<IDataStore>(encryptedName);
         }
 
         /// <summary>
@@ -156,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 int r = Math.Abs(BitConverter.ToInt32(Resolve.RandomGenerator.Generate(sizeof(int)), 0));
                 string alternatePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), r.ToString(CultureInfo.InvariantCulture) + Resolve.Portable.Path().GetExtension(fileInfo.FullName));
-                IDataStore alternateFileInfo = TypeMap.Resolve.New<IDataStore>(alternatePath);
+                IDataStore alternateFileInfo = New<IDataStore>(alternatePath);
                 if (!alternateFileInfo.IsAvailable)
                 {
                     return alternateFileInfo;
@@ -176,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             foreach (LogOnIdentity knownKey in Resolve.KnownIdentities.Identities)
             {
                 IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { knownKey.Passphrase }, knownKey.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
-                DecryptionParameter decryptionParameter = TypeMap.Resolve.New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, fileInfo);
+                DecryptionParameter decryptionParameter = New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, fileInfo);
                 if (decryptionParameter != null)
                 {
                     cryptoId = decryptionParameter.CryptoId;

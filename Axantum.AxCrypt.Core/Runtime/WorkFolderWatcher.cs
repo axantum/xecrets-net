@@ -31,6 +31,8 @@ using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Runtime
 {
     public class WorkFolderWatcher : IDisposable
@@ -39,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public WorkFolderWatcher()
         {
-            _workFolderWatcher = TypeMap.Resolve.New<IFileWatcher>(TypeMap.Resolve.Singleton<WorkFolder>().FileInfo.FullName);
+            _workFolderWatcher = New<IFileWatcher>(New<WorkFolder>().FileInfo.FullName);
             _workFolderWatcher.IncludeSubdirectories = true;
             _workFolderWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
         }

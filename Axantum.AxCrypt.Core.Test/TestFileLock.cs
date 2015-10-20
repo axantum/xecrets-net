@@ -36,6 +36,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -61,13 +63,13 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore nullInfo = null;
             Assert.Throws<ArgumentNullException>(() => { FileLock.Lock(nullInfo); });
             Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(nullInfo); });
-            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(TypeMap.Resolve.New<IDataStore>(_fileExtPath), nullInfo); });
+            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(New<IDataStore>(_fileExtPath), nullInfo); });
         }
 
         [Test]
         public static void TestFileLockMethods()
         {
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
+            IDataStore fileInfo = New<IDataStore>(_fileExtPath);
 
             Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file yet.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
@@ -80,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileLockWhenLocked()
         {
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
+            IDataStore fileInfo = New<IDataStore>(_fileExtPath);
             Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file to start with.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
@@ -92,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileLockWhenLockedOnSameThread()
         {
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
+            IDataStore fileInfo = New<IDataStore>(_fileExtPath);
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file to start with.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
@@ -106,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMultipleFileLockOnSameThread()
         {
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
+            IDataStore fileInfo = New<IDataStore>(_fileExtPath);
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file to start with.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
@@ -125,8 +127,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileLockCaseSensitivity()
         {
-            IDataStore fileInfo1 = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
-            IDataStore fileInfo2 = TypeMap.Resolve.New<IDataStore>(_fileExtPath.ToUpper(CultureInfo.InvariantCulture));
+            IDataStore fileInfo1 = New<IDataStore>(_fileExtPath);
+            IDataStore fileInfo2 = New<IDataStore>(_fileExtPath.ToUpper(CultureInfo.InvariantCulture));
 
             Assert.That(FileLock.IsLocked(fileInfo1), Is.False, "There should be no lock for this file yet.");
             Assert.That(FileLock.IsLocked(fileInfo2), Is.False, "There should be no lock for this file yet.");
@@ -143,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Assert.DoesNotThrow(() =>
             {
-                using (FileLock aLock = FileLock.Lock(TypeMap.Resolve.New<IDataStore>(_fileExtPath)))
+                using (FileLock aLock = FileLock.Lock(New<IDataStore>(_fileExtPath)))
                 {
                     aLock.Dispose();
                 }

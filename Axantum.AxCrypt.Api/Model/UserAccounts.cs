@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Api.Model
 {
     [JsonObject(MemberSerialization.OptIn)]
@@ -26,7 +28,7 @@ namespace Axantum.AxCrypt.Api.Model
                 throw new ArgumentNullException(nameof(writer));
             }
 
-            string value = TypeMap.Resolve.New<IStringSerializer>().Serialize(this);
+            string value = New<IStringSerializer>().Serialize(this);
             writer.Write(value);
         }
 
@@ -38,7 +40,7 @@ namespace Axantum.AxCrypt.Api.Model
             }
 
             string serialized = reader.ReadToEnd();
-            return TypeMap.Resolve.New<IStringSerializer>().Deserialize<UserAccounts>(serialized);
+            return New<IStringSerializer>().Deserialize<UserAccounts>(serialized);
         }
     }
 }

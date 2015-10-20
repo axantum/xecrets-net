@@ -36,6 +36,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     /// <summary>
@@ -150,7 +152,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool IsValidAccountLogOn()
         {
-            AccountStorage keyPairs = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
+            AccountStorage keyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
 
             return keyPairs.HasKeyPair;
         }

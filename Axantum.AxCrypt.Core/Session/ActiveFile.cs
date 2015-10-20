@@ -36,6 +36,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Session
 {
     /// <summary>
@@ -138,8 +140,8 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Initialize(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, LogOnIdentity key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
         {
-            EncryptedFileInfo = TypeMap.Resolve.New<IDataStore>(encryptedFileInfo.FullName);
-            DecryptedFileInfo = TypeMap.Resolve.New<IDataStore>(decryptedFileInfo.FullName);
+            EncryptedFileInfo = New<IDataStore>(encryptedFileInfo.FullName);
+            DecryptedFileInfo = New<IDataStore>(decryptedFileInfo.FullName);
             Identity = key;
             Thumbprint = thumbprint;
             Status = status;
@@ -201,11 +203,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return TypeMap.Resolve.New<IDataProtection>().Protect(Encoding.UTF8.GetBytes(Resolve.Portable.Path().GetFileName(DecryptedFileInfo.FullName)));
+                return New<IDataProtection>().Protect(Encoding.UTF8.GetBytes(Resolve.Portable.Path().GetFileName(DecryptedFileInfo.FullName)));
             }
             set
             {
-                byte[] bytes = TypeMap.Resolve.New<IDataProtection>().Unprotect(value);
+                byte[] bytes = New<IDataProtection>().Unprotect(value);
                 _decryptedName = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
             }
         }
@@ -220,7 +222,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             set
             {
-                EncryptedFileInfo = TypeMap.Resolve.New<IDataStore>(value);
+                EncryptedFileInfo = New<IDataStore>(value);
             }
         }
 
@@ -233,7 +235,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            DecryptedFileInfo = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(_decryptedFolder, _decryptedName));
+            DecryptedFileInfo = New<IDataStore>(Resolve.Portable.Path().Combine(_decryptedFolder, _decryptedName));
             if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
                 Status |= ActiveFileStatus.NoProcessKnown;

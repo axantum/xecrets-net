@@ -37,6 +37,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class ImportPrivateKeysViewModel : ViewModelBase
@@ -114,7 +116,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     {
                         return false;
                     }
-                    privateKeyDataStore = TypeMap.Resolve.New<IDataStore>(PrivateKeyFileName);
+                    privateKeyDataStore = New<IDataStore>(PrivateKeyFileName);
                     return privateKeyDataStore.IsAvailable;
 
                 case "Passphrase":
@@ -122,7 +124,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     {
                         return false;
                     }
-                    privateKeyDataStore = TypeMap.Resolve.New<IDataStore>(PrivateKeyFileName);
+                    privateKeyDataStore = New<IDataStore>(PrivateKeyFileName);
 
                     if (String.IsNullOrEmpty(Passphrase))
                     {
@@ -140,7 +142,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void ImportFileAction()
         {
-            IDataStore privateKeyData = TypeMap.Resolve.New<IDataStore>(PrivateKeyFileName);
+            IDataStore privateKeyData = New<IDataStore>(PrivateKeyFileName);
             Passphrase passphrase = new Passphrase(Passphrase);
             UserKeyPair keyPair;
             if (!UserKeyPair.TryLoad(privateKeyData.ToArray(), passphrase, out keyPair))
@@ -149,7 +151,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(_knownIdentities.DefaultEncryptionIdentity));
+            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(_knownIdentities.DefaultEncryptionIdentity));
             store.Import(keyPair);
             ImportSuccessful = true;
 

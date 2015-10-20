@@ -31,6 +31,8 @@ using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.IO;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.IO
 {
     public class V1HmacStream : Stream
@@ -63,7 +65,7 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new ArgumentNullException("key");
             }
-            _hmac = TypeMap.Resolve.New<AxCryptHMACSHA1>().Initialize(key); ;
+            _hmac = New<AxCryptHMACSHA1>().Initialize(key); ;
             ChainedStream = chainedStream;
         }
 

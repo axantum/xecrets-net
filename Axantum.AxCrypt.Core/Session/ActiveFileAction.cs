@@ -36,6 +36,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Session
 {
     public class ActiveFileAction
@@ -339,7 +341,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     Resolve.Log.LogInfo("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
-                TypeMap.Resolve.New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
+                New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
                 if (activeFile.DecryptedFileInfo.Container.IsAvailable)
                 {
                     activeFile.DecryptedFileInfo.Container.Delete();

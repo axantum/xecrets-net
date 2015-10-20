@@ -36,6 +36,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -86,8 +88,8 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestInvalidArguments()
         {
             IDataStore nullFileInfo = null;
-            IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
-            IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
             LogOnIdentity key = new LogOnIdentity("key");
             LogOnIdentity nullKey = null;
             ActiveFile nullActiveFile = null;
@@ -107,8 +109,8 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestConstructor()
         {
             LogOnIdentity key = new LogOnIdentity("key");
-            IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
-            IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
 
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             decryptedFileInfo = activeFile.DecryptedFileInfo;
@@ -135,8 +137,8 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestCopyConstructorWithKey()
         {
             LogOnIdentity key = new LogOnIdentity("key");
-            IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
-            IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             LogOnIdentity newKey = new LogOnIdentity("newKey");
 
@@ -148,8 +150,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestThumbprint()
         {
-            IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
-            IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
 
             LogOnIdentity key = new LogOnIdentity("key");
 
@@ -166,8 +168,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestThumbprintNullKey()
         {
-            IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
-            IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
 
             LogOnIdentity key = new LogOnIdentity("key");
             using (MemoryStream stream = new MemoryStream())
@@ -184,8 +186,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestMethodIsModified()
         {
-            IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(_rootPath, "doesnotexist.txt"));
-            IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
+            IDataStore decryptedFileInfo = New<IDataStore>(Path.Combine(_rootPath, "doesnotexist.txt"));
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new LogOnIdentity("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
         }
@@ -196,7 +198,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
             LogOnIdentity key = new LogOnIdentity("key");
 
-            activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(@"C:\encrypted.axx"), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(New<IDataStore>(@"C:\encrypted.axx"), New<IDataStore>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));
 
             activeFile = new ActiveFile(activeFile);

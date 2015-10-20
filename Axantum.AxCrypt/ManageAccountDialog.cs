@@ -15,6 +15,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt
 {
     public partial class ManageAccountDialog : Form
@@ -34,7 +36,7 @@ namespace Axantum.AxCrypt
             new Styling(Resources.axcrypticon).Style(this);
 
             _userSettings = userSettings;
-            AccountStorage userKeyPairs = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
+            AccountStorage userKeyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             _viewModel = new ManageAccountViewModel(userKeyPairs, knownIdentities);
             _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>("AccountEmails", ListAccountEmails);
         }

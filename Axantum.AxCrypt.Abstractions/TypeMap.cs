@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Abstractions
             }
         }
 
-        public static TypeResolve Resolve
+        public static TypeResolve Create
         {
             get
             {

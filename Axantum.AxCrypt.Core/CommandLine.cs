@@ -33,6 +33,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core
 {
     public class CommandLine
@@ -165,7 +167,7 @@ namespace Axantum.AxCrypt.Core
 
         private void StartFirstInstance()
         {
-            using (ILauncher launcher = TypeMap.Resolve.New<ILauncher>())
+            using (ILauncher launcher = New<ILauncher>())
             {
                 launcher.Launch(_startPath);
             }

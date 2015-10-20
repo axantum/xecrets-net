@@ -34,6 +34,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class NewPassphraseViewModel : ViewModelBase
@@ -50,7 +52,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             Passphrase = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
-            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : TypeMap.Resolve.New<IDataStore>(_encryptedFileFullName).Name;
+            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : New<IDataStore>(_encryptedFileFullName).Name;
         }
 
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
@@ -121,7 +123,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return true;
             }
             IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { new Passphrase(passphrase) }, new IAsymmetricPrivateKey[0], Resolve.CryptoFactory.OrderedIds);
-            return TypeMap.Resolve.New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, TypeMap.Resolve.New<IDataStore>(encryptedFileFullName)) != null;
+            return New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, New<IDataStore>(encryptedFileFullName)) != null;
         }
     }
 }

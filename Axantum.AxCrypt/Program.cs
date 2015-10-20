@@ -48,6 +48,8 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt
 {
     internal static class Program
@@ -127,7 +129,7 @@ namespace Axantum.AxCrypt
 
         private static void WireupEvents()
         {
-            Resolve.SessionNotify.Notification += (sender, e) => TypeMap.Resolve.New<SessionNotificationHandler>().HandleNotification(e.Notification);
+            Resolve.SessionNotify.Notification += (sender, e) => New<SessionNotificationHandler>().HandleNotification(e.Notification);
         }
 
         private static void SetCulture()

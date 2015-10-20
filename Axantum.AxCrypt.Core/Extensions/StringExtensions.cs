@@ -34,6 +34,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Extensions
 {
     public static class StringExtensions
@@ -92,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static FileLock CreateUniqueFile(this string fullName)
         {
-            IDataStore pathInfo = TypeMap.Resolve.New<IDataStore>(fullName);
+            IDataStore pathInfo = New<IDataStore>(fullName);
             string extension = Resolve.Portable.Path().GetExtension(fullName);
             int version = 0;
             while (true)
@@ -161,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return null;
             }
 
-            return TypeMap.Resolve.New<IDataContainer>(value);
+            return New<IDataContainer>(value);
         }
 
         public static string NormalizeFilePath(this string filePath)

@@ -35,6 +35,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -56,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestKeyPairPem()
         {
-            IAsymmetricKeyPair keyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(512);
+            IAsymmetricKeyPair keyPair = New<IAsymmetricFactory>().CreateKeyPair(512);
 
             string privatePem = keyPair.PrivateKey.ToString();
 
@@ -74,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAsymmetricEncryption()
         {
-            IAsymmetricPublicKey key = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey key = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
 
             string text = "AxCrypt is Great!";
             byte[] encryptedBytes = key.Transform(Encoding.UTF8.GetBytes(text));
@@ -85,13 +87,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAsymmetricEncryptionDecryption()
         {
-            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
 
             string text = "AxCrypt is really very great!";
             byte[] encryptedBytes = publicKey.Transform(Encoding.UTF8.GetBytes(text));
             Assert.That(encryptedBytes.Length, Is.EqualTo(512));
 
-            IAsymmetricPrivateKey privateKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            IAsymmetricPrivateKey privateKey = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
             byte[] decryptedBytes = privateKey.Transform(encryptedBytes);
             string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
 
@@ -101,13 +103,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAsymmetricEncryptionFailedDecryptionWrongKey1()
         {
-            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
 
             string text = "AxCrypt is really very great!";
             byte[] encryptedBytes = publicKey.Transform(Encoding.UTF8.GetBytes(text));
             Assert.That(encryptedBytes.Length, Is.EqualTo(512));
 
-            IAsymmetricPrivateKey privateKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+            IAsymmetricPrivateKey privateKey = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
             byte[] decryptedBytes = privateKey.Transform(encryptedBytes);
             Assert.That(decryptedBytes, Is.Null);
         }
@@ -115,13 +117,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAsymmetricEncryptionFailedDecryptionWrongKey2()
         {
-            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
 
             string text = "AxCrypt is really very great!";
             byte[] encryptedBytes = publicKey.Transform(Encoding.UTF8.GetBytes(text));
             Assert.That(encryptedBytes.Length, Is.EqualTo(512));
 
-            IAsymmetricPrivateKey privateKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            IAsymmetricPrivateKey privateKey = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
             byte[] decryptedBytes = privateKey.Transform(encryptedBytes);
             Assert.That(decryptedBytes, Is.Null);
         }

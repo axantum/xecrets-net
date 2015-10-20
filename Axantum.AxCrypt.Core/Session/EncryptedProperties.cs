@@ -35,6 +35,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Session
 {
     public class EncryptedProperties
@@ -115,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Session
             EncryptedProperties properties = new EncryptedProperties();
             IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { identity.Passphrase }, identity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
 
-            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(decryptionParameters, stream))
+            using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptionParameters, stream))
             {
                 if (!document.PassphraseIsValid)
                 {

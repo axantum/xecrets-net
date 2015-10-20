@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -44,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestSimplePublicKey()
         {
-            IAsymmetricKeyPair keyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(512);
+            IAsymmetricKeyPair keyPair = New<IAsymmetricFactory>().CreateKeyPair(512);
 
             string actual = keyPair.PublicKey.Thumbprint.ToFileString();
             Assert.That(actual, Is.EqualTo("JYh9b6JLYKDxr1sA75ZUWg"));

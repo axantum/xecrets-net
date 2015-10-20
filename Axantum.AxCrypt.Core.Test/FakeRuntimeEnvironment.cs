@@ -31,6 +31,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     public class FakeRuntimeEnvironment : IRuntimeEnvironment, IDisposable
@@ -59,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static FakeRuntimeEnvironment Instance
         {
-            get { return (FakeRuntimeEnvironment)TypeMap.Resolve.Singleton<IRuntimeEnvironment>(); }
+            get { return (FakeRuntimeEnvironment)New<IRuntimeEnvironment>(); }
         }
 
         private static DateTime StandardTimeFunction()

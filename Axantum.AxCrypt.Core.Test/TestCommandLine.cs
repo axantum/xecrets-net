@@ -33,6 +33,8 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -48,8 +50,8 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblySetup();
             TypeMap.Register.Singleton<FakeRequestClient>(() => new FakeRequestClient());
             TypeMap.Register.Singleton<FakeRequestServer>(() => new FakeRequestServer());
-            _fakeClient = TypeMap.Resolve.Singleton<FakeRequestClient>();
-            _fakeServer = TypeMap.Resolve.Singleton<FakeRequestServer>();
+            _fakeClient = New<FakeRequestClient>();
+            _fakeServer = New<FakeRequestServer>();
             TypeMap.Register.Singleton<CommandService>(() => new CommandService(_fakeServer, _fakeClient));
         }
 

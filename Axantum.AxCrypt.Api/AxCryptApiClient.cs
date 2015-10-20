@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Api
 {
     public class AxCryptApiClient
@@ -138,7 +140,7 @@ namespace Axantum.AxCrypt.Api
         {
             get
             {
-                return TypeMap.Resolve.New<IRestCaller>();
+                return New<IRestCaller>();
             }
         }
 
@@ -151,7 +153,7 @@ namespace Axantum.AxCrypt.Api
         {
             get
             {
-                return TypeMap.Resolve.New<IStringSerializer>();
+                return New<IStringSerializer>();
             }
         }
     }

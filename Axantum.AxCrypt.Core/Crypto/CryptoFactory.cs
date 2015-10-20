@@ -33,6 +33,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Axantum.AxCrypt.Abstractions;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Crypto
 {
     public class CryptoFactory
@@ -134,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Create(TypeMap.Resolve.Singleton<ICryptoPolicy>());
+                return Create(New<ICryptoPolicy>());
             }
         }
 
@@ -144,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 lock (_factories)
                 {
-                    return TypeMap.Resolve.Singleton<ICryptoPolicy>().PreferredCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
+                    return New<ICryptoPolicy>().PreferredCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
                 }
             }
         }

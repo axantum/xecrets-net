@@ -37,6 +37,8 @@ using System;
 using System.Drawing;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -62,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Bitmap image = new Bitmap(32, 32);
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
-            IDataContainer myInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
+            IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
 
             KnownFolder kf = new KnownFolder(myInfo, @"AxCrypt", image, providerUrl);
             Assert.That(kf.Folder.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".NormalizeFolderPath()));
@@ -77,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Bitmap image = new Bitmap(32, 32);
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
-            IDataContainer myInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
+            IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
 
             KnownFolder kf = new KnownFolder(myInfo, @"AxCrypt", image, providerUrl);
             KnownFolder kfCopy = new KnownFolder(kf, true);
@@ -100,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataContainer nullInfo = null;
             string nullString = null;
 
-            IDataContainer myInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
+            IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
             KnownFolder kf;
 
             Assert.Throws<ArgumentNullException>(() => kf = new KnownFolder(nullInfo, @"AxCrypt", image, providerUrl));

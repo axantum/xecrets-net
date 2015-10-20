@@ -42,6 +42,8 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Implementation;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core
 {
     /// <summary>
@@ -57,10 +59,10 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt")));
             TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
-            TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt"), TypeMap.Resolve.New<IterationCalculator>()));
+            TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt"), New<IterationCalculator>()));
             TypeMap.Register.Singleton<SessionNotify>(() => new SessionNotify());
             TypeMap.Register.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
-            TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => TypeMap.Resolve.Singleton<WorkFolderWatcher>());
+            TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => New<WorkFolderWatcher>());
             TypeMap.Register.Singleton<IRandomGenerator>(() => new RandomGenerator());
             TypeMap.Register.Singleton<CommandHandler>(() => new CommandHandler());
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
@@ -68,7 +70,7 @@ namespace Axantum.AxCrypt.Core
 
             TypeMap.Register.Singleton<CryptoFactory>(() => new CryptoFactory(assemblies));
             TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(assemblies));
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => TypeMap.Resolve.Singleton<CryptoPolicy>().CreateDefault());
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => New<CryptoPolicy>().CreateDefault());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
@@ -78,103 +80,103 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.New<Version, UpdateCheck>((version) => new UpdateCheck(version));
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             TypeMap.Register.New<IterationCalculator>(() => new IterationCalculator());
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetSerializers()));
-            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(Resolve.WorkFolder.FileInfo.FileItemInfo("UserPublicKeys.txt"), TypeMap.Resolve.New<IStringSerializer>()));
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
+            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(Resolve.WorkFolder.FileInfo.FileItemInfo("UserPublicKeys.txt"), New<IStringSerializer>()));
         }
 
         public static KnownIdentities KnownIdentities
         {
-            get { return TypeMap.Resolve.Singleton<KnownIdentities>(); }
+            get { return New<KnownIdentities>(); }
         }
 
         public static IUIThread UIThread
         {
-            get { return TypeMap.Resolve.Singleton<IUIThread>(); }
+            get { return New<IUIThread>(); }
         }
 
         public static IProgressBackground ProgressBackground
         {
-            get { return TypeMap.Resolve.Singleton<IProgressBackground>(); }
+            get { return New<IProgressBackground>(); }
         }
 
         public static ParallelFileOperation ParallelFileOperation
         {
-            get { return TypeMap.Resolve.Singleton<ParallelFileOperation>(); }
+            get { return New<ParallelFileOperation>(); }
         }
 
         public static IRuntimeEnvironment Environment
         {
-            get { return TypeMap.Resolve.Singleton<IRuntimeEnvironment>(); }
+            get { return New<IRuntimeEnvironment>(); }
         }
 
         public static FileSystemState FileSystemState
         {
-            get { return TypeMap.Resolve.Singleton<FileSystemState>(); }
+            get { return New<FileSystemState>(); }
         }
 
         public static ProcessState ProcessState
         {
-            get { return TypeMap.Resolve.Singleton<ProcessState>(); }
+            get { return New<ProcessState>(); }
         }
 
         public static CommandService CommandService
         {
-            get { return TypeMap.Resolve.Singleton<CommandService>(); }
+            get { return New<CommandService>(); }
         }
 
         public static IStatusChecker StatusChecker
         {
-            get { return TypeMap.Resolve.Singleton<IStatusChecker>(); }
+            get { return New<IStatusChecker>(); }
         }
 
         public static IUserSettings UserSettings
         {
-            get { return TypeMap.Resolve.Singleton<IUserSettings>(); }
+            get { return New<IUserSettings>(); }
         }
 
         public static ILogging Log
         {
-            get { return TypeMap.Resolve.Singleton<ILogging>(); }
+            get { return New<ILogging>(); }
         }
 
         public static SessionNotify SessionNotify
         {
-            get { return TypeMap.Resolve.Singleton<SessionNotify>(); }
+            get { return New<SessionNotify>(); }
         }
 
         public static WorkFolder WorkFolder
         {
-            get { return TypeMap.Resolve.Singleton<WorkFolder>(); }
+            get { return New<WorkFolder>(); }
         }
 
         public static IRandomGenerator RandomGenerator
         {
-            get { return TypeMap.Resolve.Singleton<IRandomGenerator>(); }
+            get { return New<IRandomGenerator>(); }
         }
 
         public static CryptoFactory CryptoFactory
         {
-            get { return TypeMap.Resolve.Singleton<CryptoFactory>(); }
+            get { return New<CryptoFactory>(); }
         }
 
         public static IPortableFactory Portable
         {
-            get { return TypeMap.Resolve.Singleton<IPortableFactory>(); }
+            get { return New<IPortableFactory>(); }
         }
 
         public static IStringSerializer Serializer
         {
-            get { return TypeMap.Resolve.New<IStringSerializer>(); }
+            get { return New<IStringSerializer>(); }
         }
 
         public static IRestCaller RestCaller
         {
-            get { return TypeMap.Resolve.New<IRestCaller>(); }
+            get { return New<IRestCaller>(); }
         }
 
         public static IAsymmetricFactory AsymmetricFactory
         {
-            get { return TypeMap.Resolve.Singleton<IAsymmetricFactory>(); }
+            get { return New<IAsymmetricFactory>(); }
         }
     }
 }

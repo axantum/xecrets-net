@@ -32,6 +32,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.IO
 {
     public class FileLock : IDisposable
@@ -49,7 +51,7 @@ namespace Axantum.AxCrypt.Core.IO
             _originalLockedFileName = fullName;
         }
 
-        public IDataStore DataStore { get { return TypeMap.Resolve.New<IDataStore>(_originalLockedFileName); } }
+        public IDataStore DataStore { get { return New<IDataStore>(_originalLockedFileName); } }
 
         public static FileLock Lock(IDataItem dataItem)
         {

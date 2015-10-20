@@ -40,6 +40,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
     [JsonObject(MemberSerialization.OptIn)]
@@ -99,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
                 throw new ArgumentNullException("buffer");
             }
 
-            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePaddingHash()));
+            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(New<IAsymmetricFactory>().CreatePaddingHash()));
 
             cipher.Init(true, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));
             byte[] transformed = cipher.ProcessBlock(buffer, 0, buffer.Length);

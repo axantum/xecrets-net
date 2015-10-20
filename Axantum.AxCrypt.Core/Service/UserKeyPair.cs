@@ -41,6 +41,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Service
 {
     /// <summary>
@@ -64,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Service
         {
             Timestamp = Resolve.Environment.UtcNow;
             UserEmail = userEmail;
-            KeyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(bits);
+            KeyPair = New<IAsymmetricFactory>().CreateKeyPair(bits);
         }
 
         public UserKeyPair(EmailAddress userEmail, DateTime timestamp, IAsymmetricKeyPair keyPair)
@@ -136,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 using (MemoryStream decryptedStream = new MemoryStream())
                 {
-                    EncryptedProperties properties = TypeMap.Resolve.New<AxCryptFile>().Decrypt(encryptedStream, decryptedStream, new DecryptionParameter[] { new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.Id) });
+                    EncryptedProperties properties = New<AxCryptFile>().Decrypt(encryptedStream, decryptedStream, new DecryptionParameter[] { new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.Id) });
                     if (!properties.IsValid)
                     {
                         keyPair = null;

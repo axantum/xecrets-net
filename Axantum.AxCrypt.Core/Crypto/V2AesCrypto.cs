@@ -30,6 +30,8 @@ using Axantum.AxCrypt.Core.Algorithm;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
@@ -59,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static SymmetricAlgorithm CreateAlgorithmInternal()
         {
-            return TypeMap.Resolve.New<Aes>();
+            return New<Aes>();
         }
     }
 }

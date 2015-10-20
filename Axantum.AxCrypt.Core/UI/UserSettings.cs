@@ -35,6 +35,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI
 {
     public class UserSettings : IUserSettings
@@ -179,7 +181,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Salt ThumbprintSalt
         {
-            get { return Load("ThumbprintSalt", () => TypeMap.Resolve.New<int, Salt>(512)); }
+            get { return Load("ThumbprintSalt", () => New<int, Salt>(512)); }
             set { Store("ThumbprintSalt", Resolve.Serializer.Serialize(value)); }
         }
 

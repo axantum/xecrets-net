@@ -40,6 +40,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -50,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetSerializers()));
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             FakeInMemoryDataStoreItem store = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
             TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(store, Resolve.Serializer));
         }
@@ -64,10 +66,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestInitialEmptyState()
         {
-            using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
             }
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Any(), Is.False, "There are no known public kyes, so none can be unshared either.");
         }
@@ -75,14 +77,14 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestInitialOneKeyState()
         {
-            IAsymmetricPublicKey key = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey key = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey = new UserPublicKey(EmailAddress.Parse("test@test.com"), key);
-            using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "There is one known public key, so this should be available as unshared.");
         }
@@ -90,18 +92,18 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestInitialTwoKeyState()
         {
-            IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
 
-            IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
-            using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey1);
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
         }
@@ -109,18 +111,18 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestMoveOneFromUnsharedToShared()
         {
-            IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
 
-            IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
-            using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey1);
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
@@ -132,18 +134,18 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestMoveTwoFromUnsharedToShared()
         {
-            IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
 
-            IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
-            using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey1);
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
@@ -155,18 +157,18 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestRemoveOneFromShared()
         {
-            IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
 
-            IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
-            using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey1);
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
@@ -182,18 +184,18 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestRemoveNonexistingFromShared()
         {
-            IAsymmetricPublicKey key1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
 
-            IAsymmetricPublicKey key2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
-            using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 knownPublicKeys.AddOrReplace(userPublicKey1);
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => TypeMap.Resolve.New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 

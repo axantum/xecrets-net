@@ -10,6 +10,8 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -86,12 +88,12 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnIdentity passphrase = new LogOnIdentity(password);
 
-            bool ok = new AxCryptFile().Decrypt(TypeMap.Resolve.New<IDataStore>(source), TypeMap.Resolve.New<IDataStore>(destination), passphrase, AxCryptOptions.SetFileTimes, new ProgressContext());
+            bool ok = new AxCryptFile().Decrypt(New<IDataStore>(source), New<IDataStore>(destination), passphrase, AxCryptOptions.SetFileTimes, new ProgressContext());
             Assert.That(ok, Is.True, "The Decrypt() method should return true for ok.");
 
             byte[] hash;
             HashAlgorithm hashAlgorithm = SHA256.Create();
-            Stream plainStream = TypeMap.Resolve.New<IDataStore>(destination).OpenRead();
+            Stream plainStream = New<IDataStore>(destination).OpenRead();
             using (Stream cryptoStream = new CryptoStream(plainStream, hashAlgorithm, CryptoStreamMode.Read))
             {
                 plainStream = null;

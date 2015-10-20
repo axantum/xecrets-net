@@ -33,6 +33,8 @@ using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class IdentityViewModel : ViewModelBase
@@ -118,7 +120,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (UserPublicKey userPublicKey in logOnIdentity.PublicKeys)
             {
-                using (KnownPublicKeys knownPublicKeys = TypeMap.Resolve.New<KnownPublicKeys>())
+                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
                 {
                     knownPublicKeys.AddOrReplace(userPublicKey);
                 }
@@ -147,7 +149,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
         {
-            AccountStorage store = new AccountStorage(TypeMap.Resolve.New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
+            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
             if (store.HasKeyPair)
             {
                 return new LogOnIdentity(store.ActiveKeyPair, passphrase);
@@ -190,7 +192,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity AskForLogOnOrEncryptionPassphrase(LogOnIdentity identity, string encryptedFileFullName)
         {
-            if (!_fileSystemState.KnownPassphrases.Any() && !TypeMap.Resolve.New<LogOnIdentity, IAccountService>(identity).HasAccounts)
+            if (!_fileSystemState.KnownPassphrases.Any() && !New<LogOnIdentity, IAccountService>(identity).HasAccounts)
             {
                 return AskForNewEncryptionPassphrase(String.Empty, encryptedFileFullName);
             }

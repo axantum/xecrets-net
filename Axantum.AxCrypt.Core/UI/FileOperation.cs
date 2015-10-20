@@ -36,6 +36,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI
 {
     public class FileOperation
@@ -64,7 +66,7 @@ namespace Axantum.AxCrypt.Core.UI
                 throw new ArgumentNullException("progress");
             }
 
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(file);
+            IDataStore fileInfo = New<IDataStore>(file);
             if (!fileInfo.IsAvailable)
             {
                 if (Resolve.Log.IsWarningEnabled)
@@ -117,10 +119,10 @@ namespace Axantum.AxCrypt.Core.UI
                 throw new ArgumentNullException("progress");
             }
 
-            IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(encryptedFile);
+            IDataStore encryptedFileInfo = New<IDataStore>(encryptedFile);
 
             ActiveFile encryptedActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
-            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(axCryptDataStore, passphrase, progress))
+            using (IAxCryptDocument document = New<AxCryptFile>().Document(axCryptDataStore, passphrase, progress))
             {
                 encryptedActiveFile = EnsureDecryptedFolder(passphrase, document, encryptedFileInfo, encryptedActiveFile);
                 _fileSystemState.Add(encryptedActiveFile);
@@ -157,7 +159,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogInfo("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
                 }
-                process = TypeMap.Resolve.New<ILauncher>();
+                process = New<ILauncher>();
                 using (FileLock decryptedFileLock = FileLock.Lock(destinationActiveFile.DecryptedFileInfo))
                 {
                     process.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
@@ -226,7 +228,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 using (FileLock sourceLock = FileLock.Lock(sourceDataStore))
                 {
-                    using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(sourceDataStore, passphrase, new ProgressContext()))
+                    using (IAxCryptDocument document = New<AxCryptFile>().Document(sourceDataStore, passphrase, new ProgressContext()))
                     {
                         if (!document.PassphraseIsValid)
                         {
@@ -246,7 +248,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             using (FileLock fileLock = FileLock.Lock(destinationActiveFile.DecryptedFileInfo))
             {
-                TypeMap.Resolve.New<AxCryptFile>().Decrypt(document, destinationActiveFile.DecryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
+                New<AxCryptFile>().Decrypt(document, destinationActiveFile.DecryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
             }
             if (Resolve.Log.IsInfoEnabled)
             {
@@ -259,7 +261,7 @@ namespace Axantum.AxCrypt.Core.UI
             string destinationName = document.FileName;
             string destinationPath = Resolve.Portable.Path().Combine(destinationFolderInfo.FullName, destinationName);
 
-            IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
+            IDataStore destinationFileInfo = New<IDataStore>(destinationPath);
             ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, passphrase, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, document.CryptoFactory.Id);
             return destinationActiveFile;
         }
@@ -270,12 +272,12 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return destinationActiveFile.DecryptedFileInfo.Container;
             }
-            return TypeMap.Resolve.Singleton<WorkFolder>().CreateTemporaryFolder();
+            return New<WorkFolder>().CreateTemporaryFolder();
         }
 
         public static string GetTemporaryDestinationName(string fileName)
         {
-            string destinationFolder = Resolve.Portable.Path().Combine(TypeMap.Resolve.Singleton<WorkFolder>().FileInfo.FullName, Resolve.Portable.Path().GetFileNameWithoutExtension(Resolve.Portable.Path().GetRandomFileName()) + Resolve.Portable.Path().DirectorySeparatorChar);
+            string destinationFolder = Resolve.Portable.Path().Combine(New<WorkFolder>().FileInfo.FullName, Resolve.Portable.Path().GetFileNameWithoutExtension(Resolve.Portable.Path().GetRandomFileName()) + Resolve.Portable.Path().DirectorySeparatorChar);
             return Resolve.Portable.Path().Combine(destinationFolder, Resolve.Portable.Path().GetFileName(fileName));
         }
 
@@ -283,7 +285,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             foreach (LogOnIdentity key in keys)
             {
-                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
+                using (IAxCryptDocument document = New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
                 {
                     if (document.PassphraseIsValid)
                     {

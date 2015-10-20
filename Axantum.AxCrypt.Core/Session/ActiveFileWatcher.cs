@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Session
 {
     public class ActiveFileWatcher : IDisposable
@@ -28,7 +30,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return;
                 }
-                IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(folder);
+                IFileWatcher fileWatcher = New<IFileWatcher>(folder);
                 fileWatcher.FileChanged += HandleActiveFileFolderChangedEvent;
                 _activeFileFolderWatchers.Add(folder, fileWatcher);
             }

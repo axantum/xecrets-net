@@ -35,6 +35,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase, IDisposable
@@ -144,9 +146,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => TypeMap.Resolve.New<IDataItem>(f))); });
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => TypeMap.Resolve.New<IDataItem>(f))); });
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IDataItem>(f))); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => New<IDataItem>(f))); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => New<IDataItem>(f))); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => New<IDataItem>(f))); });
             BindPropertyChangedInternal("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
             BindPropertyChangedInternal("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChangedInternal("TryBrokenFile", (bool enabled) => { _userSettings.TryBrokenFile = enabled; });
@@ -173,7 +175,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void UpdateUpdateCheck(Version currentVersion)
         {
             DisposeUpdateCheck();
-            _updateCheck = TypeMap.Resolve.New<Version, UpdateCheck>(currentVersion);
+            _updateCheck = New<Version, UpdateCheck>(currentVersion);
             _updateCheck.VersionUpdate += Handle_VersionUpdate;
             UpdateCheckAction(_userSettings.LastUpdateCheckUtc);
         }
@@ -310,7 +312,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
-            FilesArePending = openFiles.Count > 0 || Resolve.KnownIdentities.LoggedOnWatchedFolders.SelectMany(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path).ListEncryptable()).Any();
+            FilesArePending = openFiles.Count > 0 || Resolve.KnownIdentities.LoggedOnWatchedFolders.SelectMany(wf => New<IDataContainer>(wf.Path).ListEncryptable()).Any();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -333,7 +335,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void ClearPassphraseMemoryAction()
         {
             IDataStore fileSystemStateInfo = Resolve.FileSystemState.PathInfo;
-            TypeMap.Resolve.New<AxCryptFile>().Wipe(fileSystemStateInfo, new ProgressContext());
+            New<AxCryptFile>().Wipe(fileSystemStateInfo, new ProgressContext());
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(fileSystemStateInfo));
             TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(_fileSystemState, Resolve.SessionNotify));
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
@@ -378,14 +380,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IDataContainer>(watchedFolderPath));
+                _fileSystemState.RemoveWatchedFolder(New<IDataContainer>(watchedFolderPath));
             }
             _fileSystemState.Save();
         }
 
         private static void OpenSelectedFolderAction(string folder)
         {
-            TypeMap.Resolve.New<ILauncher>().Launch(folder);
+            New<ILauncher>().Launch(folder);
         }
 
         private void UpdateCheckAction(DateTime lastUpdateCheckUtc)

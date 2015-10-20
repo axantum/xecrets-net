@@ -13,6 +13,8 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -23,7 +25,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetSerializers()));
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
@@ -40,8 +42,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestGetSetRecipientsAndClone()
         {
             V2AsymmetricRecipientsEncryptedHeaderBlock headerBlock = new V2AsymmetricRecipientsEncryptedHeaderBlock(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0));
-            IAsymmetricKeyPair aliceKeyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(512);
-            IAsymmetricKeyPair bobKeyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(512);
+            IAsymmetricKeyPair aliceKeyPair = New<IAsymmetricFactory>().CreateKeyPair(512);
+            IAsymmetricKeyPair bobKeyPair = New<IAsymmetricFactory>().CreateKeyPair(512);
 
             List<UserPublicKey> publicKeys = new List<UserPublicKey>();
             publicKeys.Add(new UserPublicKey(EmailAddress.Parse("alice@email.com"), aliceKeyPair.PublicKey));

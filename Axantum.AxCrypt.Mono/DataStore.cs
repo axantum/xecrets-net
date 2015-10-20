@@ -34,6 +34,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Mono
 {
     /// <summary>
@@ -222,7 +224,7 @@ namespace Axantum.AxCrypt.Mono
         /// <param name="destinationFileName">Name of the destination file.</param>
         public void MoveTo(string destinationFileName)
         {
-            IDataStore destination = TypeMap.Resolve.New<IDataStore>(destinationFileName);
+            IDataStore destination = New<IDataStore>(destinationFileName);
             if (destination.IsAvailable)
             {
                 try

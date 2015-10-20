@@ -39,6 +39,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Session
 {
     [JsonObject(MemberSerialization.OptIn)]
@@ -113,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 lock (_watchedFolders)
                 {
-                    IEnumerable<WatchedFolder> folders = _watchedFolders.Where(folder => TypeMap.Resolve.New<IDataContainer>(folder.Path).IsAvailable).ToList();
+                    IEnumerable<WatchedFolder> folders = _watchedFolders.Where(folder => New<IDataContainer>(folder.Path).IsAvailable).ToList();
                     return folders;
                 }
             }
@@ -166,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Session
             WatchedFolder watchedFolder = (WatchedFolder)sender;
             foreach (string fullName in e.FullNames)
             {
-                IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(fullName);
+                IDataStore fileInfo = New<IDataStore>(fullName);
                 HandleWatchedFolderChanges(watchedFolder, fileInfo);
                 Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
             }
@@ -341,7 +343,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             foreach (string fullName in fullNames)
             {
-                IDataStore item = TypeMap.Resolve.New<IDataStore>(fullName);
+                IDataStore item = New<IDataStore>(fullName);
                 if (!item.IsEncrypted())
                 {
                     continue;
@@ -395,7 +397,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
-            TypeMap.Resolve.Singleton<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
+            New<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
         }
 
         private List<ActiveFile> _activeFilesForSerialization;

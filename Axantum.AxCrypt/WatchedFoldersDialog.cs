@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt
 {
     public partial class WatchedFoldersDialog : Form
@@ -22,7 +24,7 @@ namespace Axantum.AxCrypt
             new Styling(Resources.axcrypticon).Style(this);
 
             _additional = additional;
-            _viewModel = TypeMap.Resolve.New<WatchedFoldersViewModel>();
+            _viewModel = New<WatchedFoldersViewModel>();
 
             Owner = parent;
             StartPosition = FormStartPosition.CenterParent;

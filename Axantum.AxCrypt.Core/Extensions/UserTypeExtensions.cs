@@ -11,6 +11,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Extensions
 {
     public static class UserTypeExtensions
@@ -83,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             if (passphrase == Passphrase.Empty)
             {
-                byte[] encryptedPrivateKeyBytes = TypeMap.Resolve.New<IDataProtection>().Protect(privateKeyPemBytes);
+                byte[] encryptedPrivateKeyBytes = New<IDataProtection>().Protect(privateKeyPemBytes);
                 return Convert.ToBase64String(encryptedPrivateKeyBytes);
             }
 
@@ -140,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             if (passphrase == Passphrase.Empty)
             {
-                byte[] decryptedPrivateKeyBytes = TypeMap.Resolve.New<IDataProtection>().Unprotect(privateKeyEncryptedPem);
+                byte[] decryptedPrivateKeyBytes = New<IDataProtection>().Unprotect(privateKeyEncryptedPem);
                 return Encoding.UTF8.GetString(decryptedPrivateKeyBytes, 0, decryptedPrivateKeyBytes.Length);
             }
 
@@ -149,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 using (MemoryStream decryptedPrivateKeyStream = new MemoryStream())
                 {
                     DecryptionParameter decryptionParameter = new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.Id);
-                    if (!TypeMap.Resolve.New<AxCryptFile>().Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream, new DecryptionParameter[] { decryptionParameter }).IsValid)
+                    if (!New<AxCryptFile>().Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream, new DecryptionParameter[] { decryptionParameter }).IsValid)
                     {
                         return null;
                     }

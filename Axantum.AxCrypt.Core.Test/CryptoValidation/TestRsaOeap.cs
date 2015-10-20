@@ -9,6 +9,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test.CryptoValidation
 {
     /// <summary>
@@ -3112,7 +3114,7 @@ e6 1d 44 e1 63 25 1e 20 c7 f6 6e b3 05 11 7c b8
         {
             TypeMap.Register.Singleton<IRandomGenerator>(() => new InjectedBytesRandomGenerator(seed.FromHex()));
 
-            IAsymmetricKeyPair keyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(PositiveFromHex(n), PositiveFromHex(e), PositiveFromHex(d), PositiveFromHex(p), PositiveFromHex(q), PositiveFromHex(dp), PositiveFromHex(dq), PositiveFromHex(qinv));
+            IAsymmetricKeyPair keyPair = New<IAsymmetricFactory>().CreateKeyPair(PositiveFromHex(n), PositiveFromHex(e), PositiveFromHex(d), PositiveFromHex(p), PositiveFromHex(q), PositiveFromHex(dp), PositiveFromHex(dq), PositiveFromHex(qinv));
 
             byte[] cipher = keyPair.PublicKey.Transform(message.FromHex());
             Assert.That(cipher, Is.EquivalentTo(encryption.FromHex()), testcase);

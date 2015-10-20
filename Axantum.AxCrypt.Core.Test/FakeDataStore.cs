@@ -35,6 +35,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeDataStore : IDataStore
@@ -406,7 +408,7 @@ namespace Axantum.AxCrypt.Core.Test
                     }
                     files.Add(kvp.Value);
                 }
-                return files.Select((FakeFileInfo fileInfo) => { return TypeMap.Resolve.New<IDataStore>(fileInfo.FullName); });
+                return files.Select((FakeFileInfo fileInfo) => { return New<IDataStore>(fileInfo.FullName); });
             }
         }
 

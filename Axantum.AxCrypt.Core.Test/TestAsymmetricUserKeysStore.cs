@@ -38,6 +38,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -75,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestSimpleCreateAsymmetricKeysStore()
         {
             FakeDataStore.AddFolder(@"C:\Temp");
-            IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp");
+            IDataContainer workFolder = New<IDataContainer>(@"C:\Temp");
             AccountStorage store = new AccountStorage(new LocalAccountService(new NullAccountService(new LogOnIdentity(EmailAddress.Parse(@"svante@axantum.com"), new Passphrase("secret"))), workFolder));
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
@@ -88,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestCreateAndLoadAsymmetricKeysStore()
         {
             FakeDataStore.AddFolder(@"C:\Temp");
-            IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp\");
+            IDataContainer workFolder = New<IDataContainer>(@"C:\Temp\");
             AccountStorage store = new AccountStorage(new LocalAccountService(new NullAccountService(new LogOnIdentity(EmailAddress.Parse(@"svante@axantum.com"), new Passphrase("secret"))), workFolder));
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
@@ -108,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestEncryptCreateLoadDecryptWithAsymmetricKeysStore()
         {
             FakeDataStore.AddFolder(@"C:\Temp");
-            IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp\");
+            IDataContainer workFolder = New<IDataContainer>(@"C:\Temp\");
             AccountStorage store = new AccountStorage(new LocalAccountService(new NullAccountService(new LogOnIdentity(EmailAddress.Parse(@"svante@axantum.com"), new Passphrase("secret"))), workFolder));
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("secret");
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);

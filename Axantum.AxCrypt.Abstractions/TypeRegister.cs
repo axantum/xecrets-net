@@ -88,6 +88,11 @@ namespace Axantum.AxCrypt.Abstractions
 
         private void SetAndDisposeIfDisposable(Type type, object value)
         {
+            if (type == typeof(object))
+            {
+                throw new ArgumentException("A plain 'object' cannot be registered as a type.", nameof(type));
+            }
+
             object o;
             if (_mapping.TryGetValue(type, out o))
             {

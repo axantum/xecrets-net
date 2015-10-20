@@ -38,6 +38,8 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Mono
 {
     public class RuntimeEnvironment : IRuntimeEnvironment, IDisposable
@@ -81,7 +83,7 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
-                return TypeMap.Resolve.Singleton<IPlatform>().Platform;
+                return New<IPlatform>().Platform;
             }
         }
 

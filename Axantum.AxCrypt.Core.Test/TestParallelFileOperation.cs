@@ -33,6 +33,8 @@ using System;
 using System.Linq;
 using System.Threading;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -53,8 +55,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestParallelFileOperationSimple()
         {
-            IDataStore info1 = TypeMap.Resolve.New<IDataStore>(@"c:\file1.txt");
-            IDataStore info2 = TypeMap.Resolve.New<IDataStore>(@"c:\file2.txt");
+            IDataStore info1 = New<IDataStore>(@"c:\file1.txt");
+            IDataStore info2 = New<IDataStore>(@"c:\file2.txt");
             ParallelFileOperation pfo = new ParallelFileOperation();
             int callCount = 0;
             pfo.DoFiles(new IDataStore[] { info1, info2 },
@@ -79,10 +81,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeRuntimeEnvironment.Instance.MaxConcurrency = 2;
 
-            IDataStore info1 = TypeMap.Resolve.New<IDataStore>(@"c:\file1.txt");
-            IDataStore info2 = TypeMap.Resolve.New<IDataStore>(@"c:\file2.txt");
-            IDataStore info3 = TypeMap.Resolve.New<IDataStore>(@"c:\file3.txt");
-            IDataStore info4 = TypeMap.Resolve.New<IDataStore>(@"c:\file4.txt");
+            IDataStore info1 = New<IDataStore>(@"c:\file1.txt");
+            IDataStore info2 = New<IDataStore>(@"c:\file2.txt");
+            IDataStore info3 = New<IDataStore>(@"c:\file3.txt");
+            IDataStore info4 = New<IDataStore>(@"c:\file4.txt");
             ParallelFileOperation pfo = new ParallelFileOperation();
 
             int callCount = 0;

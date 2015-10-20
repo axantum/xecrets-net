@@ -33,6 +33,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class ImportPublicKeysViewModel : ViewModelBase
@@ -72,7 +74,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 foreach (string file in files)
                 {
-                    IDataStore publicKeyData = TypeMap.Resolve.New<IDataStore>(file);
+                    IDataStore publicKeyData = New<IDataStore>(file);
                     if (!knownPublicKeys.AddOrReplace(publicKeyData))
                     {
                         failed.Add(file);

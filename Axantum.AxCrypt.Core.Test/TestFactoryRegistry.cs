@@ -31,6 +31,8 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -48,15 +50,24 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
+        private class MyClass { };
+
         [Test]
         public static void TestRegisterParameterless()
         {
             bool wasCalled = false;
-            TypeMap.Register.New<int>(() => { wasCalled = true; return 13; });
+            MyClass theObject = new MyClass();
+            TypeMap.Register.New<MyClass>(() => { wasCalled = true; return theObject; });
 
-            int value = TypeMap.Resolve.New<int>();
-            Assert.That(value, Is.EqualTo(13));
+            object value = New<MyClass>();
+            Assert.That(value, Is.EqualTo(theObject));
             Assert.That(wasCalled, Is.True);
+        }
+
+        [Test]
+        public static void TestRegisterObjectThrows()
+        {
+            Assert.Throws<ArgumentException>(() => TypeMap.Register.New<object>(() => { return new object(); }));
         }
 
         [Test]
@@ -65,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
             bool wasCalled = false;
             TypeMap.Register.New<int, int>((argument) => { wasCalled = true; return argument; });
 
-            int value = TypeMap.Resolve.New<int, int>(27);
+            int value = New<int, int>(27);
             Assert.That(value, Is.EqualTo(27));
             Assert.That(wasCalled, Is.True);
         }
@@ -73,25 +84,25 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDefault()
         {
-            AxCryptFile axCryptFile = TypeMap.Resolve.New<AxCryptFile>();
+            AxCryptFile axCryptFile = New<AxCryptFile>();
             Assert.That(axCryptFile is AxCryptFile, Is.True);
 
             TypeMap.Register.New<FileSystemState>(() => new FileSystemState());
-            ActiveFileAction actions = TypeMap.Resolve.New<ActiveFileAction>();
+            ActiveFileAction actions = New<ActiveFileAction>();
             Assert.That(actions is ActiveFileAction, Is.True);
         }
 
         [Test]
         public static void TestNotRegistered()
         {
-            Assert.Throws<ArgumentException>(() => TypeMap.Resolve.New<int>());
-            Assert.Throws<ArgumentException>(() => TypeMap.Resolve.New<int, int>(13));
+            Assert.Throws<ArgumentException>(() => New<object>());
+            Assert.Throws<ArgumentException>(() => New<int, int>(13));
         }
 
         [Test]
         public static void TestNotRegisteredSingleton()
         {
-            Assert.Throws<ArgumentException>(() => TypeMap.Resolve.Singleton<object>());
+            Assert.Throws<ArgumentException>(() => New<object>());
         }
 
         private class MyDisposable : IDisposable
@@ -109,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             TypeMap.Register.Singleton(() => new MyDisposable());
 
-            MyDisposable md = TypeMap.Resolve.Singleton<MyDisposable>();
+            MyDisposable md = New<MyDisposable>();
             Assert.That(md.IsDisposed, Is.False);
 
             TypeMap.Register.Clear();
@@ -121,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             TypeMap.Register.Singleton(() => new MyDisposable());
 
-            MyDisposable md = TypeMap.Resolve.Singleton<MyDisposable>();
+            MyDisposable md = New<MyDisposable>();
             Assert.That(md.IsDisposed, Is.False);
 
             TypeMap.Register.Singleton(() => new MyDisposable());

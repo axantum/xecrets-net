@@ -30,11 +30,13 @@ using Axantum.AxCrypt.Core.Algorithm;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Crypto
 {
     public class RandomGenerator : IRandomGenerator
     {
-        private RandomNumberGenerator _rng = TypeMap.Resolve.New<RandomNumberGenerator>();
+        private RandomNumberGenerator _rng = New<RandomNumberGenerator>();
 
         public byte[] Generate(int count)
         {

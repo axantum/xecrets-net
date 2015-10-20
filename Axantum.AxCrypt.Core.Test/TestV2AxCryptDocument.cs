@@ -42,6 +42,8 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -191,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MemoryStream inputStream = new MemoryStream(input))
             {
-                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(decryptionParameters, inputStream))
+                using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptionParameters, inputStream))
                 {
                     if (!document.PassphraseIsValid)
                     {
@@ -212,14 +214,14 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptWithOneAsymmetricKey()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
-            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
 
             byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
 
-            IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            IAsymmetricPrivateKey privateKey1 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
             DecryptionParameter decryptionParameter = new DecryptionParameter(privateKey1, V2Aes256CryptoFactory.CryptoId);
             byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter }, output);
 
@@ -231,7 +233,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptWithOneAsymmetricKeyAndWrongPassphraseButCorrectPrivateKey()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
-            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
@@ -239,7 +241,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKeyAndWrongPassphraseButCorrectPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
 
             DecryptionParameter decryptionParameter1 = new DecryptionParameter(new Passphrase("niklas"), V2Aes256CryptoFactory.CryptoId);
-            IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            IAsymmetricPrivateKey privateKey1 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
             DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey1, V2Aes256CryptoFactory.CryptoId);
             byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter1, decryptionParameter2, }, output);
 
@@ -251,7 +253,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptWithOneAsymmetricKeyAndCorrectPassphraseButWrongPrivateKey()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
-            IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("tes1t@test.com"), publicKey1), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
@@ -259,7 +261,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKeyAndCorrectPassphraseButWrongPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
 
             DecryptionParameter decryptionParameter1 = new DecryptionParameter(new Passphrase("allan"), V2Aes256CryptoFactory.CryptoId);
-            IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+            IAsymmetricPrivateKey privateKey2 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
             DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey2, V2Aes256CryptoFactory.CryptoId);
             byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter1, decryptionParameter2, }, output);
 
@@ -271,9 +273,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptWithTwoAsymmetricKeysAndOneCorrectPrivateKey()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
-            IAsymmetricPublicKey publicKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), });
-            IAsymmetricPublicKey publicKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            IAsymmetricPublicKey publicKey2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
@@ -281,9 +283,9 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithTwoAsymmetricKeysAndOneCorrectPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
 
             DecryptionParameter decryptionParameter0 = new DecryptionParameter(new Passphrase("niklas"), V2Aes256CryptoFactory.CryptoId);
-            IAsymmetricPrivateKey privateKey1 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            IAsymmetricPrivateKey privateKey1 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
             DecryptionParameter decryptionParameter1 = new DecryptionParameter(privateKey1, V2Aes256CryptoFactory.CryptoId);
-            IAsymmetricPrivateKey privateKey2 = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+            IAsymmetricPrivateKey privateKey2 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
             DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey2, V2Aes256CryptoFactory.CryptoId);
             byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter0, decryptionParameter1, decryptionParameter2, }, output);
 

@@ -30,13 +30,15 @@ using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Runtime
 {
     public class WorkFolder
     {
         public WorkFolder(string path)
         {
-            FileInfo = TypeMap.Resolve.New<IDataContainer>(path);
+            FileInfo = New<IDataContainer>(path);
             FileInfo.CreateFolder();
         }
 
@@ -44,8 +46,8 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public virtual IDataContainer CreateTemporaryFolder()
         {
-            string destinationFolder = Resolve.Portable.Path().Combine(TypeMap.Resolve.Singleton<WorkFolder>().FileInfo.FullName, Resolve.Portable.Path().GetFileNameWithoutExtension(Resolve.Portable.Path().GetRandomFileName()) + Resolve.Portable.Path().DirectorySeparatorChar);
-            IDataContainer destinationFolderInfo = TypeMap.Resolve.New<IDataContainer>(destinationFolder);
+            string destinationFolder = Resolve.Portable.Path().Combine(New<WorkFolder>().FileInfo.FullName, Resolve.Portable.Path().GetFileNameWithoutExtension(Resolve.Portable.Path().GetRandomFileName()) + Resolve.Portable.Path().DirectorySeparatorChar);
+            IDataContainer destinationFolderInfo = New<IDataContainer>(destinationFolder);
             destinationFolderInfo.CreateFolder();
 
             return destinationFolderInfo;

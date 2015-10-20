@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Forms.Style
 {
     public class Styling
@@ -41,7 +43,7 @@ namespace Axantum.AxCrypt.Forms.Style
 
         private void StyleInternal(Control control)
         {
-            FontLoader fontLoader = TypeMap.Resolve.Singleton<FontLoader>();
+            FontLoader fontLoader = New<FontLoader>();
 
             if (control is Form)
             {

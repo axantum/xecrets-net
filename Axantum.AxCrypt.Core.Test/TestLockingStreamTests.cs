@@ -35,6 +35,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -64,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSimple()
         {
-            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
+            IDataStore fileInfo = New<IDataStore>(_davidCopperfieldTxtPath);
             LockedStream lockedStreamCopy;
             using (LockedStream lockedStream = LockedStream.OpenWrite(fileInfo))
             {

@@ -29,6 +29,8 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Algorithm;
 using System;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
@@ -100,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static SymmetricAlgorithm CreateRawAlgorithm()
         {
-            return TypeMap.Resolve.New<Aes>();
+            return New<Aes>();
         }
 
         /// <summary>

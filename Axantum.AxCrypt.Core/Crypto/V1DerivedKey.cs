@@ -30,6 +30,8 @@ using Axantum.AxCrypt.Core.Algorithm;
 using System;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
@@ -48,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("passphrase");
             }
 
-            HashAlgorithm hashAlgorithm = TypeMap.Resolve.New<Sha1>();
+            HashAlgorithm hashAlgorithm = New<Sha1>();
             byte[] ansiBytes = Encoding.GetEncoding("Windows-1252").GetBytes(passphrase.Text);
             byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
             byte[] derivedKey = new byte[16];

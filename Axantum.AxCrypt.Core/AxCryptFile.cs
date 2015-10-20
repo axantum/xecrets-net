@@ -40,6 +40,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core
 {
     /// <summary>
@@ -72,7 +74,7 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream destinationStream = destinationStore.OpenWrite())
             {
-                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(encryptionParameters))
+                using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(encryptionParameters))
                 {
                     document.FileName = sourceFileName;
                     document.CreationTimeUtc = OS.Current.UtcNow;
@@ -134,7 +136,7 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream sourceStream = new ProgressStream(sourceFile.OpenRead(), progress))
             {
-                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(encryptionParameters))
+                using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(encryptionParameters))
                 {
                     document.FileName = sourceFile.Name;
                     document.CreationTimeUtc = sourceFile.CreationTimeUtc;
@@ -169,7 +171,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(encryptionParameters))
+            using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(encryptionParameters))
             {
                 document.FileName = properties.FileName;
                 document.CreationTimeUtc = properties.CreationTimeUtc;
@@ -198,8 +200,8 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
-            IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(sourceFileName);
-            IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFileName);
+            IDataStore sourceFileInfo = New<IDataStore>(sourceFileName);
+            IDataStore destinationFileInfo = New<IDataStore>(destinationFileName);
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, encryptionParameters, progress);
         }
 
@@ -524,7 +526,7 @@ namespace Axantum.AxCrypt.Core
                     return destinationFileName;
                 }
                 destinationFileName = document.FileName;
-                IDataStore destinationFullPath = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(destinationContainerName, destinationFileName));
+                IDataStore destinationFullPath = New<IDataStore>(Resolve.Portable.Path().Combine(destinationContainerName, destinationFileName));
                 Decrypt(document, destinationFullPath, options, progress);
             }
             return destinationFileName;
@@ -557,14 +559,14 @@ namespace Axantum.AxCrypt.Core
             }
 
             progress.NotifyLevelStart();
-            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(sourceStore, logOnIdentity, progress))
+            using (IAxCryptDocument document = New<AxCryptFile>().Document(sourceStore, logOnIdentity, progress))
             {
                 if (!document.PassphraseIsValid)
                 {
                     return new FileOperationContext(sourceStore.FullName, ErrorStatus.Canceled);
                 }
 
-                IDataStore destinationStore = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceStore.FullName), document.FileName));
+                IDataStore destinationStore = New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceStore.FullName), document.FileName));
                 using (FileLock lockedDestination = destinationStore.FullName.CreateUniqueFile())
                 {
                     DecryptFile(document, lockedDestination.DataStore.FullName, progress);
@@ -590,7 +592,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(decryptedFileFullName);
+            IDataStore decryptedFileInfo = New<IDataStore>(decryptedFileFullName);
             Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
         }
 
@@ -661,7 +663,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { logOnIdentity.Passphrase }, logOnIdentity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
-            IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(decryptionParameters, new ProgressStream(source, progress));
+            IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptionParameters, new ProgressStream(source, progress));
             return document;
         }
 
@@ -697,7 +699,7 @@ namespace Axantum.AxCrypt.Core
 
             try
             {
-                IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(decryptionParameters, new ProgressStream(source, progress));
+                IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptionParameters, new ProgressStream(source, progress));
                 return document;
             }
             catch (AxCryptException ace)
@@ -746,7 +748,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     using (FileLock lockedAlternate = MakeAlternatePath(destinationFileInfo, ".bak"))
                     {
-                        IDataStore backupFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFileInfo.FullName);
+                        IDataStore backupFileInfo = New<IDataStore>(destinationFileInfo.FullName);
 
                         backupFileInfo.MoveTo(lockedAlternate.DataStore.FullName);
                         lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
@@ -818,8 +820,8 @@ namespace Axantum.AxCrypt.Core
             do
             {
                 randomName = GenerateRandomFileName(store.FullName);
-            } while (TypeMap.Resolve.New<IDataStore>(randomName).IsAvailable);
-            IDataStore moveToFileInfo = TypeMap.Resolve.New<IDataStore>(store.FullName);
+            } while (New<IDataStore>(randomName).IsAvailable);
+            IDataStore moveToFileInfo = New<IDataStore>(store.FullName);
             moveToFileInfo.MoveTo(randomName);
 
             using (Stream stream = moveToFileInfo.OpenUpdate())
