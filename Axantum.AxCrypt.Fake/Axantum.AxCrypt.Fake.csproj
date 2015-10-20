@@ -72,6 +72,7 @@
     <Compile Include="FakeStream.cs" />
     <Compile Include="FakeTiming.cs" />
     <Compile Include="FakeUIThread.cs" />
+    <Compile Include="FakeUserSettings.cs" />
     <Compile Include="FakeWebCaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

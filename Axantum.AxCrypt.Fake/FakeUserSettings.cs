@@ -1,0 +1,37 @@
+﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
+namespace Axantum.AxCrypt.Fake
+{
+    public class FakeUserSettings : UserSettings
+    {
+        public FakeUserSettings(IterationCalculator keyWrapIterationCalculator) : base(keyWrapIterationCalculator)
+        {
+            this.AsymmetricKeyBits = 512;
+            this.AxCrypt2HelpUrl = new Uri("http://localhost/AxCrypt2Help");
+            this.CultureName = "en-US";
+            this.DebugMode = false;
+            this.DisplayDecryptPassphrase = false;
+            this.DisplayEncryptPassphrase = false;
+            this.LastUpdateCheckUtc = DateTime.UtcNow;
+            this.NewestKnownVersion = "2.0.0.0";
+            this.RestApiBaseUrl = new Uri("http://localhost/api");
+            this.SessionNotificationMinimumIdle = TimeSpan.FromSeconds(1);
+            this.SettingsVersion = 5;
+            this.ThumbprintSalt = Salt.Zero;
+            this.TryBrokenFile = false;
+            this.UpdateUrl = new Uri("http://localhost/update");
+            this.UserEmail = String.Empty;
+        }
+
+        protected override void Save()
+        {
+        }
+    }
+}

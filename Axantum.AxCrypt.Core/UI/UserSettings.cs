@@ -49,6 +49,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         private IterationCalculator _keyWrapIterationCalculator;
 
+        protected UserSettings(IterationCalculator keyWrapIterationCalculator)
+        {
+            _keyWrapIterationCalculator = keyWrapIterationCalculator;
+        }
+
         public UserSettings(IDataStore fileInfo, IterationCalculator keyWrapIterationCalculator)
         {
             if (fileInfo == null)
@@ -237,7 +242,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private void Save()
+        protected virtual void Save()
         {
             using (TextWriter writer = new StreamWriter(_persistanceFileInfo.OpenWrite()))
             {
