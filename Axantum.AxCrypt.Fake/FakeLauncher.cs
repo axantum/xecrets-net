@@ -25,17 +25,60 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using Axantum.AxCrypt.Core.Crypto;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    public class FakeIterationCalculator : IterationCalculator
+    public class FakeLauncher : ILauncher
     {
-        public override long KeyWrapIterations(Guid cryptoId)
+        private string _path;
+
+        public virtual void Launch(string path)
         {
-            return 10;
+            _path = path;
+            HasExited = false;
+            WasStarted = true;
         }
+
+        protected virtual void OnExited(EventArgs e)
+        {
+            EventHandler handler = Exited;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        public void RaiseExited()
+        {
+            OnExited(new EventArgs());
+        }
+
+        #region ILauncher Members
+
+        public event EventHandler Exited;
+
+        public bool HasExited { get; set; }
+
+        public bool WasStarted { get; set; }
+
+        public string Path
+        {
+            get { return _path; }
+        }
+
+        #endregion ILauncher Members
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+        }
+
+        #endregion IDisposable Members
     }
 }

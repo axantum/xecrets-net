@@ -58,38 +58,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CryptoImplementation.cs" />
     <Compile Include="CryptoValidation\TestRsaOeap.cs" />
     <Compile Include="CryptoValidation\TestSha256.cs" />
-    <Compile Include="Endian.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="FakeDataProtection.cs" />
-    <Compile Include="FakeDelayTimer.cs" />
-    <Compile Include="FakeFileWatcher.cs" />
-    <Compile Include="FakeInMemoryDataStoreItem.cs" />
-    <Compile Include="FakeIterationCalculator.cs" />
-    <Compile Include="FakePseudoRandomGenerator.cs" />
-    <Compile Include="FakeRandomGenerator.cs" />
-    <Compile Include="FakeRequestClient.cs" />
-    <Compile Include="FakeRequestServer.cs" />
-    <Compile Include="FakeProgressBackground.cs" />
-    <Compile Include="FakeDataContainer.cs" />
-    <Compile Include="FakeSleep.cs" />
-    <Compile Include="FakeStatusChecker.cs" />
-    <Compile Include="FakeUIThread.cs" />
-    <Compile Include="FakeLauncher.cs" />
-    <Compile Include="FakeLogging.cs" />
-    <Compile Include="FakeRuntimeEnvironment.cs" />
-    <Compile Include="FakeDataStore.cs" />
-    <Compile Include="FakeTiming.cs" />
-    <Compile Include="FakeWebCaller.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="TestIdentityPublicTag.cs" />
     <Compile Include="TestKnownPublicKeys.cs" />
     <Compile Include="TestManageAccountViewModel.cs" />
     <Compile Include="MockAxCryptFile.cs" />
     <Compile Include="MockFileSystemStateActions.cs" />
-    <Compile Include="FakeAsymmetricFactory.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -173,7 +149,6 @@
     <Compile Include="TestProgressEventArgsTest.cs" />
     <Compile Include="TestProgressStream.cs" />
     <Compile Include="TestResources.cs" />
-    <Compile Include="FakeStream.cs" />
     <Compile Include="TestSessionEvent.cs" />
     <Compile Include="TestSessionNotificationHandler.cs" />
     <Compile Include="TestSessionNotificationMonitor.cs" />
@@ -236,6 +211,10 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
       <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Fake\Axantum.AxCrypt.Fake.csproj">
+      <Project>{48602976-aba8-4639-93e1-54cd0b2f0c23}</Project>
+      <Name>Axantum.AxCrypt.Fake</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
       <Project>{ce9e8614-8dc5-4757-9384-3c416ab61a47}</Project>

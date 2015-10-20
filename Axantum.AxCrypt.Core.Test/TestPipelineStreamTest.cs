@@ -2,6 +2,7 @@
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Fake;
 using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;

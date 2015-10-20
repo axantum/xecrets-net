@@ -34,9 +34,9 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeAsymmetricFactory : IAsymmetricFactory
+    public class FakeAsymmetricFactory : IAsymmetricFactory
     {
         private IAsymmetricFactory _factory = new BouncyCastleAsymmetricFactory();
 

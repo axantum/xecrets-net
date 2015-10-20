@@ -25,36 +25,35 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeRequestServer : IRequestServer
+    public class FakeUIThread : IUIThread
     {
-        public void Start()
+        public FakeUIThread()
         {
+            RunOnUIThreadAction = (action) => action();
         }
 
-        public void Shutdown()
+        public bool IsOnUIThread { get; set; }
+
+        public Action<Action> RunOnUIThreadAction { get; set; }
+
+        public void RunOnUIThread(Action action)
         {
+            RunOnUIThreadAction(action);
         }
 
-        public void AcceptRequest(CommandServiceEventArgs command)
+        public void PostOnUIThread(Action action)
         {
-            OnRequest(new RequestCommandEventArgs(command));
+            RunOnUIThreadAction(action);
         }
 
-        public event EventHandler<RequestCommandEventArgs> Request;
-
-        protected virtual void OnRequest(RequestCommandEventArgs e)
+        public void Yield()
         {
-            EventHandler<RequestCommandEventArgs> handler = Request;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
         }
     }
 }

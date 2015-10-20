@@ -25,24 +25,29 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakePseudoRandomGenerator : IRandomGenerator
+    public class FakeDataProtection : IDataProtection
     {
-        private Random _randomForTest = new Random(0);
+        #region IDataProtection Members
 
-        public byte[] Generate(int count)
+        public byte[] Protect(byte[] unprotectedData)
         {
-            byte[] bytes = new byte[count];
-            _randomForTest.NextBytes(bytes);
-
-            return bytes;
+            return (byte[])unprotectedData.Xor(new byte[unprotectedData.Length].Fill(0xff));
         }
+
+        public byte[] Unprotect(byte[] protectedData)
+        {
+            return (byte[])protectedData.Xor(new byte[protectedData.Length].Fill(0xff));
+        }
+
+        #endregion IDataProtection Members
     }
 }

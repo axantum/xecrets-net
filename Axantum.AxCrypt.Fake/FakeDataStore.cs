@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -37,9 +38,9 @@ using System.Linq;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeDataStore : IDataStore
+    public class FakeDataStore : IDataStore
     {
         private class FakeFileInfo
         {

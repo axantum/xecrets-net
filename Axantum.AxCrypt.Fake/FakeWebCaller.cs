@@ -25,25 +25,53 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions.Rest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
-using Axantum.AxCrypt.Core.Runtime;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    public class FakeTiming : ITiming
+    public class FakeRestCaller : IRestCaller
     {
-        public TimeSpan CurrentTiming { get; set; }
+        private RestResponse _result;
 
-        #region ITiming Members
+        public event EventHandler<EventArgs> Calling;
 
-        public TimeSpan Elapsed
+        public FakeRestCaller(string result)
         {
-            get { return CurrentTiming; }
+            _result = new RestResponse(HttpStatusCode.OK, result);
         }
 
-        #endregion ITiming Members
+        #region IRestCaller Members
+
+        public RestResponse Send(RestIdentity identity, RestRequest request)
+        {
+            OnCalling();
+            return _result;
+        }
+
+        #endregion IRestCaller Members
+
+        private void OnCalling()
+        {
+            EventHandler<EventArgs> handler = Calling;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+        }
+
+        public string HtmlEncode(string value)
+        {
+            return value;
+        }
+
+        public string UrlEncode(string value)
+        {
+            return value;
+        }
     }
 }

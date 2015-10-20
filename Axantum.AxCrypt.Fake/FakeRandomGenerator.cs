@@ -25,19 +25,24 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeRequestClient : IRequestClient
+    public class FakeRandomGenerator : IRandomGenerator
     {
-        public CommandStatus Dispatch(CommandServiceEventArgs command)
-        {
-            return FakeDispatcher(command);
-        }
+        private byte _randomForTest = 0;
 
-        public Func<CommandServiceEventArgs, CommandStatus> FakeDispatcher { get; set; }
+        public byte[] Generate(int count)
+        {
+            byte[] bytes = new byte[count];
+            for (int i = 0; i < count; ++i)
+            {
+                bytes[i] = _randomForTest++;
+            }
+            return bytes;
+        }
     }
 }

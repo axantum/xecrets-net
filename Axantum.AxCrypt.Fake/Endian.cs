@@ -25,24 +25,11 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using System;
-using System.Linq;
-
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeRandomGenerator : IRandomGenerator
+    public enum Endian
     {
-        private byte _randomForTest = 0;
-
-        public byte[] Generate(int count)
-        {
-            byte[] bytes = new byte[count];
-            for (int i = 0; i < count; ++i)
-            {
-                bytes[i] = _randomForTest++;
-            }
-            return bytes;
-        }
+        Reverse,
+        Actual
     }
 }

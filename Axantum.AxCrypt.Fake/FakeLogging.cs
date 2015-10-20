@@ -29,9 +29,9 @@ using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeLogging : ILogging
+    public class FakeLogging : ILogging
     {
         #region ILogging Members
 

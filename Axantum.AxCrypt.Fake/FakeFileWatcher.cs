@@ -30,9 +30,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeFileWatcher : IFileWatcher
+    public class FakeFileWatcher : IFileWatcher
     {
         private bool disposed = false;
 
@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fileWatchers.Clear();
         }
 
-        internal virtual void OnChanged(FileWatcherEventArgs eventArgs)
+        public virtual void OnChanged(FileWatcherEventArgs eventArgs)
         {
             EventHandler<FileWatcherEventArgs> fileChanged = FileChanged;
             if (fileChanged != null)

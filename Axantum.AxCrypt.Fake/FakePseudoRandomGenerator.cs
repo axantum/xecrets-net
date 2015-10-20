@@ -25,28 +25,24 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Crypto;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeSleep : ISleep
+    public class FakePseudoRandomGenerator : IRandomGenerator
     {
-        public void Time(TimeSpan value)
-        {
-            OnElapsed(new SleepEventArgs(value));
-        }
+        private Random _randomForTest = new Random(0);
 
-        public event EventHandler<SleepEventArgs> Elapsed;
-
-        protected virtual void OnElapsed(SleepEventArgs e)
+        public byte[] Generate(int count)
         {
-            EventHandler<SleepEventArgs> handler = Elapsed;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            byte[] bytes = new byte[count];
+            _randomForTest.NextBytes(bytes);
+
+            return bytes;
         }
     }
 }

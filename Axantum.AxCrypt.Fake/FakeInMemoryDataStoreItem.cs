@@ -6,13 +6,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
     /// <summary>
     ///
     /// </summary>
     [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Fake test code and MemoryStream does not need disposal.")]
-    internal class FakeInMemoryDataStoreItem : IDataStore
+    public class FakeInMemoryDataStoreItem : IDataStore
     {
         private MemoryStream _dataStream;
 

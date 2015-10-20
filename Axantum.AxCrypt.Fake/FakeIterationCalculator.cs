@@ -25,35 +25,17 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeUIThread : IUIThread
+    public class FakeIterationCalculator : IterationCalculator
     {
-        public FakeUIThread()
+        public override long KeyWrapIterations(Guid cryptoId)
         {
-            RunOnUIThreadAction = (action) => action();
-        }
-
-        public bool IsOnUIThread { get; set; }
-
-        public Action<Action> RunOnUIThreadAction { get; set; }
-
-        public void RunOnUIThread(Action action)
-        {
-            RunOnUIThreadAction(action);
-        }
-
-        public void PostOnUIThread(Action action)
-        {
-            RunOnUIThreadAction(action);
-        }
-
-        public void Yield()
-        {
+            return 10;
         }
     }
 }

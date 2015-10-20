@@ -25,11 +25,19 @@
 
 #endregion Coypright and License
 
-namespace Axantum.AxCrypt.Core.Test
+using Axantum.AxCrypt.Core.Ipc;
+using System;
+using System.Linq;
+
+namespace Axantum.AxCrypt.Fake
 {
-    public enum Endian
+    public class FakeRequestClient : IRequestClient
     {
-        Reverse,
-        Actual
+        public CommandStatus Dispatch(CommandServiceEventArgs command)
+        {
+            return FakeDispatcher(command);
+        }
+
+        public Func<CommandServiceEventArgs, CommandStatus> FakeDispatcher { get; set; }
     }
 }

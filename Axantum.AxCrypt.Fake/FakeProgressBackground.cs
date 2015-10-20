@@ -25,73 +25,52 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeDelayTimer : IDelayTimer
+    public class FakeProgressBackground : IProgressBackground
     {
-        private ISleep _sleep;
-
-        public FakeDelayTimer(ISleep sleep)
+        public void Work(Func<IProgressContext, FileOperationContext> work, Action<FileOperationContext> complete)
         {
-            _sleep = sleep;
-            _sleep.Elapsed += Sleep_Elapsed;
-        }
-
-        private void Sleep_Elapsed(object sender, SleepEventArgs e)
-        {
-            if (_elapsed >= _interval)
+            Busy = true;
+            OnWorkStatusChanged();
+            FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
+            try
             {
-                return;
+                status = work(new ProgressContext());
             }
-            _elapsed += e.Time;
-            if (_elapsed >= _interval)
+            catch (OperationCanceledException)
             {
-                OnElapsed();
+                status = new FileOperationContext(String.Empty, ErrorStatus.Canceled);
             }
+            complete(status);
+            Busy = false;
+            OnWorkStatusChanged();
         }
 
-        private bool disposed;
-
-        private TimeSpan _elapsed = TimeSpan.MinValue;
-
-        private TimeSpan _interval;
-
-        public void SetInterval(TimeSpan interval)
+        public void WaitForIdle()
         {
-            _interval = interval;
         }
 
-        public event EventHandler<EventArgs> Elapsed;
+        public event EventHandler WorkStatusChanged;
 
-        public void Start()
+        protected virtual void OnWorkStatusChanged()
         {
-            if (disposed)
-            {
-                throw new ObjectDisposedException("this");
-            }
-            _elapsed = TimeSpan.Zero;
-        }
-
-        protected virtual void OnElapsed()
-        {
-            EventHandler<EventArgs> handler = Elapsed;
+            EventHandler handler = WorkStatusChanged;
             if (handler != null)
             {
                 handler(this, new EventArgs());
             }
         }
 
-        public void Dispose()
+        public bool Busy
         {
-            if (!disposed)
-            {
-                disposed = true;
-                _sleep.Elapsed -= Sleep_Elapsed;
-            }
+            get;
+            set;
         }
     }
 }

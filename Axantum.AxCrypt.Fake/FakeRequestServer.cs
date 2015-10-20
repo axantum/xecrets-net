@@ -25,52 +25,36 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.Ipc;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeProgressBackground : IProgressBackground
+    public class FakeRequestServer : IRequestServer
     {
-        public void Work(Func<IProgressContext, FileOperationContext> work, Action<FileOperationContext> complete)
-        {
-            Busy = true;
-            OnWorkStatusChanged();
-            FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
-            try
-            {
-                status = work(new ProgressContext());
-            }
-            catch (OperationCanceledException)
-            {
-                status = new FileOperationContext(String.Empty, ErrorStatus.Canceled);
-            }
-            complete(status);
-            Busy = false;
-            OnWorkStatusChanged();
-        }
-
-        public void WaitForIdle()
+        public void Start()
         {
         }
 
-        public event EventHandler WorkStatusChanged;
-
-        protected virtual void OnWorkStatusChanged()
+        public void Shutdown()
         {
-            EventHandler handler = WorkStatusChanged;
+        }
+
+        public void AcceptRequest(CommandServiceEventArgs command)
+        {
+            OnRequest(new RequestCommandEventArgs(command));
+        }
+
+        public event EventHandler<RequestCommandEventArgs> Request;
+
+        protected virtual void OnRequest(RequestCommandEventArgs e)
+        {
+            EventHandler<RequestCommandEventArgs> handler = Request;
             if (handler != null)
             {
-                handler(this, new EventArgs());
+                handler(this, e);
             }
-        }
-
-        public bool Busy
-        {
-            get;
-            set;
         }
     }
 }

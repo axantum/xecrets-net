@@ -33,7 +33,7 @@ using System.Threading;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
     public class FakeRuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {

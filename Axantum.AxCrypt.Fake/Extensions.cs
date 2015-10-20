@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal static class Extensions
+    public static class Extensions
     {
         public static string PathCombine(this string path, params string[] parts)
         {

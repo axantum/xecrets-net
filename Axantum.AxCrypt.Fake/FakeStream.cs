@@ -31,9 +31,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeStream : Stream
+    public class FakeStream : Stream
     {
         private Action<string> _visitorAction;
         private Stream _stream;

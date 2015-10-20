@@ -47,6 +47,7 @@ using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Core.Service;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using Axantum.AxCrypt.Fake;
 
 namespace Axantum.AxCrypt.Core.Test
 {

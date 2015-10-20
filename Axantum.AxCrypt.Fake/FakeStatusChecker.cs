@@ -25,29 +25,28 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeDataProtection : IDataProtection
+    public class FakeStatusChecker : IStatusChecker
     {
-        #region IDataProtection Members
-
-        public byte[] Protect(byte[] unprotectedData)
+        /// <summary>
+        /// Check if a status is deemed a success. If not, possibly display an interactive message
+        /// to a user, incorporating the displayContext-string in the message. This is typically
+        /// a file name or some other language independent context.
+        /// </summary>
+        /// <param name="status">The status to check.</param>
+        /// <param name="displayContext">A language independent context for the error, typically a file name.</param>
+        /// <returns>
+        /// True if the status indicated success, false otherwise.
+        /// </returns>
+        public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext)
         {
-            return (byte[])unprotectedData.Xor(new byte[unprotectedData.Length].Fill(0xff));
+            return status == ErrorStatus.Success;
         }
-
-        public byte[] Unprotect(byte[] protectedData)
-        {
-            return (byte[])protectedData.Xor(new byte[protectedData.Length].Fill(0xff));
-        }
-
-        #endregion IDataProtection Members
     }
 }

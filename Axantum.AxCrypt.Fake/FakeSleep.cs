@@ -25,28 +25,28 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Fake
 {
-    internal class FakeStatusChecker : IStatusChecker
+    public class FakeSleep : ISleep
     {
-        /// <summary>
-        /// Check if a status is deemed a success. If not, possibly display an interactive message
-        /// to a user, incorporating the displayContext-string in the message. This is typically
-        /// a file name or some other language independent context.
-        /// </summary>
-        /// <param name="status">The status to check.</param>
-        /// <param name="displayContext">A language independent context for the error, typically a file name.</param>
-        /// <returns>
-        /// True if the status indicated success, false otherwise.
-        /// </returns>
-        public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext)
+        public void Time(TimeSpan value)
         {
-            return status == ErrorStatus.Success;
+            OnElapsed(new SleepEventArgs(value));
+        }
+
+        public event EventHandler<SleepEventArgs> Elapsed;
+
+        protected virtual void OnElapsed(SleepEventArgs e)
+        {
+            EventHandler<SleepEventArgs> handler = Elapsed;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
     }
 }
