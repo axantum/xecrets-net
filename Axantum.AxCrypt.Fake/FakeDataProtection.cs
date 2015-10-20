@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Axantum.AxCrypt.Fake
@@ -40,12 +41,26 @@ namespace Axantum.AxCrypt.Fake
 
         public byte[] Protect(byte[] unprotectedData)
         {
+            unprotectedData = unprotectedData.Append(new byte[] { 1, 2, 3, 4 });
             return (byte[])unprotectedData.Xor(new byte[unprotectedData.Length].Fill(0xff));
         }
 
         public byte[] Unprotect(byte[] protectedData)
         {
-            return (byte[])protectedData.Xor(new byte[protectedData.Length].Fill(0xff));
+            byte[] unprotected = (byte[])protectedData.Xor(new byte[protectedData.Length].Fill(0xff));
+            if (unprotected.Length < 4)
+            {
+                return null;
+            }
+            byte[] check = new byte[4];
+            Array.Copy(unprotected, unprotected.Length - 4, check, 0, 4);
+            if (!check.IsEquivalentTo(new byte[] { 1, 2, 3, 4 }))
+            {
+                return null;
+            }
+            byte[] value = new byte[unprotected.Length - 4];
+            Array.Copy(unprotected, 0, value, 0, unprotected.Length - 4);
+            return value;
         }
 
         #endregion IDataProtection Members
