@@ -39,8 +39,6 @@ namespace Axantum.AxCrypt.Core.Service
     /// </summary>
     public class KeyPairService
     {
-        private readonly object _lock = new object();
-
         private int _firstBatch;
 
         private int _bufferCount;
