@@ -27,8 +27,6 @@
 
 using System;
 using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
@@ -63,5 +61,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("2.0.0.0")]
 [assembly: AssemblyFileVersion("2.0.0.0")]
 [assembly: CLSCompliant(true)]
-[assembly: InternalsVisibleTo("Axantum.AxCrypt.Core.Test, PublicKey=0024000004800000940000000602000000240000525341310004000001000100f7cdec4989133e4654fa9741b22177f2404b463d1c821033dc73dfa47a5976e1cc69a8d78f4dd551bbf710e54300d7f035636a7502c1f88e0929596c848308e3250f927437f358d053d972744691c79ee6e4d3b151e63f56a331446a3097bf13e21f1feba2b84add6a05ebf2b3d9ca600d5ebf33d9c0ec3ae49956a9f3db3fc8")]
-//[assembly: InternalsVisibleTo("AxCrypt.WebApi.Test, PublicKey=0024000004800000940000000602000000240000525341310004000001000100f7cdec4989133e4654fa9741b22177f2404b463d1c821033dc73dfa47a5976e1cc69a8d78f4dd551bbf710e54300d7f035636a7502c1f88e0929596c848308e3250f927437f358d053d972744691c79ee6e4d3b151e63f56a331446a3097bf13e21f1feba2b84add6a05ebf2b3d9ca600d5ebf33d9c0ec3ae49956a9f3db3fc8")]
