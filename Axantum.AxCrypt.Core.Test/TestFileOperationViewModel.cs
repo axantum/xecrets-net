@@ -33,7 +33,6 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Fake;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -527,6 +526,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.DecryptFiles.Execute(null);
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            // Intermittent only invoked once below. Needs investigation.
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
