@@ -28,22 +28,46 @@ namespace Axantum.AxCrypt.Api
         public RestIdentity Identity { get; private set; }
 
         /// <summary>
-        /// Get a user summary, typically as an initial call to validate the passphrase with the account etc.
+        /// Get a user summary anonymously, typically as an initial call to validate the passphrase with the account etc.
         /// </summary>
         /// <param name="email">The user name/email</param>
         /// <returns>The user summary</returns>
         public UserAccount GetUserAccount(string userName)
         {
-            Uri resource = _baseUrl.PathCombine("users/{0}".With(UrlEncode(userName)));
+            if (userName == null)
+            {
+                throw new ArgumentNullException(nameof(userName));
+            }
+
+            Uri resource = _baseUrl.PathCombine("users/account/{0}".With(UrlEncode(userName)));
 
             RestResponse restResponse = RestCallInternal(Identity, new RestRequest(resource));
             EnsureStatusOk(restResponse);
 
             UserAccountResponse apiResponse = Serializer.Deserialize<UserAccountResponse>(restResponse.Content);
-            if (apiResponse.Status == (int)ApiStatus.PaymentRequired)
+            EnsureStatusOk(apiResponse);
+
+            return apiResponse.UserAccount;
+        }
+
+        /// <summary>
+        /// Gets the user account with the provided credentials.
+        /// </summary>
+        /// <returns>All account information for the user.</returns>
+        /// <exception cref="System.InvalidOperationException">There must be an identity and password to attempt to get private account information.</exception>
+        public UserAccount GetUserAccount()
+        {
+            if (String.IsNullOrEmpty(Identity.User) || String.IsNullOrEmpty(Identity.Password))
             {
-                return new UserAccount();
+                throw new InvalidOperationException("There must be an identity and password to attempt to get private account information.");
             }
+
+            Uri resource = _baseUrl.PathCombine("users/account");
+
+            RestResponse restResponse = RestCallInternal(Identity, new RestRequest(resource));
+            EnsureStatusOk(restResponse);
+
+            UserAccountResponse apiResponse = Serializer.Deserialize<UserAccountResponse>(restResponse.Content);
             EnsureStatusOk(apiResponse);
 
             return apiResponse.UserAccount;

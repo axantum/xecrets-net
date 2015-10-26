@@ -52,7 +52,29 @@ namespace Axantum.AxCrypt.Api.Test
             string content = Resolve.Serializer.Serialize(response);
 
             Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
-            mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/users/svante%40axcrypt.net")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
+            mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/users/account")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
+            mockRestCaller.Setup<string>(wc => wc.UrlEncode(It.IsAny<string>())).Returns<string>((url) => WebUtility.UrlEncode(url));
+            TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
+
+            AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"));
+            UserAccount userSummary = client.GetUserAccount();
+
+            Assert.That(userSummary.UserName, Is.EqualTo(identity.User));
+            Assert.That(userSummary.AccountKeys.Count(), Is.EqualTo(1));
+            Assert.That(userSummary.AccountKeys.First(), Is.EqualTo(summary.AccountKeys.First()));
+        }
+
+        [Test]
+        public void TestAnonymousSummary()
+        {
+            RestIdentity identity = new RestIdentity();
+
+            UserAccount summary = new UserAccount(identity.User, SubscriptionLevel.Free, AccountStatus.Verified, new AccountKey[] { new AccountKey("svante@axcrypt.net", Convert.ToBase64String(new byte[16]), new KeyPair("public-key-fake-PEM", String.Empty), DateTime.MinValue), });
+            UserAccountResponse response = new UserAccountResponse(summary);
+            string content = Resolve.Serializer.Serialize(response);
+
+            Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
+            mockRestCaller.Setup<RestResponse>(wc => wc.Send(It.Is<RestIdentity>((i) => i.User.Length == 0), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/users/account/svante%40axcrypt.net")))).Returns(() => new RestResponse(HttpStatusCode.OK, content));
             mockRestCaller.Setup<string>(wc => wc.UrlEncode(It.IsAny<string>())).Returns<string>((url) => WebUtility.UrlEncode(url));
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
