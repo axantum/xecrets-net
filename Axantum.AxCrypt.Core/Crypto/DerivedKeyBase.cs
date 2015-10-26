@@ -66,12 +66,12 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !typeof(IDerivedKey).IsAssignableFrom(obj.GetType()))
+            IDerivedKey other = obj as IDerivedKey;
+            if (other == null)
             {
                 return false;
             }
 
-            IDerivedKey other = (IDerivedKey)obj;
             return Equals(other);
         }
 

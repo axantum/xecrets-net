@@ -31,6 +31,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Fake
 {
@@ -47,9 +48,9 @@ namespace Axantum.AxCrypt.Fake
 
         #region IRestCaller Members
 
-        public RestResponse Send(RestIdentity identity, RestRequest request)
+        public async Task<RestResponse> SendAsync(RestIdentity identity, RestRequest request)
         {
-            OnCalling();
+            await Task.Run(() => OnCalling());
             return _result;
         }
 

@@ -21,7 +21,7 @@ namespace Axantum.AxCrypt.Fake
             this.DisplayEncryptPassphrase = false;
             this.LastUpdateCheckUtc = DateTime.UtcNow;
             this.NewestKnownVersion = "2.0.0.0";
-            this.RestApiBaseUrl = new Uri("http://localhost/api");
+            this.LegacyRestApiBaseUrl = new Uri("http://localhost/api");
             this.SessionNotificationMinimumIdle = TimeSpan.FromSeconds(1);
             this.SettingsVersion = 5;
             this.ThumbprintSalt = Salt.Zero;

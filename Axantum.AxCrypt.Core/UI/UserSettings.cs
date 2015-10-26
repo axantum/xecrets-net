@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
@@ -41,7 +40,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class UserSettings : IUserSettings
     {
-        public int CurrentSettingsVersion { get { return 9; } }
+        public int CurrentSettingsVersion { get { return 10; } }
 
         private Dictionary<string, string> _settings = new Dictionary<string, string>();
 
@@ -102,9 +101,9 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("CultureName", value); }
         }
 
-        public Uri RestApiBaseUrl
+        public Uri LegacyRestApiBaseUrl
         {
-            get { return Load("RestApiBaseUrl", new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/")); }
+            get { return Load(nameof(LegacyRestApiBaseUrl), new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/")); }
             set
             {
                 if (value == null)
@@ -112,7 +111,21 @@ namespace Axantum.AxCrypt.Core.UI
                     throw new ArgumentNullException("value");
                 }
 
-                Store("RestApiBaseUrl", value.ToString());
+                Store(nameof(LegacyRestApiBaseUrl), value.ToString());
+            }
+        }
+
+        public Uri RestApiBaseUrl
+        {
+            get { return Load(nameof(RestApiBaseUrl), new Uri("https://account.axcrypt.net/api/")); }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                Store(nameof(RestApiBaseUrl), value.ToString());
             }
         }
 

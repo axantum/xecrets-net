@@ -37,6 +37,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Service
 {
@@ -62,16 +63,13 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public AccountStatus Status
+        public async Task<AccountStatus> StatusAsync()
         {
-            get
+            if (LoadUserAccounts().Accounts.Any(a => EmailAddress.Parse(a.UserName) == _service.Identity.UserEmail) || UserKeyPairFiles().Any())
             {
-                if (LoadUserAccounts().Accounts.Any(a => EmailAddress.Parse(a.UserName) == _service.Identity.UserEmail) || UserKeyPairFiles().Any())
-                {
-                    return AccountStatus.Verified;
-                }
-                return _service.Status;
+                return AccountStatus.Verified;
             }
+            return await _service.StatusAsync();
         }
 
         public bool HasAccounts

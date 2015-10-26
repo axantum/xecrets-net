@@ -32,6 +32,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -63,7 +64,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get
             {
-                return typeof(Resources).Assembly.GetManifestResourceStream("Axantum.AxCrypt.Core.resources.axcrypticon.ico");
+                return typeof(Resources).GetTypeInfo().Assembly.GetManifestResourceStream("Axantum.AxCrypt.Core.resources.axcrypticon.ico");
             }
         }
 

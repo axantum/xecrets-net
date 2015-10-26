@@ -143,11 +143,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !typeof(LogOnIdentity).IsAssignableFrom(obj.GetType()))
+            LogOnIdentity other = obj as LogOnIdentity;
+            if (other == null)
             {
                 return false;
             }
-            LogOnIdentity other = (LogOnIdentity)obj;
 
             return Equals(other);
         }

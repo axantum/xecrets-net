@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Api
@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Api
         /// </summary>
         /// <param name="email">The user name/email</param>
         /// <returns>The user summary</returns>
-        public UserAccount GetUserAccount(string userName)
+        public async Task<UserAccount> GetUserAccountAsync(string userName)
         {
             if (userName == null)
             {
@@ -41,13 +41,11 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("users/account/{0}".With(UrlEncode(userName)));
 
-            RestResponse restResponse = RestCallInternal(Identity, new RestRequest(resource));
+            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest(resource));
             EnsureStatusOk(restResponse);
 
-            UserAccountResponse apiResponse = Serializer.Deserialize<UserAccountResponse>(restResponse.Content);
-            EnsureStatusOk(apiResponse);
-
-            return apiResponse.UserAccount;
+            UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
+            return userAccount;
         }
 
         /// <summary>
@@ -55,7 +53,7 @@ namespace Axantum.AxCrypt.Api
         /// </summary>
         /// <returns>All account information for the user.</returns>
         /// <exception cref="System.InvalidOperationException">There must be an identity and password to attempt to get private account information.</exception>
-        public UserAccount GetUserAccount()
+        public async Task<UserAccount> GetUserAccountAsync()
         {
             if (String.IsNullOrEmpty(Identity.User) || String.IsNullOrEmpty(Identity.Password))
             {
@@ -64,25 +62,23 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("users/account");
 
-            RestResponse restResponse = RestCallInternal(Identity, new RestRequest(resource));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource));
             EnsureStatusOk(restResponse);
 
-            UserAccountResponse apiResponse = Serializer.Deserialize<UserAccountResponse>(restResponse.Content);
-            EnsureStatusOk(apiResponse);
-
-            return apiResponse.UserAccount;
+            UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
+            return userAccount;
         }
 
         /// <summary>
         /// Uploads a key pair to server. The operation is idempotent.
         /// </summary>
         /// <param name="accountKeys">The account keys to upload.</param>
-        public void PutAccountKeys(IEnumerable<AccountKey> accountKeys)
+        public async void PutAccountKeysAsync(IEnumerable<AccountKey> accountKeys)
         {
             Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(Identity.User)));
 
             RestContent content = new RestContent(Serializer.Serialize(accountKeys));
-            RestResponse restResponse = RestCallInternal(Identity, new RestRequest("PUT", resource, content));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("PUT", resource, content));
             EnsureStatusOk(restResponse);
 
             ResponseBase apiResponse = Serializer.Deserialize<ResponseBase>(restResponse.Content);
@@ -93,10 +89,10 @@ namespace Axantum.AxCrypt.Api
         /// Downloads the account keys of the user.
         /// </summary>
         /// <returns>The account keys of the account.</returns>
-        public IList<AccountKey> AccountKeys()
+        public async Task<IList<AccountKey>> AccountKeysAsync()
         {
             Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(Identity.User)));
-            RestResponse restResponse = RestCallInternal(Identity, new RestRequest("GET", resource));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("GET", resource));
             EnsureStatusOk(restResponse);
 
             AccountKeyResponse response = Serializer.Deserialize<AccountKeyResponse>(restResponse.Content);
@@ -109,7 +105,7 @@ namespace Axantum.AxCrypt.Api
         /// Checks for the most current version of AxCrypt 2.
         /// </summary>
         /// <returns>The current version information</returns>
-        public CurrentVersionResponse CheckVersion(string currentVersion)
+        public async Task<CurrentVersionResponse> CheckVersionAsync(string currentVersion)
         {
             if (currentVersion == null)
             {
@@ -118,7 +114,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("axcrypt2version/windows?current={0}".With(UrlEncode(currentVersion)));
 
-            RestResponse restResponse = RestCallInternal(Identity, new RestRequest(resource));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource));
             EnsureStatusOk(restResponse);
 
             CurrentVersionResponse apiResponse = Serializer.Deserialize<CurrentVersionResponse>(restResponse.Content);
@@ -127,14 +123,16 @@ namespace Axantum.AxCrypt.Api
             return apiResponse;
         }
 
-        private static RestResponse RestCallInternal(RestIdentity identity, RestRequest request)
+        private async static Task<RestResponse> RestCallInternalAsync(RestIdentity identity, RestRequest request)
         {
             try
             {
-                return RestCaller.Send(identity, request);
+                return await RestCaller.SendAsync(identity, request);
             }
             catch (Exception ex)
             {
+                //RestResponse response = new RestResponse(System.Net.HttpStatusCode.ServiceUnavailable, ex.Message);
+                //return response;
                 throw new ApiException("REST call failed with exception.", ex);
             }
         }

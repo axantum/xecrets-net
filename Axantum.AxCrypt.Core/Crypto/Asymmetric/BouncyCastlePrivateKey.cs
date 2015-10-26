@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Encodings;
@@ -131,11 +130,11 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !typeof(IAsymmetricPrivateKey).IsAssignableFrom(obj.GetType()))
+            IAsymmetricPrivateKey other = obj as IAsymmetricPrivateKey;
+            if (other == null)
             {
                 return false;
             }
-            IAsymmetricPrivateKey other = (IAsymmetricPrivateKey)obj;
 
             return Equals(other);
         }

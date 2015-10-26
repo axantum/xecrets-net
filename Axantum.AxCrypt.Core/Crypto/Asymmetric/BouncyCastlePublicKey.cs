@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Encodings;
@@ -158,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public bool Equals(IAsymmetricPublicKey other)
         {
-            if (Object.ReferenceEquals(other, null) || !typeof(IAsymmetricPublicKey).IsAssignableFrom(other.GetType()))
+            if (Object.ReferenceEquals(other, null))
             {
                 return false;
             }

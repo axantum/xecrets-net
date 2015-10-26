@@ -33,6 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -102,12 +103,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public AccountStatus Status
+        public async Task<AccountStatus> StatusAsync()
         {
-            get
-            {
-                return _service.Status;
-            }
+            return await _service.StatusAsync();
         }
 
         public virtual void ChangePassphrase(Passphrase passphrase)

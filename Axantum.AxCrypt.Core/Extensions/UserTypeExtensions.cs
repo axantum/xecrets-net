@@ -1,4 +1,4 @@
-﻿using Axantum.AxCrypt.Abstractions;
+﻿using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Runtime;
@@ -163,6 +163,11 @@ namespace Axantum.AxCrypt.Core.Extensions
                     return Encoding.UTF8.GetString(decryptedPrivateKeyStream.ToArray(), 0, (int)decryptedPrivateKeyStream.Length);
                 }
             }
+        }
+
+        public static RestIdentity ToRestIdentity(this LogOnIdentity identity)
+        {
+            return new RestIdentity(identity.UserEmail.Address, identity.Passphrase.Text);
         }
     }
 }

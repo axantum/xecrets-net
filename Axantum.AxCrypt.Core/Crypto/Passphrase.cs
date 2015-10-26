@@ -101,11 +101,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !typeof(Passphrase).IsAssignableFrom(obj.GetType()))
+            Passphrase other = obj as Passphrase;
+            if (other == null)
             {
                 return false;
             }
-            Passphrase other = (Passphrase)obj;
 
             return Equals(other);
         }

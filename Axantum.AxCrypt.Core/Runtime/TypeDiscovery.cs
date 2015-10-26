@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
 
             List<Type> interfaces = new List<Type>();
-            foreach (Assembly assembly in new Assembly[] { interfaceToDiscover.Assembly }.Concat(extraAssemblies))
+            foreach (Assembly assembly in new Assembly[] { interfaceToDiscover.GetTypeInfo().Assembly }.Concat(extraAssemblies))
             {
                 try
                 {
@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private static void ScanAssemblyForNewInterfaces(Type interfaceToDiscover, Assembly assembly, IList<Type> interfaces)
         {
-            IEnumerable<Type> types = from t in assembly.GetExportedTypes() where t.GetInterfaces().Contains(interfaceToDiscover) select t;
+            IEnumerable<Type> types = from t in assembly.ExportedTypes where t.GetTypeInfo().ImplementedInterfaces.Contains(interfaceToDiscover) select t;
 
             foreach (Type t in types)
             {

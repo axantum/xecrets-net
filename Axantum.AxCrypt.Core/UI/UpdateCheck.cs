@@ -33,6 +33,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -110,7 +111,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 _done.Reset();
             }
-            ThreadPool.QueueUserWorkItem((object state) =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
@@ -130,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI
             Version newVersion = VersionUnknown;
             try
             {
-                CurrentVersionResponse versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl).CheckVersion(_currentVersion.ToString());
+                CurrentVersionResponse versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl).CheckVersionAsync(_currentVersion.ToString()).Result;
 
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);

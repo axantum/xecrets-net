@@ -97,11 +97,11 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !typeof(IAsymmetricKeyPair).IsAssignableFrom(obj.GetType()))
+            IAsymmetricKeyPair other = obj as IAsymmetricKeyPair;
+            if (other == null)
             {
                 return false;
             }
-            IAsymmetricKeyPair other = (IAsymmetricKeyPair)obj;
 
             return Equals(other);
         }

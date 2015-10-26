@@ -29,12 +29,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Abstractions.Rest
 {
     public interface IRestCaller
     {
-        RestResponse Send(RestIdentity identity, RestRequest request);
+        Task<RestResponse> SendAsync(RestIdentity identity, RestRequest request);
 
         /// <summary>
         /// HTML-Encodes the specified string.

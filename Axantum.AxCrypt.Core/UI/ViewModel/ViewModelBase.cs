@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static object GetProperty(object me, string name)
         {
-            PropertyInfo pi = me.GetType().GetProperty(name);
+            PropertyInfo pi = me.GetType().GetRuntimeProperty(name);
             if (pi == null)
             {
                 throw new InvalidOperationException("No property named '{0}' was found. Probably an error in the name argument to GetProperty() or SetProperty().".InvariantFormat(name));
@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             get
             {
-                IEnumerable<string> propertyNames = GetType().GetProperties().Select(pi => pi.Name).Where(s => s != "Item" && s != "ValidationError" && s != "Error");
+                IEnumerable<string> propertyNames = GetType().GetRuntimeProperties().Select(pi => pi.Name).Where(s => s != "Item" && s != "ValidationError" && s != "Error");
 
                 return
                     (from name in propertyNames
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             get
             {
-                if (GetType().GetProperty(columnName) == null)
+                if (GetType().GetRuntimeProperty(columnName) == null)
                 {
                     throw new ArgumentException("Non-existing property name.", columnName);
                 }

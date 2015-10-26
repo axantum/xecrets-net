@@ -31,6 +31,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Service
 {
@@ -77,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// <value>
         /// The status.
         /// </value>
-        AccountStatus Status { get; }
+        Task<AccountStatus> StatusAsync();
 
         /// <summary>
         /// Changes the passphrase for the account.

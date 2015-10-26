@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
@@ -148,14 +149,24 @@ namespace Axantum.AxCrypt
             return false;
         }
 
-        private void AxCryptMainForm_Shown(object sender, EventArgs e)
+        private async void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
-            if (!EnsureEmailAccount() || !EnsureCreateAccount())
+            if (!EnsureEmailAccount())
             {
                 Application.Exit();
                 return;
             }
 
+            while (!await EnsureExistingAccountAsync())
+            {
+                MessageBox.Show("You must verify your e-mail-address. Please check your e-mail, and try again");
+            }
+
+            if (!await EnsureCreateAccountAsync())
+            {
+                Application.Exit();
+                return;
+            }
             if (_shownFirstTime)
             {
                 return;
@@ -184,10 +195,14 @@ namespace Axantum.AxCrypt
             return true;
         }
 
-        private bool EnsureCreateAccount()
+        private async Task<bool> EnsureExistingAccountAsync()
         {
-            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(Resolve.UserSettings.UserEmail), Passphrase.Empty)));
-            if (store.Status == Api.Model.AccountStatus.Verified)
+            return await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync() == AccountStatus.Verified;
+        }
+
+        private async Task<bool> EnsureCreateAccountAsync()
+        {
+            if (await OfflineAccountExistsAsync())
             {
                 return true;
             }
@@ -203,7 +218,7 @@ namespace Axantum.AxCrypt
 
                 Passphrase passphrase = new Passphrase(dialog.PassphraseTextBox.Text);
                 EmailAddress emailAddress = EmailAddress.Parse(dialog.EmailTextBox.Text);
-                store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
+                AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
                 if (!store.HasKeyPair)
                 {
                     return false;
@@ -211,6 +226,13 @@ namespace Axantum.AxCrypt
                 Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(store.ActiveKeyPair, passphrase);
             }
             return true;
+        }
+
+        private async static Task<bool> OfflineAccountExistsAsync()
+        {
+            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(Resolve.UserSettings.UserEmail), Passphrase.Empty)));
+
+            return await store.StatusAsync() == Api.Model.AccountStatus.Verified;
         }
 
         private void LogOnAndDoPendingRequest()
@@ -1511,13 +1533,13 @@ namespace Axantum.AxCrypt
         {
             using (DebugOptionsDialog dialog = new DebugOptionsDialog())
             {
-                dialog._restApiBaseUrl.Text = Resolve.UserSettings.RestApiBaseUrl.ToString();
+                dialog._restApiBaseUrl.Text = Resolve.UserSettings.LegacyRestApiBaseUrl.ToString();
                 DialogResult result = dialog.ShowDialog();
                 if (result != DialogResult.OK)
                 {
                     return;
                 }
-                Resolve.UserSettings.RestApiBaseUrl = new Uri(dialog._restApiBaseUrl.Text);
+                Resolve.UserSettings.LegacyRestApiBaseUrl = new Uri(dialog._restApiBaseUrl.Text);
             }
         }
 

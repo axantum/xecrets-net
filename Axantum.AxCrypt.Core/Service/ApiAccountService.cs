@@ -33,6 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Service
 {
@@ -115,12 +116,18 @@ namespace Axantum.AxCrypt.Core.Service
         /// <value>
         /// The status.
         /// </value>
-        public AccountStatus Status
+        public async Task<AccountStatus> StatusAsync()
         {
-            get
+            UserAccount userAccount;
+            try
+            {
+                userAccount = await _apiClient.GetUserAccountAsync(Resolve.UserSettings.UserEmail);
+            }
+            catch (ApiException)
             {
                 return AccountStatus.Offline;
             }
+            return userAccount.AccountStatus;
         }
 
         /// <summary>

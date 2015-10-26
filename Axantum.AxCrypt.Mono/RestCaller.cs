@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Mono
 
         #region IRestCaller Members
 
-        public RestResponse Send(RestIdentity identity, RestRequest request)
+        public async Task<RestResponse> SendAsync(RestIdentity identity, RestRequest request)
         {
             if (identity == null)
             {
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Mono
                     {
                         throw new ArgumentException("You can't send content with a GET request.", "request");
                     }
-                    return SendGet(identity, request).Result;
+                    return await SendGet(identity, request);
 
                 default:
                     throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
