@@ -50,6 +50,10 @@ namespace Axantum.AxCrypt.Api
             {
                 return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.NotFound);
             }
+            if (restResponse.StatusCode == HttpStatusCode.BadRequest)
+            {
+                return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.InvalidName);
+            }
             EnsureStatusOk(restResponse);
 
             UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);

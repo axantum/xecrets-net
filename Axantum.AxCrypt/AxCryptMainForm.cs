@@ -167,8 +167,13 @@ namespace Axantum.AxCrypt
                         MessageDialog.Show(this, "Please Register", "You must register your email address.");
                         break;
 
+                    case AccountStatus.InvalidName:
+                        Resolve.UserSettings.UserEmail = String.Empty;
+                        MessageDialog.Show(this, "Invalid Email Address", "There is no such email address. Please enter your real email address, and try again.");
+                        break;
+
                     case AccountStatus.Unverified:
-                        MessageDialog.Show(this, "Check Email Address", "You must verify your email address. Please check your email address, and try again.");
+                        MessageDialog.Show(this, "Check Email Address", "You must verify your email address. Please check your email, and try again.");
                         break;
 
                     case AccountStatus.Verified:
@@ -181,6 +186,7 @@ namespace Axantum.AxCrypt
                     case AccountStatus.Unknown:
                     case AccountStatus.Unauthenticated:
                     case AccountStatus.DefinedByServer:
+                        Resolve.UserSettings.UserEmail = String.Empty;
                         MessageDialog.Show(this, "Unexpected Error", "Something unexpected went wrong. Please try again. If the problem persists, please report this.");
                         break;
 

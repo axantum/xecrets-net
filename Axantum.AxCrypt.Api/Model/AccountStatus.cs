@@ -14,5 +14,6 @@ namespace Axantum.AxCrypt.Api.Model
         Unauthenticated,
         DefinedByServer,
         NotFound,
+        InvalidName,
     }
 }
