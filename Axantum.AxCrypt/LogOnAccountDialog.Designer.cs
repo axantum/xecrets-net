@@ -164,7 +164,7 @@
             this.groupBox1.Size = new System.Drawing.Size(298, 44);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "E-Mail";
+            this.groupBox1.Text = "Email address";
             // 
             // EmailTextBox
             // 

@@ -41,9 +41,9 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     /// <summary>
-    /// Log On (enable default encryption key). If an e-mail is provided, an attempt is made to log on to the Internet
+    /// Log On (enable default encryption key). If an email address is provided, an attempt is made to log on to the Internet
     /// server and synchronize keys. If that fails, a locally accessible key-pair is required.
-    /// If no e-mail is provided, classic mode encryption is attempted, if this is enabled by the current feature policy.
+    /// If no email address is provided, classic mode encryption is attempted, if this is enabled by the current feature policy.
     /// </summary>
     public class LogOnAccountViewModel : ViewModelBase
     {

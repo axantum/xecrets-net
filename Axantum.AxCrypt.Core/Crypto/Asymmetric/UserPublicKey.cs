@@ -36,7 +36,7 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
     /// <summary>
-    /// Holder of the public key for a user, associated with an e-mail.
+    /// Holder of the public key for a user, associated with an email address.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public class UserPublicKey : IEquatable<UserPublicKey>

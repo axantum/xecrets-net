@@ -46,7 +46,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 namespace Axantum.AxCrypt.Core.Service
 {
     /// <summary>
-    /// A respository for a single user e-mail. A user has a single active key pair, with both a public
+    /// A respository for a single user email address. A user has a single active key pair, with both a public
     /// key for encryption and the matching private key for decryption.
     /// </summary>
     /// <remarks>Instances of this type are immutable.</remarks>

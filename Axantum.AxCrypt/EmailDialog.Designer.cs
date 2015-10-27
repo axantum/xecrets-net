@@ -34,10 +34,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this._panel1 = new System.Windows.Forms.Panel();
+            this._buttonExit = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
             this.EmailPanel = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
+            this._buttonHelp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -68,8 +70,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(301, 41);
             this.label1.TabIndex = 0;
-            this.label1.Text = "The first time you start AxCrypt, please enter your real email address. Click hel" +
-    "p for more information.";
+            this.label1.Text = "The first time you start AxCrypt, you must have Internet access and register your" +
+    " real email address. Click help for more information.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
@@ -79,25 +81,37 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 55);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(307, 97);
+            this.panel2.Size = new System.Drawing.Size(307, 100);
             this.panel2.TabIndex = 5;
             // 
             // _panel1
             // 
             this._panel1.AutoSize = true;
+            this._panel1.Controls.Add(this._buttonHelp);
+            this._panel1.Controls.Add(this._buttonExit);
             this._panel1.Controls.Add(this._buttonOk);
             this._panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this._panel1.Location = new System.Drawing.Point(0, 59);
             this._panel1.Name = "_panel1";
-            this._panel1.Size = new System.Drawing.Size(307, 38);
+            this._panel1.Size = new System.Drawing.Size(307, 41);
             this._panel1.TabIndex = 7;
+            // 
+            // _buttonExit
+            // 
+            this._buttonExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._buttonExit.Location = new System.Drawing.Point(116, 6);
+            this._buttonExit.Name = "_buttonExit";
+            this._buttonExit.Size = new System.Drawing.Size(75, 23);
+            this._buttonExit.TabIndex = 1;
+            this._buttonExit.Text = "Exit";
+            this._buttonExit.UseVisualStyleBackColor = true;
             // 
             // _buttonOk
             // 
             this._buttonOk.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(107, 6);
+            this._buttonOk.Location = new System.Drawing.Point(34, 6);
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(75, 23);
             this._buttonOk.TabIndex = 0;
@@ -125,7 +139,7 @@
             this.groupBox1.Size = new System.Drawing.Size(282, 44);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "E-Mail";
+            this.groupBox1.Text = "Email address";
             // 
             // EmailTextBox
             // 
@@ -136,11 +150,23 @@
             this.EmailTextBox.Size = new System.Drawing.Size(248, 20);
             this.EmailTextBox.TabIndex = 0;
             // 
+            // _buttonHelp
+            // 
+            this._buttonHelp.Location = new System.Drawing.Point(198, 6);
+            this._buttonHelp.Name = "_buttonHelp";
+            this._buttonHelp.Size = new System.Drawing.Size(75, 23);
+            this._buttonHelp.TabIndex = 2;
+            this._buttonHelp.Text = "Help";
+            this._buttonHelp.UseVisualStyleBackColor = true;
+            this._buttonHelp.Click += new System.EventHandler(this._buttonHelp_Click);
+            // 
             // EmailDialog
             // 
+            this.AcceptButton = this._buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 152);
+            this.CancelButton = this._buttonExit;
+            this.ClientSize = new System.Drawing.Size(307, 155);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.HelpButton = true;
@@ -173,5 +199,7 @@
         private System.Windows.Forms.Panel EmailPanel;
         private System.Windows.Forms.GroupBox groupBox1;
         internal System.Windows.Forms.TextBox EmailTextBox;
+        private System.Windows.Forms.Button _buttonExit;
+        private System.Windows.Forms.Button _buttonHelp;
     }
 }

@@ -46,7 +46,12 @@ namespace Axantum.AxCrypt
 
         private void EmailDialog_HelpButtonClicked(object sender, CancelEventArgs e)
         {
-            Process.Start(@"http://www.axcrypt.net/support/faq/");
+            LaunchHelpPage();
+        }
+
+        private static void LaunchHelpPage()
+        {
+            Process.Start(@"http://www.axcrypt.net/?p=1314");
         }
 
         private bool AdHocValidationDueToMonoLimitations()
@@ -78,6 +83,11 @@ namespace Axantum.AxCrypt
                 DialogResult = DialogResult.None;
                 return;
             }
+        }
+
+        private void _buttonHelp_Click(object sender, EventArgs e)
+        {
+            LaunchHelpPage();
         }
     }
 }

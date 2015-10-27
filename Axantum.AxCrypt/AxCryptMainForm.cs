@@ -151,16 +151,39 @@ namespace Axantum.AxCrypt
 
         private async void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
-            if (!EnsureEmailAccount())
+            AccountStatus status = AccountStatus.Unknown;
+            do
             {
-                Application.Exit();
-                return;
-            }
+                if (!EnsureEmailAccount(status))
+                {
+                    Application.Exit();
+                    return;
+                }
 
-            while (!await EnsureExistingAccountAsync())
-            {
-                MessageBox.Show("You must verify your e-mail-address. Please check your e-mail, and try again");
-            }
+                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
+                switch (status)
+                {
+                    case AccountStatus.Unverified:
+                        MessageDialog.Show(this, "Check Email Address", "You must verify your email address. Please check your email address, and try again.");
+                        break;
+
+                    case AccountStatus.Verified:
+                        break;
+
+                    case AccountStatus.Offline:
+                        MessageDialog.Show(this, "Internet Acccess Required", "You must have Internet access this first time. Please check your connection, and try again.");
+                        break;
+
+                    case AccountStatus.Unknown:
+                    case AccountStatus.Unauthenticated:
+                    case AccountStatus.DefinedByServer:
+                        MessageDialog.Show(this, "Unexpected Error", "Something unexpected went wrong. Please try again. If the problem persists, please report this.");
+                        break;
+
+                    default:
+                        break;
+                }
+            } while (status != AccountStatus.Verified);
 
             if (!await EnsureCreateAccountAsync())
             {
@@ -176,15 +199,16 @@ namespace Axantum.AxCrypt
             LogOnAndDoPendingRequest();
         }
 
-        private bool EnsureEmailAccount()
+        private bool EnsureEmailAccount(AccountStatus status)
         {
-            if (!String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
+            if (status == AccountStatus.Unknown && !String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
             {
                 return true;
             }
 
             using (EmailDialog dialog = new EmailDialog(this))
             {
+                dialog.EmailTextBox.Text = Resolve.UserSettings.UserEmail;
                 DialogResult result = dialog.ShowDialog(this);
                 if (result != DialogResult.OK)
                 {
@@ -193,11 +217,6 @@ namespace Axantum.AxCrypt
                 Resolve.UserSettings.UserEmail = dialog.EmailTextBox.Text;
             }
             return true;
-        }
-
-        private async Task<bool> EnsureExistingAccountAsync()
-        {
-            return await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync() == AccountStatus.Verified;
         }
 
         private async Task<bool> EnsureCreateAccountAsync()

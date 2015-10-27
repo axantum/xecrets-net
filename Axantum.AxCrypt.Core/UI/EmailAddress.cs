@@ -10,7 +10,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 namespace Axantum.AxCrypt.Core.UI
 {
     /// <summary>
-    /// A strongly typed representation of an e-mail address.
+    /// A strongly typed representation of an email address.
     /// </summary>
     /// <remarks>Instances of this type are immutable.</remarks>
     [JsonObject(MemberSerialization.OptIn)]
@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Core.UI
             string parsed;
             if (!New<IEmailParser>().TryParse(address, out parsed))
             {
-                throw new FormatException("Not recognized as a valid e-mail.");
+                throw new FormatException("Not recognized as a valid email address.");
             }
 
             Address = parsed;

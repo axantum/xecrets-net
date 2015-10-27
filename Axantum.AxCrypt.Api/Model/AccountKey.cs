@@ -62,10 +62,10 @@ namespace Axantum.AxCrypt.Api.Model
         public KeyPair KeyPair { get; }
 
         /// <summary>
-        /// Gets the user name, typically the e-mail.
+        /// Gets the user name, typically the email address.
         /// </summary>
         /// <value>
-        /// The user name (e-mail).
+        /// The user name (email address).
         /// </value>
         [JsonProperty("user")]
         public string User { get; }

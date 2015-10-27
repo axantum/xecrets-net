@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Header
         PlaintextLengths = 101,
 
         /// <summary>
-        /// 2.x - Json-encoded array of e-mail adresses representing key sharing recipients.
+        /// 2.x - Json-encoded array of email addresses representing key sharing recipients.
         /// </summary>
         AsymmetricRecipients = 102,
 

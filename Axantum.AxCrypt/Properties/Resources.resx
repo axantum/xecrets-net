@@ -357,8 +357,8 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
   </data>
   <data name="BadEmail" xml:space="preserve">
-    <value>Incorrect e-mail address</value>
-    <comment>Displayed when e-mail format validation fails.</comment>
+    <value>Incorrect email address</value>
+    <comment>Displayed when email address format validation fails.</comment>
   </data>
   <data name="AccountLoggedOnStatusText" xml:space="preserve">
     <value>{0}</value>

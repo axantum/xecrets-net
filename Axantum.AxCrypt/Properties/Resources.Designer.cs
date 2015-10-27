@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect e-mail address.
+        ///   Looks up a localized string similar to Incorrect email address.
         /// </summary>
         internal static string BadEmail {
             get {
