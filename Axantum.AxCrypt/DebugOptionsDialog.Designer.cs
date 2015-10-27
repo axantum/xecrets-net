@@ -31,11 +31,19 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DebugOptionsDialog));
             this._label1 = new System.Windows.Forms.Label();
-            this._restApiBaseUrl = new System.Windows.Forms.TextBox();
+            this._legacyRestApiBaseUrl = new System.Windows.Forms.TextBox();
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this._restApiBaseUrl = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this._timeoutTimeSpan = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this._errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider3)).BeginInit();
             this.SuspendLayout();
             // 
             // _label1
@@ -43,12 +51,12 @@
             resources.ApplyResources(this._label1, "_label1");
             this._label1.Name = "_label1";
             // 
-            // _restApiBaseUrl
+            // _legacyRestApiBaseUrl
             // 
-            resources.ApplyResources(this._restApiBaseUrl, "_restApiBaseUrl");
-            this._restApiBaseUrl.Name = "_restApiBaseUrl";
-            this._restApiBaseUrl.Validating += new System.ComponentModel.CancelEventHandler(this.RestApiBaseUrl_Validating);
-            this._restApiBaseUrl.Validated += new System.EventHandler(this.RestApiBaseUrl_Validated);
+            resources.ApplyResources(this._legacyRestApiBaseUrl, "_legacyRestApiBaseUrl");
+            this._legacyRestApiBaseUrl.Name = "_legacyRestApiBaseUrl";
+            this._legacyRestApiBaseUrl.Validating += new System.ComponentModel.CancelEventHandler(this.RestApiBaseUrl_Validating);
+            this._legacyRestApiBaseUrl.Validated += new System.EventHandler(this.RestApiBaseUrl_Validated);
             // 
             // _okButton
             // 
@@ -69,18 +77,52 @@
             // 
             this._errorProvider1.ContainerControl = this;
             // 
+            // _restApiBaseUrl
+            // 
+            resources.ApplyResources(this._restApiBaseUrl, "_restApiBaseUrl");
+            this._restApiBaseUrl.Name = "_restApiBaseUrl";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // _errorProvider2
+            // 
+            this._errorProvider2.ContainerControl = this;
+            // 
+            // textBox1
+            // 
+            resources.ApplyResources(this._timeoutTimeSpan, "textBox1");
+            this._timeoutTimeSpan.Name = "textBox1";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // _errorProvider3
+            // 
+            this._errorProvider3.ContainerControl = this;
+            // 
             // DebugOptionsDialog
             // 
             this.AcceptButton = this._okButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._cancelButton;
+            this.Controls.Add(this._timeoutTimeSpan);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this._restApiBaseUrl);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this._cancelButton);
             this.Controls.Add(this._okButton);
-            this.Controls.Add(this._restApiBaseUrl);
+            this.Controls.Add(this._legacyRestApiBaseUrl);
             this.Controls.Add(this._label1);
             this.Name = "DebugOptionsDialog";
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -89,9 +131,15 @@
         #endregion
 
         private System.Windows.Forms.Label _label1;
-        internal System.Windows.Forms.TextBox _restApiBaseUrl;
+        internal System.Windows.Forms.TextBox _legacyRestApiBaseUrl;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;
         private System.Windows.Forms.ErrorProvider _errorProvider1;
+        internal System.Windows.Forms.TextBox _restApiBaseUrl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ErrorProvider _errorProvider2;
+        internal System.Windows.Forms.TextBox _timeoutTimeSpan;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ErrorProvider _errorProvider3;
     }
 }

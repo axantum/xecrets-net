@@ -34,6 +34,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono
@@ -89,7 +90,7 @@ namespace Axantum.AxCrypt.Mono
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(request.Url.GetLeftPart(UriPartial.Authority));
-                client.Timeout = request.Timeout;
+                client.Timeout = request.Timeout > TimeSpan.Zero ? request.Timeout : TimeSpan.FromMilliseconds(-1);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 foreach (string key in request.Headers.Collection.Keys)

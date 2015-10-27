@@ -502,4 +502,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Status 'Working' with '{0}'.</value>
   </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>Please specify time as 'hh:mm:ss.mmm'.</value>
+  </data>
 </root>

@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Api.Test
             mockRestCaller.Setup<string>(wc => wc.UrlEncode(It.IsAny<string>())).Returns<string>((url) => WebUtility.UrlEncode(url));
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
-            AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"));
+            AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"), TimeSpan.Zero);
             UserAccount userSummary = client.GetUserAccountAsync().Result;
 
             Assert.That(userSummary.UserName, Is.EqualTo(identity.User));
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Api.Test
             mockRestCaller.Setup<string>(wc => wc.UrlEncode(It.IsAny<string>())).Returns<string>((url) => WebUtility.UrlEncode(url));
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
-            AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"));
+            AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"), TimeSpan.Zero);
             UserAccount userSummary = client.GetUserAccountAsync("svante@axcrypt.net").Result;
 
             Assert.That(userSummary.UserName, Is.EqualTo(identity.User));

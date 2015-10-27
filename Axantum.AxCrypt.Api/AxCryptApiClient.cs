@@ -15,14 +15,17 @@ namespace Axantum.AxCrypt.Api
     {
         private Uri _baseUrl;
 
+        private TimeSpan _timeout;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AxCryptApiClient"/> class.
         /// </summary>
         /// <param name="identity">The identity on whos behalf to make the call.</param>
-        public AxCryptApiClient(RestIdentity identity, Uri baseUrl)
+        public AxCryptApiClient(RestIdentity identity, Uri baseUrl, TimeSpan timeout)
         {
             Identity = identity;
             _baseUrl = baseUrl;
+            _timeout = timeout;
         }
 
         public RestIdentity Identity { get; private set; }
@@ -41,7 +44,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("users/account/{0}".With(UrlEncode(userName)));
 
-            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest(resource));
+            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest(resource, _timeout));
             EnsureStatusOk(restResponse);
 
             UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
@@ -62,7 +65,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("users/account");
 
-            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource, _timeout));
             EnsureStatusOk(restResponse);
 
             UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
@@ -78,7 +81,7 @@ namespace Axantum.AxCrypt.Api
             Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(Identity.User)));
 
             RestContent content = new RestContent(Serializer.Serialize(accountKeys));
-            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("PUT", resource, content));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("PUT", resource, _timeout, content));
             EnsureStatusOk(restResponse);
 
             ResponseBase apiResponse = Serializer.Deserialize<ResponseBase>(restResponse.Content);
@@ -92,7 +95,7 @@ namespace Axantum.AxCrypt.Api
         public async Task<IList<AccountKey>> AccountKeysAsync()
         {
             Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(Identity.User)));
-            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("GET", resource));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("GET", resource, _timeout));
             EnsureStatusOk(restResponse);
 
             AccountKeyResponse response = Serializer.Deserialize<AccountKeyResponse>(restResponse.Content);
@@ -114,7 +117,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("axcrypt2version/windows?current={0}".With(UrlEncode(currentVersion)));
 
-            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource, _timeout));
             EnsureStatusOk(restResponse);
 
             CurrentVersionResponse apiResponse = Serializer.Deserialize<CurrentVersionResponse>(restResponse.Content);

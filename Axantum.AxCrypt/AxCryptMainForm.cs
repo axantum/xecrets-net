@@ -1533,13 +1533,17 @@ namespace Axantum.AxCrypt
         {
             using (DebugOptionsDialog dialog = new DebugOptionsDialog())
             {
-                dialog._restApiBaseUrl.Text = Resolve.UserSettings.LegacyRestApiBaseUrl.ToString();
+                dialog._legacyRestApiBaseUrl.Text = Resolve.UserSettings.LegacyRestApiBaseUrl.ToString();
+                dialog._restApiBaseUrl.Text = Resolve.UserSettings.RestApiBaseUrl.ToString();
+                dialog._timeoutTimeSpan.Text = Resolve.UserSettings.ApiTimeOut.ToString();
                 DialogResult result = dialog.ShowDialog();
                 if (result != DialogResult.OK)
                 {
                     return;
                 }
-                Resolve.UserSettings.LegacyRestApiBaseUrl = new Uri(dialog._restApiBaseUrl.Text);
+                Resolve.UserSettings.LegacyRestApiBaseUrl = new Uri(dialog._legacyRestApiBaseUrl.Text);
+                Resolve.UserSettings.RestApiBaseUrl = new Uri(dialog._restApiBaseUrl.Text);
+                Resolve.UserSettings.ApiTimeOut = TimeSpan.Parse(dialog._timeoutTimeSpan.Text);
             }
         }
 

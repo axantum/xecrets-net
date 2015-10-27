@@ -35,6 +35,8 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI
 {
     public class UpdateCheck : IDisposable
@@ -131,7 +133,7 @@ namespace Axantum.AxCrypt.Core.UI
             Version newVersion = VersionUnknown;
             try
             {
-                CurrentVersionResponse versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl).CheckVersionAsync(_currentVersion.ToString()).Result;
+                CurrentVersionResponse versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl, New<IUserSettings>().ApiTimeOut).CheckVersionAsync(_currentVersion.ToString()).Result;
 
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);
