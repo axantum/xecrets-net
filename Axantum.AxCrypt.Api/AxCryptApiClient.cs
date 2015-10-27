@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("users/account/{0}".With(UrlEncode(userName)));
 
-            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest(resource, _timeout));
+            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest(resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 5)));
             if (restResponse.StatusCode == HttpStatusCode.NotFound)
             {
                 return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.NotFound);
@@ -85,12 +85,12 @@ namespace Axantum.AxCrypt.Api
         /// Uploads a key pair to server. The operation is idempotent.
         /// </summary>
         /// <param name="accountKeys">The account keys to upload.</param>
-        public async void PutAccountKeysAsync(IEnumerable<AccountKey> accountKeys)
+        public async Task PutAccountKeysAsync(IEnumerable<AccountKey> accountKeys)
         {
             Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(Identity.User)));
 
             RestContent content = new RestContent(Serializer.Serialize(accountKeys));
-            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("PUT", resource, _timeout, content));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("PUT", resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 2), content));
             EnsureStatusOk(restResponse);
 
             ResponseBase apiResponse = Serializer.Deserialize<ResponseBase>(restResponse.Content);
@@ -103,14 +103,12 @@ namespace Axantum.AxCrypt.Api
         /// <returns>The account keys of the account.</returns>
         public async Task<IList<AccountKey>> AccountKeysAsync()
         {
-            Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(Identity.User)));
+            Uri resource = _baseUrl.PathCombine("users/account");
             RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("GET", resource, _timeout));
             EnsureStatusOk(restResponse);
 
-            AccountKeyResponse response = Serializer.Deserialize<AccountKeyResponse>(restResponse.Content);
-            EnsureStatusOk(response);
-
-            return response.KeyPair;
+            UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
+            return userAccount.AccountKeys;
         }
 
         /// <summary>

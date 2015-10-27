@@ -150,9 +150,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
         {
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
-            if (store.HasKeyPair)
+            if (store.HasKeyPairAsync().Result)
             {
-                return new LogOnIdentity(store.ActiveKeyPair, passphrase);
+                return new LogOnIdentity(store.ActiveKeyPairAsync().Result, passphrase);
             }
 
             foreach (Passphrase candidate in _fileSystemState.KnownPassphrases)

@@ -248,11 +248,11 @@ namespace Axantum.AxCrypt
                 Passphrase passphrase = new Passphrase(dialog.PassphraseTextBox.Text);
                 EmailAddress emailAddress = EmailAddress.Parse(dialog.EmailTextBox.Text);
                 AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
-                if (!store.HasKeyPair)
+                if (!store.HasKeyPairAsync().Result)
                 {
                     return false;
                 }
-                Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(store.ActiveKeyPair, passphrase);
+                Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(store.ActiveKeyPairAsync().Result, passphrase);
             }
             return true;
         }

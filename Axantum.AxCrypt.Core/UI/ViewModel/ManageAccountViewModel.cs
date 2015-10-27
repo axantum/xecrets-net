@@ -60,9 +60,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            AccountProperties = _keysStore.AllKeyPairs.Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
+            AccountProperties = _keysStore.AllKeyPairsAsync().Result.Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
 
-            ChangePassphrase = new DelegateAction<string>((password) => ChangePassphraseAction(password), (password) => _keysStore.AllKeyPairs.Any());
+            ChangePassphrase = new DelegateAction<string>((password) => ChangePassphraseAction(password), (password) => _keysStore.AllKeyPairsAsync().Result.Any());
         }
 
         private static void BindPropertyChangedEvents()
@@ -75,9 +75,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private object ChangePassphraseAction(string passphrase)
         {
-            _keysStore.ChangePassphrase(new Passphrase(passphrase));
+            _keysStore.ChangePassphraseAsync(new Passphrase(passphrase));
 
-            LogOnIdentity identity = new LogOnIdentity(_keysStore.ActiveKeyPair, new Passphrase(passphrase));
+            LogOnIdentity identity = new LogOnIdentity(_keysStore.ActiveKeyPairAsync().Result, new Passphrase(passphrase));
             _knownIdenties.Add(identity);
 
             return null;

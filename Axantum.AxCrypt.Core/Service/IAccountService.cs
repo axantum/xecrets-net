@@ -91,12 +91,12 @@ namespace Axantum.AxCrypt.Core.Service
         /// Lists all UserKeyPairs available for the user.
         /// </summary>
         /// <returns></returns>
-        IList<UserKeyPair> List();
+        Task<IList<UserKeyPair>> ListAsync();
 
         /// <summary>
         /// Saves the specified key pairs.
         /// </summary>
         /// <param name="keyPairs">The key pairs.</param>
-        void Save(IEnumerable<UserKeyPair> keyPairs);
+        Task SaveAsync(IEnumerable<UserKeyPair> keyPairs);
     }
 }

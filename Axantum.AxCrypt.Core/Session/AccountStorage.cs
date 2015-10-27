@@ -49,15 +49,12 @@ namespace Axantum.AxCrypt.Core.Session
             _service = service;
         }
 
-        public bool HasKeyPair
+        public async Task<bool> HasKeyPairAsync()
         {
-            get
-            {
-                return _service.List().Any();
-            }
+            return (await _service.ListAsync()).Any();
         }
 
-        public void Import(UserKeyPair keyPair)
+        public async void ImportAsync(UserKeyPair keyPair)
         {
             if (keyPair == null)
             {
@@ -69,30 +66,24 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentException("User email mismatch in key pair and store.", nameof(keyPair));
             }
 
-            IList<UserKeyPair> keyPairs = _service.List();
+            IList<UserKeyPair> keyPairs = await _service.ListAsync();
             if (keyPairs.Any(k => k == keyPair))
             {
                 return;
             }
 
             keyPairs.Add(keyPair);
-            _service.Save(keyPairs);
+            await _service.SaveAsync(keyPairs);
         }
 
-        public virtual IEnumerable<UserKeyPair> AllKeyPairs
+        public async virtual Task<IEnumerable<UserKeyPair>> AllKeyPairsAsync()
         {
-            get
-            {
-                return _service.List().OrderByDescending(uk => uk.Timestamp);
-            }
+            return (await _service.ListAsync()).OrderByDescending(uk => uk.Timestamp);
         }
 
-        public UserKeyPair ActiveKeyPair
+        public async Task<UserKeyPair> ActiveKeyPairAsync()
         {
-            get
-            {
-                return AllKeyPairs.First();
-            }
+            return (await AllKeyPairsAsync()).First();
         }
 
         public EmailAddress UserEmail
@@ -108,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Session
             return await _service.StatusAsync();
         }
 
-        public virtual void ChangePassphrase(Passphrase passphrase)
+        public async virtual void ChangePassphraseAsync(Passphrase passphrase)
         {
             if (passphrase == null)
             {
@@ -116,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             _service.ChangePassphrase(passphrase);
-            _service.Save(AllKeyPairs);
+            await _service.SaveAsync(await AllKeyPairsAsync());
         }
     }
 }

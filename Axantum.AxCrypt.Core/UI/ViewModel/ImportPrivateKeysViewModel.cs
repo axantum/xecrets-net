@@ -152,11 +152,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(_knownIdentities.DefaultEncryptionIdentity));
-            store.Import(keyPair);
+            store.ImportAsync(keyPair);
             ImportSuccessful = true;
 
             _userSettings.UserEmail = keyPair.UserEmail.Address;
-            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(store.ActiveKeyPair, passphrase);
+            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(store.ActiveKeyPairAsync().Result, passphrase);
         }
     }
 }

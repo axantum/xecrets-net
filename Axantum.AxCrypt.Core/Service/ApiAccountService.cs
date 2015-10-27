@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -146,17 +147,20 @@ namespace Axantum.AxCrypt.Core.Service
         /// Lists all UserKeyPairs available for the user.
         /// </summary>
         /// <returns></returns>
-        public IList<UserKeyPair> List()
+        public async Task<IList<UserKeyPair>> ListAsync()
         {
-            return new UserKeyPair[0];
+            IList<AccountKey> apiAccountKeys = await _apiClient.AccountKeysAsync();
+            return apiAccountKeys.Select(k => k.ToUserAsymmetricKeys(Identity.Passphrase)).ToList();
         }
 
         /// <summary>
         /// Saves the specified key pairs.
         /// </summary>
         /// <param name="keyPairs">The key pairs.</param>
-        public void Save(IEnumerable<UserKeyPair> keyPairs)
+        public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
+            IList<AccountKey> apiAccountKeys = keyPairs.Select(k => k.ToAccountKey(Identity.Passphrase)).ToList();
+            await _apiClient.PutAccountKeysAsync(apiAccountKeys);
         }
     }
 }

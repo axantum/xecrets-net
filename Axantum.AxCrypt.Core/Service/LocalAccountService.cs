@@ -90,12 +90,26 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public IList<UserKeyPair> List()
+        private bool _hasCachedList = false;
+
+        public async Task<IList<UserKeyPair>> ListAsync()
         {
-            return TryLoadUserKeyPairs();
+            List<UserKeyPair> list = new List<UserKeyPair>();
+            list.AddRange(TryLoadUserKeyPairs());
+
+            if (_hasCachedList)
+            {
+                return list;
+            }
+
+            IList<UserKeyPair> other = await _service.ListAsync();
+            list = list.Union(other).ToList();
+            _hasCachedList = true;
+
+            return list;
         }
 
-        public void Save(IEnumerable<UserKeyPair> keyPairs)
+        public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
             UserAccounts userAccounts = LoadUserAccounts();
             UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == _service.Identity.UserEmail);
@@ -119,6 +133,8 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 userAccounts.SerializeTo(writer);
             }
+
+            await _service.SaveAsync(keyPairs);
         }
 
         public bool ChangePassphrase(Passphrase passphrase)
@@ -128,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Service
                 return false;
             }
 
-            Save(List());
+            SaveAsync(ListAsync().Result).Wait();
             return true;
         }
 

@@ -82,13 +82,14 @@ namespace Axantum.AxCrypt.Core.Service
             return true;
         }
 
-        public IList<UserKeyPair> List()
+        public Task<IList<UserKeyPair>> ListAsync()
         {
-            return new UserKeyPair[0];
+            return Task.FromResult((IList<UserKeyPair>)new UserKeyPair[0]);
         }
 
-        public void Save(IEnumerable<UserKeyPair> keyPairs)
+        public Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
+            return Task.Run(() => { });
         }
     }
 }
