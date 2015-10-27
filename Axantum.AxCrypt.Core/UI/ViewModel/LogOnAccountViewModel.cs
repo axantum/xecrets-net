@@ -74,14 +74,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             BindPropertyChangedInternal("ShowPassphrase", (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
             BindPropertyChangedInternal("ShowEmail", (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
-            BindPropertyChangedInternal("UserEmail", (string userEmail) => { if (String.IsNullOrEmpty(Validate("UserEmail"))) { _userSettings.UserEmail = userEmail; } });
+            BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (String.IsNullOrEmpty(Validate(nameof(UserEmail)))) { _userSettings.UserEmail = userEmail; } });
         }
 
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
 
-        public string Passphrase { get { return GetProperty<string>("Passphrase"); } set { SetProperty("Passphrase", value); } }
+        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
 
-        public string UserEmail { get { return GetProperty<string>("UserEmail"); } set { SetProperty("UserEmail", value); } }
+        public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
 
         public bool ShowEmail { get { return GetProperty<bool>("ShowEmail"); } private set { SetProperty("ShowEmail", value); } }
 
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (columnName)
             {
-                case "UserEmail":
+                case nameof(UserEmail):
                     if (!ShowEmail)
                     {
                         return true;
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     return true;
 
-                case "Passphrase":
+                case nameof(Passphrase):
                     if (ShowEmail && UserEmail.Length > 0 && UserEmail.IsValidEmail())
                     {
                         return IsValidAccountLogOn();

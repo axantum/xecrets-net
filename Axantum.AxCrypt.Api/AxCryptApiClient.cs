@@ -103,11 +103,8 @@ namespace Axantum.AxCrypt.Api
         /// <returns>The account keys of the account.</returns>
         public async Task<IList<AccountKey>> AccountKeysAsync()
         {
-            Uri resource = _baseUrl.PathCombine("users/account");
-            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("GET", resource, _timeout));
-            EnsureStatusOk(restResponse);
+            UserAccount userAccount = await GetUserAccountAsync();
 
-            UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
             return userAccount.AccountKeys;
         }
 

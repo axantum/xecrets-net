@@ -103,8 +103,16 @@ namespace Axantum.AxCrypt.Core.Service
             }
 
             IList<UserKeyPair> other = await _service.ListAsync();
+            if (other.Count == 0)
+            {
+                return list;
+            }
+
             list = list.Union(other).ToList();
-            _hasCachedList = true;
+
+            //This is where we can update the server, but it's not yet implemented at this point.
+            //await _service.SaveAsync(list);
+            //_hasCachedList = true;
 
             return list;
         }

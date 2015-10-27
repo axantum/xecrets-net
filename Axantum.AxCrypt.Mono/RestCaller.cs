@@ -101,10 +101,10 @@ namespace Axantum.AxCrypt.Mono
                 if (identity.User.Length > 0)
                 {
                     string credentials = "{0}:{1}".InvariantFormat(identity.User, identity.Password.ToUtf8Base64());
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Convert.ToBase64String(Encoding.ASCII.GetBytes(credentials)));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(credentials)));
                 }
 
-                HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery);
+                HttpResponseMessage httpResponse = client.GetAsync(request.Url.PathAndQuery).Result;
                 content = await httpResponse.Content.ReadAsStringAsync();
 
                 return new RestResponse(httpResponse.StatusCode, content);

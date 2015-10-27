@@ -149,7 +149,15 @@ namespace Axantum.AxCrypt.Core.Service
         /// <returns></returns>
         public async Task<IList<UserKeyPair>> ListAsync()
         {
-            IList<AccountKey> apiAccountKeys = await _apiClient.AccountKeysAsync();
+            IList<AccountKey> apiAccountKeys;
+            try
+            {
+                apiAccountKeys = await _apiClient.AccountKeysAsync();
+            }
+            catch (UnauthorizedApiException)
+            {
+                return new UserKeyPair[0];
+            }
             return apiAccountKeys.Select(k => k.ToUserAsymmetricKeys(Identity.Passphrase)).ToList();
         }
 
