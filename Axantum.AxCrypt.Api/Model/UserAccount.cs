@@ -21,8 +21,13 @@ namespace Axantum.AxCrypt.Api.Model
             AccountStatus = status;
         }
 
+        public UserAccount(string userName, SubscriptionLevel level, AccountStatus status)
+            : this(userName, level, status, new AccountKey[0])
+        {
+        }
+
         public UserAccount(string userName)
-            : this(userName, SubscriptionLevel.Unknown, AccountStatus.Unknown, new AccountKey[0])
+            : this(userName, SubscriptionLevel.Unknown, AccountStatus.Unknown)
         {
         }
 

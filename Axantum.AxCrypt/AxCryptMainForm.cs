@@ -163,6 +163,10 @@ namespace Axantum.AxCrypt
                 status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
                 switch (status)
                 {
+                    case AccountStatus.NotFound:
+                        MessageDialog.Show(this, "Please Register", "You must register your email address.");
+                        break;
+
                     case AccountStatus.Unverified:
                         MessageDialog.Show(this, "Check Email Address", "You must verify your email address. Please check your email address, and try again.");
                         break;

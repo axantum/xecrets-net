@@ -5,6 +5,7 @@ using Axantum.AxCrypt.Api.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -45,6 +46,10 @@ namespace Axantum.AxCrypt.Api
             Uri resource = _baseUrl.PathCombine("users/account/{0}".With(UrlEncode(userName)));
 
             RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest(resource, _timeout));
+            if (restResponse.StatusCode == HttpStatusCode.NotFound)
+            {
+                return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.NotFound);
+            }
             EnsureStatusOk(restResponse);
 
             UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
@@ -134,20 +139,18 @@ namespace Axantum.AxCrypt.Api
             }
             catch (Exception ex)
             {
-                //RestResponse response = new RestResponse(System.Net.HttpStatusCode.ServiceUnavailable, ex.Message);
-                //return response;
                 throw new ApiException("REST call failed with exception.", ex);
             }
         }
 
         private static void EnsureStatusOk(RestResponse restResponse)
         {
-            if (restResponse.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            if (restResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
                 throw new UnauthorizedApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
             }
 
-            if (restResponse.StatusCode != System.Net.HttpStatusCode.OK)
+            if (restResponse.StatusCode != HttpStatusCode.OK)
             {
                 throw new ApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
             }

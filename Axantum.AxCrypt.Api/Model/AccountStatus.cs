@@ -13,5 +13,6 @@ namespace Axantum.AxCrypt.Api.Model
         Offline,
         Unauthenticated,
         DefinedByServer,
+        NotFound,
     }
 }
