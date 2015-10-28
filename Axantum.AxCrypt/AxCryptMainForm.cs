@@ -194,20 +194,26 @@ namespace Axantum.AxCrypt
                     return;
                 }
 
+                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
                 switch (status)
                 {
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(Resolve.UserSettings.UserEmail);
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Signing Up", "You have now registered. Please check your email for an activation link. When you have activated your account, click OK.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Signing Up", "You have now signed up as '{0}'. Please check your inbox for an activation link. When you have activated your account, click OK.".InvariantFormat(Resolve.UserSettings.UserEmail));
                         break;
 
                     case AccountStatus.InvalidName:
                         Resolve.UserSettings.UserEmail = String.Empty;
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Invalid Email Address", "There is no such email address. Please enter your real email address, and try again.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Invalid Email Address", "You cannot sign up as '{0}'. Please enter your real email address, and try again.".InvariantFormat(Resolve.UserSettings.UserEmail));
                         break;
 
                     case AccountStatus.Unverified:
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Check Email Address", "You must verify your email address. Please check your email, and try again.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Check Email Address", "You are already signed up as '{0}' but must verify this is your email address. Please check your inbox, and try again.".InvariantFormat(Resolve.UserSettings.UserEmail));
+                        if (dialogResult == DialogResult.Cancel)
+                        {
+                            Resolve.UserSettings.UserEmail = String.Empty;
+                            dialogResult = DialogResult.OK;
+                        }
                         break;
 
                     case AccountStatus.Verified:
@@ -267,7 +273,6 @@ namespace Axantum.AxCrypt
             switch (status)
             {
                 case AccountStatus.Unknown:
-                case AccountStatus.NotFound:
                 case AccountStatus.InvalidName:
                     return AskForEmailAddressToUse();
 
