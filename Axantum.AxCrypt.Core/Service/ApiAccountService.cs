@@ -119,6 +119,11 @@ namespace Axantum.AxCrypt.Core.Service
         /// </value>
         public async Task<AccountStatus> StatusAsync()
         {
+            if (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
+            {
+                return AccountStatus.Unknown;
+            }
+
             UserAccount userAccount;
             try
             {

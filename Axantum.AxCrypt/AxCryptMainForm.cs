@@ -151,7 +151,13 @@ namespace Axantum.AxCrypt
 
         private async void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
-            AccountStatus status = AccountStatus.Unknown;
+            await DoInitialSignInAsync();
+        }
+
+        private async Task DoInitialSignInAsync()
+        {
+            AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
+            DialogResult dialogResult = DialogResult.OK;
             do
             {
                 if (!EnsureEmailAccount(status))
@@ -160,40 +166,49 @@ namespace Axantum.AxCrypt
                     return;
                 }
 
-                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
                 switch (status)
                 {
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(Resolve.UserSettings.UserEmail);
-                        MessageDialog.Show(this, "Signing Up", "You have now registered. Please check your email for the verification link and instructions.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Signing Up", "You have now registered. Please check your email for an activation link. When you have activated your account, click OK.");
                         break;
 
                     case AccountStatus.InvalidName:
                         Resolve.UserSettings.UserEmail = String.Empty;
-                        MessageDialog.Show(this, "Invalid Email Address", "There is no such email address. Please enter your real email address, and try again.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Invalid Email Address", "There is no such email address. Please enter your real email address, and try again.");
                         break;
 
                     case AccountStatus.Unverified:
-                        MessageDialog.Show(this, "Check Email Address", "You must verify your email address. Please check your email, and try again.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Check Email Address", "You must verify your email address. Please check your email, and try again.");
                         break;
 
                     case AccountStatus.Verified:
                         break;
 
                     case AccountStatus.Offline:
-                        MessageDialog.Show(this, "Internet Acccess Required", "You must have Internet access this first time. Please check your connection, and try again.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Internet Acccess Required", "You must have Internet access this first time. Please check your connection, and try again.");
                         break;
 
                     case AccountStatus.Unknown:
                     case AccountStatus.Unauthenticated:
                     case AccountStatus.DefinedByServer:
                         Resolve.UserSettings.UserEmail = String.Empty;
-                        MessageDialog.Show(this, "Unexpected Error", "Something unexpected went wrong. Please try again. If the problem persists, please report this.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Unexpected Error", "Something unexpected went wrong. Please try again. If the problem persists, please report this.");
                         break;
 
                     default:
                         break;
                 }
+                if (dialogResult == DialogResult.Abort)
+                {
+                    Application.Exit();
+                    return;
+                }
+                if (dialogResult == DialogResult.Cancel)
+                {
+                    return;
+                }
+                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
             } while (status != AccountStatus.Verified);
 
             if (!await EnsureCreateAccountAsync())
@@ -212,11 +227,26 @@ namespace Axantum.AxCrypt
 
         private bool EnsureEmailAccount(AccountStatus status)
         {
-            if (status == AccountStatus.Unknown && !String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
+            if (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
             {
-                return true;
+                return AskForEmailAddressToUse();
             }
 
+            switch (status)
+            {
+                case AccountStatus.Unknown:
+                case AccountStatus.NotFound:
+                case AccountStatus.InvalidName:
+                    return AskForEmailAddressToUse();
+
+                default:
+                    break;
+            }
+            return true;
+        }
+
+        private bool AskForEmailAddressToUse()
+        {
             using (EmailDialog dialog = new EmailDialog(this))
             {
                 dialog.EmailTextBox.Text = Resolve.UserSettings.UserEmail;
