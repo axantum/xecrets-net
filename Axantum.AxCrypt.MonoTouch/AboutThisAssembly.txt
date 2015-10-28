@@ -1,8 +1,30 @@
-About Axantum.AxCrypt.iOS
+About Axantum.AxCrypt.MonoTouch
 
-This assembly contains the source code for the AxCrypt iOS application.
+This assembly is the MonoTouch-specific implementation of the various platform-specific interfaces
+defined and used by Axantum.AxCrypt.Core.
+
+Some of the code is identical with the generic Mono implementation, and is thus just linked to
+in the project.
+
+Some of the code is specific for MonoTouch and thus have a custom implementation here.
+
+The main application should configure itself for MonoTouch by a line of code similar to:
+
+            OS.Current = new Axantum.AxCrypt.MonoTouch.RuntimeEnvironment();
 
 NOTE: You must build Axantum.AxCrypt.Core.dll separately for 'Debug' and 'Release' configuration as needed.
       This is built by the AxCrypt.NET solution, which can be loaded simultaneously into MonoDevelop for
       a reasonably convenient workspace environment.
-      
+
+FAQ
+
+Q: Why the special handling of Axantum.AxCrypt.Core?
+
+A: There are no really good alternatives. Bringing the code into the solution as a linked project is possible,
+   but requires double maintenance. MonoDevelop does not support Configuration-dependent binary references, so
+   therefore a Pre-Build event is used to copy the appropriate binary from the Axantum.AxCrypt.Core/bin/Configuration
+   directory. Finally, this more closely mirrors the long-term situation where Axantum.AxCrypt.Core really is
+   a binary depedency to the full, with it's own release cycle. This is not the case at this time, where it is
+   still a somewhat moving target. This is why this way to handle it was chosen. Also, MonoDevelop does not work
+   well with XBuild for MonoTouch projects, otherwise a Configuration-dependent conditional dependency manually
+   edited in the .csproj might have been a better choice.

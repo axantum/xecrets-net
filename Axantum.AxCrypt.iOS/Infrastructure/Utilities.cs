@@ -1,6 +1,6 @@
 using MonoTouch.UIKit;
 
-namespace Axantum.AxCrypt.MonoTouch.Infrastructure
+namespace Axantum.AxCrypt.iOS.Infrastructure
 {
 	public class Utilities
 	{

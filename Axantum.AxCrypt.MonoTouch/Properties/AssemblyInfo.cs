@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AxCrypt for iOS Devices")]
+[assembly: AssemblyTitle("AxCrypt MonoTouch Library")]
 [assembly: AssemblyDescription("Beta")]
 [assembly: AssemblyCompany("Axantum Software AB")]
 [assembly: AssemblyProduct("AxCrypt")]
@@ -47,8 +47,8 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("258c0256-6cd2-4604-8bd6-1e9c3df5d88b")]
-[assembly: CLSCompliant(false)]
+[assembly: Guid("7f60742b-44b1-4aac-be60-e769378b9161")]
+[assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
 
 // Version information for an assembly consists of the following four values:

@@ -1,6 +1,6 @@
 using MonoTouch.UIKit;
 
-namespace Axantum.AxCrypt.MonoTouch
+namespace Axantum.AxCrypt.iOS
 {
 	public class Application
 	{

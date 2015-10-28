@@ -3,7 +3,7 @@ using System;
 using MonoTouch.Foundation;
 using System.Drawing;
 
-namespace Axantum.AxCrypt.MonoTouch
+namespace Axantum.AxCrypt.iOS
 {
 	public class FilePresenter : UIDocumentInteractionControllerDelegate
 	{
