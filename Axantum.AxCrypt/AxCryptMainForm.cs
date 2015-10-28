@@ -162,6 +162,7 @@ namespace Axantum.AxCrypt
             {
                 control.Enabled = enabled;
             }
+            Cursor = enabled ? Cursors.Default : Cursors.WaitCursor;
         }
 
         private async Task DoInitialSignInAsync()
