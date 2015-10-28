@@ -114,14 +114,11 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="MonoTouch.Dialog-1" />
-    <Reference Include="BouncyCastle.Crypto">
-      <HintPath>..\SolutionItems\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="BTProgressHUD">
       <HintPath>Components\btprogresshud-1.5\lib\ios\BTProgressHUD.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+    <Reference Include="Newtonsoft.Json">
       <HintPath>..\SolutionItems\NewtonsoftJsonPCL\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -712,4 +709,10 @@
     </XamarinComponentReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj">
+      <Project>{3680C939-B21F-4444-B646-42FB4B29A786}</Project>
+      <Name>BouncyCastle.AxCrypt</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
