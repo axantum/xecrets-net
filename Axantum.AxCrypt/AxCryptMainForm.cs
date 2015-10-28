@@ -151,7 +151,17 @@ namespace Axantum.AxCrypt
 
         private async void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
+            SetTopControlsEnabled(false);
             await DoInitialSignInAsync();
+            SetTopControlsEnabled(true);
+        }
+
+        private void SetTopControlsEnabled(bool enabled)
+        {
+            foreach (Control control in Controls)
+            {
+                control.Enabled = enabled;
+            }
         }
 
         private async Task DoInitialSignInAsync()

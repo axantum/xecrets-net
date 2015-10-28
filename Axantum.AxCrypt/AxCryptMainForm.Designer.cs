@@ -77,6 +77,7 @@
             this._debugCryptoPolicyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugLoggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugManageAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tryBrokenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpViewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,7 +93,6 @@
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
-            this.tryBrokenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -512,6 +512,12 @@
             resources.ApplyResources(this._debugManageAccountToolStripMenuItem, "_debugManageAccountToolStripMenuItem");
             this._debugManageAccountToolStripMenuItem.Click += new System.EventHandler(this.ManageAccountToolStripMenuItem_Click);
             // 
+            // tryBrokenFileToolStripMenuItem
+            // 
+            this.tryBrokenFileToolStripMenuItem.Name = "tryBrokenFileToolStripMenuItem";
+            resources.ApplyResources(this.tryBrokenFileToolStripMenuItem, "tryBrokenFileToolStripMenuItem");
+            this.tryBrokenFileToolStripMenuItem.Click += new System.EventHandler(this.tryBrokenFileToolStripMenuItem_Click);
+            // 
             // _helpToolStripMenuItem
             // 
             this._helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -631,12 +637,6 @@
             // 
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
-            // 
-            // tryBrokenFileToolStripMenuItem
-            // 
-            this.tryBrokenFileToolStripMenuItem.Name = "tryBrokenFileToolStripMenuItem";
-            resources.ApplyResources(this.tryBrokenFileToolStripMenuItem, "tryBrokenFileToolStripMenuItem");
-            this.tryBrokenFileToolStripMenuItem.Click += new System.EventHandler(this.tryBrokenFileToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
