@@ -159,6 +159,10 @@ namespace Axantum.AxCrypt
             }
             catch (Exception ex)
             {
+                while (ex.InnerException != null)
+                {
+                    ex = ex.InnerException;
+                }
                 MessageBox.Show(ex.Message, "Unhandled Exception");
             }
         }

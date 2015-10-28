@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Api
         {
             Uri resource = _baseUrl.PathCombine("users/account/{0}".With(UrlEncode(userName)));
 
-            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest("PUT", resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 1))).ConfigureAwait(false);
+            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest("POST", resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 1))).ConfigureAwait(false);
             EnsureStatusOk(restResponse);
         }
 
@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Api
                 throw new UnauthorizedApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
             }
 
-            if (restResponse.StatusCode != HttpStatusCode.OK)
+            if (restResponse.StatusCode != HttpStatusCode.OK && restResponse.StatusCode != HttpStatusCode.Created)
             {
                 throw new ApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
             }

@@ -69,6 +69,9 @@ namespace Axantum.AxCrypt.Mono
                 case "PUT":
                     return await SendPut(identity, request).ConfigureAwait(false);
 
+                case "POST":
+                    return await SendPost(identity, request).ConfigureAwait(false);
+
                 default:
                     throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
             }
@@ -109,6 +112,21 @@ namespace Axantum.AxCrypt.Mono
 
                 StringContent httpContent = new StringContent(request.Content.Text);
                 HttpResponseMessage httpResponse = await client.PutAsync(request.Url.PathAndQuery, httpContent).ConfigureAwait(false);
+                content = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                return new RestResponse(httpResponse.StatusCode, content);
+            }
+        }
+
+        private async static Task<RestResponse> SendPost(RestIdentity identity, RestRequest request)
+        {
+            string content = String.Empty;
+            using (HttpClient client = new HttpClient())
+            {
+                PrepareClient(client, identity, request);
+
+                StringContent httpContent = new StringContent(request.Content.Text);
+                HttpResponseMessage httpResponse = await client.PostAsync(request.Url.PathAndQuery, httpContent).ConfigureAwait(false);
                 content = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                 return new RestResponse(httpResponse.StatusCode, content);
