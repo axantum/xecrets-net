@@ -112,6 +112,7 @@
             this.Name = "MessageDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "MessageDialog";
+            this.Shown += new System.EventHandler(this.MessageDialog_Shown);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

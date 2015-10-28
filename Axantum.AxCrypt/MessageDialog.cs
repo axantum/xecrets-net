@@ -2,6 +2,7 @@
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,12 +38,24 @@ namespace Axantum.AxCrypt
             flowLayoutPanel1.Left = (flowLayoutPanel1.Parent.ClientRectangle.Width - flowLayoutPanel1.Width) / 2;
         }
 
+        private Point? _lastLocation;
+
         public MessageDialog(Form parent)
             : this()
         {
             Owner = parent;
-            Owner.Activated += (sender, e) => Activate();
+            Move += MessageDialog_Move;
             StartPosition = FormStartPosition.CenterParent;
+        }
+
+        private void MessageDialog_Move(object sender, EventArgs e)
+        {
+            if (_lastLocation == null)
+            {
+                return;
+            }
+            Owner.Location = new Point(Owner.Location.X - (_lastLocation.Value.X - Location.X), Owner.Location.Y - (_lastLocation.Value.Y - Location.Y));
+            _lastLocation = Location;
         }
 
         public static DialogResult ShowOkCancel(Form parent, string caption, string message)
@@ -93,6 +106,11 @@ namespace Axantum.AxCrypt
         private void _buttonExit_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Abort;
+        }
+
+        private void MessageDialog_Shown(object sender, EventArgs e)
+        {
+            _lastLocation = Location;
         }
     }
 }
