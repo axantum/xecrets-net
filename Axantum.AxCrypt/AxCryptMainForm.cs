@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
@@ -171,6 +170,7 @@ namespace Axantum.AxCrypt
                 SetTopControlsEnabled(true);
                 break;
             }
+            StartupLogOnAndPendingRequest();
         }
 
         private void SetTopControlsEnabled(bool enabled)
@@ -244,6 +244,10 @@ namespace Axantum.AxCrypt
                 Application.Exit();
                 return;
             }
+        }
+
+        private void StartupLogOnAndPendingRequest()
+        {
             if (_shownFirstTime)
             {
                 return;
