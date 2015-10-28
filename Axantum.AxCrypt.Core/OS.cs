@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core
         {
             get
             {
-                return Instance.Environment;
+                return Resolve.Environment;
             }
         }
 

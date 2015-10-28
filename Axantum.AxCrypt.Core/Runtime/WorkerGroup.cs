@@ -25,10 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
-using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -61,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             /// </summary>
             public void Join()
             {
-                throw new InvalidOperationException("This instance is managed by a WorkerGroup, and Join() cannot be called explicitly.");
+                throw new InvalidOperationException("This instance is managed by a worker group, and join cannot be called explicitly.");
             }
 
             /// <summary>
@@ -77,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             /// </summary>
             public bool HasCompleted
             {
-                get { throw new InvalidOperationException("This instance is managed by a WorkerGroup, and HasCompleted cannot be called explicitly."); }
+                get { throw new InvalidOperationException("This instance is managed by a worker group, and completed status cannot be gotten explicitly."); }
             }
 
             /// <summary>
@@ -110,10 +111,21 @@ namespace Axantum.AxCrypt.Core.Runtime
                 remove { _worker.Completing -= value; }
             }
 
+            public event EventHandler<ThreadWorkerEventArgs> Completed
+            {
+                add { _worker.Completed += value; }
+                remove { _worker.Completed -= value; }
+            }
+
+            public void Dispose()
+            {
+                _worker.Dispose();
+            }
+
             #endregion IThreadWorker Members
         }
 
-        private Semaphore _concurrencyControlSemaphore;
+        private ISemaphore _concurrencyControlSemaphore;
 
         private int _maxConcurrencyCount;
 
@@ -121,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private bool _finished = false;
 
-        private SingleThread _singleThread;
+        private ISingleThread _singleThread;
 
         private readonly object _finishedLock = new object();
 
@@ -149,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
         }
 
-        /// <summary>
+        /// <summary
         /// Instantiates a worker group with specified maximum concurrency and external progress reporting. Progress
         /// will be reported on the thread instantiating the ProgressContext used.
         /// </summary>
@@ -157,10 +169,15 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <param name="progress">The ProgressContext that receives progress notifications</param>
         public WorkerGroup(int maxConcurrent, IProgressContext progress)
         {
-            _concurrencyControlSemaphore = new Semaphore(maxConcurrent, maxConcurrent);
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
+            _concurrencyControlSemaphore = Resolve.Portable.Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
-            _singleThread = new SingleThread();
-            FirstError = FileOperationStatus.Success;
+            _singleThread = Resolve.Portable.SingleThread();
+            FirstError = new FileOperationContext(String.Empty, ErrorStatus.Success);
             progress.NotifyLevelStart();
             Progress = new WorkerGroupProgressContext(progress, _singleThread);
         }
@@ -190,7 +207,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 if (_finished)
                 {
-                    throw new InvalidOperationException("NotifyFinished() must only be called once, but was called twice.");
+                    throw new InvalidOperationException("A worker group can only be finished once, but was called twice.");
                 }
                 NotifyFinishedInternal();
             }
@@ -233,18 +250,23 @@ namespace Axantum.AxCrypt.Core.Runtime
                 throw new ObjectDisposedException("WorkerGroup");
             }
             AcquireOneConcurrencyRight();
-            ThreadWorker threadWorker = new ThreadWorker(Progress, startSerializedOnUIThread);
+            IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(Progress, startSerializedOnUIThread);
             threadWorker.Completed += new EventHandler<ThreadWorkerEventArgs>(HandleThreadWorkerCompletedEvent);
             return new ThreadWorkerWrapper(threadWorker);
         }
 
+        /// <summary>
+        /// Handles the thread worker completed event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="ThreadWorkerEventArgs"/> instance containing the event data.</param>
         private void HandleThreadWorkerCompletedEvent(object sender, ThreadWorkerEventArgs e)
         {
-            if (e.Result != FileOperationStatus.Success)
+            if (e.Result.ErrorStatus != ErrorStatus.Success)
             {
                 lock (_firstErrorLock)
                 {
-                    if (FirstError == FileOperationStatus.Success)
+                    if (FirstError.ErrorStatus == ErrorStatus.Success)
                     {
                         FirstError = e.Result;
                     }
@@ -263,7 +285,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <summary>
         /// The first error reported. Subsequent errors may be missed.
         /// </summary>
-        public FileOperationStatus FirstError { get; private set; }
+        public FileOperationContext FirstError { get; private set; }
 
         private void AcquireOneConcurrencyRight()
         {
@@ -304,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             NotifyFinishedInternal();
             if (_concurrencyControlSemaphore != null)
             {
-                _concurrencyControlSemaphore.Close();
+                _concurrencyControlSemaphore.Dispose();
                 _concurrencyControlSemaphore = null;
             }
             if (_singleThread != null)

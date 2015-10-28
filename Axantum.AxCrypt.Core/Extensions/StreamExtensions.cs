@@ -25,9 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Algorithm;
+using Org.BouncyCastle.Utilities.Zlib;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -58,6 +64,15 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static long CopyTo(this Stream inputStream, Stream outputStream)
         {
+            if (inputStream == null)
+            {
+                throw new ArgumentNullException("inputStream");
+            }
+            if (outputStream == null)
+            {
+                throw new ArgumentNullException("outputStream");
+            }
+
             long totalDone = 0;
             byte[] buffer = new byte[OS.Current.StreamBufferSize];
             int bufferWrittenCount = 0;
@@ -82,6 +97,69 @@ namespace Axantum.AxCrypt.Core.Extensions
                 bufferRemainingCount = buffer.Length;
             }
             return totalDone;
+        }
+
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
+        public static void DecryptTo(this Stream encryptedInputStream, Stream plaintextOutputStream, ICryptoTransform transform, bool isCompressed)
+        {
+            Exception savedExceptionIfCloseCausesException = null;
+            try
+            {
+                if (encryptedInputStream == null)
+                {
+                    throw new ArgumentNullException("encryptedInputStream");
+                }
+                if (plaintextOutputStream == null)
+                {
+                    throw new ArgumentNullException("plaintextOutputStream");
+                }
+                if (transform == null)
+                {
+                    throw new ArgumentNullException("transform");
+                }
+
+                if (isCompressed)
+                {
+                    using (Stream deflatedPlaintextStream = New<CryptoStream>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read))
+                    {
+                        using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
+                        {
+                            try
+                            {
+                                inflatedPlaintextStream.CopyTo(plaintextOutputStream);
+                            }
+                            catch (Exception ex)
+                            {
+                                savedExceptionIfCloseCausesException = ex;
+                                throw;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    using (Stream plainStream = New<CryptoStream>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read))
+                    {
+                        try
+                        {
+                            plainStream.CopyTo(plaintextOutputStream);
+                        }
+                        catch (Exception ex)
+                        {
+                            savedExceptionIfCloseCausesException = ex;
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                if (savedExceptionIfCloseCausesException != null)
+                {
+                    throw savedExceptionIfCloseCausesException;
+                }
+                throw;
+            }
         }
     }
 }

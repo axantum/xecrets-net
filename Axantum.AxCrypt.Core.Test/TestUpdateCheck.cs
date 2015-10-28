@@ -25,14 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Fake;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -54,10 +56,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestVersionUpdated()
         {
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
-                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0"",""R"":307,""S"":0,""M"":""OK""}");
-            };
+            TypeMap.Register.New<IRestCaller>(
+                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0"",""R"":307,""S"":0,""M"":""OK""}")
+            );
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -86,11 +87,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestVersionUpdatedWithInvalidVersionFormatFromServer()
         {
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
+            TypeMap.Register.New<IRestCaller>(
                 // The version returned has 5 components - bad!
-                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0.0"",""R"":307,""S"":0,""M"":""OK""}");
-            };
+                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0.0"",""R"":307,""S"":0,""M"":""OK""}")
+            );
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -114,11 +114,10 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
             Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "The new version has 5 components, and should be parsed as unknown.");
 
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
+            TypeMap.Register.New<IRestCaller>(
                 // The version returned is an empty string - bad!
-                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":"""",""R"":307,""S"":0,""M"":""OK""}");
-            };
+                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":"""",""R"":307,""S"":0,""M"":""OK""}")
+            );
 
             using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
             {
@@ -158,10 +157,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDoubleDisposeAndObjectDisposedException()
         {
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
-                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0"",""R"":307,""S"":0,""M"":""OK""}");
-            };
+            TypeMap.Register.New<IRestCaller>(
+                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0"",""R"":307,""S"":0,""M"":""OK""}")
+            );
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -193,10 +191,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestVersionNotUpdatedNotCheckedBefore()
         {
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
-                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.207.0"",""R"":207,""S"":0,""M"":""OK""}");
-            };
+            TypeMap.Register.New<IRestCaller>(
+                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.207.0"",""R"":207,""S"":0,""M"":""OK""}")
+            );
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -225,10 +222,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestVersionSameAndCheckedRecently()
         {
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
-                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.300.0"",""R"":300,""S"":0,""M"":""OK""}");
-            };
+            TypeMap.Register.New<IRestCaller>(
+                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.300.0"",""R"":300,""S"":0,""M"":""OK""}")
+            );
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -258,12 +254,11 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestVersionAlreadyCheckedRecently()
         {
             bool wasCalled = false;
-            FakeWebCaller webCaller = new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
-            webCaller.Calling += (object sender, EventArgs e) => { wasCalled = true; };
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
-                return webCaller;
-            };
+            FakeRestCaller restCaller = new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
+            restCaller.Calling += (object sender, EventArgs e) => { wasCalled = true; };
+            TypeMap.Register.New<IRestCaller>(
+                () => restCaller
+            );
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -294,12 +289,11 @@ namespace Axantum.AxCrypt.Core.Test
         {
             int calls = 0;
             ManualResetEvent wait = new ManualResetEvent(false);
-            FakeWebCaller webCaller = new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
-            webCaller.Calling += (object sender, EventArgs e) => { wait.WaitOne(); ++calls; };
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
-                return webCaller;
-            };
+            FakeRestCaller restCaller = new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
+            restCaller.Calling += (object sender, EventArgs e) => { wait.WaitOne(); ++calls; };
+            TypeMap.Register.New<IRestCaller>(
+                () => restCaller
+            );
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -331,12 +325,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestExceptionDuringVersionCall()
         {
-            FakeWebCaller webCaller = new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
-            webCaller.Calling += (object sender, EventArgs e) => { throw new InvalidOperationException("Oops - a forced exception during the call."); };
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
-                return webCaller;
-            };
+            FakeRestCaller restCaller = new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
+            restCaller.Calling += (object sender, EventArgs e) => { throw new InvalidOperationException("Oops - a forced exception during the call."); };
+            TypeMap.Register.New<IRestCaller>(
+                () => restCaller
+            );
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -364,12 +357,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestExceptionDuringVersionCallButRecentlyChecked()
         {
-            FakeWebCaller webCaller = new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
-            webCaller.Calling += (object sender, EventArgs e) => { throw new InvalidOperationException("Oops - a forced exception during the call."); };
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
-                return webCaller;
-            };
+            FakeRestCaller restCaller = new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
+            restCaller.Calling += (object sender, EventArgs e) => { throw new InvalidOperationException("Oops - a forced exception during the call."); };
+            TypeMap.Register.New<IRestCaller>(
+                () => restCaller
+            );
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -397,10 +389,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidVersionReturned()
         {
-            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
-            {
-                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""x.y.z.z"",""R"":207,""S"":0,""M"":""OK""}");
-            };
+            TypeMap.Register.New<IRestCaller>(
+                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""x.y.z.z"",""R"":207,""S"":0,""M"":""OK""}")
+            );
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };

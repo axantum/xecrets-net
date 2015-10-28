@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 
@@ -46,16 +47,20 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
-        public static void TestPassphraseConstructor()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestPassphraseConstructor(CryptoImplementation cryptoImplementation)
         {
-            V1Passphrase passphrase = new V1Passphrase("A Passphrase");
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            V1DerivedKey passphrase = new V1DerivedKey(new Passphrase("A Passphrase"));
             SymmetricKey derivedKey = passphrase.DerivedKey;
-            Assert.That(derivedKey.Length, Is.EqualTo(16), "The default derived key is 128 bits.");
+            Assert.That(derivedKey.Size, Is.EqualTo(128), "The default derived key is 128 bits.");
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                passphrase = new V1Passphrase(null);
+                passphrase = new V1DerivedKey(null);
             });
         }
     }

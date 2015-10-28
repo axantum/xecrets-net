@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using NUnit.Framework;
 using System.Diagnostics.CodeAnalysis;
@@ -48,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestFindFindIdTag()
         {
@@ -58,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Test
                 new PreambleHeaderBlock().Write(testStream);
                 new V1IdTagHeaderBlock("A test").Write(testStream);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");

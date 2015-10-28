@@ -26,7 +26,11 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Session;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -44,9 +48,17 @@ namespace Axantum.AxCrypt.Core
 
         DateTime LastWriteTimeUtc { get; set; }
 
-        ICrypto KeyEncryptingCrypto { get; }
+        DecryptionParameter DecryptionParameter { get; set; }
 
-        bool Load(IPassphrase key, Stream inputStream);
+        EncryptedProperties Properties { get; }
+
+        ICryptoFactory CryptoFactory { get; }
+
+        IEnumerable<UserPublicKey> AsymmetricRecipients { get; }
+
+        bool Load(Passphrase passphrase, Guid cryptoId, Headers headers);
+
+        bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers);
 
         void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options);
 

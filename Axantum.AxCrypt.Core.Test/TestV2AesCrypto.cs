@@ -25,9 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Fake;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -61,20 +66,22 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
 
         [Test]
         public static void TestEncrypt()
         {
-            IPassphrase key = new GenericPassphrase(new SymmetricKey(testKey));
-            ICrypto crypto = new V2AesCrypto(key, new SymmetricIV(testPlaintext), 0);
+            ICrypto crypto = new V2AesCrypto(new SymmetricKey(testKey), new SymmetricIV(testPlaintext), 0);
 
             byte[] zeroPlain = new byte[testCipertext.Length];
 
@@ -86,8 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptPartialBlock()
         {
-            IPassphrase key = new GenericPassphrase(new SymmetricKey(testKey));
-            ICrypto crypto = new V2AesCrypto(key, new SymmetricIV(testPlaintext), 3);
+            ICrypto crypto = new V2AesCrypto(new SymmetricKey(testKey), new SymmetricIV(testPlaintext), 3);
             byte[] zeroPlain = new byte[5];
 
             byte[] cipherText = crypto.Encrypt(zeroPlain);
@@ -100,29 +106,51 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptSeveralBlocks()
         {
-            IPassphrase key = new GenericPassphrase(new SymmetricKey(nistKey));
-
             byte[] iv = new byte[16];
             Array.Copy(nistInitCounter, iv, 8);
 
             long blockCounter = nistInitCounter.GetBigEndianValue(8, 8);
             ICrypto crypto;
 
-            crypto = new V2AesCrypto(key, new SymmetricIV(iv), blockCounter, 0);
+            crypto = new V2AesCrypto(new SymmetricKey(nistKey), new SymmetricIV(iv), blockCounter << 4);
             byte[] cipherText1 = crypto.Encrypt(nistPlaintext1);
             Assert.That(cipherText1.IsEquivalentTo(nistCiphertext1));
 
-            crypto = new V2AesCrypto(key, new SymmetricIV(iv), ++blockCounter, 0);
+            crypto = new V2AesCrypto(new SymmetricKey(nistKey), new SymmetricIV(iv), (++blockCounter) << 4);
             byte[] cipherText2 = crypto.Encrypt(nistPlaintext2);
             Assert.That(cipherText2.IsEquivalentTo(nistCiphertext2));
 
-            crypto = new V2AesCrypto(key, new SymmetricIV(iv), ++blockCounter, 0);
+            crypto = new V2AesCrypto(new SymmetricKey(nistKey), new SymmetricIV(iv), (++blockCounter) << 4);
             byte[] cipherText3 = crypto.Encrypt(nistPlaintext3);
             Assert.That(cipherText3.IsEquivalentTo(nistCiphertext3));
 
-            crypto = new V2AesCrypto(key, new SymmetricIV(iv), ++blockCounter, 0);
+            crypto = new V2AesCrypto(new SymmetricKey(nistKey), new SymmetricIV(iv), (++blockCounter) << 4);
             byte[] cipherText4 = crypto.Encrypt(nistPlaintext4);
             Assert.That(cipherText4.IsEquivalentTo(nistCiphertext4));
+        }
+
+        [Test]
+        public static void TestConstructorWithBadArguments()
+        {
+            SymmetricKey nullKey = null;
+
+            SymmetricKey testKey = new SymmetricKey(128);
+            SymmetricIV testIV = new SymmetricIV(128);
+
+            ICrypto crypto = null;
+            Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(nullKey, testIV, 0));
+
+            testKey = new SymmetricKey(64);
+            Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(testKey, testIV, 0));
+
+            testKey = new SymmetricKey(256);
+            testIV = new SymmetricIV(64);
+            Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(testKey, testIV, 0));
+
+            testIV = new SymmetricIV(128);
+            Assert.DoesNotThrow(() => crypto = new V2AesCrypto(testKey, testIV, 0));
+
+            Assert.That(crypto, Is.Not.Null);
         }
     }
 }

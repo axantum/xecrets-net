@@ -25,12 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -38,20 +42,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private string _encryptedFileFullName;
 
-        public LogOnViewModel(string identityName, string encryptedFileFullName)
+        public LogOnViewModel(string encryptedFileFullName)
         {
             _encryptedFileFullName = encryptedFileFullName;
-            InitializePropertyValues(identityName);
+            InitializePropertyValues();
         }
 
-        private void InitializePropertyValues(string identityName)
+        private void InitializePropertyValues()
         {
-            IdentityName = identityName;
             Passphrase = String.Empty;
-            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : Factory.New<IRuntimeFileInfo>(_encryptedFileFullName).Name;
+            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : New<IDataStore>(_encryptedFileFullName).Name;
         }
-
-        public string IdentityName { get { return GetProperty<string>("IdentityName"); } set { SetProperty("IdentityName", value); } }
 
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
 
@@ -87,13 +88,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (columnName)
             {
                 case "Passphrase":
-                    bool isPassphraseAKnownIdentity = IsPassphraseAKnownIdentity();
                     if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
                     }
-                    if (!isPassphraseAKnownIdentity)
+                    bool isKnownIdentity = IsKnownIdentity();
+                    if (String.IsNullOrEmpty(_encryptedFileFullName) && !isKnownIdentity)
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
@@ -105,26 +106,22 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
+        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
         {
             if (String.IsNullOrEmpty(encryptedFileFullName))
             {
                 return true;
             }
-            if (Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName) != null)
-            {
-                return true;
-            }
-            return false;
+            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { new Passphrase(passphrase) }, new IAsymmetricPrivateKey[0], Resolve.CryptoFactory.OrderedIds);
+            return New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, New<IDataStore>(encryptedFileFullName)) != null;
         }
 
-        private bool IsPassphraseAKnownIdentity()
+        private bool IsKnownIdentity()
         {
-            SymmetricKeyThumbprint thumbprint = new GenericPassphrase(Passphrase).Thumbprint;
-            PassphraseIdentity id = Instance.FileSystemState.Identities.FirstOrDefault(identity => (String.IsNullOrEmpty(IdentityName) || IdentityName == identity.Name) && identity.Thumbprint == thumbprint);
-            if (id != null)
+            SymmetricKeyThumbprint thumbprint = new Passphrase(Passphrase).Thumbprint;
+            Passphrase passphrase = Resolve.FileSystemState.KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
+            if (passphrase != null)
             {
-                IdentityName = id.Name;
                 return true;
             }
             return false;

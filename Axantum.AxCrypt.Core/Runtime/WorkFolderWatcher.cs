@@ -25,10 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -38,17 +41,22 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public WorkFolderWatcher()
         {
-            _workFolderWatcher = Factory.New<IFileWatcher>(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName);
+            _workFolderWatcher = New<IFileWatcher>(New<WorkFolder>().FileInfo.FullName);
+            _workFolderWatcher.IncludeSubdirectories = true;
             _workFolderWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
         }
 
         private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
         {
-            if (e.FullName == Instance.FileSystemState.PathInfo.FullName)
+            foreach (string fullName in e.FullNames)
             {
-                return;
+                if (fullName == Resolve.FileSystemState.PathInfo.FullName)
+                {
+                    continue;
+                }
+
+                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, fullName));
             }
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, e.FullName));
         }
 
         public void Dispose()

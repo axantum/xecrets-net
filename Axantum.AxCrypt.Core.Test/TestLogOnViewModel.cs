@@ -25,54 +25,71 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Fake;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestLogOnViewModel
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestLogOnViewModel
     {
-        private static IList<PassphraseIdentity> _identities;
+        private static IList<Passphrase> _identities;
+
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestLogOnViewModel(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
 
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
-            _identities = new List<PassphraseIdentity>();
-            Mock<FileSystemState> fileSystemStateMock = new Mock<FileSystemState>();
-            fileSystemStateMock.Setup<IList<PassphraseIdentity>>(f => f.Identities).Returns(_identities);
-            Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+            SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
-            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
+            _identities = new List<Passphrase>();
+            Mock<FileSystemState> fileSystemStateMock = new Mock<FileSystemState>();
+            fileSystemStateMock.Setup<IList<Passphrase>>(f => f.KnownPassphrases).Returns(_identities);
+            TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+
+            TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
-            Factory.Instance.Clear();
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestConstructor()
+        public void TestConstructor()
         {
-            LogOnViewModel lovm = new LogOnViewModel("Identity", String.Empty);
+            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
 
-            Assert.That(lovm.IdentityName, Is.EqualTo("Identity"));
             Assert.That(lovm.Passphrase, Is.EqualTo(""));
         }
 
         [Test]
-        public static void TestShowPassphrase()
+        public void TestShowPassphrase()
         {
-            LogOnViewModel lovm = new LogOnViewModel("Identity", String.Empty);
+            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
 
             Assert.That(lovm.ShowPassphrase, Is.False);
 
@@ -82,29 +99,29 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestValidatePropertyThatCannotBeValidated()
+        public void TestValidatePropertyThatCannotBeValidated()
         {
-            LogOnViewModel lovm = new LogOnViewModel("Me", String.Empty);
+            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
             string s = null;
             Assert.Throws<ArgumentException>(() => { s = lovm["ShowPassphrase"]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
         }
 
         [Test]
-        public static void TestValidatePassphraseOk()
+        public void TestValidatePassphraseOk()
         {
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
-            userSettingsMock.Setup<KeyWrapSalt>(f => f.ThumbprintSalt).Returns(KeyWrapSalt.Zero);
-            userSettingsMock.Setup<long>(f => f.V1KeyWrapIterations).Returns(10);
-            Factory.Instance.Singleton<IUserSettings>(() => userSettingsMock.Object);
+            userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
+            userSettingsMock.Setup<long>(f => f.GetKeyWrapIterations(It.IsAny<Guid>())).Returns(10);
+            TypeMap.Register.Singleton<IUserSettings>(() => userSettingsMock.Object);
 
             Mock<IRuntimeEnvironment> environmentMock = new Mock<IRuntimeEnvironment>();
             environmentMock.Setup<bool>(f => f.IsLittleEndian).Returns(true);
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
 
-            LogOnViewModel lovm = new LogOnViewModel("Me", String.Empty);
+            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
 
-            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234")));
+            _identities.Add(new Passphrase("abc1234"));
 
             lovm.Passphrase = "abc1234";
 
@@ -113,20 +130,20 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestValidatePassphraseNotOk()
+        public void TestValidatePassphraseNotOk()
         {
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
-            userSettingsMock.Setup<KeyWrapSalt>(f => f.ThumbprintSalt).Returns(KeyWrapSalt.Zero);
-            userSettingsMock.Setup<long>(f => f.V1KeyWrapIterations).Returns(10);
-            Factory.Instance.Singleton<IUserSettings>(() => userSettingsMock.Object);
+            userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
+            userSettingsMock.Setup<long>(f => f.GetKeyWrapIterations(It.IsAny<Guid>())).Returns(10);
+            TypeMap.Register.Singleton<IUserSettings>(() => userSettingsMock.Object);
 
             Mock<IRuntimeEnvironment> environmentMock = new Mock<IRuntimeEnvironment>();
             environmentMock.Setup<bool>(f => f.IsLittleEndian).Returns(true);
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
 
-            LogOnViewModel lovm = new LogOnViewModel("Me", String.Empty);
+            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
 
-            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234")));
+            _identities.Add(new Passphrase("abc1234"));
 
             lovm.Passphrase = "abc12345";
 
@@ -135,12 +152,51 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestValidateNonExistingPropertyName()
+        public void TestValidateNonExistingPropertyName()
         {
-            LogOnViewModel lovm = new LogOnViewModel("Me", String.Empty);
+            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
             string s = null;
             Assert.Throws<ArgumentException>(() => { s = lovm["NonExisting"]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
+        }
+
+        [Test]
+        public void TestValidateWrongPassphraseWithRealFile()
+        {
+            _identities.Add(new Passphrase("a"));
+
+            FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
+            npvm.Passphrase = "b";
+
+            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));
+            Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
+        }
+
+        [Test]
+        public void TestValidateCorrectPassphraseWithRealFile()
+        {
+            _identities.Add(new Passphrase("a"));
+
+            FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
+            npvm.Passphrase = "a";
+
+            Assert.That(npvm["Passphrase"], Is.EqualTo(""));
+            Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.None));
+        }
+
+        [Test]
+        public void TestValidateWrongButKnownPassphraseWithRealFile()
+        {
+            _identities.Add(new Passphrase("b"));
+
+            FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
+            npvm.Passphrase = "b";
+
+            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(String.Empty));
+            Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
         }
     }
 }

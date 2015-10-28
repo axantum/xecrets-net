@@ -68,16 +68,16 @@ namespace Axantum.AxCrypt.Core.Test
             PurgeActiveFilesMock(progress);
         }
 
-        public Action<IEnumerable<IRuntimeFileInfo>, IProgressContext> RemoveRecentFilesMock { get; set; }
+        public Action<IEnumerable<IDataStore>, IProgressContext> RemoveRecentFilesMock { get; set; }
 
-        public override void RemoveRecentFiles(IEnumerable<IRuntimeFileInfo> encryptedPaths, IProgressContext progress)
+        public override void RemoveRecentFiles(IEnumerable<IDataStore> encryptedPaths, IProgressContext progress)
         {
             RemoveRecentFilesMock(encryptedPaths, progress);
         }
 
-        public Func<IPassphrase, bool> UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock { get; set; }
+        public Func<LogOnIdentity, bool> UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock { get; set; }
 
-        public override bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(IPassphrase key)
+        public override bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(LogOnIdentity key)
         {
             return UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock(key);
         }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -11,8 +11,9 @@
     <RootNamespace>Axantum.AxCrypt.Core.Test</RootNamespace>
     <AssemblyName>Axantum.AxCrypt.Core.Test</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <ReleaseVersion>0.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -22,6 +23,8 @@
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
@@ -39,37 +43,27 @@
     <Reference Include="Moq">
       <HintPath>..\SolutionItems\Moq\lib\net40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="nunit.framework">
       <HintPath>..\SolutionItems\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\SolutionItems\Newtonsoft.Json.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Endian.cs" />
-    <Compile Include="FakeDataProtection.cs" />
-    <Compile Include="FakeDelayTimer.cs" />
-    <Compile Include="FakeFileWatcher.cs" />
-    <Compile Include="FakeIterationCalculator.cs" />
-    <Compile Include="FakeRandomGenerator.cs" />
-    <Compile Include="FakeRequestClient.cs" />
-    <Compile Include="FakeRequestServer.cs" />
-    <Compile Include="FakeProgressBackground.cs" />
-    <Compile Include="FakeSleep.cs" />
-    <Compile Include="FakeStatusChecker.cs" />
-    <Compile Include="FakeUIThread.cs" />
-    <Compile Include="FakeLauncher.cs" />
-    <Compile Include="FakeLogging.cs" />
-    <Compile Include="FakeRuntimeEnvironment.cs" />
-    <Compile Include="FakeRuntimeFileInfo.cs" />
-    <Compile Include="FakeTiming.cs" />
-    <Compile Include="FakeWebCaller.cs" />
+    <Compile Include="CryptoValidation\TestRsaOeap.cs" />
+    <Compile Include="CryptoValidation\TestSha256.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="TestIdentityPublicTag.cs" />
+    <Compile Include="TestKnownPublicKeys.cs" />
+    <Compile Include="TestManageAccountViewModel.cs" />
     <Compile Include="MockAxCryptFile.cs" />
     <Compile Include="MockFileSystemStateActions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -81,20 +75,32 @@
     <Compile Include="TestActiveFile.cs" />
     <Compile Include="TestActiveFileCollectionTests.cs" />
     <Compile Include="TestActiveFileComparer.cs" />
+    <Compile Include="TestAxCryptFactory.cs" />
     <Compile Include="TestCancelContext.cs" />
     <Compile Include="TestCommandLine.cs" />
     <Compile Include="TestCommandService.cs" />
     <Compile Include="TestCommandServiceEventArgsTest.cs" />
+    <Compile Include="TestCounterModeCryptoTransform.cs" />
     <Compile Include="TestDelayedAction.cs" />
     <Compile Include="TestDelegateAction.cs" />
-    <Compile Include="TestDelegateTraceListener.cs" />
+    <Compile Include="TestEncryptedDataPartBlock.cs" />
     <Compile Include="TestFactoryRegistry.cs" />
     <Compile Include="TestFileOperation.cs" />
     <Compile Include="TestFileOperationsController.cs" />
     <Compile Include="TestFileOperationViewModel.cs" />
     <Compile Include="TestFileSystemStateActions.cs" />
+    <Compile Include="TestHeaderBlock.cs" />
+    <Compile Include="TestHeaders.cs" />
     <Compile Include="TestKnownFolder.cs" />
+    <Compile Include="TestKnownFoldersViewModel.cs" />
+    <Compile Include="TestPassphraseBase.cs" />
     <Compile Include="TestPbkdf2HmacSha512.cs" />
+    <Compile Include="TestAsymmetricCrypto.cs" />
+    <Compile Include="TestPipelineStreamTest.cs" />
+    <Compile Include="TestPublicKeyThumbprint.cs" />
+    <Compile Include="TestRandomGenerator.cs" />
+    <Compile Include="TestAsymmetricUserKeysStore.cs" />
+    <Compile Include="TestSharingListViewModel.cs" />
     <Compile Include="TestV1AesCrypto.cs" />
     <Compile Include="TestSymmetricIV.cs" />
     <Compile Include="TestSymmetricKey.cs" />
@@ -113,9 +119,9 @@
     <Compile Include="TestDocumentHeaders.cs" />
     <Compile Include="TestExceptions.cs" />
     <Compile Include="TestExtensions.cs" />
-    <Compile Include="TestFileInfoHeaderBlock.cs" />
+    <Compile Include="TestFileInfoEncryptedHeaderBlock.cs" />
     <Compile Include="TestFileLock.cs" />
-    <Compile Include="TestFileNameInfoHeaderBlock.cs" />
+    <Compile Include="TestFileNameInfoEncryptedHeaderBlock.cs" />
     <Compile Include="TestFileSystemState.cs" />
     <Compile Include="TestFileWatcher.cs" />
     <Compile Include="TestIdentityViewModel.cs" />
@@ -126,8 +132,8 @@
     <Compile Include="TestKeyWrap1HeaderBlock.cs" />
     <Compile Include="TestKeyWrap2HeaderBlock.cs" />
     <Compile Include="TestIterationCalculator.cs" />
-    <Compile Include="TestKeyWrapSalt.cs" />
-    <Compile Include="TestKnownKeys.cs" />
+    <Compile Include="TestSalt.cs" />
+    <Compile Include="TestKnownIdentities.cs" />
     <Compile Include="TestLockingStreamTests.cs" />
     <Compile Include="TestLogging.cs" />
     <Compile Include="TestLogOnViewModel.cs" />
@@ -143,26 +149,29 @@
     <Compile Include="TestProgressEventArgsTest.cs" />
     <Compile Include="TestProgressStream.cs" />
     <Compile Include="TestResources.cs" />
-    <Compile Include="FakeStream.cs" />
     <Compile Include="TestSessionEvent.cs" />
     <Compile Include="TestSessionNotificationHandler.cs" />
     <Compile Include="TestSessionNotificationMonitor.cs" />
-    <Compile Include="TestSubkey.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="TestThreadWorker.cs" />
     <Compile Include="TestThreadWorkerProgressContext.cs" />
-    <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />
+    <Compile Include="TestV1UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestUserSettings.cs" />
     <Compile Include="TestV1AxCryptReader.cs" />
+    <Compile Include="TestV2AlgorithmVerifierEncryptedHeaderBlock.cs" />
+    <Compile Include="TestV2AsymmetricRecipientsEncryptedHeaderBlock.cs" />
+    <Compile Include="TestV2RegressionCompleteFiles.cs" />
     <Compile Include="TestV2AesCrypto.cs" />
+    <Compile Include="TestV2AxCryptDataStreamTest.cs" />
     <Compile Include="TestV2AxCryptDocument.cs" />
     <Compile Include="TestV2AxCryptReader.cs" />
+    <Compile Include="TestV2CompressionEncryptedHeaderBlock.cs" />
     <Compile Include="TestV2DocumentHeaders.cs" />
+    <Compile Include="TestV2HmacHeaderBlock.cs" />
     <Compile Include="TestV2HmacStreamTest.cs" />
     <Compile Include="TestV2KeyWrapHeaderBlock.cs" />
+    <Compile Include="TestV2UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
     <Compile Include="TestViewModelBaseTest.cs" />
     <Compile Include="TestVXAxCryptReader.cs" />
@@ -171,18 +180,45 @@
     <Compile Include="TestWorkerGroup.cs" />
     <Compile Include="TestWorkerGroupProgressContext.cs" />
     <Compile Include="TestWorkFolderWatcher.cs" />
+    <Compile Include="TestSubKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestV2PlainTextLengthsEncryptedHeaderBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
+    <None Include="packages.config" />
     <None Include="resources\david copperfield-key-%27aa ae oe%27-ulu-txt.axx" />
+    <EmbeddedResource Include="resources\Frankenstein-txt-AES256.axx" />
+    <EmbeddedResource Include="resources\Frankenstein-txt-V2AES128.axx" />
     <None Include="resources\helloworld-key-a-txt.axx" />
+    <EmbeddedResource Include="resources\short-txt-AES256.axx" />
+    <EmbeddedResource Include="resources\snow-jpg-AES256.axx" />
+    <EmbeddedResource Include="resources\short-txt-V2AES128.axx" />
+    <EmbeddedResource Include="resources\snow-jpg-V2AES128.axx" />
     <None Include="resources\tst-0.0b6-key-%27aaaeoe%27-medium-html.axx" />
     <None Include="resources\uncompressable-zip.axx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
+      <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
+      <Name>Axantum.AxCrypt.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj">
+      <Project>{6ea275d5-2372-4fcf-bb4f-5c48f5901350}</Project>
+      <Name>Axantum.AxCrypt.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
       <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Fake\Axantum.AxCrypt.Fake.csproj">
+      <Project>{48602976-aba8-4639-93e1-54cd0b2f0c23}</Project>
+      <Name>Axantum.AxCrypt.Fake</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
+      <Project>{ce9e8614-8dc5-4757-9384-3c416ab61a47}</Project>
+      <Name>Axantum.AxCrypt.Mono</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutThisAssembly.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />

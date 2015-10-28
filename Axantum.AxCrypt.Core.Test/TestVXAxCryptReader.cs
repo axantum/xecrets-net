@@ -27,9 +27,12 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -50,51 +53,50 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
-        public static void TestHeaderBlockFactory()
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestHeaderBlockFactory(CryptoImplementation cryptoImplementation)
         {
-            ICrypto crypto = new V1AesCrypto(new V1Passphrase("passphrase"));
-            V1DocumentHeaders headers = new V1DocumentHeaders(crypto, 10);
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            V1DocumentHeaders headers = new V1DocumentHeaders(new Passphrase("passphrase"), 10);
             using (MemoryStream stream = new MemoryStream())
             {
                 headers.WriteWithoutHmac(stream);
                 stream.Position = 0;
 
-                using (VXAxCryptReader reader = new VXAxCryptReader(stream))
+                UnversionedAxCryptReader reader = new UnversionedAxCryptReader(new LookAheadStream(stream));
+                bool unexpectedHeaderTypeFound = false;
+                while (reader.Read())
                 {
-                    bool unexpectedHeaderTypeFound = false;
-                    while (reader.Read())
+                    if (reader.CurrentItemType != AxCryptItemType.HeaderBlock)
                     {
-                        if (reader.CurrentItemType != AxCryptItemType.HeaderBlock)
-                        {
-                            continue;
-                        }
-                        switch (reader.CurrentHeaderBlock.HeaderBlockType)
-                        {
-                            case HeaderBlockType.Preamble:
-                            case HeaderBlockType.Version:
-                            case HeaderBlockType.Data:
-                            case HeaderBlockType.Unrecognized:
-                                break;
-
-                            default:
-                                unexpectedHeaderTypeFound = !(reader.CurrentHeaderBlock is UnrecognizedHeaderBlock);
-                                break;
-                        }
+                        continue;
                     }
-                    Assert.That(unexpectedHeaderTypeFound, Is.False);
+                    switch (reader.CurrentHeaderBlock.HeaderBlockType)
+                    {
+                        case HeaderBlockType.Preamble:
+                        case HeaderBlockType.Version:
+                        case HeaderBlockType.Data:
+                        case HeaderBlockType.Unrecognized:
+                            break;
+
+                        default:
+                            unexpectedHeaderTypeFound = !(reader.CurrentHeaderBlock is UnrecognizedHeaderBlock);
+                            break;
+                    }
                 }
+                Assert.That(unexpectedHeaderTypeFound, Is.False);
             }
         }
 
         [Test]
         public static void TestNotImplemented()
         {
-            using (VXAxCryptReader reader = new VXAxCryptReader(Stream.Null))
-            {
-                Assert.Throws<NotImplementedException>(() => reader.Crypto(new GenericPassphrase("test")));
-                Assert.Throws<NotImplementedException>(() => reader.Crypto(new Headers(), "testing"));
-            }
+            UnversionedAxCryptReader reader = new UnversionedAxCryptReader(new LookAheadStream(Stream.Null));
+            Assert.Throws<NotImplementedException>(() => reader.Document(new Passphrase("test"), V1Aes128CryptoFactory.CryptoId, new Headers()));
         }
     }
 }

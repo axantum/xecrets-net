@@ -27,22 +27,36 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestDocumentHeaders
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestDocumentHeaders
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestDocumentHeaders(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         private class AxCryptReaderForTest : V1AxCryptReader
         {
-            public AxCryptReaderForTest(Stream inputStream)
+            public AxCryptReaderForTest(LookAheadStream inputStream)
                 : base(inputStream)
             {
             }
@@ -59,28 +73,29 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestInvalidItemType()
+        public void TestInvalidItemType()
         {
             using (MemoryStream inputStream = new MemoryStream())
             {
                 AxCrypt1Guid.Write(inputStream);
                 new PreambleHeaderBlock().Write(inputStream);
                 inputStream.Position = 0;
-                using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(inputStream))
+                using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(new LookAheadStream(inputStream)))
                 {
-                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(new GenericPassphrase("secret")), 15);
+                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new Passphrase("secret"), 15);
                     Assert.Throws<InternalErrorException>(() =>
                     {
                         documentHeaders.Load(axCryptReader);
@@ -90,9 +105,9 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestBadArguments()
+        public void TestBadArguments()
         {
-            V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(new GenericPassphrase(String.Empty)), 37);
+            V1DocumentHeaders documentHeaders = new V1DocumentHeaders(Passphrase.Empty, 37);
             Assert.Throws<ArgumentNullException>(() =>
             {
                 documentHeaders.WriteWithHmac(null);
@@ -107,23 +122,15 @@ namespace Axantum.AxCrypt.Core.Test
             });
         }
 
-        [Test]
-        public static void TestKeyEncryptingKey()
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
+        public void TestBadKey()
         {
-            IPassphrase keyEncryptingKey = new GenericPassphrase("a");
-            V1DocumentHeaders headers = new V1DocumentHeaders(new V1AesCrypto(keyEncryptingKey), 57);
-            Assert.That(headers.KeyEncryptingCrypto.Key, Is.EqualTo(keyEncryptingKey), "Unexpected key encrypting key retrieved.");
-        }
-
-        [Test]
-        public static void TestBadKey()
-        {
-            using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
+            using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
-                using (AxCryptReader reader = new V1AxCryptReader(testStream))
+                using (V1AxCryptReader reader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
-                    V1Passphrase passphrase = new V1Passphrase("b");
-                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(passphrase), 73);
+                    Passphrase passphrase = new Passphrase("b");
+                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(passphrase, 73);
                     bool isPassphraseValid = documentHeaders.Load(reader);
 
                     Assert.That(isPassphraseValid, Is.False, "The passphrase is intentionally wrong for this test case.");
@@ -135,17 +142,17 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptOfTooNewFileVersion()
+        public void TestDecryptOfTooNewFileVersion()
         {
             DateTime creationTimeUtc = new DateTime(2012, 1, 1, 1, 2, 3, DateTimeKind.Utc);
             DateTime lastAccessTimeUtc = creationTimeUtc + new TimeSpan(1, 0, 0);
             DateTime lastWriteTimeUtc = creationTimeUtc + new TimeSpan(2, 0, 0); ;
-            using (Stream inputStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
+            using (Stream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
             {
                 using (Stream outputStream = new MemoryStream())
                 {
-                    V1Passphrase passphrase = new V1Passphrase("a");
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase), 101))
+                    Passphrase passphrase = new Passphrase("a");
+                    using (V1AxCryptDocument document = new V1AxCryptDocument(passphrase, 101))
                     {
                         document.FileName = "MyFile.txt";
                         document.CreationTimeUtc = creationTimeUtc;
@@ -156,9 +163,9 @@ namespace Axantum.AxCrypt.Core.Test
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
                     }
                     outputStream.Position = 0;
-                    using (IAxCryptDocument document = new V1AxCryptDocument())
+                    using (V1AxCryptDocument document = new V1AxCryptDocument())
                     {
-                        Assert.Throws<FileFormatException>(() => { document.Load(passphrase, outputStream); });
+                        Assert.Throws<FileFormatException>(() => { document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, outputStream); });
                     }
                 }
             }

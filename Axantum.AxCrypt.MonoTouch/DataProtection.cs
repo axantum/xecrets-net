@@ -1,4 +1,4 @@
-#region Coypright and License
+﻿#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
@@ -38,19 +38,19 @@ namespace Axantum.AxCrypt.MonoTouch
         public DataProtection ()
         {
         }
-        
-#region IDataProtection implementation
-        
+
+        #region IDataProtection implementation
+
         byte[] IDataProtection.Protect (byte[] unprotectedData)
         {
             return unprotectedData;
         }
-        
+
         byte[] IDataProtection.Unprotect (byte[] protectedData)
         {
             return protectedData;
         }
-        
-#endregion
+
+        #endregion
     }
 }

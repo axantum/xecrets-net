@@ -27,13 +27,11 @@
 
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
@@ -42,66 +40,58 @@ namespace Axantum.AxCrypt
     {
         private LogOnViewModel _viewModel;
 
-        public LogOnDialog(string identityName, string encryptedFileFullName)
+        public LogOnDialog(Form parent, string encryptedFileFullName)
         {
             InitializeComponent();
-            SetAutoValidateViaReflectionToAvoidMoMaWarning();
+            new Styling(Resources.axcrypticon).Style(this);
 
-            _viewModel = new LogOnViewModel(identityName, encryptedFileFullName);
-
+            _viewModel = new LogOnViewModel(encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
+            _newButton.Enabled = String.IsNullOrEmpty(encryptedFileFullName);
+
+            Owner = parent;
+            StartPosition = FormStartPosition.CenterParent;
+        }
+
+        private void EncryptPassphraseDialog_Load(object s, EventArgs ea)
+        {
+            if (DesignMode)
+            {
+                return;
+            }
 
             _viewModel.BindPropertyChanged("IdentityName", (string id) => { PassphraseGroupBox.Text = !String.IsNullOrEmpty(id) ? Resources.EnterPassphraseForIdentityPrompt.InvariantFormat(id) : Resources.PassphrasePrompt; });
             _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { PassphraseTextBox.UseSystemPasswordChar = !show; });
             _viewModel.BindPropertyChanged("FileName", (string fileName) => { FileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
         }
 
-        private void EncryptPassphraseDialog_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void SetAutoValidateViaReflectionToAvoidMoMaWarning()
-        {
-            if (OS.Current.Platform == Platform.WindowsDesktop)
-            {
-                PropertyInfo propertyInfo = typeof(LogOnDialog).GetProperty("AutoValidate");
-                propertyInfo.SetValue(this, AutoValidate.EnableAllowFocusChange, null);
-            }
-        }
-
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            if (!ValidateChildren(ValidationConstraints.Visible))
+            if (!AdHocValidationDueToMonoLimitations())
             {
                 DialogResult = DialogResult.None;
                 return;
             }
-            if (!String.IsNullOrEmpty(_viewModel.FileName) && String.IsNullOrEmpty(_viewModel.IdentityName))
-            {
-                DialogResult = DialogResult.Retry;
-            }
+            DialogResult = DialogResult.OK;
         }
 
-        private void PassphraseTextBox_Validating(object sender, CancelEventArgs e)
+        private bool AdHocValidationDueToMonoLimitations()
         {
-            if (_viewModel["Passphrase"].Length > 0)
+            if (_viewModel["Passphrase"].Length == 0)
             {
-                e.Cancel = true;
-                if (String.IsNullOrEmpty(_viewModel.FileName))
-                {
-                    _errorProvider1.SetError(PassphraseTextBox, Resources.UnkownLogOn);
-                }
-                else
-                {
-                    _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
-                }
+                _errorProvider1.Clear();
+                return true;
             }
-        }
-
-        private void PassphraseTextBox_Validated(object sender, EventArgs e)
-        {
-            _errorProvider1.Clear();
+            if (String.IsNullOrEmpty(_viewModel.FileName))
+            {
+                _errorProvider1.SetError(PassphraseTextBox, Resources.UnkownLogOn);
+            }
+            else
+            {
+                _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
+            }
+            return false;
         }
 
         private void newButton_Click(object sender, EventArgs e)
@@ -111,9 +101,13 @@ namespace Axantum.AxCrypt
 
         private void LogOnDialog_Activated(object sender, EventArgs e)
         {
-            TopMost = true;
             BringToFront();
             Focus();
+        }
+
+        private void PassphraseTextBox_Enter(object sender, EventArgs e)
+        {
+            _errorProvider1.Clear();
         }
     }
 }

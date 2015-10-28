@@ -25,9 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Linq;
-using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -39,9 +40,9 @@ namespace Axantum.AxCrypt.Core.UI
     /// </remarks>
     public class KnownFolder
     {
-        public IRuntimeFileInfo RootFullPath { get; private set; }
+        public IDataContainer Folder { get; private set; }
 
-        public IRuntimeFileInfo MyFullPath { get; private set; }
+        public IDataContainer My { get; private set; }
 
         public Uri ProviderUrl { get; private set; }
 
@@ -49,22 +50,22 @@ namespace Axantum.AxCrypt.Core.UI
 
         public bool Enabled { get; private set; }
 
-        public KnownFolder(string rootFullPath, string myRelativePath, object image, Uri providerUrl)
+        public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, object image, Uri providerUrl)
         {
-            if (rootFullPath == null)
+            if (knownFolderInfo == null)
             {
-                throw new ArgumentNullException("rootFullPath");
+                throw new ArgumentNullException("knownFolderInfo");
             }
-            if (myRelativePath == null)
+            if (myFolderName == null)
             {
-                throw new ArgumentNullException("myRelativePath");
+                throw new ArgumentNullException("myFolderName");
             }
             if (image == null)
             {
                 throw new ArgumentNullException("image");
             }
-            RootFullPath = Factory.New<IRuntimeFileInfo>(rootFullPath);
-            MyFullPath = RootFullPath.Combine(myRelativePath);
+            Folder = knownFolderInfo;
+            My = knownFolderInfo.FolderItemInfo(myFolderName);
             Image = image;
             ProviderUrl = providerUrl;
             Enabled = false;
@@ -76,8 +77,8 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new ArgumentNullException("knownFolder");
             }
-            RootFullPath = knownFolder.RootFullPath;
-            MyFullPath = knownFolder.MyFullPath;
+            Folder = knownFolder.Folder;
+            My = knownFolder.My;
             Image = knownFolder.Image;
             ProviderUrl = knownFolder.ProviderUrl;
             Enabled = enabled;

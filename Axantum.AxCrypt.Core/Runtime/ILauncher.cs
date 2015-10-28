@@ -32,6 +32,8 @@ namespace Axantum.AxCrypt.Core.Runtime
 {
     public interface ILauncher : IDisposable
     {
+        void Launch(string path);
+
         event EventHandler Exited;
 
         bool HasExited { get; }

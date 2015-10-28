@@ -25,12 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Runtime;
 using NDesk.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -39,8 +42,6 @@ namespace Axantum.AxCrypt.Core
         private string _startPath;
 
         private IEnumerable<string> _arguments;
-
-        private bool Exit { get; set; }
 
         private static readonly IEnumerable<string> NoArguments = new string[0];
 
@@ -52,33 +53,107 @@ namespace Axantum.AxCrypt.Core
 
         public void Execute()
         {
+            List<CommandItem> _commandItems = new List<CommandItem>();
+            int bundleId = 0;
+            CommandVerb fileVerb = CommandVerb.Unknown;
+
             OptionSetCollection options = new OptionSetCollection()
             {
-                {"x", var => Exit = true},
+                {"batch", var => bundleId = 0},
+                {"bundle=", (int id) => bundleId = id},
+                {"files", var => fileVerb = CommandVerb.AddFiles},
+                {"encrypt", var => fileVerb = CommandVerb.Encrypt},
+                {"decrypt", var => fileVerb = CommandVerb.Decrypt},
+                {"wipe", var =>  fileVerb = CommandVerb.Wipe},
+                {"open", var =>  fileVerb = CommandVerb.Open},
+                {"rename", var => fileVerb = CommandVerb.RandomRename},
+                {"show", var => _commandItems.Add(new CommandItem(CommandVerb.Show, bundleId, NoArguments))},
+                {"exit", var => _commandItems.Add(new CommandItem(CommandVerb.Exit, bundleId, NoArguments))},
+                {"use_application=", (string path) => _commandItems.Add(new CommandItem(CommandVerb.UseForOpen, bundleId, new string[]{path}))},
+                {"login=", (string name) =>_commandItems.Add(new CommandItem(CommandVerb.LogOn, bundleId, new string[]{name}))},
+                {"passphrase=", (string passphrase) => _commandItems.Add(new CommandItem(CommandVerb.SetPassphrase, bundleId, new string[]{passphrase}))},
+                {"key_file=", (string path) => _commandItems.Add(new CommandItem(CommandVerb.SetKeyFile, bundleId, new string[]{path}))},
+                {"about", var => _commandItems.Add(new CommandItem(CommandVerb.About, bundleId, NoArguments))},
+                {"register", var => _commandItems.Add(new CommandItem(CommandVerb.Register, bundleId, NoArguments))},
             };
-            IList<string> files = options.Parse(_arguments);
-            Run(files);
+            IList<string> arguments = options.Parse(_arguments);
+            if (fileVerb == CommandVerb.Unknown)
+            {
+                fileVerb = bundleId == 0 ? CommandVerb.Open : CommandVerb.AddFiles;
+            }
+            if (arguments.Count > 0 || bundleId != 0)
+            {
+                _commandItems.Add(new CommandItem(fileVerb, bundleId, arguments));
+            }
+            Run(_commandItems);
         }
 
-        private void Run(IList<string> files)
+        private void Run(IList<CommandItem> commandItems)
         {
-            if (Exit)
+            if (commandItems.Count == 0)
             {
-                CallService(CommandVerb.Exit, NoArguments);
+                EnsureFirstInstanceRunning();
                 return;
             }
-            CallService(CommandVerb.Open, files);
+            foreach (CommandItem commandItem in commandItems)
+            {
+                CallService(commandItem.Verb, commandItem.BundleId, commandItem.Arguments);
+            }
         }
 
-        private void CallService(CommandVerb verb, IEnumerable<string> files)
+        private void CallService(CommandVerb verb, int batchId, IEnumerable<string> files)
         {
-            EnsureFirstInstanceRunning();
-            CommandStatus status = Instance.CommandService.Call(verb, files);
+            if (EnsureRunningAndShowState(verb))
+            {
+                return;
+            }
+
+            CommandStatus status = Resolve.CommandService.Call(verb, batchId, files);
             if (status == CommandStatus.Success)
             {
                 return;
             }
             OS.Current.ExitApplication(1);
+        }
+
+        private bool EnsureRunningAndShowState(CommandVerb verb)
+        {
+            if (OS.Current.FirstInstanceRunning(TimeSpan.Zero))
+            {
+                return false;
+            }
+
+            if (verb == CommandVerb.Exit)
+            {
+                return true;
+            }
+
+            StartFirstInstance();
+
+            switch (verb)
+            {
+                case CommandVerb.Register:
+                case CommandVerb.Show:
+                    return true;
+
+                case CommandVerb.Unknown:
+                case CommandVerb.AddFiles:
+                case CommandVerb.Encrypt:
+                case CommandVerb.Decrypt:
+                case CommandVerb.Open:
+                case CommandVerb.Exit:
+                case CommandVerb.Wipe:
+                case CommandVerb.RandomRename:
+                case CommandVerb.About:
+                case CommandVerb.UseForOpen:
+                case CommandVerb.ShowLogOn:
+                case CommandVerb.SetPassphrase:
+                case CommandVerb.SetKeyFile:
+                case CommandVerb.LogOn:
+                    return false;
+            }
+
+            return false;
         }
 
         private void EnsureFirstInstanceRunning()
@@ -87,7 +162,15 @@ namespace Axantum.AxCrypt.Core
             {
                 return;
             }
-            using (OS.Current.Launch(_startPath)) { }
+            StartFirstInstance();
+        }
+
+        private void StartFirstInstance()
+        {
+            using (ILauncher launcher = New<ILauncher>())
+            {
+                launcher.Launch(_startPath);
+            }
             if (OS.Current.FirstInstanceRunning(TimeSpan.FromSeconds(1)))
             {
                 return;

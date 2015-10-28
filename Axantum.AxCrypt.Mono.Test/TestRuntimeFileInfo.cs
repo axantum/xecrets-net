@@ -25,10 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
 using System.Globalization;
@@ -46,17 +49,18 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Mono.Test.TestRuntimeFileInfo");
             Directory.CreateDirectory(_tempPath);
-            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
-            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(_tempPath));
-            Factory.Instance.Singleton<ILogging>(() => new Logging());
+            TypeMap.Register.New<string, IDataStore>((path) => new DataStore(path));
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            TypeMap.Register.Singleton<IPlatform>(() => new MonoPlatform());
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(_tempPath));
+            TypeMap.Register.Singleton<ILogging>(() => new Logging());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
             Directory.Delete(_tempPath, true);
         }
 
@@ -65,7 +69,7 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                RuntimeFileInfo rfi = new RuntimeFileInfo(null);
+                DataStore rfi = new DataStore(null);
 
                 // Avoid FxCop error
                 Object.Equals(rfi, null);
@@ -81,7 +85,7 @@ namespace Axantum.AxCrypt.Mono.Test
                 Directory.Delete(testTempFolder, true);
             }
             Assert.That(Directory.Exists(testTempFolder), Is.False, "The test folder should not exist now.");
-            IRuntimeFileInfo directoryInfo = new RuntimeFileInfo(testTempFolder);
+            DataContainer directoryInfo = new DataContainer(testTempFolder);
             directoryInfo.CreateFolder();
             Assert.That(Directory.Exists(testTempFolder), Is.True, "The test folder should exist now.");
             if (Directory.Exists(testTempFolder))
@@ -90,11 +94,11 @@ namespace Axantum.AxCrypt.Mono.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestMethods()
         {
             string tempFileName = Path.GetTempFileName();
-            IRuntimeFileInfo runtimeFileInfo = new RuntimeFileInfo(tempFileName);
+            IDataStore runtimeFileInfo = new DataStore(tempFileName);
             try
             {
                 using (Stream writeStream = runtimeFileInfo.OpenWrite())
@@ -130,21 +134,21 @@ namespace Axantum.AxCrypt.Mono.Test
                 Assert.That(runtimeFileInfo.FullName, Is.EqualTo(tempFileName), "The FullName should be the same as the underlying FileInfo.FullName.");
 
                 string otherTempFileName = runtimeFileInfo.FullName + ".copy";
-                IRuntimeFileInfo otherTempRuntimeFileInfo = new RuntimeFileInfo(otherTempFileName);
-                Assert.That(otherTempRuntimeFileInfo.Exists, Is.False, "The new temp file should not exist.");
-                Assert.That(runtimeFileInfo.Exists, Is.True, "The old temp file should exist.");
+                IDataStore otherTempRuntimeFileInfo = new DataStore(otherTempFileName);
+                Assert.That(otherTempRuntimeFileInfo.IsAvailable, Is.False, "The new temp file should not exist.");
+                Assert.That(runtimeFileInfo.IsAvailable, Is.True, "The old temp file should exist.");
                 runtimeFileInfo.MoveTo(otherTempRuntimeFileInfo.FullName);
-                Assert.That(otherTempRuntimeFileInfo.Exists, Is.True, "The new temp file should exist after moving the old here.");
-                Assert.That(runtimeFileInfo.Exists, Is.True, "The old temp file should exist still because it has changed to refer to the new file.");
+                Assert.That(otherTempRuntimeFileInfo.IsAvailable, Is.True, "The new temp file should exist after moving the old here.");
+                Assert.That(runtimeFileInfo.IsAvailable, Is.True, "The old temp file should exist still because it has changed to refer to the new file.");
             }
             finally
             {
                 runtimeFileInfo.Delete();
             }
-            Assert.That(runtimeFileInfo.Exists, Is.False, "The file should have been deleted now.");
+            Assert.That(runtimeFileInfo.IsAvailable, Is.False, "The file should have been deleted now.");
 
-            IRuntimeFileInfo notEncryptedRuntimeFileInfo = new RuntimeFileInfo("file.txt");
-            IRuntimeFileInfo encryptedRuntimeFileInfo = notEncryptedRuntimeFileInfo.CreateEncryptedName();
+            IDataStore notEncryptedRuntimeFileInfo = new DataStore("file.txt");
+            IDataStore encryptedRuntimeFileInfo = notEncryptedRuntimeFileInfo.CreateEncryptedName();
             Assert.That(encryptedRuntimeFileInfo.Name, Is.EqualTo("file-txt.axx"), "The encrypted name should be as expected.");
         }
     }

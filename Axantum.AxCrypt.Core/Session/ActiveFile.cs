@@ -25,14 +25,18 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -41,9 +45,14 @@ namespace Axantum.AxCrypt.Core.Session
     /// immutable.
     /// </summary>
     ///
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
+    [JsonObject(MemberSerialization.OptIn)]
     public sealed class ActiveFile
     {
+        [JsonConstructor]
+        private ActiveFile()
+        {
+        }
+
         public ActiveFile(ActiveFile activeFile)
         {
             if (activeFile == null)
@@ -51,11 +60,11 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
             Initialize(activeFile);
-            LastActivityTimeUtc = activeFile.LastActivityTimeUtc;
-            Key = null;
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
+            Identity = LogOnIdentity.Empty;
         }
 
-        public ActiveFile(ActiveFile activeFile, IPassphrase key)
+        public ActiveFile(ActiveFile activeFile, LogOnIdentity key)
         {
             if (activeFile == null)
             {
@@ -66,8 +75,23 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("key");
             }
             Initialize(activeFile);
-            LastActivityTimeUtc = activeFile.LastActivityTimeUtc;
-            Key = key;
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
+            Identity = key;
+        }
+
+        public ActiveFile(ActiveFile activeFile, IDataStore encryptedFileInfo)
+        {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+            if (encryptedFileInfo == null)
+            {
+                throw new ArgumentNullException("encryptedFileInfo");
+            }
+
+            Initialize(activeFile);
+            EncryptedFileInfo = encryptedFileInfo;
         }
 
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status)
@@ -76,6 +100,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("activeFile");
             }
+
             Initialize(activeFile);
             Status = status;
         }
@@ -87,11 +112,11 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
             Initialize(activeFile);
-            LastEncryptionWriteTimeUtc = lastEncryptionWriteTimeUtc;
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, lastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
             Status = status;
         }
 
-        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, IPassphrase key, ActiveFileStatus status)
+        public ActiveFile(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, LogOnIdentity key, ActiveFileStatus status, Guid cryptoId)
         {
             if (encryptedFileInfo == null)
             {
@@ -105,32 +130,31 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("key");
             }
-            Initialize(encryptedFileInfo, decryptedFileInfo, decryptedFileInfo.LastWriteTimeUtc, key, null, status);
+            Initialize(encryptedFileInfo, decryptedFileInfo, key, null, status, new ActiveFileProperties(OS.Current.UtcNow, encryptedFileInfo.LastWriteTimeUtc, cryptoId));
         }
 
         private void Initialize(ActiveFile other)
         {
-            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastEncryptionWriteTimeUtc, other.Key, other.Thumbprint, other.Status);
+            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.Identity, other.Thumbprint, other.Status, other.Properties);
         }
 
-        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, IPassphrase key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status)
+        private void Initialize(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, LogOnIdentity key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
         {
-            EncryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFileInfo.FullName);
-            DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileInfo.FullName);
-            Key = key;
+            EncryptedFileInfo = New<IDataStore>(encryptedFileInfo.FullName);
+            DecryptedFileInfo = New<IDataStore>(decryptedFileInfo.FullName);
+            Identity = key;
             Thumbprint = thumbprint;
             Status = status;
-            LastActivityTimeUtc = OS.Current.UtcNow;
-            LastEncryptionWriteTimeUtc = lastWriteTimeUtc;
+            Properties = new ActiveFileProperties(OS.Current.UtcNow, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
         }
 
-        public IRuntimeFileInfo DecryptedFileInfo
+        public IDataStore DecryptedFileInfo
         {
             get;
             private set;
         }
 
-        public IRuntimeFileInfo EncryptedFileInfo
+        public IDataStore EncryptedFileInfo
         {
             get;
             private set;
@@ -138,18 +162,18 @@ namespace Axantum.AxCrypt.Core.Session
 
         private SymmetricKeyThumbprint _thumbprint;
 
-        [DataMember(Name = "Thumbprint")]
+        [JsonProperty("thumbprint")]
         public SymmetricKeyThumbprint Thumbprint
         {
             get
             {
-                if (_thumbprint == null && Key != null)
+                if (_thumbprint == null && Identity != LogOnIdentity.Empty)
                 {
-                    _thumbprint = Key.Thumbprint;
+                    _thumbprint = Identity.Passphrase.Thumbprint;
                 }
                 return _thumbprint;
             }
-            set
+            private set
             {
                 _thumbprint = value;
             }
@@ -157,13 +181,13 @@ namespace Axantum.AxCrypt.Core.Session
 
         private string _decryptedFolder;
 
-        [DataMember]
+        [JsonProperty("decryptedFolder")]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
         private string DecryptedFolder
         {
             get
             {
-                return Path.GetDirectoryName(DecryptedFileInfo.FullName);
+                return Resolve.Portable.Path().GetDirectoryName(DecryptedFileInfo.FullName);
             }
             set
             {
@@ -173,22 +197,22 @@ namespace Axantum.AxCrypt.Core.Session
 
         private string _decryptedName;
 
-        [DataMember]
+        [JsonProperty("protectedDecryptedName")]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
         private byte[] ProtectedDecryptedName
         {
             get
             {
-                return OS.Current.DataProtection.Protect(Encoding.UTF8.GetBytes(Path.GetFileName(DecryptedFileInfo.FullName)));
+                return New<IDataProtection>().Protect(Encoding.UTF8.GetBytes(Resolve.Portable.Path().GetFileName(DecryptedFileInfo.FullName)));
             }
             set
             {
-                byte[] bytes = OS.Current.DataProtection.Unprotect(value);
-                _decryptedName = Encoding.UTF8.GetString(bytes);
+                byte[] bytes = New<IDataProtection>().Unprotect(value);
+                _decryptedName = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
             }
         }
 
-        [DataMember]
+        [JsonProperty("encryptedPath")]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
         private string EncryptedPath
         {
@@ -198,39 +222,42 @@ namespace Axantum.AxCrypt.Core.Session
             }
             set
             {
-                EncryptedFileInfo = Factory.New<IRuntimeFileInfo>(value);
+                EncryptedFileInfo = New<IDataStore>(value);
             }
         }
 
-        [DataMember]
+        [JsonProperty("status")]
         public ActiveFileStatus Status { get; private set; }
 
-        [DataMember]
-        public DateTime LastActivityTimeUtc { get; private set; }
-
-        /// <summary>
-        /// Records the Last Write Time that was valid at the most recent encryption update of the encrypted file.
-        /// </summary>
-        [DataMember]
-        private DateTime LastEncryptionWriteTimeUtc { get; set; }
+        [JsonProperty("properties")]
+        public ActiveFileProperties Properties { get; private set; }
 
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_decryptedFolder, _decryptedName));
+            DecryptedFileInfo = New<IDataStore>(Resolve.Portable.Path().Combine(_decryptedFolder, _decryptedName));
+            if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+            {
+                Status |= ActiveFileStatus.NoProcessKnown;
+            }
         }
 
-        private IPassphrase _key;
+        private LogOnIdentity _identity = LogOnIdentity.Empty;
 
-        public IPassphrase Key
+        public LogOnIdentity Identity
         {
             get
             {
-                return _key;
+                return _identity;
             }
             private set
             {
-                _key = value;
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                _identity = value;
             }
         }
 
@@ -239,7 +266,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// </summary>
         /// <param name="key">A key to check against this instances thumbprint.</param>
         /// <returns>true if the thumbprint matches the provided key.</returns>
-        public bool ThumbprintMatch(IPassphrase key)
+        public bool ThumbprintMatch(Passphrase key)
         {
             if (key == null)
             {
@@ -253,14 +280,14 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                if (!DecryptedFileInfo.Exists)
+                if (!DecryptedFileInfo.IsAvailable)
                 {
                     return false;
                 }
-                bool isModified = DecryptedFileInfo.LastWriteTimeUtc > LastEncryptionWriteTimeUtc;
-                if (Instance.Log.IsInfoEnabled)
+                bool isModified = DecryptedFileInfo.LastWriteTimeUtc > Properties.LastEncryptionWriteTimeUtc;
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
+                    Resolve.Log.LogInfo("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), Properties.LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
                 }
                 return isModified;
             }
@@ -272,17 +299,17 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 if (Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
                 {
-                    return Key != null ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+                    return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
                 }
                 if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                 {
-                    return Key != null ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+                    return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
                 }
                 if (Status.HasMask(ActiveFileStatus.NotDecrypted))
                 {
-                    return Key != null ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
+                    return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
                 }
-                throw new InvalidOperationException("ActiveFile in an unhandled visual state.");
+                throw new InvalidOperationException("ActiveFile in an unhandled visual state.".InvariantFormat());
             }
         }
     }

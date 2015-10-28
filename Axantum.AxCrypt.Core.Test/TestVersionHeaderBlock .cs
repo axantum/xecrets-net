@@ -56,5 +56,15 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(versionHeaderBlock.VersionMinor, Is.EqualTo(0), "This is the current default version number");
             Assert.That(versionHeaderBlock.VersionMinuscule, Is.EqualTo(0), "This is the current default version number");
         }
+
+        [Test]
+        public static void TestSetCurrentVersion()
+        {
+            VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock(new byte[] { 3, 2, 2, 0, 0 });
+            Assert.That(versionHeaderBlock.GetDataBlockBytes(), Is.EquivalentTo(new byte[] { 3, 2, 2, 0, 0 }));
+
+            versionHeaderBlock.SetCurrentVersion(new byte[] { 5, 6, 7, 8, 9 });
+            Assert.That(versionHeaderBlock.GetDataBlockBytes(), Is.EquivalentTo(new byte[] { 5, 6, 7, 8, 9 }));
+        }
     }
 }

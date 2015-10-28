@@ -39,11 +39,11 @@
             ((System.ComponentModel.ISupportInitialize)(this._iconPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // promptLabel
+            // _promptLabel
             // 
             this._promptLabel.CausesValidation = false;
-            resources.ApplyResources(this._promptLabel, "promptLabel");
-            this._promptLabel.Name = "promptLabel";
+            resources.ApplyResources(this._promptLabel, "_promptLabel");
+            this._promptLabel.Name = "_promptLabel";
             this._promptLabel.Click += new System.EventHandler(this.promptLabel_Click);
             // 
             // FileNameLabel
@@ -52,24 +52,24 @@
             resources.ApplyResources(this.FileNameLabel, "FileNameLabel");
             this.FileNameLabel.Name = "FileNameLabel";
             // 
-            // iconPictureBox
+            // _iconPictureBox
             // 
-            resources.ApplyResources(this._iconPictureBox, "iconPictureBox");
-            this._iconPictureBox.Name = "iconPictureBox";
+            resources.ApplyResources(this._iconPictureBox, "_iconPictureBox");
+            this._iconPictureBox.Name = "_iconPictureBox";
             this._iconPictureBox.TabStop = false;
             // 
-            // noButton
+            // _noButton
             // 
-            resources.ApplyResources(this._noButton, "noButton");
+            resources.ApplyResources(this._noButton, "_noButton");
             this._noButton.DialogResult = System.Windows.Forms.DialogResult.No;
-            this._noButton.Name = "noButton";
+            this._noButton.Name = "_noButton";
             this._noButton.UseVisualStyleBackColor = true;
             // 
-            // yesButton
+            // _yesButton
             // 
-            resources.ApplyResources(this._yesButton, "yesButton");
+            resources.ApplyResources(this._yesButton, "_yesButton");
             this._yesButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this._yesButton.Name = "yesButton";
+            this._yesButton.Name = "_yesButton";
             this._yesButton.UseVisualStyleBackColor = true;
             // 
             // ConfirmAllCheckBox
@@ -78,11 +78,11 @@
             this.ConfirmAllCheckBox.Name = "ConfirmAllCheckBox";
             this.ConfirmAllCheckBox.UseVisualStyleBackColor = true;
             // 
-            // cancelButton
+            // _cancelButton
             // 
-            resources.ApplyResources(this._cancelButton, "cancelButton");
+            resources.ApplyResources(this._cancelButton, "_cancelButton");
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancelButton.Name = "cancelButton";
+            this._cancelButton.Name = "_cancelButton";
             this._cancelButton.UseVisualStyleBackColor = true;
             // 
             // ConfirmWipeDialog

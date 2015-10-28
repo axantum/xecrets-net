@@ -75,6 +75,11 @@ namespace Axantum.AxCrypt.Core.Header
         V2KeyWrap = 13,
 
         /// <summary>
+        /// A RSA OAEP encryption of the Master Data Encrypting Key and IV
+        /// </summary>
+        V2AsymmetricKeyWrap = 14,
+
+        /// <summary>
         /// A block of encrypted data in the data stream.
         /// </summary>
         /// <remarks>
@@ -133,6 +138,19 @@ namespace Axantum.AxCrypt.Core.Header
         /// </summary>
         UnicodeFileNameInfo = 70,
 
+        /// <summary>
+        /// 2.x - Lengths in the trailer
+        /// </summary>
         PlaintextLengths = 101,
+
+        /// <summary>
+        /// 2.x - Json-encoded array of email addresses representing key sharing recipients.
+        /// </summary>
+        AsymmetricRecipients = 102,
+
+        /// <summary>
+        /// 2.x - The algorithm verifier header/trailer. Consists of a 16-byte random sequence, followed by 16 bytes 1's complement.
+        /// </summary>
+        AlgorithmVerifier = 103,
     }
 }

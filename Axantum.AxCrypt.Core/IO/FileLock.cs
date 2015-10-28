@@ -25,65 +25,133 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
-using System.Collections.Specialized;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.IO
 {
     public class FileLock : IDisposable
     {
-        private static StringCollection _lockedFiles = new StringCollection();
+        private static Dictionary<string, FileLock> _lockedFiles = new Dictionary<string, FileLock>();
 
-        private string _fullPath;
+        private object _lock = new object();
 
-        private FileLock(string fullPath)
+        private int _referenceCount = 0;
+
+        private string _originalLockedFileName;
+
+        private FileLock(string fullName)
         {
-            _fullPath = fullPath;
+            _originalLockedFileName = fullName;
         }
 
-        public static FileLock Lock(IRuntimeFileInfo fileInfo)
-        {
-            if (fileInfo == null)
-            {
-                throw new ArgumentNullException("fileInfo");
-            }
-            lock (_lockedFiles)
-            {
-                if (IsLocked(fileInfo))
-                {
-                    return null;
-                }
-                _lockedFiles.Add(fileInfo.FullName);
-                if (Instance.Log.IsInfoEnabled)
-                {
-                    Instance.Log.LogInfo("Locking file '{0}'.".InvariantFormat(fileInfo.FullName));
-                }
-                return new FileLock(fileInfo.FullName);
-            }
-        }
+        public IDataStore DataStore { get { return New<IDataStore>(_originalLockedFileName); } }
 
-        public static bool IsLocked(params IRuntimeFileInfo[] fileInfoParameters)
+        public static FileLock Lock(IDataItem dataItem)
         {
-            foreach (IRuntimeFileInfo fileInfo in fileInfoParameters)
+            if (dataItem == null)
             {
-                if (fileInfo == null)
-                {
-                    throw new ArgumentNullException("fileInfoParameters");
-                }
+                throw new ArgumentNullException("dataItem");
+            }
+
+            while (true)
+            {
                 lock (_lockedFiles)
                 {
-                    if (_lockedFiles.Contains(fileInfo.FullName))
+                    FileLock fileLock = GetOrCreateFileLock(dataItem.FullName);
+                    bool lockTaken = false;
+                    try
                     {
-                        if (Instance.Log.IsInfoEnabled)
+                        Monitor.TryEnter(fileLock._lock, ref lockTaken);
+                        if (!lockTaken)
                         {
-                            Instance.Log.LogInfo("File '{0}' was found to be locked.".InvariantFormat(fileInfo.FullName));
+                            continue;
                         }
-                        return true;
+                        ++fileLock._referenceCount;
+                        if (Resolve.Log.IsInfoEnabled)
+                        {
+                            Resolve.Log.LogInfo("Locking file '{0}'.".InvariantFormat(dataItem.FullName));
+                        }
+                        return fileLock;
+                    }
+                    catch
+                    {
+                        if (lockTaken)
+                        {
+                            fileLock.Dispose();
+                        }
+                        throw;
                     }
                 }
             }
+        }
+
+        private static FileLock GetOrCreateFileLock(string fullName)
+        {
+            FileLock fileLock = null;
+            if (!_lockedFiles.TryGetValue(fullName, out fileLock))
+            {
+                fileLock = new FileLock(fullName);
+                _lockedFiles[fullName] = fileLock;
+            }
+            return fileLock;
+        }
+
+        public static bool IsLocked(params IDataStore[] dataStoreParameters)
+        {
+            if (dataStoreParameters == null)
+            {
+                throw new ArgumentNullException("dataStoreParameters");
+            }
+
+            foreach (IDataStore dataStore in dataStoreParameters)
+            {
+                if (dataStore == null)
+                {
+                    throw new ArgumentNullException("dataStoreParameters");
+                }
+
+                if (TestLocked(dataStore.FullName))
+                {
+                    if (Resolve.Log.IsInfoEnabled)
+                    {
+                        Resolve.Log.LogInfo("File '{0}' was found to be locked.".InvariantFormat(dataStore.FullName));
+                    }
+                    return true;
+                }
+            }
             return false;
+        }
+
+        private static bool TestLocked(string fullName)
+        {
+            lock (_lockedFiles)
+            {
+                if (!_lockedFiles.Keys.Contains(fullName))
+                {
+                    return false;
+                }
+
+                bool lockTaken = false;
+                try
+                {
+                    Monitor.TryEnter(_lockedFiles[fullName]._lock, ref lockTaken);
+                }
+                finally
+                {
+                    if (lockTaken)
+                    {
+                        Monitor.Exit(_lockedFiles[fullName]._lock);
+                    }
+                }
+                return !lockTaken;
+            }
         }
 
         public void Dispose()
@@ -96,16 +164,21 @@ namespace Axantum.AxCrypt.Core.IO
         {
             lock (_lockedFiles)
             {
-                if (_fullPath == null)
+                if (_referenceCount == 0)
                 {
                     return;
                 }
-                _lockedFiles.Remove(_fullPath);
-                if (Instance.Log.IsInfoEnabled)
+
+                Monitor.Exit(_lock);
+                if (--_referenceCount == 0)
                 {
-                    Instance.Log.LogInfo("Unlocking file '{0}'.".InvariantFormat(_fullPath));
+                    _lockedFiles.Remove(_originalLockedFileName);
                 }
-                _fullPath = null;
+
+                if (Resolve.Log.IsInfoEnabled)
+                {
+                    Resolve.Log.LogInfo("Unlocking file '{0}'.".InvariantFormat(DataStore.FullName));
+                }
             }
         }
     }

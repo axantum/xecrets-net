@@ -25,14 +25,20 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Properties;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Properties;
-using Microsoft.Win32;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt
 {
@@ -41,6 +47,10 @@ namespace Axantum.AxCrypt
         public static IEnumerable<KnownFolder> Discover()
         {
             List<KnownFolder> knownFolders = new List<KnownFolder>();
+            if (OS.Current.Platform != Platform.WindowsDesktop)
+            {
+                return knownFolders;
+            }
 
             CheckDocumentsLibrary(knownFolders);
             CheckDropBox(knownFolders);
@@ -52,68 +62,83 @@ namespace Axantum.AxCrypt
 
         private static void CheckDocumentsLibrary(IList<KnownFolder> knownFolders)
         {
-            Icon icon = Resources.DocumentsLibrary;
-            KnownFolder windowsDesktopFolder = new KnownFolder(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Resources.MyAxCryptFolderName, icon.ToBitmap(), null);
+            Bitmap bitmap = Resources.folder_40px;
+            IDataContainer myDocumentsInfo = New<IDataContainer>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, Resources.MyAxCryptFolderName, bitmap, null);
             knownFolders.Add(windowsDesktopFolder);
         }
 
         private static void CheckDropBox(IList<KnownFolder> knownFolders)
         {
-            RegistryKey dropBoxKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Dropbox");
-            if (dropBoxKey == null)
-            {
-                return;
-            }
-
             string dropBoxFolder = Path.Combine(Environment.GetEnvironmentVariable("HOMEDRIVE") + Environment.GetEnvironmentVariable("HOMEPATH"), "DropBox");
             if (!Directory.Exists(dropBoxFolder))
             {
                 return;
             }
 
-            Uri url = null;
-            string urlInfoAbout = dropBoxKey.GetValue(@"URLInfoAbout") as string;
-            if (!String.IsNullOrEmpty(urlInfoAbout))
-            {
-                Uri.TryCreate(urlInfoAbout, UriKind.Absolute, out url);
-            }
-
-            Icon icon = Resources.DropBox;
-            KnownFolder knownFolder = new KnownFolder(dropBoxFolder, Resources.MyAxCryptFolderName, icon.ToBitmap(), url);
+            Bitmap bitmap = Resources.dropbox_40px;
+            IDataContainer dropBoxFolderInfo = New<IDataContainer>(dropBoxFolder);
+            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Resources.MyAxCryptFolderName, bitmap, null);
 
             knownFolders.Add(knownFolder);
         }
 
         private static void CheckSkyDrive(IList<KnownFolder> knownFolders)
         {
-            RegistryKey skyDriveKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\SkyDrive");
-            if (skyDriveKey == null)
-            {
-                return;
-            }
-
-            string skyDriveFolder = skyDriveKey.GetValue("UserFolder") as string;
+            string skyDriveFolder = FindOneDriveFolder();
             if (String.IsNullOrEmpty(skyDriveFolder) || !Directory.Exists(skyDriveFolder))
             {
                 return;
             }
 
-            Uri url = new Uri("https://skydrive.live.com/");
+            Uri url = new Uri("https://onedrive.live.com/");
 
-            Icon icon = Resources.SkyDrive;
-            KnownFolder knownFolder = new KnownFolder(skyDriveFolder, Resources.MyAxCryptFolderName, icon.ToBitmap(), url);
+            Bitmap bitmap = Resources.skydrive_40px;
+            IDataContainer skyDriveFolderInfo = New<IDataContainer>(skyDriveFolder);
+            KnownFolder knownFolder = new KnownFolder(skyDriveFolderInfo, Resources.MyAxCryptFolderName, bitmap, url);
 
             knownFolders.Add(knownFolder);
         }
 
+        private static string FindOneDriveFolder()
+        {
+            string skyDriveFolder = null;
+
+            skyDriveFolder = TryRegistryLocationForOneDriveFolder(@"Software\Microsoft\OneDrive");
+            if (skyDriveFolder != null)
+            {
+                return skyDriveFolder;
+            }
+
+            skyDriveFolder = TryRegistryLocationForOneDriveFolder(@"Software\Microsoft\Windows\CurrentVersion\SkyDrive");
+            if (skyDriveFolder != null)
+            {
+                return skyDriveFolder;
+            }
+
+            return null;
+        }
+
+        private static string TryRegistryLocationForOneDriveFolder(string name)
+        {
+            RegistryKey skyDriveKey = Registry.CurrentUser.OpenSubKey(name);
+            if (skyDriveKey == null)
+            {
+                return null;
+            }
+
+            string skyDriveFolder = skyDriveKey.GetValue("UserFolder") as string;
+            if (String.IsNullOrEmpty(skyDriveFolder))
+            {
+                return null;
+            }
+
+            return skyDriveFolder;
+        }
+
         private static void CheckGoogleDrive(IList<KnownFolder> knownFolders)
         {
-            RegistryKey googleDriveKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{56D4499E-AC3E-4B8D-91C9-C700C148C44B}");
-            if (googleDriveKey == null)
-            {
-                googleDriveKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{56D4499E-AC3E-4B8D-91C9-C700C148C44B}");
-            }
-            if (googleDriveKey == null)
+            if (!IsGoogleDriveInstalled)
             {
                 return;
             }
@@ -126,9 +151,36 @@ namespace Axantum.AxCrypt
 
             Uri url = new Uri("https://drive.google.com/");
 
-            Icon icon = Resources.GoogleDrive;
-            KnownFolder knownFolder = new KnownFolder(googleDriveFolder, Resources.MyAxCryptFolderName, icon.ToBitmap(), url);
+            Bitmap bitmap = Resources.google_40px;
+            IDataContainer googleDriveFolderInfo = New<IDataContainer>(googleDriveFolder);
+            KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Resources.MyAxCryptFolderName, bitmap, url);
             knownFolders.Add(knownFolder);
+        }
+
+        private static string[] _googleDriveRegistryKeyNames = new string[]
+        {
+            @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{56D4499E-AC3E-4B8D-91C9-C700C148C44B}",
+            @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{56D4499E-AC3E-4B8D-91C9-C700C148C44B}",
+            @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{35574F09-89F9-4B16-B69B-64F3E25901B8}",
+            @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{35574F09-89F9-4B16-B69B-64F3E25901B8}",
+            @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{CBC9F5FD-5CFA-4A33-81CD-369EAB77E3A6}",
+            @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{CBC9F5FD-5CFA-4A33-81CD-369EAB77E3A6}",
+        };
+
+        private static bool IsGoogleDriveInstalled
+        {
+            get
+            {
+                foreach (string driveRegistryKeyName in _googleDriveRegistryKeyNames)
+                {
+                    RegistryKey googleDriveKey = Registry.LocalMachine.OpenSubKey(driveRegistryKeyName);
+                    if (googleDriveKey != null)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
     }
 }

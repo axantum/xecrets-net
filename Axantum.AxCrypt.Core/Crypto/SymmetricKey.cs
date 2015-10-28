@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate a random key.
         /// </summary>
         public SymmetricKey(int keyBits)
-            : this(Instance.RandomGenerator.Generate(keyBits / 8))
+            : this(Resolve.RandomGenerator.Generate(keyBits / 8))
         {
         }
 
@@ -74,11 +74,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             return (byte[])_symmetricKey.Clone();
         }
 
-        public int Length
+        public int Size
         {
             get
             {
-                return _symmetricKey.Length;
+                return _symmetricKey.Length * 8;
             }
         }
 
@@ -121,6 +121,23 @@ namespace Axantum.AxCrypt.Core.Crypto
             return hashcode;
         }
 
+        public byte[] Add(SymmetricIV right)
+        {
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
+
+            byte[] leftBytes = GetBytes();
+            byte[] rightBytes = right.GetBytes();
+            byte[] result = new byte[leftBytes.Length + rightBytes.Length];
+
+            leftBytes.CopyTo(result, 0);
+            rightBytes.CopyTo(result, leftBytes.Length);
+
+            return result;
+        }
+
         public static bool operator ==(SymmetricKey left, SymmetricKey right)
         {
             if (Object.ReferenceEquals(left, right))
@@ -137,6 +154,20 @@ namespace Axantum.AxCrypt.Core.Crypto
         public static bool operator !=(SymmetricKey left, SymmetricKey right)
         {
             return !(left == right);
+        }
+
+        public static byte[] operator +(SymmetricKey left, SymmetricIV right)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
+
+            return left.Add(right);
         }
     }
 }

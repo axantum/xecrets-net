@@ -26,7 +26,9 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.IO;
 
@@ -39,9 +41,15 @@ namespace Axantum.AxCrypt.Core.Reader
         /// </summary>
         /// <param name="inputStream">The stream to read from, will be disposed when this instance is disposed.</param>
         /// <returns></returns>
-        public V1AxCryptReader(Stream inputStream)
+        public V1AxCryptReader(LookAheadStream inputStream)
             : base(inputStream)
         {
+        }
+
+        protected override IAxCryptDocument Document()
+        {
+            base.Document();
+            return new V1AxCryptDocument(this);
         }
 
         protected override HeaderBlock HeaderBlockFactory(HeaderBlockType headerBlockType, byte[] dataBlock)
@@ -67,34 +75,36 @@ namespace Axantum.AxCrypt.Core.Reader
                     return new DataHeaderBlock(dataBlock);
 
                 case HeaderBlockType.FileNameInfo:
-                    return new V1FileNameInfoHeaderBlock(dataBlock);
+                    return new V1FileNameInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.EncryptionInfo:
-                    return new V1EncryptionInfoHeaderBlock(dataBlock);
+                    return new V1EncryptionInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.CompressionInfo:
-                    return new V1CompressionInfoHeaderBlock(dataBlock);
+                    return new V1CompressionInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.FileInfo:
-                    return new FileInfoHeaderBlock(dataBlock);
+                    return new FileInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.Compression:
-                    return new V1CompressionHeaderBlock(dataBlock);
+                    return new V1CompressionEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.UnicodeFileNameInfo:
-                    return new V1UnicodeFileNameInfoHeaderBlock(dataBlock);
+                    return new V1UnicodeFileNameInfoEncryptedHeaderBlock(dataBlock);
             }
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }
 
-        public override ICrypto Crypto(IPassphrase key)
+        public override IAxCryptDocument Document(Passphrase passphrase, Guid cryptoId, Headers headers)
         {
-            return new V1AesCrypto(key);
+            V1AxCryptDocument v1Document = new V1AxCryptDocument(this);
+            v1Document.Load(passphrase, cryptoId, headers);
+            return v1Document;
         }
 
-        public override ICrypto Crypto(Headers headers, string passphrase)
+        public override IAxCryptDocument Document(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers)
         {
-            return new V1AesCrypto(new V1Passphrase(passphrase));
+            return new V1AxCryptDocument();
         }
     }
 }

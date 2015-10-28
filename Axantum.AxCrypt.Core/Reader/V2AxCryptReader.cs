@@ -26,7 +26,9 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.IO;
 
@@ -39,9 +41,15 @@ namespace Axantum.AxCrypt.Core.Reader
         /// </summary>
         /// <param name="inputStream">The stream to read from, will be disposed when this instance is disposed.</param>
         /// <returns></returns>
-        public V2AxCryptReader(Stream inputStream)
+        public V2AxCryptReader(LookAheadStream inputStream)
             : base(inputStream)
         {
+        }
+
+        protected override IAxCryptDocument Document()
+        {
+            base.Document();
+            return new V2AxCryptDocument(this);
         }
 
         protected override HeaderBlock HeaderBlockFactory(HeaderBlockType headerBlockType, byte[] dataBlock)
@@ -57,23 +65,32 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.V2KeyWrap:
                     return new V2KeyWrapHeaderBlock(dataBlock);
 
+                case HeaderBlockType.V2AsymmetricKeyWrap:
+                    return new V2AsymmetricKeyWrapHeaderBlock(dataBlock);
+
+                case HeaderBlockType.AsymmetricRecipients:
+                    return new V2AsymmetricRecipientsEncryptedHeaderBlock(dataBlock);
+
                 case HeaderBlockType.Data:
                     return new DataHeaderBlock(dataBlock);
 
                 case HeaderBlockType.FileInfo:
-                    return new FileInfoHeaderBlock(dataBlock);
+                    return new FileInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.Compression:
-                    return new V2CompressionHeaderBlock(dataBlock);
+                    return new V2CompressionEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.UnicodeFileNameInfo:
-                    return new V2UnicodeFileNameInfoHeaderBlock(dataBlock);
+                    return new V2UnicodeFileNameInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.PlaintextLengths:
-                    return new V2PlaintextLengthsHeaderBlock(dataBlock);
+                    return new V2PlaintextLengthsEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.V2Hmac:
                     return new V2HmacHeaderBlock(dataBlock);
+
+                case HeaderBlockType.AlgorithmVerifier:
+                    return new V2AlgorithmVerifierEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.EncryptedDataPart:
                     return new EncryptedDataPartBlock(dataBlock);
@@ -81,17 +98,23 @@ namespace Axantum.AxCrypt.Core.Reader
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }
 
-        public override ICrypto Crypto(IPassphrase key)
+        public override IAxCryptDocument Document(Passphrase passphrase, Guid cryptoId, Headers headers)
         {
-            return new V2AesCrypto(key);
+            V2AxCryptDocument v2Document = new V2AxCryptDocument(this);
+            v2Document.Load(passphrase, cryptoId, headers);
+            return v2Document;
         }
 
-        public override ICrypto Crypto(Headers headers, string passphrase)
+        public override IAxCryptDocument Document(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers)
         {
-            V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-            IPassphrase key = new V2Passphrase(passphrase, keyWrap.GetDerivationSalt(), keyWrap.DerivationIterations, 256);
+            V2AxCryptDocument v2Document = new V2AxCryptDocument();
+            if (cryptoId == V1Aes128CryptoFactory.CryptoId)
+            {
+                return v2Document;
+            }
 
-            return Crypto(key);
+            v2Document.Load(privateKey, cryptoId, headers);
+            return v2Document;
         }
     }
 }

@@ -25,12 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Fake;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -45,11 +49,11 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            Factory.Instance.Singleton<FakeRequestClient>(() => new FakeRequestClient());
-            Factory.Instance.Singleton<FakeRequestServer>(() => new FakeRequestServer());
-            _fakeClient = Factory.Instance.Singleton<FakeRequestClient>();
-            _fakeServer = Factory.Instance.Singleton<FakeRequestServer>();
-            Factory.Instance.Singleton<CommandService>(() => new CommandService(_fakeServer, _fakeClient));
+            TypeMap.Register.Singleton<FakeRequestClient>(() => new FakeRequestClient());
+            TypeMap.Register.Singleton<FakeRequestServer>(() => new FakeRequestServer());
+            _fakeClient = New<FakeRequestClient>();
+            _fakeServer = New<FakeRequestServer>();
+            TypeMap.Register.Singleton<CommandService>(() => new CommandService(_fakeServer, _fakeClient));
         }
 
         [TearDown]
@@ -75,12 +79,12 @@ namespace Axantum.AxCrypt.Core.Test
             bool wasExit = false;
             _fakeServer.Request += (sender, e) =>
             {
-                wasExit = e.Command.RequestCommand == CommandVerb.Exit;
+                wasExit = e.Command.Verb == CommandVerb.Exit;
             };
 
             _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
 
-            CommandLine cl = new CommandLine("axcrypt.exe", new string[] { "-x" });
+            CommandLine cl = new CommandLine("axcrypt.exe", new string[] { "--exit" });
             FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = true;
             cl.Execute();
 
@@ -90,14 +94,15 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNeedToLaunchFirstInstance()
         {
-            var mock = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
-            mock.Setup<ILauncher>(x => x.Launch(It.IsAny<string>()))
-                .Returns((string path) =>
+            var mock = new Mock<FakeLauncher>() { CallBase = true };
+            mock.Setup(x => x.Launch(It.IsAny<string>()))
+                .Callback((string path) =>
                 {
                     FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = path == "axcrypt.exe";
-                    return new FakeLauncher(path);
                 });
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => mock.Object);
+
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.New<ILauncher>(() => mock.Object);
 
             _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
             CommandLine cl = new CommandLine("axcrypt.exe", new string[0]);
@@ -109,6 +114,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFailedToLaunchFirstInstance()
         {
+            TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
             _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
             CommandLine cl = new CommandLine("axcrypt.exe", new string[0]);
             Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.False);

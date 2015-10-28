@@ -25,14 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Fake;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -67,10 +68,10 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { progressStream.Read(nullBuffer, 0, 0); });
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestPropertiesAndMethods()
         {
-            using (MemoryStream memoryStream = FakeRuntimeFileInfo.ExpandableMemoryStream(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }))
+            using (MemoryStream memoryStream = FakeDataStore.ExpandableMemoryStream(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }))
             {
                 string kilroy = String.Empty;
                 using (FakeStream testStream = new FakeStream(memoryStream, (string wasHere) => { kilroy += wasHere; }))
@@ -118,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestDoubleDispose()
         {
             using (Stream stream = Stream.Null)

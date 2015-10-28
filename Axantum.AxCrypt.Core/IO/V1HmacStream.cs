@@ -25,10 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.IO;
-using System.Security.Cryptography;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.IO
 {
@@ -62,7 +65,7 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new ArgumentNullException("key");
             }
-            _hmac = AxCryptHMACSHA1.Create(key);
+            _hmac = New<AxCryptHMACSHA1>().Initialize(key); ;
             ChainedStream = chainedStream;
         }
 
@@ -81,7 +84,7 @@ namespace Axantum.AxCrypt.Core.IO
                 {
                     _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
                     byte[] result = new byte[16];
-                    Array.Copy(_hmac.Hash, 0, result, 0, result.Length);
+                    Array.Copy(_hmac.Hash(), 0, result, 0, result.Length);
                     _hmacResult = new V1Hmac(result);
                 }
                 return _hmacResult;
@@ -160,18 +163,23 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (disposing)
             {
-                if (_disposed)
-                {
-                    return;
-                }
-                if (_hmac != null)
-                {
-                    _hmac.Clear();
-                    _hmac = null;
-                }
-                _disposed = true;
+                DisposeInternal();
             }
             base.Dispose(disposing);
+        }
+
+        private void DisposeInternal()
+        {
+            if (_disposed)
+            {
+                return;
+            }
+            if (_hmac != null)
+            {
+                _hmac.Dispose();
+                _hmac = null;
+            }
+            _disposed = true;
         }
 
         public void ReadFrom(Stream dataStream)

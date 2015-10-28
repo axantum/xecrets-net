@@ -25,10 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -50,11 +54,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void SimpleTest()
         {
-            IFileWatcher watcher = Factory.New<IFileWatcher>("c:\temp");
+            IFileWatcher watcher = New<IFileWatcher>("c:\temp");
             string fullName = String.Empty;
             watcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
                 {
-                    fullName = e.FullName;
+                    fullName = e.FullNames.First();
                 };
 
             FakeFileWatcher fakeWatcher = (FakeFileWatcher)watcher;

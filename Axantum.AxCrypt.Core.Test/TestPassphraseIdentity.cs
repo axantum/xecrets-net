@@ -27,40 +27,51 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestPassphraseIdentity
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestPassphraseIdentity
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestPassphraseIdentity(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestEmptyField()
+        public void TestEmptyField()
         {
-            PassphraseIdentity zero = new PassphraseIdentity(String.Empty, new GenericPassphrase(String.Empty));
-            PassphraseIdentity nonzero = new PassphraseIdentity("id", new GenericPassphrase("something"));
+            Passphrase zero = Passphrase.Empty;
+            Passphrase nonzero = new Passphrase("something");
 
-            Assert.That(zero.Key.Equals(PassphraseIdentity.Empty.Key));
-            Assert.That(zero.Name, Is.EqualTo(PassphraseIdentity.Empty.Name));
-            Assert.That(zero.Thumbprint, Is.EqualTo(PassphraseIdentity.Empty.Thumbprint));
+            Assert.That(zero.Equals(Passphrase.Empty));
+            Assert.That(zero.Thumbprint, Is.EqualTo(Passphrase.Empty.Thumbprint));
 
-            Assert.That(!nonzero.Key.Equals(PassphraseIdentity.Empty.Key));
-            Assert.That(nonzero.Name, Is.Not.EqualTo(PassphraseIdentity.Empty.Name));
-            Assert.That(nonzero.Thumbprint, Is.Not.EqualTo(PassphraseIdentity.Empty.Thumbprint));
+            Assert.That(!nonzero.Equals(Passphrase.Empty));
+            Assert.That(nonzero.Thumbprint, Is.Not.EqualTo(Passphrase.Empty.Thumbprint));
         }
     }
 }

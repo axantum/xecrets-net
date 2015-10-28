@@ -26,8 +26,10 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System.IO;
 using System.Text;
@@ -49,14 +51,14 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFindMagicGuidFirstAndOnly()
         {
             using (MemoryStream testStream = new MemoryStream())
             {
                 AxCrypt1Guid.Write(testStream);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -73,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] someBytes = Encoding.UTF8.GetBytes("This is a test string that we'll convert into some random bytes....");
                 testStream.Write(someBytes, 0, someBytes.Length);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -81,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFindMagicGuidWithOtherFirstButNoMore()
         {
             using (MemoryStream testStream = new MemoryStream())
@@ -90,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Test
                 testStream.Write(someBytes, 0, someBytes.Length);
                 AxCrypt1Guid.Write(testStream);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -98,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFindMagicGuidWithOtherFirstAndMore()
         {
             using (MemoryStream testStream = new MemoryStream())
@@ -108,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Test
                 AxCrypt1Guid.Write(testStream);
                 testStream.Write(someBytes, 0, someBytes.Length);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -116,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFindMagicGuidWithMuchOtherFirstAndMore()
         {
             using (MemoryStream testStream = new MemoryStream())
@@ -131,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Test
                 AxCrypt1Guid.Write(testStream);
                 testStream.Write(someBytes, 0, someBytes.Length);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -139,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFindMagicGuidButInputTooShort()
         {
             using (MemoryStream testStream = new MemoryStream())
@@ -147,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] someBytes = new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
                 testStream.Write(someBytes, 0, someBytes.Length);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.False, "There should be no Guid found, since there are not enough bytes in the stream.");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.EndOfStream), "Nothing has been found yet in the stream.");
@@ -155,12 +157,12 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFindMagicGuidFromSimpleFile()
         {
-            using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
+            using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");

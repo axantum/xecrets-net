@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
@@ -60,8 +61,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCanExecuteChanged()
         {
-            Factory.Instance.Singleton<IUIThread>(() => new Mock<IUIThread>().Object);
-            Mock.Get(Instance.UIThread).Setup(u => u.RunOnUIThread(It.IsAny<Action>())).Callback<Action>(a => a());
+            TypeMap.Register.Singleton<IUIThread>(() => new Mock<IUIThread>().Object);
+            Mock.Get(Resolve.UIThread).Setup(u => u.RunOnUIThread(It.IsAny<Action>())).Callback<Action>(a => a());
 
             int result = 0;
             bool canExecuteChanged = false;
@@ -73,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             action.RaiseCanExecuteChanged();
             Assert.That(canExecuteChanged, Is.True, "This should have raised the CanExecuteChanged event.");
-            Mock.Get(Instance.UIThread).Verify(u => u.RunOnUIThread(It.IsAny<Action>()), Times.Once);
+            Mock.Get(Resolve.UIThread).Verify(u => u.RunOnUIThread(It.IsAny<Action>()), Times.Once);
         }
 
         [Test]

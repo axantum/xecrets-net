@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,11 +10,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Axantum.AxCrypt</RootNamespace>
     <AssemblyName>Axantum.AxCrypt</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>AxCrypt.ico</ApplicationIcon>
@@ -35,6 +35,10 @@
     <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
     <WarningLevel>4</WarningLevel>
     <Optimize>False</Optimize>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>Axantum.AxCrypt.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -48,10 +52,13 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>Axantum.AxCrypt.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\SolutionItems\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,9 +66,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="BouncyCastle.Crypto">
-      <HintPath>..\SolutionItems\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutBox.cs">
@@ -76,11 +80,66 @@
     <Compile Include="AxCryptMainForm.Designer.cs">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmailDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailDialog.Designer.cs">
+      <DependentUpon>EmailDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ImportPrivatePasswordDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportPrivatePasswordDialog.Designer.cs">
+      <DependentUpon>ImportPrivatePasswordDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KeyShareDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyShareDialog.Designer.cs">
+      <DependentUpon>KeyShareDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfirmWipeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ConfirmWipeDialog.Designer.cs">
       <DependentUpon>ConfirmWipeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewAccountDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewAccountDialog.Designer.cs">
+      <DependentUpon>CreateNewAccountDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DebugLogOutputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DebugLogOutputDialog.Designer.cs">
+      <DependentUpon>DebugLogOutputDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogOnAccountDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogOnAccountDialog.Designer.cs">
+      <DependentUpon>LogOnAccountDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAccountDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageAccountDialog.Designer.cs">
+      <DependentUpon>ManageAccountDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MessageDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageDialog.Designer.cs">
+      <DependentUpon>MessageDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WatchedFoldersDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WatchedFoldersDialog.Designer.cs">
+      <DependentUpon>WatchedFoldersDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="KnownFoldersDiscovery.cs" />
     <Compile Include="LogOnDialog.cs">
@@ -109,9 +168,6 @@
     </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Preferences.cs" />
-    <Compile Include="ProgressBackground.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <DependentUpon>Settings.settings</DependentUpon>
@@ -127,8 +183,36 @@
       <DependentUpon>ConfirmWipeDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewAccountDialog.resx">
+      <DependentUpon>CreateNewAccountDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DebugLogOutputDialog.resx">
+      <DependentUpon>DebugLogOutputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailDialog.resx">
+      <DependentUpon>EmailDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportPrivatePasswordDialog.resx">
+      <DependentUpon>ImportPrivatePasswordDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyShareDialog.resx">
+      <DependentUpon>KeyShareDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogOnAccountDialog.resx">
+      <DependentUpon>LogOnAccountDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageAccountDialog.resx">
+      <DependentUpon>ManageAccountDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageDialog.resx">
+      <DependentUpon>MessageDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatchedFoldersDialog.resx">
+      <DependentUpon>WatchedFoldersDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogOnDialog.resx">
       <DependentUpon>LogOnDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LogOnDialog.sv.resx">
       <DependentUpon>LogOnDialog.cs</DependentUpon>
@@ -142,6 +226,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Axantum.AxCrypt.ruleset" />
+    <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.template" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
@@ -186,13 +272,33 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
+      <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
+      <Name>Axantum.AxCrypt.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj">
+      <Project>{6ea275d5-2372-4fcf-bb4f-5c48f5901350}</Project>
+      <Name>Axantum.AxCrypt.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
       <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Desktop\Axantum.AxCrypt.Desktop.csproj">
+      <Project>{d64de570-3a36-49d3-95aa-9262647b04ee}</Project>
+      <Name>Axantum.AxCrypt.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Forms\Axantum.AxCrypt.Forms.csproj">
+      <Project>{ac7c1ecd-4543-4cf3-8938-32f3d8cb89d5}</Project>
+      <Name>Axantum.AxCrypt.Forms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
       <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
       <Name>Axantum.AxCrypt.Mono</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj">
+      <Project>{3680c939-b21f-4444-b646-42fb4b29a786}</Project>
+      <Name>BouncyCastle.AxCrypt</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
@@ -203,8 +309,28 @@
     <Content Include="resources\activefilegreen16.png" />
     <Content Include="resources\activefileknownkeygreen16.png" />
     <Content Include="resources\axcrypticon.ico" />
+    <Content Include="resources\broom_40pxs.png" />
+    <Content Include="resources\bulb_green_40px.png" />
+    <Content Include="resources\bulb_orange_40px.png" />
+    <Content Include="resources\bulb_red_40px.png" />
+    <Content Include="resources\clean_broom.png" />
+    <Content Include="resources\clean_recycle.png" />
     <Content Include="resources\closeremovestandbygreen32.png" />
     <Content Include="resources\closeremovestandbyred32.png" />
+    <Content Include="resources\decrypt.png" />
+    <Content Include="resources\delete.png" />
+    <Content Include="resources\encrypt.png" />
+    <Content Include="resources\exit.png" />
+    <Content Include="resources\exit_red.png" />
+    <Content Include="resources\folder.png" />
+    <Content Include="resources\folder_40px.png" />
+    <Content Include="resources\key_management.png" />
+    <Content Include="resources\logo-text-retina.png" />
+    <Content Include="resources\open_encrypted.png" />
+    <Content Include="resources\options.png" />
+    <Content Include="resources\skydrive_40px.png" />
+    <None Include="resources\cleanupneededred32.png" />
+    <None Include="resources\cleanupneededred16.png" />
     <None Include="resources\SkyDrive.ico" />
     <None Include="resources\trashred16.png" />
     <None Include="resources\encryptlock32.png" />
@@ -213,15 +339,24 @@
     <Content Include="resources\decryptedfilered16.png" />
     <Content Include="resources\decryptedunknownkeyfilered16.png" />
     <None Include="resources\DocumentsLibrary.ico" />
+    <Content Include="resources\dropbox_40px.png" />
     <Content Include="resources\exclamationgreen16.png" />
     <None Include="resources\exclamationgreen32.png" />
     <Content Include="resources\fileknownkeygreen16.png" />
     <None Include="resources\GoogleDrive.ico" />
+    <Content Include="resources\google_40px.png" />
+    <Content Include="resources\google_grey_40px.png" />
     <Content Include="resources\helpquestiongreen32.png" />
     <None Include="resources\encryptionkeygreen32.png" />
     <None Include="resources\encryptionkeyred32.png" />
     <None Include="resources\DropBox.ico" />
     <Content Include="resources\inactivefilegreen16.png" />
+    <None Include="resources\addforencryptionred32.png" />
+    <Content Include="resources\minus_40px.png" />
+    <Content Include="resources\plus_40px.png" />
+    <Content Include="resources\refresh_40px.png" />
+    <Content Include="resources\refresh_grey_40px.png" />
+    <Content Include="resources\removeanddecryptgreen32.png" />
     <Content Include="resources\refreshred.png" />
     <Content Include="resources\axcrypticon128.png" />
     <None Include="Properties\Settings.settings">

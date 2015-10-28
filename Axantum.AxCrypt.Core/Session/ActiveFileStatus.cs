@@ -45,6 +45,11 @@ namespace Axantum.AxCrypt.Core.Session
         NotShareable = 16,
 
         IgnoreChange = 32,
-        NoLongerActive = 64,
+
+        /// <summary>
+        /// Set when an application was launched for the file, but no process could be seen to be started. This typically happens
+        /// with Windows 8 apps, as well as some multi document softwares such as Word etc.
+        /// </summary>
+        NoProcessKnown = 128,
     }
 }

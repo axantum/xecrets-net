@@ -26,28 +26,42 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    public static class TestIterationCalculator
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestIterationCalculator
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestIterationCalculator(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestMinimumGuaranteeV1KeyWrapIterations()
+        public void TestMinimumGuaranteeV1KeyWrapIterations()
         {
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
@@ -70,13 +84,13 @@ namespace Axantum.AxCrypt.Core.Test
                 return now.AddMilliseconds(500);
             };
 
-            long iterations = new IterationCalculator().V1KeyWrapIterations();
+            long keyWrapIterations = new IterationCalculator().KeyWrapIterations(V1Aes128CryptoFactory.CryptoId);
 
-            Assert.That(iterations, Is.EqualTo(20000), "The minimum guarantee should hold.");
+            Assert.That(keyWrapIterations, Is.EqualTo(5000), "The minimum guarantee should hold.");
         }
 
         [Test]
-        public static void TestMinimumGuaranteeV2KeyWrapIterations()
+        public void TestMinimumGuaranteeV2KeyWrapIterations()
         {
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
@@ -99,13 +113,13 @@ namespace Axantum.AxCrypt.Core.Test
                 return now.AddMilliseconds(500);
             };
 
-            long iterations = new IterationCalculator().V2KeyWrapIterations();
+            long keyWrapIterations = new IterationCalculator().KeyWrapIterations(V2Aes256CryptoFactory.CryptoId);
 
-            Assert.That(iterations, Is.EqualTo(10000), "The minimum guarantee should hold.");
+            Assert.That(keyWrapIterations, Is.EqualTo(5000), "The minimum guarantee should hold.");
         }
 
         [Test]
-        public static void TestCalculatedV1KeyWrapIterations()
+        public void TestCalculatedV1KeyWrapIterations()
         {
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
@@ -123,13 +137,13 @@ namespace Axantum.AxCrypt.Core.Test
                 return now.AddMilliseconds(callCounter * 4);
             };
 
-            long iterations = new IterationCalculator().V1KeyWrapIterations();
+            long keyWrapIterations = new IterationCalculator().KeyWrapIterations(V1Aes128CryptoFactory.CryptoId);
 
-            Assert.That(iterations, Is.EqualTo(25000), "If we do 125000 iterations in 500ms, the result should be 25000 as default iterations.");
+            Assert.That(keyWrapIterations, Is.EqualTo(12500), "If we do 125000 iterations in 500ms, the result should be 12500 as default iterations (1/20s).");
         }
 
         [Test]
-        public static void TestCalculatedV2KeyWrapIterations()
+        public void TestCalculatedV2KeyWrapIterations()
         {
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
@@ -148,9 +162,9 @@ namespace Axantum.AxCrypt.Core.Test
                 return now.AddMilliseconds(callCounter * 4);
             };
 
-            long iterations = new IterationCalculator().V2KeyWrapIterations();
+            long keyWrapIterations = new IterationCalculator().KeyWrapIterations(V2Aes256CryptoFactory.CryptoId);
 
-            Assert.That(iterations, Is.EqualTo(12500), "If we do 125000 iterations in 500ms, the result should be 12500 as default iterations.");
+            Assert.That(keyWrapIterations, Is.EqualTo(12500), "If we do 125000 iterations in 500ms, the result should be 12500 as default iterations.");
         }
     }
 }

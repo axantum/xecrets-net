@@ -34,29 +34,46 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI
 {
     public class UserSettings : IUserSettings
     {
+        public int CurrentSettingsVersion { get { return 10; } }
+
         private Dictionary<string, string> _settings = new Dictionary<string, string>();
 
-        private IRuntimeFileInfo _persistanceFileInfo;
+        private IDataStore _persistanceFileInfo;
 
         private IterationCalculator _keyWrapIterationCalculator;
 
-        public UserSettings(IRuntimeFileInfo fileInfo, IterationCalculator keyWrapIterationCalculator)
+        protected UserSettings(IterationCalculator keyWrapIterationCalculator)
         {
+            _keyWrapIterationCalculator = keyWrapIterationCalculator;
+        }
+
+        public UserSettings(IDataStore fileInfo, IterationCalculator keyWrapIterationCalculator)
+        {
+            if (fileInfo == null)
+            {
+                throw new ArgumentNullException("fileInfo");
+            }
+
             _persistanceFileInfo = fileInfo;
 
             _keyWrapIterationCalculator = keyWrapIterationCalculator;
 
-            if (_persistanceFileInfo.Exists)
+            if (!_persistanceFileInfo.IsAvailable)
             {
-                using (JsonReader reader = new JsonTextReader(new StreamReader(_persistanceFileInfo.OpenRead())))
-                {
-                    JsonSerializer serializer = CreateSerializer();
-                    _settings = serializer.Deserialize<Dictionary<string, string>>(reader);
-                }
+                SettingsVersion = CurrentSettingsVersion;
+                return;
+            }
+
+            using (JsonReader reader = new JsonTextReader(new StreamReader(_persistanceFileInfo.OpenRead())))
+            {
+                JsonSerializer serializer = CreateSerializer();
+                _settings = serializer.Deserialize<Dictionary<string, string>>(reader) ?? new Dictionary<string, string>();
             }
         }
 
@@ -72,22 +89,64 @@ namespace Axantum.AxCrypt.Core.UI
             return JsonSerializer.Create(serializerSettings);
         }
 
+        public void Delete()
+        {
+            _persistanceFileInfo.Delete();
+            _settings = new Dictionary<string, string>();
+        }
+
         public string CultureName
         {
             get { return Load("CultureName", "en-US"); }
             set { Store("CultureName", value); }
         }
 
-        public Uri AxCrypt2VersionCheckUrl
+        public Uri LegacyRestApiBaseUrl
         {
-            get { return Load("AxCrypt2VersionCheckUrl", new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/windows")); }
-            set { Store("AxCrypt2VersionCheckUrl", value.ToString()); }
+            get { return Load(nameof(LegacyRestApiBaseUrl), new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/")); }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                Store(nameof(LegacyRestApiBaseUrl), value.ToString());
+            }
+        }
+
+        public Uri RestApiBaseUrl
+        {
+            get { return Load(nameof(RestApiBaseUrl), new Uri("https://account.axcrypt.net/api/")); }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                Store(nameof(RestApiBaseUrl), value.ToString());
+            }
         }
 
         public Uri UpdateUrl
         {
             get { return Load("UpdateUrl", new Uri("http://www.axantum.com/")); }
-            set { Store("UpdateUrl", value.ToString()); }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                Store("UpdateUrl", value.ToString());
+            }
+        }
+
+        public TimeSpan ApiTimeOut
+        {
+            get { return Load(nameof(ApiTimeOut), TimeSpan.FromMilliseconds(1000)); }
+            set { Store(nameof(ApiTimeOut), value); }
         }
 
         public DateTime LastUpdateCheckUtc
@@ -111,7 +170,15 @@ namespace Axantum.AxCrypt.Core.UI
         public Uri AxCrypt2HelpUrl
         {
             get { return Load("AxCrypt2HelpUrl", new Uri("http://www.axantum.com/AxCrypt/AxCryptNetHelp.html")); }
-            set { Store("AxCrypt2HelpUrl", value.ToString()); }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                Store("AxCrypt2HelpUrl", value.ToString());
+            }
         }
 
         public bool DisplayEncryptPassphrase
@@ -126,28 +193,50 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("DisplayDecryptPassphrase", value); }
         }
 
-        public long V1KeyWrapIterations
+        public long GetKeyWrapIterations(Guid cryptoId)
         {
-            get { return Load("V1KeyWrapIterations", () => _keyWrapIterationCalculator.V1KeyWrapIterations()); }
-            set { Store("V1KeyWrapIterations", value); }
+            return Load(cryptoId.ToString("N"), () => _keyWrapIterationCalculator.KeyWrapIterations(cryptoId));
         }
 
-        public long V2KeyWrapIterations
+        public void SetKeyWrapIterations(Guid cryptoId, long keyWrapIterations)
         {
-            get { return Load("V2KeyWrapIterations", () => _keyWrapIterationCalculator.V2KeyWrapIterations()); }
-            set { Store("V2KeyWrapIterations", value); }
+            Store(cryptoId.ToString("N"), keyWrapIterations);
         }
 
-        public KeyWrapSalt ThumbprintSalt
+        public Salt ThumbprintSalt
         {
-            get { return Load("ThumbprintSalt", () => Factory.New<int, KeyWrapSalt>(64)); }
-            set { Store("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
+            get { return Load("ThumbprintSalt", () => New<int, Salt>(512)); }
+            set { Store("ThumbprintSalt", Resolve.Serializer.Serialize(value)); }
         }
 
         public TimeSpan SessionNotificationMinimumIdle
         {
             get { return Load("WorkFolderMinimumIdle", TimeSpan.FromMilliseconds(500)); }
             set { Store("WorkFolderMinimumIdle", value); }
+        }
+
+        public int SettingsVersion
+        {
+            get { return Load("SettingsVersion", 0); }
+            set { Store("SettingsVersion", value); }
+        }
+
+        public int AsymmetricKeyBits
+        {
+            get { return Load("AsymmetricKeyBits", 4096); }
+            set { Store("AsymmetricKeyBits", value); }
+        }
+
+        public string UserEmail
+        {
+            get { return Load("UserEmail", String.Empty); }
+            set { Store("UserEmail", value); }
+        }
+
+        public bool TryBrokenFile
+        {
+            get { return Load("TryBrokenFile", false); }
+            set { Store("TryBrokenFile", value); }
         }
 
         public string this[string key]
@@ -172,7 +261,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private void Save()
+        protected virtual void Save()
         {
             using (TextWriter writer = new StreamWriter(_persistanceFileInfo.OpenWrite()))
             {
@@ -188,6 +277,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         public T Load<T>(string key, Func<T> fallbackAction)
         {
+            if (fallbackAction == null)
+            {
+                throw new ArgumentNullException("fallbackAction");
+            }
+
             string value;
             if (_settings.TryGetValue(key, out value))
             {
@@ -205,22 +299,27 @@ namespace Axantum.AxCrypt.Core.UI
             return fallback;
         }
 
-        public KeyWrapSalt Load(string key, Func<KeyWrapSalt> fallbackAction)
+        public Salt Load(string key, Func<Salt> fallbackAction)
         {
+            if (fallbackAction == null)
+            {
+                throw new ArgumentNullException("fallbackAction");
+            }
+
             string value;
             if (_settings.TryGetValue(key, out value))
             {
                 try
                 {
-                    return JsonConvert.DeserializeObject<KeyWrapSalt>(value);
+                    return Resolve.Serializer.Deserialize<Salt>(value);
                 }
                 catch (JsonException)
                 {
                 }
             }
 
-            KeyWrapSalt fallback = fallbackAction();
-            this[key] = JsonConvert.SerializeObject(fallback);
+            Salt fallback = fallbackAction();
+            this[key] = Resolve.Serializer.Serialize(fallback);
             return fallback;
         }
 

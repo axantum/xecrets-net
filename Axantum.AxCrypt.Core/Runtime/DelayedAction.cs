@@ -58,6 +58,11 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <param name="minimumIdleTime">The minium time of idle before actually performing the action.</param>
         public DelayedAction(IDelayTimer timer, TimeSpan minimumIdleTime)
         {
+            if (timer == null)
+            {
+                throw new ArgumentNullException("timer");
+            }
+
             _timer = timer;
             _timer.SetInterval(minimumIdleTime);
             _timer.Elapsed += HandleTimerElapsedEvent;

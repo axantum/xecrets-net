@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
@@ -35,9 +36,9 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         private IProgressContext _progress;
 
-        private SingleThread _singleThread;
+        private ISingleThread _singleThread;
 
-        public WorkerGroupProgressContext(IProgressContext progress, SingleThread singleThread)
+        public WorkerGroupProgressContext(IProgressContext progress, ISingleThread singleThread)
         {
             _progress = progress;
             _singleThread = singleThread;

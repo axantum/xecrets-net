@@ -26,60 +26,73 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestSymmetricKeyThumbprint
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestSymmetricKeyThumbprint
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestSymmetricKeyThumbprint(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestInvalidArguments()
+        public void TestInvalidArguments()
         {
-            IPassphrase nullKey = null;
-            KeyWrapSalt nullSalt = null;
-            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(nullKey, new KeyWrapSalt(16), 10) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(new GenericPassphrase("passphrase"), nullSalt, 10) == null) { } });
+            Passphrase nullKey = null;
+            Salt nullSalt = null;
+            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(nullKey, new Salt(128), 10) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(new Passphrase("passphrase"), nullSalt, 10) == null) { } });
         }
 
         [Test]
-        public static void TestAesKeyThumbprintMethods()
+        public void TestAesKeyThumbprintMethods()
         {
-            IPassphrase key1 = new GenericPassphrase("key");
-            IPassphrase key2 = new GenericPassphrase("key");
-            KeyWrapSalt salt1 = new KeyWrapSalt(16);
-            KeyWrapSalt salt2 = new KeyWrapSalt(salt1.GetBytes());
+            Passphrase key1 = new Passphrase("key");
+            Passphrase key2 = new Passphrase("key");
+            Salt salt1 = new Salt(512);
+            Salt salt2 = new Salt(salt1.GetBytes());
 
             SymmetricKeyThumbprint thumbprint1 = new SymmetricKeyThumbprint(key1, salt1, 10);
             SymmetricKeyThumbprint thumbprint2 = new SymmetricKeyThumbprint(key2, salt2, 10);
 
             Assert.That(thumbprint1 == thumbprint2, "Two thumb prints made from the same key and salt bytes, although different AesKey instances should be equivalent.");
 
-            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint(new GenericPassphrase("passphrase"), new KeyWrapSalt(16), 10);
+            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint(new Passphrase("passphrase"), new Salt(512), 10);
             Assert.That(thumbprint2 != thumbprint3, "Two very different keys and salts should not be equivalent.");
         }
 
         [Test]
-        public static void TestComparisons()
+        public void TestComparisons()
         {
-            IPassphrase key1 = new GenericPassphrase("samekey");
-            IPassphrase key2 = new GenericPassphrase("samekey");
-            KeyWrapSalt salt1 = new KeyWrapSalt(16);
-            KeyWrapSalt salt2 = new KeyWrapSalt(16);
+            Passphrase key1 = new Passphrase("samekey");
+            Passphrase key2 = new Passphrase("samekey");
+            Salt salt1 = new Salt(512);
+            Salt salt2 = new Salt(512);
 
             SymmetricKeyThumbprint thumbprint1a = new SymmetricKeyThumbprint(key1, salt1, 13);
             SymmetricKeyThumbprint thumbprint1a_alias = thumbprint1a;
@@ -106,12 +119,12 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestGetHashCode()
+        public void TestGetHashCode()
         {
-            GenericPassphrase key1 = new GenericPassphrase("samekey");
-            GenericPassphrase key2 = new GenericPassphrase("samekey");
-            KeyWrapSalt salt1 = new KeyWrapSalt(16);
-            KeyWrapSalt salt2 = new KeyWrapSalt(16);
+            Passphrase key1 = new Passphrase("samekey");
+            Passphrase key2 = new Passphrase("samekey");
+            Salt salt1 = new Salt(512);
+            Salt salt2 = new Salt(512);
 
             SymmetricKeyThumbprint thumbprint1a = new SymmetricKeyThumbprint(key1, salt1, 17);
             SymmetricKeyThumbprint thumbprint1b = new SymmetricKeyThumbprint(key1, salt2, 17);

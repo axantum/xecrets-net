@@ -25,8 +25,8 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using System;
-using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -34,7 +34,6 @@ namespace Axantum.AxCrypt.Core.Runtime
     /// An internal program logic error in the library itself has been detected. Use InvalidOperationException for invalid
     /// program states typically caused by caller errors.
     /// </summary>
-    [Serializable]
     public class InternalErrorException : AxCryptException
     {
         public InternalErrorException()
@@ -49,11 +48,6 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public InternalErrorException(string message, ErrorStatus errorStatus)
             : base(message, errorStatus)
-        {
-        }
-
-        protected InternalErrorException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 

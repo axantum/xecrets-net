@@ -26,13 +26,12 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
@@ -41,86 +40,84 @@ namespace Axantum.AxCrypt
     {
         private NewPassphraseViewModel _viewModel;
 
-        public NewPassphraseDialog(string passphrase, string encryptedFileFullName)
+        public NewPassphraseDialog(Form parent, string title, string passphrase, string encryptedFileFullName)
         {
             InitializeComponent();
+            new Styling(Resources.axcrypticon).Style(this);
 
-            SetAutoValidateViaReflectionToAvoidMoMaWarning();
-
-            _viewModel = new NewPassphraseViewModel(passphrase, Environment.UserName, encryptedFileFullName);
-
-            NameTextBox.TextChanged += (sender, e) => { _viewModel.IdentityName = NameTextBox.Text; };
+            Text = title;
+            _viewModel = new NewPassphraseViewModel(passphrase, encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
+
+            Owner = parent;
+            Owner.Activated += (sender, e) => Activate();
+            StartPosition = FormStartPosition.CenterParent;
+        }
+
+        private void EncryptPassphraseDialog_Load(object s, EventArgs ee)
+        {
+            if (DesignMode)
+            {
+                return;
+            }
 
             _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !show; });
             _viewModel.BindPropertyChanged("FileName", (string fileName) => { FileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
             _viewModel.BindPropertyChanged("Passphrase", (string p) => { PassphraseTextBox.Text = p; });
             _viewModel.BindPropertyChanged("Verification", (string p) => { VerifyPassphraseTextbox.Text = p; });
-        }
 
-        private void EncryptPassphraseDialog_Load(object sender, EventArgs e)
-        {
-            if (_viewModel.IdentityName.Length != 0)
-            {
-                NameTextBox.Text = _viewModel.IdentityName;
-                PassphraseTextBox.Focus();
-            }
-            else
-            {
-                NameTextBox.Focus();
-            }
-        }
-
-        private void SetAutoValidateViaReflectionToAvoidMoMaWarning()
-        {
-            if (OS.Current.Platform == Platform.WindowsDesktop)
-            {
-                PropertyInfo propertyInfo = typeof(NewPassphraseDialog).GetProperty("AutoValidate");
-                propertyInfo.SetValue(this, AutoValidate.EnableAllowFocusChange, null);
-            }
+            PassphraseTextBox.Focus();
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            if (!ValidateChildren(ValidationConstraints.Visible))
+            if (!AdHocValidationDueToMonoLimitations())
             {
                 DialogResult = DialogResult.None;
             }
         }
 
-        private void VerifyPassphraseTextbox_Validating(object sender, CancelEventArgs e)
+        private bool AdHocValidationDueToMonoLimitations()
         {
+            bool validated = true;
             if (_viewModel["Verification"].Length > 0)
             {
-                e.Cancel = true;
                 _errorProvider1.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
+                validated = false;
             }
             if (_viewModel["Passphrase"].Length > 0)
             {
-                e.Cancel = true;
                 _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
+                validated = false;
             }
+            if (validated)
+            {
+                _errorProvider1.Clear();
+            }
+            _errorProvider2.Clear();
+            return validated;
+        }
+
+        private void VerifyPassphraseTextbox_Validating(object sender, CancelEventArgs e)
+        {
         }
 
         private void VerifyPassphraseTextbox_Validated(object sender, EventArgs e)
         {
-            _errorProvider1.Clear();
         }
 
         private void NameTextBox_Validating(object sender, CancelEventArgs e)
         {
-            if (_viewModel["IdentityName"].Length > 0)
-            {
-                e.Cancel = true;
-                _errorProvider2.SetError(NameTextBox, Resources.LogOnExists);
-            }
         }
 
         private void NameTextBox_Validated(object sender, EventArgs e)
         {
-            _errorProvider2.Clear();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
         }
     }
 }

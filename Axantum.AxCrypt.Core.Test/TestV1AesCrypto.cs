@@ -26,9 +26,9 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -47,30 +47,29 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
-        public static void TestInvalidArguments()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestInvalidArguments(CryptoImplementation cryptoImplementation)
         {
-            IPassphrase key = new GenericPassphrase("passphrase");
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            SymmetricKey key = new SymmetricKey(128);
             SymmetricIV iv = new SymmetricIV(128);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                if (new V1AesCrypto(null) == null) { }
+                if (new V1AesCrypto(new V1Aes128CryptoFactory(), null, SymmetricIV.Zero128) == null) { }
             });
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                if (new V1AesCrypto(null, iv, CipherMode.CBC, PaddingMode.None) == null) { }
-            });
-
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                if (new V1AesCrypto(key, null, CipherMode.CBC, PaddingMode.None) == null) { }
+                if (new V1AesCrypto(new V1Aes128CryptoFactory(), null, iv) == null) { }
             });
 
             Assert.DoesNotThrow(() =>
             {
-                if (new V1AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None) == null) { }
+                if (new V1AesCrypto(new V1Aes128CryptoFactory(), key, iv) == null) { }
             });
         }
     }

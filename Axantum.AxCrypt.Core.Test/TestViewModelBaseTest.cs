@@ -25,8 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 
@@ -78,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
+            TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
         }
 
         [TearDown]

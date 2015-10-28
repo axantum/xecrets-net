@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -50,6 +50,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public CounterModeCryptoTransform(SymmetricAlgorithm algorithm, long blockCounter, int blockOffset)
         {
+            if (algorithm == null)
+            {
+                throw new ArgumentNullException("algorithm");
+            }
+
             if (algorithm.Mode != CipherMode.ECB)
             {
                 algorithm.Clear();
@@ -64,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             _startBlockCounter = _currentBlockCounter = blockCounter;
             _startBlockOffset = _currentBlockOffset = blockOffset;
 
-            _cryptoTransform = _algorithm.CreateEncryptor();
+            _cryptoTransform = _algorithm.CreateEncryptingTransform();
             _blockLength = _cryptoTransform.InputBlockSize;
         }
 
@@ -144,7 +149,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         private byte[] GetCounterBlock(long blockCounter)
         {
             byte[] counterBytes = blockCounter.GetBigEndianBytes();
-            byte[] counterBlock = ((byte[])_algorithm.IV.Clone()).Xor(_algorithm.IV.Length - counterBytes.Length, counterBytes, 0, counterBytes.Length);
+            byte[] iv = _algorithm.IV();
+            byte[] counterBlock = iv.Xor(iv.Length - counterBytes.Length, counterBytes, 0, counterBytes.Length);
             return counterBlock;
         }
 

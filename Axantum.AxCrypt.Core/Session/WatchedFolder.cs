@@ -25,11 +25,15 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Runtime.Serialization;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -38,46 +42,40 @@ namespace Axantum.AxCrypt.Core.Session
     /// automatic encryption of files for example. Instances of this class are
     /// immutable
     /// </summary>
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
-    public class WatchedFolder : IEquatable<WatchedFolder>, IDisposable
+    [JsonObject(MemberSerialization.OptIn)]
+    public class WatchedFolder : IDisposable
     {
-        [DataMember(Name = "Path")]
+        [JsonProperty("path")]
         public string Path { get; private set; }
 
         private IFileWatcher _fileWatcher;
 
         public event EventHandler<FileWatcherEventArgs> Changed;
 
-        public WatchedFolder(string path, SymmetricKeyThumbprint thumbprint)
+        [JsonConstructor]
+        private WatchedFolder()
+        {
+            Tag = IdentityPublicTag.Empty;
+        }
+
+        public WatchedFolder(string path, IdentityPublicTag publicTag)
         {
             if (path == null)
             {
                 throw new ArgumentNullException("path");
             }
-            if (thumbprint == null)
+            if (publicTag == null)
             {
-                throw new ArgumentNullException("thumbprint");
+                throw new ArgumentNullException("publicTag");
             }
 
-            Path = path;
-            Thumbprint = thumbprint;
+            Path = path.NormalizeFolderPath();
+            Tag = publicTag;
             Initialize(new StreamingContext());
         }
 
-        public WatchedFolder(string fullName)
-            : this(fullName, SymmetricKeyThumbprint.Zero)
-        {
-        }
-
-        public WatchedFolder(WatchedFolder watchedFolder)
-        {
-            Path = watchedFolder.Path;
-            Thumbprint = watchedFolder.Thumbprint;
-            Initialize(new StreamingContext());
-        }
-
-        [DataMember(Name = "Thumbprint")]
-        public SymmetricKeyThumbprint Thumbprint
+        [JsonProperty("publicTag")]
+        public IdentityPublicTag Tag
         {
             get;
             private set;
@@ -86,9 +84,9 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void Initialize(StreamingContext context)
         {
-            if (Factory.New<IRuntimeFileInfo>(Path).IsFolder)
+            if (New<IDataContainer>(Path).IsAvailable)
             {
-                _fileWatcher = Factory.New<IFileWatcher>(Path);
+                _fileWatcher = New<IFileWatcher>(Path);
                 _fileWatcher.FileChanged += _fileWatcher_FileChanged;
             }
         }
@@ -107,50 +105,19 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public bool Equals(WatchedFolder other)
+        public bool Matches(string path)
         {
-            if (other == null)
-            {
-                return false;
-            }
-
-            if (Object.ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            return String.Compare(Path, other.Path, StringComparison.OrdinalIgnoreCase) == 0;
+            return String.Compare(Path, path, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
-        public override bool Equals(object obj)
+        public bool Matches(WatchedFolder watchedFolder)
         {
-            WatchedFolder watchedFolder = obj as WatchedFolder;
             if (watchedFolder == null)
             {
-                return false;
+                throw new ArgumentNullException("watchedFolder");
             }
 
-            return Equals(watchedFolder);
-        }
-
-        public override int GetHashCode()
-        {
-            return Path.GetHashCode();
-        }
-
-        public static bool operator ==(WatchedFolder left, WatchedFolder right)
-        {
-            if ((object)left == null || ((object)right == null))
-            {
-                return Object.Equals(left, right);
-            }
-
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(WatchedFolder left, WatchedFolder right)
-        {
-            return !(left == right);
+            return Matches(watchedFolder.Path);
         }
 
         #region IDisposable Members

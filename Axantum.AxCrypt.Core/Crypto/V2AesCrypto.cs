@@ -25,181 +25,43 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Algorithm;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Implements V2 AES Cryptography, briefly AES-256 in CTR-Mode.
+    /// Implements V2 AES Cryptography
     /// </summary>
-    public class V2AesCrypto : CryptoBase
+    public class V2AesCrypto : V2CryptoBase
     {
-        internal const string InternalName = "AES-256";
-
-        private SymmetricIV _iv;
-
-        private long _blockCounter;
-
-        private int _blockOffset;
-
-        static V2AesCrypto()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="V2AesCrypto"/> class.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="iv">The iv, or null for none.</param>
+        /// <param name="keyStreamOffset">The key stream offset.</param>
+        public V2AesCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
         {
-            using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
+            using (SymmetricAlgorithm algorithm = CreateAlgorithmInternal())
             {
-                SetValidKeyLengths(algorithm.LegalKeySizes);
-                SetBlockLength(algorithm.BlockSize / 8);
+                Initialize(key, iv, keyStreamOffset, algorithm);
             }
         }
 
-        /// <summary>
-        /// Instantiate a transformation
-        /// </summary>
-        /// <param name="key">The key</param>
-        /// <param name="iv">Initial Vector, will be XOR:ed with the counter value</param>
-        /// <param name="blockCounter">The block counter.</param>
-        /// <param name="blockOffset">The block offset.</param>
-        /// <exception cref="System.ArgumentNullException">key
-        /// or
-        /// iv</exception>
-        public V2AesCrypto(IPassphrase key, SymmetricIV iv, long blockCounter, int blockOffset)
-            : this(key, iv)
+        protected override SymmetricAlgorithm CreateAlgorithm()
         {
-            _blockCounter = blockCounter;
-            _blockOffset = blockOffset;
+            return CreateAlgorithmInternal();
         }
 
-        public V2AesCrypto(IPassphrase key, SymmetricIV iv, long keyStreamOffset)
-            : this(key, iv, keyStreamOffset / iv.Length, (int)(keyStreamOffset % iv.Length))
+        private static SymmetricAlgorithm CreateAlgorithmInternal()
         {
-        }
-
-        public V2AesCrypto(IPassphrase key, SymmetricIV iv)
-        {
-            if (key == null)
-            {
-                throw new ArgumentNullException("key");
-            }
-            if (!IsValidKeyLength(key.DerivedKey.Length))
-            {
-                throw new ArgumentException("Key length is invalid.");
-            }
-            if (iv == null)
-            {
-                throw new ArgumentNullException("iv");
-            }
-            if (iv.Length != BlockLength)
-            {
-                throw new ArgumentException("The IV length must be the same as the algorithm block length.");
-            }
-
-            Key = key;
-            _iv = iv;
-        }
-
-        public V2AesCrypto(IPassphrase key)
-            : this(key, SymmetricIV.Zero128)
-        {
-        }
-
-        public V2AesCrypto()
-            : this(new GenericPassphrase(SymmetricKey.Zero256))
-        {
-        }
-
-        /// <summary>
-        /// Gets the unique name of the algorithm implementation.
-        /// </summary>
-        /// <value>
-        /// The name. This must be a short, language independent name usable both as an internal identifier, and as a display name.
-        /// Typical values are "AES-128", "AES-256". The UI may use these as indexes for localized or clearer names, but if unknown
-        /// the UI must be able to fallback and actually display this identifier as a selector for example in the UI. This is to
-        /// support plug-in algorithm implementations in the future.
-        /// </value>
-        public override string Name
-        {
-            get { return InternalName; }
-        }
-
-        /// <summary>
-        /// Create an instance of the underlying symmetric algorithm.
-        /// </summary>
-        /// <returns></returns>
-        /// <value>
-        /// An instance of the algorithm.
-        /// </value>
-        public override SymmetricAlgorithm CreateAlgorithm()
-        {
-            SymmetricAlgorithm algorithm = CreateRawAlgorithm();
-            algorithm.Key = Key.DerivedKey.GetBytes();
-            algorithm.IV = _iv.GetBytes();
-            algorithm.Mode = CipherMode.ECB;
-            algorithm.Padding = PaddingMode.None;
-
-            return algorithm;
-        }
-
-        private static SymmetricAlgorithm CreateRawAlgorithm()
-        {
-            return new AesManaged();
-        }
-
-        /// <summary>
-        /// Decrypt in one operation.
-        /// </summary>
-        /// <param name="cipherText">The complete cipher text</param>
-        /// <returns>
-        /// The decrypted result minus any padding
-        /// </returns>
-        public override byte[] Decrypt(byte[] cipherText)
-        {
-            return Transform(cipherText);
-        }
-
-        /// <summary>
-        /// Encrypt in one operation
-        /// </summary>
-        /// <param name="plaintext">The complete plaintext bytes</param>
-        /// <returns>
-        /// The cipher text, complete with any padding
-        /// </returns>
-        public override byte[] Encrypt(byte[] plaintext)
-        {
-            return Transform(plaintext);
-        }
-
-        private byte[] Transform(byte[] plaintext)
-        {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
-            {
-                using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset))
-                {
-                    return transform.TransformFinalBlock(plaintext, 0, plaintext.Length);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Using this instances parameters, create a decryptor
-        /// </summary>
-        /// <returns>
-        /// A new decrypting transformation instance
-        /// </returns>
-        public override ICryptoTransform CreateDecryptingTransform()
-        {
-            return new CounterModeCryptoTransform(CreateAlgorithm(), _blockCounter, _blockOffset);
-        }
-
-        /// <summary>
-        /// Using this instances parameters, create an encryptor
-        /// </summary>
-        /// <returns>
-        /// A new encrypting transformation instance
-        /// </returns>
-        public override ICryptoTransform CreateEncryptingTransform()
-        {
-            return new CounterModeCryptoTransform(CreateAlgorithm(), _blockCounter, _blockOffset);
+            return New<Aes>();
         }
     }
 }

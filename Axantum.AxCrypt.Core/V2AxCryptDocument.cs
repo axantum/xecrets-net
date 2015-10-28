@@ -25,17 +25,23 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -54,42 +60,129 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
-        public V2AxCryptDocument(ICrypto keyEncryptingCrypto, long keyWrapIterations)
+        public V2AxCryptDocument(AxCryptReader reader)
+            : this()
         {
-            DocumentHeaders = new V2DocumentHeaders(keyEncryptingCrypto, keyWrapIterations);
+            _reader = reader;
+        }
+
+        public V2AxCryptDocument(EncryptionParameters encryptionParameters, long keyWrapIterations)
+            : this()
+        {
+            DocumentHeaders = new V2DocumentHeaders(encryptionParameters, keyWrapIterations);
         }
 
         public V2DocumentHeaders DocumentHeaders { get; private set; }
+
+        public ICryptoFactory CryptoFactory { get; private set; }
 
         private AxCryptReader _reader;
 
         public bool PassphraseIsValid { get; set; }
 
-        public bool Load(IPassphrase key, Stream inputStream)
+        public DecryptionParameter DecryptionParameter { get; set; }
+
+        public IEnumerable<UserPublicKey> AsymmetricRecipients
+        {
+            get
+            {
+                V2AsymmetricRecipientsEncryptedHeaderBlock headerBlock = DocumentHeaders.Headers.FindHeaderBlock<V2AsymmetricRecipientsEncryptedHeaderBlock>();
+                if (headerBlock == null)
+                {
+                    return new UserPublicKey[0];
+                }
+                return headerBlock.Recipients.PublicKeys;
+            }
+        }
+
+        public EncryptedProperties Properties { get; private set; }
+
+        public bool Load(Passphrase key, Guid cryptoId, Stream inputStream)
         {
             Headers headers = new Headers();
-            AxCryptReader reader = headers.Load(inputStream);
+            AxCryptReader reader = headers.CreateReader(new LookAheadStream(inputStream));
 
-            return Load(key, reader, headers);
+            return Load(key, cryptoId, reader, headers);
+        }
+
+        public bool Load(Passphrase passphrase, Guid cryptoId, Headers headers)
+        {
+            return Load(passphrase, cryptoId, _reader, headers);
+        }
+
+        private void ResetState()
+        {
+            PassphraseIsValid = false;
+            DocumentHeaders = null;
+            Properties = EncryptedProperties.Create(this);
         }
 
         /// <summary>
         /// Loads an AxCrypt file from the specified reader. After this, the reader is positioned to
         /// read encrypted data.
         /// </summary>
-        /// <param name="stream">The stream to read from. Will be disposed when this instance is disposed.</param>
-        /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(IPassphrase key, AxCryptReader reader, Headers headers)
+        /// <param name="passphrase">The passphrase.</param>
+        /// <param name="cryptoId">The crypto identifier.</param>
+        /// <param name="reader">The reader.</param>
+        /// <param name="headers">The headers.</param>
+        /// <returns>
+        /// True if the key was valid, false if it was wrong.
+        /// </returns>
+        private bool Load(Passphrase passphrase, Guid cryptoId, AxCryptReader reader, Headers headers)
         {
-            _reader = reader;
-            DocumentHeaders = new V2DocumentHeaders(new V2AesCrypto(key));
-            PassphraseIsValid = DocumentHeaders.Load(headers);
-            if (!PassphraseIsValid)
+            ResetState();
+            if (cryptoId == V1Aes128CryptoFactory.CryptoId)
             {
-                return false;
+                return PassphraseIsValid;
             }
 
-            return true;
+            _reader = reader;
+            CryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
+            V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+            IDerivedKey key = CryptoFactory.RestoreDerivedKey(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+            keyWrap.SetDerivedKey(CryptoFactory, key);
+            DocumentHeaders = new V2DocumentHeaders(keyWrap);
+            PassphraseIsValid = DocumentHeaders.Load(headers);
+            Properties = EncryptedProperties.Create(this);
+
+            return PassphraseIsValid;
+        }
+
+        public bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers)
+        {
+            if (headers == null)
+            {
+                throw new ArgumentNullException("headers");
+            }
+
+            ResetState();
+
+            CryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
+
+            IEnumerable<V2AsymmetricKeyWrapHeaderBlock> keyWraps = headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
+            foreach (V2AsymmetricKeyWrapHeaderBlock keyWrap in keyWraps)
+            {
+                keyWrap.SetPrivateKey(CryptoFactory, privateKey);
+                if (keyWrap.Crypto(0) == null)
+                {
+                    continue;
+                }
+
+                DocumentHeaders = new V2DocumentHeaders(keyWrap);
+                if (!DocumentHeaders.Load(headers))
+                {
+                    throw new InvalidOperationException("If the master key was decrypted with the private key, the load should not be able to fail.");
+                }
+
+                V2AlgorithmVerifierEncryptedHeaderBlock algorithmVerifier = DocumentHeaders.Headers.FindHeaderBlock<V2AlgorithmVerifierEncryptedHeaderBlock>();
+                PassphraseIsValid = algorithmVerifier != null && algorithmVerifier.IsVerified;
+                if (PassphraseIsValid)
+                {
+                    Properties = EncryptedProperties.Create(this);
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -117,42 +210,40 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentException("Invalid options, must specify either with or without compression.");
             }
+
             DocumentHeaders.IsCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
-            using (V2HmacStream outputHmacStream = new V2HmacStream(DocumentHeaders.GetHmacKey(), outputStream))
+            V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey()));
+            V2HmacStream<Stream> outputHmacStream = V2HmacStream.Create(hmacCalculator, outputStream);
+
+            CryptoStream encryptingStream = New<CryptoStream>().Initialize(V2AxCryptDataStream.Create(outputHmacStream), DocumentHeaders.DataCrypto().EncryptingTransform(), CryptoStreamMode.Write);
+            DocumentHeaders.WriteStartWithHmac(outputHmacStream);
+            if (DocumentHeaders.IsCompressed)
             {
-                DocumentHeaders.WriteStartWithHmac(outputHmacStream);
-                using (ICryptoTransform encryptor = DocumentHeaders.CreateDataCrypto().CreateEncryptingTransform())
+                using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
                 {
-                    using (Stream axCryptDataStream = new V2AxCryptDataStream(outputHmacStream))
-                    {
-                        using (CryptoStream encryptingStream = new CryptoStream(new NonClosingStream(axCryptDataStream), encryptor, CryptoStreamMode.Write))
-                        {
-                            if (DocumentHeaders.IsCompressed)
-                            {
-                                EncryptWithCompressionInternal(inputStream, encryptingStream);
-                            }
-                            else
-                            {
-                                _compressedPlaintextLength = _plaintextLength = StreamExtensions.CopyTo(inputStream, encryptingStream);
-                            }
-                        }
-                    }
+                    deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
+                    inputStream.CopyTo(deflatingStream);
+                    deflatingStream.FlushMode = JZlib.Z_FINISH;
+                    deflatingStream.Finish();
+
+                    _plaintextLength = deflatingStream.TotalIn;
+                    _compressedPlaintextLength = deflatingStream.TotalOut;
+                    encryptingStream.FinalFlush();
+                    DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
                 }
-                DocumentHeaders.WriteEndWithHmac(outputHmacStream, _plaintextLength, _compressedPlaintextLength);
             }
-        }
-
-        private void EncryptWithCompressionInternal(Stream inputStream, CryptoStream encryptingStream)
-        {
-            using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
+            else
             {
-                deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
-                inputStream.CopyTo(deflatingStream);
-                deflatingStream.FlushMode = JZlib.Z_FINISH;
-                deflatingStream.Finish();
-
-                _plaintextLength = deflatingStream.TotalIn;
-                _compressedPlaintextLength = deflatingStream.TotalOut;
+                try
+                {
+                    _compressedPlaintextLength = _plaintextLength = StreamExtensions.CopyTo(inputStream, encryptingStream);
+                    encryptingStream.FinalFlush();
+                    DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
+                }
+                finally
+                {
+                    encryptingStream.Dispose();
+                }
             }
         }
 
@@ -162,23 +253,25 @@ namespace Axantum.AxCrypt.Core
         /// <param name="outputPlaintextStream">The resulting plain text stream.</param>
         public void DecryptTo(Stream outputPlaintextStream)
         {
-            if (!PassphraseIsValid)
+            if (outputPlaintextStream == null)
             {
-                throw new InternalErrorException("Passsphrase is not valid!");
+                throw new ArgumentNullException("outputPlaintextStream");
             }
 
-            using (ICryptoTransform decryptor = DocumentHeaders.CreateDataCrypto().CreateDecryptingTransform())
+            if (!PassphraseIsValid)
             {
-                using (Stream encryptedDataStream = CreateEncryptedDataStream())
-                {
-                    DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream);
-                }
+                throw new InternalErrorException("Passphrase is not valid!");
+            }
+
+            using (Stream encryptedDataStream = CreateEncryptedDataStream())
+            {
+                encryptedDataStream.DecryptTo(outputPlaintextStream, DocumentHeaders.DataCrypto().DecryptingTransform(), DocumentHeaders.IsCompressed);
             }
 
             DocumentHeaders.Trailers(_reader);
-            if (DocumentHeaders.HmacStream.Hmac != DocumentHeaders.Hmac)
+            if (DocumentHeaders.HmacCalculator.Hmac != DocumentHeaders.Hmac)
             {
-                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+                throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
         }
 
@@ -186,57 +279,11 @@ namespace Axantum.AxCrypt.Core
         {
             if (_reader.CurrentItemType != AxCryptItemType.Data)
             {
-                throw new InvalidOperationException("GetEncryptedDataStream() was called when the reader is not positioned at the data.");
+                throw new InvalidOperationException("An attempt was made to create an encrypted data stream when the reader is not positioned at the data.");
             }
 
             _reader.SetStartOfData();
-            V2AxCryptDataStream encryptedDataStream = new V2AxCryptDataStream(_reader, DocumentHeaders.HmacStream);
-            return encryptedDataStream;
-        }
-
-        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, Stream encryptedDataStream)
-        {
-            Exception savedExceptionIfCloseCausesCryptographicException = null;
-            try
-            {
-                if (DocumentHeaders.IsCompressed)
-                {
-                    using (CryptoStream deflatedPlaintextStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (ZInputStream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
-                        {
-                            try
-                            {
-                                inflatedPlaintextStream.CopyTo(outputPlaintextStream);
-                            }
-                            catch (Exception ex)
-                            {
-                                savedExceptionIfCloseCausesCryptographicException = ex;
-                                throw;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    using (Stream plainStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
-                    {
-                        try
-                        {
-                            plainStream.CopyTo(outputPlaintextStream);
-                        }
-                        catch (Exception ex)
-                        {
-                            savedExceptionIfCloseCausesCryptographicException = ex;
-                            throw;
-                        }
-                    }
-                }
-            }
-            catch (CryptographicException)
-            {
-                throw savedExceptionIfCloseCausesCryptographicException;
-            }
+            return V2AxCryptDataStream.Create(_reader, V2HmacStream.Create(DocumentHeaders.HmacCalculator));
         }
 
         public string FileName
@@ -263,11 +310,6 @@ namespace Axantum.AxCrypt.Core
             set { DocumentHeaders.LastWriteTimeUtc = value; }
         }
 
-        public ICrypto KeyEncryptingCrypto
-        {
-            get { return DocumentHeaders.KeyEncryptingCrypto; }
-        }
-
         public void Dispose()
         {
             Dispose(true);
@@ -288,11 +330,6 @@ namespace Axantum.AxCrypt.Core
             {
                 _reader.Dispose();
                 _reader = null;
-            }
-            if (DocumentHeaders != null)
-            {
-                DocumentHeaders.Dispose();
-                DocumentHeaders = null;
             }
         }
     }

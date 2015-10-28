@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using System;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -36,6 +37,17 @@ namespace Axantum.AxCrypt.Core.Header
         protected EncryptedHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
             : base(headerBlockType, dataBlock)
         {
+        }
+
+        protected object CopyTo(EncryptedHeaderBlock headerBlock)
+        {
+            if (headerBlock == null)
+            {
+                throw new ArgumentNullException("headerBlock");
+            }
+
+            headerBlock.HeaderCrypto = HeaderCrypto;
+            return headerBlock;
         }
     }
 }

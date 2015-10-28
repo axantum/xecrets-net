@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Portable;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,6 +39,15 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
+                if (x == null)
+                {
+                    throw new ArgumentNullException("x");
+                }
+                if (y == null)
+                {
+                    throw new ArgumentNullException("y");
+                }
+
                 return (ReverseSort ? -1 : 1) * String.Compare(x.EncryptedFileInfo.FullName, y.EncryptedFileInfo.FullName, StringComparison.OrdinalIgnoreCase);
             }
         }
@@ -46,7 +56,16 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
-                return (ReverseSort ? -1 : 1) * String.Compare(Path.GetFileName(x.DecryptedFileInfo.FullName), Path.GetFileName(y.DecryptedFileInfo.FullName), StringComparison.OrdinalIgnoreCase);
+                if (x == null)
+                {
+                    throw new ArgumentNullException("x");
+                }
+                if (y == null)
+                {
+                    throw new ArgumentNullException("y");
+                }
+
+                return (ReverseSort ? -1 : 1) * String.Compare(Resolve.Portable.Path().GetFileName(x.DecryptedFileInfo.FullName), Resolve.Portable.Path().GetFileName(y.DecryptedFileInfo.FullName), StringComparison.OrdinalIgnoreCase);
             }
         }
 
@@ -54,7 +73,33 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
-                return (ReverseSort ? -1 : 1) * x.LastActivityTimeUtc.CompareTo(y.LastActivityTimeUtc);
+                if (x == null)
+                {
+                    throw new ArgumentNullException("x");
+                }
+                if (y == null)
+                {
+                    throw new ArgumentNullException("y");
+                }
+
+                return (ReverseSort ? -1 : 1) * x.Properties.LastActivityTimeUtc.CompareTo(y.Properties.LastActivityTimeUtc);
+            }
+        }
+
+        private class CryptoNameComparerImpl : ActiveFileComparer
+        {
+            public override int Compare(ActiveFile x, ActiveFile y)
+            {
+                if (x == null)
+                {
+                    throw new ArgumentNullException("x");
+                }
+                if (y == null)
+                {
+                    throw new ArgumentNullException("y");
+                }
+
+                return (ReverseSort ? -1 : 1) * String.Compare(Resolve.CryptoFactory.Create(x.Properties.CryptoId).Name, Resolve.CryptoFactory.Create(y.Properties.CryptoId).Name, StringComparison.OrdinalIgnoreCase);
             }
         }
 
@@ -63,6 +108,8 @@ namespace Axantum.AxCrypt.Core.Session
         public static ActiveFileComparer DecryptedNameComparer { get { return new DecryptedNameComparerImpl(); } }
 
         public static ActiveFileComparer DateComparer { get { return new DateComparerImpl(); } }
+
+        public static ActiveFileComparer CryptoNameComparer { get { return new CryptoNameComparerImpl(); } }
 
         public abstract int Compare(ActiveFile x, ActiveFile y);
 

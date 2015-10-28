@@ -25,13 +25,17 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Fake;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -53,21 +57,21 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWorkFolderWatcherSimple()
         {
-            Factory.Instance.Singleton<SessionNotify>(() => new Mock<SessionNotify>().Object);
+            TypeMap.Register.Singleton<SessionNotify>(() => new Mock<SessionNotify>().Object);
 
             using (WorkFolderWatcher wfw = new WorkFolderWatcher())
             {
-                string fileName = Instance.WorkFolder.FileInfo.Combine("New File.txt").FullName;
-                FakeRuntimeFileInfo.AddFile(fileName, null);
+                string fileName = Resolve.WorkFolder.FileInfo.FileItemInfo("New File.txt").FullName;
+                FakeDataStore.AddFile(fileName, null);
 
-                Mock.Get(Instance.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileName)), Times.Once);
+                Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullNames.SequenceEqual(new string[] { fileName }))), Times.Once);
 
-                Factory.New<IRuntimeFileInfo>(fileName).Delete();
-                Mock.Get(Instance.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileName)), Times.Exactly(2));
+                New<IDataStore>(fileName).Delete();
+                Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullNames.SequenceEqual(new string[] { fileName }))), Times.Exactly(2));
 
-                IRuntimeFileInfo fileSystemStateInfo = Instance.WorkFolder.FileInfo.Combine("FileSystemState.xml");
+                IDataStore fileSystemStateInfo = Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt");
                 fileSystemStateInfo.Delete();
-                Mock.Get(Instance.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileSystemStateInfo.FullName)), Times.Never);
+                Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullNames.SequenceEqual(new string[] { fileSystemStateInfo.FullName }))), Times.Never);
             }
         }
     }

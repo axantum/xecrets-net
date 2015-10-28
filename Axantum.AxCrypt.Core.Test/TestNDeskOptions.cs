@@ -144,6 +144,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             Assert.Throws<OptionException>(() => options.Parse(new string[] { "-name" }));
+            Assert.That(value, Is.Null);
         }
 
         [Test]
@@ -316,13 +317,14 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 {"name=", "Description", (int value) => i = value },
             };
-            string description = "      --name=VALUE           Description\r\n";
+            string description = "      --name=VALUE           Description" + Environment.NewLine;
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(description));
             }
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
@@ -334,13 +336,15 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 {"name=", "Description", (string key, int value) => {i = value; k=key;} },
             };
-            string description = "      --name=VALUE1:VALUE2   Description\r\n";
+            string description = "      --name=VALUE1:VALUE2   Description" + Environment.NewLine;
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(description));
             }
+            Assert.That(k, Is.Null);
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
@@ -351,13 +355,14 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 {"name=", "Description {Key} and {1:Value}", (int value) => {i = value;} },
             };
-            string description = "      --name=Key             Description Key and Value\r\n";
+            string description = "      --name=Key             Description Key and Value" + Environment.NewLine;
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(description));
             }
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
@@ -368,13 +373,14 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 {"name=", "Description {Key and value", (int value) => {i = value;} },
             };
-            string description = "      --name=VALUE           Description \r\n";
+            string description = "      --name=VALUE           Description " + Environment.NewLine;
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(description));
             }
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
@@ -386,13 +392,15 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 {"name=", "Description {Key} and {1:Value}", (string key, int value) => {i = value; k=key;} },
             };
-            string description = "      --name=VALUE1:Value    Description Key and Value\r\n";
+            string description = "      --name=VALUE1:Value    Description Key and Value" + Environment.NewLine;
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(description));
             }
+            Assert.That(k, Is.Null);
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
@@ -403,13 +411,14 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 {"name=", "A {{ Description", (int value) => i = value },
             };
-            string description = "      --name=VALUE           A { Description\r\n";
+            string description = "      --name=VALUE           A { Description" + Environment.NewLine;
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(description));
             }
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
@@ -420,13 +429,14 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 {"name=", "A }} Description", (int value) => i = value },
             };
-            string description = "      --name=VALUE           A } Description\r\n";
+            string description = "      --name=VALUE           A } Description" + Environment.NewLine;
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(description));
             }
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
@@ -441,6 +451,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.Throws<InvalidOperationException>(() => options.WriteOptionDescriptions(writer));
             }
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
@@ -455,6 +466,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.Throws<InvalidOperationException>(() => options.WriteOptionDescriptions(writer));
             }
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
@@ -465,10 +477,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 {"name=", "This:\nis a fairly long description, with a comma and a new line to boot! It's also so long it has to be broken into another line.", (int value) => i = value },
             };
-            string description = "      --name=VALUE           This:\r\n" +
-                                 "                               is a fairly long description, with a comma and a \r\n" +
-                                 "                               new line to boot! It's also so long it has to be \r\n" +
-                                 "                               broken into another line.\r\n";
+            string description = "      --name=VALUE           This:" + Environment.NewLine +
+                "                               is a fairly long description, with a comma and a " + Environment.NewLine +
+                "                               new line to boot! It's also so long it has to be " + Environment.NewLine +
+                "                               broken into another line." + Environment.NewLine;
 
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
@@ -476,12 +488,13 @@ namespace Axantum.AxCrypt.Core.Test
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(description));
             }
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
         public static void TestWriteOptionDescriptionIgnoresDefaultOptionHandler()
         {
-            string d;
+            string d = null;
             OptionSetCollection options = new OptionSetCollection()
             {
                 {"<>", "", s => d = s},
@@ -494,31 +507,33 @@ namespace Axantum.AxCrypt.Core.Test
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(expectedDescription));
             }
+            Assert.That(d, Is.Null);
         }
 
         [Test]
         public static void TestWriteOptionDescriptionsWithOptionPrototypeLongerThanLine()
         {
-            string d;
+            string d = null;
             OptionSetCollection options = new OptionSetCollection()
             {
                 {"averylongoption|anotherverlongoption|athirdverylongoption|yetanotherverylongoption", "The Description", s => d = s},
             };
 
-            string expectedDescription = "      --averylongoption, --anotherverlongoption, --athirdverylongoption, --yetanotherverylongoption\r\n" +
-                                         "                             The Description\r\n";
+            string expectedDescription = "      --averylongoption, --anotherverlongoption, --athirdverylongoption, --yetanotherverylongoption" + Environment.NewLine +
+                                         "                             The Description" + Environment.NewLine;
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(expectedDescription));
             }
+            Assert.That(d, Is.Null);
         }
 
         [Test]
         public static void TestWriteOptionDescriptionsWithValueArguments()
         {
-            string value;
+            string value = null;
             OptionSetCollection options = new OptionSetCollection()
             {
                 {"a=", s => value = s},
@@ -528,36 +543,39 @@ namespace Axantum.AxCrypt.Core.Test
                 {"f", s => value = s},
             };
 
-            string expectedDescription = "  -a=VALUE                   \r\n" +
-                                         "  -b, -c[=VALUE]             \r\n" +
-                                         "  -d=VALUE1=>VALUE2          \r\n" +
-                                         "  -e=VALUE1 VALUE2           \r\n" +
-                                         "  -f                         \r\n";
+            string expectedDescription =
+                "  -a=VALUE                   " + Environment.NewLine +
+                "  -b, -c[=VALUE]             " + Environment.NewLine +
+                "  -d=VALUE1=>VALUE2          " + Environment.NewLine +
+                "  -e=VALUE1 VALUE2           " + Environment.NewLine +
+                "  -f                         " + Environment.NewLine;
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(expectedDescription));
             }
+            Assert.That(value, Is.Null);
         }
 
         [Test]
         public static void TestWriteOptionDescriptionsWithDescriptionThatMustBeBroken()
         {
-            string d;
+            string d = null;
             OptionSetCollection options = new OptionSetCollection()
             {
                 {"x", "The_desciption_is_too_long_to_fit_on_a_single_line_so_the_code-must_break_it_up", s => d = s},
             };
 
-            string expectedDescription = "  -x                         The_desciption_is_too_long_to_fit_on_a_single_li-\r\n" +
-                                         "                               ne_so_the_code-must_break_it_up\r\n";
+            string expectedDescription = "  -x                         The_desciption_is_too_long_to_fit_on_a_single_li-" + Environment.NewLine +
+                                         "                               ne_so_the_code-must_break_it_up" + Environment.NewLine;
             using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(expectedDescription));
             }
+            Assert.That(d, Is.Null);
         }
 
         [Test]
@@ -581,6 +599,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {"name=", (int value) => i = value },
             };
             Assert.Throws<OptionException>(() => options.Parse(new string[] { "-name=Three" }));
+            Assert.That(i, Is.EqualTo(0));
         }
 
         [Test]
@@ -885,6 +904,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             IList<string> extra = options.Parse(new string[] { "/xy" });
             Assert.That(extra[0], Is.EqualTo("/xy"));
+            Assert.That(x, Is.False);
+            Assert.That(y, Is.False);
         }
 
         [Test]
@@ -898,6 +919,8 @@ namespace Axantum.AxCrypt.Core.Test
                 {"y", value => y = value != null},
             };
             Assert.Throws<OptionException>(() => options.Parse(new string[] { "-xyz" }));
+            Assert.That(x, Is.True);
+            Assert.That(y, Is.True);
         }
 
         [Test]
@@ -939,21 +962,6 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentException>(() => option = new TestOptionsForConstructorExceptions("x=|<>", "Description", 2));
 
             Assert.That(option, Is.Not.Null, "Should not reach here. Only here to make FxCop believe we're using the instantiated object.");
-        }
-
-        [Test]
-        public static void TestOptionExceptionSerialization()
-        {
-            OptionException oe = new OptionException("A Message", "OptionName");
-            IFormatter oeFormatter = new BinaryFormatter();
-            using (Stream stream = new MemoryStream())
-            {
-                oeFormatter.Serialize(stream, oe);
-                stream.Position = 0;
-                OptionException deserializedFfe = (OptionException)oeFormatter.Deserialize(stream);
-                Assert.That(deserializedFfe.OptionName, Is.EqualTo("OptionName"), "The deserialized option name should be the same as the original.");
-                Assert.That(deserializedFfe.Message, Is.EqualTo("A Message"), "The deserialized message should be the same as the original.");
-            }
         }
 
         [Test]

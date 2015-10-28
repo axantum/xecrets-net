@@ -23,17 +23,31 @@
  * http://www.axantum.com for more information about the author.
 */
 
+using System.IO;
+
 #endregion Coypright and License
 
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Mono.Portable;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Algorithm.Implementation;
+using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Implementation;
+using Axantum.AxCrypt.Core.Service;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using Axantum.AxCrypt.Fake;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -45,39 +59,102 @@ namespace Axantum.AxCrypt.Core.Test
     {
         public static void AssemblySetup()
         {
-            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(@"C:\WorkFolder\"));
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
-            Factory.Instance.Singleton<ILogging>(() => new FakeLogging());
-            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Instance.WorkFolder.FileInfo.Combine("UserSettings.txt"), Factory.New<IterationCalculator>()));
-            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
-            Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
-            Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
-            Factory.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
-            Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
-            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("FileSystemState.xml")));
-            Factory.Instance.Singleton<IStatusChecker>(() => new FakeStatusChecker());
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(Path.GetPathRoot(Environment.CurrentDirectory) + @"WorkFolder\"));
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<ILogging>(() => new FakeLogging());
+            TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt"), New<IterationCalculator>()));
+            TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify));
+            TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
+            TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
+            TypeMap.Register.Singleton<IProgressBackground>(() => new FakeProgressBackground());
+            TypeMap.Register.Singleton<SessionNotify>(() => new SessionNotify());
+            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt")));
+            TypeMap.Register.Singleton<IStatusChecker>(() => new FakeStatusChecker());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory());
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
+            TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
+            TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
 
-            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
-            Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
-            Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
-            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotify));
-            Factory.Instance.Register<IdentityViewModel>(() => new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings));
-            Factory.Instance.Register<FileOperationViewModel>(() => new FileOperationViewModel(Instance.FileSystemState, Instance.SessionNotify, Instance.KnownKeys, Instance.ParallelFileOperation, Factory.Instance.Singleton<IStatusChecker>(), Factory.New<IdentityViewModel>()));
-            Factory.Instance.Register<MainViewModel>(() => new MainViewModel(Instance.FileSystemState));
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new FakeRuntimeFileInfo(path));
-            Factory.Instance.Register<string, IFileWatcher>((path) => new FakeFileWatcher(path));
-            Factory.Instance.Register<IterationCalculator>(() => new FakeIterationCalculator());
+            TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
+            TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
+            TypeMap.Register.New<ActiveFileAction>(() => new ActiveFileAction());
+            TypeMap.Register.New<FileOperation>(() => new FileOperation(Resolve.FileSystemState, Resolve.SessionNotify));
+            TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
+            TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities, Resolve.ParallelFileOperation, New<IStatusChecker>(), New<IdentityViewModel>()));
+            TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState, Resolve.UserSettings));
+            TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));
+            TypeMap.Register.New<string, IDataContainer>((path) => new FakeDataContainer(path));
+            TypeMap.Register.New<string, IDataItem>((path) => CreateDataItem(path));
+            TypeMap.Register.New<string, IFileWatcher>((path) => new FakeFileWatcher(path));
+            TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
+            TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
+            TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new LocalAccountService(new NullAccountService(identity), Resolve.WorkFolder.FileInfo));
 
-            Instance.UserSettings.V1KeyWrapIterations = 1234;
-            Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;
-            Instance.Log.SetLevel(LogLevel.Debug);
+            Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
+            Resolve.UserSettings.ThumbprintSalt = Salt.Zero;
+            Resolve.Log.SetLevel(LogLevel.Debug);
+        }
+
+        public static void AssemblySetupCrypto(CryptoImplementation cryptoImplementation)
+        {
+            switch (cryptoImplementation)
+            {
+                case CryptoImplementation.Mono:
+                    TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+                    TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+                    TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
+                    TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
+                    TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
+                    TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+                    break;
+
+                case CryptoImplementation.WindowsDesktop:
+                    TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+                    TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+                    TypeMap.Register.New<Aes>(() => new Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
+                    TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
+                    TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
+                    TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+                    break;
+
+                case CryptoImplementation.BouncyCastle:
+                    TypeMap.Register.New<AxCryptHMACSHA1>(() => BouncyCastleCryptoFactory.AxCryptHMACSHA1());
+                    TypeMap.Register.New<HMACSHA512>(() => BouncyCastleCryptoFactory.HMACSHA512());
+                    TypeMap.Register.New<Aes>(() => BouncyCastleCryptoFactory.Aes());
+                    TypeMap.Register.New<CryptoStream>(() => BouncyCastleCryptoFactory.CryptoStream());
+                    TypeMap.Register.New<Sha1>(() => BouncyCastleCryptoFactory.Sha1());
+                    TypeMap.Register.New<Sha256>(() => BouncyCastleCryptoFactory.Sha256());
+                    break;
+            }
+        }
+
+        private static IDataItem CreateDataItem(string location)
+        {
+            if (location.EndsWith(Path.PathSeparator.ToString()))
+            {
+                return new FakeDataContainer(location);
+            }
+            return new FakeDataStore(location);
+        }
+
+        public static CryptoFactory CreateCryptoFactory()
+        {
+            CryptoFactory factory = new CryptoFactory();
+            factory.Add(() => new V2Aes256CryptoFactory());
+            factory.Add(() => new V2Aes128CryptoFactory());
+            factory.Add(() => new V1Aes128CryptoFactory());
+
+            return factory;
         }
 
         public static void AssemblyTeardown()
         {
-            FakeRuntimeFileInfo.ClearFiles();
-            Factory.Instance.Clear();
+            FakeDataStore.ClearFiles();
+            TypeMap.Register.Clear();
         }
 
         internal static FakeRuntimeEnvironment FakeRuntimeEnvironment

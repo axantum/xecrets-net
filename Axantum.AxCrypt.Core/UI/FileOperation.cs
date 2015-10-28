@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -32,9 +33,10 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -49,7 +51,7 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify = sessionNotify;
         }
 
-        public FileOperationStatus OpenAndLaunchApplication(string file, IEnumerable<IPassphrase> keys, IProgressContext progress)
+        public FileOperationContext OpenAndLaunchApplication(string file, IEnumerable<LogOnIdentity> keys, IProgressContext progress)
         {
             if (file == null)
             {
@@ -64,21 +66,21 @@ namespace Axantum.AxCrypt.Core.UI
                 throw new ArgumentNullException("progress");
             }
 
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(file);
-            if (!fileInfo.Exists)
+            IDataStore fileInfo = New<IDataStore>(file);
+            if (!fileInfo.IsAvailable)
             {
-                if (Instance.Log.IsWarningEnabled)
+                if (Resolve.Log.IsWarningEnabled)
                 {
-                    Instance.Log.LogWarning("Tried to open non-existing '{0}'.".InvariantFormat(fileInfo.FullName));
+                    Resolve.Log.LogWarning("Tried to open non-existing '{0}'.".InvariantFormat(fileInfo.FullName));
                 }
-                return FileOperationStatus.FileDoesNotExist;
+                return new FileOperationContext(fileInfo.FullName, ErrorStatus.FileDoesNotExist);
             }
 
             ActiveFile destinationActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
 
-            if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
+            if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.IsAvailable)
             {
-                IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(destinationActiveFile);
+                IDataContainer destinationFolderInfo = GetTemporaryDestinationFolder(destinationActiveFile);
                 destinationActiveFile = TryDecrypt(fileInfo, destinationFolderInfo, keys, progress);
             }
             else
@@ -88,132 +90,153 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (destinationActiveFile == null)
             {
-                return FileOperationStatus.InvalidKey;
+                return new FileOperationContext(fileInfo.FullName, ErrorStatus.InvalidKey);
             }
 
             _fileSystemState.Add(destinationActiveFile);
             _fileSystemState.Save();
 
-            FileOperationStatus status = LaunchApplicationForDocument(destinationActiveFile);
+            FileOperationContext status = LaunchApplicationForDocument(destinationActiveFile);
             return status;
         }
 
-        public virtual FileOperationStatus OpenAndLaunchApplication(string encryptedFile, IAxCryptDocument document, IProgressContext progress)
+        public virtual FileOperationContext OpenAndLaunchApplication(string encryptedFile, LogOnIdentity passphrase, IDataStore axCryptDataStore, IProgressContext progress)
         {
             if (encryptedFile == null)
             {
                 throw new ArgumentNullException("encryptedFile");
             }
-            if (document == null)
+            if (passphrase == null)
             {
-                throw new ArgumentNullException("document");
+                throw new ArgumentNullException("passphrase");
+            }
+            if (axCryptDataStore == null)
+            {
+                throw new ArgumentNullException("axCryptDataStore");
             }
             if (progress == null)
             {
                 throw new ArgumentNullException("progress");
             }
 
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFile);
+            IDataStore encryptedFileInfo = New<IDataStore>(encryptedFile);
 
             ActiveFile encryptedActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
-            if (encryptedActiveFile == null || !encryptedActiveFile.DecryptedFileInfo.Exists)
+            using (IAxCryptDocument document = New<AxCryptFile>().Document(axCryptDataStore, passphrase, progress))
             {
-                IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(encryptedActiveFile);
-                encryptedActiveFile = DecryptActiveFileDocument(encryptedFileInfo, destinationFolderInfo, document, progress);
-            }
-            else
-            {
-                encryptedActiveFile = new ActiveFile(encryptedActiveFile, document.KeyEncryptingCrypto.Key);
-            }
+                encryptedActiveFile = EnsureDecryptedFolder(passphrase, document, encryptedFileInfo, encryptedActiveFile);
+                _fileSystemState.Add(encryptedActiveFile);
+                _fileSystemState.Save();
 
-            _fileSystemState.Add(encryptedActiveFile);
-            _fileSystemState.Save();
-
-            FileOperationStatus status = LaunchApplicationForDocument(encryptedActiveFile);
-            return status;
+                if (!encryptedActiveFile.DecryptedFileInfo.IsAvailable)
+                {
+                    DecryptActiveFileDocument(encryptedActiveFile, document, progress);
+                }
+            }
+            return LaunchApplicationForDocument(encryptedActiveFile);
         }
 
-        private FileOperationStatus LaunchApplicationForDocument(ActiveFile destinationActiveFile)
+        private static ActiveFile EnsureDecryptedFolder(LogOnIdentity passphrase, IAxCryptDocument document, IDataStore encryptedFileInfo, ActiveFile encryptedActiveFile)
         {
+            if (encryptedActiveFile != null && encryptedActiveFile.DecryptedFileInfo.IsAvailable)
+            {
+                encryptedActiveFile = new ActiveFile(encryptedActiveFile, passphrase);
+                return encryptedActiveFile;
+            }
+            IDataContainer destinationFolderInfo = GetTemporaryDestinationFolder(encryptedActiveFile);
+            encryptedActiveFile = DestinationFileInfoFromDocument(encryptedFileInfo, destinationFolderInfo, passphrase, document);
+            return encryptedActiveFile;
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Launching of external application can cause just about anything.")]
+        private FileOperationContext LaunchApplicationForDocument(ActiveFile destinationActiveFile)
+        {
+            ActiveFileStatus status = ActiveFileStatus.AssumedOpenAndDecrypted;
             ILauncher process;
             try
             {
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
+                    Resolve.Log.LogInfo("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
                 }
-                process = OS.Current.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
+                process = New<ILauncher>();
+                using (FileLock decryptedFileLock = FileLock.Lock(destinationActiveFile.DecryptedFileInfo))
+                {
+                    process.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
+                }
                 if (process.WasStarted)
                 {
                     process.Exited += new EventHandler(process_Exited);
                 }
                 else
                 {
-                    if (Instance.Log.IsInfoEnabled)
+                    status |= ActiveFileStatus.NoProcessKnown;
+                    if (Resolve.Log.IsInfoEnabled)
                     {
-                        Instance.Log.LogInfo("Starting process for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
+                        Resolve.Log.LogInfo("Starting process for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
                     }
                 }
             }
-            catch (Win32Exception w32ex)
+            catch (Exception ex)
             {
-                if (Instance.Log.IsErrorEnabled)
+                if (Resolve.Log.IsErrorEnabled)
                 {
-                    Instance.Log.LogError("Could not launch application for '{0}', Win32Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName, w32ex.Message));
+                    Resolve.Log.LogError("Could not launch application for '{0}', Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName, ex.Message));
                 }
-                return FileOperationStatus.CannotStartApplication;
+                return new FileOperationContext(destinationActiveFile.DecryptedFileInfo.FullName, ErrorStatus.CannotStartApplication);
             }
 
-            if (Instance.Log.IsWarningEnabled)
+            if (Resolve.Log.IsWarningEnabled)
             {
                 if (process.HasExited)
                 {
-                    Instance.Log.LogWarning("The process seems to exit immediately for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
+                    Resolve.Log.LogWarning("The process seems to exit immediately for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
                 }
             }
 
-            if (Instance.Log.IsInfoEnabled)
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Launched and opened '{0}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
+                Resolve.Log.LogInfo("Launched and opened '{0}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
             }
 
-            destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+            destinationActiveFile = new ActiveFile(destinationActiveFile, status);
             _fileSystemState.Add(destinationActiveFile, process);
             _fileSystemState.Save();
 
-            return FileOperationStatus.Success;
+            return new FileOperationContext(String.Empty, ErrorStatus.Success);
         }
 
         private void process_Exited(object sender, EventArgs e)
         {
             string path = ((ILauncher)sender).Path;
-            if (Instance.Log.IsInfoEnabled)
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Process exit event for '{0}'.".InvariantFormat(path));
+                Resolve.Log.LogInfo("Process exit event for '{0}'.".InvariantFormat(path));
             }
 
             _sessionNotify.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
         }
 
-        private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<IPassphrase> keys, IProgressContext progress)
+        private static ActiveFile TryDecrypt(IDataStore sourceDataStore, IDataContainer destinationContainer, IEnumerable<LogOnIdentity> passphrases, IProgressContext progress)
         {
             ActiveFile destinationActiveFile = null;
-            foreach (IPassphrase key in keys)
+            foreach (LogOnIdentity passphrase in passphrases)
             {
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Decrypting '{0}'".InvariantFormat(sourceFileInfo.FullName));
+                    Resolve.Log.LogInfo("Decrypting '{0}'".InvariantFormat(sourceDataStore.FullName));
                 }
-                using (FileLock sourceLock = FileLock.Lock(sourceFileInfo))
+                using (FileLock sourceLock = FileLock.Lock(sourceDataStore))
                 {
-                    using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, new ProgressContext()))
+                    using (IAxCryptDocument document = New<AxCryptFile>().Document(sourceDataStore, passphrase, new ProgressContext()))
                     {
                         if (!document.PassphraseIsValid)
                         {
                             continue;
                         }
 
-                        destinationActiveFile = DecryptActiveFileDocument(sourceFileInfo, destinationFolderInfo, document, progress);
+                        destinationActiveFile = DestinationFileInfoFromDocument(sourceDataStore, destinationContainer, passphrase, document);
+                        DecryptActiveFileDocument(destinationActiveFile, document, progress);
                         break;
                     }
                 }
@@ -221,57 +244,54 @@ namespace Axantum.AxCrypt.Core.UI
             return destinationActiveFile;
         }
 
-        private static ActiveFile DecryptActiveFileDocument(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IAxCryptDocument document, IProgressContext progress)
+        private static void DecryptActiveFileDocument(ActiveFile destinationActiveFile, IAxCryptDocument document, IProgressContext progress)
+        {
+            using (FileLock fileLock = FileLock.Lock(destinationActiveFile.DecryptedFileInfo))
+            {
+                New<AxCryptFile>().Decrypt(document, destinationActiveFile.DecryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
+            }
+            if (Resolve.Log.IsInfoEnabled)
+            {
+                Resolve.Log.LogInfo("File decrypted from '{0}' to '{1}'".InvariantFormat(destinationActiveFile.EncryptedFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName));
+            }
+        }
+
+        private static ActiveFile DestinationFileInfoFromDocument(IDataStore sourceFileInfo, IDataContainer destinationFolderInfo, LogOnIdentity passphrase, IAxCryptDocument document)
         {
             string destinationName = document.FileName;
-            string destinationPath = Path.Combine(destinationFolderInfo.FullName, destinationName);
+            string destinationPath = Resolve.Portable.Path().Combine(destinationFolderInfo.FullName, destinationName);
 
-            IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
-            using (FileLock fileLock = FileLock.Lock(destinationFileInfo))
-            {
-                Factory.New<AxCryptFile>().Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
-            }
-            ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, document.KeyEncryptingCrypto.Key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange);
-            if (Instance.Log.IsInfoEnabled)
-            {
-                Instance.Log.LogInfo("File decrypted from '{0}' to '{1}'".InvariantFormat(sourceFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName));
-            }
+            IDataStore destinationFileInfo = New<IDataStore>(destinationPath);
+            ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, passphrase, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, document.CryptoFactory.Id);
             return destinationActiveFile;
         }
 
-        private static IRuntimeFileInfo GetTemporaryDestinationFolder(ActiveFile destinationActiveFile)
+        private static IDataContainer GetTemporaryDestinationFolder(ActiveFile destinationActiveFile)
         {
-            string destinationFolder;
             if (destinationActiveFile != null)
             {
-                destinationFolder = Path.GetDirectoryName(destinationActiveFile.DecryptedFileInfo.FullName);
+                return destinationActiveFile.DecryptedFileInfo.Container;
             }
-            else
-            {
-                destinationFolder = Path.Combine(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
-            }
-            IRuntimeFileInfo destinationFolderInfo = Factory.New<IRuntimeFileInfo>(destinationFolder);
-            destinationFolderInfo.CreateFolder();
-            return destinationFolderInfo;
+            return New<WorkFolder>().CreateTemporaryFolder();
         }
 
         public static string GetTemporaryDestinationName(string fileName)
         {
-            string destinationFolder = Path.Combine(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
-            return Path.Combine(destinationFolder, Path.GetFileName(fileName));
+            string destinationFolder = Resolve.Portable.Path().Combine(New<WorkFolder>().FileInfo.FullName, Resolve.Portable.Path().GetFileNameWithoutExtension(Resolve.Portable.Path().GetRandomFileName()) + Resolve.Portable.Path().DirectorySeparatorChar);
+            return Resolve.Portable.Path().Combine(destinationFolder, Resolve.Portable.Path().GetFileName(fileName));
         }
 
-        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<IPassphrase> keys, IProgressContext progress)
+        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<LogOnIdentity> keys, IProgressContext progress)
         {
-            foreach (IPassphrase key in keys)
+            foreach (LogOnIdentity key in keys)
             {
-                using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
+                using (IAxCryptDocument document = New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
                 {
                     if (document.PassphraseIsValid)
                     {
-                        if (Instance.Log.IsWarningEnabled)
+                        if (Resolve.Log.IsWarningEnabled)
                         {
-                            Instance.Log.LogWarning("File was already decrypted and the key was known for '{0}' to '{1}'".InvariantFormat(destinationActiveFile.EncryptedFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName));
+                            Resolve.Log.LogWarning("File was already decrypted and the key was known for '{0}' to '{1}'".InvariantFormat(destinationActiveFile.EncryptedFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName));
                         }
                         return new ActiveFile(destinationActiveFile, key);
                     }

@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -124,9 +125,13 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
-        public static void TestHmacStream()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestHmacStream(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             Assert.Throws<ArgumentNullException>(() =>
             {
                 using (V1HmacStream hmacStream = new V1HmacStream(null)) { }
@@ -210,7 +215,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestLookAheadStream()
         {
             Assert.Throws<ArgumentNullException>(() =>
@@ -316,7 +321,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestNonClosingStream()
         {
             Assert.Throws<ArgumentNullException>(() =>

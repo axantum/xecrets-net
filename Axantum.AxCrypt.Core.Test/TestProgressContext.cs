@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.Linq;

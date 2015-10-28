@@ -33,7 +33,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// Initial state before we have read any items at all, or an error state when
         /// what was expected was not found.
         /// </summary>
-        None,
+        None = 0,
 
         /// <summary>
         /// We have seen the AxCrypt Guid

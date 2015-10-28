@@ -25,113 +25,278 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestV2DocumentHeaders
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestV2DocumentHeaders
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestV2DocumentHeaders(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestFileTimes()
+        public void TestFileTimes()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passx", 256), new SymmetricIV(128)), 10))
-            {
-                DateTime now = DateTime.UtcNow;
-                headers.LastAccessTimeUtc = now;
-                headers.LastWriteTimeUtc = now.AddHours(1);
-                headers.CreationTimeUtc = now.AddHours(2);
+            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passx")), 12);
+            DateTime now = DateTime.UtcNow;
+            headers.LastAccessTimeUtc = now;
+            headers.LastWriteTimeUtc = now.AddHours(1);
+            headers.CreationTimeUtc = now.AddHours(2);
 
-                Assert.That(headers.LastAccessTimeUtc, Is.EqualTo(now));
-                Assert.That(headers.LastWriteTimeUtc, Is.EqualTo(now.AddHours(1)));
-                Assert.That(headers.CreationTimeUtc, Is.EqualTo(now.AddHours(2)));
+            Assert.That(headers.LastAccessTimeUtc, Is.EqualTo(now));
+            Assert.That(headers.LastWriteTimeUtc, Is.EqualTo(now.AddHours(1)));
+            Assert.That(headers.CreationTimeUtc, Is.EqualTo(now.AddHours(2)));
+        }
+
+        [Test]
+        public void TestCompression()
+        {
+            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2pass")), 10);
+            headers.IsCompressed = true;
+            Assert.That(headers.IsCompressed, Is.True);
+
+            headers.IsCompressed = false;
+            Assert.That(headers.IsCompressed, Is.False);
+        }
+
+        [Test]
+        public void TestUnicodeFileNameShort()
+        {
+            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passz")), 10);
+            headers.FileName = "My Secret Document.txt";
+            Assert.That(headers.FileName, Is.EqualTo("My Secret Document.txt"));
+        }
+
+        [Test]
+        public void TestUnicodeFileNameLong()
+        {
+            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passy")), 10);
+            string longName = "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.";
+            Assert.That(longName.Length, Is.GreaterThan(256));
+
+            headers.FileName = longName;
+            Assert.That(headers.FileName, Is.EqualTo(longName));
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
+        public void TestWriteWithHmac()
+        {
+            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passzz")), 20);
+            byte[] output;
+            V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(headers.GetHmacKey()));
+            using (V2HmacStream<MemoryStream> hmacStream = V2HmacStream.Create<MemoryStream>(hmacCalculator, new MemoryStream()))
+            {
+                headers.WriteStartWithHmac(hmacStream);
+                headers.WriteEndWithHmac(hmacCalculator, hmacStream, 0, 0);
+                hmacStream.Flush();
+                output = hmacStream.Chained.ToArray();
+            }
+
+            byte[] hmacBytesFromHeaders = new byte[V2Hmac.RequiredLength];
+            Array.Copy(output, output.Length - V2Hmac.RequiredLength, hmacBytesFromHeaders, 0, V2Hmac.RequiredLength);
+            V2Hmac hmacFromHeaders = new V2Hmac(hmacBytesFromHeaders);
+
+            byte[] dataToHmac = new byte[output.Length - (V2Hmac.RequiredLength + 5)];
+            Array.Copy(output, 0, dataToHmac, 0, dataToHmac.Length);
+
+            HMACSHA512 hmac = new HMACSHA512(headers.GetHmacKey());
+            hmac.TransformFinalBlock(dataToHmac, 0, dataToHmac.Length);
+            V2Hmac hmacFromCalculation = new V2Hmac(hmac.Hash);
+
+            Assert.That(hmacFromHeaders, Is.EqualTo(hmacFromCalculation));
+        }
+
+        [Test]
+        public void TestLoadWithInvalidPassphrase()
+        {
+            Headers headers = new Headers();
+            V2Aes256CryptoFactory cryptoFactory = new V2Aes256CryptoFactory();
+
+            headers.HeaderBlocks.Add(new PreambleHeaderBlock());
+            headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
+            V2KeyWrapHeaderBlock originalKeyWrapBlock = new V2KeyWrapHeaderBlock(cryptoFactory, new V2DerivedKey(new Passphrase("RealKey"), 256), 10);
+            V2KeyWrapHeaderBlock headerKeyWrapBlock = new V2KeyWrapHeaderBlock(originalKeyWrapBlock.GetDataBlockBytes());
+            headers.HeaderBlocks.Add(headerKeyWrapBlock);
+            headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(new byte[0]));
+            headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(new byte[1]));
+            headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new byte[0]));
+            headers.HeaderBlocks.Add(new DataHeaderBlock());
+
+            IDerivedKey key;
+
+            key = cryptoFactory.RestoreDerivedKey(new Passphrase("WrongKey"), headerKeyWrapBlock.DerivationSalt, headerKeyWrapBlock.DerivationIterations);
+            headerKeyWrapBlock.SetDerivedKey(cryptoFactory, key);
+
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(headerKeyWrapBlock);
+            Assert.That(documentHeaders.Load(headers), Is.False);
+
+            key = cryptoFactory.RestoreDerivedKey(new Passphrase("AnotherWrongKey"), headerKeyWrapBlock.DerivationSalt, headerKeyWrapBlock.DerivationIterations);
+            headerKeyWrapBlock.SetDerivedKey(cryptoFactory, key);
+
+            documentHeaders = new V2DocumentHeaders(headerKeyWrapBlock);
+            Assert.That(documentHeaders.Load(headers), Is.False);
+
+            key = cryptoFactory.RestoreDerivedKey(new Passphrase("RealKey"), headerKeyWrapBlock.DerivationSalt, headerKeyWrapBlock.DerivationIterations);
+            headerKeyWrapBlock.SetDerivedKey(cryptoFactory, key);
+
+            documentHeaders = new V2DocumentHeaders(headerKeyWrapBlock);
+            Assert.That(documentHeaders.Load(headers), Is.True);
+        }
+
+        [Test]
+        public void TestWriteStartWithHmacWithNullArgument()
+        {
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("Key")), 10);
+            Assert.Throws<ArgumentNullException>(() => documentHeaders.WriteStartWithHmac(null));
+        }
+
+        [Test]
+        public void TestHeadersPropertyGetter()
+        {
+            V2KeyWrapHeaderBlock keyWrap = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("Key"), 256), 256);
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyWrap);
+            Assert.That(documentHeaders.Headers.HeaderBlocks.Count, Is.EqualTo(0));
+        }
+
+        private class UnknownEncryptedHeaderBlock : EncryptedHeaderBlock
+        {
+            public UnknownEncryptedHeaderBlock(byte[] dataBlock)
+                : base((HeaderBlockType)199, dataBlock)
+            {
+            }
+
+            public override object Clone()
+            {
+                throw new NotImplementedException();
             }
         }
 
         [Test]
-        public static void TestCompression()
+        public void TestUnknownEncryptedHeader()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2pass", 256), new SymmetricIV(128)), 10))
-            {
-                headers.IsCompressed = true;
-                Assert.That(headers.IsCompressed, Is.True);
+            Headers headers = new Headers();
+            IDerivedKey key = new V2DerivedKey(new Passphrase("A key"), 256);
+            headers.HeaderBlocks.Add(new PreambleHeaderBlock());
+            headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
+            V2KeyWrapHeaderBlock wrapHeader = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), key, 10);
+            headers.HeaderBlocks.Add(wrapHeader);
+            headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(new byte[0]));
+            headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(new byte[1]));
+            headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new byte[0]));
+            headers.HeaderBlocks.Add(new UnknownEncryptedHeaderBlock(new byte[0]));
+            headers.HeaderBlocks.Add(new DataHeaderBlock());
 
-                headers.IsCompressed = false;
-                Assert.That(headers.IsCompressed, Is.False);
-            }
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(wrapHeader);
+            Assert.Throws<InternalErrorException>(() => documentHeaders.Load(headers));
         }
 
         [Test]
-        public static void TestUnicodeFileNameShort()
+        public void TestAddingSingleV2AsymmetricKeyWrap()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passz", 256), new SymmetricIV(128)), 10))
-            {
-                headers.FileName = "My Secret Document.txt";
-                Assert.That(headers.FileName, Is.EqualTo("My Secret Document.txt"));
-            }
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
+
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(encryptionParameters, 1000);
+            IEnumerable<V2AsymmetricKeyWrapHeaderBlock> wraps = documentHeaders.Headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
+            Assert.That(wraps.Count(), Is.EqualTo(1), "There should be one V2AsymmetricKeyWrapHeaderBlock found.");
+
+            V2AsymmetricKeyWrapHeaderBlock block1 = wraps.First();
+
+            ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(encryptionParameters.CryptoId);
+
+            IAsymmetricPrivateKey privateKey1 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            block1.SetPrivateKey(cryptoFactory, privateKey1);
+            ICrypto cryptoFromAsymmetricKey = block1.Crypto(0);
+
+            V2KeyWrapHeaderBlock symmetricKeyWrap = documentHeaders.Headers.HeaderBlocks.OfType<V2KeyWrapHeaderBlock>().First();
+            ICrypto cryptoFromSymmetricKey = cryptoFactory.CreateCrypto(symmetricKeyWrap.MasterKey, symmetricKeyWrap.MasterIV, 0);
+
+            Assert.That(cryptoFromAsymmetricKey.Key, Is.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric and Symmetric should be equal.");
+
+            IAsymmetricPrivateKey privateKey2 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+            block1.SetPrivateKey(cryptoFactory, privateKey2);
+            ICrypto cryptoFromAsymmetricKey1WithKey2 = block1.Crypto(0);
+            Assert.That(cryptoFromAsymmetricKey1WithKey2, Is.Null, "There should be no valid key set and thus no ICrypto instance returned.");
         }
 
         [Test]
-        public static void TestUnicodeFileNameLong()
+        public void TestAddingMultipleV2AsymmetricKeyWraps()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passy", 256), new SymmetricIV(128)), 10))
-            {
-                string longName = "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.";
-                Assert.That(longName.Length, Is.GreaterThan(256));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("niklas"));
+            IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            IAsymmetricPublicKey publicKey2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });
 
-                headers.FileName = longName;
-                Assert.That(headers.FileName, Is.EqualTo(longName));
-            }
-        }
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(encryptionParameters, 1000);
+            IEnumerable<V2AsymmetricKeyWrapHeaderBlock> wraps = documentHeaders.Headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
+            Assert.That(wraps.Count(), Is.EqualTo(2), "There should be two V2AsymmetricKeyWrapHeaderBlocks found.");
 
-        [Test]
-        public static void TestWriteWithHmac()
-        {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passzz", 256), new SymmetricIV(128)), 20))
-            {
-                byte[] output;
-                using (MemoryStream outputStream = new MemoryStream())
-                {
-                    using (V2HmacStream hmacStream = new V2HmacStream(headers.GetHmacKey(), outputStream))
-                    {
-                        headers.WriteStartWithHmac(hmacStream);
-                        headers.WriteEndWithHmac(hmacStream, 0, 0);
-                    }
-                    output = outputStream.ToArray();
-                }
+            V2AsymmetricKeyWrapHeaderBlock block1 = wraps.First();
 
-                byte[] hmacBytesFromHeaders = new byte[V2Hmac.RequiredLength];
-                Array.Copy(output, output.Length - V2Hmac.RequiredLength, hmacBytesFromHeaders, 0, V2Hmac.RequiredLength);
-                V2Hmac hmacFromHeaders = new V2Hmac(hmacBytesFromHeaders);
+            ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(encryptionParameters.CryptoId);
 
-                byte[] dataToHmac = new byte[output.Length - (V2Hmac.RequiredLength + 5)];
-                Array.Copy(output, 0, dataToHmac, 0, dataToHmac.Length);
+            IAsymmetricPrivateKey privateKey1 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
+            block1.SetPrivateKey(cryptoFactory, privateKey1);
+            ICrypto cryptoFromAsymmetricKey1 = block1.Crypto(0);
 
-                HMACSHA512 hmac = new HMACSHA512(headers.GetHmacKey());
-                hmac.TransformFinalBlock(dataToHmac, 0, dataToHmac.Length);
-                V2Hmac hmacFromCalculation = new V2Hmac(hmac.Hash);
+            V2KeyWrapHeaderBlock symmetricKeyWrap = documentHeaders.Headers.HeaderBlocks.OfType<V2KeyWrapHeaderBlock>().First();
+            ICrypto cryptoFromSymmetricKey = cryptoFactory.CreateCrypto(symmetricKeyWrap.MasterKey, symmetricKeyWrap.MasterIV, 0);
 
-                Assert.That(hmacFromHeaders, Is.EqualTo(hmacFromCalculation));
-            }
+            Assert.That(cryptoFromAsymmetricKey1.Key, Is.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 1 and Symmetric should be equal.");
+
+            V2AsymmetricKeyWrapHeaderBlock block2 = wraps.Last();
+
+            IAsymmetricPrivateKey privateKey2 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
+            block2.SetPrivateKey(cryptoFactory, privateKey2);
+            ICrypto cryptoFromAsymmetricKey2 = block2.Crypto(0);
+            Assert.That(cryptoFromAsymmetricKey2.Key, Is.EqualTo(cryptoFromSymmetricKey.Key), "The keys from Asymmetric key 2 and Symmetric should be equal.");
+
+            block1.SetPrivateKey(cryptoFactory, privateKey2);
+            ICrypto cryptoFromAsymmetricKey1WithKey2 = block1.Crypto(0);
+            Assert.That(cryptoFromAsymmetricKey1WithKey2, Is.Null, "There should be no valid key set and thus no ICrypto instance returned.");
+
+            block2.SetPrivateKey(cryptoFactory, privateKey1);
+            ICrypto cryptoFromAsymmetricKey2WithKey1 = block2.Crypto(0);
+            Assert.That(cryptoFromAsymmetricKey2WithKey1, Is.Null, "There should be no valid key set and thus no ICrypto instance returned.");
         }
     }
 }

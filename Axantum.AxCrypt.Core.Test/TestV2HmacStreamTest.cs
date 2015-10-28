@@ -1,5 +1,10 @@
-﻿using Axantum.AxCrypt.Core.Extensions;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -14,6 +19,8 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
         }
 
         [TearDown]
@@ -30,7 +37,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] hmac_sha_512 = "87aa7cdea5ef619d4ff0b4241a1d6cb02379f4e2ce4ec2787ad0b30545e17cdedaa833b7d6b8a702038b274eaea3f4e4be9d914eeb61f1702e696c203a126854".FromHex();
 
             byte[] result;
-            using (V2HmacStream stream = new V2HmacStream(key))
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(key))))
             {
                 stream.Write(data, 0, data.Length);
                 result = stream.Hmac.GetBytes();
@@ -48,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] hmac_sha_512 = "164b7a7bfcf819e2e395fbe73b56e0a387bd64222e831fd610270cd7ea2505549758bf75c05a994a6d034f65f8f0e6fdcaeab1a34d4a6b4b636e070a38bce737".FromHex();
 
             byte[] result;
-            using (V2HmacStream stream = new V2HmacStream(key))
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(key))))
             {
                 stream.Write(data, 0, data.Length);
                 result = stream.Hmac.GetBytes();
@@ -66,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] hmac_sha_512 = "fa73b0089d56a284efb0f0756c890be9b1b5dbdd8ee81a3655f83e33b2279d39bf3e848279a722c806b485a47e67c807b946a337bee8942674278859e13292fb".FromHex();
 
             byte[] result;
-            using (V2HmacStream stream = new V2HmacStream(key))
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(key))))
             {
                 stream.Write(data, 0, data.Length);
                 result = stream.Hmac.GetBytes();
@@ -84,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] hmac_sha_512 = "b0ba465637458c6990e5a8c5f61d4af7 e576d97ff94b872de76f8050361ee3db a91ca5c11aa25eb4d679275cc5788063 a5f19741120c4f2de2adebeb10a298dd".FromHex();
 
             byte[] result;
-            using (V2HmacStream stream = new V2HmacStream(key))
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(key))))
             {
                 stream.Write(data, 0, data.Length);
                 result = stream.Hmac.GetBytes();
@@ -102,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] hmac_sha_512 = "415fad6271580a531d4179bc891d87a6".FromHex();
 
             byte[] result;
-            using (V2HmacStream stream = new V2HmacStream(key))
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(key))))
             {
                 stream.Write(data, 0, data.Length);
                 result = new byte[16];
@@ -121,7 +128,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] hmac_sha_512 = "80b24263c7c1a3ebb71493c1dd7be8b4 9b46d1f41b4aeec1121b013783f8f352 6b56d037e05f2598bd0fd2215d6a1e52 95e64f73f63f0aec8b915a985d786598".FromHex();
 
             byte[] result;
-            using (V2HmacStream stream = new V2HmacStream(key))
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(key))))
             {
                 stream.Write(data, 0, data.Length);
                 result = stream.Hmac.GetBytes();
@@ -139,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] hmac_sha_512 = "e37b6a775dc87dbaa4dfa9f96e5e3ffd debd71f8867289865df5a32d20cdc944 b6022cac3c4982b10d5eeb55c3e4de15 134676fb6de0446065c97440fa8c6a58".FromHex();
 
             byte[] result;
-            using (V2HmacStream stream = new V2HmacStream(key))
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(key))))
             {
                 stream.Write(data, 0, data.Length);
                 result = stream.Hmac.GetBytes();
@@ -148,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rfc", Justification = "This is well-known acronymn")]
         public static void Rfc4231TestCase7WithChaining()
         {
@@ -157,18 +164,75 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] hmac_sha_512 = "e37b6a775dc87dbaa4dfa9f96e5e3ffd debd71f8867289865df5a32d20cdc944 b6022cac3c4982b10d5eeb55c3e4de15 134676fb6de0446065c97440fa8c6a58".FromHex();
 
             byte[] result;
-            using (MemoryStream output = new MemoryStream())
+            byte[] chainedData;
+            using (V2HmacStream<MemoryStream> stream = V2HmacStream.Create<MemoryStream>(new V2HmacCalculator(new SymmetricKey(key)), new MemoryStream()))
             {
-                using (V2HmacStream stream = new V2HmacStream(key, output))
-                {
-                    stream.Write(data, 0, data.Length);
-                    result = stream.Hmac.GetBytes();
-                }
-                byte[] chained = output.ToArray();
-                Assert.That(chained, Is.EquivalentTo(data));
+                stream.Write(data, 0, data.Length);
+                result = stream.Hmac.GetBytes();
+                chainedData = stream.Chained.ToArray();
             }
+            Assert.That(chainedData, Is.EquivalentTo(data));
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
+        }
+
+        [Test]
+        public static void TestConstructorNullArgument()
+        {
+            V2HmacCalculator nullCalculator = null;
+            Stream nullStream = null;
+            Stream stream = null;
+            Assert.Throws<ArgumentNullException>(() => stream = V2HmacStream.Create(nullCalculator));
+            Assert.That(stream, Is.Null);
+
+            Assert.Throws<ArgumentNullException>(() => stream = V2HmacStream.Create(new V2HmacCalculator(SymmetricKey.Zero128), nullStream));
+            Assert.That(stream, Is.Null);
+        }
+
+        [Test]
+        public static void TestNotSupportedMethods()
+        {
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(new byte[512]))))
+            {
+                Assert.Throws<NotSupportedException>(() => stream.Read(new byte[1], 0, 1));
+                Assert.Throws<NotSupportedException>(() => stream.Seek(0, SeekOrigin.Begin));
+                Assert.Throws<NotSupportedException>(() => stream.SetLength(0));
+                Assert.Throws<NotSupportedException>(() => stream.Position = 0);
+            }
+        }
+
+        [Test]
+        public static void TestCapabilities()
+        {
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(new byte[512]))))
+            {
+                Assert.That(stream.CanRead, Is.False);
+                Assert.That(stream.CanSeek, Is.False);
+                Assert.That(stream.CanWrite, Is.True);
+            }
+        }
+
+        [Test]
+        public static void TestPosition()
+        {
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(new byte[512]))))
+            {
+                Assert.That(stream.Position, Is.EqualTo(0));
+                stream.Write(new byte[1], 0, 1);
+                Assert.That(stream.Position, Is.EqualTo(1));
+                Assert.That(stream.Length, Is.EqualTo(1));
+            }
+        }
+
+        [Test]
+        public static void TestDispose()
+        {
+            using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(new byte[512]))))
+            {
+                stream.Dispose();
+                Assert.DoesNotThrow(() => stream.Dispose());
+                Assert.Throws<ObjectDisposedException>(() => stream.Write(new byte[1], 0, 1));
+            }
         }
     }
 }

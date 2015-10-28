@@ -1,21 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region Coypright and License
+
+/*
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ *
+ * This file is part of AxCrypt.
+ *
+ * AxCrypt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * AxCrypt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
+ * updates, contributions and contact with the author. You may also visit
+ * http://www.axantum.com for more information about the author.
+*/
+
+#endregion Coypright and License
+
+using Axantum.AxCrypt.Core.Algorithm;
+using System;
 using System.Linq;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     public abstract class CryptoBase : ICrypto
     {
-        private static ICollection<int> _validKeyLengths;
+        private SymmetricKey _key;
 
-        private static int _blockLength;
-
-        public abstract string Name { get; }
-
-        private IPassphrase _key;
-
-        public IPassphrase Key
+        /// <summary>
+        /// Gets the key associated with this instance.
+        /// </summary>
+        /// <value>
+        /// The key.
+        /// </value>
+        public SymmetricKey Key
         {
             get
             {
@@ -28,47 +54,51 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
-        public int BlockLength
-        {
-            get { return _blockLength; }
-        }
-
-        public abstract SymmetricAlgorithm CreateAlgorithm();
-
-        public abstract byte[] Decrypt(byte[] cipherText);
-
-        public abstract byte[] Encrypt(byte[] plaintext);
-
-        public abstract ICryptoTransform CreateDecryptingTransform();
-
-        public abstract ICryptoTransform CreateEncryptingTransform();
+        public abstract int BlockLength { get; }
 
         /// <summary>
-        /// Check if a key length is valid for AES
+        /// Create an instance of a transform suitable for NIST Key Wrap.
         /// </summary>
-        /// <param name="length">The length in bytes</param>
-        /// <returns>true if the length in bytes is a valid key length for AES</returns>
-        public bool IsValidKeyLength(int length)
-        {
-            return _validKeyLengths.Contains(length);
-        }
+        /// <param name="salt"></param>
+        /// <param name="keyWrapDirection"></param>
+        /// <returns></returns>
+        /// <value>
+        /// An instance of the transform.
+        ///   </value>
+        public abstract IKeyWrapTransform CreateKeyWrapTransform(Salt salt, KeyWrapDirection keyWrapDirection);
 
-        protected static void SetValidKeyLengths(KeySizes[] legalKeySizes)
-        {
-            List<int> validKeyLengths = new List<int>();
-            foreach (KeySizes keySizes in legalKeySizes)
-            {
-                for (int validKeySizeInBits = keySizes.MinSize; validKeySizeInBits <= keySizes.MaxSize; validKeySizeInBits += keySizes.SkipSize)
-                {
-                    validKeyLengths.Add(validKeySizeInBits / 8);
-                }
-            }
-            _validKeyLengths = validKeyLengths;
-        }
+        /// <summary>
+        /// Decrypt in one operation.
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <returns>
+        /// The decrypted result minus any padding
+        /// </returns>
+        public abstract byte[] Decrypt(byte[] cipherText);
 
-        protected static void SetBlockLength(int blockLength)
-        {
-            _blockLength = blockLength;
-        }
+        /// <summary>
+        /// Encrypt in one operation
+        /// </summary>
+        /// <param name="plaintext">The complete plaintext bytes</param>
+        /// <returns>
+        /// The cipher text, complete with any padding
+        /// </returns>
+        public abstract byte[] Encrypt(byte[] plaintext);
+
+        /// <summary>
+        /// Using this instances parameters, create a decryptor
+        /// </summary>
+        /// <returns>
+        /// A new decrypting transformation instance
+        /// </returns>
+        public abstract ICryptoTransform DecryptingTransform();
+
+        /// <summary>
+        /// Using this instances parameters, create an encryptor
+        /// </summary>
+        /// <returns>
+        /// A new encrypting transformation instance
+        /// </returns>
+        public abstract ICryptoTransform EncryptingTransform();
     }
 }

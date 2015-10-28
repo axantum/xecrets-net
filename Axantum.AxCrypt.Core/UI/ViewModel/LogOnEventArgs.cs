@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Linq;
@@ -36,12 +37,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public LogOnEventArgs()
         {
             Passphrase = String.Empty;
-            Identity = PassphraseIdentity.Empty;
+            Identity = LogOnIdentity.Empty;
+            UserEmail = String.Empty;
         }
 
         public bool Cancel { get; set; }
 
-        public bool CreateNew { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is asking for previously unknown passphrase. This typically results in the UI
+        /// asking for a verification of the passphrase in order to ensure correctness.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is asking for previously unknown passphrase; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsAskingForPreviouslyUnknownPassphrase { get; set; }
 
         public bool DisplayPassphrase { get; set; }
 
@@ -49,8 +58,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string Name { get; set; }
 
+        public string UserEmail { get; set; }
+
         public string EncryptedFileFullName { get; set; }
 
-        public PassphraseIdentity Identity { get; set; }
+        public LogOnIdentity Identity { get; set; }
     }
 }

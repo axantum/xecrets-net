@@ -374,7 +374,7 @@ namespace NDesk.Options
     {
         private string prototype, description;
         private string[] names;
-        private OptionValueType type;
+        private OptionValueType optionValueType;
         private int count;
         private string[] separators;
 
@@ -391,19 +391,19 @@ namespace NDesk.Options
             this.names = prototype.Split('|');
             this.description = description;
             this.count = maxValueCount;
-            this.type = ParsePrototype();
+            this.optionValueType = ParsePrototype();
 
-            if (this.count == 0 && type != OptionValueType.None)
+            if (this.count == 0 && optionValueType != OptionValueType.None)
                 throw new ArgumentException(
                         "Cannot provide maxValueCount of 0 for OptionValueType.Required or " +
                             "OptionValueType.Optional.",
                         "maxValueCount");
-            if (this.type == OptionValueType.None && maxValueCount > 1)
+            if (this.optionValueType == OptionValueType.None && maxValueCount > 1)
                 throw new ArgumentException(
                         string.Format(CultureInfo.InvariantCulture, "Cannot provide maxValueCount of {0} for OptionValueType.None.", maxValueCount),
                         "maxValueCount");
             if (Array.IndexOf(names, "<>") >= 0 &&
-                    ((names.Length == 1 && this.type != OptionValueType.None) ||
+                    ((names.Length == 1 && this.optionValueType != OptionValueType.None) ||
                      (names.Length > 1 && this.MaxValueCount > 1)))
                 throw new ArgumentException(
                         "The default option handler '<>' cannot require values.",
@@ -414,7 +414,7 @@ namespace NDesk.Options
 
         public string Description { get { return description; } }
 
-        public OptionValueType OptionValueType { get { return type; } }
+        public OptionValueType OptionValueType { get { return optionValueType; } }
 
         public int MaxValueCount { get { return count; } }
 
@@ -432,12 +432,29 @@ namespace NDesk.Options
 
         protected static T Parse<T>(string value, OptionContext optionContext)
         {
-            TypeConverter conv = TypeDescriptor.GetConverter(typeof(T));
+            if (optionContext == null)
+            {
+                throw new ArgumentNullException("optionContext");
+            }
+
             T t = default(T);
+            if (value == null)
+            {
+                return t;
+            }
             try
             {
-                if (value != null)
-                    t = (T)conv.ConvertFromString(value);
+                switch (typeof(T).ToString())
+                {
+                    case "System.Int32":
+                        return (T)(object)Int32.Parse(value);
+
+                    case "System.String":
+                        return (T)(object)value;
+
+                    case "System.Boolean":
+                        return (T)(object)Boolean.Parse(value);
+                }
             }
             catch (Exception e)
             {
@@ -535,6 +552,11 @@ namespace NDesk.Options
 
         public void Invoke(OptionContext optionContext)
         {
+            if (optionContext == null)
+            {
+                throw new ArgumentNullException("optionContext");
+            }
+
             OnParseComplete(optionContext);
             optionContext.OptionName = null;
             optionContext.Option = null;
@@ -549,7 +571,6 @@ namespace NDesk.Options
         }
     }
 
-    [Serializable]
     public class OptionException : Exception
     {
         private string option;
@@ -580,25 +601,15 @@ namespace NDesk.Options
             this.option = optionName;
         }
 
-        protected OptionException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-            this.option = info.GetString("OptionName");
-        }
-
         public string OptionName
         {
             get { return this.option; }
         }
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            base.GetObjectData(info, context);
-            info.AddValue("OptionName", option);
-        }
     }
 
     public delegate void OptionAction<TKey, TValue>(TKey key, TValue value);
+
+    public delegate TOutput Converter<in TInput, out TOutput>(TInput input);
 
     public class OptionSetCollection : KeyedCollection<string, OptionBase>
     {
@@ -688,6 +699,11 @@ namespace NDesk.Options
 
             protected override void OnParseComplete(OptionContext c)
             {
+                if (c == null)
+                {
+                    throw new ArgumentNullException("c");
+                }
+
                 action(c.OptionValues);
             }
         }
@@ -736,6 +752,11 @@ namespace NDesk.Options
 
             protected override void OnParseComplete(OptionContext c)
             {
+                if (c == null)
+                {
+                    throw new ArgumentNullException("c");
+                }
+
                 action(Parse<T>(c.OptionValues[0], c));
             }
         }
@@ -754,6 +775,11 @@ namespace NDesk.Options
 
             protected override void OnParseComplete(OptionContext c)
             {
+                if (c == null)
+                {
+                    throw new ArgumentNullException("c");
+                }
+
                 action(
                         Parse<TKey>(c.OptionValues[0], c),
                         Parse<TValue>(c.OptionValues[1], c));
@@ -817,6 +843,11 @@ namespace NDesk.Options
 
         public IList<string> Parse(IEnumerable<string> arguments)
         {
+            if (arguments == null)
+            {
+                throw new ArgumentNullException("arguments");
+            }
+
             OptionContext c = CreateOptionContext();
             c.OptionIndex = -1;
             bool process = true;
@@ -889,6 +920,11 @@ namespace NDesk.Options
 
         protected virtual bool Parse(string argument, OptionContext optionContext)
         {
+            if (optionContext == null)
+            {
+                throw new ArgumentNullException("optionContext");
+            }
+
             if (optionContext.Option != null)
             {
                 ParseValue(argument, optionContext);
@@ -1017,6 +1053,11 @@ namespace NDesk.Options
 
         public void WriteOptionDescriptions(TextWriter writer)
         {
+            if (writer == null)
+            {
+                throw new ArgumentNullException("writer");
+            }
+
             foreach (OptionBase p in this)
             {
                 int written = 0;

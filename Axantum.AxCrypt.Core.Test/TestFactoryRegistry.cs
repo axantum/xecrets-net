@@ -25,10 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -47,24 +50,33 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
+        private class MyClass { };
+
         [Test]
         public static void TestRegisterParameterless()
         {
             bool wasCalled = false;
-            Factory.Instance.Register<int>(() => { wasCalled = true; return 13; });
+            MyClass theObject = new MyClass();
+            TypeMap.Register.New<MyClass>(() => { wasCalled = true; return theObject; });
 
-            int value = Factory.New<int>();
-            Assert.That(value, Is.EqualTo(13));
+            object value = New<MyClass>();
+            Assert.That(value, Is.EqualTo(theObject));
             Assert.That(wasCalled, Is.True);
+        }
+
+        [Test]
+        public static void TestRegisterObjectThrows()
+        {
+            Assert.Throws<ArgumentException>(() => TypeMap.Register.New<object>(() => { return new object(); }));
         }
 
         [Test]
         public static void TestRegisterWithParameter()
         {
             bool wasCalled = false;
-            Factory.Instance.Register<int, int>((argument) => { wasCalled = true; return argument; });
+            TypeMap.Register.New<int, int>((argument) => { wasCalled = true; return argument; });
 
-            int value = Factory.New<int, int>(27);
+            int value = New<int, int>(27);
             Assert.That(value, Is.EqualTo(27));
             Assert.That(wasCalled, Is.True);
         }
@@ -72,25 +84,25 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDefault()
         {
-            AxCryptFile axCryptFile = Factory.New<AxCryptFile>();
+            AxCryptFile axCryptFile = New<AxCryptFile>();
             Assert.That(axCryptFile is AxCryptFile, Is.True);
 
-            Factory.Instance.Register<FileSystemState>(() => new FileSystemState());
-            ActiveFileAction actions = Factory.New<ActiveFileAction>();
+            TypeMap.Register.New<FileSystemState>(() => new FileSystemState());
+            ActiveFileAction actions = New<ActiveFileAction>();
             Assert.That(actions is ActiveFileAction, Is.True);
         }
 
         [Test]
         public static void TestNotRegistered()
         {
-            Assert.Throws<ArgumentException>(() => Factory.New<int>());
-            Assert.Throws<ArgumentException>(() => Factory.New<int, int>(13));
+            Assert.Throws<ArgumentException>(() => New<object>());
+            Assert.Throws<ArgumentException>(() => New<int, int>(13));
         }
 
         [Test]
         public static void TestNotRegisteredSingleton()
         {
-            Assert.Throws<ArgumentException>(() => Factory.Instance.Singleton<object>());
+            Assert.Throws<ArgumentException>(() => New<object>());
         }
 
         private class MyDisposable : IDisposable
@@ -106,24 +118,24 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClearDisposable()
         {
-            Factory.Instance.Singleton(() => new MyDisposable());
+            TypeMap.Register.Singleton(() => new MyDisposable());
 
-            MyDisposable md = Factory.Instance.Singleton<MyDisposable>();
+            MyDisposable md = New<MyDisposable>();
             Assert.That(md.IsDisposed, Is.False);
 
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
             Assert.That(md.IsDisposed, Is.True);
         }
 
         [Test]
         public static void TestSetDisposableSingletonTwice()
         {
-            Factory.Instance.Singleton(() => new MyDisposable());
+            TypeMap.Register.Singleton(() => new MyDisposable());
 
-            MyDisposable md = Factory.Instance.Singleton<MyDisposable>();
+            MyDisposable md = New<MyDisposable>();
             Assert.That(md.IsDisposed, Is.False);
 
-            Factory.Instance.Singleton(() => new MyDisposable());
+            TypeMap.Register.Singleton(() => new MyDisposable());
             Assert.That(md.IsDisposed, Is.True);
         }
     }

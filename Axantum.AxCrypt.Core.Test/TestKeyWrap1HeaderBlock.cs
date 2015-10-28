@@ -27,46 +27,59 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestKeyWrap1HeaderBlock
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestKeyWrap1HeaderBlock
     {
         private class KeyWrap1HeaderBlockForTest : V1KeyWrap1HeaderBlock
         {
-            public KeyWrap1HeaderBlockForTest(ICrypto crypto)
-                : base(crypto, 13)
+            public KeyWrap1HeaderBlockForTest(SymmetricKey key)
+                : base(key, 13)
             {
             }
 
-            public void SetValuesDirect(byte[] wrapped, KeyWrapSalt salt, long iterations)
+            public void SetValuesDirect(byte[] wrapped, Salt salt, long keyWrapIterations)
             {
-                Set(wrapped, salt, iterations);
+                Set(wrapped, salt, keyWrapIterations);
             }
+        }
+
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestKeyWrap1HeaderBlock(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
         }
 
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestSetBadArguments()
+        public void TestSetBadArguments()
         {
-            KeyWrap1HeaderBlockForTest keyWrap1HeaderBlock = new KeyWrap1HeaderBlockForTest(new V1AesCrypto(new GenericPassphrase("passphrase")));
+            KeyWrap1HeaderBlockForTest keyWrap1HeaderBlock = new KeyWrap1HeaderBlockForTest(new V1DerivedKey(new Passphrase("passphrase")).DerivedKey);
 
-            KeyWrapSalt okSalt = new KeyWrapSalt(16);
-            KeyWrapSalt badSalt = new KeyWrapSalt(32);
+            Salt okSalt = new Salt(128);
+            Salt badSalt = new Salt(256);
 
             Assert.Throws<ArgumentNullException>(() =>
             {

@@ -136,7 +136,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="_buttonOk.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>0</value>
   </data>
   <data name="_buttonOk.Text" xml:space="preserve">
     <value>OK</value>
@@ -172,7 +172,7 @@
     <value>75, 23</value>
   </data>
   <data name="_buttonCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>1</value>
   </data>
   <data name="_buttonCancel.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -190,19 +190,19 @@
     <value>0</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>315, 303</value>
+    <value>315, 246</value>
   </data>
   <data name="panel1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="_panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 200</value>
+    <value>52, 141</value>
   </data>
   <data name="_panel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 37</value>
   </data>
   <data name="_panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;_panel1.Name" xml:space="preserve">
     <value>_panel1</value>
@@ -215,54 +215,6 @@
   </data>
   <data name="&gt;&gt;_panel1.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="NameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 19</value>
-  </data>
-  <data name="NameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 20</value>
-  </data>
-  <data name="NameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;NameTextBox.Name" xml:space="preserve">
-    <value>NameTextBox</value>
-  </data>
-  <data name="&gt;&gt;NameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NameTextBox.Parent" xml:space="preserve">
-    <value>_groupBox1</value>
-  </data>
-  <data name="&gt;&gt;NameTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="_groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 11</value>
-  </data>
-  <data name="_groupBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 13, 3</value>
-  </data>
-  <data name="_groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 55</value>
-  </data>
-  <data name="_groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="_groupBox1.Text" xml:space="preserve">
-    <value>Identity</value>
-  </data>
-  <data name="&gt;&gt;_groupBox1.Name" xml:space="preserve">
-    <value>_groupBox1</value>
-  </data>
-  <data name="&gt;&gt;_groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_groupBox1.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;_groupBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="PassphraseGroupBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -280,7 +232,7 @@
     <value>111, 17</value>
   </data>
   <data name="ShowPassphraseCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>3</value>
   </data>
   <data name="ShowPassphraseCheckBox.Text" xml:space="preserve">
     <value>Show Passphrase</value>
@@ -304,7 +256,7 @@
     <value>243, 20</value>
   </data>
   <data name="VerifyPassphraseTextbox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;VerifyPassphraseTextbox.Name" xml:space="preserve">
     <value>VerifyPassphraseTextbox</value>
@@ -331,7 +283,7 @@
     <value>91, 13</value>
   </data>
   <data name="_label1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>1</value>
   </data>
   <data name="_label1.Text" xml:space="preserve">
     <value>Verify Passphrase</value>
@@ -370,13 +322,13 @@
     <value>3</value>
   </data>
   <data name="PassphraseGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 72</value>
+    <value>12, 11</value>
   </data>
   <data name="PassphraseGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 125</value>
   </data>
   <data name="PassphraseGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>0</value>
   </data>
   <data name="PassphraseGroupBox.Text" xml:space="preserve">
     <value>Enter Passphrase</value>
@@ -391,7 +343,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;PassphraseGroupBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -400,10 +352,10 @@
     <value>0, 59</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>315, 244</value>
+    <value>315, 187</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;panel1.Name" xml:space="preserve">
     <value>panel1</value>
@@ -430,7 +382,7 @@
     <value>242, 20</value>
   </data>
   <data name="FileNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;FileNameTextBox.Name" xml:space="preserve">
     <value>FileNameTextBox</value>
@@ -481,7 +433,7 @@
     <value>315, 59</value>
   </data>
   <data name="FileNamePanel.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;FileNamePanel.Name" xml:space="preserve">
     <value>FileNamePanel</value>
@@ -875,7 +827,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Create New Identity</value>
+    <value>Create New Passphrase</value>
   </data>
   <data name="&gt;&gt;_errorProvider1.Name" xml:space="preserve">
     <value>_errorProvider1</value>

@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Extensions;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
@@ -39,41 +40,43 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// passphrase will have the same thumbprint regardless of which crypto is actually used when encrypting data
     /// with the corresponding passphrase.
     /// </summary>
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
+    [JsonObject(MemberSerialization.OptIn)]
     public class SymmetricKeyThumbprint : IEquatable<SymmetricKeyThumbprint>
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This class is immutable.")]
-        public static readonly SymmetricKeyThumbprint Zero = new SymmetricKeyThumbprint();
+        public static readonly SymmetricKeyThumbprint Zero = new SymmetricKeyThumbprint(new byte[8]);
 
-        [DataMember(Name = "Thumbprint")]
+        [JsonProperty("thumbprint")]
         private byte[] _bytes;
 
-        private SymmetricKeyThumbprint()
+        [JsonConstructor]
+        private SymmetricKeyThumbprint(byte[] bytes)
         {
-            _bytes = new byte[8];
+            _bytes = bytes;
         }
 
         /// <summary>
         /// Instantiate a thumb print
         /// </summary>
-        /// <param name="key">The key to thumbprint.</param>
+        /// <param name="passphrase">The passphrase to thumbprint.</param>
         /// <param name="salt">The salt to use.</param>
-        public SymmetricKeyThumbprint(IPassphrase key, KeyWrapSalt salt, long iterations)
+        public SymmetricKeyThumbprint(Passphrase passphrase, Salt salt, long keyWrapIterations)
         {
-            if (key == null)
+            if (passphrase == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("passphrase");
             }
             if (salt == null)
             {
                 throw new ArgumentNullException("salt");
             }
 
-            ICrypto crypto = new V1AesCrypto(new V1Passphrase(key.Passphrase));
-            KeyWrap keyWrap = new KeyWrap(crypto, salt, iterations, KeyWrapMode.Specification);
-            byte[] wrap = keyWrap.Wrap(new V1Passphrase(key.Passphrase).DerivedKey);
+            ICryptoFactory factory = Resolve.CryptoFactory.Minimum;
+            ICrypto crypto = factory.CreateCrypto(factory.RestoreDerivedKey(passphrase, salt, CryptoFactory.DerivationIterations).DerivedKey, null, 0);
+            KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
+            byte[] wrap = keyWrap.Wrap(crypto, crypto.Key);
 
-            _bytes = wrap.Reduce(8);
+            _bytes = wrap.Reduce(6);
         }
 
         #region IEquatable<AesKeyThumbprint> Members

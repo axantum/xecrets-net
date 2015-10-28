@@ -50,12 +50,12 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestSimpleLogging()
         {
             string s = null;
-            Instance.Log.Logged += (sender, e) =>
+            Resolve.Log.Logged += (sender, e) =>
             {
                 s = e.Message;
             };
 
-            Instance.Log.LogError("A Logging Message");
+            Resolve.Log.LogError("A Logging Message");
             Assert.That(s, Is.EqualTo("A Logging Message"));
         }
     }

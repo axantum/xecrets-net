@@ -25,9 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -35,10 +38,19 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         public WorkFolder(string path)
         {
-            FileInfo = Factory.New<IRuntimeFileInfo>(path);
+            FileInfo = New<IDataContainer>(path);
             FileInfo.CreateFolder();
         }
 
-        public IRuntimeFileInfo FileInfo { get; private set; }
+        public IDataContainer FileInfo { get; private set; }
+
+        public virtual IDataContainer CreateTemporaryFolder()
+        {
+            string destinationFolder = Resolve.Portable.Path().Combine(New<WorkFolder>().FileInfo.FullName, Resolve.Portable.Path().GetFileNameWithoutExtension(Resolve.Portable.Path().GetRandomFileName()) + Resolve.Portable.Path().DirectorySeparatorChar);
+            IDataContainer destinationFolderInfo = New<IDataContainer>(destinationFolder);
+            destinationFolderInfo.CreateFolder();
+
+            return destinationFolderInfo;
+        }
     }
 }

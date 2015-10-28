@@ -29,9 +29,8 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -39,156 +38,75 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public AxCryptFactory()
+        public virtual DecryptionParameter FindDecryptionParameter(IEnumerable<DecryptionParameter> decryptionParameters, IDataStore encryptedFileInfo)
         {
+            if (encryptedFileInfo == null)
+            {
+                throw new ArgumentNullException("encryptedFileInfo");
+            }
+
+            DecryptionParameter foundParameter;
+            using (CreateDocument(decryptionParameters, encryptedFileInfo.OpenRead(), out foundParameter))
+            {
+            }
+            return foundParameter;
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public ICrypto CreateCrypto(IPassphrase key)
+        public virtual IAxCryptDocument CreateDocument(EncryptionParameters encryptionParameters)
         {
-            if (key == null)
+            if (encryptionParameters == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("encryptionParameters");
             }
 
-            if (key.CryptoName == CryptoName.AES_128_V1)
+            long keyWrapIterations = Resolve.UserSettings.GetKeyWrapIterations(encryptionParameters.CryptoId);
+            if (encryptionParameters.CryptoId == V1Aes128CryptoFactory.CryptoId)
             {
-                return new V1AesCrypto(key);
+                return new V1AxCryptDocument(encryptionParameters.Passphrase, keyWrapIterations);
             }
-            if (key.CryptoName == CryptoName.AES_256)
-            {
-                return new V2AesCrypto(key);
-            }
-            if (key.CryptoName == CryptoName.Unknown && key.DerivedKey.Length == 16)
-            {
-                return new V1AesCrypto(key);
-            }
-            if (key.CryptoName == CryptoName.Unknown && key.DerivedKey.Length == 32)
-            {
-                return new V2AesCrypto(key);
-            }
-            throw new InternalErrorException("Invalid CryptoName in parameter 'key'.");
+            return new V2AxCryptDocument(encryptionParameters, keyWrapIterations);
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IPassphrase CreatePassphrase(string passphrase, CryptoName cryptoName)
+        /// <summary>
+        /// Instantiate an instance of IAxCryptDocument appropriate for the file provided, i.e. V1 or V2.
+        /// </summary>
+        /// <param name="decryptionParameters">The possible decryption parameters to try.</param>
+        /// <param name="inputStream">The input stream.</param>
+        /// <returns></returns>
+        public virtual IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream)
         {
-            switch (cryptoName)
+            DecryptionParameter foundParameter;
+            return CreateDocument(decryptionParameters, inputStream, out foundParameter);
+        }
+
+        private static IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream, out DecryptionParameter foundParameter)
+        {
+            Headers headers = new Headers();
+            AxCryptReaderBase reader = headers.CreateReader(new LookAheadStream(inputStream));
+
+            IAxCryptDocument document = AxCryptReaderBase.Document(reader);
+            foreach (DecryptionParameter decryptionParameter in decryptionParameters)
             {
-                case CryptoName.AES_256:
-                    return new V2Passphrase(passphrase, 256);
-
-                case CryptoName.AES_128_V1:
-                    return new V1Passphrase(passphrase);
-            }
-            throw new InternalErrorException("Invalid CryptoName in parameter 'cryptoName'.");
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IPassphrase CreatePassphrase(string passphrase)
-        {
-            return new V2Passphrase(passphrase, 256);
-        }
-
-        public virtual IPassphrase CreatePassphrase(string passphrase, string encryptedFileFullName)
-        {
-            IPassphrase key = Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName));
-            return key;
-        }
-
-        public virtual IPassphrase CreatePassphrase(string passphrase, IRuntimeFileInfo encryptedFileInfo)
-        {
-            using (Stream encryptedStream = encryptedFileInfo.OpenRead())
-            {
-                Headers headers = new Headers();
-                AxCryptReader reader = headers.Load(encryptedStream);
-
-                IPassphrase key = reader.Crypto(headers, passphrase).Key;
-                using (IAxCryptDocument document = CreateDocument(key, headers, reader))
+                if (decryptionParameter.Passphrase != null)
                 {
+                    document.Load(decryptionParameter.Passphrase, decryptionParameter.CryptoId, headers);
                     if (document.PassphraseIsValid)
                     {
-                        return key;
+                        document.DecryptionParameter = foundParameter = decryptionParameter;
+                        return document;
+                    }
+                }
+                if (decryptionParameter.PrivateKey != null)
+                {
+                    document.Load(decryptionParameter.PrivateKey, decryptionParameter.CryptoId, headers);
+                    if (document.PassphraseIsValid)
+                    {
+                        document.DecryptionParameter = foundParameter = decryptionParameter;
+                        return document;
                     }
                 }
             }
-            return null;
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IAxCryptDocument CreateDocument(IPassphrase key)
-        {
-            IAxCryptDocument document;
-            switch (key.CryptoName)
-            {
-                case CryptoName.AES_128_V1:
-                    document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.V1KeyWrapIterations);
-                    break;
-
-                case CryptoName.AES_256:
-                    document = new V2AxCryptDocument(new V2AesCrypto(key), Instance.UserSettings.V2KeyWrapIterations);
-                    break;
-
-                default:
-                    throw new InternalErrorException("Invalid CryptoName in parameter 'cryptoName'.");
-            }
-            return document;
-        }
-
-        /// <summary>
-        /// Instantiate an instance of IAxCryptDocument appropriate for the file provided, i.e. V1 or V2.
-        /// </summary>
-        /// <param name="passphrase">The passphrase.</param>
-        /// <param name="fileInfo">The file to use.</param>
-        /// <returns></returns>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IAxCryptDocument CreateDocument(string passphrase, Stream inputStream)
-        {
-            Headers headers = new Headers();
-            AxCryptReader reader = headers.Load(inputStream);
-
-            IPassphrase key = reader.Crypto(headers, passphrase).Key;
-            return CreateDocument(key, headers, reader);
-        }
-
-        /// <summary>
-        /// Instantiate an instance of IAxCryptDocument appropriate for the file provided, i.e. V1 or V2.
-        /// </summary>
-        /// <param name="fileInfo"></param>
-        /// <returns></returns>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IAxCryptDocument CreateDocument(IPassphrase key, Stream inputStream)
-        {
-            Headers headers = new Headers();
-            AxCryptReader reader = headers.Load(inputStream);
-
-            return CreateDocument(key, headers, reader);
-        }
-
-        private static IAxCryptDocument CreateDocument(IPassphrase key, Headers headers, AxCryptReader reader)
-        {
-            VersionHeaderBlock versionHeader = headers.FindHeaderBlock<VersionHeaderBlock>();
-            IAxCryptDocument document;
-            switch (versionHeader.FileVersionMajor)
-            {
-                case 1:
-                case 2:
-                case 3:
-                    V1AxCryptDocument v1Document = new V1AxCryptDocument();
-                    v1Document.Load(key, reader, headers);
-                    document = v1Document;
-                    break;
-
-                case 4:
-                    V2AxCryptDocument v2Document = new V2AxCryptDocument();
-                    v2Document.Load(key, reader, headers);
-                    document = v2Document;
-                    break;
-
-                default:
-                    throw new FileFormatException("Too new file version. Please upgrade.");
-            }
-
+            foundParameter = null;
             return document;
         }
     }

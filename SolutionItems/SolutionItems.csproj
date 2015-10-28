@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,9 +10,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SolutionItems</RootNamespace>
     <AssemblyName>SolutionItems</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>bin\Debug\</OutputPath>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <None Include="Axantum.targets">
@@ -20,13 +24,15 @@
     </None>
     <None Include="..\Solution.FxCop" />
     <None Include="AxantumStrongName.pub" />
+    <None Include="Solution.runsettings">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\AboutTheSolutions.txt">
       <Link>AboutTheSolutions.txt</Link>
     </Content>
     <Content Include="AxCrypt 2.0 Design.html" />
-    <Content Include="BouncyCastle.Crypto.dll" />
     <Content Include="..\CustomDictionary.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -35,12 +41,18 @@
     <Content Include="Moq\lib\net35\Moq.xml" />
     <Content Include="Moq\lib\net40\Moq.dll" />
     <Content Include="Moq\lib\net40\Moq.xml" />
+    <Content Include="MSBuild.Axantum.Tasks.dll" />
     <Content Include="MSBuildVersioning.dll" />
     <Content Include="HowToBuild.txt" />
-    <Content Include="Newtonsoft.Json.dll" />
     <Content Include="nunit.framework.dll" />
     <Content Include="signtool.exe" />
     <Content Include="sn.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

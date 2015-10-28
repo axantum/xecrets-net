@@ -27,107 +27,49 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public class SessionNotification : IEquatable<SessionNotification>
+    public class SessionNotification
     {
-        public IPassphrase Key { get; private set; }
+        public LogOnIdentity Identity { get; private set; }
 
-        public string FullName { get; private set; }
+        public IEnumerable<string> FullNames { get; private set; }
 
         public SessionNotificationType NotificationType { get; private set; }
 
-        public SessionNotification(SessionNotificationType notificationType, IPassphrase key, string fullName)
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, IEnumerable<string> fullNames)
         {
             NotificationType = notificationType;
-            Key = key;
-            FullName = fullName;
+            Identity = identity;
+            FullNames = fullNames;
+        }
+
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, string fullName)
+            : this(notificationType, identity, new string[] { fullName })
+        {
+        }
+
+        public SessionNotification(SessionNotificationType notificationType, IEnumerable<string> fullNames)
+            : this(notificationType, LogOnIdentity.Empty, fullNames)
+        {
         }
 
         public SessionNotification(SessionNotificationType notificationType, string fullName)
-            : this(notificationType, new GenericPassphrase(String.Empty), fullName)
+            : this(notificationType, LogOnIdentity.Empty, new string[] { fullName })
         {
         }
 
-        public SessionNotification(SessionNotificationType notificationType, IPassphrase key)
-            : this(notificationType, key, String.Empty)
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity)
+            : this(notificationType, identity, new string[0])
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType)
-            : this(notificationType, new GenericPassphrase(String.Empty), String.Empty)
+            : this(notificationType, LogOnIdentity.Empty, new string[0])
         {
-        }
-
-        #region IEquatable<AesKey> Members
-
-        public bool Equals(SessionNotification other)
-        {
-            if ((object)other == null)
-            {
-                return false;
-            }
-
-            if (other.NotificationType != NotificationType)
-            {
-                return false;
-            }
-
-            if (!other.Key.Equals(Key))
-            {
-                return false;
-            }
-
-            if (other.FullName != FullName)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion IEquatable<AesKey> Members
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null || typeof(SessionNotification) != obj.GetType())
-            {
-                return false;
-            }
-            SessionNotification other = (SessionNotification)obj;
-
-            return Equals(other);
-        }
-
-        public override int GetHashCode()
-        {
-            int hashcode;
-
-            hashcode = Key != null ? Key.GetHashCode() : 0;
-            hashcode ^= FullName != null ? FullName.GetHashCode() : 0;
-            hashcode ^= NotificationType.GetHashCode();
-
-            return hashcode;
-        }
-
-        public static bool operator ==(SessionNotification left, SessionNotification right)
-        {
-            if (Object.ReferenceEquals(left, right))
-            {
-                return true;
-            }
-            if ((object)left == null)
-            {
-                return false;
-            }
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(SessionNotification left, SessionNotification right)
-        {
-            return !(left == right);
         }
     }
 }

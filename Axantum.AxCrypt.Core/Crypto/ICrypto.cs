@@ -25,44 +25,35 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Algorithm;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     public interface ICrypto
     {
         /// <summary>
-        /// Gets the unique name of the algorithm implementation.
-        /// </summary>
-        /// <value>
-        /// The name. This must be a short, language independent name usable both as an internal identifier, and as a display name.
-        /// Typical values are "AES-128", "AES-256". The UI may use these as indexes for localized or clearer names, but if unknown
-        /// the UI must be able to fallback and actually display this identifier as a selector for example in the UI. This is to
-        /// support plug-in algorithm implementations in the future.
-        /// </value>
-        string Name { get; }
-
-        /// <summary>
         /// Gets the key associated with this instance.
         /// </summary>
         /// <value>
         /// The key.
         /// </value>
-        IPassphrase Key { get; }
-
-        int BlockLength { get; }
-
-        bool IsValidKeyLength(int length);
+        SymmetricKey Key { get; }
 
         /// <summary>
-        /// Create an instance of the underlying symmetric algorithm.
+        /// Gets the underlying algorithm block length in bytes
         /// </summary>
+        int BlockLength { get; }
+
+        /// <summary>
+        /// Create an instance of a transform suitable for NIST Key Wrap.
+        /// </summary>
+        /// <returns></returns>
         /// <value>
-        /// An instance of the algorithm.
+        /// An instance of the transform.
         /// </value>
-        SymmetricAlgorithm CreateAlgorithm();
+        IKeyWrapTransform CreateKeyWrapTransform(Salt salt, KeyWrapDirection keyWrapDirection);
 
         /// <summary>
         /// Decrypt in one operation.
@@ -82,12 +73,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Using this instances parameters, create a decryptor
         /// </summary>
         /// <returns>A new decrypting transformation instance</returns>
-        ICryptoTransform CreateDecryptingTransform();
+        ICryptoTransform DecryptingTransform();
 
         /// <summary>
         /// Using this instances parameters, create an encryptor
         /// </summary>
         /// <returns>A new encrypting transformation instance</returns>
-        ICryptoTransform CreateEncryptingTransform();
+        ICryptoTransform EncryptingTransform();
     }
 }

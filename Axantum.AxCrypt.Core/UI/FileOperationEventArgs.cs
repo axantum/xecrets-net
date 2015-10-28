@@ -25,8 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.IO;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
@@ -36,23 +40,26 @@ namespace Axantum.AxCrypt.Core.UI
     {
         public FileOperationEventArgs()
         {
-            Status = FileOperationStatus.Unknown;
+            Status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
+            SharedPublicKeys = new UserPublicKey[0];
         }
 
         public string SaveFileFullName { get; set; }
 
         public string OpenFileFullName { get; set; }
 
-        public string Passphrase { get; set; }
+        public LogOnIdentity LogOnIdentity { get; set; }
+
+        public IEnumerable<UserPublicKey> SharedPublicKeys { get; set; }
+
+        public Guid CryptoId { get; set; }
 
         public bool ConfirmAll { get; set; }
 
         public bool Skip { get; set; }
 
-        public IPassphrase Key { get; set; }
+        public IDataStore AxCryptFile { get; set; }
 
-        public IAxCryptDocument AxCryptDocument { get; set; }
-
-        public FileOperationStatus Status { get; set; }
+        public FileOperationContext Status { get; set; }
     }
 }

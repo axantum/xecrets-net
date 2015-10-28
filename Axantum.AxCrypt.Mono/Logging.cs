@@ -92,27 +92,27 @@ namespace Axantum.AxCrypt.Mono
 
         public bool IsFatalEnabled
         {
-            get { return _switch.Level >= TraceLevel.Off; }
+            get { return _switch != null && _switch.Level >= TraceLevel.Off; }
         }
 
         public bool IsErrorEnabled
         {
-            get { return _switch.Level >= TraceLevel.Error; }
+            get { return _switch != null && _switch.Level >= TraceLevel.Error; }
         }
 
         public bool IsWarningEnabled
         {
-            get { return _switch.Level >= TraceLevel.Warning; }
+            get { return _switch != null && _switch.Level >= TraceLevel.Warning; }
         }
 
         public bool IsInfoEnabled
         {
-            get { return _switch.Level >= TraceLevel.Info; }
+            get { return _switch != null && _switch.Level >= TraceLevel.Info; }
         }
 
         public bool IsDebugEnabled
         {
-            get { return _switch.Level >= TraceLevel.Verbose; }
+            get { return _switch != null && _switch.Level >= TraceLevel.Verbose; }
         }
 
         public virtual void LogFatal(string message)

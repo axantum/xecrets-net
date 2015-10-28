@@ -27,9 +27,12 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -50,17 +53,21 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
-        public static void TestPrematureEndOfFile()
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestPrematureEndOfFile(CryptoImplementation cryptoImplementation)
         {
-            ICrypto crypto = new V1AesCrypto(new V1Passphrase("passphrase"));
-            V1DocumentHeaders headers = new V1DocumentHeaders(crypto, 10);
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            V1DocumentHeaders headers = new V1DocumentHeaders(new Passphrase("passphrase"), 10);
             using (MemoryStream stream = new MemoryStream())
             {
                 headers.WriteWithoutHmac(stream);
                 stream.Position = 0;
 
-                using (V1AxCryptReader reader = new V1AxCryptReader(stream))
+                using (V1AxCryptReader reader = new V1AxCryptReader(new LookAheadStream(stream)))
                 {
                     AxCryptItemType lastItemType = AxCryptItemType.Undefined;
                     while (reader.Read())
@@ -77,19 +84,6 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(reader.Read(), Is.False);
                     Assert.That(reader.CurrentItemType, Is.EqualTo(AxCryptItemType.EndOfStream));
                 }
-            }
-        }
-
-        [Test]
-        public static void TestGetCrypto()
-        {
-            using (V1AxCryptReader reader = new V1AxCryptReader(Stream.Null))
-            {
-                IPassphrase key = new V1Passphrase("allan");
-                ICrypto crypto = reader.Crypto(key);
-
-                Assert.That(crypto is V1AesCrypto, Is.True);
-                Assert.That(crypto.Key.Passphrase, Is.EqualTo(key.Passphrase));
             }
         }
     }

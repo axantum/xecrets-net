@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
@@ -48,10 +48,8 @@ namespace Axantum.AxCrypt.Core.Header
             TrailerBlocks = new List<HeaderBlock>();
         }
 
-        public AxCryptReader Load(Stream inputStream)
+        public AxCryptReader CreateReader(LookAheadStream inputStream)
         {
-            inputStream = new LookAheadStream(inputStream);
-
             IList<HeaderBlock> headers = LoadUnversionedHeaders(inputStream);
             AxCryptReader reader = CreateVersionedReader(inputStream, headers);
             reader.Reinterpret(headers, HeaderBlocks);
@@ -59,20 +57,18 @@ namespace Axantum.AxCrypt.Core.Header
             return reader;
         }
 
-        public void Load(AxCryptReader reader)
+        public void Load(AxCryptReaderBase reader)
         {
             HeaderBlocks = LoadFromReader(reader);
         }
 
-        private static IList<HeaderBlock> LoadUnversionedHeaders(Stream inputStream)
+        private static IList<HeaderBlock> LoadUnversionedHeaders(LookAheadStream inputStream)
         {
-            using (VXAxCryptReader vxReader = new VXAxCryptReader(inputStream))
-            {
-                return LoadFromReader(vxReader);
-            }
+            UnversionedAxCryptReader vxReader = new UnversionedAxCryptReader(inputStream);
+            return LoadFromReader(vxReader);
         }
 
-        private static IList<HeaderBlock> LoadFromReader(AxCryptReader vxReader)
+        private static IList<HeaderBlock> LoadFromReader(AxCryptReaderBase vxReader)
         {
             List<HeaderBlock> headers = new List<HeaderBlock>();
             vxReader.Read();
@@ -85,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Header
             return headers;
         }
 
-        private static AxCryptReader CreateVersionedReader(Stream inputStream, IList<HeaderBlock> headers)
+        private static AxCryptReader CreateVersionedReader(LookAheadStream inputStream, IList<HeaderBlock> headers)
         {
             AxCryptReader reader;
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>(headers);
@@ -107,13 +103,18 @@ namespace Axantum.AxCrypt.Core.Header
             return reader;
         }
 
-        public void Trailers(AxCryptReader reader)
+        public void Trailers(AxCryptReaderBase reader)
         {
+            if (reader == null)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
             TrailerBlocks.Add(reader.CurrentHeaderBlock);
             ReadHeadersToLast(TrailerBlocks, reader, HeaderBlockType.V2Hmac);
         }
 
-        private static void ReadHeadersToLast(IList<HeaderBlock> headerBlocks, AxCryptReader axCryptReader, HeaderBlockType last)
+        private static void ReadHeadersToLast(IList<HeaderBlock> headerBlocks, AxCryptReaderBase axCryptReader, HeaderBlockType last)
         {
             while (axCryptReader.Read())
             {
@@ -124,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Header
                         break;
 
                     default:
-                        throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
+                        throw new InternalErrorException("The reader returned an item type it should not be possible for it to return.");
                 }
 
                 headerBlocks.Add(axCryptReader.CurrentHeaderBlock);

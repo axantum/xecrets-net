@@ -25,29 +25,55 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.IO;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public class V2HmacStream : Stream
+    public sealed class V2HmacStream : V2HmacStream<Stream>
     {
-        private HashAlgorithm _hmac;
-
-        public Stream ChainedStream { get; protected set; }
-
-        private long _count = 0;
-
-        private bool _disposed = false;
+        /// <summary>
+        /// Creates a AxCrypt HMAC-SHA-512 calculating stream.
+        /// </summary>
+        /// <typeparam name="TChained">The type of the chained actual output stream.</typeparam>
+        /// <param name="hmacCalculator">The hmac calculator to use.</param>
+        /// <param name="chainedStream">The chained stream. Will be disposed when this instance is disposed.</param>
+        /// <returns>A stream to write data to calculate HMAC for to.</returns>
+        /// <remarks>This factory method is used instead of a constructor in order to use type inference and offer a cleaner syntax for the comsumer.</remarks>
+        public static V2HmacStream<TChained> Create<TChained>(V2HmacCalculator hmacCalculator, TChained chainedStream) where TChained : Stream
+        {
+            return ChainedStream<TChained>.Create((chained) => new V2HmacStream<TChained>(hmacCalculator, chainedStream), chainedStream);
+        }
 
         /// <summary>
-        /// A AxCrypt HMAC-calculating stream.
+        /// Instantiate an AxCrypt HMAC-calculating stream.
         /// </summary>
-        /// <param name="key">The key for the HMAC</param>
-        public V2HmacStream(byte[] key)
-            : this(key, Stream.Null)
+        /// <param name="hmacCalculator">The hmac calculator to use.</param>
+        /// <returns>A stream to write data to calculate HMAC for to.</returns>
+        /// <remarks>This factory method is used instead of a constructor in order to use type inference and offer a cleaner syntax for the comsumer.</remarks>
+        public static V2HmacStream<Stream> Create(V2HmacCalculator hmacCalculator)
+        {
+            return Create<Stream>(hmacCalculator, Stream.Null);
+        }
+    }
+
+    /// <summary>
+    /// An AxCrypt HMAC-SHA-512-calculating stream filter
+    /// </summary>
+    /// <typeparam name="T">The type of the stream to actually write to</typeparam>
+    public class V2HmacStream<T> : ChainedStream<T> where T : Stream
+    {
+        private V2HmacCalculator _calculator;
+
+        protected V2HmacStream()
+            : base(Stream.Null as T)
+        {
+        }
+
+        protected V2HmacStream(V2HmacCalculator calculator)
+            : this(calculator, Stream.Null as T)
         {
         }
 
@@ -55,39 +81,16 @@ namespace Axantum.AxCrypt.Core.IO
         /// An AxCrypt HMAC-SHA-512-calculating stream.
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
-        /// <param name="chainedStream">A stream where data is chain-written to. This stream is not disposed of when this instance is disposed.</param>
-        public V2HmacStream(byte[] key, Stream chainedStream)
+        /// <param name="chainedStream">A stream where data is written to. This stream is disposed of when this instance is disposed.</param>
+        internal V2HmacStream(V2HmacCalculator calculator, T chainedStream)
+            : base(chainedStream)
         {
-            if (key == null)
+            if (calculator == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("calculator");
             }
 
-            _hmac = new HMACSHA512(key);
-
-            ChainedStream = chainedStream;
-        }
-
-        private byte[] _hmacResult = null;
-
-        /// <summary>
-        /// Get the calculated HMAC
-        /// </summary>
-        /// <returns>The HMAC</returns>
-        public Hmac Hmac
-        {
-            get
-            {
-                EnsureNotDisposed();
-                if (_hmacResult == null)
-                {
-                    _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
-                    byte[] result = new byte[_hmac.HashSize / 8];
-                    Array.Copy(_hmac.Hash, 0, result, 0, result.Length);
-                    _hmacResult = result;
-                }
-                return new V2Hmac(_hmacResult);
-            }
+            _calculator = calculator;
         }
 
         public override bool CanRead
@@ -107,14 +110,14 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override long Length
         {
-            get { return _count; }
+            get { return _calculator.Count; }
         }
 
         public override long Position
         {
             get
             {
-                return _count;
+                return _calculator.Count;
             }
             set
             {
@@ -124,7 +127,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override void Flush()
         {
-            ChainedStream.Flush();
+            Chained.Flush();
         }
 
         public override int Read(byte[] buffer, int offset, int count)
@@ -145,41 +148,15 @@ namespace Axantum.AxCrypt.Core.IO
         public override void Write(byte[] buffer, int offset, int count)
         {
             EnsureNotDisposed();
-            WriteInternal(buffer, offset, count);
-            ChainedStream.Write(buffer, offset, count);
+            _calculator.Write(buffer, offset, count);
+            Chained.Write(buffer, offset, count);
         }
 
-        private void WriteInternal(byte[] buffer, int offset, int count)
-        {
-            if (_hmacResult != null)
-            {
-                return;
-            }
-            _hmac.TransformBlock(buffer, offset, count, null, 0);
-            _count += count;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_disposed)
-                {
-                    return;
-                }
-                if (_hmac != null)
-                {
-                    _hmac.Clear();
-                    _hmac = null;
-                }
-                _disposed = true;
-            }
-            base.Dispose(disposing);
-        }
+        public Hmac Hmac { get { return _calculator.Hmac; } }
 
         private void EnsureNotDisposed()
         {
-            if (_disposed)
+            if (Chained == null)
             {
                 throw new ObjectDisposedException(GetType().FullName);
             }

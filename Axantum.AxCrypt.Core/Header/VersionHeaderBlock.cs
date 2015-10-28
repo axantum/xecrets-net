@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.Header
     public class VersionHeaderBlock : HeaderBlock
     {
         public VersionHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.Version, (byte[])dataBlock.Clone())
+            : base(HeaderBlockType.Version, dataBlock)
         {
         }
 
@@ -44,6 +44,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public void SetCurrentVersion(byte[] version)
         {
+            if (version == null)
+            {
+                throw new ArgumentNullException("version");
+            }
+
             Array.Copy(version, GetDataBlockBytesReference(), version.Length);
         }
 

@@ -25,19 +25,15 @@
 
 #endregion Coypright and License
 
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    [CollectionDataContract(ItemName = "FileState", Namespace = "http://wwww.axantum.com/Serialization/")]
+    [JsonObject(MemberSerialization.OptIn)]
     public class ActiveFileCollection : List<ActiveFile>
     {
-        public ActiveFileCollection()
-            : base()
-        {
-        }
-
         public ActiveFileCollection(IEnumerable<ActiveFile> collection)
             : base(collection)
         {

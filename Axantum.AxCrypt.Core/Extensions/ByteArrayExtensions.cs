@@ -56,6 +56,15 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <returns>The location in the buffer of the pattern, or -1 if not found</returns>
         public static int Locate(this byte[] buffer, byte[] pattern, int offset, int count, int increment)
         {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+            if (pattern == null)
+            {
+                throw new ArgumentNullException("pattern");
+            }
+
             int candidatePosition = offset;
             while (candidatePosition - offset + pattern.Length <= count)
             {
@@ -126,6 +135,15 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static byte[] Append(this byte[] left, params byte[][] arrays)
         {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
+            if (arrays == null)
+            {
+                throw new ArgumentNullException("arrays");
+            }
+
             int length = 0;
             foreach (byte[] array in arrays)
             {
@@ -141,6 +159,21 @@ namespace Axantum.AxCrypt.Core.Extensions
                 index += array.Length;
             }
             return concatenatedArray;
+        }
+
+        public static byte[] Fill(this byte[] left, byte value)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException(nameof(left));
+            }
+
+            for (int i = 0; i < left.Length; ++i)
+            {
+                left[i] = value;
+            }
+
+            return left;
         }
 
         public static bool IsEquivalentTo(this byte[] left, int leftOffset, byte[] right, int rightOffset, int length)
@@ -207,6 +240,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static long GetLittleEndianValue(this byte[] left, int offset, int length)
         {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
+
             long value = 0;
             while (length-- > 0)
             {
@@ -218,6 +256,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static long GetBigEndianValue(this byte[] left, int offset, int length)
         {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
+
             long value = 0;
             for (int i = 0; i < length; ++i)
             {
@@ -227,8 +270,21 @@ namespace Axantum.AxCrypt.Core.Extensions
             return value;
         }
 
+        /// <summary>
+        /// Reduces the byte array to the specified length by xoring each byte[index modulo the length].
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="length">The length.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">value</exception>
+        /// <exception cref="System.ArgumentException">Can't reduce a byte array that is already shorter than the target length.</exception>
         public static byte[] Reduce(this byte[] value, int length)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
             if (value.Length == 0)
             {
                 return value;
@@ -243,6 +299,17 @@ namespace Axantum.AxCrypt.Core.Extensions
                 reduced[i % length] ^= value[i];
             }
             return reduced;
+        }
+
+        public static byte[] SetFrom(this byte[] left, byte[] right)
+        {
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
+
+            right.CopyTo(left, 0);
+            return left;
         }
     }
 }

@@ -25,16 +25,40 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono.Portable;
 using System;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Mono
 {
     public class RuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
-        private IFileWatcher _workFolderWatcher;
+        public static void RegisterTypeFactories()
+        {
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<ILogging>(() => new Logging());
+            TypeMap.Register.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
+            TypeMap.Register.Singleton<IPlatform>(() => new MonoPlatform());
+
+            TypeMap.Register.New<ISleep>(() => new Sleep());
+            TypeMap.Register.New<IDelayTimer>(() => new DelayTimer());
+            TypeMap.Register.New<string, IDataStore>((path) => new DataStore(path));
+            TypeMap.Register.New<string, IDataContainer>((path) => new DataContainer(path));
+            TypeMap.Register.New<string, IDataItem>((path) => DataItem.Create(path));
+            TypeMap.Register.New<IRestCaller>(() => new RestCaller());
+        }
 
         public RuntimeEnvironment(string extension)
         {
@@ -59,30 +83,7 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
-                OperatingSystem os = global::System.Environment.OSVersion;
-                PlatformID pid = os.Platform;
-                switch (pid)
-                {
-                    case PlatformID.Win32NT:
-                    case PlatformID.Win32S:
-                    case PlatformID.Win32Windows:
-                        return Platform.WindowsDesktop;
-
-                    case PlatformID.MacOSX:
-                        return Platform.MacOsx;
-
-                    case PlatformID.Unix:
-                        return Platform.Linux;
-
-                    case PlatformID.WinCE:
-                        return Platform.WindowsMobile;
-
-                    case PlatformID.Xbox:
-                        return Platform.Xbox;
-
-                    default:
-                        return Platform.Unknown;
-                }
+                return New<IPlatform>().Platform;
             }
         }
 
@@ -96,24 +97,9 @@ namespace Axantum.AxCrypt.Mono
             get { return DateTime.UtcNow; }
         }
 
-        public virtual ILauncher Launch(string path)
-        {
-            return new Launcher(path);
-        }
-
         public ITiming StartTiming()
         {
             return new Timing();
-        }
-
-        public IWebCaller CreateWebCaller()
-        {
-            return new WebCaller();
-        }
-
-        public IDataProtection DataProtection
-        {
-            get { return new DataProtection(); }
         }
 
         public bool CanTrackProcess
@@ -137,11 +123,6 @@ namespace Axantum.AxCrypt.Mono
 
         private void DisposeInternal()
         {
-            if (_workFolderWatcher != null)
-            {
-                _workFolderWatcher.Dispose();
-                _workFolderWatcher = null;
-            }
             if (_firstInstanceMutex != null)
             {
                 _firstInstanceMutex.Close();
@@ -171,7 +152,7 @@ namespace Axantum.AxCrypt.Mono
 
         private EventWaitHandle _firstInstanceRunning;
 
-        private EventWaitHandle FirstInstanceRunningEventWait
+        private EventWaitHandle FirstInstanceEvent
         {
             get
             {
@@ -187,7 +168,7 @@ namespace Axantum.AxCrypt.Mono
 
         private bool _isFirstInstance;
 
-        public virtual bool IsFirstInstance
+        public bool IsFirstInstance
         {
             get
             {
@@ -196,21 +177,44 @@ namespace Axantum.AxCrypt.Mono
                     _firstInstanceMutex = new Mutex(true, "Axantum.AxCrypt.NET-FirstInstance", out _isFirstInstance);
                     if (_isFirstInstance)
                     {
-                        FirstInstanceRunningEventWait.Set();
+                        FirstInstanceEvent.Set();
                     }
                 }
                 return _isFirstInstance;
             }
         }
 
-        public virtual bool FirstInstanceRunning(TimeSpan timeout)
+        public bool FirstInstanceRunning(TimeSpan timeout)
         {
-            return FirstInstanceRunningEventWait.WaitOne(timeout, false);
+            return FirstInstanceEvent.WaitOne(timeout, false);
         }
 
         public void ExitApplication(int exitCode)
         {
             Environment.Exit(exitCode);
+        }
+
+        public void DebugMode(bool enable)
+        {
+            if (enable)
+            {
+                ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
+                {
+                    return true;
+                };
+            }
+            else
+            {
+                ServicePointManager.ServerCertificateValidationCallback = null;
+            }
+        }
+
+        public SynchronizationContext SynchronizationContext
+        {
+            get
+            {
+                return SynchronizationContext.Current ?? new SynchronizationContext();
+            }
         }
     }
 }

@@ -25,9 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Fake;
+using Axantum.AxCrypt.Mono.Portable;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -38,24 +43,39 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestV2KeyWrapHeaderBlock
     {
-        private static readonly IPassphrase _keyEncryptingKey128 = new GenericPassphrase(new SymmetricKey(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F }));
+        private class DerivedKeyForTest : DerivedKeyBase
+        {
+            public DerivedKeyForTest(SymmetricKey key)
+            {
+                DerivedKey = key;
+                DerivationSalt = Salt.Zero;
+                DerivationIterations = 1;
+            }
+        }
+
+        private static readonly IDerivedKey _keyEncryptingKey128 = new DerivedKeyForTest(new SymmetricKey(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F }));
         private static readonly SymmetricKey _keyData128 = new SymmetricKey(new byte[] { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF });
         private static readonly byte[] _wrapped128 = new byte[] { 0x1F, 0xA6, 0x8B, 0x0A, 0x81, 0x12, 0xB4, 0x47, 0xAE, 0xF3, 0x4B, 0xD8, 0xFB, 0x5A, 0x7B, 0x82, 0x9D, 0x3E, 0x86, 0x23, 0x71, 0xD2, 0xCF, 0xE5 };
 
-        private static readonly IPassphrase _keyEncryptingKey256 = new GenericPassphrase(new SymmetricKey(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F }));
+        private static readonly IDerivedKey _keyEncryptingKey256 = new DerivedKeyForTest(new SymmetricKey(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F }));
         private static readonly byte[] _keyData256 = new byte[] { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F };
         private static readonly byte[] _wrapped256 = new byte[] { 0x28, 0xC9, 0xF4, 0x04, 0xC4, 0xB8, 0x10, 0xF4, 0xCB, 0xCC, 0xB3, 0x5C, 0xFB, 0x87, 0xF8, 0x26, 0x3F, 0x57, 0x86, 0xE2, 0xD8, 0x0E, 0xD3, 0x26, 0xCB, 0xC7, 0xF0, 0xE7, 0x1A, 0x99, 0xF4, 0x3B, 0xFB, 0x98, 0x8B, 0x9B, 0x7A, 0x02, 0xDD, 0x21 };
 
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
+            TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
 
         [Test]
@@ -82,9 +102,9 @@ namespace Axantum.AxCrypt.Core.Test
             var mock = new Mock<IRandomGenerator>();
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == 248))).Returns(new byte[248]);
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == (16 + 16)))).Returns(_keyData128.GetBytes());
-            Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
+            TypeMap.Register.Singleton<IRandomGenerator>(() => mock.Object);
 
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(_keyEncryptingKey128, SymmetricIV.Zero128), 6);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes128CryptoFactory(), _keyEncryptingKey128, 6);
 
             byte[] bytes = header.GetDataBlockBytes();
             byte[] wrapped = new byte[24];
@@ -99,9 +119,9 @@ namespace Axantum.AxCrypt.Core.Test
             var mock = new Mock<IRandomGenerator>();
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == 248))).Returns(new byte[248]);
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == (32 + 16)))).Returns(_keyData256);
-            Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
+            TypeMap.Register.Singleton<IRandomGenerator>(() => mock.Object);
 
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(_keyEncryptingKey256, SymmetricIV.Zero128), 6);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), _keyEncryptingKey256, 6);
 
             byte[] bytes = header.GetDataBlockBytes();
             byte[] wrapped = new byte[40];
@@ -115,36 +135,69 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mock = new Mock<IRandomGenerator>();
             mock.Setup<byte[]>(x => x.Generate(It.IsAny<int>())).Returns<int>(v => new byte[v]);
-            Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
+            TypeMap.Register.Singleton<IRandomGenerator>(() => mock.Object);
 
-            IPassphrase keyEncryptingKey = new V2Passphrase("secret", Instance.RandomGenerator.Generate(32), 100, 256);
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128)), 250);
+            IDerivedKey keyEncryptingKey = new V2DerivedKey(new Passphrase("secret"), new Salt(256), 100, 256);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 250);
 
-            byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128)));
-            Assert.That(keyData.Length, Is.EqualTo(48));
+            SymmetricKey key = header.MasterKey;
+            Assert.That(key.GetBytes(), Is.EquivalentTo(new byte[32]));
 
-            byte[] expectedOriginalKeyData = new byte[48];
-            Assert.That(keyData, Is.EquivalentTo(expectedOriginalKeyData));
+            SymmetricIV iv = header.MasterIV;
+            Assert.That(iv.GetBytes(), Is.EquivalentTo(new byte[16]));
         }
 
         [Test]
         public static void TestUnwrapMasterKeyAndIV256WithNonzeroRandomNumbers()
         {
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
-            IPassphrase keyEncryptingKey = new V2Passphrase("secret", Instance.RandomGenerator.Generate(32), 100, 256);
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128)), 125);
+            IDerivedKey keyEncryptingKey = new V2DerivedKey(new Passphrase("secret"), new Salt(256), 100, 256);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 125);
 
-            byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128)));
-            Assert.That(keyData.Length, Is.EqualTo(48));
+            SymmetricKey key = header.MasterKey;
+            Assert.That(key.GetBytes(), Is.EquivalentTo(ByteSequence(key.GetBytes()[0], key.Size / 8)));
 
-            byte[] expectedOriginalKeyData = new byte[48];
-            expectedOriginalKeyData[0] = keyData[0];
-            for (int i = 1; i < expectedOriginalKeyData.Length; ++i)
+            SymmetricIV iv = header.MasterIV;
+            Assert.That(iv.GetBytes(), Is.EquivalentTo(ByteSequence(iv.GetBytes()[0], iv.Length)));
+        }
+
+        private static byte[] ByteSequence(byte start, int length)
+        {
+            byte[] sequence = new byte[length];
+            sequence[0] = start;
+            for (int i = 1; i < sequence.Length; ++i)
             {
-                expectedOriginalKeyData[i] = (byte)(expectedOriginalKeyData[i - 1] + 1);
+                sequence[i] = (byte)(sequence[i - 1] + 1);
             }
-            Assert.That(keyData, Is.EquivalentTo(expectedOriginalKeyData));
+            return sequence;
+        }
+
+        [Test]
+        public static void TestMasterIVWithWrongKeyEncryptingCrypto()
+        {
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+
+            IDerivedKey keyEncryptingKey = new V2DerivedKey(new Passphrase("secret"), new Salt(256), 100, 256);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 125);
+
+            header.SetDerivedKey(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("another secret"), 256));
+            SymmetricIV iv = header.MasterIV;
+
+            Assert.That(iv, Is.Null);
+        }
+
+        [Test]
+        public static void TestClone()
+        {
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+
+            IDerivedKey keyEncryptingKey = new V2DerivedKey(new Passphrase("secret"), new Salt(256), 100, 256);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 125);
+
+            V2KeyWrapHeaderBlock clone = (V2KeyWrapHeaderBlock)header.Clone();
+
+            Assert.That(header.GetDataBlockBytes(), Is.EquivalentTo(clone.GetDataBlockBytes()));
         }
     }
 }

@@ -38,6 +38,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         WindowsDesktop,
         WindowsMobile,
         WindowsPhone,
+        WindowsStoreApp,
         Linux,
         AppleIos,
         MacOsx,

@@ -25,13 +25,17 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -61,10 +65,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestPurgeInactive()
         {
+            TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
+
             ProcessState ps = new ProcessState();
 
-            ActiveFile activeFile1 = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted);
-            ILauncher launcher1 = OS.Current.Launch(activeFile1.EncryptedFileInfo.FullName);
+            ActiveFile activeFile1 = new ActiveFile(New<IDataStore>(@"C:\encrypted.axx"), New<IDataStore>(@"C:\decrypted.txt"), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ILauncher launcher1 = New<ILauncher>();
+            launcher1.Launch(activeFile1.EncryptedFileInfo.FullName);
             ps.Add(launcher1, activeFile1);
 
             Assert.That(ps.HasActiveProcess(activeFile1), Is.True);
@@ -80,8 +87,9 @@ namespace Axantum.AxCrypt.Core.Test
             fakeLauncher1.HasExited = true;
             Assert.That(ps.HasActiveProcess(activeFile1), Is.False);
 
-            ActiveFile activeFile2 = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted2.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted2.txt"), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted);
-            ILauncher launcher2 = OS.Current.Launch(activeFile2.EncryptedFileInfo.FullName);
+            ActiveFile activeFile2 = new ActiveFile(New<IDataStore>(@"C:\encrypted2.axx"), New<IDataStore>(@"C:\decrypted2.txt"), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ILauncher launcher2 = New<ILauncher>();
+            launcher2.Launch(activeFile2.EncryptedFileInfo.FullName);
             ps.Add(launcher2, activeFile2);
 
             Assert.That(ps.HasActiveProcess(activeFile1), Is.False);

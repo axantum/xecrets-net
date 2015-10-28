@@ -25,7 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -50,9 +52,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestStatusChecker()
         {
-            Factory.Instance.Singleton<IStatusChecker>(() => new FakeStatusChecker());
+            TypeMap.Register.Singleton<IStatusChecker>(() => new FakeStatusChecker());
 
-            IStatusChecker sc = Instance.StatusChecker;
+            IStatusChecker sc = Resolve.StatusChecker;
             Assert.That(sc is FakeStatusChecker, Is.True);
         }
     }

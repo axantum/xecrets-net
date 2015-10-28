@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Axantum.AxCrypt
         public AboutBox()
         {
             InitializeComponent();
+            new Styling(Resources.axcrypticon).Style(this);
         }
 
         private void AboutBox_Load(object sender, EventArgs e)

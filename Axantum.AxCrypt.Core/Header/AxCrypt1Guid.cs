@@ -32,6 +32,7 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public static class AxCrypt1Guid
     {
+        // c0b9072e4f93f146a015792ca1d9e821
         public static readonly Guid Value = new Guid("2e07b9c0-934f-46f1-a015-792ca1d9e821");
 
         private static readonly byte[] _axCrypt1GuidBytes = Value.ToByteArray();
@@ -43,6 +44,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public static void Write(Stream stream)
         {
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream");
+            }
+
             stream.Write(_axCrypt1GuidBytes, 0, _axCrypt1GuidBytes.Length);
         }
 

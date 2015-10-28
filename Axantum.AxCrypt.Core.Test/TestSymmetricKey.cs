@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 
@@ -125,10 +126,14 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(key1 != key3, "Two really different keys should not compare equal.");
         }
 
-        [Test]
-        public static void TestThumbprint()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestThumbprint(CryptoImplementation cryptoImplementation)
         {
-            IPassphrase key1 = new GenericPassphrase("genericPassphrase");
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            Passphrase key1 = new Passphrase("genericPassphrase");
 
             SymmetricKeyThumbprint originalThumbprint = key1.Thumbprint;
             Assert.That(originalThumbprint, Is.EqualTo(key1.Thumbprint), "The thumbprints should be the same.");

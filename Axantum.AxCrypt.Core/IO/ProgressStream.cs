@@ -31,12 +31,20 @@ using System.IO;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public class ProgressStream : Stream
+    public class ProgressStream : WrappedBaseStream
     {
-        private Stream _stream;
-
         private IProgressContext _progress;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProgressStream"/> class.
+        /// </summary>
+        /// <param name="stream">The stream. Will be disposed of when this instance is disposed.</param>
+        /// <param name="progress">The progress.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// stream
+        /// or
+        /// progress
+        /// </exception>
         public ProgressStream(Stream stream, IProgressContext progress)
         {
             if (stream == null)
@@ -47,82 +55,27 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new ArgumentNullException("progress");
             }
-            _stream = stream;
+            WrappedStream = stream;
             _progress = progress;
 
             _progress.NotifyLevelStart();
             if (stream.CanSeek)
             {
-                _progress.AddTotal(_stream.Length - _stream.Position);
-            }
-        }
-
-        public override bool CanRead
-        {
-            get { return _stream.CanRead; }
-        }
-
-        public override bool CanSeek
-        {
-            get { return _stream.CanSeek; }
-        }
-
-        public override bool CanWrite
-        {
-            get { return _stream.CanWrite; }
-        }
-
-        public override void Flush()
-        {
-            _stream.Flush();
-        }
-
-        public override long Length
-        {
-            get { return _stream.Length; }
-        }
-
-        public override long Position
-        {
-            get
-            {
-                return _stream.Position;
-            }
-            set
-            {
-                _stream.Position = value;
+                _progress.AddTotal(WrappedStream.Length - WrappedStream.Position);
             }
         }
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            if (buffer == null)
-            {
-                throw new ArgumentNullException("buffer");
-            }
-            int bytes = _stream.Read(buffer, offset, count);
+            int bytes = base.Read(buffer, offset, count);
 
             _progress.AddCount(bytes);
             return bytes;
         }
 
-        public override long Seek(long offset, SeekOrigin origin)
-        {
-            return _stream.Seek(offset, origin);
-        }
-
-        public override void SetLength(long value)
-        {
-            _stream.SetLength(value);
-        }
-
         public override void Write(byte[] buffer, int offset, int count)
         {
-            if (buffer == null)
-            {
-                throw new ArgumentNullException("buffer");
-            }
-            _stream.Write(buffer, offset, count);
+            base.Write(buffer, offset, count);
 
             _progress.AddCount(count);
         }
@@ -138,13 +91,11 @@ namespace Axantum.AxCrypt.Core.IO
 
         private void DisposeInternal()
         {
-            if (_stream == null)
+            if (IsDisposed)
             {
                 return;
             }
 
-            _stream.Close();
-            _stream = null;
             _progress.NotifyLevelFinished();
         }
     }

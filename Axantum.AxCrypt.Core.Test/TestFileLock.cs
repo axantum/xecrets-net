@@ -25,14 +25,18 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.IO;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.IO;
-using NUnit.Framework;
+using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -56,65 +60,92 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileLockInvalidArguments()
         {
-            IRuntimeFileInfo nullInfo = null;
+            IDataStore nullInfo = null;
             Assert.Throws<ArgumentNullException>(() => { FileLock.Lock(nullInfo); });
             Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(nullInfo); });
-            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(Factory.New<IRuntimeFileInfo>(_fileExtPath), nullInfo); });
+            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(New<IDataStore>(_fileExtPath), nullInfo); });
         }
 
         [Test]
         public static void TestFileLockMethods()
         {
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_fileExtPath);
+            IDataStore fileInfo = New<IDataStore>(_fileExtPath);
 
-            Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file yet.");
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file yet.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
-                Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should be now be a lock for this file.");
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.True, "There should be now be a lock for this file.");
             }
-            Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file again.");
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file again.");
         }
 
         [Test]
         public static void TestFileLockWhenLocked()
         {
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_fileExtPath);
+            IDataStore fileInfo = New<IDataStore>(_fileExtPath);
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file to start with.");
+            using (FileLock lock1 = FileLock.Lock(fileInfo))
+            {
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.True, "There should be a lock for this file.");
+            }
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file now.");
+        }
+
+        [Test]
+        public static void TestFileLockWhenLockedOnSameThread()
+        {
+            IDataStore fileInfo = New<IDataStore>(_fileExtPath);
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file to start with.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
-                Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should be a lock for this file.");
-                using (FileLock lock1a = FileLock.Lock(fileInfo))
-                {
-                    Assert.That(lock1a, Is.Null, "When trying to get a lock for a locked file, this should return null.");
-                    Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should still be a lock for this file.");
-                }
-                Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should still be a lock for this file.");
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.True, "There should be a lock for this from a different thread.");
+                Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this from the same thread.");
             }
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file now.");
+            Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file now.");
+        }
+
+        [Test]
+        public static void TestMultipleFileLockOnSameThread()
+        {
+            IDataStore fileInfo = New<IDataStore>(_fileExtPath);
+            Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file to start with.");
+            using (FileLock lock1 = FileLock.Lock(fileInfo))
+            {
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.True, "There should be a lock for this from a different thread.");
+                Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this from the same thread.");
+                using (FileLock lock2 = FileLock.Lock(fileInfo))
+                {
+                    Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.True, "There should be a lock for this from a different thread.");
+                    Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this from the same thread.");
+                }
+            }
+            Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, Is.False, "There should be no lock for this file now.");
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file now.");
         }
 
         [Test]
         public static void TestFileLockCaseSensitivity()
         {
-            IRuntimeFileInfo fileInfo1 = Factory.New<IRuntimeFileInfo>(_fileExtPath);
-            IRuntimeFileInfo fileInfo2 = Factory.New<IRuntimeFileInfo>(_fileExtPath.ToUpper(CultureInfo.InvariantCulture));
+            IDataStore fileInfo1 = New<IDataStore>(_fileExtPath);
+            IDataStore fileInfo2 = New<IDataStore>(_fileExtPath.ToUpper(CultureInfo.InvariantCulture));
 
             Assert.That(FileLock.IsLocked(fileInfo1), Is.False, "There should be no lock for this file yet.");
             Assert.That(FileLock.IsLocked(fileInfo2), Is.False, "There should be no lock for this file yet.");
             using (FileLock lock1 = FileLock.Lock(fileInfo1))
             {
-                Assert.That(FileLock.IsLocked(fileInfo1), Is.True, "There should be now be a lock for this file.");
-                Assert.That(FileLock.IsLocked(fileInfo2), Is.False, "There should be no lock for this file still.");
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo1)).Result, Is.True, "There should be now be a lock for this file.");
+                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo2)).Result, Is.False, "There should be no lock for this file still.");
             }
             Assert.That(FileLock.IsLocked(fileInfo1), Is.False, "There should be no lock for this file again.");
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFileLockDoubleDispose()
         {
             Assert.DoesNotThrow(() =>
             {
-                using (FileLock aLock = FileLock.Lock(Factory.New<IRuntimeFileInfo>(_fileExtPath)))
+                using (FileLock aLock = FileLock.Lock(New<IDataStore>(_fileExtPath)))
                 {
                     aLock.Dispose();
                 }

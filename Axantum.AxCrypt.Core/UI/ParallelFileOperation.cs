@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
@@ -48,24 +48,24 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="files">The files to operation on.</param>
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
-        public virtual void DoFiles(IEnumerable<IRuntimeFileInfo> files, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> allComplete)
+        public virtual void DoFiles<T>(IEnumerable<T> files, Func<T, IProgressContext, FileOperationContext> work, Action<FileOperationContext> allComplete)
         {
             WorkerGroup workerGroup = null;
-            Instance.ProgressBackground.Work(
+            Resolve.ProgressBackground.Work(
                 (IProgressContext progress) =>
                 {
                     using (workerGroup = new WorkerGroup(OS.Current.MaxConcurrency, progress))
                     {
-                        foreach (IRuntimeFileInfo file in files)
+                        foreach (T file in files)
                         {
                             IThreadWorker worker = workerGroup.CreateWorker(true);
-                            if (workerGroup.FirstError != FileOperationStatus.Success)
+                            if (workerGroup.FirstError.ErrorStatus != ErrorStatus.Success)
                             {
                                 worker.Abort();
                                 break;
                             }
 
-                            IRuntimeFileInfo closureOverCopyOfLoopVariableFile = file;
+                            T closureOverCopyOfLoopVariableFile = file;
                             worker.Work += (sender, e) =>
                             {
                                 e.Result = work(closureOverCopyOfLoopVariableFile, new CancelProgressContext(e.Progress));
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.UI
                         return workerGroup.FirstError;
                     }
                 },
-                (FileOperationStatus status) =>
+                (FileOperationContext status) =>
                 {
                     allComplete(status);
                 });

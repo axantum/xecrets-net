@@ -25,77 +25,97 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestActiveFile
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestActiveFile
     {
-        private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
-        private static readonly string _testTextPath = _rootPath.PathCombine("test.txt");
-        private static readonly string _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
-        private static readonly string _uncompressedAxxPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).PathCombine("Uncompressed.axx");
-        private static readonly string _helloWorldAxxPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).PathCombine("HelloWorld.axx");
+        private static string _rootPath;
+        private static string _testTextPath;
+        private static string _davidCopperfieldTxtPath;
+        private static string _uncompressedAxxPath;
+        private static string _helloWorldAxxPath;
+
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestActiveFile(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
 
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
-            FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
-            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.uncompressable_zip));
-            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+            _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
+            _testTextPath = _rootPath.PathCombine("test.txt");
+            _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
+            _uncompressedAxxPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).PathCombine("Uncompressed.axx");
+            _helloWorldAxxPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).PathCombine("HelloWorld.axx");
+
+            FakeDataStore.AddFile(_testTextPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate1Utc, FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeDataStore.AddFile(_davidCopperfieldTxtPath, FakeDataStore.TestDate4Utc, FakeDataStore.TestDate5Utc, FakeDataStore.TestDate6Utc, FakeDataStore.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
+            FakeDataStore.AddFile(_uncompressedAxxPath, FakeDataStore.ExpandableMemoryStream(Resources.uncompressable_zip));
+            FakeDataStore.AddFile(_helloWorldAxxPath, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestInvalidArguments()
+        public void TestInvalidArguments()
         {
-            IRuntimeFileInfo nullFileInfo = null;
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            IPassphrase key = new GenericPassphrase("key");
-            IPassphrase nullKey = null;
+            IDataStore nullFileInfo = null;
+            IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
+            LogOnIdentity key = new LogOnIdentity("key");
+            LogOnIdentity nullKey = null;
             ActiveFile nullActiveFile = null;
 
-            ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
+            ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, key) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(originalActiveFile, nullKey) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, ActiveFileStatus.None) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, DateTime.MinValue, ActiveFileStatus.None) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new GenericPassphrase("a"), ActiveFileStatus.None) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, nullFileInfo, new GenericPassphrase("b"), ActiveFileStatus.None) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new LogOnIdentity("a"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, nullFileInfo, new LogOnIdentity("b"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
         }
 
         [Test]
-        public static void TestConstructor()
+        public void TestConstructor()
         {
-            IPassphrase key = new GenericPassphrase("key");
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            LogOnIdentity key = new LogOnIdentity("key");
+            IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
 
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             decryptedFileInfo = activeFile.DecryptedFileInfo;
-            Assert.That(decryptedFileInfo.Exists, Is.True, "The file should exist in the fake file system.");
+            Assert.That(decryptedFileInfo.IsAvailable, Is.True, "The file should exist in the fake file system.");
             Assert.That(decryptedFileInfo.FullName, Is.EqualTo(_testTextPath), "The file should be named as it was in the constructor");
             Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(decryptedFileInfo.LastWriteTimeUtc), "When a LastWriteTime is not specified, the decrypted file should be used to determine the value.");
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
@@ -104,9 +124,9 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(otherFile.Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "The status should be as given in the constructor.");
             Assert.That(otherFile.DecryptedFileInfo.FullName, Is.EqualTo(activeFile.DecryptedFileInfo.FullName), "This should be copied from the original instance.");
             Assert.That(otherFile.EncryptedFileInfo.FullName, Is.EqualTo(activeFile.EncryptedFileInfo.FullName), "This should be copied from the original instance.");
-            Assert.That(otherFile.Key, Is.EqualTo(activeFile.Key), "This should be copied from the original instance.");
-            Assert.That(otherFile.LastActivityTimeUtc, Is.GreaterThan(activeFile.LastActivityTimeUtc), "This should not be copied from the original instance, but should be a later time.");
-            Assert.That(otherFile.ThumbprintMatch(activeFile.Key), Is.True, "The thumbprints should match.");
+            Assert.That(otherFile.Identity, Is.EqualTo(activeFile.Identity), "This should be copied from the original instance.");
+            Assert.That(otherFile.Properties.LastActivityTimeUtc, Is.GreaterThan(activeFile.Properties.LastActivityTimeUtc), "This should not be copied from the original instance, but should be a later time.");
+            Assert.That(otherFile.ThumbprintMatch(activeFile.Identity.Passphrase), Is.True, "The thumbprints should match.");
 
             activeFile.DecryptedFileInfo.LastWriteTimeUtc = activeFile.DecryptedFileInfo.LastWriteTimeUtc.AddDays(1);
             otherFile = new ActiveFile(activeFile, OS.Current.UtcNow, ActiveFileStatus.AssumedOpenAndDecrypted);
@@ -115,73 +135,71 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCopyConstructorWithKey()
+        public void TestCopyConstructorWithKey()
         {
-            IPassphrase key = new GenericPassphrase("key");
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
-            IPassphrase newKey = new GenericPassphrase("newKey");
+            LogOnIdentity key = new LogOnIdentity("key");
+            IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
+            LogOnIdentity newKey = new LogOnIdentity("newKey");
 
             ActiveFile newActiveFile = new ActiveFile(activeFile, newKey);
-            Assert.That(activeFile.Key, Is.Not.EqualTo(newKey), "Ensure that it's really a different key.");
-            Assert.That(newActiveFile.Key, Is.EqualTo(newKey), "The constructor should assign the new key to the new ActiveFile instance.");
+            Assert.That(activeFile.Identity, Is.Not.EqualTo(newKey), "Ensure that it's really a different key.");
+            Assert.That(newActiveFile.Identity, Is.EqualTo(newKey), "The constructor should assign the new key to the new ActiveFile instance.");
         }
 
         [Test]
-        public static void TestThumbprint()
+        public void TestThumbprint()
         {
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
 
-            IPassphrase key = new GenericPassphrase("key");
+            LogOnIdentity key = new LogOnIdentity("key");
 
             using (MemoryStream stream = new MemoryStream())
             {
-                DataContractSerializer serializer = new DataContractSerializer(typeof(ActiveFile));
-                ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
-                serializer.WriteObject(stream, activeFile);
-                stream.Position = 0;
-                ActiveFile deserializedActiveFile = (ActiveFile)serializer.ReadObject(stream);
+                ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
+                string json = Resolve.Serializer.Serialize(activeFile);
+                ActiveFile deserializedActiveFile = Resolve.Serializer.Deserialize<ActiveFile>(json);
 
-                Assert.That(deserializedActiveFile.ThumbprintMatch(key), Is.True, "The deserialized object should match the thumbprint with the key.");
+                Assert.That(deserializedActiveFile.ThumbprintMatch(key.Passphrase), Is.True, "The deserialized object should match the thumbprint with the key.");
             }
         }
 
         [Test]
-        public static void TestThumbprintNullKey()
+        public void TestThumbprintNullKey()
         {
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
 
-            IPassphrase key = new GenericPassphrase("key");
+            LogOnIdentity key = new LogOnIdentity("key");
             using (MemoryStream stream = new MemoryStream())
             {
-                ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
+                ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
                 Assert.Throws<ArgumentNullException>(() =>
                 {
-                    IPassphrase nullKey = null;
+                    Passphrase nullKey = null;
                     activeFile.ThumbprintMatch(nullKey);
                 });
             }
         }
 
         [Test]
-        public static void TestMethodIsModified()
+        public void TestMethodIsModified()
         {
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "doesnotexist.txt"));
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new GenericPassphrase("new"), ActiveFileStatus.None);
+            IDataStore decryptedFileInfo = New<IDataStore>(Path.Combine(_rootPath, "doesnotexist.txt"));
+            IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new LogOnIdentity("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
         }
 
         [Test]
-        public static void TestVisualState()
+        public void TestVisualState()
         {
             ActiveFile activeFile;
-            IPassphrase key = new GenericPassphrase("key");
+            LogOnIdentity key = new LogOnIdentity("key");
 
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(New<IDataStore>(@"C:\encrypted.axx"), New<IDataStore>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));
 
             activeFile = new ActiveFile(activeFile);

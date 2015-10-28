@@ -28,9 +28,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Ipc
 {
@@ -38,8 +36,21 @@ namespace Axantum.AxCrypt.Core.Ipc
     public enum CommandVerb
     {
         Unknown,
+        AddFiles,
+        Encrypt,
+        Decrypt,
         Open,
         Show,
         Exit,
+        Wipe,
+        RandomRename,
+        About,
+        Register,
+        UseForOpen,
+        ShowLogOn,
+        SetPassphrase,
+        SetKeyFile,
+        LogOn,
+        Startup,
     }
 }

@@ -25,12 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -52,15 +56,15 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestParallelFileOperationSimple()
         {
-            IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
-            IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
+            IDataStore info1 = New<IDataStore>(@"c:\file1.txt");
+            IDataStore info2 = New<IDataStore>(@"c:\file2.txt");
             ParallelFileOperation pfo = new ParallelFileOperation();
             int callCount = 0;
-            pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2 },
+            pfo.DoFiles(new IDataStore[] { info1, info2 },
                 (info, progress) =>
                 {
                     ++callCount;
-                    return FileOperationStatus.Success;
+                    return new FileOperationContext(String.Empty, ErrorStatus.Success);
                 },
                 (status) =>
                 {
@@ -74,27 +78,27 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeUIThread fakeUIThread = new FakeUIThread();
             fakeUIThread.IsOnUIThread = true;
-            Factory.Instance.Singleton<IUIThread>(() => fakeUIThread);
+            TypeMap.Register.Singleton<IUIThread>(() => fakeUIThread);
 
             FakeRuntimeEnvironment.Instance.MaxConcurrency = 2;
 
-            IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
-            IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
-            IRuntimeFileInfo info3 = Factory.New<IRuntimeFileInfo>(@"c:\file3.txt");
-            IRuntimeFileInfo info4 = Factory.New<IRuntimeFileInfo>(@"c:\file4.txt");
+            IDataStore info1 = New<IDataStore>(@"c:\file1.txt");
+            IDataStore info2 = New<IDataStore>(@"c:\file2.txt");
+            IDataStore info3 = New<IDataStore>(@"c:\file3.txt");
+            IDataStore info4 = New<IDataStore>(@"c:\file4.txt");
             ParallelFileOperation pfo = new ParallelFileOperation();
 
             int callCount = 0;
-            pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2, info3, info4 },
+            pfo.DoFiles(new IDataStore[] { info1, info2, info3, info4 },
                 (info, progress) =>
                 {
                     int result = Interlocked.Increment(ref callCount);
                     if (result == 1)
                     {
-                        return FileOperationStatus.UnspecifiedError;
+                        return new FileOperationContext(String.Empty, ErrorStatus.UnspecifiedError);
                     }
                     Thread.Sleep(1);
-                    return FileOperationStatus.Success;
+                    return new FileOperationContext(String.Empty, ErrorStatus.Success);
                 },
                 (status) => { });
             Assert.That(callCount, Is.LessThanOrEqualTo(2), "There are several files, but max concurrency is two, so there could be up to two calls.");

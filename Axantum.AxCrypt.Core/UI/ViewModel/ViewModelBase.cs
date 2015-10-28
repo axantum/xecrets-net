@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -105,19 +106,29 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void BindPropertyChanged<T>(string name, Action<T> action)
         {
+            Action<T> actionUi = (T arg) => Resolve.UIThread.RunOnUIThread(() => action((T)arg));
+            BindPropertyChangedInternal<T>(name, actionUi);
+            actionUi(GetProperty<T>(name));
+        }
+
+        protected void BindPropertyChangedInternal<T>(string name, Action<T> action)
+        {
             List<Action<object>> actions;
             if (!_actions.TryGetValue(name, out actions))
             {
                 actions = new List<Action<object>>();
                 _actions.Add(name, actions);
             }
-            actions.Add(o => Instance.UIThread.RunOnUIThread(() => action((T)o)));
-            action(GetProperty<T>(name));
+            actions.Add(arg => action((T)arg));
         }
 
         private static object GetProperty(object me, string name)
         {
-            PropertyInfo pi = me.GetType().GetProperty(name);
+            PropertyInfo pi = me.GetType().GetRuntimeProperty(name);
+            if (pi == null)
+            {
+                throw new InvalidOperationException("No property named '{0}' was found. Probably an error in the name argument to GetProperty() or SetProperty().".InvariantFormat(name));
+            }
             return pi.GetValue(me, null);
         }
 
@@ -125,11 +136,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             get
             {
-                IEnumerable<PropertyDescriptor> properties = TypeDescriptor.GetProperties(GetType()).Cast<PropertyDescriptor>();
+                IEnumerable<string> propertyNames = GetType().GetRuntimeProperties().Select(pi => pi.Name).Where(s => s != "Item" && s != "ValidationError" && s != "Error");
 
                 return
-                    (from property in properties
-                     let error = this[property.Name]
+                    (from name in propertyNames
+                     let error = this[name]
                      where !String.IsNullOrEmpty(error)
                      select error)
                         .Aggregate(new StringBuilder(), (acc, next) => acc.Append(acc.Length > 0 ? " " : String.Empty).Append(next))
@@ -141,7 +152,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             get
             {
-                if (GetType().GetProperty(columnName) == null)
+                if (GetType().GetRuntimeProperty(columnName) == null)
                 {
                     throw new ArgumentException("Non-existing property name.", columnName);
                 }

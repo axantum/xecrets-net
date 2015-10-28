@@ -205,13 +205,13 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>The file or path '{0}' is invalid for this.</value>
   </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
-    <value>You must restart AxCrypt in order for the language change to take effect.</value>
+    <value>AxCrypt must be restarted in order for the language change to take effect.</value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Logged Off</value>
   </data>
   <data name="LoggedOnStatusText" xml:space="preserve">
-    <value>'{0}' is Logged On</value>
+    <value>Current Passphrase</value>
     <comment>Shown in the title bar to display the log on status.</comment>
   </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
@@ -227,7 +227,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Your version is old. Please click to check for a newer version.</value>
   </data>
   <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
-    <value>Select document to decrypt and open</value>
+    <value>Select encrypted document to open</value>
   </data>
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>File</value>
@@ -243,7 +243,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
-    <value>Unrecognized error code failing with '{0}'.</value>
+    <value>{1} for '{0}'.</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Updating Status</value>
@@ -319,13 +319,13 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>This AxCrypt Identity already exists</value>
   </data>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
-    <value>Enter passphrase for '{0}'</value>
+    <value>Identity '{0}' passphrase</value>
   </data>
   <data name="DocumentsLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\DocumentsLibrary.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DropBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\dropbox.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\DropBox.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GoogleDrive" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\GoogleDrive.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -342,5 +342,167 @@ Includes software from http://www.bouncycastle.org/ .</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Enter Passphrase</value>
+  </data>
+  <data name="FolderAlreadyWatched" xml:space="preserve">
+    <value>Folder '{0}' already watched.</value>
+  </data>
+  <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
+    <value>You have updated AxCrypt. Unfortunately, your configuration must be reset. After restarting, your preferences and settings will unfortunately be lost. We apologize for the inconvenience. Your encrypted files are still safe and ok.</value>
+  </data>
+  <data name="FileIsLockedWarning" xml:space="preserve">
+    <value>'{0}' is open in another application. Please close it and try again.</value>
+  </data>
+  <data name="UnknownCrypto" xml:space="preserve">
+    <value>Unknown</value>
+    <comment>Displayed when an unknown CryptoId is encountered.</comment>
+  </data>
+  <data name="BadEmail" xml:space="preserve">
+    <value>Incorrect email address</value>
+    <comment>Displayed when email address format validation fails.</comment>
+  </data>
+  <data name="AccountLoggedOnStatusText" xml:space="preserve">
+    <value>{0}</value>
+    <comment>Title bar status text when logged on to an account.</comment>
+  </data>
+  <data name="ChangePassphraseDialogTitle" xml:space="preserve">
+    <value>Change Passphrase</value>
+  </data>
+  <data name="NewPassphraseDialogTitle" xml:space="preserve">
+    <value>Create a New Passphrase</value>
+  </data>
+  <data name="cleanupneededred16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\cleanupneededred16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cleanupneededred32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\cleanupneededred32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CleanUpNeededToolTip" xml:space="preserve">
+    <value>File is decrypted, and may need to be cleaned. Close any open applications, and click the Clean Up button.</value>
+  </data>
+  <data name="DoubleClickToOpenToolTip" xml:space="preserve">
+    <value>Double click to open. If required you will be prompted for a passphrase.</value>
+  </data>
+  <data name="addforencryptionred32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\addforencryptionred32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="removeanddecryptgreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\removeanddecryptgreen32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
+    <value>Text Files (*.txt)|*.txt|All Files (*.*)|*.*</value>
+  </data>
+  <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
+    <value>Select Sharing Key Files</value>
+  </data>
+  <data name="LogOffText" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="LogOnText" xml:space="preserve">
+    <value>Log On</value>
+  </data>
+  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
+    <value>Text Files (*.axx)|*.axx|All Files (*.*)|*.*</value>
+  </data>
+  <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
+    <value>Select Account Secret and Sharing Key Pair File</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>File does not exist.</value>
+  </data>
+  <data name="FailedPrivateImport" xml:space="preserve">
+    <value>Import failed. Probably not a valid Account Secret and Sharing Key Pair File.</value>
+  </data>
+  <data name="bulb_green_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\bulb_green_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bulb_orange_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\bulb_orange_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bulb_red_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\bulb_red_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clean_broom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\clean_broom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clean_recycle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\clean_recycle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="decrypt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\decrypt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dropbox_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dropbox_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="encrypt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\encrypt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exit_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\exit_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\folder_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="google_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\google_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key_management" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\key_management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo_text_retina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logo-text-retina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\minus_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="open_encrypted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\open_encrypted.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="options" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\options.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plus_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refresh_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\refresh_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refresh_grey_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\refresh_grey_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="skydrive_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\skydrive_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="broom_40pxs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\broom_40pxs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OfflineAccountBePatient" xml:space="preserve">
+    <value>This may take a few minutes. Please be patient.</value>
+  </data>
+  <data name="OfflineAccountTitle" xml:space="preserve">
+    <value>AxCrypt Offline Account Creation.</value>
+  </data>
+  <data name="AbortedFileStatus" xml:space="preserve">
+    <value>Status 'Aborted' with '{0}'.</value>
+  </data>
+  <data name="FileAlreadyEncryptedStatus" xml:space="preserve">
+    <value>File '{0}' is already encrypted.</value>
+  </data>
+  <data name="UnknownFileStatus" xml:space="preserve">
+    <value>Status 'Unknown' with '{0}'.</value>
+  </data>
+  <data name="WorkingFileStatus" xml:space="preserve">
+    <value>Status 'Working' with '{0}'.</value>
+  </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>Please specify time as 'hh:mm:ss.mmm'.</value>
   </data>
 </root>

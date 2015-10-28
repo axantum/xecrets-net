@@ -33,6 +33,8 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public interface IUserSettings
     {
+        void Delete();
+
         string this[string key]
         {
             get;
@@ -47,9 +49,13 @@ namespace Axantum.AxCrypt.Core.UI
 
         string CultureName { get; set; }
 
-        Uri AxCrypt2VersionCheckUrl { get; set; }
+        Uri LegacyRestApiBaseUrl { get; set; }
+
+        Uri RestApiBaseUrl { get; set; }
 
         Uri UpdateUrl { get; set; }
+
+        TimeSpan ApiTimeOut { get; set; }
 
         DateTime LastUpdateCheckUtc { get; set; }
 
@@ -63,12 +69,22 @@ namespace Axantum.AxCrypt.Core.UI
 
         bool DisplayDecryptPassphrase { get; set; }
 
-        long V1KeyWrapIterations { get; set; }
+        long GetKeyWrapIterations(Guid cryptoId);
 
-        long V2KeyWrapIterations { get; set; }
+        void SetKeyWrapIterations(Guid cryptoId, long keyWrapIterations);
 
-        KeyWrapSalt ThumbprintSalt { get; set; }
+        Salt ThumbprintSalt { get; set; }
 
         TimeSpan SessionNotificationMinimumIdle { get; set; }
+
+        int SettingsVersion { get; set; }
+
+        int CurrentSettingsVersion { get; }
+
+        int AsymmetricKeyBits { get; set; }
+
+        string UserEmail { get; set; }
+
+        bool TryBrokenFile { get; set; }
     }
 }

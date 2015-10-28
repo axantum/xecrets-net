@@ -25,20 +25,32 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Desktop;
+using Axantum.AxCrypt.Forms.Implementation;
+using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Mono.Portable;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt
 {
@@ -50,11 +62,12 @@ namespace Axantum.AxCrypt
         [STAThread]
         private static void Main()
         {
-            RegisterTypeFactories();
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+
+            RegisterTypeFactories(commandLineArgs[0]);
             WireupEvents();
             SetCulture();
 
-            string[] commandLineArgs = Environment.GetCommandLineArgs();
             if (commandLineArgs.Length == 1)
             {
                 RunInteractive();
@@ -62,68 +75,92 @@ namespace Axantum.AxCrypt
             else
             {
                 new CommandLine(commandLineArgs[0], commandLineArgs.Skip(1)).Execute();
+                ExplorerRefresh.Notify();
             }
 
-            Factory.Instance.Clear();
+            Resolve.CommandService.Dispose();
+            TypeMap.Register.Clear();
         }
 
-        private static void RegisterTypeFactories()
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Dependency registration, not real complexity")]
+        private static void RegisterTypeFactories(string startPath)
         {
             string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
+            IEnumerable<Assembly> extraAssemblies = LoadFromFiles(new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll"));
 
-            Factory.Instance.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
-            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => Factory.Instance.Singleton<WorkFolderWatcher>());
-            Factory.Instance.Singleton<ILogging>(() => new Logging());
-            Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
-            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("UserSettings.txt"), Factory.New<IterationCalculator>()));
-            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("FileSystemState.xml")));
-            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
-            Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
-            Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
-            Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
+            Resolve.RegisterTypeFactories(workFolderPath, extraAssemblies);
+            RuntimeEnvironment.RegisterTypeFactories();
+            DesktopFactory.RegisterTypeFactories();
 
-            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
-            Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
-            Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
-            Factory.Instance.Register<ISleep>(() => new Sleep());
-            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotify));
-            Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
-            Factory.Instance.Register<int, KeyWrapSalt>((length) => new KeyWrapSalt(length));
-            Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
-            Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
-            Factory.Instance.Register<IterationCalculator>(() => new IterationCalculator());
+            TypeMap.Register.New<IDataProtection>(() => new DataProtection());
+            TypeMap.Register.New<ILauncher>(() => new Launcher());
+            TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+            TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+            TypeMap.Register.New<Aes>(() => new Axantum.AxCrypt.Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
+            TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
+            TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+            TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
+            TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());
+            TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new LocalAccountService(new ApiAccountService(new AxCryptApiClient(identity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeOut)), Resolve.WorkFolder.FileInfo));
 
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
-            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            TypeMap.Register.Singleton<FontLoader>(() => new FontLoader());
+            TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
+            TypeMap.Register.Singleton<KeyPairService>(() => new KeyPairService(1, 0));
+        }
+
+        private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)
+        {
+            List<Assembly> assemblies = new List<Assembly>();
+            foreach (FileInfo file in files)
+            {
+                try
+                {
+                    assemblies.Add(Assembly.LoadFrom(file.FullName));
+                }
+                catch (BadImageFormatException)
+                {
+                    continue;
+                }
+                catch (FileLoadException)
+                {
+                    continue;
+                }
+            }
+            return assemblies;
         }
 
         private static void WireupEvents()
         {
-            Instance.SessionNotify.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
+            Resolve.SessionNotify.Notification += (sender, e) => New<SessionNotificationHandler>().HandleNotification(e.Notification);
         }
 
         private static void SetCulture()
         {
-            if (String.IsNullOrEmpty(Instance.UserSettings.CultureName))
+            if (String.IsNullOrEmpty(Resolve.UserSettings.CultureName))
             {
                 return;
             }
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Instance.UserSettings.CultureName);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Resolve.UserSettings.CultureName);
         }
 
         private static void RunInteractive()
         {
             if (!OS.Current.IsFirstInstance)
             {
-                Instance.CommandService.Call(CommandVerb.Show);
+                Resolve.CommandService.Call(CommandVerb.Show, -1);
                 return;
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new AxCryptMainForm());
+            try
+            {
+                Application.Run(new AxCryptMainForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Unhandled Exception");
+            }
         }
     }
 }

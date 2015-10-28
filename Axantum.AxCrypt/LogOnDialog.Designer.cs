@@ -34,11 +34,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
             this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
-            this.PassphraseTextBox = new System.Windows.Forms.TextBox();
             this._panel1 = new System.Windows.Forms.Panel();
             this._newButton = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
+            this.PassphraseTextBox = new System.Windows.Forms.TextBox();
             this.FileNamePanel = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.FileNameTextBox = new System.Windows.Forms.TextBox();
@@ -75,13 +75,6 @@
             this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
             this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
             // 
-            // PassphraseTextBox
-            // 
-            resources.ApplyResources(this.PassphraseTextBox, "PassphraseTextBox");
-            this.PassphraseTextBox.Name = "PassphraseTextBox";
-            this.PassphraseTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PassphraseTextBox_Validating);
-            this.PassphraseTextBox.Validated += new System.EventHandler(this.PassphraseTextBox_Validated);
-            // 
             // _panel1
             // 
             resources.ApplyResources(this._panel1, "_panel1");
@@ -92,7 +85,6 @@
             // 
             // _newButton
             // 
-            this._newButton.CausesValidation = false;
             this._newButton.DialogResult = System.Windows.Forms.DialogResult.Retry;
             resources.ApplyResources(this._newButton, "_newButton");
             this._newButton.Name = "_newButton";
@@ -101,7 +93,6 @@
             // 
             // _buttonCancel
             // 
-            this._buttonCancel.CausesValidation = false;
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this._buttonCancel, "_buttonCancel");
             this._buttonCancel.Name = "_buttonCancel";
@@ -109,12 +100,17 @@
             // 
             // _buttonOk
             // 
-            this._buttonOk.CausesValidation = false;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this._buttonOk, "_buttonOk");
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;
             this._buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            // 
+            // PassphraseTextBox
+            // 
+            resources.ApplyResources(this.PassphraseTextBox, "PassphraseTextBox");
+            this.PassphraseTextBox.Name = "PassphraseTextBox";
+            this.PassphraseTextBox.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
             // 
             // FileNamePanel
             // 
@@ -144,6 +140,7 @@
             this.Controls.Add(this.FileNamePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LogOnDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Activated += new System.EventHandler(this.LogOnDialog_Activated);

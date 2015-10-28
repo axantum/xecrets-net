@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,17 +25,26 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Service;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Fake;
+using NUnit.Framework;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using NUnit.Framework;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -226,7 +235,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEndianOptimization()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment(Endian.Reverse));
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment(Endian.Reverse));
             if (BitConverter.IsLittleEndian)
             {
                 byte[] actuallyLittleEndianBytes = 0x0102030405060708L.GetBigEndianBytes();
@@ -275,24 +284,24 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
             string fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document.docx");
-            string encryptedFileName = Factory.New<IRuntimeFileInfo>(fileName).CreateEncryptedName().FullName;
+            string encryptedFileName = New<IDataStore>(fileName).CreateEncryptedName().FullName;
             Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document-docx.axx")), "Standard conversion of file name to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
                  {
-                     string encryptedEncryptedFileName = Factory.New<IRuntimeFileInfo>(encryptedFileName).CreateEncryptedName().FullName;
+                     string encryptedEncryptedFileName = New<IDataStore>(encryptedFileName).CreateEncryptedName().FullName;
 
                      // Use the instance to avoid FxCop errors.
                      Object.Equals(encryptedEncryptedFileName, null);
                  });
 
             fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Extensionless File");
-            encryptedFileName = Factory.New<IRuntimeFileInfo>(fileName).CreateEncryptedName().FullName;
+            encryptedFileName = New<IDataStore>(fileName).CreateEncryptedName().FullName;
             Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Extensionless File.axx")), "Conversion of file name without extension to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
-                string encryptedEncryptedFileName = Factory.New<IRuntimeFileInfo>(encryptedFileName).CreateEncryptedName().FullName;
+                string encryptedEncryptedFileName = New<IDataStore>(encryptedFileName).CreateEncryptedName().FullName;
 
                 // Use the instance to avoid FxCop errors.
                 Object.Equals(encryptedEncryptedFileName, null);
@@ -349,44 +358,58 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateUniqueFileFirstIsOk()
         {
-            string unique = @"C:\temp\test.txt".CreateUniqueFile();
-            Assert.That(unique, Is.EqualTo(@"C:\temp\test.txt"));
+            using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
+            {
+                Assert.That(lockedUnique.DataStore.FullName, Is.EqualTo(@"C:\temp\test.txt".NormalizeFilePath()));
+            }
         }
 
         [Test]
         public static void TestCreateUniqueFileFirstIsNotOk()
         {
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(@"C:\temp\test.txt");
+            IDataStore fileInfo = New<IDataStore>(@"C:\temp\test.txt");
             using (Stream stream = fileInfo.OpenWrite())
             {
             }
-            string unique = @"C:\temp\test.txt".CreateUniqueFile();
-            Assert.That(unique, Is.EqualTo(@"C:\temp\test.1.txt"));
+            using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
+            {
+                Assert.That(lockedUnique.DataStore.FullName, Is.EqualTo(@"C:\temp\test.1.txt".NormalizeFilePath()));
+            }
         }
 
         [Test]
         public static void TestCreateUniqueFileReallyCreates()
         {
-            string unique = @"C:\temp\test.txt".CreateUniqueFile();
-            Assert.That(unique, Is.EqualTo(@"C:\temp\test.txt"));
+            using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
+            {
+                Assert.That(lockedUnique.DataStore.FullName, Is.EqualTo(@"C:\temp\test.txt".NormalizeFilePath()));
+            }
 
-            unique = @"C:\temp\test.txt".CreateUniqueFile();
-            Assert.That(unique, Is.EqualTo(@"C:\temp\test.1.txt"));
+            using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
+            {
+                Assert.That(lockedUnique.DataStore.FullName, Is.EqualTo(@"C:\temp\test.1.txt".NormalizeFilePath()));
+            }
         }
 
         [Test]
         public static void TestCreateUniqueFileUnexpectedAxCryptException()
         {
-            EventHandler handler = delegate(object sender, EventArgs e)
+            EventHandler handler = delegate (object sender, EventArgs e)
             {
-                if (((FakeRuntimeFileInfo)sender).TestTag == "CreateNewFile")
+                if (((FakeDataStore)sender).TestTag == "CreateNewFile")
                 {
                     throw new InternalErrorException("An unexpected exception.", ErrorStatus.InternalError);
                 }
             };
-            FakeRuntimeFileInfo.ExceptionHook += handler;
-            Assert.Throws<InternalErrorException>(() => @"C:\temp\test.txt".CreateUniqueFile());
-            FakeRuntimeFileInfo.ExceptionHook -= handler;
+            FakeDataStore.ExceptionHook += handler;
+            try
+            {
+                Assert.Throws<InternalErrorException>(() => @"C:\temp\test.txt".CreateUniqueFile());
+            }
+            finally
+            {
+                FakeDataStore.ExceptionHook -= handler;
+            }
         }
 
         [Test]
@@ -394,28 +417,24 @@ namespace Axantum.AxCrypt.Core.Test
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable")]
         public static void TestIsEncryptable()
         {
-            OS.PathFilters.Add(new Regex(@"^C:\\Windows\\(?!Temp$)"));
+            OS.PathFilters.Add(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
 
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Temp\test.txt").IsEncryptable(), Is.True);
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Windows\test.txt").IsEncryptable(), Is.False);
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Temp\test-txt.axx").IsEncryptable(), Is.False);
+            Assert.That(New<IDataStore>(@"C:\Temp\test.txt").IsEncryptable(), Is.True);
+            Assert.That(New<IDataStore>(@"C:\Windows\test.txt").IsEncryptable(), Is.False);
+            Assert.That(New<IDataStore>(@"C:\Temp\test-txt.axx").IsEncryptable(), Is.False);
 
-            IRuntimeFileInfo nullFileInfo = null;
+            IDataStore nullFileInfo = null;
             Assert.Throws<ArgumentNullException>(() => nullFileInfo.IsEncryptable());
         }
 
         [Test]
         public static void TestNormalizeFolder()
         {
-            IRuntimeFileInfo nullFileInfo = null;
-            Assert.Throws<ArgumentNullException>(() => nullFileInfo.NormalizeFolder());
-            Assert.Throws<ArgumentException>(() => Factory.New<IRuntimeFileInfo>(String.Empty).NormalizeFolder());
-
             string expected = @"C:\Documents\".Replace('\\', Path.DirectorySeparatorChar);
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:/Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Documents").NormalizeFolder().FullName, Is.EqualTo(expected));
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Documents\\//").NormalizeFolder().FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:\Documents\").FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:/Documents\").FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:\Documents").FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:\Documents\\//").FullName, Is.EqualTo(expected));
         }
 
         [Test]
@@ -428,8 +447,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             SetupAssembly.FakeRuntimeEnvironment.EnvironmentVariables.Add("VARIABLE", expected);
 
-            Assert.That("VARIABLE".FolderFromEnvironment(), Is.EqualTo(expected));
-            Assert.That("UNKNOWN".FolderFromEnvironment(), Is.EqualTo(String.Empty));
+            Assert.That("VARIABLE".FolderFromEnvironment().FullName, Is.EqualTo(expected));
+            Assert.That("UNKNOWN".FolderFromEnvironment(), Is.Null);
         }
 
         [Test]
@@ -442,43 +461,35 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileInfoTypeExtension()
         {
-            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", null);
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(@"c:\test.txt");
+            FakeDataStore.AddFile(@"c:\test.txt", null);
+            IDataStore fileInfo = New<IDataStore>(@"c:\test.txt");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.EncryptableFile));
 
-            FakeRuntimeFileInfo.AddFile(@"c:\test-txt.axx", null);
-            fileInfo = Factory.New<IRuntimeFileInfo>(@"c:\test-txt.axx");
+            FakeDataStore.AddFile(@"c:\test-txt.axx", null);
+            fileInfo = New<IDataStore>(@"c:\test-txt.axx");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.EncryptedFile));
 
-            FakeRuntimeFileInfo.AddFolder(@"c:\test\");
-            fileInfo = Factory.New<IRuntimeFileInfo>(@"c:\test\");
-            Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.Folder));
+            FakeDataStore.AddFolder(@"c:\test\");
+            IDataContainer folderInfo = New<IDataContainer>(@"c:\test\");
+            Assert.That(folderInfo.Type(), Is.EqualTo(FileInfoTypes.Folder));
 
-            fileInfo = Factory.New<IRuntimeFileInfo>(@"c:\not-there.txt");
+            fileInfo = New<IDataStore>(@"c:\not-there.txt");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.NonExisting));
 
-            OS.PathFilters.Add(new Regex(@"^C:\\Windows\\"));
-            FakeRuntimeFileInfo.AddFile(@"C:\Windows\System.drv", null);
-            fileInfo = Factory.New<IRuntimeFileInfo>(@"C:\Windows\System.drv");
+            OS.PathFilters.Add(new Regex(@"^C:\{0}Windows\{0}".InvariantFormat(Path.DirectorySeparatorChar)));
+            FakeDataStore.AddFile(@"C:\Windows\System.drv", null);
+            fileInfo = New<IDataStore>(@"C:\Windows\System.drv");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.OtherFile));
-        }
-
-        [Test]
-        public static void TestCryptoNameToLabel()
-        {
-            Assert.That(CryptoName.AES_256.ToLabel(), Is.EqualTo("AES-256"));
-            Assert.That(CryptoName.AES_128_V1.ToLabel(), Is.EqualTo("AES-128-V1"));
-            Assert.That(CryptoName.Unknown.ToLabel(), Is.EqualTo(String.Empty));
-            Assert.That(((CryptoName)(-1)).ToLabel(), Is.EqualTo(String.Empty));
         }
 
         [Test]
         public static void TestReduceByteArrayTooShort()
         {
             byte[] big = new byte[5];
-            byte[] reduced;
+            byte[] reduced = null;
 
             Assert.Throws<ArgumentException>(() => reduced = big.Reduce(6));
+            Assert.That(reduced, Is.Null);
         }
 
         [Test]
@@ -505,6 +516,82 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(copy.IsEquivalentTo(new byte[] { 1, 2, 3, 4 }));
                 }
             }
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestDecryptToBadArgumentsCausingEarlyException(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            Stream nullStream = null;
+            ICryptoTransform nullEncryptor = null;
+            ICryptoTransform encryptor = new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0).DecryptingTransform();
+
+            Assert.Throws<ArgumentNullException>(() => nullStream.DecryptTo(Stream.Null, encryptor, true));
+            Assert.Throws<ArgumentNullException>(() => Stream.Null.DecryptTo(nullStream, encryptor, true));
+            Assert.Throws<ArgumentNullException>(() => Stream.Null.DecryptTo(Stream.Null, nullEncryptor, true));
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestUserAsymmetricKeysToAccountKeyAndBack(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            AccountKey accountKey = originalKeys.ToAccountKey(new Passphrase("password"));
+            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(new Passphrase("password"));
+
+            Assert.That(originalKeys, Is.EqualTo(roundtripKeys));
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestUserAsymmetricKeysToAccountKeyAndBackUsingDataProtection(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            AccountKey accountKey = originalKeys.ToAccountKey(Passphrase.Empty);
+            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(Passphrase.Empty);
+
+            Assert.That(accountKey.KeyPair.PrivateEncryptedPem.Length, Is.GreaterThan(0));
+            Assert.That(originalKeys, Is.EqualTo(roundtripKeys));
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestAccountKeyToUserAsymmetricKeysWithWrongPassphrase(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            AccountKey accountKey = originalKeys.ToAccountKey(new Passphrase("password"));
+            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(new Passphrase("wrong password"));
+
+            Assert.That(roundtripKeys, Is.Null);
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestAccountKeyToUserAsymmericKeysWithOnlyPublicKey(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
+            IAsymmetricKeyPair partialKeyPair = Resolve.AsymmetricFactory.CreateKeyPair(originalKeys.KeyPair.PublicKey.ToString(), String.Empty);
+            UserKeyPair originalPartialKeys = new UserKeyPair(originalKeys.UserEmail, originalKeys.Timestamp, partialKeyPair);
+
+            AccountKey accountKey = originalPartialKeys.ToAccountKey(Passphrase.Empty);
+            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(Passphrase.Empty);
+
+            Assert.That(roundtripKeys, Is.EqualTo(originalPartialKeys));
         }
     }
 }

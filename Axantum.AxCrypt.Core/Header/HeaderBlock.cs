@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Portable;
 using System;
 using System.IO;
 
@@ -37,8 +38,13 @@ namespace Axantum.AxCrypt.Core.Header
 
         protected HeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
         {
+            if (dataBlock == null)
+            {
+                throw new ArgumentNullException("dataBlock");
+            }
+
             HeaderBlockType = headerBlockType;
-            _dataBlock = dataBlock;
+            _dataBlock = (byte[])dataBlock.Clone();
         }
 
         protected HeaderBlock(HeaderBlockType headerBlockType)
@@ -86,6 +92,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         protected void WritePrefix(Stream stream)
         {
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream");
+            }
+
             byte[] headerPrefixBytes = GetPrefixBytes();
             stream.Write(headerPrefixBytes, 0, headerPrefixBytes.Length);
         }
@@ -104,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 return false;
             }
-            return GetDataBlockBytesReference().IsEquivalentTo(other.GetDataBlockBytesReference());
+            return HeaderBlockType == other.HeaderBlockType && GetDataBlockBytesReference().IsEquivalentTo(other.GetDataBlockBytesReference());
         }
 
         public override bool Equals(object obj)
@@ -120,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public override int GetHashCode()
         {
-            int hashcode = 0;
+            int hashcode = (int)HeaderBlockType;
             foreach (byte b in GetDataBlockBytesReference())
             {
                 hashcode += b;

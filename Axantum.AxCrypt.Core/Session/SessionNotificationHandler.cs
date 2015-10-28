@@ -25,11 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -37,23 +41,26 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private FileSystemState _fileSystemState;
 
-        private KnownKeys _knownKeys;
+        private KnownIdentities _knownIdentities;
 
         private ActiveFileAction _activeFileAction;
 
         private AxCryptFile _axCryptFile;
 
-        public SessionNotificationHandler(FileSystemState fileSystemState, KnownKeys knownKeys, ActiveFileAction activeFileAction, AxCryptFile axCryptFile)
+        private IStatusChecker _statusChecker;
+
+        public SessionNotificationHandler(FileSystemState fileSystemState, KnownIdentities knownIdentities, ActiveFileAction activeFileAction, AxCryptFile axCryptFile, IStatusChecker statusChecker)
         {
             _fileSystemState = fileSystemState;
-            _knownKeys = knownKeys;
+            _knownIdentities = knownIdentities;
             _activeFileAction = activeFileAction;
             _axCryptFile = axCryptFile;
+            _statusChecker = statusChecker;
         }
 
         public virtual void HandleNotification(SessionNotification notification)
         {
-            Instance.ProgressBackground.Work(
+            Resolve.ProgressBackground.Work(
                 (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
@@ -66,37 +73,46 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         progress.NotifyLevelFinished();
                     }
-                    return FileOperationStatus.Success;
+                    return new FileOperationContext(String.Empty, ErrorStatus.Success);
                 },
-                (FileOperationStatus status) =>
+                (FileOperationContext status) =>
                 {
                 });
         }
 
         private void HandleNotificationInternal(SessionNotification notification, IProgressContext progress)
         {
-            if (Instance.Log.IsInfoEnabled)
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Received notification type '{0}'.".InvariantFormat(notification.NotificationType));
+                Resolve.Log.LogInfo("Received notification type '{0}'.".InvariantFormat(notification.NotificationType));
             }
+            EncryptionParameters encryptionParameters;
             switch (notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
-                    IRuntimeFileInfo addedFolderInfo = Factory.New<IRuntimeFileInfo>(notification.FullName);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { addedFolderInfo }, notification.Key, progress);
+                    foreach (string fullName in notification.FullNames)
+                    {
+                        IDataContainer addedFolderInfo = New<IDataContainer>(fullName);
+                        encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, notification.Identity);
+                        _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { addedFolderInfo }, encryptionParameters, progress);
+                    }
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:
-                    IRuntimeFileInfo removedFolderInfo = Factory.New<IRuntimeFileInfo>(notification.FullName);
-                    if (removedFolderInfo.IsFolder)
+                    foreach (string fullName in notification.FullNames)
                     {
-                        _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(removedFolderInfo, notification.Key, progress);
+                        IDataContainer removedFolderInfo = New<IDataContainer>(fullName);
+                        if (removedFolderInfo.IsAvailable)
+                        {
+                            _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(removedFolderInfo, notification.Identity, _statusChecker, progress);
+                        }
                     }
                     break;
 
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Thumbprint).Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), notification.Key, progress);
+                    encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, notification.Identity);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(notification.Identity.Tag)).Select(wf => New<IDataContainer>(wf.Path)), encryptionParameters, progress);
                     break;
 
                 case SessionNotificationType.SessionStart:
@@ -105,7 +121,15 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.EncryptPendingFiles:
                     _activeFileAction.PurgeActiveFiles(progress);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownKeys.LoggedOnWatchedFolders.Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), _knownKeys.DefaultEncryptionKey, progress);
+                    if (_knownIdentities.DefaultEncryptionIdentity != LogOnIdentity.Empty)
+                    {
+                        encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, _knownIdentities.DefaultEncryptionIdentity);
+                        _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownIdentities.LoggedOnWatchedFolders.Select(wf => New<IDataContainer>(wf.Path)), encryptionParameters, progress);
+                    }
+                    break;
+
+                case SessionNotificationType.UpdateActiveFiles:
+                    _fileSystemState.UpdateActiveFiles(notification.FullNames);
                     break;
 
                 case SessionNotificationType.WatchedFolderChange:
@@ -117,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 default:
-                    throw new InvalidOperationException("Unhandled notification recieved");
+                    throw new InvalidOperationException("Unhandled notification received");
             }
         }
     }

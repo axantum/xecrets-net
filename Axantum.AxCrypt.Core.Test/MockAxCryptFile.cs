@@ -39,39 +39,34 @@ namespace Axantum.AxCrypt.Core.Test
         public MockAxCryptFile()
         {
             EncryptMock = (sourceFile, destinationFile, passphrase, options, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            EncryptFilesUniqueWithBackupAndWipeMock = (fileInfo, encryptionKey, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            EncryptFileUniqueWithBackupAndWipeMock = (fileInfo, encryptionKey, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            DecryptFilesUniqueWithWipeOfOriginalMock = (fileInfo, decryptionKey, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
+            EncryptFilesUniqueWithBackupAndWipeMock = (fileInfo, encryptionParameters, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
+            EncryptFileUniqueWithBackupAndWipeMock = (fileInfo, encryptionParameters, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
+            DecryptFilesUniqueWithWipeOfOriginalMock = (fileInfo, decryptionKey, statusChecker, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
         }
 
         public delegate void Action<T1, T2, T3, T4, T5>(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5);
 
-        public Action<IRuntimeFileInfo, IRuntimeFileInfo, IPassphrase, AxCryptOptions, IProgressContext> EncryptMock { get; set; }
+        public Action<IDataStore, IDataStore, LogOnIdentity, AxCryptOptions, IProgressContext> EncryptMock { get; set; }
 
-        public override void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, IPassphrase passphrase, AxCryptOptions options, IProgressContext progress)
+        public Action<IEnumerable<IDataContainer>, EncryptionParameters, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
+
+        public override void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            EncryptMock(sourceFile, destinationFile, passphrase, options, progress);
+            EncryptFilesUniqueWithBackupAndWipeMock(folderInfos, encryptionParameters, progress);
         }
 
-        public Action<IEnumerable<IRuntimeFileInfo>, IPassphrase, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
+        public Action<IDataStore, EncryptionParameters, IProgressContext> EncryptFileUniqueWithBackupAndWipeMock { get; set; }
 
-        public override void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folderInfos, IPassphrase encryptionKey, IProgressContext progress)
+        public override void EncryptFileUniqueWithBackupAndWipe(IDataStore fileInfo, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            EncryptFilesUniqueWithBackupAndWipeMock(folderInfos, encryptionKey, progress);
+            EncryptFileUniqueWithBackupAndWipeMock(fileInfo, encryptionParameters, progress);
         }
 
-        public Action<IRuntimeFileInfo, IPassphrase, IProgressContext> EncryptFileUniqueWithBackupAndWipeMock { get; set; }
+        public Action<IDataContainer, LogOnIdentity, IStatusChecker, IProgressContext> DecryptFilesUniqueWithWipeOfOriginalMock { get; set; }
 
-        public override void EncryptFileUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, IPassphrase encryptionKey, IProgressContext progress)
+        public override void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IDataContainer fileInfo, LogOnIdentity decryptionKey, IStatusChecker statusChecker, IProgressContext progress)
         {
-            EncryptFileUniqueWithBackupAndWipeMock(fileInfo, encryptionKey, progress);
-        }
-
-        public Action<IRuntimeFileInfo, IPassphrase, IProgressContext> DecryptFilesUniqueWithWipeOfOriginalMock { get; set; }
-
-        public override void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, IPassphrase decryptionKey, IProgressContext progress)
-        {
-            DecryptFilesUniqueWithWipeOfOriginalMock(fileInfo, decryptionKey, progress);
+            DecryptFilesUniqueWithWipeOfOriginalMock(fileInfo, decryptionKey, statusChecker, progress);
         }
     }
 }

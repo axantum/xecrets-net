@@ -27,37 +27,51 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.WindowsDesktop)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
     public class TestAxCryptHeaderKeyWrap
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestAxCryptHeaderKeyWrap(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestUnwrapFromSimpleFile()
         {
-            using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
+            using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
                 V1KeyWrap1HeaderBlock keyWrapHeaderBlock = null;
-                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
+                using (V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(testStream)))
                 {
                     int headers = 0;
                     while (axCryptReader.Read())
@@ -90,11 +104,9 @@ namespace Axantum.AxCrypt.Core.Test
                     }
                     Assert.That(headers, Is.EqualTo(1), "We're expecting exactly one KeyWrap1 block to be found!");
                     byte[] wrapped = keyWrapHeaderBlock.GetKeyData();
-                    using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(new V1Passphrase("a")), keyWrapHeaderBlock.Salt, keyWrapHeaderBlock.Iterations, KeyWrapMode.AxCrypt))
-                    {
-                        byte[] unwrapped = keyWrap.Unwrap(wrapped);
-                        Assert.That(unwrapped.Length, Is.Not.EqualTo(0), "An unwrapped key is invalid if it is returned as a zero-length array.");
-                    }
+                    KeyWrap keyWrap = new KeyWrap(keyWrapHeaderBlock.Salt, keyWrapHeaderBlock.KeyWrapIterations, KeyWrapMode.AxCrypt);
+                    byte[] unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), new V1DerivedKey(new Passphrase("a")).DerivedKey, SymmetricIV.Zero128), wrapped);
+                    Assert.That(unwrapped.Length, Is.Not.EqualTo(0), "An unwrapped key is invalid if it is returned as a zero-length array.");
                 }
             }
         }

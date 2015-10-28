@@ -25,13 +25,17 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions.Rest;
+using Axantum.AxCrypt.Api;
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
+using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -50,7 +54,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public static readonly Version VersionUnknown = new Version();
+        public static readonly Version VersionUnknown = new Version(0, 0, 0, 0);
 
         private Version _currentVersion;
 
@@ -62,6 +66,8 @@ namespace Axantum.AxCrypt.Core.UI
         public virtual event EventHandler<VersionEventArgs> VersionUpdate;
 
         private ManualResetEvent _done = new ManualResetEvent(true);
+
+        private readonly object _doneLock = new object();
 
         /// <summary>
         /// Perform a background version check. The VersionUpdate event is guaranteed to be
@@ -91,23 +97,23 @@ namespace Axantum.AxCrypt.Core.UI
             }
             if (lastCheckTimeUtc.AddDays(1) >= OS.Current.UtcNow)
             {
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
+                    Resolve.Log.LogInfo("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
                 }
                 OnVersionUpdate(new VersionEventArgs(newestKnownVersionValue, updateWebpageUrl, CalculateStatus(newestKnownVersionValue, lastCheckTimeUtc)));
                 return;
             }
 
-            lock (_done)
+            lock (_doneLock)
             {
-                if (!_done.WaitOne(TimeSpan.Zero, false))
+                if (!_done.WaitOne(TimeSpan.Zero))
                 {
                     return;
                 }
                 _done.Reset();
             }
-            ThreadPool.QueueUserWorkItem((object state) =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
@@ -122,28 +128,25 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
-        private static Pair<Version, Uri> CheckWebForNewVersion(Uri webServiceUrl, Uri updateWebpageUrl)
+        private Pair<Version, Uri> CheckWebForNewVersion(Uri webServiceUrl, Uri updateWebpageUrl)
         {
             Version newVersion = VersionUnknown;
             try
             {
-                IWebCaller webCaller = OS.Current.CreateWebCaller();
-                string result = webCaller.Go(webServiceUrl);
-
-                VersionResponse versionResponse = JsonConvert.DeserializeObject<VersionResponse>(result);
+                CurrentVersionResponse versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl, New<IUserSettings>().ApiTimeOut).CheckVersionAsync(_currentVersion.ToString()).Result;
 
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
+                    Resolve.Log.LogInfo("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
                 }
             }
             catch (Exception ex)
             {
-                if (Instance.Log.IsWarningEnabled)
+                if (Resolve.Log.IsWarningEnabled)
                 {
-                    Instance.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
+                    Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
             }
             return new Pair<Version, Uri>(newVersion, updateWebpageUrl);
@@ -236,7 +239,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             if (disposing)
             {
-                _done.Close();
+                _done.Dispose();
                 _done = null;
             }
         }

@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2015, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,12 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Globalization;
-using System.IO;
 using System.Linq;
+using System.Text;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -61,20 +65,46 @@ namespace Axantum.AxCrypt.Core.Extensions
             return formatted;
         }
 
-        public static string CreateUniqueFile(this string fullName)
+        public static string ToUtf8Base64(this string passphrase)
         {
-            IRuntimeFileInfo pathInfo = Factory.New<IRuntimeFileInfo>(fullName);
-            string extension = Path.GetExtension(fullName);
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(passphrase));
+        }
+
+        /// <summary>
+        /// Create a file name based on an existing, but convert the file name to the pattern used by
+        /// AxCrypt for encrypted files. The original must not already be in that form.
+        /// </summary>
+        /// <param name="fileInfo">A file name representing a file that is not encrypted</param>
+        /// <returns>A corresponding file name representing the encrypted version of the original</returns>
+        public static string CreateEncryptedName(this string fullName)
+        {
+            if (fullName == null)
+            {
+                throw new ArgumentNullException("fullName");
+            }
+
+            string extension = Resolve.Portable.Path().GetExtension(fullName);
+            string encryptedName = fullName;
+            encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
+            encryptedName += extension.Replace('.', '-');
+            encryptedName += OS.Current.AxCryptExtension;
+
+            return encryptedName;
+        }
+
+        public static FileLock CreateUniqueFile(this string fullName)
+        {
+            IDataStore pathInfo = New<IDataStore>(fullName);
+            string extension = Resolve.Portable.Path().GetExtension(fullName);
             int version = 0;
             while (true)
             {
                 try
                 {
                     string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
-                    string alternatePath = Path.Combine(Path.GetDirectoryName(pathInfo.FullName), Path.GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension);
-                    IRuntimeFileInfo alternateFileInfo = Factory.New<IRuntimeFileInfo>(alternatePath);
-                    alternateFileInfo.CreateNewFile();
-                    return alternateFileInfo.FullName;
+                    string alternateName = Resolve.Portable.Path().GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension;
+                    IDataStore alternateFileInfo = pathInfo.Container.CreateNewFile(alternateName);
+                    return FileLock.Lock(alternateFileInfo);
                 }
                 catch (AxCryptException ace)
                 {
@@ -85,15 +115,6 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
                 ++version;
             }
-        }
-
-        public static string PathCombine(this string path, params string[] parts)
-        {
-            foreach (string part in parts)
-            {
-                path = Path.Combine(path, part);
-            }
-            return path;
         }
 
         /// <summary>
@@ -109,6 +130,11 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// </remarks>
         public static string TrimLogMessage(this string message)
         {
+            if (message == null)
+            {
+                throw new ArgumentNullException("message");
+            }
+
             int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal);
             skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex;
             skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex;
@@ -118,7 +144,13 @@ namespace Axantum.AxCrypt.Core.Extensions
             return message.Substring(skipIndex + 1);
         }
 
-        public static string FolderFromEnvironment(this string name)
+        /// <summary>
+        /// Gets a representation of a data container (folder) from an environment name or similar.
+        /// </summary>
+        /// <param name="name">The environment name.</param>
+        /// <returns>A container, or null if the name was not found or was empty.</returns>
+        /// <exception cref="System.ArgumentNullException">name</exception>
+        public static IDataContainer FolderFromEnvironment(this string name)
         {
             if (name == null)
             {
@@ -128,11 +160,41 @@ namespace Axantum.AxCrypt.Core.Extensions
             string value = OS.Current.EnvironmentVariable(name);
             if (String.IsNullOrEmpty(value))
             {
-                return String.Empty;
+                return null;
             }
 
-            value = value.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
-            return Factory.New<IRuntimeFileInfo>(value).NormalizeFolder().FullName;
+            return New<IDataContainer>(value);
+        }
+
+        public static string NormalizeFilePath(this string filePath)
+        {
+            if (filePath == null)
+            {
+                throw new ArgumentNullException("filePath");
+            }
+
+            filePath = filePath.Replace(Resolve.Portable.Path().DirectorySeparatorChar == '/' ? '\\' : '/', Resolve.Portable.Path().DirectorySeparatorChar);
+            return filePath;
+        }
+
+        public static string NormalizeFolderPath(this string folder)
+        {
+            folder = folder.NormalizeFilePath();
+            if (String.Compare(folder, Resolve.Portable.Path().GetPathRoot(folder), StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                return folder;
+            }
+            int directorySeparatorChars = 0;
+            while (folder.Length - (directorySeparatorChars + 1) > 0 && folder[folder.Length - (directorySeparatorChars + 1)] == Resolve.Portable.Path().DirectorySeparatorChar)
+            {
+                ++directorySeparatorChars;
+            }
+
+            if (directorySeparatorChars == 0)
+            {
+                return folder + Resolve.Portable.Path().DirectorySeparatorChar;
+            }
+            return folder.Substring(0, folder.Length - (directorySeparatorChars - 1));
         }
 
         public static byte[] FromHex(this string hex)
@@ -141,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 throw new ArgumentNullException("hex");
             }
-            hex = hex.Replace(" ", String.Empty);
+            hex = hex.Replace(" ", String.Empty).Replace("\r", String.Empty).Replace("\n", String.Empty);
             if (hex.Length % 2 != 0)
             {
                 throw new ArgumentException("Odd number of characters is not allowed in a hex string.");
@@ -153,6 +215,28 @@ namespace Axantum.AxCrypt.Core.Extensions
                 bytes[i] = Byte.Parse(hex.Substring(i + i, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
             }
             return bytes;
+        }
+
+        public static bool IsValidEmailOrEmpty(this string email)
+        {
+            if (String.IsNullOrEmpty(email))
+            {
+                return true;
+            }
+            return email.IsValidEmail();
+        }
+
+        public static bool IsValidEmail(this string email)
+        {
+            try
+            {
+                EmailAddress.Parse(email);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
     }
 }

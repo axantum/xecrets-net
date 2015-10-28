@@ -38,13 +38,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private SessionNotify _sessionNotify;
 
-        private KnownKeys _knownKeys;
+        private KnownIdentities _knownIdentities;
 
-        public KnownFoldersViewModel(FileSystemState fileSystemState, SessionNotify sessionNotify, KnownKeys knownKeys)
+        public KnownFoldersViewModel(FileSystemState fileSystemState, SessionNotify sessionNotify, KnownIdentities knownIdentities)
         {
             _fileSystemState = fileSystemState;
             _sessionNotify = sessionNotify;
-            _knownKeys = knownKeys;
+            _knownIdentities = knownIdentities;
 
             InitializePropertyValues();
             SubscribeToModelEvents();
@@ -66,20 +66,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             foreach (KnownFolder knownFolder in folders)
             {
-                if (_fileSystemState.WatchedFolders.Any((wf) => wf.Path == knownFolder.MyFullPath.FullName))
+                if (_fileSystemState.WatchedFolders.Any((wf) => wf.Path == knownFolder.My.FullName))
                 {
                     continue;
                 }
-                if (knownFolder.MyFullPath.Exists)
+                if (knownFolder.My.IsFile)
                 {
-                    return;
+                    continue;
                 }
-                if (!knownFolder.MyFullPath.IsFolder)
+                if (!knownFolder.My.IsAvailable)
                 {
-                    knownFolder.MyFullPath.CreateFolder();
+                    knownFolder.Folder.CreateFolder(knownFolder.My.Name);
                 }
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.MyFullPath.FullName, _knownKeys.DefaultEncryptionKey.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
             }
+            _fileSystemState.Save();
         }
 
         private IEnumerable<KnownFolder> UpdateEnabledState(IEnumerable<KnownFolder> knownFolders)
@@ -87,7 +88,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             List<KnownFolder> updatedFolders = new List<KnownFolder>();
             foreach (KnownFolder folder in knownFolders)
             {
-                KnownFolder updated = new KnownFolder(folder, _knownKeys.LoggedOnWatchedFolders.Any(f => f.Path == folder.MyFullPath.FullName));
+                KnownFolder updated = new KnownFolder(folder, _knownIdentities.LoggedOnWatchedFolders.Any(f => f.Path == folder.My.FullName));
                 updatedFolders.Add(updated);
             }
             return updatedFolders;

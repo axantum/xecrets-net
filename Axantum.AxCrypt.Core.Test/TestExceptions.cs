@@ -25,12 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 using System;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -78,13 +76,13 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(ace.ErrorStatus, Is.EqualTo(ErrorStatus.Unknown), "Parameterless constructor should result in status Unknown.");
             }
 
-            Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
+            Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() =>
             {
-                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException();
+                throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException();
             });
             try
             {
-                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException();
+                throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException();
             }
             catch (AxCryptException ace)
             {
@@ -142,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 try
                 {
-                    throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("Testing inner", ice);
+                    throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException("Testing inner", ice);
                 }
                 catch (AxCryptException ace)
                 {
@@ -150,43 +148,6 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(ace.Message, Is.EqualTo("Testing inner"), "Wrong message.");
                     Assert.That(ace.InnerException.GetType(), Is.EqualTo(typeof(InvalidCastException)), "Wrong inner exception.");
                 }
-            }
-        }
-
-        [Test]
-        public static void TestAxCryptExceptionSerialization()
-        {
-            FileFormatException ffe = new FileFormatException("A test-exception");
-            IFormatter ffeFormatter = new BinaryFormatter();
-            using (Stream stream = new MemoryStream())
-            {
-                ffeFormatter.Serialize(stream, ffe);
-                stream.Position = 0;
-                FileFormatException deserializedFfe = (FileFormatException)ffeFormatter.Deserialize(stream);
-                Assert.That(deserializedFfe.ErrorStatus, Is.EqualTo(ErrorStatus.FileFormatError), "The deserialized status should be the same as the original.");
-                Assert.That(deserializedFfe.Message, Is.EqualTo("A test-exception"), "The deserialized message should be the same as the original.");
-            }
-
-            InternalErrorException iee = new InternalErrorException("A test-exception", ErrorStatus.InternalError);
-            IFormatter ieeFormatter = new BinaryFormatter();
-            using (Stream stream = new MemoryStream())
-            {
-                ieeFormatter.Serialize(stream, iee);
-                stream.Position = 0;
-                InternalErrorException deserializedFfe = (InternalErrorException)ieeFormatter.Deserialize(stream);
-                Assert.That(deserializedFfe.ErrorStatus, Is.EqualTo(ErrorStatus.InternalError), "The deserialized status should be the same as the original.");
-                Assert.That(deserializedFfe.Message, Is.EqualTo("A test-exception"), "The deserialized message should be the same as the original.");
-            }
-
-            Axantum.AxCrypt.Core.Runtime.InvalidDataException ide = new Axantum.AxCrypt.Core.Runtime.InvalidDataException("A test-exception");
-            IFormatter ideFormatter = new BinaryFormatter();
-            using (Stream stream = new MemoryStream())
-            {
-                ideFormatter.Serialize(stream, ide);
-                stream.Position = 0;
-                Axantum.AxCrypt.Core.Runtime.InvalidDataException deserializedFfe = (Axantum.AxCrypt.Core.Runtime.InvalidDataException)ideFormatter.Deserialize(stream);
-                Assert.That(deserializedFfe.ErrorStatus, Is.EqualTo(ErrorStatus.DataError), "The deserialized status should be the same as the original.");
-                Assert.That(deserializedFfe.Message, Is.EqualTo("A test-exception"), "The deserialized message should be the same as the original.");
             }
         }
     }

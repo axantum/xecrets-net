@@ -38,10 +38,10 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
-        public V1KeyWrap1HeaderBlock(ICrypto keyEncryptingCrypto, long keyWrapIterations)
+        public V1KeyWrap1HeaderBlock(SymmetricKey keyEncryptingKey, long keyWrapIterations)
             : this(new byte[44])
         {
-            Initialize(keyEncryptingCrypto, keyWrapIterations);
+            Initialize(keyEncryptingKey, keyWrapIterations);
         }
 
         public override object Clone()
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Header
             return keyData;
         }
 
-        protected void Set(byte[] wrapped, KeyWrapSalt salt, long keyWrapIterations)
+        protected void Set(byte[] wrapped, Salt salt, long keyWrapIterations)
         {
             if (wrapped == null)
             {
@@ -82,72 +82,71 @@ namespace Axantum.AxCrypt.Core.Header
             Array.Copy(iterationsBytes, 0, GetDataBlockBytesReference(), 16 + 8 + 16, sizeof(uint));
         }
 
-        public KeyWrapSalt Salt
+        public Salt Salt
         {
             get
             {
                 byte[] salt = new byte[16];
                 Array.Copy(GetDataBlockBytesReference(), 16 + 8, salt, 0, salt.Length);
 
-                return new KeyWrapSalt(salt);
+                return new Salt(salt);
             }
         }
 
-        public long Iterations
+        public long KeyWrapIterations
         {
             get
             {
-                long iterations = GetDataBlockBytesReference().GetLittleEndianValue(16 + 8 + 16, sizeof(uint));
+                long keyWrapIterations = GetDataBlockBytesReference().GetLittleEndianValue(16 + 8 + 16, sizeof(uint));
 
-                return iterations;
+                return keyWrapIterations;
             }
         }
 
-        public byte[] UnwrapMasterKey(ICrypto keyEncryptingCrypto, byte fileVersionMajor)
+        public byte[] UnwrapMasterKey(SymmetricKey keyEncryptingKey, byte fileVersionMajor)
         {
+            if (keyEncryptingKey == null)
+            {
+                throw new ArgumentNullException("keyEncryptingKey");
+            }
+
             byte[] wrappedKeyData = GetKeyData();
-            KeyWrapSalt salt = Salt;
-            IPassphrase keyEncryptingKey = keyEncryptingCrypto.Key;
+            Salt salt = Salt;
+            SymmetricKey masterKeyEncryptingKey = keyEncryptingKey;
             if (fileVersionMajor <= 1)
             {
                 // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(
                 // Compensate for this here. Users should be warned if FileVersionMajor <= 1 .
-                byte[] badKey = new byte[keyEncryptingKey.DerivedKey.Length];
-                Array.Copy(keyEncryptingCrypto.Key.DerivedKey.GetBytes(), 0, badKey, 0, 4);
-                keyEncryptingKey = new GenericPassphrase(new SymmetricKey(badKey));
+                byte[] badKey = new byte[masterKeyEncryptingKey.Size / 8];
+                Array.Copy(keyEncryptingKey.GetBytes(), 0, badKey, 0, 4);
+                masterKeyEncryptingKey = new SymmetricKey(badKey);
 
                 byte[] badSalt = new byte[salt.Length];
                 Array.Copy(salt.GetBytes(), 0, badSalt, 0, 4);
-                salt = new KeyWrapSalt(badSalt);
+                salt = new Salt(badSalt);
             }
 
-            byte[] unwrappedKeyData;
-            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, Iterations, KeyWrapMode.AxCrypt))
-            {
-                unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
-            }
+            KeyWrap keyWrap = new KeyWrap(salt, KeyWrapIterations, KeyWrapMode.AxCrypt);
+            byte[] unwrappedKeyData = keyWrap.Unwrap(Resolve.CryptoFactory.Legacy.CreateCrypto(masterKeyEncryptingKey, null, 0), wrappedKeyData);
             return unwrappedKeyData;
         }
 
-        private void Initialize(ICrypto keyEncryptingCrypto, long keyWrapIterations)
+        private void Initialize(SymmetricKey keyEncryptingKey, long keyWrapIterations)
         {
-            SymmetricKey masterKey = new SymmetricKey(keyEncryptingCrypto.Key.DerivedKey.Length * 8);
-            KeyWrapSalt salt = new KeyWrapSalt(masterKey.Length);
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingCrypto, salt, keyWrapIterations, KeyWrapMode.AxCrypt))
-            {
-                byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
-                Set(wrappedKeyData, salt, keyWrapIterations);
-            }
+            RewrapMasterKey(new SymmetricKey(keyEncryptingKey.Size), keyEncryptingKey, keyWrapIterations);
         }
 
-        public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey)
+        public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey, long keyWrapIterations)
         {
-            KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
-            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(new GenericPassphrase(keyEncryptingKey)), salt, Iterations, KeyWrapMode.AxCrypt))
+            if (masterKey == null)
             {
-                byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
-                Set(wrappedKeyData, salt, Iterations);
+                throw new ArgumentNullException("masterKey");
             }
+
+            Salt salt = new Salt(masterKey.Size);
+            KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
+            byte[] wrappedKeyData = keyWrap.Wrap(Resolve.CryptoFactory.Legacy.CreateCrypto(keyEncryptingKey, null, 0), masterKey);
+            Set(wrappedKeyData, salt, keyWrapIterations);
         }
     }
 }

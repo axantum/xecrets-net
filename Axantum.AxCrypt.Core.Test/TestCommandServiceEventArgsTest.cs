@@ -25,8 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Core.Ipc;
-using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -36,16 +37,28 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestCommandServiceEventArgsTest
     {
+        [SetUp]
+        public static void Setup()
+        {
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer());
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            TypeMap.Register.Clear();
+        }
+
         [Test]
-        public static void TestJsonSerialization()
+        public static void TestStringSerialization()
         {
             CommandServiceEventArgs args = new CommandServiceEventArgs();
-            string json = JsonConvert.SerializeObject(args);
+            string serialized = Resolve.Serializer.Serialize(args);
 
-            args = JsonConvert.DeserializeObject<CommandServiceEventArgs>(json);
+            args = Resolve.Serializer.Deserialize<CommandServiceEventArgs>(serialized);
 
-            Assert.That(args.RequestCommand, Is.EqualTo(CommandVerb.Unknown));
-            Assert.That(args.Paths.Count(), Is.EqualTo(0));
+            Assert.That(args.Verb, Is.EqualTo(CommandVerb.Unknown));
+            Assert.That(args.Arguments.Count(), Is.EqualTo(0));
         }
     }
 }
