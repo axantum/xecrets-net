@@ -98,5 +98,12 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <param name="keyPairs">The key pairs.</param>
         Task SaveAsync(IEnumerable<UserKeyPair> keyPairs);
+
+        /// <summary>
+        /// Signs a user up for AxCrypt, creating the account and sending verification link and code
+        /// in an email to the provided email address in Identity.
+        /// </summary>
+        /// <returns></returns>
+        Task SignupAsync(string emailAddress);
     }
 }

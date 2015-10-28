@@ -91,5 +91,10 @@ namespace Axantum.AxCrypt.Core.Service
         {
             return Task.Run(() => { });
         }
+
+        public Task SignupAsync(string emailAddress)
+        {
+            return Task.Run(() => { });
+        }
     }
 }

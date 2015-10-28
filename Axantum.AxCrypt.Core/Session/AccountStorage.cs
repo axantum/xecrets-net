@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public async Task<bool> HasKeyPairAsync()
         {
-            return (await _service.ListAsync()).Any();
+            return (await _service.ListAsync().ConfigureAwait(false)).Any();
         }
 
         public async void ImportAsync(UserKeyPair keyPair)
@@ -66,24 +66,24 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentException("User email mismatch in key pair and store.", nameof(keyPair));
             }
 
-            IList<UserKeyPair> keyPairs = await _service.ListAsync();
+            IList<UserKeyPair> keyPairs = await _service.ListAsync().ConfigureAwait(false);
             if (keyPairs.Any(k => k == keyPair))
             {
                 return;
             }
 
             keyPairs.Add(keyPair);
-            await _service.SaveAsync(keyPairs);
+            await _service.SaveAsync(keyPairs).ConfigureAwait(false);
         }
 
         public async virtual Task<IEnumerable<UserKeyPair>> AllKeyPairsAsync()
         {
-            return (await _service.ListAsync()).OrderByDescending(uk => uk.Timestamp);
+            return (await _service.ListAsync().ConfigureAwait(false)).OrderByDescending(uk => uk.Timestamp);
         }
 
         public async Task<UserKeyPair> ActiveKeyPairAsync()
         {
-            return (await AllKeyPairsAsync()).First();
+            return (await AllKeyPairsAsync().ConfigureAwait(false)).First();
         }
 
         public EmailAddress UserEmail
@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public async Task<AccountStatus> StatusAsync()
         {
-            return await _service.StatusAsync();
+            return await _service.StatusAsync().ConfigureAwait(false);
         }
 
         public async virtual void ChangePassphraseAsync(Passphrase passphrase)
@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             _service.ChangePassphrase(passphrase);
-            await _service.SaveAsync(await AllKeyPairsAsync());
+            await _service.SaveAsync(await AllKeyPairsAsync().ConfigureAwait(false)).ConfigureAwait(false);
         }
     }
 }

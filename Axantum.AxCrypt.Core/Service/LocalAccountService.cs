@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 return AccountStatus.Verified;
             }
-            return await _service.StatusAsync();
+            return await _service.StatusAsync().ConfigureAwait(false);
         }
 
         public bool HasAccounts
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Service
                 return list;
             }
 
-            IList<UserKeyPair> other = await _service.ListAsync();
+            IList<UserKeyPair> other = await _service.ListAsync().ConfigureAwait(false);
             if (other.Count == 0)
             {
                 return list;
@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Service
             list = list.Union(other).ToList();
 
             //This is where we can update the server, but it's not yet implemented at this point.
-            //await _service.SaveAsync(list);
+            //await _service.SaveAsync(list).ConfigureAwait(false);
             //_hasCachedList = true;
 
             return list;
@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Service
                 userAccounts.SerializeTo(writer);
             }
 
-            await _service.SaveAsync(keyPairs);
+            await _service.SaveAsync(keyPairs).ConfigureAwait(false);
         }
 
         public bool ChangePassphrase(Passphrase passphrase)
@@ -169,18 +169,6 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 throw new NotImplementedException();
             }
-        }
-
-        /// <summary>
-        /// Gets public information about the account.
-        /// </summary>
-        /// <param name="email">The email identifier of the account.</param>
-        /// <returns>
-        /// The user accoiunt with only the public inforamation.
-        /// </returns>
-        public UserAccount PublicAccount(EmailAddress email)
-        {
-            return null;
         }
 
         private IList<UserKeyPair> TryLoadUserKeyPairs()
@@ -232,6 +220,11 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 return _service.Identity;
             }
+        }
+
+        public async Task SignupAsync(string emailAddress)
+        {
+            await _service.SignupAsync(emailAddress).ConfigureAwait(false);
         }
 
         private UserAccounts LoadUserAccounts()

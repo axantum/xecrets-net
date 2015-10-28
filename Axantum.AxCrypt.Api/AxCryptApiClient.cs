@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("users/account/{0}".With(UrlEncode(userName)));
 
-            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest(resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 5)));
+            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest(resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 5))).ConfigureAwait(false);
             if (restResponse.StatusCode == HttpStatusCode.NotFound)
             {
                 return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.NotFound);
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("users/account");
 
-            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource, _timeout));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource, _timeout)).ConfigureAwait(false);
             EnsureStatusOk(restResponse);
 
             UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Api
             Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(Identity.User)));
 
             RestContent content = new RestContent(Serializer.Serialize(accountKeys));
-            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("PUT", resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 2), content));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("PUT", resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 2), content)).ConfigureAwait(false);
             EnsureStatusOk(restResponse);
 
             ResponseBase apiResponse = Serializer.Deserialize<ResponseBase>(restResponse.Content);
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Api
         /// <returns>The account keys of the account.</returns>
         public async Task<IList<AccountKey>> AccountKeysAsync()
         {
-            UserAccount userAccount = await GetUserAccountAsync();
+            UserAccount userAccount = await GetUserAccountAsync().ConfigureAwait(false);
 
             return userAccount.AccountKeys;
         }
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = _baseUrl.PathCombine("axcrypt2version/windows?current={0}".With(UrlEncode(currentVersion)));
 
-            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource, _timeout));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource, _timeout)).ConfigureAwait(false);
             EnsureStatusOk(restResponse);
 
             CurrentVersionResponse apiResponse = Serializer.Deserialize<CurrentVersionResponse>(restResponse.Content);
@@ -130,11 +130,19 @@ namespace Axantum.AxCrypt.Api
             return apiResponse;
         }
 
+        public async Task Signup(string userName)
+        {
+            Uri resource = _baseUrl.PathCombine("users/account/{0}".With(UrlEncode(userName)));
+
+            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest("PUT", resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 1))).ConfigureAwait(false);
+            EnsureStatusOk(restResponse);
+        }
+
         private async static Task<RestResponse> RestCallInternalAsync(RestIdentity identity, RestRequest request)
         {
             try
             {
-                return await RestCaller.SendAsync(identity, request);
+                return await RestCaller.SendAsync(identity, request).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

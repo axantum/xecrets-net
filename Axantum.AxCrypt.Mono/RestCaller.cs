@@ -34,7 +34,6 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono
@@ -65,7 +64,10 @@ namespace Axantum.AxCrypt.Mono
                     {
                         throw new ArgumentException("You can't send content with a GET request.", "request");
                     }
-                    return await SendGet(identity, request);
+                    return await SendGet(identity, request).ConfigureAwait(false);
+
+                case "PUT":
+                    return await SendPut(identity, request).ConfigureAwait(false);
 
                 default:
                     throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
@@ -89,25 +91,45 @@ namespace Axantum.AxCrypt.Mono
             string content = String.Empty;
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri(request.Url.GetLeftPart(UriPartial.Authority));
-                client.Timeout = request.Timeout > TimeSpan.Zero ? request.Timeout : TimeSpan.FromMilliseconds(-1);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                PrepareClient(client, identity, request);
 
-                foreach (string key in request.Headers.Collection.Keys)
-                {
-                    client.DefaultRequestHeaders.Add(key, request.Headers.Collection[key]);
-                }
-
-                if (identity.User.Length > 0)
-                {
-                    string credentials = "{0}:{1}".InvariantFormat(identity.User, identity.Password.ToUtf8Base64());
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(credentials)));
-                }
-
-                HttpResponseMessage httpResponse = client.GetAsync(request.Url.PathAndQuery).Result;
-                content = await httpResponse.Content.ReadAsStringAsync();
+                HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery).ConfigureAwait(false);
+                content = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                 return new RestResponse(httpResponse.StatusCode, content);
+            }
+        }
+
+        private async static Task<RestResponse> SendPut(RestIdentity identity, RestRequest request)
+        {
+            string content = String.Empty;
+            using (HttpClient client = new HttpClient())
+            {
+                PrepareClient(client, identity, request);
+
+                StringContent httpContent = new StringContent(request.Content.Text);
+                HttpResponseMessage httpResponse = await client.PutAsync(request.Url.PathAndQuery, httpContent).ConfigureAwait(false);
+                content = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                return new RestResponse(httpResponse.StatusCode, content);
+            }
+        }
+
+        private static void PrepareClient(HttpClient client, RestIdentity identity, RestRequest request)
+        {
+            client.BaseAddress = new Uri(request.Url.GetLeftPart(UriPartial.Authority));
+            client.Timeout = request.Timeout > TimeSpan.Zero ? request.Timeout : TimeSpan.FromMilliseconds(-1);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            foreach (string key in request.Headers.Collection.Keys)
+            {
+                client.DefaultRequestHeaders.Add(key, request.Headers.Collection[key]);
+            }
+
+            if (identity.User.Length > 0)
+            {
+                string credentials = "{0}:{1}".InvariantFormat(identity.User, identity.Password.ToUtf8Base64());
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(credentials)));
             }
         }
     }

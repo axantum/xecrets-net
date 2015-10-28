@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Service
             UserAccount userAccount;
             try
             {
-                userAccount = await _apiClient.GetUserAccountAsync(Resolve.UserSettings.UserEmail);
+                userAccount = await _apiClient.GetUserAccountAsync(Resolve.UserSettings.UserEmail).ConfigureAwait(false);
             }
             catch (ApiException)
             {
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core.Service
             IList<AccountKey> apiAccountKeys;
             try
             {
-                apiAccountKeys = await _apiClient.AccountKeysAsync();
+                apiAccountKeys = await _apiClient.AccountKeysAsync().ConfigureAwait(false);
             }
             catch (UnauthorizedApiException)
             {
@@ -168,7 +168,12 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
             IList<AccountKey> apiAccountKeys = keyPairs.Select(k => k.ToAccountKey(Identity.Passphrase)).ToList();
-            await _apiClient.PutAccountKeysAsync(apiAccountKeys);
+            await _apiClient.PutAccountKeysAsync(apiAccountKeys).ConfigureAwait(false);
+        }
+
+        public async Task SignupAsync(string emailAddress)
+        {
+            await _apiClient.Signup(emailAddress).ConfigureAwait(false);
         }
     }
 }

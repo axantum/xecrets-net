@@ -164,7 +164,8 @@ namespace Axantum.AxCrypt
                 switch (status)
                 {
                     case AccountStatus.NotFound:
-                        MessageDialog.Show(this, "Please Register", "You must register your email address.");
+                        await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(Resolve.UserSettings.UserEmail);
+                        MessageDialog.Show(this, "Signing Up", "You have now registered. Please check your email for the verification link and instructions.");
                         break;
 
                     case AccountStatus.InvalidName:

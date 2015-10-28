@@ -153,7 +153,14 @@ namespace Axantum.AxCrypt
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new AxCryptMainForm());
+            try
+            {
+                Application.Run(new AxCryptMainForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Unhandled Exception");
+            }
         }
     }
 }
