@@ -55,6 +55,7 @@
     <Compile Include="Implementation\CustomSerializer.cs" />
     <Compile Include="Model\AccountStatus.cs" />
     <Compile Include="Model\KeyPair.cs" />
+    <Compile Include="Model\PasswordReset.cs" />
     <Compile Include="Model\SubscriptionLevel.cs" />
     <Compile Include="Model\UserAccounts.cs" />
     <Compile Include="Response\ResponseBase.cs" />
