@@ -45,6 +45,19 @@ namespace Axantum.AxCrypt
             StartPosition = FormStartPosition.CenterParent;
         }
 
+        public static DialogResult ShowOk(Form parent, string caption, string message)
+        {
+            using (MessageDialog messageDialog = new MessageDialog(parent))
+            {
+                messageDialog.HideExit();
+                messageDialog.HideCancel();
+                messageDialog.Text = caption;
+                messageDialog._text.Text = message;
+
+                return messageDialog.ShowDialog(parent);
+            }
+        }
+
         public static DialogResult ShowOkCancel(Form parent, string caption, string message)
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))

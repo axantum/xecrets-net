@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
@@ -152,8 +153,24 @@ namespace Axantum.AxCrypt
         private async void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
             SetTopControlsEnabled(false);
-            await DoInitialSignInAsync();
-            SetTopControlsEnabled(true);
+            while (true)
+            {
+                try
+                {
+                    await DoInitialSignInAsync();
+                }
+                catch (Exception ex)
+                {
+                    while (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    MessageDialog.ShowOk(this, "Unexpected Error", "An unexpected error '{0}' occurred.".InvariantFormat(ex.Message));
+                    continue;
+                }
+                SetTopControlsEnabled(true);
+                break;
+            }
         }
 
         private void SetTopControlsEnabled(bool enabled)
