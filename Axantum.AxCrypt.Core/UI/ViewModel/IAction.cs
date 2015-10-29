@@ -27,6 +27,7 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -39,6 +40,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         bool CanExecute(object parameter);
 
         void Execute(object parameter);
+
+        Task ExecuteAsync(object parameter);
 
         event EventHandler CanExecuteChanged;
     }

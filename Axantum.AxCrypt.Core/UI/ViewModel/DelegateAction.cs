@@ -28,6 +28,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -37,6 +38,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     public class DelegateAction<T> : IAction
     {
         private Action<T> _executeMethod;
+
+        private Func<T, Task> _executeMethodAsync;
 
         private Func<T, bool> _canExecuteMethod;
 
@@ -51,6 +54,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
         }
 
+        public DelegateAction(Func<T, Task> executeMethodAsync)
+        {
+            _executeMethodAsync = executeMethodAsync;
+        }
+
         public bool CanExecute(object parameter)
         {
             return _canExecuteMethod(parameter != null ? (T)parameter : default(T));
@@ -63,6 +71,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 throw new InvalidOperationException("Execute() invoked when it cannot execute.");
             }
             _executeMethod((T)parameter);
+        }
+
+        public Task ExecuteAsync(object parameter)
+        {
+            return _executeMethodAsync((T)parameter);
         }
 
         public event EventHandler CanExecuteChanged;
