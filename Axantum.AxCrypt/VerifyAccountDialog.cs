@@ -39,18 +39,18 @@ namespace Axantum.AxCrypt
             _activationCode.Focus();
         }
 
-        private void _buttonOk_Click(object sender, EventArgs e)
+        private async void _buttonOk_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.None;
             if (!AdHocValidationDueToMonoLimitations())
             {
-                DialogResult = DialogResult.None;
                 return;
             }
 
-            _viewModel.VerifyAccount.Execute(null);
-            if (!AdHocValidateVerificationCode())
+            await _viewModel.VerifyAccount.ExecuteAsync(null);
+            if (AdHocValidateVerificationCode())
             {
-                DialogResult = DialogResult.None;
+                DialogResult = DialogResult.OK;
             }
             return;
         }
