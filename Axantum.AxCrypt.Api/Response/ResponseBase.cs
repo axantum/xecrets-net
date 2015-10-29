@@ -14,13 +14,13 @@ namespace Axantum.AxCrypt.Api.Response
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Serialization")]
         [JsonProperty("S")]
-        public int Status { get; private set; }
+        public int Status { get; protected set; }
 
         /// <summary>
         /// Message
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Serialization")]
         [JsonProperty("M")]
-        public string Message { get; private set; }
+        public string Message { get; protected set; }
     }
 }

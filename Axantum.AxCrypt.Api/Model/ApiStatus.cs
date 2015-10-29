@@ -9,5 +9,6 @@ namespace Axantum.AxCrypt.Api.Model
     {
         Success = 0,
         PaymentRequired = 1,
+        PasswordResetFailed = 2,
     }
 }
