@@ -138,6 +138,21 @@ namespace Axantum.AxCrypt.Api
             EnsureStatusOk(restResponse);
         }
 
+        public async Task VerifyAccountAsync(string verification)
+        {
+            if (String.IsNullOrEmpty(Identity.User) || String.IsNullOrEmpty(Identity.Password))
+            {
+                throw new InvalidOperationException("There must be an identity and password to attempt to verify the account information.");
+            }
+
+            Uri resource = _baseUrl.PathCombine("users/account/{0}/password".With(Identity.User));
+
+            PasswordResetParameters passwordResetParameters = new PasswordResetParameters(Identity.Password, verification);
+            RestContent content = new RestContent(Serializer.Serialize(passwordResetParameters));
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("PUT", resource, _timeout, content)).ConfigureAwait(false);
+            EnsureStatusOk(restResponse);
+        }
+
         private async static Task<RestResponse> RestCallInternalAsync(RestIdentity identity, RestRequest request)
         {
             try
