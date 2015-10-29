@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string ErrorMessage { get { return GetProperty<string>(nameof(ErrorMessage)); } set { SetProperty(nameof(ErrorMessage), value); } }
 
-        public IAction VerifyAccount { get { return new DelegateAction<object>((o) => VerifyAccountAction()); } }
+        public IAction VerifyAccount { get { return new DelegateAction<object>((o) => VerifyAccountActionAsync()); } }
 
         public VerifyAccountViewModel(EmailAddress emailAddress)
         {
@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return true;
         }
 
-        private async void VerifyAccountAction()
+        private async Task VerifyAccountActionAsync()
         {
             LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(UserEmail), Crypto.Passphrase.Create(Passphrase));
             IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
