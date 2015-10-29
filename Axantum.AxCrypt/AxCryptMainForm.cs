@@ -208,12 +208,12 @@ namespace Axantum.AxCrypt
                         break;
 
                     case AccountStatus.Unverified:
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Check Email Address", "You are already signed up as '{0}' but must verify this is your email address. Please check your inbox, and try again.".InvariantFormat(Resolve.UserSettings.UserEmail));
-                        if (dialogResult == DialogResult.Cancel)
+                        if (await VerifyAccountOnlineAsync())
                         {
-                            Resolve.UserSettings.UserEmail = String.Empty;
-                            dialogResult = DialogResult.OK;
+                            return;
                         }
+                        Resolve.UserSettings.UserEmail = String.Empty;
+                        dialogResult = DialogResult.OK;
                         break;
 
                     case AccountStatus.Verified:
@@ -245,7 +245,7 @@ namespace Axantum.AxCrypt
                 status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
             } while (status != AccountStatus.Verified);
 
-            if (!await EnsureCreateAccountAsync())
+            if (!await VerifyAccountOnlineAsync())
             {
                 Application.Exit();
                 return;
@@ -304,6 +304,28 @@ namespace Axantum.AxCrypt
                 return true;
             }
 
+            return CreateNewOfflineAccount();
+        }
+
+        private async Task<bool> VerifyAccountOnlineAsync()
+        {
+            VerifyAccountViewModel viewModel = new VerifyAccountViewModel(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
+            using (VerifyAccountDialog dialog = new VerifyAccountDialog(this, viewModel))
+            {
+                DialogResult dialogResult = dialog.ShowDialog(this);
+                if (dialogResult != DialogResult.OK)
+                {
+                    return false;
+                }
+            }
+            LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(viewModel.UserEmail), Passphrase.Create(viewModel.Passphrase));
+            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
+            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(await store.ActiveKeyPairAsync(), identity.Passphrase);
+            return true;
+        }
+
+        private bool CreateNewOfflineAccount()
+        {
             New<KeyPairService>().Start();
             using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, String.Empty, EmailAddress.Parse(Resolve.UserSettings.UserEmail)))
             {

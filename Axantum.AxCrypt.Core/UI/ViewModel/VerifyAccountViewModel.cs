@@ -28,52 +28,49 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    /// <summary>
-    /// Request user name and passphrase, get a public key pair from the server, or generate
-    /// locally, and store the result locally.
-    /// </summary>
-    public class CreateNewAccountViewModel : ViewModelBase
+    public class VerifyAccountViewModel : ViewModelBase
     {
+        public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
+
+        public string VerificationCode { get { return GetProperty<string>(nameof(VerificationCode)); } set { SetProperty(nameof(VerificationCode), value); } }
+
         public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
 
-        public string Verification { get { return GetProperty<string>(nameof(Verification)); } set { SetProperty(nameof(Verification), value); } }
+        public string VerificationPassphrase { get { return GetProperty<string>(nameof(VerificationPassphrase)); } set { SetProperty(nameof(VerificationPassphrase), value); } }
 
         public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
 
-        public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
+        public string ErrorMessage { get { return GetProperty<string>(nameof(ErrorMessage)); } set { SetProperty(nameof(ErrorMessage), value); } }
 
-        public IAction CreateAccount { get { return new DelegateAction<object>((o) => CreateAccountAction()); } }
+        public IAction VerifyAccount { get { return new DelegateAction<object>((o) => VerifyAccountAction()); } }
 
-        public CreateNewAccountViewModel(string passphrase, EmailAddress email)
+        public VerifyAccountViewModel(EmailAddress emailAddress)
         {
-            InitializePropertyValues(passphrase, email);
+            InitializePropertyValues(emailAddress);
             BindPropertyChangedEvents();
         }
 
-        private void InitializePropertyValues(string passphrase, EmailAddress email)
+        private void InitializePropertyValues(EmailAddress emailAddress)
         {
-            Passphrase = passphrase ?? String.Empty;
-            Verification = passphrase ?? String.Empty;
-
-            UserEmail = email.Address;
+            UserEmail = emailAddress.Address;
             ShowPassphrase = Resolve.UserSettings.DisplayEncryptPassphrase;
+            ErrorMessage = String.Empty;
         }
 
         private void BindPropertyChangedEvents()
         {
             BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
-            BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (String.IsNullOrEmpty(Validate(nameof(UserEmail)))) { Resolve.UserSettings.UserEmail = userEmail; } });
         }
 
         public override string this[string columnName]
@@ -110,33 +107,52 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     return true;
 
-                case nameof(Verification):
-                    if (String.IsNullOrEmpty(Verification))
+                case nameof(Passphrase):
+                    return ValidatePassphrasePolicy(Passphrase);
+
+                case nameof(VerificationPassphrase):
+                    if (String.IsNullOrEmpty(VerificationPassphrase))
                     {
                         return false;
                     }
-                    return String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0;
+                    return String.Compare(Passphrase, VerificationPassphrase, StringComparison.Ordinal) == 0;
 
-                case nameof(Passphrase):
-                    return !String.IsNullOrEmpty(Passphrase);
+                case nameof(VerificationCode):
+                    return VerificationCode.Length == 6 && VerificationCode.ToCharArray().All(c => Char.IsDigit(c));
 
                 default:
                     return true;
             }
         }
 
-        private object CreateAccountAction()
+        private static bool ValidatePassphrasePolicy(string passphrase)
         {
-            if (String.IsNullOrEmpty(UserEmail))
+            if (passphrase.Length < 10)
             {
-                return null;
+                return false;
             }
 
-            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
-            UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), DateTime.UtcNow, New<KeyPairService>().New());
-            store.ImportAsync(userKeys);
+            return true;
+        }
 
-            return null;
+        private async void VerifyAccountAction()
+        {
+            LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(UserEmail), Crypto.Passphrase.Create(Passphrase));
+            IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
+
+            try
+            {
+                await accountService.PasswordResetAsync(VerificationCode).ConfigureAwait(false);
+                ErrorMessage = String.Empty;
+            }
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null)
+                {
+                    ex = ex.InnerException;
+                }
+                ErrorMessage = ex.Message;
+            }
         }
     }
 }

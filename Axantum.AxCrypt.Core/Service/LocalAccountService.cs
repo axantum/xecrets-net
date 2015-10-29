@@ -239,5 +239,10 @@ namespace Axantum.AxCrypt.Core.Service
                 return UserAccounts.DeserializeFrom(reader);
             }
         }
+
+        public Task PasswordResetAsync(string verificationCode)
+        {
+            return _service.PasswordResetAsync(verificationCode);
+        }
     }
 }

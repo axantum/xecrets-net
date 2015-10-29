@@ -105,5 +105,12 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <returns></returns>
         Task SignupAsync(string emailAddress);
+
+        /// <summary>
+        /// Resets the password for the account.
+        /// </summary>
+        /// <param name="verificationCode">The verification code.</param>
+        /// <returns></returns>
+        Task PasswordResetAsync(string verificationCode);
     }
 }

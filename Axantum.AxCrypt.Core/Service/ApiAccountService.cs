@@ -180,5 +180,10 @@ namespace Axantum.AxCrypt.Core.Service
         {
             await _apiClient.Signup(emailAddress).ConfigureAwait(false);
         }
+
+        public async Task PasswordResetAsync(string verificationCode)
+        {
+            await _apiClient.VerifyAccountAsync(verificationCode);
+        }
     }
 }

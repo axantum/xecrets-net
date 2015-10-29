@@ -181,6 +181,7 @@
     <Compile Include="UI\ViewModel\LogOnAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\ManageAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\SharingListViewModel.cs" />
+    <Compile Include="UI\ViewModel\VerifyAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\WatchedFoldersViewModel.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
     <Compile Include="V2AxCryptDocument.cs" />

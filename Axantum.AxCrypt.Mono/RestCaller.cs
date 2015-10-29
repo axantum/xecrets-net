@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 PrepareClient(client, identity, request);
 
-                StringContent httpContent = new StringContent(request.Content.Text);
+                StringContent httpContent = new StringContent(request.Content.Text, Encoding.UTF8, "application/json");
                 HttpResponseMessage httpResponse = await client.PutAsync(request.Url.PathAndQuery, httpContent).ConfigureAwait(false);
                 content = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 PrepareClient(client, identity, request);
 
-                StringContent httpContent = new StringContent(request.Content.Text);
+                StringContent httpContent = new StringContent(request.Content.Text, Encoding.UTF8, "application/json");
                 HttpResponseMessage httpResponse = await client.PostAsync(request.Url.PathAndQuery, httpContent).ConfigureAwait(false);
                 content = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
 

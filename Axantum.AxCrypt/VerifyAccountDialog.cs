@@ -1,0 +1,102 @@
+﻿using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Properties;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Axantum.AxCrypt
+{
+    public partial class VerifyAccountDialog : StyledMessageBase
+    {
+        private VerifyAccountViewModel _viewModel;
+
+        public VerifyAccountDialog(Form owner, VerifyAccountViewModel viewModel)
+        {
+            InitializeComponent();
+            InitializeStyle(owner);
+
+            _viewModel = viewModel;
+
+            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
+            VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.VerificationPassphrase = PassphraseTextBox.Text; };
+            _activationCode.TextChanged += (sender, e) => { _viewModel.VerificationCode = _activationCode.Text; };
+            ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
+        }
+
+        private void VerifyAccountDialog_Load(object sender, EventArgs e)
+        {
+            if (DesignMode)
+            {
+                return;
+            }
+
+            _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.ShowPassphrase), (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !(ShowPassphraseCheckBox.Checked = show); });
+            _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.UserEmail), (string u) => { EmailTextBox.Text = u; });
+
+            _activationCode.Focus();
+        }
+
+        private void _buttonOk_Click(object sender, EventArgs e)
+        {
+            if (!AdHocValidationDueToMonoLimitations())
+            {
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            _viewModel.VerifyAccount.Execute(null);
+            if (!AdHocValidateVerificationCode())
+            {
+                DialogResult = DialogResult.None;
+            }
+            return;
+        }
+
+        private bool AdHocValidationDueToMonoLimitations()
+        {
+            bool validated = AdHocValidateAllFieldsIndependently();
+            return validated;
+        }
+
+        private bool AdHocValidateAllFieldsIndependently()
+        {
+            return AdHocValidatePassphrase() & AdHocValidateVerfication();
+        }
+
+        private bool AdHocValidatePassphrase()
+        {
+            _errorProvider1.Clear();
+            if (_viewModel[nameof(VerifyAccountViewModel.Passphrase)].Length > 0)
+            {
+                _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
+                return false;
+            }
+            return true;
+        }
+
+        private bool AdHocValidateVerfication()
+        {
+            _errorProvider2.Clear();
+            if (_viewModel[nameof(VerifyAccountViewModel.VerificationPassphrase)].Length > 0)
+            {
+                _errorProvider2.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
+                return false;
+            }
+            return true;
+        }
+
+        private bool AdHocValidateVerificationCode()
+        {
+            _errorProvider3.Clear();
+            if (_viewModel.ErrorMessage.Length > 0)
+            {
+                _errorProvider3.SetError(_activationCode, Resources.BadEmail);
+                return false;
+            }
+            return true;
+        }
+    }
+}

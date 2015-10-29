@@ -96,5 +96,10 @@ namespace Axantum.AxCrypt.Core.Service
         {
             return Task.Run(() => { });
         }
+
+        public Task PasswordResetAsync(string verificationCode)
+        {
+            return Task.Run(() => { });
+        }
     }
 }
