@@ -43,9 +43,11 @@ namespace Axantum.AxCrypt.Core.Service
 
         private int _bufferCount;
 
+        private int _keyBits;
+
         private Queue<IAsymmetricKeyPair> _keyPairs = new Queue<IAsymmetricKeyPair>();
 
-        public KeyPairService(int firstBatch, int bufferCount)
+        public KeyPairService(int firstBatch, int bufferCount, int keyBits)
         {
             if (firstBatch < 0)
             {
@@ -55,9 +57,18 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 throw new ArgumentOutOfRangeException(nameof(bufferCount));
             }
+#if DEBUG
+            if (keyBits != 512 && keyBits != 4096)
+#else
+            if (keyBits != 4096)
+#endif
+            {
+                throw new ArgumentOutOfRangeException(nameof(keyBits));
+            }
 
             _firstBatch = firstBatch;
             _bufferCount = bufferCount;
+            _keyBits = keyBits;
         }
 
         /// <summary>
@@ -140,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         private IAsymmetricKeyPair CreateKeyPair()
         {
-            IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(Resolve.UserSettings.AsymmetricKeyBits);
+            IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(_keyBits);
             return keyPair;
         }
     }

@@ -105,7 +105,11 @@ namespace Axantum.AxCrypt
 
             TypeMap.Register.Singleton<FontLoader>(() => new FontLoader());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
-            TypeMap.Register.Singleton<KeyPairService>(() => new KeyPairService(1, 0));
+#if DEBUG
+            TypeMap.Register.Singleton<KeyPairService>(() => new KeyPairService(1, 0, 512));
+#else
+            TypeMap.Register.Singleton<KeyPairService>(() => new KeyPairService(1, 0, New<IUserSettings>().AsymmetricKeyBits));
+#endif
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)
