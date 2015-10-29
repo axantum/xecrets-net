@@ -244,12 +244,6 @@ namespace Axantum.AxCrypt
                 }
                 status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
             } while (status != AccountStatus.Verified);
-
-            if (!await VerifyAccountOnlineAsync())
-            {
-                Application.Exit();
-                return;
-            }
         }
 
         private void StartupLogOnAndPendingRequest()
