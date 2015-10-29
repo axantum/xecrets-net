@@ -11,9 +11,9 @@ namespace Axantum.AxCrypt.Api.Model
     /// Information for a password reset request.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class PasswordReset
+    public class PasswordResetParameters
     {
-        public PasswordReset(string password, string verification)
+        public PasswordResetParameters(string password, string verification)
         {
             Password = password;
             Verification = verification;
