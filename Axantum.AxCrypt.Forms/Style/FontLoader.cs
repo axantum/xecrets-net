@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Forms.Style
         {
             get
             {
-                return new Font(_privateFontCollection2.Families[0], 8, FontStyle.Bold);
+                return new Font(_privateFontCollection2.Families[0], 9, FontStyle.Bold);
             }
         }
 
