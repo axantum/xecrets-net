@@ -10,31 +10,20 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class LogOnAccountDialog : Form
+    public partial class LogOnAccountDialog : StyledMessageBase
     {
         public LogOnAccountDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
         }
 
         private LogOnAccountViewModel _viewModel;
 
-        public LogOnAccountDialog(Form parent, IUserSettings userSettings)
+        public LogOnAccountDialog(Form owner, LogOnAccountViewModel viewModel)
             : this()
         {
-            _viewModel = new LogOnAccountViewModel(userSettings);
-
-            _viewModel.BindPropertyChanged("UserEmail", (string userEmail) => { EmailTextBox.Text = userEmail; });
-
-            PassphraseTextBox.LostFocus += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
-            PassphraseTextBox.Validating += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
-            ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
-            EmailTextBox.LostFocus += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocValidateEmail(); };
-            EmailTextBox.Validating += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocValidateEmail(); };
-
-            Owner = parent;
-            StartPosition = FormStartPosition.CenterParent;
+            InitializeStyle(owner);
+            _viewModel = viewModel;
         }
 
         private void LogOnAccountDialog_Load(object sender, EventArgs e)
@@ -44,7 +33,15 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { PassphraseTextBox.UseSystemPasswordChar = !(ShowPassphraseCheckBox.Checked = show); });
+            _viewModel.BindPropertyChanged("UserEmail", (string userEmail) => { _email.Text = userEmail; });
+
+            _passphrase.LostFocus += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
+            _passphrase.Validating += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
+            _showPassphrase.CheckedChanged += (s, ea) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
+            _email.LostFocus += (s, ea) => { _viewModel.UserEmail = _email.Text; AdHocValidateEmail(); };
+            _email.Validating += (s, ea) => { _viewModel.UserEmail = _email.Text; AdHocValidateEmail(); };
+
+            _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { _passphrase.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
             _viewModel.BindPropertyChanged("ShowEmail", (bool show) => { EmailPanel.Visible = show; });
         }
 
@@ -70,7 +67,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel["Passphrase"].Length != 0)
             {
-                _errorProvider1.SetError(PassphraseTextBox, EmailTextBox.Text.Length > 0 ? Resources.WrongPassphrase : Resources.UnkownLogOn);
+                _errorProvider1.SetError(_passphrase, _email.Text.Length > 0 ? Resources.WrongPassphrase : Resources.UnkownLogOn);
                 return false;
             }
             return true;
@@ -79,9 +76,9 @@ namespace Axantum.AxCrypt
         private bool AdHocValidateEmail()
         {
             _errorProvider2.Clear();
-            if (EmailTextBox.Text.Length == 0 || _viewModel["UserEmail"].Length != 0)
+            if (_email.Text.Length == 0 || _viewModel["UserEmail"].Length != 0)
             {
-                _errorProvider2.SetError(EmailTextBox, Resources.BadEmail);
+                _errorProvider2.SetError(_email, Resources.BadEmail);
                 return false;
             }
             return true;
@@ -95,13 +92,13 @@ namespace Axantum.AxCrypt
         private void LogOnAccountDialog_Activated(object sender, EventArgs e)
         {
             BringToFront();
-            if (String.IsNullOrEmpty(EmailTextBox.Text))
+            if (String.IsNullOrEmpty(_email.Text))
             {
-                EmailTextBox.Focus();
+                _email.Focus();
             }
             else
             {
-                PassphraseTextBox.Focus();
+                _passphrase.Focus();
             }
         }
 

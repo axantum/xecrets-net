@@ -125,21 +125,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return true;
 
                 case nameof(Passphrase):
-                    if (ShowEmail && UserEmail.Length > 0 && UserEmail.IsValidEmail())
-                    {
-                        return IsValidAccountLogOn();
-                    }
-                    if (ShowEmail && UserEmail.Length > 0)
-                    {
-                        return true;
-                    }
-                    bool isKnownPassphrase = IsKnownPassphrase();
-                    if (!isKnownPassphrase)
-                    {
-                        ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
-                        return false;
-                    }
-                    return true;
+                    return ValidatePassphrase();
 
                 case "ShowPassphrase":
                 case "ShowEmail":
@@ -150,11 +136,44 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
+        private bool ValidatePassphrase()
+        {
+            if (ShowEmail && UserEmail.Length > 0 && ValidatePassphraseForEmail())
+            {
+                return true;
+            }
+            if (IsKnownPassphrase())
+            {
+                return true;
+            }
+            ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
+            return false;
+        }
+
+        private bool ValidatePassphraseForEmail()
+        {
+            if (!UserEmail.IsValidEmail())
+            {
+                return true;
+            }
+
+            if (Passphrase.Length > 0 && IsValidAccountLogOn())
+            {
+                return true;
+            }
+            ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
+            return false;
+        }
+
         private bool IsValidAccountLogOn()
         {
             AccountStorage keyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
 
-            return keyPairs.HasKeyPairAsync().Result;
+            if (keyPairs.HasKeyPairAsync().Result)
+            {
+                return true;
+            }
+            return false;
         }
 
         private bool IsKnownPassphrase()

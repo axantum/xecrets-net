@@ -830,14 +830,15 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingAccountLogOn(LogOnEventArgs e)
         {
-            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, Resolve.UserSettings))
+            LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings);
+            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
             {
-                logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
+                viewModel.ShowPassphrase = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
                 if (dialogResult == DialogResult.Retry)
                 {
-                    e.Passphrase = logOnDialog.PassphraseTextBox.Text;
-                    e.UserEmail = logOnDialog.EmailTextBox.Text;
+                    e.Passphrase = viewModel.Passphrase;
+                    e.UserEmail = viewModel.UserEmail;
                     e.IsAskingForPreviouslyUnknownPassphrase = true;
                     return;
                 }
@@ -847,14 +848,14 @@ namespace Axantum.AxCrypt
                     CloseAndExit();
                 }
 
-                if (dialogResult != DialogResult.OK || logOnDialog.PassphraseTextBox.Text.Length == 0)
+                if (dialogResult != DialogResult.OK || viewModel.Passphrase.Length == 0)
                 {
                     e.Cancel = true;
                     return;
                 }
-                e.DisplayPassphrase = logOnDialog.ShowPassphraseCheckBox.Checked;
-                e.Passphrase = logOnDialog.PassphraseTextBox.Text;
-                e.UserEmail = logOnDialog.EmailTextBox.Text;
+                e.DisplayPassphrase = viewModel.ShowPassphrase;
+                e.Passphrase = viewModel.Passphrase;
+                e.UserEmail = viewModel.UserEmail;
             }
             return;
         }

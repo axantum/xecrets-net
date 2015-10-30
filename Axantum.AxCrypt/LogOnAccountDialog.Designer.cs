@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
-            this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
+            this._showPassphrase = new System.Windows.Forms.CheckBox();
             this._panel1 = new System.Windows.Forms.Panel();
             this._newButton = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
-            this.PassphraseTextBox = new System.Windows.Forms.TextBox();
+            this._passphrase = new System.Windows.Forms.TextBox();
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.EmailPanel = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.EmailTextBox = new System.Windows.Forms.TextBox();
+            this._email = new System.Windows.Forms.TextBox();
             this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             this.PassphraseGroupBox.SuspendLayout();
@@ -63,9 +63,9 @@
             // 
             // PassphraseGroupBox
             // 
-            this.PassphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
+            this.PassphraseGroupBox.Controls.Add(this._showPassphrase);
             this.PassphraseGroupBox.Controls.Add(this._panel1);
-            this.PassphraseGroupBox.Controls.Add(this.PassphraseTextBox);
+            this.PassphraseGroupBox.Controls.Add(this._passphrase);
             this.PassphraseGroupBox.Location = new System.Drawing.Point(12, 6);
             this.PassphraseGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 13);
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
@@ -74,16 +74,16 @@
             this.PassphraseGroupBox.TabStop = false;
             this.PassphraseGroupBox.Text = "Enter Passphrase";
             // 
-            // ShowPassphraseCheckBox
+            // _showPassphrase
             // 
-            this.ShowPassphraseCheckBox.AutoSize = true;
-            this.ShowPassphraseCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ShowPassphraseCheckBox.Location = new System.Drawing.Point(7, 53);
-            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
-            this.ShowPassphraseCheckBox.Size = new System.Drawing.Size(111, 17);
-            this.ShowPassphraseCheckBox.TabIndex = 1;
-            this.ShowPassphraseCheckBox.Text = "Show Passphrase";
-            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
+            this._showPassphrase.AutoSize = true;
+            this._showPassphrase.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._showPassphrase.Location = new System.Drawing.Point(7, 53);
+            this._showPassphrase.Name = "_showPassphrase";
+            this._showPassphrase.Size = new System.Drawing.Size(111, 17);
+            this._showPassphrase.TabIndex = 1;
+            this._showPassphrase.Text = "Show Passphrase";
+            this._showPassphrase.UseVisualStyleBackColor = true;
             // 
             // _panel1
             // 
@@ -132,14 +132,14 @@
             this._buttonOk.UseVisualStyleBackColor = true;
             this._buttonOk.Click += new System.EventHandler(this.ButtonOk_Click);
             // 
-            // PassphraseTextBox
+            // _passphrase
             // 
-            this.PassphraseTextBox.AcceptsReturn = true;
-            this.PassphraseTextBox.Location = new System.Drawing.Point(7, 20);
-            this.PassphraseTextBox.Name = "PassphraseTextBox";
-            this.PassphraseTextBox.Size = new System.Drawing.Size(242, 20);
-            this.PassphraseTextBox.TabIndex = 0;
-            this.PassphraseTextBox.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
+            this._passphrase.AcceptsReturn = true;
+            this._passphrase.Location = new System.Drawing.Point(7, 20);
+            this._passphrase.Name = "_passphrase";
+            this._passphrase.Size = new System.Drawing.Size(242, 20);
+            this._passphrase.TabIndex = 0;
+            this._passphrase.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
             // 
             // _errorProvider1
             // 
@@ -157,7 +157,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.EmailTextBox);
+            this.groupBox1.Controls.Add(this._email);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
             this.groupBox1.Name = "groupBox1";
@@ -166,12 +166,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Email address";
             // 
-            // EmailTextBox
+            // _email
             // 
-            this.EmailTextBox.Location = new System.Drawing.Point(9, 18);
-            this.EmailTextBox.Name = "EmailTextBox";
-            this.EmailTextBox.Size = new System.Drawing.Size(242, 20);
-            this.EmailTextBox.TabIndex = 0;
+            this._email.Enabled = false;
+            this._email.Location = new System.Drawing.Point(9, 18);
+            this._email.Name = "_email";
+            this._email.Size = new System.Drawing.Size(242, 20);
+            this._email.TabIndex = 0;
             // 
             // _errorProvider2
             // 
@@ -212,17 +213,16 @@
 
         private System.Windows.Forms.Panel panel1;
         internal System.Windows.Forms.GroupBox PassphraseGroupBox;
-        internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
         private System.Windows.Forms.Panel _panel1;
         private System.Windows.Forms.Button _newButton;
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonOk;
-        internal System.Windows.Forms.TextBox PassphraseTextBox;
         private System.Windows.Forms.ErrorProvider _errorProvider1;
         private System.Windows.Forms.Panel EmailPanel;
         private System.Windows.Forms.GroupBox groupBox1;
-        internal System.Windows.Forms.TextBox EmailTextBox;
         private System.Windows.Forms.ErrorProvider _errorProvider2;
-
+        private System.Windows.Forms.TextBox _email;
+        private System.Windows.Forms.CheckBox _showPassphrase;
+        private System.Windows.Forms.TextBox _passphrase;
     }
 }
