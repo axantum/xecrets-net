@@ -64,6 +64,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void InitializePropertyValues(EmailAddress emailAddress)
         {
             UserEmail = emailAddress.Address;
+            VerificationCode = String.Empty;
+            Passphrase = String.Empty;
+            VerificationPassphrase = String.Empty;
             ShowPassphrase = Resolve.UserSettings.DisplayEncryptPassphrase;
             ErrorMessage = String.Empty;
         }
