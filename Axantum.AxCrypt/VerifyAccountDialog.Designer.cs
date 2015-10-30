@@ -76,7 +76,7 @@
             this.PassphraseGroupBox.Size = new System.Drawing.Size(280, 125);
             this.PassphraseGroupBox.TabIndex = 5;
             this.PassphraseGroupBox.TabStop = false;
-            this.PassphraseGroupBox.Text = "Enter Passphrase";
+            this.PassphraseGroupBox.Text = "Set Your Password";
             // 
             // _showPassphrase
             // 
@@ -102,9 +102,9 @@
             this._label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._label1.Location = new System.Drawing.Point(6, 43);
             this._label1.Name = "_label1";
-            this._label1.Size = new System.Drawing.Size(91, 13);
+            this._label1.Size = new System.Drawing.Size(82, 13);
             this._label1.TabIndex = 1;
-            this._label1.Text = "Verify Passphrase";
+            this._label1.Text = "Verify Password";
             // 
             // _panel1
             // 
