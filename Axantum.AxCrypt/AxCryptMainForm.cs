@@ -157,6 +157,10 @@ namespace Axantum.AxCrypt
                 try
                 {
                     await DoInitialSignInAsync();
+                    if (_exitInProgress)
+                    {
+                        return;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -190,7 +194,7 @@ namespace Axantum.AxCrypt
             {
                 if (!EnsureEmailAccount(status))
                 {
-                    Application.Exit();
+                    CloseAndExit();
                     return;
                 }
 
@@ -199,7 +203,7 @@ namespace Axantum.AxCrypt
                 {
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(Resolve.UserSettings.UserEmail);
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Signing Up", "You have now signed up as '{0}'. Please check your inbox for an activation link. When you have activated your account, click OK.".InvariantFormat(Resolve.UserSettings.UserEmail));
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Signing Up", "You have now signed up as '{0}'. Please check your inbox for an email with a 6-digit activation code.".InvariantFormat(Resolve.UserSettings.UserEmail));
                         break;
 
                     case AccountStatus.InvalidName:
@@ -220,7 +224,7 @@ namespace Axantum.AxCrypt
                         break;
 
                     case AccountStatus.Offline:
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Internet Acccess Required", "You must have Internet access this first time. Please check your connection, and try again.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Internet Acccess Required", "You must have Internet access this time. Please check your connection, and try again.");
                         break;
 
                     case AccountStatus.Unknown:
@@ -235,7 +239,7 @@ namespace Axantum.AxCrypt
                 }
                 if (dialogResult == DialogResult.Abort)
                 {
-                    Application.Exit();
+                    CloseAndExit();
                     return;
                 }
                 if (dialogResult == DialogResult.Cancel)
@@ -1456,8 +1460,11 @@ namespace Axantum.AxCrypt
             CloseAndExit();
         }
 
+        private bool _exitInProgress = false;
+
         private void CloseAndExit()
         {
+            _exitInProgress = true;
             if (_debugOutput != null)
             {
                 _debugOutput.AllowClose = true;
