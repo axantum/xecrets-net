@@ -124,7 +124,7 @@
     <value>Double-click decrypts and opens the document</value>
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
-    <value>Double-click opens a passphrase dialog before decrypting and opening the document.</value>
+    <value>Double-click opens a Password-dialog before decrypting and opening the document.</value>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Open Source Document Encryption by Axantum Software AB
@@ -156,13 +156,13 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Document exists, choose a new name to save as</value>
   </data>
   <data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
-    <value>The passphrase has not been entered yet. Double-click to enter passphrase and Open, or right-click for options</value>
+    <value>The password has not been entered yet. Double-click to enter password and Open, or right-click for options</value>
   </data>
   <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
     <value>Select document to decrypt</value>
   </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
-    <value>You are Logged On. Click to Log Out.</value>
+    <value>You are Signed In. Click to Sign Out.</value>
   </data>
   <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
     <value>AxCrypt Documents (*{0})|*{0}|All files (*.*)|*.*</value>
@@ -208,17 +208,17 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>AxCrypt must be restarted in order for the language change to take effect.</value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
-    <value>Logged Off</value>
+    <value>Signed Out</value>
   </data>
   <data name="LoggedOnStatusText" xml:space="preserve">
-    <value>Current Passphrase</value>
+    <value>Current Password</value>
     <comment>Shown in the title bar to display the log on status.</comment>
   </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} is available! Click to download.</value>
   </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
-    <value>You are Logged Out. Click to Log On.</value>
+    <value>You are Signed Out. Click to Sign In.</value>
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>No need to check for updates.</value>
@@ -233,7 +233,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>File</value>
   </data>
   <data name="PassphraseVerificationMismatch" xml:space="preserve">
-    <value>Passphrases do not match</value>
+    <value>Passwords do not match</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Purging Active Files</value>
@@ -313,13 +313,13 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>..\resources\fileknownkeygreen16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="UnkownLogOn" xml:space="preserve">
-    <value>Passphrase is not previously known. Click 'New' to create a new Log On.</value>
+    <value>Password is not previously known. Click 'New' to create a new.</value>
   </data>
   <data name="LogOnExists" xml:space="preserve">
     <value>This AxCrypt Identity already exists</value>
   </data>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
-    <value>Identity '{0}' passphrase</value>
+    <value>Identity '{0}' password</value>
   </data>
   <data name="DocumentsLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\DocumentsLibrary.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -338,10 +338,10 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>..\resources\SkyDrive.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WrongPassphrase" xml:space="preserve">
-    <value>Wrong Passphrase. Please try again.</value>
+    <value>Wrong Password. Please try again.</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
-    <value>Enter Passphrase</value>
+    <value>Enter Password</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Folder '{0}' already watched.</value>
@@ -365,10 +365,10 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <comment>Title bar status text when logged on to an account.</comment>
   </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
-    <value>Change Passphrase</value>
+    <value>Change Password</value>
   </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
-    <value>Create a New Passphrase</value>
+    <value>Create a New Password</value>
   </data>
   <data name="cleanupneededred16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\cleanupneededred16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -380,7 +380,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>File is decrypted, and may need to be cleaned. Close any open applications, and click the Clean Up button.</value>
   </data>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
-    <value>Double click to open. If required you will be prompted for a passphrase.</value>
+    <value>Double click to open. If required you will be prompted for a password.</value>
   </data>
   <data name="addforencryptionred32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\addforencryptionred32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -395,10 +395,10 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Select Sharing Key Files</value>
   </data>
   <data name="LogOffText" xml:space="preserve">
-    <value>Log Off</value>
+    <value>Sign Out</value>
   </data>
   <data name="LogOnText" xml:space="preserve">
-    <value>Log On</value>
+    <value>Sign In</value>
   </data>
   <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
     <value>Text Files (*.axx)|*.axx|All Files (*.*)|*.*</value>

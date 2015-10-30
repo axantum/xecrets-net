@@ -84,9 +84,9 @@
             this._showPassphrase.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._showPassphrase.Location = new System.Drawing.Point(7, 89);
             this._showPassphrase.Name = "_showPassphrase";
-            this._showPassphrase.Size = new System.Drawing.Size(111, 17);
+            this._showPassphrase.Size = new System.Drawing.Size(102, 17);
             this._showPassphrase.TabIndex = 3;
-            this._showPassphrase.Text = "Show Passphrase";
+            this._showPassphrase.Text = "Show Password";
             this._showPassphrase.UseVisualStyleBackColor = true;
             // 
             // _passphraseVerification

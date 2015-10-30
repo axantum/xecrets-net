@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-click opens a passphrase dialog before decrypting and opening the document..
+        ///   Looks up a localized string similar to Double-click opens a Password-dialog before decrypting and opening the document..
         /// </summary>
         internal static string ActiveFileToolTip {
             get {
@@ -242,7 +242,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Passphrase.
+        ///   Looks up a localized string similar to Change Password.
         /// </summary>
         internal static string ChangePassphraseDialogTitle {
             get {
@@ -386,7 +386,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The passphrase has not been entered yet. Double-click to enter passphrase and Open, or right-click for options.
+        ///   Looks up a localized string similar to The password has not been entered yet. Double-click to enter password and Open, or right-click for options.
         /// </summary>
         internal static string DecryptedUnknownKeyFileToolTip {
             get {
@@ -414,7 +414,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are Logged On. Click to Log Out..
+        ///   Looks up a localized string similar to You are Signed In. Click to Sign Out..
         /// </summary>
         internal static string DefaultEncryptionKeyIsIsetToolTip {
             get {
@@ -443,7 +443,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double click to open. If required you will be prompted for a passphrase..
+        ///   Looks up a localized string similar to Double click to open. If required you will be prompted for a password..
         /// </summary>
         internal static string DoubleClickToOpenToolTip {
             get {
@@ -548,7 +548,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Identity &apos;{0}&apos; passphrase.
+        ///   Looks up a localized string similar to Identity &apos;{0}&apos; password.
         /// </summary>
         internal static string EnterPassphraseForIdentityPrompt {
             get {
@@ -857,7 +857,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logged Off.
+        ///   Looks up a localized string similar to Signed Out.
         /// </summary>
         internal static string LoggedOffStatusText {
             get {
@@ -866,7 +866,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current Passphrase.
+        ///   Looks up a localized string similar to Current Password.
         /// </summary>
         internal static string LoggedOnStatusText {
             get {
@@ -885,7 +885,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log Off.
+        ///   Looks up a localized string similar to Sign Out.
         /// </summary>
         internal static string LogOffText {
             get {
@@ -903,7 +903,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log On.
+        ///   Looks up a localized string similar to Sign In.
         /// </summary>
         internal static string LogOnText {
             get {
@@ -931,7 +931,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create a New Passphrase.
+        ///   Looks up a localized string similar to Create a New Password.
         /// </summary>
         internal static string NewPassphraseDialogTitle {
             get {
@@ -949,7 +949,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are Logged Out. Click to Log On..
+        ///   Looks up a localized string similar to You are Signed Out. Click to Sign In..
         /// </summary>
         internal static string NoDefaultEncryptionKeySetToolTip {
             get {
@@ -1042,7 +1042,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter Passphrase.
+        ///   Looks up a localized string similar to Enter Password.
         /// </summary>
         internal static string PassphrasePrompt {
             get {
@@ -1051,7 +1051,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passphrases do not match.
+        ///   Looks up a localized string similar to Passwords do not match.
         /// </summary>
         internal static string PassphraseVerificationMismatch {
             get {
@@ -1195,7 +1195,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passphrase is not previously known. Click &apos;New&apos; to create a new Log On..
+        ///   Looks up a localized string similar to Password is not previously known. Click &apos;New&apos; to create a new..
         /// </summary>
         internal static string UnkownLogOn {
             get {
@@ -1249,7 +1249,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wrong Passphrase. Please try again..
+        ///   Looks up a localized string similar to Wrong Password. Please try again..
         /// </summary>
         internal static string WrongPassphrase {
             get {

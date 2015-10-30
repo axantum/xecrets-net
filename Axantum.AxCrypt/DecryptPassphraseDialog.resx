@@ -184,7 +184,7 @@
     <value>1</value>
   </data>
   <data name="PassphraseGroupBox.Text" xml:space="preserve">
-    <value>Enter Passphrase</value>
+    <value>Enter Password</value>
   </data>
   <data name="&gt;&gt;PassphraseGroupBox.Name" xml:space="preserve">
     <value>PassphraseGroupBox</value>

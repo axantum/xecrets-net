@@ -235,7 +235,7 @@
     <value>3</value>
   </data>
   <data name="ShowPassphraseCheckBox.Text" xml:space="preserve">
-    <value>Show Passphrase</value>
+    <value>Show Password</value>
   </data>
   <data name="&gt;&gt;ShowPassphraseCheckBox.Name" xml:space="preserve">
     <value>ShowPassphraseCheckBox</value>
@@ -286,7 +286,7 @@
     <value>1</value>
   </data>
   <data name="_label1.Text" xml:space="preserve">
-    <value>Verify Passphrase</value>
+    <value>Verify Password</value>
   </data>
   <data name="&gt;&gt;_label1.Name" xml:space="preserve">
     <value>_label1</value>
@@ -331,7 +331,7 @@
     <value>0</value>
   </data>
   <data name="PassphraseGroupBox.Text" xml:space="preserve">
-    <value>Enter Passphrase</value>
+    <value>Enter Password</value>
   </data>
   <data name="&gt;&gt;PassphraseGroupBox.Name" xml:space="preserve">
     <value>PassphraseGroupBox</value>

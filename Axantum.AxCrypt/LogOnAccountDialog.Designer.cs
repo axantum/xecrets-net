@@ -72,7 +72,7 @@
             this.PassphraseGroupBox.Size = new System.Drawing.Size(298, 131);
             this.PassphraseGroupBox.TabIndex = 0;
             this.PassphraseGroupBox.TabStop = false;
-            this.PassphraseGroupBox.Text = "Enter Passphrase";
+            this.PassphraseGroupBox.Text = "Enter Password";
             // 
             // _showPassphrase
             // 
@@ -80,9 +80,9 @@
             this._showPassphrase.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._showPassphrase.Location = new System.Drawing.Point(7, 53);
             this._showPassphrase.Name = "_showPassphrase";
-            this._showPassphrase.Size = new System.Drawing.Size(111, 17);
+            this._showPassphrase.Size = new System.Drawing.Size(102, 17);
             this._showPassphrase.TabIndex = 1;
-            this._showPassphrase.Text = "Show Passphrase";
+            this._showPassphrase.Text = "Show Password";
             this._showPassphrase.UseVisualStyleBackColor = true;
             // 
             // _panel1
@@ -191,7 +191,7 @@
             this.Controls.Add(this.EmailPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "LogOnAccountDialog";
-            this.Text = "Account Log On";
+            this.Text = "Account Sign In";
             this.Activated += new System.EventHandler(this.LogOnAccountDialog_Activated);
             this.Load += new System.EventHandler(this.LogOnAccountDialog_Load);
             this.ResizeEnd += new System.EventHandler(this.LogOnAccountDialog_ResizeAndMoveEnd);

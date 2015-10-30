@@ -478,7 +478,7 @@
     <value>207, 22</value>
   </data>
   <data name="_optionsChangePassphraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Change &amp;Passphrase</value>
+    <value>Change &amp;Password</value>
   </data>
   <data name="_optionsDebugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -820,7 +820,7 @@
     <value>False</value>
   </data>
   <data name="_mainToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 1</value>
+    <value>204, 1</value>
   </data>
   <data name="_mainToolStrip.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -853,16 +853,16 @@
     <value>NoControl</value>
   </data>
   <data name="_logOnLogOffLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>527, 14</value>
+    <value>519, 14</value>
   </data>
   <data name="_logOnLogOffLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 13</value>
+    <value>48, 13</value>
   </data>
   <data name="_logOnLogOffLabel.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
   <data name="_logOnLogOffLabel.Text" xml:space="preserve">
-    <value>Log Off</value>
+    <value>Sign Out</value>
   </data>
   <data name="_logOnLogOffLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -934,7 +934,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="_updateStatusToolStrip" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="_mainToolStrip" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="_logOnLogOffLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pictureBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,200,Percent,100,Absolute,60,Absolute,50" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="_updateStatusToolStrip" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="_mainToolStrip" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="_logOnLogOffLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pictureBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,200,Percent,100,Absolute,70,Absolute,50" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
