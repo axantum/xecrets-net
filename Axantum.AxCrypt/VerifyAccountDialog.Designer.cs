@@ -43,8 +43,8 @@
             this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this._activationCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this._activationCode = new System.Windows.Forms.TextBox();
             this._errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this.PassphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
@@ -183,21 +183,21 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Activation Code";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(130, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Check your email inbox!";
+            // 
             // _activationCode
             // 
             this._activationCode.Location = new System.Drawing.Point(9, 18);
             this._activationCode.Name = "_activationCode";
             this._activationCode.Size = new System.Drawing.Size(88, 20);
             this._activationCode.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(103, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Check your email inbox!";
             // 
             // _errorProvider4
             // 

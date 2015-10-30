@@ -10,8 +10,12 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public abstract class StyledMessageBase : Form
+    public class StyledMessageBase : Form
     {
+        public StyledMessageBase()
+        {
+        }
+
         protected void InitializeStyle(Form owner)
         {
             new Styling(Resources.axcrypticon).Style(this);

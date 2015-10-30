@@ -17,13 +17,7 @@ namespace Axantum.AxCrypt
         {
             InitializeComponent();
             InitializeStyle(owner);
-
             _viewModel = viewModel;
-
-            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
-            VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.VerificationPassphrase = PassphraseTextBox.Text; };
-            _activationCode.TextChanged += (sender, e) => { _viewModel.VerificationCode = _activationCode.Text; };
-            ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
         }
 
         private void VerifyAccountDialog_Load(object sender, EventArgs e)
@@ -32,6 +26,11 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
+
+            PassphraseTextBox.TextChanged += (s, ee) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
+            VerifyPassphraseTextbox.TextChanged += (s, ee) => { _viewModel.VerificationPassphrase = PassphraseTextBox.Text; };
+            _activationCode.TextChanged += (s, ee) => { _viewModel.VerificationCode = _activationCode.Text; };
+            ShowPassphraseCheckBox.CheckedChanged += (s, ee) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
 
             _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.ShowPassphrase), (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !(ShowPassphraseCheckBox.Checked = show); });
             _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.UserEmail), (string u) => { EmailTextBox.Text = u; });
