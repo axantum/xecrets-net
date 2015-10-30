@@ -65,7 +65,6 @@ namespace Axantum.AxCrypt.Core.Test
 
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
-            Resolve.UserSettings.AsymmetricKeyBits = 512;
         }
 
         [TearDown]
