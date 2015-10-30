@@ -151,12 +151,22 @@ namespace Axantum.AxCrypt
 
         private async void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
+            await DisplayMessageDialog(EnsureAccountVerifiedAsync);
+            if (_exitInProgress)
+            {
+                return;
+            }
+            StartupLogOnAndPendingRequest();
+        }
+
+        private async Task DisplayMessageDialog(Func<Task> dialogFunction)
+        {
             SetTopControlsEnabled(false);
             while (true)
             {
                 try
                 {
-                    await DoInitialSignInAsync();
+                    await dialogFunction();
                     if (_exitInProgress)
                     {
                         return;
@@ -174,7 +184,7 @@ namespace Axantum.AxCrypt
                 SetTopControlsEnabled(true);
                 break;
             }
-            StartupLogOnAndPendingRequest();
+            return;
         }
 
         private void SetTopControlsEnabled(bool enabled)
@@ -186,25 +196,25 @@ namespace Axantum.AxCrypt
             Cursor = enabled ? Cursors.Default : Cursors.WaitCursor;
         }
 
-        private async Task DoInitialSignInAsync()
+        private async Task EnsureAccountVerifiedAsync()
         {
             AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
+            if (!EnsureEmailAccount(status))
+            {
+                CloseAndExit();
+                return;
+            }
+
             DialogResult dialogResult = DialogResult.OK;
             do
             {
-                if (!EnsureEmailAccount(status))
-                {
-                    CloseAndExit();
-                    return;
-                }
-
                 status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
                 switch (status)
                 {
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(Resolve.UserSettings.UserEmail);
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Signing Up", "You have now signed up as '{0}'. Please check your inbox for an email with a 6-digit activation code.".InvariantFormat(Resolve.UserSettings.UserEmail));
-                        break;
+                        MessageDialog.ShowOk(this, "Signing Up", "You have now signed up as '{0}'. Please check your inbox for an email with a 6-digit activation code.".InvariantFormat(Resolve.UserSettings.UserEmail));
+                        continue;
 
                     case AccountStatus.InvalidName:
                         Resolve.UserSettings.UserEmail = String.Empty;
@@ -216,7 +226,6 @@ namespace Axantum.AxCrypt
                         {
                             return;
                         }
-                        Resolve.UserSettings.UserEmail = String.Empty;
                         dialogResult = DialogResult.OK;
                         break;
 
@@ -247,6 +256,11 @@ namespace Axantum.AxCrypt
                     return;
                 }
                 status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
+                if (!EnsureEmailAccount(status))
+                {
+                    CloseAndExit();
+                    return;
+                }
             } while (status != AccountStatus.Verified);
         }
 
@@ -272,6 +286,8 @@ namespace Axantum.AxCrypt
             {
                 case AccountStatus.Unknown:
                 case AccountStatus.InvalidName:
+                case AccountStatus.Unverified:
+                case AccountStatus.NotFound:
                     return AskForEmailAddressToUse();
 
                 default:

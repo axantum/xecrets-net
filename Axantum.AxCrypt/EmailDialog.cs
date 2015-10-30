@@ -27,8 +27,6 @@ namespace Axantum.AxCrypt
         {
             _viewModel = new AccountEmailViewModel();
 
-            EmailTextBox.LostFocus += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocValidateUserEmail(); };
-
             Owner = parent;
             Owner.Activated += (sender, e) => Activate();
             StartPosition = FormStartPosition.CenterParent;
@@ -41,6 +39,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            EmailTextBox.LostFocus += (s, ea) => { _viewModel.UserEmail = EmailTextBox.Text; };
             EmailTextBox.Focus();
         }
 

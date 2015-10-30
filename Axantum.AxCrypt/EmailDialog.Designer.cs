@@ -34,12 +34,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this._panel1 = new System.Windows.Forms.Panel();
+            this._buttonHelp = new System.Windows.Forms.Button();
             this._buttonExit = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
             this.EmailPanel = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
-            this._buttonHelp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -96,8 +96,20 @@
             this._panel1.Size = new System.Drawing.Size(307, 41);
             this._panel1.TabIndex = 7;
             // 
+            // _buttonHelp
+            // 
+            this._buttonHelp.CausesValidation = false;
+            this._buttonHelp.Location = new System.Drawing.Point(198, 6);
+            this._buttonHelp.Name = "_buttonHelp";
+            this._buttonHelp.Size = new System.Drawing.Size(75, 23);
+            this._buttonHelp.TabIndex = 2;
+            this._buttonHelp.Text = "Help";
+            this._buttonHelp.UseVisualStyleBackColor = true;
+            this._buttonHelp.Click += new System.EventHandler(this._buttonHelp_Click);
+            // 
             // _buttonExit
             // 
+            this._buttonExit.CausesValidation = false;
             this._buttonExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonExit.Location = new System.Drawing.Point(116, 6);
             this._buttonExit.Name = "_buttonExit";
@@ -117,6 +129,7 @@
             this._buttonOk.TabIndex = 0;
             this._buttonOk.Text = "OK";
             this._buttonOk.UseVisualStyleBackColor = true;
+            this._buttonOk.Click += new System.EventHandler(this._buttonOk_Click);
             // 
             // EmailPanel
             // 
@@ -149,16 +162,6 @@
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(248, 20);
             this.EmailTextBox.TabIndex = 0;
-            // 
-            // _buttonHelp
-            // 
-            this._buttonHelp.Location = new System.Drawing.Point(198, 6);
-            this._buttonHelp.Name = "_buttonHelp";
-            this._buttonHelp.Size = new System.Drawing.Size(75, 23);
-            this._buttonHelp.TabIndex = 2;
-            this._buttonHelp.Text = "Help";
-            this._buttonHelp.UseVisualStyleBackColor = true;
-            this._buttonHelp.Click += new System.EventHandler(this._buttonHelp_Click);
             // 
             // EmailDialog
             // 
