@@ -74,6 +74,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void BindPropertyChangedEvents()
         {
             BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(VerificationCode), (string code) => VerificationCode = code.Replace(" ", String.Empty));
         }
 
         public override string this[string columnName]
@@ -114,10 +115,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return ValidatePassphrasePolicy(Passphrase);
 
                 case nameof(VerificationPassphrase):
-                    if (String.IsNullOrEmpty(VerificationPassphrase))
-                    {
-                        return false;
-                    }
                     return String.Compare(Passphrase, VerificationPassphrase, StringComparison.Ordinal) == 0;
 
                 case nameof(VerificationCode):

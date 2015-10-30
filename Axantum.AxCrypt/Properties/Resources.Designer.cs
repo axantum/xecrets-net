@@ -1060,6 +1060,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password must be at least 10 characters..
+        /// </summary>
+        internal static string PasswordPolicyViolation {
+            get {
+                return ResourceManager.GetString("PasswordPolicyViolation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap plus_40px {
@@ -1245,6 +1254,24 @@ namespace Axantum.AxCrypt.Properties {
         internal static string WrongPassphrase {
             get {
                 return ResourceManager.GetString("WrongPassphrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong activation code. Please re-check you email..
+        /// </summary>
+        internal static string WrongVerificationCode {
+            get {
+                return ResourceManager.GetString("WrongVerificationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The verfication code must be exactly 6 digits..
+        /// </summary>
+        internal static string WrongVerificationCodeFormat {
+            get {
+                return ResourceManager.GetString("WrongVerificationCodeFormat", resourceCulture);
             }
         }
     }

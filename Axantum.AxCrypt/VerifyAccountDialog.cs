@@ -27,13 +27,13 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            PassphraseTextBox.TextChanged += (s, ee) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
-            VerifyPassphraseTextbox.TextChanged += (s, ee) => { _viewModel.VerificationPassphrase = PassphraseTextBox.Text; };
+            _passphrase.TextChanged += (s, ee) => { _viewModel.Passphrase = _passphrase.Text; };
+            _passphraseVerification.TextChanged += (s, ee) => { _viewModel.VerificationPassphrase = _passphrase.Text; };
             _activationCode.TextChanged += (s, ee) => { _viewModel.VerificationCode = _activationCode.Text; };
-            ShowPassphraseCheckBox.CheckedChanged += (s, ee) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
+            _showPassphrase.CheckedChanged += (s, ee) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
 
-            _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.ShowPassphrase), (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !(ShowPassphraseCheckBox.Checked = show); });
-            _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.UserEmail), (string u) => { EmailTextBox.Text = u; });
+            _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.ShowPassphrase), (bool show) => { _passphrase.UseSystemPasswordChar = _passphraseVerification.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
+            _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.UserEmail), (string u) => { _email.Text = u; });
 
             _activationCode.Focus();
         }
@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt
             }
 
             await _viewModel.VerifyAccount.ExecuteAsync(null);
-            if (AdHocValidateVerificationCode())
+            if (VerifyCode())
             {
                 DialogResult = DialogResult.OK;
             }
@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt
 
         private bool AdHocValidateAllFieldsIndependently()
         {
-            return AdHocValidatePassphrase() & AdHocValidateVerfication();
+            return AdHocValidatePassphrase() & AdHocValidateVerfication() & AdHocValidateCode();
         }
 
         private bool AdHocValidatePassphrase()
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(VerifyAccountViewModel.Passphrase)].Length > 0)
             {
-                _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
+                _errorProvider1.SetError(_passphrase, Resources.PasswordPolicyViolation);
                 return false;
             }
             return true;
@@ -81,18 +81,29 @@ namespace Axantum.AxCrypt
             _errorProvider2.Clear();
             if (_viewModel[nameof(VerifyAccountViewModel.VerificationPassphrase)].Length > 0)
             {
-                _errorProvider2.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
+                _errorProvider2.SetError(_passphraseVerification, Resources.PassphraseVerificationMismatch);
                 return false;
             }
             return true;
         }
 
-        private bool AdHocValidateVerificationCode()
+        private bool AdHocValidateCode()
+        {
+            _errorProvider3.Clear();
+            if (_viewModel[nameof(VerifyAccountViewModel.VerificationCode)].Length > 0)
+            {
+                _errorProvider3.SetError(_activationCode, Resources.WrongVerificationCodeFormat);
+                return false;
+            }
+            return true;
+        }
+
+        private bool VerifyCode()
         {
             _errorProvider3.Clear();
             if (_viewModel.ErrorMessage.Length > 0)
             {
-                _errorProvider3.SetError(_activationCode, Resources.BadEmail);
+                _errorProvider3.SetError(_activationCode, Resources.WrongVerificationCode);
                 return false;
             }
             return true;

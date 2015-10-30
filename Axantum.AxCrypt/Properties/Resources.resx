@@ -505,4 +505,13 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Please specify time as 'hh:mm:ss.mmm'.</value>
   </data>
+  <data name="PasswordPolicyViolation" xml:space="preserve">
+    <value>The password must be at least 10 characters.</value>
+  </data>
+  <data name="WrongVerificationCode" xml:space="preserve">
+    <value>Wrong activation code. Please re-check you email.</value>
+  </data>
+  <data name="WrongVerificationCodeFormat" xml:space="preserve">
+    <value>The verfication code must be exactly 6 digits.</value>
+  </data>
 </root>
