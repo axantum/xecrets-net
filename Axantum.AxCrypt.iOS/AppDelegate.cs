@@ -7,13 +7,13 @@ using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.iOS.Infrastructure;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.MonoTouch;
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Crypto;
 using System.Reflection;
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Mono.Portable;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.iOS
@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.iOS
 			TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
 			TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
 			TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());
-						
+
 			appViewController = new MainViewController();
 			appViewController.OnAboutButtonTapped += ShowAbout;
 			appViewController.OnFaqButtonTapped += ShowFaq;

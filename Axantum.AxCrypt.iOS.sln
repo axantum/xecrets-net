@@ -53,6 +53,8 @@ Global
 		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Release|iPhone.Build.0 = Release|Any CPU
 		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{61E59383-C053-4416-9981-0DCFB8D89DC3}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
@@ -63,6 +65,8 @@ Global
 		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Release|iPhone.Build.0 = Release|Any CPU
 		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{6EA275D5-2372-4FCF-BB4F-5C48F5901350}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
@@ -73,6 +77,8 @@ Global
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|iPhone.Build.0 = Release|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
