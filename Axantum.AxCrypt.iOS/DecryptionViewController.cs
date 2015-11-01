@@ -8,6 +8,9 @@ using MonoTouch.Foundation;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core;
 using BigTed;
+using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Abstractions;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -18,8 +21,8 @@ namespace Axantum.AxCrypt.iOS
 
 		ProgressContext context;
 		ThreadWorker worker;
-		IRuntimeFileInfo sourceFile;
-		IPassphrase passPhraseObj; 
+		IDataStore sourceFile;
+		LogOnIdentity passPhraseObj; 
 		string targetFilePath;
 
 		public DecryptionViewController (string sourceFilePath)
@@ -28,7 +31,7 @@ namespace Axantum.AxCrypt.iOS
 			//			context.Progressing += (sender, e) => {
 			//				SetProgress(e.Percent, "Decrypting ...");
 			//			};
-			this.sourceFile = Factory.New<IRuntimeFileInfo>(sourceFilePath); 
+			this.sourceFile = New<IDataStore>(sourceFilePath); 
 		}
 
 		void CreateWorker() {
@@ -41,7 +44,7 @@ namespace Axantum.AxCrypt.iOS
 		void Work(object sender, ThreadWorkerEventArgs args) {
 			using (NSAutoreleasePool pool = new NSAutoreleasePool()) {
 				string targetDirectory = Path.GetTempPath();
-				string extractedFileName = Factory.New<AxCryptFile>().Decrypt (
+				string extractedFileName = New<AxCryptFile>().Decrypt(
 					this.sourceFile, 
 					targetDirectory, 
 					this.passPhraseObj, 
@@ -49,18 +52,18 @@ namespace Axantum.AxCrypt.iOS
 					this.context);
 
 				if (extractedFileName == null) {
-					args.Result = FileOperationStatus.Canceled;
+					args.Result = new FileOperationContext(String.Empty, ErrorStatus.Canceled);
 					return;
 				}
 
 				this.targetFilePath = Path.Combine(targetDirectory,	extractedFileName);
-				args.Result = FileOperationStatus.Success;
+				args.Result = new FileOperationContext(this.targetFilePath, ErrorStatus.Success);
 			}
 		}
 
 		void WorkerCompleted(object sender, ThreadWorkerEventArgs args) {
 			BTProgressHUD.Dismiss ();
-			if (args.Result == FileOperationStatus.Canceled) {
+			if (args.Result.ErrorStatus == ErrorStatus.Canceled) {
 				Failed();
 				return;
 			}
@@ -68,7 +71,7 @@ namespace Axantum.AxCrypt.iOS
 			Succeeded(this.targetFilePath);
 		}
 
-		public void Decrypt(V1Passphrase passphrase) {
+		public void Decrypt(LogOnIdentity passphrase) {
 			BTProgressHUD.Show ("Opening ...", maskType: BTProgressHUD.MaskType.Gradient);
 			CreateWorker ();
 			this.passPhraseObj = passphrase;

@@ -8,6 +8,13 @@ using Axantum.AxCrypt.iOS.Infrastructure;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.MonoTouch;
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Core.Crypto;
+using System.Reflection;
+using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Mono.Portable;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -54,13 +61,25 @@ namespace Axantum.AxCrypt.iOS
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			AppDelegate.Current = this;
-			
-			Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment()); 
-			Factory.Instance.Singleton<ILogging>(() => new Logging());
-            Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
-            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new Axantum.AxCrypt.Mono.RuntimeFileInfo(path));
-			
+
+			Axantum.AxCrypt.Mono.RuntimeEnvironment.RegisterTypeFactories ();
+			TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile()); 
+			TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
+
+			Assembly[] assemblies = new Assembly[]{ Assembly.GetExecutingAssembly () };  //AppDomain.CurrentDomain.GetAssemblies());
+
+			TypeMap.Register.Singleton<CryptoFactory> (() => new CryptoFactory (assemblies));
+			TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(assemblies));
+			TypeMap.Register.Singleton<ICryptoPolicy>(() => New<CryptoPolicy>().CreateDefault());
+
+			TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+			TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+			TypeMap.Register.New<Aes>(() => new Axantum.AxCrypt.Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
+			TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
+			TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+			TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
+			TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());
+						
 			appViewController = new MainViewController();
 			appViewController.OnAboutButtonTapped += ShowAbout;
 			appViewController.OnFaqButtonTapped += ShowFaq;

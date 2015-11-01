@@ -7,7 +7,7 @@ namespace Axantum.AxCrypt.iOS
 {
 	public partial class PassphraseController : IDisposable
 	{
-		public event Action<V1Passphrase> Done = delegate {}; 
+		public event Action<LogOnIdentity> Done = delegate {}; 
 		public event Action Cancelled = delegate {};
 
 		string path;
@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		void InvokeDone(string passphrase) {
-			Done (new V1Passphrase(passphrase));
+			Done (new LogOnIdentity(passphrase));
 		}
 
 		public void Dispose ()

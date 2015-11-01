@@ -33,6 +33,7 @@ using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.MonoTouch
 {
@@ -47,16 +48,16 @@ namespace Axantum.AxCrypt.MonoTouch
             return new FileWatcher(path);
         }
         
-        private IRuntimeFileInfo _temporaryDirectoryInfo;
+        private IDataStore _temporaryDirectoryInfo;
         
-        public IRuntimeFileInfo TemporaryDirectoryInfo
+        public IDataStore TemporaryDirectoryInfo
         {
             get
             {
                 if (_temporaryDirectoryInfo == null)
                 {
                     string temporaryFolderPath = Path.Combine(Path.GetTempPath(), @"AxCrypt" + Path.DirectorySeparatorChar);
-                    IRuntimeFileInfo temporaryFolderInfo = Factory.New<IRuntimeFileInfo>(temporaryFolderPath); 
+                    IDataStore temporaryFolderInfo = New<IDataStore>(temporaryFolderPath); 
 					Directory.CreateDirectory (temporaryFolderPath);
                     _temporaryDirectoryInfo = temporaryFolderInfo;
                 }

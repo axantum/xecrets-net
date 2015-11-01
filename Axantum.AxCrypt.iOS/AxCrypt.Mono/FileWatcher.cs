@@ -9,7 +9,20 @@ namespace Axantum.AxCrypt.Mono
 		{
 		}
 
-		public event EventHandler<FileWatcherEventArgs> FileChanged {
+        public bool IncludeSubdirectories
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public event EventHandler<FileWatcherEventArgs> FileChanged {
 			add {
 
 			}
