@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Api
                 throw new ArgumentNullException(nameof(userName));
             }
 
-            Uri resource = _baseUrl.PathCombine("users/account/{0}".With(UrlEncode(userName)));
+            Uri resource = _baseUrl.PathCombine("users/all/accounts/{0}".With(UrlEncode(userName)));
 
             RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest(resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 5))).ConfigureAwait(false);
             if (restResponse.StatusCode == HttpStatusCode.NotFound)
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Api
                 throw new InvalidOperationException("There must be an identity and password to attempt to get private account information.");
             }
 
-            Uri resource = _baseUrl.PathCombine("users/account");
+            Uri resource = _baseUrl.PathCombine("users/me/account");
 
             RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource, _timeout)).ConfigureAwait(false);
             EnsureStatusOk(restResponse);
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Api
         /// <param name="accountKeys">The account keys to upload.</param>
         public async Task PutAccountKeysAsync(IEnumerable<AccountKey> accountKeys)
         {
-            Uri resource = _baseUrl.PathCombine("users/{0}/account-keys".With(UrlEncode(Identity.User)));
+            Uri resource = _baseUrl.PathCombine("users/me/account/keys".With(UrlEncode(Identity.User)));
 
             RestContent content = new RestContent(Serializer.Serialize(accountKeys));
             RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("PUT", resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 2), content)).ConfigureAwait(false);
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Api
 
         public async Task Signup(string userName)
         {
-            Uri resource = _baseUrl.PathCombine("users/account/{0}".With(UrlEncode(userName)));
+            Uri resource = _baseUrl.PathCombine("users/all/accounts/{0}".With(UrlEncode(userName)));
 
             RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest("POST", resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 1))).ConfigureAwait(false);
             EnsureStatusOk(restResponse);
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Api
                 throw new InvalidOperationException("There must be an identity and password to attempt to verify the account information.");
             }
 
-            Uri resource = _baseUrl.PathCombine("users/account/{0}/password".With(Identity.User));
+            Uri resource = _baseUrl.PathCombine("users/all/accounts/{0}/password".With(Identity.User));
 
             PasswordResetParameters passwordResetParameters = new PasswordResetParameters(Identity.Password, verification);
             RestContent content = new RestContent(Serializer.Serialize(passwordResetParameters));
