@@ -71,7 +71,7 @@
             this.PassphraseGroupBox.Controls.Add(this._passphraseVerification);
             this.PassphraseGroupBox.Controls.Add(this._label1);
             this.PassphraseGroupBox.Controls.Add(this._passphrase);
-            this.PassphraseGroupBox.Location = new System.Drawing.Point(12, 108);
+            this.PassphraseGroupBox.Location = new System.Drawing.Point(12, 112);
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
             this.PassphraseGroupBox.Size = new System.Drawing.Size(280, 125);
             this.PassphraseGroupBox.TabIndex = 5;
@@ -110,9 +110,9 @@
             // 
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Location = new System.Drawing.Point(52, 242);
+            this._panel1.Location = new System.Drawing.Point(52, 238);
             this._panel1.Name = "_panel1";
-            this._panel1.Size = new System.Drawing.Size(200, 37);
+            this._panel1.Size = new System.Drawing.Size(200, 41);
             this._panel1.TabIndex = 3;
             // 
             // _buttonCancel
@@ -209,7 +209,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._buttonCancel;
-            this.ClientSize = new System.Drawing.Size(304, 290);
+            this.ClientSize = new System.Drawing.Size(304, 279);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.PassphraseGroupBox);
             this.Controls.Add(this._panel1);
