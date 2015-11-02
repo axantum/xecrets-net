@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
@@ -51,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public async Task<bool> HasKeyPairAsync()
         {
-            return (await _service.ListAsync().ConfigureAwait(false)).Any();
+            return (await _service.ListAsync().Free()).Any();
         }
 
         public async Task ImportAsync(UserKeyPair keyPair)
@@ -73,17 +74,17 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             keyPairs.Add(keyPair);
-            await _service.SaveAsync(keyPairs).ConfigureAwait(false);
+            await _service.SaveAsync(keyPairs).Free();
         }
 
         public async virtual Task<IEnumerable<UserKeyPair>> AllKeyPairsAsync()
         {
-            return (await _service.ListAsync().ConfigureAwait(false)).OrderByDescending(uk => uk.Timestamp);
+            return (await _service.ListAsync().Free()).OrderByDescending(uk => uk.Timestamp);
         }
 
         public async Task<UserKeyPair> ActiveKeyPairAsync()
         {
-            return (await AllKeyPairsAsync().ConfigureAwait(false)).First();
+            return (await AllKeyPairsAsync().Free()).First();
         }
 
         public EmailAddress UserEmail
@@ -96,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public async Task<AccountStatus> StatusAsync()
         {
-            return await _service.StatusAsync().ConfigureAwait(false);
+            return await _service.StatusAsync().Free();
         }
 
         public async virtual void ChangePassphraseAsync(Passphrase passphrase)
@@ -107,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             _service.ChangePassphrase(passphrase);
-            await _service.SaveAsync(await AllKeyPairsAsync().ConfigureAwait(false)).ConfigureAwait(false);
+            await _service.SaveAsync(await AllKeyPairsAsync().Free()).Free();
         }
     }
 }

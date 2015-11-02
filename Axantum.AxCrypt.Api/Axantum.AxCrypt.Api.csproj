@@ -44,6 +44,10 @@
       <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
       <Name>Axantum.AxCrypt.Abstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Common\Axantum.AxCrypt.Common.csproj">
+      <Project>{fb429566-e4a5-4391-805b-0e2a2ae297ac}</Project>
+      <Name>Axantum.AxCrypt.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiException.cs" />

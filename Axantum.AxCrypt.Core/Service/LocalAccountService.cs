@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
@@ -77,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Service
                     return AccountStatus.Verified;
                 }
                 return AccountStatus.Unknown;
-            }).ConfigureAwait(false);
+            }).Free();
         }
 
         public bool HasAccounts
@@ -103,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Service
             return await Task.Run(() =>
             {
                 return TryLoadUserKeyPairs();
-            }).ConfigureAwait(false);
+            }).Free();
         }
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
@@ -126,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Service
                 {
                     SaveInternal(userAccounts, userAccount, accountKeys);
                 }
-            }).ConfigureAwait(false);
+            }).Free();
         }
 
         private void SaveInternal(UserAccounts userAccounts, UserAccount userAccount, IEnumerable<AccountKey> accountKeys)

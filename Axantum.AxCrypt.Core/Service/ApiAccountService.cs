@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
@@ -117,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Service
                 return AccountStatus.Unknown;
             }
 
-            UserAccount userAccount = await _apiClient.GetUserAccountAsync(Resolve.UserSettings.UserEmail).ConfigureAwait(false);
+            UserAccount userAccount = await _apiClient.GetUserAccountAsync(Resolve.UserSettings.UserEmail).Free();
             return userAccount.AccountStatus;
         }
 
@@ -142,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Service
             IList<AccountKey> apiAccountKeys;
             try
             {
-                apiAccountKeys = await _apiClient.AccountKeysAsync().ConfigureAwait(false);
+                apiAccountKeys = await _apiClient.AccountKeysAsync().Free();
             }
             catch (UnauthorizedApiException)
             {
@@ -158,12 +159,12 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
             IList<AccountKey> apiAccountKeys = keyPairs.Select(k => k.ToAccountKey(Identity.Passphrase)).ToList();
-            await _apiClient.SaveAsync(apiAccountKeys).ConfigureAwait(false);
+            await _apiClient.SaveAsync(apiAccountKeys).Free();
         }
 
         public async Task SignupAsync(string emailAddress)
         {
-            await _apiClient.Signup(emailAddress).ConfigureAwait(false);
+            await _apiClient.Signup(emailAddress).Free();
         }
 
         public async Task PasswordResetAsync(string verificationCode)

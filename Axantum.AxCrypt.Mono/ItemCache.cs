@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace Axantum.AxCrypt.Mono
 
         public async Task<T> GetAsync<T>(ICacheKey cacheKey, Func<Task<T>> itemFunction)
         {
-            await _lock.WaitAsync().ConfigureAwait(false);
+            await _lock.WaitAsync().Free();
             try
             {
                 object o = MemoryCache.Default.Get(cacheKey.Key);
@@ -43,7 +44,7 @@ namespace Axantum.AxCrypt.Mono
                 {
                     return (T)o;
                 }
-                T item = await itemFunction().ConfigureAwait(false);
+                T item = await itemFunction().Free();
                 MemoryCache.Default.Add(cacheKey.Key, item, DateTime.Now.Add(cacheKey.Expiration));
                 return item;
             }
@@ -55,10 +56,10 @@ namespace Axantum.AxCrypt.Mono
 
         public async Task UpdateAsync(Func<Task> updateFunction, params ICacheKey[] dependencies)
         {
-            await _lock.WaitAsync().ConfigureAwait(false);
+            await _lock.WaitAsync().Free();
             try
             {
-                await updateFunction().ConfigureAwait(false);
+                await updateFunction().Free();
                 foreach (ICacheKey key in dependencies)
                 {
                     MemoryCache.Default.Remove(key.Key);

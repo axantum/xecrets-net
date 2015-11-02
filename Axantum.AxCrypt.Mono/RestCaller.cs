@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions.Rest;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
@@ -64,13 +65,13 @@ namespace Axantum.AxCrypt.Mono
                     {
                         throw new ArgumentException("You can't send content with a GET request.", "request");
                     }
-                    return await SendGet(identity, request).ConfigureAwait(false);
+                    return await SendGet(identity, request).Free();
 
                 case "PUT":
-                    return await SendPut(identity, request).ConfigureAwait(false);
+                    return await SendPut(identity, request).Free();
 
                 case "POST":
-                    return await SendPost(identity, request).ConfigureAwait(false);
+                    return await SendPost(identity, request).Free();
 
                 default:
                     throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
@@ -96,8 +97,8 @@ namespace Axantum.AxCrypt.Mono
             {
                 PrepareClient(client, identity, request);
 
-                HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery).ConfigureAwait(false);
-                content = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery).Free();
+                content = await httpResponse.Content.ReadAsStringAsync().Free();
 
                 return new RestResponse(httpResponse.StatusCode, content);
             }
@@ -111,8 +112,8 @@ namespace Axantum.AxCrypt.Mono
                 PrepareClient(client, identity, request);
 
                 StringContent httpContent = new StringContent(request.Content.Text, Encoding.UTF8, "application/json");
-                HttpResponseMessage httpResponse = await client.PutAsync(request.Url.PathAndQuery, httpContent).ConfigureAwait(false);
-                content = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                HttpResponseMessage httpResponse = await client.PutAsync(request.Url.PathAndQuery, httpContent).Free();
+                content = await httpResponse.Content.ReadAsStringAsync().Free();
 
                 return new RestResponse(httpResponse.StatusCode, content);
             }
@@ -126,8 +127,8 @@ namespace Axantum.AxCrypt.Mono
                 PrepareClient(client, identity, request);
 
                 StringContent httpContent = new StringContent(request.Content.Text, Encoding.UTF8, "application/json");
-                HttpResponseMessage httpResponse = await client.PostAsync(request.Url.PathAndQuery, httpContent).ConfigureAwait(false);
-                content = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                HttpResponseMessage httpResponse = await client.PostAsync(request.Url.PathAndQuery, httpContent).Free();
+                content = await httpResponse.Content.ReadAsStringAsync().Free();
 
                 return new RestResponse(httpResponse.StatusCode, content);
             }
