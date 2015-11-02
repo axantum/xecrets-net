@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
@@ -69,11 +70,11 @@ namespace Axantum.AxCrypt.Core.Service
         {
             try
             {
-                return await _remoteService.AccountAsync().ConfigureAwait(false);
+                return await _remoteService.AccountAsync().Free();
             }
             catch (OfflineApiException)
             {
-                return await _localService.AccountAsync().ConfigureAwait(false);
+                return await _localService.AccountAsync().Free();
             }
         }
 
@@ -91,13 +92,24 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<IList<UserKeyPair>> ListAsync()
         {
+            IList<UserKeyPair> localKeys = await _localService.ListAsync().Free();
             try
             {
-                return await _remoteService.ListAsync().ConfigureAwait(false);
+                IList<UserKeyPair> remoteKeys = await _remoteService.ListAsync().Free();
+                IList<UserKeyPair> allKeys = remoteKeys.Union(localKeys).ToList();
+                if (allKeys.Count() > remoteKeys.Count())
+                {
+                    await _remoteService.SaveAsync(allKeys).Free();
+                }
+                if (allKeys.Count() > localKeys.Count())
+                {
+                    await _localService.SaveAsync(allKeys).Free();
+                }
+                return allKeys;
             }
             catch (OfflineApiException)
             {
-                return await _localService.ListAsync().ConfigureAwait(false);
+                return localKeys;
             }
         }
 
@@ -105,11 +117,11 @@ namespace Axantum.AxCrypt.Core.Service
         {
             try
             {
-                await _remoteService.PasswordResetAsync(verificationCode).ConfigureAwait(false);
+                await _remoteService.PasswordResetAsync(verificationCode).Free();
             }
             catch (OfflineApiException)
             {
-                await _localService.PasswordResetAsync(verificationCode).ConfigureAwait(false);
+                await _localService.PasswordResetAsync(verificationCode).Free();
             }
         }
 
@@ -117,11 +129,11 @@ namespace Axantum.AxCrypt.Core.Service
         {
             try
             {
-                await _remoteService.SaveAsync(keyPairs).ConfigureAwait(false);
+                await _remoteService.SaveAsync(keyPairs).Free();
             }
             catch (OfflineApiException)
             {
-                await _localService.SaveAsync(keyPairs).ConfigureAwait(false);
+                await _localService.SaveAsync(keyPairs).Free();
             }
         }
 
@@ -129,11 +141,11 @@ namespace Axantum.AxCrypt.Core.Service
         {
             try
             {
-                await _remoteService.SignupAsync(emailAddress).ConfigureAwait(false);
+                await _remoteService.SignupAsync(emailAddress).Free();
             }
             catch (OfflineApiException)
             {
-                await _localService.SignupAsync(emailAddress).ConfigureAwait(false);
+                await _localService.SignupAsync(emailAddress).Free();
             }
         }
 
