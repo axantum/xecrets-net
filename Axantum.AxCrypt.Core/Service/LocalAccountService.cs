@@ -90,17 +90,10 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        private bool _hasCachedList = false;
-
         public async Task<IList<UserKeyPair>> ListAsync()
         {
             List<UserKeyPair> list = new List<UserKeyPair>();
             list.AddRange(TryLoadUserKeyPairs());
-
-            if (_hasCachedList)
-            {
-                return list;
-            }
 
             IList<UserKeyPair> other = await _service.ListAsync().ConfigureAwait(false);
             if (other.Count == 0)
@@ -110,9 +103,7 @@ namespace Axantum.AxCrypt.Core.Service
 
             list = list.Union(other).ToList();
 
-            //This is where we can update the server, but it's not yet implemented at this point.
-            //await _service.SaveAsync(list).ConfigureAwait(false);
-            //_hasCachedList = true;
+            await SaveAsync(list).ConfigureAwait(false);
 
             return list;
         }
@@ -128,9 +119,19 @@ namespace Axantum.AxCrypt.Core.Service
             }
 
             IEnumerable<AccountKey> accountKeysToUpdate = keyPairs.Select(uk => uk.ToAccountKey(_service.Identity.Passphrase));
-            IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Except(accountKeysToUpdate);
-            accountKeys = accountKeys.Union(accountKeysToUpdate);
+            IEnumerable<AccountKey> existingAccountKeys = userAccount.AccountKeys;
+            IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Union(accountKeysToUpdate);
 
+            if (accountKeys.Count() != existingAccountKeys.Count())
+            {
+                SaveInternal(userAccounts, userAccount, accountKeys);
+            }
+
+            await _service.SaveAsync(keyPairs).ConfigureAwait(false);
+        }
+
+        private void SaveInternal(UserAccounts userAccounts, UserAccount userAccount, IEnumerable<AccountKey> accountKeys)
+        {
             userAccount.AccountKeys.Clear();
             foreach (AccountKey accountKey in accountKeys)
             {
@@ -141,8 +142,6 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 userAccounts.SerializeTo(writer);
             }
-
-            await _service.SaveAsync(keyPairs).ConfigureAwait(false);
         }
 
         public bool ChangePassphrase(Passphrase passphrase)

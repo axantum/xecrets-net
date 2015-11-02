@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
             IList<AccountKey> apiAccountKeys = keyPairs.Select(k => k.ToAccountKey(Identity.Passphrase)).ToList();
-            await _apiClient.PutAccountKeysAsync(apiAccountKeys).ConfigureAwait(false);
+            await _apiClient.SaveAsync(apiAccountKeys).ConfigureAwait(false);
         }
 
         public async Task SignupAsync(string emailAddress)

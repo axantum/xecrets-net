@@ -85,16 +85,13 @@ namespace Axantum.AxCrypt.Api
         /// Uploads a key pair to server. The operation is idempotent.
         /// </summary>
         /// <param name="accountKeys">The account keys to upload.</param>
-        public async Task PutAccountKeysAsync(IEnumerable<AccountKey> accountKeys)
+        public async Task SaveAsync(IEnumerable<AccountKey> accountKeys)
         {
             Uri resource = _baseUrl.PathCombine("users/my/account/keys".With(UrlEncode(Identity.User)));
 
             RestContent content = new RestContent(Serializer.Serialize(accountKeys));
             RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest("PUT", resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 2), content)).ConfigureAwait(false);
             EnsureStatusOk(restResponse);
-
-            ResponseBase apiResponse = Serializer.Deserialize<ResponseBase>(restResponse.Content);
-            EnsureStatusOk(apiResponse);
         }
 
         /// <summary>
