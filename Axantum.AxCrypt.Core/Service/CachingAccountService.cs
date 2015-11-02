@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
@@ -75,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserAccount> AccountAsync()
         {
-            return await New<ICache>().GetAsync(_key.SubKey(nameof(AccountAsync)), () => _service.AccountAsync());
+            return await New<ICache>().GetAsync(_key.SubKey(nameof(AccountAsync)), () => _service.AccountAsync()).Free();
         }
 
         public bool ChangePassphrase(Passphrase passphrase)
@@ -85,27 +86,27 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<IList<UserKeyPair>> ListAsync()
         {
-            return await New<ICache>().GetAsync(_key.SubKey(nameof(ListAsync)), () => _service.ListAsync());
+            return await New<ICache>().GetAsync(_key.SubKey(nameof(ListAsync)), () => _service.ListAsync()).Free();
         }
 
         public async Task PasswordResetAsync(string verificationCode)
         {
-            await _service.PasswordResetAsync(verificationCode);
+            await _service.PasswordResetAsync(verificationCode).Free();
         }
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
-            await New<ICache>().UpdateAsync(() => _service.SaveAsync(keyPairs), _key.SubKey(nameof(ListAsync)), _key.SubKey(nameof(AccountAsync)), _key.SubKey(nameof(HasAccounts)));
+            await New<ICache>().UpdateAsync(() => _service.SaveAsync(keyPairs), _key.SubKey(nameof(ListAsync)), _key.SubKey(nameof(AccountAsync)), _key.SubKey(nameof(HasAccounts))).Free();
         }
 
         public async Task SignupAsync(string emailAddress)
         {
-            await _service.SignupAsync(emailAddress);
+            await _service.SignupAsync(emailAddress).Free();
         }
 
         public async Task<AccountStatus> StatusAsync()
         {
-            return await New<ICache>().GetAsync(_key.SubKey(nameof(StatusAsync)), () => _service.StatusAsync());
+            return await New<ICache>().GetAsync(_key.SubKey(nameof(StatusAsync)), () => _service.StatusAsync()).Free();
         }
     }
 }
