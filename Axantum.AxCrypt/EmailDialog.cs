@@ -12,24 +12,20 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class EmailDialog : Form
+    public partial class EmailDialog : StyledMessageBase
     {
         private AccountEmailViewModel _viewModel;
 
         public EmailDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
         }
 
         public EmailDialog(Form parent)
             : this()
         {
+            InitializeStyle(parent);
             _viewModel = new AccountEmailViewModel();
-
-            Owner = parent;
-            Owner.Activated += (sender, e) => Activate();
-            StartPosition = FormStartPosition.CenterParent;
         }
 
         private void EmailDialog_Load(object sender, EventArgs e)
