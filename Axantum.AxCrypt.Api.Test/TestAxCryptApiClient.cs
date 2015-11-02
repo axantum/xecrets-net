@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Api.Test
             string content = Resolve.Serializer.Serialize(summary);
 
             Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
-            mockRestCaller.Setup<Task<RestResponse>>(wc => wc.SendAsync(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/users/account")))).Returns(() => Task.FromResult(new RestResponse(HttpStatusCode.OK, content)));
+            mockRestCaller.Setup<Task<RestResponse>>(wc => wc.SendAsync(It.Is<RestIdentity>((i) => i.User == identity.User), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/users/my/account")))).Returns(() => Task.FromResult(new RestResponse(HttpStatusCode.OK, content)));
             mockRestCaller.Setup<string>(wc => wc.UrlEncode(It.IsAny<string>())).Returns<string>((url) => WebUtility.UrlEncode(url));
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Api.Test
             string content = Resolve.Serializer.Serialize(summary);
 
             Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
-            mockRestCaller.Setup<Task<RestResponse>>(wc => wc.SendAsync(It.Is<RestIdentity>((i) => i.User.Length == 0), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/users/account/svante%40axcrypt.net")))).Returns(() => Task.FromResult(new RestResponse(HttpStatusCode.OK, content)));
+            mockRestCaller.Setup<Task<RestResponse>>(wc => wc.SendAsync(It.Is<RestIdentity>((i) => i.User.Length == 0), It.Is<RestRequest>((r) => r.Url == new Uri("http://localhost/api/users/all/accounts/svante%40axcrypt.net")))).Returns(() => Task.FromResult(new RestResponse(HttpStatusCode.OK, content)));
             mockRestCaller.Setup<string>(wc => wc.UrlEncode(It.IsAny<string>())).Returns<string>((url) => WebUtility.UrlEncode(url));
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
