@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
             UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), DateTime.UtcNow, New<KeyPairService>().New());
-            store.ImportAsync(userKeys);
+            store.ImportAsync(userKeys).Wait();
 
             return null;
         }

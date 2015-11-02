@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
             AccountStorage store = new AccountStorage(new LocalAccountService(new LogOnIdentity(EmailAddress.Parse(@"svante@axantum.com"), new Passphrase("secret")), workFolder));
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
-            store.ImportAsync(userKeyPair);
+            store.ImportAsync(userKeyPair).Wait();
             Assert.That(store.ActiveKeyPairAsync().Result.KeyPair.PrivateKey, Is.Not.Null);
             Assert.That(store.ActiveKeyPairAsync().Result.KeyPair.PublicKey, Is.Not.Null);
         }
@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Test
             AccountStorage store = new AccountStorage(new LocalAccountService(new LogOnIdentity(EmailAddress.Parse(@"svante@axantum.com"), new Passphrase("secret")), workFolder));
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
-            store.ImportAsync(userKeyPair);
+            store.ImportAsync(userKeyPair).Wait();
             Assert.That(store.ActiveKeyPairAsync().Result.KeyPair.PrivateKey, Is.Not.Null);
             Assert.That(store.ActiveKeyPairAsync().Result.KeyPair.PublicKey, Is.Not.Null);
 
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("secret");
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
-            store.ImportAsync(userKeyPair);
+            store.ImportAsync(userKeyPair).Wait();
 
             string text = "AxCrypt encryption rules!";
             byte[] encryptedBytes = store.ActiveKeyPairAsync().Result.KeyPair.PublicKey.Transform(Encoding.UTF8.GetBytes(text));

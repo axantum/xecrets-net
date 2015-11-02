@@ -157,6 +157,7 @@
     <Compile Include="Reader\V2AxCryptReader.cs" />
     <Compile Include="Reader\UnversionedAxCryptReader.cs" />
     <Compile Include="Service\ApiAccountService.cs" />
+    <Compile Include="Service\CachingAccountService.cs" />
     <Compile Include="Service\DeviceAccountService.cs" />
     <Compile Include="Service\IAccountService.cs" />
     <Compile Include="Service\KeyPairService.cs" />

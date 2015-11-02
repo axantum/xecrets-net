@@ -48,6 +48,8 @@
     <Compile Include="Creator.cs" />
     <Compile Include="ErrorStatus.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="ICache.cs" />
+    <Compile Include="ICacheKey.cs" />
     <Compile Include="IStringSerializer.cs" />
     <Compile Include="Rest\IRestCaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Session
             return (await _service.ListAsync().ConfigureAwait(false)).Any();
         }
 
-        public async void ImportAsync(UserKeyPair keyPair)
+        public async Task ImportAsync(UserKeyPair keyPair)
         {
             if (keyPair == null)
             {
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentException("User email mismatch in key pair and store.", nameof(keyPair));
             }
 
-            IList<UserKeyPair> keyPairs = await _service.ListAsync().ConfigureAwait(false);
+            IList<UserKeyPair> keyPairs = await _service.ListAsync();
             if (keyPairs.Any(k => k == keyPair))
             {
                 return;
