@@ -42,12 +42,9 @@ namespace Axantum.AxCrypt.Core.Service
             Identity = identity;
         }
 
-        public UserAccount Account
+        public Task<UserAccount> AccountAsync()
         {
-            get
-            {
-                return new UserAccount(Identity.UserEmail.Address);
-            }
+            return Task.Run(() => new UserAccount(Identity.UserEmail.Address));
         }
 
         public bool HasAccounts

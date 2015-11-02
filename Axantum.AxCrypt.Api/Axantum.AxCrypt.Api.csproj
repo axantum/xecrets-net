@@ -51,6 +51,7 @@
     <Compile Include="AxCryptApiClient.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="OfflineApiException.cs" />
     <Compile Include="Implementation\AbstractTypeSerializer.cs" />
     <Compile Include="Implementation\CustomSerializer.cs" />
     <Compile Include="Model\AccountStatus.cs" />

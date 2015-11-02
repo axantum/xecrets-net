@@ -43,15 +43,15 @@ namespace Axantum.AxCrypt.Core.Service
 {
     public class LocalAccountService : IAccountService
     {
-        private static Regex _userKeyPairFilePattern = new Regex(@"^Keys-([\d]+)-txt\.axx$");
+        private static readonly Task _completedTask = Task.FromResult(true);
 
-        private IAccountService _service;
+        private static Regex _userKeyPairFilePattern = new Regex(@"^Keys-([\d]+)-txt\.axx$");
 
         private IDataContainer _workContainer;
 
-        public LocalAccountService(IAccountService service, IDataContainer workContainer)
+        public LocalAccountService(LogOnIdentity identity, IDataContainer workContainer)
         {
-            _service = service;
+            Identity = identity;
             _workContainer = workContainer;
         }
 
@@ -63,13 +63,21 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
+        public Task<UserAccount> AccountAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<AccountStatus> StatusAsync()
         {
-            if (LoadUserAccounts().Accounts.Any(a => EmailAddress.Parse(a.UserName) == _service.Identity.UserEmail) || UserKeyPairFiles().Any())
+            return await Task.Run(() =>
             {
-                return AccountStatus.Verified;
-            }
-            return await _service.StatusAsync().ConfigureAwait(false);
+                if (LoadUserAccounts().Accounts.Any(a => EmailAddress.Parse(a.UserName) == Identity.UserEmail) || UserKeyPairFiles().Any())
+                {
+                    return AccountStatus.Verified;
+                }
+                return AccountStatus.Unknown;
+            }).ConfigureAwait(false);
         }
 
         public bool HasAccounts
@@ -86,48 +94,39 @@ namespace Axantum.AxCrypt.Core.Service
                     return true;
                 }
 
-                return _service.HasAccounts;
+                return false;
             }
         }
 
         public async Task<IList<UserKeyPair>> ListAsync()
         {
-            List<UserKeyPair> list = new List<UserKeyPair>();
-            list.AddRange(TryLoadUserKeyPairs());
-
-            IList<UserKeyPair> other = await _service.ListAsync().ConfigureAwait(false);
-            if (other.Count == 0)
+            return await Task.Run(() =>
             {
-                return list;
-            }
-
-            list = list.Union(other).ToList();
-
-            await SaveAsync(list).ConfigureAwait(false);
-
-            return list;
+                return TryLoadUserKeyPairs();
+            }).ConfigureAwait(false);
         }
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
-            UserAccounts userAccounts = LoadUserAccounts();
-            UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == _service.Identity.UserEmail);
-            if (userAccount == null)
+            await Task.Run(() =>
             {
-                userAccount = new UserAccount(_service.Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown, new AccountKey[0]);
-                userAccounts.Accounts.Add(userAccount);
-            }
+                UserAccounts userAccounts = LoadUserAccounts();
+                UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
+                if (userAccount == null)
+                {
+                    userAccount = new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown, new AccountKey[0]);
+                    userAccounts.Accounts.Add(userAccount);
+                }
 
-            IEnumerable<AccountKey> accountKeysToUpdate = keyPairs.Select(uk => uk.ToAccountKey(_service.Identity.Passphrase));
-            IEnumerable<AccountKey> existingAccountKeys = userAccount.AccountKeys;
-            IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Union(accountKeysToUpdate);
+                IEnumerable<AccountKey> accountKeysToUpdate = keyPairs.Select(uk => uk.ToAccountKey(Identity.Passphrase));
+                IEnumerable<AccountKey> existingAccountKeys = userAccount.AccountKeys;
+                IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Union(accountKeysToUpdate);
 
-            if (accountKeys.Count() != existingAccountKeys.Count())
-            {
-                SaveInternal(userAccounts, userAccount, accountKeys);
-            }
-
-            await _service.SaveAsync(keyPairs).ConfigureAwait(false);
+                if (accountKeys.Count() != existingAccountKeys.Count())
+                {
+                    SaveInternal(userAccounts, userAccount, accountKeys);
+                }
+            }).ConfigureAwait(false);
         }
 
         private void SaveInternal(UserAccounts userAccounts, UserAccount userAccount, IEnumerable<AccountKey> accountKeys)
@@ -146,28 +145,8 @@ namespace Axantum.AxCrypt.Core.Service
 
         public bool ChangePassphrase(Passphrase passphrase)
         {
-            if (!_service.ChangePassphrase(passphrase))
-            {
-                return false;
-            }
-
             SaveAsync(ListAsync().Result).Wait();
             return true;
-        }
-
-        /// <summary>
-        /// Gets the full account of the user this instance works with.
-        /// </summary>
-        /// <value>
-        /// The account.
-        /// </value>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public UserAccount Account
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
         }
 
         private IList<UserKeyPair> TryLoadUserKeyPairs()
@@ -176,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Service
             IEnumerable<UserKeyPair> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys);
             if (!userKeys.Any())
             {
-                userKeys = UserKeyPair.Load(UserKeyPairFiles(), _service.Identity.UserEmail, _service.Identity.Passphrase);
+                userKeys = UserKeyPair.Load(UserKeyPairFiles(), Identity.UserEmail, Identity.Passphrase);
                 userKeys = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
             }
 
@@ -190,16 +169,16 @@ namespace Axantum.AxCrypt.Core.Service
 
         private IEnumerable<UserKeyPair> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys)
         {
-            return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(_service.Identity.Passphrase)).Where(ak => ak != null);
+            return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(Identity.Passphrase)).Where(ak => ak != null);
         }
 
         private UserAccount LoadUserAccount()
         {
             UserAccounts accounts = LoadUserAccounts();
-            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == _service.Identity.UserEmail);
+            IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
             if (!users.Any())
             {
-                return new UserAccount(_service.Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown, new AccountKey[0]);
+                return new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown, new AccountKey[0]);
             }
 
             return users.First();
@@ -215,15 +194,12 @@ namespace Axantum.AxCrypt.Core.Service
 
         public LogOnIdentity Identity
         {
-            get
-            {
-                return _service.Identity;
-            }
+            get;
         }
 
         public async Task SignupAsync(string emailAddress)
         {
-            await _service.SignupAsync(emailAddress).ConfigureAwait(false);
+            await _completedTask;
         }
 
         private UserAccounts LoadUserAccounts()
@@ -241,7 +217,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public Task PasswordResetAsync(string verificationCode)
         {
-            return _service.PasswordResetAsync(verificationCode);
+            return _completedTask;
         }
     }
 }

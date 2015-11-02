@@ -4,14 +4,21 @@ using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Api.Response;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Api
 {
+    /// <summary>
+    /// Provide basic api services using the AxCrypt API. All connection errors are thrown as OfflineApiExceptions, which must be caught and
+    /// handled by the caller, and should be treated as 'temporarily offline'. They root cause can be both Internet connection issues as well
+    /// as the servers being down.
+    /// </summary>
     public class AxCryptApiClient
     {
         private Uri _baseUrl;
@@ -156,10 +163,23 @@ namespace Axantum.AxCrypt.Api
             {
                 return await RestCaller.SendAsync(identity, request).ConfigureAwait(false);
             }
+            catch (WebException wex)
+            {
+                throw new OfflineApiException(ExceptionMessage("Offline", request), wex);
+            }
+            catch (HttpRequestException hrex)
+            {
+                throw new OfflineApiException(ExceptionMessage("Offline", request), hrex);
+            }
             catch (Exception ex)
             {
-                throw new ApiException("REST call failed with exception.", ex);
+                throw new ApiException(ExceptionMessage("REST call failed", request), ex);
             }
+        }
+
+        private static string ExceptionMessage(string message, RestRequest request)
+        {
+            return string.Format(CultureInfo.InvariantCulture, "{2} {1} {0}", request.Url, request.Method, message);
         }
 
         private static void EnsureStatusOk(RestResponse restResponse)
@@ -168,7 +188,10 @@ namespace Axantum.AxCrypt.Api
             {
                 throw new UnauthorizedApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
             }
-
+            if (restResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
+            {
+                throw new OfflineApiException("Service unavailable");
+            }
             if (restResponse.StatusCode != HttpStatusCode.OK && restResponse.StatusCode != HttpStatusCode.Created)
             {
                 throw new ApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);

@@ -43,10 +43,10 @@ namespace Axantum.AxCrypt.Core.Service
         /// <summary>
         /// Gets the full account of the user this instance works with.
         /// </summary>
-        /// <value>
+        /// <returns>
         /// The account.
-        /// </value>
-        UserAccount Account { get; }
+        /// </returns>
+        Task<UserAccount> AccountAsync();
 
         /// <summary>
         /// Gets a value indicating whether the service has any accounts at all.

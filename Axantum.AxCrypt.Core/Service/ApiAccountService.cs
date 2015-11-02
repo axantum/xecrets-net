@@ -38,9 +38,6 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Service
 {
-    /// <summary>
-    /// Provide basic account services using the AxCrypt API
-    /// </summary>
     public class ApiAccountService : IAccountService
     {
         private AxCryptApiClient _apiClient;
@@ -52,21 +49,6 @@ namespace Axantum.AxCrypt.Core.Service
         public ApiAccountService(AxCryptApiClient apiClient)
         {
             _apiClient = apiClient;
-        }
-
-        /// <summary>
-        /// Gets the full account of the user this instance works with.
-        /// </summary>
-        /// <value>
-        /// The account.
-        /// </value>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public UserAccount Account
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
         }
 
         /// <summary>
@@ -112,6 +94,17 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
+        /// Gets the full account of the user this instance works with.
+        /// </summary>
+        /// <returns>
+        /// The account.
+        /// </returns>
+        public Task<UserAccount> AccountAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Gets the status of the account.
         /// </summary>
         /// <value>
@@ -124,15 +117,7 @@ namespace Axantum.AxCrypt.Core.Service
                 return AccountStatus.Unknown;
             }
 
-            UserAccount userAccount;
-            try
-            {
-                userAccount = await _apiClient.GetUserAccountAsync(Resolve.UserSettings.UserEmail).ConfigureAwait(false);
-            }
-            catch (ApiException)
-            {
-                return AccountStatus.Offline;
-            }
+            UserAccount userAccount = await _apiClient.GetUserAccountAsync(Resolve.UserSettings.UserEmail).ConfigureAwait(false);
             return userAccount.AccountStatus;
         }
 
