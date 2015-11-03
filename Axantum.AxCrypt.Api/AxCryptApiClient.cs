@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Api
         /// </summary>
         /// <param name="email">The user name/email</param>
         /// <returns>The user summary</returns>
-        public async Task<UserAccount> GetUserAccountAsync(string userName)
+        public async Task<UserAccount> GetAllAccountsUserAccountAsync(string userName)
         {
             if (userName == null)
             {
@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Api
         /// </summary>
         /// <returns>All account information for the user.</returns>
         /// <exception cref="System.InvalidOperationException">There must be an identity and password to attempt to get private account information.</exception>
-        public async Task<UserAccount> GetUserAccountAsync()
+        public async Task<UserAccount> GetMyAccountAsync()
         {
             if (String.IsNullOrEmpty(Identity.User) || String.IsNullOrEmpty(Identity.Password))
             {
@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Api
         /// Uploads a key pair to server. The operation is idempotent.
         /// </summary>
         /// <param name="accountKeys">The account keys to upload.</param>
-        public async Task SaveAsync(IEnumerable<AccountKey> accountKeys)
+        public async Task PutMyAccountKeysAsync(IEnumerable<AccountKey> accountKeys)
         {
             Uri resource = _baseUrl.PathCombine("users/my/account/keys".With(UrlEncode(Identity.User)));
 
@@ -102,15 +102,20 @@ namespace Axantum.AxCrypt.Api
             EnsureStatusOk(restResponse);
         }
 
-        /// <summary>
-        /// Downloads the account keys of the user.
-        /// </summary>
-        /// <returns>The account keys of the account.</returns>
-        public async Task<IList<AccountKey>> AccountKeysAsync()
+        public async Task<AccountKey> GetAllAccountsUserKeyAsync(string userName)
         {
-            UserAccount userAccount = await GetUserAccountAsync().Free();
+            if (userName == null)
+            {
+                throw new ArgumentNullException(nameof(userName));
+            }
 
-            return userAccount.AccountKeys;
+            Uri resource = _baseUrl.PathCombine("users/all/accounts/{0}/key".With(UrlEncode(userName)));
+
+            RestResponse restResponse = await RestCallInternalAsync(new RestIdentity(), new RestRequest(resource, TimeSpan.FromMilliseconds(_timeout.TotalMilliseconds * 5))).Free();
+            EnsureStatusOk(restResponse);
+
+            AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
+            return accountKey;
         }
 
         /// <summary>
@@ -135,7 +140,7 @@ namespace Axantum.AxCrypt.Api
             return apiResponse;
         }
 
-        public async Task Signup(string userName)
+        public async Task PostAllAccountsUserAsync(string userName)
         {
             Uri resource = _baseUrl.PathCombine("users/all/accounts/{0}".With(UrlEncode(userName)));
 
@@ -143,7 +148,7 @@ namespace Axantum.AxCrypt.Api
             EnsureStatusOk(restResponse);
         }
 
-        public async Task VerifyAccountAsync(string verification)
+        public async Task PutAllAccountsUserPasswordAsync(string verification)
         {
             if (String.IsNullOrEmpty(Identity.User) || String.IsNullOrEmpty(Identity.Password))
             {

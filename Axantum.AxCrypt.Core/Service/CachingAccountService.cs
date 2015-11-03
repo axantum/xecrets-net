@@ -2,6 +2,7 @@
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -129,6 +130,11 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task<AccountStatus> StatusAsync()
         {
             return await New<ICache>().GetAsync(_key.SubKey(nameof(StatusAsync)), () => _service.StatusAsync()).Free();
+        }
+
+        public async Task<UserPublicKey> PublicKeyAsync()
+        {
+            return await New<ICache>().GetAsync(_key.SubKey(nameof(PublicKeyAsync)), () => _service.PublicKeyAsync()).Free();
         }
     }
 }

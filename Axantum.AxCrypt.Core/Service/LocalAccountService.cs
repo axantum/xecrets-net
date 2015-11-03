@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Service
 {
@@ -219,6 +222,15 @@ namespace Axantum.AxCrypt.Core.Service
         public Task PasswordResetAsync(string verificationCode)
         {
             return _completedTask;
+        }
+
+        public async Task<UserPublicKey> PublicKeyAsync()
+        {
+            return await Task.Run(() =>
+            {
+                UserPublicKey publicKey = New<KnownPublicKeys>().PublicKeys.Where(pk => pk.Email == Identity.UserEmail).FirstOrDefault();
+                return publicKey;
+            }).Free();
         }
     }
 }

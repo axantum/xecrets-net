@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
 using System;
@@ -118,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Service
                 return AccountStatus.Unknown;
             }
 
-            UserAccount userAccount = await _apiClient.GetUserAccountAsync(Resolve.UserSettings.UserEmail).Free();
+            UserAccount userAccount = await _apiClient.GetAllAccountsUserAccountAsync(Resolve.UserSettings.UserEmail).Free();
             return userAccount.AccountStatus;
         }
 
@@ -143,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Service
             IList<AccountKey> apiAccountKeys;
             try
             {
-                apiAccountKeys = await _apiClient.AccountKeysAsync().Free();
+                apiAccountKeys = (await _apiClient.GetMyAccountAsync().Free()).AccountKeys;
             }
             catch (UnauthorizedApiException)
             {
@@ -159,17 +160,22 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
             IList<AccountKey> apiAccountKeys = keyPairs.Select(k => k.ToAccountKey(Identity.Passphrase)).ToList();
-            await _apiClient.SaveAsync(apiAccountKeys).Free();
+            await _apiClient.PutMyAccountKeysAsync(apiAccountKeys).Free();
         }
 
         public async Task SignupAsync(string emailAddress)
         {
-            await _apiClient.Signup(emailAddress).Free();
+            await _apiClient.PostAllAccountsUserAsync(emailAddress).Free();
         }
 
         public async Task PasswordResetAsync(string verificationCode)
         {
-            await _apiClient.VerifyAccountAsync(verificationCode);
+            await _apiClient.PutAllAccountsUserPasswordAsync(verificationCode);
+        }
+
+        public Task<UserPublicKey> PublicKeyAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

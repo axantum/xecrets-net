@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,8 @@ namespace Axantum.AxCrypt.Core.Service
 {
     public class NullAccountService : IAccountService
     {
+        private static readonly Task _completedTask = Task.FromResult(true);
+
         public NullAccountService(LogOnIdentity identity)
         {
             Identity = identity;
@@ -86,17 +89,22 @@ namespace Axantum.AxCrypt.Core.Service
 
         public Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
-            return Task.Run(() => { });
+            return _completedTask;
         }
 
         public Task SignupAsync(string emailAddress)
         {
-            return Task.Run(() => { });
+            return _completedTask;
         }
 
         public Task PasswordResetAsync(string verificationCode)
         {
-            return Task.Run(() => { });
+            return _completedTask;
+        }
+
+        public Task<UserPublicKey> PublicKeyAsync()
+        {
+            return null;
         }
     }
 }

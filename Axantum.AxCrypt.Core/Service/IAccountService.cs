@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,6 +93,12 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <returns></returns>
         Task<IList<UserKeyPair>> ListAsync();
+
+        /// <summary>
+        /// Gets the currently active public key of the user.
+        /// </summary>
+        /// <returns></returns>
+        Task<UserPublicKey> PublicKeyAsync();
 
         /// <summary>
         /// Saves the specified key pairs.

@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Api.Test
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
             AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"), TimeSpan.Zero);
-            UserAccount userSummary = client.GetUserAccountAsync().Result;
+            UserAccount userSummary = client.GetMyAccountAsync().Result;
 
             Assert.That(userSummary.UserName, Is.EqualTo(identity.User));
             Assert.That(userSummary.AccountKeys.Count(), Is.EqualTo(1));
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Api.Test
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
             AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"), TimeSpan.Zero);
-            UserAccount userSummary = client.GetUserAccountAsync("svante@axcrypt.net").Result;
+            UserAccount userSummary = client.GetAllAccountsUserAccountAsync("svante@axcrypt.net").Result;
 
             Assert.That(userSummary.UserName, Is.EqualTo(identity.User));
             Assert.That(userSummary.AccountKeys.Count(), Is.EqualTo(1), "There should be an AccountKey here.");

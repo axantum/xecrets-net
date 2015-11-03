@@ -2,11 +2,14 @@
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Service
 {
@@ -123,6 +126,20 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 await _localService.PasswordResetAsync(verificationCode).Free();
             }
+        }
+
+        public async Task<UserPublicKey> PublicKeyAsync()
+        {
+            UserPublicKey publicKey = await _localService.PublicKeyAsync().Free();
+            try
+            {
+                publicKey = await _remoteService.PublicKeyAsync().Free();
+                New<KnownPublicKeys>().AddOrReplace(publicKey);
+            }
+            catch (OfflineApiException)
+            {
+            }
+            return publicKey;
         }
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)

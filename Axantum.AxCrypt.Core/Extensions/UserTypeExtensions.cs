@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions.Rest;
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Runtime;
@@ -129,6 +130,40 @@ namespace Axantum.AxCrypt.Core.Extensions
             UserKeyPair userAsymmetricKeys = new UserKeyPair(EmailAddress.Parse(accountKey.User), accountKey.Timestamp, keyPair);
 
             return userAsymmetricKeys;
+        }
+
+        /// <summary>
+        /// Convert an external representation of a public key to an internal representation suitable for actual use.
+        /// </summary>
+        /// <param name="accountKey">The account key.</param>
+        /// <returns>A UserPublicKey</returns>
+        /// <exception cref="System.ArgumentNullException"></exception>
+        public static UserPublicKey ToUserPublicKey(this Api.Model.AccountKey accountKey)
+        {
+            if (accountKey == null)
+            {
+                throw new ArgumentNullException(nameof(accountKey));
+            }
+
+            IAsymmetricPublicKey publicKey = Resolve.AsymmetricFactory.CreatePublicKey(accountKey.KeyPair.PublicPem);
+            return new UserPublicKey(EmailAddress.Parse(accountKey.User), publicKey);
+        }
+
+        /// <summary>
+        /// Convert an internal representation of a public key to a serializable external representation.
+        /// </summary>
+        /// <param name="userPublicKey">The user public key.</param>
+        /// <returns>An AccountKey instance without a private key component.</returns>
+        /// <exception cref="System.ArgumentNullException"></exception>
+        public static AccountKey ToAccountKey(this UserPublicKey userPublicKey)
+        {
+            if (userPublicKey == null)
+            {
+                throw new ArgumentNullException(nameof(UserPublicKey));
+            }
+
+            AccountKey accountKey = new AccountKey(userPublicKey.Email.Address, userPublicKey.PublicKey.Thumbprint.ToString(), new KeyPair(userPublicKey.PublicKey.ToString(), String.Empty), DateTime.Now);
+            return accountKey;
         }
 
         private static string DecryptPrivateKeyPem(string privateEncryptedPem, Passphrase passphrase)
