@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public TimeSpan ApiTimeOut
         {
-            get { return Load(nameof(ApiTimeOut), TimeSpan.FromMilliseconds(1000)); }
+            get { return Load(nameof(ApiTimeOut), TimeSpan.FromSeconds(120)); }
             set { Store(nameof(ApiTimeOut), value); }
         }
 

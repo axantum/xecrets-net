@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
@@ -151,7 +152,7 @@ namespace Axantum.AxCrypt
 
         private async void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
-            await DisplayMessageDialog(EnsureAccountVerifiedAsync);
+            await WrapMessageDialogs(StartUpProgram);
             if (_exitInProgress)
             {
                 return;
@@ -159,9 +160,14 @@ namespace Axantum.AxCrypt
             StartupLogOnAndPendingRequest();
         }
 
-        private async Task DisplayMessageDialog(Func<Task> dialogFunction)
+        private async Task WrapMessageDialogs(Func<Task> dialogFunction)
         {
             SetTopControlsEnabled(false);
+            ApiVersion apiVersion = await New<GlobalApiClient>().GetApiVersionAsync();
+            if (apiVersion != ApiVersion.Zero && apiVersion != new ApiVersion())
+            {
+                MessageDialog.ShowOk(this, "Server Updated", "The server has been updated. Please update AxCrypt soon. Unexpected errors may occur otherwise.");
+            }
             while (true)
             {
                 try
@@ -196,7 +202,7 @@ namespace Axantum.AxCrypt
             Cursor = enabled ? Cursors.Default : Cursors.WaitCursor;
         }
 
-        private async Task EnsureAccountVerifiedAsync()
+        private async Task StartUpProgram()
         {
             AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
             if (!EnsureEmailAccount(status))
