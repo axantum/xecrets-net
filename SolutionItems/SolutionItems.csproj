@@ -24,6 +24,7 @@
     </None>
     <None Include="..\Solution.FxCop" />
     <None Include="AxantumStrongName.pub" />
+    <None Include="packages.config" />
     <None Include="Solution.runsettings">
       <SubType>Designer</SubType>
     </None>
@@ -36,7 +37,6 @@
     <Content Include="..\CustomDictionary.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ILMerge.exe" />
     <Content Include="Moq\lib\net35\Moq.dll" />
     <Content Include="Moq\lib\net35\Moq.xml" />
     <Content Include="Moq\lib\net40\Moq.dll" />
@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

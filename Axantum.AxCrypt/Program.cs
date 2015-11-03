@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
@@ -108,6 +109,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.Singleton<KeyPairService>(() => new KeyPairService(1, 0, New<IUserSettings>().AsymmetricKeyBits));
             TypeMap.Register.Singleton<ICache>(() => new ItemCache());
+            TypeMap.Register.Singleton<DummyReferencedType>(() => new DummyReferencedType());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

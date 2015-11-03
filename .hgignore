@@ -17,7 +17,6 @@ test-results/*
 *.DotSettings
 .git
 *.gitignore
-packages/*
 Axantum.AxCrypt.Core.Test/*.tmp
 *.bak
 *.resolve
