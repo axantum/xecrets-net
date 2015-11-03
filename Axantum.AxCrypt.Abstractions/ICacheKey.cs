@@ -8,6 +8,8 @@ namespace Axantum.AxCrypt.Abstractions
 {
     public interface ICacheKey
     {
+        ICacheKey ParentCacheKey { get; }
+
         string Key { get; }
 
         TimeSpan Expiration { get; }

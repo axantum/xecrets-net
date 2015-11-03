@@ -12,6 +12,10 @@ namespace Axantum.AxCrypt.Abstractions
 
         Task<T> GetAsync<T>(ICacheKey cacheKey, Func<Task<T>> itemFunction);
 
+        void Update(Action updateAction, params ICacheKey[] dependencies);
+
         Task UpdateAsync(Func<Task> updateFunction, params ICacheKey[] dependencies);
+
+        Task<T> UpdateAsync<T>(Func<Task<T>> updateFunction, params ICacheKey[] dependencies);
     }
 }

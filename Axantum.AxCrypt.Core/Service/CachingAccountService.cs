@@ -17,23 +17,43 @@ namespace Axantum.AxCrypt.Core.Service
 
         private class CacheKey : ICacheKey
         {
+            public static CacheKey RootKey = new CacheKey();
+
             private string _key;
 
+            private CacheKey()
+                : this("RootKey", null)
+            {
+            }
+
             public CacheKey(string key)
+                : this(key, RootKey)
+            {
+            }
+
+            public CacheKey(string key, ICacheKey parentCacheKey)
             {
                 _key = key;
+                ParentCacheKey = parentCacheKey;
             }
 
             public CacheKey SubKey(string key)
             {
-                return new CacheKey(Key + "-" + key);
+                CacheKey subKey = new CacheKey(key, this);
+                return subKey;
             }
+
+            public ICacheKey ParentCacheKey { get; }
 
             public string Key
             {
                 get
                 {
-                    return _key;
+                    if (ParentCacheKey == null)
+                    {
+                        return _key;
+                    }
+                    return ParentCacheKey.Key + "-" + _key;
                 }
             }
 
@@ -47,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Service
         public CachingAccountService(IAccountService service)
         {
             _service = service;
-            _key = new CacheKey(nameof(CachingAccountService)).SubKey(service.Identity.UserEmail.Address);
+            _key = CacheKey.RootKey.SubKey(nameof(CachingAccountService)).SubKey(service.Identity.UserEmail.Address);
         }
 
         public bool HasAccounts
@@ -81,7 +101,9 @@ namespace Axantum.AxCrypt.Core.Service
 
         public bool ChangePassphrase(Passphrase passphrase)
         {
-            return New<ICache>().Get(_key.SubKey(nameof(ChangePassphrase)), () => _service.ChangePassphrase(passphrase));
+            bool result = false;
+            New<ICache>().Update(() => result = _service.ChangePassphrase(passphrase), _key);
+            return result;
         }
 
         public async Task<IList<UserKeyPair>> ListAsync()
@@ -101,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task SignupAsync(string emailAddress)
         {
-            await _service.SignupAsync(emailAddress).Free();
+            await New<ICache>().UpdateAsync(() => _service.SignupAsync(emailAddress), _key);
         }
 
         public async Task<AccountStatus> StatusAsync()
