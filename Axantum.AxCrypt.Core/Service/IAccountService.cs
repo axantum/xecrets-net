@@ -95,8 +95,8 @@ namespace Axantum.AxCrypt.Core.Service
         /// <summary>
         /// Ensures there is at least one key pair, and returns the active public key of the user.
         /// </summary>
-        /// <returns></returns>
-        Task<UserPublicKey> PublicKeyAsync();
+        /// <returns>The public key of the current key pair</returns>
+        Task<UserPublicKey> CurrentPublicKeyAsync();
 
         /// <summary>
         /// Saves the specified key pairs.

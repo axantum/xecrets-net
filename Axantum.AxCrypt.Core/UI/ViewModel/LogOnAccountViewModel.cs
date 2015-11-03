@@ -137,9 +137,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool ValidatePassphrase()
         {
-            if (ShowEmail && UserEmail.Length > 0 && ValidatePassphraseForEmail())
+            if (ShowEmail && UserEmail.Length > 0)
             {
-                return true;
+                return ValidatePassphraseForEmail();
             }
             if (IsKnownPassphrase())
             {
@@ -166,9 +166,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool IsValidAccountLogOn()
         {
-            AccountStorage keyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
 
-            if (keyPairs.HasKeyPairAsync().Result)
+            if (accountStorage.HasKeyPairAsync().Result)
             {
                 return true;
             }

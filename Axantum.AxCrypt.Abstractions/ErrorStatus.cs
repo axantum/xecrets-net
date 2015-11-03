@@ -60,5 +60,6 @@ namespace Axantum.AxCrypt.Abstractions
         ApiHttpResponseError,
         ApiUnauthorizedError,
         ApiOffline,
+        WrongPassword,
     }
 }

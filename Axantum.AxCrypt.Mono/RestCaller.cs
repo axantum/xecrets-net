@@ -99,6 +99,10 @@ namespace Axantum.AxCrypt.Mono
 
                 HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery).Free();
                 content = await httpResponse.Content.ReadAsStringAsync().Free();
+                if (content.Length > 0 && httpResponse.Content?.Headers?.ContentType?.MediaType != "application/json")
+                {
+                    throw new HttpRequestException("Expected Media Type 'application/json'.");
+                }
 
                 return new RestResponse(httpResponse.StatusCode, content);
             }

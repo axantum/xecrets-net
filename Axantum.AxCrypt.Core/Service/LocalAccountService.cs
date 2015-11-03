@@ -224,7 +224,7 @@ namespace Axantum.AxCrypt.Core.Service
             return _completedTask;
         }
 
-        public async Task<UserPublicKey> PublicKeyAsync()
+        public async Task<UserPublicKey> CurrentPublicKeyAsync()
         {
             return await Task.Run(() =>
             {

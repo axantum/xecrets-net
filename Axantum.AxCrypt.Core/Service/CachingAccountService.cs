@@ -137,9 +137,9 @@ namespace Axantum.AxCrypt.Core.Service
             return status;
         }
 
-        public async Task<UserPublicKey> PublicKeyAsync()
+        public async Task<UserPublicKey> CurrentPublicKeyAsync()
         {
-            return await New<ICache>().GetAsync(_key.SubKey(nameof(PublicKeyAsync)), () => _service.PublicKeyAsync()).Free();
+            return await New<ICache>().GetAsync(_key.SubKey(nameof(CurrentPublicKeyAsync)), () => _service.CurrentPublicKeyAsync()).Free();
         }
     }
 }

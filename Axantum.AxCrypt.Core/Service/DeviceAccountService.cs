@@ -138,12 +138,12 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public async Task<UserPublicKey> PublicKeyAsync()
+        public async Task<UserPublicKey> CurrentPublicKeyAsync()
         {
-            UserPublicKey publicKey = await _localService.PublicKeyAsync().Free();
+            UserPublicKey publicKey = await _localService.CurrentPublicKeyAsync().Free();
             try
             {
-                publicKey = await _remoteService.PublicKeyAsync().Free();
+                publicKey = await _remoteService.CurrentPublicKeyAsync().Free();
                 New<KnownPublicKeys>().AddOrReplace(publicKey);
             }
             catch (OfflineApiException)

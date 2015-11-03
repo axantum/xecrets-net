@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Api
                 restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
                 Caller.EnsureStatusOk(restResponse);
             }
-            catch (OfflineApiException)
+            catch (Exception)
             {
                 return ApiVersion.Zero;
             }

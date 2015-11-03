@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -130,22 +131,28 @@ namespace Axantum.AxCrypt.Core.Service
         /// <returns></returns>
         public async Task<IList<UserKeyPair>> ListAsync()
         {
-            IList<AccountKey> apiAccountKeys;
             try
             {
-                apiAccountKeys = (await _apiClient.GetMyAccountAsync().Free()).AccountKeys;
+                IList<AccountKey> apiAccountKeys = (await _apiClient.GetMyAccountAsync().Free()).AccountKeys;
+                return apiAccountKeys.Select(k => k.ToUserKeyPair(Identity.Passphrase)).ToList();
             }
-            catch (UnauthorizedApiException)
+            catch (UnauthorizedApiException uaex)
             {
-                return new UserKeyPair[0];
+                throw new PasswordException("Credentials are not valid for server access.", uaex);
             }
-            return apiAccountKeys.Select(k => k.ToUserKeyPair(Identity.Passphrase)).ToList();
         }
 
         public async Task<UserKeyPair> CurrentKeyPairAsync()
         {
-            AccountKey accountKey = await _apiClient.GetMyAccountKeysCurrentAsync().Free();
-            return accountKey.ToUserKeyPair(Identity.Passphrase);
+            try
+            {
+                AccountKey accountKey = await _apiClient.GetMyAccountKeysCurrentAsync().Free();
+                return accountKey.ToUserKeyPair(Identity.Passphrase);
+            }
+            catch (UnauthorizedApiException uaex)
+            {
+                throw new PasswordException("Credentials are not valid for server access.", uaex);
+            }
         }
 
         /// <summary>
@@ -154,8 +161,15 @@ namespace Axantum.AxCrypt.Core.Service
         /// <param name="keyPairs">The key pairs.</param>
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
-            IList<AccountKey> apiAccountKeys = keyPairs.Select(k => k.ToAccountKey(Identity.Passphrase)).ToList();
-            await _apiClient.PutMyAccountKeysAsync(apiAccountKeys).Free();
+            try
+            {
+                IList<AccountKey> apiAccountKeys = keyPairs.Select(k => k.ToAccountKey(Identity.Passphrase)).ToList();
+                await _apiClient.PutMyAccountKeysAsync(apiAccountKeys).Free();
+            }
+            catch (UnauthorizedApiException uaex)
+            {
+                throw new PasswordException("Credentials are not valid for server access.", uaex);
+            }
         }
 
         public async Task SignupAsync(string emailAddress)
@@ -168,7 +182,7 @@ namespace Axantum.AxCrypt.Core.Service
             await _apiClient.PutAllAccountsUserPasswordAsync(verificationCode);
         }
 
-        public Task<UserPublicKey> PublicKeyAsync()
+        public Task<UserPublicKey> CurrentPublicKeyAsync()
         {
             throw new NotImplementedException();
         }

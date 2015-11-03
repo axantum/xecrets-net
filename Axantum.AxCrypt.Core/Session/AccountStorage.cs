@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
 using System;
@@ -52,7 +53,14 @@ namespace Axantum.AxCrypt.Core.Session
 
         public async Task<bool> HasKeyPairAsync()
         {
-            return (await _service.ListAsync().Free()).Any();
+            try
+            {
+                return (await _service.ListAsync().Free()).Any();
+            }
+            catch (PasswordException)
+            {
+                return false;
+            }
         }
 
         public async Task ImportAsync(UserKeyPair keyPair)
