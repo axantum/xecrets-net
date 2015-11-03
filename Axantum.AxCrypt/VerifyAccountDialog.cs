@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt
             }
 
             _passphrase.TextChanged += (s, ee) => { _viewModel.Passphrase = _passphrase.Text; };
-            _passphraseVerification.TextChanged += (s, ee) => { _viewModel.VerificationPassphrase = _passphrase.Text; };
+            _passphraseVerification.TextChanged += (s, ee) => { _viewModel.VerificationPassphrase = _passphraseVerification.Text; };
             _activationCode.TextChanged += (s, ee) => { _viewModel.VerificationCode = _activationCode.Text; };
             _showPassphrase.CheckedChanged += (s, ee) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
 
@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt
 
         private bool AdHocValidateAllFieldsIndependently()
         {
-            return AdHocValidatePassphrase() & AdHocValidateVerfication() & AdHocValidateCode();
+            return AdHocValidatePassphrase() & AdHocValidatePassphraseVerification() & AdHocValidateCode();
         }
 
         private bool AdHocValidatePassphrase()
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt
             return true;
         }
 
-        private bool AdHocValidateVerfication()
+        private bool AdHocValidatePassphraseVerification()
         {
             _errorProvider2.Clear();
             if (_viewModel[nameof(VerifyAccountViewModel.VerificationPassphrase)].Length > 0)
