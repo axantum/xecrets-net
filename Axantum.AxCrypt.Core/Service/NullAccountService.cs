@@ -45,11 +45,6 @@ namespace Axantum.AxCrypt.Core.Service
             Identity = identity;
         }
 
-        public Task<UserAccount> AccountAsync()
-        {
-            return Task.Run(() => new UserAccount(Identity.UserEmail.Address));
-        }
-
         public bool HasAccounts
         {
             get
@@ -104,7 +99,12 @@ namespace Axantum.AxCrypt.Core.Service
 
         public Task<UserPublicKey> PublicKeyAsync()
         {
-            return null;
+            return Task.FromResult((UserPublicKey)null);
+        }
+
+        public Task<UserKeyPair> CurrentKeyPairAsync()
+        {
+            return Task.FromResult((UserKeyPair)null);
         }
     }
 }

@@ -89,6 +89,17 @@ namespace Axantum.AxCrypt.Api
             return userAccount;
         }
 
+        public async Task<AccountKey> GetMyAccountKeysCurrentAsync()
+        {
+            Uri resource = _baseUrl.PathCombine("users/my/account/keys/current");
+
+            RestResponse restResponse = await RestCallInternalAsync(Identity, new RestRequest(resource, _timeout)).Free();
+            EnsureStatusOk(restResponse);
+
+            AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
+            return accountKey;
+        }
+
         /// <summary>
         /// Uploads a key pair to server. The operation is idempotent.
         /// </summary>

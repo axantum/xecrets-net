@@ -67,11 +67,6 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public Task<UserAccount> AccountAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<AccountStatus> StatusAsync()
         {
             return await Task.Run(() =>
@@ -80,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Service
                 {
                     return AccountStatus.Verified;
                 }
-                return AccountStatus.Unknown;
+                return AccountStatus.NotFound;
             }).Free();
         }
 
@@ -108,6 +103,11 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 return TryLoadUserKeyPairs();
             }).Free();
+        }
+
+        public Task<UserKeyPair> CurrentKeyPairAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         private IEnumerable<UserKeyPair> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys)
         {
-            return userAccountKeys.Select(ak => ak.ToUserAsymmetricKeys(Identity.Passphrase)).Where(ak => ak != null);
+            return userAccountKeys.Select(ak => ak.ToUserKeyPair(Identity.Passphrase)).Where(ak => ak != null);
         }
 
         private UserAccount LoadUserAccount()

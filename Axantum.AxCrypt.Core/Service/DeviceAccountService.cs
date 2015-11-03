@@ -37,11 +37,11 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 try
                 {
-                    return _remoteService.AccountAsync().Result.AccountKeys.Count() > 0;
+                    return _remoteService.HasAccounts;
                 }
                 catch (OfflineApiException)
                 {
-                    return _localService.AccountAsync().Result.AccountKeys.Count() > 0;
+                    return _localService.HasAccounts;
                 }
             }
         }
@@ -69,18 +69,6 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public async Task<UserAccount> AccountAsync()
-        {
-            try
-            {
-                return await _remoteService.AccountAsync().Free();
-            }
-            catch (OfflineApiException)
-            {
-                return await _localService.AccountAsync().Free();
-            }
-        }
-
         public bool ChangePassphrase(Passphrase passphrase)
         {
             try
@@ -100,6 +88,15 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 IList<UserKeyPair> remoteKeys = await _remoteService.ListAsync().Free();
                 IList<UserKeyPair> allKeys = remoteKeys.Union(localKeys).ToList();
+                if (allKeys.Count() == 0)
+                {
+                    UserKeyPair currentKeyPair = await _remoteService.CurrentKeyPairAsync().Free();
+                    if (currentKeyPair != null)
+                    {
+                        remoteKeys.Add(currentKeyPair);
+                    }
+                    allKeys = remoteKeys;
+                }
                 if (allKeys.Count() > remoteKeys.Count())
                 {
                     await _remoteService.SaveAsync(allKeys).Free();
@@ -113,6 +110,19 @@ namespace Axantum.AxCrypt.Core.Service
             catch (OfflineApiException)
             {
                 return localKeys;
+            }
+        }
+
+        public async Task<UserKeyPair> CurrentKeyPairAsync()
+        {
+            try
+            {
+                UserKeyPair currentUserKeyPair = await _remoteService.CurrentKeyPairAsync().Free();
+                return currentUserKeyPair;
+            }
+            catch (OfflineApiException)
+            {
+                return null;
             }
         }
 

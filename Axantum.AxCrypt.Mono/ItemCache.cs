@@ -74,7 +74,10 @@ namespace Axantum.AxCrypt.Mono
             }
 
             CacheItemPolicy policy = new CacheItemPolicy();
-            policy.AbsoluteExpiration = DateTime.Now.Add(cacheKey.Expiration);
+            if (cacheKey.Expiration != TimeSpan.Zero)
+            {
+                policy.AbsoluteExpiration = DateTime.Now.Add(cacheKey.Expiration);
+            }
             policy.ChangeMonitors.Add(MemoryCache.Default.CreateCacheEntryChangeMonitor(new string[] { cacheKey.ParentCacheKey.Key }));
 
             return policy;
@@ -130,6 +133,11 @@ namespace Axantum.AxCrypt.Mono
             {
                 _lock.Release();
             }
+        }
+
+        public void Remove(ICacheKey cacheKey)
+        {
+            MemoryCache.Default.Remove(cacheKey.Key);
         }
     }
 }

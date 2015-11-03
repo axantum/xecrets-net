@@ -543,7 +543,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
             AccountKey accountKey = originalKeys.ToAccountKey(new Passphrase("password"));
-            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(new Passphrase("password"));
+            UserKeyPair roundtripKeys = accountKey.ToUserKeyPair(new Passphrase("password"));
 
             Assert.That(originalKeys, Is.EqualTo(roundtripKeys));
         }
@@ -557,7 +557,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
             AccountKey accountKey = originalKeys.ToAccountKey(Passphrase.Empty);
-            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(Passphrase.Empty);
+            UserKeyPair roundtripKeys = accountKey.ToUserKeyPair(Passphrase.Empty);
 
             Assert.That(accountKey.KeyPair.PrivateEncryptedPem.Length, Is.GreaterThan(0));
             Assert.That(originalKeys, Is.EqualTo(roundtripKeys));
@@ -572,7 +572,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             UserKeyPair originalKeys = new UserKeyPair(EmailAddress.Parse("svante@axcrypt.net"), 512);
             AccountKey accountKey = originalKeys.ToAccountKey(new Passphrase("password"));
-            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(new Passphrase("wrong password"));
+            UserKeyPair roundtripKeys = accountKey.ToUserKeyPair(new Passphrase("wrong password"));
 
             Assert.That(roundtripKeys, Is.Null);
         }
@@ -589,7 +589,7 @@ namespace Axantum.AxCrypt.Core.Test
             UserKeyPair originalPartialKeys = new UserKeyPair(originalKeys.UserEmail, originalKeys.Timestamp, partialKeyPair);
 
             AccountKey accountKey = originalPartialKeys.ToAccountKey(Passphrase.Empty);
-            UserKeyPair roundtripKeys = accountKey.ToUserAsymmetricKeys(Passphrase.Empty);
+            UserKeyPair roundtripKeys = accountKey.ToUserKeyPair(Passphrase.Empty);
 
             Assert.That(roundtripKeys, Is.EqualTo(originalPartialKeys));
         }

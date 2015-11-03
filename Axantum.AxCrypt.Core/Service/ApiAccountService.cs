@@ -96,17 +96,6 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
-        /// Gets the full account of the user this instance works with.
-        /// </summary>
-        /// <returns>
-        /// The account.
-        /// </returns>
-        public Task<UserAccount> AccountAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Gets the status of the account.
         /// </summary>
         /// <value>
@@ -150,7 +139,13 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 return new UserKeyPair[0];
             }
-            return apiAccountKeys.Select(k => k.ToUserAsymmetricKeys(Identity.Passphrase)).ToList();
+            return apiAccountKeys.Select(k => k.ToUserKeyPair(Identity.Passphrase)).ToList();
+        }
+
+        public async Task<UserKeyPair> CurrentKeyPairAsync()
+        {
+            AccountKey accountKey = await _apiClient.GetMyAccountKeysCurrentAsync().Free();
+            return accountKey.ToUserKeyPair(Identity.Passphrase);
         }
 
         /// <summary>

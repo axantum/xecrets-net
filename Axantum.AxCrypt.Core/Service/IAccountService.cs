@@ -42,14 +42,6 @@ namespace Axantum.AxCrypt.Core.Service
     public interface IAccountService
     {
         /// <summary>
-        /// Gets the full account of the user this instance works with.
-        /// </summary>
-        /// <returns>
-        /// The account.
-        /// </returns>
-        Task<UserAccount> AccountAsync();
-
-        /// <summary>
         /// Gets a value indicating whether the service has any accounts at all.
         /// </summary>
         /// <value>
@@ -89,13 +81,19 @@ namespace Axantum.AxCrypt.Core.Service
         bool ChangePassphrase(Passphrase passphrase);
 
         /// <summary>
-        /// Lists all UserKeyPairs available for the user.
+        /// Lists all UserKeyPairs available for the user, if any.
         /// </summary>
         /// <returns></returns>
         Task<IList<UserKeyPair>> ListAsync();
 
         /// <summary>
-        /// Gets the currently active public key of the user.
+        /// Ensures there is at least one key pair, and returns the currently active key pair of the user.
+        /// </summary>
+        /// <returns>The current key pair</returns>
+        Task<UserKeyPair> CurrentKeyPairAsync();
+
+        /// <summary>
+        /// Ensures there is at least one key pair, and returns the active public key of the user.
         /// </summary>
         /// <returns></returns>
         Task<UserPublicKey> PublicKeyAsync();

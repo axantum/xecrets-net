@@ -14,7 +14,7 @@ namespace Axantum.AxCrypt.Core.Service
 {
     public class CachingAccountService : IAccountService
     {
-        private static readonly TimeSpan ItemExpiration = new TimeSpan(0, 5, 0);
+        private static readonly TimeSpan ItemExpiration = TimeSpan.Zero;
 
         private class CacheKey : ICacheKey
         {
@@ -95,11 +95,6 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public async Task<UserAccount> AccountAsync()
-        {
-            return await New<ICache>().GetAsync(_key.SubKey(nameof(AccountAsync)), () => _service.AccountAsync()).Free();
-        }
-
         public bool ChangePassphrase(Passphrase passphrase)
         {
             bool result = false;
@@ -112,6 +107,11 @@ namespace Axantum.AxCrypt.Core.Service
             return await New<ICache>().GetAsync(_key.SubKey(nameof(ListAsync)), () => _service.ListAsync()).Free();
         }
 
+        public async Task<UserKeyPair> CurrentKeyPairAsync()
+        {
+            return await New<ICache>().GetAsync(_key.SubKey(nameof(CurrentKeyPairAsync)), () => _service.CurrentKeyPairAsync()).Free();
+        }
+
         public async Task PasswordResetAsync(string verificationCode)
         {
             await _service.PasswordResetAsync(verificationCode).Free();
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
-            await New<ICache>().UpdateAsync(() => _service.SaveAsync(keyPairs), _key.SubKey(nameof(ListAsync)), _key.SubKey(nameof(AccountAsync)), _key.SubKey(nameof(HasAccounts))).Free();
+            await New<ICache>().UpdateAsync(() => _service.SaveAsync(keyPairs), _key).Free();
         }
 
         public async Task SignupAsync(string emailAddress)
@@ -129,7 +129,12 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<AccountStatus> StatusAsync()
         {
-            return await New<ICache>().GetAsync(_key.SubKey(nameof(StatusAsync)), () => _service.StatusAsync()).Free();
+            AccountStatus status = await New<ICache>().GetAsync(_key.SubKey(nameof(StatusAsync)), () => _service.StatusAsync()).Free();
+            if (status == AccountStatus.Offline)
+            {
+                New<ICache>().Remove(_key);
+            }
+            return status;
         }
 
         public async Task<UserPublicKey> PublicKeyAsync()

@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <param name="keys">The key pair.</param>
         /// <param name="passphrase">The passphrase to encrypt it with.</param>
         /// <returns>A representation suitable for serialization and external storage.</returns>
-        public static Api.Model.AccountKey ToAccountKey(this UserKeyPair keys, Passphrase passphrase)
+        public static AccountKey ToAccountKey(this UserKeyPair keys, Passphrase passphrase)
         {
             if (keys == null)
             {
@@ -69,8 +69,8 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             string encryptedPrivateKey = EncryptPrivateKey(keys, passphrase);
 
-            Api.Model.KeyPair keyPair = new Api.Model.KeyPair(keys.KeyPair.PublicKey.ToString(), encryptedPrivateKey);
-            Api.Model.AccountKey accountKey = new Api.Model.AccountKey(keys.UserEmail.Address, keys.KeyPair.PublicKey.Thumbprint.ToString(), keyPair, keys.Timestamp);
+            KeyPair keyPair = new KeyPair(keys.KeyPair.PublicKey.ToString(), encryptedPrivateKey);
+            AccountKey accountKey = new AccountKey(keys.UserEmail.Address, keys.KeyPair.PublicKey.Thumbprint.ToString(), keyPair, keys.Timestamp);
 
             return accountKey;
         }
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <param name="accountKey">The account key.</param>
         /// <param name="passphrase">The passphrase to decrypt the private key, if any, with.</param>
         /// <returns>A UserKeyPair or null if it was not possible to decrypt it.</returns>
-        public static UserKeyPair ToUserAsymmetricKeys(this Api.Model.AccountKey accountKey, Passphrase passphrase)
+        public static UserKeyPair ToUserKeyPair(this Api.Model.AccountKey accountKey, Passphrase passphrase)
         {
             if (accountKey == null)
             {
