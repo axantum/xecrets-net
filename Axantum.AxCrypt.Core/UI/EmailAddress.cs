@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Abstractions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,12 @@ namespace Axantum.AxCrypt.Core.UI
     [JsonObject(MemberSerialization.OptIn)]
     public class EmailAddress : IEquatable<EmailAddress>
     {
-        public static readonly EmailAddress Empty = new EmailAddress(String.Empty);
+        public static EmailAddress Empty { get { return new EmailAddress(String.Empty); } }
 
         [JsonProperty("address")]
         public string Address { get; private set; }
 
+        [JsonConstructor]
         private EmailAddress(string address)
         {
             if (address == null)
