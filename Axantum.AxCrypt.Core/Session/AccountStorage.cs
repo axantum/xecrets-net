@@ -55,6 +55,10 @@ namespace Axantum.AxCrypt.Core.Session
         {
             try
             {
+                if (_service.Identity.UserEmail == EmailAddress.Empty)
+                {
+                    return false;
+                }
                 return (await _service.ListAsync().Free()).Any();
             }
             catch (PasswordException)

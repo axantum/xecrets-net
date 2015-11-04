@@ -55,6 +55,15 @@ namespace Axantum.AxCrypt.Core.Service
 
         public LocalAccountService(LogOnIdentity identity, IDataContainer workContainer)
         {
+            if (identity == null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
+            if (workContainer == null)
+            {
+                throw new ArgumentNullException(nameof(workContainer));
+            }
+
             Identity = identity;
             _workContainer = workContainer;
         }
@@ -83,6 +92,10 @@ namespace Axantum.AxCrypt.Core.Service
         {
             get
             {
+                if (Identity.UserEmail == EmailAddress.Empty)
+                {
+                    throw new InvalidOperationException("The account service requies a user.");
+                }
                 if (LoadUserAccounts().Accounts.Any())
                 {
                     return true;
@@ -99,6 +112,11 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<IList<UserKeyPair>> ListAsync()
         {
+            if (Identity.UserEmail == EmailAddress.Empty)
+            {
+                throw new InvalidOperationException("The account service requies a user.");
+            }
+
             return await Task.Run(() =>
             {
                 return TryLoadUserKeyPairs();
@@ -112,6 +130,11 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
+            if (Identity.UserEmail == EmailAddress.Empty)
+            {
+                throw new InvalidOperationException("The account service requies a user.");
+            }
+
             await Task.Run(() =>
             {
                 UserAccounts userAccounts = LoadUserAccounts();
@@ -149,6 +172,11 @@ namespace Axantum.AxCrypt.Core.Service
 
         public bool ChangePassphrase(Passphrase passphrase)
         {
+            if (Identity.UserEmail == EmailAddress.Empty)
+            {
+                throw new InvalidOperationException("The account service requies a user.");
+            }
+
             SaveAsync(ListAsync().Result).Wait();
             return true;
         }
@@ -221,11 +249,21 @@ namespace Axantum.AxCrypt.Core.Service
 
         public Task PasswordResetAsync(string verificationCode)
         {
+            if (Identity.UserEmail == EmailAddress.Empty)
+            {
+                throw new InvalidOperationException("The account service requies a user.");
+            }
+
             return _completedTask;
         }
 
         public async Task<UserPublicKey> CurrentPublicKeyAsync()
         {
+            if (Identity.UserEmail == EmailAddress.Empty)
+            {
+                throw new InvalidOperationException("The account service requies a user.");
+            }
+
             return await Task.Run(() =>
             {
                 UserPublicKey publicKey = New<KnownPublicKeys>().PublicKeys.Where(pk => pk.Email == Identity.UserEmail).FirstOrDefault();

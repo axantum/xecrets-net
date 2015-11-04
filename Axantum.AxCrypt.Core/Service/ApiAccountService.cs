@@ -51,6 +51,11 @@ namespace Axantum.AxCrypt.Core.Service
         /// <param name="apiClient">The API client to use.</param>
         public ApiAccountService(AxCryptApiClient apiClient)
         {
+            if (apiClient == null)
+            {
+                throw new ArgumentNullException(nameof(apiClient));
+            }
+
             _apiClient = apiClient;
         }
 
@@ -64,6 +69,11 @@ namespace Axantum.AxCrypt.Core.Service
         {
             get
             {
+                if (String.IsNullOrEmpty(_apiClient.Identity.User))
+                {
+                    throw new InvalidOperationException("The account service requires a user.");
+                }
+
                 return true;
             }
         }
@@ -78,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Service
         {
             get
             {
-                return new LogOnIdentity(EmailAddress.Parse(_apiClient.Identity.User), new Passphrase(_apiClient.Identity.Password));
+                return new LogOnIdentity(EmailAddress.Parse(_apiClient.Identity.User), Passphrase.Create(_apiClient.Identity.Password));
             }
         }
 
@@ -122,6 +132,11 @@ namespace Axantum.AxCrypt.Core.Service
         /// </returns>
         public bool ChangePassphrase(Passphrase passphrase)
         {
+            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
             return false;
         }
 
@@ -131,6 +146,11 @@ namespace Axantum.AxCrypt.Core.Service
         /// <returns></returns>
         public async Task<IList<UserKeyPair>> ListAsync()
         {
+            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
             try
             {
                 IList<AccountKey> apiAccountKeys = (await _apiClient.GetMyAccountAsync().Free()).AccountKeys;
@@ -144,6 +164,11 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserKeyPair> CurrentKeyPairAsync()
         {
+            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
             try
             {
                 AccountKey accountKey = await _apiClient.GetMyAccountKeysCurrentAsync().Free();
@@ -161,6 +186,11 @@ namespace Axantum.AxCrypt.Core.Service
         /// <param name="keyPairs">The key pairs.</param>
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
+            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
             try
             {
                 IList<AccountKey> apiAccountKeys = keyPairs.Select(k => k.ToAccountKey(Identity.Passphrase)).ToList();
@@ -179,6 +209,11 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task PasswordResetAsync(string verificationCode)
         {
+            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
             await _apiClient.PutAllAccountsUserPasswordAsync(verificationCode);
         }
 

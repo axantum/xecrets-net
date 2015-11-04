@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Service;
@@ -149,12 +148,26 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
         {
+            if (emailAddress != EmailAddress.Empty)
+            {
+                return LogOnIdentityFromUser(emailAddress, passphrase);
+            }
+
+            return LogOnIdentityFromPassphrase(passphrase);
+        }
+
+        private static LogOnIdentity LogOnIdentityFromUser(EmailAddress emailAddress, Passphrase passphrase)
+        {
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
             if (store.HasKeyPairAsync().Result)
             {
                 return new LogOnIdentity(store.ActiveKeyPairAsync().Result, passphrase);
             }
+            return LogOnIdentity.Empty;
+        }
 
+        private LogOnIdentity LogOnIdentityFromPassphrase(Passphrase passphrase)
+        {
             foreach (Passphrase candidate in _fileSystemState.KnownPassphrases)
             {
                 if (candidate.Thumbprint == passphrase.Thumbprint)
@@ -192,7 +205,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity AskForLogOnOrEncryptionPassphrase(LogOnIdentity identity, string encryptedFileFullName)
         {
-            if (!_fileSystemState.KnownPassphrases.Any() && !New<LogOnIdentity, IAccountService>(identity).HasAccounts)
+            if (!_fileSystemState.KnownPassphrases.Any() && (identity.UserEmail == EmailAddress.Empty || !New<LogOnIdentity, IAccountService>(identity).HasAccounts))
             {
                 return AskForNewEncryptionPassphrase(String.Empty, encryptedFileFullName);
             }
