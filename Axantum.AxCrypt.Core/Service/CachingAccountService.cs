@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task<AccountStatus> StatusAsync()
         {
             AccountStatus status = await New<ICache>().GetAsync(_key.SubKey(nameof(StatusAsync)), () => _service.StatusAsync()).Free();
-            if (status == AccountStatus.Offline)
+            if (status == AccountStatus.Offline || status == AccountStatus.Unknown)
             {
                 New<ICache>().Remove(_key);
             }

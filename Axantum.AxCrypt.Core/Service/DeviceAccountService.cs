@@ -3,6 +3,7 @@ using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -86,7 +87,20 @@ namespace Axantum.AxCrypt.Core.Service
             IList<UserKeyPair> localKeys = await _localService.ListAsync().Free();
             try
             {
-                IList<UserKeyPair> remoteKeys = await _remoteService.ListAsync().Free();
+                IList<UserKeyPair> remoteKeys = new List<UserKeyPair>();
+                try
+                {
+                    remoteKeys = await _remoteService.ListAsync().Free();
+                }
+                catch (PasswordException)
+                {
+                    if (localKeys.Count == 0)
+                    {
+                        throw;
+                    }
+                    return localKeys;
+                }
+
                 IList<UserKeyPair> allKeys = remoteKeys.Union(localKeys).ToList();
                 if (allKeys.Count() == 0)
                 {
