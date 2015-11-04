@@ -151,11 +151,11 @@
       <DependentUpon>WatchedFoldersDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="KnownFoldersDiscovery.cs" />
-    <Compile Include="LogOnDialog.cs">
+    <Compile Include="FilePasswordDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LogOnDialog.Designer.cs">
-      <DependentUpon>LogOnDialog.cs</DependentUpon>
+    <Compile Include="FilePasswordDialog.Designer.cs">
+      <DependentUpon>FilePasswordDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="DebugOptionsDialog.cs">
       <SubType>Form</SubType>
@@ -222,12 +222,12 @@
     <EmbeddedResource Include="WatchedFoldersDialog.resx">
       <DependentUpon>WatchedFoldersDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LogOnDialog.resx">
-      <DependentUpon>LogOnDialog.cs</DependentUpon>
+    <EmbeddedResource Include="FilePasswordDialog.resx">
+      <DependentUpon>FilePasswordDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="LogOnDialog.sv.resx">
-      <DependentUpon>LogOnDialog.cs</DependentUpon>
+    <EmbeddedResource Include="FilePasswordDialog.sv.resx">
+      <DependentUpon>FilePasswordDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>

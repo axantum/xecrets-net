@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -88,7 +87,7 @@ namespace Axantum.AxCrypt.Core.UI
                     changed = true;
                 }
             }
-            
+
             changed |= AddKnownThumbprint(logOnIdentity);
             if (!changed)
             {
@@ -96,7 +95,6 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange, logOnIdentity));
-            DefaultEncryptionIdentity = logOnIdentity;
         }
 
         public void Clear()

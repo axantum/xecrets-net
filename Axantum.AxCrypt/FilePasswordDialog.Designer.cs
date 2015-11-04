@@ -1,6 +1,6 @@
 ﻿namespace Axantum.AxCrypt
 {
-    partial class LogOnDialog
+    partial class FilePasswordDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogOnDialog));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilePasswordDialog));
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();

@@ -36,11 +36,11 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class LogOnDialog : Form
+    public partial class FilePasswordDialog : Form
     {
         private LogOnViewModel _viewModel;
 
-        public LogOnDialog(Form parent, string encryptedFileFullName)
+        public FilePasswordDialog(Form parent, string encryptedFileFullName)
         {
             InitializeComponent();
             new Styling(Resources.axcrypticon).Style(this);

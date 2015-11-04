@@ -812,7 +812,7 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOnForEncryptedFile(LogOnEventArgs e)
         {
-            using (LogOnDialog logOnDialog = new LogOnDialog(this, e.EncryptedFileFullName))
+            using (FilePasswordDialog logOnDialog = new FilePasswordDialog(this, e.EncryptedFileFullName))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);

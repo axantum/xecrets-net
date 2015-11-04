@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _keysStore.ChangePassphraseAsync(new Passphrase(passphrase));
 
             LogOnIdentity identity = new LogOnIdentity(_keysStore.ActiveKeyPairAsync().Result, new Passphrase(passphrase));
-            _knownIdenties.Add(identity);
+            _knownIdenties.DefaultEncryptionIdentity = identity;
 
             return null;
         }
