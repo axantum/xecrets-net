@@ -224,7 +224,7 @@ namespace Axantum.AxCrypt.Core.Test
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             knownIdentities.Add(new LogOnIdentity("a"));
 
-            Assert.That(knownIdentities.DefaultEncryptionIdentity.Equals(new LogOnIdentity("a")), "When adding a key that is for a known identity it should be set as the default.");
+            Assert.That(knownIdentities.DefaultEncryptionIdentity.Equals(LogOnIdentity.Empty), "When adding a key that is for a known identity it should not be set as the default.");
         }
 
         [Test]

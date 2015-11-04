@@ -110,9 +110,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestDecryptFilesInteractively()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
+            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(EmailAddress.Parse("id@axcrypt.net"), Passphrase.Create("b"));
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                throw new InvalidOperationException("Log on should not be called in this scenario.");
             };
             mvm.SelectingFiles += (sender, e) =>
             {
@@ -142,9 +143,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestDecryptFilesWithList()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
+            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(EmailAddress.Parse("id@axcrypt.net"), Passphrase.Create("b"));
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                throw new InvalidOperationException("Log on should not be called in this scenario.");
             };
             mvm.SelectingFiles += (sender, e) =>
             {
@@ -520,8 +522,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                throw new InvalidOperationException("Log on should not be called in this scenario.");
             };
+            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(EmailAddress.Parse("test@axcrypt.net"), Passphrase.Create("bbb"));
+
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
             mvm.DecryptFiles.Execute(null);
@@ -565,9 +569,10 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\Copy of File1.txt".NormalizeFilePath());
             };
 
+            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(EmailAddress.Parse("testing@axcrypt.net"), Passphrase.Create("a"));
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                throw new InvalidOperationException("Log on should not be called in this scenario.");
             };
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             FakeDataStore.AddFile(@"C:\Folder\File1.txt", null);
@@ -613,7 +618,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 0), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Never);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Never);
-            Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
+            Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
         }
 
@@ -669,7 +674,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.AddRecentFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
-            Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
+            Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
         }
 
@@ -875,7 +880,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
-            Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
+            Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
         }
 
@@ -927,7 +932,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Never);
-            Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True, "Should be logged on.");
+            Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False, "Should be logged on.");
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1), "One known key.");
         }
 
