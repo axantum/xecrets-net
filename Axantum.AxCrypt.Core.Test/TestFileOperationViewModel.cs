@@ -173,6 +173,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\File2.txt");
             };
 
+            Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
             mvm.EncryptFiles.Execute(null);
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
@@ -206,6 +207,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\File2.txt");
             };
 
+            Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
@@ -263,6 +265,8 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = "b";
                 e.Name = "Name";
             };
+
+            Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("b"));
             mvm.IdentityViewModel.LogOnLogOff.Execute(Guid.Empty);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
@@ -405,6 +409,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Passphrase = "a";
             };
+            Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
             mvm.EncryptFiles.Execute(null);
 
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Not.Null);
@@ -434,6 +439,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
+            Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
@@ -455,6 +461,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = "a";
             };
 
+            Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));

@@ -77,6 +77,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
+            TypeMap.Register.Singleton<ICache>(() => new ItemCache());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());

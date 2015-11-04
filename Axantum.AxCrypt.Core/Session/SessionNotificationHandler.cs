@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -110,9 +111,12 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 case SessionNotificationType.LogOn:
+                    encryptionParameters = EncryptWatchedFolders(notification, progress);
+                    break;
+
                 case SessionNotificationType.LogOff:
-                    encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, notification.Identity);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(notification.Identity.Tag)).Select(wf => New<IDataContainer>(wf.Path)), encryptionParameters, progress);
+                    encryptionParameters = EncryptWatchedFolders(notification, progress);
+                    New<ICache>().Remove(CacheKey.RootKey);
                     break;
 
                 case SessionNotificationType.SessionStart:
@@ -143,6 +147,13 @@ namespace Axantum.AxCrypt.Core.Session
                 default:
                     throw new InvalidOperationException("Unhandled notification received");
             }
+        }
+
+        private EncryptionParameters EncryptWatchedFolders(SessionNotification notification, IProgressContext progress)
+        {
+            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, notification.Identity);
+            _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(notification.Identity.Tag)).Select(wf => New<IDataContainer>(wf.Path)), encryptionParameters, progress);
+            return encryptionParameters;
         }
     }
 }

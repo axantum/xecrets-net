@@ -193,7 +193,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity AskForLogOnPassphraseAction(LogOnIdentity identity, string encryptedFileFullName)
         {
-            LogOnIdentity logOnIdentity = AskForLogOnOrEncryptionPassphrase(identity, encryptedFileFullName);
+            LogOnIdentity logOnIdentity = AskForLogOn(identity, encryptedFileFullName);
             if (logOnIdentity == LogOnIdentity.Empty)
             {
                 return LogOnIdentity.Empty;
@@ -203,13 +203,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return logOnIdentity;
         }
 
-        private LogOnIdentity AskForLogOnOrEncryptionPassphrase(LogOnIdentity identity, string encryptedFileFullName)
+        private LogOnIdentity AskForLogOn(LogOnIdentity identity, string encryptedFileFullName)
         {
-            if (!_fileSystemState.KnownPassphrases.Any() && (identity.UserEmail == EmailAddress.Empty || !New<LogOnIdentity, IAccountService>(identity).HasAccounts))
-            {
-                return AskForNewEncryptionPassphrase(String.Empty, encryptedFileFullName);
-            }
-
             LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
                 DisplayPassphrase = _userSettings.DisplayEncryptPassphrase,

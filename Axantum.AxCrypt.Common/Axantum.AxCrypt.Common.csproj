@@ -48,9 +48,16 @@
     <None Include="AxantumStrongName.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheKey.cs" />
     <Compile Include="DummyReferencedType.cs" />
     <Compile Include="FrameworkTypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
+      <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
+      <Name>Axantum.AxCrypt.Abstractions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />
