@@ -22,8 +22,6 @@ namespace Axantum.AxCrypt.Api
 
         private string _channel;
 
-        public static readonly Uri WebbChannel = new Uri("https://hooks.slack.com/services/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");
-
         public SlackApiClient(Uri accessTokenUrl, string username, string channel)
         {
             _accessTokenUrl = accessTokenUrl;
