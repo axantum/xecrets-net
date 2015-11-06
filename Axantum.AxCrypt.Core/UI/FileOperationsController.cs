@@ -509,6 +509,11 @@ namespace Axantum.AxCrypt.Core.UI
                     operation();
                 }
             }
+            catch (Exception)
+            {
+                _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ErrorStatus.Exception);
+                throw;
+            }
             finally
             {
                 OnCompleted(_eventArgs);
