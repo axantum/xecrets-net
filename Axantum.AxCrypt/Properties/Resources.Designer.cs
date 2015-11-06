@@ -187,6 +187,16 @@ namespace Axantum.AxCrypt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap broom_red_40px {
+            get {
+                object obj = ResourceManager.GetObject("broom_red_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bulb_green_40px {
             get {
                 object obj = ResourceManager.GetObject("bulb_green_40px", resourceCulture);

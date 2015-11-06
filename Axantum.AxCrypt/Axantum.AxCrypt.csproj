@@ -328,6 +328,8 @@
     <Content Include="resources\activefileknownkeygreen16.png" />
     <Content Include="resources\axcrypticon.ico" />
     <Content Include="resources\broom_40pxs.png" />
+    <Content Include="resources\broom_red_40px.png" />
+    <Content Include="resources\broom_red_80px.png" />
     <Content Include="resources\bulb_green_40px.png" />
     <Content Include="resources\bulb_orange_40px.png" />
     <Content Include="resources\bulb_red_40px.png" />

@@ -4427,6 +4427,12 @@
   <data name="&gt;&gt;_decryptToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;_knownFoldersSeparator.Name" xml:space="preserve">
+    <value>_knownFoldersSeparator</value>
+  </data>
+  <data name="&gt;&gt;_knownFoldersSeparator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;_toolStripSeparator1.Name" xml:space="preserve">
     <value>_toolStripSeparator1</value>
   </data>
@@ -4438,12 +4444,6 @@
   </data>
   <data name="&gt;&gt;_closeAndRemoveOpenFilesToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_knownFoldersSeparator.Name" xml:space="preserve">
-    <value>_knownFoldersSeparator</value>
-  </data>
-  <data name="&gt;&gt;_knownFoldersSeparator.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Name" xml:space="preserve">
     <value>_progressBackgroundWorker</value>

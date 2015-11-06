@@ -87,9 +87,9 @@
             this._mainToolStrip = new System.Windows.Forms.ToolStrip();
             this._encryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._decryptToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._closeAndRemoveOpenFilesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
@@ -600,6 +600,11 @@
             this._decryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.minus_40px;
             this._decryptToolStripButton.Name = "_decryptToolStripButton";
             // 
+            // _knownFoldersSeparator
+            // 
+            this._knownFoldersSeparator.Name = "_knownFoldersSeparator";
+            resources.ApplyResources(this._knownFoldersSeparator, "_knownFoldersSeparator");
+            // 
             // _toolStripSeparator1
             // 
             this._toolStripSeparator1.Name = "_toolStripSeparator1";
@@ -609,13 +614,8 @@
             // 
             resources.ApplyResources(this._closeAndRemoveOpenFilesToolStripButton, "_closeAndRemoveOpenFilesToolStripButton");
             this._closeAndRemoveOpenFilesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.broom_40pxs;
+            this._closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.broom_red_40px;
             this._closeAndRemoveOpenFilesToolStripButton.Name = "_closeAndRemoveOpenFilesToolStripButton";
-            // 
-            // _knownFoldersSeparator
-            // 
-            this._knownFoldersSeparator.Name = "_knownFoldersSeparator";
-            resources.ApplyResources(this._knownFoldersSeparator, "_knownFoldersSeparator");
             // 
             // _logOnLogOffLabel
             // 
