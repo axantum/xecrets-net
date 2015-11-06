@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
@@ -656,7 +657,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { _encryptedFoldersToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged("RecentFiles", (IEnumerable<ActiveFile> files) => { UpdateRecentFiles(files); });
+            _mainViewModel.BindPropertyChanged("RecentFiles", async (IEnumerable<ActiveFile> files) => { await UpdateRecentFilesAsync(files); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.VersionUpdateStatus), (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
             _mainViewModel.BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged("TryBrokenFile", (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
@@ -1237,7 +1238,26 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void UpdateRecentFiles(IEnumerable<ActiveFile> files)
+        private bool _updateRecentFilesInProgress = false;
+
+        private async Task UpdateRecentFilesAsync(IEnumerable<ActiveFile> files)
+        {
+            if (_updateRecentFilesInProgress)
+            {
+                return;
+            }
+            _updateRecentFilesInProgress = true;
+            try
+            {
+                await UpdateRecentFilesUnsynchronizedAsync(files);
+            }
+            finally
+            {
+                _updateRecentFilesInProgress = false;
+            }
+        }
+
+        private async Task UpdateRecentFilesUnsynchronizedAsync(IEnumerable<ActiveFile> files)
         {
             _recentFilesListView.BeginUpdate();
             try
@@ -1273,7 +1293,7 @@ namespace Axantum.AxCrypt
                     ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
                     cryptoNameColumn.Name = "CryptoName";
 
-                    UpdateListViewItemAsync(item, file);
+                    await UpdateListViewItemAsync(item, file);
                     int i;
                     if (currentFiles.TryGetValue(item.Name, out i))
                     {
@@ -1296,7 +1316,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static async void UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile)
+        private static async Task UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile)
         {
             UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
 
