@@ -657,7 +657,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { _encryptedFoldersToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("RecentFiles", (IEnumerable<ActiveFile> files) => { UpdateRecentFiles(files); });
-            _mainViewModel.BindPropertyChanged("VersionUpdateStatus", (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.VersionUpdateStatus), (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
             _mainViewModel.BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged("TryBrokenFile", (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
 
@@ -1193,26 +1193,22 @@ namespace Axantum.AxCrypt
                 case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
                     _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
                     _updateStatusButton.Image = Resources.bulb_green_40px;
-                    _updateStatusButton.Enabled = false;
                     break;
 
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
                     _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
                     _updateStatusButton.Image = Resources.bulb_red_40px;
-                    _updateStatusButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
                     _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.UpdatedVersion);
                     _updateStatusButton.Image = Resources.bulb_red_40px;
-                    _updateStatusButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.Unknown:
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                     _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
                     _updateStatusButton.Image = Resources.bulb_red_40px;
-                    _updateStatusButton.Enabled = true;
                     break;
             }
         }
@@ -1668,8 +1664,20 @@ namespace Axantum.AxCrypt
 
         private void _updateToolStripButton_Click(object sender, EventArgs e)
         {
-            Resolve.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
-            Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
+            switch (_mainViewModel.VersionUpdateStatus)
+            {
+                case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
+                case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
+                case VersionUpdateStatus.NewerVersionIsAvailable:
+                    Resolve.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
+                    Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
+                    break;
+
+                case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
+                case VersionUpdateStatus.Unknown:
+                default:
+                    break;
+            }
         }
 
         private void SetOptionsToolStripMenuItem_Click(object sender, EventArgs e)
