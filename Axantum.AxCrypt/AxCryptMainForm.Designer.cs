@@ -580,9 +580,9 @@
             this._mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._encryptToolStripButton,
             this._decryptToolStripButton,
+            this._knownFoldersSeparator,
             this._toolStripSeparator1,
-            this._closeAndRemoveOpenFilesToolStripButton,
-            this._knownFoldersSeparator});
+            this._closeAndRemoveOpenFilesToolStripButton});
             this._mainToolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this._mainToolStrip.Name = "_mainToolStrip";
             // 
