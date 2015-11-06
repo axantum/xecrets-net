@@ -1262,49 +1262,15 @@ namespace Axantum.AxCrypt
             _recentFilesListView.BeginUpdate();
             try
             {
-                HashSet<string> newFiles = new HashSet<string>(files.Select(f => f.DecryptedFileInfo.FullName));
-                Dictionary<string, int> currentFiles = new Dictionary<string, int>();
-                for (int i = 0; i < _recentFilesListView.Items.Count;)
-                {
-                    if (!newFiles.Contains(_recentFilesListView.Items[i].Name))
-                    {
-                        _recentFilesListView.Items.RemoveAt(i);
-                        continue;
-                    }
-                    ++i;
-                    currentFiles.Add(_recentFilesListView.Items[i].Name, i);
-                }
+                Dictionary<string, int> currentFiles = RemoveRemovedFilesFromRecent(files);
+
                 List<ListViewItem> newItems = new List<ListViewItem>();
                 foreach (ActiveFile file in files)
                 {
-                    string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
-                    ListViewItem item = new ListViewItem(text);
-                    item.Name = file.EncryptedFileInfo.FullName;
-
-                    ListViewItem.ListViewSubItem sharingIndicatorColumn = item.SubItems.Add(String.Empty);
-                    sharingIndicatorColumn.Name = "SharingIndicator";
-
-                    ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
-                    dateColumn.Name = "Date";
-
-                    ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
-                    encryptedPathColumn.Name = "EncryptedPath";
-
-                    ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
-                    cryptoNameColumn.Name = "CryptoName";
-
-                    await UpdateListViewItemAsync(item, file);
-                    int i;
-                    if (currentFiles.TryGetValue(item.Name, out i))
-                    {
-                        _recentFilesListView.Items[i] = item;
-                    }
-                    else
-                    {
-                        newItems.Add(item);
-                    }
+                    await UpdateOneItem(currentFiles, newItems, file);
                 }
-                _recentFilesListView.Items.AddRange(newItems.ToArray());
+
+                //_recentFilesListView.Items.AddRange(newItems.ToArray());
                 while (_recentFilesListView.Items.Count > Preferences.RecentFilesMaxNumber)
                 {
                     _recentFilesListView.Items.RemoveAt(_recentFilesListView.Items.Count - 1);
@@ -1314,6 +1280,85 @@ namespace Axantum.AxCrypt
             {
                 _recentFilesListView.EndUpdate();
             }
+        }
+
+        private async Task UpdateOneItem(Dictionary<string, int> currentFiles, List<ListViewItem> newItems, ActiveFile file)
+        {
+            string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
+            ListViewItem item = new ListViewItem(text);
+            item.Name = file.EncryptedFileInfo.FullName;
+
+            ListViewItem.ListViewSubItem sharingIndicatorColumn = item.SubItems.Add(String.Empty);
+            sharingIndicatorColumn.Name = "SharingIndicator";
+
+            ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
+            dateColumn.Name = "Date";
+
+            ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
+            encryptedPathColumn.Name = "EncryptedPath";
+
+            ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
+            cryptoNameColumn.Name = "CryptoName";
+
+            await UpdateListViewItemAsync(item, file);
+            int i;
+            if (!currentFiles.TryGetValue(item.Name, out i))
+            {
+                _recentFilesListView.Items.Add(item);
+                return;
+            }
+
+            if (!CompareRecentFileItem(item, _recentFilesListView.Items[i]))
+            {
+                _recentFilesListView.Items[i] = item;
+            }
+        }
+
+        private Dictionary<string, int> RemoveRemovedFilesFromRecent(IEnumerable<ActiveFile> files)
+        {
+            HashSet<string> newFiles = new HashSet<string>(files.Select(f => f.EncryptedFileInfo.FullName));
+            Dictionary<string, int> currentFiles = new Dictionary<string, int>();
+            for (int i = 0; i < _recentFilesListView.Items.Count;)
+            {
+                if (!newFiles.Contains(_recentFilesListView.Items[i].Name))
+                {
+                    _recentFilesListView.Items.RemoveAt(i);
+                    continue;
+                }
+                currentFiles.Add(_recentFilesListView.Items[i].Name, i);
+                ++i;
+            }
+
+            return currentFiles;
+        }
+
+        public static bool CompareRecentFileItem(ListViewItem left, ListViewItem right)
+        {
+            if (left.SubItems["EncryptedPath"].Text != right.SubItems["EncryptedPath"].Text)
+            {
+                return false;
+            }
+            if (left.SubItems["SharingIndicator"].Text != right.SubItems["SharingIndicator"].Text)
+            {
+                return false;
+            }
+            if (left.SubItems["CryptoName"].Text != right.SubItems["CryptoName"].Text)
+            {
+                return false;
+            }
+            if (left.ImageKey != right.ImageKey)
+            {
+                return false;
+            }
+            if (left.SubItems["Date"].Text != right.SubItems["Date"].Text)
+            {
+                return false;
+            }
+            if ((DateTime)left.SubItems["Date"].Tag != (DateTime)right.SubItems["Date"].Tag)
+            {
+                return false;
+            }
+            return true;
         }
 
         private static async Task UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile)

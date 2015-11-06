@@ -33,7 +33,7 @@
             this._watchedFoldersListView = new System.Windows.Forms.ListView();
             this._watchedFolderColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._recentFilesTabPage = new System.Windows.Forms.TabPage();
-            this._recentFilesListView = new System.Windows.Forms.ListView();
+            this._recentFilesListView = new DoubleBufferedListView();
             this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._sharingIndicatorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -688,7 +688,7 @@
         private System.Windows.Forms.ListView _watchedFoldersListView;
         private System.Windows.Forms.ColumnHeader _watchedFolderColumnHeader;
         private System.Windows.Forms.TabPage _recentFilesTabPage;
-        private System.Windows.Forms.ListView _recentFilesListView;
+        private DoubleBufferedListView _recentFilesListView;
         private System.Windows.Forms.ColumnHeader _decryptedFileColumnHeader;
         private System.Windows.Forms.ColumnHeader _lastAccessTimeColumnHeader;
         private System.Windows.Forms.ColumnHeader _encryptedPathColumnHeader;
