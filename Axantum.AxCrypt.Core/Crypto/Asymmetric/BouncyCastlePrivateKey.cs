@@ -100,12 +100,13 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
                 throw new ArgumentNullException("buffer");
             }
 
-            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(New<IAsymmetricFactory>().CreatePaddingHash()));
+            int rsaKeyBitLength = ((RsaKeyParameters)Key).Modulus.BitLength;
+            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(New<IAsymmetricFactory>().CreatePaddingHash(rsaKeyBitLength)));
 
             cipher.Init(false, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));
             try
             {
-                byte[] transformed = cipher.ProcessBlock(buffer, 0, buffer.Length);
+                byte[] transformed = cipher.ProcessBlock(buffer, 0, (rsaKeyBitLength + 7) / 8);
                 return transformed;
             }
             catch (Org.BouncyCastle.Crypto.CryptoException)

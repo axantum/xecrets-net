@@ -56,6 +56,6 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dp", Justification = "Standard nomenclature.")]
         IAsymmetricKeyPair CreateKeyPair(byte[] n, byte[] e, byte[] d, byte[] p, byte[] q, byte[] dp, byte[] dq, byte[] qinv);
 
-        ICryptoHash CreatePaddingHash();
+        ICryptoHash CreatePaddingHash(int keyBits);
     }
 }

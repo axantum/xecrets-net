@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.UI
     {
         public int CurrentSettingsVersion { get { return 10; } }
 #if DEBUG
-        private const int ASYMMETRIC_KEY_BITS = 512;
+        private const int ASYMMETRIC_KEY_BITS = 768;
 #else
         private const int ASYMMETRIC_KEY_BITS = 4096;
 #endif

@@ -76,9 +76,9 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             return new BouncyCastleKeyPair(n, e, d, p, q, dp, dq, qinv);
         }
 
-        public ICryptoHash CreatePaddingHash()
+        public ICryptoHash CreatePaddingHash(int keyBits)
         {
-            return new BouncyCastlePaddingHash();
+            return new BouncyCastlePaddingHash(keyBits);
         }
     }
 }

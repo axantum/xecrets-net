@@ -36,9 +36,23 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
     {
         private Org.BouncyCastle.Crypto.IDigest _digest;
 
-        public BouncyCastlePaddingHash()
+        public BouncyCastlePaddingHash(int keyBits)
         {
-            _digest = new Org.BouncyCastle.Crypto.Digests.Sha512Digest();
+            if (keyBits >= 2048)
+            {
+                _digest = new Org.BouncyCastle.Crypto.Digests.Sha512Digest();
+                return;
+            }
+            if (keyBits < 1024)
+            {
+                _digest = new Org.BouncyCastle.Crypto.Digests.MD5Digest();
+                return;
+            }
+            if (keyBits < 2048)
+            {
+                _digest = new Org.BouncyCastle.Crypto.Digests.Sha256Digest();
+                return;
+            }
         }
 
         public string AlgorithmName

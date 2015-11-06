@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Service
                 throw new ArgumentOutOfRangeException(nameof(bufferCount));
             }
 #if DEBUG
-            if (keyBits != 512 && keyBits != 4096)
+            if (keyBits != 768 && keyBits != 4096)
 #else
             if (keyBits != 4096)
 #endif

@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Fake
             return _factory.CreateKeyPair(n, e, d, p, q, dp, dq, qinv);
         }
 
-        public ICryptoHash CreatePaddingHash()
+        public ICryptoHash CreatePaddingHash(int keyBits)
         {
             return new FakePaddingHash(_paddingHashAlgorithm);
         }

@@ -100,10 +100,25 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
                 throw new ArgumentNullException("buffer");
             }
 
-            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(New<IAsymmetricFactory>().CreatePaddingHash()));
+            int rsaKeyBitSize = ((RsaKeyParameters)Key).Modulus.BitLength;
+            ICryptoHash paddingHash = New<IAsymmetricFactory>().CreatePaddingHash(rsaKeyBitSize);
+            int requiredBits = (paddingHash.HashSize * 2 + buffer.Length + 1) * 8;
+            if (requiredBits > rsaKeyBitSize)
+            {
+                throw new InvalidOperationException("The RSA Key size is too small to fit the data + 1 + 2 times the padding hash size.");
+            }
+            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(paddingHash));
 
             cipher.Init(true, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));
             byte[] transformed = cipher.ProcessBlock(buffer, 0, buffer.Length);
+
+            int rsaKeyByteLength = (rsaKeyBitSize + 7) / 8;
+            if (transformed.Length < rsaKeyByteLength)
+            {
+                byte[] tmp = new byte[rsaKeyByteLength];
+                transformed.CopyTo(tmp, tmp.Length - transformed.Length);
+                transformed = tmp;
+            }
 
             return transformed;
         }
