@@ -647,7 +647,7 @@
             this.Controls.Add(this._statusTabControl);
             this.Name = "AxCryptMainForm";
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
-            this.Shown += new System.EventHandler(this.AxCryptMainForm_Shown);
+            this.Shown += new System.EventHandler(this.AxCryptMainForm_ShownAsync);
             this._recentFilesContextMenuStrip.ResumeLayout(false);
             this._progressContextMenuStrip.ResumeLayout(false);
             this._watchedFoldersContextMenuStrip.ResumeLayout(false);

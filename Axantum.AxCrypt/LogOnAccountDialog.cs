@@ -1,6 +1,4 @@
-﻿using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms.Style;
+﻿using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
@@ -86,6 +84,7 @@ namespace Axantum.AxCrypt
 
         private void NewButton_Click(object sender, EventArgs e)
         {
+            _viewModel.UserEmail = String.Empty;
             DialogResult = DialogResult.Retry;
         }
 

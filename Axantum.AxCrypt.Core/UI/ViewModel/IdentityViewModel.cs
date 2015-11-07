@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             LogOnIdentity = LogOnIdentity.Empty;
 
-            LogOn = new DelegateAction<Guid>((cryptoId) => LogOnIdentity = LogOnAction(cryptoId), (o) => !_knownIdentities.IsLoggedOn);
+            LogOn = new DelegateAction<Guid>((cryptoId) => { if (!_knownIdentities.IsLoggedOn) { LogOnIdentity = LogOnAction(cryptoId); } });
             LogOff = new DelegateAction<object>((p) => { LogOffAction(); LogOnIdentity = null; }, (o) => _knownIdentities.IsLoggedOn);
             LogOnLogOff = new DelegateAction<Guid>((cryptoId) => LogOnIdentity = LogOnLogOffAction(cryptoId));
             AskForDecryptPassphrase = new DelegateAction<string>((name) => LogOnIdentity = AskForDecryptPassphraseAction(name));
@@ -77,9 +77,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        public LogOnIdentity LogOnIdentity { get { return GetProperty<LogOnIdentity>("LogOnIdentity"); } set { SetProperty("LogOnIdentity", value); } }
+        public LogOnIdentity LogOnIdentity { get { return GetProperty<LogOnIdentity>(nameof(LogOnIdentity)); } set { SetProperty(nameof(LogOnIdentity), value); } }
 
-        public Guid CryptoId { get { return GetProperty<Guid>("CryptoId"); } set { SetProperty("CryptoId", value); } }
+        public Guid CryptoId { get { return GetProperty<Guid>(nameof(CryptoId)); } set { SetProperty(nameof(CryptoId), value); } }
 
         public DelegateAction<Guid> LogOn { get; private set; }
 

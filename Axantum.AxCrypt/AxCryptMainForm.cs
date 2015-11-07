@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
@@ -81,8 +80,6 @@ namespace Axantum.AxCrypt
         private DebugLogOutputDialog _debugOutput;
 
         private TabPage _hiddenWatchedFoldersTabPage;
-
-        private bool _shownFirstTime = false;
 
         public AxCryptMainForm()
         {
@@ -151,17 +148,45 @@ namespace Axantum.AxCrypt
             return false;
         }
 
-        private async void AxCryptMainForm_Shown(object sender, EventArgs e)
+        private async void AxCryptMainForm_ShownAsync(object sender, EventArgs e)
         {
-            await WrapMessageDialogs(StartUpProgram);
-            if (_exitInProgress)
-            {
-                return;
-            }
-            StartupLogOnAndPendingRequest();
+            _pendingRequest = new CommandCompleteEventArgs(CommandVerb.Startup, new string[0]);
+            await SignInAsync();
         }
 
-        private async Task WrapMessageDialogs(Func<Task> dialogFunction)
+        private bool _isSigningIn = false;
+
+        private async Task SignInAsync()
+        {
+            if (_isSigningIn)
+            {
+                RestoreWindowWithFocus();
+                return;
+            }
+            _isSigningIn = true;
+            try
+            {
+                do
+                {
+                    await WrapMessageDialogsAsync(async () =>
+                    {
+                        await StartUpProgramAsync();
+                        _fileOperationViewModel.IdentityViewModel.LogOn.Execute(Resolve.CryptoFactory.Default.Id);
+                        await LogOnAndDoPendingRequestAsync();
+                    });
+                    if (_exitInProgress)
+                    {
+                        return;
+                    }
+                } while (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail));
+            }
+            finally
+            {
+                _isSigningIn = false;
+            }
+        }
+
+        private async Task WrapMessageDialogsAsync(Func<Task> dialogFunctionAsync)
         {
             SetTopControlsEnabled(false);
             ApiVersion apiVersion = await New<GlobalApiClient>().GetApiVersionAsync();
@@ -173,7 +198,7 @@ namespace Axantum.AxCrypt
             {
                 try
                 {
-                    await dialogFunction();
+                    await dialogFunctionAsync();
                     if (_exitInProgress)
                     {
                         return;
@@ -203,7 +228,7 @@ namespace Axantum.AxCrypt
             Cursor = enabled ? Cursors.Default : Cursors.WaitCursor;
         }
 
-        private async Task StartUpProgram()
+        private async Task StartUpProgramAsync()
         {
             AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
             if (!EnsureEmailAccount(status))
@@ -225,7 +250,7 @@ namespace Axantum.AxCrypt
 
                     case AccountStatus.InvalidName:
                         Resolve.UserSettings.UserEmail = String.Empty;
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Invalid Email Address", "You cannot sign up as '{0}'. Please enter your real email address, and try again.".InvariantFormat(Resolve.UserSettings.UserEmail));
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Invalid Email Address", "You cannot sign up as '{0}'. Please enter a real email address, and try again.".InvariantFormat(Resolve.UserSettings.UserEmail));
                         break;
 
                     case AccountStatus.Unverified:
@@ -269,17 +294,6 @@ namespace Axantum.AxCrypt
                     return;
                 }
             } while (status != AccountStatus.Verified);
-        }
-
-        private void StartupLogOnAndPendingRequest()
-        {
-            if (_shownFirstTime)
-            {
-                return;
-            }
-            _shownFirstTime = true;
-            _pendingRequest = new CommandCompleteEventArgs(CommandVerb.Startup, new string[0]);
-            LogOnAndDoPendingRequest();
         }
 
         private bool EnsureEmailAccount(AccountStatus status)
@@ -375,15 +389,11 @@ namespace Axantum.AxCrypt
             return await store.StatusAsync() == Api.Model.AccountStatus.Verified;
         }
 
-        private void LogOnAndDoPendingRequest()
+        private async Task LogOnAndDoPendingRequestAsync()
         {
-            if (!_mainViewModel.LoggedOn)
-            {
-                _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
-            }
             if (_mainViewModel.LoggedOn)
             {
-                DoRequest(_pendingRequest);
+                await DoRequestAsync(_pendingRequest);
             }
             _pendingRequest = new CommandCompleteEventArgs(CommandVerb.Unknown, new string[0]);
         }
@@ -638,30 +648,30 @@ namespace Axantum.AxCrypt
             _mainViewModel.Title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
             _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { SetWindowTextWithLogonStatus(loggedOn); });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _debugManageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _optionsChangePassphraseToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _exportMyPrivateKeyToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _importMyPrivateKeyToolStripMenuItem.Enabled = !loggedOn; });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _createAccountToolStripMenuItem.Enabled = !loggedOn; });
-            _mainViewModel.BindPropertyChanged("LoggedOn", (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetWindowTextWithLogonStatus(loggedOn); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _debugManageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _optionsChangePassphraseToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _exportSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _exportMyPrivateKeyToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _importMyPrivateKeyToolStripMenuItem.Enabled = !loggedOn; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _createAccountToolStripMenuItem.Enabled = !loggedOn; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
 
-            _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged("FilesArePending", (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; });
-            _mainViewModel.BindPropertyChanged("FilesArePending", (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
-            _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
-            _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
-            _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { _encryptedFoldersToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged("RecentFiles", async (IEnumerable<ActiveFile> files) => { await UpdateRecentFilesAsync(files); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { _encryptedFoldersToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), async (IEnumerable<ActiveFile> files) => { await UpdateRecentFilesAsync(files); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.VersionUpdateStatus), (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
-            _mainViewModel.BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
-            _mainViewModel.BindPropertyChanged("TryBrokenFile", (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
 
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck.Execute(DateTime.MinValue); };
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
@@ -681,10 +691,10 @@ namespace Axantum.AxCrypt
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = _recentFilesListView.SelectedItems.Count == 1 && Resolve.KnownIdentities.IsLoggedOn; };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
 
-            _shareKeysToolStripMenuItem.Click += (sender, e) => { ShareKeys(_mainViewModel.SelectedRecentFiles); };
+            _shareKeysToolStripMenuItem.Click += (sender, e) => { ShareKeysAsync(_mainViewModel.SelectedRecentFiles); };
             _mainToolStrip.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForMainToolStrip(e); };
 
-            _knownFoldersViewModel.BindPropertyChanged("KnownFolders", (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
+            _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = KnownFoldersDiscovery.Discover();
         }
 
@@ -697,7 +707,7 @@ namespace Axantum.AxCrypt
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
-            _logOnLogOffLabel.LinkClicked += (sender, e) => { LogOnOrLogOffAndLogOnAgain(); };
+            _logOnLogOffLabel.LinkClicked += async (sender, e) => { await LogOnOrLogOffAndLogOnAgainAsync(); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
@@ -717,14 +727,21 @@ namespace Axantum.AxCrypt
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
         }
 
-        private void LogOnOrLogOffAndLogOnAgain()
+        private async Task LogOnOrLogOffAndLogOnAgainAsync()
         {
             bool wasLoggedOn = Resolve.KnownIdentities.IsLoggedOn;
-            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
+            if (wasLoggedOn)
+            {
+                _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
+            }
+            else
+            {
+                await SignInAsync();
+            }
             bool didLogOff = wasLoggedOn && !Resolve.KnownIdentities.IsLoggedOn;
             if (didLogOff)
             {
-                _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
+                await SignInAsync();
             }
         }
 
@@ -843,11 +860,12 @@ namespace Axantum.AxCrypt
             {
                 viewModel.ShowPassphrase = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
+                e.DisplayPassphrase = viewModel.ShowPassphrase;
+
                 if (dialogResult == DialogResult.Retry)
                 {
-                    e.Passphrase = viewModel.Passphrase;
-                    e.UserEmail = viewModel.UserEmail;
-                    e.IsAskingForPreviouslyUnknownPassphrase = true;
+                    e.UserEmail = String.Empty;
+                    e.Passphrase = String.Empty;
                     return;
                 }
 
@@ -861,7 +879,7 @@ namespace Axantum.AxCrypt
                     e.Cancel = true;
                     return;
                 }
-                e.DisplayPassphrase = viewModel.ShowPassphrase;
+
                 e.Passphrase = viewModel.Passphrase;
                 e.UserEmail = viewModel.UserEmail;
             }
@@ -1011,12 +1029,12 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_CommandComplete(object sender, CommandCompleteEventArgs e)
         {
-            Resolve.UIThread.RunOnUIThread(() => DoRequest(e));
+            Resolve.UIThread.RunOnUIThread(async () => await DoRequestAsync(e));
         }
 
         private CommandCompleteEventArgs _pendingRequest = new CommandCompleteEventArgs(CommandVerb.Unknown, new string[0]);
 
-        private void DoRequest(CommandCompleteEventArgs e)
+        private async Task DoRequestAsync(CommandCompleteEventArgs e)
         {
             if (!Resolve.KnownIdentities.IsLoggedOn)
             {
@@ -1026,13 +1044,8 @@ namespace Axantum.AxCrypt
                     case CommandVerb.Decrypt:
                     case CommandVerb.Open:
                     case CommandVerb.ShowLogOn:
-                        if (_pendingRequest.Verb == CommandVerb.Startup)
-                        {
-                            _pendingRequest = e;
-                            return;
-                        }
                         _pendingRequest = e;
-                        LogOnAndDoPendingRequest();
+                        await SignInAsync();
                         return;
 
                     default:
@@ -1268,10 +1281,9 @@ namespace Axantum.AxCrypt
                 List<ListViewItem> newItems = new List<ListViewItem>();
                 foreach (ActiveFile file in files)
                 {
-                    await UpdateOneItem(currentFiles, newItems, file);
+                    await UpdateOneItemAsync(currentFiles, newItems, file);
                 }
 
-                //_recentFilesListView.Items.AddRange(newItems.ToArray());
                 while (_recentFilesListView.Items.Count > Preferences.RecentFilesMaxNumber)
                 {
                     _recentFilesListView.Items.RemoveAt(_recentFilesListView.Items.Count - 1);
@@ -1283,7 +1295,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async Task UpdateOneItem(Dictionary<string, int> currentFiles, List<ListViewItem> newItems, ActiveFile file)
+        private async Task UpdateOneItemAsync(Dictionary<string, int> currentFiles, List<ListViewItem> newItems, ActiveFile file)
         {
             string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
             ListViewItem item = new ListViewItem(text);
@@ -1955,7 +1967,7 @@ namespace Axantum.AxCrypt
             throw new NotImplementedException();
         }
 
-        private async void ShareKeys(IEnumerable<string> fileNames)
+        private async void ShareKeysAsync(IEnumerable<string> fileNames)
         {
             foreach (string file in fileNames)
             {
