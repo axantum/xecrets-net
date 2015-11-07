@@ -573,7 +573,7 @@ namespace Axantum.AxCrypt
             smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
             smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
             smallImageList.Images.Add("ActiveFileKnownKey", Resources.fileknownkeygreen16);
-            smallImageList.Images.Add("CleanUpNeeded", Resources.clean_broom);
+            smallImageList.Images.Add("CleanUpNeeded", Resources.clean_broom_red);
             smallImageList.TransparentColor = System.Drawing.Color.Transparent;
 
             return smallImageList;
@@ -654,6 +654,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("FilesArePending", (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; });
+            _mainViewModel.BindPropertyChanged("FilesArePending", (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
             _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { _encryptedFoldersToolStripMenuItem.Enabled = enabled; });

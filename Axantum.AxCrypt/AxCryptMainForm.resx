@@ -337,7 +337,7 @@
     <value>_recentFilesListView</value>
   </data>
   <data name="&gt;&gt;_recentFilesListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Axantum.AxCrypt.DoubleBufferedListView, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;_recentFilesListView.Parent" xml:space="preserve">
     <value>_recentFilesTabPage</value>
@@ -637,7 +637,7 @@
     <value>0, 0</value>
   </data>
   <data name="_mainMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 24</value>
+    <value>235, 24</value>
   </data>
   <data name="_mainMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
