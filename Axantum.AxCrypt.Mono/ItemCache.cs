@@ -10,14 +10,23 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono
 {
-    public class ItemCache : ICache
+    public class ItemCache : ICache, IDisposable
     {
-        private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
+        private SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
 
         private static readonly object _object = new object();
 
-        public T Get<T>(ICacheKey cacheKey, Func<T> itemFunction)
+        public T GetItem<T>(ICacheKey cacheKey, Func<T> itemFunction)
         {
+            if (cacheKey == null)
+            {
+                throw new ArgumentNullException(nameof(cacheKey));
+            }
+            if (itemFunction == null)
+            {
+                throw new ArgumentNullException(nameof(itemFunction));
+            }
+
             _lock.Wait();
             try
             {
@@ -36,7 +45,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public async Task<T> GetAsync<T>(ICacheKey cacheKey, Func<Task<T>> itemFunction)
+        public async Task<T> GetItemAsync<T>(ICacheKey cacheKey, Func<Task<T>> itemFunction)
         {
             await _lock.WaitAsync().Free();
             try
@@ -56,7 +65,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private CacheItemPolicy Policy(ICacheKey cacheKey)
+        private static CacheItemPolicy Policy(ICacheKey cacheKey)
         {
             for (ICacheKey key = cacheKey.ParentCacheKey; key != null; key = key.ParentCacheKey)
             {
@@ -83,8 +92,17 @@ namespace Axantum.AxCrypt.Mono
             return policy;
         }
 
-        public void Update(Action updateAction, params ICacheKey[] dependencies)
+        public void UpdateItem(Action updateAction, params ICacheKey[] dependencies)
         {
+            if (updateAction == null)
+            {
+                throw new ArgumentNullException(nameof(updateAction));
+            }
+            if (dependencies == null)
+            {
+                throw new ArgumentNullException(nameof(dependencies));
+            }
+
             _lock.Wait();
             try
             {
@@ -100,7 +118,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public async Task UpdateAsync(Func<Task> updateFunction, params ICacheKey[] dependencies)
+        public async Task UpdateItemAsync(Func<Task> updateFunction, params ICacheKey[] dependencies)
         {
             await _lock.WaitAsync().Free();
             try
@@ -117,7 +135,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public async Task<T> UpdateAsync<T>(Func<Task<T>> updateFunction, params ICacheKey[] dependencies)
+        public async Task<T> UpdateItemAsync<T>(Func<Task<T>> updateFunction, params ICacheKey[] dependencies)
         {
             await _lock.WaitAsync().Free();
             try
@@ -135,9 +153,34 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public void Remove(ICacheKey cacheKey)
+        public void RemoveItem(ICacheKey cacheKey)
         {
+            if (cacheKey == null)
+            {
+                throw new ArgumentNullException(nameof(cacheKey));
+            }
+
             MemoryCache.Default.Remove(cacheKey.Key);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposing)
+            {
+                return;
+            }
+
+            if (_lock != null)
+            {
+                _lock.Dispose();
+                _lock = null;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

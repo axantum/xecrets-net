@@ -85,13 +85,19 @@ namespace Axantum.AxCrypt.Fake
             }
         }
 
-        public void Dispose()
+        protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
             {
                 disposed = true;
                 _sleep.Elapsed -= Sleep_Elapsed;
             }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

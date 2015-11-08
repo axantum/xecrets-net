@@ -16,6 +16,11 @@ namespace Axantum.AxCrypt.Common
         /// <returns>A configured awaitable task.</returns>
         public static ConfiguredTaskAwaitable Free(this Task task)
         {
+            if (task == null)
+            {
+                throw new ArgumentNullException(nameof(task));
+            }
+
             return task.ConfigureAwait(false);
         }
 
@@ -27,6 +32,11 @@ namespace Axantum.AxCrypt.Common
         /// <returns>A configured awaitable task.</returns>
         public static ConfiguredTaskAwaitable<T> Free<T>(this Task<T> task)
         {
+            if (task == null)
+            {
+                throw new ArgumentNullException(nameof(task));
+            }
+
             return task.ConfigureAwait(false);
         }
     }

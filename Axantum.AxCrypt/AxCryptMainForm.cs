@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt
             SendStartSessionNotification();
         }
 
-        private void StartKeyPairService()
+        private static void StartKeyPairService()
         {
             if (!String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
             {
@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt
             New<KeyPairService>().Start();
         }
 
-        private bool ValidateSettings()
+        private static bool ValidateSettings()
         {
             if (Resolve.UserSettings.SettingsVersion >= Resolve.UserSettings.CurrentSettingsVersion)
             {
@@ -1337,7 +1337,7 @@ namespace Axantum.AxCrypt
             return currentFiles;
         }
 
-        public static bool CompareRecentFileItem(ListViewItem left, ListViewItem right)
+        private static bool CompareRecentFileItem(ListViewItem left, ListViewItem right)
         {
             if (left.SubItems["EncryptedPath"].Text != right.SubItems["EncryptedPath"].Text)
             {
@@ -1685,7 +1685,7 @@ namespace Axantum.AxCrypt
             SetLanguage("sv-SE");
         }
 
-        private void SetLanguage(string cultureName)
+        private static void SetLanguage(string cultureName)
         {
             Resolve.UserSettings.CultureName = cultureName;
             if (Resolve.Log.IsInfoEnabled)

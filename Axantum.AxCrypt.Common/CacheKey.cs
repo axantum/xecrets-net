@@ -11,7 +11,7 @@ namespace Axantum.AxCrypt.Common
     {
         private static readonly TimeSpan ItemExpiration = TimeSpan.Zero;
 
-        public static CacheKey RootKey = new CacheKey();
+        public static CacheKey RootKey { get; } = new CacheKey();
 
         private string _key;
 
@@ -31,10 +31,10 @@ namespace Axantum.AxCrypt.Common
             ParentCacheKey = parentCacheKey;
         }
 
-        public CacheKey SubKey(string key)
+        public CacheKey Subkey(string key)
         {
-            CacheKey subKey = new CacheKey(key, this);
-            return subKey;
+            CacheKey subkey = new CacheKey(key, this);
+            return subkey;
         }
 
         public ICacheKey ParentCacheKey { get; }

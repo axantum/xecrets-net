@@ -21,14 +21,14 @@ namespace Axantum.AxCrypt.Core.Service
         public CachingAccountService(IAccountService service)
         {
             _service = service;
-            _key = CacheKey.RootKey.SubKey(nameof(CachingAccountService)).SubKey(service.Identity.UserEmail.Address);
+            _key = CacheKey.RootKey.Subkey(nameof(CachingAccountService)).Subkey(service.Identity.UserEmail.Address);
         }
 
         public bool HasAccounts
         {
             get
             {
-                return New<ICache>().Get(_key.SubKey(nameof(HasAccounts)), () => _service.HasAccounts);
+                return New<ICache>().GetItem(_key.Subkey(nameof(HasAccounts)), () => _service.HasAccounts);
             }
         }
 
@@ -44,25 +44,25 @@ namespace Axantum.AxCrypt.Core.Service
         {
             get
             {
-                return New<ICache>().Get(_key.SubKey(nameof(Level)), () => _service.Level);
+                return New<ICache>().GetItem(_key.Subkey(nameof(Level)), () => _service.Level);
             }
         }
 
         public bool ChangePassphrase(Passphrase passphrase)
         {
             bool result = false;
-            New<ICache>().Update(() => result = _service.ChangePassphrase(passphrase), _key);
+            New<ICache>().UpdateItem(() => result = _service.ChangePassphrase(passphrase), _key);
             return result;
         }
 
         public async Task<IList<UserKeyPair>> ListAsync()
         {
-            return await New<ICache>().GetAsync(_key.SubKey(nameof(ListAsync)), () => _service.ListAsync()).Free();
+            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(ListAsync)), () => _service.ListAsync()).Free();
         }
 
         public async Task<UserKeyPair> CurrentKeyPairAsync()
         {
-            return await New<ICache>().GetAsync(_key.SubKey(nameof(CurrentKeyPairAsync)), () => _service.CurrentKeyPairAsync()).Free();
+            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(CurrentKeyPairAsync)), () => _service.CurrentKeyPairAsync()).Free();
         }
 
         public async Task PasswordResetAsync(string verificationCode)
@@ -72,27 +72,27 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
-            await New<ICache>().UpdateAsync(() => _service.SaveAsync(keyPairs), _key).Free();
+            await New<ICache>().UpdateItemAsync(() => _service.SaveAsync(keyPairs), _key).Free();
         }
 
         public async Task SignupAsync(string emailAddress)
         {
-            await New<ICache>().UpdateAsync(() => _service.SignupAsync(emailAddress), _key);
+            await New<ICache>().UpdateItemAsync(() => _service.SignupAsync(emailAddress), _key);
         }
 
         public async Task<AccountStatus> StatusAsync()
         {
-            AccountStatus status = await New<ICache>().GetAsync(_key.SubKey(nameof(StatusAsync)), () => _service.StatusAsync()).Free();
+            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(nameof(StatusAsync)), () => _service.StatusAsync()).Free();
             if (status == AccountStatus.Offline || status == AccountStatus.Unknown)
             {
-                New<ICache>().Remove(_key);
+                New<ICache>().RemoveItem(_key);
             }
             return status;
         }
 
         public async Task<UserPublicKey> CurrentPublicKeyAsync()
         {
-            return await New<ICache>().GetAsync(_key.SubKey(nameof(CurrentPublicKeyAsync)), () => _service.CurrentPublicKeyAsync()).Free();
+            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(CurrentPublicKeyAsync)), () => _service.CurrentPublicKeyAsync()).Free();
         }
     }
 }

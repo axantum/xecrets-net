@@ -8,16 +8,16 @@ namespace Axantum.AxCrypt.Abstractions
 {
     public interface ICache
     {
-        T Get<T>(ICacheKey cacheKey, Func<T> itemFunction);
+        T GetItem<T>(ICacheKey cacheKey, Func<T> itemFunction);
 
-        Task<T> GetAsync<T>(ICacheKey cacheKey, Func<Task<T>> itemFunction);
+        Task<T> GetItemAsync<T>(ICacheKey cacheKey, Func<Task<T>> itemFunction);
 
-        void Update(Action updateAction, params ICacheKey[] dependencies);
+        void UpdateItem(Action updateAction, params ICacheKey[] dependencies);
 
-        Task UpdateAsync(Func<Task> updateFunction, params ICacheKey[] dependencies);
+        Task UpdateItemAsync(Func<Task> updateFunction, params ICacheKey[] dependencies);
 
-        Task<T> UpdateAsync<T>(Func<Task<T>> updateFunction, params ICacheKey[] dependencies);
+        Task<T> UpdateItemAsync<T>(Func<Task<T>> updateFunction, params ICacheKey[] dependencies);
 
-        void Remove(ICacheKey cacheKey);
+        void RemoveItem(ICacheKey cacheKey);
     }
 }

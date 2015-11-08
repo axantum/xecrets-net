@@ -93,21 +93,6 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void _buttonOk_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-        }
-
-        private void _buttonCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-        }
-
-        private void _buttonExit_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Abort;
-        }
-
         private Point? _lastLocation;
 
         private void MessageDialog_Shown(object sender, EventArgs e)

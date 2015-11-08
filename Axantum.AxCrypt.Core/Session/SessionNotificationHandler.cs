@@ -116,7 +116,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.LogOff:
                     encryptionParameters = EncryptWatchedFolders(notification, progress);
-                    New<ICache>().Remove(CacheKey.RootKey);
+                    New<ICache>().RemoveItem(CacheKey.RootKey);
                     break;
 
                 case SessionNotificationType.SessionStart:

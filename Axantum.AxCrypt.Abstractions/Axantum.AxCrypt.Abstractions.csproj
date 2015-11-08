@@ -47,6 +47,7 @@
     <Compile Include="AxCryptException.cs" />
     <Compile Include="Creator.cs" />
     <Compile Include="ErrorStatus.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ICache.cs" />
     <Compile Include="ICacheKey.cs" />
     <Compile Include="IStringSerializer.cs" />

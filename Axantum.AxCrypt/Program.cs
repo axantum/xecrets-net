@@ -83,6 +83,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Clear();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Dependency registration, not real complexity")]
         private static void RegisterTypeFactories(string startPath)
         {
@@ -147,6 +148,7 @@ namespace Axantum.AxCrypt
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Resolve.UserSettings.CultureName);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private static void RunInteractive()
         {
             if (!OS.Current.IsFirstInstance)

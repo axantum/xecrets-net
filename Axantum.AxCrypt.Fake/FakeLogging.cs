@@ -102,8 +102,14 @@ namespace Axantum.AxCrypt.Fake
 
         #endregion ILogging Members
 
+        protected virtual void Dispose(bool disposing)
+        {
+        }
+
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
