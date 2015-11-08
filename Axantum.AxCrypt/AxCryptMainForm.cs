@@ -171,8 +171,20 @@ namespace Axantum.AxCrypt
                     await WrapMessageDialogsAsync(async () =>
                     {
                         await StartUpProgramAsync();
+                        if (_exitInProgress)
+                        {
+                            return;
+                        }
                         _fileOperationViewModel.IdentityViewModel.LogOn.Execute(Resolve.CryptoFactory.Default.Id);
+                        if (_exitInProgress)
+                        {
+                            return;
+                        }
                         await LogOnAndDoPendingRequestAsync();
+                        if (_exitInProgress)
+                        {
+                            return;
+                        }
                     });
                     if (_exitInProgress)
                     {
@@ -249,8 +261,8 @@ namespace Axantum.AxCrypt
                         continue;
 
                     case AccountStatus.InvalidName:
-                        Resolve.UserSettings.UserEmail = String.Empty;
                         dialogResult = MessageDialog.ShowOkCancelExit(this, "Invalid Email Address", "You cannot sign up as '{0}'. Please enter a real email address, and try again.".InvariantFormat(Resolve.UserSettings.UserEmail));
+                        Resolve.UserSettings.UserEmail = String.Empty;
                         break;
 
                     case AccountStatus.Unverified:
