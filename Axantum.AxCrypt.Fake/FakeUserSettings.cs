@@ -13,7 +13,7 @@ namespace Axantum.AxCrypt.Fake
     {
         public FakeUserSettings(IterationCalculator keyWrapIterationCalculator) : base(keyWrapIterationCalculator)
         {
-            this.AsymmetricKeyBits = 512;
+            this.AsymmetricKeyBits = 768;
             this.AxCrypt2HelpUrl = new Uri("http://localhost/AxCrypt2Help");
             this.CultureName = "en-US";
             this.DebugMode = false;
