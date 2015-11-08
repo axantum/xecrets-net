@@ -73,6 +73,7 @@ namespace Axantum.AxCrypt
 
         private void _buttonOk_Click(object sender, EventArgs e)
         {
+            _viewModel.UserEmail = EmailTextBox.Text;
             if (!AdHocValidationDueToMonoLimitations())
             {
                 DialogResult = DialogResult.None;
