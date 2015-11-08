@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
@@ -144,8 +145,7 @@ namespace Axantum.AxCrypt
 
             Resources.UserSettingsFormatChangeNeedsReset.ShowWarning();
             ClearAllSettingsAndReinitialize();
-            CloseAndExit();
-            return false;
+            throw new ApplicationExitException();
         }
 
         private async void AxCryptMainForm_ShownAsync(object sender, EventArgs e)
@@ -171,25 +171,9 @@ namespace Axantum.AxCrypt
                     await WrapMessageDialogsAsync(async () =>
                     {
                         await StartUpProgramAsync();
-                        if (_exitInProgress)
-                        {
-                            return;
-                        }
                         _fileOperationViewModel.IdentityViewModel.LogOn.Execute(Resolve.CryptoFactory.Default.Id);
-                        if (_exitInProgress)
-                        {
-                            return;
-                        }
                         await LogOnAndDoPendingRequestAsync();
-                        if (_exitInProgress)
-                        {
-                            return;
-                        }
                     });
-                    if (_exitInProgress)
-                    {
-                        return;
-                    }
                 } while (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail));
             }
             finally
@@ -211,13 +195,13 @@ namespace Axantum.AxCrypt
                 try
                 {
                     await dialogFunctionAsync();
-                    if (_exitInProgress)
-                    {
-                        return;
-                    }
                 }
                 catch (Exception ex)
                 {
+                    if (ex is ApplicationExitException)
+                    {
+                        throw;
+                    }
                     while (ex.InnerException != null)
                     {
                         ex = ex.InnerException;
@@ -245,8 +229,7 @@ namespace Axantum.AxCrypt
             AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
             if (!EnsureEmailAccount(status))
             {
-                CloseAndExit();
-                return;
+                throw new ApplicationExitException();
             }
 
             DialogResult dialogResult = DialogResult.OK;
@@ -292,8 +275,7 @@ namespace Axantum.AxCrypt
                 }
                 if (dialogResult == DialogResult.Abort)
                 {
-                    CloseAndExit();
-                    return;
+                    throw new ApplicationExitException();
                 }
                 if (dialogResult == DialogResult.Cancel)
                 {
@@ -302,8 +284,7 @@ namespace Axantum.AxCrypt
                 status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
                 if (!EnsureEmailAccount(status))
                 {
-                    CloseAndExit();
-                    return;
+                    throw new ApplicationExitException();
                 }
             } while (status != AccountStatus.Verified);
         }
@@ -883,7 +864,7 @@ namespace Axantum.AxCrypt
 
                 if (dialogResult == DialogResult.Cancel)
                 {
-                    CloseAndExit();
+                    throw new ApplicationExitException();
                 }
 
                 if (dialogResult != DialogResult.OK || viewModel.Passphrase.Length == 0)
@@ -1087,8 +1068,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case CommandVerb.Exit:
-                    CloseAndExit();
-                    break;
+                    throw new ApplicationExitException();
 
                 case CommandVerb.Show:
                     RestoreWindowWithFocus();
@@ -1566,19 +1546,7 @@ namespace Axantum.AxCrypt
 
         private void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CloseAndExit();
-        }
-
-        private bool _exitInProgress = false;
-
-        private void CloseAndExit()
-        {
-            _exitInProgress = true;
-            if (_debugOutput != null)
-            {
-                _debugOutput.AllowClose = true;
-            }
-            Application.Exit();
+            throw new ApplicationExitException();
         }
 
         #region ToolStrip
@@ -1725,7 +1693,7 @@ namespace Axantum.AxCrypt
                 Resolve.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Resolve.UserSettings.CultureName));
             }
             Resources.LanguageChangeRestartPrompt.ShowWarning();
-            CloseAndExit();
+            throw new ApplicationExitException();
         }
 
         private void LanguageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -1835,7 +1803,7 @@ namespace Axantum.AxCrypt
         private void ClearPassphraseMemoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ClearAllSettingsAndReinitialize();
-            CloseAndExit();
+            throw new ApplicationExitException();
         }
 
         private static void ClearAllSettingsAndReinitialize()
@@ -2046,6 +2014,14 @@ namespace Axantum.AxCrypt
         private void tryBrokenFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _mainViewModel.TryBrokenFile = !_mainViewModel.TryBrokenFile;
+        }
+
+        private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_debugOutput != null)
+            {
+                _debugOutput.AllowClose = true;
+            }
         }
     }
 }

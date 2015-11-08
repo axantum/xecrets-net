@@ -48,6 +48,7 @@
     <None Include="AxantumStrongName.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationExitException.cs" />
     <Compile Include="CacheKey.cs" />
     <Compile Include="DummyReferencedType.cs" />
     <Compile Include="FrameworkTypeExtensions.cs" />

@@ -646,6 +646,7 @@
             this.Controls.Add(this._progressTableLayoutPanel);
             this.Controls.Add(this._statusTabControl);
             this.Name = "AxCryptMainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AxCryptMainForm_FormClosing);
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
             this.Shown += new System.EventHandler(this.AxCryptMainForm_ShownAsync);
             this._recentFilesContextMenuStrip.ResumeLayout(false);
