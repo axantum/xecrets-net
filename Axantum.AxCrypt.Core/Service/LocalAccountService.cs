@@ -76,11 +76,11 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public async Task<AccountStatus> StatusAsync()
+        public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
             return await Task.Run(() =>
             {
-                if (LoadUserAccounts().Accounts.Any(a => EmailAddress.Parse(a.UserName) == Identity.UserEmail) || UserKeyPairFiles().Any())
+                if (LoadUserAccounts().Accounts.Any(a => EmailAddress.Parse(a.UserName) == email) || UserKeyPairFiles().Any())
                 {
                     return AccountStatus.Verified;
                 }
@@ -229,7 +229,7 @@ namespace Axantum.AxCrypt.Core.Service
             get;
         }
 
-        public async Task SignupAsync(string emailAddress)
+        public async Task SignupAsync(EmailAddress email)
         {
             await _completedTask;
         }

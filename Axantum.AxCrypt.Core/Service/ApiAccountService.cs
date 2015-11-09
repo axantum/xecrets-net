@@ -112,14 +112,14 @@ namespace Axantum.AxCrypt.Core.Service
         /// <value>
         /// The status.
         /// </value>
-        public async Task<AccountStatus> StatusAsync()
+        public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
-            if (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
+            if (String.IsNullOrEmpty(email.Address))
             {
                 return AccountStatus.Unknown;
             }
 
-            UserAccount userAccount = await _apiClient.GetAllAccountsUserAccountAsync(Resolve.UserSettings.UserEmail).Free();
+            UserAccount userAccount = await _apiClient.GetAllAccountsUserAccountAsync(email.Address).Free();
             return userAccount.AccountStatus;
         }
 
@@ -202,9 +202,9 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public async Task SignupAsync(string emailAddress)
+        public async Task SignupAsync(EmailAddress email)
         {
-            await _apiClient.PostAllAccountsUserAsync(emailAddress).Free();
+            await _apiClient.PostAllAccountsUserAsync(email.Address).Free();
         }
 
         public async Task PasswordResetAsync(string verificationCode)

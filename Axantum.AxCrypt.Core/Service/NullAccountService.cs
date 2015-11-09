@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public Task<AccountStatus> StatusAsync()
+        public Task<AccountStatus> StatusAsync(EmailAddress email)
         {
             return Task.FromResult(AccountStatus.Unknown);
         }
@@ -87,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Service
             return _completedTask;
         }
 
-        public Task SignupAsync(string emailAddress)
+        public Task SignupAsync(EmailAddress email)
         {
             return _completedTask;
         }

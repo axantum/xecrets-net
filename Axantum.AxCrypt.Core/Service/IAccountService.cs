@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// <value>
         /// The status.
         /// </value>
-        Task<AccountStatus> StatusAsync();
+        Task<AccountStatus> StatusAsync(EmailAddress email);
 
         /// <summary>
         /// Changes the passphrase for the account.
@@ -110,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// in an email to the provided email address in Identity.
         /// </summary>
         /// <returns></returns>
-        Task SignupAsync(string emailAddress);
+        Task SignupAsync(EmailAddress email);
 
         /// <summary>
         /// Resets the password for the account.

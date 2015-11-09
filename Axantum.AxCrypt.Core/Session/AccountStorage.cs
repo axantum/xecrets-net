@@ -108,9 +108,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public async Task<AccountStatus> StatusAsync()
+        public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
-            return await _service.StatusAsync().Free();
+            return await _service.StatusAsync(email).Free();
         }
 
         public async virtual void ChangePassphraseAsync(Passphrase passphrase)

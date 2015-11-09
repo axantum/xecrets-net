@@ -5,6 +5,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -178,27 +179,27 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public async Task SignupAsync(string emailAddress)
+        public async Task SignupAsync(EmailAddress email)
         {
             try
             {
-                await _remoteService.SignupAsync(emailAddress).Free();
+                await _remoteService.SignupAsync(email).Free();
             }
             catch (OfflineApiException)
             {
-                await _localService.SignupAsync(emailAddress).Free();
+                await _localService.SignupAsync(email).Free();
             }
         }
 
-        public async Task<AccountStatus> StatusAsync()
+        public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
             try
             {
-                return await _remoteService.StatusAsync();
+                return await _remoteService.StatusAsync(email);
             }
             catch (OfflineApiException)
             {
-                AccountStatus status = await _localService.StatusAsync();
+                AccountStatus status = await _localService.StatusAsync(email);
                 if (status == AccountStatus.NotFound)
                 {
                     return AccountStatus.Offline;

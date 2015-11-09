@@ -226,7 +226,7 @@ namespace Axantum.AxCrypt
 
         private async Task StartUpProgramAsync()
         {
-            AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
+            AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
             if (!EnsureEmailAccount(status))
             {
                 throw new ApplicationExitException();
@@ -235,11 +235,11 @@ namespace Axantum.AxCrypt
             DialogResult dialogResult = DialogResult.OK;
             do
             {
-                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
+                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
                 switch (status)
                 {
                     case AccountStatus.NotFound:
-                        await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(Resolve.UserSettings.UserEmail);
+                        await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
                         MessageDialog.ShowOk(this, "Signing Up", "You have now signed up as '{0}'. Please check your inbox for an email with a 6-digit activation code.".InvariantFormat(Resolve.UserSettings.UserEmail));
                         continue;
 
@@ -281,7 +281,7 @@ namespace Axantum.AxCrypt
                 {
                     return;
                 }
-                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync();
+                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
                 if (!EnsureEmailAccount(status))
                 {
                     throw new ApplicationExitException();
@@ -377,9 +377,9 @@ namespace Axantum.AxCrypt
 
         private async static Task<bool> OfflineAccountExistsAsync()
         {
-            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(Resolve.UserSettings.UserEmail), Passphrase.Empty)));
+            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty));
 
-            return await store.StatusAsync() == Api.Model.AccountStatus.Verified;
+            return await store.StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail)) == Api.Model.AccountStatus.Verified;
         }
 
         private async Task LogOnAndDoPendingRequestAsync()

@@ -3,6 +3,7 @@ using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,14 +81,14 @@ namespace Axantum.AxCrypt.Core.Service
             await New<ICache>().UpdateItemAsync(() => _service.SaveAsync(keyPairs), _key).Free();
         }
 
-        public async Task SignupAsync(string emailAddress)
+        public async Task SignupAsync(EmailAddress email)
         {
-            await New<ICache>().UpdateItemAsync(() => _service.SignupAsync(emailAddress), _key);
+            await New<ICache>().UpdateItemAsync(() => _service.SignupAsync(email), _key);
         }
 
-        public async Task<AccountStatus> StatusAsync()
+        public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
-            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(nameof(StatusAsync)), () => _service.StatusAsync()).Free();
+            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(nameof(StatusAsync)), () => _service.StatusAsync(email)).Free();
             if (status == AccountStatus.Offline || status == AccountStatus.Unknown)
             {
                 New<ICache>().RemoveItem(_key);
