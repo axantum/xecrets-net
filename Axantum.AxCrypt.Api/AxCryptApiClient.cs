@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Api
         public RestIdentity Identity { get; }
 
         /// <summary>
-        /// Get a user summary anonymously, typically as an initial call to validate the passphrase with the account etc.
+        /// Get a user summary anonymously, typically as an initial call to check the status of the account etc.
         /// </summary>
         /// <param name="email">The user name/email</param>
         /// <returns>The user summary</returns>

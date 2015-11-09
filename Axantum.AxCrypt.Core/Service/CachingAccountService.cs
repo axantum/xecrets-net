@@ -6,6 +6,7 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
 
             _service = service;
-            _key = CacheKey.RootKey.Subkey(nameof(CachingAccountService)).Subkey(service.Identity.UserEmail.Address);
+            _key = CacheKey.RootKey.Subkey(nameof(CachingAccountService)).Subkey(service.Identity.UserEmail.Address).Subkey(service.Identity.GetHashCode().ToString(CultureInfo.InvariantCulture));
         }
 
         public bool HasAccounts

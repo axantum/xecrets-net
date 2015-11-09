@@ -226,16 +226,11 @@ namespace Axantum.AxCrypt
 
         private async Task StartUpProgramAsync()
         {
-            AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
-            if (!EnsureEmailAccount(status))
-            {
-                throw new ApplicationExitException();
-            }
-
+            AccountStatus status;
             DialogResult dialogResult = DialogResult.OK;
             do
             {
-                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
+                status = await EnsureEmailAccountAsync();
                 switch (status)
                 {
                     case AccountStatus.NotFound:
@@ -281,36 +276,36 @@ namespace Axantum.AxCrypt
                 {
                     return;
                 }
-                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
-                if (!EnsureEmailAccount(status))
-                {
-                    throw new ApplicationExitException();
-                }
             } while (status != AccountStatus.Verified);
         }
 
-        private bool EnsureEmailAccount(AccountStatus status)
+        private async Task<AccountStatus> EnsureEmailAccountAsync()
         {
-            if (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
+            AccountStatus status;
+            if (!String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
             {
-                return AskForEmailAddressToUse();
+                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
+                switch (status)
+                {
+                    case AccountStatus.Unknown:
+                    case AccountStatus.InvalidName:
+                    case AccountStatus.Unverified:
+                    case AccountStatus.NotFound:
+                    case AccountStatus.Offline:
+                        break;
+
+                    default:
+                        return status;
+                }
             }
 
-            switch (status)
-            {
-                case AccountStatus.Unknown:
-                case AccountStatus.InvalidName:
-                case AccountStatus.Unverified:
-                case AccountStatus.NotFound:
-                    return AskForEmailAddressToUse();
+            AskForEmailAddressToUse();
 
-                default:
-                    break;
-            }
-            return true;
+            status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
+            return status;
         }
 
-        private bool AskForEmailAddressToUse()
+        private void AskForEmailAddressToUse()
         {
             using (EmailDialog dialog = new EmailDialog(this))
             {
@@ -318,11 +313,10 @@ namespace Axantum.AxCrypt
                 DialogResult result = dialog.ShowDialog(this);
                 if (result != DialogResult.OK)
                 {
-                    return false;
+                    throw new ApplicationExitException();
                 }
                 Resolve.UserSettings.UserEmail = dialog.EmailTextBox.Text;
             }
-            return true;
         }
 
         private async Task<bool> EnsureCreateAccountAsync()
