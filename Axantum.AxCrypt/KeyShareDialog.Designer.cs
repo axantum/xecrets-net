@@ -31,21 +31,26 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this._sharedWithListBox = new System.Windows.Forms.ListBox();
+            this._sharedWith = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this._unshareButton = new System.Windows.Forms.Button();
             this._shareButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this._notSharedWithListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this._cancelButton = new System.Windows.Forms.Button();
             this._okButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._notSharedWith = new System.Windows.Forms.ListBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this._newContact = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel3
@@ -74,7 +79,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(475, 100);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -85,24 +90,26 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this._sharedWithListBox);
+            this.groupBox2.Controls.Add(this._sharedWith);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(292, 3);
             this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.groupBox2.Size = new System.Drawing.Size(183, 114);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Contacts Shared With";
             // 
-            // _sharedWithListBox
+            // _sharedWith
             // 
-            this._sharedWithListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._sharedWithListBox.FormattingEnabled = true;
-            this._sharedWithListBox.Location = new System.Drawing.Point(3, 16);
-            this._sharedWithListBox.Name = "_sharedWithListBox";
-            this._sharedWithListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this._sharedWithListBox.Size = new System.Drawing.Size(177, 95);
-            this._sharedWithListBox.TabIndex = 0;
+            this._sharedWith.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._sharedWith.FormattingEnabled = true;
+            this._sharedWith.Location = new System.Drawing.Point(3, 16);
+            this._sharedWith.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._sharedWith.Name = "_sharedWith";
+            this._sharedWith.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this._sharedWith.Size = new System.Drawing.Size(177, 98);
+            this._sharedWith.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
@@ -144,27 +151,6 @@
             this._shareButton.Text = "Share";
             this._shareButton.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this._notSharedWithListBox);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(183, 114);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "My Known Contacts";
-            // 
-            // _notSharedWithListBox
-            // 
-            this._notSharedWithListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._notSharedWithListBox.FormattingEnabled = true;
-            this._notSharedWithListBox.Location = new System.Drawing.Point(3, 16);
-            this._notSharedWithListBox.Name = "_notSharedWithListBox";
-            this._notSharedWithListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this._notSharedWithListBox.Size = new System.Drawing.Size(177, 95);
-            this._notSharedWithListBox.TabIndex = 0;
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -202,6 +188,64 @@
             this._okButton.UseVisualStyleBackColor = true;
             this._okButton.Click += new System.EventHandler(this._okButton_Click);
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.groupBox1, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.groupBox3, 0, 1);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(183, 114);
+            this.tableLayoutPanel5.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this._notSharedWith);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.groupBox1.Size = new System.Drawing.Size(177, 63);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "My Known Contacts";
+            // 
+            // _notSharedWith
+            // 
+            this._notSharedWith.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._notSharedWith.FormattingEnabled = true;
+            this._notSharedWith.Location = new System.Drawing.Point(3, 16);
+            this._notSharedWith.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._notSharedWith.Name = "_notSharedWith";
+            this._notSharedWith.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this._notSharedWith.Size = new System.Drawing.Size(171, 47);
+            this._notSharedWith.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this._newContact);
+            this.groupBox3.Location = new System.Drawing.Point(3, 72);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(177, 39);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "New Contact";
+            // 
+            // _newContact
+            // 
+            this._newContact.Location = new System.Drawing.Point(3, 14);
+            this._newContact.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
+            this._newContact.Name = "_newContact";
+            this._newContact.Size = new System.Drawing.Size(171, 20);
+            this._newContact.TabIndex = 4;
+            // 
             // KeyShareDialog
             // 
             this.AcceptButton = this._okButton;
@@ -222,8 +266,11 @@
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -233,15 +280,17 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox _sharedWithListBox;
+        private System.Windows.Forms.ListBox _sharedWith;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button _unshareButton;
         private System.Windows.Forms.Button _shareButton;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ListBox _notSharedWithListBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button _cancelButton;
         private System.Windows.Forms.Button _okButton;
-
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox _notSharedWith;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox _newContact;
     }
 }

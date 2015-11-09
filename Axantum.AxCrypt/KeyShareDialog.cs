@@ -26,31 +26,31 @@ namespace Axantum.AxCrypt
             new Styling(Resources.axcrypticon).Style(this);
 
             _viewModel = new SharingListViewModel(knownPublicKeysFactory, sharedWith, logOnIdentity);
-            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWithListBox.Items.Clear(); _sharedWithListBox.Items.AddRange(aks.ToArray()); });
-            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWithListBox.Items.Clear(); _notSharedWithListBox.Items.AddRange(aks.ToArray()); });
+            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWith.Items.Clear(); _sharedWith.Items.AddRange(aks.ToArray()); });
+            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWith.Items.Clear(); _notSharedWith.Items.AddRange(aks.ToArray()); });
 
-            _sharedWithListBox.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
-            _notSharedWithListBox.SelectedIndexChanged += (sender, e) => SetShareButtonState();
+            _sharedWith.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
+            _notSharedWith.SelectedIndexChanged += (sender, e) => SetShareButtonState();
 
-            _shareButton.Click += (sender, e) => _viewModel.AddKeyShares.Execute(_notSharedWithListBox.SelectedIndices.Cast<int>().Select(i => EmailAddress.Parse(_notSharedWithListBox.Items[i].ToString())));
+            _shareButton.Click += (sender, e) => _viewModel.AddKeyShares.Execute(_notSharedWith.SelectedIndices.Cast<int>().Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
             _shareButton.Click += (sender, e) => SetShareButtonState();
-            _unshareButton.Click += (sender, e) => _viewModel.RemoveKeyShares.Execute(_sharedWithListBox.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWithListBox.Items[i]));
+            _unshareButton.Click += (sender, e) => _viewModel.RemoveKeyShares.Execute(_sharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWith.Items[i]));
             _unshareButton.Click += (sender, e) => SetUnshareButtonState();
 
             SetShareButtonState();
             SetUnshareButtonState();
 
-            _notSharedWithListBox.Focus();
+            _notSharedWith.Focus();
         }
 
         private void SetShareButtonState()
         {
-            _shareButton.Enabled = _notSharedWithListBox.SelectedIndices.Count > 0;
+            _shareButton.Enabled = _notSharedWith.SelectedIndices.Count > 0;
         }
 
         private void SetUnshareButtonState()
         {
-            _unshareButton.Enabled = _sharedWithListBox.SelectedIndices.Count > 0;
+            _unshareButton.Enabled = _sharedWith.SelectedIndices.Count > 0;
         }
 
         private void _okButton_Click(object sender, EventArgs e)
