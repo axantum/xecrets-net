@@ -20,6 +20,11 @@ namespace Axantum.AxCrypt.Core.Service
 
         public CachingAccountService(IAccountService service)
         {
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
             _service = service;
             _key = CacheKey.RootKey.Subkey(nameof(CachingAccountService)).Subkey(service.Identity.UserEmail.Address);
         }

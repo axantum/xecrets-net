@@ -46,8 +46,13 @@ namespace Axantum.AxCrypt.Api
             return string.Format(CultureInfo.InvariantCulture, "{2} {1} {0}", request.Url, request.Method, message);
         }
 
-        public void EnsureStatusOk(RestResponse restResponse)
+        public static void EnsureStatusOk(RestResponse restResponse)
         {
+            if (restResponse == null)
+            {
+                throw new ArgumentNullException(nameof(restResponse));
+            }
+
             if (restResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
                 throw new UnauthorizedApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
@@ -62,8 +67,13 @@ namespace Axantum.AxCrypt.Api
             }
         }
 
-        public void EnsureStatusOk(ResponseBase apiResponse)
+        public static void EnsureStatusOk(ResponseBase apiResponse)
         {
+            if (apiResponse == null)
+            {
+                throw new ArgumentNullException(nameof(apiResponse));
+            }
+
             if (apiResponse.Status != 0)
             {
                 throw new ApiException(apiResponse.Message, ErrorStatus.ApiError);
@@ -78,7 +88,8 @@ namespace Axantum.AxCrypt.Api
             }
         }
 
-        public string UrlEncode(string value)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings")]
+        public static string UrlEncode(string value)
         {
             return RestCaller.UrlEncode(value);
         }

@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt
         private async Task WrapMessageDialogsAsync(Func<Task> dialogFunctionAsync)
         {
             SetTopControlsEnabled(false);
-            ApiVersion apiVersion = await New<GlobalApiClient>().GetApiVersionAsync();
+            ApiVersion apiVersion = await New<GlobalApiClient>().ApiVersionAsync();
             if (apiVersion != ApiVersion.Zero && apiVersion != new ApiVersion())
             {
                 MessageDialog.ShowOk(this, "Server Updated", "The server has been updated. Please update AxCrypt soon. Unexpected errors may occur otherwise.");
@@ -1744,7 +1744,7 @@ namespace Axantum.AxCrypt
             {
                 dialog._legacyRestApiBaseUrl.Text = Resolve.UserSettings.LegacyRestApiBaseUrl.ToString();
                 dialog._restApiBaseUrl.Text = Resolve.UserSettings.RestApiBaseUrl.ToString();
-                dialog._timeoutTimeSpan.Text = Resolve.UserSettings.ApiTimeOut.ToString();
+                dialog._timeoutTimeSpan.Text = Resolve.UserSettings.ApiTimeout.ToString();
                 DialogResult result = dialog.ShowDialog();
                 if (result != DialogResult.OK)
                 {
@@ -1752,7 +1752,7 @@ namespace Axantum.AxCrypt
                 }
                 Resolve.UserSettings.LegacyRestApiBaseUrl = new Uri(dialog._legacyRestApiBaseUrl.Text);
                 Resolve.UserSettings.RestApiBaseUrl = new Uri(dialog._restApiBaseUrl.Text);
-                Resolve.UserSettings.ApiTimeOut = TimeSpan.Parse(dialog._timeoutTimeSpan.Text);
+                Resolve.UserSettings.ApiTimeout = TimeSpan.Parse(dialog._timeoutTimeSpan.Text);
             }
         }
 

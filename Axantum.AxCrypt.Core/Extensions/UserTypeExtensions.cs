@@ -159,7 +159,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             if (userPublicKey == null)
             {
-                throw new ArgumentNullException(nameof(UserPublicKey));
+                throw new ArgumentNullException(nameof(userPublicKey));
             }
 
             AccountKey accountKey = new AccountKey(userPublicKey.Email.Address, userPublicKey.PublicKey.Thumbprint.ToString(), new KeyPair(userPublicKey.PublicKey.ToString(), String.Empty), DateTime.Now);
@@ -202,6 +202,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static RestIdentity ToRestIdentity(this LogOnIdentity identity)
         {
+            if (identity == null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
+
             return new RestIdentity(identity.UserEmail.Address, identity.Passphrase.Text);
         }
     }

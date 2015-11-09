@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -232,6 +231,8 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonProperty("properties")]
         public ActiveFileProperties Properties { get; private set; }
 
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {

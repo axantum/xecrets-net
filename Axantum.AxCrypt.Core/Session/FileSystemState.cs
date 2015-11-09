@@ -66,6 +66,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserializing]
         private void Initialize(StreamingContext context)
         {
@@ -74,6 +75,8 @@ namespace Axantum.AxCrypt.Core.Session
             _watchedFolders = new List<WatchedFolder>();
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserialized]
         private void Finalize(StreamingContext context)
         {

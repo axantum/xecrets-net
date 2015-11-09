@@ -18,19 +18,19 @@ namespace Axantum.AxCrypt.Api
 
         private Uri _accessTokenUrl;
 
-        private string _username;
+        private string _userName;
 
         private string _channel;
 
-        public SlackApiClient(Uri accessTokenUrl, string username, string channel)
+        public SlackApiClient(Uri accessTokenUrl, string userName, string channel)
         {
             _accessTokenUrl = accessTokenUrl;
-            _username = username;
+            _userName = userName;
             _channel = channel;
         }
 
-        public SlackApiClient(Uri accessTokenUrl, string username)
-            : this(accessTokenUrl, username, String.Empty)
+        public SlackApiClient(Uri accessTokenUrl, string userName)
+            : this(accessTokenUrl, userName, String.Empty)
         {
         }
 
@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Api
             SlackPayload payload = new SlackPayload()
             {
                 Channel = _channel,
-                Username = _username,
+                UserName = _userName,
                 Text = text,
             };
 
@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Api
             {
                 RestContent content = new RestContent(New<IStringSerializer>().Serialize(payload));
                 restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest("POST", _accessTokenUrl, TimeSpan.Zero, content)).Free();
-                Caller.EnsureStatusOk(restResponse);
+                ApiCaller.EnsureStatusOk(restResponse);
             }
             catch (Exception)
             {

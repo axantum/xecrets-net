@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt.Api
             Timeout = timeout;
         }
 
-        public async Task<ApiVersion> GetApiVersionAsync()
+        public async Task<ApiVersion> ApiVersionAsync()
         {
             Uri resource = BaseUrl.PathCombine("global/apiversion");
 
@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Api
             try
             {
                 restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
-                Caller.EnsureStatusOk(restResponse);
+                ApiCaller.EnsureStatusOk(restResponse);
             }
             catch (Exception)
             {

@@ -14,7 +14,7 @@ namespace Axantum.AxCrypt.Api.Model
         public string Channel { get; set; }
 
         [JsonProperty("username")]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [JsonProperty("text")]
         public string Text { get; set; }

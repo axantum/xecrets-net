@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (!_persistanceFileInfo.IsAvailable)
             {
-                SettingsVersion = CurrentSettingsVersion;
+                _settings[nameof(SettingsVersion)] = Convert.ToString(CurrentSettingsVersion, CultureInfo.InvariantCulture);
                 return;
             }
 
@@ -148,10 +148,10 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public TimeSpan ApiTimeOut
+        public TimeSpan ApiTimeout
         {
-            get { return Load(nameof(ApiTimeOut), TimeSpan.FromSeconds(120)); }
-            set { Store(nameof(ApiTimeOut), value); }
+            get { return Load(nameof(ApiTimeout), TimeSpan.FromSeconds(120)); }
+            set { Store(nameof(ApiTimeout), value); }
         }
 
         public DateTime LastUpdateCheckUtc

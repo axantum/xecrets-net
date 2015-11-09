@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.UI
             Version newVersion = VersionUnknown;
             try
             {
-                CurrentVersionResponse versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl, New<IUserSettings>().ApiTimeOut).CheckVersionAsync(_currentVersion.ToString()).Result;
+                CurrentVersionResponse versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl, New<IUserSettings>().ApiTimeout).CheckVersionAsync(_currentVersion.ToString()).Result;
 
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);

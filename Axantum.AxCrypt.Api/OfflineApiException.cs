@@ -9,6 +9,11 @@ namespace Axantum.AxCrypt.Api
 {
     public class OfflineApiException : ApiException
     {
+        public OfflineApiException()
+            : base()
+        {
+        }
+
         public OfflineApiException(string message)
             : base(message, ErrorStatus.ApiOffline)
         {

@@ -153,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Service
 
             try
             {
-                IList<AccountKey> apiAccountKeys = (await _apiClient.GetMyAccountAsync().Free()).AccountKeys;
+                IList<AccountKey> apiAccountKeys = (await _apiClient.MyAccountAsync().Free()).AccountKeys;
                 return apiAccountKeys.Select(k => k.ToUserKeyPair(Identity.Passphrase)).ToList();
             }
             catch (UnauthorizedApiException uaex)
@@ -171,7 +171,7 @@ namespace Axantum.AxCrypt.Core.Service
 
             try
             {
-                AccountKey accountKey = await _apiClient.GetMyAccountKeysCurrentAsync().Free();
+                AccountKey accountKey = await _apiClient.MyAccountKeysCurrentAsync().Free();
                 return accountKey.ToUserKeyPair(Identity.Passphrase);
             }
             catch (UnauthorizedApiException uaex)

@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
@@ -81,6 +80,7 @@ namespace Axantum.AxCrypt.Core.Session
             private set;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserialized]
         private void Initialize(StreamingContext context)
         {

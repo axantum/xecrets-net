@@ -102,16 +102,6 @@ namespace Axantum.AxCrypt.Core.Service
             Task.Factory.StartNew(() => { while (!IsBufferFull) { AddOneKeyPair(); } });
         }
 
-        private void EnsureKeyPairBuffer()
-        {
-            if (!IsBufferFull)
-            {
-                AddOneKeyPair();
-            }
-
-            Start();
-        }
-
         private void AddOneKeyPair()
         {
             IAsymmetricKeyPair keyPair = CreateKeyPair();

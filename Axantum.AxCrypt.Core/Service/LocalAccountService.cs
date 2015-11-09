@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 if (Identity.UserEmail == EmailAddress.Empty)
                 {
-                    throw new InvalidOperationException("The account service requies a user.");
+                    throw new InvalidOperationException("The account service requires a user.");
                 }
                 if (LoadUserAccounts().Accounts.Any())
                 {
@@ -174,7 +174,7 @@ namespace Axantum.AxCrypt.Core.Service
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
-                throw new InvalidOperationException("The account service requies a user.");
+                throw new InvalidOperationException("The account service requires a user.");
             }
 
             SaveAsync(ListAsync().Result).Wait();
@@ -251,7 +251,7 @@ namespace Axantum.AxCrypt.Core.Service
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
-                throw new InvalidOperationException("The account service requies a user.");
+                throw new InvalidOperationException("The account service requires a user.");
             }
 
             return _completedTask;
@@ -261,7 +261,7 @@ namespace Axantum.AxCrypt.Core.Service
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
-                throw new InvalidOperationException("The account service requies a user.");
+                throw new InvalidOperationException("The account service requires a user.");
             }
 
             return await Task.Run(() =>

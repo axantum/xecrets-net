@@ -89,6 +89,7 @@ namespace Axantum.AxCrypt.Core.Session
             await _service.SaveAsync(keyPairs).Free();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public async virtual Task<IEnumerable<UserKeyPair>> AllKeyPairsAsync()
         {
             return (await _service.ListAsync().Free()).OrderByDescending(uk => uk.Timestamp);

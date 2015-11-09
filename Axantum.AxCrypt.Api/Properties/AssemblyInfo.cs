@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
@@ -14,6 +15,7 @@ using System.Resources;
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
+[assembly: ComVisible(false)]
 
 // Version information for an assembly consists of the following four values:
 //

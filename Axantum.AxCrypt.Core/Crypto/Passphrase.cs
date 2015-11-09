@@ -43,6 +43,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             Text = text;
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [JsonConstructor]
         private Passphrase(SymmetricKeyThumbprint thumbprint)
         {
@@ -63,6 +64,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private SymmetricKeyThumbprint _thumbprint;
 
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [JsonProperty("thumbprint")]
         public SymmetricKeyThumbprint Thumbprint
         {

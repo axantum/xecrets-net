@@ -84,6 +84,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// Lists all UserKeyPairs available for the user, if any.
         /// </summary>
         /// <returns></returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         Task<IList<UserKeyPair>> ListAsync();
 
         /// <summary>

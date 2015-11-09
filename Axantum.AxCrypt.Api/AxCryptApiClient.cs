@@ -1,14 +1,11 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Api.Response;
 using Axantum.AxCrypt.Common;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -53,7 +50,7 @@ namespace Axantum.AxCrypt.Api
                 throw new ArgumentNullException(nameof(userName));
             }
 
-            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}".With(Caller.UrlEncode(userName)));
+            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}".With(ApiCaller.UrlEncode(userName)));
 
             RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
             if (restResponse.StatusCode == HttpStatusCode.NotFound)
@@ -64,7 +61,7 @@ namespace Axantum.AxCrypt.Api
             {
                 return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.InvalidName);
             }
-            Caller.EnsureStatusOk(restResponse);
+            ApiCaller.EnsureStatusOk(restResponse);
 
             UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
             return userAccount;
@@ -75,7 +72,7 @@ namespace Axantum.AxCrypt.Api
         /// </summary>
         /// <returns>All account information for the user.</returns>
         /// <exception cref="System.InvalidOperationException">There must be an identity and password to attempt to get private account information.</exception>
-        public async Task<UserAccount> GetMyAccountAsync()
+        public async Task<UserAccount> MyAccountAsync()
         {
             if (String.IsNullOrEmpty(Identity.User) || String.IsNullOrEmpty(Identity.Password))
             {
@@ -85,18 +82,18 @@ namespace Axantum.AxCrypt.Api
             Uri resource = BaseUrl.PathCombine("users/my/account");
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
-            Caller.EnsureStatusOk(restResponse);
+            ApiCaller.EnsureStatusOk(restResponse);
 
             UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
             return userAccount;
         }
 
-        public async Task<AccountKey> GetMyAccountKeysCurrentAsync()
+        public async Task<AccountKey> MyAccountKeysCurrentAsync()
         {
             Uri resource = BaseUrl.PathCombine("users/my/account/keys/current");
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
-            Caller.EnsureStatusOk(restResponse);
+            ApiCaller.EnsureStatusOk(restResponse);
 
             AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
             return accountKey;
@@ -108,11 +105,11 @@ namespace Axantum.AxCrypt.Api
         /// <param name="accountKeys">The account keys to upload.</param>
         public async Task PutMyAccountKeysAsync(IEnumerable<AccountKey> accountKeys)
         {
-            Uri resource = BaseUrl.PathCombine("users/my/account/keys".With(Caller.UrlEncode(Identity.User)));
+            Uri resource = BaseUrl.PathCombine("users/my/account/keys".With(ApiCaller.UrlEncode(Identity.User)));
 
             RestContent content = new RestContent(Serializer.Serialize(accountKeys));
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
-            Caller.EnsureStatusOk(restResponse);
+            ApiCaller.EnsureStatusOk(restResponse);
         }
 
         public async Task<AccountKey> GetAllAccountsUserKeyAsync(string userName)
@@ -122,10 +119,10 @@ namespace Axantum.AxCrypt.Api
                 throw new ArgumentNullException(nameof(userName));
             }
 
-            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}/key".With(Caller.UrlEncode(userName)));
+            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}/key".With(ApiCaller.UrlEncode(userName)));
 
             RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
-            Caller.EnsureStatusOk(restResponse);
+            ApiCaller.EnsureStatusOk(restResponse);
 
             AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
             return accountKey;
@@ -142,23 +139,23 @@ namespace Axantum.AxCrypt.Api
                 throw new ArgumentNullException("currentVersion");
             }
 
-            Uri resource = BaseUrl.PathCombine("axcrypt2version/windows?current={0}".With(Caller.UrlEncode(currentVersion)));
+            Uri resource = BaseUrl.PathCombine("axcrypt2version/windows?current={0}".With(ApiCaller.UrlEncode(currentVersion)));
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
-            Caller.EnsureStatusOk(restResponse);
+            ApiCaller.EnsureStatusOk(restResponse);
 
             CurrentVersionResponse apiResponse = Serializer.Deserialize<CurrentVersionResponse>(restResponse.Content);
-            Caller.EnsureStatusOk(apiResponse);
+            ApiCaller.EnsureStatusOk(apiResponse);
 
             return apiResponse;
         }
 
         public async Task PostAllAccountsUserAsync(string userName)
         {
-            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}".With(Caller.UrlEncode(userName)));
+            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}".With(ApiCaller.UrlEncode(userName)));
 
             RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest("POST", resource, Timeout)).Free();
-            Caller.EnsureStatusOk(restResponse);
+            ApiCaller.EnsureStatusOk(restResponse);
         }
 
         public async Task PutAllAccountsUserPasswordAsync(string verification)
@@ -173,7 +170,7 @@ namespace Axantum.AxCrypt.Api
             PasswordResetParameters passwordResetParameters = new PasswordResetParameters(Identity.Password, verification);
             RestContent content = new RestContent(Serializer.Serialize(passwordResetParameters));
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
-            Caller.EnsureStatusOk(restResponse);
+            ApiCaller.EnsureStatusOk(restResponse);
         }
 
         private static IStringSerializer Serializer
