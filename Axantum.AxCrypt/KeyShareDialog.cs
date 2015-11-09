@@ -7,9 +7,6 @@ using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,8 +26,8 @@ namespace Axantum.AxCrypt
             new Styling(Resources.axcrypticon).Style(this);
 
             _viewModel = new SharingListViewModel(knownPublicKeysFactory, sharedWith, logOnIdentity);
-            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>("SharedWith", (aks) => { _sharedWithListBox.Items.Clear(); _sharedWithListBox.Items.AddRange(aks.ToArray()); });
-            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>("NotSharedWith", (aks) => { _notSharedWithListBox.Items.Clear(); _notSharedWithListBox.Items.AddRange(aks.ToArray()); });
+            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWithListBox.Items.Clear(); _sharedWithListBox.Items.AddRange(aks.ToArray()); });
+            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWithListBox.Items.Clear(); _notSharedWithListBox.Items.AddRange(aks.ToArray()); });
 
             _sharedWithListBox.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
             _notSharedWithListBox.SelectedIndexChanged += (sender, e) => SetShareButtonState();
