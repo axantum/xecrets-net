@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Reflection;
 using System.Text;
 
 namespace Org.BouncyCastle.Utilities.Collections
@@ -18,7 +19,7 @@ namespace Org.BouncyCastle.Utilities.Collections
         {
             foreach (object o in e)
             {
-                if (!t.IsInstanceOfType(o))
+                if (o == null || !t.GetTypeInfo().IsAssignableFrom(o.GetType().GetTypeInfo()))
                     return false;
             }
             return true;

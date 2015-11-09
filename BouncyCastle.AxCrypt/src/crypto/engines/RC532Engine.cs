@@ -1,6 +1,6 @@
-using System;
-
 using Org.BouncyCastle.Crypto.Parameters;
+using System;
+using System.Reflection;
 
 namespace Org.BouncyCastle.Crypto.Engines
 {
@@ -12,7 +12,7 @@ namespace Org.BouncyCastle.Crypto.Engines
     * This implementation has a word size of 32 bits.</p>
     */
     public class RC532Engine
-		: IBlockCipher
+        : IBlockCipher
     {
         /*
         * the number of rounds to perform
@@ -22,7 +22,7 @@ namespace Org.BouncyCastle.Crypto.Engines
         /*
         * the expanded key array of size 2*(rounds + 1)
         */
-        private int [] _S;
+        private int[] _S;
 
         /*
         * our "magic constants" for 32 32
@@ -33,8 +33,8 @@ namespace Org.BouncyCastle.Crypto.Engines
         * where e is the base of natural logarithms (2.718281828...)
         * and o is the golden ratio (1.61803398...)
         */
-        private static readonly int P32 = unchecked((int) 0xb7e15163);
-        private static readonly int Q32 = unchecked((int) 0x9e3779b9);
+        private static readonly int P32 = unchecked((int)0xb7e15163);
+        private static readonly int Q32 = unchecked((int)0x9e3779b9);
 
         private bool forEncryption;
 
@@ -44,8 +44,8 @@ namespace Org.BouncyCastle.Crypto.Engines
         */
         public RC532Engine()
         {
-            _noRounds     = 12;         // the default
-//            _S            = null;
+            _noRounds = 12;         // the default
+                                    //            _S            = null;
         }
 
         public string AlgorithmName
@@ -53,17 +53,17 @@ namespace Org.BouncyCastle.Crypto.Engines
             get { return "RC5-32"; }
         }
 
-		public bool IsPartialBlockOkay
-		{
-			get { return false; }
-		}
+        public bool IsPartialBlockOkay
+        {
+            get { return false; }
+        }
 
-		public int GetBlockSize()
+        public int GetBlockSize()
         {
             return 2 * 4;
         }
 
-		/**
+        /**
         * initialise a RC5-32 cipher.
         *
         * @param forEncryption whether or not we are for encryption.
@@ -72,10 +72,10 @@ namespace Org.BouncyCastle.Crypto.Engines
         * inappropriate.
         */
         public void Init(
-            bool				forEncryption,
-            ICipherParameters	parameters)
+            bool forEncryption,
+            ICipherParameters parameters)
         {
-            if (typeof(RC5Parameters).IsInstanceOfType(parameters))
+            if (parameters != null && typeof(RC5Parameters).GetTypeInfo().IsAssignableFrom(parameters.GetType().GetTypeInfo()))
             {
                 RC5Parameters p = (RC5Parameters)parameters;
 
@@ -83,7 +83,7 @@ namespace Org.BouncyCastle.Crypto.Engines
 
                 SetKey(p.GetKey());
             }
-            else if (typeof(KeyParameter).IsInstanceOfType(parameters))
+            else if (parameters != null && typeof(KeyParameter).GetTypeInfo().IsAssignableFrom(parameters.GetType().GetTypeInfo()))
             {
                 KeyParameter p = (KeyParameter)parameters;
 
@@ -98,17 +98,17 @@ namespace Org.BouncyCastle.Crypto.Engines
         }
 
         public int ProcessBlock(
-            byte[]	input,
-            int		inOff,
-            byte[]	output,
-            int		outOff)
+            byte[] input,
+            int inOff,
+            byte[] output,
+            int outOff)
         {
             return (forEncryption)
-				?	EncryptBlock(input, inOff, output, outOff)
-				:	DecryptBlock(input, inOff, output, outOff);
+                ? EncryptBlock(input, inOff, output, outOff)
+                : DecryptBlock(input, inOff, output, outOff);
         }
 
-		public void Reset()
+        public void Reset()
         {
         }
 
@@ -132,7 +132,7 @@ namespace Org.BouncyCastle.Crypto.Engines
             //   of K. Any unfilled byte positions in L are zeroed. In the
             //   case that b = c = 0, set c = 1 and L[0] = 0.
             //
-            int[]   L = new int[(key.Length + (4 - 1)) / 4];
+            int[] L = new int[(key.Length + (4 - 1)) / 4];
 
             for (int i = 0; i != key.Length; i++)
             {
@@ -145,12 +145,12 @@ namespace Org.BouncyCastle.Crypto.Engines
             //   using an arithmetic progression modulo 2^wordsize determined
             //   by the magic numbers, Pw & Qw.
             //
-            _S            = new int[2*(_noRounds + 1)];
+            _S = new int[2 * (_noRounds + 1)];
 
             _S[0] = P32;
-            for (int i=1; i < _S.Length; i++)
+            for (int i = 1; i < _S.Length; i++)
             {
-                _S[i] = (_S[i-1] + Q32);
+                _S[i] = (_S[i - 1] + Q32);
             }
 
             //
@@ -175,9 +175,9 @@ namespace Org.BouncyCastle.Crypto.Engines
             for (int k = 0; k < iter; k++)
             {
                 A = _S[ii] = RotateLeft(_S[ii] + A + B, 3);
-                B =  L[jj] = RotateLeft( L[jj] + A + B, A+B);
-                ii = (ii+1) % _S.Length;
-                jj = (jj+1) %  L.Length;
+                B = L[jj] = RotateLeft(L[jj] + A + B, A + B);
+                ii = (ii + 1) % _S.Length;
+                jj = (jj + 1) % L.Length;
             }
         }
 
@@ -191,18 +191,18 @@ namespace Org.BouncyCastle.Crypto.Engines
         * @param  outOff  offset into out buffer
         */
         private int EncryptBlock(
-            byte[]  input,
-            int     inOff,
-            byte[]  outBytes,
-            int     outOff)
+            byte[] input,
+            int inOff,
+            byte[] outBytes,
+            int outOff)
         {
             int A = BytesToWord(input, inOff) + _S[0];
             int B = BytesToWord(input, inOff + 4) + _S[1];
 
             for (int i = 1; i <= _noRounds; i++)
             {
-                A = RotateLeft(A ^ B, B) + _S[2*i];
-                B = RotateLeft(B ^ A, A) + _S[2*i+1];
+                A = RotateLeft(A ^ B, B) + _S[2 * i];
+                B = RotateLeft(B ^ A, A) + _S[2 * i + 1];
             }
 
             WordToBytes(A, outBytes, outOff);
@@ -212,18 +212,18 @@ namespace Org.BouncyCastle.Crypto.Engines
         }
 
         private int DecryptBlock(
-            byte[]  input,
-            int     inOff,
-            byte[]  outBytes,
-            int     outOff)
+            byte[] input,
+            int inOff,
+            byte[] outBytes,
+            int outOff)
         {
             int A = BytesToWord(input, inOff);
             int B = BytesToWord(input, inOff + 4);
 
             for (int i = _noRounds; i >= 1; i--)
             {
-                B = RotateRight(B - _S[2*i+1], A) ^ A;
-                A = RotateRight(A - _S[2*i],   B) ^ B;
+                B = RotateRight(B - _S[2 * i + 1], A) ^ A;
+                A = RotateRight(A - _S[2 * i], B) ^ B;
             }
 
             WordToBytes(A - _S[0], outBytes, outOff);
@@ -250,8 +250,8 @@ namespace Org.BouncyCastle.Crypto.Engines
         * @param  y    number of bits to rotate % 32
         */
         private int RotateLeft(int x, int y) {
-            return ((int)  (  (uint) (x << (y & (32-1))) |
-                              ((uint) x >> (32 - (y & (32-1)))) )
+            return ((int)((uint)(x << (y & (32 - 1))) |
+                              ((uint)x >> (32 - (y & (32 - 1)))))
                    );
         }
 
@@ -266,23 +266,23 @@ namespace Org.BouncyCastle.Crypto.Engines
         * @param  y    number of bits to rotate % 32
         */
         private int RotateRight(int x, int y) {
-            return ((int) (     ((uint) x >> (y & (32-1))) |
-                                (uint) (x << (32 - (y & (32-1))))   )
+            return ((int)(((uint)x >> (y & (32 - 1))) |
+                                (uint)(x << (32 - (y & (32 - 1)))))
                    );
         }
 
         private int BytesToWord(
-            byte[]  src,
-            int     srcOff)
+            byte[] src,
+            int srcOff)
         {
             return (src[srcOff] & 0xff) | ((src[srcOff + 1] & 0xff) << 8)
                 | ((src[srcOff + 2] & 0xff) << 16) | ((src[srcOff + 3] & 0xff) << 24);
         }
 
         private void WordToBytes(
-            int    word,
-            byte[]  dst,
-            int     dstOff)
+            int word,
+            byte[] dst,
+            int dstOff)
         {
             dst[dstOff] = (byte)word;
             dst[dstOff + 1] = (byte)(word >> 8);

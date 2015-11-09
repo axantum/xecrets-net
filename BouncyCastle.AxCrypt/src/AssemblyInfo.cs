@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 //using System.Security.Permissions;
 
@@ -79,7 +77,7 @@ internal class AssemblyInfo
         {
             if (version == null)
             {
-                var ver = (AssemblyVersionAttribute)typeof(AssemblyInfo).Assembly.GetCustomAttributes(typeof(AssemblyVersionAttribute), false).FirstOrDefault();
+                var ver = (AssemblyVersionAttribute)typeof(AssemblyInfo).GetTypeInfo().GetCustomAttributes(typeof(AssemblyVersionAttribute), false).FirstOrDefault();
                 if (ver != null)
                 {
                     version = ver.Version;

@@ -1,6 +1,6 @@
-using System;
-
 using Org.BouncyCastle.Crypto.Parameters;
+using System;
+using System.Reflection;
 
 namespace Org.BouncyCastle.Crypto.Engines
 {
@@ -12,7 +12,7 @@ namespace Org.BouncyCastle.Crypto.Engines
     * This implementation is set to work with a 64 bit word size.</p>
     */
     public class RC564Engine
-		: IBlockCipher
+        : IBlockCipher
     {
         private static readonly int wordSize = 64;
         private static readonly int bytesPerWord = wordSize / 8;
@@ -25,7 +25,7 @@ namespace Org.BouncyCastle.Crypto.Engines
         /*
         * the expanded key array of size 2*(rounds + 1)
         */
-        private long [] _S;
+        private long[] _S;
 
         /*
         * our "magic constants" for wordSize 62
@@ -36,8 +36,8 @@ namespace Org.BouncyCastle.Crypto.Engines
         * where e is the base of natural logarithms (2.718281828...)
         * and o is the golden ratio (1.61803398...)
         */
-        private static readonly long P64 = unchecked( (long) 0xb7e151628aed2a6bL);
-        private static readonly long Q64 = unchecked( (long) 0x9e3779b97f4a7c15L);
+        private static readonly long P64 = unchecked((long)0xb7e151628aed2a6bL);
+        private static readonly long Q64 = unchecked((long)0x9e3779b97f4a7c15L);
 
         private bool forEncryption;
 
@@ -47,8 +47,8 @@ namespace Org.BouncyCastle.Crypto.Engines
         */
         public RC564Engine()
         {
-            _noRounds     = 12;
-//            _S            = null;
+            _noRounds = 12;
+            //            _S            = null;
         }
 
         public string AlgorithmName
@@ -56,12 +56,12 @@ namespace Org.BouncyCastle.Crypto.Engines
             get { return "RC5-64"; }
         }
 
-		public bool IsPartialBlockOkay
-		{
-			get { return false; }
-		}
+        public bool IsPartialBlockOkay
+        {
+            get { return false; }
+        }
 
-		public int GetBlockSize()
+        public int GetBlockSize()
         {
             return 2 * bytesPerWord;
         }
@@ -75,28 +75,28 @@ namespace Org.BouncyCastle.Crypto.Engines
         * inappropriate.
         */
         public void Init(
-            bool             forEncryption,
-            ICipherParameters    parameters)
+            bool forEncryption,
+            ICipherParameters parameters)
         {
-            if (!(typeof(RC5Parameters).IsInstanceOfType(parameters)))
+            if (parameters == null || !typeof(RC5Parameters).GetTypeInfo().IsAssignableFrom(parameters.GetType().GetTypeInfo()))
             {
                 throw new ArgumentException("invalid parameter passed to RC564 init - " + parameters.GetType().ToString());
             }
 
-            RC5Parameters       p = (RC5Parameters)parameters;
+            RC5Parameters p = (RC5Parameters)parameters;
 
             this.forEncryption = forEncryption;
 
-            _noRounds     = p.Rounds;
+            _noRounds = p.Rounds;
 
             SetKey(p.GetKey());
         }
 
         public int ProcessBlock(
-            byte[]  input,
-            int     inOff,
-            byte[]  output,
-            int     outOff)
+            byte[] input,
+            int inOff,
+            byte[] output,
+            int outOff)
         {
             return (forEncryption) ? EncryptBlock(input, inOff, output, outOff)
                                         : DecryptBlock(input, inOff, output, outOff);
@@ -112,7 +112,7 @@ namespace Org.BouncyCastle.Crypto.Engines
         * @param  key  the key to be used
         */
         private void SetKey(
-            byte[]      key)
+            byte[] key)
         {
             //
             // KEY EXPANSION:
@@ -126,7 +126,7 @@ namespace Org.BouncyCastle.Crypto.Engines
             //   of K. Any unfilled byte positions in L are zeroed. In the
             //   case that b = c = 0, set c = 1 and L[0] = 0.
             //
-            long[]   L = new long[(key.Length + (bytesPerWord - 1)) / bytesPerWord];
+            long[] L = new long[(key.Length + (bytesPerWord - 1)) / bytesPerWord];
 
             for (int i = 0; i != key.Length; i++)
             {
@@ -139,12 +139,12 @@ namespace Org.BouncyCastle.Crypto.Engines
             //   using an arithmetic progression modulo 2^wordsize determined
             //   by the magic numbers, Pw & Qw.
             //
-            _S            = new long[2*(_noRounds + 1)];
+            _S = new long[2 * (_noRounds + 1)];
 
             _S[0] = P64;
-            for (int i=1; i < _S.Length; i++)
+            for (int i = 1; i < _S.Length; i++)
             {
-                _S[i] = (_S[i-1] + Q64);
+                _S[i] = (_S[i - 1] + Q64);
             }
 
             //
@@ -169,9 +169,9 @@ namespace Org.BouncyCastle.Crypto.Engines
             for (int k = 0; k < iter; k++)
             {
                 A = _S[ii] = RotateLeft(_S[ii] + A + B, 3);
-                B =  L[jj] = RotateLeft( L[jj] + A + B, A+B);
-                ii = (ii+1) % _S.Length;
-                jj = (jj+1) %  L.Length;
+                B = L[jj] = RotateLeft(L[jj] + A + B, A + B);
+                ii = (ii + 1) % _S.Length;
+                jj = (jj + 1) % L.Length;
             }
         }
 
@@ -185,18 +185,18 @@ namespace Org.BouncyCastle.Crypto.Engines
         * @param  outOff  offset into out buffer
         */
         private int EncryptBlock(
-            byte[]  input,
-            int     inOff,
-            byte[]  outBytes,
-            int     outOff)
+            byte[] input,
+            int inOff,
+            byte[] outBytes,
+            int outOff)
         {
             long A = BytesToWord(input, inOff) + _S[0];
             long B = BytesToWord(input, inOff + bytesPerWord) + _S[1];
 
             for (int i = 1; i <= _noRounds; i++)
             {
-                A = RotateLeft(A ^ B, B) + _S[2*i];
-                B = RotateLeft(B ^ A, A) + _S[2*i+1];
+                A = RotateLeft(A ^ B, B) + _S[2 * i];
+                B = RotateLeft(B ^ A, A) + _S[2 * i + 1];
             }
 
             WordToBytes(A, outBytes, outOff);
@@ -206,18 +206,18 @@ namespace Org.BouncyCastle.Crypto.Engines
         }
 
         private int DecryptBlock(
-            byte[]  input,
-            int     inOff,
-            byte[]  outBytes,
-            int     outOff)
+            byte[] input,
+            int inOff,
+            byte[] outBytes,
+            int outOff)
         {
             long A = BytesToWord(input, inOff);
             long B = BytesToWord(input, inOff + bytesPerWord);
 
             for (int i = _noRounds; i >= 1; i--)
             {
-                B = RotateRight(B - _S[2*i+1], A) ^ A;
-                A = RotateRight(A - _S[2*i],   B) ^ B;
+                B = RotateRight(B - _S[2 * i + 1], A) ^ A;
+                A = RotateRight(A - _S[2 * i], B) ^ B;
             }
 
             WordToBytes(A - _S[0], outBytes, outOff);
@@ -244,8 +244,8 @@ namespace Org.BouncyCastle.Crypto.Engines
         * @param  y    number of bits to rotate % wordSize
         */
         private long RotateLeft(long x, long y) {
-            return ((long) (    (ulong) (x << (int) (y & (wordSize-1))) |
-                                ((ulong) x >> (int) (wordSize - (y & (wordSize-1)))))
+            return ((long)((ulong)(x << (int)(y & (wordSize - 1))) |
+                                ((ulong)x >> (int)(wordSize - (y & (wordSize - 1)))))
                    );
         }
 
@@ -260,16 +260,16 @@ namespace Org.BouncyCastle.Crypto.Engines
         * @param y number of bits to rotate % wordSize
         */
         private long RotateRight(long x, long y) {
-            return ((long) (    ((ulong) x >> (int) (y & (wordSize-1))) |
-                                (ulong) (x << (int) (wordSize - (y & (wordSize-1)))))
+            return ((long)(((ulong)x >> (int)(y & (wordSize - 1))) |
+                                (ulong)(x << (int)(wordSize - (y & (wordSize - 1)))))
                    );
         }
 
         private long BytesToWord(
-            byte[]  src,
-            int     srcOff)
+            byte[] src,
+            int srcOff)
         {
-            long    word = 0;
+            long word = 0;
 
             for (int i = bytesPerWord - 1; i >= 0; i--)
             {
@@ -280,14 +280,14 @@ namespace Org.BouncyCastle.Crypto.Engines
         }
 
         private void WordToBytes(
-            long    word,
-            byte[]  dst,
-            int     dstOff)
+            long word,
+            byte[] dst,
+            int dstOff)
         {
             for (int i = 0; i < bytesPerWord; i++)
             {
                 dst[i + dstOff] = (byte)word;
-                word = (long) ((ulong) word >> 8);
+                word = (long)((ulong)word >> 8);
             }
         }
     }

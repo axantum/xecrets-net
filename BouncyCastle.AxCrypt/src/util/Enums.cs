@@ -2,8 +2,9 @@ using System;
 using System.Text;
 
 #if NETCF_1_0 || NETCF_2_0 || SILVERLIGHT
-using System.Collections;
+
 using System.Reflection;
+
 #endif
 
 using Org.BouncyCastle.Utilities.Date;
@@ -14,7 +15,7 @@ namespace Org.BouncyCastle.Utilities
     {
         internal static Enum GetEnumValue(System.Type enumType, string s)
         {
-            if (!enumType.IsEnum)
+            if (!enumType.GetTypeInfo().IsEnum)
                 throw new ArgumentException("Not an enumeration type", "enumType");
 
             // We only want to parse single named constants
@@ -31,7 +32,7 @@ namespace Org.BouncyCastle.Utilities
                 }
 #else
                 return (Enum)Enum.Parse(enumType, s, false);
-#endif		
+#endif
             }
 
             throw new ArgumentException();
@@ -39,7 +40,7 @@ namespace Org.BouncyCastle.Utilities
 
         internal static Array GetEnumValues(System.Type enumType)
         {
-            if (!enumType.IsEnum)
+            if (!enumType.GetTypeInfo().IsEnum)
                 throw new ArgumentException("Not an enumeration type", "enumType");
 
 #if NETCF_1_0 || NETCF_2_0 || SILVERLIGHT && !PCL
