@@ -1249,11 +1249,13 @@ namespace Axantum.AxCrypt
             _updateRecentFilesInProgress = true;
             try
             {
+                Cursor = Cursors.WaitCursor;
                 await UpdateRecentFilesUnsynchronizedAsync(files);
             }
             finally
             {
                 _updateRecentFilesInProgress = false;
+                Cursor = Cursors.Default;
             }
         }
 
