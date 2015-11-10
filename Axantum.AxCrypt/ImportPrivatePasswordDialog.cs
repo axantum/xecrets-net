@@ -29,8 +29,8 @@ namespace Axantum.AxCrypt
             _passphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = _passphraseTextBox.Text; _privateKeyFileTextBox.ScrollToCaret(); };
             _showPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = _showPassphraseCheckBox.Checked; };
 
-            _viewModel.BindPropertyChanged<bool>("ImportSuccessful", (ok) => { if (!ok) { _errorProvider1.SetError(_browsePrivateKeyFileButton, Resources.FailedPrivateImport); } });
-            _viewModel.BindPropertyChanged<bool>("ShowPassphrase", (show) => { _showPassphraseCheckBox.Checked = show; _passphraseTextBox.UseSystemPasswordChar = !show; });
+            _viewModel.BindPropertyChanged<bool>(nameof(ImportPrivateKeysViewModel.ImportSuccessful), (ok) => { if (!ok) { _errorProvider1.SetError(_browsePrivateKeyFileButton, Resources.FailedPrivateImport); } });
+            _viewModel.BindPropertyChanged<bool>(nameof(ImportPrivateKeysViewModel.ShowPassphrase), (show) => { _showPassphraseCheckBox.Checked = show; _passphraseTextBox.UseSystemPasswordChar = !show; });
 
             Owner = parent;
             Owner.Activated += (sender, e) => Activate();
@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt
         {
             bool validated = true;
 
-            if (_viewModel["Passphrase"].Length > 0)
+            if (_viewModel[nameof(ImportPrivateKeysViewModel.Passphrase)].Length > 0)
             {
                 _errorProvider1.SetError(_passphraseTextBox, Resources.WrongPassphrase);
                 validated = false;
@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt
                 _errorProvider1.Clear();
             }
 
-            if (_viewModel["PrivateKeyFileName"].Length > 0)
+            if (_viewModel[nameof(ImportPrivateKeysViewModel.PrivateKeyFileName)].Length > 0)
             {
                 _errorProvider2.SetError(_browsePrivateKeyFileButton, Resources.FileNotFound);
                 validated = false;

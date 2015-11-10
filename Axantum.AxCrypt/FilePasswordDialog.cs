@@ -25,8 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
@@ -61,9 +59,8 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _viewModel.BindPropertyChanged("IdentityName", (string id) => { PassphraseGroupBox.Text = !String.IsNullOrEmpty(id) ? Resources.EnterPassphraseForIdentityPrompt.InvariantFormat(id) : Resources.PassphrasePrompt; });
-            _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { PassphraseTextBox.UseSystemPasswordChar = !show; });
-            _viewModel.BindPropertyChanged("FileName", (string fileName) => { FileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
+            _viewModel.BindPropertyChanged(nameof(LogOnViewModel.ShowPassphrase), (bool show) => { PassphraseTextBox.UseSystemPasswordChar = !show; });
+            _viewModel.BindPropertyChanged(nameof(LogOnViewModel.FileName), (string fileName) => { FileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
@@ -78,7 +75,7 @@ namespace Axantum.AxCrypt
 
         private bool AdHocValidationDueToMonoLimitations()
         {
-            if (_viewModel["Passphrase"].Length == 0)
+            if (_viewModel[nameof(LogOnViewModel.Passphrase)].Length == 0)
             {
                 _errorProvider1.Clear();
                 return true;

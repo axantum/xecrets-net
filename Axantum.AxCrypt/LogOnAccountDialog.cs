@@ -31,7 +31,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _viewModel.BindPropertyChanged("UserEmail", (string userEmail) => { _email.Text = userEmail; });
+            _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.UserEmail), (string userEmail) => { _email.Text = userEmail; });
 
             _passphrase.LostFocus += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
             _passphrase.Validating += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
@@ -39,8 +39,8 @@ namespace Axantum.AxCrypt
             _email.LostFocus += (s, ea) => { _viewModel.UserEmail = _email.Text; AdHocValidateEmail(); };
             _email.Validating += (s, ea) => { _viewModel.UserEmail = _email.Text; AdHocValidateEmail(); };
 
-            _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { _passphrase.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
-            _viewModel.BindPropertyChanged("ShowEmail", (bool show) => { EmailPanel.Visible = show; });
+            _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowPassphrase), (bool show) => { _passphrase.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
+            _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowEmail), (bool show) => { EmailPanel.Visible = show; });
         }
 
         private void ButtonOk_Click(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt
         private bool AdHocValidatePassphrase()
         {
             _errorProvider1.Clear();
-            if (_viewModel["Passphrase"].Length != 0)
+            if (_viewModel[nameof(LogOnAccountViewModel.Passphrase)].Length != 0)
             {
                 _errorProvider1.SetError(_passphrase, _email.Text.Length > 0 ? Resources.WrongPassphrase : Resources.UnkownLogOn);
                 return false;
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt
         private bool AdHocValidateEmail()
         {
             _errorProvider2.Clear();
-            if (_email.Text.Length == 0 || _viewModel["UserEmail"].Length != 0)
+            if (_email.Text.Length == 0 || _viewModel[nameof(LogOnAccountViewModel.UserEmail)].Length != 0)
             {
                 _errorProvider2.SetError(_email, Resources.BadEmail);
                 return false;

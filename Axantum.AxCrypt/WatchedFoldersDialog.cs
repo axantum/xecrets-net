@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.UI.ViewModel;
+﻿using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
@@ -39,7 +38,7 @@ namespace Axantum.AxCrypt
 
         private void BindToViewModel()
         {
-            _viewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
+            _viewModel.BindPropertyChanged(nameof(WatchedFoldersViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
 
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _viewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
             _watchedFoldersListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _watchedFoldersContextMenuStrip.Show((Control)sender, e.Location); };

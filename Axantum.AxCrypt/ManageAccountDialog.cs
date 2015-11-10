@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core;
+﻿using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
@@ -38,7 +37,7 @@ namespace Axantum.AxCrypt
             _userSettings = userSettings;
             AccountStorage userKeyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             _viewModel = new ManageAccountViewModel(userKeyPairs, knownIdentities);
-            _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>("AccountEmails", ListAccountEmails);
+            _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>(nameof(ManageAccountViewModel.AccountProperties), ListAccountEmails);
         }
 
         private void ListAccountEmails(IEnumerable<AccountProperties> emails)

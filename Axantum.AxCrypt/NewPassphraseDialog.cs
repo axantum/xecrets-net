@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
@@ -63,10 +62,10 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !show; });
-            _viewModel.BindPropertyChanged("FileName", (string fileName) => { FileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
-            _viewModel.BindPropertyChanged("Passphrase", (string p) => { PassphraseTextBox.Text = p; });
-            _viewModel.BindPropertyChanged("Verification", (string p) => { VerifyPassphraseTextbox.Text = p; });
+            _viewModel.BindPropertyChanged(nameof(NewPassphraseViewModel.ShowPassphrase), (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !show; });
+            _viewModel.BindPropertyChanged(nameof(NewPassphraseViewModel.FileName), (string fileName) => { FileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
+            _viewModel.BindPropertyChanged(nameof(NewPassphraseViewModel.Passphrase), (string p) => { PassphraseTextBox.Text = p; });
+            _viewModel.BindPropertyChanged(nameof(NewPassphraseViewModel.Verification), (string p) => { VerifyPassphraseTextbox.Text = p; });
 
             PassphraseTextBox.Focus();
         }
@@ -82,12 +81,12 @@ namespace Axantum.AxCrypt
         private bool AdHocValidationDueToMonoLimitations()
         {
             bool validated = true;
-            if (_viewModel["Verification"].Length > 0)
+            if (_viewModel[nameof(NewPassphraseViewModel.Verification)].Length > 0)
             {
                 _errorProvider1.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
                 validated = false;
             }
-            if (_viewModel["Passphrase"].Length > 0)
+            if (_viewModel[nameof(NewPassphraseViewModel.Passphrase)].Length > 0)
             {
                 _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
                 validated = false;
