@@ -41,8 +41,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         void Execute(object parameter);
 
-        Task ExecuteAsync(object parameter);
-
         event EventHandler CanExecuteChanged;
     }
 }

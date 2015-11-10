@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string ErrorMessage { get { return GetProperty<string>(nameof(ErrorMessage)); } set { SetProperty(nameof(ErrorMessage), value); } }
 
-        public IAction VerifyAccount { get { return new DelegateAction<object>((o) => VerifyAccountActionAsync()); } }
+        public IAsyncAction VerifyAccount { get { return new AsyncDelegateAction<object>((o) => VerifyAccountActionAsync()); } }
 
         public VerifyAccountViewModel(EmailAddress emailAddress)
         {

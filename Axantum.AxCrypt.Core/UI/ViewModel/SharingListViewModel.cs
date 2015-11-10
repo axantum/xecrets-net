@@ -55,11 +55,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string NewKeyShare { get { return GetProperty<string>(nameof(NewKeyShare)); } set { SetProperty(nameof(NewKeyShare), value); } }
 
-        public IAction AsyncAddKeyShares { get; private set; }
+        public IAsyncAction AsyncAddKeyShares { get; private set; }
 
         public IAction RemoveKeyShares { get; private set; }
 
-        public IAction AsyncAddNewKeyShare { get; private set; }
+        public IAsyncAction AsyncAddNewKeyShare { get; private set; }
 
         public SharingListViewModel(Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
@@ -82,9 +82,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             NewKeyShare = String.Empty;
 
-            AsyncAddKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));
+            AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));
             RemoveKeyShares = new DelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesAction(upks));
-            AsyncAddNewKeyShare = new DelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => this[nameof(NewKeyShare)].Length == 0);
+            AsyncAddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => this[nameof(NewKeyShare)].Length == 0);
         }
 
         private static void BindPropertyChangedEvents()
