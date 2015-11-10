@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Api
         }
 
         public UnauthorizedApiException(string message)
-            : this(message, ErrorStatus.CryptographicError)
+            : this(message, ErrorStatus.ApiUnauthorizedError)
         {
         }
 

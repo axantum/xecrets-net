@@ -53,6 +53,7 @@
     <Compile Include="ApiCaller.cs" />
     <Compile Include="AxCryptApi.cs" />
     <Compile Include="AxCryptApiClient.cs" />
+    <Compile Include="BadRequestApiException.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GlobalApiClient.cs" />
     <Compile Include="GlobalSuppressions.cs" />

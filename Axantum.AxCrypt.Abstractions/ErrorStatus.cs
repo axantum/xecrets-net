@@ -62,5 +62,7 @@ namespace Axantum.AxCrypt.Abstractions
         ApiOffline,
         WrongPassword,
         Exit,
+        BadApiRequest,
+        BadUserInput,
     }
 }

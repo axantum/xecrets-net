@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
@@ -114,7 +115,16 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            await _viewModel.AsyncAddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
+            try
+            {
+                await _viewModel.AsyncAddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
+            }
+            catch (UserInputException)
+            {
+                _errorProvider1.SetError(_newContact, Resources.InvalidEmail);
+                _errorProvider1.SetIconPadding(_newContact, 3);
+                return;
+            }
             _newContact.Text = String.Empty;
         }
 

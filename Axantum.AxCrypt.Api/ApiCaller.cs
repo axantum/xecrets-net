@@ -49,7 +49,11 @@ namespace Axantum.AxCrypt.Api
             }
             if (restResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
             {
-                throw new OfflineApiException("Service unavailable");
+                throw new OfflineApiException("Service unavailable.");
+            }
+            if (restResponse.StatusCode == HttpStatusCode.BadRequest)
+            {
+                throw new BadRequestApiException("Malformed API request.");
             }
             if (restResponse.StatusCode != HttpStatusCode.OK && restResponse.StatusCode != HttpStatusCode.Created)
             {
