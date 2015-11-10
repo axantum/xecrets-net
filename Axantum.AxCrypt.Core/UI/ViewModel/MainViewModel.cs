@@ -47,53 +47,53 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private UpdateCheck _updateCheck;
 
-        public bool LoggedOn { get { return GetProperty<bool>("LoggedOn"); } set { SetProperty("LoggedOn", value); } }
+        public bool LoggedOn { get { return GetProperty<bool>(nameof(LoggedOn)); } set { SetProperty(nameof(LoggedOn), value); } }
 
-        public bool EncryptFileEnabled { get { return GetProperty<bool>("EncryptFileEnabled"); } set { SetProperty("EncryptFileEnabled", value); } }
+        public bool EncryptFileEnabled { get { return GetProperty<bool>(nameof(EncryptFileEnabled)); } set { SetProperty(nameof(EncryptFileEnabled), value); } }
 
-        public bool DecryptFileEnabled { get { return GetProperty<bool>("DecryptFileEnabled"); } set { SetProperty("DecryptFileEnabled", value); } }
+        public bool DecryptFileEnabled { get { return GetProperty<bool>(nameof(DecryptFileEnabled)); } set { SetProperty(nameof(DecryptFileEnabled), value); } }
 
-        public bool OpenEncryptedEnabled { get { return GetProperty<bool>("OpenEncryptedEnabled"); } set { SetProperty("OpenEncryptedEnabled", value); } }
+        public bool OpenEncryptedEnabled { get { return GetProperty<bool>(nameof(OpenEncryptedEnabled)); } set { SetProperty(nameof(OpenEncryptedEnabled), value); } }
 
-        public bool WatchedFoldersEnabled { get { return GetProperty<bool>("WatchedFoldersEnabled"); } set { SetProperty("WatchedFoldersEnabled", value); } }
+        public bool WatchedFoldersEnabled { get { return GetProperty<bool>(nameof(WatchedFoldersEnabled)); } set { SetProperty(nameof(WatchedFoldersEnabled), value); } }
 
-        public string Title { get { return GetProperty<string>("Title"); } set { SetProperty("Title", value); } }
+        public string Title { get { return GetProperty<string>(nameof(Title)); } set { SetProperty(nameof(Title), value); } }
 
-        public LogOnIdentity Identity { get { return GetProperty<LogOnIdentity>("Identity"); } set { SetProperty("Identity", value); } }
+        public LogOnIdentity Identity { get { return GetProperty<LogOnIdentity>(nameof(Identity)); } set { SetProperty(nameof(Identity), value); } }
 
-        public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
+        public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>(nameof(WatchedFolders)); } set { SetProperty(nameof(WatchedFolders), value.ToList()); } }
 
-        public IEnumerable<ActiveFile> RecentFiles { get { return GetProperty<IEnumerable<ActiveFile>>("RecentFiles"); } set { SetProperty("RecentFiles", value.ToList()); } }
+        public IEnumerable<ActiveFile> RecentFiles { get { return GetProperty<IEnumerable<ActiveFile>>(nameof(RecentFiles)); } set { SetProperty(nameof(RecentFiles), value.ToList()); } }
 
-        public IEnumerable<ActiveFile> DecryptedFiles { get { return GetProperty<IEnumerable<ActiveFile>>("DecryptedFiles"); } set { SetProperty("DecryptedFiles", value.ToList()); } }
+        public IEnumerable<ActiveFile> DecryptedFiles { get { return GetProperty<IEnumerable<ActiveFile>>(nameof(DecryptedFiles)); } set { SetProperty(nameof(DecryptedFiles), value.ToList()); } }
 
-        public ActiveFileComparer RecentFilesComparer { get { return GetProperty<ActiveFileComparer>("RecentFilesComparer"); } set { SetProperty("RecentFilesComparer", value); } }
+        public ActiveFileComparer RecentFilesComparer { get { return GetProperty<ActiveFileComparer>(nameof(RecentFilesComparer)); } set { SetProperty(nameof(RecentFilesComparer), value); } }
 
-        public IEnumerable<string> SelectedWatchedFolders { get { return GetProperty<IEnumerable<string>>("SelectedWatchedFolders"); } set { SetProperty("SelectedWatchedFolders", value.ToList()); } }
+        public IEnumerable<string> SelectedWatchedFolders { get { return GetProperty<IEnumerable<string>>(nameof(SelectedWatchedFolders)); } set { SetProperty(nameof(SelectedWatchedFolders), value.ToList()); } }
 
-        public IEnumerable<string> SelectedRecentFiles { get { return GetProperty<IEnumerable<string>>("SelectedRecentFiles"); } set { SetProperty("SelectedRecentFiles", value.ToList()); } }
+        public IEnumerable<string> SelectedRecentFiles { get { return GetProperty<IEnumerable<string>>(nameof(SelectedRecentFiles)); } set { SetProperty(nameof(SelectedRecentFiles), value.ToList()); } }
 
-        public IEnumerable<string> DragAndDropFiles { get { return GetProperty<IEnumerable<string>>("DragAndDropFiles"); } set { SetProperty("DragAndDropFiles", value.ToList()); } }
+        public IEnumerable<string> DragAndDropFiles { get { return GetProperty<IEnumerable<string>>(nameof(DragAndDropFiles)); } set { SetProperty(nameof(DragAndDropFiles), value.ToList()); } }
 
-        public FileInfoTypes DragAndDropFilesTypes { get { return GetProperty<FileInfoTypes>("DragAndDropFilesTypes"); } set { SetProperty("DragAndDropFilesTypes", value); } }
+        public FileInfoTypes DragAndDropFilesTypes { get { return GetProperty<FileInfoTypes>(nameof(DragAndDropFilesTypes)); } set { SetProperty(nameof(DragAndDropFilesTypes), value); } }
 
-        public bool DroppableAsRecent { get { return GetProperty<bool>("DroppableAsRecent"); } set { SetProperty("DroppableAsRecent", value); } }
+        public bool DroppableAsRecent { get { return GetProperty<bool>(nameof(DroppableAsRecent)); } set { SetProperty(nameof(DroppableAsRecent), value); } }
 
-        public bool DroppableAsWatchedFolder { get { return GetProperty<bool>("DroppableAsWatchedFolder"); } set { SetProperty("DroppableAsWatchedFolder", value); } }
+        public bool DroppableAsWatchedFolder { get { return GetProperty<bool>(nameof(DroppableAsWatchedFolder)); } set { SetProperty(nameof(DroppableAsWatchedFolder), value); } }
 
-        public bool FilesArePending { get { return GetProperty<bool>("FilesArePending"); } set { SetProperty("FilesArePending", value); } }
+        public bool FilesArePending { get { return GetProperty<bool>(nameof(FilesArePending)); } set { SetProperty(nameof(FilesArePending), value); } }
 
-        public Version CurrentVersion { get { return GetProperty<Version>("CurrentVersion"); } set { SetProperty("CurrentVersion", value); } }
+        public Version CurrentVersion { get { return GetProperty<Version>(nameof(CurrentVersion)); } set { SetProperty(nameof(CurrentVersion), value); } }
 
-        public Version UpdatedVersion { get { return GetProperty<Version>("UpdatedVersion"); } set { SetProperty("UpdatedVersion", value); } }
+        public Version UpdatedVersion { get { return GetProperty<Version>(nameof(UpdatedVersion)); } set { SetProperty(nameof(UpdatedVersion), value); } }
 
         public VersionUpdateStatus VersionUpdateStatus { get { return GetProperty<VersionUpdateStatus>(nameof(VersionUpdateStatus)); } set { SetProperty(nameof(VersionUpdateStatus), value); } }
 
-        public bool DebugMode { get { return GetProperty<bool>("DebugMode"); } set { SetProperty("DebugMode", value); } }
+        public bool DebugMode { get { return GetProperty<bool>(nameof(DebugMode)); } set { SetProperty(nameof(DebugMode), value); } }
 
-        public bool TryBrokenFile { get { return GetProperty<bool>("TryBrokenFile"); } set { SetProperty("TryBrokenFile", value); } }
+        public bool TryBrokenFile { get { return GetProperty<bool>(nameof(TryBrokenFile)); } set { SetProperty(nameof(TryBrokenFile), value); } }
 
-        public bool Working { get { return GetProperty<bool>("Working"); } set { SetProperty("Working", value); } }
+        public bool Working { get { return GetProperty<bool>(nameof(Working)); } set { SetProperty(nameof(Working), value); } }
 
         public IAction RemoveRecentFiles { get; private set; }
 
@@ -146,13 +146,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => New<IDataItem>(f))); });
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => New<IDataItem>(f))); });
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => New<IDataItem>(f))); });
-            BindPropertyChangedInternal("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
-            BindPropertyChangedInternal("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
-            BindPropertyChangedInternal("TryBrokenFile", (bool enabled) => { _userSettings.TryBrokenFile = enabled; });
-            BindPropertyChangedInternal("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
+            BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => New<IDataItem>(f))); });
+            BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => New<IDataItem>(f))); });
+            BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => New<IDataItem>(f))); });
+            BindPropertyChangedInternal(nameof(CurrentVersion), (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
+            BindPropertyChangedInternal(nameof(DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
+            BindPropertyChangedInternal(nameof(TryBrokenFile), (bool enabled) => { _userSettings.TryBrokenFile = enabled; });
+            BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFiles(); });
         }
 
         private void SubscribeToModelEvents()

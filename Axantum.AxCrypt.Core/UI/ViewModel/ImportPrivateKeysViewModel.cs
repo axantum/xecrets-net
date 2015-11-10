@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -33,7 +32,6 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -47,13 +45,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private KnownIdentities _knownIdentities;
 
-        public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
+        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
 
-        public string Passphrase { get { return GetProperty<string>("Passphrase"); } set { SetProperty("Passphrase", value); } }
+        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
 
-        public string PrivateKeyFileName { get { return GetProperty<string>("PrivateKeyFileName"); } set { SetProperty("PrivateKeyFileName", value); } }
+        public string PrivateKeyFileName { get { return GetProperty<string>(nameof(PrivateKeyFileName)); } set { SetProperty(nameof(PrivateKeyFileName), value); } }
 
-        public bool ImportSuccessful { get { return GetProperty<bool>("ImportSuccessful"); } set { SetProperty("ImportSuccessful", value); } }
+        public bool ImportSuccessful { get { return GetProperty<bool>(nameof(ImportSuccessful)); } set { SetProperty(nameof(ImportSuccessful), value); } }
 
         public ImportPrivateKeysViewModel(IUserSettings userSettings, KnownIdentities knownIdentities)
         {
@@ -76,42 +74,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal("ShowPassphrase", (bool show) => _userSettings.DisplayDecryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => _userSettings.DisplayDecryptPassphrase = show);
         }
 
         private static void SubscribeToModelEvents()
         {
         }
 
-        public override string this[string columnName]
-        {
-            get
-            {
-                string error = base[columnName];
-                if (String.IsNullOrEmpty(error))
-                {
-                    error = Validate(columnName);
-                }
-
-                return error;
-            }
-        }
-
-        private string Validate(string columnName)
-        {
-            if (ValidateInternal(columnName))
-            {
-                return String.Empty;
-            }
-            return ValidationError.ToString(CultureInfo.InvariantCulture);
-        }
-
-        private bool ValidateInternal(string columnName)
+        protected override bool Validate(string columnName)
         {
             IDataStore privateKeyDataStore;
             switch (columnName)
             {
-                case "PrivateKeyFileName":
+                case nameof(PrivateKeyFileName):
                     if (String.IsNullOrEmpty(PrivateKeyFileName))
                     {
                         return false;
@@ -119,8 +94,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     privateKeyDataStore = New<IDataStore>(PrivateKeyFileName);
                     return privateKeyDataStore.IsAvailable;
 
-                case "Passphrase":
-                    if (!ValidateInternal("PrivateKeyFileName"))
+                case nameof(Passphrase):
+                    if (!Validate(nameof(PrivateKeyFileName)))
                     {
                         return false;
                     }

@@ -1,7 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -24,32 +23,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (String.IsNullOrEmpty(Validate(nameof(UserEmail)))) { Resolve.UserSettings.UserEmail = userEmail; } });
+            BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (Validate(nameof(UserEmail))) { Resolve.UserSettings.UserEmail = userEmail; } });
         }
 
-        public override string this[string columnName]
-        {
-            get
-            {
-                string error = base[columnName];
-                if (String.IsNullOrEmpty(error))
-                {
-                    error = Validate(columnName);
-                }
-                return error;
-            }
-        }
-
-        private string Validate(string columnName)
-        {
-            if (ValidateInternal(columnName))
-            {
-                return String.Empty;
-            }
-            return ValidationError.ToString(CultureInfo.InvariantCulture);
-        }
-
-        private bool ValidateInternal(string columnName)
+        protected override bool Validate(string columnName)
         {
             switch (columnName)
             {

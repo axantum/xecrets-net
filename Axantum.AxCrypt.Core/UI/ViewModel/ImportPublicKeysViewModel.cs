@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using System;
@@ -52,7 +51,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction ImportFiles { get; private set; }
 
-        public IEnumerable<string> FailedFiles { get { return GetProperty<IEnumerable<string>>("FailedFiles"); } set { SetProperty("FailedFiles", value); } }
+        public IEnumerable<string> FailedFiles { get { return GetProperty<IEnumerable<string>>(nameof(FailedFiles)); } set { SetProperty(nameof(FailedFiles), value); } }
 
         private void InitializePropertyValues()
         {

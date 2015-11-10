@@ -31,7 +31,6 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -73,7 +72,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
             BindPropertyChangedInternal(nameof(ShowEmail), (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
-            BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (String.IsNullOrEmpty(Validate(nameof(UserEmail)))) { _userSettings.UserEmail = userEmail; } });
+            BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (Validate(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; } });
         }
 
         public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
@@ -84,30 +83,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool ShowEmail { get { return GetProperty<bool>(nameof(ShowEmail)); } private set { SetProperty(nameof(ShowEmail), value); } }
 
-        public override string this[string columnName]
-        {
-            get
-            {
-                string error = base[columnName];
-                if (String.IsNullOrEmpty(error))
-                {
-                    error = Validate(columnName);
-                }
-
-                return error;
-            }
-        }
-
-        private string Validate(string columnName)
-        {
-            if (ValidateInternal(columnName))
-            {
-                return String.Empty;
-            }
-            return ValidationError.ToString(CultureInfo.InvariantCulture);
-        }
-
-        private bool ValidateInternal(string columnName)
+        protected override bool Validate(string columnName)
         {
             switch (columnName)
             {
@@ -126,8 +102,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 case nameof(Passphrase):
                     return ValidatePassphrase();
 
-                case "ShowPassphrase":
-                case "ShowEmail":
+                case nameof(ShowPassphrase):
+                case nameof(ShowEmail):
                     return true;
 
                 default:

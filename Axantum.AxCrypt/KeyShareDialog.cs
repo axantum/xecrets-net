@@ -3,8 +3,6 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +12,21 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class KeyShareDialog : Form
+    public partial class KeyShareDialog : StyledMessageBase
     {
         private SharingListViewModel _viewModel;
 
         public IEnumerable<UserPublicKey> SharedWith { get; private set; }
 
-        public KeyShareDialog(Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
+        public KeyShareDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
+        }
+
+        public KeyShareDialog(Form parent, Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
+            : this()
+        {
+            InitializeStyle(parent);
 
             _viewModel = new SharingListViewModel(knownPublicKeysFactory, sharedWith, logOnIdentity);
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWith.Items.Clear(); _sharedWith.Items.AddRange(aks.ToArray()); });

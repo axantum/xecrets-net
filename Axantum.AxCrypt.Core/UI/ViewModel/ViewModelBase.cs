@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -44,9 +45,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public ViewModelBase()
         {
             PropertyChanged += HandlePropertyChanged;
+            ValidationError = (int)ViewModel.ValidationError.None;
         }
 
-        public virtual int ValidationError { get { return GetProperty<int>("ValidationError"); } set { SetProperty("ValidationError", value); } }
+        public virtual int ValidationError { get { return GetProperty<int>(nameof(ValidationError)); } set { SetProperty(nameof(ValidationError), value); } }
 
         private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -156,8 +158,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     throw new ArgumentException("Non-existing property name.", columnName);
                 }
-                return String.Empty;
+                return Validate(columnName) ? String.Empty : ValidationError.ToString(CultureInfo.InvariantCulture);
             }
+        }
+
+        protected virtual bool Validate(string columnName)
+        {
+            return true;
         }
     }
 }

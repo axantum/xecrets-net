@@ -48,6 +48,7 @@ using Axantum.AxCrypt.Core.Service;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Axantum.AxCrypt.Fake;
+using Axantum.AxCrypt.Common;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -78,6 +79,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.Singleton<ICache>(() => new ItemCache());
+            TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());

@@ -31,7 +31,6 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,29 +77,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(VerificationCode), (string code) => VerificationCode = code.Replace(" ", String.Empty));
         }
 
-        public override string this[string columnName]
-        {
-            get
-            {
-                string error = base[columnName];
-                if (String.IsNullOrEmpty(error))
-                {
-                    error = Validate(columnName);
-                }
-                return error;
-            }
-        }
-
-        private string Validate(string columnName)
-        {
-            if (ValidateInternal(columnName))
-            {
-                return String.Empty;
-            }
-            return ValidationError.ToString(CultureInfo.InvariantCulture);
-        }
-
-        private bool ValidateInternal(string columnName)
+        protected override bool Validate(string columnName)
         {
             switch (columnName)
             {

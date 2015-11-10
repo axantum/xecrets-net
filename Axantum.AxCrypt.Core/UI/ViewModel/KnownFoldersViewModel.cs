@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _sessionNotify.Notification += HandleSessionChanged;
         }
 
-        public IEnumerable<KnownFolder> KnownFolders { get { return GetProperty<IEnumerable<KnownFolder>>("KnownFolders"); } set { SetProperty("KnownFolders", value.ToList()); } }
+        public IEnumerable<KnownFolder> KnownFolders { get { return GetProperty<IEnumerable<KnownFolder>>(nameof(KnownFolders)); } set { SetProperty(nameof(KnownFolders), value.ToList()); } }
 
         private void InitializePropertyValues()
         {

@@ -25,13 +25,11 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -54,40 +52,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : New<IDataStore>(_encryptedFileFullName).Name;
         }
 
-        public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
+        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
 
-        public string Passphrase { get { return GetProperty<string>("Passphrase"); } set { SetProperty("Passphrase", value); } }
+        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
 
-        public string FileName { get { return GetProperty<string>("FileName"); } set { SetProperty("FileName", value); } }
+        public string FileName { get { return GetProperty<string>(nameof(FileName)); } set { SetProperty(nameof(FileName), value); } }
 
-        public override string this[string columnName]
-        {
-            get
-            {
-                string error = base[columnName];
-                if (String.IsNullOrEmpty(error))
-                {
-                    error = Validate(columnName);
-                }
-
-                return error;
-            }
-        }
-
-        private string Validate(string columnName)
-        {
-            if (ValidateInternal(columnName))
-            {
-                return String.Empty;
-            }
-            return ValidationError.ToString(CultureInfo.InvariantCulture);
-        }
-
-        private bool ValidateInternal(string columnName)
+        protected override bool Validate(string columnName)
         {
             switch (columnName)
             {
-                case "Passphrase":
+                case nameof(Passphrase):
                     if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;

@@ -35,22 +35,22 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this._unshareButton = new System.Windows.Forms.Button();
             this._shareButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this._cancelButton = new System.Windows.Forms.Button();
-            this._okButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._notSharedWith = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this._newContact = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this._cancelButton = new System.Windows.Forms.Button();
+            this._okButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel3
@@ -65,7 +65,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(484, 161);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(484, 211);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -85,7 +85,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(478, 120);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(478, 170);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox2
@@ -95,10 +95,10 @@
             this.groupBox2.Location = new System.Drawing.Point(292, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.groupBox2.Size = new System.Drawing.Size(183, 114);
+            this.groupBox2.Size = new System.Drawing.Size(183, 164);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Contacts Shared With";
+            this.groupBox2.Text = "Shared With";
             // 
             // _sharedWith
             // 
@@ -108,7 +108,7 @@
             this._sharedWith.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this._sharedWith.Name = "_sharedWith";
             this._sharedWith.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this._sharedWith.Size = new System.Drawing.Size(177, 98);
+            this._sharedWith.Size = new System.Drawing.Size(177, 148);
             this._sharedWith.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -119,7 +119,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this._unshareButton, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this._shareButton, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(207, 31);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(207, 56);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -151,6 +151,64 @@
             this._shareButton.Text = "Share";
             this._shareButton.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.groupBox1, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.groupBox3, 0, 1);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(183, 164);
+            this.tableLayoutPanel5.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this._notSharedWith);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.groupBox1.Size = new System.Drawing.Size(177, 113);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Known Contacts";
+            // 
+            // _notSharedWith
+            // 
+            this._notSharedWith.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._notSharedWith.FormattingEnabled = true;
+            this._notSharedWith.Location = new System.Drawing.Point(3, 16);
+            this._notSharedWith.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._notSharedWith.Name = "_notSharedWith";
+            this._notSharedWith.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this._notSharedWith.Size = new System.Drawing.Size(171, 97);
+            this._notSharedWith.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this._newContact);
+            this.groupBox3.Location = new System.Drawing.Point(3, 122);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(177, 39);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "New Contact";
+            // 
+            // _newContact
+            // 
+            this._newContact.Location = new System.Drawing.Point(3, 14);
+            this._newContact.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
+            this._newContact.Name = "_newContact";
+            this._newContact.Size = new System.Drawing.Size(171, 20);
+            this._newContact.TabIndex = 4;
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -160,7 +218,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Controls.Add(this._cancelButton, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this._okButton, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(161, 129);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(161, 179);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -188,71 +246,13 @@
             this._okButton.UseVisualStyleBackColor = true;
             this._okButton.Click += new System.EventHandler(this._okButton_Click);
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.groupBox3, 0, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(183, 114);
-            this.tableLayoutPanel5.TabIndex = 3;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this._notSharedWith);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.groupBox1.Size = new System.Drawing.Size(177, 63);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "My Known Contacts";
-            // 
-            // _notSharedWith
-            // 
-            this._notSharedWith.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._notSharedWith.FormattingEnabled = true;
-            this._notSharedWith.Location = new System.Drawing.Point(3, 16);
-            this._notSharedWith.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this._notSharedWith.Name = "_notSharedWith";
-            this._notSharedWith.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this._notSharedWith.Size = new System.Drawing.Size(171, 47);
-            this._notSharedWith.TabIndex = 0;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this._newContact);
-            this.groupBox3.Location = new System.Drawing.Point(3, 72);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(177, 39);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "New Contact";
-            // 
-            // _newContact
-            // 
-            this._newContact.Location = new System.Drawing.Point(3, 14);
-            this._newContact.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
-            this._newContact.Name = "_newContact";
-            this._newContact.Size = new System.Drawing.Size(171, 20);
-            this._newContact.TabIndex = 4;
-            // 
             // KeyShareDialog
             // 
             this.AcceptButton = this._okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._cancelButton;
-            this.ClientSize = new System.Drawing.Size(484, 161);
+            this.ClientSize = new System.Drawing.Size(484, 211);
             this.Controls.Add(this.tableLayoutPanel3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -266,11 +266,11 @@
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

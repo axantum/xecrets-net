@@ -44,13 +44,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private LogOnIdentity _logOnIdentity;
 
-        public IEnumerable<UserPublicKey> SharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>("SharedWith"); } private set { SetProperty("SharedWith", value); } }
+        public IEnumerable<UserPublicKey> SharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(SharedWith)); } private set { SetProperty(nameof(SharedWith), value); } }
 
-        public IEnumerable<UserPublicKey> NotSharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>("NotSharedWith"); } private set { SetProperty("NotSharedWith", value); } }
+        public IEnumerable<UserPublicKey> NotSharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(NotSharedWith)); } private set { SetProperty(nameof(NotSharedWith), value); } }
+
+        public string NewKeyShare { get { return GetProperty<string>(nameof(NewKeyShare)); } private set { SetProperty(nameof(NewKeyShare), value); } }
 
         public IAction AddKeyShares { get; private set; }
 
         public IAction RemoveKeyShares { get; private set; }
+
+        public IAction AddNewKeyShare { get; private set; }
 
         public SharingListViewModel(Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
@@ -74,6 +78,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             AddKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesAction(upks));
             RemoveKeyShares = new DelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesAction(upks));
+            AddNewKeyShare = new DelegateAction<string>((email) => AddNewKeyShareAction(email), (email) => this[nameof(NewKeyShare)].Length == 0);
         }
 
         private static void BindPropertyChangedEvents()
@@ -106,6 +111,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             NotSharedWith = fromSet.OrderBy(a => a.Email.Address);
             SharedWith = toSet.OrderBy(a => a.Email.Address);
+        }
+
+        private void AddNewKeyShareAction(string email)
+        {
         }
 
         private IEnumerable<UserPublicKey> TryAddMissingUnsharedPublicKeysFromServer(IEnumerable<EmailAddress> keySharesToAdd)
