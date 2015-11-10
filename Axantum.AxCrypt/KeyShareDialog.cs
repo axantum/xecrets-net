@@ -3,6 +3,7 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,11 +32,16 @@ namespace Axantum.AxCrypt
             _viewModel = new SharingListViewModel(knownPublicKeysFactory, sharedWith, logOnIdentity);
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWith.Items.Clear(); _sharedWith.Items.AddRange(aks.ToArray()); });
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWith.Items.Clear(); _notSharedWith.Items.AddRange(aks.ToArray()); });
+            _viewModel.BindPropertyChanged<string>(nameof(SharingListViewModel.NewKeyShare), (email) => SetShareButtonState());
 
             _sharedWith.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
             _notSharedWith.SelectedIndexChanged += (sender, e) => SetShareButtonState();
+            _newContact.TextChanged += (sender, e) =>
+            {
+                _viewModel.NewKeyShare = _newContact.Text;
+            };
 
-            _shareButton.Click += (sender, e) => _viewModel.AddKeyShares.Execute(_notSharedWith.SelectedIndices.Cast<int>().Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
+            _shareButton.Click += (sender, e) => Share();
             _shareButton.Click += (sender, e) => SetShareButtonState();
             _unshareButton.Click += (sender, e) => _viewModel.RemoveKeyShares.Execute(_sharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWith.Items[i]));
             _unshareButton.Click += (sender, e) => SetUnshareButtonState();
@@ -46,19 +52,73 @@ namespace Axantum.AxCrypt
             _notSharedWith.Focus();
         }
 
+        private void Share()
+        {
+            _viewModel.AddKeyShares.Execute(_notSharedWith.SelectedIndices.Cast<int>().Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
+            if (String.IsNullOrEmpty(_viewModel.NewKeyShare))
+            {
+                return;
+            }
+            if (!AdHocValidationDueToMonoLimitations())
+            {
+                return;
+            }
+        }
+
+        private void ValidateNewKeyShare()
+        {
+        }
+
         private void SetShareButtonState()
         {
-            _shareButton.Enabled = _notSharedWith.SelectedIndices.Count > 0;
+            bool isNewKeyShare = !String.IsNullOrEmpty(_viewModel.NewKeyShare);
+            if (isNewKeyShare)
+            {
+                _notSharedWith.ClearSelected();
+                _sharedWith.ClearSelected();
+            }
+            _shareButton.Visible = _notSharedWith.SelectedIndices.Count > 0 || isNewKeyShare;
+            if (_shareButton.Visible)
+            {
+                _sharedWith.ClearSelected();
+            }
         }
 
         private void SetUnshareButtonState()
         {
-            _unshareButton.Enabled = _sharedWith.SelectedIndices.Count > 0;
+            _unshareButton.Visible = _sharedWith.SelectedIndices.Count > 0;
+            if (_unshareButton.Visible)
+            {
+                _notSharedWith.ClearSelected();
+            }
         }
 
         private void _okButton_Click(object sender, EventArgs e)
         {
             SharedWith = _viewModel.SharedWith;
+        }
+
+        private bool AdHocValidationDueToMonoLimitations()
+        {
+            bool validated = AdHocValidateAllFieldsIndependently();
+            return validated;
+        }
+
+        private bool AdHocValidateAllFieldsIndependently()
+        {
+            return AdHocValidateNewKeyShare();
+        }
+
+        private bool AdHocValidateNewKeyShare()
+        {
+            _errorProvider1.Clear();
+            if (_viewModel[nameof(SharingListViewModel.NewKeyShare)].Length > 0)
+            {
+                _errorProvider1.SetError(_newContact, Resources.InvalidEmail);
+                _errorProvider1.SetIconPadding(_newContact, 3);
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IEnumerable<UserPublicKey> NotSharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(NotSharedWith)); } private set { SetProperty(nameof(NotSharedWith), value); } }
 
-        public string NewKeyShare { get { return GetProperty<string>(nameof(NewKeyShare)); } private set { SetProperty(nameof(NewKeyShare), value); } }
+        public string NewKeyShare { get { return GetProperty<string>(nameof(NewKeyShare)); } set { SetProperty(nameof(NewKeyShare), value); } }
 
         public IAction AddKeyShares { get; private set; }
 
@@ -75,6 +76,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 NotSharedWith = knownPublicKeys.PublicKeys.Where(upk => upk.Email != userEmail && !sharedWith.Any(sw => upk.Email == sw.Email)).OrderBy(e => e.Email.Address);
             }
+            NewKeyShare = String.Empty;
 
             AddKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesAction(upks));
             RemoveKeyShares = new DelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesAction(upks));
@@ -146,6 +148,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 fromSet.Remove(keyShareToMove);
                 toSet.Add(keyShareToMove);
             }
+        }
+
+        protected override bool Validate(string columnName)
+        {
+            switch (columnName)
+            {
+                case nameof(NewKeyShare):
+                    if (!NewKeyShare.IsValidEmail())
+                    {
+                        ValidationError = (int)ViewModel.ValidationError.InvalidEmail;
+                        return false;
+                    }
+                    return true;
+            }
+            return false;
         }
     }
 }
