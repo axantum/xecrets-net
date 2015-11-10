@@ -54,6 +54,7 @@ namespace Axantum.AxCrypt
                 SetUnshareButtonState();
             };
 
+            SetOkButtonState();
             _notSharedWith.Focus();
         }
 
