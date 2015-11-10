@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Uri UpdateUrl
         {
-            get { return Load("UpdateUrl", new Uri("http://www.axantum.com/")); }
+            get { return Load("UpdateUrl", new Uri("http://www.axcrypt.net/download/")); }
             set
             {
                 if (value == null)
