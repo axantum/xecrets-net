@@ -67,10 +67,6 @@ namespace Axantum.AxCrypt
             _newContact.Text = String.Empty;
         }
 
-        private void ValidateNewKeyShare()
-        {
-        }
-
         private void SetShareButtonState()
         {
             bool isNewKeyShare = !String.IsNullOrEmpty(_viewModel.NewKeyShare);
