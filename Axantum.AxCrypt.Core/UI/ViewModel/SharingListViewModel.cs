@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void InitializePropertyValues(IEnumerable<UserPublicKey> sharedWith)
         {
             EmailAddress userEmail = _logOnIdentity.UserKeys.UserEmail;
-            SharedWith = sharedWith.Where(sw => sw.Email != userEmail).ToList();
+            SharedWith = sharedWith.Where(sw => sw.Email != userEmail).OrderBy(e => e.Email.Address).ToList();
 
             using (KnownPublicKeys knownPublicKeys = _knownPublicKeysFactory())
             {

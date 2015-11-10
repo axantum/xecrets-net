@@ -36,20 +36,70 @@ namespace Axantum.AxCrypt
 
             _sharedWith.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
             _notSharedWith.SelectedIndexChanged += (sender, e) => SetShareButtonState();
+
             _newContact.TextChanged += (sender, e) =>
             {
                 _viewModel.NewKeyShare = _newContact.Text;
             };
+            _newContact.Enter += (sender, e) => { _sharedWith.ClearSelected(); _notSharedWith.ClearSelected(); };
 
-            _shareButton.Click += async (sender, e) => await ShareAsync();
-            _shareButton.Click += (sender, e) => SetShareButtonState();
-            _unshareButton.Click += (sender, e) => _viewModel.RemoveKeyShares.Execute(_sharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWith.Items[i]));
-            _unshareButton.Click += (sender, e) => SetUnshareButtonState();
-
-            SetShareButtonState();
-            SetUnshareButtonState();
+            _shareButton.Click += async (sender, e) =>
+            {
+                await ShareAsync();
+                SetShareButtonState();
+            };
+            _unshareButton.Click += (sender, e) =>
+            {
+                Unshare();
+                SetUnshareButtonState();
+            };
 
             _notSharedWith.Focus();
+        }
+
+        private void SetShareButtonState()
+        {
+            bool isNewKeyShare = !String.IsNullOrEmpty(_viewModel.NewKeyShare);
+            if (isNewKeyShare)
+            {
+                _notSharedWith.ClearSelected();
+                _sharedWith.ClearSelected();
+            }
+            _shareButton.Visible = _notSharedWith.SelectedIndices.Count > 0 || isNewKeyShare;
+            if (_shareButton.Visible)
+            {
+                _sharedWith.ClearSelected();
+                AcceptButton = _shareButton;
+            }
+            SetOkButtonState();
+        }
+
+        private void SetUnshareButtonState()
+        {
+            _unshareButton.Visible = _sharedWith.SelectedIndices.Count > 0;
+            if (_unshareButton.Visible)
+            {
+                _notSharedWith.ClearSelected();
+                AcceptButton = _unshareButton;
+            }
+            SetOkButtonState();
+        }
+
+        private void SetOkButtonState()
+        {
+            if (_unshareButton.Visible || _shareButton.Visible)
+            {
+                _okButton.Enabled = false;
+                return;
+            }
+
+            _okButton.Enabled = true;
+            AcceptButton = _okButton;
+        }
+
+        private void Unshare()
+        {
+            _viewModel.RemoveKeyShares.Execute(_sharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWith.Items[i]));
         }
 
         private async Task ShareAsync()
@@ -65,30 +115,6 @@ namespace Axantum.AxCrypt
             }
             await _viewModel.AsyncAddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
             _newContact.Text = String.Empty;
-        }
-
-        private void SetShareButtonState()
-        {
-            bool isNewKeyShare = !String.IsNullOrEmpty(_viewModel.NewKeyShare);
-            if (isNewKeyShare)
-            {
-                _notSharedWith.ClearSelected();
-                _sharedWith.ClearSelected();
-            }
-            _shareButton.Visible = _notSharedWith.SelectedIndices.Count > 0 || isNewKeyShare;
-            if (_shareButton.Visible)
-            {
-                _sharedWith.ClearSelected();
-            }
-        }
-
-        private void SetUnshareButtonState()
-        {
-            _unshareButton.Visible = _sharedWith.SelectedIndices.Count > 0;
-            if (_unshareButton.Visible)
-            {
-                _notSharedWith.ClearSelected();
-            }
         }
 
         private void _okButton_Click(object sender, EventArgs e)

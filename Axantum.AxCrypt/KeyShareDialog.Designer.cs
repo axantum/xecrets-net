@@ -80,9 +80,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 2, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(475, 100);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -130,7 +130,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(214, 170);
-            this.tableLayoutPanel5.TabIndex = 3;
+            this.tableLayoutPanel5.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -174,7 +174,7 @@
             this._newContact.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this._newContact.Name = "_newContact";
             this._newContact.Size = new System.Drawing.Size(180, 20);
-            this._newContact.TabIndex = 4;
+            this._newContact.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
@@ -224,14 +224,15 @@
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tableLayoutPanel4.AutoSize = true;
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this._cancelButton, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this._okButton, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(186, 179);
+            this.tableLayoutPanel4.Controls.Add(this._cancelButton, 1, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(366, 179);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 3, 6, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
