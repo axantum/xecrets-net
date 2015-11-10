@@ -37,14 +37,18 @@ namespace Axantum.AxCrypt.Core.Service
         {
             get
             {
-                try
+                if (New<AxCryptOnlineState>().IsOnline)
                 {
-                    return _remoteService.HasAccounts;
+                    try
+                    {
+                        return _remoteService.HasAccounts;
+                    }
+                    catch (OfflineApiException)
+                    {
+                        New<AxCryptOnlineState>().IsOffline = true;
+                    }
                 }
-                catch (OfflineApiException)
-                {
-                    return _localService.HasAccounts;
-                }
+                return _localService.HasAccounts;
             }
         }
 
@@ -60,32 +64,45 @@ namespace Axantum.AxCrypt.Core.Service
         {
             get
             {
-                try
+                if (New<AxCryptOnlineState>().IsOnline)
                 {
-                    return _remoteService.Level;
+                    try
+                    {
+                        return _remoteService.Level;
+                    }
+                    catch (OfflineApiException)
+                    {
+                        New<AxCryptOnlineState>().IsOffline = true;
+                    }
                 }
-                catch (OfflineApiException)
-                {
-                    return _localService.Level;
-                }
+                return _localService.Level;
             }
         }
 
         public bool ChangePassphrase(Passphrase passphrase)
         {
-            try
+            if (New<AxCryptOnlineState>().IsOnline)
             {
-                return _remoteService.ChangePassphrase(passphrase);
+                try
+                {
+                    return _remoteService.ChangePassphrase(passphrase);
+                }
+                catch (OfflineApiException)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
             }
-            catch (OfflineApiException)
-            {
-                return _localService.ChangePassphrase(passphrase);
-            }
+            return _localService.ChangePassphrase(passphrase);
         }
 
         public async Task<IList<UserKeyPair>> ListAsync()
         {
             IList<UserKeyPair> localKeys = await _localService.ListAsync().Free();
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return localKeys;
+            }
+
             try
             {
                 IList<UserKeyPair> remoteKeys = new List<UserKeyPair>();
@@ -124,88 +141,113 @@ namespace Axantum.AxCrypt.Core.Service
             }
             catch (OfflineApiException)
             {
-                return localKeys;
+                New<AxCryptOnlineState>().IsOffline = true;
             }
+            return localKeys;
         }
 
         public async Task<UserKeyPair> CurrentKeyPairAsync()
         {
-            try
+            if (New<AxCryptOnlineState>().IsOnline)
             {
-                UserKeyPair currentUserKeyPair = await _remoteService.CurrentKeyPairAsync().Free();
-                return currentUserKeyPair;
+                try
+                {
+                    UserKeyPair currentUserKeyPair = await _remoteService.CurrentKeyPairAsync().Free();
+                    return currentUserKeyPair;
+                }
+                catch (OfflineApiException)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
             }
-            catch (OfflineApiException)
-            {
-                return null;
-            }
+            return null;
         }
 
         public async Task PasswordResetAsync(string verificationCode)
         {
-            try
+            if (New<AxCryptOnlineState>().IsOnline)
             {
-                await _remoteService.PasswordResetAsync(verificationCode).Free();
+                try
+                {
+                    await _remoteService.PasswordResetAsync(verificationCode).Free();
+                }
+                catch (OfflineApiException)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
             }
-            catch (OfflineApiException)
-            {
-                await _localService.PasswordResetAsync(verificationCode).Free();
-            }
+            await _localService.PasswordResetAsync(verificationCode).Free();
         }
 
         public async Task<UserPublicKey> CurrentPublicKeyAsync()
         {
             UserPublicKey publicKey = await _localService.CurrentPublicKeyAsync().Free();
-            try
+            if (New<AxCryptOnlineState>().IsOnline)
             {
-                publicKey = await _remoteService.CurrentPublicKeyAsync().Free();
-                New<KnownPublicKeys>().AddOrReplace(publicKey);
-            }
-            catch (OfflineApiException)
-            {
+                try
+                {
+                    New<KnownPublicKeys>().AddOrReplace(publicKey);
+                    publicKey = await _remoteService.CurrentPublicKeyAsync().Free();
+                }
+                catch (OfflineApiException)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
             }
             return publicKey;
         }
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
-            try
+            if (New<AxCryptOnlineState>().IsOnline)
             {
-                await _remoteService.SaveAsync(keyPairs).Free();
+                try
+                {
+                    await _remoteService.SaveAsync(keyPairs).Free();
+                }
+                catch (OfflineApiException)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
             }
-            catch (OfflineApiException)
-            {
-                await _localService.SaveAsync(keyPairs).Free();
-            }
+            await _localService.SaveAsync(keyPairs).Free();
         }
 
         public async Task SignupAsync(EmailAddress email)
         {
-            try
+            if (New<AxCryptOnlineState>().IsOnline)
             {
-                await _remoteService.SignupAsync(email).Free();
+                try
+                {
+                    await _remoteService.SignupAsync(email).Free();
+                }
+                catch (OfflineApiException)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
             }
-            catch (OfflineApiException)
-            {
-                await _localService.SignupAsync(email).Free();
-            }
+            await _localService.SignupAsync(email).Free();
         }
 
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
-            try
+            if (New<AxCryptOnlineState>().IsOnline)
             {
-                return await _remoteService.StatusAsync(email);
-            }
-            catch (OfflineApiException)
-            {
-                AccountStatus status = await _localService.StatusAsync(email);
-                if (status == AccountStatus.NotFound)
+                try
                 {
-                    return AccountStatus.Offline;
+                    return await _remoteService.StatusAsync(email);
                 }
-                return status;
+                catch (OfflineApiException)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
             }
+            AccountStatus status = await _localService.StatusAsync(email);
+            if (status == AccountStatus.NotFound)
+            {
+                return AccountStatus.Offline;
+            }
+            return status;
         }
     }
 }

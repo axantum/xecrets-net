@@ -111,6 +111,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<KeyPairService>(() => new KeyPairService(1, 0, New<IUserSettings>().AsymmetricKeyBits));
             TypeMap.Register.Singleton<ICache>(() => new ItemCache());
             TypeMap.Register.Singleton<DummyReferencedType>(() => new DummyReferencedType());
+            TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

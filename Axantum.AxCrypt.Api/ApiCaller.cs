@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,23 +26,14 @@ namespace Axantum.AxCrypt.Api
             {
                 return await RestCaller.SendAsync(identity, request).Free();
             }
-            catch (WebException wex)
+            catch (OfflineApiException)
             {
-                throw new OfflineApiException(ExceptionMessage("Offline", request), wex);
-            }
-            catch (HttpRequestException hrex)
-            {
-                throw new OfflineApiException(ExceptionMessage("Offline", request), hrex);
+                throw;
             }
             catch (Exception ex)
             {
-                throw new ApiException(ExceptionMessage("REST call failed", request), ex);
+                throw new ApiException(string.Format(CultureInfo.InvariantCulture, "{2} {1} {0}", request.Url, request.Method, ex.Message), ex);
             }
-        }
-
-        private static string ExceptionMessage(string message, RestRequest request)
-        {
-            return string.Format(CultureInfo.InvariantCulture, "{2} {1} {0}", request.Url, request.Method, message);
         }
 
         public static void EnsureStatusOk(RestResponse restResponse)

@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -58,24 +59,40 @@ namespace Axantum.AxCrypt.Mono
                 throw new ArgumentNullException("request");
             }
 
-            switch (request.Method)
+            try
             {
-                case "GET":
-                    if (request.Content.Text.Length > 0)
-                    {
-                        throw new ArgumentException("You can't send content with a GET request.", "request");
-                    }
-                    return await SendGet(identity, request).Free();
+                switch (request.Method)
+                {
+                    case "GET":
+                        if (request.Content.Text.Length > 0)
+                        {
+                            throw new ArgumentException("You can't send content with a GET request.", "request");
+                        }
+                        return await SendGet(identity, request).Free();
 
-                case "PUT":
-                    return await SendPut(identity, request).Free();
+                    case "PUT":
+                        return await SendPut(identity, request).Free();
 
-                case "POST":
-                    return await SendPost(identity, request).Free();
+                    case "POST":
+                        return await SendPost(identity, request).Free();
 
-                default:
-                    throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
+                    default:
+                        throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
+                }
             }
+            catch (WebException wex)
+            {
+                throw new OfflineApiException(ExceptionMessage("Offline", request), wex);
+            }
+            catch (HttpRequestException hrex)
+            {
+                throw new OfflineApiException(ExceptionMessage("Offline", request), hrex);
+            }
+        }
+
+        private static string ExceptionMessage(string message, RestRequest request)
+        {
+            return string.Format(CultureInfo.InvariantCulture, "{2} {1} {0}", request.Url, request.Method, message);
         }
 
         public string HtmlEncode(string value)

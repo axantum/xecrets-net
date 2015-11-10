@@ -29,7 +29,7 @@ using Axantum.AxCrypt.Abstractions;
 using System;
 using System.Net;
 
-namespace Axantum.AxCrypt.Api
+namespace Axantum.AxCrypt.Common
 {
     public class ApiException : AxCryptException
     {

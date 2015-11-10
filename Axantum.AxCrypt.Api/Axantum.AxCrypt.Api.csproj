@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiCaller.cs" />
-    <Compile Include="ApiException.cs" />
     <Compile Include="AxCryptApi.cs" />
     <Compile Include="AxCryptApiClient.cs" />
     <Compile Include="Extensions.cs" />
@@ -59,7 +58,6 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Model\ApiVersion.cs" />
     <Compile Include="Model\SlackPayload.cs" />
-    <Compile Include="OfflineApiException.cs" />
     <Compile Include="Implementation\AbstractTypeSerializer.cs" />
     <Compile Include="Implementation\CustomSerializer.cs" />
     <Compile Include="Model\AccountStatus.cs" />

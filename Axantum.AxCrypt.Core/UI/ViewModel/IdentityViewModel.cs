@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Service;
@@ -98,6 +99,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             EventHandler<LogOnEventArgs> handler = LoggingOn;
             if (handler != null)
             {
+                New<AxCryptOnlineState>().IsOnline = true;
                 handler(this, e);
             }
         }
