@@ -58,5 +58,27 @@ namespace Axantum.AxCrypt.Api
             }
             return ApiVersion.Zero;
         }
+
+        public async Task<AxCryptVersion> AxCryptUpdateAsync()
+        {
+            Uri resource = BaseUrl.PathCombine("global/axcrypt/version/windowsdesktop");
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return AxCryptVersion.Empty;
+            }
+
+            try
+            {
+                RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
+                ApiCaller.EnsureStatusOk(restResponse);
+                AxCryptVersion axCryptVersion = Serializer.Deserialize<AxCryptVersion>(restResponse.Content);
+                return axCryptVersion;
+            }
+            catch (OfflineApiException)
+            {
+                New<AxCryptOnlineState>().IsOffline = true;
+            }
+            return AxCryptVersion.Empty;
+        }
     }
 }

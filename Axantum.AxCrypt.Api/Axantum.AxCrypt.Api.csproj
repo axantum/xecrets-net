@@ -57,6 +57,7 @@
     <Compile Include="GlobalApiClient.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Model\ApiVersion.cs" />
+    <Compile Include="Model\AxCryptVersion.cs" />
     <Compile Include="Model\SlackPayload.cs" />
     <Compile Include="Implementation\AbstractTypeSerializer.cs" />
     <Compile Include="Implementation\CustomSerializer.cs" />

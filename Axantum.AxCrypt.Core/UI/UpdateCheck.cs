@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -113,11 +113,11 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 _done.Reset();
             }
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async () =>
             {
                 try
                 {
-                    Pair<Version, Uri> newVersion = CheckWebForNewVersion(webServiceUrl, updateWebpageUrl);
+                    Pair<Version, Uri> newVersion = await CheckWebForNewVersionAsync(webServiceUrl, updateWebpageUrl).Free();
                     OnVersionUpdate(new VersionEventArgs(newVersion.First, newVersion.Second, CalculateStatus(newVersion.First, lastCheckTimeUtc)));
                 }
                 finally
@@ -128,15 +128,15 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
-        private Pair<Version, Uri> CheckWebForNewVersion(Uri webServiceUrl, Uri updateWebpageUrl)
+        private async Task<Pair<Version, Uri>> CheckWebForNewVersionAsync(Uri webServiceUrl, Uri updateWebpageUrl)
         {
             Version newVersion = VersionUnknown;
             try
             {
-                CurrentVersionResponse versionResponse = new AxCryptApiClient(new RestIdentity(), webServiceUrl, New<IUserSettings>().ApiTimeout).CheckVersionAsync(_currentVersion.ToString()).Result;
+                AxCryptVersion axCryptVersion = await New<GlobalApiClient>().AxCryptUpdateAsync().Free();
+                newVersion = ParseVersion(axCryptVersion.FullVersion);
+                updateWebpageUrl = new Uri(axCryptVersion.DownloadLink);
 
-                newVersion = ParseVersion(versionResponse.Version);
-                updateWebpageUrl = new Uri(versionResponse.WebReference);
                 if (Resolve.Log.IsInfoEnabled)
                 {
                     Resolve.Log.LogInfo("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));

@@ -49,6 +49,7 @@ using Axantum.AxCrypt.Core.Service;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Axantum.AxCrypt.Fake;
 using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Api;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -96,6 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new NullAccountService(identity)));
+            TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;

@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestVersionUpdated()
         {
             TypeMap.Register.New<IRestCaller>(
-                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0"",""R"":307,""S"":0,""M"":""OK""}")
+                () => new FakeRestCaller(@"{""url"":""http://localhost/AxCrypt/Downloads.html"",""version"":""2.0.307.0"",""revision"":307}")
             );
 
             DateTime utcNow = DateTime.UtcNow;
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             TypeMap.Register.New<IRestCaller>(
                 // The version returned has 5 components - bad!
-                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0.0"",""R"":307,""S"":0,""M"":""OK""}")
+                () => new FakeRestCaller(@"{""url"":""http://localhost/AxCrypt/Downloads.html"",""version"":""2.0.307.0.0"",""revision"":307}")
             );
 
             DateTime utcNow = DateTime.UtcNow;
@@ -116,7 +116,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             TypeMap.Register.New<IRestCaller>(
                 // The version returned is an empty string - bad!
-                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":"""",""R"":307,""S"":0,""M"":""OK""}")
+                () => new FakeRestCaller(@"{""url"":""http://localhost/AxCrypt/Downloads.html"",""version"":"""",""revision"":307}")
             );
 
             using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestDoubleDisposeAndObjectDisposedException()
         {
             TypeMap.Register.New<IRestCaller>(
-                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0"",""R"":307,""S"":0,""M"":""OK""}")
+                () => new FakeRestCaller(@"{""url"":""http://localhost/AxCrypt/Downloads.html"",""version"":""2.0.307.0"",""revision"":307}")
             );
 
             DateTime utcNow = DateTime.UtcNow;
@@ -192,7 +192,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestVersionNotUpdatedNotCheckedBefore()
         {
             TypeMap.Register.New<IRestCaller>(
-                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.207.0"",""R"":207,""S"":0,""M"":""OK""}")
+                () => new FakeRestCaller(@"{""url"":""http://localhost/AxCrypt/Downloads.html"",""version"":""2.0.207.0"",""revision"":207}")
             );
 
             DateTime utcNow = DateTime.UtcNow;
@@ -223,7 +223,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestVersionSameAndCheckedRecently()
         {
             TypeMap.Register.New<IRestCaller>(
-                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.300.0"",""R"":300,""S"":0,""M"":""OK""}")
+                () => new FakeRestCaller(@"{""url"":""http://localhost/AxCrypt/Downloads.html"",""version"":""2.0.300.0"",""revision"":300}")
             );
 
             DateTime utcNow = DateTime.UtcNow;
@@ -289,7 +289,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             int calls = 0;
             ManualResetEvent wait = new ManualResetEvent(false);
-            FakeRestCaller restCaller = new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
+            FakeRestCaller restCaller = new FakeRestCaller(@"{""url"":""http://localhost/AxCrypt/Downloads.html"",""version"":""2.0.400.0"",""revision"":300}");
             restCaller.Calling += (object sender, EventArgs e) => { wait.WaitOne(); ++calls; };
             TypeMap.Register.New<IRestCaller>(
                 () => restCaller
@@ -390,7 +390,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestInvalidVersionReturned()
         {
             TypeMap.Register.New<IRestCaller>(
-                () => new FakeRestCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""x.y.z.z"",""R"":207,""S"":0,""M"":""OK""}")
+                () => new FakeRestCaller(@"{""url"":""http://localhost/AxCrypt/Downloads.html"",""version"":""x.y.z.z"",""revision"":207}")
             );
 
             DateTime utcNow = DateTime.UtcNow;
