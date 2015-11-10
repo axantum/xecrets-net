@@ -112,7 +112,12 @@ namespace Axantum.AxCrypt.Api
             ApiCaller.EnsureStatusOk(restResponse);
         }
 
-        public async Task<AccountKey> GetAllAccountsUserKeyAsync(string userName)
+        /// <summary>
+        /// Gets the public key of any user. If the user does not exist, he or she is invited by the current user.
+        /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <returns></returns>
+        public async Task<AccountKey> GetAllAccountsOtherUserPublicKeyAsync(string userName)
         {
             if (userName == null)
             {
@@ -121,7 +126,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}/key".With(ApiCaller.UrlEncode(userName)));
 
-            RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
 
             AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);

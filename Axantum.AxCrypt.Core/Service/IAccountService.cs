@@ -95,10 +95,10 @@ namespace Axantum.AxCrypt.Core.Service
         Task<UserKeyPair> CurrentKeyPairAsync();
 
         /// <summary>
-        /// Ensures there is at least one key pair, and returns the active public key of the user.
+        /// Ensures there is at least one key pair if possible, and returns the active public key of the user.
         /// </summary>
-        /// <returns>The public key of the current key pair</returns>
-        Task<UserPublicKey> CurrentPublicKeyAsync();
+        /// <returns>The public key of the current key pair, or null if the service can't create other users.</returns>
+        Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email);
 
         /// <summary>
         /// Saves the specified key pairs.

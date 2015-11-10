@@ -257,7 +257,7 @@ namespace Axantum.AxCrypt.Core.Service
             return _completedTask;
         }
 
-        public async Task<UserPublicKey> CurrentPublicKeyAsync()
+        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
@@ -266,8 +266,11 @@ namespace Axantum.AxCrypt.Core.Service
 
             return await Task.Run(() =>
             {
-                UserPublicKey publicKey = New<KnownPublicKeys>().PublicKeys.Where(pk => pk.Email == Identity.UserEmail).FirstOrDefault();
-                return publicKey;
+                using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
+                {
+                    UserPublicKey publicKey = knowPublicKeys.PublicKeys.Where(pk => pk.Email == email).FirstOrDefault();
+                    return publicKey;
+                }
             }).Free();
         }
     }

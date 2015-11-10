@@ -45,6 +45,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public DelegateAction(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
         {
+            if (executeMethod == null)
+            {
+                throw new ArgumentNullException(nameof(executeMethod));
+            }
+            if (canExecuteMethod == null)
+            {
+                throw new ArgumentNullException(nameof(canExecuteMethod));
+            }
+
             _executeMethod = executeMethod;
             _canExecuteMethod = canExecuteMethod;
         }
@@ -55,8 +64,29 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         }
 
         public DelegateAction(Func<T, Task> executeMethodAsync)
+            : this(executeMethodAsync, (parameter) => true)
         {
+            if (executeMethodAsync == null)
+            {
+                throw new ArgumentNullException(nameof(executeMethodAsync));
+            }
+
             _executeMethodAsync = executeMethodAsync;
+        }
+
+        public DelegateAction(Func<T, Task> executeMethodAsync, Func<T, bool> canExecuteMethod)
+        {
+            if (executeMethodAsync == null)
+            {
+                throw new ArgumentNullException(nameof(executeMethodAsync));
+            }
+            if (canExecuteMethod == null)
+            {
+                throw new ArgumentNullException(nameof(canExecuteMethod));
+            }
+
+            _executeMethodAsync = executeMethodAsync;
+            _canExecuteMethod = canExecuteMethod;
         }
 
         public bool CanExecute(object parameter)
@@ -66,6 +96,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void Execute(object parameter)
         {
+            if (_executeMethod == null)
+            {
+                throw new InvalidOperationException("There is no execute method defined.");
+            }
+
             if (!CanExecute(parameter))
             {
                 throw new InvalidOperationException("Execute() invoked when it cannot execute.");
@@ -75,6 +110,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public Task ExecuteAsync(object parameter)
         {
+            if (_executeMethodAsync == null)
+            {
+                throw new InvalidOperationException("There is no async execute method defined.");
+            }
+
+            if (!CanExecute(parameter))
+            {
+                throw new InvalidOperationException("Execute() invoked when it cannot execute.");
+            }
             return _executeMethodAsync((T)parameter);
         }
 

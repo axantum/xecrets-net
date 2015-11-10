@@ -37,10 +37,10 @@ namespace Axantum.AxCrypt.Api.Model
         }
 
         /// <summary>
-        /// Gets the public key.
+        /// Gets the account keys.
         /// </summary>
         /// <value>
-        /// The public key.
+        /// The account keys.
         /// </value>
         [JsonProperty("keys")]
         public IList<AccountKey> AccountKeys { get; private set; }

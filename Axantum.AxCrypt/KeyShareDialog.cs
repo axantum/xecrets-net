@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt
                 _viewModel.NewKeyShare = _newContact.Text;
             };
 
-            _shareButton.Click += (sender, e) => Share();
+            _shareButton.Click += async (sender, e) => await ShareAsync();
             _shareButton.Click += (sender, e) => SetShareButtonState();
             _unshareButton.Click += (sender, e) => _viewModel.RemoveKeyShares.Execute(_sharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWith.Items[i]));
             _unshareButton.Click += (sender, e) => SetUnshareButtonState();
@@ -52,9 +52,9 @@ namespace Axantum.AxCrypt
             _notSharedWith.Focus();
         }
 
-        private void Share()
+        private async Task ShareAsync()
         {
-            _viewModel.AddKeyShares.Execute(_notSharedWith.SelectedIndices.Cast<int>().Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
+            await _viewModel.AsyncAddKeyShares.ExecuteAsync(_notSharedWith.SelectedIndices.Cast<int>().Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
             if (String.IsNullOrEmpty(_viewModel.NewKeyShare))
             {
                 return;
@@ -63,6 +63,8 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
+            await _viewModel.AsyncAddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
+            _newContact.Text = String.Empty;
         }
 
         private void ValidateNewKeyShare()

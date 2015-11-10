@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
@@ -122,6 +123,11 @@ namespace Axantum.AxCrypt.Core.Session
 
             _service.ChangePassphrase(passphrase);
             await _service.SaveAsync(await AllKeyPairsAsync().Free()).Free();
+        }
+
+        public async Task<UserPublicKey> GetOtherUserPublicKeyAsync(EmailAddress email)
+        {
+            return await _service.OtherPublicKeyAsync(email).Free();
         }
     }
 }

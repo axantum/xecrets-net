@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Service
             return _completedTask;
         }
 
-        public Task<UserPublicKey> CurrentPublicKeyAsync()
+        public Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
             return Task.FromResult((UserPublicKey)null);
         }

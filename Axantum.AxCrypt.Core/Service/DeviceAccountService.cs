@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Api;
-using Axantum.AxCrypt.Api.Model;
+﻿using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
@@ -179,15 +178,18 @@ namespace Axantum.AxCrypt.Core.Service
             await _localService.PasswordResetAsync(verificationCode).Free();
         }
 
-        public async Task<UserPublicKey> CurrentPublicKeyAsync()
+        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
-            UserPublicKey publicKey = await _localService.CurrentPublicKeyAsync().Free();
+            UserPublicKey publicKey = await _localService.OtherPublicKeyAsync(email).Free();
             if (New<AxCryptOnlineState>().IsOnline)
             {
                 try
                 {
-                    New<KnownPublicKeys>().AddOrReplace(publicKey);
-                    publicKey = await _remoteService.CurrentPublicKeyAsync().Free();
+                    publicKey = await _remoteService.OtherPublicKeyAsync(email).Free();
+                    using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
+                    {
+                        knowPublicKeys.AddOrReplace(publicKey);
+                    }
                 }
                 catch (OfflineApiException)
                 {

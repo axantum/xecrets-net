@@ -1957,10 +1957,14 @@ namespace Axantum.AxCrypt
                     }
                     sharedWith = dialog.SharedWith;
                 }
-
+                IEnumerable<UserPublicKey> publicKeys;
+                using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
+                {
+                    publicKeys = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s.Email == pk.Email));
+                }
                 EncryptionParameters encryptionParameters = new EncryptionParameters(encryptedProperties.DecryptionParameter.CryptoId);
                 encryptionParameters.Passphrase = Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase;
-                encryptionParameters.Add(New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s.Email == pk.Email)));
+                encryptionParameters.Add(publicKeys);
                 encryptionParameters.Add(Resolve.KnownIdentities.DefaultEncryptionIdentity.PublicKeys);
 
                 Resolve.ProgressBackground.Work((Func<IProgressContext, FileOperationContext>)((IProgressContext progress) =>

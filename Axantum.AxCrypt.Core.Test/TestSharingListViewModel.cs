@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
-            model.AddKeyShares.Execute(new[] { userPublicKey2.Email, });
+            model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey2.Email, });
             Assert.That(model.SharedWith.Count(), Is.EqualTo(1), "One was set as shared, so there should be one here now.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "One unshared was set as shared, so there should be only one here now.");
         }
@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
-            model.AddKeyShares.Execute(new[] { userPublicKey2.Email, userPublicKey1.Email, });
+            model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey2.Email, userPublicKey1.Email, });
             Assert.That(model.SharedWith.Count(), Is.EqualTo(2), "Two were set as shared, so there should be two here now.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(0), "Both unshared were set as shared, so there should be none here now.");
         }
@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
-            model.AddKeyShares.Execute(new[] { userPublicKey2.Email, userPublicKey1.Email, });
+            model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey2.Email, userPublicKey1.Email, });
             Assert.That(model.SharedWith.Count(), Is.EqualTo(2), "Two were set as shared, so there should be two here now.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(0), "Both unshared were set as shared, so there should be none here now.");
 
@@ -200,7 +200,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
-            model.AddKeyShares.Execute(new[] { userPublicKey1.Email, });
+            model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey1.Email, });
             Assert.That(model.SharedWith.Count(), Is.EqualTo(1), "One was set as shared, so there should be one here now.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "One unshared was set as shared, so there should be one here now.");
 

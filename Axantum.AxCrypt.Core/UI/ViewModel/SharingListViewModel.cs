@@ -25,14 +25,18 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -51,11 +55,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string NewKeyShare { get { return GetProperty<string>(nameof(NewKeyShare)); } set { SetProperty(nameof(NewKeyShare), value); } }
 
-        public IAction AddKeyShares { get; private set; }
+        public IAction AsyncAddKeyShares { get; private set; }
 
         public IAction RemoveKeyShares { get; private set; }
 
-        public IAction AddNewKeyShare { get; private set; }
+        public IAction AsyncAddNewKeyShare { get; private set; }
 
         public SharingListViewModel(Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
@@ -78,9 +82,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             NewKeyShare = String.Empty;
 
-            AddKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesAction(upks));
+            AsyncAddKeyShares = new DelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));
             RemoveKeyShares = new DelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesAction(upks));
-            AddNewKeyShare = new DelegateAction<string>((email) => AddNewKeyShareAction(email), (email) => this[nameof(NewKeyShare)].Length == 0);
+            AsyncAddNewKeyShare = new DelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => this[nameof(NewKeyShare)].Length == 0);
         }
 
         private static void BindPropertyChangedEvents()
@@ -102,9 +106,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             NotSharedWith = toSet.OrderBy(a => a.Email.Address);
         }
 
-        private void AddKeySharesAction(IEnumerable<EmailAddress> keySharesToAdd)
+        private async Task AddKeySharesActionAsync(IEnumerable<EmailAddress> keySharesToAdd)
         {
-            IEnumerable<UserPublicKey> publicKeysToAdd = TryAddMissingUnsharedPublicKeysFromServer(keySharesToAdd);
+            IEnumerable<UserPublicKey> publicKeysToAdd = await TryAddMissingUnsharedPublicKeysFromServerAsync(keySharesToAdd).Free();
 
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
             HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
@@ -115,11 +119,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SharedWith = toSet.OrderBy(a => a.Email.Address);
         }
 
-        private void AddNewKeyShareAction(string email)
+        private async Task AddNewKeyShareActionAsync(string email)
         {
+            await AddKeySharesActionAsync(new EmailAddress[] { EmailAddress.Parse(email), }).Free();
         }
 
-        private IEnumerable<UserPublicKey> TryAddMissingUnsharedPublicKeysFromServer(IEnumerable<EmailAddress> keySharesToAdd)
+        private async Task<IEnumerable<UserPublicKey>> TryAddMissingUnsharedPublicKeysFromServerAsync(IEnumerable<EmailAddress> keySharesToAdd)
         {
             List<UserPublicKey> publicKeys = new List<UserPublicKey>();
             using (KnownPublicKeys knownPublicKeys = _knownPublicKeysFactory())
@@ -129,7 +134,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     UserPublicKey userPublicKey = knownPublicKeys.PublicKeys.FirstOrDefault(pk => pk.Email == keyShareToAdd);
                     if (userPublicKey == null)
                     {
-                        continue;
+                        userPublicKey = await AddMissingPublicKeyFromServerAsync(keyShareToAdd).Free();
                     }
                     publicKeys.Add(userPublicKey);
                 }
@@ -137,15 +142,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return publicKeys;
         }
 
+        private async Task<UserPublicKey> AddMissingPublicKeyFromServerAsync(EmailAddress email)
+        {
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
+            UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
+            return userPublicKey;
+        }
+
         private static void MoveKeyShares(IEnumerable<UserPublicKey> keySharesToMove, HashSet<UserPublicKey> fromSet, HashSet<UserPublicKey> toSet)
         {
             foreach (UserPublicKey keyShareToMove in keySharesToMove)
             {
-                if (!fromSet.Contains(keyShareToMove))
+                if (fromSet.Contains(keyShareToMove))
                 {
-                    continue;
+                    fromSet.Remove(keyShareToMove);
                 }
-                fromSet.Remove(keyShareToMove);
                 toSet.Add(keyShareToMove);
             }
         }

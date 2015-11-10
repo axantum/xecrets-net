@@ -217,9 +217,9 @@ namespace Axantum.AxCrypt.Core.Service
             await _apiClient.PutAllAccountsUserPasswordAsync(verificationCode);
         }
 
-        public Task<UserPublicKey> CurrentPublicKeyAsync()
+        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
-            throw new NotImplementedException();
+            return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free()).ToUserPublicKey();
         }
     }
 }
