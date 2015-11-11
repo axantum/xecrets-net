@@ -509,6 +509,8 @@ namespace Axantum.AxCrypt
             _recentFilesListView.ColumnWidthChanged += RecentFilesListView_ColumnWidthChanged;
 
             _updateStatusButton.Click += _updateToolStripButton_Click;
+            _feedbackButton.Click += (sender, e) => Process.Start("http://www.axcrypt.net/#feedback");
+
             _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _cleanDecryptedToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
@@ -1069,7 +1071,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case CommandVerb.Register:
-                    Process.Start("https://www.axantum.com/Xecrets/LoggedOff/Register.aspx");
+                    Process.Start("https://account.axcrypt.net/Home/Register");
                     break;
 
                 case CommandVerb.About:
@@ -1437,14 +1439,18 @@ namespace Axantum.AxCrypt
             foreach (KnownFolder knownFolder in folders)
             {
                 ToolStripButton button = new ToolStripButton((Image)knownFolder.Image);
-                button.ImageScaling = ToolStripItemImageScaling.None;
+                button.ImageScaling = ToolStripItemImageScaling.SizeToFit;
+                button.Size = new Size(40, 40);
+                button.Margin = new Padding(0);
+                button.Padding = new Padding(0);
+                button.AutoSize = false;
+                button.ImageAlign = ContentAlignment.MiddleCenter;
                 button.Tag = knownFolder;
                 button.Click += (sender, e) =>
                 {
                     ToolStripItem item = sender as ToolStripItem;
                     _fileOperationViewModel.OpenFilesFromFolder.Execute(((KnownFolder)item.Tag).My.FullName);
                 };
-                button.Image = (Image)knownFolder.Image;
                 button.Enabled = knownFolder.Enabled;
                 _mainToolStrip.Items.Insert(i, button);
                 ++i;

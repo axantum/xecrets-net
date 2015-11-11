@@ -635,6 +635,16 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap feedback_40px {
+            get {
+                object obj = ResourceManager.GetObject("feedback_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The document &apos;{0}&apos; is already encrypted..
         /// </summary>
         internal static string FileAlreadyEncrypted {
