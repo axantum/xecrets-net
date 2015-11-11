@@ -2022,6 +2022,12 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                WindowState = FormWindowState.Minimized;
+                return;
+            }
             if (_debugOutput != null)
             {
                 _debugOutput.AllowClose = true;
