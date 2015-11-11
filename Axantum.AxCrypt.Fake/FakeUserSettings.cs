@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Fake
 {
@@ -21,7 +20,6 @@ namespace Axantum.AxCrypt.Fake
             this.DisplayEncryptPassphrase = false;
             this.LastUpdateCheckUtc = DateTime.UtcNow;
             this.NewestKnownVersion = "2.0.0.0";
-            this.LegacyRestApiBaseUrl = new Uri("http://localhost/api");
             this.SessionNotificationMinimumIdle = TimeSpan.FromSeconds(1);
             this.SettingsVersion = 5;
             this.ThumbprintSalt = Salt.Zero;

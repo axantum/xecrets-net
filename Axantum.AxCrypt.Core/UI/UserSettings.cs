@@ -106,20 +106,6 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("CultureName", value); }
         }
 
-        public Uri LegacyRestApiBaseUrl
-        {
-            get { return Load(nameof(LegacyRestApiBaseUrl), new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/")); }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-
-                Store(nameof(LegacyRestApiBaseUrl), value.ToString());
-            }
-        }
-
         public Uri RestApiBaseUrl
         {
             get { return Load(nameof(RestApiBaseUrl), new Uri("https://account.axcrypt.net/api/")); }

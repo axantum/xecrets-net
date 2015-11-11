@@ -1738,7 +1738,6 @@ namespace Axantum.AxCrypt
         {
             using (DebugOptionsDialog dialog = new DebugOptionsDialog())
             {
-                dialog._legacyRestApiBaseUrl.Text = Resolve.UserSettings.LegacyRestApiBaseUrl.ToString();
                 dialog._restApiBaseUrl.Text = Resolve.UserSettings.RestApiBaseUrl.ToString();
                 dialog._timeoutTimeSpan.Text = Resolve.UserSettings.ApiTimeout.ToString();
                 DialogResult result = dialog.ShowDialog();
@@ -1746,7 +1745,6 @@ namespace Axantum.AxCrypt
                 {
                     return;
                 }
-                Resolve.UserSettings.LegacyRestApiBaseUrl = new Uri(dialog._legacyRestApiBaseUrl.Text);
                 Resolve.UserSettings.RestApiBaseUrl = new Uri(dialog._restApiBaseUrl.Text);
                 Resolve.UserSettings.ApiTimeout = TimeSpan.Parse(dialog._timeoutTimeSpan.Text);
             }

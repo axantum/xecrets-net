@@ -30,33 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DebugOptionsDialog));
-            this._label1 = new System.Windows.Forms.Label();
-            this._legacyRestApiBaseUrl = new System.Windows.Forms.TextBox();
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
-            this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this._restApiBaseUrl = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this._timeoutTimeSpan = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this._errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // _label1
-            // 
-            resources.ApplyResources(this._label1, "_label1");
-            this._label1.Name = "_label1";
-            // 
-            // _legacyRestApiBaseUrl
-            // 
-            resources.ApplyResources(this._legacyRestApiBaseUrl, "_legacyRestApiBaseUrl");
-            this._legacyRestApiBaseUrl.Name = "_legacyRestApiBaseUrl";
-            this._legacyRestApiBaseUrl.Validating += new System.ComponentModel.CancelEventHandler(this.RestApiBaseUrl_Validating);
-            this._legacyRestApiBaseUrl.Validated += new System.EventHandler(this.RestApiBaseUrl_Validated);
             // 
             // _okButton
             // 
@@ -73,10 +57,6 @@
             this._cancelButton.Name = "_cancelButton";
             this._cancelButton.UseVisualStyleBackColor = true;
             // 
-            // _errorProvider1
-            // 
-            this._errorProvider1.ContainerControl = this;
-            // 
             // _restApiBaseUrl
             // 
             resources.ApplyResources(this._restApiBaseUrl, "_restApiBaseUrl");
@@ -91,10 +71,10 @@
             // 
             this._errorProvider2.ContainerControl = this;
             // 
-            // textBox1
+            // _timeoutTimeSpan
             // 
-            resources.ApplyResources(this._timeoutTimeSpan, "textBox1");
-            this._timeoutTimeSpan.Name = "textBox1";
+            resources.ApplyResources(this._timeoutTimeSpan, "_timeoutTimeSpan");
+            this._timeoutTimeSpan.Name = "_timeoutTimeSpan";
             // 
             // label2
             // 
@@ -117,10 +97,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this._cancelButton);
             this.Controls.Add(this._okButton);
-            this.Controls.Add(this._legacyRestApiBaseUrl);
-            this.Controls.Add(this._label1);
             this.Name = "DebugOptionsDialog";
-            ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider3)).EndInit();
             this.ResumeLayout(false);
@@ -129,12 +106,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label _label1;
-        internal System.Windows.Forms.TextBox _legacyRestApiBaseUrl;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;
-        private System.Windows.Forms.ErrorProvider _errorProvider1;
         internal System.Windows.Forms.TextBox _restApiBaseUrl;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ErrorProvider _errorProvider2;

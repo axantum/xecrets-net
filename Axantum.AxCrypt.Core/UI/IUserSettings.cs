@@ -49,8 +49,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         string CultureName { get; set; }
 
-        Uri LegacyRestApiBaseUrl { get; set; }
-
         Uri RestApiBaseUrl { get; set; }
 
         Uri UpdateUrl { get; set; }

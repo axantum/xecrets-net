@@ -74,15 +74,11 @@ namespace Axantum.AxCrypt.Core.UI
         /// raised, regardless of response and result. If a check is already in progress, the
         /// later call is ignored and only one check is performed.
         /// </summary>
-        public virtual void CheckInBackground(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri webServiceUrl, Uri updateWebpageUrl)
+        public virtual void CheckInBackground(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri updateWebpageUrl)
         {
             if (newestKnownVersion == null)
             {
                 throw new ArgumentNullException("newestKnownVersion");
-            }
-            if (webServiceUrl == null)
-            {
-                throw new ArgumentNullException("webServiceUrl");
             }
             if (updateWebpageUrl == null)
             {
@@ -117,7 +113,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 try
                 {
-                    Pair<Version, Uri> newVersion = await CheckWebForNewVersionAsync(webServiceUrl, updateWebpageUrl).Free();
+                    Pair<Version, Uri> newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl).Free();
                     OnVersionUpdate(new VersionEventArgs(newVersion.First, newVersion.Second, CalculateStatus(newVersion.First, lastCheckTimeUtc)));
                 }
                 finally
@@ -128,7 +124,7 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
-        private async Task<Pair<Version, Uri>> CheckWebForNewVersionAsync(Uri webServiceUrl, Uri updateWebpageUrl)
+        private async Task<Pair<Version, Uri>> CheckWebForNewVersionAsync(Uri updateWebpageUrl)
         {
             Version newVersion = VersionUnknown;
             try
