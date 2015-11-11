@@ -181,7 +181,7 @@
     <value>&amp;Share Keys</value>
   </data>
   <data name="_recentFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 114</value>
+    <value>327, 92</value>
   </data>
   <data name="&gt;&gt;_recentFilesContextMenuStrip.Name" xml:space="preserve">
     <value>_recentFilesContextMenuStrip</value>
@@ -913,7 +913,10 @@
     <value>3</value>
   </data>
   <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 33</value>
+    <value>3, 31</value>
+  </data>
+  <data name="tableLayoutPanel3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 1, 3, 1</value>
   </data>
   <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
@@ -4094,9 +4097,6 @@
         YII=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>650, 300</value>
   </data>
@@ -4155,6 +4155,36 @@
     <value>_watchedFolderColumnHeader</value>
   </data>
   <data name="&gt;&gt;_watchedFolderColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_decryptedFileColumnHeader.Name" xml:space="preserve">
+    <value>_decryptedFileColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;_decryptedFileColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_sharingIndicatorColumnHeader.Name" xml:space="preserve">
+    <value>_sharingIndicatorColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;_sharingIndicatorColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_lastAccessTimeColumnHeader.Name" xml:space="preserve">
+    <value>_lastAccessTimeColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;_lastAccessTimeColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_encryptedPathColumnHeader.Name" xml:space="preserve">
+    <value>_encryptedPathColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;_encryptedPathColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_cryptoName.Name" xml:space="preserve">
+    <value>_cryptoName</value>
+  </data>
+  <data name="&gt;&gt;_cryptoName.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_fileToolStripMenuItem.Name" xml:space="preserve">
@@ -4432,36 +4462,6 @@
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.Forms.Implementation.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
-  </data>
-  <data name="&gt;&gt;_decryptedFileColumnHeader.Name" xml:space="preserve">
-    <value>_decryptedFileColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;_decryptedFileColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_sharingIndicatorColumnHeader.Name" xml:space="preserve">
-    <value>_sharingIndicatorColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;_sharingIndicatorColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_lastAccessTimeColumnHeader.Name" xml:space="preserve">
-    <value>_lastAccessTimeColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;_lastAccessTimeColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_encryptedPathColumnHeader.Name" xml:space="preserve">
-    <value>_encryptedPathColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;_encryptedPathColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_cryptoName.Name" xml:space="preserve">
-    <value>_cryptoName</value>
-  </data>
-  <data name="&gt;&gt;_cryptoName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

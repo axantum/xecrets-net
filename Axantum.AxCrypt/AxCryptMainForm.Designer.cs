@@ -33,6 +33,12 @@
             this._watchedFoldersListView = new System.Windows.Forms.ListView();
             this._watchedFolderColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._recentFilesTabPage = new System.Windows.Forms.TabPage();
+            this._recentFilesListView = new Axantum.AxCrypt.DoubleBufferedListView();
+            this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._sharingIndicatorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -88,12 +94,6 @@
             this._feedbackButton = new System.Windows.Forms.ToolStripButton();
             this._updateStatusButton = new System.Windows.Forms.ToolStripButton();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
-            this._recentFilesListView = new Axantum.AxCrypt.DoubleBufferedListView();
-            this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._sharingIndicatorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -212,6 +212,42 @@
             resources.ApplyResources(this._recentFilesTabPage, "_recentFilesTabPage");
             this._recentFilesTabPage.Name = "_recentFilesTabPage";
             this._recentFilesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // _recentFilesListView
+            // 
+            this._recentFilesListView.AllowDrop = true;
+            this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._decryptedFileColumnHeader,
+            this._sharingIndicatorColumnHeader,
+            this._lastAccessTimeColumnHeader,
+            this._encryptedPathColumnHeader,
+            this._cryptoName});
+            resources.ApplyResources(this._recentFilesListView, "_recentFilesListView");
+            this._recentFilesListView.FullRowSelect = true;
+            this._recentFilesListView.Name = "_recentFilesListView";
+            this._recentFilesListView.ShowItemToolTips = true;
+            this._recentFilesListView.UseCompatibleStateImageBehavior = false;
+            this._recentFilesListView.View = System.Windows.Forms.View.Details;
+            // 
+            // _decryptedFileColumnHeader
+            // 
+            resources.ApplyResources(this._decryptedFileColumnHeader, "_decryptedFileColumnHeader");
+            // 
+            // _sharingIndicatorColumnHeader
+            // 
+            resources.ApplyResources(this._sharingIndicatorColumnHeader, "_sharingIndicatorColumnHeader");
+            // 
+            // _lastAccessTimeColumnHeader
+            // 
+            resources.ApplyResources(this._lastAccessTimeColumnHeader, "_lastAccessTimeColumnHeader");
+            // 
+            // _encryptedPathColumnHeader
+            // 
+            resources.ApplyResources(this._encryptedPathColumnHeader, "_encryptedPathColumnHeader");
+            // 
+            // _cryptoName
+            // 
+            resources.ApplyResources(this._cryptoName, "_cryptoName");
             // 
             // _statusTabControl
             // 
@@ -615,42 +651,6 @@
             // 
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
-            // 
-            // _recentFilesListView
-            // 
-            this._recentFilesListView.AllowDrop = true;
-            this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this._decryptedFileColumnHeader,
-            this._sharingIndicatorColumnHeader,
-            this._lastAccessTimeColumnHeader,
-            this._encryptedPathColumnHeader,
-            this._cryptoName});
-            resources.ApplyResources(this._recentFilesListView, "_recentFilesListView");
-            this._recentFilesListView.FullRowSelect = true;
-            this._recentFilesListView.Name = "_recentFilesListView";
-            this._recentFilesListView.ShowItemToolTips = true;
-            this._recentFilesListView.UseCompatibleStateImageBehavior = false;
-            this._recentFilesListView.View = System.Windows.Forms.View.Details;
-            // 
-            // _decryptedFileColumnHeader
-            // 
-            resources.ApplyResources(this._decryptedFileColumnHeader, "_decryptedFileColumnHeader");
-            // 
-            // _sharingIndicatorColumnHeader
-            // 
-            resources.ApplyResources(this._sharingIndicatorColumnHeader, "_sharingIndicatorColumnHeader");
-            // 
-            // _lastAccessTimeColumnHeader
-            // 
-            resources.ApplyResources(this._lastAccessTimeColumnHeader, "_lastAccessTimeColumnHeader");
-            // 
-            // _encryptedPathColumnHeader
-            // 
-            resources.ApplyResources(this._encryptedPathColumnHeader, "_encryptedPathColumnHeader");
-            // 
-            // _cryptoName
-            // 
-            resources.ApplyResources(this._cryptoName, "_cryptoName");
             // 
             // AxCryptMainForm
             // 
