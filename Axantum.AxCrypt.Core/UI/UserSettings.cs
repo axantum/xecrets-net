@@ -174,7 +174,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Uri AxCrypt2HelpUrl
         {
-            get { return Load("AxCrypt2HelpUrl", new Uri("http://www.axantum.com/AxCrypt/AxCryptNetHelp.html")); }
+            get { return Load("AxCrypt2HelpUrl", new Uri("http://www.axcrypt.net/documentation/get-started/")); }
             set
             {
                 if (value == null)
