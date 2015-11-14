@@ -173,6 +173,10 @@ namespace Axantum.AxCrypt.Core.Service
             try
             {
                 AccountKey accountKey = await _apiClient.MyAccountKeysCurrentAsync().Free();
+                if (accountKey == null)
+                {
+                    return null;
+                }
                 return accountKey.ToUserKeyPair(Identity.Passphrase);
             }
             catch (UnauthorizedApiException uaex)

@@ -184,14 +184,15 @@ namespace Axantum.AxCrypt.Core.Service
         private IList<UserKeyPair> TryLoadUserKeyPairs()
         {
             IEnumerable<AccountKey> userAccountKeys = LoadUserAccount().AccountKeys;
-            IEnumerable<UserKeyPair> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys);
+            List<UserKeyPair> userKeys = LoadValidUserKeysFromAccountKeys(userAccountKeys).ToList();
             if (!userKeys.Any())
             {
-                userKeys = UserKeyPair.Load(UserKeyPairFiles(), Identity.UserEmail, Identity.Passphrase);
-                userKeys = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
+                IEnumerable<UserKeyPair> fromKeyPairFiles = UserKeyPair.Load(UserKeyPairFiles(), Identity.UserEmail, Identity.Passphrase);
+                fromKeyPairFiles = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
+                userKeys.AddRange(fromKeyPairFiles);
             }
 
-            return userKeys.ToList();
+            return userKeys;
         }
 
         private IEnumerable<IDataStore> UserKeyPairFiles()

@@ -93,6 +93,10 @@ namespace Axantum.AxCrypt.Api
             Uri resource = BaseUrl.PathCombine("users/my/account/keys/current");
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
+            if (restResponse.StatusCode == HttpStatusCode.NotFound)
+            {
+                return null;
+            }
             ApiCaller.EnsureStatusOk(restResponse);
 
             AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);

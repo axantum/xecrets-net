@@ -30,7 +30,6 @@ using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace Axantum.AxCrypt.Fake
@@ -47,6 +46,7 @@ namespace Axantum.AxCrypt.Fake
 
         public byte[] Unprotect(byte[] protectedData)
         {
+            protectedData = (byte[])protectedData.Clone();
             byte[] unprotected = (byte[])protectedData.Xor(new byte[protectedData.Length].Fill(0xff));
             if (unprotected.Length < 4)
             {

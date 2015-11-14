@@ -45,8 +45,15 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public byte[] Unprotect(byte[] protectedData)
         {
-            byte[] bytes = ProtectedData.Unprotect(protectedData, null, DataProtectionScope.CurrentUser);
-            return bytes;
+            try
+            {
+                byte[] bytes = ProtectedData.Unprotect(protectedData, null, DataProtectionScope.CurrentUser);
+                return bytes;
+            }
+            catch (CryptographicException)
+            {
+                return null;
+            }
         }
 
         #endregion IDataProtection Members

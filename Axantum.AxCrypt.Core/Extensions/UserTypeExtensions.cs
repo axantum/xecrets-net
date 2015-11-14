@@ -175,14 +175,14 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             byte[] privateKeyEncryptedPem = Convert.FromBase64String(privateEncryptedPem);
 
+            byte[] decryptedPrivateKeyBytes = New<IDataProtection>().Unprotect(privateKeyEncryptedPem);
+            if (decryptedPrivateKeyBytes != null)
+            {
+                return Encoding.UTF8.GetString(decryptedPrivateKeyBytes, 0, decryptedPrivateKeyBytes.Length);
+            }
             if (passphrase == Passphrase.Empty)
             {
-                byte[] decryptedPrivateKeyBytes = New<IDataProtection>().Unprotect(privateKeyEncryptedPem);
-                if (decryptedPrivateKeyBytes == null)
-                {
-                    return null;
-                }
-                return Encoding.UTF8.GetString(decryptedPrivateKeyBytes, 0, decryptedPrivateKeyBytes.Length);
+                return null;
             }
 
             using (MemoryStream encryptedPrivateKeyStream = new MemoryStream(privateKeyEncryptedPem))
@@ -190,7 +190,14 @@ namespace Axantum.AxCrypt.Core.Extensions
                 using (MemoryStream decryptedPrivateKeyStream = new MemoryStream())
                 {
                     DecryptionParameter decryptionParameter = new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.Id);
-                    if (!New<AxCryptFile>().Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream, new DecryptionParameter[] { decryptionParameter }).IsValid)
+                    try
+                    {
+                        if (!New<AxCryptFile>().Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream, new DecryptionParameter[] { decryptionParameter }).IsValid)
+                        {
+                            return null;
+                        }
+                    }
+                    catch (FileFormatException)
                     {
                         return null;
                     }
