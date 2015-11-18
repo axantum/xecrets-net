@@ -14,6 +14,8 @@ namespace Axantum.AxCrypt.Mono
     {
         private SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
 
+        private MemoryCache _cache = new MemoryCache("ItemCache");
+
         private static readonly object _object = new object();
 
         public T GetItem<T>(ICacheKey cacheKey, Func<T> itemFunction)
@@ -30,13 +32,13 @@ namespace Axantum.AxCrypt.Mono
             _lock.Wait();
             try
             {
-                object o = MemoryCache.Default.Get(cacheKey.Key);
+                object o = _cache.Get(cacheKey.Key);
                 if (o != null)
                 {
                     return (T)o;
                 }
                 T item = itemFunction();
-                MemoryCache.Default.Add(cacheKey.Key, item, Policy(cacheKey));
+                _cache.Add(cacheKey.Key, item, Policy(cacheKey));
                 return item;
             }
             finally
@@ -50,13 +52,13 @@ namespace Axantum.AxCrypt.Mono
             await _lock.WaitAsync().Free();
             try
             {
-                object o = MemoryCache.Default.Get(cacheKey.Key);
+                object o = _cache.Get(cacheKey.Key);
                 if (o != null)
                 {
                     return (T)o;
                 }
                 T item = await itemFunction().Free();
-                MemoryCache.Default.Add(cacheKey.Key, item, Policy(cacheKey));
+                _cache.Add(cacheKey.Key, item, Policy(cacheKey));
                 return item;
             }
             finally
@@ -65,31 +67,40 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private static CacheItemPolicy Policy(ICacheKey cacheKey)
+        private CacheItemPolicy Policy(ICacheKey cacheKey)
         {
-            for (ICacheKey key = cacheKey.ParentCacheKey; key != null; key = key.ParentCacheKey)
-            {
-                if (MemoryCache.Default.Contains(key.Key))
-                {
-                    continue;
-                }
-
-                CacheItemPolicy keyPolicy = new CacheItemPolicy();
-                if (key.ParentCacheKey != null)
-                {
-                    keyPolicy.ChangeMonitors.Add(MemoryCache.Default.CreateCacheEntryChangeMonitor(new string[] { key.ParentCacheKey.Key }));
-                }
-                MemoryCache.Default.Add(key.Key, _object, keyPolicy);
-            }
+            EnsureParentKeyPolicies(cacheKey.ParentCacheKey);
 
             CacheItemPolicy policy = new CacheItemPolicy();
             if (cacheKey.Expiration != TimeSpan.Zero)
             {
                 policy.AbsoluteExpiration = DateTime.Now.Add(cacheKey.Expiration);
             }
-            policy.ChangeMonitors.Add(MemoryCache.Default.CreateCacheEntryChangeMonitor(new string[] { cacheKey.ParentCacheKey.Key }));
+            policy.ChangeMonitors.Add(_cache.CreateCacheEntryChangeMonitor(new string[] { cacheKey.ParentCacheKey.Key }));
 
             return policy;
+        }
+
+        private void EnsureParentKeyPolicies(ICacheKey cacheKey)
+        {
+            if (cacheKey == null)
+            {
+                return;
+            }
+
+            EnsureParentKeyPolicies(cacheKey.ParentCacheKey);
+
+            if (_cache.Contains(cacheKey.Key))
+            {
+                return;
+            }
+
+            CacheItemPolicy keyPolicy = new CacheItemPolicy();
+            if (cacheKey.ParentCacheKey != null)
+            {
+                keyPolicy.ChangeMonitors.Add(_cache.CreateCacheEntryChangeMonitor(new string[] { cacheKey.ParentCacheKey.Key }));
+            }
+            _cache.Add(cacheKey.Key, _object, keyPolicy);
         }
 
         public void UpdateItem(Action updateAction, params ICacheKey[] dependencies)
@@ -109,7 +120,7 @@ namespace Axantum.AxCrypt.Mono
                 updateAction();
                 foreach (ICacheKey key in dependencies)
                 {
-                    MemoryCache.Default.Remove(key.Key);
+                    _cache.Remove(key.Key);
                 }
             }
             finally
@@ -126,7 +137,7 @@ namespace Axantum.AxCrypt.Mono
                 await updateFunction().Free();
                 foreach (ICacheKey key in dependencies)
                 {
-                    MemoryCache.Default.Remove(key.Key);
+                    _cache.Remove(key.Key);
                 }
             }
             finally
@@ -143,7 +154,7 @@ namespace Axantum.AxCrypt.Mono
                 T item = await updateFunction().Free();
                 foreach (ICacheKey key in dependencies)
                 {
-                    MemoryCache.Default.Remove(key.Key);
+                    _cache.Remove(key.Key);
                 }
                 return item;
             }
@@ -160,7 +171,7 @@ namespace Axantum.AxCrypt.Mono
                 throw new ArgumentNullException(nameof(cacheKey));
             }
 
-            MemoryCache.Default.Remove(cacheKey.Key);
+            _cache.Remove(cacheKey.Key);
         }
 
         protected virtual void Dispose(bool disposing)
@@ -174,6 +185,12 @@ namespace Axantum.AxCrypt.Mono
             {
                 _lock.Dispose();
                 _lock = null;
+            }
+
+            if (_cache != null)
+            {
+                _cache.Dispose();
+                _cache = null;
             }
         }
 
