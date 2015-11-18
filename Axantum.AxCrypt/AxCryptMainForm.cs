@@ -526,13 +526,13 @@ namespace Axantum.AxCrypt
 
             item = new ToolStripMenuItem();
             item.Text = "Premium";
-            item.Checked = policy.IsPremium;
+            item.Checked = policy.Has(LicenseCapability.Premium);
             item.Click += PolicyMenuItem_Click;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
 
             item = new ToolStripMenuItem();
             item.Text = "Free";
-            item.Checked = !policy.IsPremium;
+            item.Checked = !policy.Has(LicenseCapability.Premium);
             item.Click += PolicyMenuItem_Click;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
         }

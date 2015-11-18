@@ -14,7 +14,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
         }
 
-        public override SubscriptionLevel SubscriptionLevel
+        protected override SubscriptionLevel SubscriptionLevel
         {
             get { return SubscriptionLevel.Free; }
         }

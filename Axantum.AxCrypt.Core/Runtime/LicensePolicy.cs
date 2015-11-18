@@ -37,6 +37,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             LicenseCapability.StandardEncryption,
             LicenseCapability.AccountKeyBackup,
             LicenseCapability.CommunitySupport,
+            LicenseCapability.Premium,
         });
 
         private LogOnIdentity _identity;
@@ -44,20 +45,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         public LicensePolicy(LogOnIdentity identity)
         {
             _identity = identity;
-        }
-
-        /// <summary>
-        /// Gets the time left at the current subscription level.
-        /// </summary>
-        /// <value>
-        /// The time left.
-        /// </value>
-        private TimeSpan TimeLeft
-        {
-            get
-            {
-                return TimeSpan.MaxValue;
-            }
         }
 
         /// <summary>
@@ -70,26 +57,42 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             get
             {
-                return TimeSpan.MaxValue;
+                DateTime utcNow = DateTime.UtcNow;
+                if (utcNow <= SubscriptionExpiration)
+                {
+                    return TimeSpan.Zero;
+                }
+
+                TimeSpan untilExpiration = SubscriptionExpiration - utcNow;
+                if (untilExpiration > TimeSpan.FromDays(7))
+                {
+                    return TimeSpan.FromDays(7);
+                }
+                return untilExpiration;
             }
         }
 
-        public ISet<LicenseCapability> Capabilities
+        private ISet<LicenseCapability> Capabilities
         {
             get
             {
-                return IsPremium ? _premiumCapabilities : _freeCapabilities;
+                return SubscriptionLevel == SubscriptionLevel.Premium && TimeLeftOffline > TimeSpan.Zero ? _premiumCapabilities : _freeCapabilities;
             }
         }
 
-        public bool IsPremium
+        protected virtual SubscriptionLevel SubscriptionLevel
         {
-            get { return SubscriptionLevel == SubscriptionLevel.Premium; }
+            get { return Account.SubscriptionLevel; }
         }
 
-        public virtual SubscriptionLevel SubscriptionLevel
+        protected virtual DateTime SubscriptionExpiration
         {
-            get { return Task.Run(() => New<LogOnIdentity, IAccountService>(_identity).LevelAsync()).Result; }
+            get { return Account.LevelExpiration; }
+        }
+
+        private UserAccount Account
+        {
+            get { return Task.Run(() => New<LogOnIdentity, IAccountService>(_identity).AccountAsync()).Result; }
         }
 
         public bool Has(LicenseCapability capability)
@@ -101,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             get
             {
-                return IsPremium ? New<CryptoPolicy>().CreateDefault() : New<CryptoPolicy>().Create(new FreeCryptoPolicy().Name);
+                return Has(LicenseCapability.StrongerEncryption) ? new ProCryptoPolicy() as ICryptoPolicy : new FreeCryptoPolicy() as ICryptoPolicy;
             }
         }
     }

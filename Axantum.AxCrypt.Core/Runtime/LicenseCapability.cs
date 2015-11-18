@@ -20,5 +20,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         StandardEncryption,
         AccountKeyBackup,
         CommunitySupport,
+        Premium,
     }
 }
