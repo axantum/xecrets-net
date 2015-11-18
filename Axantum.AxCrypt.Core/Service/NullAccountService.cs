@@ -59,12 +59,9 @@ namespace Axantum.AxCrypt.Core.Service
             get; private set;
         }
 
-        public SubscriptionLevel Level
+        public Task<SubscriptionLevel> LevelAsync()
         {
-            get
-            {
-                return SubscriptionLevel.Unknown;
-            }
+            return Task.FromResult(SubscriptionLevel.Unknown);
         }
 
         public Task<AccountStatus> StatusAsync(EmailAddress email)

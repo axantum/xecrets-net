@@ -56,12 +56,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             LogOnIdentity = LogOnIdentity.Empty;
 
-            LogOn = new DelegateAction<Guid>((cryptoId) => { if (!_knownIdentities.IsLoggedOn) { LogOnIdentity = LogOnAction(cryptoId); } });
+            LogOn = new DelegateAction<object>((o) => { if (!_knownIdentities.IsLoggedOn) { LogOnIdentity = LogOnAction(); } });
             LogOff = new DelegateAction<object>((p) => { LogOffAction(); LogOnIdentity = null; }, (o) => _knownIdentities.IsLoggedOn);
-            LogOnLogOff = new DelegateAction<Guid>((cryptoId) => LogOnIdentity = LogOnLogOffAction(cryptoId));
+            LogOnLogOff = new DelegateAction<object>((o) => LogOnIdentity = LogOnLogOffAction());
             AskForDecryptPassphrase = new DelegateAction<string>((name) => LogOnIdentity = AskForDecryptPassphraseAction(name));
             AskForLogOnPassphrase = new DelegateAction<LogOnIdentity>((id) => LogOnIdentity = AskForLogOnPassphraseAction(id, String.Empty));
-            CryptoId = Resolve.CryptoFactory.Default.Id;
 
             _sessionNotify.Notification += HandleLogOnLogOffNotifications;
         }
@@ -80,9 +79,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public LogOnIdentity LogOnIdentity { get { return GetProperty<LogOnIdentity>(nameof(LogOnIdentity)); } set { SetProperty(nameof(LogOnIdentity), value); } }
 
-        public Guid CryptoId { get { return GetProperty<Guid>(nameof(CryptoId)); } set { SetProperty(nameof(CryptoId), value); } }
-
-        public DelegateAction<Guid> LogOn { get; private set; }
+        public DelegateAction<object> LogOn { get; private set; }
 
         public DelegateAction<object> LogOff { get; private set; }
 
@@ -104,14 +101,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private LogOnIdentity LogOnAction(Guid cryptoId)
+        private LogOnIdentity LogOnAction()
         {
             if (_knownIdentities.IsLoggedOn)
             {
                 return _knownIdentities.DefaultEncryptionIdentity;
             }
-
-            CryptoId = cryptoId != Guid.Empty ? cryptoId : Resolve.CryptoFactory.Default.Id;
 
             LogOnIdentity logOnIdentity;
             logOnIdentity = AskForLogOnPassphraseAction(LogOnIdentity.Empty, String.Empty);
@@ -138,11 +133,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _knownIdentities.Clear();
         }
 
-        private LogOnIdentity LogOnLogOffAction(Guid cryptoId)
+        private LogOnIdentity LogOnLogOffAction()
         {
             if (!_knownIdentities.IsLoggedOn)
             {
-                return LogOnAction(cryptoId);
+                return LogOnAction();
             }
             LogOffAction();
             return LogOnIdentity.Empty;

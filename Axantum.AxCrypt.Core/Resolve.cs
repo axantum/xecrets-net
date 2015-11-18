@@ -70,7 +70,6 @@ namespace Axantum.AxCrypt.Core
 
             TypeMap.Register.Singleton<CryptoFactory>(() => new CryptoFactory(assemblies));
             TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(assemblies));
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => New<CryptoPolicy>().CreateDefault());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());

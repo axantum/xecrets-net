@@ -50,6 +50,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Axantum.AxCrypt.Fake;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Api;
+using System.Reflection;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -75,12 +76,12 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IStatusChecker>(() => new FakeStatusChecker());
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory());
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.Singleton<ICache>(() => new ItemCache());
             TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
+            TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(new Assembly[0]));
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
@@ -97,6 +98,9 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new NullAccountService(identity)));
+            TypeMap.Register.New<LogOnIdentity, ICryptoPolicy>((identity) => New<LogOnIdentity, LicensePolicy>(identity).CryptoPolicy);
+            TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new PremiumForcedLicensePolicy());
+            TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);

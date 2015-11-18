@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// <value>
         /// The level.
         /// </value>
-        SubscriptionLevel Level { get; }
+        Task<SubscriptionLevel> LevelAsync();
 
         /// <summary>
         /// Gets the status of the account.

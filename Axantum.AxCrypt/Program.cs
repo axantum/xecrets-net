@@ -49,6 +49,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -105,6 +106,9 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new CachingAccountService(new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new ApiAccountService(new AxCryptApiClient(identity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout)))));
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
+            TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new LicensePolicy(identity));
+            TypeMap.Register.New<LogOnIdentity, ICryptoPolicy>((identity) => New<LogOnIdentity, LicensePolicy>(identity).CryptoPolicy);
+            TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
 
             TypeMap.Register.Singleton<FontLoader>(() => new FontLoader());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());

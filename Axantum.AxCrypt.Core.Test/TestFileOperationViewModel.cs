@@ -230,7 +230,7 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LogOnLogOff.Execute(Guid.Empty);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
         }
@@ -244,13 +244,12 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(identity);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoId = new V1Aes128CryptoFactory().Id; ;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "a";
             };
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(Guid.Empty);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1), "There should be one known key now.");
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True, "It should be logged on now.");
@@ -267,7 +266,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("b"));
-            mvm.IdentityViewModel.LogOnLogOff.Execute(Guid.Empty);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
@@ -283,7 +282,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = String.Empty;
             };
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(Guid.Empty);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
@@ -520,7 +519,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoId = new V1Aes128CryptoFactory().Id;
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1-txt.axx");
@@ -569,7 +567,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoId = new V1Aes128CryptoFactory().Id;
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Clear();
@@ -608,7 +605,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoId = new V1Aes128CryptoFactory().Id;
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.Cancel = true;
@@ -671,7 +667,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoId = new V1Aes128CryptoFactory().Id;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "b";
@@ -874,7 +869,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<FileOperation>(() => fileOperationMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoId = new V1Aes128CryptoFactory().Id;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "b";
@@ -921,7 +915,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoId = new V1Aes128CryptoFactory().Id;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 if (count == 1)

@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.IO;
@@ -290,7 +289,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool EncryptFileOperation()
         {
-            _eventArgs.CryptoId = Resolve.CryptoFactory.Default.Id;
+            _eventArgs.CryptoId = Resolve.CryptoFactory.Default(New<LogOnIdentity, ICryptoPolicy>(_eventArgs.LogOnIdentity)).Id;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
             encryptionParameters.Add(_eventArgs.SharedPublicKeys);
             New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);

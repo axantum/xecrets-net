@@ -54,6 +54,7 @@
     <Compile Include="Crypto\Asymmetric\UserPublicKey.cs" />
     <Compile Include="Crypto\DecryptionParameter.cs" />
     <Compile Include="Crypto\EncryptionParameters.cs" />
+    <Compile Include="Crypto\ISystemCryptoPolicy.cs" />
     <Compile Include="Crypto\LogOnIdentity.cs" />
     <Compile Include="Extensions\UserTypeExtensions.cs" />
     <Compile Include="Extensions\SerializerExtensions.cs" />
@@ -113,8 +114,12 @@
     <Compile Include="Algorithm\SymmetricAlgorithm.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Runtime\CryptoException.cs" />
+    <Compile Include="Runtime\FreeForcedLicensePolicy.cs" />
     <Compile Include="Runtime\IPlatform.cs" />
+    <Compile Include="Runtime\LicenseCapability.cs" />
+    <Compile Include="Runtime\LicensePolicy.cs" />
     <Compile Include="Runtime\PasswordException.cs" />
+    <Compile Include="Runtime\PremiumForcedLicensePolicy.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />
     <Compile Include="Crypto\CryptoExtensions.cs" />
     <Compile Include="Crypto\FreeCryptoPolicy.cs" />

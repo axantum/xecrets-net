@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
             TypeMap.Register.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
             TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.New<LogOnIdentity, ICryptoPolicy>((identity) => new ProCryptoPolicy());
             TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
         }
 

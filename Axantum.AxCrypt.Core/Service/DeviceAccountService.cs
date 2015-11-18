@@ -59,23 +59,20 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public SubscriptionLevel Level
+        public async Task<SubscriptionLevel> LevelAsync()
         {
-            get
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
             {
-                if (New<AxCryptOnlineState>().IsOnline)
+                try
                 {
-                    try
-                    {
-                        return _remoteService.Level;
-                    }
-                    catch (OfflineApiException)
-                    {
-                        New<AxCryptOnlineState>().IsOffline = true;
-                    }
+                    return await _remoteService.LevelAsync().Free();
                 }
-                return _localService.Level;
+                catch (OfflineApiException)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
             }
+            return await _localService.LevelAsync().Free();
         }
 
         public bool ChangePassphrase(Passphrase passphrase)

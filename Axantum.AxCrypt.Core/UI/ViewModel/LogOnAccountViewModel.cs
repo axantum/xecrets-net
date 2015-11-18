@@ -33,7 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -144,11 +144,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
 
-            if (accountStorage.HasKeyPairAsync().Result)
-            {
-                return true;
-            }
-            return false;
+            return Task.Run(() => accountStorage.HasKeyPairAsync()).Result;
         }
 
         private bool IsKnownPassphrase()

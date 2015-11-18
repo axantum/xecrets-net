@@ -31,7 +31,6 @@ using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Axantum.AxCrypt.Abstractions;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -82,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             if (id == Guid.Empty)
             {
-                return Default;
+                return UserPolicy.DefaultCryptoFactory(_factories.Values);
             }
             CryptoFactoryCreator factory;
             lock (_factories)
@@ -108,6 +107,14 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
+        private static ICryptoPolicy UserPolicy
+        {
+            get
+            {
+                return New<LogOnIdentity, ICryptoPolicy>(Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            }
+        }
+
         /// <summary>
         /// Return a list of CryptoId's in a suitable order of preference and relevance, to be used to
         /// try and match a passphrase against a file.
@@ -117,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                Guid defaultId = Default.Id;
+                Guid defaultId = Preferred.Id;
                 Guid legacyId = Legacy.Id;
 
                 List<Guid> orderedIds = new List<Guid>();
@@ -132,11 +139,16 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
-        public ICryptoFactory Default
+        public ICryptoFactory Default(ICryptoPolicy policy)
         {
-            get
+            if (policy == null)
             {
-                return Create(New<ICryptoPolicy>());
+                throw new ArgumentNullException(nameof(policy));
+            }
+
+            lock (_factories)
+            {
+                return policy.DefaultCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
             }
         }
 
@@ -146,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 lock (_factories)
                 {
-                    return New<ICryptoPolicy>().PreferredCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
+                    return New<ISystemCryptoPolicy>().PreferredCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
                 }
             }
         }

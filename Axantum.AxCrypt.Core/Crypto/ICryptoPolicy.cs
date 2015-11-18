@@ -31,16 +31,8 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
-    public interface ICryptoPolicy
+    public interface ICryptoPolicy : ISystemCryptoPolicy
     {
-        int Priority { get; }
-
-        bool Active { get; }
-
-        string Name { get; }
-
         ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);
-
-        ICryptoFactory PreferredCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);
     }
 }

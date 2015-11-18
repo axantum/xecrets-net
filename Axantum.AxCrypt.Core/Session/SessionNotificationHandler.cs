@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Session
                     foreach (string fullName in notification.FullNames)
                     {
                         IDataContainer addedFolderInfo = New<IDataContainer>(fullName);
-                        encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, notification.Identity);
+                        encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<LogOnIdentity, ICryptoPolicy>(notification.Identity)).Id, notification.Identity);
                         _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { addedFolderInfo }, encryptionParameters, progress);
                     }
                     break;
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Session
                     _activeFileAction.PurgeActiveFiles(progress);
                     if (_knownIdentities.DefaultEncryptionIdentity != LogOnIdentity.Empty)
                     {
-                        encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, _knownIdentities.DefaultEncryptionIdentity);
+                        encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<LogOnIdentity, ICryptoPolicy>(_knownIdentities.DefaultEncryptionIdentity)).Id, _knownIdentities.DefaultEncryptionIdentity);
                         _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownIdentities.LoggedOnWatchedFolders.Select(wf => New<IDataContainer>(wf.Path)), encryptionParameters, progress);
                     }
                     break;
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private EncryptionParameters EncryptWatchedFolders(SessionNotification notification, IProgressContext progress)
         {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default.Id, notification.Identity);
+            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<LogOnIdentity, ICryptoPolicy>(notification.Identity)).Id, notification.Identity);
             _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(notification.Identity.Tag)).Select(wf => New<IDataContainer>(wf.Path)), encryptionParameters, progress);
             return encryptionParameters;
         }

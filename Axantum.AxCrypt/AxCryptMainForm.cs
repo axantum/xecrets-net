@@ -171,7 +171,7 @@ namespace Axantum.AxCrypt
                     await WrapMessageDialogsAsync(async () =>
                     {
                         await StartUpProgramAsync();
-                        _fileOperationViewModel.IdentityViewModel.LogOn.Execute(Resolve.CryptoFactory.Default.Id);
+                        _fileOperationViewModel.IdentityViewModel.LogOn.Execute(null);
                         await LogOnAndDoPendingRequestAsync();
                     });
                 } while (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail));
@@ -514,21 +514,26 @@ namespace Axantum.AxCrypt
             _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _cleanDecryptedToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
-
-            InitializePolicyMenu();
         }
 
-        private void InitializePolicyMenu()
+        private void SetPolicyMenu(LogOnIdentity identity)
         {
-            string currentPolicyName = New<ICryptoPolicy>().Name;
-            foreach (string policyName in New<CryptoPolicy>().PolicyNames)
-            {
-                ToolStripMenuItem item = new ToolStripMenuItem();
-                item.Text = policyName;
-                item.Checked = policyName == currentPolicyName;
-                item.Click += PolicyMenuItem_Click;
-                _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
-            }
+            ToolStripMenuItem item;
+            _debugCryptoPolicyToolStripMenuItem.DropDownItems.Clear();
+
+            LicensePolicy policy = New<LogOnIdentity, LicensePolicy>(identity);
+
+            item = new ToolStripMenuItem();
+            item.Text = "Premium";
+            item.Checked = policy.IsPremium;
+            item.Click += PolicyMenuItem_Click;
+            _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
+
+            item = new ToolStripMenuItem();
+            item.Text = "Free";
+            item.Checked = !policy.IsPremium;
+            item.Click += PolicyMenuItem_Click;
+            _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
         }
 
         private void InitializeNotifyIcon()
@@ -646,6 +651,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _importMyPrivateKeyToolStripMenuItem.Enabled = !loggedOn; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _createAccountToolStripMenuItem.Enabled = !loggedOn; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetPolicyMenu(loggedOn ? Resolve.KnownIdentities.DefaultEncryptionIdentity : LogOnIdentity.Empty); });
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
@@ -721,7 +727,7 @@ namespace Axantum.AxCrypt
             bool wasLoggedOn = Resolve.KnownIdentities.IsLoggedOn;
             if (wasLoggedOn)
             {
-                _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
+                _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(null);
             }
             else
             {
@@ -1817,7 +1823,19 @@ namespace Axantum.AxCrypt
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
             SetCheckedToolStripMenuItem(item);
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => New<CryptoPolicy>().Create(item.Text));
+            switch (item.Text)
+            {
+                case "Free":
+                    TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new FreeForcedLicensePolicy());
+                    break;
+
+                case "Premium":
+                    TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new PremiumForcedLicensePolicy());
+                    break;
+
+                default:
+                    throw new InvalidOperationException("Unexpected license policy name.");
+            }
         }
 
         private static void SetCheckedToolStripMenuItem(ToolStripMenuItem item)

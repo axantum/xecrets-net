@@ -68,12 +68,13 @@ namespace Axantum.AxCrypt.Core.Service
             _workContainer = workContainer;
         }
 
-        public SubscriptionLevel Level
+        public Task<SubscriptionLevel> LevelAsync()
         {
-            get
+            if (Identity == LogOnIdentity.Empty)
             {
-                return LoadUserAccount().SubscriptionLevel;
+                return Task.FromResult(SubscriptionLevel.Unknown);
             }
+            return Task.FromResult(LoadUserAccount().SubscriptionLevel);
         }
 
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
@@ -110,17 +111,14 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public async Task<IList<UserKeyPair>> ListAsync()
+        public Task<IList<UserKeyPair>> ListAsync()
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
                 throw new InvalidOperationException("The account service requies a user.");
             }
 
-            return await Task.Run(() =>
-            {
-                return TryLoadUserKeyPairs();
-            }).Free();
+            return Task.FromResult(TryLoadUserKeyPairs());
         }
 
         public Task<UserKeyPair> CurrentKeyPairAsync()

@@ -47,12 +47,9 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public SubscriptionLevel Level
+        public async Task<SubscriptionLevel> LevelAsync()
         {
-            get
-            {
-                return New<ICache>().GetItem(_key.Subkey(nameof(Level)), () => _service.Level);
-            }
+            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(LevelAsync)), () => _service.LevelAsync()).Free();
         }
 
         public bool ChangePassphrase(Passphrase passphrase)

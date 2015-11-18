@@ -99,12 +99,10 @@ namespace Axantum.AxCrypt.Core.Service
         /// <value>
         /// The level.
         /// </value>
-        public SubscriptionLevel Level
+        public async Task<SubscriptionLevel> LevelAsync()
         {
-            get
-            {
-                return SubscriptionLevel.Unknown;
-            }
+            UserAccount userAccount = await _apiClient.MyAccountAsync().Free();
+            return userAccount.SubscriptionLevel;
         }
 
         /// <summary>

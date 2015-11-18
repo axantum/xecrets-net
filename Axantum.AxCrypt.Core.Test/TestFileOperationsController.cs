@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestEncryptFileWithDefaultEncryptionKey()
         {
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => new LegacyCryptoPolicy());
+            TypeMap.Register.New<LogOnIdentity, ICryptoPolicy>((identity) => new LegacyCryptoPolicy());
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("default");
             FileOperationsController controller = new FileOperationsController();
             bool queryEncryptionPassphraseWasCalled = false;
