@@ -13,16 +13,22 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class UserAccount
     {
-        public UserAccount(string userName, SubscriptionLevel level, AccountStatus status, IEnumerable<AccountKey> keys)
+        public UserAccount(string userName, SubscriptionLevel level, DateTime expiration, AccountStatus status, IEnumerable<AccountKey> keys)
         {
             UserName = userName;
             SubscriptionLevel = level;
+            LevelExpiration = expiration;
             AccountKeys = keys.ToList();
             AccountStatus = status;
         }
 
+        public UserAccount(string userName, SubscriptionLevel level, DateTime expiration, AccountStatus status)
+            : this(userName, level, expiration, status, new AccountKey[0])
+        {
+        }
+
         public UserAccount(string userName, SubscriptionLevel level, AccountStatus status)
-            : this(userName, level, status, new AccountKey[0])
+            : this(userName, level, DateTime.MinValue, status, new AccountKey[0])
         {
         }
 
@@ -63,6 +69,15 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("level")]
         public SubscriptionLevel SubscriptionLevel { get; private set; }
+
+        /// <summary>
+        /// Gets the level expiration date and time UTC.
+        /// </summary>
+        /// <value>
+        /// The level expiration date and time UTC.
+        /// </value>
+        [JsonProperty("expiration")]
+        public DateTime LevelExpiration { get; private set; }
 
         /// <summary>
         /// Gets the account status.

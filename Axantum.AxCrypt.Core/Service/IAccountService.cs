@@ -82,6 +82,12 @@ namespace Axantum.AxCrypt.Core.Service
         bool ChangePassphrase(Passphrase passphrase);
 
         /// <summary>
+        /// Fetches the user user account.
+        /// </summary>
+        /// <returns>The complete user account information.</returns>
+        Task<UserAccount> AccountAsync();
+
+        /// <summary>
         /// Lists all UserKeyPairs available for the user, if any.
         /// </summary>
         /// <returns></returns>
@@ -99,6 +105,13 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <returns>The public key of the current key pair, or null if the service can't create other users.</returns>
         Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email);
+
+        /// <summary>
+        /// Saves the account, merging keys with existing keys if necessary.
+        /// </summary>
+        /// <param name="account">The account.</param>
+        /// <returns></returns>
+        Task SaveAsync(UserAccount account);
 
         /// <summary>
         /// Saves the specified key pairs.

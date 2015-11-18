@@ -75,9 +75,19 @@ namespace Axantum.AxCrypt.Core.Service
             return true;
         }
 
+        public Task<UserAccount> AccountAsync()
+        {
+            return Task.FromResult(new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown));
+        }
+
         public Task<IList<UserKeyPair>> ListAsync()
         {
             return Task.FromResult((IList<UserKeyPair>)new UserKeyPair[0]);
+        }
+
+        public Task SaveAsync(UserAccount account)
+        {
+            return _completedTask;
         }
 
         public Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)

@@ -103,6 +103,15 @@ namespace Axantum.AxCrypt.Api
             return accountKey;
         }
 
+        public async Task PutMyAccountAsync(UserAccount account)
+        {
+            Uri resource = BaseUrl.PathCombine("users/my/account".With(ApiCaller.UrlEncode(Identity.User)));
+
+            RestContent content = new RestContent(Serializer.Serialize(account));
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+        }
+
         /// <summary>
         /// Uploads a key pair to server. The operation is idempotent.
         /// </summary>

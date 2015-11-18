@@ -111,6 +111,16 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
+        public Task<UserAccount> AccountAsync()
+        {
+            if (Identity.UserEmail == EmailAddress.Empty)
+            {
+                throw new InvalidOperationException("The account service requies a user.");
+            }
+            UserAccount userAccount = LoadUserAccount();
+            return Task.FromResult(userAccount);
+        }
+
         public Task<IList<UserKeyPair>> ListAsync()
         {
             if (Identity.UserEmail == EmailAddress.Empty)
@@ -126,6 +136,37 @@ namespace Axantum.AxCrypt.Core.Service
             throw new NotImplementedException();
         }
 
+        public async Task SaveAsync(UserAccount account)
+        {
+            if (Identity.UserEmail == EmailAddress.Empty)
+            {
+                throw new InvalidOperationException("The account service requies a user.");
+            }
+
+            await Task.Run(() =>
+            {
+                UserAccounts userAccounts = LoadUserAccounts();
+                UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
+                if (userAccount == null)
+                {
+                    userAccount = new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, new AccountKey[0]);
+                    userAccounts.Accounts.Add(userAccount);
+                }
+
+                IEnumerable<AccountKey> accountKeysToUpdate = account.AccountKeys;
+                IEnumerable<AccountKey> existingAccountKeys = userAccount.AccountKeys;
+                IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Union(accountKeysToUpdate);
+
+                if (accountKeys.Count() == existingAccountKeys.Count() && userAccount.AccountStatus == account.AccountStatus && userAccount.SubscriptionLevel == userAccount.SubscriptionLevel && userAccount.LevelExpiration == account.LevelExpiration)
+                {
+                    return;
+                }
+
+                userAccount = new UserAccount(userAccount.UserName, account.SubscriptionLevel, account.LevelExpiration, account.AccountStatus);
+                SaveInternal(userAccounts, userAccount, accountKeys);
+            }).Free();
+        }
+
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
@@ -139,7 +180,7 @@ namespace Axantum.AxCrypt.Core.Service
                 UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
                 if (userAccount == null)
                 {
-                    userAccount = new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown, new AccountKey[0]);
+                    userAccount = new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, new AccountKey[0]);
                     userAccounts.Accounts.Add(userAccount);
                 }
 
@@ -147,24 +188,32 @@ namespace Axantum.AxCrypt.Core.Service
                 IEnumerable<AccountKey> existingAccountKeys = userAccount.AccountKeys;
                 IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Union(accountKeysToUpdate);
 
-                if (accountKeys.Count() != existingAccountKeys.Count())
+                if (accountKeys.Count() == existingAccountKeys.Count())
                 {
-                    SaveInternal(userAccounts, userAccount, accountKeys);
+                    return;
                 }
+
+                SaveInternal(userAccounts, userAccount, accountKeys);
             }).Free();
         }
 
         private void SaveInternal(UserAccounts userAccounts, UserAccount userAccount, IEnumerable<AccountKey> accountKeys)
         {
-            userAccount.AccountKeys.Clear();
-            foreach (AccountKey accountKey in accountKeys)
+            UserAccounts userAccountsToSave = new UserAccounts();
+            foreach (UserAccount ua in userAccounts.Accounts.Where(a => a.UserName != userAccount.UserName))
             {
-                userAccount.AccountKeys.Add(accountKey);
+                userAccountsToSave.Accounts.Add(ua);
             }
+            userAccount.AccountKeys.Clear();
+            foreach (AccountKey ak in accountKeys)
+            {
+                userAccount.AccountKeys.Add(ak);
+            }
+            userAccountsToSave.Accounts.Add(userAccount);
 
             using (StreamWriter writer = new StreamWriter(_workContainer.FileItemInfo("UserAccounts.txt").OpenWrite()))
             {
-                userAccounts.SerializeTo(writer);
+                userAccountsToSave.SerializeTo(writer);
             }
         }
 
@@ -209,7 +258,7 @@ namespace Axantum.AxCrypt.Core.Service
             IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
             if (!users.Any())
             {
-                return new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown, new AccountKey[0]);
+                return new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, new AccountKey[0]);
             }
 
             return users.First();

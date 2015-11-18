@@ -256,6 +256,7 @@ namespace Axantum.AxCrypt
 
                     case AccountStatus.Offline:
                         dialogResult = MessageDialog.ShowOkCancelExit(this, "Internet Acccess Required", "Internet access is required at this time. Please check your connection, and try again.");
+                        New<AxCryptOnlineState>().IsOnline = true;
                         break;
 
                     case AccountStatus.Unknown:

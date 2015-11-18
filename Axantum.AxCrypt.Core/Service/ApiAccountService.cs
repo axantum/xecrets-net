@@ -140,6 +140,32 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
+        /// Fetches the user account.
+        /// </summary>
+        /// <returns>
+        /// The complete user account information.
+        /// </returns>
+        /// <exception cref="System.InvalidOperationException">The account service requires a user.</exception>
+        /// <exception cref="PasswordException">Credentials are not valid for server access.</exception>
+        public async Task<UserAccount> AccountAsync()
+        {
+            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
+            try
+            {
+                UserAccount userAccount = await _apiClient.MyAccountAsync().Free();
+                return userAccount;
+            }
+            catch (UnauthorizedApiException uaex)
+            {
+                throw new PasswordException("Credentials are not valid for server access.", uaex);
+            }
+        }
+
+        /// <summary>
         /// Lists all UserKeyPairs available for the user.
         /// </summary>
         /// <returns></returns>
@@ -176,6 +202,23 @@ namespace Axantum.AxCrypt.Core.Service
                     return null;
                 }
                 return accountKey.ToUserKeyPair(Identity.Passphrase);
+            }
+            catch (UnauthorizedApiException uaex)
+            {
+                throw new PasswordException("Credentials are not valid for server access.", uaex);
+            }
+        }
+
+        public async Task SaveAsync(UserAccount account)
+        {
+            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
+            try
+            {
+                await _apiClient.PutMyAccountAsync(account).Free();
             }
             catch (UnauthorizedApiException uaex)
             {

@@ -91,6 +91,19 @@ namespace Axantum.AxCrypt.Core.Service
             return _localService.ChangePassphrase(passphrase);
         }
 
+        public async Task<UserAccount> AccountAsync()
+        {
+            UserAccount userAccount = await _localService.AccountAsync().Free();
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return userAccount;
+            }
+
+            userAccount = await _remoteService.AccountAsync().Free();
+
+            return userAccount;
+        }
+
         public async Task<IList<UserKeyPair>> ListAsync()
         {
             IList<UserKeyPair> localKeys = await _localService.ListAsync().Free();
@@ -194,6 +207,22 @@ namespace Axantum.AxCrypt.Core.Service
                 }
             }
             return publicKey;
+        }
+
+        public async Task SaveAsync(UserAccount account)
+        {
+            if (New<AxCryptOnlineState>().IsOnline)
+            {
+                try
+                {
+                    await _remoteService.SaveAsync(account).Free();
+                }
+                catch (OfflineApiException)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
+            }
+            await _localService.SaveAsync(account).Free();
         }
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)

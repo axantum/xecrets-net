@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Api.Test
         {
             RestIdentity identity = new RestIdentity("svante@axcrypt.net", "a");
 
-            UserAccount summary = new UserAccount(identity.User, SubscriptionLevel.Free, AccountStatus.Verified, new AccountKey[] { new AccountKey("svante@axcrypt.net", Convert.ToBase64String(new byte[16]), KeyPair.Empty, DateTime.MinValue), });
+            UserAccount summary = new UserAccount(identity.User, SubscriptionLevel.Free, DateTime.UtcNow.AddMonths(1), AccountStatus.Verified, new AccountKey[] { new AccountKey("svante@axcrypt.net", Convert.ToBase64String(new byte[16]), KeyPair.Empty, DateTime.MinValue), });
             string content = Resolve.Serializer.Serialize(summary);
 
             Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Api.Test
         {
             RestIdentity identity = new RestIdentity();
 
-            UserAccount summary = new UserAccount(identity.User, SubscriptionLevel.Free, AccountStatus.Verified, new AccountKey[] { new AccountKey("svante@axcrypt.net", Convert.ToBase64String(new byte[16]), new KeyPair("public-key-fake-PEM", String.Empty), DateTime.MinValue), });
+            UserAccount summary = new UserAccount(identity.User, SubscriptionLevel.Free, DateTime.UtcNow.AddMonths(1), AccountStatus.Verified, new AccountKey[] { new AccountKey("svante@axcrypt.net", Convert.ToBase64String(new byte[16]), new KeyPair("public-key-fake-PEM", String.Empty), DateTime.MinValue), });
             string content = Resolve.Serializer.Serialize(summary);
 
             Mock<IRestCaller> mockRestCaller = new Mock<IRestCaller>();
