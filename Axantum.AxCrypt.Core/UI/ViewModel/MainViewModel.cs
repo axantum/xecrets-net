@@ -59,8 +59,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string Title { get { return GetProperty<string>(nameof(Title)); } set { SetProperty(nameof(Title), value); } }
 
-        public LogOnIdentity Identity { get { return GetProperty<LogOnIdentity>(nameof(Identity)); } set { SetProperty(nameof(Identity), value); } }
-
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>(nameof(WatchedFolders)); } set { SetProperty(nameof(WatchedFolders), value.ToList()); } }
 
         public IEnumerable<ActiveFile> RecentFiles { get { return GetProperty<IEnumerable<ActiveFile>>(nameof(RecentFiles)); } set { SetProperty(nameof(RecentFiles), value.ToList()); } }
@@ -95,6 +93,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool Working { get { return GetProperty<bool>(nameof(Working)); } set { SetProperty(nameof(Working), value); } }
 
+        public LicensePolicy License { get { return GetProperty<LicensePolicy>(nameof(License)); } set { SetProperty(nameof(License), value); } }
+
         public IAction RemoveRecentFiles { get; private set; }
 
         public IAction AddWatchedFolders { get; private set; }
@@ -108,6 +108,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAction OpenSelectedFolder { get; private set; }
 
         public IAction UpdateCheck { get; private set; }
+
+        public IAction LicenseUpdate { get; private set; }
 
         public MainViewModel(FileSystemState fileSystemState, IUserSettings userSettings)
         {
@@ -131,6 +133,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             TryBrokenFile = _userSettings.TryBrokenFile;
             Title = String.Empty;
             VersionUpdateStatus = UI.VersionUpdateStatus.Unknown;
+            License = New<LogOnIdentity, LicensePolicy>(LogOnIdentity.Empty);
 
             AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders), (folders) => LoggedOn);
             RemoveRecentFiles = new DelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
@@ -139,6 +142,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
             UpdateCheck = new DelegateAction<DateTime>((utc) => UpdateCheckAction(utc), (utc) => _updateCheck != null);
+            LicenseUpdate = new DelegateAction<object>((o) => License = New<LogOnIdentity, LicensePolicy>(LoggedOn ? Resolve.KnownIdentities.DefaultEncryptionIdentity : LogOnIdentity.Empty));
 
             DecryptFileEnabled = true;
             OpenEncryptedEnabled = true;
@@ -153,6 +157,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChangedInternal(nameof(TryBrokenFile), (bool enabled) => { _userSettings.TryBrokenFile = enabled; });
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFiles(); });
+            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
         }
 
         private void SubscribeToModelEvents()
@@ -317,7 +322,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetLogOnState(bool isLoggedOn)
         {
-            Identity = GetLogOnIdentity(isLoggedOn);
             LoggedOn = isLoggedOn;
             EncryptFileEnabled = isLoggedOn;
             WatchedFoldersEnabled = isLoggedOn;
@@ -327,7 +331,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (!isLoggedOn)
             {
-                return null;
+                return LogOnIdentity.Empty;
             }
             return Resolve.KnownIdentities.DefaultEncryptionIdentity;
         }

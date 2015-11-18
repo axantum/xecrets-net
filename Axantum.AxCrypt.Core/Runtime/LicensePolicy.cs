@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             get
             {
                 DateTime utcNow = DateTime.UtcNow;
-                if (utcNow <= SubscriptionExpiration)
+                if (utcNow >= SubscriptionExpiration)
                 {
                     return TimeSpan.Zero;
                 }
@@ -82,12 +82,26 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         protected virtual SubscriptionLevel SubscriptionLevel
         {
-            get { return Account.SubscriptionLevel; }
+            get
+            {
+                if (_identity == LogOnIdentity.Empty)
+                {
+                    return SubscriptionLevel.Unknown;
+                }
+                return Account.SubscriptionLevel;
+            }
         }
 
         protected virtual DateTime SubscriptionExpiration
         {
-            get { return Account.LevelExpiration; }
+            get
+            {
+                if (_identity == LogOnIdentity.Empty)
+                {
+                    return DateTime.MaxValue;
+                }
+                return Account.LevelExpiration;
+            }
         }
 
         private UserAccount Account

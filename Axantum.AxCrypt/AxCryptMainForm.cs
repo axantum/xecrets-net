@@ -517,22 +517,20 @@ namespace Axantum.AxCrypt
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
         }
 
-        private void SetPolicyMenu(LogOnIdentity identity)
+        private void SetPolicyMenu(LicensePolicy license)
         {
             ToolStripMenuItem item;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Clear();
 
-            LicensePolicy policy = New<LogOnIdentity, LicensePolicy>(identity);
-
             item = new ToolStripMenuItem();
             item.Text = "Premium";
-            item.Checked = policy.Has(LicenseCapability.Premium);
+            item.Checked = license.Has(LicenseCapability.Premium);
             item.Click += PolicyMenuItem_Click;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
 
             item = new ToolStripMenuItem();
             item.Text = "Free";
-            item.Checked = !policy.Has(LicenseCapability.Premium);
+            item.Checked = !license.Has(LicenseCapability.Premium);
             item.Click += PolicyMenuItem_Click;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
         }
@@ -652,7 +650,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _importMyPrivateKeyToolStripMenuItem.Enabled = !loggedOn; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _createAccountToolStripMenuItem.Enabled = !loggedOn; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetPolicyMenu(loggedOn ? Resolve.KnownIdentities.DefaultEncryptionIdentity : LogOnIdentity.Empty); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { SetPolicyMenu(license); });
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
@@ -1837,6 +1835,7 @@ namespace Axantum.AxCrypt
                 default:
                     throw new InvalidOperationException("Unexpected license policy name.");
             }
+            _mainViewModel.LicenseUpdate.Execute(null);
         }
 
         private static void SetCheckedToolStripMenuItem(ToolStripMenuItem item)
