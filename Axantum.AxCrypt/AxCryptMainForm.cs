@@ -517,7 +517,27 @@ namespace Axantum.AxCrypt
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
         }
 
-        private void SetPolicyMenu(LicensePolicy license)
+        private void ConfigureMenusAccordingToPolicy(LicensePolicy license)
+        {
+            ConfigurePolicyMenu(license);
+            ConfigureSecureWipe(license);
+        }
+
+        private void ConfigureSecureWipe(LicensePolicy license)
+        {
+            if (license.Has(LicenseCapability.SecureWipe))
+            {
+                _secureDeleteToolStripMenuItem.Image = Resources.delete;
+                _secureDeleteToolStripMenuItem.ToolTipText = String.Empty;
+            }
+            else
+            {
+                _secureDeleteToolStripMenuItem.Image = Resources.premium_overlay_16px;
+                _secureDeleteToolStripMenuItem.ToolTipText = Resources.PremiumFeatureToolTipText;
+            }
+        }
+
+        private void ConfigurePolicyMenu(LicensePolicy license)
         {
             ToolStripMenuItem item;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Clear();
@@ -650,7 +670,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _importMyPrivateKeyToolStripMenuItem.Enabled = !loggedOn; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _createAccountToolStripMenuItem.Enabled = !loggedOn; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { SetPolicyMenu(license); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { ConfigureMenusAccordingToPolicy(license); });
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
@@ -705,7 +725,7 @@ namespace Axantum.AxCrypt
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
-            _secureDeleteToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.WipeFiles.Execute(null); };
+            _secureDeleteToolStripMenuItem.Click += (sender, e) => PremiumFeature_Click(LicenseCapability.SecureWipe, (ss, ee) => { _fileOperationViewModel.WipeFiles.Execute(null); }, sender, e);
 
             _watchedFoldersListView.MouseDoubleClick += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
             _watchedFoldersdecryptTemporarilyMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFolders.Execute(_mainViewModel.SelectedWatchedFolders); };
@@ -1651,6 +1671,17 @@ namespace Axantum.AxCrypt
         private void CloseOpenFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EncryptPendingFiles();
+        }
+
+        private void PremiumFeature_Click(LicenseCapability requiredCapability, EventHandler realHandler, object sender, EventArgs e)
+        {
+            if (_mainViewModel.License.Has(requiredCapability))
+            {
+                realHandler(sender, e);
+                return;
+            }
+
+            Process.Start(Resources.AxCryptPricingPageLink);
         }
 
         private void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)

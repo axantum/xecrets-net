@@ -353,6 +353,7 @@
     <Content Include="resources\logo-text-retina.png" />
     <Content Include="resources\open_encrypted.png" />
     <Content Include="resources\options.png" />
+    <Content Include="resources\premium_overlay_16px.png" />
     <Content Include="resources\skydrive_40px.png" />
     <None Include="resources\cleanupneededred32.png" />
     <None Include="resources\cleanupneededred16.png" />

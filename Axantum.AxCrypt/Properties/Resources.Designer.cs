@@ -166,6 +166,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://www.axcrypt.net/pricing/.
+        /// </summary>
+        internal static string AxCryptPricingPageLink {
+            get {
+                return ResourceManager.GetString("AxCryptPricingPageLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect email address.
         /// </summary>
         internal static string BadEmail {
@@ -1114,6 +1123,25 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("plus_40px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap premium_overlay_16px {
+            get {
+                object obj = ResourceManager.GetObject("premium_overlay_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This feature requires a purchase of Premium!.
+        /// </summary>
+        internal static string PremiumFeatureToolTipText {
+            get {
+                return ResourceManager.GetString("PremiumFeatureToolTipText", resourceCulture);
             }
         }
         
