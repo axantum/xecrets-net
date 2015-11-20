@@ -501,7 +501,6 @@ namespace Axantum.AxCrypt
             };
 
             _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
-            _keyShareToolStripButton.Tag = FileInfoTypes.EncryptedFile;
 
             _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
 
@@ -521,17 +520,20 @@ namespace Axantum.AxCrypt
         {
             ConfigurePolicyMenu(license);
             ConfigureSecureWipe(license);
+            ConfigureKeyShareMenus(license);
         }
 
         private void ConfigureKeyShareMenus(LicensePolicy license)
         {
             if (license.Has(LicenseCapability.KeySharing))
             {
-                _keyShareToolStripButton.Image = Resources.minus_40px;
-                _keyShareToolStripButton.ToolTipText = String.Empty;
+                _keyShareToolStripButton.Image = Resources.share_80px;
+                _keyShareToolStripButton.ToolTipText = Resources.KeySharingToolTip;
             }
             else
             {
+                _keyShareToolStripButton.Image = Resources.share_premium_80px;
+                _keyShareToolStripButton.ToolTipText = Resources.PremiumNeededForKeyShare;
             }
         }
 
@@ -686,7 +688,6 @@ namespace Axantum.AxCrypt
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _keyShareToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; });
@@ -698,6 +699,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.VersionUpdateStatus), (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
 
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck.Execute(DateTime.MinValue); };
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
@@ -731,7 +733,7 @@ namespace Axantum.AxCrypt
         private void BindToFileOperationViewModel()
         {
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
-            _keyShareToolStripButton.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
+            _keyShareToolStripButton.Click += (sender, e) => { PremiumFeature_Click(LicenseCapability.KeySharing, (ss, ee) => { ShareKeysAsync(_mainViewModel.SelectedRecentFiles); }, sender, e); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
             _logOnLogOffLabel.LinkClicked += async (sender, e) => { await LogOnOrLogOffAndLogOnAgainAsync(); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
@@ -749,7 +751,6 @@ namespace Axantum.AxCrypt
             _fileOperationViewModel.IdentityViewModel.LoggingOn += (sender, e) => { HandleLogOn(e); };
             _fileOperationViewModel.SelectingFiles += (sender, e) => { HandleFileSelection(e); };
 
-            _keyShareToolStripButton.Tag = _fileOperationViewModel.DecryptFiles;
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
         }
 
@@ -1178,7 +1179,7 @@ namespace Axantum.AxCrypt
                     return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
                 }
             }
-            if (button == _keyShareToolStripButton)
+            if (button == _keyShareToolStripButton && _mainViewModel.License.Has(LicenseCapability.KeySharing))
             {
                 if ((_mainViewModel.DragAndDropFilesTypes & FileInfoTypes.EncryptedFile) == FileInfoTypes.EncryptedFile)
                 {

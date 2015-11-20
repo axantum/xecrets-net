@@ -896,6 +896,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to select encrypted files to share keys with others..
+        /// </summary>
+        internal static string KeySharingToolTip {
+            get {
+                return ResourceManager.GetString("KeySharingToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt must be restarted in order for the language change to take effect..
         /// </summary>
         internal static string LanguageChangeRestartPrompt {
@@ -1129,6 +1138,16 @@ namespace Axantum.AxCrypt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap premium_80px {
+            get {
+                object obj = ResourceManager.GetObject("premium_80px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap premium_overlay_16px {
             get {
                 object obj = ResourceManager.GetObject("premium_overlay_16px", resourceCulture);
@@ -1142,6 +1161,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string PremiumFeatureToolTipText {
             get {
                 return ResourceManager.GetString("PremiumFeatureToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key sharing requires premimum. Click to upgrade now!.
+        /// </summary>
+        internal static string PremiumNeededForKeyShare {
+            get {
+                return ResourceManager.GetString("PremiumNeededForKeyShare", resourceCulture);
             }
         }
         
@@ -1200,6 +1228,26 @@ namespace Axantum.AxCrypt.Properties {
         internal static System.Drawing.Bitmap removeanddecryptgreen32 {
             get {
                 object obj = ResourceManager.GetObject("removeanddecryptgreen32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap share_80px {
+            get {
+                object obj = ResourceManager.GetObject("share_80px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap share_premium_80px {
+            get {
+                object obj = ResourceManager.GetObject("share_premium_80px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
