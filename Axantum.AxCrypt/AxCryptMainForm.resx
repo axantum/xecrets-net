@@ -750,16 +750,16 @@
   <data name="_encryptToolStripButton.ToolTipText" xml:space="preserve">
     <value>Click to select documents to encrypt</value>
   </data>
-  <data name="_decryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_keyShareToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="_decryptToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+  <data name="_keyShareToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="_decryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_keyShareToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 40</value>
   </data>
-  <data name="_decryptToolStripButton.ToolTipText" xml:space="preserve">
+  <data name="_keyShareToolStripButton.ToolTipText" xml:space="preserve">
     <value>Click to select documents to decrypt</value>
   </data>
   <data name="_knownFoldersSeparator.Size" type="System.Drawing.Size, System.Drawing">
@@ -4421,10 +4421,10 @@
   <data name="&gt;&gt;_encryptToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_decryptToolStripButton.Name" xml:space="preserve">
-    <value>_decryptToolStripButton</value>
+  <data name="&gt;&gt;_keyShareToolStripButton.Name" xml:space="preserve">
+    <value>_keyShareToolStripButton</value>
   </data>
-  <data name="&gt;&gt;_decryptToolStripButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;_keyShareToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_knownFoldersSeparator.Name" xml:space="preserve">

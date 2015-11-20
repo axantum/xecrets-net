@@ -85,7 +85,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._mainToolStrip = new System.Windows.Forms.ToolStrip();
             this._encryptToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._decryptToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._keyShareToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._closeAndRemoveOpenFilesToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -567,7 +567,7 @@
             this._mainToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
             this._mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._encryptToolStripButton,
-            this._decryptToolStripButton,
+            this._keyShareToolStripButton,
             this._knownFoldersSeparator,
             this._toolStripSeparator1,
             this._closeAndRemoveOpenFilesToolStripButton});
@@ -582,13 +582,13 @@
             this._encryptToolStripButton.Margin = new System.Windows.Forms.Padding(0);
             this._encryptToolStripButton.Name = "_encryptToolStripButton";
             // 
-            // _decryptToolStripButton
+            // _keyShareToolStripButton
             // 
-            resources.ApplyResources(this._decryptToolStripButton, "_decryptToolStripButton");
-            this._decryptToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._decryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.minus_40px;
-            this._decryptToolStripButton.Margin = new System.Windows.Forms.Padding(0);
-            this._decryptToolStripButton.Name = "_decryptToolStripButton";
+            resources.ApplyResources(this._keyShareToolStripButton, "_keyShareToolStripButton");
+            this._keyShareToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._keyShareToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.minus_40px;
+            this._keyShareToolStripButton.Margin = new System.Windows.Forms.Padding(0);
+            this._keyShareToolStripButton.Name = "_keyShareToolStripButton";
             // 
             // _knownFoldersSeparator
             // 
@@ -754,7 +754,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.ToolStrip _mainToolStrip;
         private System.Windows.Forms.ToolStripButton _encryptToolStripButton;
-        private System.Windows.Forms.ToolStripButton _decryptToolStripButton;
+        private System.Windows.Forms.ToolStripButton _keyShareToolStripButton;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton _closeAndRemoveOpenFilesToolStripButton;
         private System.Windows.Forms.ToolStripSeparator _knownFoldersSeparator;
