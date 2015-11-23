@@ -114,6 +114,34 @@ namespace Axantum.AxCrypt.Core.Runtime
             return Capabilities.Contains(capability);
         }
 
+        public TimeSpan SubscriptionWarningTime
+        {
+            get
+            {
+                SubscriptionLevel level = SubscriptionLevel;
+                if (level != SubscriptionLevel.Premium)
+                {
+                    return TimeSpan.Zero;
+                }
+
+                DateTime expiration = SubscriptionExpiration;
+                if (expiration == DateTime.MaxValue || expiration == DateTime.MinValue)
+                {
+                    return TimeSpan.Zero;
+                }
+                DateTime utcNow = DateTime.UtcNow;
+                expiration = expiration < utcNow ? utcNow : expiration;
+
+                TimeSpan timeLeft = expiration - utcNow;
+                if (timeLeft < TimeSpan.FromDays(30))
+                {
+                    return timeLeft;
+                }
+
+                return TimeSpan.Zero;
+            }
+        }
+
         public ICryptoPolicy CryptoPolicy
         {
             get

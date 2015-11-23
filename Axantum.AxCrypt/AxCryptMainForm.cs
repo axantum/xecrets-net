@@ -624,9 +624,9 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _importMyPrivateKeyToolStripMenuItem.Enabled = !loggedOn; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _createAccountToolStripMenuItem.Enabled = !loggedOn; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { ConfigureMenusAccordingToPolicy(license); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await _recentFilesListView.UpdateRecentFilesAsync(_mainViewModel.RecentFiles, _mainViewModel.License); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { SetDaysLeftWarning(license); });
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
@@ -642,6 +642,8 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
+
+            _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Resources.AxCryptPricingPageLink); };
 
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck.Execute(DateTime.MinValue); };
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
@@ -677,7 +679,6 @@ namespace Axantum.AxCrypt
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _keyShareToolStripButton.Click += (sender, e) => { PremiumFeature_Click(LicenseCapability.KeySharing, (ss, ee) => { ShareKeysAsync(_mainViewModel.SelectedRecentFiles); }, sender, e); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
-            _logOnLogOffLabel.LinkClicked += async (sender, e) => { await LogOnOrLogOffAndLogOnAgainAsync(); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
@@ -694,6 +695,21 @@ namespace Axantum.AxCrypt
             _fileOperationViewModel.SelectingFiles += (sender, e) => { HandleFileSelection(e); };
 
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
+        }
+
+        private void SetDaysLeftWarning(LicensePolicy license)
+        {
+            if (license.SubscriptionWarningTime == TimeSpan.Zero)
+            {
+                _daysLeftPremiumLabel.Visible = false;
+                return;
+            }
+
+            int days = license.SubscriptionWarningTime.Days;
+            _daysLeftPremiumLabel.Text = (days > 1 ? Resources.DaysLeftPluralWarningPattern : Resources.DaysLeftSingularWarningPattern).InvariantFormat(days);
+            _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
+            _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Resources.DaysLeftWarningToolTip);
+            _daysLeftPremiumLabel.Visible = true;
         }
 
         private async Task LogOnOrLogOffAndLogOnAgainAsync()

@@ -358,6 +358,33 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Days.
+        /// </summary>
+        internal static string DaysLeftPluralWarningPattern {
+            get {
+                return ResourceManager.GetString("DaysLeftPluralWarningPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt; 1 Day.
+        /// </summary>
+        internal static string DaysLeftSingularWarningPattern {
+            get {
+                return ResourceManager.GetString("DaysLeftSingularWarningPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Premium subscription is about to expire. Click to renew..
+        /// </summary>
+        internal static string DaysLeftWarningToolTip {
+            get {
+                return ResourceManager.GetString("DaysLeftWarningToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap decrypt {

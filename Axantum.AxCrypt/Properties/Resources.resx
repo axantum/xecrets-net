@@ -556,6 +556,15 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
     <value>Upgrade to Premium to enable the strongest encryption.</value>
   </data>
+  <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
+    <value>{0} Days</value>
+  </data>
+  <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
+    <value>&lt; 1 Day</value>
+  </data>
+  <data name="DaysLeftWarningToolTip" xml:space="preserve">
+    <value>Your Premium subscription is about to expire. Click to renew.</value>
+  </data>
   <data name="premium_yellow_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\premium_yellow_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

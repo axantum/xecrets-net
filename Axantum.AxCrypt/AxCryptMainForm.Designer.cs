@@ -89,11 +89,12 @@
             this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._closeAndRemoveOpenFilesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._logOnLogOffLabel = new System.Windows.Forms.LinkLabel();
+            this._daysLeftPremiumLabel = new System.Windows.Forms.LinkLabel();
             this._rightToolStrip = new System.Windows.Forms.ToolStrip();
             this._feedbackButton = new System.Windows.Forms.ToolStripButton();
             this._updateStatusButton = new System.Windows.Forms.ToolStripButton();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
+            this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -544,7 +545,7 @@
             resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
             this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this._mainToolStrip, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this._logOnLogOffLabel, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this._daysLeftPremiumLabel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this._rightToolStrip, 3, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             // 
@@ -608,14 +609,14 @@
             this._closeAndRemoveOpenFilesToolStripButton.Margin = new System.Windows.Forms.Padding(0);
             this._closeAndRemoveOpenFilesToolStripButton.Name = "_closeAndRemoveOpenFilesToolStripButton";
             // 
-            // _logOnLogOffLabel
+            // _daysLeftPremiumLabel
             // 
-            resources.ApplyResources(this._logOnLogOffLabel, "_logOnLogOffLabel");
-            this._logOnLogOffLabel.BackColor = System.Drawing.SystemColors.Control;
-            this._logOnLogOffLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this._logOnLogOffLabel.LinkColor = System.Drawing.SystemColors.ControlText;
-            this._logOnLogOffLabel.Name = "_logOnLogOffLabel";
-            this._logOnLogOffLabel.TabStop = true;
+            resources.ApplyResources(this._daysLeftPremiumLabel, "_daysLeftPremiumLabel");
+            this._daysLeftPremiumLabel.BackColor = System.Drawing.SystemColors.Control;
+            this._daysLeftPremiumLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this._daysLeftPremiumLabel.LinkColor = System.Drawing.SystemColors.ControlText;
+            this._daysLeftPremiumLabel.Name = "_daysLeftPremiumLabel";
+            this._daysLeftPremiumLabel.TabStop = true;
             // 
             // _rightToolStrip
             // 
@@ -758,13 +759,14 @@
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton _closeAndRemoveOpenFilesToolStripButton;
         private System.Windows.Forms.ToolStripSeparator _knownFoldersSeparator;
-        private System.Windows.Forms.LinkLabel _logOnLogOffLabel;
+        private System.Windows.Forms.LinkLabel _daysLeftPremiumLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStrip _rightToolStrip;
         private System.Windows.Forms.ToolStripButton _updateStatusButton;
         private System.Windows.Forms.ToolStripMenuItem _recentFilesOpenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tryBrokenFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton _feedbackButton;
+        private System.Windows.Forms.ToolTip _daysLeftToolTip;
     }
 }
 

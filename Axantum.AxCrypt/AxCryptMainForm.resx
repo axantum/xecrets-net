@@ -337,7 +337,7 @@
     <value>_recentFilesListView</value>
   </data>
   <data name="&gt;&gt;_recentFilesListView.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.DoubleBufferedListView, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+    <value>Axantum.AxCrypt.RecentFilesListView, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;_recentFilesListView.Parent" xml:space="preserve">
     <value>_recentFilesTabPage</value>
@@ -637,7 +637,7 @@
     <value>0, 0</value>
   </data>
   <data name="_mainMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 24</value>
+    <value>143, 24</value>
   </data>
   <data name="_mainMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -810,44 +810,44 @@
   <data name="&gt;&gt;_mainToolStrip.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="_logOnLogOffLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="_daysLeftPremiumLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="_logOnLogOffLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_daysLeftPremiumLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="_logOnLogOffLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="_daysLeftPremiumLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="_logOnLogOffLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>469, 14</value>
+  <data name="_daysLeftPremiumLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>472, 14</value>
   </data>
-  <data name="_logOnLogOffLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
+  <data name="_daysLeftPremiumLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 13</value>
   </data>
-  <data name="_logOnLogOffLabel.TabIndex" type="System.Int32, mscorlib">
+  <data name="_daysLeftPremiumLabel.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="_logOnLogOffLabel.Text" xml:space="preserve">
-    <value>Sign Out</value>
+  <data name="_daysLeftPremiumLabel.Text" xml:space="preserve">
+    <value>X Days</value>
   </data>
-  <data name="_logOnLogOffLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="_daysLeftPremiumLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;_logOnLogOffLabel.Name" xml:space="preserve">
-    <value>_logOnLogOffLabel</value>
+  <data name="&gt;&gt;_daysLeftPremiumLabel.Name" xml:space="preserve">
+    <value>_daysLeftPremiumLabel</value>
   </data>
-  <data name="&gt;&gt;_logOnLogOffLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;_daysLeftPremiumLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_logOnLogOffLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_daysLeftPremiumLabel.Parent" xml:space="preserve">
     <value>tableLayoutPanel3</value>
   </data>
-  <data name="&gt;&gt;_logOnLogOffLabel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_daysLeftPremiumLabel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <metadata name="_rightToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+    <value>1299, 17</value>
   </metadata>
   <data name="_rightToolStrip.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -940,7 +940,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pictureBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="_mainToolStrip" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="_logOnLogOffLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="_rightToolStrip" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,200,Percent,100,Absolute,70,Absolute,100" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pictureBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="_mainToolStrip" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="_daysLeftPremiumLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="_rightToolStrip" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,200,Percent,100,Absolute,70,Absolute,100" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -974,6 +974,9 @@
   </data>
   <metadata name="_progressBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>675, 17</value>
+  </metadata>
+  <metadata name="_daysLeftToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1157, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -4462,6 +4465,12 @@
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.Forms.Implementation.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+  </data>
+  <data name="&gt;&gt;_daysLeftToolTip.Name" xml:space="preserve">
+    <value>_daysLeftToolTip</value>
+  </data>
+  <data name="&gt;&gt;_daysLeftToolTip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>
