@@ -80,7 +80,7 @@
     <Compile Include="AxCryptMainForm.Designer.cs">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DoubleBufferedListView.cs">
+    <Compile Include="RecentFilesListView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="EmailDialog.cs">

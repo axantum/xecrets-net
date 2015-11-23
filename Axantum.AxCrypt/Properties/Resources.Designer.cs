@@ -896,6 +896,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file key is shared with other AxCrypt users..
+        /// </summary>
+        internal static string KeySharingExistsToolTip {
+            get {
+                return ResourceManager.GetString("KeySharingExistsToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to select encrypted files to share keys with others..
         /// </summary>
         internal static string KeySharingToolTip {
@@ -965,6 +974,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string LogOnText {
             get {
                 return ResourceManager.GetString("LogOnText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade to Premium to enable the strongest encryption..
+        /// </summary>
+        internal static string LowEncryptionWorkingToolTip {
+            get {
+                return ResourceManager.GetString("LowEncryptionWorkingToolTip", resourceCulture);
             }
         }
         

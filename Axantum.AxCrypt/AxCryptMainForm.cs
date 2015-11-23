@@ -504,10 +504,6 @@ namespace Axantum.AxCrypt
 
             _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
 
-            _recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
-            _recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
-            _recentFilesListView.ColumnWidthChanged += RecentFilesListView_ColumnWidthChanged;
-
             _updateStatusButton.Click += _updateToolStripButton_Click;
             _feedbackButton.Click += (sender, e) => Process.Start("http://www.axcrypt.net/#feedback");
 
@@ -601,69 +597,14 @@ namespace Axantum.AxCrypt
             };
         }
 
-        private static ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources()
-        {
-            ImageList smallImageList = new ImageList();
-
-            smallImageList.Images.Add("ActiveFile", Resources.activefilegreen16);
-            smallImageList.Images.Add("Exclamation", Resources.exclamationgreen16);
-            smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
-            smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
-            smallImageList.Images.Add("ActiveFileKnownKey", Resources.fileknownkeygreen16);
-            smallImageList.Images.Add("CleanUpNeeded", Resources.clean_broom_red);
-            smallImageList.TransparentColor = System.Drawing.Color.Transparent;
-
-            return smallImageList;
-        }
-
-        private static ImageList CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources()
-        {
-            ImageList largeImageList = new ImageList();
-
-            largeImageList.Images.Add("ActiveFile", Resources.opendocument32);
-            largeImageList.Images.Add("Exclamation", Resources.exclamationgreen32);
-            largeImageList.TransparentColor = System.Drawing.Color.Transparent;
-
-            return largeImageList;
-        }
-
-        private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
-        {
-            switch (e.ColumnIndex)
-            {
-                case 0:
-                    Preferences.RecentFilesDocumentWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
-                    break;
-
-                case 2:
-                    Preferences.RecentFilesDateTimeWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
-                    break;
-
-                case 3:
-                    Preferences.RecentFilesEncryptedPathWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
-                    break;
-
-                case 4:
-                    Preferences.RecentFilesCryptoNameWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
-                    break;
-            }
-        }
-
         private void RestoreUserPreferences()
         {
-            Preferences.RecentFilesMaxNumber = 100;
-
             if (WindowState == FormWindowState.Normal)
             {
                 Height = Preferences.MainWindowHeight.Fallback(Height);
                 Width = Preferences.MainWindowWidth.Fallback(Width);
                 Location = Preferences.MainWindowLocation.Fallback(Location);
             }
-
-            _recentFilesListView.Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(_recentFilesListView.Columns[0].Width);
-            _recentFilesListView.Columns[2].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_recentFilesListView.Columns[2].Width);
-            _recentFilesListView.Columns[3].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_recentFilesListView.Columns[3].Width);
-            _recentFilesListView.Columns[4].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(_recentFilesListView.Columns[4].Width);
 
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
         }
@@ -685,6 +626,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _createAccountToolStripMenuItem.Enabled = !loggedOn; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _logOnLogOffLabel.Text = loggedOn ? Resources.LogOffText : Resources.LogOnText; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { ConfigureMenusAccordingToPolicy(license); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await _recentFilesListView.UpdateRecentFilesAsync(_mainViewModel.RecentFiles, _mainViewModel.License); });
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
@@ -695,7 +637,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { _encryptedFoldersToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), async (IEnumerable<ActiveFile> files) => { await UpdateRecentFilesAsync(files); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), async (IEnumerable<ActiveFile> files) => { await _recentFilesListView.UpdateRecentFilesAsync(files, _mainViewModel.License); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.VersionUpdateStatus), (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
@@ -1278,187 +1220,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private bool _updateRecentFilesInProgress = false;
-
-        private async Task UpdateRecentFilesAsync(IEnumerable<ActiveFile> files)
-        {
-            if (_updateRecentFilesInProgress)
-            {
-                return;
-            }
-            _updateRecentFilesInProgress = true;
-            try
-            {
-                Cursor = Cursors.WaitCursor;
-                await UpdateRecentFilesUnsynchronizedAsync(files);
-            }
-            finally
-            {
-                _updateRecentFilesInProgress = false;
-                Cursor = Cursors.Default;
-            }
-        }
-
-        private async Task UpdateRecentFilesUnsynchronizedAsync(IEnumerable<ActiveFile> files)
-        {
-            _recentFilesListView.BeginUpdate();
-            try
-            {
-                Dictionary<string, int> currentFiles = RemoveRemovedFilesFromRecent(files);
-
-                List<ListViewItem> newItems = new List<ListViewItem>();
-                foreach (ActiveFile file in files)
-                {
-                    await UpdateOneItemAsync(currentFiles, newItems, file);
-                }
-
-                while (_recentFilesListView.Items.Count > Preferences.RecentFilesMaxNumber)
-                {
-                    _recentFilesListView.Items.RemoveAt(_recentFilesListView.Items.Count - 1);
-                }
-            }
-            finally
-            {
-                _recentFilesListView.EndUpdate();
-            }
-        }
-
-        private async Task UpdateOneItemAsync(Dictionary<string, int> currentFiles, List<ListViewItem> newItems, ActiveFile file)
-        {
-            string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
-            ListViewItem item = new ListViewItem(text);
-            item.Name = file.EncryptedFileInfo.FullName;
-
-            ListViewItem.ListViewSubItem sharingIndicatorColumn = item.SubItems.Add(String.Empty);
-            sharingIndicatorColumn.Name = "SharingIndicator";
-
-            ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
-            dateColumn.Name = "Date";
-
-            ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
-            encryptedPathColumn.Name = "EncryptedPath";
-
-            ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
-            cryptoNameColumn.Name = "CryptoName";
-
-            await UpdateListViewItemAsync(item, file);
-            int i;
-            if (!currentFiles.TryGetValue(item.Name, out i))
-            {
-                _recentFilesListView.Items.Add(item);
-                return;
-            }
-
-            if (!CompareRecentFileItem(item, _recentFilesListView.Items[i]))
-            {
-                _recentFilesListView.Items[i] = item;
-            }
-        }
-
-        private Dictionary<string, int> RemoveRemovedFilesFromRecent(IEnumerable<ActiveFile> files)
-        {
-            HashSet<string> newFiles = new HashSet<string>(files.Select(f => f.EncryptedFileInfo.FullName));
-            Dictionary<string, int> currentFiles = new Dictionary<string, int>();
-            for (int i = 0; i < _recentFilesListView.Items.Count;)
-            {
-                if (!newFiles.Contains(_recentFilesListView.Items[i].Name))
-                {
-                    _recentFilesListView.Items.RemoveAt(i);
-                    continue;
-                }
-                currentFiles.Add(_recentFilesListView.Items[i].Name, i);
-                ++i;
-            }
-
-            return currentFiles;
-        }
-
-        private static bool CompareRecentFileItem(ListViewItem left, ListViewItem right)
-        {
-            if (left.SubItems["EncryptedPath"].Text != right.SubItems["EncryptedPath"].Text)
-            {
-                return false;
-            }
-            if (left.SubItems["SharingIndicator"].Text != right.SubItems["SharingIndicator"].Text)
-            {
-                return false;
-            }
-            if (left.SubItems["CryptoName"].Text != right.SubItems["CryptoName"].Text)
-            {
-                return false;
-            }
-            if (left.ImageKey != right.ImageKey)
-            {
-                return false;
-            }
-            if (left.SubItems["Date"].Text != right.SubItems["Date"].Text)
-            {
-                return false;
-            }
-            if ((DateTime)left.SubItems["Date"].Tag != (DateTime)right.SubItems["Date"].Tag)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private static async Task UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile)
-        {
-            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
-
-            EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(activeFile.EncryptedFileInfo);
-
-            item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
-            item.SubItems["SharingIndicator"].Text = SharingIndicator(encryptedProperties.SharedKeyHolders.Count());
-            item.SubItems["Date"].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-            item.SubItems["Date"].Tag = activeFile.Properties.LastActivityTimeUtc;
-
-            try
-            {
-                if (activeFile.Properties.CryptoId != Guid.Empty)
-                {
-                    item.SubItems["CryptoName"].Text = Resolve.CryptoFactory.Create(activeFile.Properties.CryptoId).Name;
-                }
-            }
-            catch (ArgumentException)
-            {
-                item.SubItems["CryptoName"].Text = Resources.UnknownCrypto;
-            }
-        }
-
-        private static string SharingIndicator(int count)
-        {
-            if (count == 0)
-            {
-                return String.Empty;
-            }
-            return count.ToString(CultureInfo.CurrentCulture);
-        }
-
         private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore)
         {
             return await Task.Run(() => EncryptedProperties.Create(dataStore));
-        }
-
-        private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)
-        {
-            switch (activeFile.VisualState)
-            {
-                case ActiveFileVisualState.DecryptedWithKnownKey:
-                case ActiveFileVisualState.DecryptedWithoutKnownKey:
-                    item.ImageKey = "CleanUpNeeded";
-                    item.ToolTipText = Resources.CleanUpNeededToolTip;
-                    break;
-
-                case ActiveFileVisualState.EncryptedWithoutKnownKey:
-                case ActiveFileVisualState.EncryptedWithKnownKey:
-                    item.ImageKey = String.Empty;
-                    item.ToolTipText = Resources.DoubleClickToOpenToolTip;
-                    break;
-
-                default:
-                    throw new InvalidOperationException("Unexpected ActiveFileVisualState value.");
-            }
         }
 
         private void UpdateKnownFolders(IEnumerable<KnownFolder> folders)

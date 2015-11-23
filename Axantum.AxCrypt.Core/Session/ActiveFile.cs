@@ -298,20 +298,30 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                if (Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
+                ActiveFileVisualState visualState = DetermineEncryptionState();
+                if (Properties.CryptoId != Resolve.CryptoFactory.Preferred.Id)
                 {
-                    return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+                    visualState |= ActiveFileVisualState.LowEncryption;
                 }
-                if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
-                {
-                    return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
-                }
-                if (Status.HasMask(ActiveFileStatus.NotDecrypted))
-                {
-                    return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
-                }
-                throw new InvalidOperationException("ActiveFile in an unhandled visual state.".InvariantFormat());
+                return visualState;
             }
+        }
+
+        private ActiveFileVisualState DetermineEncryptionState()
+        {
+            if (Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
+            {
+                return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+            }
+            if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+            {
+                return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+            }
+            if (Status.HasMask(ActiveFileStatus.NotDecrypted))
+            {
+                return Identity != LogOnIdentity.Empty ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
+            }
+            throw new InvalidOperationException("ActiveFile in an unhandled visual state.".InvariantFormat());
         }
     }
 }

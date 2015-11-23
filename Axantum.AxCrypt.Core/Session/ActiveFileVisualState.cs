@@ -34,12 +34,15 @@ namespace Axantum.AxCrypt.Core.Session
     /// Specifies how the ActiveFile should be visualized in a GUI, depending
     /// on what operations are possible with it.
     /// </summary>
+    [Flags]
     public enum ActiveFileVisualState
     {
-        None,
-        DecryptedWithKnownKey,
-        DecryptedWithoutKnownKey,
-        EncryptedWithKnownKey,
-        EncryptedWithoutKnownKey,
+        None = 0,
+        DecryptedWithKnownKey = 1,
+        DecryptedWithoutKnownKey = 2,
+        EncryptedWithKnownKey = 4,
+        EncryptedWithoutKnownKey = 8,
+        LowEncryption = 16,
+        SharedKeys = 32,
     }
 }

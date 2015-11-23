@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Abstractions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,13 +12,20 @@ namespace Axantum.AxCrypt.Forms.Style
 {
     public class Styling
     {
-        private Color _buttonBackgroundColor = Color.FromArgb(134, 185, 110);
+        private static readonly Color _buttonBackgroundColor = Color.FromArgb(134, 185, 110);
 
-        private Color _buttonForegroundColor = Color.White;
+        private static readonly Color _buttonForegroundColor = Color.White;
 
-        private Color _buttonBorderColor = Color.FromArgb(106, 157, 83);
+        private static readonly Color _buttonBorderColor = Color.FromArgb(106, 157, 83);
 
-        private Color _buttonMouseOverColor = Color.FromArgb(232, 232, 232);
+        private static readonly Color _buttonMouseOverColor = Color.FromArgb(232, 232, 232);
+
+        private static readonly Color _warningColor = Color.FromArgb(194, 145, 12);
+
+        public static Color WarningColor
+        {
+            get { return _warningColor; }
+        }
 
         private Icon _icon;
 
