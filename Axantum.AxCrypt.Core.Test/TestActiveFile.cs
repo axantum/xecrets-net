@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
@@ -194,12 +193,40 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestVisualState()
+        public void TestVisualStateLowEncryption()
         {
             ActiveFile activeFile;
             LogOnIdentity key = new LogOnIdentity("key");
 
             activeFile = new ActiveFile(New<IDataStore>(@"C:\encrypted.axx"), New<IDataStore>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey | ActiveFileVisualState.LowEncryption));
+
+            activeFile = new ActiveFile(activeFile);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithoutKnownKey | ActiveFileVisualState.LowEncryption));
+
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.DecryptedIsPendingDelete);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithoutKnownKey | ActiveFileVisualState.LowEncryption));
+
+            activeFile = new ActiveFile(activeFile, key);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithKnownKey | ActiveFileVisualState.LowEncryption));
+
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithKnownKey | ActiveFileVisualState.LowEncryption));
+
+            activeFile = new ActiveFile(activeFile);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithoutKnownKey | ActiveFileVisualState.LowEncryption));
+
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.Error);
+            Assert.Throws<InvalidOperationException>(() => { if (activeFile.VisualState == ActiveFileVisualState.None) { } });
+        }
+
+        [Test]
+        public void TestVisualStateHiEncryption()
+        {
+            ActiveFile activeFile;
+            LogOnIdentity key = new LogOnIdentity("key");
+
+            activeFile = new ActiveFile(New<IDataStore>(@"C:\encrypted.axx"), New<IDataStore>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V2Aes256CryptoFactory().Id);
             Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));
 
             activeFile = new ActiveFile(activeFile);
