@@ -528,7 +528,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                _keyShareToolStripButton.Image = Resources.share_premium_80px;
+                _keyShareToolStripButton.Image = Resources.premium_yellow_80px;
                 _keyShareToolStripButton.ToolTipText = Resources.PremiumNeededForKeyShare;
             }
         }

@@ -355,6 +355,9 @@
     <Content Include="resources\options.png" />
     <Content Include="resources\premium_80px.png" />
     <Content Include="resources\premium_overlay_16px.png" />
+    <Content Include="resources\premium_yellow_32px.png" />
+    <Content Include="resources\premium_yellow_80px.png" />
+    <Content Include="resources\share_32px.png" />
     <Content Include="resources\share_80px.png" />
     <Content Include="resources\share_premium_80px.png" />
     <Content Include="resources\skydrive_40px.png" />

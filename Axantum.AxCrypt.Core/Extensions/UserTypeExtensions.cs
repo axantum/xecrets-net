@@ -216,5 +216,17 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             return new RestIdentity(identity.UserEmail.Address, identity.Passphrase.Text);
         }
+
+        public static UserAccount MergeWith(this UserAccount left, UserAccount right)
+        {
+            return left.MergeWith(right.AccountKeys);
+        }
+
+        public static UserAccount MergeWith(this UserAccount left, IEnumerable<AccountKey> accountKeys)
+        {
+            IEnumerable<AccountKey> allKeys = left.AccountKeys.Union(accountKeys);
+            UserAccount merged = new UserAccount(left.UserName, left.SubscriptionLevel, left.LevelExpiration, left.AccountStatus, allKeys);
+            return merged;
+        }
     }
 }

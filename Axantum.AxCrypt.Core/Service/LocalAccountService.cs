@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Service
             throw new NotImplementedException();
         }
 
-        public async Task SaveAsync(UserAccount account)
+        public async Task SaveAsync(UserAccount accountToSave)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
@@ -146,28 +146,24 @@ namespace Axantum.AxCrypt.Core.Service
             await Task.Run(() =>
             {
                 UserAccounts userAccounts = LoadUserAccounts();
-                UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
-                if (userAccount == null)
+                UserAccount existingUserAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
+                if (existingUserAccount == null)
                 {
-                    userAccount = new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, new AccountKey[0]);
-                    userAccounts.Accounts.Add(userAccount);
+                    existingUserAccount = new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, new AccountKey[0]);
+                    userAccounts.Accounts.Add(existingUserAccount);
                 }
 
-                IEnumerable<AccountKey> accountKeysToUpdate = account.AccountKeys;
-                IEnumerable<AccountKey> existingAccountKeys = userAccount.AccountKeys;
-                IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Union(accountKeysToUpdate);
-
-                if (accountKeys.Count() == existingAccountKeys.Count() && userAccount.AccountStatus == account.AccountStatus && userAccount.SubscriptionLevel == userAccount.SubscriptionLevel && userAccount.LevelExpiration == account.LevelExpiration)
+                UserAccount mergedAccount = accountToSave.MergeWith(existingUserAccount);
+                if (mergedAccount == existingUserAccount)
                 {
                     return;
                 }
 
-                userAccount = new UserAccount(userAccount.UserName, account.SubscriptionLevel, account.LevelExpiration, account.AccountStatus);
-                SaveInternal(userAccounts, userAccount, accountKeys);
+                SaveInternal(userAccounts, mergedAccount);
             }).Free();
         }
 
-        public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
+        public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairsToSave)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
@@ -177,37 +173,29 @@ namespace Axantum.AxCrypt.Core.Service
             await Task.Run(() =>
             {
                 UserAccounts userAccounts = LoadUserAccounts();
-                UserAccount userAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
-                if (userAccount == null)
+                UserAccount existingUserAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
+                if (existingUserAccount == null)
                 {
-                    userAccount = new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, new AccountKey[0]);
-                    userAccounts.Accounts.Add(userAccount);
+                    existingUserAccount = new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, new AccountKey[0]);
+                    userAccounts.Accounts.Add(existingUserAccount);
                 }
 
-                IEnumerable<AccountKey> accountKeysToUpdate = keyPairs.Select(uk => uk.ToAccountKey(Identity.Passphrase));
-                IEnumerable<AccountKey> existingAccountKeys = userAccount.AccountKeys;
-                IEnumerable<AccountKey> accountKeys = userAccount.AccountKeys.Union(accountKeysToUpdate);
-
-                if (accountKeys.Count() == existingAccountKeys.Count())
+                UserAccount mergedAccount = existingUserAccount.MergeWith(keyPairsToSave.Select(uk => uk.ToAccountKey(Identity.Passphrase)));
+                if (mergedAccount == existingUserAccount)
                 {
                     return;
                 }
 
-                SaveInternal(userAccounts, userAccount, accountKeys);
+                SaveInternal(userAccounts, mergedAccount);
             }).Free();
         }
 
-        private void SaveInternal(UserAccounts userAccounts, UserAccount userAccount, IEnumerable<AccountKey> accountKeys)
+        private void SaveInternal(UserAccounts userAccounts, UserAccount userAccount)
         {
             UserAccounts userAccountsToSave = new UserAccounts();
             foreach (UserAccount ua in userAccounts.Accounts.Where(a => a.UserName != userAccount.UserName))
             {
                 userAccountsToSave.Accounts.Add(ua);
-            }
-            userAccount.AccountKeys.Clear();
-            foreach (AccountKey ak in accountKeys)
-            {
-                userAccount.AccountKeys.Add(ak);
             }
             userAccountsToSave.Accounts.Add(userAccount);
 

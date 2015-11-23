@@ -296,7 +296,7 @@ namespace Axantum.AxCrypt
             smallImageList.Images.Add(nameof(ImageKey.DecryptedUnknownKeyFile), Resources.decryptedunknownkeyfilered16);
             smallImageList.Images.Add(nameof(ImageKey.ActiveFileKnownKey), Resources.fileknownkeygreen16);
             smallImageList.Images.Add(nameof(ImageKey.CleanUpNeeded), Resources.clean_broom_red);
-            smallImageList.Images.Add(nameof(ImageKey.KeyShared), Resources.share_80px);
+            smallImageList.Images.Add(nameof(ImageKey.KeyShared), Resources.share_32px);
             smallImageList.TransparentColor = System.Drawing.Color.Transparent;
 
             return smallImageList;

@@ -2,6 +2,7 @@
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
@@ -93,15 +94,45 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserAccount> AccountAsync()
         {
-            UserAccount userAccount = await _localService.AccountAsync().Free();
+            UserAccount localAccount = await _localService.AccountAsync().Free();
             if (New<AxCryptOnlineState>().IsOffline)
             {
-                return userAccount;
+                return localAccount;
             }
 
-            userAccount = await _remoteService.AccountAsync().Free();
+            try
+            {
+                UserAccount remoteAccount;
+                try
+                {
+                    remoteAccount = await _remoteService.AccountAsync().Free();
+                }
+                catch (PasswordException)
+                {
+                    if (localAccount.AccountKeys.Count == 0)
+                    {
+                        throw;
+                    }
+                    return localAccount;
+                }
 
-            return userAccount;
+                UserAccount mergedAccount = remoteAccount.MergeWith(localAccount);
+
+                if (mergedAccount != remoteAccount)
+                {
+                    await _remoteService.SaveAsync(mergedAccount).Free();
+                }
+                if (mergedAccount != localAccount)
+                {
+                    await _localService.SaveAsync(mergedAccount).Free();
+                }
+                return mergedAccount;
+            }
+            catch (OfflineApiException)
+            {
+                New<AxCryptOnlineState>().IsOffline = true;
+            }
+            return localAccount;
         }
 
         public async Task<IList<UserKeyPair>> ListAsync()

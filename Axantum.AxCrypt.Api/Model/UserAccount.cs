@@ -11,7 +11,7 @@ namespace Axantum.AxCrypt.Api.Model
     /// A summary of information we know about a user, typically fetched at the start of a session.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class UserAccount
+    public class UserAccount : IEquatable<UserAccount>
     {
         public UserAccount(string userName, SubscriptionLevel level, DateTime expiration, AccountStatus status, IEnumerable<AccountKey> keys)
         {
@@ -89,5 +89,65 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("status")]
         public AccountStatus AccountStatus { get; private set; }
+
+        public bool Equals(UserAccount other)
+        {
+            if ((object)other == null)
+            {
+                return false;
+            }
+
+            if (UserName != other.UserName)
+            {
+                return false;
+            }
+            if (SubscriptionLevel != other.SubscriptionLevel)
+            {
+                return false;
+            }
+            if (LevelExpiration != other.LevelExpiration)
+            {
+                return false;
+            }
+            if (AccountStatus != other.AccountStatus)
+            {
+                return false;
+            }
+            return AccountKeys.SequenceEqual(other.AccountKeys);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || typeof(UserAccount) != obj.GetType())
+            {
+                return false;
+            }
+            UserAccount other = (UserAccount)obj;
+
+            return Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return AccountKeys.GetHashCode() ^ UserName.GetHashCode() ^ SubscriptionLevel.GetHashCode() ^ LevelExpiration.GetHashCode() ^ AccountStatus.GetHashCode() ^ AccountKeys.Aggregate(0, (sum, ak) => sum ^ ak.GetHashCode());
+        }
+
+        public static bool operator ==(UserAccount left, UserAccount right)
+        {
+            if (Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if ((object)left == null)
+            {
+                return false;
+            }
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(UserAccount left, UserAccount right)
+        {
+            return !(left == right);
+        }
     }
 }
