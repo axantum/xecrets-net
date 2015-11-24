@@ -568,6 +568,9 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="KeySharingOffline" xml:space="preserve">
     <value>New contacts can only be added when online!</value>
   </data>
+  <data name="LinkToGettingStarted" xml:space="preserve">
+    <value>http://www.axcrypt.net/documentation/get-started/</value>
+  </data>
   <data name="premium_yellow_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\premium_yellow_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -576,5 +579,14 @@ Includes software from http://www.bouncycastle.org/ .</value>
   </data>
   <data name="share_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\share_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WelcomeToAxCrypt" xml:space="preserve">
+    <value>Welcome to AxCrypt!
+
+Using AxCrypt is really easy. Start with the main window, or use double-click and right-click in Windows Explorer for fully integrated use.
+
+To encrypt your first files, click the + icon in the toolbar and select them.
+
+For more information, click OK to open a web browser to our web site.</value>
   </data>
 </root>

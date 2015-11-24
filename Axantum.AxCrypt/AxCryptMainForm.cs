@@ -344,6 +344,12 @@ namespace Axantum.AxCrypt
             LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(viewModel.UserEmail), Passphrase.Create(viewModel.Passphrase));
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(await store.ActiveKeyPairAsync(), identity.Passphrase);
+
+            DialogResult result = MessageDialog.ShowOkCancel(this, "", Resources.WelcomeToAxCrypt);
+            if (result == DialogResult.OK)
+            {
+                Process.Start(Resources.LinkToGettingStarted);
+            }
             return true;
         }
 

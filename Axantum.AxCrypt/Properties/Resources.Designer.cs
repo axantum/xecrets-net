@@ -959,6 +959,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://www.axcrypt.net/documentation/get-started/.
+        /// </summary>
+        internal static string LinkToGettingStarted {
+            get {
+                return ResourceManager.GetString("LinkToGettingStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Signed Out.
         /// </summary>
         internal static string LoggedOffStatusText {
@@ -1426,6 +1435,21 @@ namespace Axantum.AxCrypt.Properties {
         internal static string UserSettingsFormatChangeNeedsReset {
             get {
                 return ResourceManager.GetString("UserSettingsFormatChangeNeedsReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt!
+        ///
+        ///Using AxCrypt is really easy. Start with the main window, or use double-click and right-click in Windows Explorer for fully integrated use.
+        ///
+        ///To encrypt your first files, click the + icon in the toolbar and select them.
+        ///
+        ///For more information, click OK to open a web browser to our web site..
+        /// </summary>
+        internal static string WelcomeToAxCrypt {
+            get {
+                return ResourceManager.GetString("WelcomeToAxCrypt", resourceCulture);
             }
         }
         
