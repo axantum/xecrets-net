@@ -1,7 +1,10 @@
-﻿using Axantum.AxCrypt.Common;
+﻿using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
@@ -12,6 +15,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt
 {
@@ -48,10 +53,12 @@ namespace Axantum.AxCrypt
             _shareButton.Click += async (sender, e) =>
             {
                 await ShareSelectedKnownContactsAsync();
+                string newContact = _viewModel.NewKeyShare;
                 if (await ShareNewContactAsync())
                 {
-                    DisplayInviteMessage();
+                    await DisplayInviteMessageAsync(_viewModel.NewKeyShare);
                 };
+                _newContact.Text = String.Empty;
                 SetShareButtonState();
             };
             _unshareButton.Click += (sender, e) =>
@@ -64,8 +71,15 @@ namespace Axantum.AxCrypt
             _notSharedWith.Focus();
         }
 
-        private void DisplayInviteMessage()
+        private async Task DisplayInviteMessageAsync(string email)
         {
+            AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(email));
+            if (status != AccountStatus.Unverified)
+            {
+                return;
+            }
+
+            MessageDialog.ShowOk(this, Resources.SharedWithUnverfiedMessageTitle, Resources.SharedWithUnverifiedMessagePattern.InvariantFormat(email));
         }
 
         private void SetShareButtonState()
@@ -126,7 +140,6 @@ namespace Axantum.AxCrypt
             try
             {
                 await _viewModel.AsyncAddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
-                _newContact.Text = String.Empty;
                 return true;
             }
             catch (UserInputException)

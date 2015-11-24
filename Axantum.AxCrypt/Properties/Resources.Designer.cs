@@ -1346,6 +1346,24 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New AxCrypt User.
+        /// </summary>
+        internal static string SharedWithUnverfiedMessageTitle {
+            get {
+                return ResourceManager.GetString("SharedWithUnverfiedMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have shared with a new user &apos;{0}&apos;, who has received but not yet responded to an invitation to use AxCrypt. Please consider contacting this user directly..
+        /// </summary>
+        internal static string SharedWithUnverifiedMessagePattern {
+            get {
+                return ResourceManager.GetString("SharedWithUnverifiedMessagePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon SkyDrive {

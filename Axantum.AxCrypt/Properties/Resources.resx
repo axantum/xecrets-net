@@ -592,4 +592,10 @@ For more information, click OK to open a web browser to our web site.</value>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Getting started with AxCrypt</value>
   </data>
+  <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
+    <value>New AxCrypt User</value>
+  </data>
+  <data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
+    <value>You have shared with a new user '{0}', who has received but not yet responded to an invitation to use AxCrypt. Please consider contacting this user directly.</value>
+  </data>
 </root>
