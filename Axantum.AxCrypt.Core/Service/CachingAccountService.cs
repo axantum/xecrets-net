@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
-            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(nameof(StatusAsync)).Subkey(email.Address), () => _service.StatusAsync(email)).Free();
+            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(StatusAsync)), () => _service.StatusAsync(email)).Free();
             if (status == AccountStatus.Offline || status == AccountStatus.Unknown)
             {
                 New<ICache>().RemoveItem(_key);
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
-            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(OtherPublicKeyAsync)).Subkey(email.Address), () => _service.OtherPublicKeyAsync(email)).Free();
+            return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherPublicKeyAsync)), () => _service.OtherPublicKeyAsync(email)).Free();
         }
     }
 }
