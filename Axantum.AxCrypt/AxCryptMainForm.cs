@@ -851,6 +851,7 @@ namespace Axantum.AxCrypt
                 {
                     e.UserEmail = String.Empty;
                     e.Passphrase = String.Empty;
+                    New<ICache>().RemoveItem(CacheKey.RootKey);
                     return;
                 }
 
