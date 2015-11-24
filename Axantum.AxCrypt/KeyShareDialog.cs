@@ -47,7 +47,11 @@ namespace Axantum.AxCrypt
 
             _shareButton.Click += async (sender, e) =>
             {
-                await ShareAsync();
+                await ShareSelectedKnownContactsAsync();
+                if (await ShareNewContactAsync())
+                {
+                    DisplayInviteMessage();
+                };
                 SetShareButtonState();
             };
             _unshareButton.Click += (sender, e) =>
@@ -58,6 +62,10 @@ namespace Axantum.AxCrypt
 
             SetOkButtonState();
             _notSharedWith.Focus();
+        }
+
+        private void DisplayInviteMessage()
+        {
         }
 
         private void SetShareButtonState()
@@ -105,34 +113,39 @@ namespace Axantum.AxCrypt
             _viewModel.RemoveKeyShares.Execute(_sharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWith.Items[i]));
         }
 
-        private async Task ShareAsync()
+        private async Task<bool> ShareNewContactAsync()
         {
-            await _viewModel.AsyncAddKeyShares.ExecuteAsync(_notSharedWith.SelectedIndices.Cast<int>().Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
             if (String.IsNullOrEmpty(_viewModel.NewKeyShare))
             {
-                return;
+                return false;
             }
             if (!AdHocValidationDueToMonoLimitations())
             {
-                return;
+                return false;
             }
             try
             {
                 await _viewModel.AsyncAddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
+                _newContact.Text = String.Empty;
+                return true;
             }
             catch (UserInputException)
             {
                 _errorProvider1.SetError(_newContact, Resources.InvalidEmail);
                 _errorProvider1.SetIconPadding(_newContact, 3);
-                return;
+                return false;
             }
             catch (OfflineApiException)
             {
                 _errorProvider1.SetError(_newContact, Resources.KeySharingOffline);
                 _errorProvider1.SetIconPadding(_newContact, 3);
-                return;
+                return false;
             }
-            _newContact.Text = String.Empty;
+        }
+
+        private async Task ShareSelectedKnownContactsAsync()
+        {
+            await _viewModel.AsyncAddKeyShares.ExecuteAsync(_notSharedWith.SelectedIndices.Cast<int>().Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
         }
 
         private void _okButton_Click(object sender, EventArgs e)
