@@ -46,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this._activationCode = new System.Windows.Forms.TextBox();
             this._errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this._toolTipActivation = new System.Windows.Forms.ToolTip(this.components);
             this.PassphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -186,11 +187,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(130, 21);
+            this.label1.Location = new System.Drawing.Point(109, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 13);
+            this.label1.Size = new System.Drawing.Size(117, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Check your email inbox!";
+            this.label1.Text = "Check email and spam!";
             // 
             // _activationCode
             // 
@@ -198,10 +199,19 @@
             this._activationCode.Name = "_activationCode";
             this._activationCode.Size = new System.Drawing.Size(88, 20);
             this._activationCode.TabIndex = 0;
+            this._toolTipActivation.SetToolTip(this._activationCode, "We\'ve sent a 6-digit code to your email inbox.\r\n\r\nUnfortunately it might be misin" +
+        "terpreted as spam,\r\nso search there if it\'s not in the inbox.\r\n\r\nThe subject sho" +
+        "uld contain the word \'AxCrypt\'.");
             // 
             // _errorProvider4
             // 
             this._errorProvider4.ContainerControl = this;
+            // 
+            // _toolTipActivation
+            // 
+            this._toolTipActivation.AutoPopDelay = 10000;
+            this._toolTipActivation.InitialDelay = 100;
+            this._toolTipActivation.ReshowDelay = 100;
             // 
             // VerifyAccountDialog
             // 
@@ -251,5 +261,6 @@
         private System.Windows.Forms.CheckBox _showPassphrase;
         private System.Windows.Forms.TextBox _email;
         private System.Windows.Forms.TextBox _activationCode;
+        private System.Windows.Forms.ToolTip _toolTipActivation;
     }
 }
