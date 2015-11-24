@@ -1355,7 +1355,9 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have shared with a new user &apos;{0}&apos;, who has received but not yet responded to an invitation to use AxCrypt. Please consider contacting this user directly..
+        ///   Looks up a localized string similar to You are about to share securely with someone who has received but not yet responded to an invitation to use AxCrypt.
+        ///
+        ///Please consider informing &apos;{0}&apos; directly about AxCrypt file security..
         /// </summary>
         internal static string SharedWithUnverifiedMessagePattern {
             get {

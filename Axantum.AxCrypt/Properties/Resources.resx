@@ -596,6 +596,8 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>New AxCrypt User</value>
   </data>
   <data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
-    <value>You have shared with a new user '{0}', who has received but not yet responded to an invitation to use AxCrypt. Please consider contacting this user directly.</value>
+    <value>You are about to share securely with someone who has received but not yet responded to an invitation to use AxCrypt.
+
+Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
 </root>
