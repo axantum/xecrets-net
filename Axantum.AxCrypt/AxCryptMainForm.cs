@@ -227,16 +227,18 @@ namespace Axantum.AxCrypt
         private async Task StartUpProgramAsync()
         {
             AccountStatus status;
-            DialogResult dialogResult = DialogResult.OK;
+            DialogResult dialogResult;
             do
             {
+                dialogResult = DialogResult.OK;
                 status = await EnsureEmailAccountAsync();
                 switch (status)
                 {
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
                         MessageDialog.ShowOk(this, "Signing Up", "You have now signed up as '{0}'. Please check your inbox for an email with a 6-digit activation code.".InvariantFormat(Resolve.UserSettings.UserEmail));
-                        continue;
+                        status = await VerifyAccountOnlineAsync();
+                        break;
 
                     case AccountStatus.InvalidName:
                         dialogResult = MessageDialog.ShowOkCancelExit(this, "Invalid Email Address", "You cannot sign up as '{0}'. Please enter a real email address, and try again.".InvariantFormat(Resolve.UserSettings.UserEmail));
@@ -244,11 +246,7 @@ namespace Axantum.AxCrypt
                         break;
 
                     case AccountStatus.Unverified:
-                        if (await VerifyAccountOnlineAsync())
-                        {
-                            return;
-                        }
-                        dialogResult = DialogResult.OK;
+                        status = await VerifyAccountOnlineAsync();
                         break;
 
                     case AccountStatus.Verified:
@@ -330,7 +328,7 @@ namespace Axantum.AxCrypt
             return CreateNewOfflineAccount();
         }
 
-        private async Task<bool> VerifyAccountOnlineAsync()
+        private async Task<AccountStatus> VerifyAccountOnlineAsync()
         {
             VerifyAccountViewModel viewModel = new VerifyAccountViewModel(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
             using (VerifyAccountDialog dialog = new VerifyAccountDialog(this, viewModel))
@@ -338,19 +336,19 @@ namespace Axantum.AxCrypt
                 DialogResult dialogResult = dialog.ShowDialog(this);
                 if (dialogResult != DialogResult.OK)
                 {
-                    return false;
+                    return AccountStatus.Unverified;
                 }
             }
             LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(viewModel.UserEmail), Passphrase.Create(viewModel.Passphrase));
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(await store.ActiveKeyPairAsync(), identity.Passphrase);
 
-            DialogResult result = MessageDialog.ShowOkCancel(this, "", Resources.WelcomeToAxCrypt);
+            DialogResult result = MessageDialog.ShowOkCancel(this, Resources.WelcomeToAxCryptTitle, Resources.WelcomeToAxCrypt);
             if (result == DialogResult.OK)
             {
                 Process.Start(Resources.LinkToGettingStarted);
             }
-            return true;
+            return AccountStatus.Verified;
         }
 
         private bool CreateNewOfflineAccount()

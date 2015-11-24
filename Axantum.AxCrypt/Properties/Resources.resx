@@ -589,4 +589,7 @@ To encrypt your first files, click the + icon in the toolbar and select them.
 
 For more information, click OK to open a web browser to our web site.</value>
   </data>
+  <data name="WelcomeToAxCryptTitle" xml:space="preserve">
+    <value>Getting started with AxCrypt</value>
+  </data>
 </root>

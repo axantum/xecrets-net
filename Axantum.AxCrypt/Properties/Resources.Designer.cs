@@ -1454,6 +1454,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting started with AxCrypt.
+        /// </summary>
+        internal static string WelcomeToAxCryptTitle {
+            get {
+                return ResourceManager.GetString("WelcomeToAxCryptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select documents to securely delete.
         /// </summary>
         internal static string WipeFileSelectFileDialogTitle {
