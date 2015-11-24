@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 expiration = expiration < utcNow ? utcNow : expiration;
 
                 TimeSpan timeLeft = expiration - utcNow;
-                if (timeLeft < TimeSpan.FromDays(30))
+                if (timeLeft < TimeSpan.FromDays(32))
                 {
                     return timeLeft;
                 }
