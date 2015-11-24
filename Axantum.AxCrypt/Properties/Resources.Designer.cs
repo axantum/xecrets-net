@@ -932,6 +932,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New contacts can only be added when online!.
+        /// </summary>
+        internal static string KeySharingOffline {
+            get {
+                return ResourceManager.GetString("KeySharingOffline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to select encrypted files to share keys with others..
         /// </summary>
         internal static string KeySharingToolTip {

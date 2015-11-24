@@ -222,22 +222,34 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
             UserPublicKey publicKey = await _localService.OtherPublicKeyAsync(email).Free();
-            if (New<AxCryptOnlineState>().IsOnline)
+            if (New<AxCryptOnlineState>().IsOffline)
             {
-                try
-                {
-                    publicKey = await _remoteService.OtherPublicKeyAsync(email).Free();
-                    using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
-                    {
-                        knowPublicKeys.AddOrReplace(publicKey);
-                    }
-                }
-                catch (OfflineApiException)
-                {
-                    New<AxCryptOnlineState>().IsOffline = true;
-                }
+                return NonNullPublicKey(publicKey);
             }
-            return publicKey;
+
+            try
+            {
+                publicKey = await _remoteService.OtherPublicKeyAsync(email).Free();
+                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+                {
+                    knownPublicKeys.AddOrReplace(publicKey);
+                }
+                return publicKey;
+            }
+            catch (OfflineApiException)
+            {
+                New<AxCryptOnlineState>().IsOffline = true;
+                throw;
+            }
+        }
+
+        private static UserPublicKey NonNullPublicKey(UserPublicKey publicKey)
+        {
+            if (publicKey != null)
+            {
+                return publicKey;
+            }
+            throw new OfflineApiException("Can't find other non-cached public key when offline.");
         }
 
         public async Task SaveAsync(UserAccount account)

@@ -58,7 +58,10 @@ namespace Axantum.AxCrypt.Mono
                     return (T)o;
                 }
                 T item = await itemFunction().Free();
-                _cache.Add(cacheKey.Key, item, Policy(cacheKey));
+                if (item != null)
+                {
+                    _cache.Add(cacheKey.Key, item, Policy(cacheKey));
+                }
                 return item;
             }
             finally

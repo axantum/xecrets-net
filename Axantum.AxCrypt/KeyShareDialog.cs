@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
+﻿using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
@@ -122,6 +123,12 @@ namespace Axantum.AxCrypt
             catch (UserInputException)
             {
                 _errorProvider1.SetError(_newContact, Resources.InvalidEmail);
+                _errorProvider1.SetIconPadding(_newContact, 3);
+                return;
+            }
+            catch (OfflineApiException)
+            {
+                _errorProvider1.SetError(_newContact, Resources.KeySharingOffline);
                 _errorProvider1.SetIconPadding(_newContact, 3);
                 return;
             }
