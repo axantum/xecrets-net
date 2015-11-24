@@ -178,6 +178,7 @@
     <Compile Include="Session\KnownPublicKeys.cs" />
     <Compile Include="Service\UserKeyPair.cs" />
     <Compile Include="Session\AccountStorage.cs" />
+    <Compile Include="Session\OpenFileProperties.cs" />
     <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="UI\IEmailParser.cs" />

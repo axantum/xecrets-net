@@ -35,7 +35,6 @@
             this._recentFilesTabPage = new System.Windows.Forms.TabPage();
             this._recentFilesListView = new Axantum.AxCrypt.RecentFilesListView();
             this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._sharingIndicatorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -219,7 +218,6 @@
             this._recentFilesListView.AllowDrop = true;
             this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this._decryptedFileColumnHeader,
-            this._sharingIndicatorColumnHeader,
             this._lastAccessTimeColumnHeader,
             this._encryptedPathColumnHeader,
             this._cryptoName});
@@ -233,10 +231,6 @@
             // _decryptedFileColumnHeader
             // 
             resources.ApplyResources(this._decryptedFileColumnHeader, "_decryptedFileColumnHeader");
-            // 
-            // _sharingIndicatorColumnHeader
-            // 
-            resources.ApplyResources(this._sharingIndicatorColumnHeader, "_sharingIndicatorColumnHeader");
             // 
             // _lastAccessTimeColumnHeader
             // 
@@ -710,7 +704,6 @@
         private System.Windows.Forms.ColumnHeader _encryptedPathColumnHeader;
         private System.Windows.Forms.ColumnHeader _cryptoName;
         private System.Windows.Forms.TabControl _statusTabControl;
-        private System.Windows.Forms.ColumnHeader _sharingIndicatorColumnHeader;
         private System.Windows.Forms.ToolStripMenuItem _shareKeysToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

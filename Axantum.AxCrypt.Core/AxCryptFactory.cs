@@ -79,6 +79,13 @@ namespace Axantum.AxCrypt.Core
             return CreateDocument(decryptionParameters, inputStream, out foundParameter);
         }
 
+        public virtual Headers Headers(Stream inputStream)
+        {
+            Headers headers = new Headers();
+            headers.CreateReader(new LookAheadStream(inputStream));
+            return headers;
+        }
+
         private static IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream, out DecryptionParameter foundParameter)
         {
             Headers headers = new Headers();

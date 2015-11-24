@@ -33,7 +33,6 @@ namespace Axantum.AxCrypt
         private enum ColumnName
         {
             DocumentName,
-            SharingIndicator,
             Date,
             EncryptedPath,
             CryptoName,
@@ -68,15 +67,15 @@ namespace Axantum.AxCrypt
                     Preferences.RecentFilesDocumentWidth = Columns[e.ColumnIndex].Width;
                     break;
 
-                case 2:
+                case 1:
                     Preferences.RecentFilesDateTimeWidth = Columns[e.ColumnIndex].Width;
                     break;
 
-                case 3:
+                case 2:
                     Preferences.RecentFilesEncryptedPathWidth = Columns[e.ColumnIndex].Width;
                     break;
 
-                case 4:
+                case 3:
                     Preferences.RecentFilesCryptoNameWidth = Columns[e.ColumnIndex].Width;
                     break;
             }
@@ -87,9 +86,9 @@ namespace Axantum.AxCrypt
             Preferences.RecentFilesMaxNumber = 100;
 
             Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(Columns[0].Width);
-            Columns[2].Width = Preferences.RecentFilesDateTimeWidth.Fallback(Columns[2].Width);
-            Columns[3].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(Columns[3].Width);
-            Columns[4].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(Columns[4].Width);
+            Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(Columns[1].Width);
+            Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(Columns[2].Width);
+            Columns[3].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(Columns[3].Width);
         }
 
         private bool _updateRecentFilesInProgress = false;
@@ -144,9 +143,6 @@ namespace Axantum.AxCrypt
             item.UseItemStyleForSubItems = false;
             item.Name = file.EncryptedFileInfo.FullName;
 
-            ListViewItem.ListViewSubItem sharingIndicatorColumn = item.SubItems.Add(String.Empty);
-            sharingIndicatorColumn.Name = nameof(ColumnName.SharingIndicator);
-
             ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
             dateColumn.Name = nameof(ColumnName.Date);
 
@@ -194,10 +190,6 @@ namespace Axantum.AxCrypt
             {
                 return false;
             }
-            if (left.SubItems[nameof(ColumnName.SharingIndicator)].Text != right.SubItems[nameof(ColumnName.SharingIndicator)].Text)
-            {
-                return false;
-            }
             if (left.SubItems[nameof(ColumnName.CryptoName)].Text != right.SubItems[nameof(ColumnName.CryptoName)].Text)
             {
                 return false;
@@ -221,16 +213,14 @@ namespace Axantum.AxCrypt
             return true;
         }
 
-        private async Task UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile, LicensePolicy license)
+        private Task UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile, LicensePolicy license)
         {
-            EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(activeFile.EncryptedFileInfo);
-            string sharingIndicator = SharingIndicator(encryptedProperties.SharedKeyHolders.Count());
+            OpenFileProperties openProperties = OpenFileProperties.Create(activeFile.EncryptedFileInfo);
             item.SubItems[nameof(ColumnName.EncryptedPath)].Text = activeFile.EncryptedFileInfo.FullName;
-            item.SubItems[nameof(ColumnName.SharingIndicator)].Text = sharingIndicator;
             item.SubItems[nameof(ColumnName.Date)].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems[nameof(ColumnName.Date)].Tag = activeFile.Properties.LastActivityTimeUtc;
 
-            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, sharingIndicator);
+            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, openProperties.KeyShareCount);
 
             try
             {
@@ -247,9 +237,11 @@ namespace Axantum.AxCrypt
             {
                 item.SubItems[nameof(ColumnName.CryptoName)].Text = Resources.UnknownCrypto;
             }
+
+            return Task.FromResult(true);
         }
 
-        private void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, string sharingIndicator)
+        private void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, int keyShareCount)
         {
             switch (activeFile.VisualState & ~(ActiveFileVisualState.SharedKeys | ActiveFileVisualState.LowEncryption))
             {
@@ -260,7 +252,7 @@ namespace Axantum.AxCrypt
                     return;
             }
 
-            if (!String.IsNullOrEmpty(sharingIndicator))
+            if (keyShareCount > 1)
             {
                 item.ImageKey = nameof(ImageKey.KeyShared);
                 item.ToolTipText = Resources.KeySharingExistsToolTip;
