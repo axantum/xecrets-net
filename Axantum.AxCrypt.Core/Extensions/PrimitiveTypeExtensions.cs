@@ -32,9 +32,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 {
     public static class PrimitiveTypeExtensions
     {
+        private static bool _isLittleEndian = OS.Current.IsLittleEndian;
+
         public static byte[] GetLittleEndianBytes(this long value)
         {
-            if (OS.Current.IsLittleEndian)
+            if (_isLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
@@ -51,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static byte[] GetLittleEndianBytes(this int value)
         {
-            if (OS.Current.IsLittleEndian)
+            if (_isLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
@@ -68,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static byte[] GetBigEndianBytes(this long value)
         {
-            if (!OS.Current.IsLittleEndian)
+            if (!_isLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
@@ -85,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static byte[] GetBigEndianBytes(this int value)
         {
-            if (!OS.Current.IsLittleEndian)
+            if (!_isLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
