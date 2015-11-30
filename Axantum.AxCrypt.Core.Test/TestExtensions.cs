@@ -236,6 +236,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEndianOptimization()
         {
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment(Endian.Reverse));
+            OS.Current.IsLittleEndian.SetLittleEndian();
             if (BitConverter.IsLittleEndian)
             {
                 byte[] actuallyLittleEndianBytes = 0x0102030405060708L.GetBigEndianBytes();
@@ -264,6 +265,8 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] actuallyIntBigEndianBytes = 0x01020304.GetLittleEndianBytes();
                 Assert.That(actuallyIntBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04 }), "Getting little endian int, thinking we are big endian but in fact are not, will get us big endian bytes.");
             }
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment(Endian.Actual));
+            OS.Current.IsLittleEndian.SetLittleEndian();
         }
 
         [Test]

@@ -34,6 +34,11 @@ namespace Axantum.AxCrypt.Core.Extensions
     {
         private static bool _isLittleEndian = OS.Current.IsLittleEndian;
 
+        public static void SetLittleEndian(this bool isLittleEndian)
+        {
+            _isLittleEndian = isLittleEndian;
+        }
+
         public static byte[] GetLittleEndianBytes(this long value)
         {
             if (_isLittleEndian)
