@@ -32,7 +32,7 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -56,11 +56,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             LogOnIdentity = LogOnIdentity.Empty;
 
-            LogOn = new DelegateAction<object>((o) => { if (!_knownIdentities.IsLoggedOn) { LogOnIdentity = LogOnAction(); } });
+            LogOn = new AsyncDelegateAction<object>(async (o) => { if (!_knownIdentities.IsLoggedOn) { LogOnIdentity = await LogOnActionAsync(); } });
             LogOff = new DelegateAction<object>((p) => { LogOffAction(); LogOnIdentity = null; }, (o) => _knownIdentities.IsLoggedOn);
-            LogOnLogOff = new DelegateAction<object>((o) => LogOnIdentity = LogOnLogOffAction());
-            AskForDecryptPassphrase = new DelegateAction<string>((name) => LogOnIdentity = AskForDecryptPassphraseAction(name));
-            AskForLogOnPassphrase = new DelegateAction<LogOnIdentity>((id) => LogOnIdentity = AskForLogOnPassphraseAction(id, String.Empty));
+            LogOnLogOff = new AsyncDelegateAction<object>(async (o) => LogOnIdentity = await LogOnLogOffActionAsync());
+            AskForDecryptPassphrase = new AsyncDelegateAction<string>(async (name) => LogOnIdentity = await AskForDecryptPassphraseActionAsync(name));
+            AskForLogOnPassphrase = new AsyncDelegateAction<LogOnIdentity>(async (id) => LogOnIdentity = await AskForLogOnPassphraseActionAsync(id, String.Empty));
 
             _sessionNotify.Notification += HandleLogOnLogOffNotifications;
         }
@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public LogOnIdentity LogOnIdentity { get { return GetProperty<LogOnIdentity>(nameof(LogOnIdentity)); } set { SetProperty(nameof(LogOnIdentity), value); } }
 
-        public DelegateAction<object> LogOn { get; private set; }
+        public AsyncDelegateAction<object> LogOn { get; private set; }
 
         public DelegateAction<object> LogOff { get; private set; }
 
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private LogOnIdentity LogOnAction()
+        private async Task<LogOnIdentity> LogOnActionAsync()
         {
             if (_knownIdentities.IsLoggedOn)
             {
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             LogOnIdentity logOnIdentity;
-            logOnIdentity = AskForLogOnPassphraseAction(LogOnIdentity.Empty, String.Empty);
+            logOnIdentity = await AskForLogOnPassphraseActionAsync(LogOnIdentity.Empty, String.Empty);
             if (logOnIdentity == LogOnIdentity.Empty)
             {
                 return LogOnIdentity.Empty;
@@ -133,32 +133,32 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _knownIdentities.Clear();
         }
 
-        private LogOnIdentity LogOnLogOffAction()
+        private async Task<LogOnIdentity> LogOnLogOffActionAsync()
         {
             if (!_knownIdentities.IsLoggedOn)
             {
-                return LogOnAction();
+                return await LogOnActionAsync();
             }
             LogOffAction();
             return LogOnIdentity.Empty;
         }
 
-        private LogOnIdentity LogOnIdentityFromCredentials(EmailAddress emailAddress, Passphrase passphrase)
+        private async Task<LogOnIdentity> LogOnIdentityFromCredentialsAsync(EmailAddress emailAddress, Passphrase passphrase)
         {
             if (emailAddress != EmailAddress.Empty)
             {
-                return LogOnIdentityFromUser(emailAddress, passphrase);
+                return await LogOnIdentityFromUserAsync(emailAddress, passphrase);
             }
 
             return LogOnIdentityFromPassphrase(passphrase);
         }
 
-        private static LogOnIdentity LogOnIdentityFromUser(EmailAddress emailAddress, Passphrase passphrase)
+        private async static Task<LogOnIdentity> LogOnIdentityFromUserAsync(EmailAddress emailAddress, Passphrase passphrase)
         {
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
-            if (store.IsIdentityValidAsync().Result)
+            if (await store.IsIdentityValidAsync())
             {
-                return new LogOnIdentity(store.ActiveKeyPairAsync().Result, passphrase);
+                return new LogOnIdentity(await store.ActiveKeyPairAsync(), passphrase);
             }
             return LogOnIdentity.Empty;
         }
@@ -175,7 +175,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return LogOnIdentity.Empty;
         }
 
-        private LogOnIdentity AskForDecryptPassphraseAction(string encryptedFileFullName)
+        private async Task<LogOnIdentity> AskForDecryptPassphraseActionAsync(string encryptedFileFullName)
         {
             LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
@@ -185,12 +185,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
             OnLoggingOn(logOnArgs);
 
-            return AddKnownIdentityFromEvent(logOnArgs);
+            return await AddKnownIdentityFromEventAsync(logOnArgs);
         }
 
-        private LogOnIdentity AskForLogOnPassphraseAction(LogOnIdentity identity, string encryptedFileFullName)
+        private async Task<LogOnIdentity> AskForLogOnPassphraseActionAsync(LogOnIdentity identity, string encryptedFileFullName)
         {
-            LogOnIdentity logOnIdentity = AskForLogOn(identity, encryptedFileFullName);
+            LogOnIdentity logOnIdentity = await AskForLogOnAsync(identity, encryptedFileFullName);
             if (logOnIdentity == LogOnIdentity.Empty)
             {
                 return LogOnIdentity.Empty;
@@ -200,7 +200,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return logOnIdentity;
         }
 
-        private LogOnIdentity AskForLogOn(LogOnIdentity identity, string encryptedFileFullName)
+        private async Task<LogOnIdentity> AskForLogOnAsync(LogOnIdentity identity, string encryptedFileFullName)
         {
             LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
@@ -212,7 +212,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             while (logOnArgs.IsAskingForPreviouslyUnknownPassphrase)
             {
-                LogOnIdentity newIdentity = AskForNewEncryptionPassphrase(logOnArgs.Passphrase, encryptedFileFullName);
+                LogOnIdentity newIdentity = await AskForNewEncryptionPassphraseAsync(logOnArgs.Passphrase, encryptedFileFullName);
                 if (newIdentity != LogOnIdentity.Empty)
                 {
                     return newIdentity;
@@ -228,10 +228,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
-            return LogOnIdentityFromCredentials(EmailAddress.Parse(logOnArgs.UserEmail), new Passphrase(logOnArgs.Passphrase));
+            return await LogOnIdentityFromCredentialsAsync(EmailAddress.Parse(logOnArgs.UserEmail), new Passphrase(logOnArgs.Passphrase));
         }
 
-        private LogOnIdentity AskForNewEncryptionPassphrase(string defaultPassphrase, string encryptedFileFullName)
+        private async Task<LogOnIdentity> AskForNewEncryptionPassphraseAsync(string defaultPassphrase, string encryptedFileFullName)
         {
             LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
@@ -242,10 +242,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
             OnLoggingOn(logOnArgs);
 
-            return AddKnownIdentityFromEvent(logOnArgs);
+            return await AddKnownIdentityFromEventAsync(logOnArgs);
         }
 
-        private Crypto.LogOnIdentity AddKnownIdentityFromEvent(LogOnEventArgs logOnArgs)
+        private async Task<LogOnIdentity> AddKnownIdentityFromEventAsync(LogOnEventArgs logOnArgs)
         {
             if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
             {
@@ -255,7 +255,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
             Passphrase passphrase = new Passphrase(logOnArgs.Passphrase);
-            LogOnIdentity identity = LogOnIdentityFromCredentials(EmailAddress.Parse(logOnArgs.UserEmail), passphrase);
+            LogOnIdentity identity = await LogOnIdentityFromCredentialsAsync(EmailAddress.Parse(logOnArgs.UserEmail), passphrase);
             if (identity == LogOnIdentity.Empty)
             {
                 identity = new LogOnIdentity(passphrase);
