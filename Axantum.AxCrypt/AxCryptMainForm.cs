@@ -318,16 +318,6 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async Task<bool> EnsureCreateAccountAsync()
-        {
-            if (await OfflineAccountExistsAsync())
-            {
-                return true;
-            }
-
-            return CreateNewOfflineAccount();
-        }
-
         private async Task<AccountStatus> VerifyAccountOnlineAsync()
         {
             VerifyAccountViewModel viewModel = new VerifyAccountViewModel(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
@@ -349,36 +339,6 @@ namespace Axantum.AxCrypt
                 Process.Start(Resources.LinkToGettingStarted);
             }
             return AccountStatus.Verified;
-        }
-
-        private bool CreateNewOfflineAccount()
-        {
-            New<KeyPairService>().Start();
-            using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, String.Empty, EmailAddress.Parse(Resolve.UserSettings.UserEmail)))
-            {
-                DialogResult dialogResult = dialog.ShowDialog(this);
-                if (dialogResult != DialogResult.OK)
-                {
-                    return false;
-                }
-
-                Passphrase passphrase = new Passphrase(dialog.PassphraseTextBox.Text);
-                EmailAddress emailAddress = EmailAddress.Parse(dialog.EmailTextBox.Text);
-                AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
-                if (!store.HasKeyPairAsync().Result)
-                {
-                    return false;
-                }
-                Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(store.ActiveKeyPairAsync().Result, passphrase);
-            }
-            return true;
-        }
-
-        private async static Task<bool> OfflineAccountExistsAsync()
-        {
-            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty));
-
-            return await store.StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail)) == Api.Model.AccountStatus.Verified;
         }
 
         private async Task LogOnAndDoPendingRequestAsync()
