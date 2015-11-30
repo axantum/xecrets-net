@@ -88,7 +88,8 @@ namespace Axantum.AxCrypt.Core.Service
         Task<UserAccount> AccountAsync();
 
         /// <summary>
-        /// Lists all UserKeyPairs available for the user, if any.
+        /// Lists all UserKeyPairs available for the user with the provided Identity, if any. This may filter out
+        /// key pairs stored in the account, but where the private key is not decryptable with Identity.
         /// </summary>
         /// <returns></returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]

@@ -166,9 +166,12 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
-        /// Lists all UserKeyPairs available for the user.
+        /// Lists all UserKeyPairs available for the user with the provided Identity, if any. This may filter out
+        /// key pairs stored in the account, but where the private key is not decryptable with Identity.
         /// </summary>
         /// <returns></returns>
+        /// <exception cref="System.InvalidOperationException">The account service requires a user.</exception>
+        /// <exception cref="PasswordException">Credentials are not valid for server access.</exception>
         public async Task<IList<UserKeyPair>> ListAsync()
         {
             if (String.IsNullOrEmpty(_apiClient.Identity.User))
