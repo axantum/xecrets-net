@@ -1759,6 +1759,10 @@ namespace Axantum.AxCrypt
             foreach (string file in fileNames)
             {
                 EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(New<IDataStore>(file));
+                if (!encryptedProperties.IsValid)
+                {
+                    continue;
+                }
                 IEnumerable<UserPublicKey> sharedWith = encryptedProperties.SharedKeyHolders;
                 using (KeyShareDialog dialog = new KeyShareDialog(this, New<KnownPublicKeys>, sharedWith, Resolve.KnownIdentities.DefaultEncryptionIdentity))
                 {
