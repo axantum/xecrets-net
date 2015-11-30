@@ -101,8 +101,15 @@ namespace Axantum.AxCrypt.Core.Service
         /// </returns>
         public async Task<bool> IsIdentityValidAsync()
         {
-            await _apiClient.MyAccountAsync().Free();
-            return true;
+            try
+            {
+                await _apiClient.MyAccountAsync().Free();
+                return true;
+            }
+            catch (UnauthorizedApiException)
+            {
+                return false;
+            }
         }
 
         /// <summary>
