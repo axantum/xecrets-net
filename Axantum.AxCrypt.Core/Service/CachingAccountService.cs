@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<bool> IsIdentityValidAsync()
         {
-            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(IsIdentityValidAsync)), () => _service.IsIdentityValidAsync()).Free();
+            return await _service.IsIdentityValidAsync().Free();
         }
 
         public async Task<SubscriptionLevel> LevelAsync()
