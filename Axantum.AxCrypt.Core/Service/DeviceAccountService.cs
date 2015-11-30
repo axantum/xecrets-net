@@ -60,6 +60,27 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
+        public async Task<bool> IsIdentityValidAsync()
+        {
+            if (Identity == LogOnIdentity.Empty)
+            {
+                return false;
+            }
+
+            if (New<AxCryptOnlineState>().IsOnline)
+            {
+                try
+                {
+                    return await _remoteService.IsIdentityValidAsync();
+                }
+                catch (OfflineApiException)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
+            }
+            return await _localService.IsIdentityValidAsync();
+        }
+
         public async Task<SubscriptionLevel> LevelAsync()
         {
             if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
@@ -92,6 +113,12 @@ namespace Axantum.AxCrypt.Core.Service
             return _localService.ChangePassphrase(passphrase);
         }
 
+        /// <summary>
+        /// Fetches the user user account.
+        /// </summary>
+        /// <returns>
+        /// The complete user account information.
+        /// </returns>
         public async Task<UserAccount> AccountAsync()
         {
             UserAccount localAccount = await _localService.AccountAsync().Free();
@@ -200,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Service
                     New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
-            return null;
+            return await _localService.CurrentKeyPairAsync().Free();
         }
 
         public async Task PasswordResetAsync(string verificationCode)

@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
 
-            return Task.Run(() => accountStorage.HasKeyPairAsync()).Result;
+            return Task.Run(() => accountStorage.IsIdentityValidAsync()).Result;
         }
 
         private bool IsKnownPassphrase()

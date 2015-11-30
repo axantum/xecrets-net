@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
 using System;
@@ -52,20 +51,9 @@ namespace Axantum.AxCrypt.Core.Session
             _service = service;
         }
 
-        public async Task<bool> HasKeyPairAsync()
+        public async Task<bool> IsIdentityValidAsync()
         {
-            try
-            {
-                if (_service.Identity.UserEmail == EmailAddress.Empty)
-                {
-                    return false;
-                }
-                return (await _service.ListAsync().Free()).Any();
-            }
-            catch (PasswordException)
-            {
-                return false;
-            }
+            return await _service.IsIdentityValidAsync().Free();
         }
 
         public async Task ImportAsync(UserKeyPair keyPair)

@@ -59,6 +59,11 @@ namespace Axantum.AxCrypt.Core.Service
             get; private set;
         }
 
+        public Task<bool> IsIdentityValidAsync()
+        {
+            return Task.FromResult(false);
+        }
+
         public Task<SubscriptionLevel> LevelAsync()
         {
             return Task.FromResult(SubscriptionLevel.Unknown);
@@ -75,6 +80,12 @@ namespace Axantum.AxCrypt.Core.Service
             return true;
         }
 
+        /// <summary>
+        /// Fetches the user user account.
+        /// </summary>
+        /// <returns>
+        /// The complete user account information.
+        /// </returns>
         public Task<UserAccount> AccountAsync()
         {
             return Task.FromResult(new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown));

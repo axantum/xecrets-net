@@ -75,6 +75,12 @@ namespace Axantum.AxCrypt.Core.Service
         Task<AccountStatus> StatusAsync(EmailAddress email);
 
         /// <summary>
+        /// Determines whether the Identity is valid for sign in.
+        /// </summary>
+        /// <returns>true if a user can be considered to be signed in using the Identity as credential.</returns>
+        Task<bool> IsIdentityValidAsync();
+
+        /// <summary>
         /// Changes the passphrase for the account.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
@@ -96,9 +102,15 @@ namespace Axantum.AxCrypt.Core.Service
         Task<IList<UserKeyPair>> ListAsync();
 
         /// <summary>
-        /// Ensures there is at least one key pair, and returns the currently active key pair of the user.
+        /// Ensures there is at least one key pair, and returns the currently active decrypted key pair of the user.
         /// </summary>
-        /// <returns>The current key pair</returns>
+        /// <returns>
+        /// Will always return a current key pair.
+        /// </returns>
+        /// <remarks>
+        /// This cannot be used to determine if a user has a key pair, as one will be created if there is none, or if
+        /// none can be decrypted with the given Identity.
+        /// </remarks>
         Task<UserKeyPair> CurrentKeyPairAsync();
 
         /// <summary>

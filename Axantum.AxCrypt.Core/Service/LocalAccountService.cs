@@ -68,6 +68,17 @@ namespace Axantum.AxCrypt.Core.Service
             _workContainer = workContainer;
         }
 
+        /// <summary>
+        /// Determines whether the Identity is valid for sign in.
+        /// </summary>
+        /// <returns>
+        /// true if a user can be considered to be signed in using the Identity as credential.
+        /// </returns>
+        public Task<bool> IsIdentityValidAsync()
+        {
+            return Task.FromResult(TryLoadUserKeyPairs().Any());
+        }
+
         public Task<SubscriptionLevel> LevelAsync()
         {
             if (Identity == LogOnIdentity.Empty)
@@ -111,6 +122,12 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
+        /// <summary>
+        /// Fetches the user user account.
+        /// </summary>
+        /// <returns>
+        /// The complete user account information.
+        /// </returns>
         public Task<UserAccount> AccountAsync()
         {
             if (Identity.UserEmail == EmailAddress.Empty)
@@ -133,7 +150,21 @@ namespace Axantum.AxCrypt.Core.Service
 
         public Task<UserKeyPair> CurrentKeyPairAsync()
         {
-            throw new NotImplementedException();
+            if (Identity.UserEmail == EmailAddress.Empty)
+            {
+                throw new InvalidOperationException("The account service requies a user.");
+            }
+
+            UserAccount userAccount = LoadUserAccount();
+            UserKeyPair keyPair = userAccount.AccountKeys.Select(ak => ak.ToUserKeyPair(Identity.Passphrase)).OrderByDescending(ukp => ukp.Timestamp).FirstOrDefault();
+            if (keyPair == null)
+            {
+                AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(Identity));
+                keyPair = new UserKeyPair(Identity.UserEmail, DateTime.UtcNow, New<KeyPairService>().New());
+                store.ImportAsync(keyPair).Wait();
+            }
+
+            return Task.FromResult(keyPair);
         }
 
         public async Task SaveAsync(UserAccount accountToSave)

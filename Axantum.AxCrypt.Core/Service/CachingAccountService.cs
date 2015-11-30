@@ -47,6 +47,11 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
+        public async Task<bool> IsIdentityValidAsync()
+        {
+            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(IsIdentityValidAsync)), () => _service.IsIdentityValidAsync()).Free();
+        }
+
         public async Task<SubscriptionLevel> LevelAsync()
         {
             return await New<ICache>().GetItemAsync(_key.Subkey(nameof(LevelAsync)), () => _service.LevelAsync()).Free();
@@ -59,6 +64,12 @@ namespace Axantum.AxCrypt.Core.Service
             return result;
         }
 
+        /// <summary>
+        /// Fetches the user user account.
+        /// </summary>
+        /// <returns>
+        /// The complete user account information.
+        /// </returns>
         public async Task<UserAccount> AccountAsync()
         {
             return await New<ICache>().GetItemAsync(_key.Subkey(nameof(AccountAsync)), () => _service.AccountAsync()).Free();
