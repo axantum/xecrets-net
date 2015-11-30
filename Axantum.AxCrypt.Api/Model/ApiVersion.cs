@@ -14,7 +14,7 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class ApiVersion : IEquatable<ApiVersion>
     {
-        private const int VERSION = 2;
+        private const int VERSION = 3;
 
         public static readonly ApiVersion Zero = new ApiVersion(0);
 
