@@ -23,12 +23,12 @@ namespace Axantum.AxCrypt.Api.Model
 
         public ApiVersion()
         {
-            Version = VERSION;
+            this.Version = VERSION;
         }
 
         private ApiVersion(int version)
         {
-            Version = version;
+            this.Version = version;
         }
 
         public bool Equals(ApiVersion other)
