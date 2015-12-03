@@ -140,7 +140,6 @@ namespace Axantum.AxCrypt.Core.Test
             Uri nullUrl = null;
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 307, 0);
-            Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
             {
