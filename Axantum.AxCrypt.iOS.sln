@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Abstraction
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Api", "Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj", "{6EA275D5-2372-4FCF-BB4F-5C48F5901350}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Common", "Axantum.AxCrypt.Common\Axantum.AxCrypt.Common.csproj", "{FB429566-E4A5-4391-805B-0E2A2AE297AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -81,6 +83,18 @@ Global
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|iPhone.Build.0 = Release|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.Release|iPhone.Build.0 = Release|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{FB429566-E4A5-4391-805B-0E2A2AE297AC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
