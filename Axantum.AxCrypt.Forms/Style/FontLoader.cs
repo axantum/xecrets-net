@@ -10,6 +10,9 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Axantum.AxCrypt.Core.Runtime;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Forms.Style
 {
@@ -19,8 +22,20 @@ namespace Axantum.AxCrypt.Forms.Style
 
         private PrivateFontCollection _privateFontCollection2 = new PrivateFontCollection();
 
+        private bool IsWindowsDesktop
+        {
+            get
+            {
+                return New<IPlatform>().Platform == Platform.WindowsDesktop;
+            }
+        }
+
         public FontLoader()
         {
+            if (!IsWindowsDesktop)
+            {
+                return;
+            }
             AddFontFromResource(_privateFontCollection1, Resources.OpenSans_Light);
             AddFontFromResource(_privateFontCollection1, Resources.OpenSans_Regular);
             AddFontFromResource(_privateFontCollection1, Resources.OpenSans_Semibold);
@@ -32,6 +47,10 @@ namespace Axantum.AxCrypt.Forms.Style
         {
             get
             {
+                if (!IsWindowsDesktop)
+                {
+                    return SystemFonts.DialogFont;
+                }
                 return new Font(_privateFontCollection1.Families[0], 10, FontStyle.Regular);
             }
         }
@@ -40,6 +59,10 @@ namespace Axantum.AxCrypt.Forms.Style
         {
             get
             {
+                if (!IsWindowsDesktop)
+                {
+                    return new Font(SystemFonts.DialogFont, FontStyle.Bold);
+                }
                 return new Font(_privateFontCollection2.Families[0], 9, FontStyle.Bold);
             }
         }
