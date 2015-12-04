@@ -487,12 +487,12 @@ namespace Axantum.AxCrypt
         {
             if (license.Has(LicenseCapability.KeySharing))
             {
-                _keyShareToolStripButton.Image = Resources.share_80px;
+                _keyShareToolStripButton.Image = Resources.share_border_80px;
                 _keyShareToolStripButton.ToolTipText = Resources.KeySharingToolTip;
             }
             else
             {
-                _keyShareToolStripButton.Image = Resources.premium_80px;
+                _keyShareToolStripButton.Image = Resources.share_border_grey_premium_80px;
                 _keyShareToolStripButton.ToolTipText = Resources.PremiumNeededForKeyShare;
             }
         }
@@ -506,7 +506,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                _secureDeleteToolStripMenuItem.Image = Resources.premium_overlay_16px;
+                _secureDeleteToolStripMenuItem.Image = Resources.premium_32px;
                 _secureDeleteToolStripMenuItem.ToolTipText = Resources.PremiumFeatureToolTipText;
             }
         }

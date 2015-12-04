@@ -1201,6 +1201,16 @@ namespace Axantum.AxCrypt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap premium_32px {
+            get {
+                object obj = ResourceManager.GetObject("premium_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap premium_80px {
             get {
                 object obj = ResourceManager.GetObject("premium_80px", resourceCulture);
@@ -1331,6 +1341,26 @@ namespace Axantum.AxCrypt.Properties {
         internal static System.Drawing.Bitmap share_80px {
             get {
                 object obj = ResourceManager.GetObject("share_80px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap share_border_80px {
+            get {
+                object obj = ResourceManager.GetObject("share_border_80px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap share_border_grey_premium_80px {
+            get {
+                object obj = ResourceManager.GetObject("share_border_grey_premium_80px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

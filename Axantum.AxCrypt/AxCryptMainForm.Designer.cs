@@ -581,7 +581,7 @@
             // 
             resources.ApplyResources(this._keyShareToolStripButton, "_keyShareToolStripButton");
             this._keyShareToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._keyShareToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.share_80px;
+            this._keyShareToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.share_border_80px;
             this._keyShareToolStripButton.Margin = new System.Windows.Forms.Padding(0);
             this._keyShareToolStripButton.Name = "_keyShareToolStripButton";
             // 

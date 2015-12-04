@@ -353,12 +353,15 @@
     <Content Include="resources\logo-text-retina.png" />
     <Content Include="resources\open_encrypted.png" />
     <Content Include="resources\options.png" />
+    <Content Include="resources\premium_32px.png" />
     <Content Include="resources\premium_80px.png" />
     <Content Include="resources\premium_overlay_16px.png" />
     <Content Include="resources\premium_yellow_32px.png" />
     <Content Include="resources\premium_yellow_80px.png" />
     <Content Include="resources\share_32px.png" />
     <Content Include="resources\share_80px.png" />
+    <Content Include="resources\share_border_80px.png" />
+    <Content Include="resources\share_border_grey_premium_80px.png" />
     <Content Include="resources\share_premium_80px.png" />
     <Content Include="resources\skydrive_40px.png" />
     <None Include="resources\cleanupneededred32.png" />
