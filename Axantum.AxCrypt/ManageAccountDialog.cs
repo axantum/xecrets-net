@@ -13,8 +13,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt
         private void _changePassphraseButton_Click(object sender, EventArgs e)
         {
             string passphrase;
-            using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Resources.ChangePassphraseDialogTitle, String.Empty, String.Empty))
+            using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Content.ChangePassphraseDialogTitle, String.Empty, String.Empty))
             {
                 dialog.ShowPassphraseCheckBox.Checked = _userSettings.DisplayEncryptPassphrase;
                 DialogResult dialogResult = dialog.ShowDialog(this);

@@ -8,15 +8,14 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
@@ -79,7 +78,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            MessageDialog.ShowOk(this, Resources.SharedWithUnverfiedMessageTitle, Resources.SharedWithUnverifiedMessagePattern.InvariantFormat(email));
+            MessageDialog.ShowOk(this, Content.SharedWithUnverfiedMessageTitle, Content.SharedWithUnverifiedMessagePattern.InvariantFormat(email));
         }
 
         private void SetShareButtonState()
@@ -144,13 +143,13 @@ namespace Axantum.AxCrypt
             }
             catch (UserInputException)
             {
-                _errorProvider1.SetError(_newContact, Resources.InvalidEmail);
+                _errorProvider1.SetError(_newContact, Content.InvalidEmail);
                 _errorProvider1.SetIconPadding(_newContact, 3);
                 return false;
             }
             catch (OfflineApiException)
             {
-                _errorProvider1.SetError(_newContact, Resources.KeySharingOffline);
+                _errorProvider1.SetError(_newContact, Content.KeySharingOffline);
                 _errorProvider1.SetIconPadding(_newContact, 3);
                 return false;
             }
@@ -182,7 +181,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(SharingListViewModel.NewKeyShare)].Length > 0)
             {
-                _errorProvider1.SetError(_newContact, Resources.InvalidEmail);
+                _errorProvider1.SetError(_newContact, Content.InvalidEmail);
                 _errorProvider1.SetIconPadding(_newContact, 3);
                 return false;
             }

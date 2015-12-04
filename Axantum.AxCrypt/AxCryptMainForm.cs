@@ -55,8 +55,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt
                 return true;
             }
 
-            Resources.UserSettingsFormatChangeNeedsReset.ShowWarning();
+            Content.UserSettingsFormatChangeNeedsReset.ShowWarning();
             ClearAllSettingsAndReinitialize();
             throw new ApplicationExitException();
         }
@@ -333,10 +333,10 @@ namespace Axantum.AxCrypt
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(await store.ActiveKeyPairAsync(), identity.Passphrase);
 
-            DialogResult result = MessageDialog.ShowOkCancel(this, Resources.WelcomeToAxCryptTitle, Resources.WelcomeToAxCrypt);
+            DialogResult result = MessageDialog.ShowOkCancel(this, Content.WelcomeToAxCryptTitle, Content.WelcomeToAxCrypt);
             if (result == DialogResult.OK)
             {
-                Process.Start(Resources.LinkToGettingStarted);
+                Process.Start(Content.LinkToGettingStarted);
             }
             return AccountStatus.Verified;
         }
@@ -488,12 +488,12 @@ namespace Axantum.AxCrypt
             if (license.Has(LicenseCapability.KeySharing))
             {
                 _keyShareToolStripButton.Image = Resources.share_border_80px;
-                _keyShareToolStripButton.ToolTipText = Resources.KeySharingToolTip;
+                _keyShareToolStripButton.ToolTipText = Content.KeySharingToolTip;
             }
             else
             {
                 _keyShareToolStripButton.Image = Resources.share_border_grey_premium_80px;
-                _keyShareToolStripButton.ToolTipText = Resources.PremiumNeededForKeyShare;
+                _keyShareToolStripButton.ToolTipText = Content.PremiumNeededForKeyShare;
             }
         }
 
@@ -507,7 +507,7 @@ namespace Axantum.AxCrypt
             else
             {
                 _secureDeleteToolStripMenuItem.Image = Resources.premium_32px;
-                _secureDeleteToolStripMenuItem.ToolTipText = Resources.PremiumFeatureToolTipText;
+                _secureDeleteToolStripMenuItem.ToolTipText = Content.PremiumFeatureToolTipText;
             }
         }
 
@@ -533,9 +533,9 @@ namespace Axantum.AxCrypt
         {
             _notifyIcon = new NotifyIcon(components);
             _notifyIcon.Icon = Resources.axcrypticon;
-            _notifyIcon.Text = Resources.AxCryptFileEncryption;
-            _notifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
-            _notifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
+            _notifyIcon.Text = Content.AxCryptFileEncryption;
+            _notifyIcon.BalloonTipTitle = Content.AxCryptFileEncryption;
+            _notifyIcon.BalloonTipText = Content.TrayBalloonTooltip;
             _notifyIcon.Visible = true;
 
             _notifyIcon.MouseClick += (sender, e) =>
@@ -607,7 +607,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
 
-            _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Resources.LinkToAxCryptPremiumPurchasePage.InvariantFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); };
+            _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Content.LinkToAxCryptPremiumPurchasePage.InvariantFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); };
 
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck.Execute(DateTime.MinValue); };
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
@@ -670,9 +670,9 @@ namespace Axantum.AxCrypt
             }
 
             int days = license.SubscriptionWarningTime.Days;
-            _daysLeftPremiumLabel.Text = (days > 1 ? Resources.DaysLeftPluralWarningPattern : Resources.DaysLeftSingularWarningPattern).InvariantFormat(days);
+            _daysLeftPremiumLabel.Text = (days > 1 ? Content.DaysLeftPluralWarningPattern : Content.DaysLeftSingularWarningPattern).InvariantFormat(days);
             _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
-            _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Resources.DaysLeftWarningToolTip);
+            _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Content.DaysLeftWarningToolTip);
             _daysLeftPremiumLabel.Visible = true;
         }
 
@@ -733,7 +733,7 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewLogOnForEncryptedFile(LogOnEventArgs e)
         {
-            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, Resources.NewPassphraseDialogTitle, e.Passphrase, e.EncryptedFileFullName))
+            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, Content.NewPassphraseDialogTitle, e.Passphrase, e.EncryptedFileFullName))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(this);
@@ -883,52 +883,52 @@ namespace Axantum.AxCrypt
                 switch (e.FileSelectionType)
                 {
                     case FileSelectionType.Decrypt:
-                        ofd.Title = Resources.DecryptFileOpenDialogTitle;
+                        ofd.Title = Content.DecryptFileOpenDialogTitle;
                         ofd.Multiselect = true;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.DefaultExt = OS.Current.AxCryptExtension;
-                        ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
+                        ofd.Filter = Content.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
                         ofd.Multiselect = true;
                         break;
 
                     case FileSelectionType.Encrypt:
-                        ofd.Title = Resources.EncryptFileOpenDialogTitle;
+                        ofd.Title = Content.EncryptFileOpenDialogTitle;
                         ofd.Multiselect = true;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         break;
 
                     case FileSelectionType.Open:
-                        ofd.Title = Resources.OpenEncryptedFileOpenDialogTitle;
+                        ofd.Title = Content.OpenEncryptedFileOpenDialogTitle;
                         ofd.Multiselect = false;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.DefaultExt = OS.Current.AxCryptExtension;
-                        ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
+                        ofd.Filter = Content.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
                         break;
 
                     case FileSelectionType.Wipe:
-                        ofd.Title = Resources.WipeFileSelectFileDialogTitle;
+                        ofd.Title = Content.WipeFileSelectFileDialogTitle;
                         ofd.Multiselect = true;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         break;
 
                     case FileSelectionType.ImportPublicKeys:
-                        ofd.Title = Resources.ImportPublicKeysFileSelectionTitle;
+                        ofd.Title = Content.ImportPublicKeysFileSelectionTitle;
                         ofd.Multiselect = true;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
-                        ofd.Filter = Resources.ImportPublicKeysFileFilter;
+                        ofd.Filter = Content.ImportPublicKeysFileFilter;
                         break;
 
                     case FileSelectionType.ImportPrivateKeys:
-                        ofd.Title = Resources.ImportPrivateKeysFileSelectionTitle;
+                        ofd.Title = Content.ImportPrivateKeysFileSelectionTitle;
                         ofd.Multiselect = false;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
-                        ofd.Filter = Resources.ImportPrivateKeysFileFilter;
+                        ofd.Filter = Content.ImportPrivateKeysFileFilter;
                         break;
 
                     default:
@@ -951,18 +951,18 @@ namespace Axantum.AxCrypt
                 switch (e.FileSelectionType)
                 {
                     case FileSelectionType.SaveAsEncrypted:
-                        sfd.Title = Resources.EncryptFileSaveAsDialogTitle;
+                        sfd.Title = Content.EncryptFileSaveAsDialogTitle;
                         sfd.DefaultExt = OS.Current.AxCryptExtension;
                         sfd.AddExtension = true;
-                        sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
+                        sfd.Filter = Content.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
                         break;
 
                     case FileSelectionType.SaveAsDecrypted:
                         string extension = Path.GetExtension(e.SelectedFiles[0]);
-                        sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
+                        sfd.Title = Content.DecryptedSaveAsFileDialogTitle;
                         sfd.DefaultExt = extension;
                         sfd.AddExtension = !String.IsNullOrEmpty(extension);
-                        sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
+                        sfd.Filter = Content.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
                         break;
                 }
                 sfd.CheckPathExists = true;
@@ -1141,11 +1141,11 @@ namespace Axantum.AxCrypt
             if (isLoggedOn)
             {
                 UserKeyPair userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
-                logonStatus = userKeys != UserKeyPair.Empty ? Resources.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Resources.LoggedOnStatusText.InvariantFormat(String.Empty);
+                logonStatus = userKeys != UserKeyPair.Empty ? Content.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Content.LoggedOnStatusText.InvariantFormat(String.Empty);
             }
             else
             {
-                logonStatus = Resources.LoggedOffStatusText;
+                logonStatus = Content.LoggedOffStatusText;
             }
             Text = "{0} - {1}".InvariantFormat(_mainViewModel.Title, logonStatus);
         }
@@ -1155,23 +1155,23 @@ namespace Axantum.AxCrypt
             switch (status)
             {
                 case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
-                    _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
+                    _updateStatusButton.ToolTipText = Content.NoNeedToCheckForUpdatesTooltip;
                     _updateStatusButton.Image = Resources.bulb_green_40px;
                     break;
 
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
-                    _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
+                    _updateStatusButton.ToolTipText = Content.OldVersionTooltip;
                     _updateStatusButton.Image = Resources.bulb_red_40px;
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
-                    _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.UpdatedVersion);
+                    _updateStatusButton.ToolTipText = Content.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.UpdatedVersion);
                     _updateStatusButton.Image = Resources.bulb_red_40px;
                     break;
 
                 case VersionUpdateStatus.Unknown:
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
-                    _updateStatusButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
+                    _updateStatusButton.ToolTipText = Content.ClickToCheckForNewerVersionTooltip;
                     _updateStatusButton.Image = Resources.bulb_red_40px;
                     break;
             }
@@ -1260,70 +1260,70 @@ namespace Axantum.AxCrypt
                     return true;
 
                 case ErrorStatus.UnspecifiedError:
-                    Resources.FileOperationFailed.InvariantFormat(displayContext).ShowWarning();
+                    Content.FileOperationFailed.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.FileAlreadyExists:
-                    Resources.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning();
+                    Content.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.FileDoesNotExist:
-                    Resources.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning();
+                    Content.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.CannotWriteDestination:
-                    Resources.CannotWrite.InvariantFormat(displayContext).ShowWarning();
+                    Content.CannotWrite.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.CannotStartApplication:
-                    Resources.CannotStartApplication.InvariantFormat(displayContext).ShowWarning();
+                    Content.CannotStartApplication.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.InconsistentState:
-                    Resources.InconsistentState.InvariantFormat(displayContext).ShowWarning();
+                    Content.InconsistentState.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.InvalidKey:
-                    Resources.InvalidKey.InvariantFormat(displayContext).ShowWarning();
+                    Content.InvalidKey.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.Canceled:
                     break;
 
                 case ErrorStatus.Exception:
-                    Resources.Exception.InvariantFormat(displayContext).ShowWarning();
+                    Content.Exception.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.InvalidPath:
-                    Resources.InvalidPath.InvariantFormat(displayContext).ShowWarning();
+                    Content.InvalidPath.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.FolderAlreadyWatched:
-                    Resources.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning();
+                    Content.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.FileLocked:
-                    Resources.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning();
+                    Content.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.Unknown:
-                    Resources.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning();
+                    Content.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.Working:
-                    Resources.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning();
+                    Content.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.Aborted:
-                    Resources.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning();
+                    Content.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case ErrorStatus.FileAlreadyEncrypted:
-                    Resources.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning();
+                    Content.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 default:
-                    Resources.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning();
+                    Content.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning();
                     break;
             }
             return false;
@@ -1439,7 +1439,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            Process.Start(Resources.LinkToAxCryptPremiumPurchasePage.InvariantFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail));
+            Process.Start(Content.LinkToAxCryptPremiumPurchasePage.InvariantFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail));
         }
 
         private void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)
@@ -1488,7 +1488,7 @@ namespace Axantum.AxCrypt
             {
                 Resolve.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Resolve.UserSettings.CultureName));
             }
-            Resources.LanguageChangeRestartPrompt.ShowWarning();
+            Content.LanguageChangeRestartPrompt.ShowWarning();
             throw new ApplicationExitException();
         }
 
@@ -1686,7 +1686,7 @@ namespace Axantum.AxCrypt
             ManageAccountViewModel viewModel = new ManageAccountViewModel(userKeyPairs, Resolve.KnownIdentities);
 
             string passphrase;
-            using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Resources.ChangePassphraseDialogTitle, String.Empty, String.Empty))
+            using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Content.ChangePassphraseDialogTitle, String.Empty, String.Empty))
             {
                 dialog.ShowPassphraseCheckBox.Checked = Resolve.UserSettings.DisplayEncryptPassphrase;
                 DialogResult dialogResult = dialog.ShowDialog(this);

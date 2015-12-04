@@ -237,10 +237,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.sv.resx">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="Axantum.AxCrypt.ruleset" />
     <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.template" />
@@ -316,6 +312,10 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
       <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
       <Name>Axantum.AxCrypt.Mono</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Content\AxCrypt.Content.csproj">
+      <Project>{cb0c5a7a-fbee-4f02-bdae-4a7f206c1cd4}</Project>
+      <Name>AxCrypt.Content</Name>
     </ProjectReference>
     <ProjectReference Include="..\BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj">
       <Project>{3680c939-b21f-4444-b646-42fb4b29a786}</Project>

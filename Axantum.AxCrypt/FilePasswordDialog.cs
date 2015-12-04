@@ -32,6 +32,8 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 
+using Content = AxCrypt.Content.Content;
+
 namespace Axantum.AxCrypt
 {
     public partial class FilePasswordDialog : Form
@@ -82,11 +84,11 @@ namespace Axantum.AxCrypt
             }
             if (String.IsNullOrEmpty(_viewModel.FileName))
             {
-                _errorProvider1.SetError(PassphraseTextBox, Resources.UnkownLogOn);
+                _errorProvider1.SetError(PassphraseTextBox, Content.UnkownLogOn);
             }
             else
             {
-                _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
+                _errorProvider1.SetError(PassphraseTextBox, Content.WrongPassphrase);
             }
             return false;
         }

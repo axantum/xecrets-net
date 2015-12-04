@@ -61,33 +61,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status &apos;Aborted&apos; with &apos;{0}&apos;..
-        /// </summary>
-        internal static string AbortedFileStatus {
-            get {
-                return ResourceManager.GetString("AbortedFileStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to About {0}.
-        /// </summary>
-        internal static string About {
-            get {
-                return ResourceManager.GetString("About", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}.
-        /// </summary>
-        internal static string AccountLoggedOnStatusText {
-            get {
-                return ResourceManager.GetString("AccountLoggedOnStatusText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap activefilegreen16 {
@@ -98,50 +71,12 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-click decrypts and opens the document.
-        /// </summary>
-        internal static string ActiveFileKnownKeyToolTip {
-            get {
-                return ResourceManager.GetString("ActiveFileKnownKeyToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Double-click opens a Password-dialog before decrypting and opening the document..
-        /// </summary>
-        internal static string ActiveFileToolTip {
-            get {
-                return ResourceManager.GetString("ActiveFileToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap addforencryptionred32 {
             get {
                 object obj = ResourceManager.GetObject("addforencryptionred32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open Source Document Encryption by Axantum Software AB
-        ///
-        ///Includes software from http://www.bouncycastle.org/ ..
-        /// </summary>
-        internal static string AxCryptAboutDescription {
-            get {
-                return ResourceManager.GetString("AxCryptAboutDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Document Encryption.
-        /// </summary>
-        internal static string AxCryptFileEncryption {
-            get {
-                return ResourceManager.GetString("AxCryptFileEncryption", resourceCulture);
             }
         }
         
@@ -162,15 +97,6 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("axcrypticon128", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Incorrect email address.
-        /// </summary>
-        internal static string BadEmail {
-            get {
-                return ResourceManager.GetString("BadEmail", resourceCulture);
             }
         }
         
@@ -225,42 +151,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Canceled &apos;{0}&apos;..
-        /// </summary>
-        internal static string Canceled {
-            get {
-                return ResourceManager.GetString("Canceled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot start application for &apos;{0}&apos;..
-        /// </summary>
-        internal static string CannotStartApplication {
-            get {
-                return ResourceManager.GetString("CannotStartApplication", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot write &apos;{0}&apos;..
-        /// </summary>
-        internal static string CannotWrite {
-            get {
-                return ResourceManager.GetString("CannotWrite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Change Password.
-        /// </summary>
-        internal static string ChangePassphraseDialogTitle {
-            get {
-                return ResourceManager.GetString("ChangePassphraseDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap clean_broom {
@@ -311,24 +201,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File is decrypted, and may need to be cleaned. Close any open applications, and click the Clean Up button..
-        /// </summary>
-        internal static string CleanUpNeededToolTip {
-            get {
-                return ResourceManager.GetString("CleanUpNeededToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Click to check for a newer version..
-        /// </summary>
-        internal static string ClickToCheckForNewerVersionTooltip {
-            get {
-                return ResourceManager.GetString("ClickToCheckForNewerVersionTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap closeremovestandbygreen32 {
@@ -345,33 +217,6 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("closeremovestandbyred32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} Days.
-        /// </summary>
-        internal static string DaysLeftPluralWarningPattern {
-            get {
-                return ResourceManager.GetString("DaysLeftPluralWarningPattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt; 1 Day.
-        /// </summary>
-        internal static string DaysLeftSingularWarningPattern {
-            get {
-                return ResourceManager.GetString("DaysLeftSingularWarningPattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your Premium subscription is about to expire. Click to renew..
-        /// </summary>
-        internal static string DaysLeftWarningToolTip {
-            get {
-                return ResourceManager.GetString("DaysLeftWarningToolTip", resourceCulture);
             }
         }
         
@@ -396,33 +241,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assumed open. Try to Close the application, or use the Clean function to remove it.
-        /// </summary>
-        internal static string DecryptedFileToolTip {
-            get {
-                return ResourceManager.GetString("DecryptedFileToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Documents (*{0})|*{0}|All files (*.*)|*.*.
-        /// </summary>
-        internal static string DecryptedSaveAsFileDialogFilterPattern {
-            get {
-                return ResourceManager.GetString("DecryptedSaveAsFileDialogFilterPattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Document exists, choose a new name to save as.
-        /// </summary>
-        internal static string DecryptedSaveAsFileDialogTitle {
-            get {
-                return ResourceManager.GetString("DecryptedSaveAsFileDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap decryptedunknownkeyfilered16 {
@@ -433,39 +251,12 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password has not been entered yet. Double-click to enter password and Open, or right-click for options.
-        /// </summary>
-        internal static string DecryptedUnknownKeyFileToolTip {
-            get {
-                return ResourceManager.GetString("DecryptedUnknownKeyFileToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select document to decrypt.
-        /// </summary>
-        internal static string DecryptFileOpenDialogTitle {
-            get {
-                return ResourceManager.GetString("DecryptFileOpenDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap decryptlockopen32 {
             get {
                 object obj = ResourceManager.GetObject("decryptlockopen32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are Signed In. Click to Sign Out..
-        /// </summary>
-        internal static string DefaultEncryptionKeyIsIsetToolTip {
-            get {
-                return ResourceManager.GetString("DefaultEncryptionKeyIsIsetToolTip", resourceCulture);
             }
         }
         
@@ -486,15 +277,6 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("DocumentsLibrary", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Double click to open. If required you will be prompted for a password..
-        /// </summary>
-        internal static string DoubleClickToOpenToolTip {
-            get {
-                return ResourceManager.GetString("DoubleClickToOpenToolTip", resourceCulture);
             }
         }
         
@@ -529,42 +311,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Documents (*{0})|*{0}|All files (*.*)|*.*.
-        /// </summary>
-        internal static string EncryptedFileDialogFilterPattern {
-            get {
-                return ResourceManager.GetString("EncryptedFileDialogFilterPattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Encrypted Document.
-        /// </summary>
-        internal static string EncryptedSourceColumnHeader {
-            get {
-                return ResourceManager.GetString("EncryptedSourceColumnHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select documents to encrypt.
-        /// </summary>
-        internal static string EncryptFileOpenDialogTitle {
-            get {
-                return ResourceManager.GetString("EncryptFileOpenDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Document Exists, Save As.
-        /// </summary>
-        internal static string EncryptFileSaveAsDialogTitle {
-            get {
-                return ResourceManager.GetString("EncryptFileSaveAsDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap encryptionkeygreen32 {
@@ -591,24 +337,6 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("encryptlock32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identity &apos;{0}&apos; password.
-        /// </summary>
-        internal static string EnterPassphraseForIdentityPrompt {
-            get {
-                return ResourceManager.GetString("EnterPassphraseForIdentityPrompt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exception during processing of &apos;{0}&apos;..
-        /// </summary>
-        internal static string Exception {
-            get {
-                return ResourceManager.GetString("Exception", resourceCulture);
             }
         }
         
@@ -653,15 +381,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import failed. Probably not a valid Account Secret and Sharing Key Pair File..
-        /// </summary>
-        internal static string FailedPrivateImport {
-            get {
-                return ResourceManager.GetString("FailedPrivateImport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap feedback_40px {
@@ -672,75 +391,12 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The document &apos;{0}&apos; is already encrypted..
-        /// </summary>
-        internal static string FileAlreadyEncrypted {
-            get {
-                return ResourceManager.GetString("FileAlreadyEncrypted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File &apos;{0}&apos; is already encrypted..
-        /// </summary>
-        internal static string FileAlreadyEncryptedStatus {
-            get {
-                return ResourceManager.GetString("FileAlreadyEncryptedStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Document &apos;{0}&apos; already exists..
-        /// </summary>
-        internal static string FileAlreadyExists {
-            get {
-                return ResourceManager.GetString("FileAlreadyExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Document &apos;{0}&apos; does not exist..
-        /// </summary>
-        internal static string FileDoesNotExist {
-            get {
-                return ResourceManager.GetString("FileDoesNotExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; is open in another application. Please close it and try again..
-        /// </summary>
-        internal static string FileIsLockedWarning {
-            get {
-                return ResourceManager.GetString("FileIsLockedWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap fileknownkeygreen16 {
             get {
                 object obj = ResourceManager.GetObject("fileknownkeygreen16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File does not exist..
-        /// </summary>
-        internal static string FileNotFound {
-            get {
-                return ResourceManager.GetString("FileNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failed &apos;{0}&apos;..
-        /// </summary>
-        internal static string FileOperationFailed {
-            get {
-                return ResourceManager.GetString("FileOperationFailed", resourceCulture);
             }
         }
         
@@ -761,15 +417,6 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("folder_40px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Folder &apos;{0}&apos; already watched..
-        /// </summary>
-        internal static string FolderAlreadyWatched {
-            get {
-                return ResourceManager.GetString("FolderAlreadyWatched", resourceCulture);
             }
         }
         
@@ -804,102 +451,12 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text Files (*.axx)|*.axx|All Files (*.*)|*.*.
-        /// </summary>
-        internal static string ImportPrivateKeysFileFilter {
-            get {
-                return ResourceManager.GetString("ImportPrivateKeysFileFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select Account Secret and Sharing Key Pair File.
-        /// </summary>
-        internal static string ImportPrivateKeysFileSelectionTitle {
-            get {
-                return ResourceManager.GetString("ImportPrivateKeysFileSelectionTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Text Files (*.txt)|*.txt|All Files (*.*)|*.*.
-        /// </summary>
-        internal static string ImportPublicKeysFileFilter {
-            get {
-                return ResourceManager.GetString("ImportPublicKeysFileFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select Sharing Key Files.
-        /// </summary>
-        internal static string ImportPublicKeysFileSelectionTitle {
-            get {
-                return ResourceManager.GetString("ImportPublicKeysFileSelectionTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap inactivefilegreen16 {
             get {
                 object obj = ResourceManager.GetObject("inactivefilegreen16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Inconsistent state with &apos;{0}&apos;..
-        /// </summary>
-        internal static string InconsistentState {
-            get {
-                return ResourceManager.GetString("InconsistentState", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please specify time as &apos;hh:mm:ss.mmm&apos;..
-        /// </summary>
-        internal static string Invalid_TimeSpan {
-            get {
-                return ResourceManager.GetString("Invalid_TimeSpan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid URL..
-        /// </summary>
-        internal static string Invalid_URL {
-            get {
-                return ResourceManager.GetString("Invalid_URL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Incorrect format for an email address..
-        /// </summary>
-        internal static string InvalidEmail {
-            get {
-                return ResourceManager.GetString("InvalidEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid key for &apos;{0}&apos;..
-        /// </summary>
-        internal static string InvalidKey {
-            get {
-                return ResourceManager.GetString("InvalidKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The file or path &apos;{0}&apos; is invalid for this..
-        /// </summary>
-        internal static string InvalidPath {
-            get {
-                return ResourceManager.GetString("InvalidPath", resourceCulture);
             }
         }
         
@@ -914,78 +471,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file key is shared with other AxCrypt users..
-        /// </summary>
-        internal static string KeySharingExistsToolTip {
-            get {
-                return ResourceManager.GetString("KeySharingExistsToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New contacts can only be added when online!.
-        /// </summary>
-        internal static string KeySharingOffline {
-            get {
-                return ResourceManager.GetString("KeySharingOffline", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Click to select encrypted files to share keys with others..
-        /// </summary>
-        internal static string KeySharingToolTip {
-            get {
-                return ResourceManager.GetString("KeySharingToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AxCrypt must be restarted in order for the language change to take effect..
-        /// </summary>
-        internal static string LanguageChangeRestartPrompt {
-            get {
-                return ResourceManager.GetString("LanguageChangeRestartPrompt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://account.axcrypt.net/Home/Purchase?email={0}.
-        /// </summary>
-        internal static string LinkToAxCryptPremiumPurchasePage {
-            get {
-                return ResourceManager.GetString("LinkToAxCryptPremiumPurchasePage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://www.axcrypt.net/documentation/get-started/.
-        /// </summary>
-        internal static string LinkToGettingStarted {
-            get {
-                return ResourceManager.GetString("LinkToGettingStarted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Signed Out.
-        /// </summary>
-        internal static string LoggedOffStatusText {
-            get {
-                return ResourceManager.GetString("LoggedOffStatusText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current Password.
-        /// </summary>
-        internal static string LoggedOnStatusText {
-            get {
-                return ResourceManager.GetString("LoggedOnStatusText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap logo_text_retina {
@@ -996,120 +481,12 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign Out.
-        /// </summary>
-        internal static string LogOffText {
-            get {
-                return ResourceManager.GetString("LogOffText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This AxCrypt Identity already exists.
-        /// </summary>
-        internal static string LogOnExists {
-            get {
-                return ResourceManager.GetString("LogOnExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sign In.
-        /// </summary>
-        internal static string LogOnText {
-            get {
-                return ResourceManager.GetString("LogOnText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upgrade to Premium to enable the strongest encryption..
-        /// </summary>
-        internal static string LowEncryptionWorkingToolTip {
-            get {
-                return ResourceManager.GetString("LowEncryptionWorkingToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap minus_40px {
             get {
                 object obj = ResourceManager.GetObject("minus_40px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to My AxCrypt.
-        /// </summary>
-        internal static string MyAxCryptFolderName {
-            get {
-                return ResourceManager.GetString("MyAxCryptFolderName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a New Password.
-        /// </summary>
-        internal static string NewPassphraseDialogTitle {
-            get {
-                return ResourceManager.GetString("NewPassphraseDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Version {0} is available! Click to download..
-        /// </summary>
-        internal static string NewVersionIsAvailableTooltip {
-            get {
-                return ResourceManager.GetString("NewVersionIsAvailableTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are Signed Out. Click to Sign In..
-        /// </summary>
-        internal static string NoDefaultEncryptionKeySetToolTip {
-            get {
-                return ResourceManager.GetString("NoDefaultEncryptionKeySetToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No need to check for updates..
-        /// </summary>
-        internal static string NoNeedToCheckForUpdatesTooltip {
-            get {
-                return ResourceManager.GetString("NoNeedToCheckForUpdatesTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This may take a few minutes. Please be patient..
-        /// </summary>
-        internal static string OfflineAccountBePatient {
-            get {
-                return ResourceManager.GetString("OfflineAccountBePatient", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Offline Account Creation..
-        /// </summary>
-        internal static string OfflineAccountTitle {
-            get {
-                return ResourceManager.GetString("OfflineAccountTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your version is old. Please click to check for a newer version..
-        /// </summary>
-        internal static string OldVersionTooltip {
-            get {
-                return ResourceManager.GetString("OldVersionTooltip", resourceCulture);
             }
         }
         
@@ -1134,57 +511,12 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select encrypted document to open.
-        /// </summary>
-        internal static string OpenEncryptedFileOpenDialogTitle {
-            get {
-                return ResourceManager.GetString("OpenEncryptedFileOpenDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File.
-        /// </summary>
-        internal static string OpenFileColumnHeader {
-            get {
-                return ResourceManager.GetString("OpenFileColumnHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap options {
             get {
                 object obj = ResourceManager.GetObject("options", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enter Password.
-        /// </summary>
-        internal static string PassphrasePrompt {
-            get {
-                return ResourceManager.GetString("PassphrasePrompt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passwords do not match.
-        /// </summary>
-        internal static string PassphraseVerificationMismatch {
-            get {
-                return ResourceManager.GetString("PassphraseVerificationMismatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The password must be at least 10 characters..
-        /// </summary>
-        internal static string PasswordPolicyViolation {
-            get {
-                return ResourceManager.GetString("PasswordPolicyViolation", resourceCulture);
             }
         }
         
@@ -1245,33 +577,6 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("premium_yellow_80px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This feature requires a purchase of Premium!.
-        /// </summary>
-        internal static string PremiumFeatureToolTipText {
-            get {
-                return ResourceManager.GetString("PremiumFeatureToolTipText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Key sharing requires premimum. Click to upgrade now!.
-        /// </summary>
-        internal static string PremiumNeededForKeyShare {
-            get {
-                return ResourceManager.GetString("PremiumNeededForKeyShare", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Purging Active Files.
-        /// </summary>
-        internal static string PurgingActiveFiles {
-            get {
-                return ResourceManager.GetString("PurgingActiveFiles", resourceCulture);
             }
         }
         
@@ -1376,26 +681,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New AxCrypt User.
-        /// </summary>
-        internal static string SharedWithUnverfiedMessageTitle {
-            get {
-                return ResourceManager.GetString("SharedWithUnverfiedMessageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are about to share securely with someone who has received but not yet responded to an invitation to use AxCrypt.
-        ///
-        ///Please consider informing &apos;{0}&apos; directly about AxCrypt file security..
-        /// </summary>
-        internal static string SharedWithUnverifiedMessagePattern {
-            get {
-                return ResourceManager.GetString("SharedWithUnverifiedMessagePattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon SkyDrive {
@@ -1422,138 +707,6 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("trashred16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Click to restore the AxCrypt application window..
-        /// </summary>
-        internal static string TrayBalloonTooltip {
-            get {
-                return ResourceManager.GetString("TrayBalloonTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown.
-        /// </summary>
-        internal static string UnknownCrypto {
-            get {
-                return ResourceManager.GetString("UnknownCrypto", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Status &apos;Unknown&apos; with &apos;{0}&apos;..
-        /// </summary>
-        internal static string UnknownFileStatus {
-            get {
-                return ResourceManager.GetString("UnknownFileStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password is not previously known. Click &apos;New&apos; to create a new..
-        /// </summary>
-        internal static string UnkownLogOn {
-            get {
-                return ResourceManager.GetString("UnkownLogOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {1} for &apos;{0}&apos;..
-        /// </summary>
-        internal static string UnrecognizedError {
-            get {
-                return ResourceManager.GetString("UnrecognizedError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Updating Status.
-        /// </summary>
-        internal static string UpdatingStatus {
-            get {
-                return ResourceManager.GetString("UpdatingStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You have updated AxCrypt. Unfortunately, your configuration must be reset. After restarting, your preferences and settings will unfortunately be lost. We apologize for the inconvenience. Your encrypted files are still safe and ok..
-        /// </summary>
-        internal static string UserSettingsFormatChangeNeedsReset {
-            get {
-                return ResourceManager.GetString("UserSettingsFormatChangeNeedsReset", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Welcome to AxCrypt!
-        ///
-        ///Using AxCrypt is really easy. Start with the main window, or use double-click and right-click in Windows Explorer for fully integrated use.
-        ///
-        ///To encrypt your first files, click the + icon in the toolbar and select them.
-        ///
-        ///For more information, click OK to open a web browser to our web site..
-        /// </summary>
-        internal static string WelcomeToAxCrypt {
-            get {
-                return ResourceManager.GetString("WelcomeToAxCrypt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Getting started with AxCrypt.
-        /// </summary>
-        internal static string WelcomeToAxCryptTitle {
-            get {
-                return ResourceManager.GetString("WelcomeToAxCryptTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select documents to securely delete.
-        /// </summary>
-        internal static string WipeFileSelectFileDialogTitle {
-            get {
-                return ResourceManager.GetString("WipeFileSelectFileDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Status &apos;Working&apos; with &apos;{0}&apos;..
-        /// </summary>
-        internal static string WorkingFileStatus {
-            get {
-                return ResourceManager.GetString("WorkingFileStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wrong Password. Please try again..
-        /// </summary>
-        internal static string WrongPassphrase {
-            get {
-                return ResourceManager.GetString("WrongPassphrase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wrong activation code. Please re-check you email..
-        /// </summary>
-        internal static string WrongVerificationCode {
-            get {
-                return ResourceManager.GetString("WrongVerificationCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The verfication code must be exactly 6 digits..
-        /// </summary>
-        internal static string WrongVerificationCodeFormat {
-            get {
-                return ResourceManager.GetString("WrongVerificationCodeFormat", resourceCulture);
             }
         }
     }

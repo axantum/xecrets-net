@@ -1,10 +1,11 @@
 ﻿using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+
+using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
@@ -65,7 +66,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(LogOnAccountViewModel.Passphrase)].Length != 0)
             {
-                _errorProvider1.SetError(_passphrase, _email.Text.Length > 0 ? Resources.WrongPassphrase : Resources.UnkownLogOn);
+                _errorProvider1.SetError(_passphrase, _email.Text.Length > 0 ? Content.WrongPassphrase : Content.UnkownLogOn);
                 return false;
             }
             return true;
@@ -76,7 +77,7 @@ namespace Axantum.AxCrypt
             _errorProvider2.Clear();
             if (_email.Text.Length == 0 || _viewModel[nameof(LogOnAccountViewModel.UserEmail)].Length != 0)
             {
-                _errorProvider2.SetError(_email, Resources.BadEmail);
+                _errorProvider2.SetError(_email, Content.BadEmail);
                 return false;
             }
             return true;

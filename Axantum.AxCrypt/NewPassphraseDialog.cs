@@ -33,6 +33,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
+using Content = AxCrypt.Content.Content;
+
 namespace Axantum.AxCrypt
 {
     public partial class NewPassphraseDialog : Form
@@ -83,12 +85,12 @@ namespace Axantum.AxCrypt
             bool validated = true;
             if (_viewModel[nameof(NewPassphraseViewModel.Verification)].Length > 0)
             {
-                _errorProvider1.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
+                _errorProvider1.SetError(VerifyPassphraseTextbox, Content.PassphraseVerificationMismatch);
                 validated = false;
             }
             if (_viewModel[nameof(NewPassphraseViewModel.Passphrase)].Length > 0)
             {
-                _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
+                _errorProvider1.SetError(PassphraseTextBox, Content.WrongPassphrase);
                 validated = false;
             }
             if (validated)

@@ -14,6 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Content = AxCrypt.Content.Content;
+
 namespace Axantum.AxCrypt
 {
     public class RecentFilesListView : ListView
@@ -235,7 +237,7 @@ namespace Axantum.AxCrypt
             }
             catch (ArgumentException)
             {
-                item.SubItems[nameof(ColumnName.CryptoName)].Text = Resources.UnknownCrypto;
+                item.SubItems[nameof(ColumnName.CryptoName)].Text = Content.UnknownCrypto;
             }
 
             return Task.FromResult(true);
@@ -248,19 +250,19 @@ namespace Axantum.AxCrypt
                 case ActiveFileVisualState.DecryptedWithKnownKey:
                 case ActiveFileVisualState.DecryptedWithoutKnownKey:
                     item.ImageKey = nameof(ImageKey.CleanUpNeeded);
-                    item.ToolTipText = Resources.CleanUpNeededToolTip;
+                    item.ToolTipText = Content.CleanUpNeededToolTip;
                     return;
             }
 
             if (keyShareCount > 1)
             {
                 item.ImageKey = nameof(ImageKey.KeyShared);
-                item.ToolTipText = Resources.KeySharingExistsToolTip;
+                item.ToolTipText = Content.KeySharingExistsToolTip;
                 return;
             }
 
             item.ImageKey = String.Empty;
-            item.ToolTipText = Resources.DoubleClickToOpenToolTip;
+            item.ToolTipText = Content.DoubleClickToOpenToolTip;
             return;
         }
 

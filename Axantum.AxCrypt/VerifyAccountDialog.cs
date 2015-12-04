@@ -1,11 +1,12 @@
 ﻿using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
@@ -70,7 +71,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(VerifyAccountViewModel.Passphrase)].Length > 0)
             {
-                _errorProvider1.SetError(_passphrase, Resources.PasswordPolicyViolation);
+                _errorProvider1.SetError(_passphrase, Content.PasswordPolicyViolation);
                 return false;
             }
             return true;
@@ -81,7 +82,7 @@ namespace Axantum.AxCrypt
             _errorProvider2.Clear();
             if (_viewModel[nameof(VerifyAccountViewModel.VerificationPassphrase)].Length > 0)
             {
-                _errorProvider2.SetError(_passphraseVerification, Resources.PassphraseVerificationMismatch);
+                _errorProvider2.SetError(_passphraseVerification, Content.PassphraseVerificationMismatch);
                 return false;
             }
             return true;
@@ -92,7 +93,7 @@ namespace Axantum.AxCrypt
             _errorProvider3.Clear();
             if (_viewModel[nameof(VerifyAccountViewModel.VerificationCode)].Length > 0)
             {
-                _errorProvider3.SetError(_activationCode, Resources.WrongVerificationCodeFormat);
+                _errorProvider3.SetError(_activationCode, Content.WrongVerificationCodeFormat);
                 return false;
             }
             return true;
@@ -103,7 +104,7 @@ namespace Axantum.AxCrypt
             _errorProvider3.Clear();
             if (_viewModel.ErrorMessage.Length > 0)
             {
-                _errorProvider3.SetError(_activationCode, Resources.WrongVerificationCode);
+                _errorProvider3.SetError(_activationCode, Content.WrongVerificationCode);
                 return false;
             }
             return true;

@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
+using Content = AxCrypt.Content.Content;
+
 namespace Axantum.AxCrypt
 {
     public partial class DebugOptionsDialog : Form
@@ -21,14 +23,14 @@ namespace Axantum.AxCrypt
             {
                 e.Cancel = true;
                 _restApiBaseUrl.SelectAll();
-                _errorProvider2.SetError(_restApiBaseUrl, Resources.Invalid_URL);
+                _errorProvider2.SetError(_restApiBaseUrl, Content.Invalid_URL);
             }
             TimeSpan timeout;
             if (!TimeSpan.TryParse(_timeoutTimeSpan.Text, out timeout))
             {
                 e.Cancel = true;
                 _timeoutTimeSpan.SelectAll();
-                _errorProvider3.SetError(_timeoutTimeSpan, Resources.Invalid_TimeSpan);
+                _errorProvider3.SetError(_timeoutTimeSpan, Content.Invalid_TimeSpan);
             }
         }
 

@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.Service;
+﻿using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
@@ -10,8 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
@@ -62,7 +61,7 @@ namespace Axantum.AxCrypt
 
             if (!New<KeyPairService>().IsAnyAvailable)
             {
-                MessageBox.Show(this, Resources.OfflineAccountBePatient, Resources.OfflineAccountTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Content.OfflineAccountBePatient, Content.OfflineAccountTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             CreateAccountAsync();
         }
@@ -109,7 +108,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(CreateNewAccountViewModel.Passphrase)].Length > 0)
             {
-                _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
+                _errorProvider1.SetError(PassphraseTextBox, Content.WrongPassphrase);
                 return false;
             }
             return true;
@@ -120,7 +119,7 @@ namespace Axantum.AxCrypt
             _errorProvider2.Clear();
             if (_viewModel[nameof(CreateNewAccountViewModel.Verification)].Length > 0)
             {
-                _errorProvider2.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
+                _errorProvider2.SetError(VerifyPassphraseTextbox, Content.PassphraseVerificationMismatch);
                 return false;
             }
             return true;
@@ -131,7 +130,7 @@ namespace Axantum.AxCrypt
             _errorProvider3.Clear();
             if (_viewModel[nameof(CreateNewAccountViewModel.UserEmail)].Length > 0)
             {
-                _errorProvider3.SetError(EmailTextBox, Resources.BadEmail);
+                _errorProvider3.SetError(EmailTextBox, Content.BadEmail);
                 return false;
             }
             return true;

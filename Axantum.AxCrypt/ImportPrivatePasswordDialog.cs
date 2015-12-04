@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using Content = AxCrypt.Content.Content;
+
 namespace Axantum.AxCrypt
 {
     public partial class ImportPrivatePasswordDialog : Form
@@ -29,7 +31,7 @@ namespace Axantum.AxCrypt
             _passphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = _passphraseTextBox.Text; _privateKeyFileTextBox.ScrollToCaret(); };
             _showPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = _showPassphraseCheckBox.Checked; };
 
-            _viewModel.BindPropertyChanged<bool>(nameof(ImportPrivateKeysViewModel.ImportSuccessful), (ok) => { if (!ok) { _errorProvider1.SetError(_browsePrivateKeyFileButton, Resources.FailedPrivateImport); } });
+            _viewModel.BindPropertyChanged<bool>(nameof(ImportPrivateKeysViewModel.ImportSuccessful), (ok) => { if (!ok) { _errorProvider1.SetError(_browsePrivateKeyFileButton, Content.FailedPrivateImport); } });
             _viewModel.BindPropertyChanged<bool>(nameof(ImportPrivateKeysViewModel.ShowPassphrase), (show) => { _showPassphraseCheckBox.Checked = show; _passphraseTextBox.UseSystemPasswordChar = !show; });
 
             Owner = parent;
@@ -59,7 +61,7 @@ namespace Axantum.AxCrypt
 
             if (_viewModel[nameof(ImportPrivateKeysViewModel.Passphrase)].Length > 0)
             {
-                _errorProvider1.SetError(_passphraseTextBox, Resources.WrongPassphrase);
+                _errorProvider1.SetError(_passphraseTextBox, Content.WrongPassphrase);
                 validated = false;
             }
             else
@@ -69,7 +71,7 @@ namespace Axantum.AxCrypt
 
             if (_viewModel[nameof(ImportPrivateKeysViewModel.PrivateKeyFileName)].Length > 0)
             {
-                _errorProvider2.SetError(_browsePrivateKeyFileButton, Resources.FileNotFound);
+                _errorProvider2.SetError(_browsePrivateKeyFileButton, Content.FileNotFound);
                 validated = false;
             }
             else
@@ -84,11 +86,11 @@ namespace Axantum.AxCrypt
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Title = Resources.ImportPrivateKeysFileSelectionTitle;
+                ofd.Title = Content.ImportPrivateKeysFileSelectionTitle;
                 ofd.Multiselect = false;
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
-                ofd.Filter = Resources.ImportPrivateKeysFileFilter;
+                ofd.Filter = Content.ImportPrivateKeysFileFilter;
                 DialogResult result = ofd.ShowDialog();
                 if (result == DialogResult.OK)
                 {

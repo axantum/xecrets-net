@@ -1,6 +1,4 @@
 ﻿using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(AccountEmailViewModel.UserEmail)].Length > 0)
             {
-                _errorProvider1.SetError(EmailTextBox, Resources.BadEmail);
+                _errorProvider1.SetError(EmailTextBox, Content.BadEmail);
                 return false;
             }
             return true;
