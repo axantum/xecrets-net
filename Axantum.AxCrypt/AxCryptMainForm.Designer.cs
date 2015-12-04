@@ -76,7 +76,7 @@
             this._debugCryptoPolicyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugLoggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugManageAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tryBrokenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._tryBrokenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpViewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -476,7 +476,7 @@
             this._debugCryptoPolicyToolStripMenuItem,
             this._debugLoggingToolStripMenuItem,
             this._debugManageAccountToolStripMenuItem,
-            this.tryBrokenFileToolStripMenuItem});
+            this._tryBrokenFileToolStripMenuItem});
             this._debugToolStripMenuItem.Name = "_debugToolStripMenuItem";
             resources.ApplyResources(this._debugToolStripMenuItem, "_debugToolStripMenuItem");
             // 
@@ -508,11 +508,11 @@
             resources.ApplyResources(this._debugManageAccountToolStripMenuItem, "_debugManageAccountToolStripMenuItem");
             this._debugManageAccountToolStripMenuItem.Click += new System.EventHandler(this.ManageAccountToolStripMenuItem_Click);
             // 
-            // tryBrokenFileToolStripMenuItem
+            // _tryBrokenFileToolStripMenuItem
             // 
-            this.tryBrokenFileToolStripMenuItem.Name = "tryBrokenFileToolStripMenuItem";
-            resources.ApplyResources(this.tryBrokenFileToolStripMenuItem, "tryBrokenFileToolStripMenuItem");
-            this.tryBrokenFileToolStripMenuItem.Click += new System.EventHandler(this.tryBrokenFileToolStripMenuItem_Click);
+            this._tryBrokenFileToolStripMenuItem.Name = "_tryBrokenFileToolStripMenuItem";
+            resources.ApplyResources(this._tryBrokenFileToolStripMenuItem, "_tryBrokenFileToolStripMenuItem");
+            this._tryBrokenFileToolStripMenuItem.Click += new System.EventHandler(this.tryBrokenFileToolStripMenuItem_Click);
             // 
             // _helpToolStripMenuItem
             // 
@@ -757,7 +757,7 @@
         private System.Windows.Forms.ToolStrip _rightToolStrip;
         private System.Windows.Forms.ToolStripButton _updateStatusButton;
         private System.Windows.Forms.ToolStripMenuItem _recentFilesOpenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tryBrokenFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _tryBrokenFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton _feedbackButton;
         private System.Windows.Forms.ToolTip _daysLeftToolTip;
     }

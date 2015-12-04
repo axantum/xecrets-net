@@ -413,4 +413,178 @@ For more information, click OK to open a web browser to our web site.</value>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>The verfication code must be exactly 6 digits.</value>
   </data>
+  <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Clean Decrypted</value>
+  </data>
+  <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
+    <value>Click to clean and remove any open decrypted files, but ensure they are not in use first.</value>
+  </data>
+  <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
+    <value>Create &amp;Account</value>
+  </data>
+  <data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Create an Account with a Secret and Sharing Key Pair so you can share encrypted files with others.</value>
+  </data>
+  <data name="CryptoNameText" xml:space="preserve">
+    <value>Algorithm</value>
+  </data>
+  <data name="DaysLeftPremiumLabelText" xml:space="preserve">
+    <value>X Days</value>
+  </data>
+  <data name="DebugCheckVersionNowToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Check Version Now</value>
+  </data>
+  <data name="DebugCryptoPolicyToolStripMenuItemText" xml:space="preserve">
+    <value>License &amp;Policy</value>
+  </data>
+  <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Logging</value>
+  </data>
+  <data name="DebugManageAccountToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Manage Account</value>
+  </data>
+  <data name="DebugOptionsToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Options</value>
+  </data>
+  <data name="DebugToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Debug</value>
+  </data>
+  <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Decrypt and remove from list</value>
+  </data>
+  <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="DecryptToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Decrypt</value>
+  </data>
+  <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
+    <value>Encrypted &amp;Folders</value>
+  </data>
+  <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
+    <value>Encrypted</value>
+  </data>
+  <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
+    <value>Click to select documents to encrypt</value>
+  </data>
+  <data name="EncryptToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Encrypt</value>
+  </data>
+  <data name="EnglishLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;English</value>
+  </data>
+  <data name="ExitToolStripMenuItemText" xml:space="preserve">
+    <value>E&amp;xit</value>
+  </data>
+  <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
+    <value>Export Account &amp;Secret and Sharing Key Pair</value>
+  </data>
+  <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>To move an account, export the Secret and Sharing Key Pair and then import it elsewhere.</value>
+  </data>
+  <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
+    <value>E&amp;xport My Public Sharing Key</value>
+  </data>
+  <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Send the exported Public Sharing Key to others you want to be able to share encrypted files with you.</value>
+  </data>
+  <data name="FeedbackButtonText" xml:space="preserve">
+    <value>Talk to us! Feedback or bug reports welcome.</value>
+  </data>
+  <data name="FileToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;About</value>
+  </data>
+  <data name="HelpToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="HelpViewHelpMenuItemText" xml:space="preserve">
+    <value>&amp;View Help</value>
+  </data>
+  <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
+    <value>Import &amp;Account Secret and Sharing Key Pair</value>
+  </data>
+  <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>To move an account, export the Secret and Sharing Key Pair and then import it here.</value>
+  </data>
+  <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Import Someone's Public Sharing Key</value>
+  </data>
+  <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Ask your contact to export and send his/her Public Sharing Key to you and import it here. Then you can share encrypted files.</value>
+  </data>
+  <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Key Management</value>
+  </data>
+  <data name="KeyShareToolStripButtonToolTipText" xml:space="preserve">
+    <value>Click to select documents to decrypt</value>
+  </data>
+  <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Open Encrypted</value>
+  </data>
+  <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
+    <value>Change &amp;Password</value>
+  </data>
+  <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Clear All Settings and Exit</value>
+  </data>
+  <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Debug</value>
+  </data>
+  <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Language</value>
+  </data>
+  <data name="OptionsToolStripMenuItemText" xml:space="preserve">
+    <value>O&amp;ptions</value>
+  </data>
+  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Open</value>
+  </data>
+  <data name="RecentFilesTabPageText" xml:space="preserve">
+    <value>Recent Files</value>
+  </data>
+  <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Remove from list without decrypting document</value>
+  </data>
+  <data name="RightToolStripText" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Secure Delete</value>
+  </data>
+  <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Share Keys</value>
+  </data>
+  <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Svenska</value>
+  </data>
+  <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Try Broken File</value>
+  </data>
+  <data name="UpdateStatusButtonText" xml:space="preserve">
+    <value>toolStripButton1</value>
+  </data>
+  <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="WatchedFoldersdecryptTemporarilyMenuItemText" xml:space="preserve">
+    <value>Decrypt &amp;Temporarily</value>
+  </data>
+  <data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
+    <value>Open &amp;Explorer Here</value>
+  </data>
+  <data name="WatchedFoldersRemoveMenuItemText" xml:space="preserve">
+    <value>&amp;Decrypt Permanently</value>
+  </data>
+  <data name="WatchedFoldersTabPageText" xml:space="preserve">
+    <value>Encrypted Folders</value>
+  </data>
 </root>

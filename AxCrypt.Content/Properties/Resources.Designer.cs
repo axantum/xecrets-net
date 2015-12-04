@@ -172,6 +172,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Clean Decrypted.
+        /// </summary>
+        public static string CleanDecryptedToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("CleanDecryptedToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File is decrypted, and may need to be cleaned. Close any open applications, and click the Clean Up button..
         /// </summary>
         public static string CleanUpNeededToolTip {
@@ -190,11 +199,56 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to clean and remove any open decrypted files, but ensure they are not in use first..
+        /// </summary>
+        public static string CloseAndRemoveOpenFilesToolStripButtonToolTipText {
+            get {
+                return ResourceManager.GetString("CloseAndRemoveOpenFilesToolStripButtonToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create &amp;Account.
+        /// </summary>
+        public static string CreateAccountToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("CreateAccountToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create an Account with a Secret and Sharing Key Pair so you can share encrypted files with others..
+        /// </summary>
+        public static string CreateAccountToolStripMenuItemToolTipText {
+            get {
+                return ResourceManager.GetString("CreateAccountToolStripMenuItemToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Algorithm.
+        /// </summary>
+        public static string CryptoNameText {
+            get {
+                return ResourceManager.GetString("CryptoNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} Days.
         /// </summary>
         public static string DaysLeftPluralWarningPattern {
             get {
                 return ResourceManager.GetString("DaysLeftPluralWarningPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X Days.
+        /// </summary>
+        public static string DaysLeftPremiumLabelText {
+            get {
+                return ResourceManager.GetString("DaysLeftPremiumLabelText", resourceCulture);
             }
         }
         
@@ -213,6 +267,78 @@ namespace AxCrypt.Content.Properties {
         public static string DaysLeftWarningToolTip {
             get {
                 return ResourceManager.GetString("DaysLeftWarningToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Check Version Now.
+        /// </summary>
+        public static string DebugCheckVersionNowToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DebugCheckVersionNowToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License &amp;Policy.
+        /// </summary>
+        public static string DebugCryptoPolicyToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DebugCryptoPolicyToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Logging.
+        /// </summary>
+        public static string DebugLoggingToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DebugLoggingToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Manage Account.
+        /// </summary>
+        public static string DebugManageAccountToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DebugManageAccountToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Options.
+        /// </summary>
+        public static string DebugOptionsToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DebugOptionsToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Debug.
+        /// </summary>
+        public static string DebugToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DebugToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Decrypt and remove from list.
+        /// </summary>
+        public static string DecryptAndRemoveFromListToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DecryptAndRemoveFromListToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document.
+        /// </summary>
+        public static string DecryptedFileColumnHeaderText {
+            get {
+                return ResourceManager.GetString("DecryptedFileColumnHeaderText", resourceCulture);
             }
         }
         
@@ -262,6 +388,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Decrypt.
+        /// </summary>
+        public static string DecryptToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DecryptToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are Signed In. Click to Sign Out..
         /// </summary>
         public static string DefaultEncryptionKeyIsIsetToolTip {
@@ -285,6 +420,24 @@ namespace AxCrypt.Content.Properties {
         public static string EncryptedFileDialogFilterPattern {
             get {
                 return ResourceManager.GetString("EncryptedFileDialogFilterPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypted &amp;Folders.
+        /// </summary>
+        public static string EncryptedFoldersToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("EncryptedFoldersToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypted.
+        /// </summary>
+        public static string EncryptedPathColumnHeaderText {
+            get {
+                return ResourceManager.GetString("EncryptedPathColumnHeaderText", resourceCulture);
             }
         }
         
@@ -316,6 +469,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to select documents to encrypt.
+        /// </summary>
+        public static string EncryptToolStripButtonToolTipText {
+            get {
+                return ResourceManager.GetString("EncryptToolStripButtonToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Encrypt.
+        /// </summary>
+        public static string EncryptToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("EncryptToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;English.
+        /// </summary>
+        public static string EnglishLanguageToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("EnglishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Identity &apos;{0}&apos; password.
         /// </summary>
         public static string EnterPassphraseForIdentityPrompt {
@@ -334,11 +514,65 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E&amp;xit.
+        /// </summary>
+        public static string ExitToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("ExitToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Account &amp;Secret and Sharing Key Pair.
+        /// </summary>
+        public static string ExportMyPrivateKeyToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("ExportMyPrivateKeyToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To move an account, export the Secret and Sharing Key Pair and then import it elsewhere..
+        /// </summary>
+        public static string ExportMyPrivateKeyToolStripMenuItemToolTipText {
+            get {
+                return ResourceManager.GetString("ExportMyPrivateKeyToolStripMenuItemToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E&amp;xport My Public Sharing Key.
+        /// </summary>
+        public static string ExportSharingKeyToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("ExportSharingKeyToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send the exported Public Sharing Key to others you want to be able to share encrypted files with you..
+        /// </summary>
+        public static string ExportSharingKeyToolStripMenuItemToolTipText {
+            get {
+                return ResourceManager.GetString("ExportSharingKeyToolStripMenuItemToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import failed. Probably not a valid Account Secret and Sharing Key Pair File..
         /// </summary>
         public static string FailedPrivateImport {
             get {
                 return ResourceManager.GetString("FailedPrivateImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Talk to us! Feedback or bug reports welcome..
+        /// </summary>
+        public static string FeedbackButtonText {
+            get {
+                return ResourceManager.GetString("FeedbackButtonText", resourceCulture);
             }
         }
         
@@ -406,11 +640,83 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;File.
+        /// </summary>
+        public static string FileToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("FileToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder &apos;{0}&apos; already watched..
         /// </summary>
         public static string FolderAlreadyWatched {
             get {
                 return ResourceManager.GetString("FolderAlreadyWatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;About.
+        /// </summary>
+        public static string HelpAboutToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("HelpAboutToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Help.
+        /// </summary>
+        public static string HelpToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("HelpToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;View Help.
+        /// </summary>
+        public static string HelpViewHelpMenuItemText {
+            get {
+                return ResourceManager.GetString("HelpViewHelpMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import &amp;Account Secret and Sharing Key Pair.
+        /// </summary>
+        public static string ImportMyPrivateKeyToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("ImportMyPrivateKeyToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To move an account, export the Secret and Sharing Key Pair and then import it here..
+        /// </summary>
+        public static string ImportMyPrivateKeyToolStripMenuItemToolTipText {
+            get {
+                return ResourceManager.GetString("ImportMyPrivateKeyToolStripMenuItemToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Import Someone&apos;s Public Sharing Key.
+        /// </summary>
+        public static string ImportOthersSharingKeyToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("ImportOthersSharingKeyToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ask your contact to export and send his/her Public Sharing Key to you and import it here. Then you can share encrypted files..
+        /// </summary>
+        public static string ImportOthersSharingKeyToolStripMenuItemToolTipText {
+            get {
+                return ResourceManager.GetString("ImportOthersSharingKeyToolStripMenuItemToolTipText", resourceCulture);
             }
         }
         
@@ -505,6 +811,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Key Management.
+        /// </summary>
+        public static string KeyManagementToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("KeyManagementToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to select documents to decrypt.
+        /// </summary>
+        public static string KeyShareToolStripButtonToolTipText {
+            get {
+                return ResourceManager.GetString("KeyShareToolStripButtonToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file key is shared with other AxCrypt users..
         /// </summary>
         public static string KeySharingExistsToolTip {
@@ -537,6 +861,15 @@ namespace AxCrypt.Content.Properties {
         public static string LanguageChangeRestartPrompt {
             get {
                 return ResourceManager.GetString("LanguageChangeRestartPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        public static string LastAccessTimeColumnHeaderText {
+            get {
+                return ResourceManager.GetString("LastAccessTimeColumnHeaderText", resourceCulture);
             }
         }
         
@@ -694,11 +1027,65 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Open Encrypted.
+        /// </summary>
+        public static string OpenEncryptedToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OpenEncryptedToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         public static string OpenFileColumnHeader {
             get {
                 return ResourceManager.GetString("OpenFileColumnHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change &amp;Password.
+        /// </summary>
+        public static string OptionsChangePassphraseToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsChangePassphraseToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Clear All Settings and Exit.
+        /// </summary>
+        public static string OptionsClearAllSettingsAndExitToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsClearAllSettingsAndExitToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Debug.
+        /// </summary>
+        public static string OptionsDebugToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsDebugToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Language.
+        /// </summary>
+        public static string OptionsLanguageToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O&amp;ptions.
+        /// </summary>
+        public static string OptionsToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsToolStripMenuItemText", resourceCulture);
             }
         }
         
@@ -748,11 +1135,65 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string ProgressContextCancelToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("ProgressContextCancelToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Purging Active Files.
         /// </summary>
         public static string PurgingActiveFiles {
             get {
                 return ResourceManager.GetString("PurgingActiveFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Open.
+        /// </summary>
+        public static string RecentFilesOpenToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("RecentFilesOpenToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent Files.
+        /// </summary>
+        public static string RecentFilesTabPageText {
+            get {
+                return ResourceManager.GetString("RecentFilesTabPageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Remove from list without decrypting document.
+        /// </summary>
+        public static string RemoveRecentFileToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("RemoveRecentFileToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to toolStrip1.
+        /// </summary>
+        public static string RightToolStripText {
+            get {
+                return ResourceManager.GetString("RightToolStripText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Secure Delete.
+        /// </summary>
+        public static string SecureDeleteToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("SecureDeleteToolStripMenuItemText", resourceCulture);
             }
         }
         
@@ -777,11 +1218,38 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Share Keys.
+        /// </summary>
+        public static string ShareKeysToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("ShareKeysToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Svenska.
+        /// </summary>
+        public static string SwedishLanguageToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("SwedishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to restore the AxCrypt application window..
         /// </summary>
         public static string TrayBalloonTooltip {
             get {
                 return ResourceManager.GetString("TrayBalloonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Try Broken File.
+        /// </summary>
+        public static string TryBrokenFileToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("TryBrokenFileToolStripMenuItemText", resourceCulture);
             }
         }
         
@@ -822,6 +1290,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to toolStripButton1.
+        /// </summary>
+        public static string UpdateStatusButtonText {
+            get {
+                return ResourceManager.GetString("UpdateStatusButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updating Status.
         /// </summary>
         public static string UpdatingStatus {
@@ -836,6 +1313,51 @@ namespace AxCrypt.Content.Properties {
         public static string UserSettingsFormatChangeNeedsReset {
             get {
                 return ResourceManager.GetString("UserSettingsFormatChangeNeedsReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string WatchedFolderColumnHeaderText {
+            get {
+                return ResourceManager.GetString("WatchedFolderColumnHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrypt &amp;Temporarily.
+        /// </summary>
+        public static string WatchedFoldersdecryptTemporarilyMenuItemText {
+            get {
+                return ResourceManager.GetString("WatchedFoldersdecryptTemporarilyMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open &amp;Explorer Here.
+        /// </summary>
+        public static string WatchedFoldersOpenExplorerHereMenuItemText {
+            get {
+                return ResourceManager.GetString("WatchedFoldersOpenExplorerHereMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Decrypt Permanently.
+        /// </summary>
+        public static string WatchedFoldersRemoveMenuItemText {
+            get {
+                return ResourceManager.GetString("WatchedFoldersRemoveMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypted Folders.
+        /// </summary>
+        public static string WatchedFoldersTabPageText {
+            get {
+                return ResourceManager.GetString("WatchedFoldersTabPageText", resourceCulture);
             }
         }
         

@@ -108,6 +108,7 @@ namespace Axantum.AxCrypt
 
         private void InitializeProgram()
         {
+            InitializeAllContentResources();
             RegisterTypeFactories();
             if (!ValidateSettings())
             {
@@ -125,6 +126,68 @@ namespace Axantum.AxCrypt
             BindToFileOperationViewModel();
             SetupCommandService();
             SendStartSessionNotification();
+        }
+
+        private void InitializeAllContentResources()
+        {
+            _cleanDecryptedToolStripMenuItem.Text = Content.CleanDecryptedToolStripMenuItemText;
+            _closeAndRemoveOpenFilesToolStripButton.ToolTipText = Content.CloseAndRemoveOpenFilesToolStripButtonToolTipText;
+            _createAccountToolStripMenuItem.Text = Content.CreateAccountToolStripMenuItemText;
+            _createAccountToolStripMenuItem.ToolTipText = Content.CreateAccountToolStripMenuItemToolTipText;
+            _cryptoName.Text = Content.CryptoNameText;
+            _daysLeftPremiumLabel.Text = Content.DaysLeftPremiumLabelText;
+            _debugCheckVersionNowToolStripMenuItem.Text = Content.DebugCheckVersionNowToolStripMenuItemText;
+            _debugCryptoPolicyToolStripMenuItem.Text = Content.DebugCryptoPolicyToolStripMenuItemText;
+            _debugLoggingToolStripMenuItem.Text = Content.DebugLoggingToolStripMenuItemText;
+            _debugManageAccountToolStripMenuItem.Text = Content.DebugManageAccountToolStripMenuItemText;
+            _debugOptionsToolStripMenuItem.Text = Content.DebugOptionsToolStripMenuItemText;
+            _debugToolStripMenuItem.Text = Content.DebugToolStripMenuItemText;
+            _decryptAndRemoveFromListToolStripMenuItem.Text = Content.DecryptAndRemoveFromListToolStripMenuItemText;
+            _decryptedFileColumnHeader.Text = Content.DecryptedFileColumnHeaderText;
+            _decryptToolStripMenuItem.Text = Content.DecryptToolStripMenuItemText;
+            _encryptedFoldersToolStripMenuItem.Text = Content.EncryptedFoldersToolStripMenuItemText;
+            _encryptedPathColumnHeader.Text = Content.EncryptedPathColumnHeaderText;
+            _encryptToolStripButton.ToolTipText = Content.EncryptToolStripButtonToolTipText;
+            _encryptToolStripMenuItem.Text = Content.EncryptToolStripMenuItemText;
+            _englishLanguageToolStripMenuItem.Text = Content.EnglishLanguageToolStripMenuItemText;
+            _exitToolStripMenuItem.Text = Content.ExitToolStripMenuItemText;
+            _exportMyPrivateKeyToolStripMenuItem.Text = Content.ExportMyPrivateKeyToolStripMenuItemText;
+            _exportMyPrivateKeyToolStripMenuItem.ToolTipText = Content.ExportMyPrivateKeyToolStripMenuItemToolTipText;
+            _exportSharingKeyToolStripMenuItem.Text = Content.ExportSharingKeyToolStripMenuItemText;
+            _exportSharingKeyToolStripMenuItem.ToolTipText = Content.ExportSharingKeyToolStripMenuItemToolTipText;
+            _feedbackButton.Text = Content.FeedbackButtonText;
+            _fileToolStripMenuItem.Text = Content.FileToolStripMenuItemText;
+            _helpAboutToolStripMenuItem.Text = Content.HelpAboutToolStripMenuItemText;
+            _helpToolStripMenuItem.Text = Content.HelpToolStripMenuItemText;
+            _helpViewHelpMenuItem.Text = Content.HelpViewHelpMenuItemText;
+            _importMyPrivateKeyToolStripMenuItem.Text = Content.ImportMyPrivateKeyToolStripMenuItemText;
+            _importMyPrivateKeyToolStripMenuItem.ToolTipText = Content.ImportMyPrivateKeyToolStripMenuItemToolTipText;
+            _importOthersSharingKeyToolStripMenuItem.Text = Content.ImportOthersSharingKeyToolStripMenuItemText;
+            _importOthersSharingKeyToolStripMenuItem.ToolTipText = Content.ImportOthersSharingKeyToolStripMenuItemToolTipText;
+            _keyManagementToolStripMenuItem.Text = Content.KeyManagementToolStripMenuItemText;
+            _keyShareToolStripButton.ToolTipText = Content.KeyShareToolStripButtonToolTipText;
+            _lastAccessTimeColumnHeader.Text = Content.LastAccessTimeColumnHeaderText;
+            _openEncryptedToolStripMenuItem.Text = Content.OpenEncryptedToolStripMenuItemText;
+            _optionsChangePassphraseToolStripMenuItem.Text = Content.OptionsChangePassphraseToolStripMenuItemText;
+            _optionsClearAllSettingsAndExitToolStripMenuItem.Text = Content.OptionsClearAllSettingsAndExitToolStripMenuItemText;
+            _optionsDebugToolStripMenuItem.Text = Content.OptionsDebugToolStripMenuItemText;
+            _optionsLanguageToolStripMenuItem.Text = Content.OptionsLanguageToolStripMenuItemText;
+            _optionsToolStripMenuItem.Text = Content.OptionsToolStripMenuItemText;
+            _progressContextCancelToolStripMenuItem.Text = Content.ProgressContextCancelToolStripMenuItemText;
+            _recentFilesOpenToolStripMenuItem.Text = Content.RecentFilesOpenToolStripMenuItemText;
+            _recentFilesTabPage.Text = Content.RecentFilesTabPageText;
+            _removeRecentFileToolStripMenuItem.Text = Content.RemoveRecentFileToolStripMenuItemText;
+            _rightToolStrip.Text = Content.RightToolStripText;
+            _secureDeleteToolStripMenuItem.Text = Content.SecureDeleteToolStripMenuItemText;
+            _shareKeysToolStripMenuItem.Text = Content.ShareKeysToolStripMenuItemText;
+            _swedishLanguageToolStripMenuItem.Text = Content.SwedishLanguageToolStripMenuItemText;
+            _tryBrokenFileToolStripMenuItem.Text = Content.TryBrokenFileToolStripMenuItemText;
+            _updateStatusButton.Text = Content.UpdateStatusButtonText;
+            _watchedFolderColumnHeader.Text = Content.WatchedFolderColumnHeaderText;
+            _watchedFoldersdecryptTemporarilyMenuItem.Text = Content.WatchedFoldersdecryptTemporarilyMenuItemText;
+            _watchedFoldersOpenExplorerHereMenuItem.Text = Content.WatchedFoldersOpenExplorerHereMenuItemText;
+            _watchedFoldersRemoveMenuItem.Text = Content.WatchedFoldersRemoveMenuItemText;
+            _watchedFoldersTabPage.Text = Content.WatchedFoldersTabPageText;
         }
 
         private static void StartKeyPairService()
@@ -604,7 +667,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), async (IEnumerable<ActiveFile> files) => { await _recentFilesListView.UpdateRecentFilesAsync(files, _mainViewModel.License); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.VersionUpdateStatus), (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { _tryBrokenFileToolStripMenuItem.Checked = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
 
             _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Content.LinkToAxCryptPremiumPurchasePage.InvariantFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); };

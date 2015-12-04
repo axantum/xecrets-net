@@ -597,10 +597,10 @@
   <data name="_debugManageAccountToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Manage Account</value>
   </data>
-  <data name="tryBrokenFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_tryBrokenFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
-  <data name="tryBrokenFileToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_tryBrokenFileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Try Broken File</value>
   </data>
   <data name="_debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -631,7 +631,7 @@
     <value>0, 0</value>
   </data>
   <data name="_mainMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 24</value>
+    <value>235, 24</value>
   </data>
   <data name="_mainMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -4382,10 +4382,10 @@
   <data name="&gt;&gt;_debugManageAccountToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tryBrokenFileToolStripMenuItem.Name" xml:space="preserve">
-    <value>tryBrokenFileToolStripMenuItem</value>
+  <data name="&gt;&gt;_tryBrokenFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>_tryBrokenFileToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;tryBrokenFileToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tryBrokenFileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_helpToolStripMenuItem.Name" xml:space="preserve">
