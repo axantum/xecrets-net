@@ -179,7 +179,7 @@
               ItemName="_AxIlMergeAssemblies" />
     </CreateItem>
     <ItemGroup>
-      <_AxIlMergeSatelliteAssemblies Include="$(OutputPath)??\*.resources.dll" />
+      <_AxIlMergeAssemblies Include="$(OutputPath)*\*.resources.dll" />
     </ItemGroup>
     <PropertyGroup>
       <_AxMergedBaseFileName>$(_AxCanonicalName)</_AxMergedBaseFileName>

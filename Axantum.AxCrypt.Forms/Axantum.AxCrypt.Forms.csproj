@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmbeddedResourceManager.cs" />
     <Compile Include="Implementation\DataProtection.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Implementation\ProgressBackground.cs">
@@ -86,6 +87,10 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
       <Project>{966e9510-1a1d-46c7-97b5-460a0ff9b89f}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Content\AxCrypt.Content.csproj">
+      <Project>{cb0c5a7a-fbee-4f02-bdae-4a7f206c1cd4}</Project>
+      <Name>AxCrypt.Content</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

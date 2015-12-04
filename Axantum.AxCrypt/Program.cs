@@ -38,6 +38,7 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Desktop;
+using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Implementation;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Mono;
@@ -51,7 +52,6 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt
@@ -64,6 +64,7 @@ namespace Axantum.AxCrypt
         [STAThread]
         private static void Main()
         {
+            EmbeddedResourceManager.Initialize();
             string[] commandLineArgs = Environment.GetCommandLineArgs();
 
             RegisterTypeFactories(commandLineArgs[0]);
