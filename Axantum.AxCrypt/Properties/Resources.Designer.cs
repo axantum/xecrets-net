@@ -166,15 +166,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.axcrypt.net/pricing/.
-        /// </summary>
-        internal static string AxCryptPricingPageLink {
-            get {
-                return ResourceManager.GetString("AxCryptPricingPageLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Incorrect email address.
         /// </summary>
         internal static string BadEmail {
@@ -955,6 +946,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string LanguageChangeRestartPrompt {
             get {
                 return ResourceManager.GetString("LanguageChangeRestartPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://account.axcrypt.net/Home/Purchase?email={0}.
+        /// </summary>
+        internal static string LinkToAxCryptPremiumPurchasePage {
+            get {
+                return ResourceManager.GetString("LinkToAxCryptPremiumPurchasePage", resourceCulture);
             }
         }
         

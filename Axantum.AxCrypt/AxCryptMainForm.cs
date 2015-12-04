@@ -607,7 +607,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { tryBrokenFileToolStripMenuItem.Checked = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
 
-            _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Resources.AxCryptPricingPageLink); };
+            _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Resources.LinkToAxCryptPremiumPurchasePage.InvariantFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); };
 
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck.Execute(DateTime.MinValue); };
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
@@ -1439,7 +1439,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            Process.Start(Resources.AxCryptPricingPageLink);
+            Process.Start(Resources.LinkToAxCryptPremiumPurchasePage.InvariantFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail));
         }
 
         private void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)

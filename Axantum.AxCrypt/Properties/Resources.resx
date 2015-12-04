@@ -526,8 +526,8 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="feedback_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\feedback_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AxCryptPricingPageLink" xml:space="preserve">
-    <value>http://www.axcrypt.net/pricing/</value>
+  <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
+    <value>https://account.axcrypt.net/Home/Purchase?email={0}</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>This feature requires a purchase of Premium!</value>
