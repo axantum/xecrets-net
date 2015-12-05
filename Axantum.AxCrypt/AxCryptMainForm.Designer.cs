@@ -111,9 +111,19 @@
             // 
             // _progressTableLayoutPanel
             // 
-            resources.ApplyResources(this._progressTableLayoutPanel, "_progressTableLayoutPanel");
+            this._progressTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._progressTableLayoutPanel.ColumnCount = 1;
+            this._progressTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this._progressTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this._progressTableLayoutPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
+            this._progressTableLayoutPanel.Location = new System.Drawing.Point(0, 259);
             this._progressTableLayoutPanel.Name = "_progressTableLayoutPanel";
+            this._progressTableLayoutPanel.RowCount = 1;
+            this._progressTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this._progressTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this._progressTableLayoutPanel.Size = new System.Drawing.Size(634, 20);
+            this._progressTableLayoutPanel.TabIndex = 3;
             // 
             // _recentFilesContextMenuStrip
             // 
@@ -123,39 +133,44 @@
             this._decryptAndRemoveFromListToolStripMenuItem,
             this._shareKeysToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
-            resources.ApplyResources(this._recentFilesContextMenuStrip, "_recentFilesContextMenuStrip");
+            this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 92);
             // 
             // _recentFilesOpenToolStripMenuItem
             // 
             this._recentFilesOpenToolStripMenuItem.Name = "_recentFilesOpenToolStripMenuItem";
-            resources.ApplyResources(this._recentFilesOpenToolStripMenuItem, "_recentFilesOpenToolStripMenuItem");
+            this._recentFilesOpenToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this._recentFilesOpenToolStripMenuItem.Text = "[&Open]";
             // 
             // _removeRecentFileToolStripMenuItem
             // 
             this._removeRecentFileToolStripMenuItem.Name = "_removeRecentFileToolStripMenuItem";
-            resources.ApplyResources(this._removeRecentFileToolStripMenuItem, "_removeRecentFileToolStripMenuItem");
+            this._removeRecentFileToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this._removeRecentFileToolStripMenuItem.Text = "[&Remove from list without decrypting document]";
             // 
             // _decryptAndRemoveFromListToolStripMenuItem
             // 
             this._decryptAndRemoveFromListToolStripMenuItem.Name = "_decryptAndRemoveFromListToolStripMenuItem";
-            resources.ApplyResources(this._decryptAndRemoveFromListToolStripMenuItem, "_decryptAndRemoveFromListToolStripMenuItem");
+            this._decryptAndRemoveFromListToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this._decryptAndRemoveFromListToolStripMenuItem.Text = "[&Decrypt and remove from list]";
             // 
             // _shareKeysToolStripMenuItem
             // 
             this._shareKeysToolStripMenuItem.Name = "_shareKeysToolStripMenuItem";
-            resources.ApplyResources(this._shareKeysToolStripMenuItem, "_shareKeysToolStripMenuItem");
+            this._shareKeysToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this._shareKeysToolStripMenuItem.Text = "[&Share Keys]";
             // 
             // _progressContextMenuStrip
             // 
             this._progressContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._progressContextCancelToolStripMenuItem});
             this._progressContextMenuStrip.Name = "ProgressContextMenu";
-            resources.ApplyResources(this._progressContextMenuStrip, "_progressContextMenuStrip");
+            this._progressContextMenuStrip.Size = new System.Drawing.Size(119, 26);
             // 
             // _progressContextCancelToolStripMenuItem
             // 
             this._progressContextCancelToolStripMenuItem.Name = "_progressContextCancelToolStripMenuItem";
-            resources.ApplyResources(this._progressContextCancelToolStripMenuItem, "_progressContextCancelToolStripMenuItem");
+            this._progressContextCancelToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this._progressContextCancelToolStripMenuItem.Text = "[Cancel]";
             this._progressContextCancelToolStripMenuItem.Click += new System.EventHandler(this.ProgressContextCancelToolStripMenuItem_Click);
             // 
             // _watchedFoldersContextMenuStrip
@@ -165,28 +180,35 @@
             this._watchedFoldersdecryptTemporarilyMenuItem,
             this._watchedFoldersOpenExplorerHereMenuItem});
             this._watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
-            resources.ApplyResources(this._watchedFoldersContextMenuStrip, "_watchedFoldersContextMenuStrip");
+            this._watchedFoldersContextMenuStrip.Size = new System.Drawing.Size(194, 70);
             // 
             // _watchedFoldersRemoveMenuItem
             // 
             this._watchedFoldersRemoveMenuItem.Name = "_watchedFoldersRemoveMenuItem";
-            resources.ApplyResources(this._watchedFoldersRemoveMenuItem, "_watchedFoldersRemoveMenuItem");
+            this._watchedFoldersRemoveMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._watchedFoldersRemoveMenuItem.Text = "[&Decrypt Permanently]";
             // 
             // _watchedFoldersdecryptTemporarilyMenuItem
             // 
             this._watchedFoldersdecryptTemporarilyMenuItem.Name = "_watchedFoldersdecryptTemporarilyMenuItem";
-            resources.ApplyResources(this._watchedFoldersdecryptTemporarilyMenuItem, "_watchedFoldersdecryptTemporarilyMenuItem");
+            this._watchedFoldersdecryptTemporarilyMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._watchedFoldersdecryptTemporarilyMenuItem.Text = "[Decrypt &Temporarily]";
             // 
             // _watchedFoldersOpenExplorerHereMenuItem
             // 
             this._watchedFoldersOpenExplorerHereMenuItem.Name = "_watchedFoldersOpenExplorerHereMenuItem";
-            resources.ApplyResources(this._watchedFoldersOpenExplorerHereMenuItem, "_watchedFoldersOpenExplorerHereMenuItem");
+            this._watchedFoldersOpenExplorerHereMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._watchedFoldersOpenExplorerHereMenuItem.Text = "[Open &Explorer Here]";
             // 
             // _watchedFoldersTabPage
             // 
             this._watchedFoldersTabPage.Controls.Add(this._watchedFoldersListView);
-            resources.ApplyResources(this._watchedFoldersTabPage, "_watchedFoldersTabPage");
+            this._watchedFoldersTabPage.Location = new System.Drawing.Point(4, 22);
             this._watchedFoldersTabPage.Name = "_watchedFoldersTabPage";
+            this._watchedFoldersTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this._watchedFoldersTabPage.Size = new System.Drawing.Size(620, 150);
+            this._watchedFoldersTabPage.TabIndex = 1;
+            this._watchedFoldersTabPage.Text = "[Encrypted Folders]";
             this._watchedFoldersTabPage.UseVisualStyleBackColor = true;
             // 
             // _watchedFoldersListView
@@ -194,23 +216,31 @@
             this._watchedFoldersListView.AllowDrop = true;
             this._watchedFoldersListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this._watchedFolderColumnHeader});
-            resources.ApplyResources(this._watchedFoldersListView, "_watchedFoldersListView");
+            this._watchedFoldersListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._watchedFoldersListView.FullRowSelect = true;
+            this._watchedFoldersListView.Location = new System.Drawing.Point(3, 3);
             this._watchedFoldersListView.Name = "_watchedFoldersListView";
             this._watchedFoldersListView.ShowItemToolTips = true;
+            this._watchedFoldersListView.Size = new System.Drawing.Size(614, 144);
             this._watchedFoldersListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this._watchedFoldersListView.TabIndex = 2;
             this._watchedFoldersListView.UseCompatibleStateImageBehavior = false;
             this._watchedFoldersListView.View = System.Windows.Forms.View.Details;
             // 
             // _watchedFolderColumnHeader
             // 
-            resources.ApplyResources(this._watchedFolderColumnHeader, "_watchedFolderColumnHeader");
+            this._watchedFolderColumnHeader.Text = "[Folder]";
+            this._watchedFolderColumnHeader.Width = 368;
             // 
             // _recentFilesTabPage
             // 
             this._recentFilesTabPage.Controls.Add(this._recentFilesListView);
-            resources.ApplyResources(this._recentFilesTabPage, "_recentFilesTabPage");
+            this._recentFilesTabPage.Location = new System.Drawing.Point(4, 22);
             this._recentFilesTabPage.Name = "_recentFilesTabPage";
+            this._recentFilesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this._recentFilesTabPage.Size = new System.Drawing.Size(620, 150);
+            this._recentFilesTabPage.TabIndex = 2;
+            this._recentFilesTabPage.Text = "[Recent Files]";
             this._recentFilesTabPage.UseVisualStyleBackColor = true;
             // 
             // _recentFilesListView
@@ -221,59 +251,91 @@
             this._lastAccessTimeColumnHeader,
             this._encryptedPathColumnHeader,
             this._cryptoName});
-            resources.ApplyResources(this._recentFilesListView, "_recentFilesListView");
+            this._recentFilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._recentFilesListView.FullRowSelect = true;
+            this._recentFilesListView.Location = new System.Drawing.Point(3, 3);
             this._recentFilesListView.Name = "_recentFilesListView";
             this._recentFilesListView.ShowItemToolTips = true;
+            this._recentFilesListView.Size = new System.Drawing.Size(614, 144);
+            this._recentFilesListView.TabIndex = 0;
             this._recentFilesListView.UseCompatibleStateImageBehavior = false;
             this._recentFilesListView.View = System.Windows.Forms.View.Details;
             // 
             // _decryptedFileColumnHeader
             // 
-            resources.ApplyResources(this._decryptedFileColumnHeader, "_decryptedFileColumnHeader");
+            this._decryptedFileColumnHeader.Text = "[Document]";
+            this._decryptedFileColumnHeader.Width = 159;
             // 
             // _lastAccessTimeColumnHeader
             // 
-            resources.ApplyResources(this._lastAccessTimeColumnHeader, "_lastAccessTimeColumnHeader");
+            this._lastAccessTimeColumnHeader.Text = "[Time]";
+            this._lastAccessTimeColumnHeader.Width = 180;
             // 
             // _encryptedPathColumnHeader
             // 
-            resources.ApplyResources(this._encryptedPathColumnHeader, "_encryptedPathColumnHeader");
+            this._encryptedPathColumnHeader.Text = "[Encrypted]";
+            this._encryptedPathColumnHeader.Width = 169;
             // 
             // _cryptoName
             // 
-            resources.ApplyResources(this._cryptoName, "_cryptoName");
+            this._cryptoName.Text = "[Algorithm]";
             // 
             // _statusTabControl
             // 
-            resources.ApplyResources(this._statusTabControl, "_statusTabControl");
+            this._statusTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._statusTabControl.Controls.Add(this._recentFilesTabPage);
             this._statusTabControl.Controls.Add(this._watchedFoldersTabPage);
+            this._statusTabControl.Location = new System.Drawing.Point(3, 77);
             this._statusTabControl.Name = "_statusTabControl";
             this._statusTabControl.SelectedIndex = 0;
+            this._statusTabControl.Size = new System.Drawing.Size(628, 176);
+            this._statusTabControl.TabIndex = 2;
             // 
             // tableLayoutPanel1
             // 
-            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(634, 71);
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
-            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel2.Controls.Add(this._mainMenuStrip, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(628, 24);
+            this.tableLayoutPanel2.TabIndex = 6;
             // 
             // _mainMenuStrip
             // 
             this._mainMenuStrip.BackColor = System.Drawing.SystemColors.Control;
-            resources.ApplyResources(this._mainMenuStrip, "_mainMenuStrip");
+            this._mainMenuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._fileToolStripMenuItem,
             this._debugToolStripMenuItem,
             this._helpToolStripMenuItem});
+            this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
+            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
+            this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
             // 
@@ -293,59 +355,66 @@
             this.toolStripSeparator2,
             this._exitToolStripMenuItem});
             this._fileToolStripMenuItem.Name = "_fileToolStripMenuItem";
-            resources.ApplyResources(this._fileToolStripMenuItem, "_fileToolStripMenuItem");
+            this._fileToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this._fileToolStripMenuItem.Text = "[&File]";
             // 
             // _openEncryptedToolStripMenuItem
             // 
             this._openEncryptedToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.open_encrypted;
             this._openEncryptedToolStripMenuItem.Name = "_openEncryptedToolStripMenuItem";
-            resources.ApplyResources(this._openEncryptedToolStripMenuItem, "_openEncryptedToolStripMenuItem");
+            this._openEncryptedToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._openEncryptedToolStripMenuItem.Text = "[&Open Encrypted]";
             // 
             // _encryptToolStripMenuItem
             // 
             this._encryptToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.encrypt;
             this._encryptToolStripMenuItem.Name = "_encryptToolStripMenuItem";
-            resources.ApplyResources(this._encryptToolStripMenuItem, "_encryptToolStripMenuItem");
+            this._encryptToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._encryptToolStripMenuItem.Text = "[&Encrypt]";
             // 
             // _decryptToolStripMenuItem
             // 
             this._decryptToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.decrypt;
             this._decryptToolStripMenuItem.Name = "_decryptToolStripMenuItem";
-            resources.ApplyResources(this._decryptToolStripMenuItem, "_decryptToolStripMenuItem");
+            this._decryptToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._decryptToolStripMenuItem.Text = "[&Decrypt]";
             // 
             // _encryptedFoldersToolStripMenuItem
             // 
             this._encryptedFoldersToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.folder;
             this._encryptedFoldersToolStripMenuItem.Name = "_encryptedFoldersToolStripMenuItem";
-            resources.ApplyResources(this._encryptedFoldersToolStripMenuItem, "_encryptedFoldersToolStripMenuItem");
+            this._encryptedFoldersToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._encryptedFoldersToolStripMenuItem.Text = "[Encrypted &Folders]";
             this._encryptedFoldersToolStripMenuItem.Click += new System.EventHandler(this.encryptedFoldersToolStripMenuItem_Click);
             // 
             // _toolStripSeparator6
             // 
             this._toolStripSeparator6.Name = "_toolStripSeparator6";
-            resources.ApplyResources(this._toolStripSeparator6, "_toolStripSeparator6");
+            this._toolStripSeparator6.Size = new System.Drawing.Size(173, 6);
             // 
             // _cleanDecryptedToolStripMenuItem
             // 
             this._cleanDecryptedToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.clean_broom_red;
             this._cleanDecryptedToolStripMenuItem.Name = "_cleanDecryptedToolStripMenuItem";
-            resources.ApplyResources(this._cleanDecryptedToolStripMenuItem, "_cleanDecryptedToolStripMenuItem");
+            this._cleanDecryptedToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._cleanDecryptedToolStripMenuItem.Text = "[&Clean Decrypted]";
             // 
             // _toolStripSeparator3
             // 
             this._toolStripSeparator3.Name = "_toolStripSeparator3";
-            resources.ApplyResources(this._toolStripSeparator3, "_toolStripSeparator3");
+            this._toolStripSeparator3.Size = new System.Drawing.Size(173, 6);
             // 
             // _secureDeleteToolStripMenuItem
             // 
             this._secureDeleteToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.delete;
             this._secureDeleteToolStripMenuItem.Name = "_secureDeleteToolStripMenuItem";
-            resources.ApplyResources(this._secureDeleteToolStripMenuItem, "_secureDeleteToolStripMenuItem");
+            this._secureDeleteToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._secureDeleteToolStripMenuItem.Text = "[&Secure Delete]";
             // 
             // _toolStripSeparator2
             // 
             this._toolStripSeparator2.Name = "_toolStripSeparator2";
-            resources.ApplyResources(this._toolStripSeparator2, "_toolStripSeparator2");
+            this._toolStripSeparator2.Size = new System.Drawing.Size(173, 6);
             // 
             // _optionsToolStripMenuItem
             // 
@@ -356,7 +425,8 @@
             this._optionsClearAllSettingsAndExitToolStripMenuItem});
             this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
             this._optionsToolStripMenuItem.Name = "_optionsToolStripMenuItem";
-            resources.ApplyResources(this._optionsToolStripMenuItem, "_optionsToolStripMenuItem");
+            this._optionsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._optionsToolStripMenuItem.Text = "[O&ptions]";
             // 
             // _optionsLanguageToolStripMenuItem
             // 
@@ -364,43 +434,49 @@
             this._englishLanguageToolStripMenuItem,
             this._swedishLanguageToolStripMenuItem});
             this._optionsLanguageToolStripMenuItem.Name = "_optionsLanguageToolStripMenuItem";
-            resources.ApplyResources(this._optionsLanguageToolStripMenuItem, "_optionsLanguageToolStripMenuItem");
+            this._optionsLanguageToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsLanguageToolStripMenuItem.Text = "[&Language]";
             // 
             // _englishLanguageToolStripMenuItem
             // 
             this._englishLanguageToolStripMenuItem.Name = "_englishLanguageToolStripMenuItem";
-            resources.ApplyResources(this._englishLanguageToolStripMenuItem, "_englishLanguageToolStripMenuItem");
+            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this._englishLanguageToolStripMenuItem.Tag = "en";
+            this._englishLanguageToolStripMenuItem.Text = "[&English]";
             this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.EnglishLanguageToolStripMenuItem_Click);
             // 
             // _swedishLanguageToolStripMenuItem
             // 
             this._swedishLanguageToolStripMenuItem.Name = "_swedishLanguageToolStripMenuItem";
-            resources.ApplyResources(this._swedishLanguageToolStripMenuItem, "_swedishLanguageToolStripMenuItem");
+            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this._swedishLanguageToolStripMenuItem.Tag = "sv";
+            this._swedishLanguageToolStripMenuItem.Text = "[&Svenska]";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.SwedishLanguageToolStripMenuItem_Click);
             // 
             // _optionsChangePassphraseToolStripMenuItem
             // 
             this._optionsChangePassphraseToolStripMenuItem.Name = "_optionsChangePassphraseToolStripMenuItem";
-            resources.ApplyResources(this._optionsChangePassphraseToolStripMenuItem, "_optionsChangePassphraseToolStripMenuItem");
+            this._optionsChangePassphraseToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsChangePassphraseToolStripMenuItem.Text = "[Change &Password]";
             this._optionsChangePassphraseToolStripMenuItem.Click += new System.EventHandler(this.ChangePassphraseToolStripMenuItem_Click);
             // 
             // _optionsDebugToolStripMenuItem
             // 
             this._optionsDebugToolStripMenuItem.Name = "_optionsDebugToolStripMenuItem";
-            resources.ApplyResources(this._optionsDebugToolStripMenuItem, "_optionsDebugToolStripMenuItem");
+            this._optionsDebugToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsDebugToolStripMenuItem.Text = "[&Debug]";
             // 
             // _optionsClearAllSettingsAndExitToolStripMenuItem
             // 
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Name = "_optionsClearAllSettingsAndExitToolStripMenuItem";
-            resources.ApplyResources(this._optionsClearAllSettingsAndExitToolStripMenuItem, "_optionsClearAllSettingsAndExitToolStripMenuItem");
+            this._optionsClearAllSettingsAndExitToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsClearAllSettingsAndExitToolStripMenuItem.Text = "[&Clear All Settings and Exit]";
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Click += new System.EventHandler(this.ClearPassphraseMemoryToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
             // 
             // _keyManagementToolStripMenuItem
             // 
@@ -414,58 +490,75 @@
             this._createAccountToolStripMenuItem});
             this._keyManagementToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.key_management;
             this._keyManagementToolStripMenuItem.Name = "_keyManagementToolStripMenuItem";
-            resources.ApplyResources(this._keyManagementToolStripMenuItem, "_keyManagementToolStripMenuItem");
+            this._keyManagementToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._keyManagementToolStripMenuItem.Text = "[&Key Management]";
             // 
             // _importOthersSharingKeyToolStripMenuItem
             // 
             this._importOthersSharingKeyToolStripMenuItem.Name = "_importOthersSharingKeyToolStripMenuItem";
-            resources.ApplyResources(this._importOthersSharingKeyToolStripMenuItem, "_importOthersSharingKeyToolStripMenuItem");
+            this._importOthersSharingKeyToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
+            this._importOthersSharingKeyToolStripMenuItem.Text = "[&Import Someone\'s Public Sharing Key]";
+            this._importOthersSharingKeyToolStripMenuItem.ToolTipText = "[Ask your contact to export and send his/her Public Sharing Key to you and import" +
+    " it here. Then you can share encrypted files.]";
             this._importOthersSharingKeyToolStripMenuItem.Click += new System.EventHandler(this.ImportOthersSharingKeyToolStripMenuItem_Click);
             // 
             // _exportSharingKeyToolStripMenuItem
             // 
             this._exportSharingKeyToolStripMenuItem.Name = "_exportSharingKeyToolStripMenuItem";
-            resources.ApplyResources(this._exportSharingKeyToolStripMenuItem, "_exportSharingKeyToolStripMenuItem");
+            this._exportSharingKeyToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
+            this._exportSharingKeyToolStripMenuItem.Text = "[E&xport My Public Sharing Key]";
+            this._exportSharingKeyToolStripMenuItem.ToolTipText = "[Send the exported Public Sharing Key to others you want to be able to share encr" +
+    "ypted files with you.]";
             this._exportSharingKeyToolStripMenuItem.Click += new System.EventHandler(this.ExportMySharingKeyToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+            this.toolStripSeparator3.Size = new System.Drawing.Size(309, 6);
             // 
             // _importMyPrivateKeyToolStripMenuItem
             // 
             this._importMyPrivateKeyToolStripMenuItem.Name = "_importMyPrivateKeyToolStripMenuItem";
-            resources.ApplyResources(this._importMyPrivateKeyToolStripMenuItem, "_importMyPrivateKeyToolStripMenuItem");
+            this._importMyPrivateKeyToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
+            this._importMyPrivateKeyToolStripMenuItem.Text = "[Import &Account Secret and Sharing Key Pair]";
+            this._importMyPrivateKeyToolStripMenuItem.ToolTipText = "[To move an account, export the Secret and Sharing Key Pair and then import it he" +
+    "re.]";
             this._importMyPrivateKeyToolStripMenuItem.Click += new System.EventHandler(this.ImportMyPrivateKeyToolStripMenuItem_Click);
             // 
             // _exportMyPrivateKeyToolStripMenuItem
             // 
             this._exportMyPrivateKeyToolStripMenuItem.Name = "_exportMyPrivateKeyToolStripMenuItem";
-            resources.ApplyResources(this._exportMyPrivateKeyToolStripMenuItem, "_exportMyPrivateKeyToolStripMenuItem");
+            this._exportMyPrivateKeyToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
+            this._exportMyPrivateKeyToolStripMenuItem.Text = "[Export Account &Secret and Sharing Key Pair]";
+            this._exportMyPrivateKeyToolStripMenuItem.ToolTipText = "[To move an account, export the Secret and Sharing Key Pair and then import it el" +
+    "sewhere.]";
             this._exportMyPrivateKeyToolStripMenuItem.Click += new System.EventHandler(this.ExportMyPrivateKeyToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
+            this.toolStripSeparator4.Size = new System.Drawing.Size(309, 6);
             // 
             // _createAccountToolStripMenuItem
             // 
             this._createAccountToolStripMenuItem.Name = "_createAccountToolStripMenuItem";
-            resources.ApplyResources(this._createAccountToolStripMenuItem, "_createAccountToolStripMenuItem");
+            this._createAccountToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
+            this._createAccountToolStripMenuItem.Text = "[Create &Account]";
+            this._createAccountToolStripMenuItem.ToolTipText = "[Create an Account with a Secret and Sharing Key Pair so you can share encrypted " +
+    "files with others.]";
             this._createAccountToolStripMenuItem.Click += new System.EventHandler(this.CreateAccountToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            this.toolStripSeparator2.Size = new System.Drawing.Size(173, 6);
             // 
             // _exitToolStripMenuItem
             // 
             this._exitToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.exit;
             this._exitToolStripMenuItem.Name = "_exitToolStripMenuItem";
-            resources.ApplyResources(this._exitToolStripMenuItem, "_exitToolStripMenuItem");
+            this._exitToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._exitToolStripMenuItem.Text = "[E&xit]";
             this._exitToolStripMenuItem.Click += new System.EventHandler(this._exitToolStripMenuItem_Click);
             // 
             // _debugToolStripMenuItem
@@ -478,40 +571,47 @@
             this._debugManageAccountToolStripMenuItem,
             this._tryBrokenFileToolStripMenuItem});
             this._debugToolStripMenuItem.Name = "_debugToolStripMenuItem";
-            resources.ApplyResources(this._debugToolStripMenuItem, "_debugToolStripMenuItem");
+            this._debugToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this._debugToolStripMenuItem.Text = "[&Debug]";
             // 
             // _debugCheckVersionNowToolStripMenuItem
             // 
             this._debugCheckVersionNowToolStripMenuItem.Name = "_debugCheckVersionNowToolStripMenuItem";
-            resources.ApplyResources(this._debugCheckVersionNowToolStripMenuItem, "_debugCheckVersionNowToolStripMenuItem");
+            this._debugCheckVersionNowToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._debugCheckVersionNowToolStripMenuItem.Text = "[&Check Version Now]";
             // 
             // _debugOptionsToolStripMenuItem
             // 
             this._debugOptionsToolStripMenuItem.Name = "_debugOptionsToolStripMenuItem";
-            resources.ApplyResources(this._debugOptionsToolStripMenuItem, "_debugOptionsToolStripMenuItem");
+            this._debugOptionsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._debugOptionsToolStripMenuItem.Text = "[&Options]";
             this._debugOptionsToolStripMenuItem.Click += new System.EventHandler(this.SetOptionsToolStripMenuItem_Click);
             // 
             // _debugCryptoPolicyToolStripMenuItem
             // 
             this._debugCryptoPolicyToolStripMenuItem.Name = "_debugCryptoPolicyToolStripMenuItem";
-            resources.ApplyResources(this._debugCryptoPolicyToolStripMenuItem, "_debugCryptoPolicyToolStripMenuItem");
+            this._debugCryptoPolicyToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._debugCryptoPolicyToolStripMenuItem.Text = "[License &Policy]";
             // 
             // _debugLoggingToolStripMenuItem
             // 
             this._debugLoggingToolStripMenuItem.Name = "_debugLoggingToolStripMenuItem";
-            resources.ApplyResources(this._debugLoggingToolStripMenuItem, "_debugLoggingToolStripMenuItem");
+            this._debugLoggingToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._debugLoggingToolStripMenuItem.Text = "[&Logging]";
             this._debugLoggingToolStripMenuItem.Click += new System.EventHandler(this.loggingToolStripMenuItem_Click);
             // 
             // _debugManageAccountToolStripMenuItem
             // 
             this._debugManageAccountToolStripMenuItem.Name = "_debugManageAccountToolStripMenuItem";
-            resources.ApplyResources(this._debugManageAccountToolStripMenuItem, "_debugManageAccountToolStripMenuItem");
+            this._debugManageAccountToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._debugManageAccountToolStripMenuItem.Text = "[&Manage Account]";
             this._debugManageAccountToolStripMenuItem.Click += new System.EventHandler(this.ManageAccountToolStripMenuItem_Click);
             // 
             // _tryBrokenFileToolStripMenuItem
             // 
             this._tryBrokenFileToolStripMenuItem.Name = "_tryBrokenFileToolStripMenuItem";
-            resources.ApplyResources(this._tryBrokenFileToolStripMenuItem, "_tryBrokenFileToolStripMenuItem");
+            this._tryBrokenFileToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._tryBrokenFileToolStripMenuItem.Text = "[&Try Broken File]";
             this._tryBrokenFileToolStripMenuItem.Click += new System.EventHandler(this.tryBrokenFileToolStripMenuItem_Click);
             // 
             // _helpToolStripMenuItem
@@ -520,43 +620,67 @@
             this._helpViewHelpMenuItem,
             this._helpAboutToolStripMenuItem});
             this._helpToolStripMenuItem.Name = "_helpToolStripMenuItem";
-            resources.ApplyResources(this._helpToolStripMenuItem, "_helpToolStripMenuItem");
+            this._helpToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this._helpToolStripMenuItem.Text = "[&Help]";
             // 
             // _helpViewHelpMenuItem
             // 
             this._helpViewHelpMenuItem.Name = "_helpViewHelpMenuItem";
-            resources.ApplyResources(this._helpViewHelpMenuItem, "_helpViewHelpMenuItem");
+            this._helpViewHelpMenuItem.Size = new System.Drawing.Size(127, 22);
+            this._helpViewHelpMenuItem.Text = "&View Help";
             this._helpViewHelpMenuItem.Click += new System.EventHandler(this._viewHelpMenuItem_Click);
             // 
             // _helpAboutToolStripMenuItem
             // 
             this._helpAboutToolStripMenuItem.Name = "_helpAboutToolStripMenuItem";
-            resources.ApplyResources(this._helpAboutToolStripMenuItem, "_helpAboutToolStripMenuItem");
+            this._helpAboutToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this._helpAboutToolStripMenuItem.Text = "[&About]";
             this._helpAboutToolStripMenuItem.Click += new System.EventHandler(this._aboutToolStripMenuItem_Click);
             // 
             // tableLayoutPanel3
             // 
-            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel3.ColumnCount = 4;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this._mainToolStrip, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this._daysLeftPremiumLabel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this._rightToolStrip, 3, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 31);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(628, 42);
+            this.tableLayoutPanel3.TabIndex = 7;
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::Axantum.AxCrypt.Properties.Resources.logo_text_retina;
+            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(194, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
             // 
             // _mainToolStrip
             // 
             this._mainToolStrip.AllowDrop = true;
             this._mainToolStrip.AllowMerge = false;
-            resources.ApplyResources(this._mainToolStrip, "_mainToolStrip");
+            this._mainToolStrip.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._mainToolStrip.AutoSize = false;
             this._mainToolStrip.BackColor = System.Drawing.SystemColors.Control;
+            this._mainToolStrip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this._mainToolStrip.CanOverflow = false;
+            this._mainToolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._mainToolStrip.GripMargin = new System.Windows.Forms.Padding(0);
             this._mainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this._mainToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
@@ -567,80 +691,117 @@
             this._toolStripSeparator1,
             this._closeAndRemoveOpenFilesToolStripButton});
             this._mainToolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this._mainToolStrip.Location = new System.Drawing.Point(200, 1);
             this._mainToolStrip.Name = "_mainToolStrip";
+            this._mainToolStrip.Padding = new System.Windows.Forms.Padding(0);
+            this._mainToolStrip.Size = new System.Drawing.Size(258, 40);
+            this._mainToolStrip.TabIndex = 10;
             // 
             // _encryptToolStripButton
             // 
-            resources.ApplyResources(this._encryptToolStripButton, "_encryptToolStripButton");
+            this._encryptToolStripButton.AutoSize = false;
             this._encryptToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._encryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.plus_40px;
+            this._encryptToolStripButton.ImageTransparentColor = System.Drawing.Color.White;
             this._encryptToolStripButton.Margin = new System.Windows.Forms.Padding(0);
             this._encryptToolStripButton.Name = "_encryptToolStripButton";
+            this._encryptToolStripButton.Size = new System.Drawing.Size(40, 40);
+            this._encryptToolStripButton.ToolTipText = "[Click to select documents to encrypt]";
             // 
             // _keyShareToolStripButton
             // 
-            resources.ApplyResources(this._keyShareToolStripButton, "_keyShareToolStripButton");
+            this._keyShareToolStripButton.AutoSize = false;
             this._keyShareToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._keyShareToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.share_border_80px;
+            this._keyShareToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._keyShareToolStripButton.Margin = new System.Windows.Forms.Padding(0);
             this._keyShareToolStripButton.Name = "_keyShareToolStripButton";
+            this._keyShareToolStripButton.Size = new System.Drawing.Size(40, 40);
+            this._keyShareToolStripButton.ToolTipText = "[Click to select documents to decrypt]";
             // 
             // _knownFoldersSeparator
             // 
             this._knownFoldersSeparator.Name = "_knownFoldersSeparator";
-            resources.ApplyResources(this._knownFoldersSeparator, "_knownFoldersSeparator");
+            this._knownFoldersSeparator.Size = new System.Drawing.Size(6, 40);
+            this._knownFoldersSeparator.Visible = false;
             // 
             // _toolStripSeparator1
             // 
             this._toolStripSeparator1.Name = "_toolStripSeparator1";
-            resources.ApplyResources(this._toolStripSeparator1, "_toolStripSeparator1");
+            this._toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
             // 
             // _closeAndRemoveOpenFilesToolStripButton
             // 
-            resources.ApplyResources(this._closeAndRemoveOpenFilesToolStripButton, "_closeAndRemoveOpenFilesToolStripButton");
+            this._closeAndRemoveOpenFilesToolStripButton.AutoSize = false;
             this._closeAndRemoveOpenFilesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._closeAndRemoveOpenFilesToolStripButton.Enabled = false;
             this._closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.broom_red_40px;
+            this._closeAndRemoveOpenFilesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._closeAndRemoveOpenFilesToolStripButton.Margin = new System.Windows.Forms.Padding(0);
             this._closeAndRemoveOpenFilesToolStripButton.Name = "_closeAndRemoveOpenFilesToolStripButton";
+            this._closeAndRemoveOpenFilesToolStripButton.Size = new System.Drawing.Size(40, 40);
+            this._closeAndRemoveOpenFilesToolStripButton.ToolTipText = "[Click to clean and remove any open decrypted files, but ensure they are not in u" +
+    "se first.]";
             // 
             // _daysLeftPremiumLabel
             // 
-            resources.ApplyResources(this._daysLeftPremiumLabel, "_daysLeftPremiumLabel");
+            this._daysLeftPremiumLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._daysLeftPremiumLabel.AutoSize = true;
             this._daysLeftPremiumLabel.BackColor = System.Drawing.SystemColors.Control;
+            this._daysLeftPremiumLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._daysLeftPremiumLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this._daysLeftPremiumLabel.LinkColor = System.Drawing.SystemColors.ControlText;
+            this._daysLeftPremiumLabel.Location = new System.Drawing.Point(469, 14);
             this._daysLeftPremiumLabel.Name = "_daysLeftPremiumLabel";
+            this._daysLeftPremiumLabel.Size = new System.Drawing.Size(47, 13);
+            this._daysLeftPremiumLabel.TabIndex = 11;
             this._daysLeftPremiumLabel.TabStop = true;
+            this._daysLeftPremiumLabel.Text = "[X Days]";
+            this._daysLeftPremiumLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // _rightToolStrip
             // 
             this._rightToolStrip.AllowMerge = false;
-            resources.ApplyResources(this._rightToolStrip, "_rightToolStrip");
+            this._rightToolStrip.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._rightToolStrip.AutoSize = false;
             this._rightToolStrip.BackColor = System.Drawing.SystemColors.Control;
             this._rightToolStrip.CanOverflow = false;
+            this._rightToolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._rightToolStrip.GripMargin = new System.Windows.Forms.Padding(0);
             this._rightToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this._rightToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
             this._rightToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._feedbackButton,
             this._updateStatusButton});
+            this._rightToolStrip.Location = new System.Drawing.Point(534, 1);
             this._rightToolStrip.Name = "_rightToolStrip";
+            this._rightToolStrip.Padding = new System.Windows.Forms.Padding(0);
+            this._rightToolStrip.Size = new System.Drawing.Size(88, 40);
+            this._rightToolStrip.TabIndex = 13;
+            this._rightToolStrip.Text = "[toolStrip1]";
             // 
             // _feedbackButton
             // 
-            resources.ApplyResources(this._feedbackButton, "_feedbackButton");
+            this._feedbackButton.AutoSize = false;
             this._feedbackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._feedbackButton.Image = global::Axantum.AxCrypt.Properties.Resources.feedback_40px;
+            this._feedbackButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._feedbackButton.Margin = new System.Windows.Forms.Padding(0);
             this._feedbackButton.Name = "_feedbackButton";
+            this._feedbackButton.Size = new System.Drawing.Size(40, 40);
+            this._feedbackButton.Text = "[Talk to us! Feedback or bug reports welcome.]";
             // 
             // _updateStatusButton
             // 
-            resources.ApplyResources(this._updateStatusButton, "_updateStatusButton");
+            this._updateStatusButton.AutoSize = false;
             this._updateStatusButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._updateStatusButton.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_green_40px;
+            this._updateStatusButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._updateStatusButton.ImageTransparentColor = System.Drawing.Color.White;
             this._updateStatusButton.Margin = new System.Windows.Forms.Padding(0);
             this._updateStatusButton.Name = "_updateStatusButton";
+            this._updateStatusButton.Size = new System.Drawing.Size(40, 40);
+            this._updateStatusButton.Text = "[toolStripButton1]";
             // 
             // _progressBackgroundWorker
             // 
@@ -649,12 +810,16 @@
             // 
             // AxCryptMainForm
             // 
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(634, 276);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this._statusTabControl);
             this.Controls.Add(this._progressTableLayoutPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(650, 300);
             this.Name = "AxCryptMainForm";
+            this.Text = "[AxCrypt]";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AxCryptMainForm_FormClosing);
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
             this.Shown += new System.EventHandler(this.AxCryptMainForm_ShownAsync);
