@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,296 +59,293 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="About" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="About" xml:space="preserve">
     <value>Om {0}</value>
   </data>
-  <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
+	<data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
     <value>Dubbelklick dekrypterar och öppnar dokumentet</value>
   </data>
-  <data name="ActiveFileToolTip" xml:space="preserve">
+	<data name="ActiveFileToolTip" xml:space="preserve">
     <value>Dubbelklick öppnar en dialog där du kan ange lösenord innan dokumentet kan dekrypteras och öppnas</value>
   </data>
-  <data name="AxCryptAboutDescription" xml:space="preserve">
+	<data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Öppen och Fri Dokumentkrypering från Axantum Software AB
 
 Innehåller programvara från http://www.bouncycastle.org/ .</value>
   </data>
-  <data name="AxCryptFileEncryption" xml:space="preserve">
+	<data name="AxCryptFileEncryption" xml:space="preserve">
     <value>AxCrypt Dokumentkryptering</value>
   </data>
-  <data name="Canceled" xml:space="preserve">
+	<data name="Canceled" xml:space="preserve">
     <value>Avbröt '{0}'.</value>
   </data>
-  <data name="CannotStartApplication" xml:space="preserve">
+	<data name="CannotStartApplication" xml:space="preserve">
     <value>Kan inte starta applikation för '{0}'.</value>
   </data>
-  <data name="CannotWrite" xml:space="preserve">
+	<data name="CannotWrite" xml:space="preserve">
     <value>Kan inte skriva till '{0}'.</value>
   </data>
-  <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
+	<data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Klicka för att kontrollera om det finns en ny version.</value>
   </data>
-  <data name="DecryptedFileToolTip" xml:space="preserve">
+	<data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Dokumentet troligen öppnat i sin applikation. Stäng applikationen eller använda Rensa-knappen.</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
+	<data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
     <value>Dokument (*{0})|*{0}|Alla dokument (*.*)|*.*</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
+	<data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>Dokumentet finns redan, spara som</value>
   </data>
-  <data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
+	<data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
     <value>Okänt lösenord. Dubbelklicka eller Högerklicka för alternativ.</value>
   </data>
-  <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
+	<data name="DecryptFileOpenDialogTitle" xml:space="preserve">
     <value>Välj dokument att dekryptera</value>
   </data>
-  <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
+	<data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Du är påloggad. Klicka för att logga ut.</value>
   </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
+	<data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
     <value>AxCrypt Dokument (*{0})|*{0}|Alla dokument (*.*)|*.*</value>
   </data>
-  <data name="EncryptedSourceColumnHeader" xml:space="preserve">
+	<data name="EncryptedSourceColumnHeader" xml:space="preserve">
     <value>Krypterat Dokument</value>
   </data>
-  <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
+	<data name="EncryptFileOpenDialogTitle" xml:space="preserve">
     <value>Välj dokument att kryptera</value>
   </data>
-  <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
+	<data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
     <value>Dokumentet finns redan, spara som</value>
   </data>
-  <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
+	<data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Ange lösenord för '{0}'</value>
   </data>
-  <data name="FileAlreadyEncrypted" xml:space="preserve">
+	<data name="FileAlreadyEncrypted" xml:space="preserve">
     <value>Dokumentet '{0}' är redan krypterat.</value>
   </data>
-  <data name="FileAlreadyExists" xml:space="preserve">
+	<data name="FileAlreadyExists" xml:space="preserve">
     <value>Dokumentet '{0}' finns redan.</value>
   </data>
-  <data name="FileDoesNotExist" xml:space="preserve">
+	<data name="FileDoesNotExist" xml:space="preserve">
     <value>Dokumentet '{0}' finns inte.</value>
   </data>
-  <data name="FileOperationFailed" xml:space="preserve">
+	<data name="FileOperationFailed" xml:space="preserve">
     <value>Fel med '{0}'.</value>
   </data>
-  <data name="InactiveFileToolTip" xml:space="preserve">
-    <value>Inaktivt dokument</value>
-  </data>
-  <data name="InconsistentState" xml:space="preserve">
+	<data name="InconsistentState" xml:space="preserve">
     <value>Internt fel med '{0}'.</value>
   </data>
-  <data name="InvalidKey" xml:space="preserve">
+	<data name="InvalidKey" xml:space="preserve">
     <value>Felaktig krypteringsnyckel för '{0}'.</value>
   </data>
-  <data name="InvalidPath" xml:space="preserve">
+	<data name="InvalidPath" xml:space="preserve">
     <value>Sökvägen '{0}' är ogiltig.</value>
   </data>
-  <data name="Invalid_URL" xml:space="preserve">
+	<data name="Invalid_URL" xml:space="preserve">
     <value>Felaktig sökväg.</value>
   </data>
-  <data name="LanguageChangeRestartPrompt" xml:space="preserve">
+	<data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt måste startas om för att slutföra språkändringen.</value>
   </data>
-  <data name="LoggedOffStatusText" xml:space="preserve">
+	<data name="LoggedOffStatusText" xml:space="preserve">
     <value>Avloggad</value>
   </data>
-  <data name="LoggedOnStatusText" xml:space="preserve">
+	<data name="LoggedOnStatusText" xml:space="preserve">
     <value>'{0}' är påloggad</value>
   </data>
-  <data name="LogOnExists" xml:space="preserve">
+	<data name="LogOnExists" xml:space="preserve">
     <value>Denna AxCrypt-Identitet finns redan.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
+	<data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} finns tillgänglig! Klicka för att komma till nedladdningssidan.</value>
   </data>
-  <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
+	<data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>Du är utloggad. Klicka för att logga på.</value>
   </data>
-  <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
+	<data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Inget uppdateringsbehov.</value>
   </data>
-  <data name="OldVersionTooltip" xml:space="preserve">
+	<data name="OldVersionTooltip" xml:space="preserve">
     <value>Du har en gammal version. Klicka för att kontrollera om det finns en nyare.</value>
   </data>
-  <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
+	<data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
     <value>Välj dokument att dekryptera och öppna</value>
   </data>
-  <data name="OpenFileColumnHeader" xml:space="preserve">
+	<data name="OpenFileColumnHeader" xml:space="preserve">
     <value>Arkiv</value>
   </data>
-  <data name="PassphraseVerificationMismatch" xml:space="preserve">
+	<data name="PassphraseVerificationMismatch" xml:space="preserve">
     <value>Lösenorden är inte lika</value>
   </data>
-  <data name="PurgingActiveFiles" xml:space="preserve">
+	<data name="PurgingActiveFiles" xml:space="preserve">
     <value>Rensar Aktiva Dokument</value>
   </data>
-  <data name="TrayBalloonTooltip" xml:space="preserve">
+	<data name="TrayBalloonTooltip" xml:space="preserve">
     <value>Dubbelklicka för att öppa AxCrypt</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
-  <data name="UnkownLogOn" xml:space="preserve">
+	<data name="UnkownLogOn" xml:space="preserve">
     <value>Okänt lösenord. Klicka 'Ny' för att skapa en ny identitet.</value>
   </data>
-  <data name="UnrecognizedError" xml:space="preserve">
+	<data name="UnrecognizedError" xml:space="preserve">
     <value>Okänt fel med '{0}'.</value>
   </data>
-  <data name="UpdatingStatus" xml:space="preserve">
+	<data name="UpdatingStatus" xml:space="preserve">
     <value>Uppdaterar Status</value>
   </data>
-  <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
+	<data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Välj dokument för säker radering</value>
   </data>
-  <data name="AboutToolStripMenuItemText" xml:space="preserve">
+	<data name="AboutToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Om</value>
   </data>
-  <data name="CheckVersionNowToolStripMenuItemText" xml:space="preserve">
+	<data name="CheckVersionNowToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Sök Uppdatering</value>
   </data>
-  <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
+	<data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Klicka här för att stänga och ta bort öppna dekrypterade dokument, men säkerställ först att de inte används.</value>
   </data>
-  <data name="CloseOpenFilesToolStripMenuItemText" xml:space="preserve">
+	<data name="CloseOpenFilesToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Rensa och Stäng Öppna</value>
   </data>
-  <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
+	<data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Dekryptera och ta bort från listan</value>
   </data>
-  <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
+	<data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Dokument</value>
   </data>
-  <data name="DecryptTemporarilyToolStripMenuItemText" xml:space="preserve">
+	<data name="DecryptTemporarilyToolStripMenuItemText" xml:space="preserve">
     <value>Dekryptera &amp;Tillfälligt</value>
   </data>
-  <data name="DecryptToolStripButtonToolTipText" xml:space="preserve">
+	<data name="DecryptToolStripButtonToolTipText" xml:space="preserve">
     <value>Klicka för att välja dokument att dekryptera</value>
   </data>
-  <data name="DecryptToolStripMenuItemText" xml:space="preserve">
+	<data name="DecryptToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Dekryptera</value>
   </data>
-  <data name="DeleteToolStripMenuItemText" xml:space="preserve">
+	<data name="DeleteToolStripMenuItemText" xml:space="preserve">
     <value>Dekryptera &amp;Permanent</value>
   </data>
-  <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
+	<data name="EncryptedPathColumnHeaderText" xml:space="preserve">
     <value>Krypterat</value>
   </data>
-  <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
+	<data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
     <value>Klicka för att välja dokument att kryptera</value>
   </data>
-  <data name="EncryptToolStripMenuItemText" xml:space="preserve">
+	<data name="EncryptToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Kryptera</value>
   </data>
-  <data name="EnterPassphraseToolStripMenuItemText" xml:space="preserve">
+	<data name="EnterPassphraseToolStripMenuItemText" xml:space="preserve">
     <value>Ange &amp;Lösenord</value>
   </data>
-  <data name="ExitToolStripMenuItemText" xml:space="preserve">
+	<data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Avsluta</value>
   </data>
-  <data name="FileToolStripMenuItemText" xml:space="preserve">
+	<data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Arkiv</value>
   </data>
-  <data name="HelpToolStripMenuItemText" xml:space="preserve">
+	<data name="HelpToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Hjälp</value>
   </data>
-  <data name="LanguageToolStripMenuItemText" xml:space="preserve">
+	<data name="LanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Språk</value>
   </data>
-  <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
+	<data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Tid</value>
   </data>
-  <data name="OpenEncryptedToolStripButtonToolTipText" xml:space="preserve">
+	<data name="OpenEncryptedToolStripButtonToolTipText" xml:space="preserve">
     <value>Klicka för att välja krypterade dokument att öppna</value>
   </data>
-  <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
+	<data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Öppna Krypterat</value>
   </data>
-  <data name="OpenExplorerHereToolStripMenuItemText" xml:space="preserve">
+	<data name="OpenExplorerHereToolStripMenuItemText" xml:space="preserve">
     <value>Öppna &amp;Utforskaren Här</value>
   </data>
-  <data name="OptionsToolStripMenuItemText" xml:space="preserve">
+	<data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Alternativ</value>
   </data>
-  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
+	<data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
     <value>Avbryt</value>
   </data>
-  <data name="RecentFilesTabPageText" xml:space="preserve">
+	<data name="RecentFilesTabPageText" xml:space="preserve">
     <value>Aktuella</value>
   </data>
-  <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
+	<data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Ta bort från listan utan att dekryptera dokumentet</value>
   </data>
-  <data name="SetUpdateCheckUrlToolStripMenuItemText" xml:space="preserve">
+	<data name="SetUpdateCheckUrlToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Alternativ</value>
   </data>
-  <data name="ViewHelpMenuItemText" xml:space="preserve">
+	<data name="ViewHelpMenuItemText" xml:space="preserve">
     <value>&amp;Visa Hjälp</value>
   </data>
-  <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
+	<data name="WatchedFolderColumnHeaderText" xml:space="preserve">
     <value>Mapp</value>
   </data>
-  <data name="WatchedFoldersTabPageText" xml:space="preserve">
+	<data name="WatchedFoldersTabPageText" xml:space="preserve">
     <value>Krypterade Mappar</value>
   </data>
-  <data name="WipeToolStripMenuItemText" xml:space="preserve">
+	<data name="WipeToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Säker Radering</value>
   </data>
 </root>
