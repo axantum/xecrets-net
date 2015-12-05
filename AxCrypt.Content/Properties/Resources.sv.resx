@@ -258,4 +258,97 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Välj dokument för säker radering</value>
   </data>
+  <data name="AboutToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Om</value>
+  </data>
+  <data name="CheckVersionNowToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Sök Uppdatering</value>
+  </data>
+  <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
+    <value>Klicka här för att stänga och ta bort öppna dekrypterade dokument, men säkerställ först att de inte används.</value>
+  </data>
+  <data name="CloseOpenFilesToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Rensa och Stäng Öppna</value>
+  </data>
+  <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Dekryptera och ta bort från listan</value>
+  </data>
+  <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
+    <value>Dokument</value>
+  </data>
+  <data name="DecryptTemporarilyToolStripMenuItemText" xml:space="preserve">
+    <value>Dekryptera &amp;Tillfälligt</value>
+  </data>
+  <data name="DecryptToolStripButtonToolTipText" xml:space="preserve">
+    <value>Klicka för att välja dokument att dekryptera</value>
+  </data>
+  <data name="DecryptToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Dekryptera</value>
+  </data>
+  <data name="DeleteToolStripMenuItemText" xml:space="preserve">
+    <value>Dekryptera &amp;Permanent</value>
+  </data>
+  <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
+    <value>Krypterat</value>
+  </data>
+  <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
+    <value>Klicka för att välja dokument att kryptera</value>
+  </data>
+  <data name="EncryptToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Kryptera</value>
+  </data>
+  <data name="EnterPassphraseToolStripMenuItemText" xml:space="preserve">
+    <value>Ange &amp;Lösenord</value>
+  </data>
+  <data name="ExitToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Avsluta</value>
+  </data>
+  <data name="FileToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Arkiv</value>
+  </data>
+  <data name="HelpToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Hjälp</value>
+  </data>
+  <data name="LanguageToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Språk</value>
+  </data>
+  <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
+    <value>Tid</value>
+  </data>
+  <data name="OpenEncryptedToolStripButtonToolTipText" xml:space="preserve">
+    <value>Klicka för att välja krypterade dokument att öppna</value>
+  </data>
+  <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Öppna Krypterat</value>
+  </data>
+  <data name="OpenExplorerHereToolStripMenuItemText" xml:space="preserve">
+    <value>Öppna &amp;Utforskaren Här</value>
+  </data>
+  <data name="OptionsToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Alternativ</value>
+  </data>
+  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="RecentFilesTabPageText" xml:space="preserve">
+    <value>Aktuella</value>
+  </data>
+  <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
+    <value>Ta bort från listan utan att dekryptera dokumentet</value>
+  </data>
+  <data name="SetUpdateCheckUrlToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Alternativ</value>
+  </data>
+  <data name="ViewHelpMenuItemText" xml:space="preserve">
+    <value>&amp;Visa Hjälp</value>
+  </data>
+  <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
+    <value>Mapp</value>
+  </data>
+  <data name="WatchedFoldersTabPageText" xml:space="preserve">
+    <value>Krypterade Mappar</value>
+  </data>
+  <data name="WipeToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Säker Radering</value>
+  </data>
 </root>
