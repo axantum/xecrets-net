@@ -1236,6 +1236,22 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to @using AxCrypt.MVC
+        ///@model AxCrypt.MVC.ViewModels.UserEmailViewModel
+        ///
+        ///&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; style=&quot;margin: 0; padding: 0; font-family: &apos;Open sans&apos;, &apos;Helvetica Neue&apos;, Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6;&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+        ///    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=U [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Template_EmailLayout_cshtml {
+            get {
+                return ResourceManager.GetString("Template_EmailLayout_cshtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to restore the AxCrypt application window..
         /// </summary>
         public static string TrayBalloonTooltip {
