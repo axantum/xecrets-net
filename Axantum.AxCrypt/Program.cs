@@ -43,8 +43,10 @@ using Axantum.AxCrypt.Forms.Implementation;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Mono.Portable;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -64,7 +66,13 @@ namespace Axantum.AxCrypt
         [STAThread]
         private static void Main()
         {
+            if (!EnsureNetVersionUsingNothingThatCrashesTheProcess())
+            {
+                return;
+            }
+
             EmbeddedResourceManager.Initialize();
+
             string[] commandLineArgs = Environment.GetCommandLineArgs();
 
             RegisterTypeFactories(commandLineArgs[0]);
@@ -83,6 +91,21 @@ namespace Axantum.AxCrypt
 
             Resolve.CommandService.Dispose();
             TypeMap.Register.Clear();
+        }
+
+        private static bool EnsureNetVersionUsingNothingThatCrashesTheProcess()
+        {
+            if (Type.GetType("System.Reflection.ReflectionContext", false) != null)
+            {
+                return true;
+            }
+
+            DialogResult dr = MessageBox.Show("You need .NET 4.5 or higher installed. Click OK to download.", "AxCrypt", MessageBoxButtons.OKCancel);
+            if (dr == DialogResult.OK)
+            {
+                Process.Start("https://www.microsoft.com/download/details.aspx?id=30653");
+            }
+            return false;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
