@@ -961,4 +961,22 @@ The AxCrypt team</value>
     &lt;/tr&gt;
 &lt;/table&gt;</value>
   </data>
+	<data name="CancelButtonText" xml:space="preserve">
+    <value>&amp;Cancel All</value>
+  </data>
+	<data name="ConfirmAllCheckBoxText" xml:space="preserve">
+    <value>Do this for &amp;all remaining documents?</value>
+  </data>
+	<data name="NoButtonText" xml:space="preserve">
+    <value>&amp;No</value>
+  </data>
+	<data name="PromptLabelText" xml:space="preserve">
+    <value>Are you sure want to permanently delete this document? This action cannot be undone.</value>
+  </data>
+	<data name="SecureDeleteDialogTitle" xml:space="preserve">
+    <value>AxCrypt Secure Delete</value>
+  </data>
+	<data name="YesButtonText" xml:space="preserve">
+    <value>&amp;Yes</value>
+  </data>
 </root>

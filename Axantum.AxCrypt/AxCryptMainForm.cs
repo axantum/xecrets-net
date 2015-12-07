@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt
 
         private void InitializeProgram()
         {
-            InitializeAllContentResources();
+            InitializeContentResources();
             RegisterTypeFactories();
             if (!ValidateSettings())
             {
@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt
             SendStartSessionNotification();
         }
 
-        private void InitializeAllContentResources()
+        private void InitializeContentResources()
         {
             _cleanDecryptedToolStripMenuItem.Text = Content.CleanDecryptedToolStripMenuItemText;
             _closeAndRemoveOpenFilesToolStripButton.ToolTipText = Content.CloseAndRemoveOpenFilesToolStripButtonToolTipText;
@@ -899,7 +899,7 @@ namespace Axantum.AxCrypt
             return;
         }
 
-        private static void HandleFileSelection(FileSelectionEventArgs e)
+        private void HandleFileSelection(FileSelectionEventArgs e)
         {
             switch (e.FileSelectionType)
             {
@@ -918,14 +918,14 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static void HandleWipeConfirm(FileSelectionEventArgs e)
+        private void HandleWipeConfirm(FileSelectionEventArgs e)
         {
-            using (ConfirmWipeDialog cwd = new ConfirmWipeDialog())
+            using (ConfirmWipeDialog cwd = new ConfirmWipeDialog(this))
             {
                 cwd.FileNameLabel.Text = Path.GetFileName(e.SelectedFiles[0]);
                 e.Skip = false;
                 DialogResult confirmResult = cwd.ShowDialog();
-                e.ConfirmAll = cwd.ConfirmAllCheckBox.Checked;
+                e.ConfirmAll = cwd._confirmAllCheckBox.Checked;
                 e.Skip = confirmResult == DialogResult.No;
                 e.Cancel = confirmResult == DialogResult.Cancel;
             }

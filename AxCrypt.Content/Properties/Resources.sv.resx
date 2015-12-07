@@ -348,4 +348,25 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
 	<data name="WipeToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Säker Radering</value>
   </data>
+	<data name="CancelButtonText" xml:space="preserve">
+		<value>&amp;Avbryt allt</value>
+	</data>
+	<data name="ConfirmAllCheckBoxText" xml:space="preserve">
+		<value>Gör detta för &amp;alla återstående dokument?</value>
+	</data>
+	<data name="NoButtonText" xml:space="preserve">
+		<value>&amp;Nej</value>
+	</data>
+	<data name="PromptLabelText" xml:space="preserve">
+		<value>Är du säker att du vill radera dokumentet? Detta går inte att ångra.</value>
+	</data>
+	<data name="SecureDeleteDialogTitle" xml:space="preserve">
+		<value>AxCrypt Säker Radering</value>
+	</data>
+	<data name="YesButtonText" xml:space="preserve">
+		<value>&amp;Ja</value>
+	</data>
+	<data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
+		<value>&amp;Säker Radering</value>
+	</data>
 </root>

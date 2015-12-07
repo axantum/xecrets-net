@@ -12,18 +12,20 @@ namespace Axantum.AxCrypt
 {
     public class StyledMessageBase : Form
     {
-        public StyledMessageBase()
-        {
-        }
-
         protected void InitializeStyle(Form owner)
         {
+            InitializeContentResources();
+
             new Styling(Resources.axcrypticon).Style(this);
             Owner = owner;
             StartPosition = FormStartPosition.CenterParent;
 
             Shown += StyledMessageBase_Shown;
             Move += StyledMessageBase_Move;
+        }
+
+        protected virtual void InitializeContentResources()
+        {
         }
 
         private Point? _lastLocation;

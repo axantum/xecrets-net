@@ -25,6 +25,10 @@ namespace Axantum.AxCrypt
             _viewModel = viewModel;
         }
 
+        protected override void InitializeContentResources()
+        {
+        }
+
         private void LogOnAccountDialog_Load(object sender, EventArgs e)
         {
             if (DesignMode)

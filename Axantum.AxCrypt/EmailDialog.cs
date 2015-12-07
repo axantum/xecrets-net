@@ -28,6 +28,10 @@ namespace Axantum.AxCrypt
             _viewModel = new AccountEmailViewModel();
         }
 
+        protected override void InitializeContentResources()
+        {
+        }
+
         private void EmailDialog_Load(object sender, EventArgs e)
         {
             if (DesignMode)

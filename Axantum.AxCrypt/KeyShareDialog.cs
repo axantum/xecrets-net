@@ -70,6 +70,10 @@ namespace Axantum.AxCrypt
             _notSharedWith.Focus();
         }
 
+        protected override void InitializeContentResources()
+        {
+        }
+
         private async Task DisplayInviteMessageAsync(string email)
         {
             AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(email));

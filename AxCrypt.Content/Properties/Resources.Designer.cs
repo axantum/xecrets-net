@@ -136,6 +136,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Cancel All.
+        /// </summary>
+        public static string CancelButtonText {
+            get {
+                return ResourceManager.GetString("CancelButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Canceled &apos;{0}&apos;..
         /// </summary>
         public static string Canceled {
@@ -204,6 +213,15 @@ namespace AxCrypt.Content.Properties {
         public static string CloseAndRemoveOpenFilesToolStripButtonToolTipText {
             get {
                 return ResourceManager.GetString("CloseAndRemoveOpenFilesToolStripButtonToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do this for &amp;all remaining documents?.
+        /// </summary>
+        public static string ConfirmAllCheckBoxText {
+            get {
+                return ResourceManager.GetString("ConfirmAllCheckBoxText", resourceCulture);
             }
         }
         
@@ -973,6 +991,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;No.
+        /// </summary>
+        public static string NoButtonText {
+            get {
+                return ResourceManager.GetString("NoButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are Signed Out. Click to Sign In..
         /// </summary>
         public static string NoDefaultEncryptionKeySetToolTip {
@@ -1144,6 +1171,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure want to permanently delete this document? This action cannot be undone..
+        /// </summary>
+        public static string PromptLabelText {
+            get {
+                return ResourceManager.GetString("PromptLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Purging Active Files.
         /// </summary>
         public static string PurgingActiveFiles {
@@ -1185,6 +1221,15 @@ namespace AxCrypt.Content.Properties {
         public static string RightToolStripText {
             get {
                 return ResourceManager.GetString("RightToolStripText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Secure Delete.
+        /// </summary>
+        public static string SecureDeleteDialogTitle {
+            get {
+                return ResourceManager.GetString("SecureDeleteDialogTitle", resourceCulture);
             }
         }
         
@@ -1282,9 +1327,11 @@ namespace AxCrypt.Content.Properties {
         ///
         ///You have signed up for an AxCrypt account.
         ///
-        ///To complete activation in the application please enter the 6-digit activation code into the application.
+        ///To complete activation in the application please enter the activation code into the application.
         ///
-        ///Your activation code is @Model.ActivationCode  [rest of string was truncated]&quot;;.
+        ///Your activation code is @Model.ActivationCode .
+        ///
+        ///You [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Template_AppActivateEmailPlainText_cshtml {
             get {
@@ -1612,6 +1659,15 @@ namespace AxCrypt.Content.Properties {
         public static string WrongVerificationCodeFormat {
             get {
                 return ResourceManager.GetString("WrongVerificationCodeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Yes.
+        /// </summary>
+        public static string YesButtonText {
+            get {
+                return ResourceManager.GetString("YesButtonText", resourceCulture);
             }
         }
     }
