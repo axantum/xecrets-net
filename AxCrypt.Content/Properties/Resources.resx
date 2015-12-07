@@ -592,7 +592,7 @@ For more information, click OK to open a web browser to our web site.</value>
 @model AxCrypt.MVC.ViewModels.UserEmailViewModel
 
 &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
-&lt;html xmlns="http://www.w3.org/1999/xhtml" style="margin: 0; padding: 0; font-family: 'Open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6;"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6;"&gt;
 &lt;head&gt;
     &lt;meta name="viewport" content="width=device-width" /&gt;
     &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
@@ -600,15 +600,15 @@ For more information, click OK to open a web browser to our web site.</value>
     &lt;title&gt;AxCrypt&lt;/title&gt;
 &lt;/head&gt;
 
-&lt;body style="margin: 0; padding: 0; background-color: #fdfdfd; font-family: inherit; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; height: 100%; width: 100% !important;"&gt;
+&lt;body style="background-color: #fdfdfd; font-family: inherit; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; height: 100%; width: 100% !important;"&gt;
     &lt;table style="padding: 20px 20px 0; width: 100%;"&gt;
         &lt;tr&gt;
-            &lt;td style="padding: 0;"&gt;&lt;/td&gt;
-            &lt;td style="padding: 0; margin: 0 auto !important; display: block !important; max-width: 600px !important; clear: both !important;"&gt;
+            &lt;td /&gt;
+            &lt;td style="margin: 0 auto !important; display: block !important; max-width: 600px !important; clear: both !important;"&gt;
                 &lt;div style="margin: 0 auto; max-width: 600px;"&gt;
                     &lt;table style="width: 100%;"&gt;
                         &lt;tr&gt;
-                            &lt;td style="padding: 0; text-align: center;"&gt;
+                            &lt;td style="text-align: center;"&gt;
                                 &lt;a href="@Model.RuntimeAppRootUrl" style="text-decoration: none;"&gt;
                                     @{ var ImgLink = Model.PublicAppRootUrl + "Content/Images/logo-text.png"; }
                                     &lt;img src="@ImgLink" style="max-width: 100%; width: 200px;" /&gt;
@@ -618,12 +618,347 @@ For more information, click OK to open a web browser to our web site.</value>
                     &lt;/table&gt;
                 &lt;/div&gt;
             &lt;/td&gt;
-            &lt;td style="padding: 0;"&gt;&lt;/td&gt;
+            &lt;td /&gt;
         &lt;/tr&gt;
     &lt;/table&gt;
     @RenderBody()
+    &lt;table style="width: 100%; clear: both !important;"&gt;
+        &lt;tr&gt;
+            &lt;td /&gt;
+            &lt;td style="margin: 0 auto !important; display: block !important; max-width: 600px !important; clear: both !important;"&gt;
+                &lt;div style="margin: 0 auto; max-width: 600px;"&gt;
+                    &lt;table style="width: 100%;"&gt;
+                        &lt;tr&gt;
+                            &lt;td style="text-align: center;"&gt;
+                                &lt;p style="margin-bottom: 10px; font-size: 12px; color: #666;"&gt;
+                                    If it is unclear why you are receiving this from &lt;a href="@Model.RuntimeAppRootUrl" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;, you can ignore this email or report it to
+                                    @Model.AbuseEmail .
+                                &lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+            &lt;td /&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
 &lt;/body&gt;
 &lt;/html&gt;</value>
     <comment>Email template common layout cshtml</comment>
+  </data>
+	<data name="Template_ActivateEmail_cshtml" xml:space="preserve">
+    <value>@model AxCrypt.MVC.ViewModels.UserEmailViewModel
+@{
+    Layout = "Template_EmailLayout_cshtml";
+    var ActivationLink = Model.RuntimeAppRootUrl + "Home/Activate?Email=" + Model.UserName + "&amp;Code=" + Model.ActivationCode;
+    var ManualActivationLink = Model.RuntimeAppRootUrl + "Home/Activate";
+}
+&lt;table style="padding: 20px; width: 100%;"&gt;
+    &lt;tr&gt;
+        &lt;td /&gt;
+        &lt;td style="padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;"&gt;
+            &lt;div style="max-width: 600px;"&gt;
+                &lt;table style="width: 100%;"&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;h2 style="margin: 0 0 30px 0; font-size: 28px; line-height: 1.2; color: #000; font-weight: 300;"&gt;Hello and welcome to AxCrypt!&lt;/h2&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                You have signed up for an AxCrypt account. To complete your registration you must click the button below.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px; text-align: center;"&gt;
+                                &lt;a href="@ActivationLink" style="margin: 20px 0; padding: 10px 20px; color: #fff; text-decoration: none; display: inline-block; border: 1px solid #75ad5d; background-color: #86b96e; border-radius: 3px !important;"&gt;Activate account&lt;/a&gt;
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your account.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                If the button does not work, go to &lt;a href="@ManualActivationLink" style="color: #86b96e; text-decoration: none;"&gt;@ManualActivationLink&lt;/a&gt; and enter &lt;b&gt;@Model.UserName&lt;/b&gt; and the activation code &lt;b&gt;@Model.ActivationCode&lt;/b&gt; to manually activate your account.
+                            &lt;/p&gt;
+                            &lt;p style="margin-top: 30px;"&gt;
+                                Best regards,&lt;br&gt;
+                                &lt;i&gt;The AxCrypt team&lt;/i&gt;
+                            &lt;/p&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td /&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</value>
+  </data>
+	<data name="Template_AppActivateEmailPlainText_cshtml" xml:space="preserve">
+    <value>@model AxCrypt.MVC.ViewModels.UserEmailViewModel
+@{
+    Layout = null;
+    var ActivationLink = Model.RuntimeAppRootUrl + "Home/Activate?Email=" + Model.UserName + "&amp;Code=" + Model.ActivationCode;
+    var ManualActivationLink = Model.RuntimeAppRootUrl + "Home/Activate";
+}
+Hello and Welcome to AxCrypt,
+
+You have signed up for an AxCrypt account.
+
+To complete activation in the application please enter the activation code into the application.
+
+Your activation code is @Model.ActivationCode .
+
+You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your account.
+
+Best regards,
+
+The AxCrypt team
+
+If you have not downloaded AxCrypt, you can ignore this e-mail or report it to @Model.AbuseEmail .</value>
+  </data>
+	<data name="Template_AppActivateEmail_cshtml" xml:space="preserve">
+    <value>@model AxCrypt.MVC.ViewModels.UserEmailViewModel
+@{
+    Layout = "Template_EmailLayout_cshtml";
+    var ActivationLink = Model.RuntimeAppRootUrl + "Home/Activate?Email=" + Model.UserName + "&amp;Code=" + Model.ActivationCode;
+    var ManualActivationLink = Model.RuntimeAppRootUrl + "Home/Activate";
+}
+&lt;table style="padding: 20px; width: 100%;"&gt;
+    &lt;tr&gt;
+        &lt;td /&gt;
+        &lt;td style="padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;"&gt;
+            &lt;div style="max-width: 600px;"&gt;
+                &lt;table style="width: 100%;"&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;h2 style="margin: 0 0 30px 0; font-size: 28px; line-height: 1.2; color: #000; font-weight: 300;"&gt;Hello and welcome to AxCrypt!&lt;/h2&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                You have signed up for AxCrypt account. To complete activation please enter the activation code below in the app.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                Your activation code is &lt;b&gt;@Model.ActivationCode&lt;/b&gt;
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your account.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                If the button does not work, go to &lt;a href="@ManualActivationLink" style="color: #86b96e; text-decoration: none;"&gt;@ManualActivationLink&lt;/a&gt; and enter &lt;b&gt;@Model.UserName&lt;/b&gt; and the activation code &lt;b&gt;@Model.ActivationCode&lt;/b&gt; to manually activate your account.
+                            &lt;/p&gt;
+                            &lt;p style="margin-top: 30px;"&gt;
+                                Best regards,&lt;br&gt;
+                                &lt;i&gt;The AxCrypt team&lt;/i&gt;
+                            &lt;/p&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td /&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</value>
+  </data>
+	<data name="Template_ChangeEmailConfirmEmail_cshtml" xml:space="preserve">
+    <value>@model AxCrypt.MVC.ViewModels.UserEmailViewModel
+@{
+    Layout = "Template_EmailLayout_cshtml";
+    var ActivationLink = Model.RuntimeAppRootUrl + "Home/Activate?Email=" + Model.UserName + "&amp;Code=" + Model.ActivationCode;
+}
+&lt;table style="padding: 20px; width: 100%;"&gt;
+    &lt;tr&gt;
+        &lt;td /&gt;
+        &lt;td style="padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;"&gt;
+            &lt;div style="max-width: 600px;"&gt;
+                &lt;table style="width: 100%;"&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;h2 style="margin: 0 0 30px 0; font-size: 28px; line-height: 1.2; color: #000; font-weight: 300;"&gt;Hello @Model.UserName,&lt;/h2&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                You have requested to change your current AxCrypt account e-mail to &lt;b style="color: #000 !important;"&gt;@Model.UserName&lt;/b&gt;.
+                                To confirm please click the button below.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px; text-align: center;"&gt;
+                                &lt;a href="@ActivationLink" style="margin: 20px 0; padding: 10px 20px; color: #fff; text-decoration: none; display: inline-block; border: 1px solid #75ad5d; background-color: #86b96e; border-radius: 3px !important;"&gt;Change e-mail&lt;/a&gt;
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                Use your existing password to log on and then the old account will be permanently deleted.
+                            &lt;/p&gt;
+                            &lt;p style="margin-top: 30px;"&gt;
+                                Best regards,&lt;br&gt;
+                                &lt;i&gt;The AxCrypt team&lt;/i&gt;
+                            &lt;/p&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td /&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</value>
+  </data>
+	<data name="Template_ChangeEmailExistEmail_cshtml" xml:space="preserve">
+    <value>@model AxCrypt.MVC.ViewModels.UserEmailViewModel
+@{
+    Layout = "Template_EmailLayout_cshtml";
+    var ActivationLink = Model.RuntimeAppRootUrl + "Home/Activate?Email=" + Model.UserName + "&amp;Code=" + Model.ActivationCode;
+}
+&lt;table style="padding: 20px; width: 100%;"&gt;
+    &lt;tr&gt;
+        &lt;td /&gt;
+        &lt;td style="padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;"&gt;
+            &lt;div style="max-width: 600px;"&gt;
+                &lt;table style="width: 100%;"&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;h2 style="margin: 0 0 30px 0; font-size: 28px; line-height: 1.2; color: #000; font-weight: 300;"&gt;Hello @Model.UserName,&lt;/h2&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                Someone has requested a change of e-mail (from an undisclosed account) at &lt;a href="@Model.RuntimeAppRootUrl" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;
+                                to &lt;b&gt;@Model.UserName&lt;/b&gt;.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                However, since you already have an account using this e-mail, the request has been silently ignored.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                Ignore this e-mail or report it to @Model.AbuseEmail. No harm is done, and no information has been disclosed.
+                            &lt;/p&gt;
+                            &lt;p style="margin-top: 30px;"&gt;
+                                Best regards,&lt;br&gt;
+                                &lt;i&gt;The AxCrypt team&lt;/i&gt;
+                            &lt;/p&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td /&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</value>
+  </data>
+	<data name="Template_InvitationEmailPlainText_cshtml" xml:space="preserve">
+    <value>@model AxCrypt.MVC.ViewModels.UserEmailViewModel
+@{
+    Layout = null;
+    var ActivationLink = Model.RuntimeAppRootUrl + "Home/Activate?Email=" + Model.UserName + "&amp;Code=" + Model.ActivationCode;
+    var ManualActivationLink = Model.RuntimeAppRootUrl + "Home/Activate";
+    var DownloadLink = Model.ContentRootUrl + "Download/";
+}
+Hello and Welcome to AxCrypt,
+
+You have been invited to AxCrypt File Security by @Model.InvitedBy .
+
+To start securing your files just download and install AxCrypt from @DownloadLink.
+
+Sign in to AxCrypt with @Model.UserName, enter the 6-digit activation code and set your secret password.
+
+Your activation code is @Model.ActivationCode .
+
+You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your account.
+
+Best regards,
+
+The AxCrypt team</value>
+  </data>
+	<data name="Template_InvitationEmail_cshtml" xml:space="preserve">
+    <value>@model AxCrypt.MVC.ViewModels.UserEmailViewModel
+@{
+    Layout = "Template_EmailLayout_cshtml";
+    var ActivationLink = Model.RuntimeAppRootUrl + "Home/Activate?Email=" + Model.UserName + "&amp;Code=" + Model.ActivationCode;
+    var ManualActivationLink = Model.RuntimeAppRootUrl + "Home/Activate";
+    var DownloadLink = Model.ContentRootUrl + "Download/";
+}
+&lt;table style="padding: 20px; width: 100%;"&gt;
+    &lt;tr&gt;
+        &lt;td /&gt;
+        &lt;td style="padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;"&gt;
+            &lt;div style="max-width: 600px;"&gt;
+                &lt;table style="width: 100%;"&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;h2 style="margin: 0 0 30px 0; font-size: 28px; line-height: 1.2; color: #000; font-weight: 300;"&gt;Hello and welcome to AxCrypt!&lt;/h2&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                You have been invited to AxCrypt File Security by &lt;b&gt;@Model.InvitedBy&lt;/b&gt;. To start securing your files just &lt;a href="@DownloadLink" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;@Model.UserName&lt;/b&gt;, enter the activation code and set your secret password.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                Your activation code is &lt;b&gt;@Model.ActivationCode&lt;/b&gt;
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your account.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                If the button does not work, go to &lt;a href="@ManualActivationLink" style="color: #86b96e; text-decoration: none;"&gt;@ManualActivationLink&lt;/a&gt; and enter &lt;b&gt;@Model.UserName&lt;/b&gt; and the activation code &lt;b&gt;@Model.ActivationCode&lt;/b&gt; to manually activate your account.
+                            &lt;/p&gt;
+                            &lt;p style="margin-top: 30px;"&gt;
+                                Best regards,&lt;br&gt;
+                                &lt;i&gt;The AxCrypt team&lt;/i&gt;
+                            &lt;/p&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td /&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</value>
+  </data>
+	<data name="Template_PasswordResetEmail_cshtml" xml:space="preserve">
+    <value>@model AxCrypt.MVC.ViewModels.UserEmailViewModel
+@{
+    Layout = "Template_EmailLayout_cshtml";
+    var ActivationLink = Model.RuntimeAppRootUrl + "Home/Activate?Email=" + Model.UserName + "&amp;Code=" + Model.ActivationCode;
+}
+&lt;table style="padding: 20px; width: 100%;"&gt;
+    &lt;tr&gt;
+        &lt;td /&gt;
+        &lt;td style="padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;"&gt;
+            &lt;div style="max-width: 600px;"&gt;
+                &lt;table style="width: 100%;"&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;h2 style="margin: 0 0 30px 0; font-size: 28px; line-height: 1.2; color: #000; font-weight: 300;"&gt;Hello @Model.UserName,&lt;/h2&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                You have requested to reset your AxCrypt account password. To complete this process and pick a new password, please click the button below.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px; text-align: center;"&gt;
+                                &lt;a href="@ActivationLink" style="margin: 20px 0; padding: 10px 20px; color: #fff; text-decoration: none; display: inline-block; border: 1px solid #75ad5d; background-color: #86b96e; border-radius: 3px !important;"&gt;Reset password&lt;/a&gt;
+                            &lt;/p&gt;
+                            &lt;p style="margin-top: 30px;"&gt;
+                                Best regards,&lt;br&gt;
+                                &lt;i&gt;The AxCrypt team&lt;/i&gt;
+                            &lt;/p&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td /&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</value>
+  </data>
+	<data name="Template_UnregisterEmail_cshtml" xml:space="preserve">
+    <value>@model AxCrypt.MVC.ViewModels.UserEmailViewModel
+@{
+    Layout = "Template_EmailLayout_cshtml";
+    var ActivationLink = Model.RuntimeAppRootUrl + "Home/Activate?Email=" + Model.UserName + "&amp;Code=" + Model.ActivationCode;
+}
+&lt;table style="padding: 20px; width: 100%;"&gt;
+    &lt;tr&gt;
+        &lt;td /&gt;
+        &lt;td style="padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;"&gt;
+            &lt;div style="max-width: 600px;"&gt;
+                &lt;table style="width: 100%;"&gt;
+                    &lt;tr&gt;
+                        &lt;td style="padding: 0;"&gt;
+                            &lt;h2 style="margin: 0 0 30px 0; font-size: 28px; line-height: 1.2; color: #000; font-weight: 300;"&gt;Hello @Model.UserName,&lt;/h2&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                This is confirmation that your account on &lt;a href="@Model.RuntimeAppRootUrl" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; has been successfully deleted.
+                            &lt;/p&gt;
+                            &lt;p style="margin-bottom: 10px;"&gt;
+                                We're sad to see you go and hope you enjoyed your time with us!
+                            &lt;/p&gt;
+                            &lt;p style="margin-top: 30px;"&gt;
+                                Best regards,&lt;br&gt;
+                                &lt;i&gt;The AxCrypt team&lt;/i&gt;
+                            &lt;/p&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td /&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</value>
   </data>
 </root>

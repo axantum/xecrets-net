@@ -1236,18 +1236,187 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to @model AxCrypt.MVC.ViewModels.UserEmailViewModel
+        ///@{
+        ///    Layout = &quot;Template_EmailLayout_cshtml&quot;;
+        ///    var ActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate?Email=&quot; + Model.UserName + &quot;&amp;Code=&quot; + Model.ActivationCode;
+        ///    var ManualActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate&quot;;
+        ///}
+        ///&lt;table style=&quot;padding: 20px; width: 100%;&quot;&gt;
+        ///    &lt;tr&gt;
+        ///        &lt;td /&gt;
+        ///        &lt;td style=&quot;padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !import [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Template_ActivateEmail_cshtml {
+            get {
+                return ResourceManager.GetString("Template_ActivateEmail_cshtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @model AxCrypt.MVC.ViewModels.UserEmailViewModel
+        ///@{
+        ///    Layout = &quot;Template_EmailLayout_cshtml&quot;;
+        ///    var ActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate?Email=&quot; + Model.UserName + &quot;&amp;Code=&quot; + Model.ActivationCode;
+        ///    var ManualActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate&quot;;
+        ///}
+        ///&lt;table style=&quot;padding: 20px; width: 100%;&quot;&gt;
+        ///    &lt;tr&gt;
+        ///        &lt;td /&gt;
+        ///        &lt;td style=&quot;padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !import [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Template_AppActivateEmail_cshtml {
+            get {
+                return ResourceManager.GetString("Template_AppActivateEmail_cshtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @model AxCrypt.MVC.ViewModels.UserEmailViewModel
+        ///@{
+        ///    Layout = null;
+        ///    var ActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate?Email=&quot; + Model.UserName + &quot;&amp;Code=&quot; + Model.ActivationCode;
+        ///    var ManualActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate&quot;;
+        ///}
+        ///Hello and Welcome to AxCrypt,
+        ///
+        ///You have signed up for an AxCrypt account.
+        ///
+        ///To complete activation in the application please enter the 6-digit activation code into the application.
+        ///
+        ///Your activation code is @Model.ActivationCode  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Template_AppActivateEmailPlainText_cshtml {
+            get {
+                return ResourceManager.GetString("Template_AppActivateEmailPlainText_cshtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @model AxCrypt.MVC.ViewModels.UserEmailViewModel
+        ///@{
+        ///    Layout = &quot;Template_EmailLayout_cshtml&quot;;
+        ///    var ActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate?Email=&quot; + Model.UserName + &quot;&amp;Code=&quot; + Model.ActivationCode;
+        ///}
+        ///&lt;table style=&quot;padding: 20px; width: 100%;&quot;&gt;
+        ///    &lt;tr&gt;
+        ///        &lt;td /&gt;
+        ///        &lt;td style=&quot;padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;&quot;&gt;
+        ///            &lt;d [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Template_ChangeEmailConfirmEmail_cshtml {
+            get {
+                return ResourceManager.GetString("Template_ChangeEmailConfirmEmail_cshtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @model AxCrypt.MVC.ViewModels.UserEmailViewModel
+        ///@{
+        ///    Layout = &quot;Template_EmailLayout_cshtml&quot;;
+        ///    var ActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate?Email=&quot; + Model.UserName + &quot;&amp;Code=&quot; + Model.ActivationCode;
+        ///}
+        ///&lt;table style=&quot;padding: 20px; width: 100%;&quot;&gt;
+        ///    &lt;tr&gt;
+        ///        &lt;td /&gt;
+        ///        &lt;td style=&quot;padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;&quot;&gt;
+        ///            &lt;d [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Template_ChangeEmailExistEmail_cshtml {
+            get {
+                return ResourceManager.GetString("Template_ChangeEmailExistEmail_cshtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to @using AxCrypt.MVC
         ///@model AxCrypt.MVC.ViewModels.UserEmailViewModel
         ///
         ///&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
-        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; style=&quot;margin: 0; padding: 0; font-family: &apos;Open sans&apos;, &apos;Helvetica Neue&apos;, Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6;&quot;&gt;
+        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; style=&quot;font-family: &apos;Open sans&apos;, &apos;Helvetica Neue&apos;, Helvetica, Arial, sans-serif; line-height: 1.6;&quot;&gt;
         ///&lt;head&gt;
         ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
-        ///    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=U [rest of string was truncated]&quot;;.
+        ///    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+        ///    &lt;link href=&quot;https://fonts. [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Template_EmailLayout_cshtml {
             get {
                 return ResourceManager.GetString("Template_EmailLayout_cshtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @model AxCrypt.MVC.ViewModels.UserEmailViewModel
+        ///@{
+        ///    Layout = &quot;Template_EmailLayout_cshtml&quot;;
+        ///    var ActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate?Email=&quot; + Model.UserName + &quot;&amp;Code=&quot; + Model.ActivationCode;
+        ///    var ManualActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate&quot;;
+        ///    var DownloadLink = Model.ContentRootUrl + &quot;Download/&quot;;
+        ///}
+        ///&lt;table style=&quot;padding: 20px; width: 100%;&quot;&gt;
+        ///    &lt;tr&gt;
+        ///        &lt;td /&gt;
+        ///        &lt;td style=&quot;padding: 20px; margin: 0 auto !important; background-color [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Template_InvitationEmail_cshtml {
+            get {
+                return ResourceManager.GetString("Template_InvitationEmail_cshtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @model AxCrypt.MVC.ViewModels.UserEmailViewModel
+        ///@{
+        ///    Layout = null;
+        ///    var ActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate?Email=&quot; + Model.UserName + &quot;&amp;Code=&quot; + Model.ActivationCode;
+        ///    var ManualActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate&quot;;
+        ///    var DownloadLink = Model.ContentRootUrl + &quot;Download/&quot;;
+        ///}
+        ///Hello and Welcome to AxCrypt,
+        ///
+        ///You have been invited to AxCrypt File Security by @Model.InvitedBy .
+        ///
+        ///To start securing your files just download and install AxCrypt from  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Template_InvitationEmailPlainText_cshtml {
+            get {
+                return ResourceManager.GetString("Template_InvitationEmailPlainText_cshtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @model AxCrypt.MVC.ViewModels.UserEmailViewModel
+        ///@{
+        ///    Layout = &quot;Template_EmailLayout_cshtml&quot;;
+        ///    var ActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate?Email=&quot; + Model.UserName + &quot;&amp;Code=&quot; + Model.ActivationCode;
+        ///}
+        ///&lt;table style=&quot;padding: 20px; width: 100%;&quot;&gt;
+        ///    &lt;tr&gt;
+        ///        &lt;td /&gt;
+        ///        &lt;td style=&quot;padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;&quot;&gt;
+        ///            &lt;d [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Template_PasswordResetEmail_cshtml {
+            get {
+                return ResourceManager.GetString("Template_PasswordResetEmail_cshtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @model AxCrypt.MVC.ViewModels.UserEmailViewModel
+        ///@{
+        ///    Layout = &quot;Template_EmailLayout_cshtml&quot;;
+        ///    var ActivationLink = Model.RuntimeAppRootUrl + &quot;Home/Activate?Email=&quot; + Model.UserName + &quot;&amp;Code=&quot; + Model.ActivationCode;
+        ///}
+        ///&lt;table style=&quot;padding: 20px; width: 100%;&quot;&gt;
+        ///    &lt;tr&gt;
+        ///        &lt;td /&gt;
+        ///        &lt;td style=&quot;padding: 20px; margin: 0 auto !important; background-color: #ffffff; border: 1px solid #f0f0f0; display: block !important; max-width: 600px !important; clear: both !important;&quot;&gt;
+        ///            &lt;d [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Template_UnregisterEmail_cshtml {
+            get {
+                return ResourceManager.GetString("Template_UnregisterEmail_cshtml", resourceCulture);
             }
         }
         
