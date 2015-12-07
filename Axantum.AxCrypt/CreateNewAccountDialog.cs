@@ -1,8 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,26 +12,27 @@ using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
-    public partial class CreateNewAccountDialog : Form
+    public partial class CreateNewAccountDialog : StyledMessageBase
     {
         private CreateNewAccountViewModel _viewModel;
 
         private bool _isCreating = false;
 
-        public CreateNewAccountDialog(Form parent, string passphrase, EmailAddress email)
+        public CreateNewAccountDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
+        }
+
+        public CreateNewAccountDialog(Form parent, string passphrase, EmailAddress email)
+            : this()
+        {
+            InitializeStyle(parent);
 
             _viewModel = new CreateNewAccountViewModel(passphrase, email);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };
             EmailTextBox.LostFocus += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocValidateUserEmail(); };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
-
-            Owner = parent;
-            Owner.Activated += (sender, e) => Activate();
-            StartPosition = FormStartPosition.CenterParent;
         }
 
         private void CreateNewAccountDialog_Load(object sender, EventArgs e)
