@@ -62,7 +62,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status &apos;Aborted&apos; with &apos;{0}&apos;..
+        ///   Looks up a localized string similar to Status &apos;Aborted&apos; ({0})..
         /// </summary>
         public static string AbortedFileStatus {
             get {
@@ -226,7 +226,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create &amp;Account.
+        ///   Looks up a localized string similar to Create AxCrypt ID.
         /// </summary>
         public static string CreateAccountToolStripMenuItemText {
             get {
@@ -235,7 +235,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create an Account with a Secret and Sharing Key Pair so you can share encrypted files with others..
+        ///   Looks up a localized string similar to Create an AxCrypt ID with a sharing and access keys, to use and share files securely..
         /// </summary>
         public static string CreateAccountToolStripMenuItemToolTipText {
             get {
@@ -258,15 +258,6 @@ namespace AxCrypt.Content.Properties {
         public static string DaysLeftPluralWarningPattern {
             get {
                 return ResourceManager.GetString("DaysLeftPluralWarningPattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to X Days.
-        /// </summary>
-        public static string DaysLeftPremiumLabelText {
-            get {
-                return ResourceManager.GetString("DaysLeftPremiumLabelText", resourceCulture);
             }
         }
         
@@ -316,7 +307,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Manage Account.
+        ///   Looks up a localized string similar to &amp;Manage AxCrypt ID.
         /// </summary>
         public static string DebugManageAccountToolStripMenuItemText {
             get {
@@ -442,7 +433,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encrypted &amp;Folders.
+        ///   Looks up a localized string similar to Secured &amp;Folders.
         /// </summary>
         public static string EncryptedFoldersToolStripMenuItemText {
             get {
@@ -577,7 +568,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import failed. Probably not a valid Account Secret and Sharing Key Pair File..
+        ///   Looks up a localized string similar to Import failed. Probably not a valid AxCrypt ID file..
         /// </summary>
         public static string FailedPrivateImport {
             get {
@@ -703,7 +694,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import &amp;Account Secret and Sharing Key Pair.
+        ///   Looks up a localized string similar to Import &amp;AxCrypt ID with sharing and access keys..
         /// </summary>
         public static string ImportMyPrivateKeyToolStripMenuItemText {
             get {
@@ -739,7 +730,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text Files (*.axx)|*.axx|All Files (*.*)|*.*.
+        ///   Looks up a localized string similar to AxCrypt ID Files (*.axx)|*.axx|All Files (*.*)|*.*.
         /// </summary>
         public static string ImportPrivateKeysFileFilter {
             get {
@@ -748,7 +739,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Account Secret and Sharing Key Pair File.
+        ///   Looks up a localized string similar to Select AxCrypt ID.
         /// </summary>
         public static string ImportPrivateKeysFileSelectionTitle {
             get {
@@ -919,7 +910,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current Password.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string LoggedOnStatusText {
             get {
@@ -955,7 +946,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upgrade to Premium to enable the strongest encryption..
+        ///   Looks up a localized string similar to Upgrade to Premium to enable the strongest protection..
         /// </summary>
         public static string LowEncryptionWorkingToolTip {
             get {
@@ -1027,7 +1018,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Offline Account Creation..
+        ///   Looks up a localized string similar to Offline AxCrypt ID Creation..
         /// </summary>
         public static string OfflineAccountTitle {
             get {
@@ -1212,15 +1203,6 @@ namespace AxCrypt.Content.Properties {
         public static string RemoveRecentFileToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("RemoveRecentFileToolStripMenuItemText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to toolStrip1.
-        /// </summary>
-        public static string RightToolStripText {
-            get {
-                return ResourceManager.GetString("RightToolStripText", resourceCulture);
             }
         }
         
@@ -1518,15 +1500,6 @@ namespace AxCrypt.Content.Properties {
         public static string UnrecognizedError {
             get {
                 return ResourceManager.GetString("UnrecognizedError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to toolStripButton1.
-        /// </summary>
-        public static string UpdateStatusButtonText {
-            get {
-                return ResourceManager.GetString("UpdateStatusButtonText", resourceCulture);
             }
         }
         

@@ -135,7 +135,6 @@ namespace Axantum.AxCrypt
             _createAccountToolStripMenuItem.Text = Content.CreateAccountToolStripMenuItemText;
             _createAccountToolStripMenuItem.ToolTipText = Content.CreateAccountToolStripMenuItemToolTipText;
             _cryptoName.Text = Content.CryptoNameText;
-            _daysLeftPremiumLabel.Text = Content.DaysLeftPremiumLabelText;
             _debugCheckVersionNowToolStripMenuItem.Text = Content.DebugCheckVersionNowToolStripMenuItemText;
             _debugCryptoPolicyToolStripMenuItem.Text = Content.DebugCryptoPolicyToolStripMenuItemText;
             _debugLoggingToolStripMenuItem.Text = Content.DebugLoggingToolStripMenuItemText;
@@ -177,12 +176,10 @@ namespace Axantum.AxCrypt
             _recentFilesOpenToolStripMenuItem.Text = Content.RecentFilesOpenToolStripMenuItemText;
             _recentFilesTabPage.Text = Content.RecentFilesTabPageText;
             _removeRecentFileToolStripMenuItem.Text = Content.RemoveRecentFileToolStripMenuItemText;
-            _rightToolStrip.Text = Content.RightToolStripText;
             _secureDeleteToolStripMenuItem.Text = Content.SecureDeleteToolStripMenuItemText;
             _shareKeysToolStripMenuItem.Text = Content.ShareKeysToolStripMenuItemText;
             _swedishLanguageToolStripMenuItem.Text = Content.SwedishLanguageToolStripMenuItemText;
             _tryBrokenFileToolStripMenuItem.Text = Content.TryBrokenFileToolStripMenuItemText;
-            _updateStatusButton.Text = Content.UpdateStatusButtonText;
             _watchedFolderColumnHeader.Text = Content.WatchedFolderColumnHeaderText;
             _watchedFoldersdecryptTemporarilyMenuItem.Text = Content.WatchedFoldersdecryptTemporarilyMenuItemText;
             _watchedFoldersOpenExplorerHereMenuItem.Text = Content.WatchedFoldersOpenExplorerHereMenuItemText;
@@ -1204,7 +1201,7 @@ namespace Axantum.AxCrypt
             if (isLoggedOn)
             {
                 UserKeyPair userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
-                logonStatus = userKeys != UserKeyPair.Empty ? Content.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Content.LoggedOnStatusText.InvariantFormat(String.Empty);
+                logonStatus = userKeys != UserKeyPair.Empty ? Content.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Content.LoggedOnStatusText;
             }
             else
             {
