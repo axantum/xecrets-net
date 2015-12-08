@@ -37,13 +37,14 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            this._passphraseGroupBox.Text = Content.PassphrasePrompt;
-            this.ShowPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
-            this._verifyPasswordLabel.Text = Content.VerifyPasswordPrompt;
-            this._buttonCancel.Text = Content.ButtonCancelText;
-            this._buttonOk.Text = Content.ButtonOkText;
-            this.groupBox1.Text = Content.PromptEmailText;
-            this.Text = Content.TitleCreateAxCryptIdTitle;
+            Text = Content.TitleCreateAxCryptIdTitle;
+
+            _passphraseGroupBox.Text = Content.PassphrasePrompt;
+            ShowPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
+            _verifyPasswordLabel.Text = Content.VerifyPasswordPrompt;
+            _buttonCancel.Text = Content.ButtonCancelText;
+            _buttonOk.Text = Content.ButtonOkText;
+            _emailGroupBox.Text = Content.PromptEmailText;
         }
 
         private void CreateNewAccountDialog_Load(object sender, EventArgs e)

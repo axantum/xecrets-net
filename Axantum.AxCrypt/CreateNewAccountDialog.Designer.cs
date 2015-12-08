@@ -38,13 +38,13 @@
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._emailGroupBox = new System.Windows.Forms.GroupBox();
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this._passphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this._emailGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider3)).BeginInit();
@@ -143,14 +143,14 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.EmailTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(2, 2);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(280, 44);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "[Email]";
+            this._emailGroupBox.Controls.Add(this.EmailTextBox);
+            this._emailGroupBox.Location = new System.Drawing.Point(2, 2);
+            this._emailGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
+            this._emailGroupBox.Name = "groupBox1";
+            this._emailGroupBox.Size = new System.Drawing.Size(280, 44);
+            this._emailGroupBox.TabIndex = 1;
+            this._emailGroupBox.TabStop = false;
+            this._emailGroupBox.Text = "[Email]";
             // 
             // _errorProvider1
             // 
@@ -169,7 +169,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 237);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this._emailGroupBox);
             this.Controls.Add(this._passphraseGroupBox);
             this.Controls.Add(this._panel1);
             this.Name = "CreateNewAccountDialog";
@@ -178,8 +178,8 @@
             this._passphraseGroupBox.ResumeLayout(false);
             this._passphraseGroupBox.PerformLayout();
             this._panel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this._emailGroupBox.ResumeLayout(false);
+            this._emailGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider3)).EndInit();
@@ -199,7 +199,7 @@
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonOk;
         internal System.Windows.Forms.TextBox EmailTextBox;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox _emailGroupBox;
         private System.Windows.Forms.ErrorProvider _errorProvider1;
         private System.Windows.Forms.ErrorProvider _errorProvider2;
         private System.Windows.Forms.ErrorProvider _errorProvider3;

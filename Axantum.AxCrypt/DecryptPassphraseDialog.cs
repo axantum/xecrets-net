@@ -28,19 +28,35 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
+using AxCrypt.Content;
 using System.IO;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class DecryptPassphraseDialog : Form
+    public partial class DecryptPassphraseDialog : StyledMessageBase
     {
-        public DecryptPassphraseDialog(string fullName)
+        public DecryptPassphraseDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
-            StartPosition = FormStartPosition.CenterParent;
+        }
+
+        public DecryptPassphraseDialog(Form parent, string fullName)
+            : this()
+        {
+            InitializeStyle(parent);
+
             _fileNameLabel.Text = Path.GetFileName(fullName);
+        }
+
+        protected override void InitializeContentResources()
+        {
+            Text = Content.DialogDecryptTitle;
+
+            _buttonOk.Text = Content.ButtonOkText;
+            _buttonCancel.Text = Content.ButtonCancelText;
+            PassphraseGroupBox.Text = Content.PassphrasePrompt;
+            ShowPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
         }
 
         private void DecryptPassphraseDialog_Load(object sender, System.EventArgs e)
@@ -56,10 +72,6 @@ namespace Axantum.AxCrypt
         private void ShowPassphraseCheckBox_CheckedChanged(object sender, System.EventArgs e)
         {
             ShowHidePassphrase();
-        }
-
-        private void _fileNameLabel_Click(object sender, System.EventArgs e)
-        {
         }
     }
 }

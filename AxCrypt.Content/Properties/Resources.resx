@@ -692,4 +692,16 @@ For more information, click OK to open a web browser to our web site.</value>
 	<data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0} - {1}</value>
   </data>
+	<data name="DialogDecryptTitle" xml:space="preserve">
+    <value>Password Required</value>
+  </data>
+	<data name="CancelButtonText" xml:space="preserve">
+		<value>Cancel &amp;All</value>
+	</data>
+	<data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
+		<value>&amp;Cancel</value>
+	</data>
+	<data name="YesButtonText" xml:space="preserve">
+		<value>&amp;Yes</value>
+	</data>
 </root>

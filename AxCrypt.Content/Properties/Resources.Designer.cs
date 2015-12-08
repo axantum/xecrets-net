@@ -460,6 +460,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password Required.
+        /// </summary>
+        public static string DialogDecryptTitle {
+            get {
+                return ResourceManager.GetString("DialogDecryptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt ID (#{1}) - {0}.axx.
         /// </summary>
         public static string DialogExportAxCryptIdFileName {
@@ -469,7 +478,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt AxCrypt ID Files (*.axx)|*.axx|All Files (*.*)|*.*&quot;.
+        ///   Looks up a localized string similar to AxCrypt ID Files (*.axx)|*.axx|All Files (*.*)|*.*&quot;.
         /// </summary>
         public static string DialogExportAxCryptIdFilter {
             get {
@@ -1108,7 +1117,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The server has been updated. Please update AxCrypt soon. Unexpected errors may occur otherwise..
+        ///   Looks up a localized string similar to The AxCrypt-server has been updated. Please update AxCrypt soon. Unexpected errors may occur otherwise..
         /// </summary>
         public static string MessageServerUpdateText {
             get {
@@ -1117,7 +1126,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Server Updated!.
+        ///   Looks up a localized string similar to AxCrypt Server Updated!.
         /// </summary>
         public static string MessageServerUpdateTitle {
             get {
@@ -1135,7 +1144,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Signing Up.
+        ///   Looks up a localized string similar to Sign Up for AxCrypt ID.
         /// </summary>
         public static string MessageSigningUpTitle {
             get {
@@ -1153,7 +1162,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Internet Acccess Required.
+        ///   Looks up a localized string similar to No Internet Acccess.
         /// </summary>
         public static string MessageSignUpInternetRequiredTitle {
             get {
@@ -1533,7 +1542,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;{0} {1}{2}&quot;.
+        ///   Looks up a localized string similar to {0} {1}{2}.
         /// </summary>
         public static string TitleMainWindow {
             get {

@@ -29,78 +29,110 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DecryptPassphraseDialog));
+            this._buttonOk = new System.Windows.Forms.Button();
+            this._buttonCancel = new System.Windows.Forms.Button();
+            this._fileNameLabel = new System.Windows.Forms.Label();
+            this._panel1 = new System.Windows.Forms.Panel();
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
             this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.Passphrase = new System.Windows.Forms.TextBox();
-            this._panel1 = new System.Windows.Forms.Panel();
-            this._buttonCancel = new System.Windows.Forms.Button();
-            this._buttonOk = new System.Windows.Forms.Button();
-            this._fileNameLabel = new System.Windows.Forms.Label();
-            this.PassphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
+            this.PassphraseGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // PassphraseGroupBox
+            // _buttonOk
             // 
-            resources.ApplyResources(this.PassphraseGroupBox, "PassphraseGroupBox");
-            this.PassphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
-            this.PassphraseGroupBox.Controls.Add(this.Passphrase);
-            this.PassphraseGroupBox.Name = "PassphraseGroupBox";
-            this.PassphraseGroupBox.TabStop = false;
+            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._buttonOk.Location = new System.Drawing.Point(22, 11);
+            this._buttonOk.Name = "_buttonOk";
+            this._buttonOk.Size = new System.Drawing.Size(75, 23);
+            this._buttonOk.TabIndex = 0;
+            this._buttonOk.Text = "[OK]";
+            this._buttonOk.UseVisualStyleBackColor = true;
             // 
-            // ShowPassphraseCheckBox
+            // _buttonCancel
             // 
-            resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
-            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
-            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
-            this.ShowPassphraseCheckBox.CheckedChanged += new System.EventHandler(this.ShowPassphraseCheckBox_CheckedChanged);
+            this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._buttonCancel.Location = new System.Drawing.Point(103, 11);
+            this._buttonCancel.Name = "_buttonCancel";
+            this._buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this._buttonCancel.TabIndex = 1;
+            this._buttonCancel.Text = "[Cancel]";
+            this._buttonCancel.UseVisualStyleBackColor = true;
             // 
-            // Passphrase
+            // _fileNameLabel
             // 
-            resources.ApplyResources(this.Passphrase, "Passphrase");
-            this.Passphrase.Name = "Passphrase";
+            this._fileNameLabel.AutoSize = true;
+            this._fileNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this._fileNameLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._fileNameLabel.Location = new System.Drawing.Point(9, 9);
+            this._fileNameLabel.Name = "_fileNameLabel";
+            this._fileNameLabel.Size = new System.Drawing.Size(85, 13);
+            this._fileNameLabel.TabIndex = 0;
+            this._fileNameLabel.Text = "[fileName.ext]";
             // 
             // _panel1
             // 
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            resources.ApplyResources(this._panel1, "_panel1");
+            this._panel1.Location = new System.Drawing.Point(40, 121);
             this._panel1.Name = "_panel1";
+            this._panel1.Size = new System.Drawing.Size(200, 46);
+            this._panel1.TabIndex = 2;
             // 
-            // _buttonCancel
+            // PassphraseGroupBox
             // 
-            this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            resources.ApplyResources(this._buttonCancel, "_buttonCancel");
-            this._buttonCancel.Name = "_buttonCancel";
-            this._buttonCancel.UseVisualStyleBackColor = true;
+            this.PassphraseGroupBox.AutoSize = true;
+            this.PassphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
+            this.PassphraseGroupBox.Controls.Add(this.Passphrase);
+            this.PassphraseGroupBox.Location = new System.Drawing.Point(12, 33);
+            this.PassphraseGroupBox.Name = "PassphraseGroupBox";
+            this.PassphraseGroupBox.Size = new System.Drawing.Size(259, 87);
+            this.PassphraseGroupBox.TabIndex = 1;
+            this.PassphraseGroupBox.TabStop = false;
+            this.PassphraseGroupBox.Text = "[Enter Password]";
             // 
-            // _buttonOk
+            // ShowPassphraseCheckBox
             // 
-            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            resources.ApplyResources(this._buttonOk, "_buttonOk");
-            this._buttonOk.Name = "_buttonOk";
-            this._buttonOk.UseVisualStyleBackColor = true;
+            this.ShowPassphraseCheckBox.AutoSize = true;
+            this.ShowPassphraseCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ShowPassphraseCheckBox.Location = new System.Drawing.Point(7, 51);
+            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
+            this.ShowPassphraseCheckBox.Size = new System.Drawing.Size(117, 17);
+            this.ShowPassphraseCheckBox.TabIndex = 1;
+            this.ShowPassphraseCheckBox.Text = "[Show Passphrase]";
+            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
+            this.ShowPassphraseCheckBox.CheckedChanged += new System.EventHandler(this.ShowPassphraseCheckBox_CheckedChanged);
             // 
-            // _fileNameLabel
+            // Passphrase
             // 
-            resources.ApplyResources(this._fileNameLabel, "_fileNameLabel");
-            this._fileNameLabel.Name = "_fileNameLabel";
-            this._fileNameLabel.Click += new System.EventHandler(this._fileNameLabel_Click);
+            this.Passphrase.Location = new System.Drawing.Point(7, 20);
+            this.Passphrase.Name = "Passphrase";
+            this.Passphrase.Size = new System.Drawing.Size(242, 20);
+            this.Passphrase.TabIndex = 0;
             // 
             // DecryptPassphraseDialog
             // 
             this.AcceptButton = this._buttonOk;
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.CancelButton = this._buttonCancel;
+            this.ClientSize = new System.Drawing.Size(281, 175);
             this.Controls.Add(this._fileNameLabel);
             this.Controls.Add(this._panel1);
             this.Controls.Add(this.PassphraseGroupBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Name = "DecryptPassphraseDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "AxCrypt";
             this.Load += new System.EventHandler(this.DecryptPassphraseDialog_Load);
+            this._panel1.ResumeLayout(false);
             this.PassphraseGroupBox.ResumeLayout(false);
             this.PassphraseGroupBox.PerformLayout();
-            this._panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

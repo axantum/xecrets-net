@@ -680,4 +680,7 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
 	<data name="TitleWindowSignInStatus" xml:space="preserve">
 		<value>{0} - {1}</value>
 	</data>
+	<data name="DialogDecryptTitle" xml:space="preserve">
+		<value>Lösenord Krävs</value>
+	</data>
 </root>

@@ -254,9 +254,6 @@
     <EmbeddedResource Include="DebugOptionsDialog.sv.resx">
       <DependentUpon>DebugOptionsDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DecryptPassphraseDialog.sv.resx">
-      <DependentUpon>DecryptPassphraseDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="NewPassphraseDialog.resx">
       <DependentUpon>NewPassphraseDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
