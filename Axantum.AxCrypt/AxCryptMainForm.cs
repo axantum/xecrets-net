@@ -1572,6 +1572,7 @@ namespace Axantum.AxCrypt
 
             InitializeContentResources();
             SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
+            SetDaysLeftWarning(_mainViewModel.License);
         }
 
         private void OptionsLanguageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
