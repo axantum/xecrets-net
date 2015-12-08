@@ -22,10 +22,10 @@ namespace Axantum.AxCrypt
         protected override void InitializeContentResources()
         {
             Text = Content.SecureDeleteDialogTitle;
-            _cancelButton.Text = Content.CancelButtonText;
-            _noButton.Text = Content.NoButtonText;
+            _cancelButton.Text = Content.ButtonCancelText;
+            _noButton.Text = Content.ButtonNoText;
             _promptLabel.Text = Content.PromptLabelText;
-            _yesButton.Text = Content.YesButtonText;
+            _yesButton.Text = Content.ButtonYesText;
             _confirmAllCheckBox.Text = Content.ConfirmAllCheckBoxText;
         }
 

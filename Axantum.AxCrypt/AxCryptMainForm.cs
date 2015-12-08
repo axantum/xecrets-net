@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt
             _optionsDebugToolStripMenuItem.Text = Content.OptionsDebugToolStripMenuItemText;
             _optionsLanguageToolStripMenuItem.Text = Content.OptionsLanguageToolStripMenuItemText;
             _optionsToolStripMenuItem.Text = Content.OptionsToolStripMenuItemText;
-            _progressContextCancelToolStripMenuItem.Text = Content.ProgressContextCancelToolStripMenuItemText;
+            _progressContextCancelToolStripMenuItem.Text = Content.ButtonCancelText;
             _recentFilesOpenToolStripMenuItem.Text = Content.RecentFilesOpenToolStripMenuItemText;
             _recentFilesTabPage.Text = Content.RecentFilesTabPageText;
             _removeRecentFileToolStripMenuItem.Text = Content.RemoveRecentFileToolStripMenuItemText;

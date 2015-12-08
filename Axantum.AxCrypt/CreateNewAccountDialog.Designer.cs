@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.PassphraseTextBox = new System.Windows.Forms.TextBox();
-            this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
+            this._passphraseGroupBox = new System.Windows.Forms.GroupBox();
             this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.VerifyPassphraseTextbox = new System.Windows.Forms.TextBox();
-            this._label1 = new System.Windows.Forms.Label();
+            this._verifyPasswordLabel = new System.Windows.Forms.Label();
             this._panel1 = new System.Windows.Forms.Panel();
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.PassphraseGroupBox.SuspendLayout();
+            this._passphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
@@ -58,19 +58,19 @@
             this.PassphraseTextBox.Size = new System.Drawing.Size(242, 20);
             this.PassphraseTextBox.TabIndex = 0;
             // 
-            // PassphraseGroupBox
+            // _passphraseGroupBox
             // 
-            this.PassphraseGroupBox.AutoSize = true;
-            this.PassphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
-            this.PassphraseGroupBox.Controls.Add(this.VerifyPassphraseTextbox);
-            this.PassphraseGroupBox.Controls.Add(this._label1);
-            this.PassphraseGroupBox.Controls.Add(this.PassphraseTextBox);
-            this.PassphraseGroupBox.Location = new System.Drawing.Point(2, 47);
-            this.PassphraseGroupBox.Name = "PassphraseGroupBox";
-            this.PassphraseGroupBox.Size = new System.Drawing.Size(280, 125);
-            this.PassphraseGroupBox.TabIndex = 2;
-            this.PassphraseGroupBox.TabStop = false;
-            this.PassphraseGroupBox.Text = "Enter Password";
+            this._passphraseGroupBox.AutoSize = true;
+            this._passphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
+            this._passphraseGroupBox.Controls.Add(this.VerifyPassphraseTextbox);
+            this._passphraseGroupBox.Controls.Add(this._verifyPasswordLabel);
+            this._passphraseGroupBox.Controls.Add(this.PassphraseTextBox);
+            this._passphraseGroupBox.Location = new System.Drawing.Point(2, 47);
+            this._passphraseGroupBox.Name = "_passphraseGroupBox";
+            this._passphraseGroupBox.Size = new System.Drawing.Size(280, 125);
+            this._passphraseGroupBox.TabIndex = 2;
+            this._passphraseGroupBox.TabStop = false;
+            this._passphraseGroupBox.Text = "[Enter Password]";
             // 
             // ShowPassphraseCheckBox
             // 
@@ -78,9 +78,9 @@
             this.ShowPassphraseCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ShowPassphraseCheckBox.Location = new System.Drawing.Point(7, 89);
             this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
-            this.ShowPassphraseCheckBox.Size = new System.Drawing.Size(111, 17);
+            this.ShowPassphraseCheckBox.Size = new System.Drawing.Size(108, 17);
             this.ShowPassphraseCheckBox.TabIndex = 3;
-            this.ShowPassphraseCheckBox.Text = "Show Password";
+            this.ShowPassphraseCheckBox.Text = "[Show Password]";
             this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
             // 
             // VerifyPassphraseTextbox
@@ -90,15 +90,15 @@
             this.VerifyPassphraseTextbox.Size = new System.Drawing.Size(243, 20);
             this.VerifyPassphraseTextbox.TabIndex = 2;
             // 
-            // _label1
+            // _verifyPasswordLabel
             // 
-            this._label1.AutoSize = true;
-            this._label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._label1.Location = new System.Drawing.Point(6, 43);
-            this._label1.Name = "_label1";
-            this._label1.Size = new System.Drawing.Size(91, 13);
-            this._label1.TabIndex = 1;
-            this._label1.Text = "Verify Password";
+            this._verifyPasswordLabel.AutoSize = true;
+            this._verifyPasswordLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._verifyPasswordLabel.Location = new System.Drawing.Point(6, 43);
+            this._verifyPasswordLabel.Name = "_verifyPasswordLabel";
+            this._verifyPasswordLabel.Size = new System.Drawing.Size(88, 13);
+            this._verifyPasswordLabel.TabIndex = 1;
+            this._verifyPasswordLabel.Text = "[Verify Password]";
             // 
             // _panel1
             // 
@@ -118,7 +118,7 @@
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
             this._buttonCancel.TabIndex = 1;
-            this._buttonCancel.Text = "Cancel";
+            this._buttonCancel.Text = "[Cancel]";
             this._buttonCancel.UseVisualStyleBackColor = true;
             // 
             // _buttonOk
@@ -130,7 +130,7 @@
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(75, 23);
             this._buttonOk.TabIndex = 0;
-            this._buttonOk.Text = "OK";
+            this._buttonOk.Text = "[OK]";
             this._buttonOk.UseVisualStyleBackColor = true;
             this._buttonOk.Click += new System.EventHandler(this._buttonOk_Click);
             // 
@@ -150,7 +150,7 @@
             this.groupBox1.Size = new System.Drawing.Size(280, 44);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Email";
+            this.groupBox1.Text = "[Email]";
             // 
             // _errorProvider1
             // 
@@ -170,13 +170,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 237);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.PassphraseGroupBox);
+            this.Controls.Add(this._passphraseGroupBox);
             this.Controls.Add(this._panel1);
             this.Name = "CreateNewAccountDialog";
-            this.Text = "Create Account";
+            this.Text = "[Create Account]";
             this.Load += new System.EventHandler(this.CreateNewAccountDialog_Load);
-            this.PassphraseGroupBox.ResumeLayout(false);
-            this.PassphraseGroupBox.PerformLayout();
+            this._passphraseGroupBox.ResumeLayout(false);
+            this._passphraseGroupBox.PerformLayout();
             this._panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -191,10 +191,10 @@
         #endregion
 
         internal System.Windows.Forms.TextBox PassphraseTextBox;
-        internal System.Windows.Forms.GroupBox PassphraseGroupBox;
+        private System.Windows.Forms.GroupBox _passphraseGroupBox;
         internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
         private System.Windows.Forms.TextBox VerifyPassphraseTextbox;
-        private System.Windows.Forms.Label _label1;
+        private System.Windows.Forms.Label _verifyPasswordLabel;
         private System.Windows.Forms.Panel _panel1;
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonOk;

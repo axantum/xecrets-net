@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,334 +59,334 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="AbortedFileStatus" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="AbortedFileStatus" xml:space="preserve">
     <value>Status 'Aborted' ({0}).</value>
   </data>
-  <data name="About" xml:space="preserve">
+	<data name="About" xml:space="preserve">
     <value>About {0}</value>
   </data>
-  <data name="AccountLoggedOnStatusText" xml:space="preserve">
+	<data name="AccountLoggedOnStatusText" xml:space="preserve">
     <value>{0}</value>
     <comment>Title bar status text when logged on to an account.</comment>
   </data>
-  <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
+	<data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
     <value>Double-click decrypts and opens the document</value>
   </data>
-  <data name="ActiveFileToolTip" xml:space="preserve">
+	<data name="ActiveFileToolTip" xml:space="preserve">
     <value>Double-click opens a Password-dialog before decrypting and opening the document.</value>
   </data>
-  <data name="AxCryptAboutDescription" xml:space="preserve">
+	<data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Open Source Document Encryption by Axantum Software AB
 
 Includes software from http://www.bouncycastle.org/ .</value>
   </data>
-  <data name="AxCryptFileEncryption" xml:space="preserve">
+	<data name="AxCryptFileEncryption" xml:space="preserve">
     <value>AxCrypt Document Encryption</value>
   </data>
-  <data name="BadEmail" xml:space="preserve">
+	<data name="BadEmail" xml:space="preserve">
     <value>Incorrect email address</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
-  <data name="Canceled" xml:space="preserve">
+	<data name="Canceled" xml:space="preserve">
     <value>Canceled '{0}'.</value>
   </data>
-  <data name="CannotStartApplication" xml:space="preserve">
+	<data name="CannotStartApplication" xml:space="preserve">
     <value>Cannot start application for '{0}'.</value>
   </data>
-  <data name="CannotWrite" xml:space="preserve">
+	<data name="CannotWrite" xml:space="preserve">
     <value>Cannot write '{0}'.</value>
   </data>
-  <data name="ChangePassphraseDialogTitle" xml:space="preserve">
+	<data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Change Password</value>
   </data>
-  <data name="CleanUpNeededToolTip" xml:space="preserve">
+	<data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>File is decrypted, and may need to be cleaned. Close any open applications, and click the Clean Up button.</value>
   </data>
-  <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
+	<data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Click to check for a newer version.</value>
   </data>
-  <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
+	<data name="DaysLeftPluralWarningPattern" xml:space="preserve">
     <value>{0} Days</value>
   </data>
-  <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
+	<data name="DaysLeftSingularWarningPattern" xml:space="preserve">
     <value>&lt; 1 Day</value>
   </data>
-  <data name="DaysLeftWarningToolTip" xml:space="preserve">
+	<data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Your Premium subscription is about to expire. Click to renew.</value>
   </data>
-  <data name="DecryptedFileToolTip" xml:space="preserve">
+	<data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Assumed open. Try to Close the application, or use the Clean function to remove it</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
+	<data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
     <value>Documents (*{0})|*{0}|All files (*.*)|*.*</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
+	<data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>Document exists, choose a new name to save as</value>
   </data>
-  <data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
+	<data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
     <value>The password has not been entered yet. Double-click to enter password and Open, or right-click for options</value>
   </data>
-  <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
+	<data name="DecryptFileOpenDialogTitle" xml:space="preserve">
     <value>Select document to decrypt</value>
   </data>
-  <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
+	<data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>You are Signed In. Click to Sign Out.</value>
   </data>
-  <data name="DoubleClickToOpenToolTip" xml:space="preserve">
+	<data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Double click to open. If required you will be prompted for a password.</value>
   </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
+	<data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
     <value>AxCrypt Documents (*{0})|*{0}|All files (*.*)|*.*</value>
   </data>
-  <data name="EncryptedSourceColumnHeader" xml:space="preserve">
+	<data name="EncryptedSourceColumnHeader" xml:space="preserve">
     <value>Encrypted Document</value>
   </data>
-  <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
+	<data name="EncryptFileOpenDialogTitle" xml:space="preserve">
     <value>Select documents to encrypt</value>
   </data>
-  <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
+	<data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
     <value>Document Exists, Save As</value>
   </data>
-  <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
+	<data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Identity '{0}' password</value>
   </data>
-  <data name="Exception" xml:space="preserve">
+	<data name="Exception" xml:space="preserve">
     <value>Exception during processing of '{0}'.</value>
     <comment>@Invariant</comment>
   </data>
-  <data name="FailedPrivateImport" xml:space="preserve">
+	<data name="FailedPrivateImport" xml:space="preserve">
     <value>Import failed. Probably not a valid AxCrypt ID file.</value>
   </data>
-  <data name="FileAlreadyEncrypted" xml:space="preserve">
+	<data name="FileAlreadyEncrypted" xml:space="preserve">
     <value>The document '{0}' is already encrypted.</value>
   </data>
-  <data name="FileAlreadyEncryptedStatus" xml:space="preserve">
+	<data name="FileAlreadyEncryptedStatus" xml:space="preserve">
     <value>File '{0}' is already encrypted.</value>
   </data>
-  <data name="FileAlreadyExists" xml:space="preserve">
+	<data name="FileAlreadyExists" xml:space="preserve">
     <value>Document '{0}' already exists.</value>
   </data>
-  <data name="FileDoesNotExist" xml:space="preserve">
+	<data name="FileDoesNotExist" xml:space="preserve">
     <value>Document '{0}' does not exist.</value>
   </data>
-  <data name="FileIsLockedWarning" xml:space="preserve">
+	<data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' is open in another application. Please close it and try again.</value>
   </data>
-  <data name="FileNotFound" xml:space="preserve">
+	<data name="FileNotFound" xml:space="preserve">
     <value>File does not exist.</value>
   </data>
-  <data name="FileOperationFailed" xml:space="preserve">
+	<data name="FileOperationFailed" xml:space="preserve">
     <value>Failed '{0}'.</value>
   </data>
-  <data name="FolderAlreadyWatched" xml:space="preserve">
+	<data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Folder '{0}' already watched.</value>
   </data>
-  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
+	<data name="ImportPrivateKeysFileFilter" xml:space="preserve">
     <value>AxCrypt ID Files (*.axx)|*.axx|All Files (*.*)|*.*</value>
   </data>
-  <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
+	<data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
     <value>Select AxCrypt ID</value>
   </data>
-  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
+	<data name="ImportPublicKeysFileFilter" xml:space="preserve">
     <value>Text Files (*.txt)|*.txt|All Files (*.*)|*.*</value>
   </data>
-  <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
+	<data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Select Sharing Key Files</value>
   </data>
-  <data name="InconsistentState" xml:space="preserve">
+	<data name="InconsistentState" xml:space="preserve">
     <value>Inconsistent state with '{0}'.</value>
   </data>
-  <data name="InvalidEmail" xml:space="preserve">
+	<data name="InvalidEmail" xml:space="preserve">
     <value>Incorrect format for an email address.</value>
   </data>
-  <data name="InvalidKey" xml:space="preserve">
+	<data name="InvalidKey" xml:space="preserve">
     <value>Invalid key for '{0}'.</value>
   </data>
-  <data name="InvalidPath" xml:space="preserve">
+	<data name="InvalidPath" xml:space="preserve">
     <value>The file or path '{0}' is invalid for this.</value>
   </data>
-  <data name="Invalid_TimeSpan" xml:space="preserve">
+	<data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Please specify time as 'hh:mm:ss.mmm'.</value>
   </data>
-  <data name="Invalid_URL" xml:space="preserve">
+	<data name="Invalid_URL" xml:space="preserve">
     <value>Invalid URL.</value>
   </data>
-  <data name="KeySharingExistsToolTip" xml:space="preserve">
+	<data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>The file key is shared with other AxCrypt users.</value>
   </data>
-  <data name="KeySharingOffline" xml:space="preserve">
+	<data name="KeySharingOffline" xml:space="preserve">
     <value>New contacts can only be added when online!</value>
   </data>
-  <data name="KeySharingToolTip" xml:space="preserve">
+	<data name="KeySharingToolTip" xml:space="preserve">
     <value>Click to select encrypted files to share keys with others.</value>
   </data>
-  <data name="LanguageChangeRestartPrompt" xml:space="preserve">
+	<data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt must be restarted in order for the language change to take effect.</value>
   </data>
-  <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
+	<data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/Purchase?email={0}</value>
   </data>
-  <data name="LinkToGettingStarted" xml:space="preserve">
+	<data name="LinkToGettingStarted" xml:space="preserve">
     <value>http://www.axcrypt.net/documentation/get-started/</value>
   </data>
-  <data name="LoggedOffStatusText" xml:space="preserve">
+	<data name="LoggedOffStatusText" xml:space="preserve">
     <value>Signed Out</value>
   </data>
-  <data name="LoggedOnStatusText" xml:space="preserve">
+	<data name="LoggedOnStatusText" xml:space="preserve">
     <value>Password</value>
     <comment>Shown in the title bar to display the log on status.</comment>
   </data>
-  <data name="LogOffText" xml:space="preserve">
+	<data name="LogOffText" xml:space="preserve">
     <value>Sign Out</value>
   </data>
-  <data name="LogOnExists" xml:space="preserve">
+	<data name="LogOnExists" xml:space="preserve">
     <value>This AxCrypt Identity already exists</value>
   </data>
-  <data name="LogOnText" xml:space="preserve">
+	<data name="LogOnText" xml:space="preserve">
     <value>Sign In</value>
   </data>
-  <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
+	<data name="LowEncryptionWorkingToolTip" xml:space="preserve">
     <value>Upgrade to Premium to enable the strongest protection.</value>
   </data>
-  <data name="MyAxCryptFolderName" xml:space="preserve">
+	<data name="MyAxCryptFolderName" xml:space="preserve">
     <value>My AxCrypt</value>
     <comment>The folder name used for default watching</comment>
   </data>
-  <data name="NewPassphraseDialogTitle" xml:space="preserve">
+	<data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Create a New Password</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
+	<data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} is available! Click to download.</value>
   </data>
-  <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
+	<data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>You are Signed Out. Click to Sign In.</value>
   </data>
-  <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
+	<data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>No need to check for updates.</value>
   </data>
-  <data name="OfflineAccountBePatient" xml:space="preserve">
+	<data name="OfflineAccountBePatient" xml:space="preserve">
     <value>This may take a few minutes. Please be patient.</value>
   </data>
-  <data name="OfflineAccountTitle" xml:space="preserve">
+	<data name="OfflineAccountTitle" xml:space="preserve">
     <value>Offline AxCrypt ID Creation.</value>
   </data>
-  <data name="OldVersionTooltip" xml:space="preserve">
+	<data name="OldVersionTooltip" xml:space="preserve">
     <value>Your version is old. Please click to check for a newer version.</value>
   </data>
-  <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
+	<data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
     <value>Select encrypted document to open</value>
   </data>
-  <data name="OpenFileColumnHeader" xml:space="preserve">
+	<data name="OpenFileColumnHeader" xml:space="preserve">
     <value>File</value>
   </data>
-  <data name="PassphrasePrompt" xml:space="preserve">
+	<data name="PassphrasePrompt" xml:space="preserve">
     <value>Enter Password</value>
   </data>
-  <data name="PassphraseVerificationMismatch" xml:space="preserve">
+	<data name="PassphraseVerificationMismatch" xml:space="preserve">
     <value>Passwords do not match</value>
   </data>
-  <data name="PasswordPolicyViolation" xml:space="preserve">
+	<data name="PasswordPolicyViolation" xml:space="preserve">
     <value>The password must be at least 10 characters.</value>
   </data>
-  <data name="PremiumFeatureToolTipText" xml:space="preserve">
+	<data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>This feature requires a purchase of Premium!</value>
   </data>
-  <data name="PremiumNeededForKeyShare" xml:space="preserve">
+	<data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Key sharing requires premimum. Click to upgrade now!</value>
   </data>
-  <data name="PurgingActiveFiles" xml:space="preserve">
+	<data name="PurgingActiveFiles" xml:space="preserve">
     <value>Purging Active Files</value>
   </data>
-  <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
+	<data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>New AxCrypt User</value>
   </data>
-  <data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
+	<data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
     <value>You are about to share securely with someone who has received but not yet responded to an invitation to use AxCrypt.
 
 Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
-  <data name="TrayBalloonTooltip" xml:space="preserve">
+	<data name="TrayBalloonTooltip" xml:space="preserve">
     <value>Click to restore the AxCrypt application window.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
-  <data name="UnknownCrypto" xml:space="preserve">
+	<data name="UnknownCrypto" xml:space="preserve">
     <value>Unknown</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
   </data>
-  <data name="UnknownFileStatus" xml:space="preserve">
+	<data name="UnknownFileStatus" xml:space="preserve">
     <value>Status 'Unknown' with '{0}'.</value>
   </data>
-  <data name="UnkownLogOn" xml:space="preserve">
+	<data name="UnkownLogOn" xml:space="preserve">
     <value>Password is not previously known. Click 'New' to create a new.</value>
   </data>
-  <data name="UnrecognizedError" xml:space="preserve">
+	<data name="UnrecognizedError" xml:space="preserve">
     <value>{1} for '{0}'.</value>
   </data>
-  <data name="UpdatingStatus" xml:space="preserve">
+	<data name="UpdatingStatus" xml:space="preserve">
     <value>Updating Status</value>
   </data>
-  <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
+	<data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>You have updated AxCrypt. Unfortunately, your configuration must be reset. After restarting, your preferences and settings will unfortunately be lost. We apologize for the inconvenience. Your encrypted files are still safe and ok.</value>
   </data>
-  <data name="WelcomeToAxCrypt" xml:space="preserve">
+	<data name="WelcomeToAxCrypt" xml:space="preserve">
     <value>Welcome to AxCrypt!
 
 Using AxCrypt is really easy. Start with the main window, or use double-click and right-click in Windows Explorer for fully integrated use.
@@ -395,205 +395,220 @@ To encrypt your first files, click the + icon in the toolbar and select them.
 
 For more information, click OK to open a web browser to our web site.</value>
   </data>
-  <data name="WelcomeToAxCryptTitle" xml:space="preserve">
+	<data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Getting started with AxCrypt</value>
   </data>
-  <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
+	<data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Select documents to securely delete</value>
   </data>
-  <data name="WorkingFileStatus" xml:space="preserve">
+	<data name="WorkingFileStatus" xml:space="preserve">
     <value>Status 'Working' with '{0}'.</value>
   </data>
-  <data name="WrongPassphrase" xml:space="preserve">
+	<data name="WrongPassphrase" xml:space="preserve">
     <value>Wrong Password. Please try again.</value>
   </data>
-  <data name="WrongVerificationCode" xml:space="preserve">
+	<data name="WrongVerificationCode" xml:space="preserve">
     <value>Wrong activation code. Please re-check you email.</value>
   </data>
-  <data name="WrongVerificationCodeFormat" xml:space="preserve">
+	<data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>The verfication code must be exactly 6 digits.</value>
   </data>
-  <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
+	<data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Clean Decrypted</value>
   </data>
-  <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
+	<data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Click to clean and remove any open decrypted files, but ensure they are not in use first.</value>
   </data>
-  <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
+	<data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
     <value>Create AxCrypt ID</value>
   </data>
-  <data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
+	<data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Create an AxCrypt ID with a sharing and access keys, to use and share files securely.</value>
   </data>
-  <data name="CryptoNameText" xml:space="preserve">
+	<data name="CryptoNameText" xml:space="preserve">
     <value>Algorithm</value>
   </data>
-  <data name="DebugCheckVersionNowToolStripMenuItemText" xml:space="preserve">
+	<data name="DebugCheckVersionNowToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Check Version Now</value>
   </data>
-  <data name="DebugCryptoPolicyToolStripMenuItemText" xml:space="preserve">
+	<data name="DebugCryptoPolicyToolStripMenuItemText" xml:space="preserve">
     <value>License &amp;Policy</value>
   </data>
-  <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
+	<data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Logging</value>
   </data>
-  <data name="DebugManageAccountToolStripMenuItemText" xml:space="preserve">
+	<data name="DebugManageAccountToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Manage AxCrypt ID</value>
   </data>
-  <data name="DebugOptionsToolStripMenuItemText" xml:space="preserve">
+	<data name="DebugOptionsToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Options</value>
   </data>
-  <data name="DebugToolStripMenuItemText" xml:space="preserve">
+	<data name="DebugToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Debug</value>
   </data>
-  <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
+	<data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Decrypt and remove from list</value>
   </data>
-  <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
+	<data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Document</value>
   </data>
-  <data name="DecryptToolStripMenuItemText" xml:space="preserve">
+	<data name="DecryptToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Decrypt</value>
   </data>
-  <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
+	<data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Secured &amp;Folders</value>
   </data>
-  <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
+	<data name="EncryptedPathColumnHeaderText" xml:space="preserve">
     <value>Encrypted</value>
   </data>
-  <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
+	<data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
     <value>Click to select documents to encrypt</value>
   </data>
-  <data name="EncryptToolStripMenuItemText" xml:space="preserve">
+	<data name="EncryptToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Encrypt</value>
   </data>
-  <data name="EnglishLanguageToolStripMenuItemText" xml:space="preserve">
+	<data name="EnglishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;English</value>
   </data>
-  <data name="ExitToolStripMenuItemText" xml:space="preserve">
+	<data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
-  <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
+	<data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Export Account &amp;Secret and Sharing Key Pair</value>
   </data>
-  <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+	<data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>To move an account, export the Secret and Sharing Key Pair and then import it elsewhere.</value>
   </data>
-  <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
+	<data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
     <value>E&amp;xport My Public Sharing Key</value>
   </data>
-  <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
+	<data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Send the exported Public Sharing Key to others you want to be able to share encrypted files with you.</value>
   </data>
-  <data name="FeedbackButtonText" xml:space="preserve">
+	<data name="FeedbackButtonText" xml:space="preserve">
     <value>Talk to us! Feedback or bug reports welcome.</value>
   </data>
-  <data name="FileToolStripMenuItemText" xml:space="preserve">
+	<data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;File</value>
   </data>
-  <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
+	<data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>&amp;About</value>
   </data>
-  <data name="HelpToolStripMenuItemText" xml:space="preserve">
+	<data name="HelpToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Help</value>
   </data>
-  <data name="HelpViewHelpMenuItemText" xml:space="preserve">
+	<data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>&amp;View Help</value>
   </data>
-  <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
+	<data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Import &amp;AxCrypt ID with sharing and access keys.</value>
   </data>
-  <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+	<data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>To move an account, export the Secret and Sharing Key Pair and then import it here.</value>
   </data>
-  <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
+	<data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Import Someone's Public Sharing Key</value>
   </data>
-  <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
+	<data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Ask your contact to export and send his/her Public Sharing Key to you and import it here. Then you can share encrypted files.</value>
   </data>
-  <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
+	<data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Key Management</value>
   </data>
-  <data name="KeyShareToolStripButtonToolTipText" xml:space="preserve">
+	<data name="KeyShareToolStripButtonToolTipText" xml:space="preserve">
     <value>Click to select documents to decrypt</value>
   </data>
-  <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
+	<data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Time</value>
   </data>
-  <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
+	<data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Open Encrypted</value>
   </data>
-  <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
+	<data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
     <value>Change &amp;Password</value>
   </data>
-  <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
+	<data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Clear All Settings and Exit</value>
   </data>
-  <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
+	<data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Debug</value>
   </data>
-  <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
+	<data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Language</value>
   </data>
-  <data name="OptionsToolStripMenuItemText" xml:space="preserve">
+	<data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>O&amp;ptions</value>
   </data>
-  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
+	<data name="ButtonCancelText" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
+	<data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Open</value>
   </data>
-  <data name="RecentFilesTabPageText" xml:space="preserve">
+	<data name="RecentFilesTabPageText" xml:space="preserve">
     <value>Recent Files</value>
   </data>
-  <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
+	<data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Remove from list without decrypting document</value>
   </data>
-  <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
+	<data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Secure Delete</value>
   </data>
-  <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
+	<data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Share Keys</value>
   </data>
-  <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
+	<data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Svenska</value>
   </data>
-  <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
+	<data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Try Broken File</value>
   </data>
-  <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
+	<data name="WatchedFolderColumnHeaderText" xml:space="preserve">
     <value>Folder</value>
   </data>
-  <data name="WatchedFoldersdecryptTemporarilyMenuItemText" xml:space="preserve">
+	<data name="WatchedFoldersdecryptTemporarilyMenuItemText" xml:space="preserve">
     <value>Decrypt &amp;Temporarily</value>
   </data>
-  <data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
+	<data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
     <value>Open &amp;Explorer Here</value>
   </data>
-  <data name="WatchedFoldersRemoveMenuItemText" xml:space="preserve">
+	<data name="WatchedFoldersRemoveMenuItemText" xml:space="preserve">
     <value>&amp;Decrypt Permanently</value>
   </data>
-  <data name="WatchedFoldersTabPageText" xml:space="preserve">
+	<data name="WatchedFoldersTabPageText" xml:space="preserve">
     <value>Encrypted Folders</value>
   </data>
-  <data name="CancelButtonText" xml:space="preserve">
+	<data name="ButtonCancelAllText" xml:space="preserve">
     <value>&amp;Cancel All</value>
   </data>
-  <data name="ConfirmAllCheckBoxText" xml:space="preserve">
+	<data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Do this for &amp;all remaining documents?</value>
   </data>
-  <data name="NoButtonText" xml:space="preserve">
+	<data name="ButtonNoText" xml:space="preserve">
     <value>&amp;No</value>
   </data>
-  <data name="PromptLabelText" xml:space="preserve">
+	<data name="PromptLabelText" xml:space="preserve">
     <value>Are you sure want to permanently delete this document? This action cannot be undone.</value>
   </data>
-  <data name="SecureDeleteDialogTitle" xml:space="preserve">
+	<data name="SecureDeleteDialogTitle" xml:space="preserve">
     <value>AxCrypt Secure Delete</value>
   </data>
-  <data name="YesButtonText" xml:space="preserve">
+	<data name="ButtonYesText" xml:space="preserve">
     <value>&amp;Yes</value>
+  </data>
+	<data name="ButtonOkText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+	<data name="ShowPasswordOptionPrompt" xml:space="preserve">
+    <value>Show Password</value>
+  </data>
+	<data name="VerifyPasswordPrompt" xml:space="preserve">
+    <value>Verify Password</value>
+  </data>
+	<data name="PromptEmailText" xml:space="preserve">
+    <value>Email</value>
+  </data>
+	<data name="TitleCreateAxCryptIdTitle" xml:space="preserve">
+    <value>Create AxCrypt ID</value>
   </data>
 </root>

@@ -138,9 +138,45 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &amp;Cancel All.
         /// </summary>
-        public static string CancelButtonText {
+        public static string ButtonCancelAllText {
             get {
-                return ResourceManager.GetString("CancelButtonText", resourceCulture);
+                return ResourceManager.GetString("ButtonCancelAllText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string ButtonCancelText {
+            get {
+                return ResourceManager.GetString("ButtonCancelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;No.
+        /// </summary>
+        public static string ButtonNoText {
+            get {
+                return ResourceManager.GetString("ButtonNoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string ButtonOkText {
+            get {
+                return ResourceManager.GetString("ButtonOkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Yes.
+        /// </summary>
+        public static string ButtonYesText {
+            get {
+                return ResourceManager.GetString("ButtonYesText", resourceCulture);
             }
         }
         
@@ -982,15 +1018,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;No.
-        /// </summary>
-        public static string NoButtonText {
-            get {
-                return ResourceManager.GetString("NoButtonText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You are Signed Out. Click to Sign In..
         /// </summary>
         public static string NoDefaultEncryptionKeySetToolTip {
@@ -1153,11 +1180,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
-        public static string ProgressContextCancelToolStripMenuItemText {
+        public static string PromptEmailText {
             get {
-                return ResourceManager.GetString("ProgressContextCancelToolStripMenuItemText", resourceCulture);
+                return ResourceManager.GetString("PromptEmailText", resourceCulture);
             }
         }
         
@@ -1254,11 +1281,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Password.
+        /// </summary>
+        public static string ShowPasswordOptionPrompt {
+            get {
+                return ResourceManager.GetString("ShowPasswordOptionPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Svenska.
         /// </summary>
         public static string SwedishLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("SwedishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create AxCrypt ID.
+        /// </summary>
+        public static string TitleCreateAxCryptIdTitle {
+            get {
+                return ResourceManager.GetString("TitleCreateAxCryptIdTitle", resourceCulture);
             }
         }
         
@@ -1331,6 +1376,15 @@ namespace AxCrypt.Content.Properties {
         public static string UserSettingsFormatChangeNeedsReset {
             get {
                 return ResourceManager.GetString("UserSettingsFormatChangeNeedsReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verify Password.
+        /// </summary>
+        public static string VerifyPasswordPrompt {
+            get {
+                return ResourceManager.GetString("VerifyPasswordPrompt", resourceCulture);
             }
         }
         
@@ -1445,15 +1499,6 @@ namespace AxCrypt.Content.Properties {
         public static string WrongVerificationCodeFormat {
             get {
                 return ResourceManager.GetString("WrongVerificationCodeFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &amp;Yes.
-        /// </summary>
-        public static string YesButtonText {
-            get {
-                return ResourceManager.GetString("YesButtonText", resourceCulture);
             }
         }
     }

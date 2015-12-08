@@ -35,6 +35,17 @@ namespace Axantum.AxCrypt
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
         }
 
+        protected override void InitializeContentResources()
+        {
+            this._passphraseGroupBox.Text = Content.PassphrasePrompt;
+            this.ShowPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
+            this._verifyPasswordLabel.Text = Content.VerifyPasswordPrompt;
+            this._buttonCancel.Text = Content.ButtonCancelText;
+            this._buttonOk.Text = Content.ButtonOkText;
+            this.groupBox1.Text = Content.PromptEmailText;
+            this.Text = Content.TitleCreateAxCryptIdTitle;
+        }
+
         private void CreateNewAccountDialog_Load(object sender, EventArgs e)
         {
             if (DesignMode)
