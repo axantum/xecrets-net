@@ -1,6 +1,7 @@
 ﻿using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,12 +13,22 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class DebugLogOutputDialog : Form
+    public partial class DebugLogOutputDialog : StyledMessageBase
     {
         public DebugLogOutputDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
+        }
+
+        public DebugLogOutputDialog(Form parent)
+            : this()
+        {
+            InitializeStyle(parent);
+        }
+
+        protected override void InitializeContentResources()
+        {
+            Text = Content.DialogDebugLogTitle;
         }
 
         private void DebugLogOutputDialog_Load(object sender, EventArgs e)

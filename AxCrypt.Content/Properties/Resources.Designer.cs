@@ -190,6 +190,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel &amp;All.
+        /// </summary>
+        public static string CancelButtonText {
+            get {
+                return ResourceManager.GetString("CancelButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Canceled &apos;{0}&apos;..
         /// </summary>
         public static string Canceled {
@@ -456,6 +465,15 @@ namespace AxCrypt.Content.Properties {
         public static string DefaultEncryptionKeyIsIsetToolTip {
             get {
                 return ResourceManager.GetString("DefaultEncryptionKeyIsIsetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug Log Output.
+        /// </summary>
+        public static string DialogDebugLogTitle {
+            get {
+                return ResourceManager.GetString("DialogDebugLogTitle", resourceCulture);
             }
         }
         
@@ -1405,6 +1423,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Cancel.
+        /// </summary>
+        public static string ProgressContextCancelToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("ProgressContextCancelToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string PromptEmailText {
@@ -1751,6 +1778,15 @@ namespace AxCrypt.Content.Properties {
         public static string WrongVerificationCodeFormat {
             get {
                 return ResourceManager.GetString("WrongVerificationCodeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Yes.
+        /// </summary>
+        public static string YesButtonText {
+            get {
+                return ResourceManager.GetString("YesButtonText", resourceCulture);
             }
         }
     }
