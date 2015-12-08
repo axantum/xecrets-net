@@ -1606,7 +1606,7 @@ namespace Axantum.AxCrypt
 
         private void SetOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (DebugOptionsDialog dialog = new DebugOptionsDialog())
+            using (DebugOptionsDialog dialog = new DebugOptionsDialog(this))
             {
                 dialog._restApiBaseUrl.Text = Resolve.UserSettings.RestApiBaseUrl.ToString();
                 dialog._timeoutTimeSpan.Text = Resolve.UserSettings.ApiTimeout.ToString();

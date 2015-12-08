@@ -707,4 +707,13 @@ For more information, click OK to open a web browser to our web site.</value>
   <data name="DialogDebugLogTitle" xml:space="preserve">
     <value>Debug Log Output</value>
   </data>
+  <data name="DialogDebugOptionsRestApiTimeoutPrompt" xml:space="preserve">
+    <value>API Timeout</value>
+  </data>
+  <data name="DialogDebugOptionsRestApiUrlPrompt" xml:space="preserve">
+    <value>REST API Base Url</value>
+  </data>
+  <data name="DialogDebugOptionsTitle" xml:space="preserve">
+    <value>Debugging Options</value>
+  </data>
 </root>

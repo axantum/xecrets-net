@@ -9,12 +9,27 @@ using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
-    public partial class DebugOptionsDialog : Form
+    public partial class DebugOptionsDialog : StyledMessageBase
     {
         public DebugOptionsDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
+        }
+
+        public DebugOptionsDialog(Form parent)
+            : this()
+        {
+            InitializeStyle(parent);
+        }
+
+        protected override void InitializeContentResources()
+        {
+            Text = Content.DialogDebugLogTitle;
+
+            _okButton.Text = Content.ButtonOkText;
+            _cancelButton.Text = Content.ButtonCancelText;
+            _restApiBaseUrlLabel.Text = Content.DialogDebugOptionsRestApiUrlPrompt;
+            _restApiTimeoutLabel.Text = Content.DialogDebugOptionsRestApiTimeoutPrompt;
         }
 
         private void RestApiBaseUrl_Validating(object sender, CancelEventArgs e)

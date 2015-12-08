@@ -478,6 +478,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to API Timeout.
+        /// </summary>
+        public static string DialogDebugOptionsRestApiTimeoutPrompt {
+            get {
+                return ResourceManager.GetString("DialogDebugOptionsRestApiTimeoutPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REST API Base Url.
+        /// </summary>
+        public static string DialogDebugOptionsRestApiUrlPrompt {
+            get {
+                return ResourceManager.GetString("DialogDebugOptionsRestApiUrlPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debugging Options.
+        /// </summary>
+        public static string DialogDebugOptionsTitle {
+            get {
+                return ResourceManager.GetString("DialogDebugOptionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password Required.
         /// </summary>
         public static string DialogDecryptTitle {
