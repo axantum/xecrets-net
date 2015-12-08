@@ -185,6 +185,8 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Text = Content.WatchedFoldersOpenExplorerHereMenuItemText;
             _watchedFoldersRemoveMenuItem.Text = Content.WatchedFoldersRemoveMenuItemText;
             _watchedFoldersTabPage.Text = Content.WatchedFoldersTabPageText;
+            _signInToolStripMenuItem.Text = Content.LogOnText;
+            _signOutToolStripMenuItem.Text = Content.LogOffText;
         }
 
         private static void StartKeyPairService()
@@ -534,6 +536,8 @@ namespace Axantum.AxCrypt
             _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _cleanDecryptedToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
+            _signInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
+            _signOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
         }
 
         private void ConfigureMenusAccordingToPolicy(LicensePolicy license)
@@ -640,14 +644,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.Title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
             _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetWindowTextWithLogonStatus(loggedOn); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _debugManageAccountToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _optionsChangePassphraseToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _exportSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _exportMyPrivateKeyToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _importOthersSharingKeyToolStripMenuItem.Enabled = loggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _importMyPrivateKeyToolStripMenuItem.Enabled = !loggedOn; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { _createAccountToolStripMenuItem.Enabled = !loggedOn; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetSignInSignOutStatus(loggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { ConfigureMenusAccordingToPolicy(license); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await _recentFilesListView.UpdateRecentFilesAsync(_mainViewModel.RecentFiles, _mainViewModel.License); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { SetDaysLeftWarning(license); });
@@ -719,6 +716,23 @@ namespace Axantum.AxCrypt
             _fileOperationViewModel.SelectingFiles += (sender, e) => { HandleFileSelection(e); };
 
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
+        }
+
+        private void SetSignInSignOutStatus(bool isSignedIn)
+        {
+            bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null;
+
+            SetWindowTextWithLogonStatus(isSignedIn);
+            _debugManageAccountToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _optionsChangePassphraseToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _exportSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+
+            _importMyPrivateKeyToolStripMenuItem.Enabled = !isSignedIn;
+            _createAccountToolStripMenuItem.Enabled = !isSignedIn;
+            _signInToolStripMenuItem.Visible = !isSignedIn;
+            _signOutToolStripMenuItem.Visible = isSignedIn;
         }
 
         private void SetDaysLeftWarning(LicensePolicy license)

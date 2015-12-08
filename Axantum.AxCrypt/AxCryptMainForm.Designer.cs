@@ -94,6 +94,9 @@
             this._updateStatusButton = new System.Windows.Forms.ToolStripButton();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this._signInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -334,7 +337,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -353,6 +356,9 @@
             this.toolStripSeparator1,
             this._keyManagementToolStripMenuItem,
             this.toolStripSeparator2,
+            this._signInToolStripMenuItem,
+            this._signOutToolStripMenuItem,
+            this.toolStripSeparator5,
             this._exitToolStripMenuItem});
             this._fileToolStripMenuItem.Name = "_fileToolStripMenuItem";
             this._fileToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
@@ -808,6 +814,23 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
+            // _signInToolStripMenuItem
+            // 
+            this._signInToolStripMenuItem.Name = "_signInToolStripMenuItem";
+            this._signInToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._signInToolStripMenuItem.Text = "[Sign &In]";
+            // 
+            // _signOutToolStripMenuItem
+            // 
+            this._signOutToolStripMenuItem.Name = "_signOutToolStripMenuItem";
+            this._signOutToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._signOutToolStripMenuItem.Text = "[Sign &Out]";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(173, 6);
+            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -925,6 +948,9 @@
         private System.Windows.Forms.ToolStripMenuItem _tryBrokenFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton _feedbackButton;
         private System.Windows.Forms.ToolTip _daysLeftToolTip;
+        private System.Windows.Forms.ToolStripMenuItem _signInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _signOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }
 

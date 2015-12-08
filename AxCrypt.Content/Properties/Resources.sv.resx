@@ -403,10 +403,10 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Klicka för att välja säkrade filer att dela nycklar för med andra.</value>
   </data>
 	<data name="LogOffText" xml:space="preserve">
-    <value>Logga in</value>
+    <value>Logga ut</value>
   </data>
 	<data name="LogOnText" xml:space="preserve">
-    <value>Logga ut</value>
+    <value>Logga in</value>
   </data>
 	<data name="LowEncryptionWorkingToolTip" xml:space="preserve">
     <value>Uppgradera till Premium för det starkaste skyddet.</value>

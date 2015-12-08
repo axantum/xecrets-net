@@ -298,7 +298,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Sign Out</value>
   </data>
 	<data name="LogOnExists" xml:space="preserve">
-    <value>This AxCrypt Identity already exists</value>
+    <value>This AxCrypt Identity already exists.</value>
   </data>
 	<data name="LogOnText" xml:space="preserve">
     <value>Sign In</value>
