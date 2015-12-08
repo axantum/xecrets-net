@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Forms.Style
             if (control is Form)
             {
                 Form form = (Form)control;
-                form.Font = fontLoader.ContentText;
+                form.Font = fontLoader.ContentText ?? form.Font;
                 form.Icon = _icon;
             }
 
@@ -72,37 +72,37 @@ namespace Axantum.AxCrypt.Forms.Style
 
                 case "System.Windows.Forms.GroupBox":
                     GroupBox groupBox = (GroupBox)control;
-                    groupBox.Font = fontLoader.PromptText;
+                    groupBox.Font = fontLoader.PromptText ?? groupBox.Font;
                     break;
 
                 case "System.Windows.Forms.TextBox":
                     TextBox textBox = (TextBox)control;
-                    textBox.Font = fontLoader.ContentText;
+                    textBox.Font = fontLoader.ContentText ?? textBox.Font;
                     break;
 
                 case "System.Windows.Forms.CheckBox":
                     CheckBox checkBox = (CheckBox)control;
-                    checkBox.Font = fontLoader.ContentText;
+                    checkBox.Font = fontLoader.ContentText ?? checkBox.Font;
                     break;
 
                 case "System.Windows.Forms.Panel":
                     Panel panel = (Panel)control;
-                    panel.Font = fontLoader.ContentText;
+                    panel.Font = fontLoader.ContentText ?? panel.Font;
                     break;
 
                 case "System.Windows.Forms.MenuStrip":
                     MenuStrip menuStrip = (MenuStrip)control;
-                    menuStrip.Font = fontLoader.ContentText;
+                    menuStrip.Font = fontLoader.ContentText ?? menuStrip.Font;
                     break;
 
                 case "System.Windows.Forms.ContextMenuStrip":
                     ContextMenuStrip contextMenuStrip = (ContextMenuStrip)control;
-                    contextMenuStrip.Font = fontLoader.ContentText;
+                    contextMenuStrip.Font = fontLoader.ContentText ?? contextMenuStrip.Font;
                     break;
 
                 case "System.Windows.Forms.ToolStrip":
                     ToolStrip toolStrip = (ToolStrip)control;
-                    toolStrip.Font = fontLoader.ContentText;
+                    toolStrip.Font = fontLoader.ContentText ?? toolStrip.Font;
                     toolStrip.Renderer = new AxCryptToolStripProfessionalRenderer();
                     break;
             }

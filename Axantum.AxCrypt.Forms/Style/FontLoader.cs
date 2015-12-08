@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Forms.Style
             {
                 if (!IsWindowsDesktop)
                 {
-                    return SystemFonts.DialogFont;
+                    return null;
                 }
                 return new Font(_privateFontCollection1.Families[0], 10, FontStyle.Regular);
             }
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Forms.Style
             {
                 if (!IsWindowsDesktop)
                 {
-                    return new Font(SystemFonts.DialogFont, FontStyle.Bold);
+                    return null;
                 }
                 return new Font(_privateFontCollection2.Families[0], 9, FontStyle.Bold);
             }
