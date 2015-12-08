@@ -77,7 +77,6 @@ namespace Axantum.AxCrypt
 
             RegisterTypeFactories(commandLineArgs[0]);
             WireupEvents();
-            SetCulture();
 
             if (commandLineArgs.Length == 1)
             {
@@ -166,15 +165,6 @@ namespace Axantum.AxCrypt
         private static void WireupEvents()
         {
             Resolve.SessionNotify.Notification += (sender, e) => New<SessionNotificationHandler>().HandleNotification(e.Notification);
-        }
-
-        private static void SetCulture()
-        {
-            if (String.IsNullOrEmpty(Resolve.UserSettings.CultureName))
-            {
-                return;
-            }
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Resolve.UserSettings.CultureName);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]

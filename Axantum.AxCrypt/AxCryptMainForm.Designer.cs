@@ -69,6 +69,9 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this._createAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this._signInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this._exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugCheckVersionNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,9 +97,6 @@
             this._updateStatusButton = new System.Windows.Forms.ToolStripButton();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this._signInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -442,22 +442,23 @@
             this._optionsLanguageToolStripMenuItem.Name = "_optionsLanguageToolStripMenuItem";
             this._optionsLanguageToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsLanguageToolStripMenuItem.Text = "[&Language]";
+            this._optionsLanguageToolStripMenuItem.DropDownOpening += new System.EventHandler(this.OptionsLanguageToolStripMenuItem_DropDownOpening);
             // 
             // _englishLanguageToolStripMenuItem
             // 
             this._englishLanguageToolStripMenuItem.Name = "_englishLanguageToolStripMenuItem";
-            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this._englishLanguageToolStripMenuItem.Tag = "en";
+            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._englishLanguageToolStripMenuItem.Tag = "en-US";
             this._englishLanguageToolStripMenuItem.Text = "[&English]";
-            this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.EnglishLanguageToolStripMenuItem_Click);
+            this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // _swedishLanguageToolStripMenuItem
             // 
             this._swedishLanguageToolStripMenuItem.Name = "_swedishLanguageToolStripMenuItem";
-            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this._swedishLanguageToolStripMenuItem.Tag = "sv";
+            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._swedishLanguageToolStripMenuItem.Tag = "sv-SE";
             this._swedishLanguageToolStripMenuItem.Text = "[&Svenska]";
-            this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.SwedishLanguageToolStripMenuItem_Click);
+            this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // _optionsChangePassphraseToolStripMenuItem
             // 
@@ -558,6 +559,23 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(173, 6);
+            // 
+            // _signInToolStripMenuItem
+            // 
+            this._signInToolStripMenuItem.Name = "_signInToolStripMenuItem";
+            this._signInToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._signInToolStripMenuItem.Text = "[Sign &In]";
+            // 
+            // _signOutToolStripMenuItem
+            // 
+            this._signOutToolStripMenuItem.Name = "_signOutToolStripMenuItem";
+            this._signOutToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this._signOutToolStripMenuItem.Text = "[Sign &Out]";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(173, 6);
             // 
             // _exitToolStripMenuItem
             // 
@@ -813,23 +831,6 @@
             // 
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
-            // 
-            // _signInToolStripMenuItem
-            // 
-            this._signInToolStripMenuItem.Name = "_signInToolStripMenuItem";
-            this._signInToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this._signInToolStripMenuItem.Text = "[Sign &In]";
-            // 
-            // _signOutToolStripMenuItem
-            // 
-            this._signOutToolStripMenuItem.Name = "_signOutToolStripMenuItem";
-            this._signOutToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this._signOutToolStripMenuItem.Text = "[Sign &Out]";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(173, 6);
             // 
             // AxCryptMainForm
             // 

@@ -130,6 +130,8 @@ namespace Axantum.AxCrypt
 
         private void InitializeContentResources()
         {
+            SetCulture();
+
             _cleanDecryptedToolStripMenuItem.Text = Content.CleanDecryptedToolStripMenuItemText;
             _closeAndRemoveOpenFilesToolStripButton.ToolTipText = Content.CloseAndRemoveOpenFilesToolStripButtonToolTipText;
             _createAccountToolStripMenuItem.Text = Content.CreateAccountToolStripMenuItemText;
@@ -187,6 +189,15 @@ namespace Axantum.AxCrypt
             _watchedFoldersTabPage.Text = Content.WatchedFoldersTabPageText;
             _signInToolStripMenuItem.Text = Content.LogOnText;
             _signOutToolStripMenuItem.Text = Content.LogOffText;
+        }
+
+        private static void SetCulture()
+        {
+            if (String.IsNullOrEmpty(Resolve.UserSettings.CultureName))
+            {
+                return;
+            }
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Resolve.UserSettings.CultureName);
         }
 
         private static void StartKeyPairService()
@@ -1545,48 +1556,32 @@ namespace Axantum.AxCrypt
             progress.Cancel = true;
         }
 
-        private void EnglishLanguageToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LanguageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetLanguage("en-US");
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+            SetLanguage((string)menuItem.Tag);
         }
 
-        private void SwedishLanguageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetLanguage("sv-SE");
-        }
-
-        private static void SetLanguage(string cultureName)
+        private void SetLanguage(string cultureName)
         {
             Resolve.UserSettings.CultureName = cultureName;
             if (Resolve.Log.IsInfoEnabled)
             {
                 Resolve.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Resolve.UserSettings.CultureName));
             }
-            Content.LanguageChangeRestartPrompt.ShowWarning();
-            throw new ApplicationExitException();
+
+            InitializeContentResources();
+            SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
         }
 
-        private void LanguageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        private void OptionsLanguageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             ToolStripMenuItem languageMenu = (ToolStripMenuItem)sender;
-            CultureInfo currentUICulture = Thread.CurrentThread.CurrentUICulture;
-            if (!currentUICulture.IsNeutralCulture)
-            {
-                currentUICulture = currentUICulture.Parent;
-            }
-            string currentLanguage = currentUICulture.Name;
+            string currentLanguage = Thread.CurrentThread.CurrentUICulture.Name;
             foreach (ToolStripItem item in languageMenu.DropDownItems)
             {
                 string languageName = item.Tag as string;
-                if (String.IsNullOrEmpty(languageName))
-                {
-                    continue;
-                }
-                if (languageName == currentLanguage)
-                {
-                    ((ToolStripMenuItem)item).Checked = true;
-                    break;
-                }
+                ((ToolStripMenuItem)item).Checked = languageName == currentLanguage;
             }
         }
 
