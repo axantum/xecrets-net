@@ -154,6 +154,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;New.
+        /// </summary>
+        public static string ButtonNewText {
+            get {
+                return ResourceManager.GetString("ButtonNewText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;No.
         /// </summary>
         public static string ButtonNoText {
@@ -964,7 +973,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This AxCrypt Identity already exists.
+        ///   Looks up a localized string similar to This AxCrypt Identity already exists..
         /// </summary>
         public static string LogOnExists {
             get {
@@ -1295,6 +1304,15 @@ namespace AxCrypt.Content.Properties {
         public static string SwedishLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("SwedishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ID Sign In.
+        /// </summary>
+        public static string TitleAxCryptIdSignInText {
+            get {
+                return ResourceManager.GetString("TitleAxCryptIdSignInText", resourceCulture);
             }
         }
         

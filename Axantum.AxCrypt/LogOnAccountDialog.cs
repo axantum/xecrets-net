@@ -27,6 +27,14 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
+            Text = Content.TitleAxCryptIdSignInText;
+
+            _passphraseGroupBox.Text = Content.PassphrasePrompt;
+            _showPassphrase.Text = Content.ShowPasswordOptionPrompt;
+            _newButton.Text = Content.ButtonNewText;
+            _buttonCancel.Text = Content.ButtonCancelText;
+            _buttonOk.Text = Content.ButtonOkText;
+            _emailGroupBox.Text = Content.PromptEmailText;
         }
 
         private void LogOnAccountDialog_Load(object sender, EventArgs e)

@@ -611,4 +611,10 @@ For more information, click OK to open a web browser to our web site.</value>
 	<data name="TitleCreateAxCryptIdTitle" xml:space="preserve">
     <value>Create AxCrypt ID</value>
   </data>
+	<data name="ButtonNewText" xml:space="preserve">
+    <value>&amp;New</value>
+  </data>
+	<data name="TitleAxCryptIdSignInText" xml:space="preserve">
+    <value>AxCrypt ID Sign In</value>
+  </data>
 </root>
