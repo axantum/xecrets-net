@@ -121,18 +121,18 @@
     <value>Om {0}</value>
   </data>
 	<data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
-    <value>Dubbelklick dekrypterar och öppnar dokumentet</value>
+    <value>Dubbelklick och öppnar den skyddade filen</value>
   </data>
 	<data name="ActiveFileToolTip" xml:space="preserve">
-    <value>Dubbelklick öppnar en dialog där du kan ange lösenord innan dokumentet kan dekrypteras och öppnas</value>
+    <value>Dubbelklick öppnar en dialog där du kan ange lösenord innan filen kan öppnas.</value>
   </data>
 	<data name="AxCryptAboutDescription" xml:space="preserve">
-    <value>Öppen och Fri Dokumentkrypering från Axantum Software AB
+    <value>Filskydd För Dig och Ditt Team från AxCrypt AB
 
 Innehåller programvara från http://www.bouncycastle.org/ .</value>
   </data>
 	<data name="AxCryptFileEncryption" xml:space="preserve">
-    <value>AxCrypt Dokumentkryptering</value>
+    <value>AxCrypt Filskydd</value>
   </data>
 	<data name="Canceled" xml:space="preserve">
     <value>Avbröt '{0}'.</value>
@@ -147,46 +147,46 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Klicka för att kontrollera om det finns en ny version.</value>
   </data>
 	<data name="DecryptedFileToolTip" xml:space="preserve">
-    <value>Dokumentet troligen öppnat i sin applikation. Stäng applikationen eller använda Rensa-knappen.</value>
+    <value>Filen är troligen öppnad i sin applikation. Stäng applikationen eller använda Rensa-knappen.</value>
   </data>
 	<data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Dokument (*{0})|*{0}|Alla dokument (*.*)|*.*</value>
+    <value>Filer (*{0})|*{0}|Alla filer (*.*)|*.*</value>
   </data>
 	<data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
-    <value>Dokumentet finns redan, spara som</value>
+    <value>Filen finns redan, spara som</value>
   </data>
 	<data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
     <value>Okänt lösenord. Dubbelklicka eller Högerklicka för alternativ.</value>
   </data>
 	<data name="DecryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Välj dokument att dekryptera</value>
+    <value>Välj fil att avskydda</value>
   </data>
 	<data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Du är påloggad. Klicka för att logga ut.</value>
   </data>
 	<data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Dokument (*{0})|*{0}|Alla dokument (*.*)|*.*</value>
+    <value>AxCrypt-Filer(*{0})|*{0}|Alla dokument (*.*)|*.*</value>
   </data>
 	<data name="EncryptedSourceColumnHeader" xml:space="preserve">
-    <value>Krypterat Dokument</value>
+    <value>Skyddad fil</value>
   </data>
 	<data name="EncryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Välj dokument att kryptera</value>
+    <value>Välj filer att skydda</value>
   </data>
 	<data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
-    <value>Dokumentet finns redan, spara som</value>
+    <value>Filen finns redan, spara som</value>
   </data>
 	<data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Ange lösenord för '{0}'</value>
   </data>
 	<data name="FileAlreadyEncrypted" xml:space="preserve">
-    <value>Dokumentet '{0}' är redan krypterat.</value>
+    <value>Filen '{0}' är redan skyddad.</value>
   </data>
 	<data name="FileAlreadyExists" xml:space="preserve">
-    <value>Dokumentet '{0}' finns redan.</value>
+    <value>Filen '{0}' finns redan.</value>
   </data>
 	<data name="FileDoesNotExist" xml:space="preserve">
-    <value>Dokumentet '{0}' finns inte.</value>
+    <value>Filen '{0}' finns inte.</value>
   </data>
 	<data name="FileOperationFailed" xml:space="preserve">
     <value>Fel med '{0}'.</value>
@@ -228,7 +228,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Du har en gammal version. Klicka för att kontrollera om det finns en nyare.</value>
   </data>
 	<data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
-    <value>Välj dokument att dekryptera och öppna</value>
+    <value>Välj skyddad fil att öppna</value>
   </data>
 	<data name="OpenFileColumnHeader" xml:space="preserve">
     <value>Arkiv</value>
@@ -253,28 +253,28 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Uppdaterar Status</value>
   </data>
 	<data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
-    <value>Välj dokument för säker radering</value>
+    <value>Välj filer för säker radering</value>
   </data>
 	<data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
-    <value>Klicka här för att stänga och ta bort öppna dekrypterade dokument, men säkerställ först att de inte används.</value>
+    <value>Klicka här för att stänga och ta bort öppna filer, men säkerställ först att de inte används.</value>
   </data>
 	<data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Dekryptera och ta bort från listan</value>
+    <value>&amp;Avskydda och ta bort från listan</value>
   </data>
 	<data name="DecryptedFileColumnHeaderText" xml:space="preserve">
-    <value>Dokument</value>
+    <value>Fil</value>
   </data>
 	<data name="DecryptToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Dekryptera</value>
+    <value>&amp;Avskydda</value>
   </data>
 	<data name="EncryptedPathColumnHeaderText" xml:space="preserve">
-    <value>Krypterat</value>
+    <value>Skyddad</value>
   </data>
 	<data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
-    <value>Klicka för att välja dokument att kryptera</value>
+    <value>Klicka för att välja filer att skydda</value>
   </data>
 	<data name="EncryptToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Kryptera</value>
+    <value>&amp;Skydda</value>
   </data>
 	<data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Avsluta</value>
@@ -289,7 +289,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Tid</value>
   </data>
 	<data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Öppna Krypterat</value>
+    <value>&amp;Öppna Skyddat</value>
   </data>
 	<data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Alternativ</value>
@@ -301,25 +301,25 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Aktuella</value>
   </data>
 	<data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>Ta bort från listan utan att dekryptera dokumentet</value>
+    <value>Ta bort från listan men behåll filskyddet</value>
   </data>
 	<data name="WatchedFolderColumnHeaderText" xml:space="preserve">
     <value>Mapp</value>
   </data>
 	<data name="WatchedFoldersTabPageText" xml:space="preserve">
-    <value>Krypterade Mappar</value>
+    <value>Skyddade Mappar</value>
   </data>
 	<data name="CancelButtonText" xml:space="preserve">
     <value>&amp;Avbryt allt</value>
   </data>
 	<data name="ConfirmAllCheckBoxText" xml:space="preserve">
-    <value>Gör detta för &amp;alla återstående dokument?</value>
+    <value>Gör detta för &amp;alla återstående filer?</value>
   </data>
 	<data name="NoButtonText" xml:space="preserve">
     <value>&amp;Nej</value>
   </data>
 	<data name="PromptLabelText" xml:space="preserve">
-    <value>Är du säker att du vill radera dokumentet? Detta går inte att ångra.</value>
+    <value>Är du säker att du vill radera filen? Detta går inte att ångra.</value>
   </data>
 	<data name="SecureDeleteDialogTitle" xml:space="preserve">
     <value>AxCrypt Säker Radering</value>
@@ -343,7 +343,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Byt Lösenord</value>
   </data>
 	<data name="CleanUpNeededToolTip" xml:space="preserve">
-    <value>Filen är dekrypterad, och kan behövas städas. Stäng alla öppna program, och klicka på Städa-knappen.</value>
+    <value>Filen är öppnad, och kan behövas städas. Stäng alla öppna program, och klicka på Städa-knappen.</value>
   </data>
 	<data name="DaysLeftPluralWarningPattern" xml:space="preserve">
     <value>{0} Dagar</value>
@@ -364,7 +364,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Importen gick fel. Troligen är filen inte ett giltigt AxCrypt ID.</value>
   </data>
 	<data name="FileAlreadyEncryptedStatus" xml:space="preserve">
-    <value>Filen '{0}' är redan krypterad.</value>
+    <value>Filen '{0}' är redan skyddad.</value>
   </data>
 	<data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' är redan öppnad. Stäng programmet och försök igen.</value>
@@ -474,7 +474,7 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
     <value>Verifieringskoden måste vara exakt 6 siffror.</value>
   </data>
 	<data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Städa öppna filer</value>
+    <value>&amp;Städa Öppna Filer</value>
   </data>
 	<data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
     <value>Skapa AxCrypt &amp;ID</value>

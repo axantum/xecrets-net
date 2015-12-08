@@ -128,18 +128,18 @@
     <comment>Title bar status text when logged on to an account.</comment>
   </data>
 	<data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
-    <value>Double-click decrypts and opens the document</value>
+    <value>Double-click opens the secured file</value>
   </data>
 	<data name="ActiveFileToolTip" xml:space="preserve">
-    <value>Double-click opens a Password-dialog before decrypting and opening the document.</value>
+    <value>Double-click opens a Password-dialog before opening the secured file.</value>
   </data>
 	<data name="AxCryptAboutDescription" xml:space="preserve">
-    <value>Open Source Document Encryption by Axantum Software AB
+    <value>File Security For You and Your Team by AxCrypt AB
 
 Includes software from http://www.bouncycastle.org/ .</value>
   </data>
 	<data name="AxCryptFileEncryption" xml:space="preserve">
-    <value>AxCrypt Document Encryption</value>
+    <value>AxCrypt File Security</value>
   </data>
 	<data name="BadEmail" xml:space="preserve">
     <value>Incorrect email address</value>
@@ -158,7 +158,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Change Password</value>
   </data>
 	<data name="CleanUpNeededToolTip" xml:space="preserve">
-    <value>File is decrypted, and may need to be cleaned. Close any open applications, and click the Clean Up button.</value>
+    <value>File is open, and may need to be cleaned. Close any open applications, and click the Clean Up button.</value>
   </data>
 	<data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Click to check for a newer version.</value>
@@ -176,16 +176,16 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Assumed open. Try to Close the application, or use the Clean function to remove it</value>
   </data>
 	<data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Documents (*{0})|*{0}|All files (*.*)|*.*</value>
+    <value>Files (*{0})|*{0}|All files (*.*)|*.*</value>
   </data>
 	<data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
-    <value>Document exists, choose a new name to save as</value>
+    <value>File exists, choose a new name to save as</value>
   </data>
 	<data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
     <value>The password has not been entered yet. Double-click to enter password and Open, or right-click for options</value>
   </data>
 	<data name="DecryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Select document to decrypt</value>
+    <value>Select file to stop securing</value>
   </data>
 	<data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>You are Signed In. Click to Sign Out.</value>
@@ -194,16 +194,16 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Double click to open. If required you will be prompted for a password.</value>
   </data>
 	<data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Documents (*{0})|*{0}|All files (*.*)|*.*</value>
+    <value>AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*</value>
   </data>
 	<data name="EncryptedSourceColumnHeader" xml:space="preserve">
-    <value>Encrypted Document</value>
+    <value>Secured File</value>
   </data>
 	<data name="EncryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Select documents to encrypt</value>
+    <value>Select files to secure</value>
   </data>
 	<data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
-    <value>Document Exists, Save As</value>
+    <value>File Exists, Save As</value>
   </data>
 	<data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Identity '{0}' password</value>
@@ -216,16 +216,16 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Import failed. Probably not a valid AxCrypt ID file.</value>
   </data>
 	<data name="FileAlreadyEncrypted" xml:space="preserve">
-    <value>The document '{0}' is already encrypted.</value>
+    <value>File '{0}' is already secured.</value>
   </data>
 	<data name="FileAlreadyEncryptedStatus" xml:space="preserve">
-    <value>File '{0}' is already encrypted.</value>
+    <value>File '{0}' is already secured.</value>
   </data>
 	<data name="FileAlreadyExists" xml:space="preserve">
-    <value>Document '{0}' already exists.</value>
+    <value>File '{0}' already exists.</value>
   </data>
 	<data name="FileDoesNotExist" xml:space="preserve">
-    <value>Document '{0}' does not exist.</value>
+    <value>File '{0}' does not exist.</value>
   </data>
 	<data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' is open in another application. Please close it and try again.</value>
@@ -332,7 +332,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Your version is old. Please click to check for a newer version.</value>
   </data>
 	<data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
-    <value>Select encrypted document to open</value>
+    <value>Select secured file to open</value>
   </data>
 	<data name="OpenFileColumnHeader" xml:space="preserve">
     <value>File</value>
@@ -399,7 +399,7 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>Getting started with AxCrypt</value>
   </data>
 	<data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
-    <value>Select documents to securely delete</value>
+    <value>Select files to securely delete</value>
   </data>
 	<data name="WorkingFileStatus" xml:space="preserve">
     <value>Status 'Working' with '{0}'.</value>
@@ -414,10 +414,10 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>The verfication code must be exactly 6 digits.</value>
   </data>
 	<data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Clean Decrypted</value>
+    <value>&amp;Clean Open Files</value>
   </data>
 	<data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
-    <value>Click to clean and remove any open decrypted files, but ensure they are not in use first.</value>
+    <value>Click to clean and remove any open opened files, but ensure they are not in use first.</value>
   </data>
 	<data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
     <value>Create AxCrypt ID</value>
@@ -447,25 +447,25 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>&amp;Debug</value>
   </data>
 	<data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Decrypt and remove from list</value>
+    <value>&amp;Stop securing and remove from list</value>
   </data>
 	<data name="DecryptedFileColumnHeaderText" xml:space="preserve">
-    <value>Document</value>
+    <value>File</value>
   </data>
 	<data name="DecryptToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Decrypt</value>
+    <value>&amp;Stop Securing</value>
   </data>
 	<data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Secured &amp;Folders</value>
   </data>
 	<data name="EncryptedPathColumnHeaderText" xml:space="preserve">
-    <value>Encrypted</value>
+    <value>Secured</value>
   </data>
 	<data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
-    <value>Click to select documents to encrypt</value>
+    <value>Click to select files to secure</value>
   </data>
 	<data name="EncryptToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Encrypt</value>
+    <value>&amp;Secure</value>
   </data>
 	<data name="EnglishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;English</value>
@@ -516,13 +516,13 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>&amp;Key Management</value>
   </data>
 	<data name="KeyShareToolStripButtonToolTipText" xml:space="preserve">
-    <value>Click to select documents to decrypt</value>
+    <value>Click to select filers to stop securing</value>
   </data>
 	<data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Time</value>
   </data>
 	<data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Open Encrypted</value>
+    <value>&amp;Open Secured</value>
   </data>
 	<data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
     <value>Change &amp;Password</value>
@@ -549,7 +549,7 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>Recent Files</value>
   </data>
 	<data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Remove from list without decrypting document</value>
+    <value>&amp;Remove from list but keep file secured</value>
   </data>
 	<data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Secure Delete</value>
@@ -576,19 +576,19 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>&amp;Decrypt Permanently</value>
   </data>
 	<data name="WatchedFoldersTabPageText" xml:space="preserve">
-    <value>Encrypted Folders</value>
+    <value>Secured Folders</value>
   </data>
 	<data name="ButtonCancelAllText" xml:space="preserve">
     <value>&amp;Cancel All</value>
   </data>
 	<data name="ConfirmAllCheckBoxText" xml:space="preserve">
-    <value>Do this for &amp;all remaining documents?</value>
+    <value>Do this for &amp;all remaining files?</value>
   </data>
 	<data name="ButtonNoText" xml:space="preserve">
     <value>&amp;No</value>
   </data>
 	<data name="PromptLabelText" xml:space="preserve">
-    <value>Are you sure want to permanently delete this document? This action cannot be undone.</value>
+    <value>Are you sure want to permanently delete this file? This action cannot be undone.</value>
   </data>
 	<data name="SecureDeleteDialogTitle" xml:space="preserve">
     <value>AxCrypt Secure Delete</value>
@@ -617,4 +617,7 @@ For more information, click OK to open a web browser to our web site.</value>
 	<data name="TitleAxCryptIdSignInText" xml:space="preserve">
     <value>AxCrypt ID Sign In</value>
   </data>
+	<data name="NoButtonText" xml:space="preserve">
+		<value>&amp;No</value>
+	</data>
 </root>
