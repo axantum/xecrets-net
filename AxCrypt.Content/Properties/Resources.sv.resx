@@ -614,4 +614,70 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
 	<data name="TitleAxCryptIdSignInText" xml:space="preserve">
 		<value>AxCrypt ID Inloggning</value>
 	</data>
+	<data name="DialogExportAxCryptIdFileName" xml:space="preserve">
+		<value>AxCrypt ID (#{1}) - {0}.axx</value>
+	</data>
+	<data name="DialogExportAxCryptIdFilter" xml:space="preserve">
+		<value>AxCrypt ID Filer (*.axx)|*.axx|Alla Filer (*.*)|*.*"</value>
+	</data>
+	<data name="DialogExportAxCryptIdTitle" xml:space="preserve">
+		<value>Exportera AxCrypt ID</value>
+	</data>
+	<data name="DialogExportSharingKeyFileName" xml:space="preserve">
+		<value>AxCrypt Delningsnyckel (#{1}) - {0}.txt</value>
+	</data>
+	<data name="DialogExportSharingKeyFilter" xml:space="preserve">
+		<value>AxCrypt Delningsnyckelfiler (*.txt)|*.txt|Alla Filer (*.*)|*.*</value>
+	</data>
+	<data name="DialogExportSharingKeyTitle" xml:space="preserve">
+		<value>Exportera Delningsnyckel</value>
+	</data>
+	<data name="LicenseFreeNameText" xml:space="preserve">
+		<value>Gratis</value>
+	</data>
+	<data name="LicensePremiumNameText" xml:space="preserve">
+		<value>Premium</value>
+	</data>
+	<data name="MessageInvalidSignUpEmailText" xml:space="preserve">
+		<value>Det går inte att använda '{0}'. Vänligen ange din riktiga e-postadress och försök igen.</value>
+	</data>
+	<data name="MessageInvalidSignUpEmailTitle" xml:space="preserve">
+		<value>Ogiltig e-postadress</value>
+	</data>
+	<data name="MessageServerUpdateText" xml:space="preserve">
+		<value>AxCrypt-servern har uppdateras. Vänligen uppdatera AxCrypt-programmet snarast, annars finns risk för oväntade fel.</value>
+	</data>
+	<data name="MessageServerUpdateTitle" xml:space="preserve">
+		<value>AxCrypt-servern uppdaterad!</value>
+	</data>
+	<data name="MessageSigningUpText" xml:space="preserve">
+		<value>Du har nu tecknat dig som '{0}'. Kontrollera din inbox, och leta efter ett meddelande med en 6-siffrig valideringskod.</value>
+	</data>
+	<data name="MessageSigningUpTitle" xml:space="preserve">
+		<value>Teckna AxCrypt ID</value>
+	</data>
+	<data name="MessageSignUpInternetRequiredText" xml:space="preserve">
+		<value>Just nu krävs Internetåtkomst. Kontrollera anslutningen och försök igen.</value>
+	</data>
+	<data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
+		<value>Internetåtkomst Saknas!</value>
+	</data>
+	<data name="MessageSignUpUnexpectedErrorText" xml:space="preserve">
+		<value>Något oväntat gick fel. Försök igen, om problemet kvarstår rapportera det till oss.</value>
+	</data>
+	<data name="MessageSignUpUnexpectedErrorTitle" xml:space="preserve">
+		<value>Oväntat Fel</value>
+	</data>
+	<data name="MessageUnexpectedErrorText" xml:space="preserve">
+		<value>Ett oväntat fel '{0}' har inträffat.</value>
+	</data>
+	<data name="MessageUnexpectedErrorTitle" xml:space="preserve">
+		<value>Oväntat Fel!</value>
+	</data>
+	<data name="TitleMainWindow" xml:space="preserve">
+		<value>{0} {1}{2}</value>
+	</data>
+	<data name="TitleWindowSignInStatus" xml:space="preserve">
+		<value>{0} - {1}</value>
+	</data>
 </root>

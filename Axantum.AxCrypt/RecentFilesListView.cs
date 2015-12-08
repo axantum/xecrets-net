@@ -215,6 +215,11 @@ namespace Axantum.AxCrypt
             return true;
         }
 
+        public string EncryptedPath(ListViewItem item)
+        {
+            return item.SubItems[nameof(ColumnName.EncryptedPath)].Text;
+        }
+
         private Task UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile, LicensePolicy license)
         {
             OpenFileProperties openProperties = OpenFileProperties.Create(activeFile.EncryptedFileInfo);

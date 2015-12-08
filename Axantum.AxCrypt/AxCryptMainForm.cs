@@ -261,7 +261,7 @@ namespace Axantum.AxCrypt
             ApiVersion apiVersion = await New<GlobalApiClient>().ApiVersionAsync();
             if (apiVersion != ApiVersion.Zero && apiVersion != new ApiVersion())
             {
-                MessageDialog.ShowOk(this, "Server Updated", "The server has been updated. Please update AxCrypt soon. Unexpected errors may occur otherwise.");
+                MessageDialog.ShowOk(this, Content.MessageServerUpdateTitle, Content.MessageServerUpdateText);
             }
             while (true)
             {
@@ -279,7 +279,7 @@ namespace Axantum.AxCrypt
                     {
                         ex = ex.InnerException;
                     }
-                    MessageDialog.ShowOk(this, "Unexpected Error", "An unexpected error '{0}' occurred.".InvariantFormat(ex.Message));
+                    MessageDialog.ShowOk(this, Content.MessageUnexpectedErrorTitle, Content.MessageUnexpectedErrorText.InvariantFormat(ex.Message));
                     continue;
                 }
                 SetTopControlsEnabled(true);
@@ -309,12 +309,12 @@ namespace Axantum.AxCrypt
                 {
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
-                        MessageDialog.ShowOk(this, "Signing Up", "You have now signed up as '{0}'. Please check your inbox for an email with a 6-digit activation code.".InvariantFormat(Resolve.UserSettings.UserEmail));
+                        MessageDialog.ShowOk(this, Content.MessageSigningUpTitle, Content.MessageSigningUpText.InvariantFormat(Resolve.UserSettings.UserEmail));
                         status = await VerifyAccountOnlineAsync();
                         break;
 
                     case AccountStatus.InvalidName:
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Invalid Email Address", "You cannot sign up as '{0}'. Please enter a real email address, and try again.".InvariantFormat(Resolve.UserSettings.UserEmail));
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, Content.MessageInvalidSignUpEmailTitle, Content.MessageInvalidSignUpEmailText.InvariantFormat(Resolve.UserSettings.UserEmail));
                         Resolve.UserSettings.UserEmail = String.Empty;
                         break;
 
@@ -326,7 +326,7 @@ namespace Axantum.AxCrypt
                         break;
 
                     case AccountStatus.Offline:
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Internet Acccess Required", "Internet access is required at this time. Please check your connection, and try again.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, Content.MessageSignUpInternetRequiredTitle, Content.MessageSignUpInternetRequiredText);
                         New<AxCryptOnlineState>().IsOnline = true;
                         break;
 
@@ -334,7 +334,7 @@ namespace Axantum.AxCrypt
                     case AccountStatus.Unauthenticated:
                     case AccountStatus.DefinedByServer:
                         Resolve.UserSettings.UserEmail = String.Empty;
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, "Unexpected Error", "Something unexpected went wrong. Please try again. If the problem persists, please report this.");
+                        dialogResult = MessageDialog.ShowOkCancelExit(this, Content.MessageUnexpectedErrorTitle, Content.MessageUnexpectedErrorText);
                         break;
 
                     default:
@@ -539,10 +539,10 @@ namespace Axantum.AxCrypt
 
             _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
 
-            _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
+            _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["WatchedFoldersTabPageName"];
 
             _updateStatusButton.Click += _updateToolStripButton_Click;
-            _feedbackButton.Click += (sender, e) => Process.Start("http://www.axcrypt.net/#feedback");
+            _feedbackButton.Click += (sender, e) => Process.Start(Content.LinkToFeedbackWebPage);
 
             _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _cleanDecryptedToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
@@ -592,13 +592,13 @@ namespace Axantum.AxCrypt
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Clear();
 
             item = new ToolStripMenuItem();
-            item.Text = "Premium";
+            item.Text = Content.LicensePremiumNameText;
             item.Checked = license.Has(LicenseCapability.Premium);
             item.Click += PolicyMenuItem_Click;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
 
             item = new ToolStripMenuItem();
-            item.Text = "Free";
+            item.Text = Content.LicenseFreeNameText;
             item.Checked = !license.Has(LicenseCapability.Premium);
             item.Click += PolicyMenuItem_Click;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
@@ -652,7 +652,7 @@ namespace Axantum.AxCrypt
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         private void BindToViewModels()
         {
-            _mainViewModel.Title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
+            _mainViewModel.Title = Content.TitleMainWindow.InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
             _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetSignInSignOutStatus(loggedOn); });
@@ -690,7 +690,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersRemoveMenuItem.Click += (sender, e) => { _mainViewModel.RemoveWatchedFolders.Execute(_mainViewModel.SelectedWatchedFolders); };
 
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
-            _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.SubItems["EncryptedPath"].Text); };
+            _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => _recentFilesListView.EncryptedPath(lvi)); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = _recentFilesListView.SelectedItems.Count == 1 && Resolve.KnownIdentities.IsLoggedOn; };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
@@ -1117,7 +1117,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case CommandVerb.Register:
-                    Process.Start("https://account.axcrypt.net/Home/Register");
+                    Process.Start(Content.LinkToSignUpWebPage);
                     break;
 
                 case CommandVerb.About:
@@ -1232,7 +1232,7 @@ namespace Axantum.AxCrypt
             {
                 logonStatus = Content.LoggedOffStatusText;
             }
-            Text = "{0} - {1}".InvariantFormat(_mainViewModel.Title, logonStatus);
+            Text = Content.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, logonStatus);
         }
 
         private void UpdateVersionStatus(VersionUpdateStatus status)
@@ -1681,20 +1681,23 @@ namespace Axantum.AxCrypt
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
             SetCheckedToolStripMenuItem(item);
-            switch (item.Text)
-            {
-                case "Free":
-                    TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new FreeForcedLicensePolicy());
-                    break;
-
-                case "Premium":
-                    TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new PremiumForcedLicensePolicy());
-                    break;
-
-                default:
-                    throw new InvalidOperationException("Unexpected license policy name.");
-            }
+            ReRegisterPolicy(item);
             _mainViewModel.LicenseUpdate.Execute(null);
+        }
+
+        private static void ReRegisterPolicy(ToolStripMenuItem item)
+        {
+            if (item.Text == Content.LicenseFreeNameText)
+            {
+                TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new FreeForcedLicensePolicy());
+                return;
+            }
+            if (item.Text == Content.LicensePremiumNameText)
+            {
+                TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new PremiumForcedLicensePolicy());
+                return;
+            }
+            throw new InvalidOperationException("Unexpected license policy name.");
         }
 
         private static void SetCheckedToolStripMenuItem(ToolStripMenuItem item)
@@ -1778,12 +1781,12 @@ namespace Axantum.AxCrypt
             string fileName;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.Title = "Export Public Sharing Key";
+                sfd.Title = Content.DialogExportSharingKeyTitle;
                 sfd.DefaultExt = ".txt";
                 sfd.AddExtension = true;
-                sfd.Filter = "AxCrypt Public Sharing Key Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                sfd.Filter = Content.DialogExportSharingKeyFilter;
                 sfd.CheckPathExists = true;
-                sfd.FileName = "AxCrypt Sharing Key (#{1}) - {0}.txt".InvariantFormat(userEmail.Address, publicKey.Tag);
+                sfd.FileName = Content.DialogExportSharingKeyFileName.InvariantFormat(userEmail.Address, publicKey.Tag);
                 sfd.ValidateNames = true;
                 sfd.OverwritePrompt = true;
                 sfd.RestoreDirectory = false;
@@ -1875,12 +1878,12 @@ namespace Axantum.AxCrypt
             string fileName;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.Title = "Export Account Secret and Sharing Key Pair";
+                sfd.Title = Content.DialogExportAxCryptIdTitle;
                 sfd.DefaultExt = ".axx";
                 sfd.AddExtension = true;
-                sfd.Filter = "AxCrypt Account Secret and Sharing Key Pair Files (*.axx)|*.axx|All Files (*.*)|*.*";
+                sfd.Filter = Content.DialogExportAxCryptIdFilter;
                 sfd.CheckPathExists = true;
-                sfd.FileName = "AxCrypt Account Key Pair (#{1}) - {0}.axx".InvariantFormat(userKeyPair.UserEmail, publicKey.Tag);
+                sfd.FileName = Content.DialogExportAxCryptIdFileName.InvariantFormat(userKeyPair.UserEmail, publicKey.Tag);
                 sfd.ValidateNames = true;
                 sfd.OverwritePrompt = true;
                 sfd.RestoreDirectory = false;

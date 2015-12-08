@@ -89,7 +89,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-click decrypts and opens the document.
+        ///   Looks up a localized string similar to Double-click opens the secured file.
         /// </summary>
         public static string ActiveFileKnownKeyToolTip {
             get {
@@ -98,7 +98,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-click opens a Password-dialog before decrypting and opening the document..
+        ///   Looks up a localized string similar to Double-click opens a Password-dialog before opening the secured file..
         /// </summary>
         public static string ActiveFileToolTip {
             get {
@@ -107,7 +107,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Source Document Encryption by Axantum Software AB
+        ///   Looks up a localized string similar to File Security For You and Your Team by AxCrypt AB
         ///
         ///Includes software from http://www.bouncycastle.org/ ..
         /// </summary>
@@ -118,7 +118,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Document Encryption.
+        ///   Looks up a localized string similar to AxCrypt File Security.
         /// </summary>
         public static string AxCryptFileEncryption {
             get {
@@ -226,7 +226,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Clean Decrypted.
+        ///   Looks up a localized string similar to &amp;Clean Open Files.
         /// </summary>
         public static string CleanDecryptedToolStripMenuItemText {
             get {
@@ -235,7 +235,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File is decrypted, and may need to be cleaned. Close any open applications, and click the Clean Up button..
+        ///   Looks up a localized string similar to File is open, and may need to be cleaned. Close any open applications, and click the Clean Up button..
         /// </summary>
         public static string CleanUpNeededToolTip {
             get {
@@ -253,7 +253,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to clean and remove any open decrypted files, but ensure they are not in use first..
+        ///   Looks up a localized string similar to Click to clean and remove any open opened files, but ensure they are not in use first..
         /// </summary>
         public static string CloseAndRemoveOpenFilesToolStripButtonToolTipText {
             get {
@@ -262,7 +262,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do this for &amp;all remaining documents?.
+        ///   Looks up a localized string similar to Do this for &amp;all remaining files?.
         /// </summary>
         public static string ConfirmAllCheckBoxText {
             get {
@@ -379,7 +379,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Decrypt and remove from list.
+        ///   Looks up a localized string similar to &amp;Stop securing and remove from list.
         /// </summary>
         public static string DecryptAndRemoveFromListToolStripMenuItemText {
             get {
@@ -388,7 +388,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Document.
+        ///   Looks up a localized string similar to File.
         /// </summary>
         public static string DecryptedFileColumnHeaderText {
             get {
@@ -406,7 +406,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Documents (*{0})|*{0}|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to Files (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         public static string DecryptedSaveAsFileDialogFilterPattern {
             get {
@@ -415,7 +415,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Document exists, choose a new name to save as.
+        ///   Looks up a localized string similar to File exists, choose a new name to save as.
         /// </summary>
         public static string DecryptedSaveAsFileDialogTitle {
             get {
@@ -433,7 +433,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select document to decrypt.
+        ///   Looks up a localized string similar to Select file to stop securing.
         /// </summary>
         public static string DecryptFileOpenDialogTitle {
             get {
@@ -442,7 +442,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Decrypt.
+        ///   Looks up a localized string similar to &amp;Stop Securing.
         /// </summary>
         public static string DecryptToolStripMenuItemText {
             get {
@@ -460,6 +460,60 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ID (#{1}) - {0}.axx.
+        /// </summary>
+        public static string DialogExportAxCryptIdFileName {
+            get {
+                return ResourceManager.GetString("DialogExportAxCryptIdFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt AxCrypt ID Files (*.axx)|*.axx|All Files (*.*)|*.*&quot;.
+        /// </summary>
+        public static string DialogExportAxCryptIdFilter {
+            get {
+                return ResourceManager.GetString("DialogExportAxCryptIdFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export AxCrypt ID.
+        /// </summary>
+        public static string DialogExportAxCryptIdTitle {
+            get {
+                return ResourceManager.GetString("DialogExportAxCryptIdTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Sharing Key (#{1}) - {0}.txt.
+        /// </summary>
+        public static string DialogExportSharingKeyFileName {
+            get {
+                return ResourceManager.GetString("DialogExportSharingKeyFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Public Sharing Key Files (*.txt)|*.txt|All Files (*.*)|*.*.
+        /// </summary>
+        public static string DialogExportSharingKeyFilter {
+            get {
+                return ResourceManager.GetString("DialogExportSharingKeyFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Public Sharing Key.
+        /// </summary>
+        public static string DialogExportSharingKeyTitle {
+            get {
+                return ResourceManager.GetString("DialogExportSharingKeyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double click to open. If required you will be prompted for a password..
         /// </summary>
         public static string DoubleClickToOpenToolTip {
@@ -469,7 +523,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Documents (*{0})|*{0}|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         public static string EncryptedFileDialogFilterPattern {
             get {
@@ -487,7 +541,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encrypted.
+        ///   Looks up a localized string similar to Secured.
         /// </summary>
         public static string EncryptedPathColumnHeaderText {
             get {
@@ -496,7 +550,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encrypted Document.
+        ///   Looks up a localized string similar to Secured File.
         /// </summary>
         public static string EncryptedSourceColumnHeader {
             get {
@@ -505,7 +559,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select documents to encrypt.
+        ///   Looks up a localized string similar to Select files to secure.
         /// </summary>
         public static string EncryptFileOpenDialogTitle {
             get {
@@ -514,7 +568,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Document Exists, Save As.
+        ///   Looks up a localized string similar to File Exists, Save As.
         /// </summary>
         public static string EncryptFileSaveAsDialogTitle {
             get {
@@ -523,7 +577,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to select documents to encrypt.
+        ///   Looks up a localized string similar to Click to select files to secure.
         /// </summary>
         public static string EncryptToolStripButtonToolTipText {
             get {
@@ -532,7 +586,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Encrypt.
+        ///   Looks up a localized string similar to &amp;Secure.
         /// </summary>
         public static string EncryptToolStripMenuItemText {
             get {
@@ -631,7 +685,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The document &apos;{0}&apos; is already encrypted..
+        ///   Looks up a localized string similar to File &apos;{0}&apos; is already secured..
         /// </summary>
         public static string FileAlreadyEncrypted {
             get {
@@ -640,7 +694,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File &apos;{0}&apos; is already encrypted..
+        ///   Looks up a localized string similar to File &apos;{0}&apos; is already secured..
         /// </summary>
         public static string FileAlreadyEncryptedStatus {
             get {
@@ -649,7 +703,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Document &apos;{0}&apos; already exists..
+        ///   Looks up a localized string similar to File &apos;{0}&apos; already exists..
         /// </summary>
         public static string FileAlreadyExists {
             get {
@@ -658,7 +712,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Document &apos;{0}&apos; does not exist..
+        ///   Looks up a localized string similar to File &apos;{0}&apos; does not exist..
         /// </summary>
         public static string FileDoesNotExist {
             get {
@@ -874,7 +928,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to select documents to decrypt.
+        ///   Looks up a localized string similar to Click to select filers to stop securing.
         /// </summary>
         public static string KeyShareToolStripButtonToolTipText {
             get {
@@ -928,6 +982,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Free.
+        /// </summary>
+        public static string LicenseFreeNameText {
+            get {
+                return ResourceManager.GetString("LicenseFreeNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Premium.
+        /// </summary>
+        public static string LicensePremiumNameText {
+            get {
+                return ResourceManager.GetString("LicensePremiumNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://account.axcrypt.net/Home/Purchase?email={0}.
         /// </summary>
         public static string LinkToAxCryptPremiumPurchasePage {
@@ -937,11 +1009,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://www.axcrypt.net/#feedback.
+        /// </summary>
+        public static string LinkToFeedbackWebPage {
+            get {
+                return ResourceManager.GetString("LinkToFeedbackWebPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://www.axcrypt.net/documentation/get-started/.
         /// </summary>
         public static string LinkToGettingStarted {
             get {
                 return ResourceManager.GetString("LinkToGettingStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://account.axcrypt.net/Home/Register.
+        /// </summary>
+        public static string LinkToSignUpWebPage {
+            get {
+                return ResourceManager.GetString("LinkToSignUpWebPage", resourceCulture);
             }
         }
         
@@ -1000,6 +1090,114 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You cannot sign up as &apos;{0}&apos;. Please enter a real email address, and try again..
+        /// </summary>
+        public static string MessageInvalidSignUpEmailText {
+            get {
+                return ResourceManager.GetString("MessageInvalidSignUpEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Email Address.
+        /// </summary>
+        public static string MessageInvalidSignUpEmailTitle {
+            get {
+                return ResourceManager.GetString("MessageInvalidSignUpEmailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The server has been updated. Please update AxCrypt soon. Unexpected errors may occur otherwise..
+        /// </summary>
+        public static string MessageServerUpdateText {
+            get {
+                return ResourceManager.GetString("MessageServerUpdateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server Updated!.
+        /// </summary>
+        public static string MessageServerUpdateTitle {
+            get {
+                return ResourceManager.GetString("MessageServerUpdateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have now signed up as &apos;{0}&apos;. Please check your inbox for an email with a 6-digit activation code..
+        /// </summary>
+        public static string MessageSigningUpText {
+            get {
+                return ResourceManager.GetString("MessageSigningUpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signing Up.
+        /// </summary>
+        public static string MessageSigningUpTitle {
+            get {
+                return ResourceManager.GetString("MessageSigningUpTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internet access is required at this time. Please check your connection, and try again..
+        /// </summary>
+        public static string MessageSignUpInternetRequiredText {
+            get {
+                return ResourceManager.GetString("MessageSignUpInternetRequiredText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internet Acccess Required.
+        /// </summary>
+        public static string MessageSignUpInternetRequiredTitle {
+            get {
+                return ResourceManager.GetString("MessageSignUpInternetRequiredTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something unexpected went wrong. Please try again. If the problem persists, please report this..
+        /// </summary>
+        public static string MessageSignUpUnexpectedErrorText {
+            get {
+                return ResourceManager.GetString("MessageSignUpUnexpectedErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected Error.
+        /// </summary>
+        public static string MessageSignUpUnexpectedErrorTitle {
+            get {
+                return ResourceManager.GetString("MessageSignUpUnexpectedErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unexpected error &apos;{0}&apos; occurred..
+        /// </summary>
+        public static string MessageUnexpectedErrorText {
+            get {
+                return ResourceManager.GetString("MessageUnexpectedErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected Error!.
+        /// </summary>
+        public static string MessageUnexpectedErrorTitle {
+            get {
+                return ResourceManager.GetString("MessageUnexpectedErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My AxCrypt.
         /// </summary>
         public static string MyAxCryptFolderName {
@@ -1023,6 +1221,15 @@ namespace AxCrypt.Content.Properties {
         public static string NewVersionIsAvailableTooltip {
             get {
                 return ResourceManager.GetString("NewVersionIsAvailableTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;No.
+        /// </summary>
+        public static string NoButtonText {
+            get {
+                return ResourceManager.GetString("NoButtonText", resourceCulture);
             }
         }
         
@@ -1072,7 +1279,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select encrypted document to open.
+        ///   Looks up a localized string similar to Select secured file to open.
         /// </summary>
         public static string OpenEncryptedFileOpenDialogTitle {
             get {
@@ -1081,7 +1288,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Open Encrypted.
+        ///   Looks up a localized string similar to &amp;Open Secured.
         /// </summary>
         public static string OpenEncryptedToolStripMenuItemText {
             get {
@@ -1198,7 +1405,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure want to permanently delete this document? This action cannot be undone..
+        ///   Looks up a localized string similar to Are you sure want to permanently delete this file? This action cannot be undone..
         /// </summary>
         public static string PromptLabelText {
             get {
@@ -1234,7 +1441,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Remove from list without decrypting document.
+        ///   Looks up a localized string similar to &amp;Remove from list but keep file secured.
         /// </summary>
         public static string RemoveRecentFileToolStripMenuItemText {
             get {
@@ -1322,6 +1529,24 @@ namespace AxCrypt.Content.Properties {
         public static string TitleCreateAxCryptIdTitle {
             get {
                 return ResourceManager.GetString("TitleCreateAxCryptIdTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0} {1}{2}&quot;.
+        /// </summary>
+        public static string TitleMainWindow {
+            get {
+                return ResourceManager.GetString("TitleMainWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} - {1}.
+        /// </summary>
+        public static string TitleWindowSignInStatus {
+            get {
+                return ResourceManager.GetString("TitleWindowSignInStatus", resourceCulture);
             }
         }
         
@@ -1443,7 +1668,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encrypted Folders.
+        ///   Looks up a localized string similar to Secured Folders.
         /// </summary>
         public static string WatchedFoldersTabPageText {
             get {
@@ -1476,7 +1701,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select documents to securely delete.
+        ///   Looks up a localized string similar to Select files to securely delete.
         /// </summary>
         public static string WipeFileSelectFileDialogTitle {
             get {

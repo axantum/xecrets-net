@@ -207,7 +207,7 @@
             // 
             this._watchedFoldersTabPage.Controls.Add(this._watchedFoldersListView);
             this._watchedFoldersTabPage.Location = new System.Drawing.Point(4, 22);
-            this._watchedFoldersTabPage.Name = "_watchedFoldersTabPage";
+            this._watchedFoldersTabPage.Name = "WatchedFoldersTabPageName";
             this._watchedFoldersTabPage.Padding = new System.Windows.Forms.Padding(3);
             this._watchedFoldersTabPage.Size = new System.Drawing.Size(620, 150);
             this._watchedFoldersTabPage.TabIndex = 1;

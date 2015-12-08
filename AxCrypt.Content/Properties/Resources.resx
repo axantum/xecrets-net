@@ -618,6 +618,78 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>AxCrypt ID Sign In</value>
   </data>
 	<data name="NoButtonText" xml:space="preserve">
-		<value>&amp;No</value>
-	</data>
+    <value>&amp;No</value>
+  </data>
+	<data name="DialogExportAxCryptIdFileName" xml:space="preserve">
+    <value>AxCrypt ID (#{1}) - {0}.axx</value>
+  </data>
+	<data name="DialogExportAxCryptIdFilter" xml:space="preserve">
+    <value>AxCrypt ID Files (*.axx)|*.axx|All Files (*.*)|*.*"</value>
+  </data>
+	<data name="DialogExportAxCryptIdTitle" xml:space="preserve">
+    <value>Export AxCrypt ID</value>
+  </data>
+	<data name="DialogExportSharingKeyFileName" xml:space="preserve">
+    <value>AxCrypt Sharing Key (#{1}) - {0}.txt</value>
+  </data>
+	<data name="DialogExportSharingKeyFilter" xml:space="preserve">
+    <value>AxCrypt Public Sharing Key Files (*.txt)|*.txt|All Files (*.*)|*.*</value>
+  </data>
+	<data name="DialogExportSharingKeyTitle" xml:space="preserve">
+    <value>Export Public Sharing Key</value>
+  </data>
+	<data name="LicenseFreeNameText" xml:space="preserve">
+    <value>Free</value>
+  </data>
+	<data name="LicensePremiumNameText" xml:space="preserve">
+    <value>Premium</value>
+  </data>
+	<data name="LinkToFeedbackWebPage" xml:space="preserve">
+    <value>http://www.axcrypt.net/#feedback</value>
+  </data>
+	<data name="LinkToSignUpWebPage" xml:space="preserve">
+    <value>https://account.axcrypt.net/Home/Register</value>
+  </data>
+	<data name="MessageInvalidSignUpEmailText" xml:space="preserve">
+    <value>You cannot sign up as '{0}'. Please enter a real email address, and try again.</value>
+  </data>
+	<data name="MessageInvalidSignUpEmailTitle" xml:space="preserve">
+    <value>Invalid Email Address</value>
+  </data>
+	<data name="MessageServerUpdateText" xml:space="preserve">
+    <value>The AxCrypt-server has been updated. Please update AxCrypt soon. Unexpected errors may occur otherwise.</value>
+  </data>
+	<data name="MessageServerUpdateTitle" xml:space="preserve">
+    <value>AxCrypt Server Updated!</value>
+  </data>
+	<data name="MessageSigningUpText" xml:space="preserve">
+    <value>You have now signed up as '{0}'. Please check your inbox for an email with a 6-digit activation code.</value>
+  </data>
+	<data name="MessageSigningUpTitle" xml:space="preserve">
+    <value>Sign Up for AxCrypt ID</value>
+  </data>
+	<data name="MessageSignUpInternetRequiredText" xml:space="preserve">
+    <value>Internet access is required at this time. Please check your connection, and try again.</value>
+  </data>
+	<data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
+    <value>No Internet Acccess</value>
+  </data>
+	<data name="MessageSignUpUnexpectedErrorText" xml:space="preserve">
+    <value>Something unexpected went wrong. Please try again. If the problem persists, please report this.</value>
+  </data>
+	<data name="MessageSignUpUnexpectedErrorTitle" xml:space="preserve">
+    <value>Unexpected Error</value>
+  </data>
+	<data name="MessageUnexpectedErrorText" xml:space="preserve">
+    <value>An unexpected error '{0}' occurred.</value>
+  </data>
+	<data name="MessageUnexpectedErrorTitle" xml:space="preserve">
+    <value>Unexpected Error!</value>
+  </data>
+	<data name="TitleMainWindow" xml:space="preserve">
+    <value>{0} {1}{2}</value>
+  </data>
+	<data name="TitleWindowSignInStatus" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
 </root>
