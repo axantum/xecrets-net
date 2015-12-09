@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public string CultureName
         {
-            get { return Load("CultureName", "en-US"); }
+            get { return Load("CultureName", CultureInfo.CurrentUICulture.Name); }
             set { Store("CultureName", value); }
         }
 
