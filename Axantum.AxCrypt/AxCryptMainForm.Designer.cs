@@ -618,6 +618,7 @@
             this._debugCryptoPolicyToolStripMenuItem.Name = "_debugCryptoPolicyToolStripMenuItem";
             this._debugCryptoPolicyToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this._debugCryptoPolicyToolStripMenuItem.Text = "[License &Policy]";
+            this._debugCryptoPolicyToolStripMenuItem.Visible = false;
             // 
             // _debugLoggingToolStripMenuItem
             // 
@@ -652,14 +653,14 @@
             // _helpViewHelpMenuItem
             // 
             this._helpViewHelpMenuItem.Name = "_helpViewHelpMenuItem";
-            this._helpViewHelpMenuItem.Size = new System.Drawing.Size(127, 22);
+            this._helpViewHelpMenuItem.Size = new System.Drawing.Size(152, 22);
             this._helpViewHelpMenuItem.Text = "&View Help";
             this._helpViewHelpMenuItem.Click += new System.EventHandler(this._viewHelpMenuItem_Click);
             // 
             // _helpAboutToolStripMenuItem
             // 
             this._helpAboutToolStripMenuItem.Name = "_helpAboutToolStripMenuItem";
-            this._helpAboutToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this._helpAboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._helpAboutToolStripMenuItem.Text = "[&About]";
             this._helpAboutToolStripMenuItem.Click += new System.EventHandler(this._aboutToolStripMenuItem_Click);
             // 

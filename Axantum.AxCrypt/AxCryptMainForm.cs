@@ -556,6 +556,9 @@ namespace Axantum.AxCrypt
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
             _signInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _signOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
+#if DEBUG
+            _debugCryptoPolicyToolStripMenuItem.Visible = true;
+#endif
         }
 
         private void ConfigureMenusAccordingToPolicy(LicensePolicy license)
