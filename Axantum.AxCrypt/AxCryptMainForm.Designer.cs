@@ -304,11 +304,12 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(634, 71);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(634, 66);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -676,12 +677,12 @@
             this.tableLayoutPanel3.Controls.Add(this._mainToolStrip, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this._daysLeftPremiumLabel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this._rightToolStrip, 3, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 25);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(628, 42);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(634, 42);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // pictureBox1
@@ -716,7 +717,7 @@
             this._toolStripSeparator1,
             this._closeAndRemoveOpenFilesToolStripButton});
             this._mainToolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this._mainToolStrip.Location = new System.Drawing.Point(200, 1);
+            this._mainToolStrip.Location = new System.Drawing.Point(203, 1);
             this._mainToolStrip.Name = "_mainToolStrip";
             this._mainToolStrip.Padding = new System.Windows.Forms.Padding(0);
             this._mainToolStrip.Size = new System.Drawing.Size(258, 40);
@@ -776,7 +777,7 @@
             this._daysLeftPremiumLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._daysLeftPremiumLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this._daysLeftPremiumLabel.LinkColor = System.Drawing.SystemColors.ControlText;
-            this._daysLeftPremiumLabel.Location = new System.Drawing.Point(469, 14);
+            this._daysLeftPremiumLabel.Location = new System.Drawing.Point(475, 14);
             this._daysLeftPremiumLabel.Name = "_daysLeftPremiumLabel";
             this._daysLeftPremiumLabel.Size = new System.Drawing.Size(47, 13);
             this._daysLeftPremiumLabel.TabIndex = 11;
@@ -798,7 +799,7 @@
             this._rightToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._feedbackButton,
             this._updateStatusButton});
-            this._rightToolStrip.Location = new System.Drawing.Point(534, 1);
+            this._rightToolStrip.Location = new System.Drawing.Point(540, 1);
             this._rightToolStrip.Name = "_rightToolStrip";
             this._rightToolStrip.Padding = new System.Windows.Forms.Padding(0);
             this._rightToolStrip.Size = new System.Drawing.Size(88, 40);
