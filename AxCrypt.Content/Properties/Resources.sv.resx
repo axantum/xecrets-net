@@ -695,4 +695,10 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
 	<data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
 		<value>Första gången du startar AxCrypt behövs en riktigt epostadress och åtkomst till Internet. Använd hjälpknappen för mer information. </value>
 	</data>
+	<data name="DialogFilePasswordFilePromptText" xml:space="preserve">
+		<value>Fil</value>
+	</data>
+	<data name="DialogFilePasswordTitle" xml:space="preserve">
+		<value>Lösenord för fil</value>
+	</data>
 </root>

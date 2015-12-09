@@ -26,8 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -36,22 +34,36 @@ using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
-    public partial class FilePasswordDialog : Form
+    public partial class FilePasswordDialog : StyledMessageBase
     {
         private LogOnViewModel _viewModel;
 
-        public FilePasswordDialog(Form parent, string encryptedFileFullName)
+        public FilePasswordDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
+        }
+
+        public FilePasswordDialog(Form parent, string encryptedFileFullName)
+            : this()
+        {
+            InitializeStyle(parent);
 
             _viewModel = new LogOnViewModel(encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
             _newButton.Enabled = String.IsNullOrEmpty(encryptedFileFullName);
+        }
 
-            Owner = parent;
-            StartPosition = FormStartPosition.CenterParent;
+        protected override void InitializeContentResources()
+        {
+            Text = Content.DialogFilePasswordTitle;
+
+            PassphraseGroupBox.Text = Content.PassphrasePrompt;
+            ShowPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
+            _newButton.Text = Content.ButtonNewText;
+            _buttonCancel.Text = Content.ButtonCancelText;
+            _buttonOk.Text = Content.ButtonOkText;
+            _fileGroupBox.Text = Content.DialogFilePasswordFilePromptText;
         }
 
         private void EncryptPassphraseDialog_Load(object s, EventArgs ea)

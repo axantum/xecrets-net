@@ -604,6 +604,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string DialogFilePasswordFilePromptText {
+            get {
+                return ResourceManager.GetString("DialogFilePasswordFilePromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Password.
+        /// </summary>
+        public static string DialogFilePasswordTitle {
+            get {
+                return ResourceManager.GetString("DialogFilePasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double click to open. If required you will be prompted for a password..
         /// </summary>
         public static string DoubleClickToOpenToolTip {
