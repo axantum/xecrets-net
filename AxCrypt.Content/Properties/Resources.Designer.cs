@@ -208,6 +208,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Share &gt;&gt;.
+        /// </summary>
+        public static string ButtonShareRightText {
+            get {
+                return ResourceManager.GetString("ButtonShareRightText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;&lt; Unshare.
+        /// </summary>
+        public static string ButtonUnshareLeftText {
+            get {
+                return ResourceManager.GetString("ButtonUnshareLeftText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Yes.
         /// </summary>
         public static string ButtonYesText {
@@ -631,7 +649,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Access AxCrypt ID.
+        ///   Looks up a localized string similar to AxCrypt ID.
         /// </summary>
         public static string DialogImportPrivateAxCryptIdAccessIdPrompt {
             get {
@@ -640,11 +658,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import Access AxCrypt ID.
+        ///   Looks up a localized string similar to Import AxCrypt ID.
         /// </summary>
         public static string DialogImportPrivateAxCryptIdTitle {
             get {
                 return ResourceManager.GetString("DialogImportPrivateAxCryptIdTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key Sharing.
+        /// </summary>
+        public static string DialogKeyShareTitle {
+            get {
+                return ResourceManager.GetString("DialogKeyShareTitle", resourceCulture);
             }
         }
         
@@ -1540,6 +1567,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Contact.
+        /// </summary>
+        public static string PromptAddContact {
+            get {
+                return ResourceManager.GetString("PromptAddContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string PromptEmailText {
@@ -1549,11 +1585,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Known Contacts.
+        /// </summary>
+        public static string PromptKnownContacts {
+            get {
+                return ResourceManager.GetString("PromptKnownContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure want to permanently delete this file? This action cannot be undone..
         /// </summary>
         public static string PromptLabelText {
             get {
                 return ResourceManager.GetString("PromptLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shared With.
+        /// </summary>
+        public static string PromptSharedWith {
+            get {
+                return ResourceManager.GetString("PromptSharedWith", resourceCulture);
             }
         }
         

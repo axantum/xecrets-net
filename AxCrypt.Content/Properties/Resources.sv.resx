@@ -710,4 +710,22 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
 	<data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
 		<value>Importera AxCrypt ID</value>
 	</data>
+	<data name="ButtonShareRightText" xml:space="preserve">
+		<value>Dela &gt;&gt;</value>
+	</data>
+	<data name="ButtonUnshareLeftText" xml:space="preserve">
+		<value>&lt;&lt; Odela</value>
+	</data>
+	<data name="DialogKeyShareTitle" xml:space="preserve">
+		<value>Åtkomstdelning</value>
+	</data>
+	<data name="PromptAddContact" xml:space="preserve">
+		<value>Lägg Till Kontakt</value>
+	</data>
+	<data name="PromptKnownContacts" xml:space="preserve">
+		<value>Kända Kontakter</value>
+	</data>
+	<data name="PromptSharedWith" xml:space="preserve">
+		<value>Delad Med</value>
+	</data>
 </root>

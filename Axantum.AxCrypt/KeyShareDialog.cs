@@ -72,6 +72,15 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
+            Text = Content.DialogKeyShareTitle;
+
+            _knownContactsGroupBox.Text = Content.PromptKnownContacts;
+            _addContactGroupBox.Text = Content.PromptAddContact;
+            _unshareButton.Text = Content.ButtonUnshareLeftText;
+            _shareButton.Text = Content.ButtonShareRightText;
+            _sharedWithGroupBox.Text = Content.PromptSharedWith;
+            _okButton.Text = Content.ButtonOkText;
+            _cancelButton.Text = Content.ButtonCancelText;
         }
 
         private async Task DisplayInviteMessageAsync(string email)

@@ -744,4 +744,22 @@ For more information, click OK to open a web browser to our web site.</value>
 	<data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>Import AxCrypt ID</value>
   </data>
+	<data name="ButtonShareRightText" xml:space="preserve">
+    <value>Share &gt;&gt;</value>
+  </data>
+	<data name="ButtonUnshareLeftText" xml:space="preserve">
+    <value>&lt;&lt; Unshare</value>
+  </data>
+	<data name="DialogKeyShareTitle" xml:space="preserve">
+    <value>Access Sharing</value>
+  </data>
+	<data name="PromptAddContact" xml:space="preserve">
+    <value>Add Contact</value>
+  </data>
+	<data name="PromptKnownContacts" xml:space="preserve">
+    <value>Known Contacts</value>
+  </data>
+	<data name="PromptSharedWith" xml:space="preserve">
+    <value>Shared With</value>
+  </data>
 </root>
