@@ -54,7 +54,6 @@ namespace Axantum.AxCrypt.Forms
                 culture = Thread.CurrentThread.CurrentUICulture;
             }
 
-            System.Diagnostics.Debug.WriteLine($"name '{name}, culture '{culture.Name}'");
             Dictionary<string, string> dictionary;
             string value;
 
@@ -105,7 +104,6 @@ namespace Axantum.AxCrypt.Forms
         private Dictionary<string, string> TryLoadCultureDictionary(string name)
         {
             string resourceName = RESOURCE_NAME_BASE + ((name.Length > 0) ? "." + name : name) + ".resources";
-            System.Diagnostics.Debug.WriteLine($"Trying to load '{resourceName}'.");
 
             Stream stream = _resourcesAssembly.GetManifestResourceStream(resourceName);
             if (stream != null)
@@ -122,7 +120,6 @@ namespace Axantum.AxCrypt.Forms
                         }
                     }
                 }
-                System.Diagnostics.Debug.WriteLine($"Loaded {cultureDictionary.Count} strings from '{resourceName}'.");
                 return cultureDictionary;
             }
             return null;
