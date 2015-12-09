@@ -683,4 +683,16 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
 	<data name="DialogDecryptTitle" xml:space="preserve">
 		<value>Lösenord Krävs</value>
 	</data>
+	<data name="ButtonExitText" xml:space="preserve">
+		<value>&amp;Avsluta</value>
+	</data>
+	<data name="ButtonHelpText" xml:space="preserve">
+		<value>&amp;Hjälp</value>
+	</data>
+	<data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
+		<value>AxCrypt ID</value>
+	</data>
+	<data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
+		<value>Första gången du startar AxCrypt behövs en riktigt epostadress och åtkomst till Internet. Använd hjälpknappen för mer information. </value>
+	</data>
 </root>

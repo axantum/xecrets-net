@@ -154,6 +154,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E&amp;xit.
+        /// </summary>
+        public static string ButtonExitText {
+            get {
+                return ResourceManager.GetString("ButtonExitText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Help.
+        /// </summary>
+        public static string ButtonHelpText {
+            get {
+                return ResourceManager.GetString("ButtonHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;New.
         /// </summary>
         public static string ButtonNewText {
@@ -465,6 +483,24 @@ namespace AxCrypt.Content.Properties {
         public static string DefaultEncryptionKeyIsIsetToolTip {
             get {
                 return ResourceManager.GetString("DefaultEncryptionKeyIsIsetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ID.
+        /// </summary>
+        public static string DialogAxCryptIdEmailTitle {
+            get {
+                return ResourceManager.GetString("DialogAxCryptIdEmailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The first time you start AxCrypt, Internet access and a real email address is required. Click help for more information..
+        /// </summary>
+        public static string DialogAxCryptIdFirstTimeText {
+            get {
+                return ResourceManager.GetString("DialogAxCryptIdFirstTimeText", resourceCulture);
             }
         }
         

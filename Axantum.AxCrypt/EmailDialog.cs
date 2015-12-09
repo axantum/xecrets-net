@@ -30,6 +30,13 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
+            Text = Content.DialogAxCryptIdEmailTitle;
+
+            _firstTimePromptlabel.Text = Content.DialogAxCryptIdFirstTimeText;
+            _buttonHelp.Text = Content.ButtonHelpText;
+            _buttonExit.Text = Content.ButtonExitText;
+            _buttonOk.Text = Content.ButtonOkText;
+            _emailGroupBox.Text = Content.PromptEmailText;
         }
 
         private void EmailDialog_Load(object sender, EventArgs e)
