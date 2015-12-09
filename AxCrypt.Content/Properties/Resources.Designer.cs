@@ -1216,6 +1216,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back to main site.
+        /// </summary>
+        public static string LinkTextBackToMainSite {
+            get {
+                return ResourceManager.GetString("LinkTextBackToMainSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://account.axcrypt.net/Home/Purchase?email={0}.
         /// </summary>
         public static string LinkToAxCryptPremiumPurchasePage {
@@ -1853,6 +1862,15 @@ namespace AxCrypt.Content.Properties {
         public static string TitleMainWindow {
             get {
                 return ResourceManager.GetString("TitleMainWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in to AxCrypt.
+        /// </summary>
+        public static string TitleSignInToAxCrypt {
+            get {
+                return ResourceManager.GetString("TitleSignInToAxCrypt", resourceCulture);
             }
         }
         

@@ -796,4 +796,12 @@ For more information, click OK to open a web browser to our web site.</value>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Open &amp;Explorer Here</value>
   </data>
+  <data name="LinkTextBackToMainSite" xml:space="preserve">
+    <value>Back to main site</value>
+    <comment>Menus and similar to link back to main site.</comment>
+  </data>
+  <data name="TitleSignInToAxCrypt" xml:space="preserve">
+    <value>Sign in to AxCrypt</value>
+    <comment>Title on the web page for signin for example.</comment>
+  </data>
 </root>
