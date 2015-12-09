@@ -36,7 +36,7 @@
             this._buttonOk = new System.Windows.Forms.Button();
             this._passphraseTextBox = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._accessIdGroupBox = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this._privateKeyFileTextBox = new System.Windows.Forms.TextBox();
             this._browsePrivateKeyFileButton = new System.Windows.Forms.Button();
@@ -44,7 +44,7 @@
             this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.PassphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this._accessIdGroupBox.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).BeginInit();
@@ -63,7 +63,7 @@
             this.PassphraseGroupBox.Size = new System.Drawing.Size(286, 112);
             this.PassphraseGroupBox.TabIndex = 1;
             this.PassphraseGroupBox.TabStop = false;
-            this.PassphraseGroupBox.Text = "Enter Passphrase";
+            this.PassphraseGroupBox.Text = "[Enter Passphrase]";
             // 
             // _showPassphraseCheckBox
             // 
@@ -71,9 +71,9 @@
             this._showPassphraseCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._showPassphraseCheckBox.Location = new System.Drawing.Point(11, 45);
             this._showPassphraseCheckBox.Name = "_showPassphraseCheckBox";
-            this._showPassphraseCheckBox.Size = new System.Drawing.Size(111, 17);
+            this._showPassphraseCheckBox.Size = new System.Drawing.Size(117, 17);
             this._showPassphraseCheckBox.TabIndex = 1;
-            this._showPassphraseCheckBox.Text = "Show Passphrase";
+            this._showPassphraseCheckBox.Text = "[Show Passphrase]";
             this._showPassphraseCheckBox.UseVisualStyleBackColor = true;
             // 
             // _panel1
@@ -95,7 +95,7 @@
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
             this._buttonCancel.TabIndex = 1;
-            this._buttonCancel.Text = "Cancel";
+            this._buttonCancel.Text = "[Cancel]";
             this._buttonCancel.UseVisualStyleBackColor = true;
             // 
             // _buttonOk
@@ -105,7 +105,7 @@
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(75, 23);
             this._buttonOk.TabIndex = 0;
-            this._buttonOk.Text = "OK";
+            this._buttonOk.Text = "[OK]";
             this._buttonOk.UseVisualStyleBackColor = true;
             this._buttonOk.Click += new System.EventHandler(this._buttonOk_Click);
             // 
@@ -126,15 +126,15 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._accessIdGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(286, 57);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Secret and Sharing Key Pair";
+            this._accessIdGroupBox.Controls.Add(this.tableLayoutPanel1);
+            this._accessIdGroupBox.Location = new System.Drawing.Point(12, 12);
+            this._accessIdGroupBox.Name = "groupBox1";
+            this._accessIdGroupBox.Size = new System.Drawing.Size(286, 57);
+            this._accessIdGroupBox.TabIndex = 0;
+            this._accessIdGroupBox.TabStop = false;
+            this._accessIdGroupBox.Text = "[Secret and Sharing Key Pair]";
             // 
             // tableLayoutPanel1
             // 
@@ -190,16 +190,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._buttonCancel;
             this.ClientSize = new System.Drawing.Size(305, 196);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this._accessIdGroupBox);
             this.Controls.Add(this.PassphraseGroupBox);
             this.MaximumSize = new System.Drawing.Size(500, 235);
             this.MinimumSize = new System.Drawing.Size(300, 235);
             this.Name = "ImportPrivatePasswordDialog";
-            this.Text = "Import Account Secret and Sharing Key Pair";
+            this.Text = "[Import Account Secret and Sharing Key Pair]";
             this.PassphraseGroupBox.ResumeLayout(false);
             this.PassphraseGroupBox.PerformLayout();
             this._panel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
+            this._accessIdGroupBox.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
@@ -217,7 +217,7 @@
         private System.Windows.Forms.Button _buttonOk;
         internal System.Windows.Forms.TextBox _passphraseTextBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox _accessIdGroupBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox _privateKeyFileTextBox;
         private System.Windows.Forms.Button _browsePrivateKeyFileButton;

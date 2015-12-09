@@ -154,6 +154,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ....
+        /// </summary>
+        public static string ButtonEllipsisText {
+            get {
+                return ResourceManager.GetString("ButtonEllipsisText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E&amp;xit.
         /// </summary>
         public static string ButtonExitText {
@@ -618,6 +627,24 @@ namespace AxCrypt.Content.Properties {
         public static string DialogFilePasswordTitle {
             get {
                 return ResourceManager.GetString("DialogFilePasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access AxCrypt ID.
+        /// </summary>
+        public static string DialogImportPrivateAxCryptIdAccessIdPrompt {
+            get {
+                return ResourceManager.GetString("DialogImportPrivateAxCryptIdAccessIdPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Access AxCrypt ID.
+        /// </summary>
+        public static string DialogImportPrivateAxCryptIdTitle {
+            get {
+                return ResourceManager.GetString("DialogImportPrivateAxCryptIdTitle", resourceCulture);
             }
         }
         

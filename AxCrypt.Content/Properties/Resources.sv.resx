@@ -701,4 +701,13 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
 	<data name="DialogFilePasswordTitle" xml:space="preserve">
 		<value>Lösenord för fil</value>
 	</data>
+	<data name="ButtonEllipsisText" xml:space="preserve">
+		<value>...</value>
+	</data>
+	<data name="DialogImportPrivateAxCryptIdAccessIdPrompt" xml:space="preserve">
+		<value>AxCrypt ID</value>
+	</data>
+	<data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
+		<value>Importera AxCrypt ID</value>
+	</data>
 </root>

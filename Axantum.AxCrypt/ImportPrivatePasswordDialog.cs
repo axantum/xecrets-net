@@ -1,7 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +10,20 @@ using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
-    public partial class ImportPrivatePasswordDialog : Form
+    public partial class ImportPrivatePasswordDialog : StyledMessageBase
     {
         private ImportPrivateKeysViewModel _viewModel;
 
         public ImportPrivatePasswordDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
         }
 
         public ImportPrivatePasswordDialog(Form parent, IUserSettings userSettings, KnownIdentities knownIdentities)
             : this()
         {
+            InitializeStyle(parent);
+
             _viewModel = new ImportPrivateKeysViewModel(userSettings, knownIdentities);
 
             _privateKeyFileTextBox.TextChanged += (sender, e) => { _viewModel.PrivateKeyFileName = _privateKeyFileTextBox.Text; };
@@ -33,10 +32,18 @@ namespace Axantum.AxCrypt
 
             _viewModel.BindPropertyChanged<bool>(nameof(ImportPrivateKeysViewModel.ImportSuccessful), (ok) => { if (!ok) { _errorProvider1.SetError(_browsePrivateKeyFileButton, Content.FailedPrivateImport); } });
             _viewModel.BindPropertyChanged<bool>(nameof(ImportPrivateKeysViewModel.ShowPassphrase), (show) => { _showPassphraseCheckBox.Checked = show; _passphraseTextBox.UseSystemPasswordChar = !show; });
+        }
 
-            Owner = parent;
-            Owner.Activated += (sender, e) => Activate();
-            StartPosition = FormStartPosition.CenterParent;
+        protected override void InitializeContentResources()
+        {
+            Text = Content.DialogImportPrivateAxCryptIdTitle;
+
+            PassphraseGroupBox.Text = Content.PassphrasePrompt;
+            _showPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
+            _buttonCancel.Text = Content.ButtonCancelText;
+            _buttonOk.Text = Content.ButtonOkText;
+            _accessIdGroupBox.Text = Content.DialogImportPrivateAxCryptIdAccessIdPrompt;
+            _browsePrivateKeyFileButton.Text = Content.ButtonEllipsisText;
         }
 
         private void _buttonOk_Click(object sender, EventArgs e)
