@@ -207,7 +207,7 @@
             // 
             this._watchedFoldersTabPage.Controls.Add(this._watchedFoldersListView);
             this._watchedFoldersTabPage.Location = new System.Drawing.Point(4, 22);
-            this._watchedFoldersTabPage.Name = "WatchedFoldersTabPageName";
+            this._watchedFoldersTabPage.Name = "_watchedFoldersTabPage";
             this._watchedFoldersTabPage.Padding = new System.Windows.Forms.Padding(3);
             this._watchedFoldersTabPage.Size = new System.Drawing.Size(620, 150);
             this._watchedFoldersTabPage.TabIndex = 1;
@@ -320,11 +320,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel2.Controls.Add(this._mainMenuStrip, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(628, 24);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(634, 24);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
             // _mainMenuStrip
@@ -337,7 +338,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -447,7 +448,7 @@
             // _englishLanguageToolStripMenuItem
             // 
             this._englishLanguageToolStripMenuItem.Name = "_englishLanguageToolStripMenuItem";
-            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this._englishLanguageToolStripMenuItem.Tag = "en-US";
             this._englishLanguageToolStripMenuItem.Text = "[&English]";
             this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -455,7 +456,7 @@
             // _swedishLanguageToolStripMenuItem
             // 
             this._swedishLanguageToolStripMenuItem.Name = "_swedishLanguageToolStripMenuItem";
-            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this._swedishLanguageToolStripMenuItem.Tag = "sv-SE";
             this._swedishLanguageToolStripMenuItem.Text = "[&Svenska]";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -675,7 +676,7 @@
             this.tableLayoutPanel3.Controls.Add(this._mainToolStrip, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this._daysLeftPremiumLabel, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this._rightToolStrip, 3, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 31);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 25);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;

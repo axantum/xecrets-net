@@ -539,7 +539,7 @@ namespace Axantum.AxCrypt
 
             _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
 
-            _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["WatchedFoldersTabPageName"];
+            _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
 
             _updateStatusButton.Click += _updateToolStripButton_Click;
             _feedbackButton.Click += (sender, e) => Process.Start(Content.LinkToFeedbackWebPage);
