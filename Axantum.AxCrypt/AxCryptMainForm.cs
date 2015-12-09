@@ -1757,7 +1757,7 @@ namespace Axantum.AxCrypt
 
         private void ManageAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ManageAccountDialog dialog = new ManageAccountDialog(Resolve.KnownIdentities, Resolve.UserSettings))
+            using (ManageAccountDialog dialog = new ManageAccountDialog(this, Resolve.KnownIdentities, Resolve.UserSettings))
             {
                 dialog.ShowDialog();
             }

@@ -701,9 +701,6 @@ For more information, click OK to open a web browser to our web site.</value>
 	<data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Cancel</value>
   </data>
-	<data name="YesButtonText" xml:space="preserve">
-    <value>&amp;Yes</value>
-  </data>
 	<data name="DialogDebugLogTitle" xml:space="preserve">
     <value>Debug Log Output</value>
   </data>
@@ -761,5 +758,14 @@ For more information, click OK to open a web browser to our web site.</value>
   </data>
 	<data name="PromptSharedWith" xml:space="preserve">
     <value>Shared With</value>
+  </data>
+	<data name="ButtonChangePasswordText" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+	<data name="ColumnTimestampHeader" xml:space="preserve">
+    <value>Timestamp</value>
+  </data>
+	<data name="DialogManageAxcryptIdTitle" xml:space="preserve">
+    <value>Manage AxCrypt ID</value>
   </data>
 </root>

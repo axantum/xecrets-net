@@ -41,7 +41,7 @@
             this._changePassphraseButton.Name = "_changePassphraseButton";
             this._changePassphraseButton.Size = new System.Drawing.Size(135, 23);
             this._changePassphraseButton.TabIndex = 2;
-            this._changePassphraseButton.Text = "Change Passphrase";
+            this._changePassphraseButton.Text = "[Change Passphrase]";
             this._changePassphraseButton.UseVisualStyleBackColor = true;
             this._changePassphraseButton.Click += new System.EventHandler(this._changePassphraseButton_Click);
             // 
@@ -62,16 +62,16 @@
             // 
             // _dateHeader
             // 
-            this._dateHeader.Text = "Timestamp";
+            this._dateHeader.Text = "[Timestamp]";
             // 
             // _emailLabel
             // 
             this._emailLabel.AutoSize = true;
             this._emailLabel.Location = new System.Drawing.Point(12, 9);
             this._emailLabel.Name = "_emailLabel";
-            this._emailLabel.Size = new System.Drawing.Size(108, 13);
+            this._emailLabel.Size = new System.Drawing.Size(114, 13);
             this._emailLabel.TabIndex = 0;
-            this._emailLabel.Text = "email@company.com";
+            this._emailLabel.Text = "[email@company.com]";
             // 
             // ManageAccountDialog
             // 
@@ -83,7 +83,7 @@
             this.Controls.Add(this._changePassphraseButton);
             this.MaximizeBox = false;
             this.Name = "ManageAccountDialog";
-            this.Text = "Manage Account";
+            this.Text = "[Manage Account]";
             this.Load += new System.EventHandler(this.ManageAccountDialog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

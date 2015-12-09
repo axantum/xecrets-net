@@ -4,8 +4,6 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,26 +16,39 @@ using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
-    public partial class ManageAccountDialog : Form
+    public partial class ManageAccountDialog : StyledMessageBase
     {
         private ManageAccountViewModel _viewModel;
 
         private IUserSettings _userSettings;
 
-        public ManageAccountDialog(KnownIdentities knownIdentities, IUserSettings userSettings)
+        public ManageAccountDialog()
+        {
+            InitializeComponent();
+        }
+
+        public ManageAccountDialog(Form parent, KnownIdentities knownIdentities, IUserSettings userSettings)
+            : this()
         {
             if (knownIdentities == null)
             {
                 throw new ArgumentNullException(nameof(knownIdentities));
             }
 
-            InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
+            InitializeStyle(parent);
 
             _userSettings = userSettings;
             AccountStorage userKeyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             _viewModel = new ManageAccountViewModel(userKeyPairs, knownIdentities);
             _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>(nameof(ManageAccountViewModel.AccountProperties), ListAccountEmails);
+        }
+
+        protected override void InitializeContentResources()
+        {
+            Text = Content.DialogManageAxcryptIdTitle;
+
+            _changePassphraseButton.Text = Content.ButtonChangePasswordText;
+            _dateHeader.Text = Content.ColumnTimestampHeader;
         }
 
         private void ListAccountEmails(IEnumerable<AccountProperties> emails)

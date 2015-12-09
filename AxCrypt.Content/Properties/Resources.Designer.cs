@@ -154,6 +154,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        public static string ButtonChangePasswordText {
+            get {
+                return ResourceManager.GetString("ButtonChangePasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ....
         /// </summary>
         public static string ButtonEllipsisText {
@@ -312,6 +321,15 @@ namespace AxCrypt.Content.Properties {
         public static string CloseAndRemoveOpenFilesToolStripButtonToolTipText {
             get {
                 return ResourceManager.GetString("CloseAndRemoveOpenFilesToolStripButtonToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timestamp.
+        /// </summary>
+        public static string ColumnTimestampHeader {
+            get {
+                return ResourceManager.GetString("ColumnTimestampHeader", resourceCulture);
             }
         }
         
@@ -667,11 +685,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Key Sharing.
+        ///   Looks up a localized string similar to Access Sharing.
         /// </summary>
         public static string DialogKeyShareTitle {
             get {
                 return ResourceManager.GetString("DialogKeyShareTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage AxCrypt ID.
+        /// </summary>
+        public static string DialogManageAxcryptIdTitle {
+            get {
+                return ResourceManager.GetString("DialogManageAxcryptIdTitle", resourceCulture);
             }
         }
         
@@ -1940,15 +1967,6 @@ namespace AxCrypt.Content.Properties {
         public static string WrongVerificationCodeFormat {
             get {
                 return ResourceManager.GetString("WrongVerificationCodeFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &amp;Yes.
-        /// </summary>
-        public static string YesButtonText {
-            get {
-                return ResourceManager.GetString("YesButtonText", resourceCulture);
             }
         }
     }

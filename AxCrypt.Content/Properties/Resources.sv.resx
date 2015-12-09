@@ -728,4 +728,13 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
 	<data name="PromptSharedWith" xml:space="preserve">
 		<value>Delad Med</value>
 	</data>
+	<data name="ButtonChangePasswordText" xml:space="preserve">
+		<value>Byt Lösenord</value>
+	</data>
+	<data name="ColumnTimestampHeader" xml:space="preserve">
+		<value>Tid</value>
+	</data>
+	<data name="DialogManageAxcryptIdTitle" xml:space="preserve">
+		<value>Hantera AxCrypt ID</value>
+	</data>
 </root>
