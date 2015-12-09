@@ -703,6 +703,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activate AxCrypt ID.
+        /// </summary>
+        public static string DialogVerifyAccountTitle {
+            get {
+                return ResourceManager.GetString("DialogVerifyAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double click to open. If required you will be prompted for a password..
         /// </summary>
         public static string DoubleClickToOpenToolTip {
@@ -1594,6 +1603,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activation Code.
+        /// </summary>
+        public static string PromptActivationCode {
+            get {
+                return ResourceManager.GetString("PromptActivationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Contact.
         /// </summary>
         public static string PromptAddContact {
@@ -1635,6 +1653,15 @@ namespace AxCrypt.Content.Properties {
         public static string PromptLabelText {
             get {
                 return ResourceManager.GetString("PromptLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Your Password.
+        /// </summary>
+        public static string PromptSetNewPassword {
+            get {
+                return ResourceManager.GetString("PromptSetNewPassword", resourceCulture);
             }
         }
         
@@ -1745,6 +1772,15 @@ namespace AxCrypt.Content.Properties {
         public static string SwedishLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("SwedishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check email and spam!.
+        /// </summary>
+        public static string TextCheckEmailAndSpam {
+            get {
+                return ResourceManager.GetString("TextCheckEmailAndSpam", resourceCulture);
             }
         }
         

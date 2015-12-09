@@ -14,15 +14,30 @@ namespace Axantum.AxCrypt
     {
         private VerifyAccountViewModel _viewModel;
 
-        public VerifyAccountDialog(Form owner, VerifyAccountViewModel viewModel)
+        public VerifyAccountDialog()
         {
             InitializeComponent();
+        }
+
+        public VerifyAccountDialog(Form owner, VerifyAccountViewModel viewModel)
+            : this()
+        {
             InitializeStyle(owner);
             _viewModel = viewModel;
         }
 
         protected override void InitializeContentResources()
         {
+            Text = Content.DialogVerifyAccountTitle;
+
+            PassphraseGroupBox.Text = Content.PromptSetNewPassword;
+            _showPassphrase.Text = Content.ShowPasswordOptionPrompt;
+            _verifyPasswordLabel.Text = Content.VerifyPasswordPrompt;
+            _buttonCancel.Text = Content.ButtonCancelText;
+            _buttonOk.Text = Content.ButtonOkText;
+            _emailGroupBox.Text = Content.PromptEmailText;
+            _activationCodeGroupBox.Text = Content.PromptActivationCode;
+            _checkEmailLabel.Text = Content.TextCheckEmailAndSpam;
         }
 
         private void VerifyAccountDialog_Load(object sender, EventArgs e)

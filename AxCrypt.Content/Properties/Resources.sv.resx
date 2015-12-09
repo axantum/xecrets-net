@@ -743,4 +743,16 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
 	<data name="DialogNewPasswordTitle" xml:space="preserve">
 		<value>Skapa Nytt Lösenord</value>
 	</data>
+	<data name="DialogVerifyAccountTitle" xml:space="preserve">
+		<value>Aktivera AxCrypt ID</value>
+	</data>
+	<data name="PromptActivationCode" xml:space="preserve">
+		<value>Aktiveringskod</value>
+	</data>
+	<data name="PromptSetNewPassword" xml:space="preserve">
+		<value>Sätt Nytt Lösenord</value>
+	</data>
+	<data name="TextCheckEmailAndSpam" xml:space="preserve">
+		<value>Finns i inbox eller skräppost!</value>
+	</data>
 </root>
