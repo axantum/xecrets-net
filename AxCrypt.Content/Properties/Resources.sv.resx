@@ -737,4 +737,10 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
 	<data name="DialogManageAxcryptIdTitle" xml:space="preserve">
 		<value>Hantera AxCrypt ID</value>
 	</data>
+	<data name="PromptFileText" xml:space="preserve">
+		<value>Fil</value>
+	</data>
+	<data name="DialogNewPasswordTitle" xml:space="preserve">
+		<value>Skapa Nytt Lösenord</value>
+	</data>
 </root>

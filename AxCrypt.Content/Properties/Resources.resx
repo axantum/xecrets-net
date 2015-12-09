@@ -725,7 +725,7 @@ For more information, click OK to open a web browser to our web site.</value>
 	<data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
     <value>The first time you start AxCrypt, Internet access and a real email address is required. Click help for more information.</value>
   </data>
-	<data name="DialogFilePasswordFilePromptText" xml:space="preserve">
+	<data name="PromptFileText" xml:space="preserve">
     <value>File</value>
     <comment>The heading of a groupbox where the file name to be opened is displayed.</comment>
   </data>
@@ -767,5 +767,8 @@ For more information, click OK to open a web browser to our web site.</value>
   </data>
 	<data name="DialogManageAxcryptIdTitle" xml:space="preserve">
     <value>Manage AxCrypt ID</value>
+  </data>
+	<data name="DialogNewPasswordTitle" xml:space="preserve">
+    <value>Create New Password</value>
   </data>
 </root>

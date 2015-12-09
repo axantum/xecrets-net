@@ -649,15 +649,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File.
-        /// </summary>
-        public static string DialogFilePasswordFilePromptText {
-            get {
-                return ResourceManager.GetString("DialogFilePasswordFilePromptText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to File Password.
         /// </summary>
         public static string DialogFilePasswordTitle {
@@ -699,6 +690,15 @@ namespace AxCrypt.Content.Properties {
         public static string DialogManageAxcryptIdTitle {
             get {
                 return ResourceManager.GetString("DialogManageAxcryptIdTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create New Password.
+        /// </summary>
+        public static string DialogNewPasswordTitle {
+            get {
+                return ResourceManager.GetString("DialogNewPasswordTitle", resourceCulture);
             }
         }
         
@@ -1608,6 +1608,15 @@ namespace AxCrypt.Content.Properties {
         public static string PromptEmailText {
             get {
                 return ResourceManager.GetString("PromptEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string PromptFileText {
+            get {
+                return ResourceManager.GetString("PromptFileText", resourceCulture);
             }
         }
         

@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt
             _newButton.Text = Content.ButtonNewText;
             _buttonCancel.Text = Content.ButtonCancelText;
             _buttonOk.Text = Content.ButtonOkText;
-            _fileGroupBox.Text = Content.DialogFilePasswordFilePromptText;
+            _fileGroupBox.Text = Content.PromptFileText;
         }
 
         private void EncryptPassphraseDialog_Load(object s, EventArgs ea)

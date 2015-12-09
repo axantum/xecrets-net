@@ -26,10 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
 using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -37,24 +34,38 @@ using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
-    public partial class NewPassphraseDialog : Form
+    public partial class NewPassphraseDialog : StyledMessageBase
     {
         private NewPassphraseViewModel _viewModel;
 
-        public NewPassphraseDialog(Form parent, string title, string passphrase, string encryptedFileFullName)
+        public NewPassphraseDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
+        }
+
+        public NewPassphraseDialog(Form parent, string title, string passphrase, string encryptedFileFullName)
+            : this()
+        {
+            InitializeStyle(parent);
 
             Text = title;
             _viewModel = new NewPassphraseViewModel(passphrase, encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
+        }
 
-            Owner = parent;
-            Owner.Activated += (sender, e) => Activate();
-            StartPosition = FormStartPosition.CenterParent;
+        protected override void InitializeContentResources()
+        {
+            Text = Content.DialogNewPasswordTitle;
+
+            PassphraseGroupBox.Text = Content.PassphrasePrompt;
+            ShowPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
+
+            _fileGroupBox.Text = Content.PromptFileText;
+            _buttonCancel.Text = Content.ButtonCancelText;
+            _buttonOk.Text = Content.ButtonOkText;
+            _verifyPasswordLabel.Text = Content.VerifyPasswordPrompt;
         }
 
         private void EncryptPassphraseDialog_Load(object s, EventArgs ee)
@@ -99,26 +110,6 @@ namespace Axantum.AxCrypt
             }
             _errorProvider2.Clear();
             return validated;
-        }
-
-        private void VerifyPassphraseTextbox_Validating(object sender, CancelEventArgs e)
-        {
-        }
-
-        private void VerifyPassphraseTextbox_Validated(object sender, EventArgs e)
-        {
-        }
-
-        private void NameTextBox_Validating(object sender, CancelEventArgs e)
-        {
-        }
-
-        private void NameTextBox_Validated(object sender, EventArgs e)
-        {
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
         }
     }
 }
