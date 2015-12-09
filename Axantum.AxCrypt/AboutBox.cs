@@ -1,6 +1,4 @@
 ﻿using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +9,33 @@ using Content = AxCrypt.Content.Content;
 
 namespace Axantum.AxCrypt
 {
-    partial class AboutBox : Form
+    partial class AboutBox : StyledMessageBase
     {
         public AboutBox()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
+        }
+
+        public AboutBox(Form parent)
+            : this()
+        {
+            InitializeStyle(parent);
+        }
+
+        protected override void InitializeContentResources()
+        {
+            Text = Content.About.InvariantFormat(AssemblyProduct);
+
+            Description.Text = Content.AxCryptAboutDescription;
+            okButton.Text = Content.ButtonOkText;
         }
 
         private void AboutBox_Load(object sender, EventArgs e)
         {
-            this.Text = Content.About.InvariantFormat(AssemblyProduct);
             this.ProductNameText.Text = AssemblyProduct;
             this.VersionText.Text = AssemblyVersion + (String.IsNullOrEmpty(AssemblyDescription) ? String.Empty : " " + AssemblyDescription);
             this.CopyrightText.Text = AssemblyCopyright;
             this.CompanyNameText.Text = AssemblyCompany;
-            this.Description.Text = Content.AxCryptAboutDescription;
         }
 
         #region Assembly Attribute Accessors

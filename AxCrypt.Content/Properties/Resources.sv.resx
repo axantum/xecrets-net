@@ -452,7 +452,7 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
 	<data name="WelcomeToAxCrypt" xml:space="preserve">
     <value>Välkommentill AxCrypt!
 
-Att använda AxCrypt är enkel. Börja med huvudfönstret, eller dubbel-klicka och högerklicka i utforskaren.
+Att använda AxCrypt är enkelt. Börja med huvudfönstret, eller dubbel-klicka och högerklicka i utforskaren.
 
 För att skydda dina första filer, klicka + ikonen i verktygsfältet och välj.
 
@@ -754,5 +754,20 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
 	</data>
 	<data name="TextCheckEmailAndSpam" xml:space="preserve">
 		<value>Finns i inbox eller skräppost!</value>
+	</data>
+	<data name="ColumnFolderHeader" xml:space="preserve">
+		<value>Mapp</value>
+	</data>
+	<data name="DialogWatchedFoldersTitle" xml:space="preserve">
+		<value>Skyddade Mappar</value>
+	</data>
+	<data name="MenuDecryptPermanentlyText" xml:space="preserve">
+		<value>Tag &amp;Bort Skydd Permanent</value>
+	</data>
+	<data name="MenuDecryptTemporarilyText" xml:space="preserve">
+		<value>Tag Bort Skydd &amp;Temporärt</value>
+	</data>
+	<data name="MenuOpenExplorerHereText" xml:space="preserve">
+		<value>&amp;Öppna Utforskaren Här</value>
 	</data>
 </root>

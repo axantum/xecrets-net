@@ -190,7 +190,7 @@ namespace Axantum.AxCrypt
             _swedishLanguageToolStripMenuItem.Text = Content.SwedishLanguageToolStripMenuItemText;
             _tryBrokenFileToolStripMenuItem.Text = Content.TryBrokenFileToolStripMenuItemText;
             _watchedFolderColumnHeader.Text = Content.WatchedFolderColumnHeaderText;
-            _watchedFoldersdecryptTemporarilyMenuItem.Text = Content.WatchedFoldersdecryptTemporarilyMenuItemText;
+            _watchedFoldersdecryptTemporarilyMenuItem.Text = Content.MenuDecryptTemporarilyText;
             _watchedFoldersOpenExplorerHereMenuItem.Text = Content.WatchedFoldersOpenExplorerHereMenuItemText;
             _watchedFoldersRemoveMenuItem.Text = Content.WatchedFoldersRemoveMenuItemText;
             _watchedFoldersTabPage.Text = Content.WatchedFoldersTabPageText;
@@ -1583,6 +1583,7 @@ namespace Axantum.AxCrypt
             InitializeContentResources();
             SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
             SetDaysLeftWarning(_mainViewModel.License);
+            UpdateVersionStatus(_mainViewModel.VersionUpdateStatus);
         }
 
         private void OptionsLanguageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)

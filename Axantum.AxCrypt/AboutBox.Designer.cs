@@ -41,47 +41,86 @@
             // logoPictureBox
             // 
             this.logoPictureBox.Image = global::Axantum.AxCrypt.Properties.Resources.axcrypticon128;
-            resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
+            this.logoPictureBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(123, 134);
+            this.logoPictureBox.TabIndex = 26;
             this.logoPictureBox.TabStop = false;
             // 
             // ProductNameText
             // 
-            resources.ApplyResources(this.ProductNameText, "ProductNameText");
+            this.ProductNameText.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ProductNameText.Location = new System.Drawing.Point(143, 6);
+            this.ProductNameText.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.ProductNameText.Name = "ProductNameText";
+            this.ProductNameText.Size = new System.Drawing.Size(271, 17);
+            this.ProductNameText.TabIndex = 27;
+            this.ProductNameText.Text = "[AxCrypt File Encryption]";
+            this.ProductNameText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // VersionText
             // 
-            resources.ApplyResources(this.VersionText, "VersionText");
+            this.VersionText.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.VersionText.Location = new System.Drawing.Point(143, 30);
+            this.VersionText.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.VersionText.Name = "VersionText";
+            this.VersionText.Size = new System.Drawing.Size(271, 17);
+            this.VersionText.TabIndex = 25;
+            this.VersionText.Text = "[Version]";
+            this.VersionText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CopyrightText
             // 
-            resources.ApplyResources(this.CopyrightText, "CopyrightText");
+            this.CopyrightText.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.CopyrightText.Location = new System.Drawing.Point(143, 54);
+            this.CopyrightText.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.CopyrightText.Name = "CopyrightText";
+            this.CopyrightText.Size = new System.Drawing.Size(271, 17);
+            this.CopyrightText.TabIndex = 28;
+            this.CopyrightText.Text = "[Copyright 2015 AxCrypt AB]";
+            this.CopyrightText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CompanyNameText
             // 
-            resources.ApplyResources(this.CompanyNameText, "CompanyNameText");
+            this.CompanyNameText.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.CompanyNameText.Location = new System.Drawing.Point(143, 78);
+            this.CompanyNameText.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.CompanyNameText.Name = "CompanyNameText";
+            this.CompanyNameText.Size = new System.Drawing.Size(271, 17);
+            this.CompanyNameText.TabIndex = 29;
+            this.CompanyNameText.Text = "[AxCrypt AB]";
+            this.CompanyNameText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Description
             // 
-            resources.ApplyResources(this.Description, "Description");
+            this.Description.Location = new System.Drawing.Point(143, 107);
+            this.Description.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
+            this.Description.Multiline = true;
             this.Description.Name = "Description";
             this.Description.ReadOnly = true;
+            this.Description.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.Description.Size = new System.Drawing.Size(271, 126);
+            this.Description.TabIndex = 30;
             this.Description.TabStop = false;
+            this.Description.Text = "[Description]";
             // 
             // okButton
             // 
-            resources.ApplyResources(this.okButton, "okButton");
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.okButton.Location = new System.Drawing.Point(339, 239);
             this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 31;
+            this.okButton.Text = "[&OK]";
             // 
             // AboutBox
             // 
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(435, 283);
             this.Controls.Add(this.logoPictureBox);
             this.Controls.Add(this.ProductNameText);
             this.Controls.Add(this.VersionText);
@@ -90,11 +129,15 @@
             this.Controls.Add(this.Description);
             this.Controls.Add(this.okButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutBox";
+            this.Padding = new System.Windows.Forms.Padding(9);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "AboutBox";
             this.Load += new System.EventHandler(this.AboutBox_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);

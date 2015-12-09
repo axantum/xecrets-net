@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
@@ -35,9 +34,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Axantum.AxCrypt.Desktop.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("AxCrypt AB")]
 [assembly: AssemblyProduct("Axantum.AxCrypt.Desktop.Test")]
-[assembly: AssemblyCopyright("Copyright Svante Seleborg © 2015")]
+[assembly: AssemblyCopyright("Copyright © 2012-2015 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

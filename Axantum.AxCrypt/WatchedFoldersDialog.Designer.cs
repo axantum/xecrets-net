@@ -54,7 +54,7 @@
             // 
             // _watchedFolderColumnHeader
             // 
-            this._watchedFolderColumnHeader.Text = "Folder";
+            this._watchedFolderColumnHeader.Text = "[Folder]";
             this._watchedFolderColumnHeader.Width = 325;
             // 
             // _watchedFoldersContextMenuStrip
@@ -64,25 +64,25 @@
             this._watchedFoldersdecryptTemporarilyMenuItem,
             this._watchedFoldersOpenExplorerHereMenuItem});
             this._watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
-            this._watchedFoldersContextMenuStrip.Size = new System.Drawing.Size(186, 92);
+            this._watchedFoldersContextMenuStrip.Size = new System.Drawing.Size(186, 70);
             // 
             // _watchedFoldersRemoveMenuItem
             // 
             this._watchedFoldersRemoveMenuItem.Name = "_watchedFoldersRemoveMenuItem";
             this._watchedFoldersRemoveMenuItem.Size = new System.Drawing.Size(185, 22);
-            this._watchedFoldersRemoveMenuItem.Text = "&Decrypt Permanently";
+            this._watchedFoldersRemoveMenuItem.Text = "[&Decrypt Permanently]";
             // 
             // _watchedFoldersdecryptTemporarilyMenuItem
             // 
             this._watchedFoldersdecryptTemporarilyMenuItem.Name = "_watchedFoldersdecryptTemporarilyMenuItem";
             this._watchedFoldersdecryptTemporarilyMenuItem.Size = new System.Drawing.Size(185, 22);
-            this._watchedFoldersdecryptTemporarilyMenuItem.Text = "Decrypt &Temporarily";
+            this._watchedFoldersdecryptTemporarilyMenuItem.Text = "[Decrypt &Temporarily]";
             // 
             // _watchedFoldersOpenExplorerHereMenuItem
             // 
             this._watchedFoldersOpenExplorerHereMenuItem.Name = "_watchedFoldersOpenExplorerHereMenuItem";
             this._watchedFoldersOpenExplorerHereMenuItem.Size = new System.Drawing.Size(185, 22);
-            this._watchedFoldersOpenExplorerHereMenuItem.Text = "Open &Explorer Here";
+            this._watchedFoldersOpenExplorerHereMenuItem.Text = "[Open &Explorer Here]";
             // 
             // WatchedFoldersDialog
             // 
@@ -92,7 +92,7 @@
             this.Controls.Add(this._watchedFoldersListView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WatchedFoldersDialog";
-            this.Text = "Encrypted Folders";
+            this.Text = "[Encrypted Folders]";
             this.Load += new System.EventHandler(this.WatchedFoldersDialog_Load);
             this._watchedFoldersContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);

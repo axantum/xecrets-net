@@ -38,9 +38,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("AxCrypt Core Encryption Library")]
 [assembly: AssemblyDescription("Beta")]
-[assembly: AssemblyCompany("Axantum Software AB")]
+[assembly: AssemblyCompany("AxCrypt AB")]
 [assembly: AssemblyProduct("AxCrypt")]
-[assembly: AssemblyCopyright("Copyright © Svante Seleborg 2012")]
+[assembly: AssemblyCopyright("Copyright © 2012-2015 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]

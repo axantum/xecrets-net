@@ -325,6 +325,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string ColumnFolderHeader {
+            get {
+                return ResourceManager.GetString("ColumnFolderHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Timestamp.
         /// </summary>
         public static string ColumnTimestampHeader {
@@ -708,6 +717,15 @@ namespace AxCrypt.Content.Properties {
         public static string DialogVerifyAccountTitle {
             get {
                 return ResourceManager.GetString("DialogVerifyAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secured Folders.
+        /// </summary>
+        public static string DialogWatchedFoldersTitle {
+            get {
+                return ResourceManager.GetString("DialogWatchedFoldersTitle", resourceCulture);
             }
         }
         
@@ -1284,6 +1302,33 @@ namespace AxCrypt.Content.Properties {
         public static string LowEncryptionWorkingToolTip {
             get {
                 return ResourceManager.GetString("LowEncryptionWorkingToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Decrypt Permanently.
+        /// </summary>
+        public static string MenuDecryptPermanentlyText {
+            get {
+                return ResourceManager.GetString("MenuDecryptPermanentlyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrypt &amp;Temporarily.
+        /// </summary>
+        public static string MenuDecryptTemporarilyText {
+            get {
+                return ResourceManager.GetString("MenuDecryptTemporarilyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open &amp;Explorer Here.
+        /// </summary>
+        public static string MenuOpenExplorerHereText {
+            get {
+                return ResourceManager.GetString("MenuOpenExplorerHereText", resourceCulture);
             }
         }
         
@@ -1907,15 +1952,6 @@ namespace AxCrypt.Content.Properties {
         public static string WatchedFolderColumnHeaderText {
             get {
                 return ResourceManager.GetString("WatchedFolderColumnHeaderText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Decrypt &amp;Temporarily.
-        /// </summary>
-        public static string WatchedFoldersdecryptTemporarilyMenuItemText {
-            get {
-                return ResourceManager.GetString("WatchedFoldersdecryptTemporarilyMenuItemText", resourceCulture);
             }
         }
         

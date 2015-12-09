@@ -34,9 +34,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("Axantum.AxCrypt.Fake")]
 [assembly: AssemblyDescription("Common fake implementations for unit tests.")]
-[assembly: AssemblyCompany("Axantum Software AB")]
+[assembly: AssemblyCompany("AxCrypt AB")]
 [assembly: AssemblyProduct("AxCrypt")]
-[assembly: AssemblyCopyright("Copyright Svante Seleborg ©  2015")]
+[assembly: AssemblyCopyright("Copyright © 2012-2015 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

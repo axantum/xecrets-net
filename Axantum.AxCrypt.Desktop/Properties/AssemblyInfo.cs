@@ -38,10 +38,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Axantum.AxCrypt.Desktop")]
-[assembly: AssemblyCompany("Axantum Software AB")]
+[assembly: AssemblyCompany("AxCrypt AB")]
 [assembly: AssemblyDescription("Beta")]
 [assembly: AssemblyProduct("AxCrypt")]
-[assembly: AssemblyCopyright("Copyright © 2014 Svante Seleborg")]
+[assembly: AssemblyCopyright("Copyright © 2012-2015 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
@@ -36,9 +35,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("AxCrypt Common Code")]
 [assembly: AssemblyDescription("Beta")]
-[assembly: AssemblyCompany("Axantum Software AB")]
+[assembly: AssemblyCompany("AxCrypt AB")]
 [assembly: AssemblyProduct("AxCrypt")]
-[assembly: AssemblyCopyright("Copyright © Svante Seleborg 2015")]
+[assembly: AssemblyCopyright("Copyright © 2012-2015 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]

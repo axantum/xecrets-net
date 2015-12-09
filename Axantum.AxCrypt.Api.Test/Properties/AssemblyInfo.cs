@@ -10,9 +10,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Axantum.AxCrypt.Api.Test")]
 [assembly: AssemblyDescription("NUnit tests for Axantum.AxCrypt.Api")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Axantum Software AB")]
+[assembly: AssemblyCompany("AxCrypt AB")]
 [assembly: AssemblyProduct("AxCrypt")]
-[assembly: AssemblyCopyright("Copyright © 2015 Svante Seleborg")]
+[assembly: AssemblyCopyright("Copyright © 2012-2015 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

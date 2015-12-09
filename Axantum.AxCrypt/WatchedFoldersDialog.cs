@@ -1,6 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +10,34 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt
 {
-    public partial class WatchedFoldersDialog : Form
+    public partial class WatchedFoldersDialog : StyledMessageBase
     {
         private WatchedFoldersViewModel _viewModel;
 
         private IEnumerable<string> _additional;
 
-        public WatchedFoldersDialog(Form parent, IEnumerable<string> additional)
+        public WatchedFoldersDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
+        }
+
+        public WatchedFoldersDialog(Form parent, IEnumerable<string> additional)
+            : this()
+        {
+            InitializeStyle(parent);
 
             _additional = additional;
             _viewModel = New<WatchedFoldersViewModel>();
+        }
 
-            Owner = parent;
-            StartPosition = FormStartPosition.CenterParent;
+        protected override void InitializeContentResources()
+        {
+            Text = Content.DialogWatchedFoldersTitle;
+
+            _watchedFolderColumnHeader.Text = Content.ColumnFolderHeader;
+            _watchedFoldersRemoveMenuItem.Text = Content.MenuDecryptPermanentlyText;
+            _watchedFoldersdecryptTemporarilyMenuItem.Text = Content.MenuDecryptTemporarilyText;
+            _watchedFoldersOpenExplorerHereMenuItem.Text = Content.MenuOpenExplorerHereText;
         }
 
         private void WatchedFoldersDialog_Load(object sender, EventArgs e)

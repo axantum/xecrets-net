@@ -12,10 +12,13 @@ namespace Axantum.AxCrypt
 {
     public class StyledMessageBase : Form
     {
+        public StyledMessageBase()
+        {
+            Load += (sender, e) => InitializeContentResources();
+        }
+
         protected void InitializeStyle(Form owner)
         {
-            InitializeContentResources();
-
             new Styling(Resources.axcrypticon).Style(this);
             Owner = owner;
             StartPosition = FormStartPosition.CenterParent;

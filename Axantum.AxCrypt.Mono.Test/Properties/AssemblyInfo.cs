@@ -39,9 +39,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Axantum.AxCrypt.Mono.Test")]
 [assembly: AssemblyDescription("NUnit tests for Axantum.AxCrypt.Mono")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Axantum Software AB")]
+[assembly: AssemblyCompany("AxCrypt AB")]
 [assembly: AssemblyProduct("AxCrypt")]
-[assembly: AssemblyCopyright("Copyright © 2014 Svante Seleborg")]
+[assembly: AssemblyCopyright("Copyright © 2012-2015 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
