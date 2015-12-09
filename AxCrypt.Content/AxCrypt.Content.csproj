@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Content.cs" />
+    <Compile Include="ContentResourceManager.cs" />
     <Compile Include="Properties\LongResources.de.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

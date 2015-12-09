@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,5 +29,7 @@ namespace AxCrypt.Content
         public string Template_PasswordResetEmail_cshtml { get { return LongResources.Template_PasswordResetEmail_cshtml; } }
 
         public string Template_UnregisterEmail_cshtml { get { return LongResources.Template_UnregisterEmail_cshtml; } }
+
+        public static new ResourceManager ResourceManager { get { return new ContentResourceManager(); } }
     }
 }
