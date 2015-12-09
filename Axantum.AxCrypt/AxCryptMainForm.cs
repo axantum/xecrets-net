@@ -110,8 +110,6 @@ namespace Axantum.AxCrypt
         {
             InitializeContentResources();
             RegisterTypeFactories();
-            EnsureUiContextInitialized();
-
             if (!ValidateSettings())
             {
                 return;
@@ -128,11 +126,6 @@ namespace Axantum.AxCrypt
             BindToFileOperationViewModel();
             SetupCommandService();
             SendStartSessionNotification();
-        }
-
-        private static void EnsureUiContextInitialized()
-        {
-            New<IUIThread>().Yield();
         }
 
         private void InitializeContentResources()
