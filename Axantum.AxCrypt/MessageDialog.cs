@@ -1,8 +1,6 @@
-﻿using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
+﻿using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +8,24 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class MessageDialog : Form
+    public partial class MessageDialog : StyledMessageBase
     {
         public MessageDialog()
         {
             InitializeComponent();
-            new Styling(Resources.axcrypticon).Style(this);
+        }
+
+        public MessageDialog(Form parent)
+            : this()
+        {
+            InitializeStyle(parent);
+        }
+
+        protected override void InitializeContentResources()
+        {
+            _buttonOk.Text = Content.ButtonOkText;
+            _buttonCancel.Text = Content.ButtonCancelText;
+            _buttonExit.Text = Content.ButtonExitText;
         }
 
         public MessageDialog HideExit()
@@ -36,13 +46,6 @@ namespace Axantum.AxCrypt
         {
             flowLayoutPanel1.PerformLayout();
             flowLayoutPanel1.Left = (flowLayoutPanel1.Parent.ClientRectangle.Width - flowLayoutPanel1.Width) / 2;
-        }
-
-        public MessageDialog(Form parent)
-            : this()
-        {
-            Owner = parent;
-            StartPosition = FormStartPosition.CenterParent;
         }
 
         public static DialogResult ShowOk(Form parent, string caption, string message)
@@ -91,23 +94,6 @@ namespace Axantum.AxCrypt
 
                 return messageDialog.ShowDialog(parent);
             }
-        }
-
-        private Point? _lastLocation;
-
-        private void MessageDialog_Shown(object sender, EventArgs e)
-        {
-            _lastLocation = Location;
-        }
-
-        private void MessageDialog_Move(object sender, EventArgs e)
-        {
-            if (_lastLocation == null)
-            {
-                return;
-            }
-            Owner.Location = new Point(Owner.Location.X - (_lastLocation.Value.X - Location.X), Owner.Location.Y - (_lastLocation.Value.Y - Location.Y));
-            _lastLocation = Location;
         }
     }
 }
