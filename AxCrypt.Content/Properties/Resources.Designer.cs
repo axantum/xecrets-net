@@ -2397,6 +2397,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Months.
+        /// </summary>
+        public static string PromptMonths {
+            get {
+                return ResourceManager.GetString("PromptMonths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set Your Password.
         /// </summary>
         public static string PromptSetNewPassword {
@@ -2411,6 +2420,15 @@ namespace AxCrypt.Content.Properties {
         public static string PromptSharedWith {
             get {
                 return ResourceManager.GetString("PromptSharedWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscription.
+        /// </summary>
+        public static string PromptSubscription {
+            get {
+                return ResourceManager.GetString("PromptSubscription", resourceCulture);
             }
         }
         
