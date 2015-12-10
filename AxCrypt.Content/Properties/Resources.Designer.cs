@@ -89,7 +89,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Light.
+        ///   Looks up a localized string similar to AxCrypt Free.
         /// </summary>
         public static string AccountStatusLight {
             get {
@@ -107,7 +107,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Premium (indefinate).
+        ///   Looks up a localized string similar to AxCrypt Premium (indefinite).
         /// </summary>
         public static string AccountStatusPremiumIndefinate {
             get {
@@ -161,7 +161,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Account Activation.
+        ///   Looks up a localized string similar to AxCrypt ID Activation.
         /// </summary>
         public static string ActivateMailSubject {
             get {
@@ -194,7 +194,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activate account.
+        ///   Looks up a localized string similar to Activate AxCrypt ID.
         /// </summary>
         public static string ActivatePageTitle {
             get {
@@ -203,7 +203,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your account has been activated! Please log on..
+        ///   Looks up a localized string similar to Your AxCrypt ID has been activated! Please sign in..
         /// </summary>
         public static string ActivateSuccess {
             get {
@@ -266,7 +266,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Account Deletion.
+        ///   Looks up a localized string similar to AxCrypt ID Deletion.
         /// </summary>
         public static string AutoDeletionMailSubject {
             get {
@@ -475,7 +475,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Account E-mail Change.
+        ///   Looks up a localized string similar to AxCrypt ID Email Change.
         /// </summary>
         public static string ChangeEmailConfirmMailSubject {
             get {
@@ -502,7 +502,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Account E-mail Change Request.
+        ///   Looks up a localized string similar to AxCrypt ID Email Change Request.
         /// </summary>
         public static string ChangeEmailExistMailSubject {
             get {
@@ -511,7 +511,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-mail changed failed due to an internal error, please try again later or contact our support..
+        ///   Looks up a localized string similar to Email changed failed due to an internal error, please try again later or contact our support..
         /// </summary>
         public static string ChangeEmailMarkError {
             get {
@@ -875,7 +875,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Internal error, could not delete account because the current user was not found..
+        ///   Looks up a localized string similar to Internal error, could not delete AxCrypt ID because the current user was not found..
         /// </summary>
         public static string DeleteAccountErrorUserNotFound {
             get {
@@ -884,7 +884,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your account has been successfully deleted.
+        ///   Looks up a localized string similar to Your AxCrypt ID has been successfully deleted.
         ///
         ///We&apos;re sad to see you go and hope you enjoyed your time with AxCrypt!.
         /// </summary>
@@ -1111,7 +1111,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your account is limited to read-only access! Only premium users are allowed to edit or create new password entries..
+        ///   Looks up a localized string similar to You are limited to read-only access! Only Premium users are allowed to edit or create new password entries..
         /// </summary>
         public static string EditSecretErrorIsReadOnly {
             get {
@@ -1251,6 +1251,15 @@ namespace AxCrypt.Content.Properties {
         public static string EnumerateUsersSuccess {
             get {
                 return ResourceManager.GetString("EnumerateUsersSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ErrorPasswordTooLong {
+            get {
+                return ResourceManager.GetString("ErrorPasswordTooLong", resourceCulture);
             }
         }
         
@@ -1408,7 +1417,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the account section of AxCrypt.net, click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; to go back to the main site.
+        ///   Looks up a localized string similar to This is the AxCrypt ID section of AxCrypt.net, click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; to go back to the start page..
         /// </summary>
         public static string FooterInfoBody {
             get {
@@ -1417,7 +1426,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account.AxCrypt.net.
+        ///   Looks up a localized string similar to AxCrypt ID.
         /// </summary>
         public static string FooterInfoTitle {
             get {
@@ -1552,7 +1561,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My AxCrypt account.
+        ///   Looks up a localized string similar to My AxCrypt ID.
         /// </summary>
         public static string IndexPageTitle {
             get {
@@ -1777,7 +1786,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The e-mail or password provided is incorrect..
+        ///   Looks up a localized string similar to The email or password provided is incorrect..
         /// </summary>
         public static string LoginError {
             get {
@@ -1840,7 +1849,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://axcrypt.net.
+        ///   Looks up a localized string similar to http://www.axcrypt.net.
         /// </summary>
         public static string MainSiteUrl {
             get {
@@ -2247,7 +2256,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forgot your password? Click here.
+        ///   Looks up a localized string similar to Forgot your password? Click here..
         /// </summary>
         public static string PasswordResetLink {
             get {
@@ -2265,7 +2274,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Account Password Reset.
+        ///   Looks up a localized string similar to AxCrypt ID Password Reset.
         /// </summary>
         public static string PasswordResetMailSubject {
             get {
@@ -2375,6 +2384,15 @@ namespace AxCrypt.Content.Properties {
         public static string PromptFileText {
             get {
                 return ResourceManager.GetString("PromptFileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep me signed in.
+        /// </summary>
+        public static string PromptKeepMeSignedIn {
+            get {
+                return ResourceManager.GetString("PromptKeepMeSignedIn", resourceCulture);
             }
         }
         
@@ -2574,9 +2592,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To start using AxCrypt you have to sign up for an account by submitting your e-mail address in the form below. A message containing an activation link will then be sent to the specified address and when you click that link you will be asked to choose a password. That&apos;s it!
+        ///   Looks up a localized string similar to To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing an activation link will then be sent to the specified address and when you click that link you will be asked to choose a password. That&apos;s it!
         ///
-        ///A 30 day trial of AxCrypt Premium is included and will start when you activate your account..
+        ///A 30 day trial of AxCrypt Premium is included and will start when you activate your AxCrypt ID..
         /// </summary>
         public static string RegisterPageBody {
             get {
@@ -2585,7 +2603,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign up for AxCrypt.
+        ///   Looks up a localized string similar to Sign up for an AxCrypt ID.
         /// </summary>
         public static string RegisterPageTitle {
             get {
@@ -2594,7 +2612,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have now signed up for an account!
+        ///   Looks up a localized string similar to You have now signed up for an AxCrypt ID!
         ///
         ///Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link..
         /// </summary>
@@ -2614,7 +2632,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operation failed. Only premium users are allowed to save password entries..
+        ///   Looks up a localized string similar to Only premium users are allowed to save password entries..
         /// </summary>
         public static string SaveSecretErrorIsReadOnly {
             get {
@@ -2690,7 +2708,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account settings.
+        ///   Looks up a localized string similar to AxCrypt ID Settings.
         /// </summary>
         public static string SettingsPageTitle {
             get {
@@ -2766,7 +2784,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid format in field Event time..
+        ///   Looks up a localized string similar to Internal error: Invalid format in field Event time..
         /// </summary>
         public static string SubscriptionsErrorEventTime {
             get {
@@ -2775,7 +2793,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid format in field Expiration time..
+        ///   Looks up a localized string similar to Internal error: Invalid format in field Expiration time..
         /// </summary>
         public static string SubscriptionsErrorExpirationTime {
             get {
@@ -2784,7 +2802,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid value in field Subscription level..
+        ///   Looks up a localized string similar to Internal error: Invalid value in field Subscription level..
         /// </summary>
         public static string SubscriptionsErrorLevel {
             get {
@@ -2793,7 +2811,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid value in field Subscription level. If we&apos;ve paid for something, we currently only support subscription level Basic..
+        ///   Looks up a localized string similar to Internal error: Invalid value in field Subscription level. If we&apos;ve paid for something, we currently only support subscription level Basic..
         /// </summary>
         public static string SubscriptionsErrorLevelAmount {
             get {
@@ -2802,7 +2820,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid format in field Start time..
+        ///   Looks up a localized string similar to Internal error: Invalid format in field Start time..
         /// </summary>
         public static string SubscriptionsErrorStartTime {
             get {
@@ -2811,7 +2829,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid value in field Subscription type..
+        ///   Looks up a localized string similar to Internal error: Invalid value in field Subscription type..
         /// </summary>
         public static string SubscriptionsErrorType {
             get {
@@ -2820,7 +2838,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User not found..
+        ///   Looks up a localized string similar to Internal error: User not found..
         /// </summary>
         public static string SubscriptionsErrorUserNotFound {
             get {
@@ -3009,7 +3027,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Account Deleted.
+        ///   Looks up a localized string similar to AxCrypt ID Deleted.
         /// </summary>
         public static string UnregisterMailSubject {
             get {
