@@ -804,4 +804,388 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>Sign in to AxCrypt</value>
     <comment>Title on the web page for signin for example.</comment>
   </data>
+  <data name="AccountStatusLight" xml:space="preserve">
+    <value>AxCrypt Light</value>
+  </data>
+  <data name="AccountStatusPremium" xml:space="preserve">
+    <value>AxCrypt Premium</value>
+  </data>
+  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
+    <value>AxCrypt Premium (indefinate)</value>
+  </data>
+  <data name="AccountStatusPremiumTrial" xml:space="preserve">
+    <value>AxCrypt Premium Trial</value>
+  </data>
+  <data name="ActivateErrorEmailOrCode" xml:space="preserve">
+    <value>The provided e-mail or activation code is incorrect.</value>
+  </data>
+  <data name="ActivateErrorNoRequest" xml:space="preserve">
+    <value>Password reset failed. A password reset request has not been made for this account.</value>
+  </data>
+  <data name="ActivateErrorPassword" xml:space="preserve">
+    <value>Password reset failed. </value>
+  </data>
+  <data name="ActivateMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/ActivateEmail.cshtml</value>
+  </data>
+  <data name="ActivateMailSubject" xml:space="preserve">
+    <value>AxCrypt Account Activation</value>
+  </data>
+  <data name="ActivateManuallyPageBody" xml:space="preserve">
+    <value>&lt;b&gt;Stop!&lt;/b&gt;
+
+You should only be here because clicking on the link in the account activation e-mail from AxCrypt did not work. (You must of course register an account to get an account activation e-mail)
+
+Enter your e-mail and code manually here only if you have received the activation e-mail, but the link did not work.</value>
+  </data>
+  <data name="ActivatePageBody" xml:space="preserve">
+    <value>To activate your account &lt;b&gt;{0}&lt;/b&gt; you must select a password.
+
+Choose something difficult to guess, since it will protect passwords in the online password manager as well as access to the site. Type slowly and carefully, and do not forget your password!</value>
+  </data>
+  <data name="ActivatePageTitle" xml:space="preserve">
+    <value>Activate account</value>
+  </data>
+  <data name="ActivateSuccess" xml:space="preserve">
+    <value>Your account has been activated! Please log on.</value>
+  </data>
+  <data name="AppActivateMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/AppActivateEmail.cshtml</value>
+  </data>
+  <data name="AppActivatePlainTextMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/AppActivateEmailPlainText.cshtml</value>
+  </data>
+  <data name="AuthenticationError" xml:space="preserve">
+    <value>The page you tried to visit requires authentication. Please log on to proceed.</value>
+  </data>
+  <data name="AutoDeletionMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/AutoDeletionEmail.html</value>
+  </data>
+  <data name="AutoDeletionMailSubject" xml:space="preserve">
+    <value>AxCrypt Account Deletion</value>
+  </data>
+  <data name="CaptchaError" xml:space="preserve">
+    <value>Incorrect captcha answer.</value>
+  </data>
+  <data name="CaptchaLabel" xml:space="preserve">
+    <value>Prove that you're a real person and not automated software!</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/ChangeEmailConfirmEmail.cshtml</value>
+  </data>
+  <data name="ChangeEmailConfirmMailSubject" xml:space="preserve">
+    <value>AxCrypt Account E-mail Change</value>
+  </data>
+  <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
+    <value>Your change of account e-mail has been confirmed! Please log on to complete the process.</value>
+  </data>
+  <data name="ChangeEmailExistMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/ChangeEmailExistEmail.cshtml</value>
+  </data>
+  <data name="ChangeEmailExistMailSubject" xml:space="preserve">
+    <value>AxCrypt Account E-mail Change Request</value>
+  </data>
+  <data name="ChangeEmailMarkError" xml:space="preserve">
+    <value>E-mail changed failed due to an internal error, please try again later or contact our support.</value>
+  </data>
+  <data name="ChangeEmailMarkSuccess" xml:space="preserve">
+    <value>We have sent an e-mail to &lt;b&gt;{0}&lt;/b&gt;. Please read your e-mail and click on the link provided there to confirm the change.
+
+Thereafter you can log on using &lt;b&gt;{0}&lt;/b&gt; and your existing password.
+
+You must complete these steps to complete the process.</value>
+  </data>
+  <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
+    <value>Your notification preferences have been changed.</value>
+  </data>
+  <data name="ChangePasswordError" xml:space="preserve">
+    <value>Could not change password because the current password is incorrect or the new password is invalid.</value>
+  </data>
+  <data name="ChangePasswordErrorUserNotFound" xml:space="preserve">
+    <value>Internal error, could not change password because the current user was not found.</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>Your password has been changed.</value>
+  </data>
+  <data name="ConfigurationSuccess" xml:space="preserve">
+    <value>The application configuration property was updated successfully. You might have to restart the server to make the changes take effect.</value>
+  </data>
+  <data name="ContactInfoEmail" xml:space="preserve">
+    <value>info@axcrypt.net</value>
+  </data>
+  <data name="ContactInfoPhone" xml:space="preserve">
+    <value>+46 (0)8 550 10 274</value>
+  </data>
+  <data name="ContactInfoTitle" xml:space="preserve">
+    <value>Contact &amp; support</value>
+  </data>
+  <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
+    <value>Deletion failed due to incorrect password.</value>
+  </data>
+  <data name="DeleteAccountErrorUserNotFound" xml:space="preserve">
+    <value>Internal error, could not delete account because the current user was not found.</value>
+  </data>
+  <data name="DeleteAccountSuccess" xml:space="preserve">
+    <value>Your account has been successfully deleted.
+
+We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
+  </data>
+  <data name="DeleteSecretErrorNotFound" xml:space="preserve">
+    <value>The deletion failed because the requested password could not be found.</value>
+  </data>
+  <data name="DeleteSecretSuccess" xml:space="preserve">
+    <value>Your password has been deleted.</value>
+  </data>
+  <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
+    <value>Your account is limited to read-only access! Only premium users are allowed to edit or create new password entries.</value>
+  </data>
+  <data name="EditSecretErrorNotFound" xml:space="preserve">
+    <value>The requested password entry could not be found.</value>
+  </data>
+  <data name="EditSecretSuccess" xml:space="preserve">
+    <value>Your entry has been updated.</value>
+  </data>
+  <data name="EmailErrorTemplateNotFound" xml:space="preserve">
+    <value>Template not found.</value>
+  </data>
+  <data name="EmailErrorUserNotFound" xml:space="preserve">
+    <value>User not found.</value>
+  </data>
+  <data name="EnumerateUsersSuccess" xml:space="preserve">
+    <value>User enumeration was successful. You might have to refresh the page to get the updated statistics.</value>
+  </data>
+  <data name="FooterInfoBody" xml:space="preserve">
+    <value>This is the account section of AxCrypt.net, click &lt;a href="{0}"&gt;here&lt;/a&gt; to go back to the main site</value>
+  </data>
+  <data name="FooterInfoTitle" xml:space="preserve">
+    <value>Account.AxCrypt.net</value>
+  </data>
+  <data name="GetLogErrorDateFormat" xml:space="preserve">
+    <value>The start and/or end date format is invalid. Please use the format YYYY-MM-DD.</value>
+  </data>
+  <data name="GetLogErrorLogType" xml:space="preserve">
+    <value>The selected log type is invalid.</value>
+  </data>
+  <data name="IndexPageTitle" xml:space="preserve">
+    <value>My AxCrypt account</value>
+  </data>
+  <data name="InvitationMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/InvitationEmail.cshtml</value>
+  </data>
+  <data name="InvitationMailPlainTextBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/InvitationEmailPlainText.cshtml</value>
+  </data>
+  <data name="InvitationMailSubject" xml:space="preserve">
+    <value>Invitation to use AxCrypt File Security</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>The e-mail or password provided is incorrect.</value>
+  </data>
+  <data name="LoginPageTitle" xml:space="preserve">
+    <value>Sign in to AxCrypt</value>
+  </data>
+  <data name="LoginPurchaseError" xml:space="preserve">
+    <value>Something went wrong when handling your payment request. Please try again.</value>
+  </data>
+  <data name="MainSiteUrl" xml:space="preserve">
+    <value>http://axcrypt.net</value>
+  </data>
+  <data name="ManagementErrorParsing" xml:space="preserve">
+    <value>A parsing error occured when updating the site management property. Please check that you're using the correct format.</value>
+  </data>
+  <data name="ManagementSuccess" xml:space="preserve">
+    <value>The site management property was updated successfully.</value>
+  </data>
+  <data name="NewSecretSuccess" xml:space="preserve">
+    <value>Your new password entry has been saved.</value>
+  </data>
+  <data name="NotFoundPageBody" xml:space="preserve">
+    <value>Unfortunately we could not find the page you were looking for. This might be due to a server restart that caused your browser session to become outdated, or some other server error that caused us to be unable to process the request.
+
+Requested page:
+{2}
+
+Your request has been logged. Please try again with the correct path, or &lt;a href="mailto:{0}"&gt;report&lt;/a&gt; a broken link.
+
+To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
+  </data>
+  <data name="NotFoundPageTitle" xml:space="preserve">
+    <value>The page was not found!</value>
+  </data>
+  <data name="NotFoundSafePageBody" xml:space="preserve">
+    <value>Unfortunately we could not find the page you were looking for. This might be due to a server restart that caused your browser session to become outdated, or some other server error that caused us to be unable to process the request.
+
+Your request has been logged. Please try again with the correct path, or &lt;a href="mailto:{0}"&gt;report&lt;/a&gt; a broken link.
+
+To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
+  </data>
+  <data name="PasswordManagementListPageBody" xml:space="preserve">
+    <value>Manage all your passwords online in the cloud&lt;span class="text-cutoff"&gt; with AxCrypt Password Management, your online safety deposit for passwords, codes, pins, etc. Your passwords are stored in a securely encrypted archive and are available to you, and only you, anywhere at any time. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Read more]&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="PasswordManagementPageTitle" xml:space="preserve">
+    <value>Password Management</value>
+  </data>
+  <data name="PasswordResetLink" xml:space="preserve">
+    <value>Forgot your password? Click here</value>
+  </data>
+  <data name="PasswordResetMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/PasswordResetEmail.cshtml</value>
+  </data>
+  <data name="PasswordResetMailSubject" xml:space="preserve">
+    <value>AxCrypt Account Password Reset</value>
+  </data>
+  <data name="PasswordResetPageBody" xml:space="preserve">
+    <value>If you have previously registered but have forgotten the password, or for some reason not received or lost the activation link, you may re-register and request a new activation e-mail here.
+
+&lt;span class="red"&gt;If you have forgotten your password this will allow you to log on again, but you will not re-gain access to any information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
+
+Enter your e-mail below to a send an activation link to the specified address. For personal integrity reasons, &lt;b&gt;no feedback on the success or failure of this operation will be given&lt;/b&gt;.</value>
+  </data>
+  <data name="PasswordResetPageTitle" xml:space="preserve">
+    <value>Password reset</value>
+  </data>
+  <data name="PasswordResetSuccess" xml:space="preserve">
+    <value>An attempt to send the account activation verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
+
+If you appear not to receive it, check that it does not get caught by your anti-spam measures, and that {0} is correct.</value>
+  </data>
+  <data name="PayPalReadMoreLink" xml:space="preserve">
+    <value>[More info about PayPal]</value>
+  </data>
+  <data name="PurchaseErrorSubscriptionTime" xml:space="preserve">
+    <value>The selected subsciption time is invalid. A valid subscription has to be at least {0} month and no longer than {1} months.</value>
+  </data>
+  <data name="PurchasePageBody1" xml:space="preserve">
+    <value>AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Folder Watching and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
+
+To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts when you activate your account. After that you can extend your premium subscription by using the form below.</value>
+  </data>
+  <data name="PurchasePageBody2" xml:space="preserve">
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Security is crucial to us. Everything we do with AxCrypt is done with security as the highest priority. We are therefore using PayPal as payment method for AxCrypt Premium. The PayPal site is highly secure and automatically encrypts your confidential information in transit from your computer to our servers.
+
+Once your information reaches the PayPal site, it resides on a server that is heavily guarded both physically and electronically. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="PurchasePageTitle" xml:space="preserve">
+    <value>Buy AxCrypt Premium</value>
+  </data>
+  <data name="PurchaseReceiptError" xml:space="preserve">
+    <value>The purchase was cancelled.</value>
+  </data>
+  <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
+    <value>We never received your payment. This may result from manually cancelling the purchase on PayPal or due to insufficient account balance.</value>
+  </data>
+  <data name="PurchaseReceiptPageTitle" xml:space="preserve">
+    <value>Receipt for AxCrypt Premium</value>
+  </data>
+  <data name="PurchaseReceiptSuccess" xml:space="preserve">
+    <value>Thank you for purchasing AxCrypt Premium!</value>
+  </data>
+  <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
+    <value>You're now able to access all the premium features of AxCrypt. If you experience any problems, please contact our support.
+
+A receipt of your purchase has been sent to your e-mail.</value>
+  </data>
+  <data name="PurchaseVatPercent" xml:space="preserve">
+    <value>{0}% VAT incl.</value>
+  </data>
+  <data name="RegisterError" xml:space="preserve">
+    <value>Registration failed. Please check your e-mail and try again.</value>
+  </data>
+  <data name="RegisterLink" xml:space="preserve">
+    <value>New user? Sign up</value>
+  </data>
+  <data name="RegisterPageBody" xml:space="preserve">
+    <value>To start using AxCrypt you have to sign up for an account by submitting your e-mail address in the form below. A message containing an activation link will then be sent to the specified address and when you click that link you will be asked to choose a password. That's it!
+
+A 30 day trial of AxCrypt Premium is included and will start when you activate your account.</value>
+  </data>
+  <data name="RegisterPageTitle" xml:space="preserve">
+    <value>Sign up for AxCrypt</value>
+  </data>
+  <data name="RegisterSuccess" xml:space="preserve">
+    <value>You have now signed up for an account!
+
+Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link.</value>
+  </data>
+  <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
+    <value>Operation failed. Only premium users are allowed to save password entries.</value>
+  </data>
+  <data name="SecretsWarningIsReadOnly" xml:space="preserve">
+    <value>Your premium subscription has expired and you can therefore no longer edit or create new password entries. However, you still have read-only access.</value>
+  </data>
+  <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
+    <value>Your premium subscription expires soon, on {0}. Thereafter you'll have to extend your premium subscription to be able to edit or create new password entries. You'll retain read-only access indefinitely.</value>
+  </data>
+  <data name="SettingsDeletePageBody" xml:space="preserve">
+    <value>Here you can delete your account permanently from the system. &lt;span class="red"&gt;All data associated with your account, including saved password entries, will also be deleted.&lt;/span&gt;
+
+Enter your password below to a delete your account.</value>
+  </data>
+  <data name="SettingsEmailPageBody" xml:space="preserve">
+    <value>To change the e-mail associated with your account, type in a new e-mail address below. This will affect how you log on to the site and where site e-mails are sent. 
+
+A confirmation e-mail will be sent to the new address. The change is effective only after the confirmation link is clicked and a successful log on.</value>
+  </data>
+  <data name="SettingsNotificationsPageBody" xml:space="preserve">
+    <value>Choose your preference for AxCrypt notification e-mails below.</value>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Account settings</value>
+  </data>
+  <data name="SettingsPasswordPageBody" xml:space="preserve">
+    <value>To change password, provide the current password and then specify and verify your new password.
+
+Choose something difficult to guess, since it will protect passwords in the online password manager as well as access to the site. Type slowly and carefully, and do not forget your new password!</value>
+  </data>
+  <data name="SiteRestartWarning" xml:space="preserve">
+    <value>Warning! A site restart is scheduled in a few minutes. We're sorry about the inconvenience.</value>
+  </data>
+  <data name="SubscriptionsErrorAmount" xml:space="preserve">
+    <value>Invalid format for field Amount. Please use decimal format, i.e. 10.50.</value>
+  </data>
+  <data name="SubscriptionsErrorEventTime" xml:space="preserve">
+    <value>Invalid format in field Event time.</value>
+  </data>
+  <data name="SubscriptionsErrorExpirationTime" xml:space="preserve">
+    <value>Invalid format in field Expiration time.</value>
+  </data>
+  <data name="SubscriptionsErrorLevel" xml:space="preserve">
+    <value>Invalid value in field Subscription level.</value>
+  </data>
+  <data name="SubscriptionsErrorLevelAmount" xml:space="preserve">
+    <value>Invalid value in field Subscription level. If we've paid for something, we currently only support subscription level Basic.</value>
+  </data>
+  <data name="SubscriptionsErrorStartTime" xml:space="preserve">
+    <value>Invalid format in field Start time.</value>
+  </data>
+  <data name="SubscriptionsErrorType" xml:space="preserve">
+    <value>Invalid value in field Subscription type.</value>
+  </data>
+  <data name="SubscriptionsErrorUserNotFound" xml:space="preserve">
+    <value>User not found.</value>
+  </data>
+  <data name="SubscriptionsSuccessAdd" xml:space="preserve">
+    <value>The subscription was successfully saved.</value>
+  </data>
+  <data name="SubscriptionsSuccessDelete" xml:space="preserve">
+    <value>The subscription history was successfully deleted.</value>
+  </data>
+  <data name="SyntheticWordsSuccessActivate" xml:space="preserve">
+    <value>The culture was successfully activated.</value>
+  </data>
+  <data name="SyntheticWordsSuccessClear" xml:space="preserve">
+    <value>The culture was successfully cleared.</value>
+  </data>
+  <data name="SyntheticWordsSuccessUpdate" xml:space="preserve">
+    <value>The culture was successfully updated.</value>
+  </data>
+  <data name="TransactionHistoryTitle" xml:space="preserve">
+    <value>Transaction history</value>
+  </data>
+  <data name="UnregisterMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/UnregisterEmail.cshtml</value>
+  </data>
+  <data name="UnregisterMailSubject" xml:space="preserve">
+    <value>AxCrypt Account Deleted</value>
+  </data>
 </root>

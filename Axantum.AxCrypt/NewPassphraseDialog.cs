@@ -30,7 +30,7 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -57,15 +57,15 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogNewPasswordTitle;
+            Text = Texts.DialogNewPasswordTitle;
 
-            PassphraseGroupBox.Text = Content.PassphrasePrompt;
-            ShowPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
+            PassphraseGroupBox.Text = Texts.PassphrasePrompt;
+            ShowPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
 
-            _fileGroupBox.Text = Content.PromptFileText;
-            _buttonCancel.Text = Content.ButtonCancelText;
-            _buttonOk.Text = Content.ButtonOkText;
-            _verifyPasswordLabel.Text = Content.VerifyPasswordPrompt;
+            _fileGroupBox.Text = Texts.PromptFileText;
+            _buttonCancel.Text = Texts.ButtonCancelText;
+            _buttonOk.Text = Texts.ButtonOkText;
+            _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
         }
 
         private void EncryptPassphraseDialog_Load(object s, EventArgs ee)
@@ -96,12 +96,12 @@ namespace Axantum.AxCrypt
             bool validated = true;
             if (_viewModel[nameof(NewPassphraseViewModel.Verification)].Length > 0)
             {
-                _errorProvider1.SetError(VerifyPassphraseTextbox, Content.PassphraseVerificationMismatch);
+                _errorProvider1.SetError(VerifyPassphraseTextbox, Texts.PassphraseVerificationMismatch);
                 validated = false;
             }
             if (_viewModel[nameof(NewPassphraseViewModel.Passphrase)].Length > 0)
             {
-                _errorProvider1.SetError(PassphraseTextBox, Content.WrongPassphrase);
+                _errorProvider1.SetError(PassphraseTextBox, Texts.WrongPassphrase);
                 validated = false;
             }
             if (validated)

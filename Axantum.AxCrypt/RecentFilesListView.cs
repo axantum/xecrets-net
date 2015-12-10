@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -242,7 +242,7 @@ namespace Axantum.AxCrypt
             }
             catch (ArgumentException)
             {
-                item.SubItems[nameof(ColumnName.CryptoName)].Text = Content.UnknownCrypto;
+                item.SubItems[nameof(ColumnName.CryptoName)].Text = Texts.UnknownCrypto;
             }
 
             return Task.FromResult(true);
@@ -255,19 +255,19 @@ namespace Axantum.AxCrypt
                 case ActiveFileVisualState.DecryptedWithKnownKey:
                 case ActiveFileVisualState.DecryptedWithoutKnownKey:
                     item.ImageKey = nameof(ImageKey.CleanUpNeeded);
-                    item.ToolTipText = Content.CleanUpNeededToolTip;
+                    item.ToolTipText = Texts.CleanUpNeededToolTip;
                     return;
             }
 
             if (keyShareCount > 1)
             {
                 item.ImageKey = nameof(ImageKey.KeyShared);
-                item.ToolTipText = Content.KeySharingExistsToolTip;
+                item.ToolTipText = Texts.KeySharingExistsToolTip;
                 return;
             }
 
             item.ImageKey = String.Empty;
-            item.ToolTipText = Content.DoubleClickToOpenToolTip;
+            item.ToolTipText = Texts.DoubleClickToOpenToolTip;
             return;
         }
 

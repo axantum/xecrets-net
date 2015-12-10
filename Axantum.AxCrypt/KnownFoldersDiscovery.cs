@@ -37,7 +37,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt
         {
             Bitmap bitmap = Resources.folder_40px;
             IDataContainer myDocumentsInfo = New<IDataContainer>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
-            KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, Content.MyAxCryptFolderName, bitmap, null);
+            KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, Texts.MyAxCryptFolderName, bitmap, null);
             knownFolders.Add(windowsDesktopFolder);
         }
 
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt
 
             Bitmap bitmap = Resources.dropbox_40px;
             IDataContainer dropBoxFolderInfo = New<IDataContainer>(dropBoxFolder);
-            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Content.MyAxCryptFolderName, bitmap, null);
+            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Texts.MyAxCryptFolderName, bitmap, null);
 
             knownFolders.Add(knownFolder);
         }
@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt
 
             Bitmap bitmap = Resources.skydrive_40px;
             IDataContainer skyDriveFolderInfo = New<IDataContainer>(skyDriveFolder);
-            KnownFolder knownFolder = new KnownFolder(skyDriveFolderInfo, Content.MyAxCryptFolderName, bitmap, url);
+            KnownFolder knownFolder = new KnownFolder(skyDriveFolderInfo, Texts.MyAxCryptFolderName, bitmap, url);
 
             knownFolders.Add(knownFolder);
         }
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt
 
             Bitmap bitmap = Resources.google_40px;
             IDataContainer googleDriveFolderInfo = New<IDataContainer>(googleDriveFolder);
-            KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Content.MyAxCryptFolderName, bitmap, url);
+            KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Texts.MyAxCryptFolderName, bitmap, url);
             knownFolders.Add(knownFolder);
         }
 

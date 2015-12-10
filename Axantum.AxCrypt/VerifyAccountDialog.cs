@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -28,16 +28,16 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogVerifyAccountTitle;
+            Text = Texts.DialogVerifyAccountTitle;
 
-            PassphraseGroupBox.Text = Content.PromptSetNewPassword;
-            _showPassphrase.Text = Content.ShowPasswordOptionPrompt;
-            _verifyPasswordLabel.Text = Content.VerifyPasswordPrompt;
-            _buttonCancel.Text = Content.ButtonCancelText;
-            _buttonOk.Text = Content.ButtonOkText;
-            _emailGroupBox.Text = Content.PromptEmailText;
-            _activationCodeGroupBox.Text = Content.PromptActivationCode;
-            _checkEmailLabel.Text = Content.TextCheckEmailAndSpam;
+            PassphraseGroupBox.Text = Texts.PromptSetNewPassword;
+            _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
+            _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
+            _buttonCancel.Text = Texts.ButtonCancelText;
+            _buttonOk.Text = Texts.ButtonOkText;
+            _emailGroupBox.Text = Texts.PromptEmailText;
+            _activationCodeGroupBox.Text = Texts.PromptActivationCode;
+            _checkEmailLabel.Text = Texts.TextCheckEmailAndSpam;
         }
 
         private void VerifyAccountDialog_Load(object sender, EventArgs e)
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(VerifyAccountViewModel.Passphrase)].Length > 0)
             {
-                _errorProvider1.SetError(_passphrase, Content.PasswordPolicyViolation);
+                _errorProvider1.SetError(_passphrase, Texts.PasswordPolicyViolation);
                 return false;
             }
             return true;
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt
             _errorProvider2.Clear();
             if (_viewModel[nameof(VerifyAccountViewModel.VerificationPassphrase)].Length > 0)
             {
-                _errorProvider2.SetError(_passphraseVerification, Content.PassphraseVerificationMismatch);
+                _errorProvider2.SetError(_passphraseVerification, Texts.PassphraseVerificationMismatch);
                 return false;
             }
             return true;
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt
             _errorProvider3.Clear();
             if (_viewModel[nameof(VerifyAccountViewModel.VerificationCode)].Length > 0)
             {
-                _errorProvider3.SetError(_activationCode, Content.WrongVerificationCodeFormat);
+                _errorProvider3.SetError(_activationCode, Texts.WrongVerificationCodeFormat);
                 return false;
             }
             return true;
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt
             _errorProvider3.Clear();
             if (_viewModel.ErrorMessage.Length > 0)
             {
-                _errorProvider3.SetError(_activationCode, Content.WrongVerificationCode);
+                _errorProvider3.SetError(_activationCode, Texts.WrongVerificationCode);
                 return false;
             }
             return true;

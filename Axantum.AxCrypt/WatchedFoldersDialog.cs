@@ -32,12 +32,12 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogWatchedFoldersTitle;
+            Text = Texts.DialogWatchedFoldersTitle;
 
-            _watchedFolderColumnHeader.Text = Content.ColumnFolderHeader;
-            _watchedFoldersRemoveMenuItem.Text = Content.MenuDecryptPermanentlyText;
-            _watchedFoldersdecryptTemporarilyMenuItem.Text = Content.MenuDecryptTemporarilyText;
-            _watchedFoldersOpenExplorerHereMenuItem.Text = Content.MenuOpenExplorerHereText;
+            _watchedFolderColumnHeader.Text = Texts.ColumnFolderHeader;
+            _watchedFoldersRemoveMenuItem.Text = Texts.MenuDecryptPermanentlyText;
+            _watchedFoldersdecryptTemporarilyMenuItem.Text = Texts.MenuDecryptTemporarilyText;
+            _watchedFoldersOpenExplorerHereMenuItem.Text = Texts.MenuOpenExplorerHereText;
         }
 
         private void WatchedFoldersDialog_Load(object sender, EventArgs e)

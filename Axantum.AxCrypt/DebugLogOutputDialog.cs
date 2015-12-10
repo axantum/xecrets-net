@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogDebugLogTitle;
+            Text = Texts.DialogDebugLogTitle;
         }
 
         private void DebugLogOutputDialog_Load(object sender, EventArgs e)

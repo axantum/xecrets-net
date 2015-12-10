@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -24,10 +24,10 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.About.InvariantFormat(AssemblyProduct);
+            Text = Texts.About.InvariantFormat(AssemblyProduct);
 
-            Description.Text = Content.AxCryptAboutDescription;
-            okButton.Text = Content.ButtonOkText;
+            Description.Text = Texts.AxCryptAboutDescription;
+            okButton.Text = Texts.ButtonOkText;
         }
 
         private void AboutBox_Load(object sender, EventArgs e)

@@ -13,7 +13,7 @@ namespace AxCrypt.Content
     public class ContentResourceManager : ResourceManager
     {
         public ContentResourceManager()
-            : base("AxCrypt.Content.Content", typeof(Content).GetTypeInfo().Assembly)
+            : base("AxCrypt.Content.Content", typeof(Texts).GetTypeInfo().Assembly)
         {
         }
 

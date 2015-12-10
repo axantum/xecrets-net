@@ -30,7 +30,7 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -56,14 +56,14 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogFilePasswordTitle;
+            Text = Texts.DialogFilePasswordTitle;
 
-            PassphraseGroupBox.Text = Content.PassphrasePrompt;
-            ShowPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
-            _newButton.Text = Content.ButtonNewText;
-            _buttonCancel.Text = Content.ButtonCancelText;
-            _buttonOk.Text = Content.ButtonOkText;
-            _fileGroupBox.Text = Content.PromptFileText;
+            PassphraseGroupBox.Text = Texts.PassphrasePrompt;
+            ShowPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
+            _newButton.Text = Texts.ButtonNewText;
+            _buttonCancel.Text = Texts.ButtonCancelText;
+            _buttonOk.Text = Texts.ButtonOkText;
+            _fileGroupBox.Text = Texts.PromptFileText;
         }
 
         private void EncryptPassphraseDialog_Load(object s, EventArgs ea)
@@ -96,11 +96,11 @@ namespace Axantum.AxCrypt
             }
             if (String.IsNullOrEmpty(_viewModel.FileName))
             {
-                _errorProvider1.SetError(PassphraseTextBox, Content.UnkownLogOn);
+                _errorProvider1.SetError(PassphraseTextBox, Texts.UnkownLogOn);
             }
             else
             {
-                _errorProvider1.SetError(PassphraseTextBox, Content.WrongPassphrase);
+                _errorProvider1.SetError(PassphraseTextBox, Texts.WrongPassphrase);
             }
             return false;
         }

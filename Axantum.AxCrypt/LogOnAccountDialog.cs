@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -27,14 +27,14 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.TitleAxCryptIdSignInText;
+            Text = Texts.TitleAxCryptIdSignInText;
 
-            _passphraseGroupBox.Text = Content.PassphrasePrompt;
-            _showPassphrase.Text = Content.ShowPasswordOptionPrompt;
-            _newButton.Text = Content.ButtonNewText;
-            _buttonCancel.Text = Content.ButtonCancelText;
-            _buttonOk.Text = Content.ButtonOkText;
-            _emailGroupBox.Text = Content.PromptEmailText;
+            _passphraseGroupBox.Text = Texts.PassphrasePrompt;
+            _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
+            _newButton.Text = Texts.ButtonNewText;
+            _buttonCancel.Text = Texts.ButtonCancelText;
+            _buttonOk.Text = Texts.ButtonOkText;
+            _emailGroupBox.Text = Texts.PromptEmailText;
         }
 
         private void LogOnAccountDialog_Load(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(LogOnAccountViewModel.Passphrase)].Length != 0)
             {
-                _errorProvider1.SetError(_passphrase, _email.Text.Length > 0 ? Content.WrongPassphrase : Content.UnkownLogOn);
+                _errorProvider1.SetError(_passphrase, _email.Text.Length > 0 ? Texts.WrongPassphrase : Texts.UnkownLogOn);
                 return false;
             }
             return true;
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt
             _errorProvider2.Clear();
             if (_email.Text.Length == 0 || _viewModel[nameof(LogOnAccountViewModel.UserEmail)].Length != 0)
             {
-                _errorProvider2.SetError(_email, Content.BadEmail);
+                _errorProvider2.SetError(_email, Texts.BadEmail);
                 return false;
             }
             return true;

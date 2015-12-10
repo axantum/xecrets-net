@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -37,14 +37,14 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.TitleCreateAxCryptIdTitle;
+            Text = Texts.TitleCreateAxCryptIdTitle;
 
-            _passphraseGroupBox.Text = Content.PassphrasePrompt;
-            ShowPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
-            _verifyPasswordLabel.Text = Content.VerifyPasswordPrompt;
-            _buttonCancel.Text = Content.ButtonCancelText;
-            _buttonOk.Text = Content.ButtonOkText;
-            _emailGroupBox.Text = Content.PromptEmailText;
+            _passphraseGroupBox.Text = Texts.PassphrasePrompt;
+            ShowPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
+            _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
+            _buttonCancel.Text = Texts.ButtonCancelText;
+            _buttonOk.Text = Texts.ButtonOkText;
+            _emailGroupBox.Text = Texts.PromptEmailText;
         }
 
         private void CreateNewAccountDialog_Load(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt
 
             if (!New<KeyPairService>().IsAnyAvailable)
             {
-                MessageBox.Show(this, Content.OfflineAccountBePatient, Content.OfflineAccountTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Texts.OfflineAccountBePatient, Texts.OfflineAccountTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             CreateAccountAsync();
         }
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(CreateNewAccountViewModel.Passphrase)].Length > 0)
             {
-                _errorProvider1.SetError(PassphraseTextBox, Content.WrongPassphrase);
+                _errorProvider1.SetError(PassphraseTextBox, Texts.WrongPassphrase);
                 return false;
             }
             return true;
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt
             _errorProvider2.Clear();
             if (_viewModel[nameof(CreateNewAccountViewModel.Verification)].Length > 0)
             {
-                _errorProvider2.SetError(VerifyPassphraseTextbox, Content.PassphraseVerificationMismatch);
+                _errorProvider2.SetError(VerifyPassphraseTextbox, Texts.PassphraseVerificationMismatch);
                 return false;
             }
             return true;
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt
             _errorProvider3.Clear();
             if (_viewModel[nameof(CreateNewAccountViewModel.UserEmail)].Length > 0)
             {
-                _errorProvider3.SetError(EmailTextBox, Content.BadEmail);
+                _errorProvider3.SetError(EmailTextBox, Texts.BadEmail);
                 return false;
             }
             return true;

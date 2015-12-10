@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -30,20 +30,20 @@ namespace Axantum.AxCrypt
             _passphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = _passphraseTextBox.Text; _privateKeyFileTextBox.ScrollToCaret(); };
             _showPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = _showPassphraseCheckBox.Checked; };
 
-            _viewModel.BindPropertyChanged<bool>(nameof(ImportPrivateKeysViewModel.ImportSuccessful), (ok) => { if (!ok) { _errorProvider1.SetError(_browsePrivateKeyFileButton, Content.FailedPrivateImport); } });
+            _viewModel.BindPropertyChanged<bool>(nameof(ImportPrivateKeysViewModel.ImportSuccessful), (ok) => { if (!ok) { _errorProvider1.SetError(_browsePrivateKeyFileButton, Texts.FailedPrivateImport); } });
             _viewModel.BindPropertyChanged<bool>(nameof(ImportPrivateKeysViewModel.ShowPassphrase), (show) => { _showPassphraseCheckBox.Checked = show; _passphraseTextBox.UseSystemPasswordChar = !show; });
         }
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogImportPrivateAxCryptIdTitle;
+            Text = Texts.DialogImportPrivateAxCryptIdTitle;
 
-            PassphraseGroupBox.Text = Content.PassphrasePrompt;
-            _showPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
-            _buttonCancel.Text = Content.ButtonCancelText;
-            _buttonOk.Text = Content.ButtonOkText;
-            _accessIdGroupBox.Text = Content.DialogImportPrivateAxCryptIdAccessIdPrompt;
-            _browsePrivateKeyFileButton.Text = Content.ButtonEllipsisText;
+            PassphraseGroupBox.Text = Texts.PassphrasePrompt;
+            _showPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
+            _buttonCancel.Text = Texts.ButtonCancelText;
+            _buttonOk.Text = Texts.ButtonOkText;
+            _accessIdGroupBox.Text = Texts.DialogImportPrivateAxCryptIdAccessIdPrompt;
+            _browsePrivateKeyFileButton.Text = Texts.ButtonEllipsisText;
         }
 
         private void _buttonOk_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt
 
             if (_viewModel[nameof(ImportPrivateKeysViewModel.Passphrase)].Length > 0)
             {
-                _errorProvider1.SetError(_passphraseTextBox, Content.WrongPassphrase);
+                _errorProvider1.SetError(_passphraseTextBox, Texts.WrongPassphrase);
                 validated = false;
             }
             else
@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt
 
             if (_viewModel[nameof(ImportPrivateKeysViewModel.PrivateKeyFileName)].Length > 0)
             {
-                _errorProvider2.SetError(_browsePrivateKeyFileButton, Content.FileNotFound);
+                _errorProvider2.SetError(_browsePrivateKeyFileButton, Texts.FileNotFound);
                 validated = false;
             }
             else
@@ -93,11 +93,11 @@ namespace Axantum.AxCrypt
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Title = Content.ImportPrivateKeysFileSelectionTitle;
+                ofd.Title = Texts.ImportPrivateKeysFileSelectionTitle;
                 ofd.Multiselect = false;
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
-                ofd.Filter = Content.ImportPrivateKeysFileFilter;
+                ofd.Filter = Texts.ImportPrivateKeysFileFilter;
                 DialogResult result = ofd.ShowDialog();
                 if (result == DialogResult.OK)
                 {

@@ -21,12 +21,12 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.SecureDeleteDialogTitle;
-            _cancelButton.Text = Content.ButtonCancelText;
-            _noButton.Text = Content.ButtonNoText;
-            _promptLabel.Text = Content.PromptLabelText;
-            _yesButton.Text = Content.ButtonYesText;
-            _confirmAllCheckBox.Text = Content.ConfirmAllCheckBoxText;
+            Text = Texts.SecureDeleteDialogTitle;
+            _cancelButton.Text = Texts.ButtonCancelText;
+            _noButton.Text = Texts.ButtonNoText;
+            _promptLabel.Text = Texts.PromptLabelText;
+            _yesButton.Text = Texts.ButtonYesText;
+            _confirmAllCheckBox.Text = Texts.ConfirmAllCheckBoxText;
         }
 
         private void ConfirmWipeDialog_Load(object sender, EventArgs e)

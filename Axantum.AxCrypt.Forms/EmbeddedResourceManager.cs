@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Forms
                 return;
             }
 
-            FieldInfo fi = typeof(global::AxCrypt.Content.Content).BaseType.GetField("resourceMan", BindingFlags.NonPublic | BindingFlags.Static);
+            FieldInfo fi = typeof(global::AxCrypt.Content.Texts).BaseType.GetField("resourceMan", BindingFlags.NonPublic | BindingFlags.Static);
             fi.SetValue(null, new EmbeddedResourceManager());
         }
 

@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -72,15 +72,15 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogKeyShareTitle;
+            Text = Texts.DialogKeyShareTitle;
 
-            _knownContactsGroupBox.Text = Content.PromptKnownContacts;
-            _addContactGroupBox.Text = Content.PromptAddContact;
-            _unshareButton.Text = Content.ButtonUnshareLeftText;
-            _shareButton.Text = Content.ButtonShareRightText;
-            _sharedWithGroupBox.Text = Content.PromptSharedWith;
-            _okButton.Text = Content.ButtonOkText;
-            _cancelButton.Text = Content.ButtonCancelText;
+            _knownContactsGroupBox.Text = Texts.PromptKnownContacts;
+            _addContactGroupBox.Text = Texts.PromptAddContact;
+            _unshareButton.Text = Texts.ButtonUnshareLeftText;
+            _shareButton.Text = Texts.ButtonShareRightText;
+            _sharedWithGroupBox.Text = Texts.PromptSharedWith;
+            _okButton.Text = Texts.ButtonOkText;
+            _cancelButton.Text = Texts.ButtonCancelText;
         }
 
         private async Task DisplayInviteMessageAsync(string email)
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            MessageDialog.ShowOk(this, Content.SharedWithUnverfiedMessageTitle, Content.SharedWithUnverifiedMessagePattern.InvariantFormat(email));
+            MessageDialog.ShowOk(this, Texts.SharedWithUnverfiedMessageTitle, Texts.SharedWithUnverifiedMessagePattern.InvariantFormat(email));
         }
 
         private void SetShareButtonState()
@@ -156,13 +156,13 @@ namespace Axantum.AxCrypt
             }
             catch (UserInputException)
             {
-                _errorProvider1.SetError(_newContact, Content.InvalidEmail);
+                _errorProvider1.SetError(_newContact, Texts.InvalidEmail);
                 _errorProvider1.SetIconPadding(_newContact, 3);
                 return false;
             }
             catch (OfflineApiException)
             {
-                _errorProvider1.SetError(_newContact, Content.KeySharingOffline);
+                _errorProvider1.SetError(_newContact, Texts.KeySharingOffline);
                 _errorProvider1.SetIconPadding(_newContact, 3);
                 return false;
             }
@@ -194,7 +194,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(SharingListViewModel.NewKeyShare)].Length > 0)
             {
-                _errorProvider1.SetError(_newContact, Content.InvalidEmail);
+                _errorProvider1.SetError(_newContact, Texts.InvalidEmail);
                 _errorProvider1.SetIconPadding(_newContact, 3);
                 return false;
             }

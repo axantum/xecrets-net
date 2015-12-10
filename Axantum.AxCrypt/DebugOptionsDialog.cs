@@ -1,11 +1,9 @@
-﻿using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -24,12 +22,12 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogDebugLogTitle;
+            Text = Texts.DialogDebugLogTitle;
 
-            _okButton.Text = Content.ButtonOkText;
-            _cancelButton.Text = Content.ButtonCancelText;
-            _restApiBaseUrlLabel.Text = Content.DialogDebugOptionsRestApiUrlPrompt;
-            _restApiTimeoutLabel.Text = Content.DialogDebugOptionsRestApiTimeoutPrompt;
+            _okButton.Text = Texts.ButtonOkText;
+            _cancelButton.Text = Texts.ButtonCancelText;
+            _restApiBaseUrlLabel.Text = Texts.DialogDebugOptionsRestApiUrlPrompt;
+            _restApiTimeoutLabel.Text = Texts.DialogDebugOptionsRestApiTimeoutPrompt;
         }
 
         private void RestApiBaseUrl_Validating(object sender, CancelEventArgs e)
@@ -38,14 +36,14 @@ namespace Axantum.AxCrypt
             {
                 e.Cancel = true;
                 _restApiBaseUrl.SelectAll();
-                _errorProvider2.SetError(_restApiBaseUrl, Content.Invalid_URL);
+                _errorProvider2.SetError(_restApiBaseUrl, Texts.Invalid_URL);
             }
             TimeSpan timeout;
             if (!TimeSpan.TryParse(_timeoutTimeSpan.Text, out timeout))
             {
                 e.Cancel = true;
                 _timeoutTimeSpan.SelectAll();
-                _errorProvider3.SetError(_timeoutTimeSpan, Content.Invalid_TimeSpan);
+                _errorProvider3.SetError(_timeoutTimeSpan, Texts.Invalid_TimeSpan);
             }
         }
 

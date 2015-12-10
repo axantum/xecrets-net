@@ -51,12 +51,12 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogDecryptTitle;
+            Text = Texts.DialogDecryptTitle;
 
-            _buttonOk.Text = Content.ButtonOkText;
-            _buttonCancel.Text = Content.ButtonCancelText;
-            PassphraseGroupBox.Text = Content.PassphrasePrompt;
-            ShowPassphraseCheckBox.Text = Content.ShowPasswordOptionPrompt;
+            _buttonOk.Text = Texts.ButtonOkText;
+            _buttonCancel.Text = Texts.ButtonCancelText;
+            PassphraseGroupBox.Text = Texts.PassphrasePrompt;
+            ShowPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
         }
 
         private void DecryptPassphraseDialog_Load(object sender, System.EventArgs e)

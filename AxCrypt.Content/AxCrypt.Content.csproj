@@ -42,7 +42,7 @@
     <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Content.cs" />
+    <Compile Include="Texts.cs" />
     <Compile Include="ContentResourceManager.cs" />
     <Compile Include="Properties\LongResources.de.Designer.cs">
       <AutoGen>True</AutoGen>

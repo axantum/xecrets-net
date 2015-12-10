@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -30,13 +30,13 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogAxCryptIdEmailTitle;
+            Text = Texts.DialogAxCryptIdEmailTitle;
 
-            _firstTimePromptlabel.Text = Content.DialogAxCryptIdFirstTimeText;
-            _buttonHelp.Text = Content.ButtonHelpText;
-            _buttonExit.Text = Content.ButtonExitText;
-            _buttonOk.Text = Content.ButtonOkText;
-            _emailGroupBox.Text = Content.PromptEmailText;
+            _firstTimePromptlabel.Text = Texts.DialogAxCryptIdFirstTimeText;
+            _buttonHelp.Text = Texts.ButtonHelpText;
+            _buttonExit.Text = Texts.ButtonExitText;
+            _buttonOk.Text = Texts.ButtonOkText;
+            _emailGroupBox.Text = Texts.PromptEmailText;
         }
 
         private void EmailDialog_Load(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(AccountEmailViewModel.UserEmail)].Length > 0)
             {
-                _errorProvider1.SetError(EmailTextBox, Content.BadEmail);
+                _errorProvider1.SetError(EmailTextBox, Texts.BadEmail);
                 return false;
             }
             return true;

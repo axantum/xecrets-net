@@ -23,9 +23,9 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            _buttonOk.Text = Content.ButtonOkText;
-            _buttonCancel.Text = Content.ButtonCancelText;
-            _buttonExit.Text = Content.ButtonExitText;
+            _buttonOk.Text = Texts.ButtonOkText;
+            _buttonCancel.Text = Texts.ButtonCancelText;
+            _buttonExit.Text = Texts.ButtonExitText;
         }
 
         public MessageDialog HideExit()

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AxCrypt.Content
 {
-    public class Content : Resources
+    public class Texts : Resources
     {
         public string Template_ActivateEmail_cshtml { get { return LongResources.Template_ActivateEmail_cshtml; } }
 
@@ -30,6 +30,8 @@ namespace AxCrypt.Content
 
         public string Template_UnregisterEmail_cshtml { get { return LongResources.Template_UnregisterEmail_cshtml; } }
 
-        public static new ResourceManager ResourceManager { get { return new ContentResourceManager(); } }
+        private static Lazy<ResourceManager> _resourceManager = new Lazy<ResourceManager>(() => new ContentResourceManager());
+
+        public static new ResourceManager ResourceManager { get { return _resourceManager.Value; } }
     }
 }

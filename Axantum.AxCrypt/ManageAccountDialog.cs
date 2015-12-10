@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using Content = AxCrypt.Content.Content;
+using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
@@ -45,10 +45,10 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = Content.DialogManageAxcryptIdTitle;
+            Text = Texts.DialogManageAxcryptIdTitle;
 
-            _changePassphraseButton.Text = Content.ButtonChangePasswordText;
-            _dateHeader.Text = Content.ColumnTimestampHeader;
+            _changePassphraseButton.Text = Texts.ButtonChangePasswordText;
+            _dateHeader.Text = Texts.ColumnTimestampHeader;
         }
 
         private void ListAccountEmails(IEnumerable<AccountProperties> emails)
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt
         private void _changePassphraseButton_Click(object sender, EventArgs e)
         {
             string passphrase;
-            using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Content.ChangePassphraseDialogTitle, String.Empty, String.Empty))
+            using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Texts.ChangePassphraseDialogTitle, String.Empty, String.Empty))
             {
                 dialog.ShowPassphraseCheckBox.Checked = _userSettings.DisplayEncryptPassphrase;
                 DialogResult dialogResult = dialog.ShowDialog(this);

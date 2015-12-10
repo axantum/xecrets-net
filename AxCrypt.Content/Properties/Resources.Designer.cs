@@ -89,6 +89,129 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Light.
+        /// </summary>
+        public static string AccountStatusLight {
+            get {
+                return ResourceManager.GetString("AccountStatusLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Premium.
+        /// </summary>
+        public static string AccountStatusPremium {
+            get {
+                return ResourceManager.GetString("AccountStatusPremium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Premium (indefinate).
+        /// </summary>
+        public static string AccountStatusPremiumIndefinate {
+            get {
+                return ResourceManager.GetString("AccountStatusPremiumIndefinate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Premium Trial.
+        /// </summary>
+        public static string AccountStatusPremiumTrial {
+            get {
+                return ResourceManager.GetString("AccountStatusPremiumTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided e-mail or activation code is incorrect..
+        /// </summary>
+        public static string ActivateErrorEmailOrCode {
+            get {
+                return ResourceManager.GetString("ActivateErrorEmailOrCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password reset failed. A password reset request has not been made for this account..
+        /// </summary>
+        public static string ActivateErrorNoRequest {
+            get {
+                return ResourceManager.GetString("ActivateErrorNoRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password reset failed. .
+        /// </summary>
+        public static string ActivateErrorPassword {
+            get {
+                return ResourceManager.GetString("ActivateErrorPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/ActivateEmail.cshtml.
+        /// </summary>
+        public static string ActivateMailBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("ActivateMailBodyVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Account Activation.
+        /// </summary>
+        public static string ActivateMailSubject {
+            get {
+                return ResourceManager.GetString("ActivateMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Stop!&lt;/b&gt;
+        ///
+        ///You should only be here because clicking on the link in the account activation e-mail from AxCrypt did not work. (You must of course register an account to get an account activation e-mail)
+        ///
+        ///Enter your e-mail and code manually here only if you have received the activation e-mail, but the link did not work..
+        /// </summary>
+        public static string ActivateManuallyPageBody {
+            get {
+                return ResourceManager.GetString("ActivateManuallyPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To activate your account &lt;b&gt;{0}&lt;/b&gt; you must select a password.
+        ///
+        ///Choose something difficult to guess, since it will protect passwords in the online password manager as well as access to the site. Type slowly and carefully, and do not forget your password!.
+        /// </summary>
+        public static string ActivatePageBody {
+            get {
+                return ResourceManager.GetString("ActivatePageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activate account.
+        /// </summary>
+        public static string ActivatePageTitle {
+            get {
+                return ResourceManager.GetString("ActivatePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account has been activated! Please log on..
+        /// </summary>
+        public static string ActivateSuccess {
+            get {
+                return ResourceManager.GetString("ActivateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double-click opens the secured file.
         /// </summary>
         public static string ActiveFileKnownKeyToolTip {
@@ -103,6 +226,51 @@ namespace AxCrypt.Content.Properties {
         public static string ActiveFileToolTip {
             get {
                 return ResourceManager.GetString("ActiveFileToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/AppActivateEmail.cshtml.
+        /// </summary>
+        public static string AppActivateMailBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("AppActivateMailBodyVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/AppActivateEmailPlainText.cshtml.
+        /// </summary>
+        public static string AppActivatePlainTextMailBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("AppActivatePlainTextMailBodyVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page you tried to visit requires authentication. Please log on to proceed..
+        /// </summary>
+        public static string AuthenticationError {
+            get {
+                return ResourceManager.GetString("AuthenticationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/AutoDeletionEmail.html.
+        /// </summary>
+        public static string AutoDeletionMailBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("AutoDeletionMailBodyVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Account Deletion.
+        /// </summary>
+        public static string AutoDeletionMailSubject {
+            get {
+                return ResourceManager.GetString("AutoDeletionMailSubject", resourceCulture);
             }
         }
         
@@ -280,11 +448,132 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect captcha answer..
+        /// </summary>
+        public static string CaptchaError {
+            get {
+                return ResourceManager.GetString("CaptchaError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prove that you&apos;re a real person and not automated software!.
+        /// </summary>
+        public static string CaptchaLabel {
+            get {
+                return ResourceManager.GetString("CaptchaLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/ChangeEmailConfirmEmail.cshtml.
+        /// </summary>
+        public static string ChangeEmailConfirmMailBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("ChangeEmailConfirmMailBodyVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Account E-mail Change.
+        /// </summary>
+        public static string ChangeEmailConfirmMailSubject {
+            get {
+                return ResourceManager.GetString("ChangeEmailConfirmMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your change of account e-mail has been confirmed! Please log on to complete the process..
+        /// </summary>
+        public static string ChangeEmailConfirmSuccess {
+            get {
+                return ResourceManager.GetString("ChangeEmailConfirmSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/ChangeEmailExistEmail.cshtml.
+        /// </summary>
+        public static string ChangeEmailExistMailBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("ChangeEmailExistMailBodyVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Account E-mail Change Request.
+        /// </summary>
+        public static string ChangeEmailExistMailSubject {
+            get {
+                return ResourceManager.GetString("ChangeEmailExistMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail changed failed due to an internal error, please try again later or contact our support..
+        /// </summary>
+        public static string ChangeEmailMarkError {
+            get {
+                return ResourceManager.GetString("ChangeEmailMarkError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We have sent an e-mail to &lt;b&gt;{0}&lt;/b&gt;. Please read your e-mail and click on the link provided there to confirm the change.
+        ///
+        ///Thereafter you can log on using &lt;b&gt;{0}&lt;/b&gt; and your existing password.
+        ///
+        ///You must complete these steps to complete the process..
+        /// </summary>
+        public static string ChangeEmailMarkSuccess {
+            get {
+                return ResourceManager.GetString("ChangeEmailMarkSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your notification preferences have been changed..
+        /// </summary>
+        public static string ChangeNotificationSettingsSuccess {
+            get {
+                return ResourceManager.GetString("ChangeNotificationSettingsSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string ChangePassphraseDialogTitle {
             get {
                 return ResourceManager.GetString("ChangePassphraseDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not change password because the current password is incorrect or the new password is invalid..
+        /// </summary>
+        public static string ChangePasswordError {
+            get {
+                return ResourceManager.GetString("ChangePasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internal error, could not change password because the current user was not found..
+        /// </summary>
+        public static string ChangePasswordErrorUserNotFound {
+            get {
+                return ResourceManager.GetString("ChangePasswordErrorUserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password has been changed..
+        /// </summary>
+        public static string ChangePasswordSuccess {
+            get {
+                return ResourceManager.GetString("ChangePasswordSuccess", resourceCulture);
             }
         }
         
@@ -343,11 +632,47 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The application configuration property was updated successfully. You might have to restart the server to make the changes take effect..
+        /// </summary>
+        public static string ConfigurationSuccess {
+            get {
+                return ResourceManager.GetString("ConfigurationSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do this for &amp;all remaining files?.
         /// </summary>
         public static string ConfirmAllCheckBoxText {
             get {
                 return ResourceManager.GetString("ConfirmAllCheckBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to info@axcrypt.net.
+        /// </summary>
+        public static string ContactInfoEmail {
+            get {
+                return ResourceManager.GetString("ContactInfoEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to +46 (0)8 550 10 274.
+        /// </summary>
+        public static string ContactInfoPhone {
+            get {
+                return ResourceManager.GetString("ContactInfoPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact &amp; support.
+        /// </summary>
+        public static string ContactInfoTitle {
+            get {
+                return ResourceManager.GetString("ContactInfoTitle", resourceCulture);
             }
         }
         
@@ -537,6 +862,53 @@ namespace AxCrypt.Content.Properties {
         public static string DefaultEncryptionKeyIsIsetToolTip {
             get {
                 return ResourceManager.GetString("DefaultEncryptionKeyIsIsetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deletion failed due to incorrect password..
+        /// </summary>
+        public static string DeleteAccountErrorIncorrectPassword {
+            get {
+                return ResourceManager.GetString("DeleteAccountErrorIncorrectPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internal error, could not delete account because the current user was not found..
+        /// </summary>
+        public static string DeleteAccountErrorUserNotFound {
+            get {
+                return ResourceManager.GetString("DeleteAccountErrorUserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account has been successfully deleted.
+        ///
+        ///We&apos;re sad to see you go and hope you enjoyed your time with AxCrypt!.
+        /// </summary>
+        public static string DeleteAccountSuccess {
+            get {
+                return ResourceManager.GetString("DeleteAccountSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The deletion failed because the requested password could not be found..
+        /// </summary>
+        public static string DeleteSecretErrorNotFound {
+            get {
+                return ResourceManager.GetString("DeleteSecretErrorNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password has been deleted..
+        /// </summary>
+        public static string DeleteSecretSuccess {
+            get {
+                return ResourceManager.GetString("DeleteSecretSuccess", resourceCulture);
             }
         }
         
@@ -739,6 +1111,51 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your account is limited to read-only access! Only premium users are allowed to edit or create new password entries..
+        /// </summary>
+        public static string EditSecretErrorIsReadOnly {
+            get {
+                return ResourceManager.GetString("EditSecretErrorIsReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The requested password entry could not be found..
+        /// </summary>
+        public static string EditSecretErrorNotFound {
+            get {
+                return ResourceManager.GetString("EditSecretErrorNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your entry has been updated..
+        /// </summary>
+        public static string EditSecretSuccess {
+            get {
+                return ResourceManager.GetString("EditSecretSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template not found..
+        /// </summary>
+        public static string EmailErrorTemplateNotFound {
+            get {
+                return ResourceManager.GetString("EmailErrorTemplateNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found..
+        /// </summary>
+        public static string EmailErrorUserNotFound {
+            get {
+                return ResourceManager.GetString("EmailErrorUserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         public static string EncryptedFileDialogFilterPattern {
@@ -825,6 +1242,15 @@ namespace AxCrypt.Content.Properties {
         public static string EnterPassphraseForIdentityPrompt {
             get {
                 return ResourceManager.GetString("EnterPassphraseForIdentityPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User enumeration was successful. You might have to refresh the page to get the updated statistics..
+        /// </summary>
+        public static string EnumerateUsersSuccess {
+            get {
+                return ResourceManager.GetString("EnumerateUsersSuccess", resourceCulture);
             }
         }
         
@@ -982,6 +1408,42 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is the account section of AxCrypt.net, click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; to go back to the main site.
+        /// </summary>
+        public static string FooterInfoBody {
+            get {
+                return ResourceManager.GetString("FooterInfoBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account.AxCrypt.net.
+        /// </summary>
+        public static string FooterInfoTitle {
+            get {
+                return ResourceManager.GetString("FooterInfoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The start and/or end date format is invalid. Please use the format YYYY-MM-DD..
+        /// </summary>
+        public static string GetLogErrorDateFormat {
+            get {
+                return ResourceManager.GetString("GetLogErrorDateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected log type is invalid..
+        /// </summary>
+        public static string GetLogErrorLogType {
+            get {
+                return ResourceManager.GetString("GetLogErrorLogType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;About.
         /// </summary>
         public static string HelpAboutToolStripMenuItemText {
@@ -1090,6 +1552,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My AxCrypt account.
+        /// </summary>
+        public static string IndexPageTitle {
+            get {
+                return ResourceManager.GetString("IndexPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please specify time as &apos;hh:mm:ss.mmm&apos;..
         /// </summary>
         public static string Invalid_TimeSpan {
@@ -1131,6 +1602,33 @@ namespace AxCrypt.Content.Properties {
         public static string InvalidPath {
             get {
                 return ResourceManager.GetString("InvalidPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/InvitationEmail.cshtml.
+        /// </summary>
+        public static string InvitationMailBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("InvitationMailBodyVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/InvitationEmailPlainText.cshtml.
+        /// </summary>
+        public static string InvitationMailPlainTextBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("InvitationMailPlainTextBodyVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invitation to use AxCrypt File Security.
+        /// </summary>
+        public static string InvitationMailSubject {
+            get {
+                return ResourceManager.GetString("InvitationMailSubject", resourceCulture);
             }
         }
         
@@ -1279,6 +1777,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The e-mail or password provided is incorrect..
+        /// </summary>
+        public static string LoginError {
+            get {
+                return ResourceManager.GetString("LoginError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in to AxCrypt.
+        /// </summary>
+        public static string LoginPageTitle {
+            get {
+                return ResourceManager.GetString("LoginPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong when handling your payment request. Please try again..
+        /// </summary>
+        public static string LoginPurchaseError {
+            get {
+                return ResourceManager.GetString("LoginPurchaseError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign Out.
         /// </summary>
         public static string LogOffText {
@@ -1311,6 +1836,33 @@ namespace AxCrypt.Content.Properties {
         public static string LowEncryptionWorkingToolTip {
             get {
                 return ResourceManager.GetString("LowEncryptionWorkingToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://axcrypt.net.
+        /// </summary>
+        public static string MainSiteUrl {
+            get {
+                return ResourceManager.GetString("MainSiteUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A parsing error occured when updating the site management property. Please check that you&apos;re using the correct format..
+        /// </summary>
+        public static string ManagementErrorParsing {
+            get {
+                return ResourceManager.GetString("ManagementErrorParsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The site management property was updated successfully..
+        /// </summary>
+        public static string ManagementSuccess {
+            get {
+                return ResourceManager.GetString("ManagementSuccess", resourceCulture);
             }
         }
         
@@ -1468,6 +2020,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your new password entry has been saved..
+        /// </summary>
+        public static string NewSecretSuccess {
+            get {
+                return ResourceManager.GetString("NewSecretSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version {0} is available! Click to download..
         /// </summary>
         public static string NewVersionIsAvailableTooltip {
@@ -1500,6 +2061,44 @@ namespace AxCrypt.Content.Properties {
         public static string NoNeedToCheckForUpdatesTooltip {
             get {
                 return ResourceManager.GetString("NoNeedToCheckForUpdatesTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unfortunately we could not find the page you were looking for. This might be due to a server restart that caused your browser session to become outdated, or some other server error that caused us to be unable to process the request.
+        ///
+        ///Requested page:
+        ///{2}
+        ///
+        ///Your request has been logged. Please try again with the correct path, or &lt;a href=&quot;mailto:{0}&quot;&gt;report&lt;/a&gt; a broken link.
+        ///
+        ///To return to the start page, click &lt;a href=&quot;{1}&quot;&gt;here&lt;/a&gt;..
+        /// </summary>
+        public static string NotFoundPageBody {
+            get {
+                return ResourceManager.GetString("NotFoundPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page was not found!.
+        /// </summary>
+        public static string NotFoundPageTitle {
+            get {
+                return ResourceManager.GetString("NotFoundPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unfortunately we could not find the page you were looking for. This might be due to a server restart that caused your browser session to become outdated, or some other server error that caused us to be unable to process the request.
+        ///
+        ///Your request has been logged. Please try again with the correct path, or &lt;a href=&quot;mailto:{0}&quot;&gt;report&lt;/a&gt; a broken link.
+        ///
+        ///To return to the start page, click &lt;a href=&quot;{1}&quot;&gt;here&lt;/a&gt;..
+        /// </summary>
+        public static string NotFoundSafePageBody {
+            get {
+                return ResourceManager.GetString("NotFoundSafePageBody", resourceCulture);
             }
         }
         
@@ -1621,11 +2220,98 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage all your passwords online in the cloud&lt;span class=&quot;text-cutoff&quot;&gt; with AxCrypt Password Management, your online safety deposit for passwords, codes, pins, etc. Your passwords are stored in a securely encrypted archive and are available to you, and only you, anywhere at any time. &lt;a class=&quot;hide-link&quot;&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;text-cutoff-ellipsis&quot;&gt;... &lt;a class=&quot;show-link&quot;&gt;[Read more]&lt;/a&gt;&lt;/span&gt;.
+        /// </summary>
+        public static string PasswordManagementListPageBody {
+            get {
+                return ResourceManager.GetString("PasswordManagementListPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Management.
+        /// </summary>
+        public static string PasswordManagementPageTitle {
+            get {
+                return ResourceManager.GetString("PasswordManagementPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The password must be at least 10 characters..
         /// </summary>
         public static string PasswordPolicyViolation {
             get {
                 return ResourceManager.GetString("PasswordPolicyViolation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot your password? Click here.
+        /// </summary>
+        public static string PasswordResetLink {
+            get {
+                return ResourceManager.GetString("PasswordResetLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/PasswordResetEmail.cshtml.
+        /// </summary>
+        public static string PasswordResetMailBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("PasswordResetMailBodyVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Account Password Reset.
+        /// </summary>
+        public static string PasswordResetMailSubject {
+            get {
+                return ResourceManager.GetString("PasswordResetMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have previously registered but have forgotten the password, or for some reason not received or lost the activation link, you may re-register and request a new activation e-mail here.
+        ///
+        ///&lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to log on again, but you will not re-gain access to any information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
+        ///
+        ///Enter your e-mail below to a send an activation link to t [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PasswordResetPageBody {
+            get {
+                return ResourceManager.GetString("PasswordResetPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password reset.
+        /// </summary>
+        public static string PasswordResetPageTitle {
+            get {
+                return ResourceManager.GetString("PasswordResetPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An attempt to send the account activation verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
+        ///
+        ///If you appear not to receive it, check that it does not get caught by your anti-spam measures, and that {0} is correct..
+        /// </summary>
+        public static string PasswordResetSuccess {
+            get {
+                return ResourceManager.GetString("PasswordResetSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [More info about PayPal].
+        /// </summary>
+        public static string PayPalReadMoreLink {
+            get {
+                return ResourceManager.GetString("PayPalReadMoreLink", resourceCulture);
             }
         }
         
@@ -1729,6 +2415,102 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected subsciption time is invalid. A valid subscription has to be at least {0} month and no longer than {1} months..
+        /// </summary>
+        public static string PurchaseErrorSubscriptionTime {
+            get {
+                return ResourceManager.GetString("PurchaseErrorSubscriptionTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Folder Watching and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
+        ///
+        ///To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts when you activate your account. After that you can extend your premium subscription by using the f [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PurchasePageBody1 {
+            get {
+                return ResourceManager.GetString("PurchasePageBody1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span class=&quot;text-cutoff-ellipsis always&quot;&gt;&lt;a id=&quot;paypal-readmore&quot; class=&quot;show-link&quot;&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;text-cutoff always&quot;&gt;Security is crucial to us. Everything we do with AxCrypt is done with security as the highest priority. We are therefore using PayPal as payment method for AxCrypt Premium. The PayPal site is highly secure and automatically encrypts your confidential information in transit from your computer to our servers.
+        ///
+        ///Once your information reaches the PayPal site, i [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PurchasePageBody2 {
+            get {
+                return ResourceManager.GetString("PurchasePageBody2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buy AxCrypt Premium.
+        /// </summary>
+        public static string PurchasePageTitle {
+            get {
+                return ResourceManager.GetString("PurchasePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The purchase was cancelled..
+        /// </summary>
+        public static string PurchaseReceiptError {
+            get {
+                return ResourceManager.GetString("PurchaseReceiptError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We never received your payment. This may result from manually cancelling the purchase on PayPal or due to insufficient account balance..
+        /// </summary>
+        public static string PurchaseReceiptErrorPageBody {
+            get {
+                return ResourceManager.GetString("PurchaseReceiptErrorPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Receipt for AxCrypt Premium.
+        /// </summary>
+        public static string PurchaseReceiptPageTitle {
+            get {
+                return ResourceManager.GetString("PurchaseReceiptPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for purchasing AxCrypt Premium!.
+        /// </summary>
+        public static string PurchaseReceiptSuccess {
+            get {
+                return ResourceManager.GetString("PurchaseReceiptSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;re now able to access all the premium features of AxCrypt. If you experience any problems, please contact our support.
+        ///
+        ///A receipt of your purchase has been sent to your e-mail..
+        /// </summary>
+        public static string PurchaseReceiptSuccessPageBody {
+            get {
+                return ResourceManager.GetString("PurchaseReceiptSuccessPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}% VAT incl..
+        /// </summary>
+        public static string PurchaseVatPercent {
+            get {
+                return ResourceManager.GetString("PurchaseVatPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Purging Active Files.
         /// </summary>
         public static string PurgingActiveFiles {
@@ -1756,11 +2538,87 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registration failed. Please check your e-mail and try again..
+        /// </summary>
+        public static string RegisterError {
+            get {
+                return ResourceManager.GetString("RegisterError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New user? Sign up.
+        /// </summary>
+        public static string RegisterLink {
+            get {
+                return ResourceManager.GetString("RegisterLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To start using AxCrypt you have to sign up for an account by submitting your e-mail address in the form below. A message containing an activation link will then be sent to the specified address and when you click that link you will be asked to choose a password. That&apos;s it!
+        ///
+        ///A 30 day trial of AxCrypt Premium is included and will start when you activate your account..
+        /// </summary>
+        public static string RegisterPageBody {
+            get {
+                return ResourceManager.GetString("RegisterPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign up for AxCrypt.
+        /// </summary>
+        public static string RegisterPageTitle {
+            get {
+                return ResourceManager.GetString("RegisterPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have now signed up for an account!
+        ///
+        ///Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link..
+        /// </summary>
+        public static string RegisterSuccess {
+            get {
+                return ResourceManager.GetString("RegisterSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Remove from list but keep file secured.
         /// </summary>
         public static string RemoveRecentFileToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("RemoveRecentFileToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation failed. Only premium users are allowed to save password entries..
+        /// </summary>
+        public static string SaveSecretErrorIsReadOnly {
+            get {
+                return ResourceManager.GetString("SaveSecretErrorIsReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your premium subscription has expired and you can therefore no longer edit or create new password entries. However, you still have read-only access..
+        /// </summary>
+        public static string SecretsWarningIsReadOnly {
+            get {
+                return ResourceManager.GetString("SecretsWarningIsReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your premium subscription expires soon, on {0}. Thereafter you&apos;ll have to extend your premium subscription to be able to edit or create new password entries. You&apos;ll retain read-only access indefinitely..
+        /// </summary>
+        public static string SecretsWarningIsSoonExpired {
+            get {
+                return ResourceManager.GetString("SecretsWarningIsSoonExpired", resourceCulture);
             }
         }
         
@@ -1779,6 +2637,57 @@ namespace AxCrypt.Content.Properties {
         public static string SecureDeleteToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("SecureDeleteToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can delete your account permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your account, including saved password entries, will also be deleted.&lt;/span&gt;
+        ///
+        ///Enter your password below to a delete your account..
+        /// </summary>
+        public static string SettingsDeletePageBody {
+            get {
+                return ResourceManager.GetString("SettingsDeletePageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To change the e-mail associated with your account, type in a new e-mail address below. This will affect how you log on to the site and where site e-mails are sent. 
+        ///
+        ///A confirmation e-mail will be sent to the new address. The change is effective only after the confirmation link is clicked and a successful log on..
+        /// </summary>
+        public static string SettingsEmailPageBody {
+            get {
+                return ResourceManager.GetString("SettingsEmailPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose your preference for AxCrypt notification e-mails below..
+        /// </summary>
+        public static string SettingsNotificationsPageBody {
+            get {
+                return ResourceManager.GetString("SettingsNotificationsPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account settings.
+        /// </summary>
+        public static string SettingsPageTitle {
+            get {
+                return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To change password, provide the current password and then specify and verify your new password.
+        ///
+        ///Choose something difficult to guess, since it will protect passwords in the online password manager as well as access to the site. Type slowly and carefully, and do not forget your new password!.
+        /// </summary>
+        public static string SettingsPasswordPageBody {
+            get {
+                return ResourceManager.GetString("SettingsPasswordPageBody", resourceCulture);
             }
         }
         
@@ -1821,11 +2730,137 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warning! A site restart is scheduled in a few minutes. We&apos;re sorry about the inconvenience..
+        /// </summary>
+        public static string SiteRestartWarning {
+            get {
+                return ResourceManager.GetString("SiteRestartWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid format for field Amount. Please use decimal format, i.e. 10.50..
+        /// </summary>
+        public static string SubscriptionsErrorAmount {
+            get {
+                return ResourceManager.GetString("SubscriptionsErrorAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid format in field Event time..
+        /// </summary>
+        public static string SubscriptionsErrorEventTime {
+            get {
+                return ResourceManager.GetString("SubscriptionsErrorEventTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid format in field Expiration time..
+        /// </summary>
+        public static string SubscriptionsErrorExpirationTime {
+            get {
+                return ResourceManager.GetString("SubscriptionsErrorExpirationTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid value in field Subscription level..
+        /// </summary>
+        public static string SubscriptionsErrorLevel {
+            get {
+                return ResourceManager.GetString("SubscriptionsErrorLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid value in field Subscription level. If we&apos;ve paid for something, we currently only support subscription level Basic..
+        /// </summary>
+        public static string SubscriptionsErrorLevelAmount {
+            get {
+                return ResourceManager.GetString("SubscriptionsErrorLevelAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid format in field Start time..
+        /// </summary>
+        public static string SubscriptionsErrorStartTime {
+            get {
+                return ResourceManager.GetString("SubscriptionsErrorStartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid value in field Subscription type..
+        /// </summary>
+        public static string SubscriptionsErrorType {
+            get {
+                return ResourceManager.GetString("SubscriptionsErrorType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found..
+        /// </summary>
+        public static string SubscriptionsErrorUserNotFound {
+            get {
+                return ResourceManager.GetString("SubscriptionsErrorUserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The subscription was successfully saved..
+        /// </summary>
+        public static string SubscriptionsSuccessAdd {
+            get {
+                return ResourceManager.GetString("SubscriptionsSuccessAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The subscription history was successfully deleted..
+        /// </summary>
+        public static string SubscriptionsSuccessDelete {
+            get {
+                return ResourceManager.GetString("SubscriptionsSuccessDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Svenska.
         /// </summary>
         public static string SwedishLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("SwedishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The culture was successfully activated..
+        /// </summary>
+        public static string SyntheticWordsSuccessActivate {
+            get {
+                return ResourceManager.GetString("SyntheticWordsSuccessActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The culture was successfully cleared..
+        /// </summary>
+        public static string SyntheticWordsSuccessClear {
+            get {
+                return ResourceManager.GetString("SyntheticWordsSuccessClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The culture was successfully updated..
+        /// </summary>
+        public static string SyntheticWordsSuccessUpdate {
+            get {
+                return ResourceManager.GetString("SyntheticWordsSuccessUpdate", resourceCulture);
             }
         }
         
@@ -1884,6 +2919,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transaction history.
+        /// </summary>
+        public static string TransactionHistoryTitle {
+            get {
+                return ResourceManager.GetString("TransactionHistoryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to restore the AxCrypt application window..
         /// </summary>
         public static string TrayBalloonTooltip {
@@ -1934,6 +2978,24 @@ namespace AxCrypt.Content.Properties {
         public static string UnrecognizedError {
             get {
                 return ResourceManager.GetString("UnrecognizedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/UnregisterEmail.cshtml.
+        /// </summary>
+        public static string UnregisterMailBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("UnregisterMailBodyVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Account Deleted.
+        /// </summary>
+        public static string UnregisterMailSubject {
+            get {
+                return ResourceManager.GetString("UnregisterMailSubject", resourceCulture);
             }
         }
         
