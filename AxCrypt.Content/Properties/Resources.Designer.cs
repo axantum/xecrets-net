@@ -304,6 +304,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activate.
+        /// </summary>
+        public static string ButtonActivateText {
+            get {
+                return ResourceManager.GetString("ButtonActivateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Cancel All.
         /// </summary>
         public static string ButtonCancelAllText {
@@ -1255,7 +1264,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The password verification does not match the password..
+        /// </summary>
+        public static string ErrorPasswordMismatch {
+            get {
+                return ResourceManager.GetString("ErrorPasswordMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password must be at least {2} and no more than {1} characters..
         /// </summary>
         public static string ErrorPasswordTooLong {
             get {
@@ -2370,6 +2388,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buy Premium.
+        /// </summary>
+        public static string PromptBuyPremium {
+            get {
+                return ResourceManager.GetString("PromptBuyPremium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change.
+        /// </summary>
+        public static string PromptChange {
+            get {
+                return ResourceManager.GetString("PromptChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string PromptEmailText {
@@ -2388,7 +2424,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keep me signed in.
+        ///   Looks up a localized string similar to Remember me.
         /// </summary>
         public static string PromptKeepMeSignedIn {
             get {
@@ -2424,6 +2460,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My AxCrypt ID.
+        /// </summary>
+        public static string PromptMyAxCryptId {
+            get {
+                return ResourceManager.GetString("PromptMyAxCryptId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string PromptMySettings {
+            get {
+                return ResourceManager.GetString("PromptMySettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Manager.
+        /// </summary>
+        public static string PromptPasswordManager {
+            get {
+                return ResourceManager.GetString("PromptPasswordManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set Your Password.
         /// </summary>
         public static string PromptSetNewPassword {
@@ -2438,6 +2501,33 @@ namespace AxCrypt.Content.Properties {
         public static string PromptSharedWith {
             get {
                 return ResourceManager.GetString("PromptSharedWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign In.
+        /// </summary>
+        public static string PromptSignIn {
+            get {
+                return ResourceManager.GetString("PromptSignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Out.
+        /// </summary>
+        public static string PromptSignOut {
+            get {
+                return ResourceManager.GetString("PromptSignOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Up.
+        /// </summary>
+        public static string PromptSignUp {
+            get {
+                return ResourceManager.GetString("PromptSignUp", resourceCulture);
             }
         }
         
