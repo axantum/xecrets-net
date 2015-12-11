@@ -340,6 +340,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete AxCrypt ID.
+        /// </summary>
+        public static string ButtonDeleteAxCryptIdText {
+            get {
+                return ResourceManager.GetString("ButtonDeleteAxCryptIdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string ButtonDeleteText {
+            get {
+                return ResourceManager.GetString("ButtonDeleteText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string ButtonEditText {
+            get {
+                return ResourceManager.GetString("ButtonEditText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ....
         /// </summary>
         public static string ButtonEllipsisText {
@@ -394,6 +421,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string ButtonSaveText {
+            get {
+                return ResourceManager.GetString("ButtonSaveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send.
         /// </summary>
         public static string ButtonSendText {
@@ -435,6 +471,15 @@ namespace AxCrypt.Content.Properties {
         public static string ButtonSignUpText {
             get {
                 return ResourceManager.GetString("ButtonSignUpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suggest password.
+        /// </summary>
+        public static string ButtonSuggestText {
+            get {
+                return ResourceManager.GetString("ButtonSuggestText", resourceCulture);
             }
         }
         
@@ -1332,6 +1377,15 @@ namespace AxCrypt.Content.Properties {
         public static string EnumerateUsersSuccess {
             get {
                 return ResourceManager.GetString("EnumerateUsersSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The verification does not match the email.
+        /// </summary>
+        public static string ErrorEmailMismatch {
+            get {
+                return ResourceManager.GetString("ErrorEmailMismatch", resourceCulture);
             }
         }
         
@@ -2310,7 +2364,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter Password.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string PassphrasePrompt {
             get {
@@ -2469,6 +2523,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string PromptBackLinkText {
+            get {
+                return ResourceManager.GetString("PromptBackLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buy now.
+        /// </summary>
+        public static string PromptBuyNow {
+            get {
+                return ResourceManager.GetString("PromptBuyNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Buy Premium.
         /// </summary>
         public static string PromptBuyPremium {
@@ -2483,6 +2555,24 @@ namespace AxCrypt.Content.Properties {
         public static string PromptChange {
             get {
                 return ResourceManager.GetString("PromptChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current password.
+        /// </summary>
+        public static string PromptCurrentPasswordText {
+            get {
+                return ResourceManager.GetString("PromptCurrentPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete AxCrypt ID.
+        /// </summary>
+        public static string PromptDeleteAxCryptIdText {
+            get {
+                return ResourceManager.GetString("PromptDeleteAxCryptIdText", resourceCulture);
             }
         }
         
@@ -2559,6 +2649,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New email.
+        /// </summary>
+        public static string PromptNewEmail {
+            get {
+                return ResourceManager.GetString("PromptNewEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New password.
+        /// </summary>
+        public static string PromptNewPasswordText {
+            get {
+                return ResourceManager.GetString("PromptNewPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notifications.
+        /// </summary>
+        public static string PromptNotificationsText {
+            get {
+                return ResourceManager.GetString("PromptNotificationsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password Manager.
         /// </summary>
         public static string PromptPasswordManager {
@@ -2618,6 +2735,51 @@ namespace AxCrypt.Content.Properties {
         public static string PromptSubscription {
             get {
                 return ResourceManager.GetString("PromptSubscription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verify.
+        /// </summary>
+        public static string PromptVerifyEmail {
+            get {
+                return ResourceManager.GetString("PromptVerifyEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description (related web site, user name etc).
+        /// </summary>
+        public static string PromptXecretsDescriptionText {
+            get {
+                return ResourceManager.GetString("PromptXecretsDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string PromptXecretsNew {
+            get {
+                return ResourceManager.GetString("PromptXecretsNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string PromptXecretsSearchText {
+            get {
+                return ResourceManager.GetString("PromptXecretsSearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password or secret.
+        /// </summary>
+        public static string PromptXecretsSecretText {
+            get {
+                return ResourceManager.GetString("PromptXecretsSecretText", resourceCulture);
             }
         }
         
@@ -3077,6 +3239,42 @@ namespace AxCrypt.Content.Properties {
         public static string TextCheckEmailAndSpam {
             get {
                 return ResourceManager.GetString("TextCheckEmailAndSpam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Critical - Get notified of critical AxCrypt updated.
+        /// </summary>
+        public static string TextPreferenceCritical {
+            get {
+                return ResourceManager.GetString("TextPreferenceCritical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decline - Never get notified about AxCrypt updates.
+        /// </summary>
+        public static string TextPreferenceDecline {
+            get {
+                return ResourceManager.GetString("TextPreferenceDecline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown - You have not specified any preference.
+        /// </summary>
+        public static string TextPreferenceUnknown {
+            get {
+                return ResourceManager.GetString("TextPreferenceUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update - Get notified of all AxCrypt updates.
+        /// </summary>
+        public static string TextPreferenceUpdate {
+            get {
+                return ResourceManager.GetString("TextPreferenceUpdate", resourceCulture);
             }
         }
         

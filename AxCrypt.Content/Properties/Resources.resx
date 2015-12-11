@@ -338,7 +338,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>File</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
-    <value>Enter Password</value>
+    <value>Password</value>
   </data>
   <data name="PassphraseVerificationMismatch" xml:space="preserve">
     <value>Passwords do not match</value>
@@ -1197,6 +1197,18 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Activate</value>
   </data>
+  <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
+    <value>Delete AxCrypt ID</value>
+  </data>
+  <data name="ButtonDeleteText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ButtonEditText" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ButtonSaveText" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="ButtonSendText" xml:space="preserve">
     <value>Send</value>
   </data>
@@ -1208,6 +1220,9 @@ Choose something difficult to guess, since it will protect passwords in the onli
   </data>
   <data name="ButtonSignUpText" xml:space="preserve">
     <value>Sign Up</value>
+  </data>
+  <data name="ButtonSuggestText" xml:space="preserve">
+    <value>Suggest password</value>
   </data>
   <data name="ColumnAmountPaidHeader" xml:space="preserve">
     <value>Amount paid</value>
@@ -1221,6 +1236,9 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="ColumnTransactionDateHeader" xml:space="preserve">
     <value>Transaction UTC</value>
   </data>
+  <data name="ErrorEmailMismatch" xml:space="preserve">
+    <value>The verification does not match the email</value>
+  </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>The password verification does not match the password.</value>
   </data>
@@ -1230,11 +1248,23 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>My AxCrypt ID</value>
   </data>
+  <data name="PromptBackLinkText" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="PromptBuyNow" xml:space="preserve">
+    <value>Buy now</value>
+  </data>
   <data name="PromptBuyPremium" xml:space="preserve">
     <value>Buy Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Change</value>
+  </data>
+  <data name="PromptCurrentPasswordText" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+  <data name="PromptDeleteAxCryptIdText" xml:space="preserve">
+    <value>Delete AxCrypt ID</value>
   </data>
   <data name="PromptKeepMeSignedIn" xml:space="preserve">
     <value>Remember me</value>
@@ -1244,6 +1274,15 @@ Choose something difficult to guess, since it will protect passwords in the onli
   </data>
   <data name="PromptMySettings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="PromptNewEmail" xml:space="preserve">
+    <value>New email</value>
+  </data>
+  <data name="PromptNewPasswordText" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="PromptNotificationsText" xml:space="preserve">
+    <value>Notifications</value>
   </data>
   <data name="PromptPasswordManager" xml:space="preserve">
     <value>Password Manager</value>
@@ -1256,5 +1295,32 @@ Choose something difficult to guess, since it will protect passwords in the onli
   </data>
   <data name="PromptSignUp" xml:space="preserve">
     <value>Sign Up</value>
+  </data>
+  <data name="PromptVerifyEmail" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="PromptXecretsDescriptionText" xml:space="preserve">
+    <value>Description (related web site, user name etc)</value>
+  </data>
+  <data name="PromptXecretsNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="PromptXecretsSearchText" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="PromptXecretsSecretText" xml:space="preserve">
+    <value>Password or secret</value>
+  </data>
+  <data name="TextPreferenceCritical" xml:space="preserve">
+    <value>Critical - Get notified of critical AxCrypt updated</value>
+  </data>
+  <data name="TextPreferenceDecline" xml:space="preserve">
+    <value>Decline - Never get notified about AxCrypt updates</value>
+  </data>
+  <data name="TextPreferenceUnknown" xml:space="preserve">
+    <value>Unknown - You have not specified any preference</value>
+  </data>
+  <data name="TextPreferenceUpdate" xml:space="preserve">
+    <value>Update - Get notified of all AxCrypt updates</value>
   </data>
 </root>

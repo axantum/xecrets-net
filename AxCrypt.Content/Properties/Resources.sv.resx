@@ -418,7 +418,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Skapa Lokalt AxCrypt ID </value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
-    <value>Ange lösenord</value>
+    <value>Lösenord</value>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Lösenordet måste vara minst 10 tecken.</value>
@@ -1089,6 +1089,18 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Aktivera</value>
   </data>
+  <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
+    <value>Radera AxCrypt ID</value>
+  </data>
+  <data name="ButtonDeleteText" xml:space="preserve">
+    <value>Radera</value>
+  </data>
+  <data name="ButtonEditText" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="ButtonSaveText" xml:space="preserve">
+    <value>Spara</value>
+  </data>
   <data name="ButtonSendText" xml:space="preserve">
     <value>Skicka</value>
   </data>
@@ -1100,6 +1112,9 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   </data>
   <data name="ButtonSignUpText" xml:space="preserve">
     <value>Registrera</value>
+  </data>
+  <data name="ButtonSuggestText" xml:space="preserve">
+    <value>Lösenordsförslag</value>
   </data>
   <data name="ColumnAmountPaidHeader" xml:space="preserve">
     <value>Betalt</value>
@@ -1113,6 +1128,9 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   <data name="ColumnTransactionDateHeader" xml:space="preserve">
     <value>Transaktion UTC</value>
   </data>
+  <data name="ErrorEmailMismatch" xml:space="preserve">
+    <value>Bekräftelsen stämmer inte med epostadressen</value>
+  </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>Lösenordsverifieringen matchar inte lösenordet.</value>
   </data>
@@ -1122,11 +1140,23 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>Mitt AxCrypt ID</value>
   </data>
+  <data name="PromptBackLinkText" xml:space="preserve">
+    <value>Tillbaka</value>
+  </data>
+  <data name="PromptBuyNow" xml:space="preserve">
+    <value>Köp nu</value>
+  </data>
   <data name="PromptBuyPremium" xml:space="preserve">
     <value>Köp Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Ändra</value>
+  </data>
+  <data name="PromptCurrentPasswordText" xml:space="preserve">
+    <value>Nuvarande lösenord</value>
+  </data>
+  <data name="PromptDeleteAxCryptIdText" xml:space="preserve">
+    <value>Radera AxCrypt ID</value>
   </data>
   <data name="PromptKeepMeSignedIn" xml:space="preserve">
     <value>Kom ihåg mig</value>
@@ -1136,6 +1166,12 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   </data>
   <data name="PromptMySettings" xml:space="preserve">
     <value>Inställningar</value>
+  </data>
+  <data name="PromptNewEmail" xml:space="preserve">
+    <value>Ny epostadress</value>
+  </data>
+  <data name="PromptNotificationsText" xml:space="preserve">
+    <value>Notifieringar</value>
   </data>
   <data name="PromptPasswordManager" xml:space="preserve">
     <value>Lösenordshanterare</value>
@@ -1148,6 +1184,33 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   </data>
   <data name="PromptSignUp" xml:space="preserve">
     <value>Registrera</value>
+  </data>
+  <data name="PromptVerifyEmail" xml:space="preserve">
+    <value>Bekräfta</value>
+  </data>
+  <data name="PromptXecretsDescriptionText" xml:space="preserve">
+    <value>Beskrivning (sökväg, användarnamn etc)</value>
+  </data>
+  <data name="PromptXecretsNew" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="PromptXecretsSearchText" xml:space="preserve">
+    <value>Sök</value>
+  </data>
+  <data name="PromptXecretsSecretText" xml:space="preserve">
+    <value>Lösenord eller annan hemlighet</value>
+  </data>
+  <data name="TextPreferenceCritical" xml:space="preserve">
+    <value>Kritiska - Du blir notifierad om kritiska uppdateringar</value>
+  </data>
+  <data name="TextPreferenceDecline" xml:space="preserve">
+    <value>Avböj - Du får inga notiferingar</value>
+  </data>
+  <data name="TextPreferenceUnknown" xml:space="preserve">
+    <value>Okänt - Du har inte angivit något</value>
+  </data>
+  <data name="TextPreferenceUpdate" xml:space="preserve">
+    <value>Alla - Du blir notifierad om alla uppdateringar</value>
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>Transaktionshistorik</value>
