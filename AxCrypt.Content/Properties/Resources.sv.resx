@@ -1137,6 +1137,9 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   <data name="ErrorPasswordTooLong" xml:space="preserve">
     <value>Lösenordet måste vara minst {2} men inte längre än {1} tecken.</value>
   </data>
+  <data name="LinkToAccountSite" xml:space="preserve">
+    <value>https://account.axcrypt.net/</value>
+  </data>
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>Mitt AxCrypt ID</value>
   </data>

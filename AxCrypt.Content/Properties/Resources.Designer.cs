@@ -1876,6 +1876,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://account.axcrypt.net/.
+        /// </summary>
+        public static string LinkToAccountSite {
+            get {
+                return ResourceManager.GetString("LinkToAccountSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://account.axcrypt.net/Home/Purchase?email={0}.
         /// </summary>
         public static string LinkToAxCryptPremiumPurchasePage {

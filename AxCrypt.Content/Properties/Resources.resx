@@ -1245,6 +1245,9 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="ErrorPasswordTooLong" xml:space="preserve">
     <value>The password must be at least {2} and no more than {1} characters.</value>
   </data>
+  <data name="LinkToAccountSite" xml:space="preserve">
+    <value>https://account.axcrypt.net/</value>
+  </data>
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>My AxCrypt ID</value>
   </data>
