@@ -1197,11 +1197,38 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Activate</value>
   </data>
+  <data name="ButtonSendText" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="ButtonSignInBuyText" xml:space="preserve">
+    <value>Sign In &amp; Buy Now</value>
+  </data>
+  <data name="ButtonSignInText" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="ButtonSignUpText" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="ColumnAmountPaidHeader" xml:space="preserve">
+    <value>Amount paid</value>
+  </data>
+  <data name="ColumnExpiresHeader" xml:space="preserve">
+    <value>Expires UTC</value>
+  </data>
+  <data name="ColumnProductHeader" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="ColumnTransactionDateHeader" xml:space="preserve">
+    <value>Transaction UTC</value>
+  </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>The password verification does not match the password.</value>
   </data>
   <data name="ErrorPasswordTooLong" xml:space="preserve">
     <value>The password must be at least {2} and no more than {1} characters.</value>
+  </data>
+  <data name="MenuAxCryptIdText" xml:space="preserve">
+    <value>My AxCrypt ID</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
     <value>Buy Premium</value>

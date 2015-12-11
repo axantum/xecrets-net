@@ -1089,11 +1089,38 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Aktivera</value>
   </data>
+  <data name="ButtonSendText" xml:space="preserve">
+    <value>Skicka</value>
+  </data>
+  <data name="ButtonSignInBuyText" xml:space="preserve">
+    <value>Logga In &amp; Köp Nu</value>
+  </data>
+  <data name="ButtonSignInText" xml:space="preserve">
+    <value>Logga In</value>
+  </data>
+  <data name="ButtonSignUpText" xml:space="preserve">
+    <value>Registrera</value>
+  </data>
+  <data name="ColumnAmountPaidHeader" xml:space="preserve">
+    <value>Betalt</value>
+  </data>
+  <data name="ColumnExpiresHeader" xml:space="preserve">
+    <value>Giltighetstid UTC</value>
+  </data>
+  <data name="ColumnProductHeader" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="ColumnTransactionDateHeader" xml:space="preserve">
+    <value>Transaktion UTC</value>
+  </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>Lösenordsverifieringen matchar inte lösenordet.</value>
   </data>
   <data name="ErrorPasswordTooLong" xml:space="preserve">
     <value>Lösenordet måste vara minst {2} men inte längre än {1} tecken.</value>
+  </data>
+  <data name="MenuAxCryptIdText" xml:space="preserve">
+    <value>Mitt AxCrypt ID</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
     <value>Köp Premium</value>
@@ -1121,5 +1148,8 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   </data>
   <data name="PromptSignUp" xml:space="preserve">
     <value>Registrera</value>
+  </data>
+  <data name="TransactionHistoryTitle" xml:space="preserve">
+    <value>Transaktionshistorik</value>
   </data>
 </root>

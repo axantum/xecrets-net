@@ -394,11 +394,47 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string ButtonSendText {
+            get {
+                return ResourceManager.GetString("ButtonSendText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Share &gt;&gt;.
         /// </summary>
         public static string ButtonShareRightText {
             get {
                 return ResourceManager.GetString("ButtonShareRightText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign In &amp; Buy Now.
+        /// </summary>
+        public static string ButtonSignInBuyText {
+            get {
+                return ResourceManager.GetString("ButtonSignInBuyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign In.
+        /// </summary>
+        public static string ButtonSignInText {
+            get {
+                return ResourceManager.GetString("ButtonSignInText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Up.
+        /// </summary>
+        public static string ButtonSignUpText {
+            get {
+                return ResourceManager.GetString("ButtonSignUpText", resourceCulture);
             }
         }
         
@@ -623,6 +659,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount paid.
+        /// </summary>
+        public static string ColumnAmountPaidHeader {
+            get {
+                return ResourceManager.GetString("ColumnAmountPaidHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expires UTC.
+        /// </summary>
+        public static string ColumnExpiresHeader {
+            get {
+                return ResourceManager.GetString("ColumnExpiresHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder.
         /// </summary>
         public static string ColumnFolderHeader {
@@ -632,11 +686,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string ColumnProductHeader {
+            get {
+                return ResourceManager.GetString("ColumnProductHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Timestamp.
         /// </summary>
         public static string ColumnTimestampHeader {
             get {
                 return ResourceManager.GetString("ColumnTimestampHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction UTC.
+        /// </summary>
+        public static string ColumnTransactionDateHeader {
+            get {
+                return ResourceManager.GetString("ColumnTransactionDateHeader", resourceCulture);
             }
         }
         
@@ -1890,6 +1962,15 @@ namespace AxCrypt.Content.Properties {
         public static string ManagementSuccess {
             get {
                 return ResourceManager.GetString("ManagementSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My AxCrypt ID.
+        /// </summary>
+        public static string MenuAxCryptIdText {
+            get {
+                return ResourceManager.GetString("MenuAxCryptIdText", resourceCulture);
             }
         }
         
