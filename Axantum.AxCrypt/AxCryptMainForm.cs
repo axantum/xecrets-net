@@ -174,6 +174,7 @@ namespace Axantum.AxCrypt
             _importOthersSharingKeyToolStripMenuItem.ToolTipText = Texts.ImportOthersSharingKeyToolStripMenuItemToolTipText;
             _keyManagementToolStripMenuItem.Text = Texts.KeyManagementToolStripMenuItemText;
             _keyShareToolStripButton.ToolTipText = Texts.KeyShareToolStripButtonToolTipText;
+            _secretsToolStripButton.ToolTipText = Texts.SecretsButtonToolTipText;
             _lastAccessTimeColumnHeader.Text = Texts.LastAccessTimeColumnHeaderText;
             _openEncryptedToolStripMenuItem.Text = Texts.OpenEncryptedToolStripMenuItemText;
             _optionsChangePassphraseToolStripMenuItem.Text = Texts.OptionsChangePassphraseToolStripMenuItemText;
@@ -566,6 +567,7 @@ namespace Axantum.AxCrypt
             ConfigurePolicyMenu(license);
             ConfigureSecureWipe(license);
             ConfigureKeyShareMenus(license);
+            ConfigureSecretsMenus(license);
         }
 
         private void ConfigureKeyShareMenus(LicensePolicy license)
@@ -579,6 +581,20 @@ namespace Axantum.AxCrypt
             {
                 _keyShareToolStripButton.Image = Resources.share_border_grey_premium_80px;
                 _keyShareToolStripButton.ToolTipText = Texts.PremiumNeededForKeyShare;
+            }
+        }
+
+        private void ConfigureSecretsMenus(LicensePolicy license)
+        {
+            if (license.Has(LicenseCapability.PasswordManagement))
+            {
+                _secretsToolStripButton.Image = Resources.passwords_80px;
+                _secretsToolStripButton.ToolTipText = Texts.SecretsButtonToolTipText;
+            }
+            else
+            {
+                _secretsToolStripButton.Image = Resources.passwords_grey_premium_80px;
+                _secretsToolStripButton.ToolTipText = Texts.ToolTipPremiumNeededForSecrets;
             }
         }
 
@@ -685,7 +701,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { _tryBrokenFileToolStripMenuItem.Checked = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
 
-            _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Texts.LinkToAxCryptPremiumPurchasePage.InvariantFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); };
+            _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); };
 
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck.Execute(DateTime.MinValue); };
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
@@ -720,6 +736,7 @@ namespace Axantum.AxCrypt
         {
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _keyShareToolStripButton.Click += (sender, e) => { PremiumFeature_Click(LicenseCapability.KeySharing, (ss, ee) => { ShareKeysAsync(_mainViewModel.SelectedRecentFiles); }, sender, e); };
+            _secretsToolStripButton.Click += (sender, e) => { PremiumFeature_Click(LicenseCapability.PasswordManagement, (ss, ee) => { Process.Start(Texts.LinkToSecretsPageWithUserNameFormat.QueryFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); }, sender, e); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
@@ -1534,7 +1551,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            Process.Start(Texts.LinkToAxCryptPremiumPurchasePage.InvariantFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail));
+            Process.Start(Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail));
         }
 
         private void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)

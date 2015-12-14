@@ -121,7 +121,7 @@
     <value>Om {0}</value>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
-    <value>Dubbelklick och öppnar den skyddade filen</value>
+    <value>Dubbelklick öppnar den skyddade filen.</value>
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Dubbelklick öppnar en dialog där du kan ange lösenord innan filen kan öppnas.</value>
@@ -147,7 +147,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Klicka för att kontrollera om det finns en ny version.</value>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
-    <value>Filen är troligen öppnad i sin applikation. Stäng applikationen eller använda Rensa-knappen.</value>
+    <value>Filen är troligen öppnad i sin applikation. Stäng applikationen eller använda städaknappen.</value>
   </data>
   <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
     <value>Filer (*{0})|*{0}|Alla filer (*.*)|*.*</value>
@@ -240,7 +240,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Rensar Aktiva Dokument</value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Dubbelklicka för att öppa AxCrypt</value>
+    <value>Dubbelklicka för att öppna AxCrypt.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="UnkownLogOn" xml:space="preserve">
@@ -271,7 +271,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Skyddad</value>
   </data>
   <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
-    <value>Klicka för att välja filer att skydda</value>
+    <value>Klicka för att välja filer att skydda.</value>
   </data>
   <data name="EncryptToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Skydda</value>
@@ -340,7 +340,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Byt Lösenord</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
-    <value>Filen är öppnad, och kan behövas städas. Stäng alla öppna program, och klicka på Städa-knappen.</value>
+    <value>Filen är öppnad, och kan behövas städas. Stäng alla öppna program, och klicka på städaknappen.</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
     <value>{0} Dagar</value>
@@ -352,7 +352,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Ditt Premium-abonnemang går snart ut. Klicka för att förnya.</value>
   </data>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
-    <value>Dubbelklicka för att öppna. Om det behövs kommer löseord att efterfrågas.</value>
+    <value>Dubbelklicka för att öppna. Om det behövs kommer lösenord att efterfrågas.</value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>Exception during processing of '{0}'.</value>
@@ -543,7 +543,7 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
     <value>&amp;Nyckelhantering</value>
   </data>
   <data name="KeyShareToolStripButtonToolTipText" xml:space="preserve">
-    <value>Klicka och välj filer att avlägsna skyddet från</value>
+    <value>Klicka och välj filer att avlägsna skyddet från.</value>
   </data>
   <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
     <value>Byt &amp;Lösenord</value>
@@ -1217,5 +1217,14 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>Transaktionshistorik</value>
+  </data>
+  <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
+    <value>https://account.axcrypt.net/secrets?email={0}</value>
+  </data>
+  <data name="SecretsButtonToolTipText" xml:space="preserve">
+    <value>Gå till lösenordshantering.</value>
+  </data>
+  <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
+    <value>Premium krävs för lösenordshantering. Klicka för att uppgradera nu!</value>
   </data>
 </root>

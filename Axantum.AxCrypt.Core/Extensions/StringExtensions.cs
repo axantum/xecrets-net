@@ -53,6 +53,23 @@ namespace Axantum.AxCrypt.Core.Extensions
         }
 
         /// <summary>
+        /// Formats with String.Format, but does query string value encoding first.
+        /// </summary>
+        /// <param name="format">The format.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns></returns>
+        public static string QueryFormat(this string format, params object[] parameters)
+        {
+            string[] encoded = new string[parameters.Length];
+            for (int i = 0; i < parameters.Length; ++i)
+            {
+                encoded[i] = Uri.EscapeDataString(parameters[i].ToString());
+            }
+
+            return format.InvariantFormat(encoded);
+        }
+
+        /// <summary>
         /// Convenience extension for String.Format using the provided CultureInfo
         /// </summary>
         /// <param name="format"></param>

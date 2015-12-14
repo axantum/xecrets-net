@@ -130,6 +130,10 @@ namespace Axantum.AxCrypt.Core.UI
             try
             {
                 AxCryptVersion axCryptVersion = await New<GlobalApiClient>().AxCryptUpdateAsync().Free();
+                if (axCryptVersion.IsEmpty)
+                {
+                    return new Pair<Version, Uri>(newVersion, updateWebpageUrl);
+                }
                 newVersion = ParseVersion(axCryptVersion.FullVersion);
                 updateWebpageUrl = new Uri(axCryptVersion.DownloadLink);
 

@@ -212,7 +212,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-click opens the secured file.
+        ///   Looks up a localized string similar to Double-click opens the secured file..
         /// </summary>
         public static string ActiveFileKnownKeyToolTip {
             get {
@@ -929,7 +929,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assumed open. Try to Close the application, or use the Clean function to remove it.
+        ///   Looks up a localized string similar to Assumed open. Try to Close the application, or use the Clean function to remove it..
         /// </summary>
         public static string DecryptedFileToolTip {
             get {
@@ -956,7 +956,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password has not been entered yet. Double-click to enter password and Open, or right-click for options.
+        ///   Looks up a localized string similar to The password has not been entered yet. Double-click to enter password and Open, or right-click for options..
         /// </summary>
         public static string DecryptedUnknownKeyFileToolTip {
             get {
@@ -1336,7 +1336,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to select files to secure.
+        ///   Looks up a localized string similar to Click to select files to secure..
         /// </summary>
         public static string EncryptToolStripButtonToolTipText {
             get {
@@ -1795,7 +1795,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to select filers to stop securing.
+        ///   Looks up a localized string similar to Click to select files to stop securing..
         /// </summary>
         public static string KeyShareToolStripButtonToolTipText {
             get {
@@ -1908,6 +1908,15 @@ namespace AxCrypt.Content.Properties {
         public static string LinkToGettingStarted {
             get {
                 return ResourceManager.GetString("LinkToGettingStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://account.axcrypt.net/secrets?email={0}.
+        /// </summary>
+        public static string LinkToSecretsPageWithUserNameFormat {
+            get {
+                return ResourceManager.GetString("LinkToSecretsPageWithUserNameFormat", resourceCulture);
             }
         }
         
@@ -2983,6 +2992,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to password management..
+        /// </summary>
+        public static string SecretsButtonToolTipText {
+            get {
+                return ResourceManager.GetString("SecretsButtonToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your premium subscription has expired and you can therefore no longer edit or create new password entries. However, you still have read-only access..
         /// </summary>
         public static string SecretsWarningIsReadOnly {
@@ -3329,6 +3347,15 @@ namespace AxCrypt.Content.Properties {
         public static string TitleWindowSignInStatus {
             get {
                 return ResourceManager.GetString("TitleWindowSignInStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Premium is required for password management. Click to upgrade now!.
+        /// </summary>
+        public static string ToolTipPremiumNeededForSecrets {
+            get {
+                return ResourceManager.GetString("ToolTipPremiumNeededForSecrets", resourceCulture);
             }
         }
         

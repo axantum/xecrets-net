@@ -329,6 +329,8 @@
     <Content Include="resources\logo-text-retina.png" />
     <Content Include="resources\open_encrypted.png" />
     <Content Include="resources\options.png" />
+    <Content Include="resources\passwords_80px.png" />
+    <Content Include="resources\passwords_grey_premium_80px.png" />
     <Content Include="resources\premium_32px.png" />
     <Content Include="resources\premium_80px.png" />
     <Content Include="resources\premium_overlay_16px.png" />

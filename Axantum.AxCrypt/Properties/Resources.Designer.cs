@@ -523,6 +523,26 @@ namespace Axantum.AxCrypt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap passwords_80px {
+            get {
+                object obj = ResourceManager.GetObject("passwords_80px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap passwords_grey_premium_80px {
+            get {
+                object obj = ResourceManager.GetObject("passwords_grey_premium_80px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap plus_40px {
             get {
                 object obj = ResourceManager.GetObject("plus_40px", resourceCulture);

@@ -128,7 +128,7 @@
     <comment>Title bar status text when logged on to an account.</comment>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
-    <value>Double-click opens the secured file</value>
+    <value>Double-click opens the secured file.</value>
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Double-click opens a Password-dialog before opening the secured file.</value>
@@ -173,7 +173,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Your Premium subscription is about to expire. Click to renew.</value>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
-    <value>Assumed open. Try to Close the application, or use the Clean function to remove it</value>
+    <value>Assumed open. Try to Close the application, or use the Clean function to remove it.</value>
   </data>
   <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
     <value>Files (*{0})|*{0}|All files (*.*)|*.*</value>
@@ -182,7 +182,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>File exists, choose a new name to save as</value>
   </data>
   <data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
-    <value>The password has not been entered yet. Double-click to enter password and Open, or right-click for options</value>
+    <value>The password has not been entered yet. Double-click to enter password and Open, or right-click for options.</value>
   </data>
   <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
     <value>Select file to stop securing</value>
@@ -462,7 +462,7 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>Secured</value>
   </data>
   <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
-    <value>Click to select files to secure</value>
+    <value>Click to select files to secure.</value>
   </data>
   <data name="EncryptToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Secure</value>
@@ -516,7 +516,7 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>&amp;Key Management</value>
   </data>
   <data name="KeyShareToolStripButtonToolTipText" xml:space="preserve">
-    <value>Click to select filers to stop securing</value>
+    <value>Click to select files to stop securing.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Time</value>
@@ -1325,5 +1325,14 @@ Choose something difficult to guess, since it will protect passwords in the onli
   </data>
   <data name="TextPreferenceUpdate" xml:space="preserve">
     <value>Update - Get notified of all AxCrypt updates</value>
+  </data>
+  <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
+    <value>https://account.axcrypt.net/secrets?email={0}</value>
+  </data>
+  <data name="SecretsButtonToolTipText" xml:space="preserve">
+    <value>Go to password management.</value>
+  </data>
+  <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
+    <value>Premium is required for password management. Click to upgrade now!</value>
   </data>
 </root>
