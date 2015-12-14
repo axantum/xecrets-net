@@ -3405,6 +3405,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unknown Error. Please report..
+        /// </summary>
+        public static string UnkownError {
+            get {
+                return ResourceManager.GetString("UnkownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password is not previously known. Click &apos;New&apos; to create a new..
         /// </summary>
         public static string UnkownLogOn {

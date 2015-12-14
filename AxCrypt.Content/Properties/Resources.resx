@@ -1335,4 +1335,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Premium is required for password management. Click to upgrade now!</value>
   </data>
+  <data name="UnkownError" xml:space="preserve">
+    <value>Unknown Error. Please report.</value>
+  </data>
 </root>

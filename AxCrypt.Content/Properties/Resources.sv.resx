@@ -1227,4 +1227,7 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Premium krävs för lösenordshantering. Klicka för att uppgradera nu!</value>
   </data>
+  <data name="UnkownError" xml:space="preserve">
+    <value>Okänt fel. Vänligen felrapportera detta!</value>
+  </data>
 </root>
