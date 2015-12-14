@@ -1230,4 +1230,7 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   <data name="UnkownError" xml:space="preserve">
     <value>Okänt fel. Vänligen felrapportera detta!</value>
   </data>
+  <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
+    <value>[Ingen beskrivning]</value>
+  </data>
 </root>

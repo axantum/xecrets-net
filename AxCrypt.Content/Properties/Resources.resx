@@ -1338,4 +1338,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="UnkownError" xml:space="preserve">
     <value>Unknown Error. Please report.</value>
   </data>
+  <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
+    <value>[No Description]</value>
+  </data>
 </root>

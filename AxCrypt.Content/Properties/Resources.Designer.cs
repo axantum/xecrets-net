@@ -1282,6 +1282,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [No Description].
+        /// </summary>
+        public static string EmptySecretTruncatedDescriptionLinkText {
+            get {
+                return ResourceManager.GetString("EmptySecretTruncatedDescriptionLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         public static string EncryptedFileDialogFilterPattern {
