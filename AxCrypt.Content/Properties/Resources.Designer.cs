@@ -2613,7 +2613,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remember me.
+        ///   Looks up a localized string similar to Keep me signed in.
         /// </summary>
         public static string PromptKeepMeSignedIn {
             get {

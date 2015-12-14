@@ -1270,7 +1270,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Delete AxCrypt ID</value>
   </data>
   <data name="PromptKeepMeSignedIn" xml:space="preserve">
-    <value>Remember me</value>
+    <value>Keep me signed in</value>
   </data>
   <data name="PromptMyAxCryptId" xml:space="preserve">
     <value>My AxCrypt ID</value>
