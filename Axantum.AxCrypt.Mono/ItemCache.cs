@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 policy.AbsoluteExpiration = DateTime.Now.Add(cacheKey.Expiration);
             }
-            policy.ChangeMonitors.Add(_cache.CreateCacheEntryChangeMonitor(new string[] { cacheKey.ParentCacheKey.Key }));
+            policy.ChangeMonitors.Add(_cache.CreateCacheEntryChangeMonitor(new string[] { cacheKey.ParentCacheKey?.Key ?? cacheKey.Key }));
 
             return policy;
         }

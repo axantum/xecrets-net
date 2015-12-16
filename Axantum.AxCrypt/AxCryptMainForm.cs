@@ -266,7 +266,7 @@ namespace Axantum.AxCrypt
         private async Task WrapMessageDialogsAsync(Func<Task> dialogFunctionAsync)
         {
             SetTopControlsEnabled(false);
-            ApiVersion apiVersion = await New<GlobalApiClient>().ApiVersionAsync();
+            ApiVersion apiVersion = await New<ICache>().GetItemAsync(CacheKey.RootKey, () => New<GlobalApiClient>().ApiVersionAsync());
             if (apiVersion != ApiVersion.Zero && apiVersion != new ApiVersion())
             {
                 MessageDialog.ShowOk(this, Texts.MessageServerUpdateTitle, Texts.MessageServerUpdateText);
