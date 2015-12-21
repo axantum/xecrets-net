@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Api
         {
         }
 
-        public async Task PostMessage(string text)
+        public async Task PostMessageAsync(string text)
         {
             SlackPayload payload = new SlackPayload()
             {
