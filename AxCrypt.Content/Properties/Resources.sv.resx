@@ -938,7 +938,7 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>Lösenordshantering</value>
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
-    <value>Glömt lösenordet? Klicka här.</value>
+    <value>Glömt lösenordet? Klicka här</value>
   </data>
   <data name="PasswordResetMailSubject" xml:space="preserve">
     <value>AxCrypt ID Lösenordsåterställelse</value>
@@ -977,7 +977,7 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>Misslyckad registrering, kontrollera din inbox och försök igen.</value>
   </data>
   <data name="RegisterLink" xml:space="preserve">
-    <value>Ny användare? Anmäl dig</value>
+    <value>Ny användare? Registrera dig</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Registra ditt AxCrypt ID</value>
@@ -1067,7 +1067,7 @@ Ett bekräftelsemeddelande kommer att skickas till den nya adressen. Ändringen 
     <value>Välj ditt önskemål om AxCrypt-notifieringar nedan.</value>
   </data>
   <data name="SettingsPageTitle" xml:space="preserve">
-    <value>AxCrypt ID Inställningar</value>
+    <value>Inställningar</value>
   </data>
   <data name="SettingsPasswordPageBody" xml:space="preserve">
     <value>För att ändra ditt lösenord, ange ditt nuvarande och sedan det nya samt det nya en gång till som verifiering.
@@ -1162,7 +1162,7 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
     <value>Radera AxCrypt ID</value>
   </data>
   <data name="PromptKeepMeSignedIn" xml:space="preserve">
-    <value>Kom ihåg mig</value>
+    <value>Kom ihåg mig och förläng min inloggningssession</value>
   </data>
   <data name="PromptMyAxCryptId" xml:space="preserve">
     <value>Mitt AxCrypt ID</value>
@@ -1232,5 +1232,24 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Ingen beskrivning]</value>
+  </data>
+  <data name="CookiePolicyBlockedError" xml:space="preserve">
+    <value>Efterfrågan blockerades eftersom att cookies är inaktiverade i din webbläsare.</value>
+  </data>
+  <data name="CookiePolicyPageBody" xml:space="preserve">
+    <value>Vi lagrar inte premanenta cookies på din hårddisk, vi anger ett par sessionscookies som tas bort när webbläsaren stängs ner. De är nödvändiga för att hålla din inloggningssession giltig och säker. Vi övervakar inte ditt användande av tjänsten och gör inte din sessionsdata tillgänglig för någon tredje part.
+
+Våra cookies är säkrade genom att all känslig kommunikation med våra servrar är krypterad med HTTPS. Känsliga cookies krypteras och görs otillgängliga för script i din webbläsare.
+
+Om du inte accepterar våra temporära sessionscookies kan du inte logga in och sidan kan bete sig på ett oväntat sätt.</value>
+  </data>
+  <data name="CookiePolicyPageTitle" xml:space="preserve">
+    <value>Cookie Policy</value>
+  </data>
+  <data name="CookiesDisabledError" xml:space="preserve">
+    <value>Cookies verkar vara inaktiverade i din webbläsare. Om du inte accepterar våra sessionscookies kan du inte logga in och sidan kan bete sig på ett oväntat sätt. Läs mer i vår &lt;a href="{0}"&gt;cookie policy&lt;/a&gt;.</value>
+  </data>
+  <data name="JavaScriptDisabledError" xml:space="preserve">
+    <value>JavaScript verkar vara inaktiverat i din webbläsare. Om du inte aktiverar JavaScript kan du inte logga in och sidan kan bete sig på ett oväntat sätt.</value>
   </data>
 </root>

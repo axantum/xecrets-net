@@ -803,6 +803,46 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The action was blocked because cookies are disabled in your browser..
+        /// </summary>
+        public static string CookiePolicyBlockedError {
+            get {
+                return ResourceManager.GetString("CookiePolicyBlockedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We do not store permanent cookies on your hard disk, we set a few session cookies that are removed when the web browser is closed. They are necessary to keep your sign in session valid and secure. We do not track your use of the site, nor are they available to any third party.
+        ///
+        ///The cookies are further secured by requiring that all sensitive communication with the server is encrypted with HTTPS, by encrypting the cookie itself and by making the cookie unavailable to script in your browser.
+        ///
+        ///If you do not [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string CookiePolicyPageBody {
+            get {
+                return ResourceManager.GetString("CookiePolicyPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cookie Policy.
+        /// </summary>
+        public static string CookiePolicyPageTitle {
+            get {
+                return ResourceManager.GetString("CookiePolicyPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cookies appear to be disabled in your browser. Unless you accept session cookies from us you cannot sign in and the site may not perform as expected. Read more in our &lt;a href=&quot;{0}&quot;&gt;cookie policy&lt;/a&gt;..
+        /// </summary>
+        public static string CookiesDisabledError {
+            get {
+                return ResourceManager.GetString("CookiesDisabledError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create AxCrypt ID.
         /// </summary>
         public static string CreateAccountToolStripMenuItemText {
@@ -1795,6 +1835,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to JavaScript appears to be disabled in your browser. Unless you enable JavaScript you cannot sign in and the site may not perform as expected..
+        /// </summary>
+        public static string JavaScriptDisabledError {
+            get {
+                return ResourceManager.GetString("JavaScriptDisabledError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Key Management.
         /// </summary>
         public static string KeyManagementToolStripMenuItemText {
@@ -2436,7 +2485,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forgot your password? Click here..
+        ///   Looks up a localized string similar to Forgot your password? Click here.
         /// </summary>
         public static string PasswordResetLink {
             get {
@@ -2622,7 +2671,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keep me signed in.
+        ///   Looks up a localized string similar to Remember me and extend sign in session.
         /// </summary>
         public static string PromptKeepMeSignedIn {
             get {
@@ -3077,7 +3126,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt ID Settings.
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string SettingsPageTitle {
             get {

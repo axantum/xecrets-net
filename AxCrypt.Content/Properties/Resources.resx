@@ -1026,7 +1026,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Password Management</value>
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
-    <value>Forgot your password? Click here.</value>
+    <value>Forgot your password? Click here</value>
   </data>
   <data name="PasswordResetMailBodyVirtualPath" xml:space="preserve">
     <value>~/Templates/PasswordResetEmail.cshtml</value>
@@ -1136,7 +1136,7 @@ A confirmation e-mail will be sent to the new address. The change is effective o
     <value>Choose your preference for AxCrypt notification e-mails below.</value>
   </data>
   <data name="SettingsPageTitle" xml:space="preserve">
-    <value>AxCrypt ID Settings</value>
+    <value>Settings</value>
   </data>
   <data name="SettingsPasswordPageBody" xml:space="preserve">
     <value>To change password, provide the current password and then specify and verify your new password.
@@ -1270,7 +1270,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Delete AxCrypt ID</value>
   </data>
   <data name="PromptKeepMeSignedIn" xml:space="preserve">
-    <value>Keep me signed in</value>
+    <value>Remember me and extend sign in session</value>
   </data>
   <data name="PromptMyAxCryptId" xml:space="preserve">
     <value>My AxCrypt ID</value>
@@ -1340,5 +1340,24 @@ Choose something difficult to guess, since it will protect passwords in the onli
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[No Description]</value>
+  </data>
+  <data name="CookiePolicyBlockedError" xml:space="preserve">
+    <value>The action was blocked because cookies are disabled in your browser.</value>
+  </data>
+  <data name="CookiePolicyPageBody" xml:space="preserve">
+    <value>We do not store permanent cookies on your hard disk, we set a few session cookies that are removed when the web browser is closed. They are necessary to keep your sign in session valid and secure. We do not track your use of the site, nor are they available to any third party.
+
+The cookies are further secured by requiring that all sensitive communication with the server is encrypted with HTTPS, by encrypting the cookie itself and by making the cookie unavailable to script in your browser.
+
+If you do not accept our temporary session cookies you cannot sign in and the site may not perform as expected.</value>
+  </data>
+  <data name="CookiePolicyPageTitle" xml:space="preserve">
+    <value>Cookie Policy</value>
+  </data>
+  <data name="CookiesDisabledError" xml:space="preserve">
+    <value>Cookies appear to be disabled in your browser. Unless you accept session cookies from us you cannot sign in and the site may not perform as expected. Read more in our &lt;a href="{0}"&gt;cookie policy&lt;/a&gt;.</value>
+  </data>
+  <data name="JavaScriptDisabledError" xml:space="preserve">
+    <value>JavaScript appears to be disabled in your browser. Unless you enable JavaScript you cannot sign in and the site may not perform as expected.</value>
   </data>
 </root>
