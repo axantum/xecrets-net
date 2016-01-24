@@ -152,6 +152,87 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activate account.
+        /// </summary>
+        public static string ActivateMailBodyButton {
+            get {
+                return ResourceManager.GetString("ActivateMailBodyButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your activation code is &lt;b&gt;{0}&lt;/b&gt;.
+        /// </summary>
+        public static string ActivateMailBodyCode {
+            get {
+                return ResourceManager.GetString("ActivateMailBodyCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your activation code is {0}.
+        /// </summary>
+        public static string ActivateMailBodyCodePlainText {
+            get {
+                return ResourceManager.GetString("ActivateMailBodyCodePlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your account..
+        /// </summary>
+        public static string ActivateMailBodyFreeTrial {
+            get {
+                return ResourceManager.GetString("ActivateMailBodyFreeTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your account..
+        /// </summary>
+        public static string ActivateMailBodyFreeTrialPlainText {
+            get {
+                return ResourceManager.GetString("ActivateMailBodyFreeTrialPlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have signed up for an AxCrypt account. To complete your registration you must click the button below..
+        /// </summary>
+        public static string ActivateMailBodyIntro {
+            get {
+                return ResourceManager.GetString("ActivateMailBodyIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If the button does not work, go to &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your account..
+        /// </summary>
+        public static string ActivateMailBodyManualLink {
+            get {
+                return ResourceManager.GetString("ActivateMailBodyManualLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If the button does not work, go to {0} and enter {1} and the activation code {2} to manually activate your account..
+        /// </summary>
+        public static string ActivateMailBodyManualLinkPlainText {
+            get {
+                return ResourceManager.GetString("ActivateMailBodyManualLinkPlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello and welcome to AxCrypt!.
+        /// </summary>
+        public static string ActivateMailBodyTitle {
+            get {
+                return ResourceManager.GetString("ActivateMailBodyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ~/Templates/ActivateEmail.cshtml.
         /// </summary>
         public static string ActivateMailBodyVirtualPath {
@@ -556,6 +637,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have requested to change your current AxCrypt account e-mail to &lt;b style=&quot;color: #000 !important;&quot;&gt;{0}&lt;/b&gt;. To confirm please click the button below..
+        /// </summary>
+        public static string ChangeEmailConfirmMailBody1 {
+            get {
+                return ResourceManager.GetString("ChangeEmailConfirmMailBody1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use your existing password to log on and then the old account will be permanently deleted..
+        /// </summary>
+        public static string ChangeEmailConfirmMailBody2 {
+            get {
+                return ResourceManager.GetString("ChangeEmailConfirmMailBody2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change e-mail.
+        /// </summary>
+        public static string ChangeEmailConfirmMailBodyButton {
+            get {
+                return ResourceManager.GetString("ChangeEmailConfirmMailBodyButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ~/Templates/ChangeEmailConfirmEmail.cshtml.
         /// </summary>
         public static string ChangeEmailConfirmMailBodyVirtualPath {
@@ -579,6 +687,33 @@ namespace AxCrypt.Content.Properties {
         public static string ChangeEmailConfirmSuccess {
             get {
                 return ResourceManager.GetString("ChangeEmailConfirmSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Someone has requested a change of e-mail (from an undisclosed account) at &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;..
+        /// </summary>
+        public static string ChangeEmailExistMailBody1 {
+            get {
+                return ResourceManager.GetString("ChangeEmailExistMailBody1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to However, since you already have an account using this e-mail, the request has been silently ignored..
+        /// </summary>
+        public static string ChangeEmailExistMailBody2 {
+            get {
+                return ResourceManager.GetString("ChangeEmailExistMailBody2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore this e-mail or report it to {0}. No harm is done, and no information has been disclosed..
+        /// </summary>
+        public static string ChangeEmailExistMailBody3 {
+            get {
+                return ResourceManager.GetString("ChangeEmailExistMailBody3", resourceCulture);
             }
         }
         
@@ -1808,6 +1943,28 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have been invited to AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the activation code and set your secret password..
+        /// </summary>
+        public static string InvitationMailBodyIntro {
+            get {
+                return ResourceManager.GetString("InvitationMailBodyIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have been invited to AxCrypt File Security by {0}.
+        ///
+        ///To start securing your files just download and install AxCrypt from {1}.
+        ///
+        ///Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secret password..
+        /// </summary>
+        public static string InvitationMailBodyIntroPlainText {
+            get {
+                return ResourceManager.GetString("InvitationMailBodyIntroPlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ~/Templates/InvitationEmail.cshtml.
         /// </summary>
         public static string InvitationMailBodyVirtualPath {
@@ -2065,6 +2222,61 @@ namespace AxCrypt.Content.Properties {
         public static string LowEncryptionWorkingToolTip {
             get {
                 return ResourceManager.GetString("LowEncryptionWorkingToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If it is unclear why you are receiving this from &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt;, you can ignore this email or report it to {1}..
+        /// </summary>
+        public static string MailBodyFooter {
+            get {
+                return ResourceManager.GetString("MailBodyFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If it is unclear why you are receiving this from AxCrypt.net, you can ignore this email or report it to {0}..
+        /// </summary>
+        public static string MailBodyFooterPlainText {
+            get {
+                return ResourceManager.GetString("MailBodyFooterPlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best regards,&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;.
+        /// </summary>
+        public static string MailBodySignature {
+            get {
+                return ResourceManager.GetString("MailBodySignature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best regards,
+        ///The AxCrypt team.
+        /// </summary>
+        public static string MailBodySignaturePlainText {
+            get {
+                return ResourceManager.GetString("MailBodySignaturePlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello {0},.
+        /// </summary>
+        public static string MailBodyTitle {
+            get {
+                return ResourceManager.GetString("MailBodyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~/Templates/_EmailLayout.cshtml.
+        /// </summary>
+        public static string MailBodyVirtualPath {
+            get {
+                return ResourceManager.GetString("MailBodyVirtualPath", resourceCulture);
             }
         }
         
@@ -2490,6 +2702,24 @@ namespace AxCrypt.Content.Properties {
         public static string PasswordResetLink {
             get {
                 return ResourceManager.GetString("PasswordResetLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have requested to reset your AxCrypt account password. To complete this process and pick a new password, please click the button below..
+        /// </summary>
+        public static string PasswordResetMailBody1 {
+            get {
+                return ResourceManager.GetString("PasswordResetMailBody1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset password.
+        /// </summary>
+        public static string PasswordResetMailBodyButton {
+            get {
+                return ResourceManager.GetString("PasswordResetMailBodyButton", resourceCulture);
             }
         }
         
@@ -3486,6 +3716,24 @@ namespace AxCrypt.Content.Properties {
         public static string UnrecognizedError {
             get {
                 return ResourceManager.GetString("UnrecognizedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is confirmation that your account on &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt; has been successfully deleted..
+        /// </summary>
+        public static string UnregisterMailBody1 {
+            get {
+                return ResourceManager.GetString("UnregisterMailBody1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We&apos;re sad to see you go and hope you enjoyed your time with us!.
+        /// </summary>
+        public static string UnregisterMailBody2 {
+            get {
+                return ResourceManager.GetString("UnregisterMailBody2", resourceCulture);
             }
         }
         

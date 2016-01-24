@@ -19,11 +19,6 @@ namespace AxCrypt.Content
 
         public override string GetString(string name, CultureInfo culture)
         {
-            string value = LongResources.ResourceManager.GetString(name, culture);
-            if (value != null)
-            {
-                return value;
-            }
             return Resources.ResourceManager.GetString(name, culture);
         }
     }

@@ -1252,4 +1252,7 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript verkar vara inaktiverat i din webbläsare. Om du inte aktiverar JavaScript kan du inte logga in och sidan kan bete sig på ett oväntat sätt.</value>
   </data>
+  <data name="PromptNewPasswordText" xml:space="preserve">
+    <value>Nytt lösenord</value>
+  </data>
 </root>
