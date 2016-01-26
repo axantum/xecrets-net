@@ -335,4 +335,45 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
 	<data name="PasswordPolicyViolation" xml:space="preserve">
 		<value>Le mot de passe doit contenir au moins 10 caractères.</value>
 	</data>
+	<data name="PremiumFeatureToolTipText" xml:space="preserve">
+		<value>Cette fonctionalité n'est disponible qu'avec Premium!</value>
+	</data>
+	<data name="PremiumNeededForKeyShare" xml:space="preserve">
+		<value>Echanger des clefs n'est possible qu'avec Premium. Cliquez ici pour passer à Premium!</value>
+	</data>
+	<data name="PurgingActiveFiles" xml:space="preserve">
+		<value>Nettoyage des fichiers actifs</value>
+	</data>
+	<data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
+		<value>Nouvel utilisateur AxCrypt</value>
+	</data>
+	<data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
+		<value>Vous allez partager une clef avec un utilisateur qui a été invité à utilisé AxCrypt, mais qui n'a pas encore accepté l'invitation.
+
+Il peut être nécessaire de renseigner '{0}' directement sur la protection de fichiers AxCrypt.</value>
+	</data>
+	<data name="UnknownCrypto" xml:space="preserve">
+		<value>Inconnu</value>
+	</data>
+	<data name="UnknownFileStatus" xml:space="preserve">
+		<value>Etat 'Inconnu' avec '{0}'.</value>
+	</data>
+	<data name="UnrecognizedError" xml:space="preserve">
+		<value>{1} avec '{0}'.</value>
+	</data>
+	<data name="UpdatingStatus" xml:space="preserve">
+		<value>Mise à jour de l'Etat du fichier</value>
+	</data>
+	<data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
+		<value>Vous avez mis à jour AxCrypt. Ceci nécessite une remise à zéro de vos paramètres. Nous vous prions d'accepter nos excuses pour la gène occasionnée. Vos fichiers restent protégés.</value>
+	</data>
+	<data name="WelcomeToAxCrypt" xml:space="preserve">
+		<value>Bienvenue à AxCrypt!
+
+AxCrypt est très simple à utiliser. Démarrez avec la fenêtre principale, ou utilisez le clic droit et le double-clic dans Windows Explorer.
+
+Pour commencer à protéger vos fichiers, cliquez l'icône + dans la barre d'outils.
+
+Pour plus d'information, cliquez sur OK pour naviguer sur notre site web.</value>
+	</data>
 </root>
