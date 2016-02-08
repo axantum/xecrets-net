@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <project>
-  <configuration createBackupFiles="False" hideEmptyRows="False" hideTranslatedRows="False" useSpellChecker="True" neutralLanguageCode="en-US" languagesToDisplay="en-US;sv">
+  <configuration createBackupFiles="False" hideEmptyRows="False" hideTranslatedRows="False" useSpellChecker="True" neutralLanguageCode="en-US" languagesToDisplay="en-US;sv;fr;de">
     <globalSetting name="Filter-ResourceEditorGrid">&lt;XtraSerializer version="1.0" application="View"&gt;
   &lt;property name="#LayoutVersion" /&gt;
   &lt;property name="ActiveFilterString" /&gt;
@@ -13,19 +13,47 @@
     <globalSetting name="AddNewFileGroupForm.extensionComboBoxEdit">0</globalSetting>
     <globalSetting name="AddNewFileGroupForm.baseFolderTextEdit.Text">C:\Users\Svante\Documents\Visual Studio 2015\Projects\MyLanguageTest\MyTexts\Properties</globalSetting>
     <globalSetting name="AddNewFileGroupForm.baseFileNameTextEdit.Text">Resources</globalSetting>
-    <globalSetting name="projectMruItems">&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;items&gt;&lt;item type="2" checksum="5226046483" /&gt;&lt;/items&gt;</globalSetting>
+    <globalSetting name="projectMruItems">&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;items&gt;&lt;item type="2" checksum="7104010218" /&gt;&lt;/items&gt;</globalSetting>
+    <globalSetting name="sendFileToTranslator.destinationFilePathTextEdit.Text">C:\Users\svante\Documents\Translations.xlsx</globalSetting>
+    <globalSetting name="sendFileToTranslator.fileGroupsListBox">Properties\Resources</globalSetting>
+    <globalSetting name="sendFileToTranslator.languagesToExportCheckListBox">German (de)</globalSetting>
+    <globalSetting name="sendFileToTranslator.referenceLanguageComboBoxEdit.SelectedIndex">1</globalSetting>
+    <globalSetting name="sendFileToTranslator.openFileAfterGeneratingCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.openAfterGeneratingCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.eliminateDuplicateRowsCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportWithoutDestinationTranslationOnlyCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportCompletelyEmptyRowsCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportGroupsAsOneWorkSheetCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportNameColumnCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportCommentColumnCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportReferenceLanguageColumnCheckEdit.Checked">True</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportFileGroupColumnCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportGroupsAsWorkSheetsCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportGroupsAsExcelFilesCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.exportEachLanguageIntoSeparateExcelFileCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.useCrypticExcelExportSheetNamesCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.sendFilesToEMailReceivers2CheckEdit.Checked">False</globalSetting>
+    <globalSetting name="sendFileToTranslator.zulReceiversTextEdit.Text">someone@example.org, someone-other@example.org</globalSetting>
+    <globalSetting name="sendFileToTranslator.zulSubjectTextEdit.Text">[ZRE] Excel files for translating project "{ProjectName}"</globalSetting>
+    <globalSetting name="sendFileToTranslator.zulBodyTextEdit.Text">Please download the Excel documents in the link to translate the project "{ProjectName}".
+
+To send me the translated files back, simply use https://www.zeta-uploader.com
+
+Kind regards</globalSetting>
     <userSetting name="Svante@Spindrift.FindText">
     </userSetting>
     <userSetting name="Svante@Spindrift.filesInitialDir">C:\Users\Svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties</userSetting>
     <userSetting name="svante@SVANTESELEB41C0.FindText">
     </userSetting>
-    <userSetting name="svante@SVANTESELEB41C0.RecentFiles">C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.resx;C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.fr.resx;C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.sv.resx</userSetting>
+    <userSetting name="svante@SVANTESELEB41C0.RecentFiles">C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.resx;C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.de.resx;C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.fr.resx;C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.sv.resx</userSetting>
+    <userSetting name="svante@SVANTESELEB41C0.filesInitialDir">C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties</userSetting>
     <description>
     </description>
   </configuration>
   <fileGroups>
     <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="4259b629-ae97-4f8a-97c3-8a2924c05ca9">
       <file filePath="Properties\Resources.resx" absoluteFilePath="C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.resx" uniqueID="7a8f4fde-af5b-4483-b9d5-e0f41a98bd50" />
+      <file filePath="Properties\Resources.de.resx" absoluteFilePath="C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.de.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="Properties\Resources.fr.resx" absoluteFilePath="C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.fr.resx" uniqueID="b20f2e0b-22d4-4d10-9171-e8a45a279380" />
       <file filePath="Properties\Resources.sv.resx" absoluteFilePath="C:\Users\svante\Documents\Visual Studio 2015\Projects\axcrypt-net\AxCrypt.Content\Properties\Resources.sv.resx" uniqueID="a5985f4d-b72e-48a5-9745-92a4de9b9c70" />
       <remarks>
