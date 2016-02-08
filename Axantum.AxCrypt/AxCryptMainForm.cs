@@ -165,6 +165,7 @@ namespace Axantum.AxCrypt
             _exportSharingKeyToolStripMenuItem.ToolTipText = Texts.ExportSharingKeyToolStripMenuItemToolTipText;
             _feedbackButton.Text = Texts.FeedbackButtonText;
             _fileToolStripMenuItem.Text = Texts.FileToolStripMenuItemText;
+            _francaisLanguageToolStripMenuItem.Text = Texts.FrancaisLanguageToolStripMenuItemText;
             _helpAboutToolStripMenuItem.Text = Texts.HelpAboutToolStripMenuItemText;
             _helpToolStripMenuItem.Text = Texts.HelpToolStripMenuItemText;
             _helpViewHelpMenuItem.Text = Texts.HelpViewHelpMenuItemText;

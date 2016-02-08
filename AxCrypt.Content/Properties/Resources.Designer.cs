@@ -1763,6 +1763,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Français.
+        /// </summary>
+        public static string FrancaisLanguageToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("FrancaisLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The start and/or end date format is invalid. Please use the format YYYY-MM-DD..
         /// </summary>
         public static string GetLogErrorDateFormat {
