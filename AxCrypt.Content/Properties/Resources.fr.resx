@@ -120,4 +120,260 @@
 	<data name="AccountLoggedOnStatusText" xml:space="preserve">
     <value>{0}</value>
   </data>
+	<data name="About" xml:space="preserve">
+		<value>A propos de {0}</value>
+	</data>
+	<data name="AbortedFileStatus" xml:space="preserve">
+		<value>Etat 'Interrompu' ({0})</value>
+	</data>
+	<data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
+		<value>Double-clic ouvre le fichier protégé.</value>
+	</data>
+	<data name="ActiveFileToolTip" xml:space="preserve">
+		<value>Double-clic ouvre la fenêtre de saisie de mot de passe avant d'ouvrir le fichier protégé.</value>
+	</data>
+	<data name="AxCryptAboutDescription" xml:space="preserve">
+		<value>Protection de Fichiers Pour Vous et Votre Equipe par Axcrypt AB
+
+Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</value>
+	</data>
+	<data name="BadEmail" xml:space="preserve">
+		<value>Adresse email incorrecte</value>
+	</data>
+	<data name="Canceled" xml:space="preserve">
+		<value>'{0}' annulé.</value>
+	</data>
+	<data name="CannotStartApplication" xml:space="preserve">
+		<value>Echec du démarrage de l'application pour '{0}'.</value>
+	</data>
+	<data name="CannotWrite" xml:space="preserve">
+		<value>Echec de l'écriture de '{0}'.</value>
+	</data>
+	<data name="ChangePassphraseDialogTitle" xml:space="preserve">
+		<value>Modifier le mot de passe</value>
+	</data>
+	<data name="CleanUpNeededToolTip" xml:space="preserve">
+		<value>Le fichier est ouvert, et nécessite peut-être un nettoyage. Fermez toutes les applications ouvertes et cliquez sur le bon Nettoyer.</value>
+	</data>
+	<data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
+		<value>Cliquez pour vérifier si une mise à jour est disponible.</value>
+	</data>
+	<data name="DaysLeftPluralWarningPattern" xml:space="preserve">
+		<value>{0} Jours</value>
+	</data>
+	<data name="DaysLeftSingularWarningPattern" xml:space="preserve">
+		<value>&lt; 1 Jour</value>
+	</data>
+	<data name="DaysLeftWarningToolTip" xml:space="preserve">
+		<value>Votre abonnement Premium est sur le point de se terminer. Cliquez pour le renouveler.</value>
+	</data>
+	<data name="DecryptedFileToolTip" xml:space="preserve">
+		<value>Le fichier est probablement ouvert dans une application. Fermez cette application ou utilisez le bouton Nettoyer.</value>
+	</data>
+	<data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
+		<value>Fichiers (*{0})|*{0}|Tous les fichiers (*.*)|*.*</value>
+	</data>
+	<data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
+		<value>Ce fichier existe déjà, veuillez choisir un autre nom</value>
+	</data>
+	<data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
+		<value>Le mot de passe n'a pas encore été saisi. Double-cliquez pour saisir le mot de passe et ouvrir le fichier, ou cliquez avec le bouton gauche pour voir d'autres choix.</value>
+	</data>
+	<data name="DecryptFileOpenDialogTitle" xml:space="preserve">
+		<value>Choisissez un fichier à ne plus protéger</value>
+	</data>
+	<data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
+		<value>Vous êtes connecté. Cliquez pour vous déconnecter.</value>
+	</data>
+	<data name="DoubleClickToOpenToolTip" xml:space="preserve">
+		<value>Double-cliquez pour ouvrir. Un mot de passe vous sera demandé si nécessaire.</value>
+	</data>
+	<data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
+		<value>Fichiers AxCrypt (*{0})|*{0}|Tous les fichiers (*.*)|*.*</value>
+	</data>
+	<data name="EncryptedSourceColumnHeader" xml:space="preserve">
+		<value>Fichier protégé</value>
+	</data>
+	<data name="EncryptFileOpenDialogTitle" xml:space="preserve">
+		<value>Choisissez les fichiers à protéger</value>
+	</data>
+	<data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
+		<value>Le fichier existe déjà, enregistrez sous</value>
+	</data>
+	<data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
+		<value>Saisissez le mot de passe pour '{0}'</value>
+	</data>
+	<data name="Exception" xml:space="preserve">
+		<value>Exception during processing of '{0}'.</value>
+	</data>
+	<data name="FailedPrivateImport" xml:space="preserve">
+		<value>Echec de l'import. Le fichier n'est probablement pas un identifiant AxCrypt ID valide.</value>
+	</data>
+	<data name="FileAlreadyEncrypted" xml:space="preserve">
+		<value>Le fichier '{0}' est déjà protégé.</value>
+	</data>
+	<data name="AxCryptFileEncryption" xml:space="preserve">
+		<value>AxCrypt Protection de Fichiers</value>
+	</data>
+	<data name="FileAlreadyEncryptedStatus" xml:space="preserve">
+		<value>Le fichier '{0}' est déjà protégé.</value>
+	</data>
+	<data name="FileAlreadyExists" xml:space="preserve">
+		<value>Le fichier '{0}' existe déjà.</value>
+	</data>
+	<data name="FileDoesNotExist" xml:space="preserve">
+		<value>Le fichier '{0}' n'existe pas.</value>
+	</data>
+	<data name="FileIsLockedWarning" xml:space="preserve">
+		<value>'{0}' est déjà ouvert dans une autre application. Fermez-le, puis essayez à nouveau.</value>
+	</data>
+	<data name="FileNotFound" xml:space="preserve">
+		<value>Fichier inexistant.</value>
+	</data>
+	<data name="FileOperationFailed" xml:space="preserve">
+		<value>Erreur avec '{0}'.</value>
+	</data>
+	<data name="FolderAlreadyWatched" xml:space="preserve">
+		<value>Le dossier '{0}' est déjà protégé.</value>
+	</data>
+	<data name="ImportPrivateKeysFileFilter" xml:space="preserve">
+		<value>Identifiants AxCrypt ID (*.axx)|*.axx|Tous les fichiers (*.*)|*.*</value>
+	</data>
+	<data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
+		<value>Choisissez un identifiant AxCrypt ID</value>
+	</data>
+	<data name="ImportPublicKeysFileFilter" xml:space="preserve">
+		<value>Fichiers Texte (*.txt)|*.txt|Tous les fichiers (*.*)|*.*</value>
+	</data>
+	<data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
+		<value>Choisissez un Fichier de Partage de Clef</value>
+	</data>
+	<data name="InconsistentState" xml:space="preserve">
+		<value>Erreur interne avec '{0}'.</value>
+	</data>
+	<data name="InvalidEmail" xml:space="preserve">
+		<value>Adresse email non valide.</value>
+	</data>
+	<data name="InvalidKey" xml:space="preserve">
+		<value>Clef incorrecte pour '{0}'.</value>
+	</data>
+	<data name="InvalidPath" xml:space="preserve">
+		<value>Le chemin '{0}' n'est pas valide.</value>
+	</data>
+	<data name="Invalid_TimeSpan" xml:space="preserve">
+		<value>Veuillez saisir l'heure sous la forme 'hh:mm:ss.mmmm'.</value>
+	</data>
+	<data name="Invalid_URL" xml:space="preserve">
+		<value>URL non valide.</value>
+	</data>
+	<data name="KeySharingExistsToolTip" xml:space="preserve">
+		<value>La clef du fichier est partagée avec d'autres utilisateurs d'AxCrypt.</value>
+	</data>
+	<data name="KeySharingOffline" xml:space="preserve">
+		<value>Une connexion Internet est requise pour ajouter des contacts.</value>
+	</data>
+	<data name="KeySharingToolTip" xml:space="preserve">
+		<value>Cliquer pour choisir les fichiers dont les clefs seront partagées avec d'autres.</value>
+	</data>
+	<data name="LanguageChangeRestartPrompt" xml:space="preserve">
+		<value>AxCrypt doit être redémarré pour que le changement de langue s'effectue.</value>
+	</data>
+	<data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
+		<value>https://account.axcrypt.net/Home/Purchase?email={0}</value>
+	</data>
+	<data name="LinkToGettingStarted" xml:space="preserve">
+		<value>http://www.axcrypt.net/documentation/get-started/</value>
+	</data>
+	<data name="LoggedOffStatusText" xml:space="preserve">
+		<value>Déconnecté</value>
+	</data>
+	<data name="LoggedOnStatusText" xml:space="preserve">
+		<value>Mot de passe</value>
+	</data>
+	<data name="LogOffText" xml:space="preserve">
+		<value>Déconnexion</value>
+	</data>
+	<data name="LogOnExists" xml:space="preserve">
+		<value>Cet identifiant AxCrypt ID existe déjà.</value>
+	</data>
+	<data name="LogOnText" xml:space="preserve">
+		<value>Connexion</value>
+	</data>
+	<data name="LowEncryptionWorkingToolTip" xml:space="preserve">
+		<value>Passez à Premium pour bénéficier du niveau de protection le plus élevé.</value>
+	</data>
+	<data name="MyAxCryptFolderName" xml:space="preserve">
+		<value>Mon AxCrypt</value>
+	</data>
+	<data name="NewPassphraseDialogTitle" xml:space="preserve">
+		<value>Créer un nouveau mot de passe</value>
+	</data>
+	<data name="NewVersionIsAvailableTooltip" xml:space="preserve">
+		<value>Version {0} disponible! Cliquez ici pour la télécharger.</value>
+	</data>
+	<data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
+		<value>Vous êtes déconnecté. Cliquez ici pour vous connecter.</value>
+	</data>
+	<data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
+		<value>Pas de mise à jour nécessaire.</value>
+	</data>
+	<data name="OfflineAccountBePatient" xml:space="preserve">
+		<value>L'opération peut prendre quelques minutes. Merci de bien vouloir patienter.</value>
+	</data>
+	<data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
+		<value>Choisissez un fichier protégé à ouvrir</value>
+	</data>
+	<data name="OpenFileColumnHeader" xml:space="preserve">
+		<value>Fichier</value>
+	</data>
+	<data name="PassphrasePrompt" xml:space="preserve">
+		<value>Mot de passe</value>
+	</data>
+	<data name="PassphraseVerificationMismatch" xml:space="preserve">
+		<value>Les mots de passe ne correspondent pas</value>
+	</data>
+	<data name="PasswordPolicyViolation" xml:space="preserve">
+		<value>Le mot de passe doit contenir au moins 10 caractères.</value>
+	</data>
+	<data name="PremiumFeatureToolTipText" xml:space="preserve">
+		<value>Cette fonctionalité n'est disponible qu'avec Premium!</value>
+	</data>
+	<data name="PremiumNeededForKeyShare" xml:space="preserve">
+		<value>Echanger des clefs n'est possible qu'avec Premium. Cliquez ici pour passer à Premium!</value>
+	</data>
+	<data name="PurgingActiveFiles" xml:space="preserve">
+		<value>Nettoyage des fichiers actifs</value>
+	</data>
+	<data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
+		<value>Nouvel utilisateur AxCrypt</value>
+	</data>
+	<data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
+		<value>Vous allez partager une clef avec un utilisateur qui a été invité à utilisé AxCrypt, mais qui n'a pas encore accepté l'invitation.
+
+Il peut être nécessaire de renseigner '{0}' directement sur la protection de fichiers AxCrypt.</value>
+	</data>
+	<data name="UnknownCrypto" xml:space="preserve">
+		<value>Inconnu</value>
+	</data>
+	<data name="UnknownFileStatus" xml:space="preserve">
+		<value>Etat 'Inconnu' avec '{0}'.</value>
+	</data>
+	<data name="UnrecognizedError" xml:space="preserve">
+		<value>{1} avec '{0}'.</value>
+	</data>
+	<data name="UpdatingStatus" xml:space="preserve">
+		<value>Mise à jour de l'Etat du fichier</value>
+	</data>
+	<data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
+		<value>Vous avez mis à jour AxCrypt. Ceci nécessite une remise à zéro de vos paramètres. Nous vous prions d'accepter nos excuses pour la gène occasionnée. Vos fichiers restent protégés.</value>
+	</data>
+	<data name="WelcomeToAxCrypt" xml:space="preserve">
+		<value>Bienvenue à AxCrypt!
+
+AxCrypt est très simple à utiliser. Démarrez avec la fenêtre principale, ou utilisez le clic droit et le double-clic dans Windows Explorer.
+
+Pour commencer à protéger vos fichiers, cliquez l'icône + dans la barre d'outils.
+
+Pour plus d'information, cliquez sur OK pour naviguer sur notre site web.</value>
+	</data>
 </root>

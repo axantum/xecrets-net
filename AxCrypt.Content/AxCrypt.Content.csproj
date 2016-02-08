@@ -44,26 +44,6 @@
   <ItemGroup>
     <Compile Include="Texts.cs" />
     <Compile Include="ContentResourceManager.cs" />
-    <Compile Include="Properties\LongResources.de.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LongResources.de.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\LongResources.sv.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LongResources.sv.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\LongResources.fr.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LongResources.fr.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\LongResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LongResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -92,22 +72,6 @@
     <None Include="AxCrypt.Content.zreproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\LongResources.de.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LongResources.de.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\LongResources.sv.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LongResources.sv.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\LongResources.fr.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LongResources.fr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\LongResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LongResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

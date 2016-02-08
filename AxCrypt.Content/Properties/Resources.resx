@@ -1360,4 +1360,90 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript appears to be disabled in your browser. Unless you enable JavaScript you cannot sign in and the site may not perform as expected.</value>
   </data>
+  <data name="ActivateMailBodyButton" xml:space="preserve">
+    <value>Activate account</value>
+  </data>
+  <data name="ActivateMailBodyCode" xml:space="preserve">
+    <value>Your activation code is &lt;b&gt;{0}&lt;/b&gt;</value>
+  </data>
+  <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
+    <value>Your activation code is {0}</value>
+  </data>
+  <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
+    <value>You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your account.</value>
+  </data>
+  <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
+    <value>You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your account.</value>
+  </data>
+  <data name="ActivateMailBodyIntro" xml:space="preserve">
+    <value>You have signed up for an AxCrypt account. To complete your registration you must click the button below.</value>
+  </data>
+  <data name="ActivateMailBodyManualLink" xml:space="preserve">
+    <value>If the button does not work, go to &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your account.</value>
+  </data>
+  <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
+    <value>If the button does not work, go to {0} and enter {1} and the activation code {2} to manually activate your account.</value>
+  </data>
+  <data name="ActivateMailBodyTitle" xml:space="preserve">
+    <value>Hello and welcome to AxCrypt!</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
+    <value>You have requested to change your current AxCrypt account e-mail to &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. To confirm please click the button below.</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
+    <value>Use your existing password to log on and then the old account will be permanently deleted.</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
+    <value>Change e-mail</value>
+  </data>
+  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
+    <value>Someone has requested a change of e-mail (from an undisclosed account) at &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody2" xml:space="preserve">
+    <value>However, since you already have an account using this e-mail, the request has been silently ignored.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody3" xml:space="preserve">
+    <value>Ignore this e-mail or report it to {0}. No harm is done, and no information has been disclosed.</value>
+  </data>
+  <data name="InvitationMailBodyIntro" xml:space="preserve">
+    <value>You have been invited to AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the activation code and set your secret password.</value>
+  </data>
+  <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
+    <value>You have been invited to AxCrypt File Security by {0}.
+
+To start securing your files just download and install AxCrypt from {1}.
+
+Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secret password.</value>
+  </data>
+  <data name="MailBodyFooter" xml:space="preserve">
+    <value>If it is unclear why you are receiving this from &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;, you can ignore this email or report it to {1}.</value>
+  </data>
+  <data name="MailBodyFooterPlainText" xml:space="preserve">
+    <value>If it is unclear why you are receiving this from AxCrypt.net, you can ignore this email or report it to {0}.</value>
+  </data>
+  <data name="MailBodySignature" xml:space="preserve">
+    <value>Best regards,&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;</value>
+  </data>
+  <data name="MailBodySignaturePlainText" xml:space="preserve">
+    <value>Best regards,
+The AxCrypt team</value>
+  </data>
+  <data name="MailBodyTitle" xml:space="preserve">
+    <value>Hello {0},</value>
+  </data>
+  <data name="MailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/_EmailLayout.cshtml</value>
+  </data>
+  <data name="PasswordResetMailBody1" xml:space="preserve">
+    <value>You have requested to reset your AxCrypt account password. To complete this process and pick a new password, please click the button below.</value>
+  </data>
+  <data name="PasswordResetMailBodyButton" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="UnregisterMailBody1" xml:space="preserve">
+    <value>This is confirmation that your account on &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; has been successfully deleted.</value>
+  </data>
+  <data name="UnregisterMailBody2" xml:space="preserve">
+    <value>We're sad to see you go and hope you enjoyed your time with us!</value>
+  </data>
 </root>
