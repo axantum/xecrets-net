@@ -29,6 +29,7 @@
             this._watchedFoldersRemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._watchedFoldersAddSecureFolderMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersTabPage = new System.Windows.Forms.TabPage();
             this._watchedFoldersListView = new System.Windows.Forms.ListView();
             this._watchedFolderColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -183,9 +184,10 @@
             this._watchedFoldersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._watchedFoldersRemoveMenuItem,
             this._watchedFoldersdecryptTemporarilyMenuItem,
-            this._watchedFoldersOpenExplorerHereMenuItem});
+            this._watchedFoldersOpenExplorerHereMenuItem,
+            this._watchedFoldersAddSecureFolderMenuItem});
             this._watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
-            this._watchedFoldersContextMenuStrip.Size = new System.Drawing.Size(194, 70);
+            this._watchedFoldersContextMenuStrip.Size = new System.Drawing.Size(194, 114);
             // 
             // _watchedFoldersRemoveMenuItem
             // 
@@ -204,6 +206,12 @@
             this._watchedFoldersOpenExplorerHereMenuItem.Name = "_watchedFoldersOpenExplorerHereMenuItem";
             this._watchedFoldersOpenExplorerHereMenuItem.Size = new System.Drawing.Size(193, 22);
             this._watchedFoldersOpenExplorerHereMenuItem.Text = "[Open &Explorer Here]";
+            // 
+            // _watchedFoldersAddSecureFolderMenuItem
+            // 
+            this._watchedFoldersAddSecureFolderMenuItem.Name = "_watchedFoldersAddSecureFolderMenuItem";
+            this._watchedFoldersAddSecureFolderMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._watchedFoldersAddSecureFolderMenuItem.Text = "[Add &Secure Folder]";
             // 
             // _watchedFoldersTabPage
             // 
@@ -341,7 +349,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -452,7 +460,7 @@
             // _englishLanguageToolStripMenuItem
             // 
             this._englishLanguageToolStripMenuItem.Name = "_englishLanguageToolStripMenuItem";
-            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._englishLanguageToolStripMenuItem.Tag = "en-US";
             this._englishLanguageToolStripMenuItem.Text = "[&English]";
             this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -460,7 +468,7 @@
             // _francaisLanguageToolStripMenuItem
             // 
             this._francaisLanguageToolStripMenuItem.Name = "_francaisLanguageToolStripMenuItem";
-            this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._francaisLanguageToolStripMenuItem.Tag = "fr-FR";
             this._francaisLanguageToolStripMenuItem.Text = "[&Français]";
             this._francaisLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -468,7 +476,7 @@
             // _swedishLanguageToolStripMenuItem
             // 
             this._swedishLanguageToolStripMenuItem.Name = "_swedishLanguageToolStripMenuItem";
-            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._swedishLanguageToolStripMenuItem.Tag = "sv-SE";
             this._swedishLanguageToolStripMenuItem.Text = "[&Svenska]";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -981,6 +989,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton _secretsToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem _francaisLanguageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _watchedFoldersAddSecureFolderMenuItem;
     }
 }
 

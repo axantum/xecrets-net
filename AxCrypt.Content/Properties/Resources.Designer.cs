@@ -143,7 +143,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password reset failed. .
+        ///   Looks up a localized string similar to Password reset failed..
         /// </summary>
         public static string ActivateErrorPassword {
             get {
@@ -233,15 +233,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/ActivateEmail.cshtml.
-        /// </summary>
-        public static string ActivateMailBodyVirtualPath {
-            get {
-                return ResourceManager.GetString("ActivateMailBodyVirtualPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to AxCrypt ID Activation.
         /// </summary>
         public static string ActivateMailSubject {
@@ -311,20 +302,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/AppActivateEmail.cshtml.
+        ///   Looks up a localized string similar to Add Secure Folder.
         /// </summary>
-        public static string AppActivateMailBodyVirtualPath {
+        public static string AddSecureFolderMenuItemText {
             get {
-                return ResourceManager.GetString("AppActivateMailBodyVirtualPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/AppActivateEmailPlainText.cshtml.
-        /// </summary>
-        public static string AppActivatePlainTextMailBodyVirtualPath {
-            get {
-                return ResourceManager.GetString("AppActivatePlainTextMailBodyVirtualPath", resourceCulture);
+                return ResourceManager.GetString("AddSecureFolderMenuItemText", resourceCulture);
             }
         }
         
@@ -334,15 +316,6 @@ namespace AxCrypt.Content.Properties {
         public static string AuthenticationError {
             get {
                 return ResourceManager.GetString("AuthenticationError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/AutoDeletionEmail.html.
-        /// </summary>
-        public static string AutoDeletionMailBodyVirtualPath {
-            get {
-                return ResourceManager.GetString("AutoDeletionMailBodyVirtualPath", resourceCulture);
             }
         }
         
@@ -664,15 +637,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/ChangeEmailConfirmEmail.cshtml.
-        /// </summary>
-        public static string ChangeEmailConfirmMailBodyVirtualPath {
-            get {
-                return ResourceManager.GetString("ChangeEmailConfirmMailBodyVirtualPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to AxCrypt ID Email Change.
         /// </summary>
         public static string ChangeEmailConfirmMailSubject {
@@ -714,15 +678,6 @@ namespace AxCrypt.Content.Properties {
         public static string ChangeEmailExistMailBody3 {
             get {
                 return ResourceManager.GetString("ChangeEmailExistMailBody3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/ChangeEmailExistEmail.cshtml.
-        /// </summary>
-        public static string ChangeEmailExistMailBodyVirtualPath {
-            get {
-                return ResourceManager.GetString("ChangeEmailExistMailBodyVirtualPath", resourceCulture);
             }
         }
         
@@ -1974,24 +1929,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/InvitationEmail.cshtml.
-        /// </summary>
-        public static string InvitationMailBodyVirtualPath {
-            get {
-                return ResourceManager.GetString("InvitationMailBodyVirtualPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/InvitationEmailPlainText.cshtml.
-        /// </summary>
-        public static string InvitationMailPlainTextBodyVirtualPath {
-            get {
-                return ResourceManager.GetString("InvitationMailPlainTextBodyVirtualPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invitation to use AxCrypt File Security.
         /// </summary>
         public static string InvitationMailSubject {
@@ -2277,15 +2214,6 @@ namespace AxCrypt.Content.Properties {
         public static string MailBodyTitle {
             get {
                 return ResourceManager.GetString("MailBodyTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/_EmailLayout.cshtml.
-        /// </summary>
-        public static string MailBodyVirtualPath {
-            get {
-                return ResourceManager.GetString("MailBodyVirtualPath", resourceCulture);
             }
         }
         
@@ -2729,15 +2657,6 @@ namespace AxCrypt.Content.Properties {
         public static string PasswordResetMailBodyButton {
             get {
                 return ResourceManager.GetString("PasswordResetMailBodyButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/PasswordResetEmail.cshtml.
-        /// </summary>
-        public static string PasswordResetMailBodyVirtualPath {
-            get {
-                return ResourceManager.GetString("PasswordResetMailBodyVirtualPath", resourceCulture);
             }
         }
         
@@ -3743,15 +3662,6 @@ namespace AxCrypt.Content.Properties {
         public static string UnregisterMailBody2 {
             get {
                 return ResourceManager.GetString("UnregisterMailBody2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/UnregisterEmail.cshtml.
-        /// </summary>
-        public static string UnregisterMailBodyVirtualPath {
-            get {
-                return ResourceManager.GetString("UnregisterMailBodyVirtualPath", resourceCulture);
             }
         }
         
