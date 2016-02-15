@@ -203,7 +203,11 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Double-click opens a Password-dialog before opening the secured file.</value>
   </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
-    <value>Add Secure Folder</value>
+    <value>Add Secured Folder</value>
+  </data>
+  <data name="AddSecureFolderTitle" xml:space="preserve">
+    <value>Select a folder to keep secured with AxCrypt. Existing files will be encrypted now.</value>
+    <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>The page you tried to visit requires authentication. Please log on to proceed.</value>
@@ -677,7 +681,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>&amp;File</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
-    <value>Folder '{0}' already watched.</value>
+    <value>Folder '{0}' already secured.</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>This is the AxCrypt ID section of AxCrypt.net, click &lt;a href="{0}"&gt;here&lt;/a&gt; to go back to the start page.</value>
@@ -1141,7 +1145,7 @@ If you appear not to receive it, check that it does not get caught by your anti-
     <value>The selected subsciption time is invalid. A valid subscription has to be at least {0} month and no longer than {1} months.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Folder Watching and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
+    <value>AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Secured Folders and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
 
 To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts when you activate your account. After that you can extend your premium subscription by using the form below.</value>
   </data>

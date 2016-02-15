@@ -302,11 +302,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Secure Folder.
+        ///   Looks up a localized string similar to Add Secured Folder.
         /// </summary>
         public static string AddSecureFolderMenuItemText {
             get {
                 return ResourceManager.GetString("AddSecureFolderMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder to keep secured with AxCrypt. Existing files will be encrypted now..
+        /// </summary>
+        public static string AddSecureFolderTitle {
+            get {
+                return ResourceManager.GetString("AddSecureFolderTitle", resourceCulture);
             }
         }
         
@@ -1691,7 +1700,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Folder &apos;{0}&apos; already watched..
+        ///   Looks up a localized string similar to Folder &apos;{0}&apos; already secured..
         /// </summary>
         public static string FolderAlreadyWatched {
             get {
@@ -3027,7 +3036,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Folder Watching and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
+        ///   Looks up a localized string similar to AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Secured Folders and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
         ///
         ///To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts when you activate your account. After that you can extend your premium subscription by using the f [rest of string was truncated]&quot;;.
         /// </summary>

@@ -196,6 +196,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Text = Texts.WatchedFoldersOpenExplorerHereMenuItemText;
             _watchedFoldersRemoveMenuItem.Text = Texts.WatchedFoldersRemoveMenuItemText;
             _watchedFoldersAddSecureFolderMenuItem.Text = Texts.AddSecureFolderMenuItemText;
+            _addSecureFolderToolStripMenuItem.Text = Texts.AddSecureFolderMenuItemText;
             _watchedFoldersTabPage.Text = Texts.WatchedFoldersTabPageText;
             _signInToolStripMenuItem.Text = Texts.LogOnText;
             _signOutToolStripMenuItem.Text = Texts.LogOffText;
@@ -1954,6 +1955,33 @@ namespace Axantum.AxCrypt
             {
                 _debugOutput.AllowClose = true;
             }
+        }
+
+        private void WatchedFoldersAddSecureFolderMenuItem_Click(object sender, EventArgs e)
+        {
+            string folder = SelectSecureFolder();
+            if (string.IsNullOrEmpty(folder))
+            {
+                return;
+            }
+
+            _mainViewModel.AddWatchedFolders.Execute(new string[] { folder });
+        }
+
+        private string SelectSecureFolder()
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                fbd.Description = Texts.AddSecureFolderTitle;
+                fbd.ShowNewFolderButton = true;
+                DialogResult result = fbd.ShowDialog(this);
+
+                if (result == DialogResult.OK)
+                {
+                    return fbd.SelectedPath;
+                }
+            }
+            return String.Empty;
         }
     }
 }
