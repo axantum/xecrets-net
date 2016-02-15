@@ -175,6 +175,10 @@
   <data name="ActivateMailBodyTitle" xml:space="preserve">
     <value>Hello and welcome to AxCrypt!</value>
   </data>
+  <data name="ActivateMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/ActivateEmail.cshtml</value>
+    <comment>Do Not Translate</comment>
+  </data>
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>AxCrypt ID Activation</value>
   </data>
@@ -209,8 +213,20 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Select a folder to keep secured with AxCrypt. Existing files will be encrypted now.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AppActivateMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/AppActivateEmail.cshtml</value>
+    <comment>Do Not Translate</comment>
+  </data>
+  <data name="AppActivatePlainTextMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/AppActivateEmailPlainText.cshtml</value>
+    <comment>Do Not Translate</comment>
+  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>The page you tried to visit requires authentication. Please log on to proceed.</value>
+  </data>
+  <data name="AutoDeletionMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/AutoDeletionEmail.html</value>
+    <comment>Do Not Translate</comment>
   </data>
   <data name="AutoDeletionMailSubject" xml:space="preserve">
     <value>AxCrypt ID Deletion</value>
@@ -320,6 +336,10 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
     <value>Change e-mail</value>
   </data>
+  <data name="ChangeEmailConfirmMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/ChangeEmailConfirmEmail.cshtml</value>
+    <comment>Do Not Translate</comment>
+  </data>
   <data name="ChangeEmailConfirmMailSubject" xml:space="preserve">
     <value>AxCrypt ID Email Change</value>
   </data>
@@ -334,6 +354,10 @@ Includes software from http://www.bouncycastle.org/ .</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
     <value>Ignore this e-mail or report it to {0}. No harm is done, and no information has been disclosed.</value>
+  </data>
+  <data name="ChangeEmailExistMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/ChangeEmailExistEmail.cshtml</value>
+    <comment>Do Not Translate</comment>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>AxCrypt ID Email Change Request</value>
@@ -762,6 +786,14 @@ To start securing your files just download and install AxCrypt from {1}.
 
 Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secret password.</value>
   </data>
+  <data name="InvitationMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/InvitationEmail.cshtml</value>
+    <comment>Do Not Translate</comment>
+  </data>
+  <data name="InvitationMailPlainTextBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/InvitationEmailPlainText.cshtml</value>
+    <comment>Do Not Translate</comment>
+  </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Invitation to use AxCrypt File Security</value>
   </data>
@@ -860,6 +892,10 @@ The AxCrypt team</value>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>Hello {0},</value>
+  </data>
+  <data name="MailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/_EmailLayout.cshtml</value>
+    <comment>Do Not Translate</comment>
   </data>
   <data name="MainSiteUrl" xml:space="preserve">
     <value>http://www.axcrypt.net</value>
@@ -1016,6 +1052,10 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="PasswordResetMailBodyButton" xml:space="preserve">
     <value>Reset password</value>
+  </data>
+  <data name="PasswordResetMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/PasswordResetEmail.cshtml</value>
+    <comment>Do Not Translate</comment>
   </data>
   <data name="PasswordResetMailSubject" xml:space="preserve">
     <value>AxCrypt ID Password Reset</value>
@@ -1371,6 +1411,10 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
   <data name="UnregisterMailBody2" xml:space="preserve">
     <value>We're sad to see you go and hope you enjoyed your time with us!</value>
+  </data>
+  <data name="UnregisterMailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/UnregisterEmail.cshtml</value>
+    <comment>Do Not Translate</comment>
   </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID Deleted</value>
