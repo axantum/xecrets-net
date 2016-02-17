@@ -196,6 +196,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Text = Texts.WatchedFoldersOpenExplorerHereMenuItemText;
             _watchedFoldersRemoveMenuItem.Text = Texts.WatchedFoldersRemoveMenuItemText;
             _watchedFoldersAddSecureFolderMenuItem.Text = Texts.AddSecureFolderMenuItemText;
+            _watchedFoldersKeySharingMenuItem.Text = Texts.ShareKeysToolStripMenuItemText;
             _addSecureFolderToolStripMenuItem.Text = Texts.AddSecureFolderMenuItemText;
             _watchedFoldersTabPage.Text = Texts.WatchedFoldersTabPageText;
             _signInToolStripMenuItem.Text = Texts.LogOnText;
@@ -714,9 +715,11 @@ namespace Axantum.AxCrypt
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
             _watchedFoldersListView.MouseDown += (sender, e) => { if (e.Button == MouseButtons.Right) { ShowHideWatchedFoldersContextMenuItems(e.Location); _watchedFoldersContextMenuStrip.Show((Control)sender, e.Location); } };
             _watchedFoldersListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForWatchedFolders(e); };
-            _watchedFoldersListView.DragDrop += (sender, e) => { _mainViewModel.AddWatchedFolders.Execute(_mainViewModel.DragAndDropFiles); };
+            _watchedFoldersListView.DragDrop += (sender, e) => { PremiumFeature_Click(LicenseCapability.SecureFolders, (ss, ee) => { _mainViewModel.AddWatchedFolders.Execute(_mainViewModel.DragAndDropFiles); }, sender, e); };
             _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder.Execute(_mainViewModel.SelectedWatchedFolders.First()); };
             _watchedFoldersRemoveMenuItem.Click += (sender, e) => { _mainViewModel.RemoveWatchedFolders.Execute(_mainViewModel.SelectedWatchedFolders); };
+            _watchedFoldersAddSecureFolderMenuItem.Click += (sender, e) => { PremiumFeature_Click(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); }, sender, e); };
+            _watchedFoldersKeySharingMenuItem.Click += (sender, e) => { PremiumFeature_Click(LicenseCapability.KeySharing, (ss, ee) => { WatchedFoldersKeySharing(_mainViewModel.SelectedWatchedFolders); }, sender, e); };
 
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => _recentFilesListView.EncryptedPath(lvi)); };
@@ -737,6 +740,10 @@ namespace Axantum.AxCrypt
             _watchedFoldersdecryptTemporarilyMenuItem.Visible = itemSelected;
             _watchedFoldersOpenExplorerHereMenuItem.Visible = itemSelected;
             _watchedFoldersRemoveMenuItem.Visible = itemSelected;
+            _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
+#if !DEBUG
+            _watchedFoldersKeySharingMenuItem.Enabled = false;
+#endif
         }
 
         private static void BindToWatchedFoldersViewModel()
@@ -1875,23 +1882,22 @@ namespace Axantum.AxCrypt
                 {
                     continue;
                 }
-                IEnumerable<UserPublicKey> sharedWith = encryptedProperties.SharedKeyHolders;
-                using (KeyShareDialog dialog = new KeyShareDialog(this, New<KnownPublicKeys>, sharedWith, Resolve.KnownIdentities.DefaultEncryptionIdentity))
+                IEnumerable<UserPublicKey> sharedWithPublicKeys = encryptedProperties.SharedKeyHolders;
+                using (KeyShareDialog dialog = new KeyShareDialog(this, New<KnownPublicKeys>, sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity))
                 {
                     if (dialog.ShowDialog(this) != DialogResult.OK)
                     {
                         continue;
                     }
-                    sharedWith = dialog.SharedWith;
+                    sharedWithPublicKeys = dialog.SharedWith;
                 }
-                IEnumerable<UserPublicKey> publicKeys;
                 using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
                 {
-                    publicKeys = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s.Email == pk.Email));
+                    sharedWithPublicKeys = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWithPublicKeys.Any(s => s.Email == pk.Email)).ToList();
                 }
                 EncryptionParameters encryptionParameters = new EncryptionParameters(encryptedProperties.DecryptionParameter.CryptoId);
                 encryptionParameters.Passphrase = Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase;
-                encryptionParameters.Add(publicKeys);
+                encryptionParameters.Add(sharedWithPublicKeys);
                 encryptionParameters.Add(Resolve.KnownIdentities.DefaultEncryptionIdentity.PublicKeys);
 
                 Resolve.ProgressBackground.Work((Func<IProgressContext, FileOperationContext>)((IProgressContext progress) =>
@@ -1906,6 +1912,37 @@ namespace Axantum.AxCrypt
                         Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
                     }
                 });
+            }
+        }
+
+        private void WatchedFoldersKeySharing(IEnumerable<string> folderPaths)
+        {
+            IEnumerable<WatchedFolder> watchedFolders = Resolve.FileSystemState.WatchedFolders.Where((wf) => folderPaths.Contains(wf.Path));
+            if (!watchedFolders.Any())
+            {
+                return;
+            }
+
+            IEnumerable<EmailAddress> sharedWithEmailAddresses = watchedFolders.SelectMany(wf => wf.KeyShares).Distinct();
+
+            IEnumerable<UserPublicKey> sharedWithPublicKeys;
+            using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
+            {
+                sharedWithPublicKeys = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
+            }
+
+            using (KeyShareDialog dialog = new KeyShareDialog(this, New<KnownPublicKeys>, sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity))
+            {
+                if (dialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                sharedWithPublicKeys = dialog.SharedWith;
+            }
+
+            foreach (WatchedFolder watchedFolder in watchedFolders)
+            {
+                Resolve.FileSystemState.AddWatchedFolder(watchedFolder);
             }
         }
 

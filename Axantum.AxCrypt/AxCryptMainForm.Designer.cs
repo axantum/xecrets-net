@@ -48,6 +48,7 @@
             this._encryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._encryptedFoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._addSecureFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this._cleanDecryptedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -100,7 +101,7 @@
             this._updateStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
-            this._addSecureFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._watchedFoldersKeySharingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -183,12 +184,13 @@
             // _watchedFoldersContextMenuStrip
             // 
             this._watchedFoldersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._watchedFoldersKeySharingMenuItem,
             this._watchedFoldersRemoveMenuItem,
             this._watchedFoldersdecryptTemporarilyMenuItem,
             this._watchedFoldersOpenExplorerHereMenuItem,
             this._watchedFoldersAddSecureFolderMenuItem});
             this._watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
-            this._watchedFoldersContextMenuStrip.Size = new System.Drawing.Size(194, 92);
+            this._watchedFoldersContextMenuStrip.Size = new System.Drawing.Size(194, 136);
             // 
             // _watchedFoldersRemoveMenuItem
             // 
@@ -213,7 +215,6 @@
             this._watchedFoldersAddSecureFolderMenuItem.Name = "_watchedFoldersAddSecureFolderMenuItem";
             this._watchedFoldersAddSecureFolderMenuItem.Size = new System.Drawing.Size(193, 22);
             this._watchedFoldersAddSecureFolderMenuItem.Text = "[Add &Secure Folder]";
-            this._watchedFoldersAddSecureFolderMenuItem.Click += new System.EventHandler(this.WatchedFoldersAddSecureFolderMenuItem_Click);
             // 
             // _watchedFoldersTabPage
             // 
@@ -351,7 +352,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -407,6 +408,13 @@
             this._encryptedFoldersToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this._encryptedFoldersToolStripMenuItem.Text = "[Encrypted &Folders]";
             this._encryptedFoldersToolStripMenuItem.Click += new System.EventHandler(this.encryptedFoldersToolStripMenuItem_Click);
+            // 
+            // _addSecureFolderToolStripMenuItem
+            // 
+            this._addSecureFolderToolStripMenuItem.Name = "_addSecureFolderToolStripMenuItem";
+            this._addSecureFolderToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._addSecureFolderToolStripMenuItem.Text = "[Add &Secure Folder]";
+            this._addSecureFolderToolStripMenuItem.Click += new System.EventHandler(this.WatchedFoldersAddSecureFolderMenuItem_Click);
             // 
             // _toolStripSeparator6
             // 
@@ -870,12 +878,11 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // _addSecureFolderToolStripMenuItem
+            // _watchedFoldersKeySharingMenuItem
             // 
-            this._addSecureFolderToolStripMenuItem.Name = "_addSecureFolderToolStripMenuItem";
-            this._addSecureFolderToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this._addSecureFolderToolStripMenuItem.Text = "[Add &Secure Folder]";
-            this._addSecureFolderToolStripMenuItem.Click += new System.EventHandler(this.WatchedFoldersAddSecureFolderMenuItem_Click);
+            this._watchedFoldersKeySharingMenuItem.Name = "_watchedFoldersKeySharingMenuItem";
+            this._watchedFoldersKeySharingMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._watchedFoldersKeySharingMenuItem.Text = "[Key Sharing]";
             // 
             // AxCryptMainForm
             // 
@@ -1001,6 +1008,7 @@
         private System.Windows.Forms.ToolStripMenuItem _francaisLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersAddSecureFolderMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _addSecureFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _watchedFoldersKeySharingMenuItem;
     }
 }
 

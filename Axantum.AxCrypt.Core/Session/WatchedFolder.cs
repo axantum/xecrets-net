@@ -27,8 +27,10 @@
 
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 
@@ -55,6 +57,7 @@ namespace Axantum.AxCrypt.Core.Session
         private WatchedFolder()
         {
             Tag = IdentityPublicTag.Empty;
+            KeyShares = new List<EmailAddress>();
         }
 
         public WatchedFolder(string path, IdentityPublicTag publicTag)
@@ -75,6 +78,13 @@ namespace Axantum.AxCrypt.Core.Session
 
         [JsonProperty("publicTag")]
         public IdentityPublicTag Tag
+        {
+            get;
+            private set;
+        }
+
+        [JsonProperty("keyShares")]
+        public IEnumerable<EmailAddress> KeyShares
         {
             get;
             private set;

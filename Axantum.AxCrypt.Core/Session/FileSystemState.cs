@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -131,39 +130,24 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("watchedFolder");
             }
 
-            if (AddWatchedFolderInternal(watchedFolder))
-            {
-                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Resolve.KnownIdentities.DefaultEncryptionIdentity, watchedFolder.Path));
-            }
-            else
-            {
-                Resolve.StatusChecker.CheckStatusAndShowMessage(ErrorStatus.FolderAlreadyWatched, watchedFolder.Path);
-            }
+            AddWatchedFolderInternal(watchedFolder);
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Resolve.KnownIdentities.DefaultEncryptionIdentity, watchedFolder.Path));
         }
 
-        private bool AddWatchedFolderInternal(WatchedFolder watchedFolder)
+        private void AddWatchedFolderInternal(WatchedFolder watchedFolder)
         {
             lock (_watchedFolders)
             {
-                if (!AddWatchedFolderInternalUnsafe(watchedFolder))
-                {
-                    watchedFolder.Dispose();
-                    return false;
-                }
+                AddWatchedFolderInternalUnsafe(watchedFolder);
             }
-            return true;
         }
 
-        private bool AddWatchedFolderInternalUnsafe(WatchedFolder watchedFolder)
+        private void AddWatchedFolderInternalUnsafe(WatchedFolder watchedFolder)
         {
-            if (_watchedFolders.Any(wf => wf.Matches(watchedFolder)))
-            {
-                return false;
-            }
+            RemoveWatchedFolderInternal(watchedFolder.Path);
 
             watchedFolder.Changed += watchedFolder_Changed;
             _watchedFolders.Add(watchedFolder);
-            return true;
         }
 
         private void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
@@ -218,11 +202,17 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("folderInfo");
             }
 
+            RemoveWatchedFolderInternal(folderInfo.FullName);
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, folderInfo.FullName));
+        }
+
+        private void RemoveWatchedFolderInternal(string path)
+        {
             lock (_watchedFolders)
             {
                 for (int i = 0; i < _watchedFolders.Count;)
                 {
-                    if (!_watchedFolders[i].Matches(folderInfo.FullName))
+                    if (!_watchedFolders[i].Matches(path))
                     {
                         ++i;
                         continue;
@@ -231,7 +221,6 @@ namespace Axantum.AxCrypt.Core.Session
                     _watchedFolders.RemoveAt(i);
                 }
             }
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, folderInfo.FullName));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> ActiveFileChanged;
