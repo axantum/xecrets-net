@@ -127,17 +127,38 @@
     <value>{0}</value>
     <comment>Title bar status text when logged on to an account.</comment>
   </data>
+  <data name="AccountStatusPremiumTrial" xml:space="preserve">
+    <value>Période d'essai AxCrypt Premium</value>
+  </data>
+  <data name="ActivateErrorNoRequest" xml:space="preserve">
+    <value>Impossible de réinitialiser le mot de passe. Aucune requête de réinitialisation de mot de passe n'a été reçue pour ce compte.</value>
+  </data>
+  <data name="ActivateErrorPassword" xml:space="preserve">
+    <value>Echec de la recréation de mot de passe.</value>
+  </data>
   <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
     <value>Vous avez accès gratuitement aux fonctionnalités Premium pour une  &lt;b&gt;période d'essai de 30 jours&lt;/b&gt; à partir du moment où vous activez votre compte.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
     <value>Vous venez de créer un compte AxCrypt. Veuillez confirmer votre inscription en cliquant le bouton ci-dessous.</value>
   </data>
+  <data name="ActivatePageBody" xml:space="preserve">
+    <value>Pour activer votre compte &lt;b&gt;{0}&lt;b&gt;, veuillez choisir un mot de passe.
+
+Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger vos mots de passe dans le gestionnaire en ligne de mots de passe, ainsi que pour votre compte en ligne. Saisissez-le soigneusement, et assurez-vous de ne pas l'oublier.</value>
+  </data>
+  <data name="ActivatePageTitle" xml:space="preserve">
+    <value>Activer Identifiant AxCrypt ID</value>
+  </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
     <value>Double-clic ouvre le fichier protégé.</value>
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Double-clic ouvre la fenêtre de saisie de mot de passe avant d'ouvrir le fichier protégé.</value>
+  </data>
+  <data name="AddSecureFolderTitle" xml:space="preserve">
+    <value>Choisissez un dossier à protéger avec AxCrypt. Les fichiers qu'il contient seront chiffrés immédiatement.</value>
+    <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Protection de Fichiers Pour Vous et Votre Equipe par Axcrypt AB
@@ -157,6 +178,12 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Enregistrer</value>
   </data>
+  <data name="ButtonShareRightText" xml:space="preserve">
+    <value>Partager &gt;&gt;</value>
+  </data>
+  <data name="ButtonUnshareLeftText" xml:space="preserve">
+    <value>&lt;&lt; Ne plus partager</value>
+  </data>
   <data name="Canceled" xml:space="preserve">
     <value>'{0}' annulé.</value>
   </data>
@@ -166,11 +193,27 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="CannotWrite" xml:space="preserve">
     <value>Echec de l'écriture de '{0}'.</value>
   </data>
+  <data name="CaptchaError" xml:space="preserve">
+    <value>Réponse captcha incorrecte.</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
+    <value>Saisissez votre mot de passe existant pour vous connecter. Votre ancien compte sera définitivement supprimé.</value>
+  </data>
   <data name="ChangeEmailExistMailBodyVirtualPath" xml:space="preserve">
     <value>~/Templates/ChangeEmailExistEmail.cshtml</value>
+    <comment>Do Not Translate</comment>
+  </data>
+  <data name="ChangeEmailMarkError" xml:space="preserve">
+    <value>Echec de l'enregistrement du nouvel email suite à une erreur interne, veuillez réessayer plus tard ou contacter notre support technique.</value>
   </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Modifier le mot de passe</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>Votre mot de passe a été modifié.</value>
+  </data>
+  <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Nettoyer les Fichiers Ouverts</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>Le fichier est ouvert, et nécessite peut-être un nettoyage. Fermez toutes les applications ouvertes et cliquez sur le bon Nettoyer.</value>
@@ -178,8 +221,14 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Cliquez pour vérifier si une mise à jour est disponible.</value>
   </data>
+  <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
+    <value>Cliquez ici pour nettoyer et supprimer les fichiers ouverts. Assurez-vous auparavant qu'ils ne soient pas en cours d'utilisation.</value>
+  </data>
   <data name="ColumnExpiresHeader" xml:space="preserve">
     <value>Expiration UTC</value>
+  </data>
+  <data name="ColumnTimestampHeader" xml:space="preserve">
+    <value>Date/Heure</value>
   </data>
   <data name="CookiesDisabledError" xml:space="preserve">
     <value>Votre navigateur ne semble pas accepter les cookies. Sans cookies, vous ne pourrez pas vous connecter, et le site ne fonctionnera pas comme il faut. Plus d'informations dans notre &lt;a href="{0}"&gt;politique concernant les cookies&lt;/a&gt;.</value>
@@ -196,8 +245,14 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Votre abonnement Premium est sur le point de se terminer. Cliquez pour le renouveler.</value>
   </data>
+  <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Logging</value>
+  </data>
   <data name="DebugManageAccountToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Gérer identifiant AxCrypt ID</value>
+  </data>
+  <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
+    <value>Fichier</value>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Le fichier est probablement ouvert dans une application. Fermez cette application ou utilisez le bouton Nettoyer.</value>
@@ -217,20 +272,52 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Vous êtes connecté. Cliquez pour vous déconnecter.</value>
   </data>
+  <data name="DeleteAccountSuccess" xml:space="preserve">
+    <value>Votre identifiant AxCrypt ID a été supprimé.
+
+Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt vous aura été utile.</value>
+  </data>
+  <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
+    <value>Identifiant AxCrypt ID</value>
+  </data>
   <data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
     <value>Lors du premier lancement d'AxCrypt, une connexion internet et une adresse mail valide sont requises. Cliquez sur Aide pour plus d'informations.</value>
+  </data>
+  <data name="DialogDebugOptionsRestApiTimeoutPrompt" xml:space="preserve">
+    <value>API Timeout</value>
   </data>
   <data name="DialogDebugOptionsRestApiUrlPrompt" xml:space="preserve">
     <value>REST API Base Url</value>
   </data>
+  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
+    <value>Identifiants AxCrypt ID (*.axx)|*.axx|Tous les fichiers (*.*)|*.*"</value>
+  </data>
   <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
     <value>Exporter identifiant AxCrypt ID</value>
+  </data>
+  <data name="DialogFilePasswordTitle" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="DialogManageAxcryptIdTitle" xml:space="preserve">
+    <value>Gérer Identifiant AxCrypt ID</value>
+  </data>
+  <data name="DialogWatchedFoldersTitle" xml:space="preserve">
+    <value>Dossiers Protégés</value>
   </data>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Double-cliquez pour ouvrir. Un mot de passe vous sera demandé si nécessaire.</value>
   </data>
+  <data name="EditSecretSuccess" xml:space="preserve">
+    <value>Entrée mise à jour.</value>
+  </data>
+  <data name="EmailErrorUserNotFound" xml:space="preserve">
+    <value>Utilisateur inconnu.</value>
+  </data>
   <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
     <value>Fichiers AxCrypt (*{0})|*{0}|Tous les fichiers (*.*)|*.*</value>
+  </data>
+  <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Dossiers Protégés</value>
   </data>
   <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
     <value>Protégé</value>
@@ -253,6 +340,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="Exception" xml:space="preserve">
     <value>Exception during processing of '{0}'.</value>
     <comment>@Invariant</comment>
+  </data>
+  <data name="ExitToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Quitter</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Exporter Clef &amp;Secrète et Clef de Partage </value>
@@ -284,8 +374,14 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Le dossier '{0}' est déjà protégé.</value>
   </data>
+  <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;A Propos</value>
+  </data>
   <data name="HelpToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Aide</value>
+  </data>
+  <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Importer Clef de Partage Publique d'un Contact</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Demandez la clef de partage publique de votre interlocuteur et importez-la ici. Vous pourrez ensuite partager des fichiers protégés.</value>
@@ -320,6 +416,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="Invalid_URL" xml:space="preserve">
     <value>URL non valide.</value>
   </data>
+  <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Gestion des Clefs</value>
+  </data>
   <data name="KeyShareToolStripButtonToolTipText" xml:space="preserve">
     <value>Cliquez pour choisir les fichiers à ne plus protéger.</value>
   </data>
@@ -335,8 +434,15 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt doit être redémarré pour que le changement de langue s'effectue.</value>
   </data>
+  <data name="LinkTextBackToMainSite" xml:space="preserve">
+    <value>Retour au site principal</value>
+    <comment>Menus and similar to link back to main site.</comment>
+  </data>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/Purchase?email={0}</value>
+  </data>
+  <data name="LinkToFeedbackWebPage" xml:space="preserve">
+    <value>http://www.axcrypt.net/#feedback</value>
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
     <value>http://www.axcrypt.net/documentation/get-started/</value>
@@ -351,6 +457,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
     <value>Mot de passe</value>
     <comment>Shown in the title bar to display the log on status.</comment>
   </data>
+  <data name="LoginPurchaseError" xml:space="preserve">
+    <value>Echec du paiement. Veuillez réessayer.</value>
+  </data>
   <data name="LogOffText" xml:space="preserve">
     <value>Déconnexion</value>
   </data>
@@ -363,14 +472,27 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
     <value>Passez à Premium pour bénéficier du niveau de protection le plus élevé.</value>
   </data>
+  <data name="MailBodyFooter" xml:space="preserve">
+    <value>Si vous ne savez pas pourquoi vous recevez cet email de &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;, vous pouvez ignorer ce message ou le signaler à {1}.</value>
+  </data>
   <data name="MailBodyVirtualPath" xml:space="preserve">
     <value>~/Templates/_EmailLayout.cshtml</value>
+    <comment>Do Not Translate</comment>
+  </data>
+  <data name="MessageServerUpdateTitle" xml:space="preserve">
+    <value>Serveur AxCrypt mis à jour!</value>
   </data>
   <data name="MessageSigningUpText" xml:space="preserve">
     <value>Vous êtes enregistré en tant que '{0}'. Un code d'activation à 6 chiffres vous a été envoyé par email.</value>
   </data>
+  <data name="MessageSigningUpTitle" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
   <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
     <value>Accès internet requis. Veuillez vérifier votre connexion et réessayer.</value>
+  </data>
+  <data name="MessageUnexpectedErrorText" xml:space="preserve">
+    <value>Une erreur inattendue '{0}' s'est produite.</value>
   </data>
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Erreur Inattendue!</value>
@@ -391,14 +513,28 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Pas de mise à jour nécessaire.</value>
   </data>
+  <data name="NotFoundPageBody" xml:space="preserve">
+    <value>Page non trouvée. Ceci peut être dû à un redémarrage du serveur qui a rendu votre session obsolete, ou à une erreur interne au server qui nous a empêché de répondre à la requête.
+
+Page demandée:
+{2}
+
+Votre requête à été enregistrée. Veuillez réessayer avec le chemin d'accès correct, ou &lt;a  href="mailto:{0}"&gt;signalez-nous&lt;/a&gt; un lien erroné.</value>
+  </data>
   <data name="OfflineAccountBePatient" xml:space="preserve">
     <value>L'opération peut prendre quelques minutes. Merci de bien vouloir patienter.</value>
+  </data>
+  <data name="OldVersionTooltip" xml:space="preserve">
+    <value>Votre version n'est pas à jour. Cliquez ici pour rechercher une mise à jour.</value>
   </data>
   <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
     <value>Choisissez un fichier protégé à ouvrir</value>
   </data>
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>Fichier</value>
+  </data>
+  <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Effacer tous les Paramètres et Quitter</value>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Debug</value>
@@ -409,8 +545,18 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="PassphraseVerificationMismatch" xml:space="preserve">
     <value>Les mots de passe ne correspondent pas</value>
   </data>
+  <data name="PasswordManagementListPageBody" xml:space="preserve">
+    <value>Gérez vos mots de passe dans le cloud&lt;span class="text-cutoff"&gt; avec la Gestion de Mots de Passe AxCrypt. Vos mots de passe, codes, PINs etc sont stockés en ligne de manière sécurisée, accessible par vous et vous seul(e) à tout moment, depuis n'importe où.&lt;a class="hide-link"&gt;[Cacher]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[En savoir plus]&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Le mot de passe doit contenir au moins 10 caractères.</value>
+  </data>
+  <data name="PasswordResetPageBody" xml:space="preserve">
+    <value>Si vous avez un compte mais que vous avez oublié le mot de passe, ou si vous n'avez pas reçu le lien d'activation, vous pouvez demander l'envoi d'un nouvel email d'activation ici.
+
+&lt;span class="red"&gt;Avec ce nouveau lien d'activation, vous pourrez à nouveau vous connecter. Cependant, toutes données chiffrées auparavant avec un ancien mot de passe oublié seront inaccessibles, même à nous.&lt;/span&gt;
+
+Saisissez votre email ci-dessous, afin d'y recevoir votre lien d'activation. Pour des raisons de confidentialité, &lt;b&gt;nous ne donnons aucune confirmation du succès ou de l'échec de cette opération.&lt;/b&gt;</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>Cette fonctionalité n'est disponible qu'avec Premium!</value>
@@ -421,14 +567,29 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Mot de passe actuel</value>
   </data>
+  <data name="PromptFileText" xml:space="preserve">
+    <value>Fichier</value>
+    <comment>The heading of a groupbox where the file name to be opened is displayed.</comment>
+  </data>
+  <data name="PromptLabelText" xml:space="preserve">
+    <value>Effacer ce fichier de manière permanente? Cette action est irréversible.</value>
+  </data>
   <data name="PromptNewEmail" xml:space="preserve">
     <value>Nouvel email</value>
   </data>
   <data name="PromptNotificationsText" xml:space="preserve">
     <value>Notifications</value>
   </data>
+  <data name="PromptSetNewPassword" xml:space="preserve">
+    <value>Nouveau Mot de Passe</value>
+  </data>
   <data name="PromptVerifyEmail" xml:space="preserve">
     <value>Confirmez</value>
+  </data>
+  <data name="PurchasePageBody1" xml:space="preserve">
+    <value>AxCrypt protège vos fichiers. Pour utiliser les fonctionnalités avancées comme le chiffrement 256 bits, les Dossiers Protégés ou la Gestion des Mots de Passe, nous vous proposons de passer à AxCrypt Premium, qui vous donnera accès à l'ensemble des fonctionnalités du programme sans limitation.
+
+Afin d'évaluer les fonctionnalités d'AxCrypt Premium, nous vous offrons une période d'essai de 30 jours à partir du moment où vous activez votre compte. Vous pourrez par la suite prolonger cette période d'essai par l'intermédiaire du formulaire ci-dessous.</value>
   </data>
   <data name="PurchaseReceiptPageTitle" xml:space="preserve">
     <value>Facture pour AxCrypt Premium</value>
@@ -438,6 +599,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Enregistrez-vous pour obtenir un identifiant AxCrypt ID.</value>
+  </data>
+  <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Retirer de la liste mais laisser le fichier protégé</value>
   </data>
   <data name="SecureDeleteDialogTitle" xml:space="preserve">
     <value>Effaçage sécurisé AxCrypt</value>
@@ -467,8 +631,18 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Votre abonnement a été enregistré.</value>
   </data>
+  <data name="TextCheckEmailAndSpam" xml:space="preserve">
+    <value>Vérifiez vos boîtes de réception et de spam!</value>
+  </data>
   <data name="TextPreferenceUnknown" xml:space="preserve">
     <value>Indéterminé - Vous n'avez pas précisé de paramètre</value>
+  </data>
+  <data name="TitleCreateAxCryptIdTitle" xml:space="preserve">
+    <value>Céer Identifiant AxCrypt ID</value>
+  </data>
+  <data name="TitleSignInToAxCrypt" xml:space="preserve">
+    <value>Connexion à AxCrypt</value>
+    <comment>Title on the web page for signin for example.</comment>
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>Historique des transactions</value>
@@ -495,6 +669,12 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Vous avez mis à jour AxCrypt. Ceci nécessite une remise à zéro de vos paramètres. Nous vous prions d'accepter nos excuses pour la gène occasionnée. Vos fichiers restent protégés.</value>
   </data>
+  <data name="VerifyPasswordPrompt" xml:space="preserve">
+    <value>Vérifier Mot de Passe</value>
+  </data>
+  <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
+    <value>Dossier</value>
+  </data>
   <data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
     <value>Ouvrir dans &amp;Explorer</value>
   </data>
@@ -509,5 +689,11 @@ AxCrypt est très simple à utiliser. Démarrez avec la fenêtre principale, ou 
 Pour commencer à protéger vos fichiers, cliquez l'icône + dans la barre d'outils.
 
 Pour plus d'information, cliquez sur OK pour naviguer sur notre site web.</value>
+  </data>
+  <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
+    <value>Choisissez les fichiers à supprimer de manière sécurisée.</value>
+  </data>
+  <data name="WorkingFileStatus" xml:space="preserve">
+    <value>Etat 'En cours' avec '{0}'.</value>
   </data>
 </root>
