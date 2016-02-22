@@ -3450,6 +3450,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Español.
+        /// </summary>
+        public static string SpanishLanguageToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("SpanishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid format for field Amount. Please use decimal format, i.e. 10.50..
         /// </summary>
         public static string SubscriptionsErrorAmount {

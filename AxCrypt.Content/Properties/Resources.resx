@@ -1467,4 +1467,8 @@ For more information, click OK to open a web browser to our web site.</value>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>The verfication code must be exactly 6 digits.</value>
   </data>
+  <data name="SpanishLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Español</value>
+    <comment>Do Not Translate</comment>
+  </data>
 </root>

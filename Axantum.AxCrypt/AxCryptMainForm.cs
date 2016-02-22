@@ -190,6 +190,7 @@ namespace Axantum.AxCrypt
             _secureDeleteToolStripMenuItem.Text = Texts.SecureDeleteToolStripMenuItemText;
             _shareKeysToolStripMenuItem.Text = Texts.ShareKeysToolStripMenuItemText;
             _swedishLanguageToolStripMenuItem.Text = Texts.SwedishLanguageToolStripMenuItemText;
+            _spanishLanguageToolStripMenuItem.Text = Texts.SpanishLanguageToolStripMenuItemText;
             _tryBrokenFileToolStripMenuItem.Text = Texts.TryBrokenFileToolStripMenuItemText;
             _watchedFolderColumnHeader.Text = Texts.WatchedFolderColumnHeaderText;
             _watchedFoldersdecryptTemporarilyMenuItem.Text = Texts.MenuDecryptTemporarilyText;
