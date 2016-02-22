@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
@@ -61,6 +62,7 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         public WatchedFolder(string path, IdentityPublicTag publicTag)
+            : this()
         {
             if (path == null)
             {
@@ -73,6 +75,16 @@ namespace Axantum.AxCrypt.Core.Session
 
             Path = path.NormalizeFolderPath();
             Tag = publicTag;
+            Initialize(new StreamingContext());
+        }
+
+        public WatchedFolder(WatchedFolder watchedFolder, IEnumerable<UserPublicKey> keyShares)
+        {
+            Path = watchedFolder.Path;
+            Tag = watchedFolder.Tag;
+
+            KeyShares = keyShares.Select(ks => ks.Email).ToArray();
+
             Initialize(new StreamingContext());
         }
 

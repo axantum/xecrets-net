@@ -1943,7 +1943,8 @@ namespace Axantum.AxCrypt
 
             foreach (WatchedFolder watchedFolder in watchedFolders)
             {
-                Resolve.FileSystemState.AddWatchedFolder(watchedFolder);
+                WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
+                Resolve.FileSystemState.AddWatchedFolder(wf);
             }
         }
 
