@@ -336,27 +336,30 @@ namespace Axantum.AxCrypt.Core.Session
             foreach (string fullName in fullNames)
             {
                 IDataStore item = New<IDataStore>(fullName);
-                if (!item.IsEncrypted())
+                using (FileLock fileLock = FileLock.Lock(item))
                 {
-                    continue;
+                    if (!item.IsEncrypted())
+                    {
+                        continue;
+                    }
+                    if (!item.IsAvailable)
+                    {
+                        continue;
+                    }
+                    EncryptedProperties properties = EncryptedProperties.Create(item);
+                    if (!properties.IsValid)
+                    {
+                        continue;
+                    }
+                    ActiveFile activeFile = FindActiveFileFromEncryptedPath(fullName);
+                    if (activeFile != null)
+                    {
+                        continue;
+                    }
+                    IDataStore destination = Resolve.WorkFolder.CreateTemporaryFolder().FileItemInfo(properties.FileName);
+                    activeFile = new ActiveFile(item, destination, Resolve.KnownIdentities.DefaultEncryptionIdentity, ActiveFileStatus.NotDecrypted, properties.DecryptionParameter.CryptoId);
+                    Add(activeFile);
                 }
-                if (!item.IsAvailable)
-                {
-                    continue;
-                }
-                EncryptedProperties properties = EncryptedProperties.Create(item);
-                if (!properties.IsValid)
-                {
-                    continue;
-                }
-                ActiveFile activeFile = FindActiveFileFromEncryptedPath(fullName);
-                if (activeFile != null)
-                {
-                    continue;
-                }
-                IDataStore destination = Resolve.WorkFolder.CreateTemporaryFolder().FileItemInfo(properties.FileName);
-                activeFile = new ActiveFile(item, destination, Resolve.KnownIdentities.DefaultEncryptionIdentity, ActiveFileStatus.NotDecrypted, properties.DecryptionParameter.CryptoId);
-                Add(activeFile);
             }
             Save();
         }
