@@ -28,10 +28,12 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -150,8 +152,18 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void EncryptWatchedFolders(LogOnIdentity identity, IProgressContext progress)
         {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<LogOnIdentity, ICryptoPolicy>(identity)).Id, identity);
-            _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)).Select(wf => New<IDataContainer>(wf.Path)), encryptionParameters, progress);
+            foreach (IDataContainer dc in _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)).Select(wf => New<IDataContainer>(wf.Path)))
+            {
+                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<LogOnIdentity, ICryptoPolicy>(identity)).Id, identity);
+
+                IEnumerable<EmailAddress> keySharesEmails = _fileSystemState.WatchedFolders.First(wf => wf.Path == dc.FullName).KeyShares;
+                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+                {
+                    IEnumerable<UserPublicKey> keyShares = knownPublicKeys.PublicKeys.Where(pk => keySharesEmails.Contains(pk.Email));
+                    encryptionParameters.Add(keyShares);
+                }
+                _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { dc }, encryptionParameters, progress);
+            }
         }
     }
 }
