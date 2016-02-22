@@ -359,7 +359,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -479,7 +479,7 @@
             // _englishLanguageToolStripMenuItem
             // 
             this._englishLanguageToolStripMenuItem.Name = "_englishLanguageToolStripMenuItem";
-            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._englishLanguageToolStripMenuItem.Tag = "en-US";
             this._englishLanguageToolStripMenuItem.Text = "[&English]";
             this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -487,7 +487,7 @@
             // _francaisLanguageToolStripMenuItem
             // 
             this._francaisLanguageToolStripMenuItem.Name = "_francaisLanguageToolStripMenuItem";
-            this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._francaisLanguageToolStripMenuItem.Tag = "fr-FR";
             this._francaisLanguageToolStripMenuItem.Text = "[&Français]";
             this._francaisLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -495,7 +495,7 @@
             // _swedishLanguageToolStripMenuItem
             // 
             this._swedishLanguageToolStripMenuItem.Name = "_swedishLanguageToolStripMenuItem";
-            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._swedishLanguageToolStripMenuItem.Tag = "sv-SE";
             this._swedishLanguageToolStripMenuItem.Text = "[&Svenska]";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -503,7 +503,7 @@
             // _spanishLanguageToolStripMenuItem
             // 
             this._spanishLanguageToolStripMenuItem.Name = "_spanishLanguageToolStripMenuItem";
-            this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._spanishLanguageToolStripMenuItem.Tag = "es-ES";
             this._spanishLanguageToolStripMenuItem.Text = "[&Español]";
             this._spanishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -729,17 +729,18 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(634, 42);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(634, 40);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox1.Image = global::Axantum.AxCrypt.Properties.Resources.logo_text_retina;
             this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(15, 3);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(194, 36);
+            this.pictureBox1.Size = new System.Drawing.Size(145, 33);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
@@ -765,7 +766,7 @@
             this._toolStripSeparator1,
             this._closeAndRemoveOpenFilesToolStripButton});
             this._mainToolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this._mainToolStrip.Location = new System.Drawing.Point(203, 1);
+            this._mainToolStrip.Location = new System.Drawing.Point(203, 0);
             this._mainToolStrip.Name = "_mainToolStrip";
             this._mainToolStrip.Padding = new System.Windows.Forms.Padding(0);
             this._mainToolStrip.Size = new System.Drawing.Size(258, 40);
@@ -837,7 +838,7 @@
             this._daysLeftPremiumLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._daysLeftPremiumLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this._daysLeftPremiumLabel.LinkColor = System.Drawing.SystemColors.ControlText;
-            this._daysLeftPremiumLabel.Location = new System.Drawing.Point(475, 14);
+            this._daysLeftPremiumLabel.Location = new System.Drawing.Point(475, 13);
             this._daysLeftPremiumLabel.Name = "_daysLeftPremiumLabel";
             this._daysLeftPremiumLabel.Size = new System.Drawing.Size(47, 13);
             this._daysLeftPremiumLabel.TabIndex = 11;
@@ -859,10 +860,10 @@
             this._rightToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._feedbackButton,
             this._updateStatusButton});
-            this._rightToolStrip.Location = new System.Drawing.Point(540, 1);
+            this._rightToolStrip.Location = new System.Drawing.Point(544, 0);
             this._rightToolStrip.Name = "_rightToolStrip";
             this._rightToolStrip.Padding = new System.Windows.Forms.Padding(0);
-            this._rightToolStrip.Size = new System.Drawing.Size(88, 40);
+            this._rightToolStrip.Size = new System.Drawing.Size(80, 40);
             this._rightToolStrip.TabIndex = 13;
             this._rightToolStrip.Text = "[toolStrip1]";
             // 
