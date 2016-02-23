@@ -55,6 +55,7 @@
     <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography\HMACBase.cs" />
     <Compile Include="EmailParser.cs" />
     <Compile Include="ItemCache.cs" />
     <Compile Include="Portable\BlockingBuffer.cs" />

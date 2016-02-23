@@ -216,6 +216,10 @@
       <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Desktop\Axantum.AxCrypt.Desktop.csproj">
+      <Project>{d64de570-3a36-49d3-95aa-9262647b04ee}</Project>
+      <Name>Axantum.AxCrypt.Desktop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Fake\Axantum.AxCrypt.Fake.csproj">
       <Project>{48602976-aba8-4639-93e1-54cd0b2f0c23}</Project>
       <Name>Axantum.AxCrypt.Fake</Name>

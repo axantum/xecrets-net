@@ -75,18 +75,30 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static byte[] GetBigEndianBytes(this long value)
         {
+            byte[] bytes = BitConverter.GetBytes(value);
             if (!_isLittleEndian)
             {
-                return BitConverter.GetBytes(value);
+                return bytes;
             }
 
-            byte[] bytes = new byte[sizeof(long)];
+            byte b;
 
-            for (int i = bytes.Length - 1; value != 0 && i >= 0; --i)
-            {
-                bytes[i] = (byte)value;
-                value >>= 8;
-            }
+            b = bytes[0];
+            bytes[0] = bytes[7];
+            bytes[7] = b;
+
+            b = bytes[1];
+            bytes[1] = bytes[6];
+            bytes[6] = b;
+
+            b = bytes[2];
+            bytes[2] = bytes[5];
+            bytes[5] = b;
+
+            b = bytes[3];
+            bytes[3] = bytes[4];
+            bytes[4] = b;
+
             return bytes;
         }
 

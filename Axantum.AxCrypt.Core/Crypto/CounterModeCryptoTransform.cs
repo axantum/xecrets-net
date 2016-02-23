@@ -146,11 +146,17 @@ namespace Axantum.AxCrypt.Core.Crypto
             return outputBuffer;
         }
 
+        private byte[] _cachedIv;
+
         private byte[] GetCounterBlock(long blockCounter)
         {
+            if (_cachedIv == null)
+            {
+                _cachedIv = _algorithm.IV();
+            }
+
             byte[] counterBytes = blockCounter.GetBigEndianBytes();
-            byte[] iv = _algorithm.IV();
-            byte[] counterBlock = iv.Xor(iv.Length - counterBytes.Length, counterBytes, 0, counterBytes.Length);
+            byte[] counterBlock = ((byte[])_cachedIv.Clone()).Xor(_cachedIv.Length - counterBytes.Length, counterBytes, 0, counterBytes.Length);
             return counterBlock;
         }
 

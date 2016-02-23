@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 case CryptoImplementation.WindowsDesktop:
                     TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
-                    TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+                    TypeMap.Register.New<HMACSHA512>(() => new Mono.Cryptography.HMACSHA512Wrapper(new Axantum.AxCrypt.Desktop.Cryptography.HMACSHA512CryptoServiceProvider()));
                     TypeMap.Register.New<Aes>(() => new Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
                     TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
                     TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());

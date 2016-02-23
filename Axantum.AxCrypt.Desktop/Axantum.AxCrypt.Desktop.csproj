@@ -46,6 +46,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography\HMACSHA512CryptoServiceProvider.cs" />
     <Compile Include="DesktopFactory.cs" />
     <Compile Include="FileWatcher.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -67,6 +68,10 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
       <Project>{966e9510-1a1d-46c7-97b5-460a0ff9b89f}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
+      <Project>{ce9e8614-8dc5-4757-9384-3c416ab61a47}</Project>
+      <Name>Axantum.AxCrypt.Mono</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

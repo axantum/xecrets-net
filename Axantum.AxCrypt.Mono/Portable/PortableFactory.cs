@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Mono.Portable
 
         public static HMACSHA512 HMACSHA512()
         {
-            return new Mono.Cryptography.HMACSHA512Wrapper();
+            return new Mono.Cryptography.HMACSHA512Wrapper(new System.Security.Cryptography.HMACSHA512());
         }
 
         public static Aes AesManaged()

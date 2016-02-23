@@ -9,24 +9,15 @@ namespace Axantum.AxCrypt.Mono.Cryptography
 {
     public class HMACSHA512Wrapper : HMACSHA512
     {
-        private System.Security.Cryptography.HMAC _hmac;
+        private System.Security.Cryptography.KeyedHashAlgorithm _hmac;
 
-        public HMACSHA512Wrapper()
+        public HMACSHA512Wrapper(System.Security.Cryptography.KeyedHashAlgorithm hmac)
         {
-            _hmac = new System.Security.Cryptography.HMACSHA512();
+            _hmac = hmac;
+            HashName = nameof(HMACSHA512Wrapper);
         }
 
-        public override string HashName
-        {
-            get
-            {
-                return _hmac.HashName;
-            }
-            set
-            {
-                _hmac.HashName = value;
-            }
-        }
+        public override string HashName { get; set; }
 
         public override byte[] Key()
         {
