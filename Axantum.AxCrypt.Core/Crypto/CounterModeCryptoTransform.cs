@@ -112,19 +112,33 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private void TransformBlockInternal(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
         {
-            byte[] keyStreamblock = new byte[_blockLength];
+            if (inputCount == 0)
+            {
+                return;
+            }
+
+            int blockCount = (inputCount + _currentBlockOffset + (_blockLength - 1)) / _blockLength;
+            byte[] counterBlocks = new byte[blockCount * _blockLength];
+            for (int i = 0; i < blockCount; ++i)
+            {
+                Array.Copy(GetCounterBlock(_currentBlockCounter + i), 0, counterBlocks, i * _blockLength, _blockLength);
+            }
+
+            byte[] keyStreamBlocks = new byte[counterBlocks.Length];
+            _cryptoTransform.TransformBlock(counterBlocks, 0, counterBlocks.Length, keyStreamBlocks, 0);
             int remainingCount = inputCount;
+            long startBlockCounter = _currentBlockCounter;
+            byte[] workBlock = new byte[_blockLength];
             while (remainingCount > 0)
             {
-                _cryptoTransform.TransformBlock(GetCounterBlock(_currentBlockCounter), 0, _blockLength, keyStreamblock, 0);
-
                 int blockBytes = _blockLength - _currentBlockOffset;
                 if (remainingCount < blockBytes)
                 {
                     blockBytes = remainingCount;
                 }
-                keyStreamblock.Xor(_currentBlockOffset, inputBuffer, inputOffset, blockBytes);
-                Array.Copy(keyStreamblock, _currentBlockOffset, outputBuffer, outputOffset, blockBytes);
+                Array.Copy(keyStreamBlocks, (int)(_currentBlockCounter - startBlockCounter) * _blockLength, workBlock, 0, _blockLength);
+                workBlock.Xor(_currentBlockOffset, inputBuffer, inputOffset, blockBytes);
+                Array.Copy(workBlock, _currentBlockOffset, outputBuffer, outputOffset, blockBytes);
 
                 inputOffset += blockBytes;
                 outputOffset += blockBytes;
