@@ -93,11 +93,21 @@ namespace Axantum.AxCrypt.Core.Session
             switch (notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
-                    foreach (string fullName in notification.FullNames)
+                    progress.NotifyLevelStart();
+                    try
                     {
-                        IDataContainer addedFolderInfo = New<IDataContainer>(fullName);
-                        encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<LogOnIdentity, ICryptoPolicy>(notification.Identity)).Id, notification.Identity);
-                        _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { addedFolderInfo }, encryptionParameters, progress);
+                        foreach (string fullName in notification.FullNames)
+                        {
+                            WatchedFolder watchedFolder = _fileSystemState.WatchedFolders.First(wf => wf.Path == fullName);
+                            encryptionParameters = WatchedFolderEncryptionParameters(watchedFolder, notification.Identity);
+                            IDataContainer[] dc = new IDataContainer[] { New<IDataContainer>(watchedFolder.Path) };
+                            _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(dc, encryptionParameters, progress);
+                            _axCryptFile.ChangeEncryption(dc, notification.Identity, encryptionParameters, progress);
+                        }
+                    }
+                    finally
+                    {
+                        progress.NotifyLevelFinished();
                     }
                     break;
 
@@ -152,18 +162,25 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void EncryptWatchedFolders(LogOnIdentity identity, IProgressContext progress)
         {
-            foreach (IDataContainer dc in _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)).Select(wf => New<IDataContainer>(wf.Path)))
+            foreach (WatchedFolder watchedFolder in _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)))
             {
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<LogOnIdentity, ICryptoPolicy>(identity)).Id, identity);
-
-                IEnumerable<EmailAddress> keySharesEmails = _fileSystemState.WatchedFolders.First(wf => wf.Path == dc.FullName).KeyShares;
-                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-                {
-                    IEnumerable<UserPublicKey> keyShares = knownPublicKeys.PublicKeys.Where(pk => keySharesEmails.Contains(pk.Email));
-                    encryptionParameters.Add(keyShares);
-                }
-                _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { dc }, encryptionParameters, progress);
+                EncryptionParameters encryptionParameters = WatchedFolderEncryptionParameters(watchedFolder, identity);
+                _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { New<IDataContainer>(watchedFolder.Path) }, encryptionParameters, progress);
             }
+        }
+
+        private static EncryptionParameters WatchedFolderEncryptionParameters(WatchedFolder watchedFolder, LogOnIdentity identity)
+        {
+            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<LogOnIdentity, ICryptoPolicy>(identity)).Id, identity);
+
+            IEnumerable<EmailAddress> keySharesEmails = watchedFolder.KeyShares;
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                IEnumerable<UserPublicKey> keyShares = knownPublicKeys.PublicKeys.Where(pk => keySharesEmails.Contains(pk.Email));
+                encryptionParameters.Add(keyShares);
+            }
+
+            return encryptionParameters;
         }
     }
 }

@@ -261,16 +261,67 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
+
             progress.NotifyLevelStart();
-            using (Stream activeFileStream = sourceStore.OpenRead())
+            try
             {
-                WriteToFileWithBackup(destinationStore, (Stream destination) =>
+                using (Stream activeFileStream = sourceStore.OpenRead())
                 {
-                    Encrypt(sourceStore, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
-                }, progress);
+                    WriteToFileWithBackup(destinationStore, (Stream destination) =>
+                    {
+                        Encrypt(sourceStore, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
+                    }, progress);
+                }
+                Wipe(sourceStore, progress);
             }
-            Wipe(sourceStore, progress);
-            progress.NotifyLevelFinished();
+            finally
+            {
+                progress.NotifyLevelFinished();
+            }
+        }
+
+        /// <summary>
+        /// Changes the encryption for all encrypted files in the provided containers, using the original identity to decrypt
+        /// and the provided encryption parameters for the new encryption.
+        /// </summary>
+        /// <remarks>
+        /// If a file is already encrypted with the appropriate parameters, nothing happens.
+        /// </remarks>
+        /// <param name="containers">The containers.</param>
+        /// <param name="identity">The identity.</param>
+        /// <param name="encryptionParameters">The encryption parameters.</param>
+        /// <param name="progress">The progress.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// containers
+        /// or
+        /// progress
+        /// </exception>
+        public virtual void ChangeEncryption(IEnumerable<IDataContainer> containers, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
+        {
+            if (containers == null)
+            {
+                throw new ArgumentNullException("containers");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
+            progress.NotifyLevelStart();
+            try
+            {
+                IEnumerable<IDataStore> files = containers.SelectMany((folder) => folder.ListEncrypted());
+                progress.AddTotal(files.Count());
+                foreach (IDataStore file in files)
+                {
+                    ChangeEncryption(file, identity, encryptionParameters, progress);
+                    progress.AddCount(1);
+                }
+            }
+            finally
+            {
+                progress.NotifyLevelFinished();
+            }
         }
 
         /// <summary>
@@ -278,8 +329,10 @@ namespace Axantum.AxCrypt.Core
         /// for the new encryption. This can for example be used to change passhrase for a file, or to add or remove
         /// sharing recipients.
         /// </summary>
+        /// <remarks>
+        /// If the file is already encrypted with the appropriate parameters, nothing happens.
+        /// </remarks>
         /// <param name="from">From.</param>
-        /// <param name="identity">The identity.</param>
         /// <param name="encryptionParameters">The encryption parameters.</param>
         /// <param name="progress">The progress.</param>
         public void ChangeEncryption(IDataStore from, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
@@ -587,21 +640,27 @@ namespace Axantum.AxCrypt.Core
             }
 
             progress.NotifyLevelStart();
-            using (IAxCryptDocument document = New<AxCryptFile>().Document(sourceStore, logOnIdentity, progress))
+            try
             {
-                if (!document.PassphraseIsValid)
+                using (IAxCryptDocument document = New<AxCryptFile>().Document(sourceStore, logOnIdentity, progress))
                 {
-                    return new FileOperationContext(sourceStore.FullName, ErrorStatus.Canceled);
-                }
+                    if (!document.PassphraseIsValid)
+                    {
+                        return new FileOperationContext(sourceStore.FullName, ErrorStatus.Canceled);
+                    }
 
-                IDataStore destinationStore = New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceStore.FullName), document.FileName));
-                using (FileLock lockedDestination = destinationStore.FullName.CreateUniqueFile())
-                {
-                    DecryptFile(document, lockedDestination.DataStore.FullName, progress);
+                    IDataStore destinationStore = New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceStore.FullName), document.FileName));
+                    using (FileLock lockedDestination = destinationStore.FullName.CreateUniqueFile())
+                    {
+                        DecryptFile(document, lockedDestination.DataStore.FullName, progress);
+                    }
                 }
+                Wipe(sourceStore, progress);
             }
-            Wipe(sourceStore, progress);
-            progress.NotifyLevelFinished();
+            finally
+            {
+                progress.NotifyLevelFinished();
+            }
             return new FileOperationContext(String.Empty, ErrorStatus.Success);
         }
 
@@ -754,38 +813,41 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("writeFileStreamTo");
             }
 
-            using (FileLock lockedTemporary = MakeAlternatePath(destinationFileInfo, ".tmp"))
+            using (FileLock destinationLock = FileLock.Lock(destinationFileInfo))
             {
-                try
+                using (FileLock lockedTemporary = MakeAlternatePath(destinationFileInfo, ".tmp"))
                 {
-                    using (Stream temporaryStream = lockedTemporary.DataStore.OpenWrite())
+                    try
                     {
-                        writeFileStreamTo(temporaryStream);
+                        using (Stream temporaryStream = lockedTemporary.DataStore.OpenWrite())
+                        {
+                            writeFileStreamTo(temporaryStream);
+                        }
                     }
-                }
-                catch (Exception)
-                {
-                    if (lockedTemporary.DataStore.IsAvailable)
+                    catch (Exception)
                     {
-                        Wipe(lockedTemporary.DataStore, progress);
+                        if (lockedTemporary.DataStore.IsAvailable)
+                        {
+                            Wipe(lockedTemporary.DataStore, progress);
+                        }
+                        throw;
                     }
-                    throw;
-                }
 
-                if (destinationFileInfo.IsAvailable)
-                {
-                    using (FileLock lockedAlternate = MakeAlternatePath(destinationFileInfo, ".bak"))
+                    if (destinationFileInfo.IsAvailable)
                     {
-                        IDataStore backupFileInfo = New<IDataStore>(destinationFileInfo.FullName);
+                        using (FileLock lockedAlternate = MakeAlternatePath(destinationFileInfo, ".bak"))
+                        {
+                            IDataStore backupFileInfo = New<IDataStore>(destinationFileInfo.FullName);
 
-                        backupFileInfo.MoveTo(lockedAlternate.DataStore.FullName);
+                            backupFileInfo.MoveTo(lockedAlternate.DataStore.FullName);
+                            lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
+                            Wipe(backupFileInfo, progress);
+                        }
+                    }
+                    else
+                    {
                         lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
-                        Wipe(backupFileInfo, progress);
                     }
-                }
-                else
-                {
-                    lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
                 }
             }
         }
@@ -842,39 +904,45 @@ namespace Axantum.AxCrypt.Core
                 Resolve.Log.LogInfo("Wiping '{0}'.".InvariantFormat(store.Name));
             }
             bool cancelPending = false;
+
             progress.NotifyLevelStart();
-
-            string randomName;
-            do
+            try
             {
-                randomName = GenerateRandomFileName(store.FullName);
-            } while (New<IDataStore>(randomName).IsAvailable);
-            IDataStore moveToFileInfo = New<IDataStore>(store.FullName);
-            moveToFileInfo.MoveTo(randomName);
-
-            using (Stream stream = moveToFileInfo.OpenUpdate())
-            {
-                long length = stream.Length + OS.Current.StreamBufferSize - stream.Length % OS.Current.StreamBufferSize;
-                progress.AddTotal(length);
-                for (long position = 0; position < length; position += OS.Current.StreamBufferSize)
+                string randomName;
+                do
                 {
-                    byte[] random = Resolve.RandomGenerator.Generate(OS.Current.StreamBufferSize);
-                    stream.Write(random, 0, random.Length);
-                    stream.Flush();
-                    try
+                    randomName = GenerateRandomFileName(store.FullName);
+                } while (New<IDataStore>(randomName).IsAvailable);
+                IDataStore moveToFileInfo = New<IDataStore>(store.FullName);
+                moveToFileInfo.MoveTo(randomName);
+
+                using (Stream stream = moveToFileInfo.OpenUpdate())
+                {
+                    long length = stream.Length + OS.Current.StreamBufferSize - stream.Length % OS.Current.StreamBufferSize;
+                    progress.AddTotal(length);
+                    for (long position = 0; position < length; position += OS.Current.StreamBufferSize)
                     {
-                        progress.AddCount(random.Length);
-                    }
-                    catch (OperationCanceledException)
-                    {
-                        cancelPending = true;
-                        progress.AddCount(random.Length);
+                        byte[] random = Resolve.RandomGenerator.Generate(OS.Current.StreamBufferSize);
+                        stream.Write(random, 0, random.Length);
+                        stream.Flush();
+                        try
+                        {
+                            progress.AddCount(random.Length);
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            cancelPending = true;
+                            progress.AddCount(random.Length);
+                        }
                     }
                 }
-            }
 
-            moveToFileInfo.Delete();
-            progress.NotifyLevelFinished();
+                moveToFileInfo.Delete();
+            }
+            finally
+            {
+                progress.NotifyLevelFinished();
+            }
             if (cancelPending)
             {
                 throw new OperationCanceledException("Delayed cancel during wipe.");

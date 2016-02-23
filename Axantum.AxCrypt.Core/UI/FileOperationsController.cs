@@ -330,20 +330,23 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool DecryptFileOperation()
         {
+            _progress.NotifyLevelStart();
             try
             {
-                _progress.NotifyLevelStart();
                 using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
                 {
                     New<AxCryptFile>().DecryptFile(document, _eventArgs.SaveFileFullName, _progress);
                 }
                 New<AxCryptFile>().Wipe(New<IDataStore>(_eventArgs.OpenFileFullName), _progress);
-                _progress.NotifyLevelFinished();
             }
             catch (AxCryptException ace)
             {
                 _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ace.ErrorStatus);
                 return false;
+            }
+            finally
+            {
+                _progress.NotifyLevelFinished();
             }
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return true;
@@ -418,8 +421,14 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             _progress.NotifyLevelStart();
-            New<AxCryptFile>().Wipe(New<IDataStore>(_eventArgs.SaveFileFullName), _progress);
-            _progress.NotifyLevelFinished();
+            try
+            {
+                New<AxCryptFile>().Wipe(New<IDataStore>(_eventArgs.SaveFileFullName), _progress);
+            }
+            finally
+            {
+                _progress.NotifyLevelFinished();
+            }
 
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return true;
@@ -427,9 +436,9 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool OpenAxCryptDocument(IDataStore sourceFileInfo, FileOperationEventArgs e)
         {
+            _progress.NotifyLevelStart();
             try
             {
-                _progress.NotifyLevelStart();
                 e.OpenFileFullName = sourceFileInfo.FullName;
                 if (TryFindDecryptionKey(sourceFileInfo, e))
                 {
@@ -499,9 +508,9 @@ namespace Axantum.AxCrypt.Core.UI
 
         private FileOperationContext DoFile(IDataStore fileInfo, Func<IDataStore, bool> preparation, Func<bool> operation)
         {
+            _progress.NotifyLevelStart();
             try
             {
-                _progress.NotifyLevelStart();
                 bool ok = RunOnUIThread(fileInfo, preparation);
                 if (ok)
                 {
@@ -515,8 +524,8 @@ namespace Axantum.AxCrypt.Core.UI
             }
             finally
             {
-                OnCompleted(_eventArgs);
                 _progress.NotifyLevelFinished();
+                OnCompleted(_eventArgs);
             }
 
             return _eventArgs.Status;

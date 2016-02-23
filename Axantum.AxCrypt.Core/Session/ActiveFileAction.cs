@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -60,31 +59,37 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             progress.NotifyLevelStart();
-            Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
+            try
             {
-                if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
+                Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
                 {
-                    if (Resolve.Log.IsInfoEnabled)
+                    if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
                     {
-                        Resolve.Log.LogInfo("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                        if (Resolve.Log.IsInfoEnabled)
+                        {
+                            Resolve.Log.LogInfo("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                        }
+                        return activeFile;
+                    }
+                    if (activeFile.IsModified)
+                    {
+                        if (activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
+                        {
+                            activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
+                        }
+                        activeFile = CheckIfTimeToUpdate(activeFile, progress);
+                    }
+                    if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+                    {
+                        activeFile = TryDelete(activeFile, progress);
                     }
                     return activeFile;
-                }
-                if (activeFile.IsModified)
-                {
-                    if (activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
-                    {
-                        activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
-                    }
-                    activeFile = CheckIfTimeToUpdate(activeFile, progress);
-                }
-                if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
-                {
-                    activeFile = TryDelete(activeFile, progress);
-                }
-                return activeFile;
-            });
-            progress.NotifyLevelFinished();
+                });
+            }
+            finally
+            {
+                progress.NotifyLevelFinished();
+            }
         }
 
         /// <summary>
@@ -102,19 +107,25 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             progress.NotifyLevelStart();
-            progress.AddTotal(Resolve.FileSystemState.ActiveFileCount);
-            Resolve.FileSystemState.ForEach(mode, (ActiveFile activeFile) =>
+            try
             {
-                try
+                progress.AddTotal(Resolve.FileSystemState.ActiveFileCount);
+                Resolve.FileSystemState.ForEach(mode, (ActiveFile activeFile) =>
                 {
-                    return CheckActiveFile(activeFile, progress);
-                }
-                finally
-                {
-                    progress.AddCount(1);
-                }
-            });
-            progress.NotifyLevelFinished();
+                    try
+                    {
+                        return CheckActiveFile(activeFile, progress);
+                    }
+                    finally
+                    {
+                        progress.AddCount(1);
+                    }
+                });
+            }
+            finally
+            {
+                progress.NotifyLevelFinished();
+            }
         }
 
         public virtual ActiveFile CheckActiveFile(ActiveFile activeFile, IProgressContext progress)
@@ -179,18 +190,24 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             progress.NotifyLevelStart();
-            progress.AddTotal(encryptedPaths.Count());
-            foreach (IDataStore encryptedPath in encryptedPaths)
+            try
             {
-                ActiveFile activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedPath.FullName);
-                if (activeFile != null)
+                progress.AddTotal(encryptedPaths.Count());
+                foreach (IDataStore encryptedPath in encryptedPaths)
                 {
-                    Resolve.FileSystemState.RemoveActiveFile(activeFile);
+                    ActiveFile activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedPath.FullName);
+                    if (activeFile != null)
+                    {
+                        Resolve.FileSystemState.RemoveActiveFile(activeFile);
+                    }
+                    progress.AddCount(1);
                 }
-                progress.AddCount(1);
+                Resolve.FileSystemState.Save();
             }
-            Resolve.FileSystemState.Save();
-            progress.NotifyLevelFinished();
+            finally
+            {
+                progress.NotifyLevelFinished();
+            }
         }
 
         private static ActiveFile CheckActiveFileActions(ActiveFile activeFile, IProgressContext progress)
