@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -287,7 +288,11 @@ namespace Axantum.AxCrypt.Core
             {
                 using (PipelineStream pipeline = new PipelineStream(tokenSource.Token))
                 {
-                    EncryptedProperties properties = EncryptedProperties.Create(from, identity);
+                    EncryptedProperties encryptedProperties = EncryptedProperties.Create(from, identity);
+                    if (!EncryptionChangeNecessary(identity, encryptedProperties, encryptionParameters))
+                    {
+                        return;
+                    }
 
                     Task decryption = Task.Factory.StartNew(() =>
                     {
@@ -300,7 +305,7 @@ namespace Axantum.AxCrypt.Core
                     {
                         WriteToFileWithBackup(from, (Stream s) =>
                         {
-                            Encrypt(pipeline, s, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
+                            Encrypt(pipeline, s, encryptedProperties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
                         }, progress);
                     });
                     encryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
@@ -319,6 +324,29 @@ namespace Axantum.AxCrypt.Core
                     }
                 }
             }
+        }
+
+        private static bool EncryptionChangeNecessary(LogOnIdentity identity, EncryptedProperties encryptedProperties, EncryptionParameters encryptionParameters)
+        {
+            if (encryptedProperties.DecryptionParameter.Passphrase != identity.Passphrase)
+            {
+                return true;
+            }
+
+            if (encryptedProperties.SharedKeyHolders.Count() != encryptionParameters.PublicKeys.Count())
+            {
+                return true;
+            }
+
+            foreach (UserPublicKey userPublicKey in encryptionParameters.PublicKeys)
+            {
+                if (!encryptedProperties.SharedKeyHolders.Contains(userPublicKey))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public bool Decrypt(IDataStore sourceStore, Stream destinationStream, LogOnIdentity passphrase)
