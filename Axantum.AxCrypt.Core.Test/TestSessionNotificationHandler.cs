@@ -41,30 +41,37 @@ using System.Linq;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestSessionNotificationHandler
+    public class TestSessionNotificationHandler
     {
-        private static readonly string _fileSystemStateFilePath = Path.Combine(Path.GetTempPath(), "DummyFileSystemState.txt");
+        private readonly string _fileSystemStateFilePath = Path.Combine(Path.GetTempPath(), "DummyFileSystemState.txt");
 
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
 
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(New<IDataStore>(_fileSystemStateFilePath)));
+            FakeInMemoryDataStoreItem store = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
+            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(store, Resolve.Serializer));
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
-        public static void TestHandleSessionEventWatchedFolderAdded()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public void TestHandleSessionEventWatchedFolderAdded(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
             mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) => { called = folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath(); };
@@ -72,6 +79,9 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
+            FakeDataStore.AddFolder(@"C:\My Documents");
+            LogOnIdentity key = new LogOnIdentity("passphrase");
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents", key.Tag));
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
 
@@ -79,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestHandleSessionEventWatchedFolderRemoved()
+        public void TestHandleSessionEventWatchedFolderRemoved()
         {
             FakeDataStore.AddFolder(@"C:\My Documents\");
             MockAxCryptFile mock = new MockAxCryptFile();
@@ -99,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static void TestHandleSessionEventLogOn(CryptoImplementation cryptoImplementation)
+        public void TestHandleSessionEventLogOn(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -125,8 +135,31 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(folderCount, Is.EqualTo(1), "There should be one folder passed for encryption as a result of the event.");
         }
 
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public void TestHandleSessionEventLogOffWithWatchedFolders(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            MockAxCryptFile mock = new MockAxCryptFile();
+            bool called = false;
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) => { called = true; };
+
+            Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
+
+            SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
+            FakeDataStore.AddFolder(@"C:\WatchedFolder");
+            LogOnIdentity key = new LogOnIdentity("passphrase");
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
+
+            called = false;
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new LogOnIdentity("passphrase")));
+            Assert.That(called, Is.True, nameof(AxCryptFile.EncryptFoldersUniqueWithBackupAndWipe) + " should be called when a signing out.");
+        }
+
         [Test]
-        public static void TestHandleSessionEventLogOff()
+        public void TestHandleSessionEventLogOffWithNoWatchedFolders()
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
@@ -138,11 +171,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new LogOnIdentity("passphrase")));
 
-            Assert.That(called, Is.True);
+            Assert.That(called, Is.False);
         }
 
         [Test]
-        public static void TestHandleSessionEventActiveFileChange()
+        public void TestHandleSessionEventActiveFileChange()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
@@ -158,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestHandleSessionEventSessionStart()
+        public void TestHandleSessionEventSessionStart()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
@@ -174,7 +207,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestHandleSessionEventPurgeActiveFiles()
+        public void TestHandleSessionEventPurgeActiveFiles()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
@@ -190,7 +223,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestHandleSessionEventThatCauseNoSpecificAction()
+        public void TestHandleSessionEventThatCauseNoSpecificAction()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
 
@@ -208,7 +241,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestHandleSessionEventThatIsNotHandled()
+        public void TestHandleSessionEventThatIsNotHandled()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
 
@@ -222,9 +255,13 @@ namespace Axantum.AxCrypt.Core.Test
             });
         }
 
-        [Test]
-        public static void TestHandleSessionEvents()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public void TestHandleSessionEvents(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             MockAxCryptFile mock = new MockAxCryptFile();
             int callTimes = 0;
             mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) => { if (folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath()) ++callTimes; };
@@ -232,6 +269,9 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
+            FakeDataStore.AddFolder(@"C:\My Documents");
+            LogOnIdentity key = new LogOnIdentity("passphrase");
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents", key.Tag));
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
             sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase1"), @"C:\My Documents\"));
@@ -247,7 +287,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static void TestNotificationEncryptPendingFilesInLoggedOnFolders(CryptoImplementation cryptoImplementation)
+        public void TestNotificationEncryptPendingFilesInLoggedOnFolders(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
