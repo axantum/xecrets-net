@@ -45,11 +45,10 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("encryptedFileInfo");
             }
 
-            DecryptionParameter foundParameter;
-            using (CreateDocument(decryptionParameters, encryptedFileInfo.OpenRead(), out foundParameter))
+            using (IAxCryptDocument document = CreateDocument(decryptionParameters, encryptedFileInfo.OpenRead()))
             {
+                return document.DecryptionParameter;
             }
-            return foundParameter;
         }
 
         public virtual IAxCryptDocument CreateDocument(EncryptionParameters encryptionParameters)
@@ -67,18 +66,6 @@ namespace Axantum.AxCrypt.Core
             return new V2AxCryptDocument(encryptionParameters, keyWrapIterations);
         }
 
-        /// <summary>
-        /// Instantiate an instance of IAxCryptDocument appropriate for the file provided, i.e. V1 or V2.
-        /// </summary>
-        /// <param name="decryptionParameters">The possible decryption parameters to try.</param>
-        /// <param name="inputStream">The input stream.</param>
-        /// <returns></returns>
-        public virtual IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream)
-        {
-            DecryptionParameter foundParameter;
-            return CreateDocument(decryptionParameters, inputStream, out foundParameter);
-        }
-
         public virtual Headers Headers(Stream inputStream)
         {
             Headers headers = new Headers();
@@ -86,7 +73,13 @@ namespace Axantum.AxCrypt.Core
             return headers;
         }
 
-        private static IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream, out DecryptionParameter foundParameter)
+        /// <summary>
+        /// Instantiate an instance of IAxCryptDocument appropriate for the file provided, i.e. V1 or V2.
+        /// </summary>
+        /// <param name="decryptionParameters">The possible decryption parameters to try.</param>
+        /// <param name="inputStream">The input stream.</param>
+        /// <returns></returns>
+        public virtual IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReaderBase reader = headers.CreateReader(new LookAheadStream(inputStream));
@@ -99,7 +92,7 @@ namespace Axantum.AxCrypt.Core
                     document.Load(decryptionParameter.Passphrase, decryptionParameter.CryptoId, headers);
                     if (document.PassphraseIsValid)
                     {
-                        document.DecryptionParameter = foundParameter = decryptionParameter;
+                        document.DecryptionParameter = decryptionParameter;
                         return document;
                     }
                 }
@@ -108,12 +101,11 @@ namespace Axantum.AxCrypt.Core
                     document.Load(decryptionParameter.PrivateKey, decryptionParameter.CryptoId, headers);
                     if (document.PassphraseIsValid)
                     {
-                        document.DecryptionParameter = foundParameter = decryptionParameter;
+                        document.DecryptionParameter = decryptionParameter;
                         return document;
                     }
                 }
             }
-            foundParameter = null;
             return document;
         }
     }
