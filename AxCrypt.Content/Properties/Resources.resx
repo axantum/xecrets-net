@@ -1304,6 +1304,10 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Warning! A site restart is scheduled in a few minutes. We're sorry about the inconvenience.</value>
   </data>
+  <data name="SpanishLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Español</value>
+    <comment>Do Not Translate</comment>
+  </data>
   <data name="SubscriptionsErrorAmount" xml:space="preserve">
     <value>Invalid format for field Amount. Please use decimal format, i.e. 10.50.</value>
   </data>
@@ -1466,9 +1470,5 @@ For more information, click OK to open a web browser to our web site.</value>
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>The verfication code must be exactly 6 digits.</value>
-  </data>
-  <data name="SpanishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Español</value>
-    <comment>Do Not Translate</comment>
   </data>
 </root>
