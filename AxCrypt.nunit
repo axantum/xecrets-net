@@ -1,0 +1,10 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="Axantum.AxCrypt.Api.Test\bin\Debug\Axantum.AxCrypt.Api.Test.dll" />
+    <assembly path="Axantum.AxCrypt.Core.Test\bin\Debug\Axantum.AxCrypt.Core.Test.dll" />
+    <assembly path="Axantum.AxCrypt.Desktop.Test\bin\Debug\Axantum.AxCrypt.Desktop.Test.dll" />
+    <assembly path="Axantum.AxCrypt.Mono.Test\bin\Debug\Axantum.AxCrypt.Mono.Test.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto" />
+</NUnitProject>

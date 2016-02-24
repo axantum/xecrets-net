@@ -23,3 +23,4 @@ Axantum.AxCrypt.Core.Test/*.tmp
 *.psess
 UpgradeLog.htm
 TestResults/*
+TestResult.xml
