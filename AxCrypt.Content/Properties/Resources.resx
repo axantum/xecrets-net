@@ -678,7 +678,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Import failed. Probably not a valid AxCrypt ID file.</value>
   </data>
   <data name="FeedbackButtonText" xml:space="preserve">
-    <value>Talk to us! Feedback or bug reports welcome.</value>
+    <value>How are we doing? Please give us feedback!</value>
   </data>
   <data name="FileAlreadyEncrypted" xml:space="preserve">
     <value>File '{0}' is already secured.</value>
@@ -838,7 +838,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
     <value>https://account.axcrypt.net/Home/Purchase?email={0}</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>http://www.axcrypt.net/#feedback</value>
+    <value>https://sv.surveymonkey.com/r/axcrypt</value>
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
     <value>http://www.axcrypt.net/documentation/get-started/</value>

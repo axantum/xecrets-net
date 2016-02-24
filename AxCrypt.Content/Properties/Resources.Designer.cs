@@ -1673,7 +1673,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Talk to us! Feedback or bug reports welcome..
+        ///   Looks up a localized string similar to How are we doing? Please give us feedback!.
         /// </summary>
         public static string FeedbackButtonText {
             get {
@@ -2136,7 +2136,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.axcrypt.net/#feedback.
+        ///   Looks up a localized string similar to https://sv.surveymonkey.com/r/axcrypt.
         /// </summary>
         public static string LinkToFeedbackWebPage {
             get {

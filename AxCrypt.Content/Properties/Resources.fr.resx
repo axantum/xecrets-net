@@ -442,7 +442,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>https://account.axcrypt.net/Home/Purchase?email={0}</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>http://www.axcrypt.net/#feedback</value>
+    <value/>
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
     <value>http://www.axcrypt.net/documentation/get-started/</value>

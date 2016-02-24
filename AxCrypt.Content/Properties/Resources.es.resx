@@ -495,7 +495,7 @@ Usted debe completar estos pasos para completar el proceso.</value>
     <comment>Menus and similar to link back to main site.</comment>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>http://www.axcrypt.net/#feedback</value>
+    <value/>
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
     <value>http://www.axcrypt.net/documentation/get-started/</value>
