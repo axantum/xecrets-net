@@ -302,9 +302,6 @@ Usted debe completar estos pasos para completar el proceso.</value>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Cambiar contraseña</value>
   </data>
-  <data name="ChangePasswordErrorUserNotFound" xml:space="preserve">
-    <value>Error interno, no pudo cambiar la contraseña porque no se encontró el usuario actual.</value>
-  </data>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Su contraseña ha sido cambiada.</value>
   </data>
@@ -386,9 +383,6 @@ Usted debe completar estos pasos para completar el proceso.</value>
   </data>
   <data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
     <value>La contraseña no todavía se ha introducido. Haga doble clic para introducir la contraseña y Abra, o haga clic derecho para ver las opciones.</value>
-  </data>
-  <data name="DeleteAccountErrorUserNotFound" xml:space="preserve">
-    <value>Error interno, no pudo eliminar el AxCrypt ID porque no se encontró el usuario actual.</value>
   </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>Su AxCrypt ID ha sido eliminado con éxito.
@@ -937,15 +931,6 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Compartir claves</value>
-  </data>
-  <data name="SubscriptionsErrorEventTime" xml:space="preserve">
-    <value>Error interno: formato en field Event time no válido. </value>
-  </data>
-  <data name="SubscriptionsErrorExpirationTime" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="SubscriptionsErrorUserNotFound" xml:space="preserve">
-    <value>Error interno: Usario no encontrado.</value>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>La suscripción se ha guardado con éxito.</value>
