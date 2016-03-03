@@ -28,6 +28,12 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("revision")]
         public int Revision { get; private set; }
 
+        [JsonProperty("is_critical_reliability_update")]
+        public bool IsCriticalReliabilityUpdate { get; private set; }
+
+        [JsonProperty("is_critical_security_update")]
+        public bool IsCriticalSecurityUpdate { get; private set; }
+
         public bool IsEmpty
         {
             get
