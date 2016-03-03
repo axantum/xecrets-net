@@ -1354,7 +1354,7 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Check email and spam!</value>
   </data>
   <data name="TextPreferenceCritical" xml:space="preserve">
-    <value>Critical - Get notified of critical AxCrypt updated</value>
+    <value>Critical - Get notified of critical AxCrypt updates</value>
   </data>
   <data name="TextPreferenceDecline" xml:space="preserve">
     <value>Decline - Never get notified about AxCrypt updates</value>
