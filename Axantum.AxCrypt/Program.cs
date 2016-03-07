@@ -127,6 +127,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new CachingAccountService(new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new ApiAccountService(new AxCryptApiClient(identity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout)))));
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
+            TypeMap.Register.New<AxCryptApiClient>(() => new AxCryptApiClient(Resolve.KnownIdentities.DefaultEncryptionIdentity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new LicensePolicy(identity));
             TypeMap.Register.New<LogOnIdentity, ICryptoPolicy>((identity) => New<LogOnIdentity, LicensePolicy>(identity).CryptoPolicy);
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
@@ -137,6 +138,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<ICache>(() => new ItemCache());
             TypeMap.Register.Singleton<DummyReferencedType>(() => new DummyReferencedType());
             TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
+            TypeMap.Register.Singleton<IVersion>(() => new DesktopVersion());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

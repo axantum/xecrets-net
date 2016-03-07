@@ -91,61 +91,61 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestCurrentVersionPropertyBind()
+        public void TestUpdateCheckWhenSigningIn()
         {
-            UpdateCheck mockedUpdateCheck = null;
-            TypeMap.Register.New<Version, UpdateCheck>((version) => mockedUpdateCheck = new Mock<UpdateCheck>(version).Object);
+            AxCryptUpdateCheck mockedUpdateCheck = null;
+            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => mockedUpdateCheck = new Mock<AxCryptUpdateCheck>(version).Object);
             Version ourVersion = new Version(1, 2, 3, 4);
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                mvm.CurrentVersion = ourVersion;
+                mvm.LoggedOn = true;
             }
 
-            Mock.Get<UpdateCheck>(mockedUpdateCheck).Verify(x => x.CheckInBackground(It.Is<DateTime>((d) => d == Resolve.UserSettings.LastUpdateCheckUtc), It.IsAny<string>(), It.IsAny<Uri>()));
+            Mock.Get<AxCryptUpdateCheck>(mockedUpdateCheck).Verify(x => x.CheckInBackground(It.Is<DateTime>((d) => d == Resolve.UserSettings.LastUpdateCheckUtc), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<Version>(), It.IsAny<string>()));
         }
 
         [Test]
         public void TestUpdateCheckWhenNotExecutable()
         {
-            var mockUpdateCheck = new Mock<UpdateCheck>(new Version(1, 2, 3, 4));
-            TypeMap.Register.New<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
+            var mockUpdateCheck = new Mock<AxCryptUpdateCheck>(new Version(1, 2, 3, 4));
+            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => mockUpdateCheck.Object);
 
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                Assert.That(mvm.UpdateCheck.CanExecute(null), Is.False);
-                Assert.Throws<InvalidOperationException>(() => mvm.UpdateCheck.Execute(new DateTime(2001, 2, 3)));
+                Assert.That(mvm.AxCryptUpdateCheck.CanExecute(null), Is.False);
+                Assert.Throws<InvalidOperationException>(() => mvm.AxCryptUpdateCheck.Execute(new DateTime(2001, 2, 3)));
             }
         }
 
         [Test]
-        public void TestUpdateCheckWhenExecutable()
+        public void TestUpdateCheckExecutableWhenSignedIn()
         {
-            Version ourVersion = new Version(1, 2, 3, 4);
-            var mockUpdateCheck = new Mock<UpdateCheck>(ourVersion);
-            TypeMap.Register.New<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
+            Version ourVersion = New<IVersion>().Current;
+            var mockUpdateCheck = new Mock<AxCryptUpdateCheck>(ourVersion);
+            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => mockUpdateCheck.Object);
 
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                mvm.CurrentVersion = ourVersion;
-                Assert.That(mvm.UpdateCheck.CanExecute(null), Is.True);
-                mvm.UpdateCheck.Execute(new DateTime(2001, 2, 3));
+                mvm.LoggedOn = true;
+                Assert.That(mvm.AxCryptUpdateCheck.CanExecute(null), Is.True);
+                mvm.AxCryptUpdateCheck.Execute(new DateTime(2001, 2, 3));
             }
 
-            mockUpdateCheck.Verify(x => x.CheckInBackground(It.Is<DateTime>(d => d == new DateTime(2001, 2, 3)), It.IsAny<string>(), It.IsAny<Uri>()));
+            mockUpdateCheck.Verify(x => x.CheckInBackground(It.Is<DateTime>(d => d == new DateTime(2001, 2, 3)), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<Version>(), It.IsAny<string>()));
         }
 
         [Test]
         public void TestVersionUpdate()
         {
-            Version ourVersion = new Version(1, 2, 3, 4);
-            var mockUpdateCheck = new Mock<UpdateCheck>(ourVersion);
-            TypeMap.Register.New<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
+            Version ourVersion = New<IVersion>().Current;
+            var mockUpdateCheck = new Mock<AxCryptUpdateCheck>(ourVersion);
+            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => mockUpdateCheck.Object);
 
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                mvm.CurrentVersion = ourVersion;
+                mvm.LoggedOn = true;
 
-                mockUpdateCheck.Raise(m => m.VersionUpdate += null, new VersionEventArgs(new Version(1, 2, 4, 4), new Uri("http://localhost/"), VersionUpdateStatus.NewerVersionIsAvailable));
+                mockUpdateCheck.Raise(m => m.AxCryptUpdate += null, new VersionEventArgs(new Version(2, 0, 9999, 0), new Uri("http://localhost/"), VersionUpdateStatus.NewerVersionIsAvailable));
                 Assert.That(mvm.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.NewerVersionIsAvailable));
             }
         }

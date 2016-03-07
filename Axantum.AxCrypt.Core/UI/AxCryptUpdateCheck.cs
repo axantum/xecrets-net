@@ -39,7 +39,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public class UpdateCheck : IDisposable
+    public class AxCryptUpdateCheck : IDisposable
     {
         private class Pair<T, U>
         {
@@ -58,12 +58,12 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Version _currentVersion;
 
-        public UpdateCheck(Version currentVersion)
+        public AxCryptUpdateCheck(Version currentVersion)
         {
             _currentVersion = currentVersion;
         }
 
-        public virtual event EventHandler<VersionEventArgs> VersionUpdate;
+        public virtual event EventHandler<VersionEventArgs> AxCryptUpdate;
 
         private ManualResetEvent _done = new ManualResetEvent(true);
 
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// raised, regardless of response and result. If a check is already in progress, the
         /// later call is ignored and only one check is performed.
         /// </summary>
-        public virtual void CheckInBackground(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri updateWebpageUrl)
+        public virtual void CheckInBackground(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri updateWebpageUrl, Version currentVersion, string cultureName)
         {
             if (newestKnownVersion == null)
             {
@@ -83,6 +83,10 @@ namespace Axantum.AxCrypt.Core.UI
             if (updateWebpageUrl == null)
             {
                 throw new ArgumentNullException("updateWebpageUrl");
+            }
+            if (cultureName == null)
+            {
+                throw new ArgumentNullException(nameof(cultureName));
             }
 
             Version newestKnownVersionValue = ParseVersion(newestKnownVersion);
@@ -113,7 +117,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 try
                 {
-                    Pair<Version, Uri> newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl).Free();
+                    Pair<Version, Uri> newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl, currentVersion, cultureName).Free();
                     OnVersionUpdate(new VersionEventArgs(newVersion.First, newVersion.Second, CalculateStatus(newVersion.First, lastCheckTimeUtc)));
                 }
                 finally
@@ -124,12 +128,12 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
-        private async Task<Pair<Version, Uri>> CheckWebForNewVersionAsync(Uri updateWebpageUrl)
+        private async Task<Pair<Version, Uri>> CheckWebForNewVersionAsync(Uri updateWebpageUrl, Version currentVersion, string cultureName)
         {
             Version newVersion = VersionUnknown;
             try
             {
-                AxCryptVersion axCryptVersion = await New<GlobalApiClient>().AxCryptUpdateAsync().Free();
+                AxCryptVersion axCryptVersion = await New<AxCryptApiClient>().AxCryptUpdateAsync(currentVersion, cultureName).Free();
                 if (axCryptVersion.IsEmpty)
                 {
                     return new Pair<Version, Uri>(newVersion, updateWebpageUrl);
@@ -224,7 +228,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         protected virtual void OnVersionUpdate(VersionEventArgs e)
         {
-            EventHandler<VersionEventArgs> handler = VersionUpdate;
+            EventHandler<VersionEventArgs> handler = AxCryptUpdate;
             if (handler != null)
             {
                 handler(this, e);

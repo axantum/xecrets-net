@@ -116,6 +116,7 @@
     <Compile Include="Runtime\CryptoException.cs" />
     <Compile Include="Runtime\FreeForcedLicensePolicy.cs" />
     <Compile Include="Runtime\IPlatform.cs" />
+    <Compile Include="Runtime\IVersion.cs" />
     <Compile Include="Runtime\LicenseCapability.cs" />
     <Compile Include="Runtime\LicensePolicy.cs" />
     <Compile Include="Runtime\PasswordException.cs" />
@@ -336,7 +337,7 @@
     <Compile Include="UI\ViewModel\ValidationError.cs" />
     <Compile Include="UI\ViewModel\ViewModelBase.cs" />
     <Compile Include="UI\PublicResources.cs" />
-    <Compile Include="UI\UpdateCheck.cs" />
+    <Compile Include="UI\AxCryptUpdateCheck.cs" />
     <Compile Include="UI\UserSettings.cs" />
     <Compile Include="UI\VersionEventArgs.cs" />
     <Compile Include="UI\VersionUpdateStatus.cs" />

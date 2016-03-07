@@ -191,6 +191,28 @@ namespace Axantum.AxCrypt.Api
             ApiCaller.EnsureStatusOk(restResponse);
         }
 
+        public async Task<AxCryptVersion> AxCryptUpdateAsync(Version currentVersion, string cultureName)
+        {
+            Uri resource = BaseUrl.PathCombine($"users/axcrypt/version/windowsdesktop?version={currentVersion?.ToString() ?? String.Empty}&culture={cultureName}");
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return AxCryptVersion.Empty;
+            }
+
+            try
+            {
+                RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
+                ApiCaller.EnsureStatusOk(restResponse);
+                AxCryptVersion axCryptVersion = Serializer.Deserialize<AxCryptVersion>(restResponse.Content);
+                return axCryptVersion;
+            }
+            catch (OfflineApiException)
+            {
+                New<AxCryptOnlineState>().IsOffline = true;
+            }
+            return AxCryptVersion.Empty;
+        }
+
         private static IStringSerializer Serializer
         {
             get

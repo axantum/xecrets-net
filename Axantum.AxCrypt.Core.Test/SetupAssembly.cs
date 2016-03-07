@@ -51,6 +51,7 @@ using Axantum.AxCrypt.Fake;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Api;
 using System.Reflection;
+using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -82,6 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<ICache>(() => new ItemCache());
             TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
             TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(new Assembly[0]));
+            TypeMap.Register.Singleton<IVersion>(() => new FakeVersion());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
@@ -102,6 +104,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new PremiumForcedLicensePolicy());
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
+            TypeMap.Register.New<AxCryptApiClient>(() => new AxCryptApiClient(Resolve.KnownIdentities.DefaultEncryptionIdentity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
+            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => new AxCryptUpdateCheck(version));
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;

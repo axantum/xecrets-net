@@ -67,13 +67,13 @@ namespace Axantum.AxCrypt.Core.Test
             Version newVersion = new Version(2, 0, 307, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -97,40 +97,40 @@ namespace Axantum.AxCrypt.Core.Test
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck), "This is not a successful check, and it was DateTime.MinValue since the last.");
             Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
-            Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "The new version has 5 components, and should be parsed as unknown.");
+            Assert.That(eventArgs.Version, Is.EqualTo(AxCryptUpdateCheck.VersionUnknown), "The new version has 5 components, and should be parsed as unknown.");
 
             TypeMap.Register.New<IRestCaller>(
                 // The version returned is an empty string - bad!
                 () => new FakeRestCaller(@"{""url"":""http://localhost/AxCrypt/Downloads.html"",""version"":"""",""revision"":307}")
             );
 
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck), "This is not a successful check, and it was DateTime.MinValue since the last.");
             Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
-            Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "The new version is an empty string and should be parse as unknown.");
+            Assert.That(eventArgs.Version, Is.EqualTo(AxCryptUpdateCheck.VersionUnknown), "The new version is an empty string and should be parse as unknown.");
         }
 
         [Test]
@@ -141,10 +141,10 @@ namespace Axantum.AxCrypt.Core.Test
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 307, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, nullVersion, updateWebPageUrl); }, "Null argument should throw.");
-                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, newVersion.ToString(), nullUrl); }, "Null argument should throw.");
+                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, nullVersion, updateWebPageUrl, new Version(), String.Empty); }, "Null argument should throw.");
+                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, newVersion.ToString(), nullUrl, new Version(), String.Empty); }, "Null argument should throw.");
 
                 updateCheck.WaitForBackgroundCheckComplete();
             }
@@ -164,17 +164,17 @@ namespace Axantum.AxCrypt.Core.Test
             Version newVersion = new Version(2, 0, 307, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            UpdateCheck updateCheck = new UpdateCheck(thisVersion);
-            updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+            AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion);
+            updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
             {
                 eventArgs = e;
             };
-            updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
+            updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
             updateCheck.WaitForBackgroundCheckComplete();
             updateCheck.Dispose();
 
             Assert.DoesNotThrow(updateCheck.Dispose);
-            Assert.Throws<ObjectDisposedException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl); });
+            Assert.Throws<ObjectDisposedException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty); });
             Assert.Throws<ObjectDisposedException>(updateCheck.WaitForBackgroundCheckComplete);
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
@@ -197,13 +197,13 @@ namespace Axantum.AxCrypt.Core.Test
             Version newVersion = new Version(2, 0, 207, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -227,13 +227,13 @@ namespace Axantum.AxCrypt.Core.Test
             Version newVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(utcNow.AddDays(-2), UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
+                updateCheck.CheckInBackground(utcNow.AddDays(-2), AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -259,13 +259,13 @@ namespace Axantum.AxCrypt.Core.Test
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(utcNow.AddHours(-1), thisVersion.ToString(), updateWebPageUrl);
+                updateCheck.CheckInBackground(utcNow.AddHours(-1), thisVersion.ToString(), updateWebPageUrl, new Version(), String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -294,14 +294,14 @@ namespace Axantum.AxCrypt.Core.Test
             Version newVersion = new Version(2, 0, 400, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
-                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
                 wait.Set();
                 updateCheck.WaitForBackgroundCheckComplete();
             }
@@ -328,20 +328,20 @@ namespace Axantum.AxCrypt.Core.Test
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck), "No check could be made, and it was a long time since a check was made.");
             Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(updateWebPageUrl), "The original URL should be passed since the call failed.");
-            Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "An unknown version should be returned, since the call failed.");
+            Assert.That(eventArgs.Version, Is.EqualTo(AxCryptUpdateCheck.VersionUnknown), "An unknown version should be returned, since the call failed.");
         }
 
         [Test]
@@ -359,20 +359,20 @@ namespace Axantum.AxCrypt.Core.Test
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(utcNow.AddDays(-2), UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
+                updateCheck.CheckInBackground(utcNow.AddDays(-2), AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck), "Although the check failed, a check was recently made a short time ago.");
             Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(updateWebPageUrl), "The original URL should be passed since the call failed.");
-            Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "An unknown version should be returned, since the call failed.");
+            Assert.That(eventArgs.Version, Is.EqualTo(AxCryptUpdateCheck.VersionUnknown), "An unknown version should be returned, since the call failed.");
         }
 
         [Test]
@@ -388,20 +388,20 @@ namespace Axantum.AxCrypt.Core.Test
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                updateCheck.AxCryptUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), updateWebPageUrl);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, new Version(), String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called even when an invalid version is returned.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck), "No check has been performed previously and no new version is known.");
             Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
-            Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "The version is not known since it could not be parsed.");
+            Assert.That(eventArgs.Version, Is.EqualTo(AxCryptUpdateCheck.VersionUnknown), "The version is not known since it could not be parsed.");
         }
     }
 }
