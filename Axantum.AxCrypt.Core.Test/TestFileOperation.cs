@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationContext status;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             IDataStore axCryptDataStore = New<IDataStore>(_helloWorldAxxPath);
-            status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), axCryptDataStore, new ProgressContext());
+            status = fileOperation.OpenAndLaunchApplication(new LogOnIdentity("a"), axCryptDataStore, new ProgressContext());
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
             Assert.That(called, Is.True, "There should be a call to launch.");
@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationContext status;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             IDataStore axCryptDataStore = New<IDataStore>(_helloWorldAxxPath);
-            status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new LogOnIdentity("a"), axCryptDataStore, new ProgressContext());
+            status = fileOperation.OpenAndLaunchApplication(new LogOnIdentity("a"), axCryptDataStore, new ProgressContext());
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The launch should succeed.");
             Assert.That(called, Is.True, "There should be a call to launch.");
@@ -167,15 +167,15 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestOpenAndLaunchOfAxCryptDocumentArgumentNullException()
         {
-            string nullString = null;
+            LogOnIdentity nullIdentity = null;
             IDataStore nullDataStore = null;
             ProgressContext nullProgressContext = null;
             IDataStore axCryptDataStore = New<IDataStore>(_helloWorldAxxPath);
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
 
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, LogOnIdentity.Empty, axCryptDataStore, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, LogOnIdentity.Empty, nullDataStore, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, LogOnIdentity.Empty, axCryptDataStore, nullProgressContext); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullIdentity, axCryptDataStore, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(LogOnIdentity.Empty, nullDataStore, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(LogOnIdentity.Empty, axCryptDataStore, nullProgressContext); });
         }
 
         [Test]

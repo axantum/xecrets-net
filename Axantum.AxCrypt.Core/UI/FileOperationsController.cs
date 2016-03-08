@@ -375,7 +375,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool DecryptAndLaunchFileOperation()
         {
-            _eventArgs.Status = New<FileOperation>().OpenAndLaunchApplication(_eventArgs.OpenFileFullName, _eventArgs.LogOnIdentity, _eventArgs.AxCryptFile, _progress);
+            _eventArgs.Status = New<FileOperation>().OpenAndLaunchApplication(_eventArgs.LogOnIdentity, _eventArgs.AxCryptFile, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return true;
