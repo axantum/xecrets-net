@@ -327,6 +327,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
+            if (Resolve.ProcessState.HasActiveProcess(activeFile))
+            {
+                return activeFile;
+            }
 
             activeFile = TryDelete(activeFile, progress);
             return activeFile;

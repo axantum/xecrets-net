@@ -51,22 +51,26 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify = sessionNotify;
         }
 
-        public FileOperationContext OpenAndLaunchApplication(string encryptedFile, IEnumerable<LogOnIdentity> identities, IProgressContext progress)
+        public virtual FileOperationContext OpenAndLaunchApplication(LogOnIdentity identity, IDataStore encryptedDataStore, IProgressContext progress)
         {
-            if (encryptedFile == null)
-            {
-                throw new ArgumentNullException(nameof(encryptedFile));
-            }
+            return OpenAndLaunchApplication(new LogOnIdentity[] { identity }, encryptedDataStore, progress);
+        }
+
+        public virtual FileOperationContext OpenAndLaunchApplication(IEnumerable<LogOnIdentity> identities, IDataStore encryptedDataStore, IProgressContext progress)
+        {
             if (identities == null)
             {
                 throw new ArgumentNullException(nameof(identities));
+            }
+            if (encryptedDataStore == null)
+            {
+                throw new ArgumentNullException(nameof(encryptedDataStore));
             }
             if (progress == null)
             {
                 throw new ArgumentNullException(nameof(progress));
             }
 
-            IDataStore encryptedDataStore = New<IDataStore>(encryptedFile);
             if (!encryptedDataStore.IsAvailable)
             {
                 if (Resolve.Log.IsWarningEnabled)
@@ -85,46 +89,6 @@ namespace Axantum.AxCrypt.Core.UI
             else
             {
                 activeFile = CheckKeysForAlreadyDecryptedFile(activeFile, identities, progress);
-            }
-
-            if (activeFile == null)
-            {
-                return new FileOperationContext(encryptedDataStore.FullName, ErrorStatus.InvalidKey);
-            }
-
-            using (FileLock destinationLock = FileLock.Lock(activeFile.DecryptedFileInfo))
-            {
-                if (!activeFile.DecryptedFileInfo.IsAvailable)
-                {
-                    activeFile = Decrypt(activeFile.Identity, activeFile.EncryptedFileInfo, activeFile, progress);
-                }
-                _fileSystemState.Add(activeFile);
-                _fileSystemState.Save();
-
-                FileOperationContext status = LaunchApplicationForDocument(activeFile);
-                return status;
-            }
-        }
-
-        public virtual FileOperationContext OpenAndLaunchApplication(LogOnIdentity identity, IDataStore encryptedDataStore, IProgressContext progress)
-        {
-            if (identity == null)
-            {
-                throw new ArgumentNullException(nameof(identity));
-            }
-            if (encryptedDataStore == null)
-            {
-                throw new ArgumentNullException(nameof(encryptedDataStore));
-            }
-            if (progress == null)
-            {
-                throw new ArgumentNullException(nameof(progress));
-            }
-
-            ActiveFile activeFile = _fileSystemState.FindActiveFileFromEncryptedPath(encryptedDataStore.FullName);
-            if (activeFile == null || !activeFile.DecryptedFileInfo.IsAvailable)
-            {
-                activeFile = TryDecryptToActiveFile(encryptedDataStore, new LogOnIdentity[] { identity }, progress);
             }
 
             if (activeFile == null)

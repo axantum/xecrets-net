@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -205,9 +204,10 @@ namespace Axantum.AxCrypt.Mono
         /// <param name="lastWriteTimeUtc">The last write time UTC.</param>
         public void SetFileTimes(DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc)
         {
-            CreationTimeUtc = creationTimeUtc;
-            LastAccessTimeUtc = lastAccessTimeUtc;
-            LastWriteTimeUtc = lastWriteTimeUtc;
+            DateTime utcNow = Resolve.Environment.UtcNow;
+            CreationTimeUtc = creationTimeUtc <= utcNow ? creationTimeUtc : utcNow;
+            LastAccessTimeUtc = lastAccessTimeUtc <= utcNow ? lastAccessTimeUtc : utcNow;
+            LastWriteTimeUtc = lastWriteTimeUtc <= utcNow ? lastWriteTimeUtc : utcNow;
         }
 
         /// <summary>
