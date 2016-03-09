@@ -1453,6 +1453,9 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   <data name="WelcomeMailBodyTitleHtml" xml:space="preserve">
     <value>Hello and Welcome to AxCrypt!</value>
   </data>
+  <data name="WelcomeMailSubject" xml:space="preserve">
+    <value>Welcome to AxCrypt!</value>
+  </data>
   <data name="WelcomeToAxCrypt" xml:space="preserve">
     <value>Welcome to AxCrypt!
 

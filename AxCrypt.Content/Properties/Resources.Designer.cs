@@ -3882,6 +3882,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt!.
+        /// </summary>
+        public static string WelcomeMailSubject {
+            get {
+                return ResourceManager.GetString("WelcomeMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to AxCrypt!
         ///
         ///Using AxCrypt is really easy. Start with the main window, or use double-click and right-click in Windows Explorer for fully integrated use.
