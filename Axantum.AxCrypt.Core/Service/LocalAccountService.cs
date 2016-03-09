@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Service
             if (keyPair == null)
             {
                 AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(Identity));
-                keyPair = new UserKeyPair(Identity.UserEmail, DateTime.UtcNow, New<KeyPairService>().New());
+                keyPair = new UserKeyPair(Identity.UserEmail, Resolve.Environment.UtcNow, New<KeyPairService>().New());
                 store.ImportAsync(keyPair).Wait();
             }
 

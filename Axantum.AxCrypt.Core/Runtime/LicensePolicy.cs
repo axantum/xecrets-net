@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             get
             {
-                DateTime utcNow = DateTime.UtcNow;
+                DateTime utcNow = Resolve.Environment.UtcNow;
                 if (utcNow >= SubscriptionExpiration)
                 {
                     return TimeSpan.Zero;
@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 {
                     return TimeSpan.Zero;
                 }
-                DateTime utcNow = DateTime.UtcNow;
+                DateTime utcNow = Resolve.Environment.UtcNow;
                 expiration = expiration < utcNow ? utcNow : expiration;
 
                 TimeSpan timeLeft = expiration - utcNow;

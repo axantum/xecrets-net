@@ -190,7 +190,7 @@ namespace Axantum.AxCrypt.Fake
 
         private static void EnsureDateTimes(FakeFileInfo fakeFileInfo)
         {
-            DateTime utcNow = DateTime.UtcNow;
+            DateTime utcNow = Resolve.Environment.UtcNow;
             if (fakeFileInfo.CreationTimeUtc == DateTime.MinValue)
             {
                 fakeFileInfo.CreationTimeUtc = utcNow;
@@ -366,7 +366,7 @@ namespace Axantum.AxCrypt.Fake
         public void CreateFolder()
         {
             string directory = Path.GetDirectoryName(_file.FullName);
-            DateTime utcNow = DateTime.UtcNow;
+            DateTime utcNow = Resolve.Environment.UtcNow;
 
             if (_fakeFileSystem.ContainsKey(directory))
             {

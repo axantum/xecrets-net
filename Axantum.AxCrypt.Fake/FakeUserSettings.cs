@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
+﻿using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Axantum.AxCrypt.Fake
             this.DebugMode = false;
             this.DisplayDecryptPassphrase = false;
             this.DisplayEncryptPassphrase = false;
-            this.LastUpdateCheckUtc = DateTime.UtcNow;
+            this.LastUpdateCheckUtc = Resolve.Environment.UtcNow;
             this.NewestKnownVersion = "2.0.0.0";
             this.SessionNotificationMinimumIdle = TimeSpan.FromSeconds(1);
             this.SettingsVersion = 5;
