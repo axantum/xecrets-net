@@ -1444,6 +1444,15 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   <data name="WatchedFoldersTabPageText" xml:space="preserve">
     <value>Secured Folders</value>
   </data>
+  <data name="WelcomeMailBodyHtml" xml:space="preserve">
+    <value>Try our key sharing feature etc...</value>
+  </data>
+  <data name="WelcomeMailBodyIntroHtml" xml:space="preserve">
+    <value>Hi, my name is Svante and I am the original and main developer of AxCrypt! I'm glad you've decided to try my software and I hope you'll like it. I'd like to take the opportunity to point out a few features...</value>
+  </data>
+  <data name="WelcomeMailBodyTitleHtml" xml:space="preserve">
+    <value>Hello and Welcome to AxCrypt!</value>
+  </data>
   <data name="WelcomeToAxCrypt" xml:space="preserve">
     <value>Welcome to AxCrypt!
 

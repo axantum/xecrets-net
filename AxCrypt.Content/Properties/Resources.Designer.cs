@@ -3855,6 +3855,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Try our key sharing feature etc....
+        /// </summary>
+        public static string WelcomeMailBodyHtml {
+            get {
+                return ResourceManager.GetString("WelcomeMailBodyHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi, my name is Svante and I am the original and main developer of AxCrypt! I&apos;m glad you&apos;ve decided to try my software and I hope you&apos;ll like it. I&apos;d like to take the opportunity to point out a few features....
+        /// </summary>
+        public static string WelcomeMailBodyIntroHtml {
+            get {
+                return ResourceManager.GetString("WelcomeMailBodyIntroHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello and Welcome to AxCrypt!.
+        /// </summary>
+        public static string WelcomeMailBodyTitleHtml {
+            get {
+                return ResourceManager.GetString("WelcomeMailBodyTitleHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to AxCrypt!
         ///
         ///Using AxCrypt is really easy. Start with the main window, or use double-click and right-click in Windows Explorer for fully integrated use.
