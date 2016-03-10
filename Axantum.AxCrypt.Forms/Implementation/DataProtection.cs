@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
@@ -36,6 +38,8 @@ namespace Axantum.AxCrypt.Forms.Implementation
 {
     public class DataProtection : IDataProtection
     {
+        private static byte[] _axCryptGuid = AxCrypt1Guid.GetBytes();
+
         #region IDataProtection Members
 
         public byte[] Protect(byte[] unprotectedData)
@@ -45,6 +49,10 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public byte[] Unprotect(byte[] protectedData)
         {
+            if (protectedData.Locate(_axCryptGuid, 0, _axCryptGuid.Length) == 0)
+            {
+                return null;
+            }
             try
             {
                 byte[] bytes = ProtectedData.Unprotect(protectedData, null, DataProtectionScope.CurrentUser);
