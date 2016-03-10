@@ -464,6 +464,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         // Fails intermittently at "The source should be wiped". Problably a race situation. Must be investigated.
+        // 2016-03-10: Attempted fix by adding call to Resolve.ProgressBackground.WaitForIdle(), and implementing it in FakeProgressBackground.
         [Test]
         public void TestDecryptFilesUniqueWithWipeOfOriginal()
         {
@@ -482,6 +483,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationFileInfo.IsAvailable, Is.False, "The source should not exist yet.");
 
             New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(sourceFolderInfo, passphrase, mockStatusChecker.Object, new ProgressContext());
+            Resolve.ProgressBackground.WaitForIdle();
 
             Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");

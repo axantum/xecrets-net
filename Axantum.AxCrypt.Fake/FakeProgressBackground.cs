@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Fake
 {
@@ -54,6 +55,10 @@ namespace Axantum.AxCrypt.Fake
 
         public void WaitForIdle()
         {
+            while (Busy)
+            {
+                Thread.Sleep(0);
+            }
         }
 
         public event EventHandler WorkStatusChanged;
