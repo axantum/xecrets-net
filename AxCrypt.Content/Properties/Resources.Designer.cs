@@ -3205,7 +3205,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}% VAT incl..
+        ///   Looks up a localized string similar to &lt;b&gt;VAT excluded&lt;/b&gt;. Actual VAT depends on your country of residence and will be displayed on the payment page..
         /// </summary>
         public static string PurchaseVatPercent {
             get {
