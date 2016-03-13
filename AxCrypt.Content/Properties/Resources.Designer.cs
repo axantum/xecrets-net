@@ -2271,7 +2271,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best regards,&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;.
+        ///   Looks up a localized string similar to Thanks for using AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;.
         /// </summary>
         public static string MailBodySignature {
             get {
@@ -2280,8 +2280,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best regards,
-        ///The AxCrypt team.
+        ///   Looks up a localized string similar to Thanks for using AxCrypt!
+        ///- Svante
+        ///The AxCrypt Team.
         /// </summary>
         public static string MailBodySignaturePlainText {
             get {
@@ -3855,25 +3856,67 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Try our key sharing feature etc....
+        ///   Looks up a localized string similar to Welcome to AxCrypt!.
         /// </summary>
-        public static string WelcomeMailBodyHtml {
+        public static string WelcomeMailBody0Html {
             get {
-                return ResourceManager.GetString("WelcomeMailBodyHtml", resourceCulture);
+                return ResourceManager.GetString("WelcomeMailBody0Html", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hi, my name is Svante and I am the original and main developer of AxCrypt! I&apos;m glad you&apos;ve decided to try my software and I hope you&apos;ll like it. I&apos;d like to take the opportunity to point out a few features....
+        ///   Looks up a localized string similar to I’m really happy that you have signed up! To make you feel really welcome, I’ve given you free access to our Premium functions for 30 days..
         /// </summary>
-        public static string WelcomeMailBodyIntroHtml {
+        public static string WelcomeMailBody1Html {
             get {
-                return ResourceManager.GetString("WelcomeMailBodyIntroHtml", resourceCulture);
+                return ResourceManager.GetString("WelcomeMailBody1Html", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello and Welcome to AxCrypt!.
+        ///   Looks up a localized string similar to With AxCrypt (free) or AxCrypt Premium, you can secure your files in a truly easy way. Encrypting your files and entire folders is just a click away. Working with the encrypted files is just as easy too!.
+        /// </summary>
+        public static string WelcomeMailBody2Html {
+            get {
+                return ResourceManager.GetString("WelcomeMailBody2Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As a Premium subscriber there are a number of excellent additional features for you on top of all the regular free functionality. With Premium you&apos;re getting features like:.
+        /// </summary>
+        public static string WelcomeMailBody3Html {
+            get {
+                return ResourceManager.GetString("WelcomeMailBody3Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///&lt;li&gt;256-bit AES&lt;/li&gt;
+        ///&lt;li&gt;Key Sharing&lt;/li&gt;
+        ///&lt;li&gt;Secured Folders&lt;/li&gt;
+        ///&lt;li&gt;Password Management&lt;/li&gt;
+        ///&lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
+        ///&lt;/ul&gt;.
+        /// </summary>
+        public static string WelcomeMailBody4Html {
+            get {
+                return ResourceManager.GetString("WelcomeMailBody4Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feel free to contact me if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href=&quot;{0}&quot;&gt;{0}&lt;/a&gt; ..
+        /// </summary>
+        public static string WelcomeMailBody5Html {
+            get {
+                return ResourceManager.GetString("WelcomeMailBody5Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello {0},.
         /// </summary>
         public static string WelcomeMailBodyTitleHtml {
             get {

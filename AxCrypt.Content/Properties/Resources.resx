@@ -884,11 +884,12 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
     <value>If it is unclear why you are receiving this from AxCrypt.net, you can ignore this email or report it to {0}.</value>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Best regards,&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;</value>
+    <value>Thanks for using AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
-    <value>Best regards,
-The AxCrypt team</value>
+    <value>Thanks for using AxCrypt!
+- Svante
+The AxCrypt Team</value>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>Hello {0},</value>
@@ -1444,14 +1445,14 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   <data name="WatchedFoldersTabPageText" xml:space="preserve">
     <value>Secured Folders</value>
   </data>
-  <data name="WelcomeMailBodyHtml" xml:space="preserve">
-    <value>Try our key sharing feature etc...</value>
+  <data name="WelcomeMailBody1Html" xml:space="preserve">
+    <value>I’m really happy that you have signed up! To make you feel really welcome, I’ve given you free access to our Premium functions for 30 days.</value>
   </data>
-  <data name="WelcomeMailBodyIntroHtml" xml:space="preserve">
-    <value>Hi, my name is Svante and I am the original and main developer of AxCrypt! I'm glad you've decided to try my software and I hope you'll like it. I'd like to take the opportunity to point out a few features...</value>
+  <data name="WelcomeMailBody0Html" xml:space="preserve">
+    <value>Welcome to AxCrypt!</value>
   </data>
   <data name="WelcomeMailBodyTitleHtml" xml:space="preserve">
-    <value>Hello and Welcome to AxCrypt!</value>
+    <value>Hello {0},</value>
   </data>
   <data name="WelcomeMailSubject" xml:space="preserve">
     <value>Welcome to AxCrypt!</value>
@@ -1482,5 +1483,23 @@ For more information, click OK to open a web browser to our web site.</value>
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>The verfication code must be exactly 6 digits.</value>
+  </data>
+  <data name="WelcomeMailBody2Html" xml:space="preserve">
+    <value>With AxCrypt (free) or AxCrypt Premium, you can secure your files in a truly easy way. Encrypting your files and entire folders is just a click away. Working with the encrypted files is just as easy too!</value>
+  </data>
+  <data name="WelcomeMailBody3Html" xml:space="preserve">
+    <value>As a Premium subscriber there are a number of excellent additional features for you on top of all the regular free functionality. With Premium you're getting features like:</value>
+  </data>
+  <data name="WelcomeMailBody4Html" xml:space="preserve">
+    <value>&lt;ul&gt;
+&lt;li&gt;256-bit AES&lt;/li&gt;
+&lt;li&gt;Key Sharing&lt;/li&gt;
+&lt;li&gt;Secured Folders&lt;/li&gt;
+&lt;li&gt;Password Management&lt;/li&gt;
+&lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="WelcomeMailBody5Html" xml:space="preserve">
+    <value>Feel free to contact me if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href="{0}"&gt;{0}&lt;/a&gt; .</value>
   </data>
 </root>
