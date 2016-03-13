@@ -3874,7 +3874,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With AxCrypt (free) or AxCrypt Premium, you can secure your files in a truly easy way. Encrypting your files and entire folders is just a click away. Working with the encrypted files is just as easy too!.
+        ///   Looks up a localized string similar to With AxCrypt Free or AxCrypt Premium, you can secure your files in a truly easy way. Encrypting your files and entire folders is just a click away. Working with the encrypted files is just as easy too!.
         /// </summary>
         public static string WelcomeMailBody2Html {
             get {
