@@ -539,9 +539,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Se requiere contraseña</value>
   </data>
-  <data name="DialogExportAxCryptIdFileName" xml:space="preserve">
-    <value>AxCrypt ID (#{1}) - {0}.axx</value>
-  </data>
   <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
     <value>Archivos AxCrypt ID (*.axx)|*.axx|Todos los archivos (*.*)|*.*"</value>
   </data>
@@ -556,9 +553,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="DialogExportSharingKeyTitle" xml:space="preserve">
     <value>Exportar Public Sharing Key</value>
-  </data>
-  <data name="DialogFilePasswordFilePromptText" xml:space="preserve">
-    <value>Archivo</value>
   </data>
   <data name="DialogFilePasswordTitle" xml:space="preserve">
     <value>Contraseña del archivo</value>
@@ -1394,9 +1388,6 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   </data>
   <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
     <value>Carpeta</value>
-  </data>
-  <data name="WatchedFoldersdecryptTemporarilyMenuItemText" xml:space="preserve">
-    <value>Quite la protección de archivos temporalmente.</value>
   </data>
   <data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
     <value>Abrir &amp;Explorer aquí</value>
