@@ -2271,6 +2271,30 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Feel free to contact me if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href=&quot;{0}&quot;&gt;{0}&lt;/a&gt; ..
+        /// </summary>
+        public static string MailBodyOutroHtml {
+            get {
+                return ResourceManager.GetString("MailBodyOutroHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///&lt;li&gt;256-bit AES&lt;/li&gt;
+        ///&lt;li&gt;Key Sharing&lt;/li&gt;
+        ///&lt;li&gt;Secured Folders&lt;/li&gt;
+        ///&lt;li&gt;Password Management&lt;/li&gt;
+        ///&lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
+        ///&lt;/ul&gt;.
+        /// </summary>
+        public static string MailBodyPremiumFeaturesHtml {
+            get {
+                return ResourceManager.GetString("MailBodyPremiumFeaturesHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thanks for using AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;.
         /// </summary>
         public static string MailBodySignature {
@@ -2296,6 +2320,15 @@ namespace AxCrypt.Content.Properties {
         public static string MailBodyTitle {
             get {
                 return ResourceManager.GetString("MailBodyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello {0},.
+        /// </summary>
+        public static string MailBodyTitleHtml {
+            get {
+                return ResourceManager.GetString("MailBodyTitleHtml", resourceCulture);
             }
         }
         
@@ -2808,6 +2841,51 @@ namespace AxCrypt.Content.Properties {
         public static string PayPalReadMoreLink {
             get {
                 return ResourceManager.GetString("PayPalReadMoreLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Premium subscription is coming to an end soon. I sincerely hope you have enjoyed using our features and found them useful..
+        /// </summary>
+        public static string PremiumExpiresSoonMailBody0Html {
+            get {
+                return ResourceManager.GetString("PremiumExpiresSoonMailBody0Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I’d love for you to continue using our Premium features. Simply &lt;a href=&quot;{0}Home/Login?email={1}&quot;&gt;sign in&lt;/a&gt; to your AxCrypt account here to subscribe at any time..
+        /// </summary>
+        public static string PremiumExpiresSoonMailBody1Html {
+            get {
+                return ResourceManager.GetString("PremiumExpiresSoonMailBody1Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With your Premium subscription you will continue to enjoy:.
+        /// </summary>
+        public static string PremiumExpiresSoonMailBody2Html {
+            get {
+                return ResourceManager.GetString("PremiumExpiresSoonMailBody2Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Let me know what you think about AxCrypt - Will you continue to use it and is there something that you would like to see improved?.
+        /// </summary>
+        public static string PremiumExpiresSoonMailBody3Html {
+            get {
+                return ResourceManager.GetString("PremiumExpiresSoonMailBody3Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Premium subscription expires soon!.
+        /// </summary>
+        public static string PremiumExpiresSoonMailSubject {
+            get {
+                return ResourceManager.GetString("PremiumExpiresSoonMailSubject", resourceCulture);
             }
         }
         
@@ -3888,39 +3966,6 @@ namespace AxCrypt.Content.Properties {
         public static string WelcomeMailBody3Html {
             get {
                 return ResourceManager.GetString("WelcomeMailBody3Html", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;ul&gt;
-        ///&lt;li&gt;256-bit AES&lt;/li&gt;
-        ///&lt;li&gt;Key Sharing&lt;/li&gt;
-        ///&lt;li&gt;Secured Folders&lt;/li&gt;
-        ///&lt;li&gt;Password Management&lt;/li&gt;
-        ///&lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
-        ///&lt;/ul&gt;.
-        /// </summary>
-        public static string WelcomeMailBody4Html {
-            get {
-                return ResourceManager.GetString("WelcomeMailBody4Html", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Feel free to contact me if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href=&quot;{0}&quot;&gt;{0}&lt;/a&gt; ..
-        /// </summary>
-        public static string WelcomeMailBody5Html {
-            get {
-                return ResourceManager.GetString("WelcomeMailBody5Html", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hello {0},.
-        /// </summary>
-        public static string WelcomeMailBodyTitleHtml {
-            get {
-                return ResourceManager.GetString("WelcomeMailBodyTitleHtml", resourceCulture);
             }
         }
         

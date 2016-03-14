@@ -883,6 +883,19 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
   <data name="MailBodyFooterPlainText" xml:space="preserve">
     <value>If it is unclear why you are receiving this from AxCrypt.net, you can ignore this email or report it to {0}.</value>
   </data>
+  <data name="MailBodyOutroHtml" xml:space="preserve">
+    <value>Feel free to contact me if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href="{0}"&gt;{0}&lt;/a&gt; .</value>
+    <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
+  </data>
+  <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
+    <value>&lt;ul&gt;
+&lt;li&gt;256-bit AES&lt;/li&gt;
+&lt;li&gt;Key Sharing&lt;/li&gt;
+&lt;li&gt;Secured Folders&lt;/li&gt;
+&lt;li&gt;Password Management&lt;/li&gt;
+&lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
   <data name="MailBodySignature" xml:space="preserve">
     <value>Thanks for using AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;</value>
   </data>
@@ -892,6 +905,9 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
 The AxCrypt Team</value>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
+    <value>Hello {0},</value>
+  </data>
+  <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Hello {0},</value>
   </data>
   <data name="MailBodyVirtualPath" xml:space="preserve">
@@ -1078,6 +1094,22 @@ If you appear not to receive it, check that it does not get caught by your anti-
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Your AxCrypt Premium subscription is coming to an end soon. I sincerely hope you have enjoyed using our features and found them useful.</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>I’d love for you to continue using our Premium features. Simply &lt;a href="{0}Home/Login?email={1}"&gt;sign in&lt;/a&gt; to your AxCrypt account here to subscribe at any time.</value>
+    <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
+  </data>
+  <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>With your Premium subscription you will continue to enjoy:</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
+    <value>Let me know what you think about AxCrypt - Will you continue to use it and is there something that you would like to see improved?</value>
+  </data>
+  <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
+    <value>Your AxCrypt Premium subscription expires soon!</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>This feature requires a purchase of Premium!</value>
@@ -1456,21 +1488,6 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
   <data name="WelcomeMailBody3Html" xml:space="preserve">
     <value>As a Premium subscriber there are a number of excellent additional features for you on top of all the regular free functionality. With Premium you're getting features like:</value>
-  </data>
-  <data name="WelcomeMailBody4Html" xml:space="preserve">
-    <value>&lt;ul&gt;
-&lt;li&gt;256-bit AES&lt;/li&gt;
-&lt;li&gt;Key Sharing&lt;/li&gt;
-&lt;li&gt;Secured Folders&lt;/li&gt;
-&lt;li&gt;Password Management&lt;/li&gt;
-&lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
-&lt;/ul&gt;</value>
-  </data>
-  <data name="WelcomeMailBody5Html" xml:space="preserve">
-    <value>Feel free to contact me if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href="{0}"&gt;{0}&lt;/a&gt; .</value>
-  </data>
-  <data name="WelcomeMailBodyTitleHtml" xml:space="preserve">
-    <value>Hello {0},</value>
   </data>
   <data name="WelcomeMailSubject" xml:space="preserve">
     <value>Welcome to AxCrypt!</value>
