@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Linq;
 
@@ -36,7 +35,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         public LogOnEventArgs()
         {
-            Passphrase = String.Empty;
+            Passphrase = Passphrase.Empty;
             Identity = LogOnIdentity.Empty;
             UserEmail = String.Empty;
         }
@@ -54,7 +53,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool DisplayPassphrase { get; set; }
 
-        public string Passphrase { get; set; }
+        public Passphrase Passphrase { get; set; }
 
         public string Name { get; set; }
 

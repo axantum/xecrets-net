@@ -862,7 +862,7 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewLogOnForEncryptedFile(LogOnEventArgs e)
         {
-            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, Texts.NewPassphraseDialogTitle, e.Passphrase, e.EncryptedFileFullName))
+            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, Texts.NewPassphraseDialogTitle, e.Passphrase.Text, e.EncryptedFileFullName))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(this);
@@ -872,7 +872,7 @@ namespace Axantum.AxCrypt
                     return;
                 }
                 e.DisplayPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
+                e.Passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);
                 e.Name = String.Empty;
             }
             return;
@@ -880,7 +880,7 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewAccount(LogOnEventArgs e)
         {
-            using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, e.Passphrase, EmailAddress.Empty))
+            using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, e.Passphrase.Text, EmailAddress.Empty))
             {
                 DialogResult dialogResult = dialog.ShowDialog(this);
                 if (dialogResult != DialogResult.OK)
@@ -889,7 +889,7 @@ namespace Axantum.AxCrypt
                     return;
                 }
                 e.DisplayPassphrase = dialog.ShowPassphraseCheckBox.Checked;
-                e.Passphrase = dialog.PassphraseTextBox.Text;
+                e.Passphrase = new Passphrase(dialog.PassphraseTextBox.Text);
                 e.UserEmail = dialog.EmailTextBox.Text;
             }
         }
@@ -915,7 +915,7 @@ namespace Axantum.AxCrypt
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
                 if (dialogResult == DialogResult.Retry)
                 {
-                    e.Passphrase = logOnDialog.PassphraseTextBox.Text;
+                    e.Passphrase = new Passphrase(logOnDialog.PassphraseTextBox.Text);
                     e.IsAskingForPreviouslyUnknownPassphrase = true;
                     return;
                 }
@@ -926,7 +926,7 @@ namespace Axantum.AxCrypt
                     return;
                 }
                 e.DisplayPassphrase = logOnDialog.ShowPassphraseCheckBox.Checked;
-                e.Passphrase = logOnDialog.PassphraseTextBox.Text;
+                e.Passphrase = new Passphrase(logOnDialog.PassphraseTextBox.Text);
             }
             return;
         }
@@ -943,7 +943,7 @@ namespace Axantum.AxCrypt
                 if (dialogResult == DialogResult.Retry)
                 {
                     e.UserEmail = String.Empty;
-                    e.Passphrase = String.Empty;
+                    e.Passphrase = Passphrase.Empty;
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     return;
                 }
@@ -959,7 +959,7 @@ namespace Axantum.AxCrypt
                     return;
                 }
 
-                e.Passphrase = viewModel.Passphrase;
+                e.Passphrase = new Passphrase(viewModel.Passphrase);
                 e.UserEmail = viewModel.UserEmail;
             }
             return;

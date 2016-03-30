@@ -221,17 +221,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 OnLoggingOn(logOnArgs);
             }
 
-            if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
+            if (logOnArgs.Cancel || logOnArgs.Passphrase == Passphrase.Empty)
             {
                 return LogOnIdentity.Empty;
             }
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
-            return await LogOnIdentityFromCredentialsAsync(EmailAddress.Parse(logOnArgs.UserEmail), new Passphrase(logOnArgs.Passphrase));
+            return await LogOnIdentityFromCredentialsAsync(EmailAddress.Parse(logOnArgs.UserEmail), logOnArgs.Passphrase);
         }
 
-        private async Task<LogOnIdentity> AskForNewEncryptionPassphraseAsync(string defaultPassphrase, string encryptedFileFullName)
+        private async Task<LogOnIdentity> AskForNewEncryptionPassphraseAsync(Passphrase defaultPassphrase, string encryptedFileFullName)
         {
             LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
@@ -247,14 +247,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task<LogOnIdentity> AddKnownIdentityFromEventAsync(LogOnEventArgs logOnArgs)
         {
-            if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
+            if (logOnArgs.Cancel || logOnArgs.Passphrase == Passphrase.Empty)
             {
                 return LogOnIdentity.Empty;
             }
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
-            Passphrase passphrase = new Passphrase(logOnArgs.Passphrase);
+            Passphrase passphrase = logOnArgs.Passphrase;
             LogOnIdentity identity = await LogOnIdentityFromCredentialsAsync(EmailAddress.Parse(logOnArgs.UserEmail), passphrase);
             if (identity == LogOnIdentity.Empty)
             {

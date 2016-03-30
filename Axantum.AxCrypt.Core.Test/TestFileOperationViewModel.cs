@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                e.Passphrase = new Passphrase("a");
             };
             mvm.SelectingFiles += (sender, e) =>
             {
@@ -199,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                e.Passphrase = new Passphrase("a");
             };
             mvm.SelectingFiles += (sender, e) =>
             {
@@ -246,7 +246,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                e.Passphrase = new Passphrase("a");
             };
 
             mvm.IdentityViewModel.LogOnLogOff.Execute(null);
@@ -261,7 +261,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "b";
+                e.Passphrase = new Passphrase("b");
                 e.Name = "Name";
             };
 
@@ -279,7 +279,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = String.Empty;
+                e.Passphrase = Passphrase.Empty;
             };
 
             mvm.IdentityViewModel.LogOnLogOff.Execute(null);
@@ -406,7 +406,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                e.Passphrase = new Passphrase("a");
             };
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
             mvm.EncryptFiles.Execute(null);
@@ -434,7 +434,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                e.Passphrase = new Passphrase("a");
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
@@ -457,7 +457,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                e.Passphrase = new Passphrase("a");
             };
 
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
@@ -612,7 +612,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "a";
+                e.Passphrase = new Passphrase("a");
             };
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File1.txt", null);
@@ -669,7 +669,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "b";
+                e.Passphrase = new Passphrase("a");
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
@@ -871,7 +871,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
-                e.Passphrase = "b";
+                e.Passphrase = new Passphrase("b");
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
@@ -922,7 +922,7 @@ namespace Axantum.AxCrypt.Core.Test
                     e.Cancel = true;
                     return;
                 }
-                e.Passphrase = "b";
+                e.Passphrase = new Passphrase("b");
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", Stream.Null);
