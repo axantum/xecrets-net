@@ -1171,7 +1171,7 @@ Si parece que usted no lo recibe, revise su filtro de correo no deseado y compru
 Para evaluar las funciones de AxCrypt Premium, ofrecemos una prueba gratis de 30 días que inicia cuando se activa su cuenta. A continuación, puede extender el período de prueba a través del siguiente formulario.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
-    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;span class="text-cutoff always"&gt;La seguridad es crucial para nosotros. Es la más alta prioridad en todo lo que hacemos en AxCrypt.. Por lo tanto, estamos utilizando PayPal como método de pago para AxCrypt Premium. El sitio de PayPal es muy segura y cifra automáticamente su información confidencial en tránsito desde su ordenador a nuestros servidores.
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;La seguridad es crucial para nosotros. Es la más alta prioridad en todo lo que hacemos en AxCrypt.. Por lo tanto, estamos utilizando PayPal como método de pago para AxCrypt Premium. El sitio de PayPal es muy segura y cifra automáticamente su información confidencial en tránsito desde su ordenador a nuestros servidores.
 Cuando la información llega a la página de PayPal, reside en un servidor que está bien protegido tanto física como electrónicamente. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;</value>
   </data>
   <data name="PurchasePageTitle" xml:space="preserve">
@@ -1193,9 +1193,6 @@ Cuando la información llega a la página de PayPal, reside en un servidor que e
     <value>Ahora puede acceder a todas las funciones premium de AxCrypt. Si experimenta algún problema, póngase en contacto con nuestro soporte.
 
 Un recibo de su compra ha sido enviada a su correo electrónico.</value>
-  </data>
-  <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>{0}% IVA incl.</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Limpieza de archivos activos</value>

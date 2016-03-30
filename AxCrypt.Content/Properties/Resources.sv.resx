@@ -1046,9 +1046,6 @@ När informationen når PayPal-servrarna lagras den med hög säkerhet både fys
 
 Ett kvitto på ditt köp har skickats till din epostadress.</value>
   </data>
-  <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>Inkl. {0}% Moms</value>
-  </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Rensar Aktiva Dokument</value>
   </data>
