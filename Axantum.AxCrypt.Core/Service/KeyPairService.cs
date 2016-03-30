@@ -37,8 +37,12 @@ namespace Axantum.AxCrypt.Core.Service
     /// <summary>
     /// Prepare keys for use in the background, in order to make them available as quickly as possible. This class is thread safe.
     /// </summary>
-    public class KeyPairService
+    public class KeyPairService : IDisposable
     {
+        private Task _running;
+
+        private bool _disposed = false;
+
         private int _firstBatch;
 
         private int _bufferCount;
@@ -99,7 +103,16 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         public void Start()
         {
-            Task.Factory.StartNew(() => { while (!IsBufferFull) { AddOneKeyPair(); } });
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(KeyPairService));
+            }
+
+            if (_running != null && !_running.IsCompleted)
+            {
+                return;
+            }
+            _running = Task.Factory.StartNew(() => { while (!_disposed && !IsBufferFull) { AddOneKeyPair(); } });
         }
 
         private void AddOneKeyPair()
@@ -143,6 +156,26 @@ namespace Axantum.AxCrypt.Core.Service
         {
             IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(_keyBits);
             return keyPair;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposing)
+            {
+                return;
+            }
+
+            if (_running != null && !_disposed)
+            {
+                _disposed = true;
+                _running.Wait();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
