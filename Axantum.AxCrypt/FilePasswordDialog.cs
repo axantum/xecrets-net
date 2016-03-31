@@ -51,7 +51,6 @@ namespace Axantum.AxCrypt
             _viewModel = new LogOnViewModel(encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
-            _newButton.Enabled = String.IsNullOrEmpty(encryptedFileFullName);
         }
 
         protected override void InitializeContentResources()
@@ -60,7 +59,6 @@ namespace Axantum.AxCrypt
 
             PassphraseGroupBox.Text = Texts.PassphrasePrompt;
             ShowPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
-            _newButton.Text = Texts.ButtonNewText;
             _buttonCancel.Text = Texts.ButtonCancelText;
             _buttonOk.Text = Texts.ButtonOkText;
             _fileGroupBox.Text = Texts.PromptFileText;
@@ -103,11 +101,6 @@ namespace Axantum.AxCrypt
                 _errorProvider1.SetError(PassphraseTextBox, Texts.WrongPassphrase);
             }
             return false;
-        }
-
-        private void newButton_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Retry;
         }
 
         private void LogOnDialog_Activated(object sender, EventArgs e)
