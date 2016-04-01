@@ -136,7 +136,7 @@
     <Compile Include="TestKnownIdentities.cs" />
     <Compile Include="TestLockingStreamTests.cs" />
     <Compile Include="TestLogging.cs" />
-    <Compile Include="TestLogOnViewModel.cs" />
+    <Compile Include="TestFilePasswordViewModel.cs" />
     <Compile Include="TestMainViewModel.cs" />
     <Compile Include="TestNDeskOptions.cs" />
     <Compile Include="TestNewPassphraseViewModel.cs" />

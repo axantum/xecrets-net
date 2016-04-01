@@ -47,13 +47,13 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture(CryptoImplementation.Mono)]
     [TestFixture(CryptoImplementation.WindowsDesktop)]
     [TestFixture(CryptoImplementation.BouncyCastle)]
-    public class TestLogOnViewModel
+    public class TestFilePasswordViewModel
     {
         private static IList<Passphrase> _identities;
 
         private CryptoImplementation _cryptoImplementation;
 
-        public TestLogOnViewModel(CryptoImplementation cryptoImplementation)
+        public TestFilePasswordViewModel(CryptoImplementation cryptoImplementation)
         {
             _cryptoImplementation = cryptoImplementation;
         }
@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestConstructor()
         {
-            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
+            FilePasswordViewModel lovm = new FilePasswordViewModel(String.Empty);
 
             Assert.That(lovm.Passphrase, Is.EqualTo(""));
         }
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestShowPassphrase()
         {
-            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
+            FilePasswordViewModel lovm = new FilePasswordViewModel(String.Empty);
 
             Assert.That(lovm.ShowPassphrase, Is.False);
 
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestValidatePropertyThatCannotBeValidated()
         {
-            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
+            FilePasswordViewModel lovm = new FilePasswordViewModel(String.Empty);
             string s = null;
             Assert.Throws<ArgumentException>(() => { s = lovm["ShowPassphrase"]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Test
             environmentMock.Setup<bool>(f => f.IsLittleEndian).Returns(true);
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
 
-            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
+            FilePasswordViewModel lovm = new FilePasswordViewModel(String.Empty);
 
             _identities.Add(new Passphrase("abc1234"));
 
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
             environmentMock.Setup<bool>(f => f.IsLittleEndian).Returns(true);
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
 
-            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
+            FilePasswordViewModel lovm = new FilePasswordViewModel(String.Empty);
 
             _identities.Add(new Passphrase("abc1234"));
 
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestValidateNonExistingPropertyName()
         {
-            LogOnViewModel lovm = new LogOnViewModel(String.Empty);
+            FilePasswordViewModel lovm = new FilePasswordViewModel(String.Empty);
             string s = null;
             Assert.Throws<ArgumentException>(() => { s = lovm["NonExisting"]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
             _identities.Add(new Passphrase("a"));
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
-            LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
+            FilePasswordViewModel npvm = new FilePasswordViewModel(@"C:\My Folder\MyFile-txt.axx");
             npvm.Passphrase = "b";
 
             Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
             _identities.Add(new Passphrase("a"));
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
-            LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
+            FilePasswordViewModel npvm = new FilePasswordViewModel(@"C:\My Folder\MyFile-txt.axx");
             npvm.Passphrase = "a";
 
             Assert.That(npvm["Passphrase"], Is.EqualTo(""));
@@ -192,7 +192,7 @@ namespace Axantum.AxCrypt.Core.Test
             _identities.Add(new Passphrase("b"));
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
-            LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
+            FilePasswordViewModel npvm = new FilePasswordViewModel(@"C:\My Folder\MyFile-txt.axx");
             npvm.Passphrase = "b";
 
             Assert.That(npvm["Passphrase"], Is.Not.EqualTo(String.Empty));

@@ -2028,6 +2028,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Key File.
+        /// </summary>
+        public static string KeyFilePrompt {
+            get {
+                return ResourceManager.GetString("KeyFilePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Key Management.
         /// </summary>
         public static string KeyManagementToolStripMenuItemText {

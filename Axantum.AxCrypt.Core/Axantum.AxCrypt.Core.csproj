@@ -318,7 +318,7 @@
     <Compile Include="UI\ViewModel\KnownFoldersViewModel.cs" />
     <Compile Include="UI\ViewModel\LogOnEventArgs.cs" />
     <Compile Include="UI\ViewModel\IViewModel.cs" />
-    <Compile Include="UI\ViewModel\LogOnViewModel.cs" />
+    <Compile Include="UI\ViewModel\FilePasswordViewModel.cs" />
     <Compile Include="UI\ViewModel\MainViewModel.cs" />
     <Compile Include="UI\Options.cs" />
     <Compile Include="UI\ParallelFileOperation.cs" />

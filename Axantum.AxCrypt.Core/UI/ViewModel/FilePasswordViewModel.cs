@@ -36,11 +36,11 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class LogOnViewModel : ViewModelBase
+    public class FilePasswordViewModel : ViewModelBase
     {
         private string _encryptedFileFullName;
 
-        public LogOnViewModel(string encryptedFileFullName)
+        public FilePasswordViewModel(string encryptedFileFullName)
         {
             _encryptedFileFullName = encryptedFileFullName;
             InitializePropertyValues();
@@ -48,8 +48,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            Passphrase = String.Empty;
-            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : New<IDataStore>(_encryptedFileFullName).Name;
+            Passphrase = string.Empty;
+            FileName = string.IsNullOrEmpty(_encryptedFileFullName) ? string.Empty : New<IDataStore>(_encryptedFileFullName).Name;
+            AskForKeyFile = false;
+            KeyFileName = string.Empty;
         }
 
         public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
@@ -57,6 +59,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
 
         public string FileName { get { return GetProperty<string>(nameof(FileName)); } set { SetProperty(nameof(FileName), value); } }
+
+        public bool AskForKeyFile { get { return GetProperty<bool>(nameof(AskForKeyFile)); } set { SetProperty(nameof(AskForKeyFile), value); } }
+
+        public string KeyFileName { get { return GetProperty<string>(nameof(KeyFileName)); } set { SetProperty(nameof(KeyFileName), value); } }
 
         protected override bool Validate(string columnName)
         {
