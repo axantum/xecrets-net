@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(LogOnAccountViewModel.Passphrase)].Length != 0)
             {
-                _errorProvider1.SetError(_passphrase, _email.Text.Length > 0 ? Texts.WrongPassphrase : Texts.UnkownLogOn);
+                _errorProvider1.SetError(_passphrase, _email.Text.Length > 0 ? Texts.WrongPassphrase : Texts.UnknownLogOn);
                 return false;
             }
             return true;

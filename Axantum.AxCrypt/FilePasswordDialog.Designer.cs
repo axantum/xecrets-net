@@ -33,14 +33,14 @@
             this.DialogFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.FileNamePanel = new System.Windows.Forms.Panel();
             this._fileNameGroupBox = new System.Windows.Forms.GroupBox();
-            this.FileNameTextBox = new System.Windows.Forms.TextBox();
+            this._fileNameTextBox = new System.Windows.Forms.TextBox();
             this.PasswordPanel = new System.Windows.Forms.Panel();
             this._passphraseGroupBox = new System.Windows.Forms.GroupBox();
-            this.PassphraseTextBox = new System.Windows.Forms.TextBox();
-            this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
+            this._passphraseTextBox = new System.Windows.Forms.TextBox();
+            this._showPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.KeyFilePanel = new System.Windows.Forms.Panel();
             this._keyFileGroupBox = new System.Windows.Forms.GroupBox();
-            this.KeyFileTextBox = new System.Windows.Forms.TextBox();
+            this._keyFileTextBox = new System.Windows.Forms.TextBox();
             this._keyFileBrowseForButton = new System.Windows.Forms.Button();
             this.ButtonPanel = new System.Windows.Forms.Panel();
             this._cancelButton = new System.Windows.Forms.Button();
@@ -96,7 +96,7 @@
             // 
             this._fileNameGroupBox.AutoSize = true;
             this._fileNameGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this._fileNameGroupBox.Controls.Add(this.FileNameTextBox);
+            this._fileNameGroupBox.Controls.Add(this._fileNameTextBox);
             this._fileNameGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._fileNameGroupBox.Location = new System.Drawing.Point(12, 12);
             this._fileNameGroupBox.Name = "_fileNameGroupBox";
@@ -105,13 +105,13 @@
             this._fileNameGroupBox.TabStop = false;
             this._fileNameGroupBox.Text = "[File]";
             // 
-            // FileNameTextBox
+            // _fileNameTextBox
             // 
-            this.FileNameTextBox.Enabled = false;
-            this.FileNameTextBox.Location = new System.Drawing.Point(7, 19);
-            this.FileNameTextBox.Name = "FileNameTextBox";
-            this.FileNameTextBox.Size = new System.Drawing.Size(270, 20);
-            this.FileNameTextBox.TabIndex = 0;
+            this._fileNameTextBox.Enabled = false;
+            this._fileNameTextBox.Location = new System.Drawing.Point(7, 19);
+            this._fileNameTextBox.Name = "_fileNameTextBox";
+            this._fileNameTextBox.Size = new System.Drawing.Size(270, 20);
+            this._fileNameTextBox.TabIndex = 0;
             // 
             // PasswordPanel
             // 
@@ -125,8 +125,8 @@
             // _passphraseGroupBox
             // 
             this._passphraseGroupBox.AutoSize = true;
-            this._passphraseGroupBox.Controls.Add(this.PassphraseTextBox);
-            this._passphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
+            this._passphraseGroupBox.Controls.Add(this._passphraseTextBox);
+            this._passphraseGroupBox.Controls.Add(this._showPassphraseCheckBox);
             this._passphraseGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._passphraseGroupBox.Location = new System.Drawing.Point(12, 12);
             this._passphraseGroupBox.Name = "_passphraseGroupBox";
@@ -135,24 +135,24 @@
             this._passphraseGroupBox.TabStop = false;
             this._passphraseGroupBox.Text = "[Enter Password]";
             // 
-            // PassphraseTextBox
+            // _passphraseTextBox
             // 
-            this.PassphraseTextBox.Location = new System.Drawing.Point(7, 19);
-            this.PassphraseTextBox.Name = "PassphraseTextBox";
-            this.PassphraseTextBox.Size = new System.Drawing.Size(270, 20);
-            this.PassphraseTextBox.TabIndex = 0;
-            this.PassphraseTextBox.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
+            this._passphraseTextBox.Location = new System.Drawing.Point(7, 19);
+            this._passphraseTextBox.Name = "_passphraseTextBox";
+            this._passphraseTextBox.Size = new System.Drawing.Size(270, 20);
+            this._passphraseTextBox.TabIndex = 0;
+            this._passphraseTextBox.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
             // 
-            // ShowPassphraseCheckBox
+            // _showPassphraseCheckBox
             // 
-            this.ShowPassphraseCheckBox.AutoSize = true;
-            this.ShowPassphraseCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ShowPassphraseCheckBox.Location = new System.Drawing.Point(7, 46);
-            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
-            this.ShowPassphraseCheckBox.Size = new System.Drawing.Size(108, 17);
-            this.ShowPassphraseCheckBox.TabIndex = 1;
-            this.ShowPassphraseCheckBox.Text = "[Show Password]";
-            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
+            this._showPassphraseCheckBox.AutoSize = true;
+            this._showPassphraseCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._showPassphraseCheckBox.Location = new System.Drawing.Point(7, 46);
+            this._showPassphraseCheckBox.Name = "_showPassphraseCheckBox";
+            this._showPassphraseCheckBox.Size = new System.Drawing.Size(108, 17);
+            this._showPassphraseCheckBox.TabIndex = 1;
+            this._showPassphraseCheckBox.Text = "[Show Password]";
+            this._showPassphraseCheckBox.UseVisualStyleBackColor = true;
             // 
             // KeyFilePanel
             // 
@@ -166,7 +166,7 @@
             // _keyFileGroupBox
             // 
             this._keyFileGroupBox.AutoSize = true;
-            this._keyFileGroupBox.Controls.Add(this.KeyFileTextBox);
+            this._keyFileGroupBox.Controls.Add(this._keyFileTextBox);
             this._keyFileGroupBox.Controls.Add(this._keyFileBrowseForButton);
             this._keyFileGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._keyFileGroupBox.Location = new System.Drawing.Point(12, 12);
@@ -176,12 +176,12 @@
             this._keyFileGroupBox.TabStop = false;
             this._keyFileGroupBox.Text = "[Key File]";
             // 
-            // KeyFileTextBox
+            // _keyFileTextBox
             // 
-            this.KeyFileTextBox.Location = new System.Drawing.Point(7, 20);
-            this.KeyFileTextBox.Name = "KeyFileTextBox";
-            this.KeyFileTextBox.Size = new System.Drawing.Size(234, 20);
-            this.KeyFileTextBox.TabIndex = 0;
+            this._keyFileTextBox.Location = new System.Drawing.Point(7, 20);
+            this._keyFileTextBox.Name = "_keyFileTextBox";
+            this._keyFileTextBox.Size = new System.Drawing.Size(234, 20);
+            this._keyFileTextBox.TabIndex = 0;
             // 
             // _keyFileBrowseForButton
             // 
@@ -235,7 +235,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "[File Password]";
             this.Activated += new System.EventHandler(this.LogOnDialog_Activated);
-            this.Load += new System.EventHandler(this.EncryptPassphraseDialog_Load);
             this.DialogFlowLayoutPanel.ResumeLayout(false);
             this.FileNamePanel.ResumeLayout(false);
             this.FileNamePanel.PerformLayout();
@@ -260,19 +259,19 @@
 
         private System.Windows.Forms.ErrorProvider _errorProvider1;
         private System.Windows.Forms.Panel PasswordPanel;
-        internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
-        internal System.Windows.Forms.TextBox PassphraseTextBox;
         private System.Windows.Forms.Panel FileNamePanel;
         private System.Windows.Forms.GroupBox _fileNameGroupBox;
-        internal System.Windows.Forms.TextBox FileNameTextBox;
         private System.Windows.Forms.FlowLayoutPanel DialogFlowLayoutPanel;
         private System.Windows.Forms.Panel ButtonPanel;
         private System.Windows.Forms.Panel KeyFilePanel;
         private System.Windows.Forms.GroupBox _keyFileGroupBox;
         private System.Windows.Forms.Button _keyFileBrowseForButton;
-        internal System.Windows.Forms.TextBox KeyFileTextBox;
         private System.Windows.Forms.Button _cancelButton;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.GroupBox _passphraseGroupBox;
+        private System.Windows.Forms.CheckBox _showPassphraseCheckBox;
+        private System.Windows.Forms.TextBox _passphraseTextBox;
+        private System.Windows.Forms.TextBox _fileNameTextBox;
+        private System.Windows.Forms.TextBox _keyFileTextBox;
     }
 }

@@ -712,11 +712,11 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
     <value>Inconnu</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
   </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Erreur inconnu. Merci de nous en faire part.</value>
+  </data>
   <data name="UnknownFileStatus" xml:space="preserve">
     <value>Etat 'Inconnu' avec '{0}'.</value>
-  </data>
-  <data name="UnkownError" xml:space="preserve">
-    <value>Erreur inconnu. Merci de nous en faire part.</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} avec '{0}'.</value>

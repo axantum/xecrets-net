@@ -36,8 +36,6 @@ namespace Axantum.AxCrypt
 {
     public partial class FilePasswordDialog : StyledMessageBase
     {
-        private FilePasswordViewModel _viewModel;
-
         public FilePasswordDialog()
         {
             InitializeComponent();
@@ -46,35 +44,38 @@ namespace Axantum.AxCrypt
         public FilePasswordDialog(Form parent, string encryptedFileFullName)
             : this()
         {
-            InitializeStyle(parent);
+            ViewModel = new FilePasswordViewModel(encryptedFileFullName);
 
-            _viewModel = new FilePasswordViewModel(encryptedFileFullName);
-            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
-            ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
+            InitializeStyle(parent);
+            InitializePropertyValues();
+            BindPropertyChangedEvents();
         }
+
+        public FilePasswordViewModel ViewModel { get; private set; }
 
         protected override void InitializeContentResources()
         {
             Text = Texts.DialogFilePasswordTitle;
 
             _passphraseGroupBox.Text = Texts.PassphrasePrompt;
-            ShowPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
+            _showPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
             _cancelButton.Text = Texts.ButtonCancelText;
             _okButton.Text = Texts.ButtonOkText;
             _fileNameGroupBox.Text = Texts.PromptFileText;
             _keyFileGroupBox.Text = Texts.KeyFilePrompt;
         }
 
-        private void EncryptPassphraseDialog_Load(object s, EventArgs ea)
+        private void InitializePropertyValues()
         {
-            if (DesignMode)
-            {
-                return;
-            }
+            _passphraseTextBox.TextChanged += (sender, e) => { ViewModel.PassphraseText = _passphraseTextBox.Text; };
+            _showPassphraseCheckBox.CheckedChanged += (sender, e) => { ViewModel.ShowPassphrase = _showPassphraseCheckBox.Checked; };
+        }
 
-            _viewModel.BindPropertyChanged(nameof(FilePasswordViewModel.ShowPassphrase), (bool show) => { PassphraseTextBox.UseSystemPasswordChar = !show; });
-            _viewModel.BindPropertyChanged(nameof(FilePasswordViewModel.FileName), (string fileName) => { FileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
-            _viewModel.BindPropertyChanged(nameof(FilePasswordViewModel.AskForKeyFile), (bool askForKeyFile) => { KeyFilePanel.Visible = askForKeyFile; });
+        private void BindPropertyChangedEvents()
+        {
+            ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.ShowPassphrase), (bool show) => { _passphraseTextBox.UseSystemPasswordChar = !show; _showPassphraseCheckBox.Checked = show; });
+            ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.FileName), (string fileName) => { _fileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
+            ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.AskForKeyFile), (bool askForKeyFile) => { KeyFilePanel.Visible = askForKeyFile; });
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -89,18 +90,18 @@ namespace Axantum.AxCrypt
 
         private bool AdHocValidationDueToMonoLimitations()
         {
-            if (_viewModel[nameof(FilePasswordViewModel.Passphrase)].Length == 0)
+            if (ViewModel[nameof(FilePasswordViewModel.PassphraseText)].Length == 0)
             {
                 _errorProvider1.Clear();
                 return true;
             }
-            if (String.IsNullOrEmpty(_viewModel.FileName))
+            if (String.IsNullOrEmpty(ViewModel.FileName))
             {
-                _errorProvider1.SetError(PassphraseTextBox, Texts.UnkownLogOn);
+                _errorProvider1.SetError(_passphraseTextBox, Texts.UnknownLogOn);
             }
             else
             {
-                _errorProvider1.SetError(PassphraseTextBox, Texts.WrongPassphrase);
+                _errorProvider1.SetError(_passphraseTextBox, Texts.WrongPassphrase);
             }
             return false;
         }
@@ -128,10 +129,10 @@ namespace Axantum.AxCrypt
                 DialogResult result = ofd.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    KeyFileTextBox.Text = ofd.FileName;
-                    KeyFileTextBox.SelectionStart = ofd.FileName.Length;
-                    KeyFileTextBox.SelectionLength = 1;
-                    KeyFileTextBox.Focus();
+                    _keyFileTextBox.Text = ofd.FileName;
+                    _keyFileTextBox.SelectionStart = ofd.FileName.Length;
+                    _keyFileTextBox.SelectionLength = 1;
+                    _keyFileTextBox.Focus();
                 }
             }
         }

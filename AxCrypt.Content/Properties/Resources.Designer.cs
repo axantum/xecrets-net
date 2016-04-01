@@ -3826,6 +3826,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unknown Error. Please report..
+        /// </summary>
+        public static string UnknownError {
+            get {
+                return ResourceManager.GetString("UnknownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status &apos;Unknown&apos; with &apos;{0}&apos;..
         /// </summary>
         public static string UnknownFileStatus {
@@ -3835,20 +3844,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown Error. Please report..
-        /// </summary>
-        public static string UnkownError {
-            get {
-                return ResourceManager.GetString("UnkownError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Password is not previously known. Click &apos;New&apos; to create a new..
         /// </summary>
-        public static string UnkownLogOn {
+        public static string UnknownLogOn {
             get {
-                return ResourceManager.GetString("UnkownLogOn", resourceCulture);
+                return ResourceManager.GetString("UnknownLogOn", resourceCulture);
             }
         }
         

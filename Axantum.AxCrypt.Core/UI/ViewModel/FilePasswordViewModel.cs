@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            Passphrase = string.Empty;
+            PassphraseText = string.Empty;
             FileName = string.IsNullOrEmpty(_encryptedFileFullName) ? string.Empty : New<IDataStore>(_encryptedFileFullName).Name;
             AskForKeyFile = ShouldAskForKeyFile(_encryptedFileFullName);
             KeyFileName = string.Empty;
@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
 
-        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
+        public string PassphraseText { get { return GetProperty<string>(nameof(PassphraseText)); } set { SetProperty(nameof(PassphraseText), value); } }
 
         public string FileName { get { return GetProperty<string>(nameof(FileName)); } set { SetProperty(nameof(FileName), value); } }
 
@@ -65,11 +65,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string KeyFileName { get { return GetProperty<string>(nameof(KeyFileName)); } set { SetProperty(nameof(KeyFileName), value); } }
 
+        public Passphrase Passphrase
+        {
+            get
+            {
+                return Passphrase.Create(PassphraseText);
+            }
+        }
+
         protected override bool Validate(string columnName)
         {
             switch (columnName)
             {
-                case nameof(Passphrase):
+                case nameof(PassphraseText):
                     if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
@@ -98,19 +106,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return OpenFileProperties.Create(New<IDataStore>(encryptedFileFullName)).IsLegacyV1;
         }
 
-        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
+        private static bool IsPassphraseValidForFileIfAny(Passphrase passphrase, string encryptedFileFullName)
         {
             if (string.IsNullOrEmpty(encryptedFileFullName))
             {
                 return true;
             }
-            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { new Passphrase(passphrase) }, new IAsymmetricPrivateKey[0], Resolve.CryptoFactory.OrderedIds);
+            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { passphrase }, new IAsymmetricPrivateKey[0], Resolve.CryptoFactory.OrderedIds);
             return New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, New<IDataStore>(encryptedFileFullName)) != null;
         }
 
         private bool IsKnownIdentity()
         {
-            SymmetricKeyThumbprint thumbprint = new Passphrase(Passphrase).Thumbprint;
+            SymmetricKeyThumbprint thumbprint = Passphrase.Thumbprint;
             Passphrase passphrase = Resolve.FileSystemState.KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
             if (passphrase != null)
             {

@@ -1349,13 +1349,13 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
     <value>Desconocido</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
   </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Error desconocido. Por favor, repórtelo.</value>
+  </data>
   <data name="UnknownFileStatus" xml:space="preserve">
     <value>Estado 'Desconocido' con '{0}'.</value>
   </data>
-  <data name="UnkownError" xml:space="preserve">
-    <value>Error desconocido. Por favor, repórtelo. </value>
-  </data>
-  <data name="UnkownLogOn" xml:space="preserve">
+  <data name="UnknownLogOn" xml:space="preserve">
     <value>La contraseña es desconocida. Haga clic en "Nuevo" para crear una nueva contraseña.</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">

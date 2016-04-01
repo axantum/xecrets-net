@@ -911,22 +911,22 @@ namespace Axantum.AxCrypt
         {
             using (FilePasswordDialog logOnDialog = new FilePasswordDialog(this, e.EncryptedFileFullName))
             {
-                logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
+                logOnDialog.ViewModel.ShowPassphrase = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
                 if (dialogResult == DialogResult.Retry)
                 {
-                    e.Passphrase = new Passphrase(logOnDialog.PassphraseTextBox.Text);
+                    e.Passphrase = logOnDialog.ViewModel.Passphrase;
                     e.IsAskingForPreviouslyUnknownPassphrase = true;
                     return;
                 }
 
-                if (dialogResult != DialogResult.OK || logOnDialog.PassphraseTextBox.Text.Length == 0)
+                if (dialogResult != DialogResult.OK || logOnDialog.ViewModel.Passphrase == Passphrase.Empty)
                 {
                     e.Cancel = true;
                     return;
                 }
-                e.DisplayPassphrase = logOnDialog.ShowPassphraseCheckBox.Checked;
-                e.Passphrase = new Passphrase(logOnDialog.PassphraseTextBox.Text);
+                e.DisplayPassphrase = logOnDialog.ViewModel.ShowPassphrase;
+                e.Passphrase = logOnDialog.ViewModel.Passphrase;
             }
             return;
         }

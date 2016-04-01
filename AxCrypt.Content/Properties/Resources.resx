@@ -1440,13 +1440,13 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Unknown</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
   </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Unknown Error. Please report.</value>
+  </data>
   <data name="UnknownFileStatus" xml:space="preserve">
     <value>Status 'Unknown' with '{0}'.</value>
   </data>
-  <data name="UnkownError" xml:space="preserve">
-    <value>Unknown Error. Please report.</value>
-  </data>
-  <data name="UnkownLogOn" xml:space="preserve">
+  <data name="UnknownLogOn" xml:space="preserve">
     <value>Password is not previously known. Click 'New' to create a new.</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">

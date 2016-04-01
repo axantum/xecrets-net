@@ -1190,13 +1190,13 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
     <value>Okänt</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
   </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Okänt fel. Vänligen felrapportera detta!</value>
+  </data>
   <data name="UnknownFileStatus" xml:space="preserve">
     <value>Status 'Okänd' med '{0}'.</value>
   </data>
-  <data name="UnkownError" xml:space="preserve">
-    <value>Okänt fel. Vänligen felrapportera detta!</value>
-  </data>
-  <data name="UnkownLogOn" xml:space="preserve">
+  <data name="UnknownLogOn" xml:space="preserve">
     <value>Okänt lösenord. Klicka 'Ny' för att skapa en ny identitet.</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">

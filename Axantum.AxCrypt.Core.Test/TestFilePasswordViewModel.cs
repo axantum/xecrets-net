@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FilePasswordViewModel lovm = new FilePasswordViewModel(String.Empty);
 
-            Assert.That(lovm.Passphrase, Is.EqualTo(""));
+            Assert.That(lovm.PassphraseText, Is.EqualTo(""));
         }
 
         [Test]
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _identities.Add(new Passphrase("abc1234"));
 
-            lovm.Passphrase = "abc1234";
+            lovm.PassphraseText = "abc1234";
 
             Assert.That(lovm["Passphrase"], Is.EqualTo(""));
             Assert.That(lovm.ValidationError, Is.EqualTo((int)ValidationError.None));
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _identities.Add(new Passphrase("abc1234"));
 
-            lovm.Passphrase = "abc12345";
+            lovm.PassphraseText = "abc12345";
 
             Assert.That(lovm["Passphrase"], Is.Not.EqualTo(""));
             Assert.That(lovm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
@@ -167,7 +167,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             FilePasswordViewModel npvm = new FilePasswordViewModel(@"C:\My Folder\MyFile-txt.axx");
-            npvm.Passphrase = "b";
+            npvm.PassphraseText = "b";
 
             Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
@@ -180,7 +180,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             FilePasswordViewModel npvm = new FilePasswordViewModel(@"C:\My Folder\MyFile-txt.axx");
-            npvm.Passphrase = "a";
+            npvm.PassphraseText = "a";
 
             Assert.That(npvm["Passphrase"], Is.EqualTo(""));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.None));
@@ -193,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             FilePasswordViewModel npvm = new FilePasswordViewModel(@"C:\My Folder\MyFile-txt.axx");
-            npvm.Passphrase = "b";
+            npvm.PassphraseText = "b";
 
             Assert.That(npvm["Passphrase"], Is.Not.EqualTo(String.Empty));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
