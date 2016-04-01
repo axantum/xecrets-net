@@ -68,6 +68,7 @@ namespace Axantum.AxCrypt
         private void InitializePropertyValues()
         {
             _passphraseTextBox.TextChanged += (sender, e) => { ViewModel.PassphraseText = _passphraseTextBox.Text; };
+            _keyFileTextBox.TextChanged += (sender, e) => { ViewModel.KeyFileName = _keyFileTextBox.Text; };
             _showPassphraseCheckBox.CheckedChanged += (sender, e) => { ViewModel.ShowPassphrase = _showPassphraseCheckBox.Checked; };
         }
 
@@ -90,11 +91,19 @@ namespace Axantum.AxCrypt
 
         private bool AdHocValidationDueToMonoLimitations()
         {
+            _errorProvider1.Clear();
+
+            if (ViewModel[nameof(FilePasswordViewModel.KeyFileName)].Length > 0)
+            {
+                _errorProvider1.SetError(_keyFileBrowseForButton, Texts.FileNotFound);
+                return false;
+            }
+
             if (ViewModel[nameof(FilePasswordViewModel.PassphraseText)].Length == 0)
             {
-                _errorProvider1.Clear();
                 return true;
             }
+
             if (String.IsNullOrEmpty(ViewModel.FileName))
             {
                 _errorProvider1.SetError(_passphraseTextBox, Texts.UnknownLogOn);
@@ -113,6 +122,11 @@ namespace Axantum.AxCrypt
         }
 
         private void PassphraseTextBox_Enter(object sender, EventArgs e)
+        {
+            _errorProvider1.Clear();
+        }
+
+        private void KeyFileTextBox_Enter(object sender, EventArgs e)
         {
             _errorProvider1.Clear();
         }

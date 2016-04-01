@@ -182,6 +182,7 @@
             this._keyFileTextBox.Name = "_keyFileTextBox";
             this._keyFileTextBox.Size = new System.Drawing.Size(234, 20);
             this._keyFileTextBox.TabIndex = 0;
+            this._keyFileTextBox.Enter += new System.EventHandler(this.KeyFileTextBox_Enter);
             // 
             // _keyFileBrowseForButton
             // 

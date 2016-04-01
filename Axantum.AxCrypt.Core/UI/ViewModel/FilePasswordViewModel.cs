@@ -77,6 +77,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (columnName)
             {
+                case nameof(KeyFileName):
+                    if (string.IsNullOrEmpty(KeyFileName))
+                    {
+                        return true;
+                    }
+                    return New<IDataStore>(KeyFileName).IsAvailable;
+
                 case nameof(PassphraseText):
                     if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
