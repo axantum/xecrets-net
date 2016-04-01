@@ -27,10 +27,12 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -69,7 +71,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             get
             {
-                return Passphrase.Create(PassphraseText);
+                if (string.IsNullOrEmpty(KeyFileName))
+                {
+                    return Passphrase.Create(PassphraseText);
+                }
+
+                byte[] extra;
+                using (Stream stream = New<IDataStore>(KeyFileName).OpenRead())
+                {
+                    extra = stream.ToArray();
+                }
+                return Passphrase.Create(PassphraseText, extra);
             }
         }
 
@@ -82,7 +94,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     {
                         return true;
                     }
-                    return New<IDataStore>(KeyFileName).IsAvailable;
+                    if (!New<IDataStore>(KeyFileName).IsAvailable)
+                    {
+                        return false;
+                    }
+                    try
+                    {
+                        using (Stream stream = New<IDataStore>(KeyFileName).OpenRead())
+                        {
+                        }
+                    }
+                    catch (IOException)
+                    {
+                        return false;
+                    }
+                    return true;
 
                 case nameof(PassphraseText):
                     if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))

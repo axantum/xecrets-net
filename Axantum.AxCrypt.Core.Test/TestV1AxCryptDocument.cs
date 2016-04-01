@@ -38,7 +38,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
-using System.Security.Cryptography;
 using System.Text;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -343,6 +342,55 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(text, Is.StringEnding("subscribe to our email newsletter to hear about new eBooks." + (Char)13 + (Char)10), "Unexpected end of David Copperfield.");
                     Assert.That(text.Length, Is.EqualTo(1992490), "Wrong length of full text of David Copperfield.");
                     Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(795855), "Wrong expected length of compressed text of David Copperfield.");
+                }
+            }
+        }
+
+        [Test]
+        public void TestDecryptWithKeyFileShortTextFile()
+        {
+            Passphrase passphrase = Passphrase.Create("p", Resources.My_Key_File);
+            using (V1AxCryptDocument document = new V1AxCryptDocument())
+            {
+                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.Passphrase__p____My_Keyfile_txt));
+                Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                using (MemoryStream plaintextStream = new MemoryStream())
+                {
+                    document.DecryptTo(plaintextStream);
+                    string text = Encoding.UTF8.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length);
+                    Assert.That(text, Is.EqualTo("asdfasdfasdf"), "Unexpected content of file.");
+                }
+            }
+        }
+
+        [Test]
+        public void TestDecryptWithKeyFilePdfFile()
+        {
+            Passphrase passphrase = Passphrase.Create("b", Resources.My_Key_File);
+            using (V1AxCryptDocument document = new V1AxCryptDocument())
+            {
+                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources._2003_05_28_PcWorld_AxCrypt__b____My_Keyfile_pdf));
+                Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                using (MemoryStream plaintextStream = new MemoryStream())
+                {
+                    document.DecryptTo(plaintextStream);
+                    Assert.That(plaintextStream.Length, Is.EqualTo(132498), "Wrong length of decrypted PDF");
+                }
+            }
+        }
+
+        [Test]
+        public void TestDecryptWithKeyFileImageFile()
+        {
+            Passphrase passphrase = Passphrase.Create("a", Resources.My_Key_File);
+            using (V1AxCryptDocument document = new V1AxCryptDocument())
+            {
+                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.Foto_2015_05_19_23_19_08__a____My_Keyfile_jpg));
+                Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                using (MemoryStream plaintextStream = new MemoryStream())
+                {
+                    document.DecryptTo(plaintextStream);
+                    Assert.That(plaintextStream.Length, Is.EqualTo(260053), "Wrong length of decrypted JPG");
                 }
             }
         }

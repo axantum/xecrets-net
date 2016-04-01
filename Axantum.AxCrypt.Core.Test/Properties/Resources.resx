@@ -275,4 +275,16 @@ yhkO4poTyn0zanedSJdPn/kW96j0u3WCoRo4K+eOB7Pcv/qC82Az+AQbTEqQnRea
   <data name="uncompressable_zip" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\uncompressable-zip.axx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Foto_2015_05_19_23_19_08__a____My_Keyfile_jpg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\foto 2015-05-19 23 19 08 'a' + my keyfile-jpg.axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="My_Key_File" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\my key-file.txt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Passphrase__p____My_Keyfile_txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\passphrase 'p' + my keyfile-txt.axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_2003_05_28_PcWorld_AxCrypt__b____My_Keyfile_pdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\2003-05-28 pcworld axcrypt 'b' + my keyfile-pdf.axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

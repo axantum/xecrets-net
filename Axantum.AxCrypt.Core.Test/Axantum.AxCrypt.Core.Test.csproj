@@ -188,14 +188,17 @@
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
     <None Include="packages.config" />
+    <None Include="resources\2003-05-28 PcWorld AxCrypt %27b%27 + My Keyfile-pdf.axx" />
     <None Include="resources\david copperfield-key-%27aa ae oe%27-ulu-txt.axx" />
     <EmbeddedResource Include="resources\Frankenstein-txt-AES256.axx" />
     <EmbeddedResource Include="resources\Frankenstein-txt-V2AES128.axx" />
+    <None Include="resources\Foto 2015-05-19 23 19 08 %27a%27 + My Keyfile-jpg.axx" />
     <None Include="resources\helloworld-key-a-txt.axx" />
     <EmbeddedResource Include="resources\short-txt-AES256.axx" />
     <EmbeddedResource Include="resources\snow-jpg-AES256.axx" />
     <EmbeddedResource Include="resources\short-txt-V2AES128.axx" />
     <EmbeddedResource Include="resources\snow-jpg-V2AES128.axx" />
+    <None Include="resources\Passphrase %27p%27 + My Keyfile-txt.axx" />
     <None Include="resources\tst-0.0b6-key-%27aaaeoe%27-medium-html.axx" />
     <None Include="resources\uncompressable-zip.axx" />
   </ItemGroup>
@@ -241,6 +244,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutThisAssembly.txt" />
+    <Content Include="resources\My Key-File.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

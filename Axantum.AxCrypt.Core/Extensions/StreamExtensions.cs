@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Algorithm;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
@@ -159,6 +158,15 @@ namespace Axantum.AxCrypt.Core.Extensions
                     throw savedExceptionIfCloseCausesException;
                 }
                 throw;
+            }
+        }
+
+        public static byte[] ToArray(this Stream stream)
+        {
+            using (MemoryStream memStream = new MemoryStream())
+            {
+                stream.CopyTo(memStream);
+                return memStream.ToArray();
             }
         }
     }

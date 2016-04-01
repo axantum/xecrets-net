@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -123,7 +124,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            return Text == other.Text;
+            if (Text != other.Text)
+            {
+                return false;
+            }
+            return _extra.IsEquivalentTo(other._extra);
         }
 
         #endregion IEquatable<Passphrase> Members
