@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +51,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             Passphrase = string.Empty;
             FileName = string.IsNullOrEmpty(_encryptedFileFullName) ? string.Empty : New<IDataStore>(_encryptedFileFullName).Name;
-            AskForKeyFile = false;
+            AskForKeyFile = ShouldAskForKeyFile(_encryptedFileFullName);
             KeyFileName = string.Empty;
         }
 
@@ -87,9 +88,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
+        private static bool ShouldAskForKeyFile(string encryptedFileFullName)
+        {
+            if (string.IsNullOrEmpty(encryptedFileFullName))
+            {
+                return false;
+            }
+
+            return OpenFileProperties.Create(New<IDataStore>(encryptedFileFullName)).IsLegacyV1;
+        }
+
         private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
         {
-            if (String.IsNullOrEmpty(encryptedFileFullName))
+            if (string.IsNullOrEmpty(encryptedFileFullName))
             {
                 return true;
             }

@@ -39,11 +39,11 @@ namespace Axantum.AxCrypt.Core.Session
         private void Fill(Headers headers)
         {
             KeyShareCount = headers.HeaderBlocks.Count(hb => hb.HeaderBlockType == HeaderBlockType.V2AsymmetricKeyWrap);
+            IsLegacyV1 = headers.HeaderBlocks.Any(hb => hb.HeaderBlockType == HeaderBlockType.KeyWrap1);
         }
 
-        public int KeyShareCount
-        {
-            get; private set;
-        }
+        public int KeyShareCount { get; private set; }
+
+        public bool IsLegacyV1 { get; private set; }
     }
 }

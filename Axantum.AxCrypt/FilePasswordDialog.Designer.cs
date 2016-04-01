@@ -178,7 +178,7 @@
             this.DialogFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.DialogFlowLayoutPanel.Name = "DialogFlowLayoutPanel";
             this.DialogFlowLayoutPanel.Size = new System.Drawing.Size(319, 267);
-            this.DialogFlowLayoutPanel.TabIndex = 4;
+            this.DialogFlowLayoutPanel.TabIndex = 0;
             // 
             // KeyFilePanel
             // 
@@ -187,13 +187,13 @@
             this.KeyFilePanel.Name = "KeyFilePanel";
             this.KeyFilePanel.Padding = new System.Windows.Forms.Padding(12, 12, 12, 0);
             this.KeyFilePanel.Size = new System.Drawing.Size(313, 62);
-            this.KeyFilePanel.TabIndex = 4;
+            this.KeyFilePanel.TabIndex = 2;
             // 
             // _keyFileGroupBox
             // 
             this._keyFileGroupBox.AutoSize = true;
-            this._keyFileGroupBox.Controls.Add(this._keyFileBrowseForButton);
             this._keyFileGroupBox.Controls.Add(this.KeyFileTextBox);
+            this._keyFileGroupBox.Controls.Add(this._keyFileBrowseForButton);
             this._keyFileGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._keyFileGroupBox.Location = new System.Drawing.Point(12, 12);
             this._keyFileGroupBox.Name = "_keyFileGroupBox";
@@ -221,6 +221,7 @@
             // 
             // FilePasswordDialog
             // 
+            this.AcceptButton = this._okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
