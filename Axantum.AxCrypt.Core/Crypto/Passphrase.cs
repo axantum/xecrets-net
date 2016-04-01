@@ -43,6 +43,12 @@ namespace Axantum.AxCrypt.Core.Crypto
             Text = text;
         }
 
+        private Passphrase(string text, byte[] extra)
+            : this(text)
+        {
+            _extra = (byte[])extra.Clone();
+        }
+
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [JsonConstructor]
         private Passphrase(SymmetricKeyThumbprint thumbprint)
@@ -60,7 +66,28 @@ namespace Axantum.AxCrypt.Core.Crypto
             return new Passphrase(text);
         }
 
+        public static Passphrase Create(string text, byte[] extra)
+        {
+            if (extra == null)
+            {
+                throw new ArgumentNullException(nameof(extra));
+            }
+            if (string.IsNullOrEmpty(text) && extra.Length == 0)
+            {
+                return Passphrase.Empty;
+            }
+
+            return new Passphrase(text, extra);
+        }
+
         public string Text { get; private set; }
+
+        private byte[] _extra = new byte[0];
+
+        public byte[] Extra()
+        {
+            return (byte[])_extra.Clone();
+        }
 
         private SymmetricKeyThumbprint _thumbprint;
 
@@ -74,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 {
                     return _thumbprint;
                 }
-                if (Text == null)
+                if (Text == null && _extra.Length == 0)
                 {
                     return null;
                 }

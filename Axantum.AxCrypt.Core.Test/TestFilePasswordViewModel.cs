@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             lovm.PassphraseText = "abc1234";
 
-            Assert.That(lovm["Passphrase"], Is.EqualTo(""));
+            Assert.That(lovm[nameof(FilePasswordViewModel.PassphraseText)], Is.EqualTo(""));
             Assert.That(lovm.ValidationError, Is.EqualTo((int)ValidationError.None));
         }
 
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             lovm.PassphraseText = "abc12345";
 
-            Assert.That(lovm["Passphrase"], Is.Not.EqualTo(""));
+            Assert.That(lovm[nameof(FilePasswordViewModel.PassphraseText)], Is.Not.EqualTo(""));
             Assert.That(lovm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
         }
 
@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
             FilePasswordViewModel npvm = new FilePasswordViewModel(@"C:\My Folder\MyFile-txt.axx");
             npvm.PassphraseText = "b";
 
-            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));
+            Assert.That(npvm[nameof(FilePasswordViewModel.PassphraseText)], Is.Not.EqualTo(""));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
         }
 
@@ -182,7 +182,7 @@ namespace Axantum.AxCrypt.Core.Test
             FilePasswordViewModel npvm = new FilePasswordViewModel(@"C:\My Folder\MyFile-txt.axx");
             npvm.PassphraseText = "a";
 
-            Assert.That(npvm["Passphrase"], Is.EqualTo(""));
+            Assert.That(npvm[nameof(FilePasswordViewModel.PassphraseText)], Is.EqualTo(""));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.None));
         }
 
@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
             FilePasswordViewModel npvm = new FilePasswordViewModel(@"C:\My Folder\MyFile-txt.axx");
             npvm.PassphraseText = "b";
 
-            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(String.Empty));
+            Assert.That(npvm[nameof(FilePasswordViewModel.PassphraseText)], Is.Not.EqualTo(String.Empty));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
         }
     }
