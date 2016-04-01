@@ -2028,6 +2028,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Key Files (*.txt)|*.txt|All Files (*.*)|*.*.
+        /// </summary>
+        public static string KeyFileBrowseFilter {
+            get {
+                return ResourceManager.GetString("KeyFileBrowseFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Key File.
+        /// </summary>
+        public static string KeyFileBrowseTitle {
+            get {
+                return ResourceManager.GetString("KeyFileBrowseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key File.
         /// </summary>
         public static string KeyFilePrompt {

@@ -115,5 +115,25 @@ namespace Axantum.AxCrypt
         {
             _errorProvider1.Clear();
         }
+
+        private void KeyFileBrowseForButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Title = Texts.KeyFileBrowseTitle;
+                ofd.Multiselect = false;
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+                ofd.Filter = Texts.KeyFileBrowseFilter;
+                DialogResult result = ofd.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    KeyFileTextBox.Text = ofd.FileName;
+                    KeyFileTextBox.SelectionStart = ofd.FileName.Length;
+                    KeyFileTextBox.SelectionLength = 1;
+                    KeyFileTextBox.Focus();
+                }
+            }
+        }
     }
 }

@@ -800,6 +800,12 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript appears to be disabled in your browser. Unless you enable JavaScript you cannot sign in and the site may not perform as expected.</value>
   </data>
+  <data name="KeyFileBrowseFilter" xml:space="preserve">
+    <value>AxCrypt Key Files (*.txt)|*.txt|All Files (*.*)|*.*</value>
+  </data>
+  <data name="KeyFileBrowseTitle" xml:space="preserve">
+    <value>Select a Key File</value>
+  </data>
   <data name="KeyFilePrompt" xml:space="preserve">
     <value>Key File</value>
   </data>
