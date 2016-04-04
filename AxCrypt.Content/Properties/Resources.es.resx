@@ -175,10 +175,6 @@
   <data name="ActivateMailBodyTitle" xml:space="preserve">
     <value>¡Hola y bienvenido a AxCrypt!</value>
   </data>
-  <data name="ActivateMailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/ActivateEmail.cshtml</value>
-    <comment>Do Not Translate</comment>
-  </data>
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>Activación AxCrypt ID</value>
   </data>
@@ -212,20 +208,8 @@ Elija algo que es difícil de adivinar, ya que protegerá las contraseñas del a
     <value>Seleccione una carpeta para mantener protegidos con AxCrypt. Los archivos existentes serán cifrados ahora.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
-  <data name="AppActivateMailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/AppActivateEmail.cshtml</value>
-    <comment>Do Not Translate</comment>
-  </data>
-  <data name="AppActivatePlainTextMailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/AppActivateEmailPlainText.cshtml</value>
-    <comment>Do Not Translate</comment>
-  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>La página que intentó visitar requiere autenticación. Por favor, inicie sesión para continuar.</value>
-  </data>
-  <data name="AutoDeletionMailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/AutoDeletionEmail.html</value>
-    <comment>Do Not Translate</comment>
   </data>
   <data name="AutoDeletionMailSubject" xml:space="preserve">
     <value>Eliminación de AxCrypt ID</value>
@@ -334,10 +318,6 @@ Incluye el software de http://www.bouncycastle.org/. </value>
   <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
     <value>Cambiar correo electrónico</value>
   </data>
-  <data name="ChangeEmailConfirmMailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/ChangeEmailConfirmEmail.cshtml</value>
-    <comment>Do Not Translate</comment>
-  </data>
   <data name="ChangeEmailConfirmMailSubject" xml:space="preserve">
     <value>AxCrypt ID cambio de correo electrónico</value>
   </data>
@@ -352,10 +332,6 @@ Incluye el software de http://www.bouncycastle.org/. </value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
     <value>Ignore this email or report it to {0}. No hay problema, no información ha sido revelada.</value>
-  </data>
-  <data name="ChangeEmailExistMailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/ChangeEmailExistEmail.cshtml</value>
-    <comment>Do Not Translate</comment>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>Solicitud de cambio de correo electrónico del AxCrypt ID</value>
@@ -460,24 +436,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Su suscripción premium está a punto de expirar. Haga clic para renovar.</value>
   </data>
-  <data name="DebugCheckVersionNowToolStripMenuItemText" xml:space="preserve">
-    <value>Compruebe la versión de software ahora</value>
-  </data>
-  <data name="DebugCryptoPolicyToolStripMenuItemText" xml:space="preserve">
-    <value>Licencia &amp;política</value>
-  </data>
-  <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Logging</value>
-  </data>
-  <data name="DebugManageAccountToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Administrar AxCrypt ID</value>
-  </data>
-  <data name="DebugOptionsToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Opciones</value>
-  </data>
-  <data name="DebugToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Depurar</value>
-  </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Dejar de proteger y eliminar de la lista</value>
   </data>
@@ -523,18 +481,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
     <value>Se requiere que la primera vez que inicie AxCrypt, acceso a Internet y una dirección de correo electrónico real. Haga clic en Ayuda para obtener más información.</value>
-  </data>
-  <data name="DialogDebugLogTitle" xml:space="preserve">
-    <value>Registro de depuración</value>
-  </data>
-  <data name="DialogDebugOptionsRestApiTimeoutPrompt" xml:space="preserve">
-    <value>API Timeout</value>
-  </data>
-  <data name="DialogDebugOptionsRestApiUrlPrompt" xml:space="preserve">
-    <value>REST API Base Url</value>
-  </data>
-  <data name="DialogDebugOptionsTitle" xml:space="preserve">
-    <value>Opciones de depuración</value>
   </data>
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Se requiere contraseña</value>
@@ -770,19 +716,20 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
 Para iniciar la protección de los archivos sólo tiene que descargar e instalar AxCrypt de {1}.
 Iniciar sesión en AxCrypt con {2}, introduzca el código de activación de 6 cifras y configure el contraseña secreta.</value>
   </data>
-  <data name="InvitationMailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/InvitationEmail.cshtml</value>
-    <comment>Do Not Translate</comment>
-  </data>
-  <data name="InvitationMailPlainTextBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/InvitationEmailPlainText.cshtml</value>
-    <comment>Do Not Translate</comment>
-  </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Invitación a utilizar AxCrypt Seguridad de archivos</value>
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>Parece que JavaScript está desactivado en su navegador. Si no habilita JavaScript, no podrá inscribirse y el sitio no puede funcionar</value>
+  </data>
+  <data name="KeyFileBrowseFilter" xml:space="preserve">
+    <value>AxCrypt Archivos clave (*.txt)|*.txt|Todos los archivos (*.*)|*.*</value>
+  </data>
+  <data name="KeyFileBrowseTitle" xml:space="preserve">
+    <value>Elige un Archivo clave</value>
+  </data>
+  <data name="KeyFilePrompt" xml:space="preserve">
+    <value>Archivo clave</value>
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Administración de claves</value>
@@ -852,9 +799,6 @@ Iniciar sesión en AxCrypt con {2}, introduzca el código de activación de 6 ci
   <data name="LogOffText" xml:space="preserve">
     <value>Cerrar sesión</value>
   </data>
-  <data name="LogOnExists" xml:space="preserve">
-    <value>Este identidad AxCrypt ya existe.</value>
-  </data>
   <data name="LogOnText" xml:space="preserve">
     <value>Iniciar sessión</value>
   </data>
@@ -867,6 +811,19 @@ Iniciar sesión en AxCrypt con {2}, introduzca el código de activación de 6 ci
   <data name="MailBodyFooterPlainText" xml:space="preserve">
     <value>Si no está claro por qué usted está recibiendo esto desde AxCrypt.net, puede ignorar este mensaje o reportarlo a {0}.</value>
   </data>
+  <data name="MailBodyOutroHtml" xml:space="preserve">
+    <value>No dude en ponerse en contacto conmigo si tiene alguna pregunta o comentario. También vea nuestra FAQ y Foro en nuestro sitio web en &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
+    <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
+  </data>
+  <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
+    <value>&lt;ul&gt;
+&lt;li&gt;AES de 256 bits&lt;/li&gt;
+&lt;li&gt;Claves compartidas&lt;/li&gt;
+&lt;li&gt;Carpetas protegidos&lt;/li&gt;
+&lt;li&gt;Administración de contraseñas&lt;/li&gt;
+&lt;li&gt;Conocimiento de almacenamiento en la nube&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
   <data name="MailBodySignature" xml:space="preserve">
     <value>Atentamente, &lt;br&gt;&lt;i&gt;el equipo AxCrypt&lt;/i&gt;</value>
   </data>
@@ -877,9 +834,8 @@ El equipo AxCrypt</value>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>Hola {0},</value>
   </data>
-  <data name="MailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/_EmailLayout.cshtml</value>
-    <comment>Do Not Translate</comment>
+  <data name="MailBodyTitleHtml" xml:space="preserve">
+    <value>Hola {0},</value>
   </data>
   <data name="MainSiteUrl" xml:space="preserve">
     <value>http://www.axcrypt.net</value>
@@ -1002,9 +958,6 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Borrar todos los ajustes y salir</value>
   </data>
-  <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Depurar</value>
-  </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Idioma</value>
   </data>
@@ -1035,10 +988,6 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
   <data name="PasswordResetMailBodyButton" xml:space="preserve">
     <value>Restablecer la contraseña</value>
   </data>
-  <data name="PasswordResetMailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/PasswordResetEmail.cshtml</value>
-    <comment>Do Not Translate</comment>
-  </data>
   <data name="PasswordResetMailSubject" xml:space="preserve">
     <value>AxCrypt ID restablecimiento de contraseña</value>
   </data>
@@ -1058,6 +1007,22 @@ Si parece que usted no lo recibe, revise su filtro de correo no deseado y compru
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Más información sobre PayPal]</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Su suscripción de AxCrypt Premium termina pronto. Espero sinceramente que hayan disfrutado el uso de nuestras características y que piensa que eran útiles.</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>Me encantaría si desea continuar usando nuestras características premium. Simplemente &lt;a href="{0}Home/Login?email={1}"&gt;iniciar sesión&lt;/a&gt; a su cuenta de AxCrypt aquí para suscribirse en cualquier momento.</value>
+    <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
+  </data>
+  <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Con su suscripción Premium le va a continuar disfrutando de:</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
+    <value>Déjame saber lo que piensa de AxCrypt - ¿Va a seguir utilizándolo y hay algo que se podría mejorar?</value>
+  </data>
+  <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
+    <value>Su suscripción de AxCrypt Premium caduca pronto!</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>¡Esta función requiere una compra de Premium!</value>
@@ -1193,6 +1158,9 @@ Cuando la información llega a la página de PayPal, reside en un servidor que e
     <value>Ahora puede acceder a todas las funciones premium de AxCrypt. Si experimenta algún problema, póngase en contacto con nuestro soporte.
 
 Un recibo de su compra ha sido enviada a su correo electrónico.</value>
+  </data>
+  <data name="PurchaseVatPercent" xml:space="preserve">
+    <value>&lt;b&gt;IVA excluido &lt;/b&gt;. IVA real depende de su país de residencia y se mostrará en la página de pago.</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Limpieza de archivos activos</value>
@@ -1367,10 +1335,6 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   <data name="UnregisterMailBody2" xml:space="preserve">
     <value>¡Estamos tristes de ver que se vaya y esperamos que haya disfrutado de su tiempo con nosotros!</value>
   </data>
-  <data name="UnregisterMailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/UnregisterEmail.cshtml</value>
-    <comment>Do Not Translate</comment>
-  </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID eliminado</value>
   </data>
@@ -1394,6 +1358,21 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   </data>
   <data name="WatchedFoldersTabPageText" xml:space="preserve">
     <value>Carpetas protegidas</value>
+  </data>
+  <data name="WelcomeMailBody0Html" xml:space="preserve">
+    <value>¡Bienvenido a AxCrypt!</value>
+  </data>
+  <data name="WelcomeMailBody1Html" xml:space="preserve">
+    <value>Estoy muy contento de que se haya registrado! Para que se sienta bienvenida, le he dado el acceso libre a nuestras funciones Premium por 30 días.</value>
+  </data>
+  <data name="WelcomeMailBody2Html" xml:space="preserve">
+    <value>Con AxCrypt Gratis o AxCrypt Premium, puede proteger sus archivos de una manera muy fácil. La encriptación de archivos y carpetas simplemente haciendo clic. ¡Trabajar con los archivos cifrados es tan fácil también!</value>
+  </data>
+  <data name="WelcomeMailBody3Html" xml:space="preserve">
+    <value>Como suscriptor Premium hay una serie de excelentes características adicionales para usted, además de toda la funcionalidad regular y gratuito. Con Premium se obtiene características como:</value>
+  </data>
+  <data name="WelcomeMailSubject" xml:space="preserve">
+    <value>¡Bienvenido a AxCrypt!</value>
   </data>
   <data name="WelcomeToAxCrypt" xml:space="preserve">
     <value>¡Bienvenido a AxCrypt!

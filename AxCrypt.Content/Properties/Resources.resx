@@ -382,7 +382,7 @@ You must complete these steps to complete the process.</value>
     <value>Could not change password because the current password is incorrect or the new password is invalid.</value>
   </data>
   <data name="ChangePasswordErrorUserNotFound" xml:space="preserve">
-    <value>Internal error, could not change password because the current user was not found.</value>
+    <value>Internal error: Could not change password because the current user was not found.</value>
   </data>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Your password has been changed.</value>
@@ -876,9 +876,6 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
   </data>
   <data name="LogOffText" xml:space="preserve">
     <value>Sign Out</value>
-  </data>
-  <data name="LogOnExists" xml:space="preserve">
-    <value>This AxCrypt Identity already exists.</value>
   </data>
   <data name="LogOnText" xml:space="preserve">
     <value>Sign In</value>

@@ -305,9 +305,6 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
   <data name="ChangePasswordError" xml:space="preserve">
     <value>Lösenordsbytet misslyckades eftersom det nuvarande eller nya lösenordet är felaktigt.</value>
   </data>
-  <data name="ChangePasswordErrorUserNotFound" xml:space="preserve">
-    <value>Internt fel, det gick inte att byta lösenord eftersom AxCrypt ID inte hittades.</value>
-  </data>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Lösenordet har ändrats.</value>
   </data>
@@ -382,24 +379,6 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Ditt Premium-abonnemang går snart ut. Klicka för att förnya.</value>
   </data>
-  <data name="DebugCheckVersionNowToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Kontrollera Programversion</value>
-  </data>
-  <data name="DebugCryptoPolicyToolStripMenuItemText" xml:space="preserve">
-    <value>Licens&amp;policy</value>
-  </data>
-  <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Loggning</value>
-  </data>
-  <data name="DebugManageAccountToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Hangera AxCrypt ID</value>
-  </data>
-  <data name="DebugOptionsToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Konfiguration</value>
-  </data>
-  <data name="DebugToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Debug</value>
-  </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Avskydda och ta bort från listan</value>
   </data>
@@ -429,9 +408,6 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
   </data>
   <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
     <value>Misslyckades att ta bort AxCrypt ID pga felaktigt lösenord.</value>
-  </data>
-  <data name="DeleteAccountErrorUserNotFound" xml:space="preserve">
-    <value>Borttagande av AxCrypt ID misslyckades pga av ett internt fel då AxCrypt ID inte kan hittas.</value>
   </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>Ditt AxCrypt ID har tagits bort.
@@ -735,9 +711,6 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="LogOffText" xml:space="preserve">
     <value>Logga ut</value>
   </data>
-  <data name="LogOnExists" xml:space="preserve">
-    <value>Denna AxCrypt-Identitet finns redan.</value>
-  </data>
   <data name="LogOnText" xml:space="preserve">
     <value>Logga in</value>
   </data>
@@ -860,9 +833,6 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Rensa alla inställningar och Avsluta</value>
-  </data>
-  <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Debug</value>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Språk</value>

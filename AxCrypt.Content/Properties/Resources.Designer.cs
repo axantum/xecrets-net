@@ -803,7 +803,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Internal error, could not change password because the current user was not found..
+        ///   Looks up a localized string similar to Internal error: Could not change password because the current user was not found..
         /// </summary>
         public static string ChangePasswordErrorUserNotFound {
             get {
@@ -2249,15 +2249,6 @@ namespace AxCrypt.Content.Properties {
         public static string LogOffText {
             get {
                 return ResourceManager.GetString("LogOffText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This AxCrypt Identity already exists..
-        /// </summary>
-        public static string LogOnExists {
-            get {
-                return ResourceManager.GetString("LogOnExists", resourceCulture);
             }
         }
         
