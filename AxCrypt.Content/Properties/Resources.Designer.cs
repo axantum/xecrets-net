@@ -2594,6 +2594,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your Premium subscription has expired. You are not using the highest level of security. Click to upgrade!.
+        /// </summary>
+        public static string NoPremiumWarning {
+            get {
+                return ResourceManager.GetString("NoPremiumWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unfortunately we could not find the page you were looking for. This might be due to a server restart that caused your browser session to become outdated, or some other server error that caused us to be unable to process the request.
         ///
         ///Requested page:
@@ -3894,6 +3903,15 @@ namespace AxCrypt.Content.Properties {
         public static string UpdatingStatus {
             get {
                 return ResourceManager.GetString("UpdatingStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade!.
+        /// </summary>
+        public static string UpgradePromptText {
+            get {
+                return ResourceManager.GetString("UpgradePromptText", resourceCulture);
             }
         }
         

@@ -234,7 +234,7 @@ namespace Axantum.AxCrypt
                 if (activeFile.Properties.CryptoId != Guid.Empty)
                 {
                     item.SubItems[nameof(ColumnName.CryptoName)].Text = Resolve.CryptoFactory.Create(activeFile.Properties.CryptoId).Name;
-                    if (activeFile.VisualState.HasFlag(ActiveFileVisualState.LowEncryption) && !license.Has(LicenseCapability.StrongerEncryption))
+                    if (activeFile.VisualState.HasFlag(ActiveFileVisualState.LowEncryption))
                     {
                         item.SubItems[nameof(ColumnName.CryptoName)].ForeColor = Styling.WarningColor;
                     }

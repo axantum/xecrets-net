@@ -999,6 +999,9 @@ The AxCrypt Team</value>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>No need to check for updates.</value>
   </data>
+  <data name="NoPremiumWarning" xml:space="preserve">
+    <value>Your Premium subscription has expired. You are not using the highest level of security. Click to upgrade!</value>
+  </data>
   <data name="NotFoundPageBody" xml:space="preserve">
     <value>Unfortunately we could not find the page you were looking for. This might be due to a server restart that caused your browser session to become outdated, or some other server error that caused us to be unable to process the request.
 
@@ -1464,6 +1467,10 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Updating Status</value>
+  </data>
+  <data name="UpgradePromptText" xml:space="preserve">
+    <value>Upgrade!</value>
+    <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>You have updated AxCrypt. Unfortunately, your configuration must be reset. After restarting, your preferences and settings will unfortunately be lost. We apologize for the inconvenience. Your encrypted files are still safe and ok.</value>

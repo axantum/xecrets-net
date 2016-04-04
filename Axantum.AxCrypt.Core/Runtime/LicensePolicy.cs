@@ -119,7 +119,12 @@ namespace Axantum.AxCrypt.Core.Runtime
             get
             {
                 SubscriptionLevel level = SubscriptionLevel;
-                if (level != SubscriptionLevel.Premium)
+                if (level == SubscriptionLevel.Unknown)
+                {
+                    return TimeSpan.MaxValue;
+                }
+
+                if (level == SubscriptionLevel.Free)
                 {
                     return TimeSpan.Zero;
                 }
@@ -127,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 DateTime expiration = SubscriptionExpiration;
                 if (expiration == DateTime.MaxValue || expiration == DateTime.MinValue)
                 {
-                    return TimeSpan.Zero;
+                    return TimeSpan.MaxValue;
                 }
                 DateTime utcNow = Resolve.Environment.UtcNow;
                 expiration = expiration < utcNow ? utcNow : expiration;
@@ -138,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                     return timeLeft;
                 }
 
-                return TimeSpan.Zero;
+                return TimeSpan.MaxValue;
             }
         }
 

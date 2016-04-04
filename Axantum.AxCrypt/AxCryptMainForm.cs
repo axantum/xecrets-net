@@ -553,7 +553,7 @@ namespace Axantum.AxCrypt
 
             _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
 
-            _updateStatusButton.Click += _updateToolStripButton_Click;
+            _softwareStatusButton.Click += _softwareStatusButton_Click;
             _feedbackButton.Click += (sender, e) => Process.Start(Texts.LinkToFeedbackWebPage);
 
             _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
@@ -792,9 +792,18 @@ namespace Axantum.AxCrypt
 
         private void SetDaysLeftWarning(LicensePolicy license)
         {
-            if (license.SubscriptionWarningTime == TimeSpan.Zero)
+            if (license.SubscriptionWarningTime == TimeSpan.MaxValue)
             {
                 _daysLeftPremiumLabel.Visible = false;
+                return;
+            }
+
+            if (license.SubscriptionWarningTime == TimeSpan.Zero)
+            {
+                _daysLeftPremiumLabel.Text = Texts.UpgradePromptText;
+                _daysLeftPremiumLabel.LinkColor = Styling.ErrorColor;
+                _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.NoPremiumWarning);
+                _daysLeftPremiumLabel.Visible = true;
                 return;
             }
 
@@ -1284,24 +1293,24 @@ namespace Axantum.AxCrypt
             switch (status)
             {
                 case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
-                    _updateStatusButton.ToolTipText = Texts.NoNeedToCheckForUpdatesTooltip;
-                    _updateStatusButton.Image = Resources.bulb_green_40px;
+                    _softwareStatusButton.ToolTipText = Texts.NoNeedToCheckForUpdatesTooltip;
+                    _softwareStatusButton.Image = Resources.bulb_green_40px;
                     break;
 
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
-                    _updateStatusButton.ToolTipText = Texts.OldVersionTooltip;
-                    _updateStatusButton.Image = Resources.bulb_red_40px;
+                    _softwareStatusButton.ToolTipText = Texts.OldVersionTooltip;
+                    _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
-                    _updateStatusButton.ToolTipText = Texts.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.UpdatedVersion);
-                    _updateStatusButton.Image = Resources.bulb_red_40px;
+                    _softwareStatusButton.ToolTipText = Texts.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.UpdatedVersion);
+                    _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
 
                 case VersionUpdateStatus.Unknown:
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
-                    _updateStatusButton.ToolTipText = Texts.ClickToCheckForNewerVersionTooltip;
-                    _updateStatusButton.Image = Resources.bulb_red_40px;
+                    _softwareStatusButton.ToolTipText = Texts.ClickToCheckForNewerVersionTooltip;
+                    _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
             }
         }
@@ -1631,7 +1640,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void _updateToolStripButton_Click(object sender, EventArgs e)
+        private void _softwareStatusButton_Click(object sender, EventArgs e)
         {
             switch (_mainViewModel.VersionUpdateStatus)
             {

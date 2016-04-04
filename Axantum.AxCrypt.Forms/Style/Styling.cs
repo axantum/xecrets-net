@@ -27,6 +27,8 @@ namespace Axantum.AxCrypt.Forms.Style
             get { return _warningColor; }
         }
 
+        public static Color ErrorColor { get; } = Color.FromArgb(234, 95, 76);
+
         private Icon _icon;
 
         public Styling(Icon icon)

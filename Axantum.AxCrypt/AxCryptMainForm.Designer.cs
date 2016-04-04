@@ -100,7 +100,7 @@
             this._daysLeftPremiumLabel = new System.Windows.Forms.LinkLabel();
             this._rightToolStrip = new System.Windows.Forms.ToolStrip();
             this._feedbackButton = new System.Windows.Forms.ToolStripButton();
-            this._updateStatusButton = new System.Windows.Forms.ToolStripButton();
+            this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -859,7 +859,7 @@
             this._rightToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
             this._rightToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._feedbackButton,
-            this._updateStatusButton});
+            this._softwareStatusButton});
             this._rightToolStrip.Location = new System.Drawing.Point(544, 0);
             this._rightToolStrip.Name = "_rightToolStrip";
             this._rightToolStrip.Padding = new System.Windows.Forms.Padding(0);
@@ -878,17 +878,17 @@
             this._feedbackButton.Size = new System.Drawing.Size(40, 40);
             this._feedbackButton.Text = "[Talk to us! Feedback or bug reports welcome.]";
             // 
-            // _updateStatusButton
+            // _softwareStatusButton
             // 
-            this._updateStatusButton.AutoSize = false;
-            this._updateStatusButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._updateStatusButton.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_green_40px;
-            this._updateStatusButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._updateStatusButton.ImageTransparentColor = System.Drawing.Color.White;
-            this._updateStatusButton.Margin = new System.Windows.Forms.Padding(0);
-            this._updateStatusButton.Name = "_updateStatusButton";
-            this._updateStatusButton.Size = new System.Drawing.Size(40, 40);
-            this._updateStatusButton.Text = "[toolStripButton1]";
+            this._softwareStatusButton.AutoSize = false;
+            this._softwareStatusButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._softwareStatusButton.Image = global::Axantum.AxCrypt.Properties.Resources.bulb_green_40px;
+            this._softwareStatusButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._softwareStatusButton.ImageTransparentColor = System.Drawing.Color.White;
+            this._softwareStatusButton.Margin = new System.Windows.Forms.Padding(0);
+            this._softwareStatusButton.Name = "_softwareStatusButton";
+            this._softwareStatusButton.Size = new System.Drawing.Size(40, 40);
+            this._softwareStatusButton.Text = "[toolStripButton1]";
             // 
             // _progressBackgroundWorker
             // 
@@ -1007,7 +1007,7 @@
         private System.Windows.Forms.LinkLabel _daysLeftPremiumLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStrip _rightToolStrip;
-        private System.Windows.Forms.ToolStripButton _updateStatusButton;
+        private System.Windows.Forms.ToolStripButton _softwareStatusButton;
         private System.Windows.Forms.ToolStripMenuItem _recentFilesOpenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _tryBrokenFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton _feedbackButton;
