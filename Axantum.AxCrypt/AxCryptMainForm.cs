@@ -634,6 +634,8 @@ namespace Axantum.AxCrypt
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
         }
 
+        private bool _balloonTipShown = false;
+
         private void InitializeNotifyIcon()
         {
             _notifyIcon = new NotifyIcon(components);
@@ -655,7 +657,11 @@ namespace Axantum.AxCrypt
                 {
                     case FormWindowState.Minimized:
                         _notifyIcon.Visible = true;
-                        _notifyIcon.ShowBalloonTip(500);
+                        if (!_balloonTipShown)
+                        {
+                            _notifyIcon.ShowBalloonTip(500);
+                            _balloonTipShown = true;
+                        }
                         Hide();
                         break;
 
