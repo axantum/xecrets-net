@@ -120,11 +120,16 @@ namespace Axantum.AxCrypt
             try
             {
                 Dictionary<string, int> currentFiles = RemoveRemovedFilesFromRecent(files);
+                if (NeedClearItems(currentFiles, files))
+                {
+                    currentFiles.Clear();
+                    Items.Clear();
+                }
 
-                List<ListViewItem> newItems = new List<ListViewItem>();
+                int i = 0;
                 foreach (ActiveFile file in files)
                 {
-                    await UpdateOneItemAsync(currentFiles, newItems, file, license);
+                    await UpdateOneItemAsync(currentFiles, file, i++, license);
                 }
 
                 while (Items.Count > Preferences.RecentFilesMaxNumber)
@@ -138,7 +143,32 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async Task UpdateOneItemAsync(Dictionary<string, int> currentFiles, List<ListViewItem> newItems, ActiveFile file, LicensePolicy license)
+        private bool NeedClearItems(Dictionary<string, int> currentFiles, IEnumerable<ActiveFile> files)
+        {
+            if (files.Count() != currentFiles.Count)
+            {
+                return true;
+            }
+
+            int index = 0;
+            foreach (ActiveFile file in files)
+            {
+                int i;
+                if (!currentFiles.TryGetValue(file.EncryptedFileInfo.FullName, out i))
+                {
+                    return true;
+                }
+                if (index != i)
+                {
+                    return true;
+                }
+                ++index;
+            }
+
+            return false;
+        }
+
+        private async Task UpdateOneItemAsync(Dictionary<string, int> currentFiles, ActiveFile file, int index, LicensePolicy license)
         {
             string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
             ListViewItem item = new ListViewItem(text);
@@ -155,6 +185,7 @@ namespace Axantum.AxCrypt
             cryptoNameColumn.Name = nameof(ColumnName.CryptoName);
 
             await UpdateListViewItemAsync(item, file, license);
+
             int i;
             if (!currentFiles.TryGetValue(item.Name, out i))
             {

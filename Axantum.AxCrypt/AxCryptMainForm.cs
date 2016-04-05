@@ -1542,17 +1542,14 @@ namespace Axantum.AxCrypt
                     break;
 
                 case 1:
-                    return null;
-
-                case 2:
                     comparer = ActiveFileComparer.DateComparer;
                     break;
 
-                case 3:
+                case 2:
                     comparer = ActiveFileComparer.EncryptedNameComparer;
                     break;
 
-                case 4:
+                case 3:
                     comparer = ActiveFileComparer.CryptoNameComparer;
                     break;
 
