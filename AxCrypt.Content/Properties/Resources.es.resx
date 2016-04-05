@@ -569,9 +569,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="EncryptToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Proteger</value>
   </data>
-  <data name="EnglishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;English</value>
-  </data>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Contraseña de identidad '{0}'</value>
   </data>
@@ -644,9 +641,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
-  </data>
-  <data name="FrancaisLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Français</value>
   </data>
   <data name="GetLogErrorDateFormat" xml:space="preserve">
     <value>El formato de la fecha de inicio y/o la fecha final no es válida. Por favor, utilice el formato AAAA-MM-DD.</value>
@@ -762,24 +756,6 @@ Iniciar sesión en AxCrypt con {2}, introduzca el código de activación de 6 ci
     <value>Volver a la página principal</value>
     <comment>Menus and similar to link back to main site.</comment>
   </data>
-  <data name="LinkToAccountSite" xml:space="preserve">
-    <value>https://account.axcrypt.net/</value>
-  </data>
-  <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Purchase?email={0}</value>
-  </data>
-  <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>https://sv.surveymonkey.com/r/axcrypt</value>
-  </data>
-  <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>http://www.axcrypt.net/documentation/get-started/</value>
-  </data>
-  <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
-    <value>https://account.axcrypt.net/secrets?email={0}</value>
-  </data>
-  <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
-  </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Cerró sesión</value>
   </data>
@@ -894,10 +870,6 @@ El equipo AxCrypt</value>
   </data>
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>¡Error inesperado!</value>
-  </data>
-  <data name="MyAxCryptFolderName" xml:space="preserve">
-    <value>Mi AxCrypt</value>
-    <comment>The folder name used for default watching</comment>
   </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Crear una contraseña nueva</value>
@@ -1247,18 +1219,11 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>¡Advertencia! Un reinicio del sitio está programado en unos pocos minutos. Pedimos disculpas por las molestias.</value>
   </data>
-  <data name="SpanishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Español</value>
-    <comment>Do Not Translate</comment>
-  </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>La suscripción se ha guardado correctamente.</value>
   </data>
   <data name="SubscriptionsSuccessDelete" xml:space="preserve">
     <value>La historia de suscripción se ha eliminado correctamente.</value>
-  </data>
-  <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Svenska</value>
   </data>
   <data name="SyntheticWordsSuccessActivate" xml:space="preserve">
     <value>El cultivo se ha activado correctamente.</value>

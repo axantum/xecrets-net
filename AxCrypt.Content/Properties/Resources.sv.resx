@@ -507,9 +507,6 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="EncryptToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Skydda</value>
   </data>
-  <data name="EnglishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Engelska</value>
-  </data>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Ange lösenord för '{0}'</value>
   </data>
@@ -674,24 +671,6 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Till Startsidan</value>
     <comment>Menus and similar to link back to main site.</comment>
   </data>
-  <data name="LinkToAccountSite" xml:space="preserve">
-    <value>https://account.axcrypt.net/</value>
-  </data>
-  <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Purchase?email={0}</value>
-  </data>
-  <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>http://www.axcrypt.net/#feedback</value>
-  </data>
-  <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>http://www.axcrypt.net/documentation/get-started/</value>
-  </data>
-  <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
-    <value>https://account.axcrypt.net/secrets?email={0}</value>
-  </data>
-  <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
-  </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Avloggad</value>
   </data>
@@ -767,10 +746,6 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Oväntat Fel!</value>
-  </data>
-  <data name="MyAxCryptFolderName" xml:space="preserve">
-    <value>My AxCrypt</value>
-    <comment>The folder name used for default watching</comment>
   </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Sätt ett nytt lösenord</value>
@@ -1108,9 +1083,6 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Sparad.</value>
-  </data>
-  <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Svenska</value>
   </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>Finns i inbox eller skräppost!</value>
