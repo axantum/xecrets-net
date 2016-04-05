@@ -687,7 +687,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetSignInSignOutStatus(loggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { ConfigureMenusAccordingToPolicy(license); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await _recentFilesListView.UpdateRecentFilesAsync(_mainViewModel.RecentFiles, _mainViewModel.License); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { SetDaysLeftWarning(license); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { SetDaysLeftWarning(); });
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
@@ -699,7 +699,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { _encryptedFoldersToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), async (IEnumerable<ActiveFile> files) => { await _recentFilesListView.UpdateRecentFilesAsync(files, _mainViewModel.License); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.VersionUpdateStatus), (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.VersionUpdateStatus), (VersionUpdateStatus vus) => { SetSoftwareStatus(); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { _tryBrokenFileToolStripMenuItem.Checked = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
@@ -790,8 +790,9 @@ namespace Axantum.AxCrypt
             _signOutToolStripMenuItem.Visible = isSignedIn;
         }
 
-        private void SetDaysLeftWarning(LicensePolicy license)
+        private void SetDaysLeftWarning()
         {
+            LicensePolicy license = _mainViewModel.License;
             if (license.SubscriptionWarningTime == TimeSpan.MaxValue)
             {
                 _daysLeftPremiumLabel.Visible = false;
@@ -801,7 +802,7 @@ namespace Axantum.AxCrypt
             if (license.SubscriptionWarningTime == TimeSpan.Zero)
             {
                 _daysLeftPremiumLabel.Text = Texts.UpgradePromptText;
-                _daysLeftPremiumLabel.LinkColor = Styling.ErrorColor;
+                _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
                 _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.NoPremiumWarning);
                 _daysLeftPremiumLabel.Visible = true;
                 return;
@@ -1288,8 +1289,9 @@ namespace Axantum.AxCrypt
             Text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, logonStatus);
         }
 
-        private void UpdateVersionStatus(VersionUpdateStatus status)
+        private void SetSoftwareStatus()
         {
+            VersionUpdateStatus status = _mainViewModel.VersionUpdateStatus;
             switch (status)
             {
                 case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
@@ -1625,8 +1627,8 @@ namespace Axantum.AxCrypt
 
             InitializeContentResources();
             SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
-            SetDaysLeftWarning(_mainViewModel.License);
-            UpdateVersionStatus(_mainViewModel.VersionUpdateStatus);
+            SetDaysLeftWarning();
+            SetSoftwareStatus();
         }
 
         private void OptionsLanguageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)

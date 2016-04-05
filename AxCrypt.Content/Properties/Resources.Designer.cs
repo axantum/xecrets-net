@@ -3907,7 +3907,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upgrade!.
+        ///   Looks up a localized string similar to Get Premium!.
         /// </summary>
         public static string UpgradePromptText {
             get {

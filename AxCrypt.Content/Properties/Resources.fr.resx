@@ -176,10 +176,10 @@ Saisissez votre adresse email et votre code d'accès ici que si vous avez reçu 
 Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger vos mots de passe dans le gestionnaire en ligne de mots de passe, ainsi que pour votre compte en ligne. Saisissez-le soigneusement, et assurez-vous de ne pas l'oublier.</value>
   </data>
   <data name="ActivatePageTitle" xml:space="preserve">
-    <value>Activer Identifiant AxCrypt ID</value>
+    <value>Activer AxCrypt ID</value>
   </data>
   <data name="ActivateSuccess" xml:space="preserve">
-    <value>Votre identifiant AxCrypt a été activé! S'il-vous-plaît connectez-vous. </value>
+    <value>Votre AxCrypt ID a été activé! S'il-vous-plaît connectez-vous. </value>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
     <value>Double-clic ouvre le fichier protégé.</value>
@@ -319,7 +319,7 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
     <value>Votre navigateur ne semble pas accepter les cookies. Sans cookies, vous ne pourrez pas vous connecter, et le site ne fonctionnera pas comme il faut. Plus d'informations dans notre &lt;a href="{0}"&gt;politique concernant les cookies&lt;/a&gt;.</value>
   </data>
   <data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>Créer un identifiant AxCrypt ID avec clefs de partage et d'accès.</value>
+    <value>Créer un AxCrypt ID avec clefs de partage et d'accès.</value>
   </data>
   <data name="CryptoNameText" xml:space="preserve">
     <value>Algorithme</value>
@@ -358,12 +358,12 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
     <value>Vous êtes connecté. Cliquez pour vous déconnecter.</value>
   </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
-    <value>Votre identifiant AxCrypt ID a été supprimé.
+    <value>Votre AxCrypt ID a été supprimé.
 
 Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt vous aura été utile.</value>
   </data>
   <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
-    <value>Identifiant AxCrypt ID</value>
+    <value>AxCrypt ID</value>
   </data>
   <data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
     <value>Lors du premier lancement d'AxCrypt, une connexion internet et une adresse mail valide sont requises. Cliquez sur Aide pour plus d'informations.</value>
@@ -378,7 +378,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Identifiants AxCrypt ID (*.axx)|*.axx|Tous les fichiers (*.*)|*.*"</value>
   </data>
   <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
-    <value>Exporter identifiant AxCrypt ID</value>
+    <value>Exporter AxCrypt ID</value>
   </data>
   <data name="DialogExportSharingKeyFileName" xml:space="preserve">
     <value>Clé Partagée AxCrypt (#{1})-{0}.txt</value>
@@ -387,7 +387,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Mot de passe du fichier </value>
   </data>
   <data name="DialogManageAxcryptIdTitle" xml:space="preserve">
-    <value>Gérer Identifiant AxCrypt ID</value>
+    <value>Gérer AxCrypt ID</value>
   </data>
   <data name="DialogVerifyAccountTitle" xml:space="preserve">
     <value>Activer AxCrypt ID</value>
@@ -451,7 +451,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Exporter Clef &amp;Secrète et Clef de Partage </value>
   </data>
   <data name="FailedPrivateImport" xml:space="preserve">
-    <value>Echec de l'import. Le fichier n'est probablement pas un identifiant AxCrypt ID valide.</value>
+    <value>Echec de l'import. Le fichier n'est probablement pas un AxCrypt ID valide.</value>
   </data>
   <data name="FileAlreadyEncrypted" xml:space="preserve">
     <value>Le fichier '{0}' est déjà protégé.</value>
@@ -496,7 +496,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Identifiants AxCrypt ID (*.axx)|*.axx|Tous les fichiers (*.*)|*.*</value>
   </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
-    <value>Choisissez un identifiant AxCrypt ID</value>
+    <value>Choisissez un AxCrypt ID</value>
   </data>
   <data name="ImportPublicKeysFileFilter" xml:space="preserve">
     <value>Fichiers Texte (*.txt)|*.txt|Tous les fichiers (*.*)|*.*</value>
@@ -508,7 +508,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Erreur interne avec '{0}'.</value>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
-    <value>Mon identifiant AxCrypt</value>
+    <value>Mon AxCrypt ID</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Adresse email non valide.</value>
@@ -790,12 +790,12 @@ Afin d'évaluer les fonctionnalités d'AxCrypt Premium, nous vous offrons une p�
     <value>Nettoyage des fichiers actifs</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>Pour commencer à utiliser AxCrypt, vous devez vous obtenir un identifiant AxCrypt en soumettant votre adresse e-mail dans le formulaire ci-dessous. Un message contenant un lien d'activation sera alors envoyé à l'adresse indiquée et lorsque vous cliquez sur ce lien, vous sera demandé de choisir un mot de passe. Voilà! 
+    <value>Pour commencer à utiliser AxCrypt, vous devez vous obtenir un AxCrypt ID en soumettant votre adresse e-mail dans le formulaire ci-dessous. Un message contenant un lien d'activation sera alors envoyé à l'adresse indiquée et lorsque vous cliquez sur ce lien, vous sera demandé de choisir un mot de passe. Voilà! 
 
 Un essai de 30 jours de AxCrypt Premium est inclus et démarre lorsque vous activez votre identifiant AxCrypt.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
-    <value>Enregistrez-vous pour obtenir un identifiant AxCrypt ID.</value>
+    <value>Enregistrez-vous pour obtenir un AxCrypt ID.</value>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Retirer de la liste mais laisser le fichier protégé</value>
@@ -846,7 +846,7 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
     <value>Indéterminé - Vous n'avez pas précisé de paramètre</value>
   </data>
   <data name="TitleCreateAxCryptIdTitle" xml:space="preserve">
-    <value>Céer Identifiant AxCrypt ID</value>
+    <value>Créer AxCrypt ID</value>
   </data>
   <data name="TitleSignInToAxCrypt" xml:space="preserve">
     <value>Connexion à AxCrypt</value>
@@ -872,7 +872,7 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
     <value>Ceci est une confirmation que votre compte sur &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; a été supprimé avec succès.</value>
   </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
-    <value>Identifiant AxCrypt ID Supprimé</value>
+    <value> AxCrypt ID Supprimé</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Mise à jour de l'Etat du fichier</value>

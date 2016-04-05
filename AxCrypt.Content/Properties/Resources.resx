@@ -1469,7 +1469,7 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Updating Status</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
-    <value>Upgrade!</value>
+    <value>Get Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
