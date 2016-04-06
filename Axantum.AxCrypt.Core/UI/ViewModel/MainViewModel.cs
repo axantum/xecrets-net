@@ -168,6 +168,32 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _fileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
+        public bool CanShare(IEnumerable<IDataStore> items)
+        {
+            if (items.Count() != 1)
+            {
+                return false;
+            }
+
+            if (!LoggedOn)
+            {
+                return false;
+            }
+
+            if (!License.Has(LicenseCapability.KeySharing))
+            {
+                return false;
+            }
+
+            OpenFileProperties properties = OpenFileProperties.Create(items.First());
+            if (properties.IsLegacyV1)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private void UpdateDebugMode(bool enabled)
         {
             Resolve.Log.SetLevel(enabled ? LogLevel.Debug : LogLevel.Error);
