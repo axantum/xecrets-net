@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             LogOnIdentity = LogOnIdentity.Empty;
 
-            LogOn = new AsyncDelegateAction<object>(async (o) => { if (!_knownIdentities.IsLoggedOn) { LogOnIdentity = await LogOnActionAsync(); } });
+            LogOnAsync = new AsyncDelegateAction<object>(async (o) => { if (!_knownIdentities.IsLoggedOn) { LogOnIdentity = await LogOnActionAsync(); } });
             LogOff = new DelegateAction<object>((p) => { LogOffAction(); LogOnIdentity = null; }, (o) => _knownIdentities.IsLoggedOn);
             LogOnLogOff = new AsyncDelegateAction<object>(async (o) => LogOnIdentity = await LogOnLogOffActionAsync());
             AskForDecryptPassphrase = new AsyncDelegateAction<string>(async (name) => LogOnIdentity = await AskForDecryptPassphraseActionAsync(name));
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    LogOn.RaiseCanExecuteChanged();
+                    LogOnAsync.RaiseCanExecuteChanged();
                     LogOff.RaiseCanExecuteChanged();
                     break;
             }
@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public LogOnIdentity LogOnIdentity { get { return GetProperty<LogOnIdentity>(nameof(LogOnIdentity)); } set { SetProperty(nameof(LogOnIdentity), value); } }
 
-        public AsyncDelegateAction<object> LogOn { get; private set; }
+        public AsyncDelegateAction<object> LogOnAsync { get; private set; }
 
         public DelegateAction<object> LogOff { get; private set; }
 

@@ -256,7 +256,7 @@ namespace Axantum.AxCrypt
                     await WrapMessageDialogsAsync(async () =>
                     {
                         await StartUpProgramAsync();
-                        _fileOperationViewModel.IdentityViewModel.LogOn.Execute(null);
+                        await _fileOperationViewModel.IdentityViewModel.LogOnAsync.ExecuteAsync(null);
                         await LogOnAndDoPendingRequestAsync();
                     });
                 } while (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail));
