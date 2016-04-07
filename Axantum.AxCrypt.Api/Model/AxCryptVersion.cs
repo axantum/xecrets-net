@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Axantum.AxCrypt.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,21 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class AxCryptVersion
     {
-        public AxCryptVersion(string downloadLink, string fullVersion, int revision)
+        public AxCryptVersion(string downloadLink, VersionUpdateKind kind)
         {
             DownloadLink = downloadLink;
-            FullVersion = fullVersion;
-            Revision = revision;
+            FullVersion = kind.NewVersion.ToString();
+            Revision = kind.NewVersion.Build;
+            IsCriticalReliabilityUpdate = kind.NeedsCriticalReliabilityUpdate;
+            IsCriticalSecurityUpdate = kind.NeedsCriticalSecurityUpdate;
         }
 
-        public static AxCryptVersion Empty { get; } = new AxCryptVersion(String.Empty, String.Empty, 0);
+        [JsonConstructor]
+        private AxCryptVersion()
+        {
+        }
+
+        public static AxCryptVersion Empty { get; } = new AxCryptVersion(String.Empty, new VersionUpdateKind());
 
         [JsonProperty("url")]
         public string DownloadLink { get; private set; }
