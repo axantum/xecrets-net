@@ -49,5 +49,13 @@ namespace Axantum.AxCrypt.Api.Model
                 return String.IsNullOrEmpty(DownloadLink) && FullVersion == Empty.FullVersion && Revision == Empty.Revision && IsCriticalReliabilityUpdate == Empty.IsCriticalReliabilityUpdate && IsCriticalSecurityUpdate == Empty.IsCriticalSecurityUpdate;
             }
         }
+
+        public DownloadVersion DownloadVersion
+        {
+            get
+            {
+                return new DownloadVersion(DownloadLink, FullVersion, IsCriticalReliabilityUpdate, IsCriticalSecurityUpdate);
+            }
+        }
     }
 }

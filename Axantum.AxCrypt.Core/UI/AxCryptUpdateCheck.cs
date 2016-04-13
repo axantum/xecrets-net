@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogInfo("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
                 }
-                OnVersionUpdate(new VersionEventArgs(newestKnownVersionValue, updateWebpageUrl, CalculateStatus(newestKnownVersionValue, lastCheckTimeUtc)));
+                OnVersionUpdate(new VersionEventArgs(new DownloadVersion(updateWebpageUrl, newestKnownVersionValue), CalculateStatus(newestKnownVersionValue, lastCheckTimeUtc)));
                 return;
             }
 
@@ -117,8 +117,8 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 try
                 {
-                    Pair<Version, Uri> newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl, currentVersion, cultureName).Free();
-                    OnVersionUpdate(new VersionEventArgs(newVersion.First, newVersion.Second, CalculateStatus(newVersion.First, lastCheckTimeUtc)));
+                    DownloadVersion newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl, currentVersion, cultureName).Free();
+                    OnVersionUpdate(new VersionEventArgs(newVersion, CalculateStatus(newVersion.Version, lastCheckTimeUtc)));
                 }
                 finally
                 {
@@ -128,23 +128,22 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
-        private async Task<Pair<Version, Uri>> CheckWebForNewVersionAsync(Uri updateWebpageUrl, Version currentVersion, string cultureName)
+        private async Task<DownloadVersion> CheckWebForNewVersionAsync(Uri updateWebpageUrl, Version currentVersion, string cultureName)
         {
             Version newVersion = VersionUnknown;
             try
             {
                 AxCryptVersion axCryptVersion = await New<AxCryptApiClient>().AxCryptUpdateAsync(currentVersion, cultureName).Free();
-                if (axCryptVersion.IsEmpty)
-                {
-                    return new Pair<Version, Uri>(newVersion, updateWebpageUrl);
-                }
-                newVersion = ParseVersion(axCryptVersion.FullVersion);
-                updateWebpageUrl = new Uri(axCryptVersion.DownloadLink);
 
-                if (Resolve.Log.IsInfoEnabled)
+                if (!axCryptVersion.IsEmpty)
                 {
-                    Resolve.Log.LogInfo("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
+                    if (Resolve.Log.IsInfoEnabled)
+                    {
+                        Resolve.Log.LogInfo("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
+                    }
                 }
+
+                return axCryptVersion.DownloadVersion;
             }
             catch (Exception ex)
             {
@@ -152,8 +151,9 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
+
+                return new DownloadVersion(updateWebpageUrl, currentVersion);
             }
-            return new Pair<Version, Uri>(newVersion, updateWebpageUrl);
         }
 
         /// <summary>

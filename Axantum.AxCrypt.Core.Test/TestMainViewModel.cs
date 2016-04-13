@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -145,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 mvm.LoggedOn = true;
 
-                mockUpdateCheck.Raise(m => m.AxCryptUpdate += null, new VersionEventArgs(new Version(2, 0, 9999, 0), new Uri("http://localhost/"), VersionUpdateStatus.NewerVersionIsAvailable));
+                mockUpdateCheck.Raise(m => m.AxCryptUpdate += null, new VersionEventArgs(new DownloadVersion(new Uri("http://localhost/"), new Version(2, 0, 9999, 0)), VersionUpdateStatus.NewerVersionIsAvailable));
                 Assert.That(mvm.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.NewerVersionIsAvailable));
             }
         }

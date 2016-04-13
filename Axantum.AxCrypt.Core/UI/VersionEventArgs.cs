@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,16 +35,13 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class VersionEventArgs : EventArgs
     {
-        public VersionEventArgs(Version version, Uri updateWebpageUrl, VersionUpdateStatus versionUpdateStatus)
+        public VersionEventArgs(DownloadVersion downloadVersion, VersionUpdateStatus versionUpdateStatus)
         {
-            Version = version;
-            UpdateWebpageUrl = updateWebpageUrl;
+            DownloadVersion = downloadVersion;
             VersionUpdateStatus = versionUpdateStatus;
         }
 
-        public Version Version { get; private set; }
-
-        public Uri UpdateWebpageUrl { get; private set; }
+        public DownloadVersion DownloadVersion { get; }
 
         public VersionUpdateStatus VersionUpdateStatus { get; private set; }
     }
