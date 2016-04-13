@@ -134,7 +134,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password reset failed. A password reset request has not been made for this account..
+        ///   Looks up a localized string similar to Password reset failed. A password reset request has not been made for this AxCrypt ID..
         /// </summary>
         public static string ActivateErrorNoRequest {
             get {
@@ -152,7 +152,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activate account.
+        ///   Looks up a localized string similar to Activate AxCrypt ID.
         /// </summary>
         public static string ActivateMailBodyButton {
             get {
@@ -179,7 +179,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your account..
+        ///   Looks up a localized string similar to You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your AxCrypt ID..
         /// </summary>
         public static string ActivateMailBodyFreeTrial {
             get {
@@ -188,7 +188,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your account..
+        ///   Looks up a localized string similar to You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your AxCrypt ID..
         /// </summary>
         public static string ActivateMailBodyFreeTrialPlainText {
             get {
@@ -197,7 +197,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have signed up for an AxCrypt account. To complete your registration you must click the button below..
+        ///   Looks up a localized string similar to You have signed up for an AxCrypt ID. To complete your registration you must click the button below..
         /// </summary>
         public static string ActivateMailBodyIntro {
             get {
@@ -206,7 +206,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If the button does not work, go to &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your account..
+        ///   Looks up a localized string similar to If the button does not work, go to &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your AxCrypt ID..
         /// </summary>
         public static string ActivateMailBodyManualLink {
             get {
@@ -215,7 +215,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If the button does not work, go to {0} and enter {1} and the activation code {2} to manually activate your account..
+        ///   Looks up a localized string similar to If the button does not work, go to {0} and enter {1} and the activation code {2} to manually activate your AxCrypt ID..
         /// </summary>
         public static string ActivateMailBodyManualLinkPlainText {
             get {
@@ -253,7 +253,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;b&gt;Stop!&lt;/b&gt;
         ///
-        ///You should only be here because clicking on the link in the account activation e-mail from AxCrypt did not work. (You must of course register an account to get an account activation e-mail)
+        ///You should only be here because clicking on the link in the AxCrypt ID activation e-mail from AxCrypt did not work. (You must of course register for an AxCrypt ID to get an activation e-mail)
         ///
         ///Enter your e-mail and code manually here only if you have received the activation e-mail, but the link did not work..
         /// </summary>
@@ -264,7 +264,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To activate your account &lt;b&gt;{0}&lt;/b&gt; you must select a password.
+        ///   Looks up a localized string similar to To activate your AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; you must select a password.
         ///
         ///Choose something difficult to guess, since it will protect passwords in the online password manager as well as access to the site. Type slowly and carefully, and do not forget your password!.
         /// </summary>
@@ -347,7 +347,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The page you tried to visit requires authentication. Please log on to proceed..
+        ///   Looks up a localized string similar to The page you tried to visit requires authentication. Please sign in to proceed..
         /// </summary>
         public static string AuthenticationError {
             get {
@@ -655,7 +655,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have requested to change your current AxCrypt account e-mail to &lt;b style=&quot;color: #000 !important;&quot;&gt;{0}&lt;/b&gt;. To confirm please click the button below..
+        ///   Looks up a localized string similar to You have requested to change your current AxCrypt ID e-mail to &lt;b style=&quot;color: #000 !important;&quot;&gt;{0}&lt;/b&gt;. To confirm please click the button below..
         /// </summary>
         public static string ChangeEmailConfirmMailBody1 {
             get {
@@ -664,7 +664,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use your existing password to log on and then the old account will be permanently deleted..
+        ///   Looks up a localized string similar to Use your existing password to sign in and then the old AxCrypt ID will be permanently deleted..
         /// </summary>
         public static string ChangeEmailConfirmMailBody2 {
             get {
@@ -700,7 +700,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your change of account e-mail has been confirmed! Please log on to complete the process..
+        ///   Looks up a localized string similar to Your change of AxCrypt ID e-mail has been confirmed! Please sign in to complete the process..
         /// </summary>
         public static string ChangeEmailConfirmSuccess {
             get {
@@ -709,7 +709,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Someone has requested a change of e-mail (from an undisclosed account) at &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;..
+        ///   Looks up a localized string similar to Someone has requested a change of e-mail (from an undisclosed source) at &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;..
         /// </summary>
         public static string ChangeEmailExistMailBody1 {
             get {
@@ -718,7 +718,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to However, since you already have an account using this e-mail, the request has been silently ignored..
+        ///   Looks up a localized string similar to However, since you already have an AxCXrypt ID using this e-mail, the request has been silently ignored..
         /// </summary>
         public static string ChangeEmailExistMailBody2 {
             get {
@@ -765,7 +765,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to We have sent an e-mail to &lt;b&gt;{0}&lt;/b&gt;. Please read your e-mail and click on the link provided there to confirm the change.
         ///
-        ///Thereafter you can log on using &lt;b&gt;{0}&lt;/b&gt; and your existing password.
+        ///Thereafter you can sign in using &lt;b&gt;{0}&lt;/b&gt; and your existing password.
         ///
         ///You must complete these steps to complete the process..
         /// </summary>
@@ -1628,7 +1628,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export Account &amp;Secret and Sharing Key Pair.
+        ///   Looks up a localized string similar to Export AxCrypt ID &amp;Secret and Sharing Key Pair.
         /// </summary>
         public static string ExportMyPrivateKeyToolStripMenuItemText {
             get {
@@ -1637,7 +1637,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To move an account, export the Secret and Sharing Key Pair and then import it elsewhere..
+        ///   Looks up a localized string similar to To move an AxCrypt ID, export the Secret and Sharing Key Pair and then import it elsewhere..
         /// </summary>
         public static string ExportMyPrivateKeyToolStripMenuItemToolTipText {
             get {
@@ -1844,7 +1844,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To move an account, export the Secret and Sharing Key Pair and then import it here..
+        ///   Looks up a localized string similar to To move an AxCrypt ID, export the Secret and Sharing Key Pair and then import it here..
         /// </summary>
         public static string ImportMyPrivateKeyToolStripMenuItemToolTipText {
             get {
@@ -2794,7 +2794,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have requested to reset your AxCrypt account password. To complete this process and pick a new password, please click the button below..
+        ///   Looks up a localized string similar to You have requested to reset your AxCrypt ID password. To complete this process and pick a new password, please click the button below..
         /// </summary>
         public static string PasswordResetMailBody1 {
             get {
@@ -2832,9 +2832,9 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to If you have previously registered but have forgotten the password, or for some reason not received or lost the activation link, you may re-register and request a new activation e-mail here.
         ///
-        ///&lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to log on again, but you will not re-gain access to any information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
+        ///&lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
         ///
-        ///Enter your e-mail below to a send an activation link to t [rest of string was truncated]&quot;;.
+        ///Enter your e-mail below to a send an activation link to  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PasswordResetPageBody {
             get {
@@ -2852,7 +2852,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An attempt to send the account activation verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
+        ///   Looks up a localized string similar to An attempt to send the AxCrypt ID activation verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
         ///
         ///If you appear not to receive it, check that it does not get caught by your anti-spam measures, and that {0} is correct..
         /// </summary>
@@ -2881,7 +2881,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I’d love for you to continue using our Premium features. Simply &lt;a href=&quot;{0}Home/Login?email={1}&quot;&gt;sign in&lt;/a&gt; to your AxCrypt account here to subscribe at any time..
+        ///   Looks up a localized string similar to I’d love for you to continue using our Premium features. Simply &lt;a href=&quot;{0}Home/Login?email={1}&quot;&gt;sign in&lt;/a&gt; to your AxCrypt ID here to subscribe at any time..
         /// </summary>
         public static string PremiumExpiresSoonMailBody1Html {
             get {
@@ -3234,7 +3234,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Secured Folders and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
         ///
-        ///To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts when you activate your account. After that you can extend your premium subscription by using the f [rest of string was truncated]&quot;;.
+        ///To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts when you activate your AxCrypt ID. After that you can extend your premium subscription by using th [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PurchasePageBody1 {
             get {
@@ -3395,6 +3395,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your software needs to be updated due to a reliability issue..
+        /// </summary>
+        public static string ReliabilityUpdateAvailableWarning {
+            get {
+                return ResourceManager.GetString("ReliabilityUpdateAvailableWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Remove from list but keep file secured.
         /// </summary>
         public static string RemoveRecentFileToolStripMenuItemText {
@@ -3458,9 +3467,18 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Here you can delete your account permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your account, including saved password entries, will also be deleted.&lt;/span&gt;
+        ///   Looks up a localized string similar to Your software needs to be updated due to a security issue..
+        /// </summary>
+        public static string SecurityUpdateAvailableWarning {
+            get {
+                return ResourceManager.GetString("SecurityUpdateAvailableWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
         ///
-        ///Enter your password below to a delete your account..
+        ///Enter your password below to a delete your AxCrypt ID..
         /// </summary>
         public static string SettingsDeletePageBody {
             get {
@@ -3469,9 +3487,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To change the e-mail associated with your account, type in a new e-mail address below. This will affect how you log on to the site and where site e-mails are sent. 
+        ///   Looks up a localized string similar to To change the e-mail associated with your AxCrypt ID, type in a new e-mail address below. This will affect how you sign in to the site and where site e-mails are sent. 
         ///
-        ///A confirmation e-mail will be sent to the new address. The change is effective only after the confirmation link is clicked and a successful log on..
+        ///A confirmation e-mail will be sent to the new address. The change is effective only after the confirmation link is clicked and a successful sign in..
         /// </summary>
         public static string SettingsEmailPageBody {
             get {
@@ -3862,7 +3880,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is confirmation that your account on &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt; has been successfully deleted..
+        ///   Looks up a localized string similar to This is confirmation that your AxCrypt ID on &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt; has been successfully deleted..
         /// </summary>
         public static string UnregisterMailBody1 {
             get {

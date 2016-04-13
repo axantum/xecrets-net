@@ -148,6 +148,33 @@
   <data name="ActivateErrorPassword" xml:space="preserve">
     <value>Lösenordsåterställelse misslyckades.</value>
   </data>
+  <data name="ActivateMailBodyButton">
+    <value>Aktivera AxCrypt ID</value>
+  </data>
+  <data name="ActivateMailBodyCode" xml:space="preserve">
+    <value>Din aktiveringskod är &lt;b&gt;{0}&lt;/b&gt;</value>
+  </data>
+  <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
+    <value>Din aktiveringskod är {0}</value>
+  </data>
+  <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
+    <value>Du har gratis tillgång till AxCrypt Premium-funktioner under en &lt;b&gt;30-dagars provperiod&lt;/b&gt; från att du aktiverar ditt AxCrypt ID.</value>
+  </data>
+  <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
+    <value>Du har gratis tillgång till AxCrypt Premium-funktioner under en 30-dagars provperiod från att du aktiverar ditt AxCrypt ID.</value>
+  </data>
+  <data name="ActivateMailBodyIntro" xml:space="preserve">
+    <value>Du har tecknat dig för ett AxCrypt ID. Klicka på knappen nedan för att bekräfta.</value>
+  </data>
+  <data name="ActivateMailBodyManualLink" xml:space="preserve">
+    <value>Om knappen inte fungerar, gå till &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; och ange &lt;b&gt;{1}&lt;/b&gt; samt aktiveringskoden &lt;b&gt;{2}&lt;/b&gt; för att aktivera ditt AxCrypt ID manuellt.</value>
+  </data>
+  <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
+    <value>Om knappen inte fungerar, gå till {0} och ange {1} samt aktiveringskoden {2} för att aktivera ditt AxCrypt ID manuellt.</value>
+  </data>
+  <data name="ActivateMailBodyTitle" xml:space="preserve">
+    <value>Hej och välkommen till AxCrypt!</value>
+  </data>
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>AxCrypt ID Aktivering</value>
   </data>
@@ -174,6 +201,13 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Dubbelklick öppnar en dialog där du kan ange lösenord innan filen kan öppnas.</value>
+  </data>
+  <data name="AddSecureFolderMenuItemText" xml:space="preserve">
+    <value>Lägg till Säker Mapp</value>
+  </data>
+  <data name="AddSecureFolderTitle" xml:space="preserve">
+    <value>Välj en mapp som skall säkras med AxCrypt. Befintliga filer kommer att krypteras.</value>
+    <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>Sidan kräver inloggning, vänligen logga in och fortsätt.</value>
@@ -277,11 +311,29 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Bevisa att du är en riktig person och inte ett dataprogram!</value>
   </data>
+  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
+    <value>Du har begärt en ändring av ditt befintliga AxCrypt ID från &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. Bekräfta genom att klicka knappen nedan.</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
+    <value>Logga in med ditt befintliga lösenord så kommer det gamla kontot att raderas permanent.</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
+    <value>Ändra e-post</value>
+  </data>
   <data name="ChangeEmailConfirmMailSubject" xml:space="preserve">
     <value>AxCrypt ID byte av E-postadress</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>Ditt byte av epostadress är härmed bekräftat! Logga in för att slutföra bytet.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
+    <value>Någon har begärt ändring av e-postadressen (från ett konto vi inte anger) på &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; till &lt;b&gt;{1}&lt;/b&gt;.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody2" xml:space="preserve">
+    <value>Men, eftersom du redan har ett AxCrypt ID med den här e-postadressen så har begäran lämnats utan åtgärd.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody3" xml:space="preserve">
+    <value>Strunta i det här mejlet eller rapportera det till {0}. Ingen skada är skedd, och ingen information har kommit ut.</value>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>Byte av Epostadress till AxCrypt ID</value>
@@ -341,6 +393,9 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Gör detta för &amp;alla återstående filer?</value>
+  </data>
+  <data name="ContactInfoPhone" xml:space="preserve">
+    <value>08 550 10 274</value>
   </data>
   <data name="ContactInfoTitle" xml:space="preserve">
     <value>Kontakt &amp; Support</value>
@@ -613,9 +668,6 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Välj Delningsnyckelfil</value>
   </data>
-  <data name="InconsistentState" xml:space="preserve">
-    <value>Internt fel med '{0}'.</value>
-  </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mitt AxCrypt ID</value>
   </data>
@@ -634,11 +686,32 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="Invalid_URL" xml:space="preserve">
     <value>Felaktig sökväg.</value>
   </data>
+  <data name="InvitationMailBodyIntro" xml:space="preserve">
+    <value>Du har blivit inbjuden till AxCrypt av &lt;b&gt;{0}&lt;/b&gt;.
+Du kan börja säkra dina filer från insyn genom att &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;ladda ned&lt;/a&gt; och installera AxCrypt.
+Logga in till AxCrypt med &lt;b&gt;{2}&lt;/b&gt;, ange den 6-siffriga aktiveringskoden och sätt ditt nya hemliga lösenord. </value>
+  </data>
+  <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
+    <value>Du har blivit inbjuden till AxCrypt av {0}.
+
+Du kan börja säkra dina filer från insyn genom att ladda ned och installera AxCrypt från {1}.
+
+Logga in till AxCrypt med {2}, ange den 6-siffriga aktiveringskoden och sätt ditt nya hemliga lösenord. </value>
+  </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Inbjudan till AxCrypt Filskydd</value>
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript verkar vara inaktiverat i din webbläsare. Om du inte aktiverar JavaScript kan du inte logga in och sidan kan bete sig på ett oväntat sätt.</value>
+  </data>
+  <data name="KeyFileBrowseFilter" xml:space="preserve">
+    <value>AxCrypt Nyckelfiler (*.txt)|*.txt|Alla Filer (*.*)|*.*</value>
+  </data>
+  <data name="KeyFileBrowseTitle" xml:space="preserve">
+    <value>Välj Nyckelfil</value>
+  </data>
+  <data name="KeyFilePrompt" xml:space="preserve">
+    <value>Nyckelfil</value>
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Nyckelhantering</value>
@@ -695,6 +768,39 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
     <value>Uppgradera till Premium för det starkaste skyddet.</value>
+  </data>
+  <data name="MailBodyFooter" xml:space="preserve">
+    <value>Om du inte vet varför du får det här från &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;, kan du strunta i det här mejlet, eller rapportera det till {1}.</value>
+  </data>
+  <data name="MailBodyFooterPlainText" xml:space="preserve">
+    <value>Om du inte vet varför du får det här från AxCrypt.net, strunta i det här mejlet eller rapportera det till {0}.</value>
+  </data>
+  <data name="MailBodyOutroHtml" xml:space="preserve">
+    <value>Kontakta mig gärna om du har några frågor eller synpunkter. Titta gärna på vår FAQ och vårt Forum på hemsidan &lt;a href={0}"&gt;{0}&lt;/a&gt; .</value>
+    <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
+  </data>
+  <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
+    <value>&lt;ul&gt;
+&lt;li&gt;256-bit AES&lt;/li&gt;⏎ 
+&lt;li&gt;Nyckeldelning&lt;/li&gt;⏎ 
+&lt;li&gt;Skyddade Mappar&lt;/li&gt;⏎ 
+&lt;li&gt;Lösenordshantering&lt;/li&gt;⏎ 
+&lt;li&gt;Molnanpassning&lt;/li&gt;⏎ 
+&lt;/ul&gt;</value>
+  </data>
+  <data name="MailBodySignature" xml:space="preserve">
+    <value>Tack för att du använder AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;AxCrypt-teamet&lt;/i&gt;</value>
+  </data>
+  <data name="MailBodySignaturePlainText" xml:space="preserve">
+    <value>Tack för att du använder AxCrypt!
+- Svante
+AxCrypt-teamet</value>
+  </data>
+  <data name="MailBodyTitle" xml:space="preserve">
+    <value>Hej {0},</value>
+  </data>
+  <data name="MailBodyTitleHtml" xml:space="preserve">
+    <value>Hej {0},</value>
   </data>
   <data name="MainSiteUrl" xml:space="preserve">
     <value>http://www.axcrypt.net</value>
@@ -765,6 +871,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Inget uppdateringsbehov.</value>
   </data>
+  <data name="NoPremiumWarning" xml:space="preserve">
+    <value>Ditt Premium-abonnemang har slutat gälla. Du har inte längre tillgång till den högsta säkerhetsnivån. Skaffa Premium genom att klicka!</value>
+  </data>
   <data name="NotFoundPageBody" xml:space="preserve">
     <value>Tyvärr kunde vi inte hitta sidan du sökte. Det kan bero på en omstart som gjort din webbläsarsession ogiltig, eller något internt fel hos oss.
 
@@ -833,6 +942,12 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Glömt lösenordet? Klicka här</value>
   </data>
+  <data name="PasswordResetMailBody1" xml:space="preserve">
+    <value>Du har begärt lösenordsåterställelse för ditt AxCrypt ID. Slutför åtgärden genom att ange ett nytt lösenord efter att du klickat på knappen nedan.</value>
+  </data>
+  <data name="PasswordResetMailBodyButton" xml:space="preserve">
+    <value>Återställ lösenord</value>
+  </data>
   <data name="PasswordResetMailSubject" xml:space="preserve">
     <value>AxCrypt ID Lösenordsåterställelse</value>
   </data>
@@ -853,6 +968,22 @@ Om du inte verkar få det inom några minuter, kontrollera ditt skräppostfilter
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Mer om PayPal]</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Ditt Premium-abonnemang löper snart ut. Jag hoppas verkligen att du har gillat Premium-funktionerna, och att du haft nytta av dem.</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>Jag skulle verkligen gilla om du fortsätter använda våra Premium-funktioner. Det är bara att &lt;a href="{0}Home/Login?email={1}"&gt;logga in&lt;/a&gt; på ditt AxCrypt ID här och abonnera när som helst.</value>
+    <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
+  </data>
+  <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Med Premium-abonnemanget får du fortsatt tillgång till:</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
+    <value>Berätta för mig vad du tycker om AxCrypt. Kommer du att fortsätta använda det, och är du någotning du skulle vilja förbättra?</value>
+  </data>
+  <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
+    <value>Ditt AxCrypt Premium-abonnemang löper snart ut!</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>Funktionen kräver Premium!</value>
@@ -991,6 +1122,9 @@ När informationen når PayPal-servrarna lagras den med hög säkerhet både fys
 
 Ett kvitto på ditt köp har skickats till din epostadress.</value>
   </data>
+  <data name="PurchaseVatPercent" xml:space="preserve">
+    <value>&lt;b&gt;Exklusive Moms&lt;/b&gt;. Faktisk moms beror på vilket land du betalar från och kommer att anges på betalningssidan.</value>
+  </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Rensar Aktiva Dokument</value>
   </data>
@@ -1019,6 +1153,10 @@ En provperiod på 30 dagar ingår alltid när du aktiverat ditt AxCrypt ID. </va
 
 Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en aktiveringslänk.</value>
   </data>
+  <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
+    <value>Programmet behöver uppdateras pga ett tillförlitlighetsproblem.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
+  </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Ta bort från listan men behåll filskyddet</value>
   </data>
@@ -1039,6 +1177,10 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ak
   </data>
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Säker Radering</value>
+  </data>
+  <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
+    <value>Programmet behöver uppdateras beroende på en säkerhetsbrist.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Har kan du ta bort ditt AxCrypt ID permanent. &lt;span class="red"&gt;All information tas bort, vilket innefattar sparade lösenordsposter.&lt;/span&gt;
@@ -1144,11 +1286,21 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} med '{0}'.</value>
   </data>
+  <data name="UnregisterMailBody1" xml:space="preserve">
+    <value>Detta bekräftar att ditt AxCrypt ID på &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; har blivit raderat.</value>
+  </data>
+  <data name="UnregisterMailBody2" xml:space="preserve">
+    <value>Vi är ledsna att du lämnar oss, men vi hoppas att du nytta av oss under tiden!</value>
+  </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID Raderat</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Uppdaterar Status</value>
+  </data>
+  <data name="UpgradePromptText" xml:space="preserve">
+    <value>Skaffa Premium!</value>
+    <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Du har uppdaterat AxCrypt. Dessfärre måste dina inställningar återställas. Efter omstart av AxCrypt kommer inställningarna återgå till utgångsläget. Vi ber om ursäkt för besväret. Dina skyddade filer är lika säkra som alltd.</value>
@@ -1167,6 +1319,21 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
   <data name="WatchedFoldersTabPageText" xml:space="preserve">
     <value>Skyddade Mappar</value>
+  </data>
+  <data name="WelcomeMailBody0Html" xml:space="preserve">
+    <value>Välkommen till AxCrypt!</value>
+  </data>
+  <data name="WelcomeMailBody1Html" xml:space="preserve">
+    <value>Det gläder mig att du har skaffat ett AxCrypt ID! Eftersom jag gärna vill att du skall känna dig extra välkommen, har jag gett dig tillgång till våra Premium-funktioner i 30 dagar utan kostnad.</value>
+  </data>
+  <data name="WelcomeMailBody2Html" xml:space="preserve">
+    <value>Med AxCrypt Free eller AxCrypt Premium kan du skydda dina filer på ett superenkelt vis. Att kryptera enstaka filer eller alla i en mapp kräver bara ett klick. Att arbeta med de skyddade filerna är lika enkelt!</value>
+  </data>
+  <data name="WelcomeMailBody3Html" xml:space="preserve">
+    <value>Med Premium-abonnemanget följer ett antal riktigt bra funktioner, utöver alla gratisfunktioner. Med Premium får du t.ex.:</value>
+  </data>
+  <data name="WelcomeMailSubject" xml:space="preserve">
+    <value>Väkommen till AxCrypt!</value>
   </data>
   <data name="WelcomeToAxCrypt" xml:space="preserve">
     <value>Välkommentill AxCrypt!

@@ -148,8 +148,8 @@
   <data name="ActivateErrorPassword" xml:space="preserve">
     <value>Error al crear la contraseña.</value>
   </data>
-  <data name="ActivateMailBodyButton" xml:space="preserve">
-    <value>Activar cuenta</value>
+  <data name="ActivateMailBodyButton">
+    <value>Activar AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
     <value>Su código de activación es &lt;b&gt;{0}&lt;/b&gt;</value>
@@ -389,14 +389,8 @@ Usted debe completar estos pasos para completar el proceso.</value>
   <data name="ColumnTransactionDateHeader" xml:space="preserve">
     <value>Transacción UTC</value>
   </data>
-  <data name="ConfigurationSuccess" xml:space="preserve">
-    <value>La configuración de la aplicación se ha actualizado correctamente. Es posible que tenga que reiniciar el servidor para actualizar los cambios.</value>
-  </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Hacer esto para &amp;todos los archivos que faltan?</value>
-  </data>
-  <data name="ContactInfoEmail" xml:space="preserve">
-    <value>info@axcrypt.net</value>
   </data>
   <data name="ContactInfoPhone" xml:space="preserve">
     <value>+46 (0)8 550 10 274</value>
@@ -536,12 +530,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Su entrada se ha actualizado.</value>
   </data>
-  <data name="EmailErrorTemplateNotFound" xml:space="preserve">
-    <value>Plantilla no encontrado.</value>
-  </data>
-  <data name="EmailErrorUserNotFound" xml:space="preserve">
-    <value>Usuario no encontrado.</value>
-  </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[No Descripción]</value>
   </data>
@@ -571,9 +559,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Contraseña de identidad '{0}'</value>
-  </data>
-  <data name="EnumerateUsersSuccess" xml:space="preserve">
-    <value>La enumeración de usuario se ha realizado correctamente. Es posible que tenga que actualizar la página para obtener las estadísticas actualizadas.</value>
   </data>
   <data name="ErrorEmailMismatch" xml:space="preserve">
     <value>La verificación no coincide con el correo electrónico</value>
@@ -645,9 +630,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="GetLogErrorDateFormat" xml:space="preserve">
     <value>El formato de la fecha de inicio y/o la fecha final no es válida. Por favor, utilice el formato AAAA-MM-DD.</value>
   </data>
-  <data name="GetLogErrorLogType" xml:space="preserve">
-    <value>El tipo de registro seleccionado no es válido.</value>
-  </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Acerca de</value>
   </data>
@@ -680,9 +662,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Seleccione compartir archivos clave</value>
-  </data>
-  <data name="InconsistentState" xml:space="preserve">
-    <value>Estado inconsistente con '{0}'.</value>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mi AxCrypt ID</value>
@@ -788,7 +767,7 @@ Iniciar sesión en AxCrypt con {2}, introduzca el código de activación de 6 ci
     <value>Si no está claro por qué usted está recibiendo esto desde AxCrypt.net, puede ignorar este mensaje o reportarlo a {0}.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>No dude en ponerse en contacto conmigo si tiene alguna pregunta o comentario. También vea nuestra FAQ y Foro en nuestro sitio web en &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
+    <value>No dude en ponerse en contacto conmigo si tiene alguna pregunta o comentario. También vea nuestras preguntas frecuentes y foro en nuestro sitio web en &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
@@ -815,13 +794,6 @@ El equipo AxCrypt</value>
   </data>
   <data name="MainSiteUrl" xml:space="preserve">
     <value>http://www.axcrypt.net</value>
-  </data>
-  <data name="ManagementErrorParsing" xml:space="preserve">
-    <value>Se ocurrió un error de análisis cuando la propiedad de gestión del sitio se actualiza. Por favor, compruebe que está utilizando el formato correcto.</value>
-  </data>
-  <data name="ManagementSuccess" xml:space="preserve">
-    <value>La gestión de la propiedad del sitio se ha actualizado correctamente.
-</value>
   </data>
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>Mi AxCrypt ID</value>
@@ -888,6 +860,9 @@ El equipo AxCrypt</value>
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>No es necesario buscar si hay actualizaciones.</value>
+  </data>
+  <data name="NoPremiumWarning" xml:space="preserve">
+    <value>Su suscripción Premium ha expirado. No está utilizando el nivel más alto de seguridad. ¡Haga clic para actualizar!</value>
   </data>
   <data name="NotFoundPageBody" xml:space="preserve">
     <value>Desafortunadamente no pudimos encontrar la página que estabas buscando. Esto podría ser debido a un reinicio del servidor o un error interno del servidor que nos impidió responder a la solicitud
@@ -1161,6 +1136,10 @@ Una prueba gratis de 30 días de AxCrypt Premium está incluido y se iniciará a
     <value>Ahora ha registrado un ID AxCrypt!
 Revise su correo electrónico &lt;b&gt;{0}&lt;/b&gt; para un enlace de activación.</value>
   </data>
+  <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
+    <value>Su software debe ser actualizado debido a un problema de confiabilidad.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
+  </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Eliminar de la lista pero mantener archivo protegido.</value>
   </data>
@@ -1181,6 +1160,10 @@ Revise su correo electrónico &lt;b&gt;{0}&lt;/b&gt; para un enlace de activaci�
   </data>
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>Eliminación &amp;segura</value>
+  </data>
+  <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
+    <value>Su software debe ser actualizado debido a un problema de seguridad.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Aquí puede eliminar su cuenta permanentemente del sistema. &lt;span class="red"&gt;También se eliminarán todos los datos asociados con su cuenta, incluyendo las entradas de contraseñas guardadas.&lt;/span&gt;
@@ -1221,18 +1204,6 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>La suscripción se ha guardado correctamente.</value>
-  </data>
-  <data name="SubscriptionsSuccessDelete" xml:space="preserve">
-    <value>La historia de suscripción se ha eliminado correctamente.</value>
-  </data>
-  <data name="SyntheticWordsSuccessActivate" xml:space="preserve">
-    <value>El cultivo se ha activado correctamente.</value>
-  </data>
-  <data name="SyntheticWordsSuccessClear" xml:space="preserve">
-    <value>El cultivo se ha borrado correctamente.</value>
-  </data>
-  <data name="SyntheticWordsSuccessUpdate" xml:space="preserve">
-    <value>El cultivo se ha actualizado correctamente.</value>
   </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>¡Consultar el correo electrónico y el correo no deseado!</value>
@@ -1305,6 +1276,10 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Actualizando el estado</value>
+  </data>
+  <data name="UpgradePromptText" xml:space="preserve">
+    <value>¡Obtener Premium!</value>
+    <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Ha actualizado AxCrypt. Desafortunadamente, su configuración debe ser reiniciado. Después de reiniciar, por desgracia, se perderán sus preferencias y configuración. Nos disculpamos por el inconveniente. Sus archivos cifrados siguen estando protegidos.</value>

@@ -143,13 +143,13 @@
     <value>The provided e-mail or activation code is incorrect.</value>
   </data>
   <data name="ActivateErrorNoRequest" xml:space="preserve">
-    <value>Password reset failed. A password reset request has not been made for this account.</value>
+    <value>Password reset failed. A password reset request has not been made for this AxCrypt ID.</value>
   </data>
   <data name="ActivateErrorPassword" xml:space="preserve">
     <value>Password reset failed.</value>
   </data>
   <data name="ActivateMailBodyButton" xml:space="preserve">
-    <value>Activate account</value>
+    <value>Activate AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
     <value>Your activation code is &lt;b&gt;{0}&lt;/b&gt;</value>
@@ -158,19 +158,19 @@
     <value>Your activation code is {0}</value>
   </data>
   <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
-    <value>You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your account.</value>
+    <value>You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your AxCrypt ID.</value>
   </data>
   <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
-    <value>You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your account.</value>
+    <value>You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your AxCrypt ID.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>You have signed up for an AxCrypt account. To complete your registration you must click the button below.</value>
+    <value>You have signed up for an AxCrypt ID. To complete your registration you must click the button below.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
-    <value>If the button does not work, go to &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your account.</value>
+    <value>If the button does not work, go to &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your AxCrypt ID.</value>
   </data>
   <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
-    <value>If the button does not work, go to {0} and enter {1} and the activation code {2} to manually activate your account.</value>
+    <value>If the button does not work, go to {0} and enter {1} and the activation code {2} to manually activate your AxCrypt ID.</value>
   </data>
   <data name="ActivateMailBodyTitle" xml:space="preserve">
     <value>Hello and welcome to AxCrypt!</value>
@@ -185,12 +185,12 @@
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stop!&lt;/b&gt;
 
-You should only be here because clicking on the link in the account activation e-mail from AxCrypt did not work. (You must of course register an account to get an account activation e-mail)
+You should only be here because clicking on the link in the AxCrypt ID activation e-mail from AxCrypt did not work. (You must of course register for an AxCrypt ID to get an activation e-mail)
 
 Enter your e-mail and code manually here only if you have received the activation e-mail, but the link did not work.</value>
   </data>
   <data name="ActivatePageBody" xml:space="preserve">
-    <value>To activate your account &lt;b&gt;{0}&lt;/b&gt; you must select a password.
+    <value>To activate your AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; you must select a password.
 
 Choose something difficult to guess, since it will protect passwords in the online password manager as well as access to the site. Type slowly and carefully, and do not forget your password!</value>
   </data>
@@ -222,7 +222,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <comment>Do Not Translate</comment>
   </data>
   <data name="AuthenticationError" xml:space="preserve">
-    <value>The page you tried to visit requires authentication. Please log on to proceed.</value>
+    <value>The page you tried to visit requires authentication. Please sign in to proceed.</value>
   </data>
   <data name="AutoDeletionMailBodyVirtualPath" xml:space="preserve">
     <value>~/Templates/AutoDeletionEmail.html</value>
@@ -328,10 +328,10 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Prove that you're a real person and not automated software!</value>
   </data>
   <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>You have requested to change your current AxCrypt account e-mail to &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. To confirm please click the button below.</value>
+    <value>You have requested to change your current AxCrypt ID e-mail to &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. To confirm please click the button below.</value>
   </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
-    <value>Use your existing password to log on and then the old account will be permanently deleted.</value>
+    <value>Use your existing password to sign in and then the old AxCrypt ID will be permanently deleted.</value>
   </data>
   <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
     <value>Change e-mail</value>
@@ -344,13 +344,13 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>AxCrypt ID Email Change</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
-    <value>Your change of account e-mail has been confirmed! Please log on to complete the process.</value>
+    <value>Your change of AxCrypt ID e-mail has been confirmed! Please sign in to complete the process.</value>
   </data>
   <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Someone has requested a change of e-mail (from an undisclosed account) at &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;.</value>
+    <value>Someone has requested a change of e-mail (from an undisclosed source) at &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
-    <value>However, since you already have an account using this e-mail, the request has been silently ignored.</value>
+    <value>However, since you already have an AxCXrypt ID using this e-mail, the request has been silently ignored.</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
     <value>Ignore this e-mail or report it to {0}. No harm is done, and no information has been disclosed.</value>
@@ -368,7 +368,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="ChangeEmailMarkSuccess" xml:space="preserve">
     <value>We have sent an e-mail to &lt;b&gt;{0}&lt;/b&gt;. Please read your e-mail and click on the link provided there to confirm the change.
 
-Thereafter you can log on using &lt;b&gt;{0}&lt;/b&gt; and your existing password.
+Thereafter you can sign in using &lt;b&gt;{0}&lt;/b&gt; and your existing password.
 
 You must complete these steps to complete the process.</value>
   </data>
@@ -663,10 +663,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>E&amp;xit</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
-    <value>Export Account &amp;Secret and Sharing Key Pair</value>
+    <value>Export AxCrypt ID &amp;Secret and Sharing Key Pair</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>To move an account, export the Secret and Sharing Key Pair and then import it elsewhere.</value>
+    <value>To move an AxCrypt ID, export the Secret and Sharing Key Pair and then import it elsewhere.</value>
   </data>
   <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
     <value>E&amp;xport My Public Sharing Key</value>
@@ -735,7 +735,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Import &amp;AxCrypt ID with sharing and access keys.</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>To move an account, export the Secret and Sharing Key Pair and then import it here.</value>
+    <value>To move an AxCrypt ID, export the Secret and Sharing Key Pair and then import it here.</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Import Someone's Public Sharing Key</value>
@@ -1074,7 +1074,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Forgot your password? Click here</value>
   </data>
   <data name="PasswordResetMailBody1" xml:space="preserve">
-    <value>You have requested to reset your AxCrypt account password. To complete this process and pick a new password, please click the button below.</value>
+    <value>You have requested to reset your AxCrypt ID password. To complete this process and pick a new password, please click the button below.</value>
   </data>
   <data name="PasswordResetMailBodyButton" xml:space="preserve">
     <value>Reset password</value>
@@ -1089,7 +1089,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="PasswordResetPageBody" xml:space="preserve">
     <value>If you have previously registered but have forgotten the password, or for some reason not received or lost the activation link, you may re-register and request a new activation e-mail here.
 
-&lt;span class="red"&gt;If you have forgotten your password this will allow you to log on again, but you will not re-gain access to any information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
+&lt;span class="red"&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
 
 Enter your e-mail below to a send an activation link to the specified address. For personal integrity reasons, &lt;b&gt;no feedback on the success or failure of this operation will be given&lt;/b&gt;.</value>
   </data>
@@ -1097,7 +1097,7 @@ Enter your e-mail below to a send an activation link to the specified address. F
     <value>Password reset</value>
   </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
-    <value>An attempt to send the account activation verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
+    <value>An attempt to send the AxCrypt ID activation verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
 
 If you appear not to receive it, check that it does not get caught by your anti-spam measures, and that {0} is correct.</value>
   </data>
@@ -1108,7 +1108,7 @@ If you appear not to receive it, check that it does not get caught by your anti-
     <value>Your AxCrypt Premium subscription is coming to an end soon. I sincerely hope you have enjoyed using our features and found them useful.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>I’d love for you to continue using our Premium features. Simply &lt;a href="{0}Home/Login?email={1}"&gt;sign in&lt;/a&gt; to your AxCrypt account here to subscribe at any time.</value>
+    <value>I’d love for you to continue using our Premium features. Simply &lt;a href="{0}Home/Login?email={1}"&gt;sign in&lt;/a&gt; to your AxCrypt ID here to subscribe at any time.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -1229,7 +1229,7 @@ If you appear not to receive it, check that it does not get caught by your anti-
   <data name="PurchasePageBody1" xml:space="preserve">
     <value>AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Secured Folders and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
 
-To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts when you activate your account. After that you can extend your premium subscription by using the form below.</value>
+To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts when you activate your AxCrypt ID. After that you can extend your premium subscription by using the form below.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Security is crucial to us. Everything we do with AxCrypt is done with security as the highest priority. We are therefore using PayPal as payment method for AxCrypt Premium. The PayPal site is highly secure and automatically encrypts your confidential information in transit from your computer to our servers.
@@ -1287,6 +1287,10 @@ A 30 day trial of AxCrypt Premium is included and will start when you activate y
 
 Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link.</value>
   </data>
+  <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
+    <value>Your software needs to be updated due to a reliability issue.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
+  </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Remove from list but keep file secured</value>
   </data>
@@ -1308,15 +1312,19 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link.</value>
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Secure Delete</value>
   </data>
+  <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
+    <value>Your software needs to be updated due to a security issue.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Here you can delete your account permanently from the system. &lt;span class="red"&gt;All data associated with your account, including saved password entries, will also be deleted.&lt;/span&gt;
+    <value>Here you can delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
 
-Enter your password below to a delete your account.</value>
+Enter your password below to a delete your AxCrypt ID.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
-    <value>To change the e-mail associated with your account, type in a new e-mail address below. This will affect how you log on to the site and where site e-mails are sent. 
+    <value>To change the e-mail associated with your AxCrypt ID, type in a new e-mail address below. This will affect how you sign in to the site and where site e-mails are sent. 
 
-A confirmation e-mail will be sent to the new address. The change is effective only after the confirmation link is clicked and a successful log on.</value>
+A confirmation e-mail will be sent to the new address. The change is effective only after the confirmation link is clicked and a successful sign in.</value>
   </data>
   <data name="SettingsNotificationsPageBody" xml:space="preserve">
     <value>Choose your preference for AxCrypt notification e-mails below.</value>
@@ -1453,7 +1461,7 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>{1} for '{0}'.</value>
   </data>
   <data name="UnregisterMailBody1" xml:space="preserve">
-    <value>This is confirmation that your account on &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; has been successfully deleted.</value>
+    <value>This is confirmation that your AxCrypt ID on &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; has been successfully deleted.</value>
   </data>
   <data name="UnregisterMailBody2" xml:space="preserve">
     <value>We're sad to see you go and hope you enjoyed your time with us!</value>

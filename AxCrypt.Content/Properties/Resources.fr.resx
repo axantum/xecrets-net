@@ -148,11 +148,14 @@
   <data name="ActivateErrorPassword" xml:space="preserve">
     <value>Echec de la réinitialisation du mot de passe.</value>
   </data>
-  <data name="ActivateMailBodyButton" xml:space="preserve">
-    <value>Activer le compte</value>
+  <data name="ActivateMailBodyButton">
+    <value>Activer AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
     <value>Votre code d'activation est &lt;b&gt;{0}&lt;/b&gt;</value>
+  </data>
+  <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
+    <value>Votre code d'activation est {0}</value>
   </data>
   <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
     <value>Vous avez accès gratuitement aux fonctionnalités Premium pour une  &lt;b&gt;période d'essai de 30 jours&lt;/b&gt; à partir du moment où vous activez votre compte.</value>
@@ -162,6 +165,12 @@
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
     <value>Vous venez de créer un compte AxCrypt. Veuillez confirmer votre inscription en cliquant le bouton ci-dessous.</value>
+  </data>
+  <data name="ActivateMailBodyManualLink" xml:space="preserve">
+    <value>Si le bouton ne fonctionne pas, allez à &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; {0} &lt;/a&gt; et entrez &lt;b&gt; {1} &lt; / b&gt; le code d'activation &lt;b&gt; {2} &lt;/ b&gt; pour activer votre compte manuellement.</value>
+  </data>
+  <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
+    <value>Si le bouton ne fonctionne pas, allez à {0} et entrer {1} et le code d'activation {2} pour activer manuellement votre compte. </value>
   </data>
   <data name="ActivateMailBodyTitle" xml:space="preserve">
     <value>Bonjour et bienvenue à AxCrypt! </value>
@@ -193,9 +202,18 @@ Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Un double-clic ouvre la fenêtre de saisie de mot de passe avant d'ouvrir le fichier protégé.</value>
   </data>
+  <data name="AddSecureFolderMenuItemText" xml:space="preserve">
+    <value>Ajouter un Dossier Sécurisé</value>
+  </data>
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>Choisissez un dossier à protéger avec AxCrypt. Les fichiers qu'il contient seront chiffrés immédiatement.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AuthenticationError" xml:space="preserve">
+    <value>La page à laquelle vous souhaitez accéder requière une authentification. S'il vous plait, connectez-vous pour poursuivre. </value>
+  </data>
+  <data name="AutoDeletionMailSubject" xml:space="preserve">
+    <value>Effacement de AxCrypt ID</value>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Protection de Fichiers Pour Vous et Votre Equipe par Axcrypt AB
@@ -208,6 +226,15 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="BadEmail" xml:space="preserve">
     <value>Adresse email incorrecte</value>
     <comment>Displayed when email address format validation fails.</comment>
+  </data>
+  <data name="ButtonActivateText" xml:space="preserve">
+    <value>Activer</value>
+  </data>
+  <data name="ButtonCancelAllText" xml:space="preserve">
+    <value>&amp;Supprimer Tout</value>
+  </data>
+  <data name="ButtonCancelText" xml:space="preserve">
+    <value>Annuler</value>
   </data>
   <data name="ButtonChangePasswordText" xml:space="preserve">
     <value>Changer le mot de passe</value>
@@ -223,6 +250,12 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   </data>
   <data name="ButtonEllipsisText" xml:space="preserve">
     <value>...</value>
+  </data>
+  <data name="ButtonExitText" xml:space="preserve">
+    <value>&amp;Sortir</value>
+  </data>
+  <data name="ButtonHelpText" xml:space="preserve">
+    <value>&amp;Aide</value>
   </data>
   <data name="ButtonNewText" xml:space="preserve">
     <value>&amp;Nouveau</value>
@@ -248,6 +281,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="ButtonSignInText" xml:space="preserve">
     <value>Se connecter</value>
   </data>
+  <data name="ButtonSignUpText" xml:space="preserve">
+    <value>S'inscrire</value>
+  </data>
   <data name="ButtonSuggestText" xml:space="preserve">
     <value>Proposer un mot de passe</value>
   </data>
@@ -272,11 +308,20 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="CaptchaError" xml:space="preserve">
     <value>Réponse captcha incorrecte.</value>
   </data>
+  <data name="CaptchaLabel" xml:space="preserve">
+    <value>Prouvez que vous êtes une personne réelle et non un logiciel automatisé!</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
+    <value>Vous avez demandé à modifier votre e-mail actuel du compte AxCrypt  en &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. Pour confirmer, s'il vous plaît cliquez sur le bouton ci-dessous.</value>
+  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Saisissez votre mot de passe existant pour vous connecter. Votre ancien compte sera définitivement supprimé.</value>
   </data>
   <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
     <value>Changer l'adresse e-mail</value>
+  </data>
+  <data name="ChangeEmailConfirmMailSubject" xml:space="preserve">
+    <value>Changer l'e-mail AxCrypt ID</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>Votre changement d'adresse e-mail a été confirmé! Connectez-vous pour finir le processus. </value>
@@ -286,6 +331,12 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>Cependant, puisque vous avez déjà un compte utilisant cet e-mail, la demande a été ignorée. </value>
+  </data>
+  <data name="ChangeEmailExistMailBody3" xml:space="preserve">
+    <value>Ignorer cet e-mail ou le signaler à {0}. Il n'y a pas de nuisance, et aucune information n'a été divulguée.</value>
+  </data>
+  <data name="ChangeEmailExistMailSubject" xml:space="preserve">
+    <value>Demande de Changement de l'e-mail AxCrypt ID</value>
   </data>
   <data name="ChangeEmailMarkError" xml:space="preserve">
     <value>Echec de l'enregistrement du nouvel e-mail suite à une erreur interne, veuillez réessayer plus tard ou contacter notre support technique.</value>
@@ -297,8 +348,14 @@ Par conséquent, vous pouvez vous connecter en utilisant &lt;b&gt; {0} &lt;/ b&g
 
 Vous devez effectuer ces étapes pour terminer le processus.</value>
   </data>
+  <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
+    <value>Vos préférences de notification ont été modifiées.</value>
+  </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Modifier le mot de passe</value>
+  </data>
+  <data name="ChangePasswordError" xml:space="preserve">
+    <value>Impossible de modifier le mot de passe parce que le mot de passe actuel est incorrect ou le nouveau mot de passe est invalide.</value>
   </data>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Votre mot de passe a été modifié.</value>
@@ -321,17 +378,21 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
   <data name="ColumnExpiresHeader" xml:space="preserve">
     <value>Expiration UTC</value>
   </data>
+  <data name="ColumnFolderHeader" xml:space="preserve">
+    <value>Dossier</value>
+    <comment>Columnheader containing a folder name.</comment>
+  </data>
+  <data name="ColumnProductHeader" xml:space="preserve">
+    <value>Produit</value>
+  </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>Date/Heure</value>
   </data>
   <data name="ColumnTransactionDateHeader" xml:space="preserve">
     <value>Transaction UTC</value>
   </data>
-  <data name="ConfigurationSuccess" xml:space="preserve">
-    <value>Les propriété de configuration de l'application ont été mises à jour avec succès. Vous pourriez avoir à redémarrer le serveur pour que les modifications prennent effet.</value>
-  </data>
-  <data name="ContactInfoEmail" xml:space="preserve">
-    <value>info@axcrypt.net</value>
+  <data name="ConfirmAllCheckBoxText" xml:space="preserve">
+    <value>Faire cela pour &amp;tous les fichiers restants? </value>
   </data>
   <data name="ContactInfoPhone" xml:space="preserve">
     <value>+46(0)855010274</value>
@@ -342,11 +403,21 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
   <data name="CookiePolicyBlockedError" xml:space="preserve">
     <value>Cette action a été bloquée car votre navigateur n'accepte pas de cookies.</value>
   </data>
+  <data name="CookiePolicyPageBody" xml:space="preserve">
+    <value>Nous ne stockons pas les cookies permanents sur votre disque dur, nous avons mis quelques cookies de session qui sont supprimés lorsque le navigateur est fermé. Ils sont nécessaires pour maintenir votre session connectée et sécurisée. Nous ne suivons pas votre utilisation du site, et ils ne sont pas disponibles pour des tiers.
+
+Les cookies sont en outre fixés en exigeant que toutes les communications susceptibles avec le serveur soient cryptées avec HTTPS, en chiffrant le cookie lui-même et en faisant que le cookie soit indisponible pour script dans votre navigateur.
+
+Si vous n'acceptez pas nos cookies de session temporaires, vous ne pouvez pas vous connecter et le site peut ne pas fonctionner comme prévu.</value>
+  </data>
   <data name="CookiePolicyPageTitle" xml:space="preserve">
-    <value/>
+    <value>Police de Cookie</value>
   </data>
   <data name="CookiesDisabledError" xml:space="preserve">
     <value>Votre navigateur ne semble pas accepter les cookies. Sans cookies, vous ne pourrez pas vous connecter, et le site ne fonctionnera pas comme il faut. Plus d'informations dans notre &lt;a href="{0}"&gt;politique concernant les cookies&lt;/a&gt;.</value>
+  </data>
+  <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
+    <value>Créer un AxCrypt ID</value>
   </data>
   <data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Créer un AxCrypt ID avec clefs de partage et d'accès.</value>
@@ -384,13 +455,25 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
   <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
     <value>Choisissez un fichier à ne plus protéger</value>
   </data>
+  <data name="DecryptToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Arrêter la Sécurisation </value>
+  </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Vous êtes connecté. Cliquez pour vous déconnecter.</value>
+  </data>
+  <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
+    <value>Suppression échouée en raison d'un mot de passe incorrect.</value>
   </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>Votre AxCrypt ID a été supprimé.
 
 Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt vous aura été utile.</value>
+  </data>
+  <data name="DeleteSecretErrorNotFound" xml:space="preserve">
+    <value>La suppression a échoué parce que le mot de passe demandé n'a pas pu être trouvé.</value>
+  </data>
+  <data name="DeleteSecretSuccess" xml:space="preserve">
+    <value>Votre mot de passe a été supprimé. </value>
   </data>
   <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
@@ -413,11 +496,23 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="DialogExportSharingKeyFileName" xml:space="preserve">
     <value>Clé Partagée AxCrypt (#{1})-{0}.txt</value>
   </data>
+  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
+    <value>Fichiers AxCrypt Public Sharing Key (*.txt)|*.txt|Tous les Fichiers(*.*)|*.*</value>
+  </data>
+  <data name="DialogExportSharingKeyTitle" xml:space="preserve">
+    <value>Exporter Public Sharing Key </value>
+  </data>
   <data name="DialogFilePasswordTitle" xml:space="preserve">
     <value>Mot de passe du fichier </value>
   </data>
+  <data name="DialogImportPrivateAxCryptIdAccessIdPrompt" xml:space="preserve">
+    <value>AxCrypt ID</value>
+  </data>
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>Importer AxCrypt ID </value>
+  </data>
+  <data name="DialogKeyShareTitle" xml:space="preserve">
+    <value>Accès Partage</value>
   </data>
   <data name="DialogManageAxcryptIdTitle" xml:space="preserve">
     <value>Gérer AxCrypt ID</value>
@@ -435,16 +530,13 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Double-cliquez pour ouvrir. Un mot de passe vous sera demandé si nécessaire.</value>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
-    <value>Accès limité à la consultation. Premium est nécessaire pour créer ou rédiger des mots de passe.</value>
+    <value>Accès limité à la consultation! Seulement les abonnés Premium sont autorisés à modifier ou créer des mots de passe.</value>
+  </data>
+  <data name="EditSecretErrorNotFound" xml:space="preserve">
+    <value>L'entrée du mot de passe demandé n'a pas été trouvé.</value>
   </data>
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Entrée mise à jour.</value>
-  </data>
-  <data name="EmailErrorTemplateNotFound" xml:space="preserve">
-    <value>Modèle non trouvé. </value>
-  </data>
-  <data name="EmailErrorUserNotFound" xml:space="preserve">
-    <value>Utilisateur inconnu.</value>
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Pas de Description]</value>
@@ -476,6 +568,12 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Saisissez le mot de passe pour '{0}'</value>
   </data>
+  <data name="ErrorEmailMismatch" xml:space="preserve">
+    <value>La vérification ne correspond pas à l'e-mail</value>
+  </data>
+  <data name="ErrorPasswordMismatch" xml:space="preserve">
+    <value>La vérification du mot de passe ne correspond pas au mot de passe.</value>
+  </data>
   <data name="ErrorPasswordTooLong" xml:space="preserve">
     <value>Votre mot de passe doit contenir entre {1} et {2} caractères.</value>
   </data>
@@ -488,6 +586,15 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Exporter Clef &amp;Secrète et Clef de Partage </value>
+  </data>
+  <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Pour déplacer un compte, exporter la Clé Secrète et la Clé de Partage, puis importez les ailleurs.</value>
+  </data>
+  <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Exporter ma Public Sharing Key </value>
+  </data>
+  <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Envoyer la Public Sharing Key exportée vers d'autres personnes avec qui vous voulez être en mesure de partager des fichiers cryptés.</value>
   </data>
   <data name="FailedPrivateImport" xml:space="preserve">
     <value>Echec de l'importation. Le fichier n'est probablement pas un AxCrypt ID valide.</value>
@@ -522,14 +629,29 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Le dossier '{0}' est déjà protégé.</value>
   </data>
+  <data name="FooterInfoBody" xml:space="preserve">
+    <value>Ceci est la section AxCrypt ID de AxCrypt.net, cliquez &lt;a href="{0}"&gt; ici &lt;/a&gt; pour revenir à la page d'accueil.</value>
+  </data>
+  <data name="FooterInfoTitle" xml:space="preserve">
+    <value>AxCrypt ID</value>
+  </data>
+  <data name="GetLogErrorDateFormat" xml:space="preserve">
+    <value>Le format de début et/ou de fin de la date est invalide. S'il vous plaît, utilisez le format AAAA-MM-JJ.</value>
+  </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>&amp;A Propos</value>
   </data>
   <data name="HelpToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Aide</value>
   </data>
+  <data name="HelpViewHelpMenuItemText" xml:space="preserve">
+    <value>&amp;Aide</value>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Importer &amp;AxCrypt ID avec les clefs de partage et d'accès. </value>
+  </data>
+  <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Pour déplacer un compte, exporter la Clé Secrète et la Clé de Partage, puis importez les ici. </value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Importer Clef de Partage Publique d'un Contact</value>
@@ -549,9 +671,6 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Choisissez un Fichier de Clef de Partage</value>
   </data>
-  <data name="InconsistentState" xml:space="preserve">
-    <value>Erreur interne avec '{0}'.</value>
-  </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>My AxCrypt ID</value>
   </data>
@@ -570,6 +689,9 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="Invalid_URL" xml:space="preserve">
     <value>URL non valide.</value>
   </data>
+  <data name="InvitationMailBodyIntro" xml:space="preserve">
+    <value>Vous avez été invité à AxCrypt File Security par &lt;b&gt;{0}&lt;/b&gt;. Pour commencer à sécuriser vos fichiers &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;télécharger&lt;/a&gt; et installer AxCrypt. Se connecter à AxCrypt avec &lt;b&gt;{2}&lt;/b&gt;, entrer le code d'activation et définir votre mot de passe. </value>
+  </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>Vous avez été invité à AxCrypt File Security par {0} .
 
@@ -577,8 +699,20 @@ Pour commencer à sécuriser vos fichiers il suffit de télécharger et installe
 
 Connectez-vous à AxCrypt avec {2}, entrez le code d'activation à 6 chiffres et définissez votre mot de passe secret.</value>
   </data>
+  <data name="InvitationMailSubject" xml:space="preserve">
+    <value>Invitation à utiliser AxCrypt File Security</value>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript semble être désactivé dans votre navigateur. Sauf si vous activez JavaScript, vous ne pouvez pas vous connecter et le site peut ne pas fonctionner comme prévu.</value>
+  </data>
+  <data name="KeyFileBrowseFilter" xml:space="preserve">
+    <value>Fichiers Clé AxCrypt (*.txt)|*.txt|Tous les Fichiers (*.*)|*.*</value>
+  </data>
+  <data name="KeyFileBrowseTitle" xml:space="preserve">
+    <value>Selectionner un Fichier Clé</value>
+  </data>
+  <data name="KeyFilePrompt" xml:space="preserve">
+    <value>Fichier Clé</value>
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Gestion des Clefs</value>
@@ -604,6 +738,9 @@ Connectez-vous à AxCrypt avec {2}, entrez le code d'activation à 6 chiffres et
   <data name="LicenseFreeNameText" xml:space="preserve">
     <value>Gratuit</value>
   </data>
+  <data name="LicensePremiumNameText" xml:space="preserve">
+    <value>Premium</value>
+  </data>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Retour au site principal</value>
     <comment>Menus and similar to link back to main site.</comment>
@@ -617,6 +754,9 @@ Connectez-vous à AxCrypt avec {2}, entrez le code d'activation à 6 chiffres et
   </data>
   <data name="LoginError" xml:space="preserve">
     <value>L'adresse e-mail ou le mot de passe fourni est incorrect. </value>
+  </data>
+  <data name="LoginPageTitle" xml:space="preserve">
+    <value>Se Connecter à AxCrypt</value>
   </data>
   <data name="LoginPurchaseError" xml:space="preserve">
     <value>Echec du paiement. Veuillez réessayer.</value>
@@ -633,12 +773,21 @@ Connectez-vous à AxCrypt avec {2}, entrez le code d'activation à 6 chiffres et
   <data name="MailBodyFooter" xml:space="preserve">
     <value>Si vous ne savez pas pourquoi vous recevez ceci de &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;, vous pouvez ignorer cet e-mail ou le signaler à {1}.</value>
   </data>
+  <data name="MailBodyFooterPlainText" xml:space="preserve">
+    <value>Si vous ne savez pas pourquoi vous recevez ceci de AxCrypt.net, vous pouvez ignorer cet e-mail ou le signaler à {0}.</value>
+  </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
     <value>N'hésitez pas à me contacter si vous avez des questions ou des commentaires. Consultez également notre FAQ et Forum sur notre site Web à &lt;a href="{0}"&gt; {0} &lt;/a&gt;.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
-    <value/>
+    <value>&lt;ul&gt;
+&lt;li&gt;256-bit AES&lt;/li&gt;
+&lt;li&gt;Clé de Partage&lt;li&gt;
+&lt;li&gt;Dossiers Sécurisés&lt;/li&gt;
+&lt;li&gt;Gestion des Mots de passe&lt;/li&gt;
+&lt;li&gt;Sensibilisation au stockage sur le Cloud&lt;/li&gt;
+&lt;/ul&gt;</value>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
     <value>Merci d'utiliser AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;L'équipe AxCrypt &lt;/i&gt;</value>
@@ -653,14 +802,20 @@ L'Equipe AxCrypt</value>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Bonjour {0},</value>
   </data>
-  <data name="ManagementSuccess" xml:space="preserve">
-    <value>Paramètre de gestion de site mis à jour.</value>
+  <data name="MainSiteUrl" xml:space="preserve">
+    <value>http://www.axcrypt.net</value>
+  </data>
+  <data name="MenuAxCryptIdText" xml:space="preserve">
+    <value>My AxCrypt ID</value>
   </data>
   <data name="MenuDecryptPermanentlyText" xml:space="preserve">
     <value>&amp;Décrypter en Permanence </value>
   </data>
+  <data name="MenuDecryptTemporarilyText" xml:space="preserve">
+    <value>Déchiffrer &amp;Temporairement</value>
+  </data>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
-    <value/>
+    <value>Ouvrir &amp;Explorer Ici </value>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>Vous ne pouvez pas vous connecter en tant que '{0}'. S'il-vous-plaît entrer une adresse e-mail réelle, et essayer de nouveau. </value>
@@ -686,6 +841,12 @@ L'Equipe AxCrypt</value>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>Pas d'accès à Internet</value>
   </data>
+  <data name="MessageSignUpUnexpectedErrorText" xml:space="preserve">
+    <value>Quelque chose d'inattendu n'a pas fonctionné. Veuillez réessayer. Si le problème persiste, s'il vous plaît signalez ceci.</value>
+  </data>
+  <data name="MessageSignUpUnexpectedErrorTitle" xml:space="preserve">
+    <value>Erreur inattendue </value>
+  </data>
   <data name="MessageUnexpectedErrorText" xml:space="preserve">
     <value>Une erreur inattendue '{0}' s'est produite.</value>
   </data>
@@ -694,6 +855,9 @@ L'Equipe AxCrypt</value>
   </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Créer un nouveau mot de passe</value>
+  </data>
+  <data name="NewSecretSuccess" xml:space="preserve">
+    <value>Votre nouvelle entrée de mot de passe a été enregistrée. </value>
   </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} disponible! Cliquez ici pour la télécharger.</value>
@@ -706,6 +870,9 @@ L'Equipe AxCrypt</value>
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Pas de mise à jour nécessaire.</value>
+  </data>
+  <data name="NoPremiumWarning" xml:space="preserve">
+    <value>Votre abonnement Premium a expiré. Désormais, vous n'utilisez pas le plus haut niveau de sécurité. Cliquez pour améliorer! </value>
   </data>
   <data name="NotFoundPageBody" xml:space="preserve">
     <value>Page non trouvée. Ceci peut être dû à un redémarrage du serveur qui a rendu votre session obsolète, ou à une erreur interne au serveur qui nous a empêché de répondre à la requête.
@@ -739,6 +906,9 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
     <value>Choisissez un fichier protégé à ouvrir</value>
   </data>
+  <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Ouvrir Sécurisé</value>
+  </data>
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>Fichier</value>
   </data>
@@ -751,6 +921,9 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Language</value>
   </data>
+  <data name="OptionsToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Options</value>
+  </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Mot de passe</value>
   </data>
@@ -760,8 +933,14 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   <data name="PasswordManagementListPageBody" xml:space="preserve">
     <value>Gérez vos mots de passe dans le cloud&lt;span class="text-cutoff"&gt; avec la Gestion de Mots de Passe AxCrypt. Vos mots de passe, codes, PINs etc sont stockés en ligne de manière sécurisée, accessible par vous et vous seul(e) à tout moment, depuis n'importe où.&lt;a class="hide-link"&gt;[Cacher]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[En savoir plus]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
+  <data name="PasswordManagementPageTitle" xml:space="preserve">
+    <value>Gestion du mot de passe</value>
+  </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Le mot de passe doit contenir au moins 10 caractères.</value>
+  </data>
+  <data name="PasswordResetLink" xml:space="preserve">
+    <value>Vous avez oubliez votre mot de passe? Cliquez ici.</value>
   </data>
   <data name="PasswordResetMailBody1" xml:space="preserve">
     <value>Vous avez demandé une réinitialisation du mot de passe de votre compte AxCrypt. Afin d'achever ce processus et choisir un nouveau mot de passe, s'il-vous-plaît cliquez sur le bouton ci-dessous. </value>
@@ -770,7 +949,7 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
     <value>Réinitialiser le mot de passe</value>
   </data>
   <data name="PasswordResetMailSubject" xml:space="preserve">
-    <value>Réinitialiser le mot de passe de l'identifiant AxCrypt </value>
+    <value>Réinitialiser le mot de passe de AxCrypt ID</value>
   </data>
   <data name="PasswordResetPageBody" xml:space="preserve">
     <value>Si vous avez un compte mais que vous avez oublié le mot de passe, ou si vous n'avez pas reçu le lien d'activation, vous pouvez demander l'envoi d'un nouvel email d'activation ici.
@@ -787,8 +966,15 @@ Saisissez votre email ci-dessous, afin d'y recevoir votre lien d'activation. Pou
 
 Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identifié comme spam, et que l'adresse {0} est correcte.</value>
   </data>
+  <data name="PayPalReadMoreLink" xml:space="preserve">
+    <value>[Plus d'information concernant PayPal]</value>
+  </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
     <value>Votre abonnement AxCrypt Premium arrive bientôt à sa fin. J'espère sincèrement que vous avez apprécié utiliser nos fonctionnalités et que vous les avez trouvés utiles.</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>J'aimerais bien vous voir continuer à utiliser nos fonctionnalités Premium. Simplement &lt;a href="{0}Home/Login?email={1}"&gt;se connecter&lt;/a&gt; à votre compte AxCrypt ici pour vous abonner à tout moment.</value>
+    <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Avec votre abonnement Premium, vous allez pouvoir continuer d'apprécier: </value>
@@ -796,14 +982,26 @@ Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identi
   <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
     <value>Dites-moi ce que vous pensez AxCrypt - Voulez-vous continuer à l'utiliser et y a-t-il quelque chose que vous aimeriez voir amélioré?</value>
   </data>
+  <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
+    <value>Votre abonnement AxCrypt Premium expire bientôt! </value>
+  </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>Cette fonctionalité n'est disponible qu'avec Premium!</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Echanger des clefs n'est possible qu'avec Premium. Cliquez ici pour passer à Premium!</value>
   </data>
+  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Annuler</value>
+  </data>
+  <data name="PromptActivationCode" xml:space="preserve">
+    <value>Code d'activation</value>
+  </data>
   <data name="PromptAddContact" xml:space="preserve">
     <value>Ajouter un contact</value>
+  </data>
+  <data name="PromptBackLinkText" xml:space="preserve">
+    <value>Retour</value>
   </data>
   <data name="PromptBuyNow" xml:space="preserve">
     <value>Acheter maintenant </value>
@@ -827,6 +1025,9 @@ Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identi
     <value>Fichier</value>
     <comment>The heading of a groupbox where the file name to be opened is displayed.</comment>
   </data>
+  <data name="PromptKeepMeSignedIn" xml:space="preserve">
+    <value>Se souvenir de moi et prolonger la session de connexion </value>
+  </data>
   <data name="PromptKnownContacts" xml:space="preserve">
     <value>Contacts connus</value>
   </data>
@@ -839,6 +1040,9 @@ Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identi
   <data name="PromptMyAxCryptId" xml:space="preserve">
     <value>My AxCrypt ID </value>
   </data>
+  <data name="PromptMySettings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
   <data name="PromptNewEmail" xml:space="preserve">
     <value>Nouvel email</value>
   </data>
@@ -847,6 +1051,9 @@ Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identi
   </data>
   <data name="PromptNotificationsText" xml:space="preserve">
     <value>Notifications</value>
+  </data>
+  <data name="PromptPasswordManager" xml:space="preserve">
+    <value>Gestionnaire de Mots de passe</value>
   </data>
   <data name="PromptSetNewPassword" xml:space="preserve">
     <value>Nouveau Mot de Passe</value>
@@ -872,25 +1079,50 @@ Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identi
   <data name="PromptXecretsDescriptionText" xml:space="preserve">
     <value>Description (site web, nom d'utilisateur etc)</value>
   </data>
+  <data name="PromptXecretsNew" xml:space="preserve">
+    <value>Nouveau</value>
+  </data>
   <data name="PromptXecretsSearchText" xml:space="preserve">
     <value>Rechercher</value>
   </data>
   <data name="PromptXecretsSecretText" xml:space="preserve">
     <value>Mot de passe ou secret</value>
   </data>
+  <data name="PurchaseErrorSubscriptionTime" xml:space="preserve">
+    <value>La période de l'abonnement sélectionnée est invalide. Un abonnement valide doit être d'au moins {0} mois et plus de {1} mois.</value>
+  </data>
   <data name="PurchasePageBody1" xml:space="preserve">
     <value>AxCrypt protège vos fichiers. Pour utiliser les fonctionnalités avancées comme le chiffrement 256 bits, les Dossiers Protégés ou la Gestion des Mots de Passe, nous vous proposons de passer à AxCrypt Premium, qui vous donnera accès à l'ensemble des fonctionnalités du programme sans limitation.
 
 Afin d'évaluer les fonctionnalités d'AxCrypt Premium, nous vous offrons une période d'essai de 30 jours à partir du moment où vous activez votre compte. Vous pourrez par la suite prolonger cette période d'essai par l'intermédiaire du formulaire ci-dessous.</value>
   </data>
+  <data name="PurchasePageBody2" xml:space="preserve">
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Lire Plus Concernant PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoffalways"&gt;La sécurité est cruciale pour nous. Tout ce que nous faisons avec AxCrypt est fait avec la sécurité comme la plus haute priorité. Nous utilisons donc PayPal comme mode de paiement pour AxCrypt Premium. Le site PayPal est hautement sécurisé et crypte automatiquement vos informations confidentielles de votre ordinateur à nos serveurs.
+ 
+Une fois que votre information atteint le site PayPal, il réside sur un serveur qui est fortement surveillé à la fois physiquement et électroniquement.&lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="PurchasePageTitle" xml:space="preserve">
+    <value>Acheter AxCrypt Premium</value>
+  </data>
   <data name="PurchaseReceiptError" xml:space="preserve">
     <value>La commande a été annulée. </value>
+  </data>
+  <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
+    <value>Nous n'avons jamais reçu votre paiement. Ceci peut être dû à une annulation manuelle de l'achat sur PayPal ou un solde du compte insuffisante.</value>
   </data>
   <data name="PurchaseReceiptPageTitle" xml:space="preserve">
     <value>Facture pour AxCrypt Premium</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
     <value>Merci d'avoir acheté AxCrypt Premium! </value>
+  </data>
+  <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
+    <value>Vous êtes maintenant en mesure d'accéder à toutes les fonctionnalités Premium de AxCrypt. Si vous rencontrez des problèmes, s'il vous plaît contactez notre support.
+
+Un reçu de votre commande a été envoyé à votre adresse e-mail.</value>
+  </data>
+  <data name="PurchaseVatPercent" xml:space="preserve">
+    <value>&lt;b&gt;VAT excluded&lt;/b&gt; La TVA réelle dépend de votre pays de résidence et sera affichée sur la page de paiement.</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Nettoyage des fichiers actifs</value>
@@ -920,8 +1152,18 @@ Un essai de 30 jours de AxCrypt Premium est inclus et démarre lorsque vous acti
 
 Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code d'activation. </value>
   </data>
+  <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
+    <value>Votre logiciel doit être mis à jour en raison d'un problème de fiabilité.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
+  </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Retirer de la liste mais laisser le fichier protégé</value>
+  </data>
+  <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
+    <value>Seuls les utilisateurs Premium sont autorisés à enregistrer des entrées des mots de passe.</value>
+  </data>
+  <data name="SecretsButtonToolTipText" xml:space="preserve">
+    <value>Aller à la Gestion de Mots de passe</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
     <value>Votre abonnement Premium a expiré et vous ne pouvez donc plus modifier ou créer de nouvelles entrées de mot de passe. Cependant, vous avez toujours accès à la lecture seule.</value>
@@ -934,6 +1176,10 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code d'activation. </value>
   </data>
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>Effaçage &amp;sécurisé</value>
+  </data>
+  <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
+    <value>Votre logiciel doit être mis à jour en raison d'un problème de sécurité.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Vous pouvez ici supprimer votre compte de notre système. &lt;span class="red"&gt;Toutes vos données, y compris vos mots de passe, seront perdues.&lt;/span&gt;
@@ -948,6 +1194,14 @@ Une confirmation par e-mail sera envoyée à la nouvelle adresse. Le changement 
   <data name="SettingsNotificationsPageBody" xml:space="preserve">
     <value>Réglez les paramètres de notification par email AxCrypt ci-dessous.</value>
   </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="SettingsPasswordPageBody" xml:space="preserve">
+    <value>Pour changer le mot de passe, indiquez le mot de passe actuel puis spécifiez et vérifiez votre nouveau mot de passe.
+
+Choisissez un mot de passe difficile à deviner, car il permettra de protéger les mots de passe dans le gestionnaire de mots de passe en ligne, ainsi que l'accès au site. Tapez lentement et avec précaution, et n'oubliez pas votre nouveau mot de passe!</value>
+  </data>
   <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>Nouvel utilisateur AxCrypt</value>
   </data>
@@ -958,6 +1212,9 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Partager clefs </value>
+  </data>
+  <data name="ShowPasswordOptionPrompt" xml:space="preserve">
+    <value>Montrer le Mot de passe</value>
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Attention: Le site va être redémarré dans quelques minutes. Nous vous prions de nous excuser pour la gêne occasionnée.</value>
@@ -980,6 +1237,12 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   <data name="TextPreferenceUnknown" xml:space="preserve">
     <value>Indéterminé - Vous n'avez pas précisé de paramètre</value>
   </data>
+  <data name="TextPreferenceUpdate" xml:space="preserve">
+    <value>Mise à jour - Soyez informé de toutes les mises à jour AxCrypt</value>
+  </data>
+  <data name="TitleAxCryptIdSignInText" xml:space="preserve">
+    <value>AxCrypt ID Se Connecter</value>
+  </data>
   <data name="TitleCreateAxCryptIdTitle" xml:space="preserve">
     <value>Créer AxCrypt ID</value>
   </data>
@@ -990,11 +1253,21 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
     <value>Connexion à AxCrypt</value>
     <comment>Title on the web page for signin for example.</comment>
   </data>
+  <data name="TitleWindowSignInStatus" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>La version Premium est nécessaire pour la gestion des mots de passe. Cliquez pour mettre à niveau maintenant!</value>
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>Historique des transactions</value>
+  </data>
+  <data name="TrayBalloonTooltip" xml:space="preserve">
+    <value>Cliquez pour restaurer la fenêtre de l'application AxCrypt.</value>
+    <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
+  </data>
+  <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;Essayer Fichier Brisé</value>
   </data>
   <data name="UnknownCrypto" xml:space="preserve">
     <value>Inconnu</value>
@@ -1046,14 +1319,20 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   <data name="WatchedFoldersTabPageText" xml:space="preserve">
     <value>Dossiers Protégés</value>
   </data>
+  <data name="WelcomeMailBody0Html" xml:space="preserve">
+    <value>Bienvenue sur AxCrypt!</value>
+  </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
     <value>Je suis très content que vous vous soyez inscrit! Pour vous souhaiter la bienvenue, je vous offre un accès libre aux fonctionnalités Premium pendant 30 jours. </value>
+  </data>
+  <data name="WelcomeMailBody2Html" xml:space="preserve">
+    <value>Avec AxCrypt Free ou AxCrypt Premium, vous pouvez sécuriser vos fichiers d'une manière vraiment facile. Le chiffrement vos fichiers et des dossiers entiers est juste à un clic. Travailler avec les fichiers cryptés est tout aussi facile!</value>
   </data>
   <data name="WelcomeMailBody3Html" xml:space="preserve">
     <value>En tant qu'abonné(e) Premium, il y a de nombreuses excellentes fonctionnalités supplémentaires pour vous en complément de toutes les fonctionnalités gratuites. Avec Premium, vous obtenez des fonctionnalités telles que:</value>
   </data>
   <data name="WelcomeMailSubject" xml:space="preserve">
-    <value/>
+    <value>Bienvenue sur AxCrypt!</value>
   </data>
   <data name="WelcomeToAxCrypt" xml:space="preserve">
     <value>Bienvenue à AxCrypt!
@@ -1064,11 +1343,20 @@ Pour commencer à protéger vos fichiers, cliquez l'icône + dans la barre d'out
 
 Pour plus d'information, cliquez sur OK pour naviguer sur notre site web.</value>
   </data>
+  <data name="WelcomeToAxCryptTitle" xml:space="preserve">
+    <value>Débuter avec AxCrypt</value>
+  </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Choisissez les fichiers à supprimer de manière sécurisée.</value>
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Etat 'En cours' avec '{0}'.</value>
+  </data>
+  <data name="WrongPassphrase" xml:space="preserve">
+    <value>Mauvais mot de passe. S'il vous plait, essayer à nouveau. </value>
+  </data>
+  <data name="WrongVerificationCode" xml:space="preserve">
+    <value>Mauvais code d'activation. S'il vous plait, revérifiez votre e-mail. </value>
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>Le code de vérification doit être de 6 chiffres exactement. </value>
