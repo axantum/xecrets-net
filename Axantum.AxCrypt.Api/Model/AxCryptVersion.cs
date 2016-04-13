@@ -25,7 +25,7 @@ namespace Axantum.AxCrypt.Api.Model
         {
         }
 
-        public static AxCryptVersion Empty { get; } = new AxCryptVersion(String.Empty, new VersionUpdateKind());
+        public static AxCryptVersion Empty { get; } = new AxCryptVersion(String.Empty, VersionUpdateKind.Empty);
 
         [JsonProperty("url")]
         public string DownloadLink { get; private set; }
@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Api.Model
         {
             get
             {
-                return String.IsNullOrEmpty(DownloadLink) && String.IsNullOrEmpty(FullVersion) && Revision == 0;
+                return String.IsNullOrEmpty(DownloadLink) && FullVersion == Empty.FullVersion && Revision == Empty.Revision && IsCriticalReliabilityUpdate == Empty.IsCriticalReliabilityUpdate && IsCriticalSecurityUpdate == Empty.IsCriticalSecurityUpdate;
             }
         }
     }

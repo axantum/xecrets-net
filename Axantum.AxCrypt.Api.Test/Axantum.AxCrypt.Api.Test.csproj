@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAxCryptApiClient.cs" />
+    <Compile Include="TestAxCryptVersion.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
@@ -64,6 +65,10 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj">
       <Project>{6ea275d5-2372-4fcf-bb4f-5c48f5901350}</Project>
       <Name>Axantum.AxCrypt.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Common\Axantum.AxCrypt.Common.csproj">
+      <Project>{fb429566-e4a5-4391-805b-0e2a2ae297ac}</Project>
+      <Name>Axantum.AxCrypt.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
       <Project>{966e9510-1a1d-46c7-97b5-460a0ff9b89f}</Project>
