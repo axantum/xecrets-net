@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Linq;
@@ -58,6 +59,8 @@ namespace Axantum.AxCrypt.Core.UI
         DateTime LastUpdateCheckUtc { get; set; }
 
         string NewestKnownVersion { get; set; }
+
+        UpdateLevel UpdateLevel { get; set; }
 
         bool DebugMode { get; set; }
 

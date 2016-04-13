@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
@@ -102,8 +103,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         public string CultureName
         {
-            get { return Load("CultureName", CultureInfo.CurrentUICulture.Name); }
-            set { Store("CultureName", value); }
+            get { return Load(nameof(CultureName), CultureInfo.CurrentUICulture.Name); }
+            set { Store(nameof(CultureName), value); }
         }
 
         public Uri RestApiBaseUrl
@@ -122,7 +123,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Uri UpdateUrl
         {
-            get { return Load("UpdateUrl", new Uri("http://www.axcrypt.net/download/")); }
+            get { return Load(nameof(UpdateUrl), new Uri("http://www.axcrypt.net/download/")); }
             set
             {
                 if (value == null)
@@ -130,8 +131,14 @@ namespace Axantum.AxCrypt.Core.UI
                     throw new ArgumentNullException("value");
                 }
 
-                Store("UpdateUrl", value.ToString());
+                Store(nameof(UpdateUrl), value.ToString());
             }
+        }
+
+        public UpdateLevel UpdateLevel
+        {
+            get { return (UpdateLevel)Load(nameof(UpdateLevel), (int)UpdateLevel.None); }
+            set { Store(nameof(UpdateLevel), (int)value); }
         }
 
         public TimeSpan ApiTimeout
@@ -142,25 +149,25 @@ namespace Axantum.AxCrypt.Core.UI
 
         public DateTime LastUpdateCheckUtc
         {
-            get { return Load("LastUpdateCheckUtc", DateTime.MinValue); }
-            set { Store("LastUpdateCheckUtc", value); }
+            get { return Load(nameof(LastUpdateCheckUtc), DateTime.MinValue); }
+            set { Store(nameof(LastUpdateCheckUtc), value); }
         }
 
         public string NewestKnownVersion
         {
-            get { return Load("NewestKnownVersion", String.Empty); }
-            set { Store("NewestKnownVersion", value); }
+            get { return Load(nameof(NewestKnownVersion), string.Empty); }
+            set { Store(nameof(NewestKnownVersion), value); }
         }
 
         public bool DebugMode
         {
-            get { return Load("DebugMode", false); }
-            set { Store("DebugMode", value); }
+            get { return Load(nameof(DebugMode), false); }
+            set { Store(nameof(DebugMode), value); }
         }
 
         public Uri AxCrypt2HelpUrl
         {
-            get { return Load("AxCrypt2HelpUrl", new Uri("http://www.axcrypt.net/documentation/get-started/")); }
+            get { return Load(nameof(AxCrypt2HelpUrl), new Uri("http://www.axcrypt.net/documentation/get-started/")); }
             set
             {
                 if (value == null)
@@ -168,20 +175,20 @@ namespace Axantum.AxCrypt.Core.UI
                     throw new ArgumentNullException("value");
                 }
 
-                Store("AxCrypt2HelpUrl", value.ToString());
+                Store(nameof(AxCrypt2HelpUrl), value.ToString());
             }
         }
 
         public bool DisplayEncryptPassphrase
         {
-            get { return Load("DisplayEncryptPassphrase", true); }
-            set { Store("DisplayEncryptPassphrase", value); }
+            get { return Load(nameof(DisplayEncryptPassphrase), true); }
+            set { Store(nameof(DisplayEncryptPassphrase), value); }
         }
 
         public bool DisplayDecryptPassphrase
         {
-            get { return Load("DisplayDecryptPassphrase", true); }
-            set { Store("DisplayDecryptPassphrase", value); }
+            get { return Load(nameof(DisplayDecryptPassphrase), true); }
+            set { Store(nameof(DisplayDecryptPassphrase), value); }
         }
 
         public long GetKeyWrapIterations(Guid cryptoId)
@@ -196,8 +203,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Salt ThumbprintSalt
         {
-            get { return Load("ThumbprintSalt", () => New<int, Salt>(512)); }
-            set { Store("ThumbprintSalt", Resolve.Serializer.Serialize(value)); }
+            get { return Load(nameof(ThumbprintSalt), () => New<int, Salt>(512)); }
+            set { Store(nameof(ThumbprintSalt), Resolve.Serializer.Serialize(value)); }
         }
 
         public TimeSpan SessionNotificationMinimumIdle
@@ -214,20 +221,20 @@ namespace Axantum.AxCrypt.Core.UI
 
         public int AsymmetricKeyBits
         {
-            get { return Load("AsymmetricKeyBits", ASYMMETRIC_KEY_BITS); }
-            set { Store("AsymmetricKeyBits", value); }
+            get { return Load(nameof(AsymmetricKeyBits), ASYMMETRIC_KEY_BITS); }
+            set { Store(nameof(AsymmetricKeyBits), value); }
         }
 
         public string UserEmail
         {
-            get { return Load("UserEmail", String.Empty); }
-            set { Store("UserEmail", value); }
+            get { return Load(nameof(UserEmail), String.Empty); }
+            set { Store(nameof(UserEmail), value); }
         }
 
         public bool TryBrokenFile
         {
-            get { return Load("TryBrokenFile", false); }
-            set { Store("TryBrokenFile", value); }
+            get { return Load(nameof(TryBrokenFile), false); }
+            set { Store(nameof(TryBrokenFile), value); }
         }
 
         public string this[string key]

@@ -214,6 +214,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _userSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
             _userSettings.NewestKnownVersion = e.DownloadVersion.Version.ToString();
             _userSettings.UpdateUrl = e.DownloadVersion.Url;
+            _userSettings.UpdateLevel = e.DownloadVersion.Level;
 
             UpdatedVersion = e.DownloadVersion.Version;
             VersionUpdateStatus = e.VersionUpdateStatus;
