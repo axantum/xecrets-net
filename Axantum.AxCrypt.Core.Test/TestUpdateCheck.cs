@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -143,8 +143,8 @@ namespace Axantum.AxCrypt.Core.Test
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             using (AxCryptUpdateCheck updateCheck = new AxCryptUpdateCheck(thisVersion))
             {
-                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, nullVersion, updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty); }, "Null argument should throw.");
-                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, newVersion.ToString(), nullUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty); }, "Null argument should throw.");
+                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, nullVersion, updateWebPageUrl, String.Empty); }, "Null argument should throw.");
+                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, newVersion.ToString(), nullUrl, String.Empty); }, "Null argument should throw.");
 
                 updateCheck.WaitForBackgroundCheckComplete();
             }
@@ -169,12 +169,12 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 eventArgs = e;
             };
-            updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+            updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
             updateCheck.WaitForBackgroundCheckComplete();
             updateCheck.Dispose();
 
             Assert.DoesNotThrow(updateCheck.Dispose);
-            Assert.Throws<ObjectDisposedException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty); });
+            Assert.Throws<ObjectDisposedException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty); });
             Assert.Throws<ObjectDisposedException>(updateCheck.WaitForBackgroundCheckComplete);
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -233,7 +233,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(utcNow.AddDays(-2), AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+                updateCheck.CheckInBackground(utcNow.AddDays(-2), AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -265,7 +265,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(utcNow.AddHours(-1), thisVersion.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+                updateCheck.CheckInBackground(utcNow.AddHours(-1), thisVersion.ToString(), updateWebPageUrl, String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -300,8 +300,8 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
-                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
                 wait.Set();
                 updateCheck.WaitForBackgroundCheckComplete();
             }
@@ -334,7 +334,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -365,7 +365,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(utcNow.AddDays(-2), AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+                updateCheck.CheckInBackground(utcNow.AddDays(-2), AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -394,7 +394,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, AxCryptUpdateCheck.VersionUnknown, String.Empty);
+                updateCheck.CheckInBackground(DateTime.MinValue, AxCryptUpdateCheck.VersionUnknown.ToString(), updateWebPageUrl, String.Empty);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 

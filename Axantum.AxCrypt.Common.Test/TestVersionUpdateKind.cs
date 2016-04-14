@@ -13,19 +13,19 @@ namespace Axantum.AxCrypt.Common.Test
         [Test]
         public void TestVersionUpdateLevelsNoNeed()
         {
-            VersionUpdateKind kind = new VersionUpdateKind("2.0.3000.0", "2.0.0.0", "2.0.0.0");
+            VersionUpdateKind kind = new VersionUpdateKind("2.0.3000.0", string.Empty, string.Empty);
 
-            Assert.That(kind.NeedsCriticalSecurityUpdate, Is.False, nameof(VersionUpdateKind.NeedsCriticalSecurityUpdate));
             Assert.That(kind.NeedsCriticalReliabilityUpdate, Is.False, nameof(VersionUpdateKind.NeedsCriticalReliabilityUpdate));
+            Assert.That(kind.NeedsCriticalSecurityUpdate, Is.False, nameof(VersionUpdateKind.NeedsCriticalSecurityUpdate));
         }
 
         [Test]
         public void TestVersionUpdateLevelsNeedsSecurityUpdate()
         {
-            VersionUpdateKind kind = new VersionUpdateKind("2.0.3000.0", "2.0.0.0", "2.0.3001.0");
+            VersionUpdateKind kind = new VersionUpdateKind("2.0.3000.0", string.Empty, "2.0.3001.0");
 
-            Assert.That(kind.NeedsCriticalSecurityUpdate, Is.True, nameof(VersionUpdateKind.NeedsCriticalSecurityUpdate));
             Assert.That(kind.NeedsCriticalReliabilityUpdate, Is.False, nameof(VersionUpdateKind.NeedsCriticalReliabilityUpdate));
+            Assert.That(kind.NeedsCriticalSecurityUpdate, Is.True, nameof(VersionUpdateKind.NeedsCriticalSecurityUpdate));
         }
 
         [Test]
@@ -33,8 +33,17 @@ namespace Axantum.AxCrypt.Common.Test
         {
             VersionUpdateKind kind = new VersionUpdateKind("2.1.3000.0", "2.1.3010.0", "2.0.4000.0");
 
-            Assert.That(kind.NeedsCriticalSecurityUpdate, Is.False, nameof(VersionUpdateKind.NeedsCriticalSecurityUpdate));
             Assert.That(kind.NeedsCriticalReliabilityUpdate, Is.True, nameof(VersionUpdateKind.NeedsCriticalReliabilityUpdate));
+            Assert.That(kind.NeedsCriticalSecurityUpdate, Is.False, nameof(VersionUpdateKind.NeedsCriticalSecurityUpdate));
+        }
+
+        [Test]
+        public void TestVersionUpdateLevelsNoNeedBecauseIsVersionZero()
+        {
+            VersionUpdateKind kind = new VersionUpdateKind(string.Empty, "2.1.3010.0", "2.0.4000.0");
+
+            Assert.That(kind.NeedsCriticalReliabilityUpdate, Is.False, nameof(VersionUpdateKind.NeedsCriticalReliabilityUpdate));
+            Assert.That(kind.NeedsCriticalSecurityUpdate, Is.False, nameof(VersionUpdateKind.NeedsCriticalSecurityUpdate));
         }
     }
 }

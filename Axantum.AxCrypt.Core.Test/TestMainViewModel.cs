@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.LoggedOn = true;
             }
 
-            Mock.Get<AxCryptUpdateCheck>(mockedUpdateCheck).Verify(x => x.CheckInBackground(It.Is<DateTime>((d) => d == Resolve.UserSettings.LastUpdateCheckUtc), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<Version>(), It.IsAny<string>()));
+            Mock.Get<AxCryptUpdateCheck>(mockedUpdateCheck).Verify(x => x.CheckInBackground(It.Is<DateTime>((d) => d == Resolve.UserSettings.LastUpdateCheckUtc), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<string>()));
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.AxCryptUpdateCheck.Execute(new DateTime(2001, 2, 3));
             }
 
-            mockUpdateCheck.Verify(x => x.CheckInBackground(It.Is<DateTime>(d => d == new DateTime(2001, 2, 3)), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<Version>(), It.IsAny<string>()));
+            mockUpdateCheck.Verify(x => x.CheckInBackground(It.Is<DateTime>(d => d == new DateTime(2001, 2, 3)), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<string>()));
         }
 
         [Test]

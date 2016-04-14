@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// raised, regardless of response and result. If a check is already in progress, the
         /// later call is ignored and only one check is performed.
         /// </summary>
-        public virtual void CheckInBackground(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri updateWebpageUrl, Version currentVersion, string cultureName)
+        public virtual void CheckInBackground(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri updateWebpageUrl, string cultureName)
         {
             if (newestKnownVersion == null)
             {
@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 try
                 {
-                    DownloadVersion newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl, currentVersion, cultureName).Free();
+                    DownloadVersion newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl, cultureName).Free();
                     OnVersionUpdate(new VersionEventArgs(newVersion, CalculateStatus(newVersion.Version, lastCheckTimeUtc)));
                 }
                 finally
@@ -128,12 +128,12 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
-        private async Task<DownloadVersion> CheckWebForNewVersionAsync(Uri updateWebpageUrl, Version currentVersion, string cultureName)
+        private async Task<DownloadVersion> CheckWebForNewVersionAsync(Uri updateWebpageUrl, string cultureName)
         {
             Version newVersion = VersionUnknown;
             try
             {
-                AxCryptVersion axCryptVersion = await New<AxCryptApiClient>().AxCryptUpdateAsync(currentVersion, cultureName).Free();
+                AxCryptVersion axCryptVersion = await New<AxCryptApiClient>().AxCryptUpdateAsync(_currentVersion, cultureName).Free();
 
                 if (!axCryptVersion.IsEmpty)
                 {
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core.UI
                     Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
 
-                return new DownloadVersion(updateWebpageUrl, currentVersion);
+                return new DownloadVersion(updateWebpageUrl, VersionUnknown);
             }
         }
 

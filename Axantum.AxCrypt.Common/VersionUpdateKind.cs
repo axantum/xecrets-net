@@ -8,7 +8,7 @@ namespace Axantum.AxCrypt.Common
 {
     public class VersionUpdateKind
     {
-        private const string _versionZero = "2.0.0.0";
+        private static readonly Version _versionZero = new Version("2.0.0.0");
 
         private Version _currentVersion;
 
@@ -25,16 +25,16 @@ namespace Axantum.AxCrypt.Common
 
         public VersionUpdateKind(string currentVersion, string lastReliabilityUpdate, string lastSecurityUpdate)
         {
-            if (!Version.TryParse(string.IsNullOrEmpty(currentVersion) ? _versionZero : currentVersion, out _currentVersion))
+            if (!Version.TryParse(string.IsNullOrEmpty(currentVersion) ? _versionZero.ToString() : currentVersion, out _currentVersion))
             {
                 throw new ArgumentException("Invalid version format", nameof(currentVersion));
             }
             _newVersion = _currentVersion;
-            if (!Version.TryParse(string.IsNullOrEmpty(lastReliabilityUpdate) ? _versionZero : lastReliabilityUpdate, out _lastReliabilityUpdate))
+            if (!Version.TryParse(string.IsNullOrEmpty(lastReliabilityUpdate) ? _versionZero.ToString() : lastReliabilityUpdate, out _lastReliabilityUpdate))
             {
                 throw new ArgumentException("Invalid version format", nameof(lastReliabilityUpdate));
             }
-            if (!Version.TryParse(string.IsNullOrEmpty(lastSecurityUpdate) ? _versionZero : lastSecurityUpdate, out _lastSecurityUpdate))
+            if (!Version.TryParse(string.IsNullOrEmpty(lastSecurityUpdate) ? _versionZero.ToString() : lastSecurityUpdate, out _lastSecurityUpdate))
             {
                 throw new ArgumentException("Invalid version format", nameof(lastSecurityUpdate));
             }
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Common
         {
             get
             {
-                return _currentVersion < _lastReliabilityUpdate;
+                return _lastReliabilityUpdate > _versionZero && _currentVersion > _versionZero && _currentVersion < _lastReliabilityUpdate;
             }
         }
 
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Common
         {
             get
             {
-                return _currentVersion < _lastSecurityUpdate;
+                return _lastSecurityUpdate > _versionZero && _currentVersion > _versionZero && _currentVersion < _lastSecurityUpdate;
             }
         }
     }

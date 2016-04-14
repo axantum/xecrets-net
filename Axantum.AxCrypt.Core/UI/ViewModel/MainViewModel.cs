@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -81,7 +82,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool FilesArePending { get { return GetProperty<bool>(nameof(FilesArePending)); } set { SetProperty(nameof(FilesArePending), value); } }
 
-        public Version UpdatedVersion { get { return GetProperty<Version>(nameof(UpdatedVersion)); } set { SetProperty(nameof(UpdatedVersion), value); } }
+        public DownloadVersion DownloadVersion { get { return GetProperty<DownloadVersion>(nameof(DownloadVersion)); } set { SetProperty(nameof(DownloadVersion), value); } }
 
         public VersionUpdateStatus VersionUpdateStatus { get { return GetProperty<VersionUpdateStatus>(nameof(VersionUpdateStatus)); } set { SetProperty(nameof(VersionUpdateStatus), value); } }
 
@@ -139,7 +140,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ClearPassphraseMemory = new DelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
             RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
-            AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc, New<IVersion>().Current, _userSettings.CultureName), (utc) => _axCryptUpdateCheck != null && LoggedOn);
+            AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc, _userSettings.CultureName), (utc) => _axCryptUpdateCheck != null && LoggedOn);
             LicenseUpdate = new DelegateAction<object>((o) => License = New<LogOnIdentity, LicensePolicy>(LoggedOn ? Resolve.KnownIdentities.DefaultEncryptionIdentity : LogOnIdentity.Empty));
 
             DecryptFileEnabled = true;
@@ -206,7 +207,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DisposeUpdateCheck();
             _axCryptUpdateCheck = New<Version, AxCryptUpdateCheck>(currentVersion);
             _axCryptUpdateCheck.AxCryptUpdate += Handle_VersionUpdate;
-            AxCryptUpdateCheckAction(_userSettings.LastUpdateCheckUtc, currentVersion, cultureName);
+            AxCryptUpdateCheckAction(_userSettings.LastUpdateCheckUtc, cultureName);
         }
 
         private void Handle_VersionUpdate(object sender, VersionEventArgs e)
@@ -216,7 +217,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _userSettings.UpdateUrl = e.DownloadVersion.Url;
             _userSettings.UpdateLevel = e.DownloadVersion.Level;
 
-            UpdatedVersion = e.DownloadVersion.Version;
+            DownloadVersion = e.DownloadVersion;
             VersionUpdateStatus = e.VersionUpdateStatus;
         }
 
@@ -419,9 +420,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             New<ILauncher>().Launch(folder);
         }
 
-        private void AxCryptUpdateCheckAction(DateTime lastUpdateCheckUtc, Version currentVersion, string cultureName)
+        private void AxCryptUpdateCheckAction(DateTime lastUpdateCheckUtc, string cultureName)
         {
-            _axCryptUpdateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, currentVersion, cultureName);
+            _axCryptUpdateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, cultureName);
         }
 
         public void Dispose()
