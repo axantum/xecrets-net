@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestUpdateCheckWhenSigningIn()
         {
             AxCryptUpdateCheck mockedUpdateCheck = null;
-            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => mockedUpdateCheck = new Mock<AxCryptUpdateCheck>(version).Object);
+            TypeMap.Register.New<AxCryptUpdateCheck>(() => mockedUpdateCheck = new Mock<AxCryptUpdateCheck>(new Version(2, 0, 200, 0)).Object);
             using (MainViewModel mvm = New<MainViewModel>())
             {
                 mvm.LoggedOn = true;
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestUpdateCheckWhenNotExecutable()
         {
             var mockUpdateCheck = new Mock<AxCryptUpdateCheck>(new Version(1, 2, 3, 4));
-            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => mockUpdateCheck.Object);
+            TypeMap.Register.New<AxCryptUpdateCheck>(() => mockUpdateCheck.Object);
 
             using (MainViewModel mvm = New<MainViewModel>())
             {
@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Version ourVersion = New<IVersion>().Current;
             var mockUpdateCheck = new Mock<AxCryptUpdateCheck>(ourVersion);
-            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => mockUpdateCheck.Object);
+            TypeMap.Register.New<AxCryptUpdateCheck>(() => mockUpdateCheck.Object);
 
             using (MainViewModel mvm = New<MainViewModel>())
             {
@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Version ourVersion = New<IVersion>().Current;
             var mockUpdateCheck = new Mock<AxCryptUpdateCheck>(ourVersion);
-            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => mockUpdateCheck.Object);
+            TypeMap.Register.New<AxCryptUpdateCheck>(() => mockUpdateCheck.Object);
 
             using (MainViewModel mvm = New<MainViewModel>())
             {
@@ -501,11 +501,11 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
             using (MainViewModel mvm = New<MainViewModel>())
             {
+                LogOnIdentity identity = new LogOnIdentity("passphrase");
+                Assert.That(!Resolve.FileSystemState.KnownPassphrases.Any(kp => kp.Thumbprint == identity.Passphrase.Thumbprint));
+                Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("passphrase");
+                Assert.That(Resolve.FileSystemState.KnownPassphrases.Any(kp => kp.Thumbprint == identity.Passphrase.Thumbprint));
             }
-            LogOnIdentity identity = new LogOnIdentity("passphrase");
-            Assert.That(!Resolve.FileSystemState.KnownPassphrases.Any(kp => kp.Thumbprint == identity.Passphrase.Thumbprint));
-            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("passphrase");
-            Assert.That(Resolve.FileSystemState.KnownPassphrases.Any(kp => kp.Thumbprint == identity.Passphrase.Thumbprint));
         }
 
         [Test]

@@ -115,6 +115,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _fileSystemState = fileSystemState;
             _userSettings = userSettings;
 
+            _axCryptUpdateCheck = New<AxCryptUpdateCheck>();
+            _axCryptUpdateCheck.AxCryptUpdate += Handle_VersionUpdate;
+
             InitializePropertyValues();
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
@@ -140,7 +143,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ClearPassphraseMemory = new DelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
             RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
-            AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc, _userSettings.CultureName), (utc) => _axCryptUpdateCheck != null && LoggedOn);
+            AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc), (utc) => LoggedOn);
             LicenseUpdate = new DelegateAction<object>((o) => License = New<LogOnIdentity, LicensePolicy>(LoggedOn ? Resolve.KnownIdentities.DefaultEncryptionIdentity : LogOnIdentity.Empty));
 
             DecryptFileEnabled = true;
@@ -156,17 +159,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(TryBrokenFile), (bool enabled) => { _userSettings.TryBrokenFile = enabled; });
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFiles(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
-            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (LoggedOn) UpdateAxCryptUpdateCheck(_userSettings.CultureName); });
+            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (LoggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
         }
 
         private void SubscribeToModelEvents()
         {
             Resolve.SessionNotify.Notification += HandleSessionChanged;
-            Resolve.ProgressBackground.WorkStatusChanged += (sender, e) =>
-                {
-                    Working = Resolve.ProgressBackground.Busy;
-                };
+            Resolve.ProgressBackground.WorkStatusChanged += HandleWorkStatusChanged;
             _fileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
+        }
+
+        private void HandleWorkStatusChanged(object sender, EventArgs e)
+        {
+            Working = Resolve.ProgressBackground.Busy;
         }
 
         public bool CanShare(IEnumerable<IDataStore> items)
@@ -200,14 +205,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Resolve.Log.SetLevel(enabled ? LogLevel.Debug : LogLevel.Error);
             OS.Current.DebugMode(enabled);
             _userSettings.DebugMode = enabled;
-        }
-
-        private void UpdateAxCryptUpdateCheck(string cultureName)
-        {
-            DisposeUpdateCheck();
-            _axCryptUpdateCheck = New<AxCryptUpdateCheck>();
-            _axCryptUpdateCheck.AxCryptUpdate += Handle_VersionUpdate;
-            AxCryptUpdateCheckAction(_userSettings.LastUpdateCheckUtc, cultureName);
         }
 
         private void Handle_VersionUpdate(object sender, VersionEventArgs e)
@@ -420,9 +417,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             New<ILauncher>().Launch(folder);
         }
 
-        private void AxCryptUpdateCheckAction(DateTime lastUpdateCheckUtc, string cultureName)
+        private void AxCryptUpdateCheckAction(DateTime lastUpdateCheckUtc)
         {
-            _axCryptUpdateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, cultureName);
+            _axCryptUpdateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, _userSettings.CultureName);
         }
 
         public void Dispose()
@@ -441,15 +438,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void DisposeInternal()
         {
-            DisposeUpdateCheck();
-        }
-
-        private void DisposeUpdateCheck()
-        {
             if (_axCryptUpdateCheck != null)
             {
+                _fileSystemState.ActiveFileChanged -= HandleActiveFileChangedEvent;
+                Resolve.SessionNotify.Notification -= HandleSessionChanged;
+                Resolve.ProgressBackground.WorkStatusChanged -= HandleWorkStatusChanged;
+
                 _axCryptUpdateCheck.AxCryptUpdate -= Handle_VersionUpdate;
                 _axCryptUpdateCheck.Dispose();
+                _axCryptUpdateCheck = null;
             }
         }
     }
