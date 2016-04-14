@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.New<ActiveFileAction>(() => new ActiveFileAction());
             TypeMap.Register.New<FileOperation>(() => new FileOperation(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.New<int, Salt>((size) => new Salt(size));
-            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => new AxCryptUpdateCheck(version));
+            TypeMap.Register.New<AxCryptUpdateCheck>(() => new AxCryptUpdateCheck(New<IVersion>().Current));
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             TypeMap.Register.New<IterationCalculator>(() => new IterationCalculator());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));

@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<AxCryptApiClient>(() => new AxCryptApiClient(Resolve.KnownIdentities.DefaultEncryptionIdentity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
-            TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => new AxCryptUpdateCheck(version));
+            TypeMap.Register.New<AxCryptUpdateCheck>(() => new AxCryptUpdateCheck(New<IVersion>().Current));
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;

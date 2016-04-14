@@ -156,7 +156,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(TryBrokenFile), (bool enabled) => { _userSettings.TryBrokenFile = enabled; });
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFiles(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
-            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (LoggedOn) UpdateAxCryptUpdateCheck(New<IVersion>().Current, _userSettings.CultureName); });
+            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (LoggedOn) UpdateAxCryptUpdateCheck(_userSettings.CultureName); });
         }
 
         private void SubscribeToModelEvents()
@@ -202,10 +202,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _userSettings.DebugMode = enabled;
         }
 
-        private void UpdateAxCryptUpdateCheck(Version currentVersion, string cultureName)
+        private void UpdateAxCryptUpdateCheck(string cultureName)
         {
             DisposeUpdateCheck();
-            _axCryptUpdateCheck = New<Version, AxCryptUpdateCheck>(currentVersion);
+            _axCryptUpdateCheck = New<AxCryptUpdateCheck>();
             _axCryptUpdateCheck.AxCryptUpdate += Handle_VersionUpdate;
             AxCryptUpdateCheckAction(_userSettings.LastUpdateCheckUtc, cultureName);
         }
