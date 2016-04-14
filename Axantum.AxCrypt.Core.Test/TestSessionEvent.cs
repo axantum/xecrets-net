@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
@@ -64,13 +65,13 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(sessionEvent.FullNames.Count(), Is.EqualTo(0));
             Assert.That(sessionEvent.Identity, Is.EqualTo(key));
 
-            string fullName = @"C:\Test\Test.txt";
+            string fullName = @"C:\Test\Test.txt".NormalizeFilePath();
             sessionEvent = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.ActiveFileChange));
             Assert.That(sessionEvent.FullNames.First(), Is.EqualTo(fullName));
             Assert.That(sessionEvent.Identity.Equals(LogOnIdentity.Empty));
 
-            fullName = @"C:\Test\";
+            fullName = @"C:\Test\".NormalizeFolderPath();
             sessionEvent = new SessionNotification(SessionNotificationType.WatchedFolderAdded, key, fullName);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.WatchedFolderAdded));
             Assert.That(sessionEvent.FullNames.First(), Is.EqualTo(fullName));

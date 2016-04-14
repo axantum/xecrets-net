@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             NotificationType = notificationType;
             Identity = identity;
-            FullNames = fullNames;
+            FullNames = fullNames.Select(fn => fn.NormalizeFilePath());
         }
 
         public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, string fullName)

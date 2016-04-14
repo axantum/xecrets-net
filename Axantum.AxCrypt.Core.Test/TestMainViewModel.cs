@@ -96,7 +96,6 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AxCryptUpdateCheck mockedUpdateCheck = null;
             TypeMap.Register.New<Version, AxCryptUpdateCheck>((version) => mockedUpdateCheck = new Mock<AxCryptUpdateCheck>(version).Object);
-            Version ourVersion = new Version(1, 2, 3, 4);
             using (MainViewModel mvm = New<MainViewModel>())
             {
                 mvm.LoggedOn = true;
