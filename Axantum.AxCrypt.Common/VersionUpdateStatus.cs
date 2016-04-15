@@ -28,7 +28,7 @@
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.UI
+namespace Axantum.AxCrypt.Common
 {
     public enum VersionUpdateStatus
     {

@@ -705,7 +705,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { _encryptedFoldersToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), async (IEnumerable<ActiveFile> files) => { await _recentFilesListView.UpdateRecentFilesAsync(files, _mainViewModel.License); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.VersionUpdateStatus), (VersionUpdateStatus vus) => { SetSoftwareStatus(); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DownloadVersion), (DownloadVersion dv) => { SetSoftwareStatus(); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { _tryBrokenFileToolStripMenuItem.Checked = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
@@ -1321,6 +1321,28 @@ namespace Axantum.AxCrypt
                     _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
             }
+
+            string msg = GetCriticalUpdateWarning(_mainViewModel.DownloadVersion.Level);
+            if (msg.Length == 0)
+            {
+                return;
+            }
+
+            MessageDialog.ShowOk(this, string.Empty, msg);
+            Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
+        }
+
+        private string GetCriticalUpdateWarning(UpdateLevel level)
+        {
+            if (level.HasFlag(UpdateLevel.Security))
+            {
+                return Texts.SecurityUpdateAvailableWarning;
+            }
+            if (level.HasFlag(UpdateLevel.Reliability))
+            {
+                return Texts.ReliabilityUpdateAvailableWarning;
+            }
+            return string.Empty;
         }
 
         private void UpdateDebugMode(bool enabled)

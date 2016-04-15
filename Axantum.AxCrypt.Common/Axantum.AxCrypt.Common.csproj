@@ -60,6 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateLevel.cs" />
     <Compile Include="VersionUpdateKind.cs" />
+    <Compile Include="VersionUpdateStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">

@@ -340,7 +340,6 @@
     <Compile Include="UI\AxCryptUpdateCheck.cs" />
     <Compile Include="UI\UserSettings.cs" />
     <Compile Include="UI\VersionEventArgs.cs" />
-    <Compile Include="UI\VersionUpdateStatus.cs" />
     <Compile Include="Header\V2PlainTextLengthsEncryptedHeaderBlock.cs" />
   </ItemGroup>
   <ItemGroup>

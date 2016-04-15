@@ -35,14 +35,14 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class VersionEventArgs : EventArgs
     {
-        public VersionEventArgs(DownloadVersion downloadVersion, VersionUpdateStatus versionUpdateStatus)
+        public VersionEventArgs(DownloadVersion downloadVersion, DateTime lastUpdateCheck)
         {
             DownloadVersion = downloadVersion;
-            VersionUpdateStatus = versionUpdateStatus;
+            LastUpdateCheck = lastUpdateCheck;
         }
 
         public DownloadVersion DownloadVersion { get; }
 
-        public VersionUpdateStatus VersionUpdateStatus { get; private set; }
+        public DateTime LastUpdateCheck { get; private set; }
     }
 }

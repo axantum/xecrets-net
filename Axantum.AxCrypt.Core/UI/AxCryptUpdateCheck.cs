@@ -54,8 +54,6 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public static readonly Version VersionUnknown = new Version(0, 0, 0, 0);
-
         private Version _currentVersion;
 
         public AxCryptUpdateCheck(Version currentVersion)
@@ -101,7 +99,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogInfo("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
                 }
-                OnVersionUpdate(new VersionEventArgs(new DownloadVersion(updateWebpageUrl, newestKnownVersionValue), CalculateStatus(newestKnownVersionValue, lastCheckTimeUtc)));
+                OnVersionUpdate(new VersionEventArgs(new DownloadVersion(updateWebpageUrl, newestKnownVersionValue), lastCheckTimeUtc));
                 return;
             }
 
@@ -118,7 +116,7 @@ namespace Axantum.AxCrypt.Core.UI
                 try
                 {
                     DownloadVersion newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl, cultureName).Free();
-                    OnVersionUpdate(new VersionEventArgs(newVersion, CalculateStatus(newVersion.Version, lastCheckTimeUtc)));
+                    OnVersionUpdate(new VersionEventArgs(newVersion, lastCheckTimeUtc));
                 }
                 finally
                 {
@@ -130,7 +128,7 @@ namespace Axantum.AxCrypt.Core.UI
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
         private async Task<DownloadVersion> CheckWebForNewVersionAsync(Uri updateWebpageUrl, string cultureName)
         {
-            Version newVersion = VersionUnknown;
+            Version newVersion = DownloadVersion.VersionUnknown;
             try
             {
                 AxCryptVersion axCryptVersion = await New<AxCryptApiClient>().AxCryptUpdateAsync(_currentVersion, cultureName).Free();
@@ -152,7 +150,7 @@ namespace Axantum.AxCrypt.Core.UI
                     Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
 
-                return new DownloadVersion(updateWebpageUrl, VersionUnknown);
+                return new DownloadVersion(updateWebpageUrl, DownloadVersion.VersionUnknown);
             }
         }
 
@@ -171,7 +169,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private static bool TryParseVersion(string versionString, out Version version)
         {
-            version = VersionUnknown;
+            version = DownloadVersion.VersionUnknown;
             if (String.IsNullOrEmpty(versionString))
             {
                 return false;
@@ -200,30 +198,13 @@ namespace Axantum.AxCrypt.Core.UI
             Version version;
             if (!TryParseVersion(versionString, out version))
             {
-                return VersionUnknown;
+                return DownloadVersion.VersionUnknown;
             }
             if (version.Major == 0 && version.Minor == 0)
             {
-                return VersionUnknown;
+                return DownloadVersion.VersionUnknown;
             }
             return version;
-        }
-
-        private VersionUpdateStatus CalculateStatus(Version version, DateTime lastCheckTimeutc)
-        {
-            if (version > _currentVersion)
-            {
-                return VersionUpdateStatus.NewerVersionIsAvailable;
-            }
-            if (version != VersionUnknown)
-            {
-                return VersionUpdateStatus.IsUpToDateOrRecentlyChecked;
-            }
-            if (lastCheckTimeutc.AddDays(30) >= OS.Current.UtcNow)
-            {
-                return VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck;
-            }
-            return VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck;
         }
 
         protected virtual void OnVersionUpdate(VersionEventArgs e)

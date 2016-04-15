@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 mvm.LoggedOn = true;
 
-                mockUpdateCheck.Raise(m => m.AxCryptUpdate += null, new VersionEventArgs(new DownloadVersion(new Uri("http://localhost/"), new Version(2, 0, 9999, 0)), VersionUpdateStatus.NewerVersionIsAvailable));
+                mockUpdateCheck.Raise(m => m.AxCryptUpdate += null, new VersionEventArgs(new DownloadVersion(new Uri("http://localhost/"), new Version(2, 0, 9999, 0)), DateTime.MinValue));
                 Assert.That(mvm.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.NewerVersionIsAvailable));
             }
         }

@@ -134,7 +134,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DebugMode = _userSettings.DebugMode;
             TryBrokenFile = _userSettings.TryBrokenFile;
             Title = String.Empty;
-            VersionUpdateStatus = UI.VersionUpdateStatus.Unknown;
+            VersionUpdateStatus = VersionUpdateStatus.Unknown;
+            DownloadVersion = DownloadVersion.Empty;
             License = New<LogOnIdentity, LicensePolicy>(LogOnIdentity.Empty);
 
             AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders), (folders) => LoggedOn);
@@ -214,8 +215,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _userSettings.UpdateUrl = e.DownloadVersion.Url;
             _userSettings.UpdateLevel = e.DownloadVersion.Level;
 
+            VersionUpdateStatus = e.DownloadVersion.CalculateStatus(New<IVersion>().Current, Resolve.Environment.UtcNow, e.LastUpdateCheck);
             DownloadVersion = e.DownloadVersion;
-            VersionUpdateStatus = e.VersionUpdateStatus;
         }
 
         private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
