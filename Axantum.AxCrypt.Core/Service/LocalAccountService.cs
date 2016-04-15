@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Service
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
-                throw new InvalidOperationException("The account service requies a user.");
+                throw new InvalidOperationException("The account service requires a user.");
             }
             UserAccount userAccount = LoadUserAccount();
             return Task.FromResult(userAccount);
@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Service
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
-                throw new InvalidOperationException("The account service requies a user.");
+                throw new InvalidOperationException("The account service requires a user.");
             }
 
             return Task.FromResult(TryLoadUserKeyPairs());
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core.Service
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
-                throw new InvalidOperationException("The account service requies a user.");
+                throw new InvalidOperationException("The account service requires a user.");
             }
 
             UserAccount userAccount = LoadUserAccount();
@@ -167,7 +167,7 @@ namespace Axantum.AxCrypt.Core.Service
             return Task.FromResult(keyPair);
         }
 
-        public async Task SaveAsync(UserAccount accountToSave)
+        public async Task SaveAsync(UserAccount account)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
@@ -184,7 +184,7 @@ namespace Axantum.AxCrypt.Core.Service
                     userAccounts.Accounts.Add(existingUserAccount);
                 }
 
-                UserAccount mergedAccount = accountToSave.MergeWith(existingUserAccount);
+                UserAccount mergedAccount = account.MergeWith(existingUserAccount);
                 if (mergedAccount == existingUserAccount)
                 {
                     return;
@@ -194,7 +194,7 @@ namespace Axantum.AxCrypt.Core.Service
             }).Free();
         }
 
-        public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairsToSave)
+        public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
@@ -211,7 +211,7 @@ namespace Axantum.AxCrypt.Core.Service
                     userAccounts.Accounts.Add(existingUserAccount);
                 }
 
-                UserAccount mergedAccount = existingUserAccount.MergeWith(keyPairsToSave.Select(uk => uk.ToAccountKey(Identity.Passphrase)));
+                UserAccount mergedAccount = existingUserAccount.MergeWith(keyPairs.Select(uk => uk.ToAccountKey(Identity.Passphrase)));
                 if (mergedAccount == existingUserAccount)
                 {
                     return;

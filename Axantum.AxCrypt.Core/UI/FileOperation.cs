@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (activeFile == null || !activeFile.DecryptedFileInfo.IsAvailable)
             {
-                activeFile = TryDecryptToActiveFile(encryptedDataStore, identities, progress);
+                activeFile = TryDecryptToActiveFile(encryptedDataStore, identities);
             }
             else
             {
@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private ActiveFile Decrypt(LogOnIdentity identity, IDataStore encryptedDataStore, ActiveFile activeFile, IProgressContext progress)
+        private static ActiveFile Decrypt(LogOnIdentity identity, IDataStore encryptedDataStore, ActiveFile activeFile, IProgressContext progress)
         {
             using (IAxCryptDocument document = New<AxCryptFile>().Document(encryptedDataStore, identity, progress))
             {
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.UI
             return activeFile;
         }
 
-        private static ActiveFile TryDecryptToActiveFile(IDataStore encryptedDataStore, IEnumerable<LogOnIdentity> identities, IProgressContext progress)
+        private static ActiveFile TryDecryptToActiveFile(IDataStore encryptedDataStore, IEnumerable<LogOnIdentity> identities)
         {
             ActiveFile activeFile = null;
             foreach (LogOnIdentity identity in identities)

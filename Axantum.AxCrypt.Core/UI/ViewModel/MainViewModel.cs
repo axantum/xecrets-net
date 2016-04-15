@@ -351,15 +351,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             WatchedFoldersEnabled = isLoggedOn;
         }
 
-        private static LogOnIdentity GetLogOnIdentity(bool isLoggedOn)
-        {
-            if (!isLoggedOn)
-            {
-                return LogOnIdentity.Empty;
-            }
-            return Resolve.KnownIdentities.DefaultEncryptionIdentity;
-        }
-
         private void ClearPassphraseMemoryAction()
         {
             IDataStore fileSystemStateInfo = Resolve.FileSystemState.PathInfo;

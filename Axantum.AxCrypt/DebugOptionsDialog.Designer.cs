@@ -68,6 +68,8 @@
             this._restApiBaseUrl.Name = "_restApiBaseUrl";
             this._restApiBaseUrl.Size = new System.Drawing.Size(441, 20);
             this._restApiBaseUrl.TabIndex = 5;
+            this._restApiBaseUrl.Validating += new System.ComponentModel.CancelEventHandler(this.RestApiBaseUrl_Validating);
+            this._restApiBaseUrl.Validated += new System.EventHandler(this.RestApiBaseUrl_Validated);
             // 
             // _restApiBaseUrlLabel
             // 

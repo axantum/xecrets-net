@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         string NewestKnownVersion { get; set; }
 
-        UpdateLevel UpdateLevel { get; set; }
+        UpdateLevels UpdateLevel { get; set; }
 
         bool DebugMode { get; set; }
 

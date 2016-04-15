@@ -219,11 +219,25 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static UserAccount MergeWith(this UserAccount left, UserAccount right)
         {
+            if (left == null)
+            {
+                throw new ArgumentNullException(nameof(left));
+            }
+            if (right == null)
+            {
+                throw new ArgumentNullException(nameof(right));
+            }
+
             return left.MergeWith(right.AccountKeys);
         }
 
         public static UserAccount MergeWith(this UserAccount left, IEnumerable<AccountKey> accountKeys)
         {
+            if (left == null)
+            {
+                throw new ArgumentNullException(nameof(left));
+            }
+
             IEnumerable<AccountKey> allKeys = left.AccountKeys.Union(accountKeys);
             UserAccount merged = new UserAccount(left.UserName, left.SubscriptionLevel, left.LevelExpiration, left.AccountStatus, allKeys);
             return merged;

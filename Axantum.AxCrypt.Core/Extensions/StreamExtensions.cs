@@ -163,6 +163,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static byte[] ToArray(this Stream stream)
         {
+            if (stream == null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
             using (MemoryStream memStream = new MemoryStream())
             {
                 stream.CopyTo(memStream);

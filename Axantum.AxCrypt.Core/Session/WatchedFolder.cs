@@ -80,6 +80,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public WatchedFolder(WatchedFolder watchedFolder, IEnumerable<UserPublicKey> keyShares)
         {
+            if (watchedFolder == null)
+            {
+                throw new ArgumentNullException(nameof(watchedFolder));
+            }
+
             Path = watchedFolder.Path;
             Tag = watchedFolder.Tag;
 

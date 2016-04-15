@@ -53,3 +53,4 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Axantum.AxCrypt.Mono.Portable")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha", Scope = "type", Target = "Axantum.AxCrypt.Mono.Cryptography.Sha1Wrapper")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha", Scope = "type", Target = "Axantum.AxCrypt.Mono.Cryptography.Sha256Wrapper")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "HMAC", Scope = "type", Target = "Axantum.AxCrypt.Mono.Cryptography.HMACBase")]

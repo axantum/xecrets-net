@@ -1,7 +1,5 @@
 ﻿using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
@@ -95,7 +93,7 @@ namespace Axantum.AxCrypt
 
         private bool _updateRecentFilesInProgress = false;
 
-        public async Task UpdateRecentFilesAsync(IEnumerable<ActiveFile> files, LicensePolicy license)
+        public async Task UpdateRecentFilesAsync(IEnumerable<ActiveFile> files)
         {
             if (_updateRecentFilesInProgress)
             {
@@ -105,7 +103,7 @@ namespace Axantum.AxCrypt
             try
             {
                 Cursor = Cursors.WaitCursor;
-                await UpdateRecentFilesUnsynchronizedAsync(files, license);
+                await UpdateRecentFilesUnsynchronizedAsync(files);
             }
             finally
             {
@@ -114,7 +112,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async Task UpdateRecentFilesUnsynchronizedAsync(IEnumerable<ActiveFile> files, LicensePolicy license)
+        private async Task UpdateRecentFilesUnsynchronizedAsync(IEnumerable<ActiveFile> files)
         {
             BeginUpdate();
             try
@@ -129,7 +127,7 @@ namespace Axantum.AxCrypt
                 int i = 0;
                 foreach (ActiveFile file in files)
                 {
-                    await UpdateOneItemAsync(currentFiles, file, i++, license);
+                    await UpdateOneItemAsync(currentFiles, file, i++);
                 }
 
                 while (Items.Count > Preferences.RecentFilesMaxNumber)
@@ -143,7 +141,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private bool NeedClearItems(Dictionary<string, int> currentFiles, IEnumerable<ActiveFile> files)
+        private static bool NeedClearItems(Dictionary<string, int> currentFiles, IEnumerable<ActiveFile> files)
         {
             if (files.Count() != currentFiles.Count)
             {
@@ -168,7 +166,7 @@ namespace Axantum.AxCrypt
             return false;
         }
 
-        private async Task UpdateOneItemAsync(Dictionary<string, int> currentFiles, ActiveFile file, int index, LicensePolicy license)
+        private async Task UpdateOneItemAsync(Dictionary<string, int> currentFiles, ActiveFile file, int index)
         {
             string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
             ListViewItem item = new ListViewItem(text);
@@ -184,7 +182,7 @@ namespace Axantum.AxCrypt
             ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
             cryptoNameColumn.Name = nameof(ColumnName.CryptoName);
 
-            await UpdateListViewItemAsync(item, file, license);
+            await UpdateListViewItemAsync(item, file);
 
             int i;
             if (!currentFiles.TryGetValue(item.Name, out i))
@@ -246,12 +244,17 @@ namespace Axantum.AxCrypt
             return true;
         }
 
-        public string EncryptedPath(ListViewItem item)
+        public static string EncryptedPath(ListViewItem item)
         {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
             return item.SubItems[nameof(ColumnName.EncryptedPath)].Text;
         }
 
-        private Task UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile, LicensePolicy license)
+        private static Task UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile)
         {
             OpenFileProperties openProperties = OpenFileProperties.Create(activeFile.EncryptedFileInfo);
             item.SubItems[nameof(ColumnName.EncryptedPath)].Text = activeFile.EncryptedFileInfo.FullName;
@@ -265,7 +268,7 @@ namespace Axantum.AxCrypt
                 if (activeFile.Properties.CryptoId != Guid.Empty)
                 {
                     item.SubItems[nameof(ColumnName.CryptoName)].Text = Resolve.CryptoFactory.Create(activeFile.Properties.CryptoId).Name;
-                    if (activeFile.VisualState.HasFlag(ActiveFileVisualState.LowEncryption))
+                    if (activeFile.VisualState.HasFlag(ActiveFileVisualStates.LowEncryption))
                     {
                         item.SubItems[nameof(ColumnName.CryptoName)].ForeColor = Styling.WarningColor;
                     }
@@ -279,12 +282,12 @@ namespace Axantum.AxCrypt
             return Task.FromResult(true);
         }
 
-        private void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, int keyShareCount)
+        private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, int keyShareCount)
         {
-            switch (activeFile.VisualState & ~(ActiveFileVisualState.SharedKeys | ActiveFileVisualState.LowEncryption))
+            switch (activeFile.VisualState & ~(ActiveFileVisualStates.SharedKeys | ActiveFileVisualStates.LowEncryption))
             {
-                case ActiveFileVisualState.DecryptedWithKnownKey:
-                case ActiveFileVisualState.DecryptedWithoutKnownKey:
+                case ActiveFileVisualStates.DecryptedWithKnownKey:
+                case ActiveFileVisualStates.DecryptedWithoutKnownKey:
                     item.ImageKey = nameof(ImageKey.CleanUpNeeded);
                     item.ToolTipText = Texts.CleanUpNeededToolTip;
                     return;
@@ -300,20 +303,6 @@ namespace Axantum.AxCrypt
             item.ImageKey = String.Empty;
             item.ToolTipText = Texts.DoubleClickToOpenToolTip;
             return;
-        }
-
-        private static string SharingIndicator(int count)
-        {
-            if (count < 2)
-            {
-                return String.Empty;
-            }
-            return count.ToString(CultureInfo.CurrentCulture);
-        }
-
-        private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore)
-        {
-            return await Task.Run(() => EncryptedProperties.Create(dataStore));
         }
 
         private static ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources()

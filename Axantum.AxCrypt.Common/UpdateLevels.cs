@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Axantum.AxCrypt.Common
 {
     [Flags]
-    public enum UpdateLevel
+    public enum UpdateLevels
     {
         None = 0,
         Reliability = 1,

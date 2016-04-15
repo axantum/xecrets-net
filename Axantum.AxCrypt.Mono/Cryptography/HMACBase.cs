@@ -10,8 +10,19 @@ namespace Axantum.AxCrypt.Mono.Cryptography
     {
         protected int BlockSizeValue { get; set; } = 64;
 
-        protected System.Security.Cryptography.HashAlgorithm Hash1;
-        protected System.Security.Cryptography.HashAlgorithm Hash2;
+        private System.Security.Cryptography.HashAlgorithm _hash1;
+
+        protected void SetHash1(System.Security.Cryptography.HashAlgorithm hash)
+        {
+            _hash1 = hash;
+        }
+
+        private System.Security.Cryptography.HashAlgorithm _hash2;
+
+        protected void SetHash2(System.Security.Cryptography.HashAlgorithm hash)
+        {
+            _hash2 = hash;
+        }
 
         private byte[] _inner;
         private byte[] _outer;
@@ -22,7 +33,7 @@ namespace Axantum.AxCrypt.Mono.Cryptography
         {
             if (key.Length > BlockSizeValue)
             {
-                KeyValue = Hash1.ComputeHash(key);
+                KeyValue = _hash1.ComputeHash(key);
             }
             else
             {
@@ -60,8 +71,8 @@ namespace Axantum.AxCrypt.Mono.Cryptography
 
         public override void Initialize()
         {
-            Hash1.Initialize();
-            Hash2.Initialize();
+            _hash1.Initialize();
+            _hash2.Initialize();
             _hashing = false;
         }
 
@@ -69,29 +80,29 @@ namespace Axantum.AxCrypt.Mono.Cryptography
         {
             if (!_hashing)
             {
-                Hash1.TransformBlock(_inner, 0, _inner.Length, _inner, 0);
+                _hash1.TransformBlock(_inner, 0, _inner.Length, _inner, 0);
                 _hashing = true;
             }
-            Hash1.TransformBlock(array, ibStart, cbSize, array, ibStart);
+            _hash1.TransformBlock(array, ibStart, cbSize, array, ibStart);
         }
 
         protected override byte[] HashFinal()
         {
             if (_hashing == false)
             {
-                Hash1.TransformBlock(_inner, 0, _inner.Length, _inner, 0);
+                _hash1.TransformBlock(_inner, 0, _inner.Length, _inner, 0);
                 _hashing = true;
             }
 
-            Hash1.TransformFinalBlock(new Byte[0], 0, 0);
-            byte[] hashValue1 = Hash1.Hash;
+            _hash1.TransformFinalBlock(new Byte[0], 0, 0);
+            byte[] hashValue1 = _hash1.Hash;
 
-            Hash2.TransformBlock(_outer, 0, _outer.Length, _outer, 0);
-            Hash2.TransformBlock(hashValue1, 0, hashValue1.Length, hashValue1, 0);
+            _hash2.TransformBlock(_outer, 0, _outer.Length, _outer, 0);
+            _hash2.TransformBlock(hashValue1, 0, hashValue1.Length, hashValue1, 0);
             _hashing = false;
 
-            Hash2.TransformFinalBlock(new Byte[0], 0, 0);
-            return Hash2.Hash;
+            _hash2.TransformFinalBlock(new Byte[0], 0, 0);
+            return _hash2.Hash;
         }
 
         protected override void Dispose(bool disposing)
@@ -105,15 +116,15 @@ namespace Axantum.AxCrypt.Mono.Cryptography
 
         private void DisposeInternal()
         {
-            if (Hash1 != null)
+            if (_hash1 != null)
             {
-                ((IDisposable)Hash1).Dispose();
-                Hash1 = null;
+                ((IDisposable)_hash1).Dispose();
+                _hash1 = null;
             }
-            if (Hash2 != null)
+            if (_hash2 != null)
             {
-                ((IDisposable)Hash2).Dispose();
-                Hash2 = null;
+                ((IDisposable)_hash2).Dispose();
+                _hash2 = null;
             }
         }
     }

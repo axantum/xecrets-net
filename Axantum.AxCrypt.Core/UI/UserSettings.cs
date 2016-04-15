@@ -135,9 +135,9 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public UpdateLevel UpdateLevel
+        public UpdateLevels UpdateLevel
         {
-            get { return (UpdateLevel)Load(nameof(UpdateLevel), (int)UpdateLevel.None); }
+            get { return (UpdateLevels)Load(nameof(UpdateLevel), (int)UpdateLevels.None); }
             set { Store(nameof(UpdateLevel), (int)value); }
         }
 

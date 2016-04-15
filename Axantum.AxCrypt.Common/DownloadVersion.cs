@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Common
 
         public static readonly Version VersionZero = new Version("2.0.0.0");
 
-        public DownloadVersion(string link, string version, bool isReliablity, bool isSecurity)
+        public DownloadVersion(string link, string version, bool isReliability, bool isSecurity)
         {
             if (link == null)
             {
@@ -55,8 +55,8 @@ namespace Axantum.AxCrypt.Common
             Url = link.Length == 0 ? null : new Uri(link);
             Version = Version.Parse(version);
 
-            Level |= isSecurity ? UpdateLevel.Security : UpdateLevel.None;
-            Level |= isReliablity ? UpdateLevel.Reliability : UpdateLevel.None;
+            Level |= isSecurity ? UpdateLevels.Security : UpdateLevels.None;
+            Level |= isReliability ? UpdateLevels.Reliability : UpdateLevels.None;
         }
 
         public DownloadVersion(Uri url, Version version)
@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Common
             Version = version;
         }
 
-        public VersionUpdateStatus CalculateStatus(Version currentVersion, DateTime utcNow, DateTime lastCheckTimeutc)
+        public VersionUpdateStatus CalculateStatus(Version currentVersion, DateTime utcNow, DateTime lastCheckTimeUtc)
         {
             if (Version > currentVersion)
             {
@@ -75,14 +75,14 @@ namespace Axantum.AxCrypt.Common
             {
                 return VersionUpdateStatus.IsUpToDateOrRecentlyChecked;
             }
-            if (lastCheckTimeutc.AddDays(30) >= utcNow)
+            if (lastCheckTimeUtc.AddDays(30) >= utcNow)
             {
                 return VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck;
             }
             return VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck;
         }
 
-        public UpdateLevel Level { get; }
+        public UpdateLevels Level { get; }
 
         public Uri Url { get; }
 

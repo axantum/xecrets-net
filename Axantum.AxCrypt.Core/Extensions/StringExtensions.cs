@@ -27,7 +27,6 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Globalization;
@@ -60,6 +59,15 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <returns></returns>
         public static string QueryFormat(this string format, params object[] parameters)
         {
+            if (format == null)
+            {
+                throw new ArgumentNullException(nameof(format));
+            }
+            if (parameters == null)
+            {
+                throw new ArgumentNullException(nameof(parameters));
+            }
+
             string[] encoded = new string[parameters.Length];
             for (int i = 0; i < parameters.Length; ++i)
             {

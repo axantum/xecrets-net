@@ -41,19 +41,6 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class AxCryptUpdateCheck : IDisposable
     {
-        private class Pair<T, U>
-        {
-            public T First { get; set; }
-
-            public U Second { get; set; }
-
-            public Pair(T first, U second)
-            {
-                First = first;
-                Second = second;
-            }
-        }
-
         private Version _currentVersion;
 
         public AxCryptUpdateCheck(Version currentVersion)

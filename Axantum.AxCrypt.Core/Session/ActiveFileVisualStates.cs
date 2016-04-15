@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Session
     /// on what operations are possible with it.
     /// </summary>
     [Flags]
-    public enum ActiveFileVisualState
+    public enum ActiveFileVisualStates
     {
         None = 0,
         DecryptedWithKnownKey = 1,

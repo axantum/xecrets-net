@@ -199,25 +199,25 @@ namespace Axantum.AxCrypt.Core.Test
             LogOnIdentity key = new LogOnIdentity("key");
 
             activeFile = new ActiveFile(New<IDataStore>(@"C:\encrypted.axx"), New<IDataStore>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey | ActiveFileVisualState.LowEncryption));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.EncryptedWithKnownKey | ActiveFileVisualStates.LowEncryption));
 
             activeFile = new ActiveFile(activeFile);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithoutKnownKey | ActiveFileVisualState.LowEncryption));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.EncryptedWithoutKnownKey | ActiveFileVisualStates.LowEncryption));
 
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.DecryptedIsPendingDelete);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithoutKnownKey | ActiveFileVisualState.LowEncryption));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.DecryptedWithoutKnownKey | ActiveFileVisualStates.LowEncryption));
 
             activeFile = new ActiveFile(activeFile, key);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithKnownKey | ActiveFileVisualState.LowEncryption));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.DecryptedWithKnownKey | ActiveFileVisualStates.LowEncryption));
 
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithKnownKey | ActiveFileVisualState.LowEncryption));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.DecryptedWithKnownKey | ActiveFileVisualStates.LowEncryption));
 
             activeFile = new ActiveFile(activeFile);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithoutKnownKey | ActiveFileVisualState.LowEncryption));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.DecryptedWithoutKnownKey | ActiveFileVisualStates.LowEncryption));
 
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.Error);
-            Assert.Throws<InvalidOperationException>(() => { if (activeFile.VisualState == ActiveFileVisualState.None) { } });
+            Assert.Throws<InvalidOperationException>(() => { if (activeFile.VisualState == ActiveFileVisualStates.None) { } });
         }
 
         [Test]
@@ -227,25 +227,25 @@ namespace Axantum.AxCrypt.Core.Test
             LogOnIdentity key = new LogOnIdentity("key");
 
             activeFile = new ActiveFile(New<IDataStore>(@"C:\encrypted.axx"), New<IDataStore>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V2Aes256CryptoFactory().Id);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.EncryptedWithKnownKey));
 
             activeFile = new ActiveFile(activeFile);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithoutKnownKey));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.EncryptedWithoutKnownKey));
 
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.DecryptedIsPendingDelete);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithoutKnownKey));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.DecryptedWithoutKnownKey));
 
             activeFile = new ActiveFile(activeFile, key);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithKnownKey));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.DecryptedWithKnownKey));
 
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithKnownKey));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.DecryptedWithKnownKey));
 
             activeFile = new ActiveFile(activeFile);
-            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithoutKnownKey));
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualStates.DecryptedWithoutKnownKey));
 
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.Error);
-            Assert.Throws<InvalidOperationException>(() => { if (activeFile.VisualState == ActiveFileVisualState.None) { } });
+            Assert.Throws<InvalidOperationException>(() => { if (activeFile.VisualState == ActiveFileVisualStates.None) { } });
         }
     }
 }

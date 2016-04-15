@@ -49,6 +49,7 @@ namespace Axantum.AxCrypt.Forms.Style
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "It is natural since it handles many types, but it's all linear in a switch statement, so not really complex.")]
         private void StyleInternal(Control control)
         {
             FontLoader fontLoader = New<FontLoader>();

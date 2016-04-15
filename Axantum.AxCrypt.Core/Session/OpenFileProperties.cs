@@ -15,6 +15,11 @@ namespace Axantum.AxCrypt.Core.Session
     {
         public static OpenFileProperties Create(IDataStore dataStore)
         {
+            if (dataStore == null)
+            {
+                throw new ArgumentNullException(nameof(dataStore));
+            }
+
             try
             {
                 using (Stream stream = dataStore.OpenRead())

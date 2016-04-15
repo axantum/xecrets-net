@@ -13,6 +13,15 @@ namespace Axantum.AxCrypt.Api.Model
     {
         public AxCryptVersion(string downloadLink, VersionUpdateKind kind)
         {
+            if (downloadLink == null)
+            {
+                throw new ArgumentNullException(nameof(downloadLink));
+            }
+            if (kind == null)
+            {
+                throw new ArgumentNullException(nameof(kind));
+            }
+
             DownloadLink = downloadLink;
             FullVersion = kind.NewVersion.ToString();
             Revision = kind.NewVersion.Build;

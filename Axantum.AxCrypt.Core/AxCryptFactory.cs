@@ -81,6 +81,11 @@ namespace Axantum.AxCrypt.Core
         /// <returns></returns>
         public virtual IAxCryptDocument CreateDocument(IEnumerable<DecryptionParameter> decryptionParameters, Stream inputStream)
         {
+            if (decryptionParameters == null)
+            {
+                throw new ArgumentNullException(nameof(decryptionParameters));
+            }
+
             Headers headers = new Headers();
             AxCryptReaderBase reader = headers.CreateReader(new LookAheadStream(inputStream));
 

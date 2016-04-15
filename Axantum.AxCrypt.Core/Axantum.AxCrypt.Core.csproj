@@ -235,7 +235,7 @@
     <Compile Include="Runtime\WorkFolderWatcher.cs" />
     <Compile Include="Session\ActiveFileChangedEventArgs.cs" />
     <Compile Include="Session\ActiveFileComparer.cs" />
-    <Compile Include="Session\ActiveFileVisualState.cs" />
+    <Compile Include="Session\ActiveFileVisualStates.cs" />
     <Compile Include="Session\ChangedEventMode.cs" />
     <Compile Include="AxCryptFile.cs" />
     <Compile Include="AxCryptOptions.cs" />
