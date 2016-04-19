@@ -74,10 +74,10 @@ namespace Axantum.AxCrypt.Core.Service
             return Task.FromResult(AccountStatus.Unknown);
         }
 
-        public bool ChangePassphrase(Passphrase passphrase)
+        public Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             Identity = new LogOnIdentity(Identity.UserEmail, passphrase);
-            return true;
+            return Task.FromResult(true);
         }
 
         /// <summary>

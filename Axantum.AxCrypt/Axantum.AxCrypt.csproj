@@ -81,6 +81,12 @@
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DesktopVersion.cs" />
+    <Compile Include="PasswordStrengthMeter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PasswordStrengthMeter.Designer.cs">
+      <DependentUpon>PasswordStrengthMeter.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecentFilesListView.cs">
       <SubType>Component</SubType>
     </Compile>

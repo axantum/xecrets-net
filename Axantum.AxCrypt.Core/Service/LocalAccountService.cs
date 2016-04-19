@@ -236,7 +236,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public bool ChangePassphrase(Passphrase passphrase)
+        public Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
@@ -244,7 +244,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
 
             SaveAsync(ListAsync().Result).Wait();
-            return true;
+            return Task.FromResult(true);
         }
 
         private IList<UserKeyPair> TryLoadUserKeyPairs()

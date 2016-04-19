@@ -95,6 +95,7 @@
     <Compile Include="TestKnownFoldersViewModel.cs" />
     <Compile Include="TestPassphraseBase.cs" />
     <Compile Include="TestPasswordStrengthCalculator.cs" />
+    <Compile Include="TestPasswordStrengthMeterViewModel.cs" />
     <Compile Include="TestPbkdf2HmacSha512.cs" />
     <Compile Include="TestAsymmetricCrypto.cs" />
     <Compile Include="TestPipelineStreamTest.cs" />

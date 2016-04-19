@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
         /// <returns>true if the passphrase was successfully changed.</returns>
-        bool ChangePassphrase(Passphrase passphrase);
+        Task<bool> ChangePassphraseAsync(Passphrase passphrase);
 
         /// <summary>
         /// Fetches the user user account.

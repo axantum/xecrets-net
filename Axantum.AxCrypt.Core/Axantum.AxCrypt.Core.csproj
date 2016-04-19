@@ -194,6 +194,8 @@
     <Compile Include="UI\ViewModel\ImportPublicKeysViewModel.cs" />
     <Compile Include="UI\ViewModel\LogOnAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\ManageAccountViewModel.cs" />
+    <Compile Include="UI\ViewModel\PasswordStrength.cs" />
+    <Compile Include="UI\ViewModel\PasswordStrengthMeterViewModel.cs" />
     <Compile Include="UI\ViewModel\SharingListViewModel.cs" />
     <Compile Include="UI\ViewModel\VerifyAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\WatchedFoldersViewModel.cs" />

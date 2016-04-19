@@ -148,14 +148,14 @@ namespace Axantum.AxCrypt.Core.Service
         /// <returns>
         /// true if the password was successfully changed.
         /// </returns>
-        public bool ChangePassphrase(Passphrase passphrase)
+        public Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             if (String.IsNullOrEmpty(_apiClient.Identity.User))
             {
                 throw new InvalidOperationException("The account service requires a user.");
             }
 
-            return false;
+            return Task.FromResult(false);
         }
 
         /// <summary>

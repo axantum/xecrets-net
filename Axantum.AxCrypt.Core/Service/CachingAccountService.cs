@@ -57,11 +57,12 @@ namespace Axantum.AxCrypt.Core.Service
             return await New<ICache>().GetItemAsync(_key.Subkey(nameof(LevelAsync)), () => _service.LevelAsync()).Free();
         }
 
-        public bool ChangePassphrase(Passphrase passphrase)
+        public Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             bool result = false;
-            New<ICache>().UpdateItem(() => result = _service.ChangePassphrase(passphrase), _key);
-            return result;
+            New<ICache>().UpdateItem(async () => result = await _service.ChangePassphraseAsync(passphrase), _key);
+
+            return Task.FromResult<bool>(result);
         }
 
         /// <summary>

@@ -44,6 +44,7 @@
             this.VerifyPassphraseTextbox = new System.Windows.Forms.TextBox();
             this._verifyPasswordLabel = new System.Windows.Forms.Label();
             this.PassphraseTextBox = new System.Windows.Forms.TextBox();
+            this._passwordStrengthMeter = new Axantum.AxCrypt.PasswordStrengthMeter();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).BeginInit();
             this._fileGroupBox.SuspendLayout();
@@ -61,12 +62,12 @@
             // 
             this._errorProvider2.ContainerControl = this;
             // 
-            // groupBox1
+            // _fileGroupBox
             // 
             this._fileGroupBox.Controls.Add(this.FileNameTextBox);
             this._fileGroupBox.Location = new System.Drawing.Point(12, 12);
             this._fileGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
-            this._fileGroupBox.Name = "groupBox1";
+            this._fileGroupBox.Name = "_fileGroupBox";
             this._fileGroupBox.Size = new System.Drawing.Size(280, 44);
             this._fileGroupBox.TabIndex = 0;
             this._fileGroupBox.TabStop = false;
@@ -98,14 +99,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 59);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(315, 187);
+            this.panel1.Size = new System.Drawing.Size(315, 208);
             this.panel1.TabIndex = 1;
             // 
             // _panel1
             // 
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Location = new System.Drawing.Point(52, 141);
+            this._panel1.Location = new System.Drawing.Point(52, 153);
             this._panel1.Name = "_panel1";
             this._panel1.Size = new System.Drawing.Size(200, 37);
             this._panel1.TabIndex = 1;
@@ -138,13 +139,14 @@
             // PassphraseGroupBox
             // 
             this.PassphraseGroupBox.AutoSize = true;
+            this.PassphraseGroupBox.Controls.Add(this._passwordStrengthMeter);
             this.PassphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
             this.PassphraseGroupBox.Controls.Add(this.VerifyPassphraseTextbox);
             this.PassphraseGroupBox.Controls.Add(this._verifyPasswordLabel);
             this.PassphraseGroupBox.Controls.Add(this.PassphraseTextBox);
             this.PassphraseGroupBox.Location = new System.Drawing.Point(12, 11);
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
-            this.PassphraseGroupBox.Size = new System.Drawing.Size(280, 125);
+            this.PassphraseGroupBox.Size = new System.Drawing.Size(280, 139);
             this.PassphraseGroupBox.TabIndex = 0;
             this.PassphraseGroupBox.TabStop = false;
             this.PassphraseGroupBox.Text = "[Enter Password]";
@@ -153,7 +155,7 @@
             // 
             this.ShowPassphraseCheckBox.AutoSize = true;
             this.ShowPassphraseCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ShowPassphraseCheckBox.Location = new System.Drawing.Point(7, 89);
+            this.ShowPassphraseCheckBox.Location = new System.Drawing.Point(7, 103);
             this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
             this.ShowPassphraseCheckBox.Size = new System.Drawing.Size(108, 17);
             this.ShowPassphraseCheckBox.TabIndex = 3;
@@ -162,17 +164,17 @@
             // 
             // VerifyPassphraseTextbox
             // 
-            this.VerifyPassphraseTextbox.Location = new System.Drawing.Point(6, 59);
+            this.VerifyPassphraseTextbox.Location = new System.Drawing.Point(6, 73);
             this.VerifyPassphraseTextbox.Name = "VerifyPassphraseTextbox";
             this.VerifyPassphraseTextbox.Size = new System.Drawing.Size(243, 20);
             this.VerifyPassphraseTextbox.TabIndex = 2;
             // 
-            // _label1
+            // _verifyPasswordLabel
             // 
             this._verifyPasswordLabel.AutoSize = true;
             this._verifyPasswordLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._verifyPasswordLabel.Location = new System.Drawing.Point(6, 43);
-            this._verifyPasswordLabel.Name = "_label1";
+            this._verifyPasswordLabel.Location = new System.Drawing.Point(6, 57);
+            this._verifyPasswordLabel.Name = "_verifyPasswordLabel";
             this._verifyPasswordLabel.Size = new System.Drawing.Size(88, 13);
             this._verifyPasswordLabel.TabIndex = 1;
             this._verifyPasswordLabel.Text = "[Verify Password]";
@@ -185,6 +187,13 @@
             this.PassphraseTextBox.Size = new System.Drawing.Size(242, 20);
             this.PassphraseTextBox.TabIndex = 0;
             // 
+            // _passwordStrengthMeter
+            // 
+            this._passwordStrengthMeter.Location = new System.Drawing.Point(6, 44);
+            this._passwordStrengthMeter.Name = "_passwordStrengthMeter";
+            this._passwordStrengthMeter.Size = new System.Drawing.Size(243, 10);
+            this._passwordStrengthMeter.TabIndex = 4;
+            // 
             // NewPassphraseDialog
             // 
             this.AcceptButton = this._buttonOk;
@@ -193,7 +202,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this._buttonCancel;
-            this.ClientSize = new System.Drawing.Size(315, 246);
+            this.ClientSize = new System.Drawing.Size(315, 267);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.FileNamePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -233,5 +242,6 @@
         private System.Windows.Forms.Panel FileNamePanel;
         private System.Windows.Forms.GroupBox _fileGroupBox;
         internal System.Windows.Forms.TextBox FileNameTextBox;
+        private PasswordStrengthMeter _passwordStrengthMeter;
     }
 }

@@ -47,10 +47,12 @@ namespace Axantum.AxCrypt
             : this()
         {
             InitializeStyle(parent);
+            _passwordStrengthMeter.MeterChanged += (sender, e) => _buttonOk.Enabled = _passwordStrengthMeter.IsAcceptable;
 
             Text = title;
             _viewModel = new NewPassphraseViewModel(passphrase, encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
+            PassphraseTextBox.TextChanged += async (sender, e) => { await _passwordStrengthMeter.MeterAsync(PassphraseTextBox.Text); };
             VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
         }
@@ -65,6 +67,7 @@ namespace Axantum.AxCrypt
             _fileGroupBox.Text = Texts.PromptFileText;
             _buttonCancel.Text = Texts.ButtonCancelText;
             _buttonOk.Text = Texts.ButtonOkText;
+            _buttonOk.Enabled = false;
             _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
         }
 

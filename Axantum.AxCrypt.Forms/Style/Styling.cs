@@ -20,14 +20,11 @@ namespace Axantum.AxCrypt.Forms.Style
 
         private static readonly Color _buttonMouseOverColor = Color.FromArgb(232, 232, 232);
 
-        private static readonly Color _warningColor = Color.FromArgb(194, 145, 12);
-
-        public static Color WarningColor
-        {
-            get { return _warningColor; }
-        }
+        public static Color WarningColor { get; } = Color.FromArgb(194, 145, 12);
 
         public static Color ErrorColor { get; } = Color.FromArgb(234, 95, 76);
+
+        public static Color OkColor { get; } = Color.FromArgb(134, 185, 110);
 
         private Icon _icon;
 

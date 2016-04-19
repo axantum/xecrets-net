@@ -47,6 +47,7 @@
             this._activationCode = new System.Windows.Forms.TextBox();
             this._errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this._toolTipActivation = new System.Windows.Forms.ToolTip(this.components);
+            this._passwordStrengthMeter = new Axantum.AxCrypt.PasswordStrengthMeter();
             this.PassphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
             this._emailGroupBox.SuspendLayout();
@@ -68,13 +69,14 @@
             // PassphraseGroupBox
             // 
             this.PassphraseGroupBox.AutoSize = true;
+            this.PassphraseGroupBox.Controls.Add(this._passwordStrengthMeter);
             this.PassphraseGroupBox.Controls.Add(this._showPassphrase);
             this.PassphraseGroupBox.Controls.Add(this._passphraseVerification);
             this.PassphraseGroupBox.Controls.Add(this._verifyPasswordLabel);
             this.PassphraseGroupBox.Controls.Add(this._passphrase);
             this.PassphraseGroupBox.Location = new System.Drawing.Point(12, 112);
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
-            this.PassphraseGroupBox.Size = new System.Drawing.Size(280, 125);
+            this.PassphraseGroupBox.Size = new System.Drawing.Size(280, 145);
             this.PassphraseGroupBox.TabIndex = 5;
             this.PassphraseGroupBox.TabStop = false;
             this.PassphraseGroupBox.Text = "[Set Your Password]";
@@ -83,7 +85,7 @@
             // 
             this._showPassphrase.AutoSize = true;
             this._showPassphrase.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._showPassphrase.Location = new System.Drawing.Point(7, 89);
+            this._showPassphrase.Location = new System.Drawing.Point(7, 109);
             this._showPassphrase.Name = "_showPassphrase";
             this._showPassphrase.Size = new System.Drawing.Size(108, 17);
             this._showPassphrase.TabIndex = 3;
@@ -92,17 +94,17 @@
             // 
             // _passphraseVerification
             // 
-            this._passphraseVerification.Location = new System.Drawing.Point(6, 59);
+            this._passphraseVerification.Location = new System.Drawing.Point(6, 79);
             this._passphraseVerification.Name = "_passphraseVerification";
             this._passphraseVerification.Size = new System.Drawing.Size(243, 20);
             this._passphraseVerification.TabIndex = 2;
             // 
-            // _label1
+            // _verifyPasswordLabel
             // 
             this._verifyPasswordLabel.AutoSize = true;
             this._verifyPasswordLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._verifyPasswordLabel.Location = new System.Drawing.Point(6, 43);
-            this._verifyPasswordLabel.Name = "_label1";
+            this._verifyPasswordLabel.Location = new System.Drawing.Point(6, 63);
+            this._verifyPasswordLabel.Name = "_verifyPasswordLabel";
             this._verifyPasswordLabel.Size = new System.Drawing.Size(88, 13);
             this._verifyPasswordLabel.TabIndex = 1;
             this._verifyPasswordLabel.Text = "[Verify Password]";
@@ -111,7 +113,7 @@
             // 
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Location = new System.Drawing.Point(52, 238);
+            this._panel1.Location = new System.Drawing.Point(52, 259);
             this._panel1.Name = "_panel1";
             this._panel1.Size = new System.Drawing.Size(200, 41);
             this._panel1.TabIndex = 3;
@@ -149,12 +151,12 @@
             this._email.Size = new System.Drawing.Size(242, 20);
             this._email.TabIndex = 0;
             // 
-            // groupBox1
+            // _emailGroupBox
             // 
             this._emailGroupBox.Controls.Add(this._email);
             this._emailGroupBox.Location = new System.Drawing.Point(12, 12);
             this._emailGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
-            this._emailGroupBox.Name = "groupBox1";
+            this._emailGroupBox.Name = "_emailGroupBox";
             this._emailGroupBox.Size = new System.Drawing.Size(280, 44);
             this._emailGroupBox.TabIndex = 4;
             this._emailGroupBox.TabStop = false;
@@ -172,23 +174,23 @@
             // 
             this._errorProvider3.ContainerControl = this;
             // 
-            // groupBox2
+            // _activationCodeGroupBox
             // 
             this._activationCodeGroupBox.Controls.Add(this._checkEmailLabel);
             this._activationCodeGroupBox.Controls.Add(this._activationCode);
             this._activationCodeGroupBox.Location = new System.Drawing.Point(12, 62);
             this._activationCodeGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
-            this._activationCodeGroupBox.Name = "groupBox2";
+            this._activationCodeGroupBox.Name = "_activationCodeGroupBox";
             this._activationCodeGroupBox.Size = new System.Drawing.Size(280, 44);
             this._activationCodeGroupBox.TabIndex = 5;
             this._activationCodeGroupBox.TabStop = false;
             this._activationCodeGroupBox.Text = "[Activation Code]";
             // 
-            // label1
+            // _checkEmailLabel
             // 
             this._checkEmailLabel.AutoSize = true;
             this._checkEmailLabel.Location = new System.Drawing.Point(109, 21);
-            this._checkEmailLabel.Name = "label1";
+            this._checkEmailLabel.Name = "_checkEmailLabel";
             this._checkEmailLabel.Size = new System.Drawing.Size(123, 13);
             this._checkEmailLabel.TabIndex = 1;
             this._checkEmailLabel.Text = "[Check email and spam!]";
@@ -213,13 +215,20 @@
             this._toolTipActivation.InitialDelay = 100;
             this._toolTipActivation.ReshowDelay = 100;
             // 
+            // _passwordStrengthMeter
+            // 
+            this._passwordStrengthMeter.Location = new System.Drawing.Point(6, 46);
+            this._passwordStrengthMeter.Name = "_passwordStrengthMeter";
+            this._passwordStrengthMeter.Size = new System.Drawing.Size(243, 10);
+            this._passwordStrengthMeter.TabIndex = 6;
+            // 
             // VerifyAccountDialog
             // 
             this.AcceptButton = this._buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._buttonCancel;
-            this.ClientSize = new System.Drawing.Size(304, 279);
+            this.ClientSize = new System.Drawing.Size(304, 303);
             this.Controls.Add(this._activationCodeGroupBox);
             this.Controls.Add(this.PassphraseGroupBox);
             this.Controls.Add(this._panel1);
@@ -262,5 +271,6 @@
         private System.Windows.Forms.TextBox _email;
         private System.Windows.Forms.TextBox _activationCode;
         private System.Windows.Forms.ToolTip _toolTipActivation;
+        private PasswordStrengthMeter _passwordStrengthMeter;
     }
 }

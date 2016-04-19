@@ -513,7 +513,6 @@
             this._optionsChangePassphraseToolStripMenuItem.Name = "_optionsChangePassphraseToolStripMenuItem";
             this._optionsChangePassphraseToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsChangePassphraseToolStripMenuItem.Text = "[Change &Password]";
-            this._optionsChangePassphraseToolStripMenuItem.Click += new System.EventHandler(this.ChangePassphraseToolStripMenuItem_Click);
             // 
             // _optionsDebugToolStripMenuItem
             // 

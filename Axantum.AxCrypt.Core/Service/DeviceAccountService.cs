@@ -97,20 +97,20 @@ namespace Axantum.AxCrypt.Core.Service
             return await _localService.LevelAsync().Free();
         }
 
-        public bool ChangePassphrase(Passphrase passphrase)
+        public Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             if (New<AxCryptOnlineState>().IsOnline)
             {
                 try
                 {
-                    return _remoteService.ChangePassphrase(passphrase);
+                    return _remoteService.ChangePassphraseAsync(passphrase);
                 }
                 catch (OfflineApiException)
                 {
                     New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
-            return _localService.ChangePassphrase(passphrase);
+            return _localService.ChangePassphraseAsync(passphrase);
         }
 
         /// <summary>

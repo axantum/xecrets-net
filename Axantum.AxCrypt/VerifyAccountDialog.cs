@@ -35,6 +35,7 @@ namespace Axantum.AxCrypt
             _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
             _buttonCancel.Text = Texts.ButtonCancelText;
             _buttonOk.Text = Texts.ButtonOkText;
+            _buttonOk.Enabled = false;
             _emailGroupBox.Text = Texts.PromptEmailText;
             _activationCodeGroupBox.Text = Texts.PromptActivationCode;
             _checkEmailLabel.Text = Texts.TextCheckEmailAndSpam;
@@ -47,7 +48,10 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            _passwordStrengthMeter.MeterChanged += (ss, ee) => _buttonOk.Enabled = _passwordStrengthMeter.IsAcceptable;
+
             _passphrase.TextChanged += (s, ee) => { _viewModel.Passphrase = _passphrase.Text; };
+            _passphrase.TextChanged += async (ss, ee) => { await _passwordStrengthMeter.MeterAsync(_passphrase.Text); };
             _passphraseVerification.TextChanged += (s, ee) => { _viewModel.VerificationPassphrase = _passphraseVerification.Text; };
             _activationCode.TextChanged += (s, ee) => { _viewModel.VerificationCode = _activationCode.Text; };
             _showPassphrase.CheckedChanged += (s, ee) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };

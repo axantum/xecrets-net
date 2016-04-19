@@ -27,9 +27,11 @@ namespace Axantum.AxCrypt
             : this()
         {
             InitializeStyle(parent);
+            _passwordStrengthMeter.MeterChanged += (sender, e) => _buttonOk.Enabled = _passwordStrengthMeter.IsAcceptable;
 
             _viewModel = new CreateNewAccountViewModel(passphrase, email);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
+            PassphraseTextBox.TextChanged += async (sender, e) => { await _passwordStrengthMeter.MeterAsync(PassphraseTextBox.Text); };
             VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };
             EmailTextBox.LostFocus += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocValidateUserEmail(); };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
@@ -44,6 +46,7 @@ namespace Axantum.AxCrypt
             _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
             _buttonCancel.Text = Texts.ButtonCancelText;
             _buttonOk.Text = Texts.ButtonOkText;
+            _buttonOk.Enabled = false;
             _emailGroupBox.Text = Texts.PromptEmailText;
         }
 
