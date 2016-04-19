@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt
                 _userSettings.DisplayEncryptPassphrase = dialog.ShowPassphraseCheckBox.Checked;
                 passphrase = dialog.PassphraseTextBox.Text;
             }
-            _viewModel.ChangePassphrase.Execute(passphrase);
+            _viewModel.ChangePassphraseAsync.Execute(passphrase);
         }
 
         private void ManageAccountDialog_Load(object sender, EventArgs e)

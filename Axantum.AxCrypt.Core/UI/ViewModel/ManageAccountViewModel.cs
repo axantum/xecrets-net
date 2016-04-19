@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using System;
@@ -43,7 +44,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         public IEnumerable<AccountProperties> AccountProperties { get { return GetProperty<IEnumerable<AccountProperties>>(nameof(AccountProperties)); } private set { SetProperty(nameof(AccountProperties), value); } }
 
-        public IAction ChangePassphrase { get; private set; }
+        public IAsyncAction ChangePassphraseAsync { get; private set; }
 
         private AccountStorage _keysStore;
 
@@ -63,7 +64,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             AccountProperties = _keysStore.AllKeyPairsAsync().Result.Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
 
-            ChangePassphrase = new AsyncDelegateAction<string>(async (password) => await ChangePassphraseActionAsync(password), (password) => _keysStore.AllKeyPairsAsync().Result.Any());
+            ChangePassphraseAsync = new AsyncDelegateAction<string>(async (password) => await ChangePassphraseActionAsync(password), (password) => _keysStore.AllKeyPairsAsync().Result.Any());
         }
 
         private static void BindPropertyChangedEvents()
@@ -76,7 +77,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task ChangePassphraseActionAsync(string passphrase)
         {
-            await _keysStore.ChangePassphraseAsync(new Passphrase(passphrase));
+            await _keysStore.ChangePassphraseAsync(new Passphrase(passphrase)).Free();
 
             LogOnIdentity identity = new LogOnIdentity(_keysStore.ActiveKeyPairAsync().Result, new Passphrase(passphrase));
             _knownIdenties.DefaultEncryptionIdentity = identity;

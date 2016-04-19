@@ -1,4 +1,32 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
+﻿#region Coypright and License
+
+/*
+ * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
+ *
+ * This file is part of AxCrypt.
+ *
+ * AxCrypt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * AxCrypt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
+ * updates, contributions and contact with the author. You may also visit
+ * http://www.axantum.com for more information about the author.
+*/
+
+#endregion Coypright and License
+
+using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
@@ -42,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestChangePassword()
+        public async void TestManageAccountViewModelChangePassword()
         {
             UserKeyPair key1 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
             UserKeyPair key2 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
@@ -54,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
                 .Callback<Passphrase>((passphrase) =>
                 {
                     passphraseUsed = passphrase.Text;
-                });
+                }).Returns(Task.FromResult(true));
 
             var mockKnownIdentities = new Mock<KnownIdentities>();
 
@@ -65,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(emailsList.First().EmailAddress, Is.EqualTo("svante@axantum.com"), "The first should be 'svante@axantum.com'");
             Assert.That(emailsList.Last().EmailAddress, Is.EqualTo("svante@axantum.com"), "The last should be 'svante@axantum.com'");
 
-            viewModel.ChangePassphrase.Execute("allan");
+            await viewModel.ChangePassphraseAsync.ExecuteAsync("allan").Free();
             Assert.That(passphraseUsed, Is.EqualTo("allan"));
         }
     }

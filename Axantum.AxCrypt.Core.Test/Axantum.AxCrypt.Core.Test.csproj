@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -13,7 +11,6 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
-    <ReleaseVersion>0.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -43,10 +40,6 @@
     <Reference Include="Moq">
       <HintPath>..\SolutionItems\Moq\lib\net40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -55,6 +48,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="nunit.framework">
       <HintPath>..\SolutionItems\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -206,15 +202,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
-      <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
+      <Project>{61E59383-C053-4416-9981-0DCFB8D89DC3}</Project>
       <Name>Axantum.AxCrypt.Abstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj">
-      <Project>{6ea275d5-2372-4fcf-bb4f-5c48f5901350}</Project>
+      <Project>{6EA275D5-2372-4FCF-BB4F-5C48F5901350}</Project>
       <Name>Axantum.AxCrypt.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Common\Axantum.AxCrypt.Common.csproj">
-      <Project>{fb429566-e4a5-4391-805b-0e2a2ae297ac}</Project>
+      <Project>{FB429566-E4A5-4391-805B-0E2A2AE297AC}</Project>
       <Name>Axantum.AxCrypt.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
@@ -222,15 +218,15 @@
       <Name>Axantum.AxCrypt.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Desktop\Axantum.AxCrypt.Desktop.csproj">
-      <Project>{d64de570-3a36-49d3-95aa-9262647b04ee}</Project>
+      <Project>{D64DE570-3A36-49D3-95AA-9262647B04EE}</Project>
       <Name>Axantum.AxCrypt.Desktop</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Fake\Axantum.AxCrypt.Fake.csproj">
-      <Project>{48602976-aba8-4639-93e1-54cd0b2f0c23}</Project>
+      <Project>{48602976-ABA8-4639-93E1-54CD0B2F0C23}</Project>
       <Name>Axantum.AxCrypt.Fake</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
-      <Project>{ce9e8614-8dc5-4757-9384-3c416ab61a47}</Project>
+      <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
       <Name>Axantum.AxCrypt.Mono</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1851,7 +1851,7 @@ namespace Axantum.AxCrypt
                 Resolve.UserSettings.DisplayEncryptPassphrase = dialog.ShowPassphraseCheckBox.Checked;
                 passphrase = dialog.PassphraseTextBox.Text;
             }
-            viewModel.ChangePassphrase.Execute(passphrase);
+            viewModel.ChangePassphraseAsync.Execute(passphrase);
         }
 
         private void ExportMySharingKeyToolStripMenuItem_Click(object sender, EventArgs e)

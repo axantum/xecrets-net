@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -375,15 +375,15 @@
   -->
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
-      <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
+      <Project>{61E59383-C053-4416-9981-0DCFB8D89DC3}</Project>
       <Name>Axantum.AxCrypt.Abstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj">
-      <Project>{6ea275d5-2372-4fcf-bb4f-5c48f5901350}</Project>
+      <Project>{6EA275D5-2372-4FCF-BB4F-5C48F5901350}</Project>
       <Name>Axantum.AxCrypt.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Common\Axantum.AxCrypt.Common.csproj">
-      <Project>{fb429566-e4a5-4391-805b-0e2a2ae297ac}</Project>
+      <Project>{FB429566-E4A5-4391-805B-0E2A2AE297AC}</Project>
       <Name>Axantum.AxCrypt.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj">
@@ -392,9 +392,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
 </Project>
