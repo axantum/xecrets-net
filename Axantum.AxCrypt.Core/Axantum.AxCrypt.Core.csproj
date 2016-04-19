@@ -183,6 +183,7 @@
     <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="UI\IEmailParser.cs" />
+    <Compile Include="UI\PasswordStrengthCalculator.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />
     <Compile Include="UI\ViewModel\AccountProperties.cs" />
     <Compile Include="UI\ViewModel\AsyncDelegateAction.cs" />
