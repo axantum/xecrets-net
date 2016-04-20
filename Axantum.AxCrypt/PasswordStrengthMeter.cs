@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,8 @@ namespace Axantum.AxCrypt
     {
         private PasswordStrengthMeterViewModel _viewModel = new PasswordStrengthMeterViewModel(100);
 
+        private ToolTip _toolTip = new ToolTip();
+
         public PasswordStrengthMeter()
         {
             InitializeComponent();
@@ -23,6 +26,28 @@ namespace Axantum.AxCrypt
             SetStyle(ControlStyles.UserPaint, true);
             Minimum = 0;
             Maximum = 100;
+
+            _viewModel.BindPropertyChanged(nameof(PasswordStrengthMeterViewModel.PasswordStrength), (PasswordStrength strength) =>
+            {
+                switch (strength)
+                {
+                    case PasswordStrength.Unacceptable:
+                        _toolTip.SetToolTip(this, Texts.PasswordStrengthUnacceptableTip);
+                        break;
+
+                    case PasswordStrength.Bad:
+                        _toolTip.SetToolTip(this, Texts.PasswordStrengthBadTip);
+                        break;
+
+                    case PasswordStrength.Weak:
+                        _toolTip.SetToolTip(this, Texts.PasswordStrengthWeakTip);
+                        break;
+
+                    case PasswordStrength.Strong:
+                        _toolTip.SetToolTip(this, Texts.PasswordStrengthStrongTip);
+                        break;
+                }
+            });
         }
 
         public event EventHandler MeterChanged;

@@ -2863,6 +2863,42 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password is too weak to be safe to use..
+        /// </summary>
+        public static string PasswordStrengthBadTip {
+            get {
+                return ResourceManager.GetString("PasswordStrengthBadTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is strong and good enough to recommend..
+        /// </summary>
+        public static string PasswordStrengthStrongTip {
+            get {
+                return ResourceManager.GetString("PasswordStrengthStrongTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is too short or too similar to a common password to be acceptable..
+        /// </summary>
+        public static string PasswordStrengthUnacceptableTip {
+            get {
+                return ResourceManager.GetString("PasswordStrengthUnacceptableTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is not strong enough to be recommended..
+        /// </summary>
+        public static string PasswordStrengthWeakTip {
+            get {
+                return ResourceManager.GetString("PasswordStrengthWeakTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [More info about PayPal].
         /// </summary>
         public static string PayPalReadMoreLink {

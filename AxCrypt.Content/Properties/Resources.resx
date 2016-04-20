@@ -1101,6 +1101,19 @@ Enter your e-mail below to a send an activation link to the specified address. F
 
 If you appear not to receive it, check that it does not get caught by your anti-spam measures, and that {0} is correct.</value>
   </data>
+  <data name="PasswordStrengthBadTip" xml:space="preserve">
+    <value>Password is too weak to be safe to use.</value>
+  </data>
+  <data name="PasswordStrengthStrongTip" xml:space="preserve">
+    <value>Password is strong and good enough to recommend.</value>
+  </data>
+  <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
+    <value>Password is too short or too similar to a common password to be acceptable.</value>
+    <comment>Shown when no password is typed or it is effectively empty</comment>
+  </data>
+  <data name="PasswordStrengthWeakTip" xml:space="preserve">
+    <value>Password is not strong enough to be recommended.</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>
   </data>
