@@ -110,7 +110,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             await _service.ChangePassphraseAsync(passphrase).Free();
-            await _service.SaveAsync(await AllKeyPairsAsync().Free()).Free();
         }
 
         public async Task<UserPublicKey> GetOtherUserPublicKeyAsync(EmailAddress email)

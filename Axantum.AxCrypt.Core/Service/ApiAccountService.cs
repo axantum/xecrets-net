@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
@@ -148,14 +149,15 @@ namespace Axantum.AxCrypt.Core.Service
         /// <returns>
         /// true if the password was successfully changed.
         /// </returns>
-        public Task<bool> ChangePassphraseAsync(Passphrase passphrase)
+        public async Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             if (String.IsNullOrEmpty(_apiClient.Identity.User))
             {
                 throw new InvalidOperationException("The account service requires a user.");
             }
 
-            return Task.FromResult(false);
+            await _apiClient.PutMyPasswordAsync(passphrase.Text).Free();
+            return true;
         }
 
         /// <summary>

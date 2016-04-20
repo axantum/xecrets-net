@@ -785,7 +785,7 @@ namespace Axantum.AxCrypt
 
             SetWindowTextWithLogonStatus(isSignedIn);
             _debugManageAccountToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _optionsChangePassphraseToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _optionsChangePassphraseToolStripMenuItem.Enabled = isSignedInWithAxCryptId && New<AxCryptOnlineState>().IsOnline;
             _exportSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
@@ -1834,10 +1834,10 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccountStorage userKeyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
-            ManageAccountViewModel viewModel = new ManageAccountViewModel(userKeyPairs, Resolve.KnownIdentities);
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
+            ManageAccountViewModel viewModel = new ManageAccountViewModel(accountStorage, Resolve.KnownIdentities);
 
             string passphrase;
             using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Texts.ChangePassphraseDialogTitle, String.Empty, String.Empty))
@@ -1851,7 +1851,8 @@ namespace Axantum.AxCrypt
                 Resolve.UserSettings.DisplayEncryptPassphrase = dialog.ShowPassphraseCheckBox.Checked;
                 passphrase = dialog.PassphraseTextBox.Text;
             }
-            viewModel.ChangePassphraseAsync.Execute(passphrase);
+            await viewModel.ChangePassphraseAsync.ExecuteAsync(passphrase);
+            await LogOnOrLogOffAndLogOnAgainAsync();
         }
 
         private void ExportMySharingKeyToolStripMenuItem_Click(object sender, EventArgs e)

@@ -243,7 +243,6 @@ namespace Axantum.AxCrypt.Core.Service
                 throw new InvalidOperationException("The account service requires a user.");
             }
 
-            SaveAsync(ListAsync().Result).Wait();
             return Task.FromResult(true);
         }
 

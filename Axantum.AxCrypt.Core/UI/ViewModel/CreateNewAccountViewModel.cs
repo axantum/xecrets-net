@@ -109,9 +109,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
             UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), Resolve.Environment.UtcNow, New<KeyPairService>().New());
-            store.ImportAsync(userKeys).Wait();
+            accountStorage.ImportAsync(userKeys).Wait();
 
             return null;
         }

@@ -46,13 +46,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction ChangePassphraseAsync { get; private set; }
 
-        private AccountStorage _keysStore;
+        private AccountStorage _accountStorage;
 
         private KnownIdentities _knownIdenties;
 
-        public ManageAccountViewModel(AccountStorage userKeyPairs, KnownIdentities knownIdentities)
+        public ManageAccountViewModel(AccountStorage accountStorage, KnownIdentities knownIdentities)
         {
-            _keysStore = userKeyPairs;
+            _accountStorage = accountStorage;
             _knownIdenties = knownIdentities;
 
             InitializePropertyValues();
@@ -62,9 +62,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            AccountProperties = _keysStore.AllKeyPairsAsync().Result.Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
+            AccountProperties = _accountStorage.AllKeyPairsAsync().Result.Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
 
-            ChangePassphraseAsync = new AsyncDelegateAction<string>(async (password) => await ChangePassphraseActionAsync(password), (password) => _keysStore.AllKeyPairsAsync().Result.Any());
+            ChangePassphraseAsync = new AsyncDelegateAction<string>(async (password) => await ChangePassphraseActionAsync(password), (password) => _accountStorage.AllKeyPairsAsync().Result.Any());
         }
 
         private static void BindPropertyChangedEvents()
@@ -77,10 +77,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task ChangePassphraseActionAsync(string passphrase)
         {
-            await _keysStore.ChangePassphraseAsync(new Passphrase(passphrase)).Free();
-
-            LogOnIdentity identity = new LogOnIdentity(_keysStore.ActiveKeyPairAsync().Result, new Passphrase(passphrase));
-            _knownIdenties.DefaultEncryptionIdentity = identity;
+            await _accountStorage.ChangePassphraseAsync(new Passphrase(passphrase)).Free();
         }
     }
 }

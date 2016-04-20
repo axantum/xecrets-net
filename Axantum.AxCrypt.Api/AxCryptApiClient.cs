@@ -126,6 +126,21 @@ namespace Axantum.AxCrypt.Api
         }
 
         /// <summary>
+        /// Changes the password of the user.
+        /// </summary>
+        /// <param name="newPassword">The new password.</param>
+        /// <returns></returns>
+        public async Task PutMyPasswordAsync(string newPassword)
+        {
+            Uri resource = BaseUrl.PathCombine("users/my/account/password");
+
+            PasswordResetParameters passwordResetParameters = new PasswordResetParameters(newPassword, string.Empty);
+            RestContent content = new RestContent(Serializer.Serialize(passwordResetParameters));
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+        }
+
+        /// <summary>
         /// Gets the public key of any user. If the user does not exist, he or she is invited by the current user.
         /// </summary>
         /// <param name="userName">Name of the user.</param>
