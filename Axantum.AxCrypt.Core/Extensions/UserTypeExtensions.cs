@@ -217,30 +217,42 @@ namespace Axantum.AxCrypt.Core.Extensions
             return new RestIdentity(identity.UserEmail.Address, identity.Passphrase.Text);
         }
 
-        public static UserAccount MergeWith(this UserAccount left, UserAccount right)
+        public static UserAccount MergeWith(this UserAccount highPriorityAccount, UserAccount lowPriorityAccount)
         {
-            if (left == null)
+            if (highPriorityAccount == null)
             {
-                throw new ArgumentNullException(nameof(left));
+                throw new ArgumentNullException(nameof(highPriorityAccount));
             }
-            if (right == null)
+            if (lowPriorityAccount == null)
             {
-                throw new ArgumentNullException(nameof(right));
+                throw new ArgumentNullException(nameof(lowPriorityAccount));
             }
 
-            return left.MergeWith(right.AccountKeys);
+            return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys);
         }
 
-        public static UserAccount MergeWith(this UserAccount left, IEnumerable<AccountKey> accountKeys)
+        public static UserAccount MergeWith(this UserAccount highPriorityAccount, IEnumerable<AccountKey> lowPriorityAccountKeys)
         {
-            if (left == null)
+            if (highPriorityAccount == null)
             {
-                throw new ArgumentNullException(nameof(left));
+                throw new ArgumentNullException(nameof(highPriorityAccount));
+            }
+            if (lowPriorityAccountKeys == null)
+            {
+                throw new ArgumentNullException(nameof(lowPriorityAccountKeys));
             }
 
-            IEnumerable<AccountKey> allKeys = left.AccountKeys.Union(accountKeys);
-            UserAccount merged = new UserAccount(left.UserName, left.SubscriptionLevel, left.LevelExpiration, left.AccountStatus, allKeys);
+            IEnumerable<AccountKey> allKeys = new List<AccountKey>(highPriorityAccount.AccountKeys);
+            IEnumerable<AccountKey> newKeys = lowPriorityAccountKeys.Where(lak => !allKeys.Any(ak => ak.KeyPair.PublicPem == lak.KeyPair.PublicPem));
+            allKeys = allKeys.Union(newKeys);
+            UserAccount merged = new UserAccount(highPriorityAccount.UserName, highPriorityAccount.SubscriptionLevel, highPriorityAccount.LevelExpiration, highPriorityAccount.AccountStatus, allKeys);
             return merged;
+        }
+
+        public static UserAccount MergeWith(this IEnumerable<AccountKey> highPriorityAccountKeys, UserAccount lowPriorityAccount)
+        {
+            UserAccount highPriorityAccount = new UserAccount(lowPriorityAccount.UserName, lowPriorityAccount.SubscriptionLevel, lowPriorityAccount.LevelExpiration, lowPriorityAccount.AccountStatus, highPriorityAccountKeys);
+            return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys);
         }
     }
 }

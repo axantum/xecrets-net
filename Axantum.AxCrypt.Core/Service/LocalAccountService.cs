@@ -211,7 +211,7 @@ namespace Axantum.AxCrypt.Core.Service
                     userAccounts.Accounts.Add(existingUserAccount);
                 }
 
-                UserAccount mergedAccount = existingUserAccount.MergeWith(keyPairs.Select(uk => uk.ToAccountKey(Identity.Passphrase)));
+                UserAccount mergedAccount = keyPairs.Select(uk => uk.ToAccountKey(Identity.Passphrase)).MergeWith(existingUserAccount);
                 if (mergedAccount == existingUserAccount)
                 {
                     return;
