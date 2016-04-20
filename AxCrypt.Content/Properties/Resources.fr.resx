@@ -148,7 +148,7 @@
   <data name="ActivateErrorPassword" xml:space="preserve">
     <value>Echec de la réinitialisation du mot de passe.</value>
   </data>
-  <data name="ActivateMailBodyButton">
+  <data name="ActivateMailBodyButton" xml:space="preserve">
     <value>Activer AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
@@ -164,13 +164,13 @@
     <value>Vous avez un accès gratuit aux fonctionnalités d'AxCrypt Premium pendant une période d'essai de 30 jours à partir du moment où vous activer votre compte. </value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Vous venez de créer un compte AxCrypt. Veuillez confirmer votre inscription en cliquant le bouton ci-dessous.</value>
+    <value>Vous venez de créer un compte AxCrypt ID. Veuillez confirmer votre inscription en entrant votre code d'activation ci-dessous dans l'application AxCrypt ou sur notre site web. </value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
-    <value>Si le bouton ne fonctionne pas, allez à &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; {0} &lt;/a&gt; et entrez &lt;b&gt; {1} &lt; / b&gt; le code d'activation &lt;b&gt; {2} &lt;/ b&gt; pour activer votre compte manuellement.</value>
+    <value>Si vous souhaitez utiliser la version web à la place de l'application, allez à &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; {0} &lt;/a&gt; et entrez &lt;b&gt; {1} &lt; / b&gt; le code d'activation &lt;b&gt; {2} &lt;/ b&gt; pour activer votre compte manuellement.</value>
   </data>
   <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
-    <value>Si le bouton ne fonctionne pas, allez à {0} et entrer {1} et le code d'activation {2} pour activer manuellement votre compte. </value>
+    <value>Si vous souhaitez utiliser la version web à la place de l'application AxCrypt, allez à {0} et entrer {1} et le code d'activation {2} pour activer manuellement votre compte. </value>
   </data>
   <data name="ActivateMailBodyTitle" xml:space="preserve">
     <value>Bonjour et bienvenue à AxCrypt! </value>
@@ -965,6 +965,19 @@ Saisissez votre email ci-dessous, afin d'y recevoir votre lien d'activation. Pou
     <value>Un code de vérification a été envoyé à &lt;b&gt;{0}&lt;/b&gt;. Veuillez consulter votre boîte mails.
 
 Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identifié comme spam, et que l'adresse {0} est correcte.</value>
+  </data>
+  <data name="PasswordStrengthBadTip" xml:space="preserve">
+    <value>Le mot de passe n'est pas assez sécurisé pour être utilisé. </value>
+  </data>
+  <data name="PasswordStrengthStrongTip" xml:space="preserve">
+    <value>Le mot de passe est assez sécurisé et bon pour être validé. </value>
+  </data>
+  <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
+    <value>Le mot de passe est trop court ou trop similaire à un mot de passe courant pour être accepté. </value>
+    <comment>Shown when no password is typed or it is effectively empty</comment>
+  </data>
+  <data name="PasswordStrengthWeakTip" xml:space="preserve">
+    <value>Le mot de passe n'est pas assez sécurisé pour être validé. </value>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Plus d'information concernant PayPal]</value>
