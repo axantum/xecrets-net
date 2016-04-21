@@ -19,7 +19,7 @@ namespace Axantum.AxCrypt.Api.Model
         public static readonly ApiVersion Zero = new ApiVersion(0);
 
         [JsonProperty("version")]
-        public int Version { get; }
+        public int Version { get; private set; }
 
         public ApiVersion()
         {

@@ -105,8 +105,11 @@ namespace Axantum.AxCrypt
             }
         }
 
+        private ApiVersion _apiVersion;
+
         private void InitializeProgram()
         {
+            GetApiVersion();
             InitializeContentResources();
             RegisterTypeFactories();
             EnsureUiContextInitialized();
@@ -127,6 +130,11 @@ namespace Axantum.AxCrypt
             BindToFileOperationViewModel();
             SetupCommandService();
             SendStartSessionNotification();
+        }
+
+        private void GetApiVersion()
+        {
+            _apiVersion = New<ICache>().GetItemAsync(CacheKey.RootKey.Subkey("WrapMessageDialogsAsync_ApiVersion"), () => New<GlobalApiClient>().ApiVersionAsync()).Result;
         }
 
         private static void EnsureUiContextInitialized()
@@ -270,8 +278,7 @@ namespace Axantum.AxCrypt
         private async Task WrapMessageDialogsAsync(Func<Task> dialogFunctionAsync)
         {
             SetTopControlsEnabled(false);
-            ApiVersion apiVersion = await New<ICache>().GetItemAsync(CacheKey.RootKey.Subkey("WrapMessageDialogsAsync_ApiVersion"), () => New<GlobalApiClient>().ApiVersionAsync());
-            if (apiVersion != ApiVersion.Zero && apiVersion != new ApiVersion())
+            if (_apiVersion != ApiVersion.Zero && _apiVersion != new ApiVersion())
             {
                 MessageDialog.ShowOk(this, Texts.MessageServerUpdateTitle, Texts.MessageServerUpdateText);
             }
