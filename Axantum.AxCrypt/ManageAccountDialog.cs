@@ -27,19 +27,14 @@ namespace Axantum.AxCrypt
             InitializeComponent();
         }
 
-        public ManageAccountDialog(Form parent, KnownIdentities knownIdentities, IUserSettings userSettings)
+        public ManageAccountDialog(Form parent, IUserSettings userSettings)
             : this()
         {
-            if (knownIdentities == null)
-            {
-                throw new ArgumentNullException(nameof(knownIdentities));
-            }
-
             InitializeStyle(parent);
 
             _userSettings = userSettings;
             AccountStorage userKeyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
-            _viewModel = new ManageAccountViewModel(userKeyPairs, knownIdentities);
+            _viewModel = new ManageAccountViewModel(userKeyPairs);
             _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>(nameof(ManageAccountViewModel.AccountProperties), ListAccountEmails);
         }
 

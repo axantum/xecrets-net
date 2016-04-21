@@ -84,9 +84,7 @@ namespace Axantum.AxCrypt.Core.Test
                     passphraseUsed = passphrase.Text;
                 }).Returns(Task.FromResult(true));
 
-            var mockKnownIdentities = new Mock<KnownIdentities>();
-
-            ManageAccountViewModel viewModel = new ManageAccountViewModel(mockUserAsymmetricKeysStore.Object, mockKnownIdentities.Object);
+            ManageAccountViewModel viewModel = new ManageAccountViewModel(mockUserAsymmetricKeysStore.Object);
             IEnumerable<AccountProperties> emailsList = null;
             viewModel.BindPropertyChanged(nameof(ManageAccountViewModel.AccountProperties), (IEnumerable<AccountProperties> emails) => emailsList = emails);
             Assert.That(emailsList.Count(), Is.EqualTo(2), "There should be two accounts now.");

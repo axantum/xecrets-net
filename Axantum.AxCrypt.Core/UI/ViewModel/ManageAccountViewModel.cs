@@ -48,12 +48,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private AccountStorage _accountStorage;
 
-        private KnownIdentities _knownIdenties;
-
-        public ManageAccountViewModel(AccountStorage accountStorage, KnownIdentities knownIdentities)
+        public ManageAccountViewModel(AccountStorage accountStorage)
         {
             _accountStorage = accountStorage;
-            _knownIdenties = knownIdentities;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();

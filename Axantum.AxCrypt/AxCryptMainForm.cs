@@ -1828,7 +1828,7 @@ namespace Axantum.AxCrypt
 
         private void ManageAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ManageAccountDialog dialog = new ManageAccountDialog(this, Resolve.KnownIdentities, Resolve.UserSettings))
+            using (ManageAccountDialog dialog = new ManageAccountDialog(this, Resolve.UserSettings))
             {
                 dialog.ShowDialog();
             }
@@ -1837,7 +1837,7 @@ namespace Axantum.AxCrypt
         private async void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
-            ManageAccountViewModel viewModel = new ManageAccountViewModel(accountStorage, Resolve.KnownIdentities);
+            ManageAccountViewModel viewModel = new ManageAccountViewModel(accountStorage);
 
             string passphrase;
             using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Texts.ChangePassphraseDialogTitle, String.Empty, String.Empty))
