@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestManageAccountViewModelChangePassword()
+        public async Task TestManageAccountViewModelChangePassword()
         {
             UserKeyPair key1 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
             UserKeyPair key2 = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);

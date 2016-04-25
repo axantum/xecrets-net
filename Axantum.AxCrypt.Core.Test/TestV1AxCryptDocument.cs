@@ -338,8 +338,8 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     document.DecryptTo(plaintextStream);
                     string text = Encoding.UTF8.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length);
-                    Assert.That(text, Is.StringStarting("The Project Gutenberg EBook of David Copperfield, by Charles Dickens"), "Unexpected start of David Copperfield.");
-                    Assert.That(text, Is.StringEnding("subscribe to our email newsletter to hear about new eBooks." + (Char)13 + (Char)10), "Unexpected end of David Copperfield.");
+                    Assert.That(text, Does.StartWith("The Project Gutenberg EBook of David Copperfield, by Charles Dickens"), "Unexpected start of David Copperfield.");
+                    Assert.That(text, Does.EndWith("subscribe to our email newsletter to hear about new eBooks." + (Char)13 + (Char)10), "Unexpected end of David Copperfield.");
                     Assert.That(text.Length, Is.EqualTo(1992490), "Wrong length of full text of David Copperfield.");
                     Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(795855), "Wrong expected length of compressed text of David Copperfield.");
                 }

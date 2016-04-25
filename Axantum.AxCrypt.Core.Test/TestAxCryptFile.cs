@@ -465,6 +465,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         // Fails intermittently at "The source should be wiped". Problably a race situation. Must be investigated.
         // 2016-03-10: Attempted fix by adding call to Resolve.ProgressBackground.WaitForIdle(), and implementing it in FakeProgressBackground.
+        // 2016-04-25: Not fixed.
         [Test]
         public void TestDecryptFilesUniqueWithWipeOfOriginal()
         {

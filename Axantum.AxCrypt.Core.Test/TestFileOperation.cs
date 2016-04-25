@@ -66,16 +66,6 @@ namespace Axantum.AxCrypt.Core.Test
             _cryptoImplementation = cryptoImplementation;
         }
 
-        [TestFixtureSetUp]
-        public void SetupFixture()
-        {
-        }
-
-        [TestFixtureTearDown]
-        public void TeardownFixture()
-        {
-        }
-
         [SetUp]
         public void Setup()
         {
