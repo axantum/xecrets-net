@@ -3,8 +3,6 @@ using Axantum.AxCrypt.Forms.Style;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -85,6 +83,11 @@ namespace Axantum.AxCrypt
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             Rectangle rec = e.ClipRectangle;
 
             rec.Width = (int)(rec.Width * ((double)Value / Maximum)) - 4;
