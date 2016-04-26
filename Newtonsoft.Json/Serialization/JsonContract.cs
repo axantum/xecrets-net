@@ -35,19 +35,15 @@ namespace Newtonsoft.Json.Serialization
 {
     internal enum JsonContractType
     {
-        None,
-        Object,
-        Array,
-        Primitive,
-        String,
-        Dictionary,
-#if !(NET35 || NET20 || PORTABLE40)
-        Dynamic,
-#endif
-#if !(NETFX_CORE || PORTABLE || PORTABLE40)
-        Serializable,
-#endif
-        Linq
+        None = 0,
+        Object = 1,
+        Array = 2,
+        Primitive = 3,
+        String = 4,
+        Dictionary = 5,
+        Dynamic = 6,
+        Serializable = 7,
+        Linq = 8
     }
 
     /// <summary>
@@ -80,18 +76,18 @@ namespace Newtonsoft.Json.Serialization
     public delegate IEnumerable<KeyValuePair<object, object>> ExtensionDataGetter(object o);
 
     /// <summary>
-    /// Contract details for a <see cref="Type"/> used by the <see cref="JsonSerializer"/>.
+    /// Contract details for a <see cref="System.Type"/> used by the <see cref="JsonSerializer"/>.
     /// </summary>
     public abstract class JsonContract
     {
         internal bool IsNullable;
         internal bool IsConvertable;
-        internal bool IsSealed;
         internal bool IsEnum;
         internal Type NonNullableUnderlyingType;
         internal ReadType InternalReadType;
         internal JsonContractType ContractType;
         internal bool IsReadOnlyOrFixedSize;
+        internal bool IsSealed;
         internal bool IsInstantiable;
 
         private List<SerializationCallback> _onDeserializedCallbacks;
@@ -99,6 +95,7 @@ namespace Newtonsoft.Json.Serialization
         private IList<SerializationCallback> _onSerializedCallbacks;
         private IList<SerializationCallback> _onSerializingCallbacks;
         private IList<SerializationErrorCallback> _onErrorCallbacks;
+        private Type _createdType;
 
         /// <summary>
         /// Gets the underlying type for the contract.
@@ -110,7 +107,17 @@ namespace Newtonsoft.Json.Serialization
         /// Gets or sets the type created during deserialization.
         /// </summary>
         /// <value>The type created during deserialization.</value>
-        public Type CreatedType { get; set; }
+        public Type CreatedType
+        {
+            get { return _createdType; }
+            set
+            {
+                _createdType = value;
+
+                IsSealed = _createdType.IsSealed();
+                IsInstantiable = !(_createdType.IsInterface() || _createdType.IsAbstract());
+            }
+        }
 
         /// <summary>
         /// Gets or sets whether this type contract is serialized as a reference.
@@ -137,7 +144,9 @@ namespace Newtonsoft.Json.Serialization
             get
             {
                 if (_onDeserializedCallbacks == null)
+                {
                     _onDeserializedCallbacks = new List<SerializationCallback>();
+                }
 
                 return _onDeserializedCallbacks;
             }
@@ -152,7 +161,9 @@ namespace Newtonsoft.Json.Serialization
             get
             {
                 if (_onDeserializingCallbacks == null)
+                {
                     _onDeserializingCallbacks = new List<SerializationCallback>();
+                }
 
                 return _onDeserializingCallbacks;
             }
@@ -167,7 +178,9 @@ namespace Newtonsoft.Json.Serialization
             get
             {
                 if (_onSerializedCallbacks == null)
+                {
                     _onSerializedCallbacks = new List<SerializationCallback>();
+                }
 
                 return _onSerializedCallbacks;
             }
@@ -182,7 +195,9 @@ namespace Newtonsoft.Json.Serialization
             get
             {
                 if (_onSerializingCallbacks == null)
+                {
                     _onSerializingCallbacks = new List<SerializationCallback>();
+                }
 
                 return _onSerializingCallbacks;
             }
@@ -197,7 +212,9 @@ namespace Newtonsoft.Json.Serialization
             get
             {
                 if (_onErrorCallbacks == null)
+                {
                     _onErrorCallbacks = new List<SerializationErrorCallback>();
+                }
 
                 return _onErrorCallbacks;
             }
@@ -292,12 +309,9 @@ namespace Newtonsoft.Json.Serialization
 
         internal JsonContract(Type underlyingType)
         {
-            ValidationUtils.ArgumentNotNull(underlyingType, "underlyingType");
+            ValidationUtils.ArgumentNotNull(underlyingType, nameof(underlyingType));
 
             UnderlyingType = underlyingType;
-
-            IsSealed = underlyingType.IsSealed();
-            IsInstantiable = !(underlyingType.IsInterface() || underlyingType.IsAbstract());
 
             IsNullable = ReflectionUtils.IsNullable(underlyingType);
             NonNullableUnderlyingType = (IsNullable && ReflectionUtils.IsNullableType(underlyingType)) ? Nullable.GetUnderlyingType(underlyingType) : underlyingType;
@@ -307,36 +321,7 @@ namespace Newtonsoft.Json.Serialization
             IsConvertable = ConvertUtils.IsConvertible(NonNullableUnderlyingType);
             IsEnum = NonNullableUnderlyingType.IsEnum();
 
-            if (NonNullableUnderlyingType == typeof(byte[]))
-            {
-                InternalReadType = ReadType.ReadAsBytes;
-            }
-            else if (NonNullableUnderlyingType == typeof(int))
-            {
-                InternalReadType = ReadType.ReadAsInt32;
-            }
-            else if (NonNullableUnderlyingType == typeof(decimal))
-            {
-                InternalReadType = ReadType.ReadAsDecimal;
-            }
-            else if (NonNullableUnderlyingType == typeof(string))
-            {
-                InternalReadType = ReadType.ReadAsString;
-            }
-            else if (NonNullableUnderlyingType == typeof(DateTime))
-            {
-                InternalReadType = ReadType.ReadAsDateTime;
-            }
-#if !NET20
-            else if (NonNullableUnderlyingType == typeof(DateTimeOffset))
-            {
-                InternalReadType = ReadType.ReadAsDateTimeOffset;
-            }
-#endif
-            else
-            {
-                InternalReadType = ReadType.Read;
-            }
+            InternalReadType = ReadType.Read;
         }
 
         internal void InvokeOnSerializing(object o, StreamingContext context)

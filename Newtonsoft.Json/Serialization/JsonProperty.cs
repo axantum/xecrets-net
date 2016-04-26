@@ -24,6 +24,7 @@
 #endregion
 
 using System;
+using System.Reflection;
 using Newtonsoft.Json.Utilities;
 
 #if NET20
@@ -39,10 +40,12 @@ namespace Newtonsoft.Json.Serialization
     {
         internal Required? _required;
         internal bool _hasExplicitDefaultValue;
-        internal object _defaultValue;
 
+        private object _defaultValue;
+        private bool _hasGeneratedDefaultValue;
         private string _propertyName;
-        private bool _skipPropertyNameEscape;
+        internal bool _skipPropertyNameEscape;
+        private Type _propertyType;
 
         // use to cache contract during deserialization
         internal JsonContract PropertyContract { get; set; }
@@ -57,27 +60,7 @@ namespace Newtonsoft.Json.Serialization
             set
             {
                 _propertyName = value;
-                CalculateSkipPropertyNameEscape();
-            }
-        }
-
-        private void CalculateSkipPropertyNameEscape()
-        {
-            if (_propertyName == null)
-            {
-                _skipPropertyNameEscape = false;
-            }
-            else
-            {
-                _skipPropertyNameEscape = true;
-                foreach (char c in _propertyName)
-                {
-                    if (!char.IsLetterOrDigit(c) && c != '_' && c != '@')
-                    {
-                        _skipPropertyNameEscape = false;
-                        break;
-                    }
-                }
+                _skipPropertyNameEscape = !JavaScriptUtils.ShouldEscapeJavaScriptString(_propertyName, JavaScriptUtils.HtmlCharEscapeFlags);
             }
         }
 
@@ -88,9 +71,9 @@ namespace Newtonsoft.Json.Serialization
         public Type DeclaringType { get; set; }
 
         /// <summary>
-        /// Gets or sets the order of serialization and deserialization of a member.
+        /// Gets or sets the order of serialization of a member.
         /// </summary>
-        /// <value>The numeric order of serialization or deserialization.</value>
+        /// <value>The numeric order of serialization.</value>
         public int? Order { get; set; }
 
         /// <summary>
@@ -106,10 +89,27 @@ namespace Newtonsoft.Json.Serialization
         public IValueProvider ValueProvider { get; set; }
 
         /// <summary>
+        /// Gets or sets the <see cref="IAttributeProvider"/> for this property.
+        /// </summary>
+        /// <value>The <see cref="IAttributeProvider"/> for this property.</value>
+        public IAttributeProvider AttributeProvider { get; set; }
+
+        /// <summary>
         /// Gets or sets the type of the property.
         /// </summary>
         /// <value>The type of the property.</value>
-        public Type PropertyType { get; set; }
+        public Type PropertyType
+        {
+            get { return _propertyType; }
+            set
+            {
+                if (_propertyType != value)
+                {
+                    _propertyType = value;
+                    _hasGeneratedDefaultValue = false;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the <see cref="JsonConverter" /> for the property.
@@ -154,7 +154,15 @@ namespace Newtonsoft.Json.Serialization
         /// <value>The default value.</value>
         public object DefaultValue
         {
-            get { return _defaultValue; }
+            get
+            {
+                if (!_hasExplicitDefaultValue)
+                {
+                    return null;
+                }
+
+                return _defaultValue;
+            }
             set
             {
                 _hasExplicitDefaultValue = true;
@@ -164,8 +172,16 @@ namespace Newtonsoft.Json.Serialization
 
         internal object GetResolvedDefaultValue()
         {
-            if (!_hasExplicitDefaultValue && PropertyType != null)
-                return ReflectionUtils.GetDefaultValue(PropertyType);
+            if (_propertyType == null)
+            {
+                return null;
+            }
+
+            if (!_hasExplicitDefaultValue && !_hasGeneratedDefaultValue)
+            {
+                _defaultValue = ReflectionUtils.GetDefaultValue(PropertyType);
+                _hasGeneratedDefaultValue = true;
+            }
 
             return _defaultValue;
         }
@@ -225,6 +241,12 @@ namespace Newtonsoft.Json.Serialization
         public Predicate<object> ShouldSerialize { get; set; }
 
         /// <summary>
+        /// Gets or sets a predicate used to determine whether the property should be deserialized.
+        /// </summary>
+        /// <value>A predicate used to determine whether the property should be deserialized.</value>
+        public Predicate<object> ShouldDeserialize { get; set; }
+
+        /// <summary>
         /// Gets or sets a predicate used to determine whether the property should be serialized.
         /// </summary>
         /// <value>A predicate used to determine whether the property should be serialized.</value>
@@ -274,9 +296,13 @@ namespace Newtonsoft.Json.Serialization
         internal void WritePropertyName(JsonWriter writer)
         {
             if (_skipPropertyNameEscape)
+            {
                 writer.WritePropertyName(PropertyName, false);
+            }
             else
+            {
                 writer.WritePropertyName(PropertyName);
+            }
         }
     }
 }

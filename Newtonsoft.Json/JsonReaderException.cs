@@ -31,9 +31,9 @@ using Newtonsoft.Json.Utilities;
 namespace Newtonsoft.Json
 {
     /// <summary>
-    /// The exception thrown when an error occurs while reading Json text.
+    /// The exception thrown when an error occurs while reading JSON text.
     /// </summary>
-#if !(NETFX_CORE || PORTABLE || PORTABLE40)
+#if !(DOTNET || PORTABLE || PORTABLE40)
     [Serializable]
 #endif
     public class JsonReaderException : JsonException
@@ -84,7 +84,7 @@ namespace Newtonsoft.Json
         {
         }
 
-#if !(NETFX_CORE || PORTABLE40 || PORTABLE)
+#if !(DOTNET || PORTABLE40 || PORTABLE)
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonReaderException"/> class.
         /// </summary>

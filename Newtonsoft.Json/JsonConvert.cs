@@ -274,10 +274,14 @@ namespace Newtonsoft.Json
         private static string EnsureFloatFormat(double value, string text, FloatFormatHandling floatFormatHandling, char quoteChar, bool nullable)
         {
             if (floatFormatHandling == FloatFormatHandling.Symbol || !(double.IsInfinity(value) || double.IsNaN(value)))
+            {
                 return text;
+            }
 
             if (floatFormatHandling == FloatFormatHandling.DefaultValue)
+            {
                 return (!nullable) ? "0.0" : Null;
+            }
 
             return quoteChar + text + quoteChar;
         }
@@ -300,7 +304,9 @@ namespace Newtonsoft.Json
         private static string EnsureDecimalPlace(double value, string text)
         {
             if (double.IsNaN(value) || double.IsInfinity(value) || text.IndexOf('.') != -1 || text.IndexOf('E') != -1 || text.IndexOf('e') != -1)
+            {
                 return text;
+            }
 
             return text + ".0";
         }
@@ -308,7 +314,9 @@ namespace Newtonsoft.Json
         private static string EnsureDecimalPlace(string text)
         {
             if (text.IndexOf('.') != -1)
+            {
                 return text;
+            }
 
             return text + ".0";
         }
@@ -356,15 +364,17 @@ namespace Newtonsoft.Json
 
         internal static string ToString(Guid value, char quoteChar)
         {
-            string text = null;
-
-#if !(NETFX_CORE || PORTABLE40 || PORTABLE)
+            string text;
+            string qc;
+#if !(DOTNET || PORTABLE40 || PORTABLE)
             text = value.ToString("D", CultureInfo.InvariantCulture);
+            qc = quoteChar.ToString(CultureInfo.InvariantCulture);
 #else
             text = value.ToString("D");
+            qc = quoteChar.ToString();
 #endif
 
-            return quoteChar + text + quoteChar;
+            return qc + text + qc;
         }
 
         /// <summary>
@@ -390,7 +400,9 @@ namespace Newtonsoft.Json
         public static string ToString(Uri value)
         {
             if (value == null)
+            {
                 return Null;
+            }
 
             return ToString(value, '"');
         }
@@ -418,10 +430,24 @@ namespace Newtonsoft.Json
         /// <returns>A JSON string representation of the <see cref="String"/>.</returns>
         public static string ToString(string value, char delimiter)
         {
-            if (delimiter != '"' && delimiter != '\'')
-                throw new ArgumentException("Delimiter must be a single or double quote.", "delimiter");
+            return ToString(value, delimiter, StringEscapeHandling.Default);
+        }
 
-            return JavaScriptUtils.ToEscapedJavaScriptString(value, delimiter, true);
+        /// <summary>
+        /// Converts the <see cref="String"/> to its JSON string representation.
+        /// </summary>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="delimiter">The string delimiter character.</param>
+        /// <param name="stringEscapeHandling">The string escape handling.</param>
+        /// <returns>A JSON string representation of the <see cref="String"/>.</returns>
+        public static string ToString(string value, char delimiter, StringEscapeHandling stringEscapeHandling)
+        {
+            if (delimiter != '"' && delimiter != '\'')
+            {
+                throw new ArgumentException("Delimiter must be a single or double quote.", nameof(delimiter));
+            }
+
+            return JavaScriptUtils.ToEscapedJavaScriptString(value, delimiter, true, stringEscapeHandling);
         }
 
         /// <summary>
@@ -432,9 +458,11 @@ namespace Newtonsoft.Json
         public static string ToString(object value)
         {
             if (value == null)
+            {
                 return Null;
+            }
 
-            PrimitiveTypeCode typeCode = ConvertUtils.GetTypeCode(value);
+            PrimitiveTypeCode typeCode = ConvertUtils.GetTypeCode(value.GetType());
 
             switch (typeCode)
             {
@@ -468,7 +496,7 @@ namespace Newtonsoft.Json
                     return ToString((DateTime)value);
                 case PrimitiveTypeCode.Decimal:
                     return ToString((decimal)value);
-#if !(NETFX_CORE || PORTABLE)
+#if !(DOTNET || PORTABLE)
                 case PrimitiveTypeCode.DBNull:
                     return Null;
 #endif
@@ -551,7 +579,7 @@ namespace Newtonsoft.Json
         /// </summary>
         /// <param name="value">The object to serialize.</param>
         /// <param name="settings">The <see cref="JsonSerializerSettings"/> used to serialize the object.
-        /// If this is null, default serialization settings will be is used.</param>
+        /// If this is null, default serialization settings will be used.</param>
         /// <returns>
         /// A JSON string representation of the object.
         /// </returns>
@@ -565,7 +593,7 @@ namespace Newtonsoft.Json
         /// </summary>
         /// <param name="value">The object to serialize.</param>
         /// <param name="settings">The <see cref="JsonSerializerSettings"/> used to serialize the object.
-        /// If this is null, default serialization settings will be is used.</param>
+        /// If this is null, default serialization settings will be used.</param>
         /// <param name="type">
         /// The type of the value being serialized.
         /// This parameter is used when <see cref="TypeNameHandling"/> is Auto to write out the type name if the type of the value does not match.
@@ -587,7 +615,7 @@ namespace Newtonsoft.Json
         /// <param name="value">The object to serialize.</param>
         /// <param name="formatting">Indicates how the output is formatted.</param>
         /// <param name="settings">The <see cref="JsonSerializerSettings"/> used to serialize the object.
-        /// If this is null, default serialization settings will be is used.</param>
+        /// If this is null, default serialization settings will be used.</param>
         /// <returns>
         /// A JSON string representation of the object.
         /// </returns>
@@ -602,7 +630,7 @@ namespace Newtonsoft.Json
         /// <param name="value">The object to serialize.</param>
         /// <param name="formatting">Indicates how the output is formatted.</param>
         /// <param name="settings">The <see cref="JsonSerializerSettings"/> used to serialize the object.
-        /// If this is null, default serialization settings will be is used.</param>
+        /// If this is null, default serialization settings will be used.</param>
         /// <param name="type">
         /// The type of the value being serialized.
         /// This parameter is used when <see cref="TypeNameHandling"/> is Auto to write out the type name if the type of the value does not match.
@@ -670,7 +698,7 @@ namespace Newtonsoft.Json
         /// <param name="value">The object to serialize.</param>
         /// <param name="formatting">Indicates how the output is formatted.</param>
         /// <param name="settings">The <see cref="JsonSerializerSettings"/> used to serialize the object.
-        /// If this is null, default serialization settings will be is used.</param>
+        /// If this is null, default serialization settings will be used.</param>
         /// <returns>
         /// A task that represents the asynchronous serialize operation. The value of the <c>TResult</c> parameter contains a JSON string representation of the object.
         /// </returns>
@@ -687,7 +715,7 @@ namespace Newtonsoft.Json
         /// Deserializes the JSON to a .NET object.
         /// </summary>
         /// <param name="value">The JSON to deserialize.</param>
-        /// <returns>The deserialized object from the Json string.</returns>
+        /// <returns>The deserialized object from the JSON string.</returns>
         public static object DeserializeObject(string value)
         {
             return DeserializeObject(value, null, (JsonSerializerSettings)null);
@@ -699,7 +727,7 @@ namespace Newtonsoft.Json
         /// <param name="value">The JSON to deserialize.</param>
         /// <param name="settings">
         /// The <see cref="JsonSerializerSettings"/> used to deserialize the object.
-        /// If this is null, default serialization settings will be is used.
+        /// If this is null, default serialization settings will be used.
         /// </param>
         /// <returns>The deserialized object from the JSON string.</returns>
         public static object DeserializeObject(string value, JsonSerializerSettings settings)
@@ -712,7 +740,7 @@ namespace Newtonsoft.Json
         /// </summary>
         /// <param name="value">The JSON to deserialize.</param>
         /// <param name="type">The <see cref="Type"/> of object being deserialized.</param>
-        /// <returns>The deserialized object from the Json string.</returns>
+        /// <returns>The deserialized object from the JSON string.</returns>
         public static object DeserializeObject(string value, Type type)
         {
             return DeserializeObject(value, type, (JsonSerializerSettings)null);
@@ -723,7 +751,7 @@ namespace Newtonsoft.Json
         /// </summary>
         /// <typeparam name="T">The type of the object to deserialize to.</typeparam>
         /// <param name="value">The JSON to deserialize.</param>
-        /// <returns>The deserialized object from the Json string.</returns>
+        /// <returns>The deserialized object from the JSON string.</returns>
         public static T DeserializeObject<T>(string value)
         {
             return DeserializeObject<T>(value, (JsonSerializerSettings)null);
@@ -757,7 +785,7 @@ namespace Newtonsoft.Json
         /// <param name="anonymousTypeObject">The anonymous type object.</param>
         /// <param name="settings">
         /// The <see cref="JsonSerializerSettings"/> used to deserialize the object.
-        /// If this is null, default serialization settings will be is used.
+        /// If this is null, default serialization settings will be used.
         /// </param>
         /// <returns>The deserialized anonymous type from the JSON string.</returns>
         public static T DeserializeAnonymousType<T>(string value, T anonymousTypeObject, JsonSerializerSettings settings)
@@ -784,7 +812,7 @@ namespace Newtonsoft.Json
         /// <param name="value">The object to deserialize.</param>
         /// <param name="settings">
         /// The <see cref="JsonSerializerSettings"/> used to deserialize the object.
-        /// If this is null, default serialization settings will be is used.
+        /// If this is null, default serialization settings will be used.
         /// </param>
         /// <returns>The deserialized object from the JSON string.</returns>
         public static T DeserializeObject<T>(string value, JsonSerializerSettings settings)
@@ -815,18 +843,20 @@ namespace Newtonsoft.Json
         /// <param name="type">The type of the object to deserialize to.</param>
         /// <param name="settings">
         /// The <see cref="JsonSerializerSettings"/> used to deserialize the object.
-        /// If this is null, default serialization settings will be is used.
+        /// If this is null, default serialization settings will be used.
         /// </param>
         /// <returns>The deserialized object from the JSON string.</returns>
         public static object DeserializeObject(string value, Type type, JsonSerializerSettings settings)
         {
-            ValidationUtils.ArgumentNotNull(value, "value");
+            ValidationUtils.ArgumentNotNull(value, nameof(value));
 
             JsonSerializer jsonSerializer = JsonSerializer.CreateDefault(settings);
 
             // by default DeserializeObject should check for additional content
             if (!jsonSerializer.IsCheckAdditionalContentSet())
+            {
                 jsonSerializer.CheckAdditionalContent = true;
+            }
 
             using (var reader = new JsonTextReader(new StringReader(value)))
             {
@@ -858,7 +888,7 @@ namespace Newtonsoft.Json
         /// <param name="value">The JSON to deserialize.</param>
         /// <param name="settings">
         /// The <see cref="JsonSerializerSettings"/> used to deserialize the object.
-        /// If this is null, default serialization settings will be is used.
+        /// If this is null, default serialization settings will be used.
         /// </param>
         /// <returns>
         /// A task that represents the asynchronous deserialize operation. The value of the <c>TResult</c> parameter contains the deserialized object from the JSON string.
@@ -891,7 +921,7 @@ namespace Newtonsoft.Json
         /// <param name="type">The type of the object to deserialize to.</param>
         /// <param name="settings">
         /// The <see cref="JsonSerializerSettings"/> used to deserialize the object.
-        /// If this is null, default serialization settings will be is used.
+        /// If this is null, default serialization settings will be used.
         /// </param>
         /// <returns>
         /// A task that represents the asynchronous deserialize operation. The value of the <c>TResult</c> parameter contains the deserialized object from the JSON string.
@@ -904,6 +934,7 @@ namespace Newtonsoft.Json
 #endif
         #endregion
 
+        #region Populate
         /// <summary>
         /// Populates the object with values from the JSON string.
         /// </summary>
@@ -921,7 +952,7 @@ namespace Newtonsoft.Json
         /// <param name="target">The target object to populate values onto.</param>
         /// <param name="settings">
         /// The <see cref="JsonSerializerSettings"/> used to deserialize the object.
-        /// If this is null, default serialization settings will be is used.
+        /// If this is null, default serialization settings will be used.
         /// </param>
         public static void PopulateObject(string value, object target, JsonSerializerSettings settings)
         {
@@ -932,7 +963,9 @@ namespace Newtonsoft.Json
                 jsonSerializer.Populate(jsonReader, target);
 
                 if (jsonReader.Read() && jsonReader.TokenType != JsonToken.Comment)
+                {
                     throw new JsonSerializationException("Additional text found in JSON string after finishing deserializing object.");
+                }
             }
         }
 
@@ -944,7 +977,7 @@ namespace Newtonsoft.Json
         /// <param name="target">The target object to populate values onto.</param>
         /// <param name="settings">
         /// The <see cref="JsonSerializerSettings"/> used to deserialize the object.
-        /// If this is null, default serialization settings will be is used.
+        /// If this is null, default serialization settings will be used.
         /// </param>
         /// <returns>
         /// A task that represents the asynchronous populate operation.
@@ -955,8 +988,10 @@ namespace Newtonsoft.Json
             return Task.Factory.StartNew(() => PopulateObject(value, target, settings));
         }
 #endif
+        #endregion
 
-#if !(PORTABLE40 || PORTABLE || NETFX_CORE)
+        #region Xml
+#if !(PORTABLE40 || PORTABLE || DOTNET)
         /// <summary>
         /// Serializes the XML node to a JSON string.
         /// </summary>
@@ -1113,5 +1148,6 @@ namespace Newtonsoft.Json
             return (XDocument)DeserializeObject(value, typeof(XDocument), converter);
         }
 #endif
+        #endregion
     }
 }

@@ -29,14 +29,22 @@ using Newtonsoft.Json.Utilities;
 namespace Newtonsoft.Json.Linq
 {
     /// <summary>
-    /// Represents a reader that provides fast, non-cached, forward-only access to serialized Json data.
+    /// Represents a reader that provides fast, non-cached, forward-only access to serialized JSON data.
     /// </summary>
     public class JTokenReader : JsonReader, IJsonLineInfo
     {
         private readonly string _initialPath;
         private readonly JToken _root;
         private JToken _parent;
-        internal JToken _current;
+        private JToken _current;
+
+        /// <summary>
+        /// Gets the <see cref="JToken"/> at the reader's current position.
+        /// </summary>
+        public JToken CurrentToken
+        {
+            get { return _current; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JTokenReader"/> class.
@@ -44,89 +52,15 @@ namespace Newtonsoft.Json.Linq
         /// <param name="token">The token to read from.</param>
         public JTokenReader(JToken token)
         {
-            ValidationUtils.ArgumentNotNull(token, "token");
+            ValidationUtils.ArgumentNotNull(token, nameof(token));
 
             _root = token;
-            _current = token;
         }
 
         internal JTokenReader(JToken token, string initialPath)
             : this(token)
         {
             _initialPath = initialPath;
-        }
-
-        /// <summary>
-        /// Reads the next JSON token from the stream as a <see cref="T:Byte[]"/>.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:Byte[]"/> or a null reference if the next JSON token is null. This method will return <c>null</c> at the end of an array.
-        /// </returns>
-        public override byte[] ReadAsBytes()
-        {
-            return ReadAsBytesInternal();
-        }
-
-        /// <summary>
-        /// Reads the next JSON token from the stream as a <see cref="Nullable{Decimal}"/>.
-        /// </summary>
-        /// <returns>A <see cref="Nullable{Decimal}"/>. This method will return <c>null</c> at the end of an array.</returns>
-        public override decimal? ReadAsDecimal()
-        {
-            return ReadAsDecimalInternal();
-        }
-
-        /// <summary>
-        /// Reads the next JSON token from the stream as a <see cref="Nullable{Int32}"/>.
-        /// </summary>
-        /// <returns>A <see cref="Nullable{Int32}"/>. This method will return <c>null</c> at the end of an array.</returns>
-        public override int? ReadAsInt32()
-        {
-            return ReadAsInt32Internal();
-        }
-
-        /// <summary>
-        /// Reads the next JSON token from the stream as a <see cref="String"/>.
-        /// </summary>
-        /// <returns>A <see cref="String"/>. This method will return <c>null</c> at the end of an array.</returns>
-        public override string ReadAsString()
-        {
-            return ReadAsStringInternal();
-        }
-
-        /// <summary>
-        /// Reads the next JSON token from the stream as a <see cref="Nullable{DateTime}"/>.
-        /// </summary>
-        /// <returns>A <see cref="String"/>. This method will return <c>null</c> at the end of an array.</returns>
-        public override DateTime? ReadAsDateTime()
-        {
-            return ReadAsDateTimeInternal();
-        }
-
-#if !NET20
-        /// <summary>
-        /// Reads the next JSON token from the stream as a <see cref="Nullable{DateTimeOffset}"/>.
-        /// </summary>
-        /// <returns>A <see cref="Nullable{DateTimeOffset}"/>. This method will return <c>null</c> at the end of an array.</returns>
-        public override DateTimeOffset? ReadAsDateTimeOffset()
-        {
-            return ReadAsDateTimeOffsetInternal();
-        }
-#endif
-
-        internal override bool ReadInternal()
-        {
-            if (CurrentState != State.Start)
-            {
-                JContainer container = _current as JContainer;
-                if (container != null && _parent != container)
-                    return ReadInto(container);
-                else
-                    return ReadOver(_current);
-            }
-
-            SetToken(_current);
-            return true;
         }
 
         /// <summary>
@@ -137,21 +71,43 @@ namespace Newtonsoft.Json.Linq
         /// </returns>
         public override bool Read()
         {
-            _readType = ReadType.Read;
+            if (CurrentState != State.Start)
+            {
+                if (_current == null)
+                {
+                    return false;
+                }
 
-            return ReadInternal();
+                JContainer container = _current as JContainer;
+                if (container != null && _parent != container)
+                {
+                    return ReadInto(container);
+                }
+                else
+                {
+                    return ReadOver(_current);
+                }
+            }
+
+            _current = _root;
+            SetToken(_current);
+            return true;
         }
 
         private bool ReadOver(JToken t)
         {
             if (t == _root)
+            {
                 return ReadToEnd();
+            }
 
             JToken next = t.Next;
             if ((next == null || next == t) || t == t.Parent.Last)
             {
                 if (t.Parent == null)
+                {
                     return ReadToEnd();
+                }
 
                 return SetEnd(t.Parent);
             }
@@ -165,13 +121,9 @@ namespace Newtonsoft.Json.Linq
 
         private bool ReadToEnd()
         {
+            _current = null;
             SetToken(JsonToken.None);
             return false;
-        }
-
-        private bool IsEndElement
-        {
-            get { return (_current == _parent); }
         }
 
         private JsonToken? GetEndToken(JContainer c)
@@ -212,7 +164,7 @@ namespace Newtonsoft.Json.Linq
             JsonToken? endToken = GetEndToken(c);
             if (endToken != null)
             {
-                SetToken(endToken.Value);
+                SetToken(endToken.GetValueOrDefault());
                 _current = c;
                 _parent = c;
                 return true;
@@ -273,7 +225,15 @@ namespace Newtonsoft.Json.Linq
                     SetToken(JsonToken.String, SafeToString(((JValue)token).Value));
                     break;
                 case JTokenType.Uri:
-                    SetToken(JsonToken.String, SafeToString(((JValue)token).Value));
+                    object v = ((JValue)token).Value;
+                    if (v is Uri)
+                    {
+                        SetToken(JsonToken.String, ((Uri)v).OriginalString);
+                    }
+                    else
+                    {
+                        SetToken(JsonToken.String, SafeToString(v));
+                    }
                     break;
                 case JTokenType.TimeSpan:
                     SetToken(JsonToken.String, SafeToString(((JValue)token).Value));
@@ -291,9 +251,11 @@ namespace Newtonsoft.Json.Linq
         bool IJsonLineInfo.HasLineInfo()
         {
             if (CurrentState == State.Start)
+            {
                 return false;
+            }
 
-            IJsonLineInfo info = IsEndElement ? null : _current;
+            IJsonLineInfo info = _current;
             return (info != null && info.HasLineInfo());
         }
 
@@ -302,11 +264,15 @@ namespace Newtonsoft.Json.Linq
             get
             {
                 if (CurrentState == State.Start)
+                {
                     return 0;
+                }
 
-                IJsonLineInfo info = IsEndElement ? null : _current;
+                IJsonLineInfo info = _current;
                 if (info != null)
+                {
                     return info.LineNumber;
+                }
 
                 return 0;
             }
@@ -317,11 +283,15 @@ namespace Newtonsoft.Json.Linq
             get
             {
                 if (CurrentState == State.Start)
+                {
                     return 0;
+                }
 
-                IJsonLineInfo info = IsEndElement ? null : _current;
+                IJsonLineInfo info = _current;
                 if (info != null)
+                {
                     return info.LinePosition;
+                }
 
                 return 0;
             }
@@ -339,13 +309,18 @@ namespace Newtonsoft.Json.Linq
                 if (!string.IsNullOrEmpty(_initialPath))
                 {
                     if (string.IsNullOrEmpty(path))
+                    {
                         return _initialPath;
+                    }
 
-                    if (_initialPath.EndsWith("]", StringComparison.OrdinalIgnoreCase)
-                        || path.StartsWith("[", StringComparison.OrdinalIgnoreCase))
+                    if (path.StartsWith('['))
+                    {
                         path = _initialPath + path;
+                    }
                     else
+                    {
                         path = _initialPath + "." + path;
+                    }
                 }
 
                 return path;

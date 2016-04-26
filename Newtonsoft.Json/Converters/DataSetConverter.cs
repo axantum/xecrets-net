@@ -23,7 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-#if !(NETFX_CORE || PORTABLE40 || PORTABLE)
+#if !(DOTNET || PORTABLE40 || PORTABLE)
 using System;
 using System.Data;
 using Newtonsoft.Json.Serialization;
@@ -70,6 +70,11 @@ namespace Newtonsoft.Json.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            if (reader.TokenType == JsonToken.Null)
+            {
+                return null;
+            }
+
             // handle typed datasets
             DataSet ds = (objectType == typeof(DataSet))
                 ? new DataSet()
@@ -77,7 +82,7 @@ namespace Newtonsoft.Json.Converters
 
             DataTableConverter converter = new DataTableConverter();
 
-            reader.Read();
+            reader.ReadAndAssert();
 
             while (reader.TokenType == JsonToken.PropertyName)
             {
@@ -87,9 +92,11 @@ namespace Newtonsoft.Json.Converters
                 dt = (DataTable)converter.ReadJson(reader, typeof(DataTable), dt, serializer);
 
                 if (!exists)
+                {
                     ds.Tables.Add(dt);
+                }
 
-                reader.Read();
+                reader.ReadAndAssert();
             }
 
             return ds;

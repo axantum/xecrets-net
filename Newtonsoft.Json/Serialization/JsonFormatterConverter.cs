@@ -23,7 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-#if !(NETFX_CORE || PORTABLE40 || PORTABLE)
+#if !(DOTNET || PORTABLE40 || PORTABLE)
 using System;
 using System.Globalization;
 using System.Runtime.Serialization;
@@ -34,18 +34,23 @@ namespace Newtonsoft.Json.Serialization
 {
     internal class JsonFormatterConverter : IFormatterConverter
     {
-        private readonly JsonSerializer _serializer;
+        private readonly JsonSerializerInternalReader _reader;
+        private readonly JsonISerializableContract _contract;
+        private readonly JsonProperty _member;
 
-        public JsonFormatterConverter(JsonSerializer serializer)
+        public JsonFormatterConverter(JsonSerializerInternalReader reader, JsonISerializableContract contract, JsonProperty member)
         {
-            ValidationUtils.ArgumentNotNull(serializer, "serializer");
+            ValidationUtils.ArgumentNotNull(reader, nameof(reader));
+            ValidationUtils.ArgumentNotNull(contract, nameof(contract));
 
-            _serializer = serializer;
+            _reader = reader;
+            _contract = contract;
+            _member = member;
         }
 
         private T GetTokenValue<T>(object value)
         {
-            ValidationUtils.ArgumentNotNull(value, "value");
+            ValidationUtils.ArgumentNotNull(value, nameof(value));
 
             JValue v = (JValue)value;
             return (T)System.Convert.ChangeType(v.Value, typeof(T), CultureInfo.InvariantCulture);
@@ -53,21 +58,25 @@ namespace Newtonsoft.Json.Serialization
 
         public object Convert(object value, Type type)
         {
-            ValidationUtils.ArgumentNotNull(value, "value");
+            ValidationUtils.ArgumentNotNull(value, nameof(value));
 
             JToken token = value as JToken;
             if (token == null)
-                throw new ArgumentException("Value is not a JToken.", "value");
+            {
+                throw new ArgumentException("Value is not a JToken.", nameof(value));
+            }
 
-            return _serializer.Deserialize(token.CreateReader(), type);
+            return _reader.CreateISerializableItem(token, type, _contract, _member);
         }
 
         public object Convert(object value, TypeCode typeCode)
         {
-            ValidationUtils.ArgumentNotNull(value, "value");
+            ValidationUtils.ArgumentNotNull(value, nameof(value));
 
             if (value is JValue)
+            {
                 value = ((JValue)value).Value;
+            }
 
             return System.Convert.ChangeType(value, typeCode, CultureInfo.InvariantCulture);
         }

@@ -60,9 +60,16 @@ namespace Newtonsoft.Json.Utilities
             return format.FormatWith(provider, new[] { arg0, arg1, arg2 });
         }
 
-        public static string FormatWith(this string format, IFormatProvider provider, params object[] args)
+        public static string FormatWith(this string format, IFormatProvider provider, object arg0, object arg1, object arg2, object arg3)
         {
-            ValidationUtils.ArgumentNotNull(format, "format");
+            return format.FormatWith(provider, new[] { arg0, arg1, arg2, arg3 });
+        }
+
+        private static string FormatWith(this string format, IFormatProvider provider, params object[] args)
+        {
+            // leave this a private to force code to use an explicit overload
+            // avoids stack memory being reserved for the object array
+            ValidationUtils.ArgumentNotNull(format, nameof(format));
 
             return string.Format(provider, format, args);
         }
@@ -77,15 +84,21 @@ namespace Newtonsoft.Json.Utilities
         public static bool IsWhiteSpace(string s)
         {
             if (s == null)
-                throw new ArgumentNullException("s");
+            {
+                throw new ArgumentNullException(nameof(s));
+            }
 
             if (s.Length == 0)
+            {
                 return false;
+            }
 
             for (int i = 0; i < s.Length; i++)
             {
                 if (!char.IsWhiteSpace(s[i]))
+                {
                     return false;
+                }
             }
 
             return true;
@@ -112,9 +125,13 @@ namespace Newtonsoft.Json.Utilities
         public static int? GetLength(string value)
         {
             if (value == null)
+            {
                 return null;
+            }
             else
+            {
                 return value.Length;
+            }
         }
 
         public static void ToCharAsUnicode(char c, char[] buffer)
@@ -130,9 +147,13 @@ namespace Newtonsoft.Json.Utilities
         public static TSource ForgivingCaseSensitiveFind<TSource>(this IEnumerable<TSource> source, Func<TSource, string> valueSelector, string testValue)
         {
             if (source == null)
-                throw new ArgumentNullException("source");
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
             if (valueSelector == null)
-                throw new ArgumentNullException("valueSelector");
+            {
+                throw new ArgumentNullException(nameof(valueSelector));
+            }
 
             var caseInsensitiveResults = source.Where(s => string.Equals(valueSelector(s), testValue, StringComparison.OrdinalIgnoreCase));
             if (caseInsensitiveResults.Count() <= 1)
@@ -149,35 +170,34 @@ namespace Newtonsoft.Json.Utilities
 
         public static string ToCamelCase(string s)
         {
-            if (string.IsNullOrEmpty(s))
-                return s;
-
-            if (!char.IsUpper(s[0]))
-                return s;
-
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < s.Length; i++)
+            if (string.IsNullOrEmpty(s) || !char.IsUpper(s[0]))
             {
-                bool hasNext = (i + 1 < s.Length);
-                if ((i == 0 || !hasNext) || char.IsUpper(s[i + 1]))
-                {
-                    char lowerCase;
-#if !(NETFX_CORE || PORTABLE)
-                    lowerCase = char.ToLower(s[i], CultureInfo.InvariantCulture);
-#else
-                    lowerCase = char.ToLower(s[i]);
-#endif
-
-                    sb.Append(lowerCase);
-                }
-                else
-                {
-                    sb.Append(s.Substring(i));
-                    break;
-                }
+                return s;
             }
 
-            return sb.ToString();
+            char[] chars = s.ToCharArray();
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (i == 1 && !char.IsUpper(chars[i]))
+                {
+                    break;
+                }
+
+                bool hasNext = (i + 1 < chars.Length);
+                if (i > 0 && hasNext && !char.IsUpper(chars[i + 1]))
+                {
+                    break;
+                }
+
+#if !(DOTNET || PORTABLE)
+                chars[i] = char.ToLower(chars[i], CultureInfo.InvariantCulture);
+#else
+                chars[i] = char.ToLowerInvariant(chars[i]);
+#endif
+            }
+
+            return new string(chars);
         }
 
         public static bool IsHighSurrogate(char c)
@@ -196,6 +216,16 @@ namespace Newtonsoft.Json.Utilities
 #else
             return (c >= 56320 && c <= 57343);
 #endif
+        }
+
+        public static bool StartsWith(this string source, char value)
+        {
+            return (source.Length > 0 && source[0] == value);
+        }
+
+        public static bool EndsWith(this string source, char value)
+        {
+            return (source.Length > 0 && source[source.Length - 1] == value);
         }
     }
 }

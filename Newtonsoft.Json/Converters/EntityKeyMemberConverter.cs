@@ -23,7 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-#if !(NET20 || NETFX_CORE || PORTABLE40 || PORTABLE)
+#if !(NET20 || DOTNET || PORTABLE40 || PORTABLE)
 using System;
 using Newtonsoft.Json.Serialization;
 using System.Globalization;
@@ -31,12 +31,6 @@ using Newtonsoft.Json.Utilities;
 
 namespace Newtonsoft.Json.Converters
 {
-    internal interface IEntityKeyMember
-    {
-        string Key { get; set; }
-        object Value { get; set; }
-    }
-
     /// <summary>
     /// Converts an Entity Framework EntityKey to and from JSON.
     /// </summary>
@@ -48,6 +42,8 @@ namespace Newtonsoft.Json.Converters
         private const string TypePropertyName = "Type";
         private const string ValuePropertyName = "Value";
 
+        private static ReflectionObject _reflectionObject;
+
         /// <summary>
         /// Writes the JSON representation of the object.
         /// </summary>
@@ -56,26 +52,34 @@ namespace Newtonsoft.Json.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
+            EnsureReflectionObject(value.GetType());
+
             DefaultContractResolver resolver = serializer.ContractResolver as DefaultContractResolver;
 
-            IEntityKeyMember entityKeyMember = DynamicWrapper.CreateWrapper<IEntityKeyMember>(value);
-            Type keyType = (entityKeyMember.Value != null) ? entityKeyMember.Value.GetType() : null;
+            string keyName = (string)_reflectionObject.GetValue(value, KeyPropertyName);
+            object keyValue = _reflectionObject.GetValue(value, ValuePropertyName);
+
+            Type keyValueType = (keyValue != null) ? keyValue.GetType() : null;
 
             writer.WriteStartObject();
             writer.WritePropertyName((resolver != null) ? resolver.GetResolvedPropertyName(KeyPropertyName) : KeyPropertyName);
-            writer.WriteValue(entityKeyMember.Key);
+            writer.WriteValue(keyName);
             writer.WritePropertyName((resolver != null) ? resolver.GetResolvedPropertyName(TypePropertyName) : TypePropertyName);
-            writer.WriteValue((keyType != null) ? keyType.FullName : null);
+            writer.WriteValue((keyValueType != null) ? keyValueType.FullName : null);
 
             writer.WritePropertyName((resolver != null) ? resolver.GetResolvedPropertyName(ValuePropertyName) : ValuePropertyName);
 
-            if (keyType != null)
+            if (keyValueType != null)
             {
                 string valueJson;
-                if (JsonSerializerInternalWriter.TryConvertToString(entityKeyMember.Value, keyType, out valueJson))
+                if (JsonSerializerInternalWriter.TryConvertToString(keyValue, keyValueType, out valueJson))
+                {
                     writer.WriteValue(valueJson);
+                }
                 else
-                    writer.WriteValue(entityKeyMember.Value);
+                {
+                    writer.WriteValue(keyValue);
+                }
             }
             else
             {
@@ -87,16 +91,12 @@ namespace Newtonsoft.Json.Converters
 
         private static void ReadAndAssertProperty(JsonReader reader, string propertyName)
         {
-            ReadAndAssert(reader);
+            reader.ReadAndAssert();
 
             if (reader.TokenType != JsonToken.PropertyName || !string.Equals(reader.Value.ToString(), propertyName, StringComparison.OrdinalIgnoreCase))
+            {
                 throw new JsonSerializationException("Expected JSON property '{0}'.".FormatWith(CultureInfo.InvariantCulture, propertyName));
-        }
-
-        private static void ReadAndAssert(JsonReader reader)
-        {
-            if (!reader.Read())
-                throw new JsonSerializationException("Unexpected end.");
+            }
         }
 
         /// <summary>
@@ -109,25 +109,35 @@ namespace Newtonsoft.Json.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            IEntityKeyMember entityKeyMember = DynamicWrapper.CreateWrapper<IEntityKeyMember>(Activator.CreateInstance(objectType));
+            EnsureReflectionObject(objectType);
+
+            object entityKeyMember = _reflectionObject.Creator();
 
             ReadAndAssertProperty(reader, KeyPropertyName);
-            ReadAndAssert(reader);
-            entityKeyMember.Key = reader.Value.ToString();
+            reader.ReadAndAssert();
+            _reflectionObject.SetValue(entityKeyMember, KeyPropertyName, reader.Value.ToString());
 
             ReadAndAssertProperty(reader, TypePropertyName);
-            ReadAndAssert(reader);
+            reader.ReadAndAssert();
             string type = reader.Value.ToString();
 
             Type t = Type.GetType(type);
 
             ReadAndAssertProperty(reader, ValuePropertyName);
-            ReadAndAssert(reader);
-            entityKeyMember.Value = serializer.Deserialize(reader, t);
+            reader.ReadAndAssert();
+            _reflectionObject.SetValue(entityKeyMember, ValuePropertyName, serializer.Deserialize(reader, t));
 
-            ReadAndAssert(reader);
+            reader.ReadAndAssert();
 
-            return DynamicWrapper.GetUnderlyingObject(entityKeyMember);
+            return entityKeyMember;
+        }
+
+        private static void EnsureReflectionObject(Type objectType)
+        {
+            if (_reflectionObject == null)
+            {
+                _reflectionObject = ReflectionObject.Create(objectType, KeyPropertyName, ValuePropertyName);
+            }
         }
 
         /// <summary>
@@ -143,4 +153,5 @@ namespace Newtonsoft.Json.Converters
         }
     }
 }
+
 #endif
