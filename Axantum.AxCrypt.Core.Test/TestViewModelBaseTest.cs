@@ -157,8 +157,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(tvm["StringProperty"], Is.EqualTo("StringProperty Error"));
             Assert.That(tvm["IntProperty"], Is.EqualTo("IntProperty Error"));
 
-            Assert.That(tvm.Error, Does.Contain("StringProperty Error"));
-            Assert.That(tvm.Error, Does.Contain("IntProperty Error"));
+            Assert.That(tvm.Error.Contains("StringProperty Error"));
+            Assert.That(tvm.Error.Contains("IntProperty Error"));
         }
 
         [Test]
