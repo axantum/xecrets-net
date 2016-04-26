@@ -251,6 +251,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static UserAccount MergeWith(this IEnumerable<AccountKey> highPriorityAccountKeys, UserAccount lowPriorityAccount)
         {
+            if (lowPriorityAccount == null)
+            {
+                throw new ArgumentNullException(nameof(lowPriorityAccount));
+            }
+
             UserAccount highPriorityAccount = new UserAccount(lowPriorityAccount.UserName, lowPriorityAccount.SubscriptionLevel, lowPriorityAccount.LevelExpiration, lowPriorityAccount.AccountStatus, highPriorityAccountKeys);
             return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys);
         }

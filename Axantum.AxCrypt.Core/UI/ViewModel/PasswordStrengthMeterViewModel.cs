@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public PasswordStrength PasswordStrength { get { return GetProperty<PasswordStrength>(nameof(PasswordStrength)); } set { SetProperty(nameof(PasswordStrength), value); } }
 
-        private void InitializePropertyValues()
+        private static void InitializePropertyValues()
         {
         }
 
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(PasswordCandidate), (string pc) => { TestCandidate(pc); });
         }
 
-        private void SubscribeToModelEvents()
+        private static void SubscribeToModelEvents()
         {
         }
 
