@@ -25,10 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -55,11 +58,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _sessionNotify.Notification += HandleSessionChanged;
         }
 
+        public IAction UpdateState { get; private set; }
+
         public IEnumerable<KnownFolder> KnownFolders { get { return GetProperty<IEnumerable<KnownFolder>>(nameof(KnownFolders)); } set { SetProperty(nameof(KnownFolders), value.ToList()); } }
 
         private void InitializePropertyValues()
         {
             KnownFolders = new KnownFolder[0];
+            UpdateState = new DelegateAction<object>((object o) => KnownFolders = UpdateEnabledState(KnownFolders));
         }
 
         private void EnsureKnownFoldersWatched(IEnumerable<KnownFolder> folders)
@@ -86,9 +92,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private IEnumerable<KnownFolder> UpdateEnabledState(IEnumerable<KnownFolder> knownFolders)
         {
             List<KnownFolder> updatedFolders = new List<KnownFolder>();
+            bool hasCloudStorageAwareness = New<LicensePolicy>().Has(LicenseCapability.CloudStorageAwareness);
             foreach (KnownFolder folder in knownFolders)
             {
-                KnownFolder updated = new KnownFolder(folder, _knownIdentities.LoggedOnWatchedFolders.Any(f => f.Path == folder.My.FullName));
+                KnownFolder updated = new KnownFolder(folder, hasCloudStorageAwareness && _knownIdentities.LoggedOnWatchedFolders.Any(f => f.Path == folder.My.FullName));
                 updatedFolders.Add(updated);
             }
             return updatedFolders;

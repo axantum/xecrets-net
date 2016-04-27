@@ -128,8 +128,8 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new CachingAccountService(new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new ApiAccountService(new AxCryptApiClient(identity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout)))));
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<AxCryptApiClient>(() => new AxCryptApiClient(Resolve.KnownIdentities.DefaultEncryptionIdentity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
-            TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new LicensePolicy(identity));
-            TypeMap.Register.New<LogOnIdentity, ICryptoPolicy>((identity) => New<LogOnIdentity, LicensePolicy>(identity).CryptoPolicy);
+            TypeMap.Register.New<LicensePolicy>(() => new LicensePolicy(Resolve.KnownIdentities.DefaultEncryptionIdentity));
+            TypeMap.Register.New<ICryptoPolicy>(() => New<LicensePolicy>().CryptoPolicy);
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
 
             TypeMap.Register.Singleton<FontLoader>(() => new FontLoader());

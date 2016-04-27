@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return New<LogOnIdentity, ICryptoPolicy>(Resolve.KnownIdentities.DefaultEncryptionIdentity);
+                return New<ICryptoPolicy>();
             }
         }
 

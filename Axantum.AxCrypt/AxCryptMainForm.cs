@@ -701,6 +701,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { ConfigureMenusAccordingToPolicy(license); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await _recentFilesListView.UpdateRecentFilesAsync(_mainViewModel.RecentFiles); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { SetDaysLeftWarning(); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => _knownFoldersViewModel.UpdateState.Execute(null));
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
@@ -1777,12 +1778,12 @@ namespace Axantum.AxCrypt
         {
             if (item.Text == Texts.LicenseFreeNameText)
             {
-                TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new FreeForcedLicensePolicy());
+                TypeMap.Register.New<LicensePolicy>(() => new FreeForcedLicensePolicy());
                 return;
             }
             if (item.Text == Texts.LicensePremiumNameText)
             {
-                TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new PremiumForcedLicensePolicy());
+                TypeMap.Register.New<LicensePolicy>(() => new PremiumForcedLicensePolicy());
                 return;
             }
             throw new InvalidOperationException("Unexpected license policy name.");

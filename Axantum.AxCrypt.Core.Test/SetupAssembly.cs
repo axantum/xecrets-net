@@ -100,8 +100,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new NullAccountService(identity)));
-            TypeMap.Register.New<LogOnIdentity, ICryptoPolicy>((identity) => New<LogOnIdentity, LicensePolicy>(identity).CryptoPolicy);
-            TypeMap.Register.New<LogOnIdentity, LicensePolicy>((identity) => new PremiumForcedLicensePolicy());
+            TypeMap.Register.New<ICryptoPolicy>(() => New<LicensePolicy>().CryptoPolicy);
+            TypeMap.Register.New<LicensePolicy>(() => new PremiumForcedLicensePolicy());
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<AxCryptApiClient>(() => new AxCryptApiClient(Resolve.KnownIdentities.DefaultEncryptionIdentity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));

@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Title = String.Empty;
             VersionUpdateStatus = VersionUpdateStatus.Unknown;
             DownloadVersion = DownloadVersion.Empty;
-            License = New<LogOnIdentity, LicensePolicy>(LogOnIdentity.Empty);
+            License = New<LicensePolicy>();
 
             AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders), (folders) => LoggedOn);
             RemoveRecentFiles = new DelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
             AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc), (utc) => LoggedOn);
-            LicenseUpdate = new DelegateAction<object>((o) => License = New<LogOnIdentity, LicensePolicy>(LoggedOn ? Resolve.KnownIdentities.DefaultEncryptionIdentity : LogOnIdentity.Empty));
+            LicenseUpdate = new DelegateAction<object>((o) => License = New<LicensePolicy>());
 
             DecryptFileEnabled = true;
             OpenEncryptedEnabled = true;

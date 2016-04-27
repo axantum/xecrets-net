@@ -289,7 +289,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool EncryptFileOperation()
         {
-            _eventArgs.CryptoId = Resolve.CryptoFactory.Default(New<LogOnIdentity, ICryptoPolicy>(_eventArgs.LogOnIdentity)).Id;
+            _eventArgs.CryptoId = Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).Id;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
             encryptionParameters.Add(_eventArgs.SharedPublicKeys);
             New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
