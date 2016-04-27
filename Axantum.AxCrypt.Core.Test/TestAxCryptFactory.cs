@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
@@ -82,12 +81,12 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 byte[] buffer = new byte[2500];
-                using (V2AxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("properties")), 15))
+                using (V2AxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("properties")), 15))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
                 }
                 AxCryptFactory axFactory = new AxCryptFactory();
-                IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { new Passphrase("properties") }, null, new Guid[] { new V2Aes256CryptoFactory().Id });
+                IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { new Passphrase("properties") }, null, new Guid[] { new V2Aes256CryptoFactory().CryptoId });
                 using (IAxCryptDocument decryptedDocument = axFactory.CreateDocument(decryptionParameters, new MemoryStream(buffer)))
                 {
                     Assert.That(decryptedDocument.PassphraseIsValid);

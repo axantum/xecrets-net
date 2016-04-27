@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestNotImplemented()
         {
             UnversionedAxCryptReader reader = new UnversionedAxCryptReader(new LookAheadStream(Stream.Null));
-            Assert.Throws<NotImplementedException>(() => reader.Document(new Passphrase("test"), V1Aes128CryptoFactory.CryptoId, new Headers()));
+            Assert.Throws<NotImplementedException>(() => reader.Document(new Passphrase("test"), new V1Aes128CryptoFactory().CryptoId, new Headers()));
         }
     }
 }

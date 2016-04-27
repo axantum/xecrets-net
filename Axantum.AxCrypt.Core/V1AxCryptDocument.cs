@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core
 
         public bool Load(Passphrase passphrase, Guid cryptoId, Headers headers)
         {
-            if (cryptoId != V1Aes128CryptoFactory.CryptoId)
+            if (cryptoId != new V1Aes128CryptoFactory().CryptoId)
             {
                 ResetState(passphrase);
                 return false;

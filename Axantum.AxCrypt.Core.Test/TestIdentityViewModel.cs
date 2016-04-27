@@ -188,7 +188,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             LogOnIdentity key = new LogOnIdentity("p");
 
-            ActiveFile activeFile = new ActiveFile(New<IDataStore>(@"C:\Folder\File1-txt.axx"), New<IDataStore>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(New<IDataStore>(@"C:\Folder\File1-txt.axx"), New<IDataStore>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             LogOnIdentity id = null;
@@ -210,7 +210,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             LogOnIdentity key = new LogOnIdentity("p");
 
-            ActiveFile activeFile = new ActiveFile(New<IDataStore>(@"C:\Folder\File1-txt.axx"), New<IDataStore>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(New<IDataStore>(@"C:\Folder\File1-txt.axx"), New<IDataStore>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             LogOnIdentity id = key;

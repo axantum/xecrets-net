@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 using (Stream stream = new MemoryStream(privateKeyPemBytes))
                 {
-                    EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.Id, passphrase);
+                    EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.CryptoId, passphrase);
                     EncryptedProperties properties = new EncryptedProperties("private-key.pem");
                     using (MemoryStream encryptedStream = new MemoryStream())
                     {
@@ -189,7 +189,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 using (MemoryStream decryptedPrivateKeyStream = new MemoryStream())
                 {
-                    DecryptionParameter decryptionParameter = new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.Id);
+                    DecryptionParameter decryptionParameter = new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.CryptoId);
                     try
                     {
                         if (!New<AxCryptFile>().Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream, new DecryptionParameter[] { decryptionParameter }).IsValid)

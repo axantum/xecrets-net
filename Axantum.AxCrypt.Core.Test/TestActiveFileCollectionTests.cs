@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore decryptedFileInfo = New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = New<IDataStore>(_helloWorldAxxPath);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new LogOnIdentity("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new LogOnIdentity("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().CryptoId);
 
             collection.Add(activeFile);
 
@@ -93,8 +93,8 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore encryptedFileInfo1 = New<IDataStore>(Path.Combine(_rootPath, "test1-txt.axx"));
             IDataStore decryptedFileInfo2 = New<IDataStore>(Path.Combine(_rootPath, "test2.txt"));
             IDataStore encryptedFileInfo2 = New<IDataStore>(Path.Combine(_rootPath, "test2-text.axx"));
-            ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new LogOnIdentity("newA"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
-            ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new LogOnIdentity("newB"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new LogOnIdentity("newA"), ActiveFileStatus.None, new V1Aes128CryptoFactory().CryptoId);
+            ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new LogOnIdentity("newB"), ActiveFileStatus.None, new V1Aes128CryptoFactory().CryptoId);
 
             ActiveFileCollection collection = new ActiveFileCollection(new ActiveFile[] { activeFile1, activeFile2 });
 

@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
@@ -75,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestFileTimes()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passx")), 12);
+            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("v2passx")), 12);
             DateTime now = DateTime.UtcNow;
             headers.LastAccessTimeUtc = now;
             headers.LastWriteTimeUtc = now.AddHours(1);
@@ -89,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestCompression()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2pass")), 10);
+            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("v2pass")), 10);
             headers.IsCompressed = true;
             Assert.That(headers.IsCompressed, Is.True);
 
@@ -100,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestUnicodeFileNameShort()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passz")), 10);
+            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("v2passz")), 10);
             headers.FileName = "My Secret Document.txt";
             Assert.That(headers.FileName, Is.EqualTo("My Secret Document.txt"));
         }
@@ -108,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestUnicodeFileNameLong()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passy")), 10);
+            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("v2passy")), 10);
             string longName = "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.";
             Assert.That(longName.Length, Is.GreaterThan(256));
 
@@ -119,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public void TestWriteWithHmac()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("v2passzz")), 20);
+            V2DocumentHeaders headers = new V2DocumentHeaders(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("v2passzz")), 20);
             byte[] output;
             V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(headers.GetHmacKey()));
             using (V2HmacStream<MemoryStream> hmacStream = V2HmacStream.Create<MemoryStream>(hmacCalculator, new MemoryStream()))
@@ -184,7 +183,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestWriteStartWithHmacWithNullArgument()
         {
-            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("Key")), 10);
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("Key")), 10);
             Assert.Throws<ArgumentNullException>(() => documentHeaders.WriteStartWithHmac(null));
         }
 
@@ -231,7 +230,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestAddingSingleV2AsymmetricKeyWrap()
         {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
@@ -261,7 +260,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestAddingMultipleV2AsymmetricKeyWraps()
         {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("niklas"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("niklas"));
             IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             IAsymmetricPublicKey publicKey2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });

@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core
         private bool Load(Passphrase passphrase, Guid cryptoId, AxCryptReader reader, Headers headers)
         {
             ResetState();
-            if (cryptoId == V1Aes128CryptoFactory.CryptoId)
+            if (cryptoId == new V1Aes128CryptoFactory().CryptoId)
             {
                 return PassphraseIsValid;
             }

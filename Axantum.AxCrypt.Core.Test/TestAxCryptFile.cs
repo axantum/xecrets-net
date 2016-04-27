@@ -99,10 +99,10 @@ namespace Axantum.AxCrypt.Core.Test
             string nullString = null;
             Action<Stream> nullStreamAction = null;
 
-            Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(nullFileInfo, destinationFileInfo, new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(sourceFileInfo, nullFileInfo, new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(nullFileInfo, destinationFileInfo, new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(sourceFileInfo, nullFileInfo, new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(sourceFileInfo, destinationFileInfo, nullEncryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(sourceFileInfo, destinationFileInfo, new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(sourceFileInfo, destinationFileInfo, new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(nullFileInfo, new MemoryStream(), EncryptionParameters.Empty, AxCryptOptions.None, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(sourceFileInfo, nullStream, EncryptionParameters.Empty, AxCryptOptions.None, new ProgressContext()); });
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = New<IDataStore>(_testTextPath);
             IDataStore destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, new Passphrase("axcrypt"));
 
             new AxCryptFile().Encrypt(sourceFileInfo, destinationFileInfo, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             using (IAxCryptDocument document = New<AxCryptFile>().Document(destinationFileInfo, new LogOnIdentity("axcrypt"), new ProgressContext()))
@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             using (Stream destinationStream = destinationFileInfo.OpenWrite())
             {
-                EncryptionParameters parameters = new EncryptionParameters(V2Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt"));
+                EncryptionParameters parameters = new EncryptionParameters(new V2Aes128CryptoFactory().CryptoId, new Passphrase("axcrypt"));
                 new AxCryptFile().Encrypt(sourceFileInfo, destinationStream, parameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
 
@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt.Core.Test
             AxCryptReaderBase reader = headers.CreateReader(new LookAheadStream(new ProgressStream(sourceFileInfo.OpenRead(), progress)));
             using (IAxCryptDocument document = AxCryptReaderBase.Document(reader))
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, headers);
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, headers);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 IDataStore destinationInfo = New<IDataStore>(_rootPath.PathCombine("Destination", "Decrypted.txt"));
 
@@ -234,7 +234,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceRuntimeFileInfo = New<IDataStore>(sourceFullName);
             IDataStore destinationRuntimeFileInfo = sourceRuntimeFileInfo.CreateEncryptedName();
             LogOnIdentity passphrase = new LogOnIdentity("laDabled@tAmeopot33");
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, passphrase.Passphrase);
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, passphrase.Passphrase);
 
             new AxCryptFile().Encrypt(sourceRuntimeFileInfo, destinationRuntimeFileInfo, encryptionParameters, AxCryptOptions.SetFileTimes | AxCryptOptions.EncryptWithCompression, new ProgressContext());
 
@@ -270,7 +270,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(encryptedFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("axcrypt"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, new Passphrase("axcrypt"));
             new AxCryptFile().Encrypt(sourceFileInfo, encryptedFileInfo, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
 
             IDataStore decryptedFileInfo = New<IDataStore>(Path.Combine(_rootPath, "decrypted.txt"));
@@ -286,7 +286,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("Uncompressable");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool isOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, sourceRuntimeFileInfo.OpenRead());
+                bool isOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, sourceRuntimeFileInfo.OpenRead());
                 Assert.That(isOk, Is.True, "The document should load ok.");
                 New<AxCryptFile>().Decrypt(document, destinationRuntimeFileInfo, AxCryptOptions.None, new ProgressContext());
                 Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(0), "Since the data is not compressed, there should not be a CompressionInfo, but in 1.x there is, with value zero.");
@@ -400,7 +400,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = New<IDataStore>(sourceFilePath);
             IDataStore destinationFileInfo = New<IDataStore>(destinationFilePath);
 
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes128CryptoFactory.CryptoId, new Passphrase("a"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes128CryptoFactory().CryptoId, new Passphrase("a"));
 
             ProgressContext progress = new ProgressContext();
 
@@ -436,7 +436,7 @@ namespace Axantum.AxCrypt.Core.Test
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
 
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("b"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("b"));
             ProgressContext progress = new ProgressContext();
 
             New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, encryptionParameters, progress);
@@ -497,7 +497,7 @@ namespace Axantum.AxCrypt.Core.Test
             sourceFileInfo.Container.CreateFolder();
             IDataStore destinationFileInfo = New<IDataStore>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.axx"));
 
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("allan"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, new Passphrase("allan"));
 
             New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, encryptionParameters, new ProgressContext());
 
@@ -514,7 +514,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore alternateDestinationFileInfo = New<IDataStore>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.1.axx"));
 
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
 
             New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, encryptionParameters, new ProgressContext());
 
@@ -530,7 +530,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataContainer sourceFolderInfo = sourceFileInfo.Container;
             IDataStore destinationFileInfo = sourceFileInfo.Container.FileItemInfo("David Copperfield-txt.axx");
 
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V1Aes128CryptoFactory.CryptoId, new Passphrase("allan"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, new Passphrase("allan"));
 
             New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { sourceFolderInfo }, encryptionParameters, new ProgressContext());
 
@@ -548,7 +548,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore alternateDestinationFileInfo = sourceFolderInfo.FileItemInfo("David Copperfield-txt.1.axx");
             Assert.That(alternateDestinationFileInfo.IsAvailable, Is.False, "The destination should not be created and exist yet.");
 
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes128CryptoFactory.CryptoId, new Passphrase("allan"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes128CryptoFactory().CryptoId, new Passphrase("allan"));
 
             New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { sourceFolderInfo }, encryptionParameters, new ProgressContext());
 

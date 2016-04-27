@@ -257,17 +257,17 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
             FakeDataStore.AddFile(file1, null);
-            activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
             FakeDataStore.AddFile(file2, null);
-            activeFile = new ActiveFile(New<IDataStore>(file2), New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(New<IDataStore>(file2), New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
             FakeDataStore.AddFile(file3, null);
-            activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             ActiveFileComparer comparer;
@@ -310,22 +310,22 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
                 FakeDataStore.AddFile(file1, null);
-                activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
 
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
                 FakeDataStore.AddFile(file2, null);
-                activeFile = new ActiveFile(New<IDataStore>(file2), New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(New<IDataStore>(file2), New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
 
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
                 FakeDataStore.AddFile(file3, null);
-                activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
 
                 Assert.That(mvm.FilesArePending, Is.True);
 
-                activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
 
                 Assert.That(mvm.FilesArePending, Is.False);
@@ -350,15 +350,15 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeDataStore.AddFile(file1, null);
-            activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             FakeDataStore.AddFile(file2, null);
-            activeFile = new ActiveFile(New<IDataStore>(file2), New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(New<IDataStore>(file2), New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             FakeDataStore.AddFile(file3, null);
-            activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             using (MainViewModel mvm = New<MainViewModel>())
@@ -405,7 +405,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeDataStore.AddFile(file1, null);
-            activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             Resolve.KnownIdentities.Add(new LogOnIdentity("passphrase2"));

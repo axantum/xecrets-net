@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 foreach (Guid cryptoId in cryptoIds)
                 {
-                    if (cryptoId == V1Aes128CryptoFactory.CryptoId)
+                    if (cryptoId == new V1Aes128CryptoFactory().CryptoId)
                     {
                         continue;
                     }

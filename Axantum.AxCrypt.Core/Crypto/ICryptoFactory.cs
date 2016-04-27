@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         int Priority { get; }
 
-        Guid Id { get; }
+        Guid CryptoId { get; }
 
         /// <summary>
         /// Gets the unique name of the algorithm implementation.

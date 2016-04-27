@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 using (MemoryStream decryptedStream = new MemoryStream())
                 {
-                    EncryptedProperties properties = New<AxCryptFile>().Decrypt(encryptedStream, decryptedStream, new DecryptionParameter[] { new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.Id) });
+                    EncryptedProperties properties = New<AxCryptFile>().Decrypt(encryptedStream, decryptedStream, new DecryptionParameter[] { new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.CryptoId) });
                     if (!properties.IsValid)
                     {
                         keyPair = null;
@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Service
             string json = Resolve.Serializer.Serialize(keys);
             using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.Id, passphrase);
+                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.CryptoId, passphrase);
                 EncryptedProperties properties = new EncryptedProperties(originalFileName);
                 using (MemoryStream exportStream = new MemoryStream())
                 {

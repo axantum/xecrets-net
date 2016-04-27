@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
@@ -145,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (V2AxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("Secret")), 100))
+                    using (V2AxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("Secret")), 100))
                     {
                         document.EncryptTo(inputStream, outputStream, options);
                         output = outputStream.ToArray();
@@ -214,7 +213,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptWithOneAsymmetricKey()
         {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
@@ -223,7 +222,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
 
             IAsymmetricPrivateKey privateKey1 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
-            DecryptionParameter decryptionParameter = new DecryptionParameter(privateKey1, V2Aes256CryptoFactory.CryptoId);
+            DecryptionParameter decryptionParameter = new DecryptionParameter(privateKey1, new V2Aes256CryptoFactory().CryptoId);
             byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter }, output);
 
             Assert.That(decryptedText, Is.Not.Null, "The deryption failed because no valid decryption parameter was found.");
@@ -233,7 +232,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptWithOneAsymmetricKeyAndWrongPassphraseButCorrectPrivateKey()
         {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
@@ -241,9 +240,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKeyAndWrongPassphraseButCorrectPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
 
-            DecryptionParameter decryptionParameter1 = new DecryptionParameter(new Passphrase("niklas"), V2Aes256CryptoFactory.CryptoId);
+            DecryptionParameter decryptionParameter1 = new DecryptionParameter(new Passphrase("niklas"), new V2Aes256CryptoFactory().CryptoId);
             IAsymmetricPrivateKey privateKey1 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
-            DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey1, V2Aes256CryptoFactory.CryptoId);
+            DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey1, new V2Aes256CryptoFactory().CryptoId);
             byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter1, decryptionParameter2, }, output);
 
             Assert.That(decryptedText, Is.Not.Null, "The deryption failed because no valid decryption parameter was found.");
@@ -253,7 +252,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptWithOneAsymmetricKeyAndCorrectPassphraseButWrongPrivateKey()
         {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("tes1t@test.com"), publicKey1), });
 
@@ -261,9 +260,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithOneAsymmetricKeyAndCorrectPassphraseButWrongPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
 
-            DecryptionParameter decryptionParameter1 = new DecryptionParameter(new Passphrase("allan"), V2Aes256CryptoFactory.CryptoId);
+            DecryptionParameter decryptionParameter1 = new DecryptionParameter(new Passphrase("allan"), new V2Aes256CryptoFactory().CryptoId);
             IAsymmetricPrivateKey privateKey2 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
-            DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey2, V2Aes256CryptoFactory.CryptoId);
+            DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey2, new V2Aes256CryptoFactory().CryptoId);
             byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter1, decryptionParameter2, }, output);
 
             Assert.That(decryptedText, Is.Not.Null, "The deryption failed because no valid decryption parameter was found.");
@@ -273,7 +272,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptWithTwoAsymmetricKeysAndOneCorrectPrivateKey()
         {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("allan"));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), });
             IAsymmetricPublicKey publicKey2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
@@ -283,11 +282,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             byte[] output = EncrytionHelper(encryptionParameters, "TestEncryptWithTwoAsymmetricKeysAndOneCorrectPrivateKey.txt", AxCryptOptions.EncryptWithCompression, plainText);
 
-            DecryptionParameter decryptionParameter0 = new DecryptionParameter(new Passphrase("niklas"), V2Aes256CryptoFactory.CryptoId);
+            DecryptionParameter decryptionParameter0 = new DecryptionParameter(new Passphrase("niklas"), new V2Aes256CryptoFactory().CryptoId);
             IAsymmetricPrivateKey privateKey1 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey1);
-            DecryptionParameter decryptionParameter1 = new DecryptionParameter(privateKey1, V2Aes256CryptoFactory.CryptoId);
+            DecryptionParameter decryptionParameter1 = new DecryptionParameter(privateKey1, new V2Aes256CryptoFactory().CryptoId);
             IAsymmetricPrivateKey privateKey2 = New<IAsymmetricFactory>().CreatePrivateKey(Resources.PrivateKey2);
-            DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey2, V2Aes256CryptoFactory.CryptoId);
+            DecryptionParameter decryptionParameter2 = new DecryptionParameter(privateKey2, new V2Aes256CryptoFactory().CryptoId);
             byte[] decryptedText = DecryptionHelper(new DecryptionParameter[] { decryptionParameter0, decryptionParameter1, decryptionParameter2, }, output);
 
             Assert.That(decryptedText, Is.Not.Null, "The deryption failed because no valid decryption parameter was found.");
@@ -374,13 +373,13 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 byte[] buffer = new byte[5500 + length];
-                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("passphrase")), 113))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), options);
                 }
                 using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
                 {
-                    Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, new MemoryStream(buffer)), Is.True);
+                    Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().CryptoId, new MemoryStream(buffer)), Is.True);
                     byte[] plain;
                     using (MemoryStream decryptedStream = new MemoryStream())
                     {
@@ -416,14 +415,14 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 byte[] buffer = new byte[2500];
-                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("passphrase")), 113))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
                 }
 
                 using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
                 {
-                    Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), V2Aes256CryptoFactory.CryptoId, new MemoryStream(buffer)), Is.False);
+                    Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), new V2Aes256CryptoFactory().CryptoId, new MemoryStream(buffer)), Is.False);
                 }
             }
         }
@@ -444,12 +443,12 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 byte[] buffer = new byte[2500];
-                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("passphrase")), 113))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
                     using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
                     {
-                        Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), V2Aes256CryptoFactory.CryptoId, new MemoryStream(buffer)), Is.False);
+                        Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), new V2Aes256CryptoFactory().CryptoId, new MemoryStream(buffer)), Is.False);
                         Assert.Throws<InternalErrorException>(() => decryptedDocument.DecryptTo(Stream.Null));
                     }
                 }
@@ -465,7 +464,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 byte[] buffer = new byte[3000];
-                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("passphrase")), 113))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithoutCompression);
 
@@ -473,7 +472,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                     using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
                     {
-                        Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, new MemoryStream(buffer)), Is.True);
+                        Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().CryptoId, new MemoryStream(buffer)), Is.True);
                         Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() => decryptedDocument.DecryptTo(Stream.Null));
                     }
                 }
@@ -489,7 +488,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 byte[] buffer = new byte[2500];
-                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("passphrase")), 113))
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("passphrase")), 113))
                 {
                     document.EncryptTo(inputStream, new MemoryStream(buffer), AxCryptOptions.EncryptWithCompression);
 
@@ -497,7 +496,7 @@ namespace Axantum.AxCrypt.Core.Test
                     AxCryptReader reader = headers.CreateReader(new LookAheadStream(new MemoryStream(buffer)));
                     using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument(reader))
                     {
-                        Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, headers), Is.True);
+                        Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().CryptoId, headers), Is.True);
                         reader.SetStartOfData();
                         Assert.Throws<InvalidOperationException>(() => decryptedDocument.DecryptTo(Stream.Null));
                     }
@@ -514,7 +513,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 byte[] buffer = new byte[3000];
-                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(V2Aes256CryptoFactory.CryptoId, new Passphrase("properties")), 15))
+                using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("properties")), 15))
                 {
                     DateTime utcNow = OS.Current.UtcNow;
                     DateTime lastWrite = utcNow.AddHours(1);
@@ -530,7 +529,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                     using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
                     {
-                        Assert.That(decryptedDocument.Load(new Passphrase("properties"), V2Aes256CryptoFactory.CryptoId, new MemoryStream(buffer)), Is.True);
+                        Assert.That(decryptedDocument.Load(new Passphrase("properties"), new V2Aes256CryptoFactory().CryptoId, new MemoryStream(buffer)), Is.True);
 
                         Assert.That(decryptedDocument.CreationTimeUtc, Is.EqualTo(create));
                         Assert.That(decryptedDocument.LastAccessTimeUtc, Is.EqualTo(lastAccess));

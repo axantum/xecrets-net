@@ -505,7 +505,7 @@ namespace Axantum.AxCrypt.Core.Test
             axCryptFileMock.Setup<EncryptedProperties>(m => m.CreateEncryptedProperties(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase) =>
             {
                 EncryptedProperties properties = new EncryptedProperties(fileInfo.FullName.Replace("-txt.axx", ".txt"));
-                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, V1Aes128CryptoFactory.CryptoId);
+                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, new V1Aes128CryptoFactory().CryptoId);
                 properties.IsValid = true;
                 return properties;
             });
@@ -514,7 +514,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
             axCryptFactoryMock.Setup<DecryptionParameter>(m => m.FindDecryptionParameter(It.IsAny<IEnumerable<DecryptionParameter>>(), It.IsAny<IDataStore>())).Returns((IEnumerable<DecryptionParameter> decryptionParameters, IDataStore fileInfo) =>
             {
-                return new DecryptionParameter(Passphrase.Empty, V1Aes128CryptoFactory.CryptoId);
+                return new DecryptionParameter(Passphrase.Empty, new V1Aes128CryptoFactory().CryptoId);
             });
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
@@ -560,7 +560,7 @@ namespace Axantum.AxCrypt.Core.Test
             axCryptFileMock.Setup<EncryptedProperties>(m => m.CreateEncryptedProperties(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase) =>
             {
                 EncryptedProperties properties = new EncryptedProperties(fileInfo.Name.Replace("-txt.axx", ".txt"));
-                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, V1Aes128CryptoFactory.CryptoId);
+                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, new V1Aes128CryptoFactory().CryptoId);
                 properties.IsValid = true;
                 return properties;
             });
@@ -852,7 +852,7 @@ namespace Axantum.AxCrypt.Core.Test
             axCryptFileMock.Setup<EncryptedProperties>(m => m.CreateEncryptedProperties(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase) =>
             {
                 EncryptedProperties properties = new EncryptedProperties(fileInfo.FullName.Replace("-txt.axx", ".txt"));
-                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, V1Aes128CryptoFactory.CryptoId);
+                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, new V1Aes128CryptoFactory().CryptoId);
                 properties.IsValid = true;
                 return properties;
             });
@@ -861,7 +861,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
             axCryptFactoryMock.Setup<DecryptionParameter>(m => m.FindDecryptionParameter(It.IsAny<IEnumerable<DecryptionParameter>>(), It.IsAny<IDataStore>())).Returns((IEnumerable<DecryptionParameter> decryptionParameters, IDataStore fileInfo) =>
             {
-                return new DecryptionParameter(Passphrase.Empty, V1Aes128CryptoFactory.CryptoId);
+                return new DecryptionParameter(Passphrase.Empty, new V1Aes128CryptoFactory().CryptoId);
             });
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
@@ -896,7 +896,7 @@ namespace Axantum.AxCrypt.Core.Test
             axCryptFileMock.Setup<EncryptedProperties>(m => m.CreateEncryptedProperties(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase) =>
             {
                 EncryptedProperties properties = new EncryptedProperties(fileInfo.FullName.Replace("-txt.axx", ".txt"));
-                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, V1Aes128CryptoFactory.CryptoId);
+                properties.DecryptionParameter = new DecryptionParameter(passphrase.Passphrase, new V1Aes128CryptoFactory().CryptoId);
                 properties.IsValid = true;
                 return properties;
             });

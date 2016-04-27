@@ -171,7 +171,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static EncryptionParameters WatchedFolderEncryptionParameters(WatchedFolder watchedFolder, LogOnIdentity identity)
         {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).Id, identity);
+            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity);
 
             IEnumerable<EmailAddress> keySharesEmails = watchedFolder.KeyShares;
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())

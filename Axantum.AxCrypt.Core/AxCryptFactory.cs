@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             long keyWrapIterations = Resolve.UserSettings.GetKeyWrapIterations(encryptionParameters.CryptoId);
-            if (encryptionParameters.CryptoId == V1Aes128CryptoFactory.CryptoId)
+            if (encryptionParameters.CryptoId == new V1Aes128CryptoFactory().CryptoId)
             {
                 return new V1AxCryptDocument(encryptionParameters.Passphrase, keyWrapIterations);
             }

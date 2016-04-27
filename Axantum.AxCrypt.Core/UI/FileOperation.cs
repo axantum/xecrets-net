@@ -256,7 +256,7 @@ namespace Axantum.AxCrypt.Core.UI
             string destinationPath = Resolve.Portable.Path().Combine(decryptedContainer.FullName, destinationName);
 
             IDataStore destinationFileInfo = New<IDataStore>(destinationPath);
-            ActiveFile destinationActiveFile = new ActiveFile(encryptedDataStore, destinationFileInfo, passphrase, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, document.CryptoFactory.Id);
+            ActiveFile destinationActiveFile = new ActiveFile(encryptedDataStore, destinationFileInfo, passphrase, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, document.CryptoFactory.CryptoId);
             return destinationActiveFile;
         }
 

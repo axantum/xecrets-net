@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Passphrase passphrase = new Passphrase("a");
                 using (V1AxCryptDocument document = new V1AxCryptDocument())
                 {
-                    bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, testStream);
+                    bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, testStream);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     string fileName = document.DocumentHeaders.FileName;
                     Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Passphrase passphrase = new Passphrase("a");
                 using (V1AxCryptDocument document = new V1AxCryptDocument())
                 {
-                    bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, testStream);
+                    bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, testStream);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     string fileName = document.DocumentHeaders.FileName;
                     Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Passphrase passphrase = new Passphrase("a");
                 using (V1AxCryptDocument document = new V1AxCryptDocument())
                 {
-                    bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, testStream);
+                    bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, testStream);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     string fileName = document.DocumentHeaders.FileName;
                     Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 Hmac hmac = document.DocumentHeaders.Headers.Hmac;
                 Assert.That(hmac.GetBytes(), Is.EqualTo(expectedHmac.GetBytes()), "Wrong HMAC");
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 bool isCompressed = document.DocumentHeaders.IsCompressed;
                 Assert.That(isCompressed, Is.False, "This file should not be compressed.");
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("b");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.False, "The passphrase provided is wrong!");
             }
         }
@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("Å ä Ö");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 bool isCompressed = document.DocumentHeaders.IsCompressed;
                 Assert.That(isCompressed, Is.True, "This file should be compressed.");
@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -199,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     progress.Cancel = true;
                 };
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, new ProgressStream(FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt), progress));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, new ProgressStream(FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt), progress));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -224,7 +224,7 @@ namespace Axantum.AxCrypt.Core.Test
                     encryptedFile.Seek(-1, SeekOrigin.End);
                     encryptedFile.WriteByte(lastByte);
                     encryptedFile.Position = 0;
-                    bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, encryptedFile);
+                    bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, encryptedFile);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     using (MemoryStream plaintextStream = new MemoryStream())
                     {
@@ -244,7 +244,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     encryptedFile.SetLength(encryptedFile.Length / 2);
                     encryptedFile.Position = 0;
-                    bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, encryptedFile);
+                    bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, encryptedFile);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     using (MemoryStream plaintextStream = new MemoryStream())
                     {
@@ -261,7 +261,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
                 IProgressContext progress = new CancelProgressContext(new ProgressContext(new TimeSpan(0, 0, 0, 0, 100)));
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, new ProgressStream(FakeDataStore.ExpandableMemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt), progress));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, new ProgressStream(FakeDataStore.ExpandableMemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt), progress));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -282,7 +282,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("åäö");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.tst_0_0b6_key__aaaeoe__medium_html));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.tst_0_0b6_key__aaaeoe__medium_html));
                 Assert.That(keyIsOk, Is.True, "A correct passphrase was provided, but it was not accepted.");
                 Assert.That(document.DocumentHeaders.IsCompressed, Is.True, "The file is compressed.");
                 Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
@@ -317,7 +317,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Passphrase passphrase = new Passphrase("Å ä Ö");
                 using (V1AxCryptDocument document = new V1AxCryptDocument())
                 {
-                    Assert.Throws<FileFormatException>(() => { document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, testStream); });
+                    Assert.Throws<FileFormatException>(() => { document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, testStream); });
                     using (MemoryStream plaintextStream = new MemoryStream())
                     {
                         Assert.Throws<InternalErrorException>(() => { document.DecryptTo(plaintextStream); });
@@ -332,7 +332,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("Å ä Ö");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -352,7 +352,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = Passphrase.Create("p", Resources.My_Key_File);
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.Passphrase__p____My_Keyfile_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.Passphrase__p____My_Keyfile_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -369,7 +369,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = Passphrase.Create("b", Resources.My_Key_File);
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources._2003_05_28_PcWorld_AxCrypt__b____My_Keyfile_pdf));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources._2003_05_28_PcWorld_AxCrypt__b____My_Keyfile_pdf));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -385,7 +385,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = Passphrase.Create("a", Resources.My_Key_File);
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.Foto_2015_05_19_23_19_08__a____My_Keyfile_jpg));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.Foto_2015_05_19_23_19_08__a____My_Keyfile_jpg));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -401,7 +401,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 document.DecryptTo(Stream.Null);
             }
@@ -413,7 +413,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 document.DocumentHeaders.Headers.Hmac = new V1Hmac(new byte[V1Hmac.RequiredLength]);
                 Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() =>
@@ -430,7 +430,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                Assert.Throws<FileFormatException>(() => { document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(dummy)); }, "Calling with dummy data that does not contain a GUID.");
+                Assert.Throws<FileFormatException>(() => { document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(dummy)); }, "Calling with dummy data that does not contain a GUID.");
             }
         }
 
@@ -444,7 +444,7 @@ namespace Axantum.AxCrypt.Core.Test
                 testStream.Position = 0;
                 using (V1AxCryptDocument document = new V1AxCryptDocument())
                 {
-                    Assert.Throws<FileFormatException>(() => { document.Load(Passphrase.Empty, V1Aes128CryptoFactory.CryptoId, testStream); }, "Calling with too short a stream, only containing a GUID.");
+                    Assert.Throws<FileFormatException>(() => { document.Load(Passphrase.Empty, new V1Aes128CryptoFactory().CryptoId, testStream); }, "Calling with too short a stream, only containing a GUID.");
                 }
             }
         }
@@ -455,7 +455,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
 
                 string creationTime = document.DocumentHeaders.CreationTimeUtc.ToString(CultureInfo.InvariantCulture);
@@ -473,7 +473,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct and should work!");
 
                 Passphrase newPassphrase = new Passphrase("b");
@@ -486,7 +486,7 @@ namespace Axantum.AxCrypt.Core.Test
                     changedStream.Position = 0;
                     using (V1AxCryptDocument changedDocument = new V1AxCryptDocument())
                     {
-                        bool changedKeyIsOk = changedDocument.Load(newPassphrase, V1Aes128CryptoFactory.CryptoId, changedStream);
+                        bool changedKeyIsOk = changedDocument.Load(newPassphrase, new V1Aes128CryptoFactory().CryptoId, changedStream);
                         Assert.That(changedKeyIsOk, Is.True, "The changed passphrase provided is correct and should work!");
 
                         using (MemoryStream plaintextStream = new MemoryStream())
@@ -522,7 +522,7 @@ namespace Axantum.AxCrypt.Core.Test
                     outputStream.Position = 0;
                     using (V1AxCryptDocument document = new V1AxCryptDocument())
                     {
-                        bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, outputStream);
+                        bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, outputStream);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("MyFile.txt"));
                         Assert.That(document.DocumentHeaders.CreationTimeUtc, Is.EqualTo(creationTimeUtc));
@@ -561,7 +561,7 @@ namespace Axantum.AxCrypt.Core.Test
                     outputStream.Position = 0;
                     using (V1AxCryptDocument document = new V1AxCryptDocument())
                     {
-                        bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, outputStream);
+                        bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, outputStream);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("MyFile.txt"));
                         Assert.That(document.DocumentHeaders.CreationTimeUtc, Is.EqualTo(creationTimeUtc));
@@ -677,7 +677,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct and should work!");
 
                 Passphrase newPassphrase = new Passphrase("b");
@@ -706,7 +706,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (V1AxCryptDocument document = new V1AxCryptDocument(reader))
             {
                 Passphrase key = new Passphrase("Å ä Ö");
-                bool keyIsOk = document.Load(key, V1Aes128CryptoFactory.CryptoId, headers);
+                bool keyIsOk = document.Load(key, new V1Aes128CryptoFactory().CryptoId, headers);
                 Assert.That(keyIsOk, Is.True);
 
                 reader.SetStartOfData();
@@ -731,7 +731,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (V1AxCryptDocument document = new V1AxCryptDocument(reader))
                 {
                     Passphrase key = new Passphrase("a");
-                    bool keyIsOk = document.Load(key, V1Aes128CryptoFactory.CryptoId, headers);
+                    bool keyIsOk = document.Load(key, new V1Aes128CryptoFactory().CryptoId, headers);
                     Assert.That(keyIsOk, Is.True);
 
                     reader.InputStream.Read(new byte[16], 0, 16);
