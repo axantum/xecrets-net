@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Service;
 using System;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
@@ -106,7 +106,11 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private UserAccount Account
         {
-            get { return Task.Run(() => New<LogOnIdentity, IAccountService>(_identity).AccountAsync()).Result; }
+            get
+            {
+                UserAccount account = Task.Run(async () => await New<LogOnIdentity, IAccountService>(_identity).AccountAsync().Free()).Result;
+                return account;
+            }
         }
 
         public bool Has(LicenseCapability capability)

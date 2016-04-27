@@ -161,6 +161,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFiles(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (LoggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
+            BindPropertyChangedInternal(nameof(License), (LicensePolicy policy) => SetWatchedFolders());
         }
 
         private void SubscribeToModelEvents()
@@ -285,12 +286,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
                 case SessionNotificationType.LogOn:
                     SetLogOnState(Resolve.KnownIdentities.IsLoggedOn);
-                    SetWatchedFolders();
                     break;
 
                 case SessionNotificationType.LogOff:
                     SetLogOnState(Resolve.KnownIdentities.IsLoggedOn);
-                    SetWatchedFolders();
                     break;
 
                 case SessionNotificationType.WatchedFolderChange:
@@ -324,6 +323,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetWatchedFolders()
         {
+            WatchedFoldersEnabled = New<LicensePolicy>().Has(LicenseCapability.SecureFolders);
+            if (!WatchedFoldersEnabled)
+            {
+                WatchedFolders = new string[0];
+                return;
+            }
             WatchedFolders = Resolve.KnownIdentities.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
         }
 
@@ -348,7 +353,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             LoggedOn = isLoggedOn;
             EncryptFileEnabled = isLoggedOn;
-            WatchedFoldersEnabled = isLoggedOn;
         }
 
         private void ClearPassphraseMemoryAction()

@@ -710,8 +710,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { _encryptedFoldersToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), async (IEnumerable<ActiveFile> files) => { await _recentFilesListView.UpdateRecentFilesAsync(files); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DownloadVersion), (DownloadVersion dv) => { SetSoftwareStatus(); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
@@ -747,6 +746,37 @@ namespace Axantum.AxCrypt
             _knownFoldersViewModel.KnownFolders = KnownFoldersDiscovery.Discover();
         }
 
+        private void ConfigureWatchedFoldersMenus(bool enabled)
+        {
+            foreach (Control control in _hiddenWatchedFoldersTabPage.Controls)
+            {
+                control.Enabled = enabled;
+            }
+            _hiddenWatchedFoldersTabPage.ToolTipText = enabled ? string.Empty : Texts.PremiumFeatureToolTipText;
+
+            if (enabled)
+            {
+                _encryptedFoldersToolStripMenuItem.ToolTipText = string.Empty;
+                _encryptedFoldersToolStripMenuItem.Image = Resources.folder;
+            }
+            else
+            {
+                _encryptedFoldersToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
+                _encryptedFoldersToolStripMenuItem.Image = Resources.premium_32px;
+            }
+
+            if (enabled)
+            {
+                _addSecureFolderToolStripMenuItem.ToolTipText = string.Empty;
+                _addSecureFolderToolStripMenuItem.Image = null;
+            }
+            else
+            {
+                _addSecureFolderToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
+                _addSecureFolderToolStripMenuItem.Image = Resources.premium_32px;
+            }
+        }
+
         private void ShowHideWatchedFoldersContextMenuItems(Point location)
         {
             bool itemSelected = _watchedFoldersListView.HitTest(location).Location == ListViewHitTestLocations.Label;
@@ -754,9 +784,6 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Visible = itemSelected;
             _watchedFoldersRemoveMenuItem.Visible = itemSelected;
             _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
-#if !DEBUG
-            _watchedFoldersKeySharingMenuItem.Enabled = false;
-#endif
         }
 
         private static void BindToWatchedFoldersViewModel()
@@ -773,6 +800,8 @@ namespace Axantum.AxCrypt
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
             _secureDeleteToolStripMenuItem.Click += (sender, e) => PremiumFeature_Click(LicenseCapability.SecureWipe, (ss, ee) => { _fileOperationViewModel.WipeFiles.Execute(null); }, sender, e);
+            _encryptedFoldersToolStripMenuItem.Click += (sender, e) => PremiumFeature_Click(LicenseCapability.SecureFolders, (ss, ee) => { encryptedFoldersToolStripMenuItem_Click(ss, ee); }, sender, e);
+            _addSecureFolderToolStripMenuItem.Click += (sender, e) => PremiumFeature_Click(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); }, sender, e);
 
             _watchedFoldersListView.MouseDoubleClick += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
             _watchedFoldersdecryptTemporarilyMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFolders.Execute(_mainViewModel.SelectedWatchedFolders); };

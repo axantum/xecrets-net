@@ -381,6 +381,11 @@ namespace Axantum.AxCrypt.Core
 
         private static bool EncryptionChangeNecessary(LogOnIdentity identity, EncryptedProperties encryptedProperties, EncryptionParameters encryptionParameters)
         {
+            if (encryptedProperties.DecryptionParameter == null)
+            {
+                return false;
+            }
+
             if (encryptedProperties.DecryptionParameter.Passphrase != identity.Passphrase)
             {
                 return true;

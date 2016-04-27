@@ -313,6 +313,7 @@
             this._statusTabControl.Location = new System.Drawing.Point(3, 77);
             this._statusTabControl.Name = "_statusTabControl";
             this._statusTabControl.SelectedIndex = 0;
+            this._statusTabControl.ShowToolTips = true;
             this._statusTabControl.Size = new System.Drawing.Size(628, 176);
             this._statusTabControl.TabIndex = 2;
             // 
@@ -359,7 +360,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -414,14 +415,12 @@
             this._encryptedFoldersToolStripMenuItem.Name = "_encryptedFoldersToolStripMenuItem";
             this._encryptedFoldersToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this._encryptedFoldersToolStripMenuItem.Text = "[Encrypted &Folders]";
-            this._encryptedFoldersToolStripMenuItem.Click += new System.EventHandler(this.encryptedFoldersToolStripMenuItem_Click);
             // 
             // _addSecureFolderToolStripMenuItem
             // 
             this._addSecureFolderToolStripMenuItem.Name = "_addSecureFolderToolStripMenuItem";
             this._addSecureFolderToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this._addSecureFolderToolStripMenuItem.Text = "[Add &Secure Folder]";
-            this._addSecureFolderToolStripMenuItem.Click += new System.EventHandler(this.WatchedFoldersAddSecureFolderMenuItem_Click);
             // 
             // _toolStripSeparator6
             // 
