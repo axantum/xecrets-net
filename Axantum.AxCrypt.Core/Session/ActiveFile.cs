@@ -104,6 +104,17 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
         }
 
+        public ActiveFile(ActiveFile activeFile, Guid cryptoId)
+        {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+
+            Initialize(activeFile);
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, activeFile.Properties.LastEncryptionWriteTimeUtc, cryptoId);
+        }
+
         public ActiveFile(ActiveFile activeFile, DateTime lastEncryptionWriteTimeUtc, ActiveFileStatus status)
         {
             if (activeFile == null)
@@ -299,7 +310,7 @@ namespace Axantum.AxCrypt.Core.Session
             get
             {
                 ActiveFileVisualStates visualState = DetermineEncryptionState();
-                if (Properties.CryptoId != Resolve.CryptoFactory.Preferred.Id)
+                if (Properties.CryptoId != Resolve.CryptoFactory.Preferred.CryptoId)
                 {
                     visualState |= ActiveFileVisualStates.LowEncryption;
                 }

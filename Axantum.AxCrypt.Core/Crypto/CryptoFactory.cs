@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             lock (_factories)
             {
-                _factories.Add(factory().Id, factory);
+                _factories.Add(factory().CryptoId, factory);
             }
         }
 
@@ -124,14 +124,14 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                Guid defaultId = Preferred.Id;
-                Guid legacyId = Legacy.Id;
+                Guid defaultId = Preferred.CryptoId;
+                Guid legacyId = Legacy.CryptoId;
 
                 List<Guid> orderedIds = new List<Guid>();
                 orderedIds.Add(defaultId);
                 lock (_factories)
                 {
-                    orderedIds.AddRange(_factories.Values.Where(f => f().Id != defaultId && f().Id != legacyId).Select(f => f().Id));
+                    orderedIds.AddRange(_factories.Values.Where(f => f().CryptoId != defaultId && f().CryptoId != legacyId).Select(f => f().CryptoId));
                 }
                 orderedIds.Add(legacyId);
 
@@ -152,6 +152,16 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
+        public ICryptoFactory Update(Guid cryptoId)
+        {
+            if (cryptoId == new V1Aes128CryptoFactory().CryptoId)
+            {
+                return Legacy;
+            }
+
+            return Default(UserPolicy);
+        }
+
         public ICryptoFactory Preferred
         {
             get
@@ -167,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Create(V1Aes128CryptoFactory.CryptoId);
+                return Create(new V1Aes128CryptoFactory().CryptoId);
             }
         }
 
@@ -175,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Create(V2Aes128CryptoFactory.CryptoId);
+                return Create(new V2Aes128CryptoFactory().CryptoId);
             }
         }
     }

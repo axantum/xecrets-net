@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
@@ -54,6 +53,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
+                        activeFile = new ActiveFile(activeFile, Resolve.CryptoFactory.Update(activeFile.Properties.CryptoId).CryptoId);
                         EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
                         EncryptedProperties properties = EncryptedProperties.Create(activeFile.EncryptedFileInfo);
                         parameters.Add(properties.SharedKeyHolders);
