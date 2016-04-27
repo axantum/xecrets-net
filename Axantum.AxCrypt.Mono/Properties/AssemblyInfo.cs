@@ -39,9 +39,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("AxCrypt Mono Specific Library")]
 [assembly: AssemblyCompany("AxCrypt AB")]
-[assembly: AssemblyDescription("Beta")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyProduct("AxCrypt")]
-[assembly: AssemblyCopyright("Copyright © 2012-2015 Svante Seleborg")]
+[assembly: AssemblyCopyright("Copyright © 2012-2016 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

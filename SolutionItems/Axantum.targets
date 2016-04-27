@@ -44,7 +44,7 @@
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_AxCryptMajor>2</_AxCryptMajor>
-    <_AxCryptMinor>0</_AxCryptMinor>
+    <_AxCryptMinor>1</_AxCryptMinor>
     <AxBuildNumber Condition=" '$(AxBuildNumber)' == '' ">0</AxBuildNumber>
   </PropertyGroup>
   <PropertyGroup>

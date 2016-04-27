@@ -36,7 +36,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Common fake implementations for unit tests.")]
 [assembly: AssemblyCompany("AxCrypt AB")]
 [assembly: AssemblyProduct("AxCrypt")]
-[assembly: AssemblyCopyright("Copyright © 2012-2015 Svante Seleborg")]
+[assembly: AssemblyCopyright("Copyright © 2012-2016 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
