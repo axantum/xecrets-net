@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -20,15 +20,13 @@
  *
  * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
  * updates, contributions and contact with the author. You may also visit
- * http://www.axantum.com for more information about the author.
+ * http://www.axcrypt.net for more information about the author.
 */
 
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
-using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;

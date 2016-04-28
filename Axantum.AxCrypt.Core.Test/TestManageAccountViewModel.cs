@@ -20,7 +20,7 @@
  *
  * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
  * updates, contributions and contact with the author. You may also visit
- * http://www.axantum.com for more information about the author.
+ * http://www.axcrypt.net for more information about the author.
 */
 
 #endregion Coypright and License
