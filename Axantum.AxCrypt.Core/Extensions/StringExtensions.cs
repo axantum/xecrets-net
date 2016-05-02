@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <param name="format">The format.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns></returns>
-        public static string QueryFormat(this string format, params object[] parameters)
+        public static string QueryFormat(this string format, Uri baseUrl, params object[] parameters)
         {
             if (format == null)
             {
@@ -68,10 +68,11 @@ namespace Axantum.AxCrypt.Core.Extensions
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            string[] encoded = new string[parameters.Length];
+            string[] encoded = new string[parameters.Length + 1];
+            encoded[0] = baseUrl.ToString();
             for (int i = 0; i < parameters.Length; ++i)
             {
-                encoded[i] = Uri.EscapeDataString(parameters[i].ToString());
+                encoded[i + 1] = Uri.EscapeDataString(parameters[i].ToString());
             }
 
             return format.InvariantFormat(encoded);

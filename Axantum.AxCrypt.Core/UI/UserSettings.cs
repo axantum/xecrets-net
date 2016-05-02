@@ -135,6 +135,20 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        public Uri AccountWebUrl
+        {
+            get { return Load(nameof(AccountWebUrl), new Uri("https://account.axcrypt.net/")); }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                Store(nameof(AccountWebUrl), value.ToString());
+            }
+        }
+
         public UpdateLevels UpdateLevel
         {
             get { return (UpdateLevels)Load(nameof(UpdateLevel), (int)UpdateLevels.None); }

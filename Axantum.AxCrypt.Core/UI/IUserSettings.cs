@@ -54,6 +54,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         Uri UpdateUrl { get; set; }
 
+        Uri AccountWebUrl { get; set; }
+
         TimeSpan ApiTimeout { get; set; }
 
         DateTime LastUpdateCheckUtc { get; set; }

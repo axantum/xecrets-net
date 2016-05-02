@@ -840,11 +840,8 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
     <value>Back to main site</value>
     <comment>Menus and similar to link back to main site.</comment>
   </data>
-  <data name="LinkToAccountSite" xml:space="preserve">
-    <value>https://account.axcrypt.net/</value>
-  </data>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Purchase?email={0}</value>
+    <value>{0}Home/Purchase?email={1}</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://sv.surveymonkey.com/r/axcrypt</value>
@@ -853,10 +850,10 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
     <value>http://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
-    <value>https://account.axcrypt.net/secrets?email={0}</value>
+    <value>{0}secrets?email={1}</value>
   </data>
   <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
+    <value>{0}Home/Register</value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Signed Out</value>
