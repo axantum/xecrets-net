@@ -792,9 +792,6 @@ El equipo AxCrypt</value>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Hola {0},</value>
   </data>
-  <data name="MainSiteUrl" xml:space="preserve">
-    <value>http://www.axcrypt.net</value>
-  </data>
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>Mi AxCrypt ID</value>
   </data>

@@ -802,9 +802,6 @@ L'Equipe AxCrypt</value>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Bonjour {0},</value>
   </data>
-  <data name="MainSiteUrl" xml:space="preserve">
-    <value>http://www.axcrypt.net</value>
-  </data>
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>My AxCrypt ID</value>
   </data>

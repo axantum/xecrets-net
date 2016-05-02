@@ -148,7 +148,7 @@
   <data name="ActivateErrorPassword" xml:space="preserve">
     <value>Lösenordsåterställelse misslyckades.</value>
   </data>
-  <data name="ActivateMailBodyButton">
+  <data name="ActivateMailBodyButton" xml:space="preserve">
     <value>Aktivera AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
@@ -164,13 +164,13 @@
     <value>Du har gratis tillgång till AxCrypt Premium-funktioner under en 30-dagars provperiod från att du aktiverar ditt AxCrypt ID.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Du har tecknat dig för ett AxCrypt ID. Klicka på knappen nedan för att bekräfta.</value>
+    <value>Du har tecknat dig för ett AxCrypt ID. Verifiera registreringen med aktiveringskoden nedan i AxCrypt-appen eller webben.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
-    <value>Om knappen inte fungerar, gå till &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; och ange &lt;b&gt;{1}&lt;/b&gt; samt aktiveringskoden &lt;b&gt;{2}&lt;/b&gt; för att aktivera ditt AxCrypt ID manuellt.</value>
+    <value>Om du vill använda webben istället för appen, gå till &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; och ange &lt;b&gt;{1}&lt;/b&gt; samt aktiveringskoden &lt;b&gt;{2}&lt;/b&gt; för att aktivera ditt AxCrypt ID manuellt.</value>
   </data>
   <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
-    <value>Om knappen inte fungerar, gå till {0} och ange {1} samt aktiveringskoden {2} för att aktivera ditt AxCrypt ID manuellt.</value>
+    <value>Om du vill använda webben istället för appen, gå till {0} och ange {1} samt aktiveringskoden {2} för att aktivera ditt AxCrypt ID manuellt.</value>
   </data>
   <data name="ActivateMailBodyTitle" xml:space="preserve">
     <value>Hej och välkommen till AxCrypt!</value>
@@ -802,9 +802,6 @@ AxCrypt-teamet</value>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Hej {0},</value>
   </data>
-  <data name="MainSiteUrl" xml:space="preserve">
-    <value>http://www.axcrypt.net</value>
-  </data>
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>Mitt AxCrypt ID</value>
   </data>
@@ -965,6 +962,19 @@ Ange din epostadress nedan så skickar vi en aktiveringslänk dit. Av integritet
     <value>Vi har försökt skicka en aktiveringskod till &lt;b&gt;{0}&lt;/b&gt;. Kontrollera din inbox.
 
 Om du inte verkar få det inom några minuter, kontrollera ditt skräppostfilter och att {0} är rätt adress.</value>
+  </data>
+  <data name="PasswordStrengthBadTip" xml:space="preserve">
+    <value>Lösenordet är för svagt för att vara säkert.</value>
+  </data>
+  <data name="PasswordStrengthStrongTip" xml:space="preserve">
+    <value>Lösenordet är starkt och tillräckligt bra att rekommenderas.</value>
+  </data>
+  <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
+    <value>Lösenordet är för kort eller för likt ett vanligt lösenord att vara acceptabelt.</value>
+    <comment>Shown when no password is typed or it is effectively empty</comment>
+  </data>
+  <data name="PasswordStrengthWeakTip" xml:space="preserve">
+    <value>Lösenordet är för svagt för att vara rekommenderat.</value>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Mer om PayPal]</value>
