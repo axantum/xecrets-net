@@ -1,15 +1,15 @@
 # README #
 
-AxCrypt 2.x - Portable Open Source Encryption in C# for .NET/Mono.
+AxCrypt 2.1.x - Portable Open Source Encryption in C# for .NET/Mono.
 
-### AxCrypt 2.x ###
+### AxCrypt 2.1.x ###
 
-This is still pre-release software. Use with care. API:s may break at any moment.
+Although the software is in release status, internal API:s may break at any moment. Use with care.
 
 ### How To Build? ###
 
 For Windows, download the source code and open in Visual Studio. There
-are no external dependencies.
+are no external dependencies that are note resolved with Nuget.
 
 Unit tests require a NUnit-compatible unit test runnere.
 
@@ -23,4 +23,4 @@ compilation. There should be tests covering every line of code in Axantum.AxCryp
 
 ### Contact ###
 
-Contact me, Svante Seleborg, Axantum Software AB via svante@axantum.com .
+Contact me, Svante Seleborg, AxCrypt AB via svante.seleborg@axcrypt.net .
