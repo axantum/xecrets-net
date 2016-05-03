@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
             }
-            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Any(), Is.False, "There are no known public kyes, so none can be unshared either.");
         }
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "There is one known public key, so this should be available as unshared.");
         }
@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
         }
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
@@ -146,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
@@ -196,7 +196,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownPublicKeys.AddOrReplace(userPublicKey2);
             }
 
-            SharingListViewModel model = new SharingListViewModel(() => New<KnownPublicKeys>(), new UserPublicKey[0], LogOnIdentity.Empty);
+            SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 

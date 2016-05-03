@@ -259,5 +259,19 @@ namespace Axantum.AxCrypt.Core.Extensions
             UserAccount highPriorityAccount = new UserAccount(lowPriorityAccount.UserName, lowPriorityAccount.SubscriptionLevel, lowPriorityAccount.LevelExpiration, lowPriorityAccount.AccountStatus, highPriorityAccountKeys);
             return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys);
         }
+
+        public static IEnumerable<WatchedFolder> ToWatchedFolders(this IEnumerable<string> folderPaths)
+        {
+            IEnumerable<WatchedFolder> watched = Resolve.FileSystemState.WatchedFolders.Where((wf) => folderPaths.Contains(wf.Path));
+
+            return watched;
+        }
+
+        public static IEnumerable<EmailAddress> SharedWith(this IEnumerable<WatchedFolder> watchedFolders)
+        {
+            IEnumerable<EmailAddress> sharedWithEmailAddresses = watchedFolders.SelectMany(wf => wf.KeyShares).Distinct();
+
+            return sharedWithEmailAddresses;
+        }
     }
 }

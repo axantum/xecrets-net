@@ -45,8 +45,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// </summary>
     public class SharingListViewModel : ViewModelBase
     {
-        private Func<KnownPublicKeys> _knownPublicKeysFactory;
-
         private LogOnIdentity _logOnIdentity;
 
         public IEnumerable<UserPublicKey> SharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(SharedWith)); } private set { SetProperty(nameof(SharedWith), value); } }
@@ -61,9 +59,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction AsyncAddNewKeyShare { get; private set; }
 
-        public SharingListViewModel(Func<KnownPublicKeys> knownPublicKeysFactory, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
+        public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
-            _knownPublicKeysFactory = knownPublicKeysFactory;
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
 
             InitializePropertyValues(sharedWith);
@@ -76,7 +73,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             EmailAddress userEmail = _logOnIdentity.UserKeys.UserEmail;
             SharedWith = sharedWith.Where(sw => sw.Email != userEmail).OrderBy(e => e.Email.Address).ToList();
 
-            using (KnownPublicKeys knownPublicKeys = _knownPublicKeysFactory())
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 NotSharedWith = knownPublicKeys.PublicKeys.Where(upk => upk.Email != userEmail && !sharedWith.Any(sw => upk.Email == sw.Email)).OrderBy(e => e.Email.Address);
             }
@@ -127,7 +124,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task<IEnumerable<UserPublicKey>> TryAddMissingUnsharedPublicKeysFromServerAsync(IEnumerable<EmailAddress> keySharesToAdd)
         {
             List<UserPublicKey> publicKeys = new List<UserPublicKey>();
-            using (KnownPublicKeys knownPublicKeys = _knownPublicKeysFactory())
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 foreach (EmailAddress keyShareToAdd in keySharesToAdd)
                 {

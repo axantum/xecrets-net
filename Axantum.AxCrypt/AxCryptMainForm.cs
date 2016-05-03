@@ -1956,7 +1956,7 @@ namespace Axantum.AxCrypt
                     continue;
                 }
                 IEnumerable<UserPublicKey> sharedWithPublicKeys = encryptedProperties.SharedKeyHolders;
-                SharingListViewModel viewModel = new SharingListViewModel(New<KnownPublicKeys>, sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+                SharingListViewModel viewModel = new SharingListViewModel(sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
                 using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
                 {
                     if (dialog.ShowDialog(this) != DialogResult.OK)
@@ -1991,21 +1991,20 @@ namespace Axantum.AxCrypt
 
         private void WatchedFoldersKeySharing(IEnumerable<string> folderPaths)
         {
-            IEnumerable<WatchedFolder> watchedFolders = Resolve.FileSystemState.WatchedFolders.Where((wf) => folderPaths.Contains(wf.Path));
-            if (!watchedFolders.Any())
+            if (!folderPaths.Any())
             {
                 return;
             }
 
-            IEnumerable<EmailAddress> sharedWithEmailAddresses = watchedFolders.SelectMany(wf => wf.KeyShares).Distinct();
+            IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
 
             IEnumerable<UserPublicKey> sharedWithPublicKeys;
-            using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
-                sharedWithPublicKeys = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
+                sharedWithPublicKeys = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
             }
 
-            SharingListViewModel viewModel = new SharingListViewModel(New<KnownPublicKeys>, sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            SharingListViewModel viewModel = new SharingListViewModel(sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)
@@ -2015,7 +2014,7 @@ namespace Axantum.AxCrypt
                 sharedWithPublicKeys = dialog.SharedWith;
             }
 
-            foreach (WatchedFolder watchedFolder in watchedFolders)
+            foreach (WatchedFolder watchedFolder in folderPaths.ToWatchedFolders())
             {
                 WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
                 Resolve.FileSystemState.AddWatchedFolder(wf);
