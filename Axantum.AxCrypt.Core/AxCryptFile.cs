@@ -311,18 +311,23 @@ namespace Axantum.AxCrypt.Core
             try
             {
                 IEnumerable<IDataStore> files = containers.SelectMany((folder) => folder.ListEncrypted());
-                progress.AddTotal(files.Count());
-                foreach (IDataStore file in files)
-                {
-                    ChangeEncryption(file, identity, encryptionParameters, progress);
-                    progress.AddCount(1);
-                }
+                ChangeEncryption(files, identity, encryptionParameters, progress);
             }
             finally
             {
                 progress.NotifyLevelFinished();
             }
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
+        }
+
+        public void ChangeEncryption(IEnumerable<IDataStore> files, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
+        {
+            progress.AddTotal(files.Count());
+            foreach (IDataStore file in files)
+            {
+                ChangeEncryption(file, identity, encryptionParameters, progress);
+                progress.AddCount(1);
+            }
         }
 
         /// <summary>

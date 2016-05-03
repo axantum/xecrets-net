@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool CanShare(IEnumerable<IDataStore> items)
         {
-            if (items.Count() != 1)
+            if (!items.Any())
             {
                 return false;
             }
@@ -189,12 +189,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             if (!License.Has(LicenseCapability.KeySharing))
-            {
-                return false;
-            }
-
-            OpenFileProperties properties = OpenFileProperties.Create(items.First());
-            if (properties.IsLegacyV1)
             {
                 return false;
             }

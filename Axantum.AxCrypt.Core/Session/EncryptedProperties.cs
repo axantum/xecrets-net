@@ -74,11 +74,11 @@ namespace Axantum.AxCrypt.Core.Session
         /// Factory method to instantiate an EncryptedProperties instance. It is required and assumed that the
         /// currently logged on user has the required keys to decrypt the file.
         /// </summary>
-        /// <param name="dataStore">The data store to instantiate from.</param>
+        /// <param name="encrypted">The data store to instantiate from.</param>
         /// <returns>The properties or an empty set if the data store does not exist, or no-one is logged on.</returns>
-        public static EncryptedProperties Create(IDataStore dataStore)
+        public static EncryptedProperties Create(IDataStore encrypted)
         {
-            return Create(dataStore, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            return Create(encrypted, Resolve.KnownIdentities.DefaultEncryptionIdentity);
         }
 
         public static EncryptedProperties Create(IDataStore encrypted, LogOnIdentity identity)

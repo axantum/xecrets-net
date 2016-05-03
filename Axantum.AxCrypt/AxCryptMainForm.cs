@@ -1940,53 +1940,54 @@ namespace Axantum.AxCrypt
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "re")]
-        private static void HandleRequestPrivateKeyPassword(LogOnEventArgs re)
-        {
-            throw new NotImplementedException();
-        }
-
         private async Task ShareKeysAsync(IEnumerable<string> fileNames)
         {
+            IEnumerable<Tuple<string, EncryptedProperties>> files = await ListValidAsync(fileNames);
+            IEnumerable<UserPublicKey> sharedWith = files.SelectMany(f => f.Item2.SharedKeyHolders).Distinct();
+            SharingListViewModel viewModel = new SharingListViewModel(sharedWith, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
+            {
+                if (dialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                sharedWith = dialog.SharedWith;
+            }
+
+            using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
+            {
+                sharedWith = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s.Email == pk.Email)).ToList();
+            }
+            EncryptionParameters encryptionParameters = encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            encryptionParameters.Add(sharedWith);
+
+            Resolve.ParallelFileOperation.DoFiles(files.Select(f => f.Item1), (string file, IProgressContext progress) =>
+            {
+                New<AxCryptFile>().ChangeEncryption(New<IDataStore>(file), Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                return new FileOperationContext(file, ErrorStatus.Success);
+            },
+            (FileOperationContext foc) =>
+            {
+                if (foc.ErrorStatus == ErrorStatus.Success)
+                {
+                    Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
+                }
+            });
+        }
+
+        private async Task<IEnumerable<Tuple<string, EncryptedProperties>>> ListValidAsync(IEnumerable<string> fileNames)
+        {
+            List<Tuple<string, EncryptedProperties>> files = new List<Tuple<string, EncryptedProperties>>();
             foreach (string file in fileNames)
             {
-                EncryptedProperties encryptedProperties = await EncryptedPropertiesAsync(New<IDataStore>(file));
-                if (!encryptedProperties.IsValid)
+                EncryptedProperties properties = await EncryptedPropertiesAsync(New<IDataStore>(file));
+                if (properties.IsValid)
                 {
-                    continue;
+                    files.Add(new Tuple<string, EncryptedProperties>(file, properties));
                 }
-                IEnumerable<UserPublicKey> sharedWithPublicKeys = encryptedProperties.SharedKeyHolders;
-                SharingListViewModel viewModel = new SharingListViewModel(sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
-                using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
-                {
-                    if (dialog.ShowDialog(this) != DialogResult.OK)
-                    {
-                        continue;
-                    }
-                    sharedWithPublicKeys = dialog.SharedWith;
-                }
-                using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
-                {
-                    sharedWithPublicKeys = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWithPublicKeys.Any(s => s.Email == pk.Email)).ToList();
-                }
-                EncryptionParameters encryptionParameters = new EncryptionParameters(encryptedProperties.DecryptionParameter.CryptoId);
-                encryptionParameters.Passphrase = Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase;
-                encryptionParameters.Add(sharedWithPublicKeys);
-                encryptionParameters.Add(Resolve.KnownIdentities.DefaultEncryptionIdentity.PublicKeys);
-
-                Resolve.ProgressBackground.Work((Func<IProgressContext, FileOperationContext>)((IProgressContext progress) =>
-                {
-                    New<AxCryptFile>().ChangeEncryption(New<IDataStore>(file), Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
-                    return new FileOperationContext(file, ErrorStatus.Success);
-                }),
-                (FileOperationContext foc) =>
-                {
-                    if (foc.ErrorStatus == ErrorStatus.Success)
-                    {
-                        Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
-                    }
-                });
             }
+
+            return files;
         }
 
         private void WatchedFoldersKeySharing(IEnumerable<string> folderPaths)
