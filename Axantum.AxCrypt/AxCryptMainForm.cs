@@ -1956,7 +1956,8 @@ namespace Axantum.AxCrypt
                     continue;
                 }
                 IEnumerable<UserPublicKey> sharedWithPublicKeys = encryptedProperties.SharedKeyHolders;
-                using (KeyShareDialog dialog = new KeyShareDialog(this, New<KnownPublicKeys>, sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity))
+                SharingListViewModel viewModel = new SharingListViewModel(New<KnownPublicKeys>, sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+                using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
                 {
                     if (dialog.ShowDialog(this) != DialogResult.OK)
                     {
@@ -2004,7 +2005,8 @@ namespace Axantum.AxCrypt
                 sharedWithPublicKeys = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
             }
 
-            using (KeyShareDialog dialog = new KeyShareDialog(this, New<KnownPublicKeys>, sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity))
+            SharingListViewModel viewModel = new SharingListViewModel(New<KnownPublicKeys>, sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)
                 {

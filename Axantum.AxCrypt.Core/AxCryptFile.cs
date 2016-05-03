@@ -322,6 +322,7 @@ namespace Axantum.AxCrypt.Core
             {
                 progress.NotifyLevelFinished();
             }
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
         }
 
         /// <summary>
