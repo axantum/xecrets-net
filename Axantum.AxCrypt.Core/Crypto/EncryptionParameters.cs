@@ -26,10 +26,14 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -57,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             Passphrase = passphrase;
         }
 
-        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)
+        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity, IEnumerable<EmailAddress> shares)
             : this(cryptoId)
         {
             if (identity == null)
@@ -67,6 +71,22 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             Passphrase = identity.Passphrase;
             Add(identity.PublicKeys);
+
+            if (!shares.Any())
+            {
+                return;
+            }
+
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                IEnumerable<UserPublicKey> keyShares = knownPublicKeys.PublicKeys.Where(pk => shares.Contains(pk.Email));
+                Add(keyShares);
+            }
+        }
+
+        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)
+            : this(cryptoId, identity, new EmailAddress[0])
+        {
         }
 
         public void Add(IEnumerable<UserPublicKey> publicKeys)

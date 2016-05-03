@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
@@ -99,10 +98,10 @@ namespace Axantum.AxCrypt.Core.Session
                         foreach (string fullName in notification.FullNames)
                         {
                             WatchedFolder watchedFolder = _fileSystemState.WatchedFolders.First(wf => wf.Path == fullName);
-                            encryptionParameters = WatchedFolderEncryptionParameters(watchedFolder, notification.Identity);
+
+                            encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, notification.Identity, watchedFolder.KeyShares);
                             IDataContainer[] dc = new IDataContainer[] { New<IDataContainer>(watchedFolder.Path) };
                             _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(dc, encryptionParameters, progress);
-                            _axCryptFile.ChangeEncryption(dc, notification.Identity, encryptionParameters, progress);
                         }
                     }
                     finally
@@ -164,23 +163,9 @@ namespace Axantum.AxCrypt.Core.Session
         {
             foreach (WatchedFolder watchedFolder in _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)))
             {
-                EncryptionParameters encryptionParameters = WatchedFolderEncryptionParameters(watchedFolder, identity);
+                EncryptionParameters encryptionParameters = encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity, watchedFolder.KeyShares);
                 _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { New<IDataContainer>(watchedFolder.Path) }, encryptionParameters, progress);
             }
-        }
-
-        private static EncryptionParameters WatchedFolderEncryptionParameters(WatchedFolder watchedFolder, LogOnIdentity identity)
-        {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity);
-
-            IEnumerable<EmailAddress> keySharesEmails = watchedFolder.KeyShares;
-            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-            {
-                IEnumerable<UserPublicKey> keyShares = knownPublicKeys.PublicKeys.Where(pk => keySharesEmails.Contains(pk.Email));
-                encryptionParameters.Add(keyShares);
-            }
-
-            return encryptionParameters;
         }
     }
 }

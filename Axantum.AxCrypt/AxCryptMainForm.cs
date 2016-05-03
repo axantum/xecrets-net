@@ -2017,6 +2017,8 @@ namespace Axantum.AxCrypt
             {
                 WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
                 Resolve.FileSystemState.AddWatchedFolder(wf);
+                EncryptionParameters encryptionParameters = encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity, wf.KeyShares);
+                New<AxCryptFile>().ChangeEncryption(new IDataContainer[] { New<IDataContainer>(wf.Path) }, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, new ProgressContext());
             }
         }
 
