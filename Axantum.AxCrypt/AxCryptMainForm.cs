@@ -229,14 +229,14 @@ namespace Axantum.AxCrypt
             New<KeyPairService>().Start();
         }
 
-        private static bool ValidateSettings()
+        private bool ValidateSettings()
         {
             if (Resolve.UserSettings.SettingsVersion >= Resolve.UserSettings.CurrentSettingsVersion)
             {
                 return true;
             }
 
-            Texts.UserSettingsFormatChangeNeedsReset.ShowWarning();
+            Texts.UserSettingsFormatChangeNeedsReset.ShowWarning(this);
             ClearAllSettingsAndReinitialize();
             throw new ApplicationExitException();
         }
@@ -1457,7 +1457,7 @@ namespace Axantum.AxCrypt
             return buttons;
         }
 
-        public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext)
+        public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext, string message)
         {
             switch (status)
             {
@@ -1465,70 +1465,75 @@ namespace Axantum.AxCrypt
                     return true;
 
                 case ErrorStatus.UnspecifiedError:
-                    Texts.FileOperationFailed.InvariantFormat(displayContext).ShowWarning();
+                    Texts.FileOperationFailed.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.FileAlreadyExists:
-                    Texts.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning();
+                    Texts.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.FileDoesNotExist:
-                    Texts.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning();
+                    Texts.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.CannotWriteDestination:
-                    Texts.CannotWrite.InvariantFormat(displayContext).ShowWarning();
+                    Texts.CannotWrite.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.CannotStartApplication:
-                    Texts.CannotStartApplication.InvariantFormat(displayContext).ShowWarning();
+                    Texts.CannotStartApplication.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.InconsistentState:
-                    Texts.InconsistentState.InvariantFormat(displayContext).ShowWarning();
+                    Texts.InconsistentState.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.InvalidKey:
-                    Texts.InvalidKey.InvariantFormat(displayContext).ShowWarning();
+                    Texts.InvalidKey.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.Canceled:
                     break;
 
                 case ErrorStatus.Exception:
-                    Texts.Exception.InvariantFormat(displayContext).ShowWarning();
+                    string msg = Texts.Exception.InvariantFormat(displayContext);
+                    if (!string.IsNullOrEmpty(message))
+                    {
+                        msg = "{0} [{1}]".InvariantFormat(msg, message);
+                    }
+                    msg.ShowWarning(this);
                     break;
 
                 case ErrorStatus.InvalidPath:
-                    Texts.InvalidPath.InvariantFormat(displayContext).ShowWarning();
+                    Texts.InvalidPath.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.FolderAlreadyWatched:
-                    Texts.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning();
+                    Texts.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.FileLocked:
-                    Texts.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning();
+                    Texts.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.Unknown:
-                    Texts.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning();
+                    Texts.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.Working:
-                    Texts.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning();
+                    Texts.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.Aborted:
-                    Texts.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning();
+                    Texts.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 case ErrorStatus.FileAlreadyEncrypted:
-                    Texts.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning();
+                    Texts.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning(this);
                     break;
 
                 default:
-                    Texts.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning();
+                    Texts.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning(this);
                     break;
             }
             return false;
@@ -1576,7 +1581,7 @@ namespace Axantum.AxCrypt
             {
                 sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine));
             }
-            sb.ToString().ShowWarning();
+            sb.ToString().ShowWarning(this);
         }
 
         private void SetSortOrder(int column)
@@ -1972,6 +1977,7 @@ namespace Axantum.AxCrypt
                 {
                     Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
                 }
+                CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
             });
         }
 

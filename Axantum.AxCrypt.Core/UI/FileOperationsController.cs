@@ -467,7 +467,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             catch (IOException ioex)
             {
-                FileOperationContext status = new FileOperationContext(sourceFileInfo.FullName, ioex is FileNotFoundException ? ErrorStatus.FileDoesNotExist : ErrorStatus.Exception);
+                FileOperationContext status = new FileOperationContext(sourceFileInfo.FullName, ioex.Message, ioex is FileNotFoundException ? ErrorStatus.FileDoesNotExist : ErrorStatus.Exception);
                 e.Status = status;
                 return false;
             }
@@ -517,9 +517,9 @@ namespace Axantum.AxCrypt.Core.UI
                     operation();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ErrorStatus.Exception);
+                _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ex.Message, ErrorStatus.Exception);
                 throw;
             }
             finally
@@ -548,9 +548,9 @@ namespace Axantum.AxCrypt.Core.UI
                     _progress.Cancel = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ErrorStatus.Exception);
+                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ex.Message, ErrorStatus.Exception);
                 throw;
             }
             finally

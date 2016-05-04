@@ -114,6 +114,7 @@
     <Compile Include="Algorithm\SymmetricAlgorithm.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Runtime\CryptoException.cs" />
+    <Compile Include="Runtime\FileOperationException.cs" />
     <Compile Include="Runtime\FreeForcedLicensePolicy.cs" />
     <Compile Include="Runtime\IPlatform.cs" />
     <Compile Include="Runtime\IVersion.cs" />

@@ -218,7 +218,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName, e.Status.InternalMessage))
                 {
                     New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(e.OpenFileFullName) }, progress);
                 }
@@ -250,7 +250,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     return;
                 }
-                if (Resolve.StatusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName))
+                if (Resolve.StatusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName, e.Status.InternalMessage))
                 {
                     New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(e.SaveFileFullName) }, progress);
                 }
@@ -288,7 +288,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     return;
                 }
-                _statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.OpenFileFullName);
+                _statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.OpenFileFullName, e.Status.InternalMessage);
             };
 
             return operationsController.DecryptAndLaunch(file);
@@ -325,7 +325,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     e.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
                     return;
                 }
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName, e.Status.InternalMessage))
                 {
                     IDataStore encryptedInfo = New<IDataStore>(e.SaveFileFullName);
                     IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
@@ -356,7 +356,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.OpenFileFullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.OpenFileFullName, e.Status.InternalMessage))
                 {
                     IDataStore encryptedInfo = New<IDataStore>(e.OpenFileFullName);
                     IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.SaveFileFullName));

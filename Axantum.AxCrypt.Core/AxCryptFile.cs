@@ -375,11 +375,20 @@ namespace Axantum.AxCrypt.Core
                     }
                     catch (AggregateException ae)
                     {
-                        IEnumerable<Exception> exceptions = ae.InnerExceptions.Where(ex => ex.GetType() != typeof(OperationCanceledException));
-                        if (exceptions.Any())
+                        IEnumerable<Exception> exceptions = ae.InnerExceptions.Where(ex1 => ex1.GetType() != typeof(OperationCanceledException));
+                        if (!exceptions.Any())
                         {
-                            throw exceptions.First();
+                            return;
                         }
+
+                        IEnumerable<Exception> axCryptExceptions = exceptions.Where(ex2 => ex2 is AxCryptException);
+                        if (axCryptExceptions.Any())
+                        {
+                            throw axCryptExceptions.First();
+                        }
+
+                        Exception ex = exceptions.First();
+                        throw new InternalErrorException(ex.Message, ErrorStatus.Exception, ex);
                     }
                 }
             }
@@ -635,7 +644,7 @@ namespace Axantum.AxCrypt.Core
             (status) =>
             {
                 Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.UpdateActiveFiles));
-                statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName);
+                statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
             });
         }
 
@@ -835,29 +844,60 @@ namespace Axantum.AxCrypt.Core
                             writeFileStreamTo(temporaryStream);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex) when (!(ex is OperationCanceledException))
                     {
                         if (lockedTemporary.DataStore.IsAvailable)
                         {
                             Wipe(lockedTemporary.DataStore, progress);
                         }
-                        throw;
+                        throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus.Exception, ex);
                     }
 
                     if (destinationFileInfo.IsAvailable)
                     {
-                        using (FileLock lockedAlternate = MakeAlternatePath(destinationFileInfo, ".bak"))
+                        using (FileLock lockedBackup = MakeAlternatePath(destinationFileInfo, ".bak"))
                         {
-                            IDataStore backupFileInfo = New<IDataStore>(destinationFileInfo.FullName);
-
-                            backupFileInfo.MoveTo(lockedAlternate.DataStore.FullName);
-                            lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
-                            Wipe(backupFileInfo, progress);
+                            IDataStore backupDataStore = New<IDataStore>(destinationFileInfo.FullName);
+                            try
+                            {
+                                backupDataStore.MoveTo(lockedBackup.DataStore.FullName);
+                            }
+                            catch (Exception ex)
+                            {
+                                lockedBackup.DataStore.Delete();
+                                lockedTemporary.DataStore.Delete();
+                                throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus.Exception, ex);
+                            }
+                            try
+                            {
+                                lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
+                            }
+                            catch (Exception ex)
+                            {
+                                lockedTemporary.DataStore.Delete();
+                                lockedBackup.DataStore.MoveTo(destinationFileInfo.FullName);
+                                throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus.Exception, ex);
+                            }
+                            try
+                            {
+                                Wipe(backupDataStore, progress);
+                            }
+                            catch (Exception ex) when (!(ex is OperationCanceledException))
+                            {
+                                backupDataStore.Delete();
+                                throw new FileOperationException(ex.Message, backupDataStore.FullName, ErrorStatus.Exception, ex);
+                            }
                         }
+                        return;
                     }
-                    else
+
+                    try
                     {
                         lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus.Exception, ex);
                     }
                 }
             }

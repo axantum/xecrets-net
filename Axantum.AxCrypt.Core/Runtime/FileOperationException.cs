@@ -27,30 +27,43 @@
 
 using Axantum.AxCrypt.Abstractions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Axantum.AxCrypt.Core.UI
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public class FileOperationContext
+    /// <summary>
+    /// A file access operation has failed, perhaps due to insufficient permissions, or space etc.
+    /// </summary>
+    public class FileOperationException : AxCryptException
     {
-        public FileOperationContext(string fullName, string internalMessage, ErrorStatus errorStatus)
-        {
-            FullName = fullName ?? string.Empty;
-            ErrorStatus = errorStatus;
-            InternalMessage = internalMessage ?? string.Empty;
-        }
-
-        public FileOperationContext(string fullName, ErrorStatus errorStatus)
-            : this(fullName, string.Empty, errorStatus)
+        public FileOperationException()
+            : base()
         {
         }
 
-        public string FullName { get; private set; }
+        public FileOperationException(string message)
+            : base(message, ErrorStatus.InternalError)
+        {
+        }
 
-        public ErrorStatus ErrorStatus { get; private set; }
+        public FileOperationException(string message, ErrorStatus errorStatus)
+            : base(message, errorStatus)
+        {
+        }
 
-        public string InternalMessage { get; private set; }
+        public FileOperationException(string message, Exception innerException)
+            : this(message, ErrorStatus.InternalError, innerException)
+        {
+        }
+
+        public FileOperationException(string message, ErrorStatus errorStatus, Exception innerException)
+            : base(message, errorStatus, innerException)
+        {
+        }
+
+        public FileOperationException(string message, string fullName, ErrorStatus errorStatus, Exception innerException)
+            : base(message, errorStatus, innerException)
+        {
+            DisplayContext = fullName;
+        }
     }
 }

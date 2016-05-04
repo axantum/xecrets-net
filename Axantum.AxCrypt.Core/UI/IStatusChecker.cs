@@ -40,7 +40,8 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="status">The status to check.</param>
         /// <param name="displayContext">A language independent context for the error, typically a file name.</param>
+        /// <param name="message">An internal message, typically the message of an unexpeced exception.</param>
         /// <returns>True if the status indicated success, false otherwise.</returns>
-        bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext);
+        bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext, string message);
     }
 }

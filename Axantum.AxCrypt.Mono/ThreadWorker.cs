@@ -138,8 +138,7 @@ namespace Axantum.AxCrypt.Mono
             }
             catch (AxCryptException ace)
             {
-                e.Result = new FileOperationContext(ace.DisplayContext, ErrorStatus.Exception);
-                throw;
+                e.Result = new FileOperationContext(ace.DisplayContext, ace.InnerException?.Message, ErrorStatus.Exception);
             }
         }
 
@@ -150,12 +149,7 @@ namespace Axantum.AxCrypt.Mono
                 if (e.Error != null)
                 {
                     AxCryptException ace = e.Error as AxCryptException;
-                    string displayContext = String.Empty;
-                    if (ace != null)
-                    {
-                        displayContext = ace.DisplayContext;
-                    }
-                    _e.Result = new FileOperationContext(displayContext, ErrorStatus.Exception);
+                    _e.Result = new FileOperationContext(ace?.DisplayContext, ace?.Message, ErrorStatus.Exception);
                 }
                 else
                 {
