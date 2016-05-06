@@ -42,6 +42,7 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -812,6 +813,81 @@ namespace Axantum.AxCrypt
         private void WireUpEvents()
         {
             Resolve.SessionNotify.Notification += (sender, e) => New<SessionNotificationHandler>().HandleNotification(e.Notification);
+
+            SystemEvents.SessionEnding += SystemEvents_SessionEnding;
+            SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
+            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
+        }
+
+        private readonly object _autoCleanUpLock = new object();
+
+        private async void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        {
+            switch (e.Mode)
+            {
+                case PowerModes.Suspend:
+                    await Task.Factory.StartNew(() =>
+                    {
+                        lock (_autoCleanUpLock)
+                        {
+                            EncryptPendingFiles();
+                            WaitForBackgroundToComplete();
+                        }
+                    });
+                    await LogOffAndLogOnAgainAsync();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private async void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
+        {
+            switch (e.Reason)
+            {
+                case SessionSwitchReason.SessionLogoff:
+                    ShutDownAndExit();
+                    break;
+
+                case SessionSwitchReason.ConsoleDisconnect:
+                case SessionSwitchReason.RemoteDisconnect:
+                case SessionSwitchReason.SessionLock:
+                    await Task.Factory.StartNew(() =>
+                    {
+                        lock (_autoCleanUpLock)
+                        {
+                            EncryptPendingFiles();
+                            WaitForBackgroundToComplete();
+                        }
+                    });
+                    await LogOffAndLogOnAgainAsync();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void SystemEvents_SessionEnding(object sender, SessionEndingEventArgs e)
+        {
+            switch (e.Reason)
+            {
+                case SessionEndReasons.Logoff:
+                case SessionEndReasons.SystemShutdown:
+                    ShutDownAndExit();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void WireDownEvents()
+        {
+            SystemEvents.SessionEnding -= SystemEvents_SessionEnding;
+            SystemEvents.SessionSwitch -= SystemEvents_SessionSwitch;
+            SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
         }
 
         private void SetSignInSignOutStatus(bool isSignedIn)
@@ -854,6 +930,16 @@ namespace Axantum.AxCrypt
             _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
             _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.DaysLeftWarningToolTip);
             _daysLeftPremiumLabel.Visible = true;
+        }
+
+        private async Task LogOffAndLogOnAgainAsync()
+        {
+            if (!Resolve.KnownIdentities.IsLoggedOn)
+            {
+                return;
+            }
+
+            await LogOnOrLogOffAndLogOnAgainAsync();
         }
 
         private async Task LogOnOrLogOffAndLogOnAgainAsync()
@@ -1540,17 +1626,27 @@ namespace Axantum.AxCrypt
 
         private void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ShutDownAndExit();
+        }
+
+        private void ShutDownAndExit()
+        {
             ShutDownBackgroundSafe();
 
             EncryptPendingFiles();
-            while (_mainViewModel.Working)
-            {
-                Application.DoEvents();
-            }
+            WaitForBackgroundToComplete();
 
             WarnIfAnyDecryptedFiles();
 
             Application.Exit();
+        }
+
+        private void WaitForBackgroundToComplete()
+        {
+            while (_mainViewModel.Working)
+            {
+                Application.DoEvents();
+            }
         }
 
         private void StopAndExit()
@@ -1677,11 +1773,6 @@ namespace Axantum.AxCrypt
                 comparer.ReverseSort = !current.ReverseSort;
             }
             return comparer;
-        }
-
-        private void CloseOpenFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EncryptPendingFiles();
         }
 
         private void PremiumFeature_Click(LicenseCapability requiredCapability, EventHandler realHandler, object sender, EventArgs e)
@@ -2135,6 +2226,8 @@ namespace Axantum.AxCrypt
             {
                 _debugOutput.AllowClose = true;
             }
+
+            WireDownEvents();
         }
 
         private void WatchedFoldersAddSecureFolderMenuItem_Click(object sender, EventArgs e)
