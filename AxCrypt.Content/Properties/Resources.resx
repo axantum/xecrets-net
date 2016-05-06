@@ -491,6 +491,10 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="DecryptedFilesWarning" xml:space="preserve">
+    <value>These files could not be re-encrypted:</value>
+    <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
+  </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Assumed open. Try to Close the application, or use the Clean function to remove it.</value>
   </data>
@@ -1495,6 +1499,10 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verify Password</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Warning!</value>
+    <comment>The title of a pop up or dialog with a warning.</comment>
   </data>
   <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
     <value>Folder</value>

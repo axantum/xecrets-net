@@ -51,5 +51,11 @@ namespace Axantum.AxCrypt.Core.Session
         /// with Windows 8 apps, as well as some multi document softwares such as Word etc.
         /// </summary>
         NoProcessKnown = 128,
+
+        /// <summary>
+        /// Set when processing of the file from the active file list caused an exception, and should be ignored until this flag
+        /// is cleared.
+        /// </summary>
+        Exception = 256,
     }
 }

@@ -238,7 +238,8 @@ namespace Axantum.AxCrypt
 
             Texts.UserSettingsFormatChangeNeedsReset.ShowWarning(this);
             ClearAllSettingsAndReinitialize();
-            throw new ApplicationExitException();
+            StopAndExit();
+            return false;
         }
 
         private async void AxCryptMainForm_ShownAsync(object sender, EventArgs e)
@@ -361,7 +362,7 @@ namespace Axantum.AxCrypt
                 }
                 if (dialogResult == DialogResult.Abort)
                 {
-                    throw new ApplicationExitException();
+                    StopAndExit();
                 }
                 if (dialogResult == DialogResult.Cancel)
                 {
@@ -404,7 +405,7 @@ namespace Axantum.AxCrypt
                 DialogResult result = dialog.ShowDialog(this);
                 if (result != DialogResult.OK)
                 {
-                    throw new ApplicationExitException();
+                    StopAndExit();
                 }
                 Resolve.UserSettings.UserEmail = dialog.EmailTextBox.Text;
             }
@@ -545,15 +546,6 @@ namespace Axantum.AxCrypt
                 {
                     Preferences.MainWindowLocation = Location;
                 }
-            };
-            FormClosing += (sender, e) =>
-            {
-                EncryptPendingFiles();
-                while (_mainViewModel.Working)
-                {
-                    Application.DoEvents();
-                }
-                WarnIfAnyDecryptedFiles();
             };
 
             _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
@@ -731,7 +723,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder.Execute(_mainViewModel.SelectedWatchedFolders.First()); };
             _watchedFoldersRemoveMenuItem.Click += (sender, e) => { _mainViewModel.RemoveWatchedFolders.Execute(_mainViewModel.SelectedWatchedFolders); };
             _watchedFoldersAddSecureFolderMenuItem.Click += (sender, e) => { PremiumFeature_Click(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); }, sender, e); };
-            _watchedFoldersKeySharingMenuItem.Click += (sender, e) => { PremiumFeature_Click(LicenseCapability.KeySharing, (ss, ee) => { WatchedFoldersKeySharing(_mainViewModel.SelectedWatchedFolders); }, sender, e); };
+            _watchedFoldersKeySharingMenuItem.Click += (sender, e) => { PremiumFeature_Click(LicenseCapability.KeySharing, async (ss, ee) => { await WatchedFoldersKeySharingAsync(_mainViewModel.SelectedWatchedFolders); }, sender, e); };
 
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
@@ -1003,7 +995,7 @@ namespace Axantum.AxCrypt
 
                 if (dialogResult == DialogResult.Cancel)
                 {
-                    throw new ApplicationExitException();
+                    StopAndExit();
                 }
 
                 if (dialogResult != DialogResult.OK || viewModel.Passphrase.Length == 0)
@@ -1207,7 +1199,8 @@ namespace Axantum.AxCrypt
                     break;
 
                 case CommandVerb.Exit:
-                    throw new ApplicationExitException();
+                    StopAndExit();
+                    break;
 
                 case CommandVerb.Show:
                     RestoreWindowWithFocus();
@@ -1541,6 +1534,30 @@ namespace Axantum.AxCrypt
 
         private void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            New<WorkFolderWatcher>().Dispose();
+            New<ActiveFileWatcher>().Dispose();
+
+            EncryptPendingFiles();
+            while (_mainViewModel.Working)
+            {
+                Application.DoEvents();
+            }
+
+            WarnIfAnyDecryptedFiles();
+
+            Application.Exit();
+        }
+
+        private void StopAndExit()
+        {
+            New<WorkFolderWatcher>().Dispose();
+            New<ActiveFileWatcher>().Dispose();
+
+            while (_mainViewModel.Working)
+            {
+                Application.DoEvents();
+            }
+
             throw new ApplicationExitException();
         }
 
@@ -1577,11 +1594,12 @@ namespace Axantum.AxCrypt
                 return;
             }
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine(Texts.DecryptedFilesWarning).AppendLine();
             foreach (ActiveFile openFile in openFiles)
             {
                 sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine));
             }
-            sb.ToString().ShowWarning(this);
+            MessageDialog.ShowOk(this, Texts.WarningTitle, sb.ToString());
         }
 
         private void SetSortOrder(int column)
@@ -1790,7 +1808,7 @@ namespace Axantum.AxCrypt
         private void ClearPassphraseMemoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ClearAllSettingsAndReinitialize();
-            throw new ApplicationExitException();
+            StopAndExit();
         }
 
         private static void ClearAllSettingsAndReinitialize()
@@ -1966,7 +1984,12 @@ namespace Axantum.AxCrypt
             EncryptionParameters encryptionParameters = encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             encryptionParameters.Add(sharedWith);
 
-            Resolve.ParallelFileOperation.DoFiles(files.Select(f => f.Item1), (string file, IProgressContext progress) =>
+            ChangeEncryption(files.Select(f => f.Item1), encryptionParameters);
+        }
+
+        private void ChangeEncryption(IEnumerable<string> files, EncryptionParameters encryptionParameters)
+        {
+            Resolve.ParallelFileOperation.DoFiles(files, (string file, IProgressContext progress) =>
             {
                 New<AxCryptFile>().ChangeEncryption(New<IDataStore>(file), Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
                 return new FileOperationContext(file, ErrorStatus.Success);
@@ -1996,7 +2019,7 @@ namespace Axantum.AxCrypt
             return files;
         }
 
-        private void WatchedFoldersKeySharing(IEnumerable<string> folderPaths)
+        private async Task WatchedFoldersKeySharingAsync(IEnumerable<string> folderPaths)
         {
             if (!folderPaths.Any())
             {
@@ -2021,13 +2044,18 @@ namespace Axantum.AxCrypt
                 sharedWithPublicKeys = dialog.SharedWith;
             }
 
-            foreach (WatchedFolder watchedFolder in folderPaths.ToWatchedFolders())
+            await Task.Factory.StartNew(() =>
             {
-                WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
-                Resolve.FileSystemState.AddWatchedFolder(wf);
-                EncryptionParameters encryptionParameters = encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity, wf.KeyShares);
-                New<AxCryptFile>().ChangeEncryption(new IDataContainer[] { New<IDataContainer>(wf.Path) }, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, new ProgressContext());
-            }
+                foreach (WatchedFolder watchedFolder in folderPaths.ToWatchedFolders())
+                {
+                    WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
+                    Resolve.FileSystemState.AddWatchedFolder(wf);
+                }
+                IEnumerable<string> files = folderPaths.SelectMany(fp => New<IDataContainer>(fp).Files.Select(ds => ds.FullName));
+                EncryptionParameters encryptionParameters = encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity, sharedWithPublicKeys.Select(pk => pk.Email));
+
+                ChangeEncryption(files, encryptionParameters);
+            });
         }
 
         private void ExportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2072,6 +2100,7 @@ namespace Axantum.AxCrypt
                 WindowState = FormWindowState.Minimized;
                 return;
             }
+
             if (_debugOutput != null)
             {
                 _debugOutput.AllowClose = true;

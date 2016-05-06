@@ -197,7 +197,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have signed up for an AxCrypt ID. To complete your registration you must click the button below..
+        ///   Looks up a localized string similar to You have signed up for an AxCrypt ID. To verify your registration you must  enter the activation code below in the AxCrypt app or our web site..
         /// </summary>
         public static string ActivateMailBodyIntro {
             get {
@@ -206,7 +206,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If the button does not work, go to &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your AxCrypt ID..
+        ///   Looks up a localized string similar to If you wish to use the web instead of the app, go to &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your AxCrypt ID..
         /// </summary>
         public static string ActivateMailBodyManualLink {
             get {
@@ -215,7 +215,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If the button does not work, go to {0} and enter {1} and the activation code {2} to manually activate your AxCrypt ID..
+        ///   Looks up a localized string similar to If you wish to use the web site instead of the AxCrypt app, go to {0} and enter {1} and the activation code {2} to manually activate your AxCrypt ID..
         /// </summary>
         public static string ActivateMailBodyManualLinkPlainText {
             get {
@@ -1118,6 +1118,15 @@ namespace AxCrypt.Content.Properties {
         public static string DecryptedFileColumnHeaderText {
             get {
                 return ResourceManager.GetString("DecryptedFileColumnHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These files could not be re-encrypted:.
+        /// </summary>
+        public static string DecryptedFilesWarning {
+            get {
+                return ResourceManager.GetString("DecryptedFilesWarning", resourceCulture);
             }
         }
         
@@ -2145,16 +2154,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://account.axcrypt.net/.
-        /// </summary>
-        public static string LinkToAccountSite {
-            get {
-                return ResourceManager.GetString("LinkToAccountSite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://account.axcrypt.net/Home/Purchase?email={0}.
+        ///   Looks up a localized string similar to {0}Home/Purchase?email={1}.
         /// </summary>
         public static string LinkToAxCryptPremiumPurchasePage {
             get {
@@ -2181,7 +2181,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://account.axcrypt.net/secrets?email={0}.
+        ///   Looks up a localized string similar to {0}secrets?email={1}.
         /// </summary>
         public static string LinkToSecretsPageWithUserNameFormat {
             get {
@@ -2190,7 +2190,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://account.axcrypt.net/Home/Register.
+        ///   Looks up a localized string similar to {0}Home/Register.
         /// </summary>
         public static string LinkToSignUpWebPage {
             get {
@@ -3984,6 +3984,15 @@ namespace AxCrypt.Content.Properties {
         public static string VerifyPasswordPrompt {
             get {
                 return ResourceManager.GetString("VerifyPasswordPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning!.
+        /// </summary>
+        public static string WarningTitle {
+            get {
+                return ResourceManager.GetString("WarningTitle", resourceCulture);
             }
         }
         

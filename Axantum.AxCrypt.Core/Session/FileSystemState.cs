@@ -416,10 +416,21 @@ namespace Axantum.AxCrypt.Core.Session
             List<ActiveFile> updatedActiveFiles = new List<ActiveFile>();
             foreach (ActiveFile activeFile in ActiveFiles)
             {
-                ActiveFile updatedActiveFile = action(activeFile);
+                ActiveFile updatedActiveFile;
+                try
+                {
+                    updatedActiveFile = action(activeFile);
+                }
+                catch
+                {
+                    updatedActiveFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.Exception | ActiveFileStatus.AssumedOpenAndDecrypted);
+                    AddInternal(updatedActiveFile);
+                    Save();
+                    throw;
+                }
                 activeFiles.Add(updatedActiveFile);
                 bool isModified = updatedActiveFile != activeFile;
-                if (isModified || mode == ChangedEventMode.RaiseAlways)
+                if ((isModified && mode == ChangedEventMode.RaiseOnlyOnModified) || mode == ChangedEventMode.RaiseAlways)
                 {
                     updatedActiveFiles.Add(updatedActiveFile);
                 }

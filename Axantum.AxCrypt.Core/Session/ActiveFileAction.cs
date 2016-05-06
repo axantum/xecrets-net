@@ -63,6 +63,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
                 {
+                    if (activeFile.Status.HasMask(ActiveFileStatus.Exception))
+                    {
+                        return activeFile;
+                    }
                     if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
                     {
                         if (Resolve.Log.IsInfoEnabled)
@@ -128,11 +132,24 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public virtual void ClearExceptionState()
+        {
+            Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseNever, (ActiveFile activeFile) =>
+            {
+                return new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.Exception);
+            });
+        }
+
         public virtual ActiveFile CheckActiveFile(ActiveFile activeFile, IProgressContext progress)
         {
             if (activeFile == null)
             {
                 throw new ArgumentNullException("activeFile");
+            }
+
+            if (activeFile.Status.HasMask(ActiveFileStatus.Exception))
+            {
+                return activeFile;
             }
 
             if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))

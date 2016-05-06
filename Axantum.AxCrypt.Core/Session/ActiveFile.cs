@@ -328,6 +328,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return Identity != LogOnIdentity.Empty ? ActiveFileVisualStates.DecryptedWithKnownKey : ActiveFileVisualStates.DecryptedWithoutKnownKey;
             }
+            if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Exception))
+            {
+                return Identity != LogOnIdentity.Empty ? ActiveFileVisualStates.DecryptedWithKnownKey : ActiveFileVisualStates.DecryptedWithoutKnownKey;
+            }
             if (Status.HasMask(ActiveFileStatus.NotDecrypted))
             {
                 return Identity != LogOnIdentity.Empty ? ActiveFileVisualStates.EncryptedWithKnownKey : ActiveFileVisualStates.EncryptedWithoutKnownKey;

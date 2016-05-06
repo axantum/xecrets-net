@@ -79,6 +79,11 @@ namespace Axantum.AxCrypt.Core.Session
                 },
                 (FileOperationContext status) =>
                 {
+                    if (status.ErrorStatus == ErrorStatus.Success)
+                    {
+                        return;
+                    }
+                    _statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
                 });
         }
 
@@ -135,6 +140,7 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 case SessionNotificationType.EncryptPendingFiles:
+                    _activeFileAction.ClearExceptionState();
                     _activeFileAction.PurgeActiveFiles(progress);
                     if (_knownIdentities.DefaultEncryptionIdentity != LogOnIdentity.Empty)
                     {

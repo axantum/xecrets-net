@@ -36,5 +36,6 @@ namespace Axantum.AxCrypt.Core.Session
     {
         RaiseAlways,
         RaiseOnlyOnModified,
+        RaiseNever,
     }
 }
