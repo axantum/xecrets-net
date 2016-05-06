@@ -848,7 +848,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to clean and remove any open opened files, but ensure they are not in use first..
+        ///   Looks up a localized string similar to Click to clean and remove any open files, but ensure they are not in use first..
         /// </summary>
         public static string CloseAndRemoveOpenFilesToolStripButtonToolTipText {
             get {
@@ -2163,7 +2163,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://sv.surveymonkey.com/r/axcrypt.
+        ///   Looks up a localized string similar to http://www.axcrypt.net/forums/.
         /// </summary>
         public static string LinkToFeedbackWebPage {
             get {

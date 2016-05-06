@@ -397,7 +397,7 @@ You must complete these steps to complete the process.</value>
     <value>Click to check for a newer version.</value>
   </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
-    <value>Click to clean and remove any open opened files, but ensure they are not in use first.</value>
+    <value>Click to clean and remove any open files, but ensure they are not in use first.</value>
   </data>
   <data name="ColumnAmountPaidHeader" xml:space="preserve">
     <value>Amount paid</value>
