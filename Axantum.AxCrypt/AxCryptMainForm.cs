@@ -128,6 +128,7 @@ namespace Axantum.AxCrypt
             RestoreUserPreferences();
             BindToViewModels();
             BindToFileOperationViewModel();
+            WireUpEvents();
             SetupCommandService();
             SendStartSessionNotification();
         }
@@ -806,6 +807,11 @@ namespace Axantum.AxCrypt
             _fileOperationViewModel.SelectingFiles += (sender, e) => { HandleFileSelection(e); };
 
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
+        }
+
+        private void WireUpEvents()
+        {
+            Resolve.SessionNotify.Notification += (sender, e) => New<SessionNotificationHandler>().HandleNotification(e.Notification);
         }
 
         private void SetSignInSignOutStatus(bool isSignedIn)
@@ -1534,8 +1540,7 @@ namespace Axantum.AxCrypt
 
         private void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            New<WorkFolderWatcher>().Dispose();
-            New<ActiveFileWatcher>().Dispose();
+            ShutDownBackgroundSafe();
 
             EncryptPendingFiles();
             while (_mainViewModel.Working)
@@ -1550,15 +1555,38 @@ namespace Axantum.AxCrypt
 
         private void StopAndExit()
         {
-            New<WorkFolderWatcher>().Dispose();
-            New<ActiveFileWatcher>().Dispose();
-
-            while (_mainViewModel.Working)
-            {
-                Application.DoEvents();
-            }
+            ShutDownBackgroundSafe();
 
             throw new ApplicationExitException();
+        }
+
+        private void ShutDownBackgroundSafe()
+        {
+            try
+            {
+                New<WorkFolderWatcher>().Dispose();
+            }
+            catch
+            {
+            }
+            try
+            {
+                New<ActiveFileWatcher>().Dispose();
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                while (_mainViewModel.Working)
+                {
+                    Application.DoEvents();
+                }
+            }
+            catch
+            {
+            }
         }
 
         #region ToolStrip
@@ -1811,8 +1839,10 @@ namespace Axantum.AxCrypt
             StopAndExit();
         }
 
-        private static void ClearAllSettingsAndReinitialize()
+        private void ClearAllSettingsAndReinitialize()
         {
+            ShutDownBackgroundSafe();
+
             Resolve.UserSettings.Delete();
             Resolve.FileSystemState.Delete();
             Resolve.UserSettings.SettingsVersion = Resolve.UserSettings.CurrentSettingsVersion;

@@ -164,7 +164,6 @@ namespace Axantum.AxCrypt
 
         private static void WireupEvents()
         {
-            Resolve.SessionNotify.Notification += (sender, e) => New<SessionNotificationHandler>().HandleNotification(e.Notification);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]

@@ -449,7 +449,6 @@ namespace Axantum.AxCrypt.Core.Session
 
         private IDataStore _path;
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The actual exception thrown by the de-serialization varies, even by platform, and the idea is to catch those and let the user continue.")]
         public static FileSystemState Create(IDataStore path)
         {
             if (path == null)
@@ -473,10 +472,14 @@ namespace Axantum.AxCrypt.Core.Session
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "If the state can't be read, the software is rendered useless, so it's better to revert to empty here.")]
         private static FileSystemState CreateFileSystemState(IDataStore path)
         {
-            FileSystemState fileSystemState;
+            FileSystemState fileSystemState = null;
             try
             {
                 fileSystemState = Resolve.Serializer.Deserialize<FileSystemState>(path);
+                if (fileSystemState == null && Resolve.Log.IsErrorEnabled)
+                {
+                    Resolve.Log.LogError("Empty {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName));
+                }
             }
             catch (Exception ex)
             {
@@ -484,6 +487,9 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     Resolve.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));
                 }
+            }
+            if (fileSystemState == null)
+            {
                 return new FileSystemState(path);
             }
             if (Resolve.Log.IsInfoEnabled)
