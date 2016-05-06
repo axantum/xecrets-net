@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         /// <summary>
-        /// Creates an enumeration of all relevante DecryptionParameters from the provided arguments.
+        /// Creates an enumeration of all relevant DecryptionParameters from the provided arguments.
         /// </summary>
         /// <param name="passphrases">The passphrases or null.</param>
         /// <param name="privateKeys">The private keys or null.</param>
@@ -90,6 +90,16 @@ namespace Axantum.AxCrypt.Core.Crypto
                 foreach (Guid cryptoId in cryptoIds)
                 {
                     all.Add(new DecryptionParameter(passphrase, cryptoId));
+                    if (cryptoId != new V1Aes128CryptoFactory().CryptoId)
+                    {
+                        continue;
+                    }
+                    string filtered = FilterV1Disallowed(passphrase.Text);
+                    if (string.CompareOrdinal(filtered, passphrase.Text) == 0)
+                    {
+                        continue;
+                    }
+                    all.Add(new DecryptionParameter(Passphrase.Create(filtered), cryptoId));
                 }
             }
 
@@ -106,6 +116,22 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             return all;
+        }
+
+        private static string _legacyV1AllowedCharacters = @" !""#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]_abcdefghijklmnopqrstuvwxyz{|}€ŠŒŽšœžŸ¡¢£¤¥§±¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ";
+
+        private static string FilterV1Disallowed(string password)
+        {
+            StringBuilder filtered = new StringBuilder();
+            foreach (char c in password)
+            {
+                if (_legacyV1AllowedCharacters.IndexOf(c) >= 0)
+                {
+                    filtered.Append(c);
+                }
+            }
+
+            return filtered.ToString();
         }
 
         /// <summary>
