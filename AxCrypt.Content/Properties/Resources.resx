@@ -1570,4 +1570,7 @@ For more information, click OK to open a web browser to our web site.</value>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>The verfication code must be exactly 6 digits.</value>
   </data>
+  <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
+    <value>Email changed failed, your account already uses this e-mail address.</value>
+  </data>
 </root>

@@ -763,6 +763,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email changed failed, your account already uses this e-mail address..
+        /// </summary>
+        public static string ChangeEmailMarkErrorCurrentEmail {
+            get {
+                return ResourceManager.GetString("ChangeEmailMarkErrorCurrentEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We have sent an e-mail to &lt;b&gt;{0}&lt;/b&gt;. Please read your e-mail and click on the link provided there to confirm the change.
         ///
         ///Thereafter you can sign in using &lt;b&gt;{0}&lt;/b&gt; and your existing password.
