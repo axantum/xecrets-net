@@ -3727,7 +3727,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get Premium Support.
+        ///   Looks up a localized string similar to Premium Support.
         /// </summary>
         public static string SupportPageTitle {
             get {
