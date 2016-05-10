@@ -929,7 +929,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to info@axcrypt.net.
+        ///   Looks up a localized string similar to support@axcrypt.net.
         /// </summary>
         public static string ContactInfoEmail {
             get {
