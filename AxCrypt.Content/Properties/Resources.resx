@@ -1394,7 +1394,7 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Internal error: Invalid value in field Subscription type.</value>
   </data>
   <data name="SubscriptionsErrorUserNotFound" xml:space="preserve">
-    <value>Internal error: User not found.</value>
+    <value>User not found.</value>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>The subscription was successfully saved.</value>
