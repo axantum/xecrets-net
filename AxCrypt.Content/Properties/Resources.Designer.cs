@@ -3214,6 +3214,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Support.
+        /// </summary>
+        public static string PromptSupport {
+            get {
+                return ResourceManager.GetString("PromptSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verify.
         /// </summary>
         public static string PromptVerifyEmail {
@@ -3705,6 +3714,33 @@ namespace AxCrypt.Content.Properties {
         public static string SubscriptionsSuccessDelete {
             get {
                 return ResourceManager.GetString("SubscriptionsSuccessDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What do you want help with?.
+        /// </summary>
+        public static string SupportBodyPrompt {
+            get {
+                return ResourceManager.GetString("SupportBodyPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Premium Support.
+        /// </summary>
+        public static string SupportPageTitle {
+            get {
+                return ResourceManager.GetString("SupportPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, direct support is only available to paying subscribers, please visit our &lt;a href=&quot;{0}&quot;&gt;community support&lt;/a&gt;..
+        /// </summary>
+        public static string SupportWarningOnlyPremium {
+            get {
+                return ResourceManager.GetString("SupportWarningOnlyPremium", resourceCulture);
             }
         }
         

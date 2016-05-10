@@ -1222,6 +1222,9 @@ If you appear not to receive it, check that it does not get caught by your anti-
   <data name="PromptSubscription" xml:space="preserve">
     <value>Subscription</value>
   </data>
+  <data name="PromptSupport" xml:space="preserve">
+    <value>Support</value>
+  </data>
   <data name="PromptVerifyEmail" xml:space="preserve">
     <value>Verify</value>
   </data>
@@ -1401,6 +1404,15 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
   <data name="SubscriptionsSuccessDelete" xml:space="preserve">
     <value>The subscription history was successfully deleted.</value>
+  </data>
+  <data name="SupportBodyPrompt" xml:space="preserve">
+    <value>What do you want help with?</value>
+  </data>
+  <data name="SupportPageTitle" xml:space="preserve">
+    <value>Get Premium Support</value>
+  </data>
+  <data name="SupportWarningOnlyPremium" xml:space="preserve">
+    <value>Sorry, direct support is only available to paying subscribers, please visit our &lt;a href="{0}"&gt;community support&lt;/a&gt;.</value>
   </data>
   <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Svenska</value>
