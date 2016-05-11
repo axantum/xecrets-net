@@ -116,12 +116,14 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
+                _file.Refresh();
                 return _file.IsReadOnly;
             }
             set
             {
                 try
                 {
+                    _file.Refresh();
                     _file.IsReadOnly = value;
                 }
                 catch (Exception ex)
@@ -137,7 +139,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 try
                 {
-                    using (Stream stream = _file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                    using (Stream stream = _file.Open(FileMode.Open, IsWriteProtected ? FileAccess.Read : FileAccess.ReadWrite, IsWriteProtected ? FileShare.Read : FileShare.None))
                     {
                         return false;
                     }

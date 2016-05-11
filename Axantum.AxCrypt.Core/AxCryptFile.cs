@@ -271,6 +271,15 @@ namespace Axantum.AxCrypt.Core
                     {
                         Encrypt(sourceStore, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
                     }, progress);
+
+                    if (sourceStore.IsWriteProtected)
+                    {
+                        destinationStore.IsWriteProtected = true;
+                    }
+                }
+                if (sourceStore.IsWriteProtected)
+                {
+                    sourceStore.IsWriteProtected = false;
                 }
                 Wipe(sourceStore, progress);
             }
