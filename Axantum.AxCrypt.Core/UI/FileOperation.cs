@@ -105,6 +105,11 @@ namespace Axantum.AxCrypt.Core.UI
                 _fileSystemState.Add(activeFile);
                 _fileSystemState.Save();
 
+                if (encryptedDataStore.IsWriteProtected)
+                {
+                    activeFile.DecryptedFileInfo.IsWriteProtected = true;
+                }
+
                 FileOperationContext status = LaunchApplicationForDocument(activeFile);
                 return status;
             }
