@@ -763,7 +763,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email changed failed, your account already uses this e-mail address..
+        ///   Looks up a localized string similar to The new e-mail address must be different from the old!.
         /// </summary>
         public static string ChangeEmailMarkErrorCurrentEmail {
             get {
@@ -2971,7 +2971,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Key sharing requires premimum. Click to upgrade now!.
+        ///   Looks up a localized string similar to Key sharing requires Premium. Click to upgrade now!.
         /// </summary>
         public static string PremiumNeededForKeyShare {
             get {
@@ -3727,7 +3727,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What do you want help with?.
+        ///   Looks up a localized string similar to How can we help you?.
         /// </summary>
         public static string SupportBodyPrompt {
             get {

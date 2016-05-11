@@ -365,6 +365,9 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="ChangeEmailMarkError" xml:space="preserve">
     <value>Email changed failed due to an internal error, please try again later or contact our support.</value>
   </data>
+  <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
+    <value>The new e-mail address must be different from the old!</value>
+  </data>
   <data name="ChangeEmailMarkSuccess" xml:space="preserve">
     <value>We have sent an e-mail to &lt;b&gt;{0}&lt;/b&gt;. Please read your e-mail and click on the link provided there to confirm the change.
 
@@ -1138,7 +1141,7 @@ If you appear not to receive it, check that it does not get caught by your anti-
     <value>This feature requires a purchase of Premium!</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
-    <value>Key sharing requires premimum. Click to upgrade now!</value>
+    <value>Key sharing requires Premium. Click to upgrade now!</value>
   </data>
   <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -1406,7 +1409,7 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>The subscription history was successfully deleted.</value>
   </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
-    <value>What do you want help with?</value>
+    <value>How can we help you?</value>
   </data>
   <data name="SupportPageTitle" xml:space="preserve">
     <value>Premium Support</value>
@@ -1569,8 +1572,5 @@ For more information, click OK to open a web browser to our web site.</value>
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>The verfication code must be exactly 6 digits.</value>
-  </data>
-  <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
-    <value>Email changed failed, your account already uses this e-mail address.</value>
   </data>
 </root>
