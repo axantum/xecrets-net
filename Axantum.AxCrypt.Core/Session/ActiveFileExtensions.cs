@@ -51,6 +51,11 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
                 {
+                    bool isWriteProteced = activeFile.EncryptedFileInfo.IsWriteProtected;
+                    if (isWriteProteced)
+                    {
+                        activeFile.EncryptedFileInfo.IsWriteProtected = false;
+                    }
                     New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
                         activeFile = new ActiveFile(activeFile, Resolve.CryptoFactory.Update(activeFile.Properties.CryptoId).CryptoId);
@@ -60,6 +65,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                         New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
                     }, progress);
+                    activeFile.EncryptedFileInfo.IsWriteProtected = isWriteProteced;
                 }
             }
             catch (IOException)
