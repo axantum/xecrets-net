@@ -61,6 +61,14 @@ namespace Axantum.AxCrypt.Core.IO
         bool IsLocked { get; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this instance is write protected.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is write protected; otherwise, <c>false</c>.
+        /// </value>
+        bool IsWriteProtected { get; set; }
+
+        /// <summary>
         /// Gets or sets the creation time UTC.
         /// </summary>
         /// <value>

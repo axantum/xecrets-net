@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.UI;
-using AxCrypt.Content;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -37,9 +36,9 @@ namespace Axantum.AxCrypt
 {
     internal static class Extensions
     {
-        public static void ShowWarning(this string message, Form parent)
+        public static void ShowWarning(this string message, Form parent, string title)
         {
-            New<IUIThread>().PostOnUIThread(() => MessageDialog.ShowOk(parent, Texts.MessageUnexpectedErrorTitle, message));
+            New<IUIThread>().PostOnUIThread(() => MessageDialog.ShowOk(parent, title, message));
         }
 
         public static Point Fallback(this Point value, Point fallback)

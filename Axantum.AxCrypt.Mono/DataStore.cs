@@ -112,6 +112,25 @@ namespace Axantum.AxCrypt.Mono
             return stream;
         }
 
+        public bool IsWriteProtected
+        {
+            get
+            {
+                return _file.IsReadOnly;
+            }
+            set
+            {
+                try
+                {
+                    _file.IsReadOnly = value;
+                }
+                catch (Exception ex)
+                {
+                    throw new FileOperationException("Could not change write protection.", _file.FullName, ErrorStatus.Exception, ex);
+                }
+            }
+        }
+
         public bool IsLocked
         {
             get

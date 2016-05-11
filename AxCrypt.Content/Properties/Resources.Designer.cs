@@ -1745,6 +1745,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is write protected..
+        /// </summary>
+        public static string FileIsWriteProtectedWarning {
+            get {
+                return ResourceManager.GetString("FileIsWriteProtectedWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File does not exist..
         /// </summary>
         public static string FileNotFound {

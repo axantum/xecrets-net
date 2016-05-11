@@ -238,7 +238,7 @@ namespace Axantum.AxCrypt
                 return true;
             }
 
-            Texts.UserSettingsFormatChangeNeedsReset.ShowWarning(this);
+            Texts.UserSettingsFormatChangeNeedsReset.ShowWarning(this, Texts.WarningTitle);
             ClearAllSettingsAndReinitialize();
             StopAndExit();
             return false;
@@ -1550,31 +1550,31 @@ namespace Axantum.AxCrypt
                     return true;
 
                 case ErrorStatus.UnspecifiedError:
-                    Texts.FileOperationFailed.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.FileOperationFailed.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.FileAlreadyExists:
-                    Texts.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.FileDoesNotExist:
-                    Texts.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.CannotWriteDestination:
-                    Texts.CannotWrite.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.CannotWrite.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.CannotStartApplication:
-                    Texts.CannotStartApplication.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.CannotStartApplication.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.InconsistentState:
-                    Texts.InconsistentState.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.InconsistentState.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.InvalidKey:
-                    Texts.InvalidKey.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.InvalidKey.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.Canceled:
@@ -1586,39 +1586,43 @@ namespace Axantum.AxCrypt
                     {
                         msg = "{0} [{1}]".InvariantFormat(msg, message);
                     }
-                    msg.ShowWarning(this);
+                    msg.ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.InvalidPath:
-                    Texts.InvalidPath.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.InvalidPath.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.FolderAlreadyWatched:
-                    Texts.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.FileLocked:
-                    Texts.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
+                    break;
+
+                case ErrorStatus.FileWriteProtected:
+                    Texts.FileIsWriteProtectedWarning.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.Unknown:
-                    Texts.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.Working:
-                    Texts.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.Aborted:
-                    Texts.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.FileAlreadyEncrypted:
-                    Texts.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning(this);
+                    Texts.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
                     break;
 
                 default:
-                    Texts.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning(this);
+                    Texts.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;
             }
             return false;

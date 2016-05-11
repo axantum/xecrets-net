@@ -43,6 +43,8 @@ namespace Axantum.AxCrypt.Fake
             return new NonClosingStream(_dataStream);
         }
 
+        public bool IsWriteProtected { get; set; }
+
         public bool IsLocked
         {
             get;

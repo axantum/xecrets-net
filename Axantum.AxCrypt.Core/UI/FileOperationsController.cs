@@ -249,40 +249,58 @@ namespace Axantum.AxCrypt.Core.UI
 
             using (FileLock fileLock = FileLock.Lock(sourceFileInfo))
             {
-                if (sourceFileInfo.IsLocked)
+                if (!IsAvailableForWrite(fileLock))
                 {
-                    _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, ErrorStatus.FileLocked);
                     return false;
                 }
+
+                IDataStore destinationFileInfo = New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
+                _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
+                _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
+                if (destinationFileInfo.IsAvailable)
+                {
+                    OnQuerySaveFileAs(_eventArgs);
+                    if (_eventArgs.Cancel)
+                    {
+                        _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, ErrorStatus.Canceled);
+                        return false;
+                    }
+                }
+
+                if (Resolve.KnownIdentities.DefaultEncryptionIdentity == LogOnIdentity.Empty)
+                {
+                    OnQueryEncryptionPassphrase(_eventArgs);
+                    if (_eventArgs.Cancel)
+                    {
+                        _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, ErrorStatus.Canceled);
+                        return false;
+                    }
+                }
+                else
+                {
+                    _eventArgs.LogOnIdentity = Resolve.KnownIdentities.DefaultEncryptionIdentity;
+                }
+
+                OnQuerySharedPublicKeys(_eventArgs);
             }
 
-            IDataStore destinationFileInfo = New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
-            _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
-            _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
-            if (destinationFileInfo.IsAvailable)
+            return true;
+        }
+
+        private bool IsAvailableForWrite(FileLock fileLock)
+        {
+            IDataStore dataStore = fileLock.DataStore;
+            if (dataStore.IsWriteProtected)
             {
-                OnQuerySaveFileAs(_eventArgs);
-                if (_eventArgs.Cancel)
-                {
-                    _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, ErrorStatus.Canceled);
-                    return false;
-                }
+                _eventArgs.Status = new FileOperationContext(dataStore.FullName, ErrorStatus.FileWriteProtected);
+                return false;
             }
 
-            if (Resolve.KnownIdentities.DefaultEncryptionIdentity == LogOnIdentity.Empty)
+            if (dataStore.IsLocked)
             {
-                OnQueryEncryptionPassphrase(_eventArgs);
-                if (_eventArgs.Cancel)
-                {
-                    _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, ErrorStatus.Canceled);
-                    return false;
-                }
+                _eventArgs.Status = new FileOperationContext(dataStore.FullName, ErrorStatus.FileLocked);
+                return false;
             }
-            else
-            {
-                _eventArgs.LogOnIdentity = Resolve.KnownIdentities.DefaultEncryptionIdentity;
-            }
-            OnQuerySharedPublicKeys(_eventArgs);
 
             return true;
         }
@@ -302,9 +320,8 @@ namespace Axantum.AxCrypt.Core.UI
         {
             using (FileLock fileLock = FileLock.Lock(fileInfo))
             {
-                if (fileInfo.IsLocked)
+                if (!IsAvailableForWrite(fileLock))
                 {
-                    _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ErrorStatus.FileLocked);
                     return false;
                 }
 
@@ -385,29 +402,28 @@ namespace Axantum.AxCrypt.Core.UI
         {
             using (FileLock fileLock = FileLock.Lock(fileInfo))
             {
-                if (fileInfo.IsLocked)
+                if (!IsAvailableForWrite(fileLock))
                 {
-                    _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ErrorStatus.FileLocked);
                     return false;
                 }
-            }
 
-            _eventArgs.OpenFileFullName = fileInfo.FullName;
-            _eventArgs.SaveFileFullName = fileInfo.FullName;
-            if (_progress.AllItemsConfirmed)
-            {
-                return true;
-            }
-            OnWipeQueryConfirmation(_eventArgs);
-            if (_eventArgs.Cancel)
-            {
-                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ErrorStatus.Canceled);
-                return false;
-            }
+                _eventArgs.OpenFileFullName = fileInfo.FullName;
+                _eventArgs.SaveFileFullName = fileInfo.FullName;
+                if (_progress.AllItemsConfirmed)
+                {
+                    return true;
+                }
+                OnWipeQueryConfirmation(_eventArgs);
+                if (_eventArgs.Cancel)
+                {
+                    _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ErrorStatus.Canceled);
+                    return false;
+                }
 
-            if (_eventArgs.ConfirmAll)
-            {
-                _progress.AllItemsConfirmed = true;
+                if (_eventArgs.ConfirmAll)
+                {
+                    _progress.AllItemsConfirmed = true;
+                }
             }
             return true;
         }

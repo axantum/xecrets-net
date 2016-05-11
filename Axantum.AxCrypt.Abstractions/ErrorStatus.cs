@@ -64,5 +64,6 @@ namespace Axantum.AxCrypt.Abstractions
         Exit,
         BadApiRequest,
         BadUserInput,
+        FileWriteProtected,
     }
 }

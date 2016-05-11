@@ -238,6 +238,8 @@ namespace Axantum.AxCrypt.Fake
             return new NonClosingStream(fakeFileInfo.Stream);
         }
 
+        public bool IsWriteProtected { get; set; }
+
         public bool IsLocked
         {
             get
