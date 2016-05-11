@@ -519,7 +519,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             catch (Exception ex)
             {
-                _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ex.Message, ErrorStatus.Exception);
+                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ex.Messages(), ErrorStatus.Exception);
                 throw;
             }
             finally

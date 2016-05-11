@@ -134,11 +134,15 @@ namespace Axantum.AxCrypt.Mono
             }
             catch (OperationCanceledException)
             {
-                e.Result = new FileOperationContext(String.Empty, ErrorStatus.Canceled);
+                e.Result = new FileOperationContext(string.Empty, ErrorStatus.Canceled);
             }
             catch (AxCryptException ace)
             {
                 e.Result = new FileOperationContext(ace.DisplayContext, ace.InnerException?.Message, ErrorStatus.Exception);
+            }
+            catch (Exception ex)
+            {
+                e.Result = new FileOperationContext(string.Empty, ex.Message, ErrorStatus.Exception);
             }
         }
 

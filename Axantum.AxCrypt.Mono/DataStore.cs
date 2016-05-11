@@ -25,9 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -124,6 +126,10 @@ namespace Axantum.AxCrypt.Mono
                 catch (IOException)
                 {
                     return true;
+                }
+                catch (Exception ex)
+                {
+                    throw new FileOperationException("Lock failed", _file.FullName, ErrorStatus.Exception, ex);
                 }
             }
         }

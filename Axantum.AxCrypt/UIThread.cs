@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -71,6 +72,10 @@ namespace Axantum.AxCrypt
             }
             Exception exception = null;
             method((state) => { try { action(); } catch (Exception ex) { exception = ex; } }, null);
+            if (exception is AxCryptException)
+            {
+                throw exception;
+            }
             if (exception != null)
             {
                 throw new InvalidOperationException("Exception on UI Thread", exception);

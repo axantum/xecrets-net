@@ -56,6 +56,7 @@
     <Compile Include="Crypto\EncryptionParameters.cs" />
     <Compile Include="Crypto\ISystemCryptoPolicy.cs" />
     <Compile Include="Crypto\LogOnIdentity.cs" />
+    <Compile Include="Extensions\OtherExtensions.cs" />
     <Compile Include="Extensions\UserTypeExtensions.cs" />
     <Compile Include="Extensions\SerializerExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
