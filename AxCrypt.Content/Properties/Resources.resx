@@ -890,6 +890,9 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
   <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
     <value>Upgrade to Premium to enable the strongest protection.</value>
   </data>
+  <data name="MagicGuidMIssingFileStatus" xml:space="preserve">
+    <value>'{0}' is not an AxCrypt file.</value>
+  </data>
   <data name="MailBodyFooter" xml:space="preserve">
     <value>If it is unclear why you are receiving this from &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;, you can ignore this email or report it to {1}.</value>
   </data>

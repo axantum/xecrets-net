@@ -1621,6 +1621,10 @@ namespace Axantum.AxCrypt
                     Texts.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
                     break;
 
+                case ErrorStatus.MagicGuidMissing:
+                    Texts.MagicGuidMIssingFileStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
+                    break;
+
                 default:
                     Texts.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;

@@ -2289,6 +2289,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not an AxCrypt file..
+        /// </summary>
+        public static string MagicGuidMIssingFileStatus {
+            get {
+                return ResourceManager.GetString("MagicGuidMIssingFileStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If it is unclear why you are receiving this from &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt;, you can ignore this email or report it to {1}..
         /// </summary>
         public static string MailBodyFooter {

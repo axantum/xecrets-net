@@ -546,11 +546,6 @@ namespace Axantum.AxCrypt.Core.UI
                     operation();
                 }
             }
-            catch (Exception ex)
-            {
-                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ex.Messages(), ErrorStatus.Exception);
-                throw;
-            }
             finally
             {
                 _progress.NotifyLevelFinished();
@@ -577,9 +572,14 @@ namespace Axantum.AxCrypt.Core.UI
                     _progress.Cancel = true;
                 }
             }
+            catch (AxCryptException aex)
+            {
+                _eventArgs.Status = new FileOperationContext(aex.DisplayContext ?? fileInfo.FullName, aex.Messages(), aex.ErrorStatus);
+                throw;
+            }
             catch (Exception ex)
             {
-                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ex.Message, ErrorStatus.Exception);
+                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ex.Messages(), ErrorStatus.Exception);
                 throw;
             }
             finally
