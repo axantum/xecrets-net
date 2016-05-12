@@ -371,10 +371,16 @@ namespace Axantum.AxCrypt.Core
 
                     Task encryption = Task.Factory.StartNew(() =>
                     {
+                        bool isWriteProteced = from.IsWriteProtected;
+                        if (isWriteProteced)
+                        {
+                            from.IsWriteProtected = false;
+                        }
                         WriteToFileWithBackup(from, (Stream s) =>
                         {
                             Encrypt(pipeline, s, encryptedProperties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
                         }, progress);
+                        from.IsWriteProtected = isWriteProteced;
                     });
                     encryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
