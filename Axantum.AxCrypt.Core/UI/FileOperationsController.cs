@@ -241,6 +241,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool EncryptFilePreparation(IDataStore sourceFileInfo)
         {
+            _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
+
             if (String.Compare(Resolve.Portable.Path().GetExtension(sourceFileInfo.FullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, ErrorStatus.FileAlreadyEncrypted);
@@ -323,6 +325,13 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool DecryptFilePreparation(IDataStore fileInfo)
         {
+            _eventArgs.OpenFileFullName = fileInfo.FullName;
+            if (!fileInfo.IsEncrypted())
+            {
+                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, "Wrong extension", ErrorStatus.WrongFileExtensionError);
+                return false;
+            }
+
             using (FileLock fileLock = FileLock.Lock(fileInfo))
             {
                 if (IsLocked(fileLock))
@@ -384,6 +393,14 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool DecryptAndLaunchPreparation(IDataStore fileInfo)
         {
+            _eventArgs.OpenFileFullName = fileInfo.FullName;
+
+            if (!fileInfo.IsEncrypted())
+            {
+                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, "Wrong extension", ErrorStatus.WrongFileExtensionError);
+                return false;
+            }
+
             if (!OpenAxCryptDocument(fileInfo, _eventArgs))
             {
                 return false;

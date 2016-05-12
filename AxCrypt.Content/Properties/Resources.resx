@@ -1570,6 +1570,9 @@ For more information, click OK to open a web browser to our web site.</value>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Status 'Working' with '{0}'.</value>
   </data>
+  <data name="WrongFileExtensionWarning" xml:space="preserve">
+    <value>'{0}' has the wrong file name extension. It must be '{1}'!</value>
+  </data>
   <data name="WrongPassphrase" xml:space="preserve">
     <value>Wrong Password. Please try again.</value>
   </data>

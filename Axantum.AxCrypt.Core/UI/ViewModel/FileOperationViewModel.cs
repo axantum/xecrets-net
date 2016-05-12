@@ -288,7 +288,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     return;
                 }
-                _statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.OpenFileFullName, e.Status.InternalMessage);
+                _statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName ?? e.OpenFileFullName, e.Status.InternalMessage);
             };
 
             return operationsController.DecryptAndLaunch(file);

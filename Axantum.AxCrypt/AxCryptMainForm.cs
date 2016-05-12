@@ -1605,6 +1605,10 @@ namespace Axantum.AxCrypt
                     Texts.FileIsWriteProtectedWarning.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
                     break;
 
+                case ErrorStatus.WrongFileExtensionError:
+                    Texts.WrongFileExtensionWarning.InvariantFormat(displayContext, OS.Current.AxCryptExtension).ShowWarning(this, Texts.WarningTitle);
+                    break;
+
                 case ErrorStatus.Unknown:
                     Texts.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
                     break;

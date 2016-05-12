@@ -4183,6 +4183,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; has the wrong file name extension. It must be &apos;{1}&apos;!.
+        /// </summary>
+        public static string WrongFileExtensionWarning {
+            get {
+                return ResourceManager.GetString("WrongFileExtensionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wrong Password. Please try again..
         /// </summary>
         public static string WrongPassphrase {
