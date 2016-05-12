@@ -339,6 +339,9 @@ Incluye el software de http://www.bouncycastle.org/. </value>
   <data name="ChangeEmailMarkError" xml:space="preserve">
     <value>Error al guardar el correo nuevo debido a un error interno, por favor inténtelo de nuevo más tarde o póngase en contacto con nuestro soporte técnico.</value>
   </data>
+  <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
+    <value>¡La nueva dirección de correo electrónico debe ser diferente de la antigua!</value>
+  </data>
   <data name="ChangeEmailMarkSuccess" xml:space="preserve">
     <value>Hemos enviado un correo electrónico a &lt;b&gt;{0}&lt;/b&gt;. Por favor, leer su correo electrónico y haga clic en el enlace para confirmar el cambio.
 
@@ -435,6 +438,10 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Archivo</value>
+  </data>
+  <data name="DecryptedFilesWarning" xml:space="preserve">
+    <value>Estos archivos no pudieron ser cifrados de nuevo:</value>
+    <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>El archivo probablemente está abierto. Trate de cerrar la aplicación, o utilizar la función de limpieza para eliminarlo.</value>
@@ -609,6 +616,9 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' está abierto en otra aplicación. Por favor, cierre y vuelva a intentarlo.</value>
   </data>
+  <data name="FileIsWriteProtectedWarning" xml:space="preserve">
+    <value>'{0}' es sólo lectura.</value>
+  </data>
   <data name="FileNotFound" xml:space="preserve">
     <value>El archivo no existe.</value>
   </data>
@@ -665,6 +675,13 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mi AxCrypt ID</value>
+  </data>
+  <data name="InternetNotRequiredInformation" xml:space="preserve">
+    <value>Internet NO ES NECESARIO cuando se utiliza AxCrypt.
+
+Recomendamos que AxCrypt se permite el acceso a Internet. Algunas características funcionan mejor y se pueden perder las actualizaciones críticas de otro modo.
+
+La contraseña no se almacena en el servidor, y la conexión siempre está cifrada.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>El formato de correo electrónico no es válido.</value>
@@ -760,6 +777,9 @@ Iniciar sesión en AxCrypt con {2}, introduzca el código de activación de 6 ci
   <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
     <value>Actualizar a Premium para activar la protección más fuerte.</value>
   </data>
+  <data name="MagicGuidMIssingFileStatus" xml:space="preserve">
+    <value>'{0}' no es un archivo AxCrypt.</value>
+  </data>
   <data name="MailBodyFooter" xml:space="preserve">
     <value>Si usted no sabe por qué usted ha recibido este mensaje de &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;, puede ignorar este mensaje o reportarlo a {1}.</value>
   </data>
@@ -823,7 +843,9 @@ El equipo AxCrypt</value>
     <value>Regístrese para un AxCrypt ID</value>
   </data>
   <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
-    <value>Se requiere acceso a Internet en este momento. Por favor, compruebe su conexión , y vuelve a intentarlo .</value>
+    <value>Se requiere acceso a Internet en este momento. Por favor, compruebe su conexión , y vuelve a intentarlo .
+
+Internet NO ES NECESARIO para utilizar AxCrypt después de esta primera vez.</value>
   </data>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>Sin conexión a Internet</value>
@@ -1069,6 +1091,9 @@ Si parece que usted no lo recibe, revise su filtro de correo no deseado y compru
   <data name="PromptSubscription" xml:space="preserve">
     <value>Subscripción</value>
   </data>
+  <data name="PromptSupport" xml:space="preserve">
+    <value>Soporte</value>
+  </data>
   <data name="PromptVerifyEmail" xml:space="preserve">
     <value>Verificar</value>
   </data>
@@ -1215,6 +1240,15 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>La suscripción se ha guardado correctamente.</value>
   </data>
+  <data name="SupportBodyPrompt" xml:space="preserve">
+    <value>¿Cómo podemos ayudarte?</value>
+  </data>
+  <data name="SupportPageTitle" xml:space="preserve">
+    <value>Soporte Premium</value>
+  </data>
+  <data name="SupportWarningOnlyPremium" xml:space="preserve">
+    <value>Lo sentimos, el soporte directo sólo está disponible para los suscriptores de pago, visite nuestro &lt;a href="{0}"&gt;soporte comunitario&lt;/a&gt;.</value>
+  </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>¡Consultar el correo electrónico y el correo no deseado!</value>
   </data>
@@ -1297,6 +1331,10 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verificar contraseña</value>
   </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>¡Advertencia!</value>
+    <comment>The title of a pop up or dialog with a warning.</comment>
+  </data>
   <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
     <value>Carpeta</value>
   </data>
@@ -1339,6 +1377,9 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Estado 'En proceso' con '{0}'.</value>
+  </data>
+  <data name="WrongFileExtensionWarning" xml:space="preserve">
+    <value>¡'{0}' tiene la extensión incorrecta del nombre de archivo. Debe ser '{1}'!</value>
   </data>
   <data name="WrongPassphrase" xml:space="preserve">
     <value>Contraseña incorrecta. Por favor, inténtelo de nuevo. </value>
