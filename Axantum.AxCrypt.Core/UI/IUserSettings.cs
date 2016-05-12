@@ -89,5 +89,7 @@ namespace Axantum.AxCrypt.Core.UI
         string UserEmail { get; set; }
 
         bool TryBrokenFile { get; set; }
+
+        bool IsFirstSignIn { get; set; }
     }
 }

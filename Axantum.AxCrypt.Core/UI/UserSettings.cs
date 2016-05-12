@@ -251,6 +251,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(TryBrokenFile), value); }
         }
 
+        public bool IsFirstSignIn
+        {
+            get { return Load(nameof(IsFirstSignIn), true); }
+            set { Store(nameof(IsFirstSignIn), value); }
+        }
+
         public string this[string key]
         {
             get

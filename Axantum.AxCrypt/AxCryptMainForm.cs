@@ -276,6 +276,11 @@ namespace Axantum.AxCrypt
             {
                 _isSigningIn = false;
             }
+            if (Resolve.UserSettings.IsFirstSignIn)
+            {
+                MessageDialog.ShowOk(this, string.Empty, Texts.InternetNotRequiredInformation);
+                Resolve.UserSettings.IsFirstSignIn = false;
+            }
         }
 
         private async Task WrapMessageDialogsAsync(Func<Task> dialogFunctionAsync)
@@ -332,7 +337,7 @@ namespace Axantum.AxCrypt
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
                         MessageDialog.ShowOk(this, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(Resolve.UserSettings.UserEmail));
-                        status = await VerifyAccountOnlineAsync();
+                        status = VerifyAccountOnline();
                         break;
 
                     case AccountStatus.InvalidName:
@@ -341,7 +346,7 @@ namespace Axantum.AxCrypt
                         break;
 
                     case AccountStatus.Unverified:
-                        status = await VerifyAccountOnlineAsync();
+                        status = VerifyAccountOnline();
                         break;
 
                     case AccountStatus.Verified:
@@ -413,7 +418,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async Task<AccountStatus> VerifyAccountOnlineAsync()
+        private AccountStatus VerifyAccountOnline()
         {
             VerifyAccountViewModel viewModel = new VerifyAccountViewModel(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
             using (VerifyAccountDialog dialog = new VerifyAccountDialog(this, viewModel))
@@ -426,7 +431,6 @@ namespace Axantum.AxCrypt
             }
             LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(viewModel.UserEmail), Passphrase.Create(viewModel.Passphrase));
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
-            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(await store.ActiveKeyPairAsync(), identity.Passphrase);
 
             DialogResult result = MessageDialog.ShowOkCancel(this, Texts.WelcomeToAxCryptTitle, Texts.WelcomeToAxCrypt);
             if (result == DialogResult.OK)
