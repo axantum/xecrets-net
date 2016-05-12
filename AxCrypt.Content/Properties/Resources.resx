@@ -1429,6 +1429,9 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   <data name="SupportPageTitle" xml:space="preserve">
     <value>Premium Support</value>
   </data>
+  <data name="SupportPremiumIntro" xml:space="preserve">
+    <value>Welcome to AxCrypt Support. We give our Premium subscribers prioritized and personal direct support via e-mail.</value>
+  </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Sorry, direct support is only available to paying subscribers, please visit our &lt;a href="{0}"&gt;community support&lt;/a&gt;.</value>
   </data>

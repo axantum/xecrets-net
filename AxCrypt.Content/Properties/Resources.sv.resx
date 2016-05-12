@@ -1267,6 +1267,9 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   <data name="SupportPageTitle" xml:space="preserve">
     <value>Hjälp för Premium-användare</value>
   </data>
+  <data name="SupportPremiumIntro" xml:space="preserve">
+    <value>Välkommen till AxCrypt Hjälp. Vi ger våra Premium-användare prioriterad och personlig direktsupport via e-post.</value>
+  </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Tyvärr så är direkthjälp bara tillgänglig för betalande Premium-användare, använd våra &lt;a href="{0}"&gt;användarforum&lt;/a&gt; istället.</value>
   </data>

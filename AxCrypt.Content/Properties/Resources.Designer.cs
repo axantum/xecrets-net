@@ -3778,6 +3778,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt Support. We give our Premium subscribers prioritized and personal direct support via e-mail..
+        /// </summary>
+        public static string SupportPremiumIntro {
+            get {
+                return ResourceManager.GetString("SupportPremiumIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, direct support is only available to paying subscribers, please visit our &lt;a href=&quot;{0}&quot;&gt;community support&lt;/a&gt;..
         /// </summary>
         public static string SupportWarningOnlyPremium {
