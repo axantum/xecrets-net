@@ -341,6 +341,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="ChangeEmailMarkError" xml:space="preserve">
     <value>Echec de l'enregistrement du nouvel e-mail suite à une erreur interne, veuillez réessayer plus tard ou contacter notre support technique.</value>
   </data>
+  <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
+    <value>La nouvelle adresse e-mail doit être différente de l'ancienne! </value>
+  </data>
   <data name="ChangeEmailMarkSuccess" xml:space="preserve">
     <value>Nous avons envoyé un e-mail à &lt;b&gt;{0}&lt;/b&gt;. S'il vous plaît lisez votre e-mail et cliquez sur le lien fourni pour confirmer le changement. 
 
@@ -439,6 +442,10 @@ Si vous n'acceptez pas nos cookies de session temporaires, vous ne pouvez pas vo
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Fichier</value>
+  </data>
+  <data name="DecryptedFilesWarning" xml:space="preserve">
+    <value>Ces fichiers ne peuvent pas être chiffré de nouveau: </value>
+    <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Le fichier est probablement ouvert dans une application. Fermez cette application ou utilisez le bouton Nettoyer.</value>
@@ -616,6 +623,9 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' est déjà ouvert dans une autre application. Fermez-le, puis essayez à nouveau.</value>
+  </data>
+  <data name="FileIsWriteProtectedWarning" xml:space="preserve">
+    <value>'{0}' est noté protégé. </value>
   </data>
   <data name="FileNotFound" xml:space="preserve">
     <value>Fichier inexistant.</value>
@@ -1083,6 +1093,9 @@ Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identi
   <data name="PromptSubscription" xml:space="preserve">
     <value>Abonnement</value>
   </data>
+  <data name="PromptSupport" xml:space="preserve">
+    <value>Support</value>
+  </data>
   <data name="PromptVerifyEmail" xml:space="preserve">
     <value>Confirmez</value>
   </data>
@@ -1235,6 +1248,15 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Votre abonnement a été enregistré.</value>
   </data>
+  <data name="SupportBodyPrompt" xml:space="preserve">
+    <value>Comment pouvons-nous vous aider? </value>
+  </data>
+  <data name="SupportPageTitle" xml:space="preserve">
+    <value>Support Premium</value>
+  </data>
+  <data name="SupportWarningOnlyPremium" xml:space="preserve">
+    <value>Désolé, le support direct n'est utilisable que par les utilisateurs qui payent, s'il vous plaît visitez notre &lt;a href="{0}"&gt;support de communauté&lt;/a&gt;</value>
+  </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>Vérifiez vos boîtes de réception et de spam!</value>
   </data>
@@ -1316,6 +1338,10 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Vérifier Mot de Passe</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Attention! </value>
+    <comment>The title of a pop up or dialog with a warning.</comment>
   </data>
   <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
     <value>Dossier</value>
