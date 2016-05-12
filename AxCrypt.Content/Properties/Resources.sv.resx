@@ -341,6 +341,9 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   <data name="ChangeEmailMarkError" xml:space="preserve">
     <value>Byte av E-postadress misslyckades pga av ett internt fel. Försök igen senare, eller kontakta oss.</value>
   </data>
+  <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
+    <value>Den nya e-postadressen måste skilja sig från den gamla!</value>
+  </data>
   <data name="ChangeEmailMarkSuccess" xml:space="preserve">
     <value>Vi har skickat ett e-postmeddelande till &lt;b&gt;{0}&lt;/b&gt;. Kontrollera din inbox och klicka på länken där för att bekräfta bytet.
 
@@ -439,6 +442,10 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Fil</value>
+  </data>
+  <data name="DecryptedFilesWarning" xml:space="preserve">
+    <value>Följande filer kunde inte omkrypteras:</value>
+    <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Filen är troligen öppnad i sin applikation. Stäng applikationen eller använda städaknappen.</value>
@@ -614,6 +621,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' är redan öppnad. Stäng programmet och försök igen.</value>
   </data>
+  <data name="FileIsWriteProtectedWarning" xml:space="preserve">
+    <value>'{0}' är skrivskyddad.</value>
+  </data>
   <data name="FileNotFound" xml:space="preserve">
     <value>Filen finns inte.</value>
   </data>
@@ -670,6 +680,13 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mitt AxCrypt ID</value>
+  </data>
+  <data name="InternetNotRequiredInformation" xml:space="preserve">
+    <value>Internet KRÄVS INTE för att använda AxCrypt.
+
+Vi rekommenderar att AxCrypt tillåts använda Internet. Vissa funktioner fungerar bättre, och kritiska uppdateringar kanske inte når fram annars.
+
+Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Felaktigt angiven epostadress.</value>
@@ -769,6 +786,9 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga aktiveringskoden och sätt di
   <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
     <value>Uppgradera till Premium för det starkaste skyddet.</value>
   </data>
+  <data name="MagicGuidMIssingFileStatus" xml:space="preserve">
+    <value>'{0}' är inte en AxCrypt-fil.</value>
+  </data>
   <data name="MailBodyFooter" xml:space="preserve">
     <value>Om du inte vet varför du får det här från &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;, kan du strunta i det här mejlet, eller rapportera det till {1}.</value>
   </data>
@@ -833,7 +853,9 @@ AxCrypt-teamet</value>
     <value>Teckna AxCrypt ID</value>
   </data>
   <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
-    <value>Just nu krävs Internetåtkomst. Kontrollera anslutningen och försök igen.</value>
+    <value>Internetåtkomst krävs första gången. Kontrollera anslutningen och försök igen.
+
+Internet KRÄVS INTE efter denna första gång.</value>
   </data>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>Internetåtkomst Saknas!</value>
@@ -1083,6 +1105,9 @@ Om du inte verkar få det inom några minuter, kontrollera ditt skräppostfilter
   <data name="PromptSubscription" xml:space="preserve">
     <value>Prenumeration</value>
   </data>
+  <data name="PromptSupport" xml:space="preserve">
+    <value>Hjälp</value>
+  </data>
   <data name="PromptVerifyEmail" xml:space="preserve">
     <value>Bekräfta</value>
   </data>
@@ -1236,6 +1261,15 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Sparad.</value>
   </data>
+  <data name="SupportBodyPrompt" xml:space="preserve">
+    <value>Hur kan vi hjälpa dig?</value>
+  </data>
+  <data name="SupportPageTitle" xml:space="preserve">
+    <value>Hjälp för Premium-användare</value>
+  </data>
+  <data name="SupportWarningOnlyPremium" xml:space="preserve">
+    <value>Tyvärr så är direkthjälp bara tillgänglig för betalande Premium-användare, använd våra &lt;a href="{0}"&gt;användarforum&lt;/a&gt; istället.</value>
+  </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>Finns i inbox eller skräppost!</value>
   </data>
@@ -1318,6 +1352,10 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verifiera Lösenord</value>
   </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Varning!</value>
+    <comment>The title of a pop up or dialog with a warning.</comment>
+  </data>
   <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
     <value>Mapp</value>
   </data>
@@ -1362,6 +1400,9 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Status 'Arbetar' med '{0}'.</value>
+  </data>
+  <data name="WrongFileExtensionWarning" xml:space="preserve">
+    <value>'{0}' har fel filändelse. Den måste vara '{1}'.</value>
   </data>
   <data name="WrongPassphrase" xml:space="preserve">
     <value>Fel lösenord. Försök igen.</value>
