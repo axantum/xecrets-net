@@ -1952,6 +1952,8 @@ namespace Axantum.AxCrypt
 
             Resolve.UserSettings.Delete();
             Resolve.FileSystemState.Delete();
+            Resolve.WorkFolder.FileInfo.FileItemInfo(LocalAccountService.FileName).Delete();
+            New<KnownPublicKeys>().Delete();
             Resolve.UserSettings.SettingsVersion = Resolve.UserSettings.CurrentSettingsVersion;
         }
 

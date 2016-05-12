@@ -28,6 +28,11 @@ namespace Axantum.AxCrypt.Core.Session
             _publicKeys = new List<UserPublicKey>();
         }
 
+        public void Delete()
+        {
+            _store.Delete();
+        }
+
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Used by Json.NET serializer.")]
         [JsonProperty("publickeys")]
         public IEnumerable<UserPublicKey> PublicKeys

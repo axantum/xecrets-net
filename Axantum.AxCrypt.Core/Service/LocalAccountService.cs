@@ -53,6 +53,8 @@ namespace Axantum.AxCrypt.Core.Service
 
         private IDataContainer _workContainer;
 
+        public static readonly string FileName = "UserAccounts.txt";
+
         public LocalAccountService(LogOnIdentity identity, IDataContainer workContainer)
         {
             if (identity == null)
@@ -286,7 +288,7 @@ namespace Axantum.AxCrypt.Core.Service
         {
             get
             {
-                return _workContainer.FileItemInfo("UserAccounts.txt");
+                return _workContainer.FileItemInfo(FileName);
             }
         }
 
