@@ -540,7 +540,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>AxCrypt ID</value>
   </data>
   <data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
-    <value>The first time you start AxCrypt, Internet access and a real email address is required. Click help for more information.</value>
+    <value>The first time you start AxCrypt a real email address is required. Click help for more information.</value>
   </data>
   <data name="DialogDebugLogTitle" xml:space="preserve">
     <value>Debug Log Output</value>

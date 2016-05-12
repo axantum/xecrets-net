@@ -1259,7 +1259,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The first time you start AxCrypt, Internet access and a real email address is required. Click help for more information..
+        ///   Looks up a localized string similar to The first time you start AxCrypt a real email address is required. Click help for more information..
         /// </summary>
         public static string DialogAxCryptIdFirstTimeText {
             get {
