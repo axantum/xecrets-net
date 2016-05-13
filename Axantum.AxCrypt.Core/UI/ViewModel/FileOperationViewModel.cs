@@ -110,6 +110,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
+        public event EventHandler<FileOperationEventArgs> FirstLegacyOpen;
+
+        protected virtual void OnFirstLegacyOpen(FileOperationEventArgs e)
+        {
+            FirstLegacyOpen?.Invoke(this, e);
+        }
+
+        public event EventHandler<FileOperationEventArgs> ToggleLegacyConversion;
+
+        protected virtual void OnToggleLegacyConversion(FileOperationEventArgs e)
+        {
+            ToggleLegacyConversion?.Invoke(this, e);
+        }
+
         private void DecryptFoldersAction(IEnumerable<string> folders)
         {
             _fileOperation.DoFiles(folders.Select(f => New<IDataContainer>(f)).ToList(), DecryptFolderWork, (status) => { });
@@ -270,7 +284,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
-            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
+            operationsController.QueryDecryptionPassphrase += HandleQueryOpenPassphraseEvent;
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
@@ -292,6 +306,31 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.DecryptAndLaunch(file);
+        }
+
+        private void HandleQueryOpenPassphraseEvent(object sender, FileOperationEventArgs e)
+        {
+            HandleQueryDecryptionPassphraseEvent(sender, e);
+            if (e.Cancel)
+            {
+                return;
+            }
+            if (Resolve.UserSettings.LegacyConversionMode == LegacyConversionMode.NotDecided)
+            {
+                OnFirstLegacyOpen(e);
+            }
+
+            if (e.Cancel)
+            {
+                Resolve.UserSettings.LegacyConversionMode = LegacyConversionMode.RetainLegacyFiles;
+                e.Cancel = false;
+                return;
+            }
+
+            if (Resolve.UserSettings.LegacyConversionMode == LegacyConversionMode.NotDecided)
+            {
+                OnToggleLegacyConversion(e);
+            }
         }
 
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)

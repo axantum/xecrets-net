@@ -257,6 +257,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(IsFirstSignIn), value); }
         }
 
+        public LegacyConversionMode LegacyConversionMode
+        {
+            get { return (LegacyConversionMode)Load(nameof(LegacyConversionMode), (int)LegacyConversionMode.NotDecided); }
+            set { Store(nameof(LegacyConversionMode), (int)value); }
+        }
+
         public string this[string key]
         {
             get

@@ -211,6 +211,8 @@ namespace Axantum.AxCrypt
             _watchedFoldersTabPage.Text = Texts.WatchedFoldersTabPageText;
             _signInToolStripMenuItem.Text = Texts.LogOnText;
             _signOutToolStripMenuItem.Text = Texts.LogOffText;
+            _optionsAutoConvert1xFilesToolStripMenuItem.Text = Texts.OptionsConvertMenuItemText;
+            _optionsAutoConvert1xFilesToolStripMenuItem.ToolTipText = Texts.OptionsConvertMenuToolTip;
         }
 
         private static void SetCulture()
@@ -278,7 +280,7 @@ namespace Axantum.AxCrypt
             }
             if (Resolve.UserSettings.IsFirstSignIn)
             {
-                MessageDialog.ShowOk(this, string.Empty, Texts.InternetNotRequiredInformation);
+                MessageDialog.ShowOk(this, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
                 Resolve.UserSettings.IsFirstSignIn = false;
             }
         }
@@ -714,6 +716,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { _tryBrokenFileToolStripMenuItem.Checked = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LegacyConversionMode), (LegacyConversionMode mode) => _optionsAutoConvert1xFilesToolStripMenuItem.Checked = mode == LegacyConversionMode.AutoConvertLegacyFiles);
 
             _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); };
 
@@ -742,6 +745,13 @@ namespace Axantum.AxCrypt
 
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = KnownFoldersDiscovery.Discover();
+
+            _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
+        }
+
+        private void _autoConvert1xFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void ConfigureWatchedFoldersMenus(bool enabled)
@@ -810,6 +820,8 @@ namespace Axantum.AxCrypt
 
             _fileOperationViewModel.IdentityViewModel.LoggingOn += (sender, e) => { HandleLogOn(e); };
             _fileOperationViewModel.SelectingFiles += (sender, e) => { HandleFileSelection(e); };
+            _fileOperationViewModel.FirstLegacyOpen += (sender, e) => { SetLegacyOpenMode(e); };
+            _fileOperationViewModel.ToggleLegacyConversion += (sender, e) => ToggleLegacyConversion();
 
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
         }
@@ -901,6 +913,7 @@ namespace Axantum.AxCrypt
             SetWindowTextWithLogonStatus(isSignedIn);
             _debugManageAccountToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsChangePassphraseToolStripMenuItem.Enabled = isSignedInWithAxCryptId && New<AxCryptOnlineState>().IsOnline;
+            _optionsAutoConvert1xFilesToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _exportSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
@@ -934,6 +947,48 @@ namespace Axantum.AxCrypt
             _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
             _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.DaysLeftWarningToolTip);
             _daysLeftPremiumLabel.Visible = true;
+        }
+
+        private void SetLegacyOpenMode(FileOperationEventArgs e)
+        {
+            if (!Resolve.KnownIdentities.IsLoggedOn)
+            {
+                return;
+            }
+
+            DialogResult dr = MessageDialog.ShowOkCancel(this, Texts.WarningTitle, Texts.LegacyOpenMessage);
+            if (dr == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
+
+        private void ToggleLegacyConversion()
+        {
+            if (!Resolve.KnownIdentities.IsLoggedOn)
+            {
+                return;
+            }
+
+            if (_mainViewModel.LegacyConversionMode == LegacyConversionMode.AutoConvertLegacyFiles)
+            {
+                _mainViewModel.LegacyConversionMode = LegacyConversionMode.RetainLegacyFiles;
+                return;
+            }
+
+            VerifySignInPasswordViewModel viewModel = new VerifySignInPasswordViewModel(Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            using (VerifySignInPasswordDialog dialog = new VerifySignInPasswordDialog(this, viewModel))
+            {
+                DialogResult dr = dialog.ShowDialog(this);
+                if (dr != DialogResult.OK)
+                {
+                    _mainViewModel.LegacyConversionMode = LegacyConversionMode.NotDecided;
+                    return;
+                }
+            }
+
+            _mainViewModel.LegacyConversionMode = LegacyConversionMode.AutoConvertLegacyFiles;
         }
 
         private async Task LogOffAndLogOnAgainAsync()

@@ -91,5 +91,7 @@ namespace Axantum.AxCrypt.Core.UI
         bool TryBrokenFile { get; set; }
 
         bool IsFirstSignIn { get; set; }
+
+        LegacyConversionMode LegacyConversionMode { get; set; }
     }
 }

@@ -103,6 +103,7 @@
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
+            this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -456,6 +457,7 @@
             this._optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._optionsLanguageToolStripMenuItem,
             this._optionsChangePassphraseToolStripMenuItem,
+            this._optionsAutoConvert1xFilesToolStripMenuItem,
             this._optionsDebugToolStripMenuItem,
             this._optionsClearAllSettingsAndExitToolStripMenuItem});
             this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
@@ -478,7 +480,7 @@
             // _englishLanguageToolStripMenuItem
             // 
             this._englishLanguageToolStripMenuItem.Name = "_englishLanguageToolStripMenuItem";
-            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._englishLanguageToolStripMenuItem.Tag = "en-US";
             this._englishLanguageToolStripMenuItem.Text = "[&English]";
             this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -486,7 +488,7 @@
             // _francaisLanguageToolStripMenuItem
             // 
             this._francaisLanguageToolStripMenuItem.Name = "_francaisLanguageToolStripMenuItem";
-            this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._francaisLanguageToolStripMenuItem.Tag = "fr-FR";
             this._francaisLanguageToolStripMenuItem.Text = "[&Français]";
             this._francaisLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -494,7 +496,7 @@
             // _swedishLanguageToolStripMenuItem
             // 
             this._swedishLanguageToolStripMenuItem.Name = "_swedishLanguageToolStripMenuItem";
-            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._swedishLanguageToolStripMenuItem.Tag = "sv-SE";
             this._swedishLanguageToolStripMenuItem.Text = "[&Svenska]";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -502,7 +504,7 @@
             // _spanishLanguageToolStripMenuItem
             // 
             this._spanishLanguageToolStripMenuItem.Name = "_spanishLanguageToolStripMenuItem";
-            this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._spanishLanguageToolStripMenuItem.Tag = "es-ES";
             this._spanishLanguageToolStripMenuItem.Text = "[&Español]";
             this._spanishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -893,6 +895,12 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
+            // _autoConvert1xFilesToolStripMenuItem
+            // 
+            this._optionsAutoConvert1xFilesToolStripMenuItem.Name = "_autoConvert1xFilesToolStripMenuItem";
+            this._optionsAutoConvert1xFilesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsAutoConvert1xFilesToolStripMenuItem.Text = "[Auto Convert 1.x Files]";
+            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1019,6 +1027,7 @@
         private System.Windows.Forms.ToolStripMenuItem _addSecureFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersKeySharingMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _spanishLanguageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _optionsAutoConvert1xFilesToolStripMenuItem;
     }
 }
 

@@ -771,6 +771,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>My AxCrypt ID</value>
   </data>
+  <data name="InformationTitle" xml:space="preserve">
+    <value>Information</value>
+    <comment>A dialog box title for general announcement and informative message dialog boxes</comment>
+  </data>
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet is NOT REQUIRED to use AxCrypt.
 
@@ -846,6 +850,18 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Time</value>
+  </data>
+  <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
+    <value>After files are converted from AxCrypt 1 to 2, you must use the new Sign In password to open them.
+
+Do not forget this password!</value>
+  </data>
+  <data name="LegacyOpenMessage" xml:space="preserve">
+    <value>AxCrypt 2 uses a new file format.
+
+You can open legacy AxCrypt 1.x files but unless they are converted you have to provide the original password even when signed in.
+
+Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   </data>
   <data name="LicenseFreeNameText" xml:space="preserve">
     <value>Free</value>
@@ -1064,6 +1080,14 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Clear All Settings and Exit</value>
+  </data>
+  <data name="OptionsConvertMenuItemText" xml:space="preserve">
+    <value>Auto Convert 1.x Files</value>
+    <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
+  </data>
+  <data name="OptionsConvertMenuToolTip" xml:space="preserve">
+    <value>Enable or disable the automatic upgrade and conversion of older AxCrypt 1.x files as they are used.</value>
+    <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Debug</value>
@@ -1385,6 +1409,9 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Show Password</value>
+  </data>
+  <data name="SignInVerificationTitle" xml:space="preserve">
+    <value>Verify Sign In</value>
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Warning! A site restart is scheduled in a few minutes. We're sorry about the inconvenience.</value>

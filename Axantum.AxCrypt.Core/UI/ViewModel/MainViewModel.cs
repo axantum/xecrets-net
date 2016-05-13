@@ -58,6 +58,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool WatchedFoldersEnabled { get { return GetProperty<bool>(nameof(WatchedFoldersEnabled)); } set { SetProperty(nameof(WatchedFoldersEnabled), value); } }
 
+        public LegacyConversionMode LegacyConversionMode { get { return GetProperty<LegacyConversionMode>(nameof(LegacyConversionMode)); } set { SetProperty(nameof(LegacyConversionMode), value); } }
+
         public string Title { get { return GetProperty<string>(nameof(Title)); } set { SetProperty(nameof(Title), value); } }
 
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>(nameof(WatchedFolders)); } set { SetProperty(nameof(WatchedFolders), value.ToList()); } }
@@ -137,6 +139,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             VersionUpdateStatus = VersionUpdateStatus.Unknown;
             DownloadVersion = DownloadVersion.Empty;
             License = New<LicensePolicy>();
+            LegacyConversionMode = Resolve.UserSettings.LegacyConversionMode;
 
             AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders), (folders) => LoggedOn);
             RemoveRecentFiles = new DelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
@@ -162,6 +165,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (LoggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
             BindPropertyChangedInternal(nameof(License), (LicensePolicy policy) => SetWatchedFolders());
+            BindPropertyChangedInternal(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
         }
 
         private void SubscribeToModelEvents()

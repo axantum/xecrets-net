@@ -20,6 +20,16 @@ namespace Axantum.AxCrypt
         public PasswordStrengthMeter()
         {
             InitializeComponent();
+        }
+
+        protected override void OnCreateControl()
+        {
+            base.OnCreateControl();
+
+            if (DesignMode)
+            {
+                return;
+            }
 
             SetStyle(ControlStyles.UserPaint, true);
             Minimum = 0;

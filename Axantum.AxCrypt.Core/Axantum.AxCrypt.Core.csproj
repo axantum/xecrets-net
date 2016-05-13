@@ -182,6 +182,7 @@
     <Compile Include="Service\UserKeyPair.cs" />
     <Compile Include="Session\AccountStorage.cs" />
     <Compile Include="Session\OpenFileProperties.cs" />
+    <Compile Include="UI\LegacyConversionMode.cs" />
     <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="UI\IEmailParser.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="UI\ViewModel\PasswordStrengthMeterViewModel.cs" />
     <Compile Include="UI\ViewModel\SharingListViewModel.cs" />
     <Compile Include="UI\ViewModel\VerifyAccountViewModel.cs" />
+    <Compile Include="UI\ViewModel\VerifySignInPasswordViewModel.cs" />
     <Compile Include="UI\ViewModel\WatchedFoldersViewModel.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
     <Compile Include="V2AxCryptDocument.cs" />

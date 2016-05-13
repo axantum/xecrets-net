@@ -1952,6 +1952,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        public static string InformationTitle {
+            get {
+                return ResourceManager.GetString("InformationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internet is NOT REQUIRED to use AxCrypt.
         ///
         ///We recommend AxCrypt is allowed Internet access. Some features work better and critical updates may not reach you otherwise.
@@ -2154,6 +2163,28 @@ namespace AxCrypt.Content.Properties {
         public static string LastAccessTimeColumnHeaderText {
             get {
                 return ResourceManager.GetString("LastAccessTimeColumnHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When files are converted from AxCrypt 1 to AxCrypt 2, this is the password you must know to open them.
+        ///
+        ///Do not forget this password!.
+        /// </summary>
+        public static string LegacyConversionVerificationPrompt {
+            get {
+                return ResourceManager.GetString("LegacyConversionVerificationPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt 2 uses a new file format. You can open legacy AxCrypt 1.x files but you have to provide the original password even when signed in.
+        ///
+        ///Enable automatic conversion of AxCrypt 1.x files (recommended)?.
+        /// </summary>
+        public static string LegacyOpenMessage {
+            get {
+                return ResourceManager.GetString("LegacyOpenMessage", resourceCulture);
             }
         }
         
@@ -2751,6 +2782,24 @@ namespace AxCrypt.Content.Properties {
         public static string OptionsClearAllSettingsAndExitToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("OptionsClearAllSettingsAndExitToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Convert 1.x Files.
+        /// </summary>
+        public static string OptionsConvertMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsConvertMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable or disable the automatic upgrade and conversion of older AxCrypt 1.x files as they are used..
+        /// </summary>
+        public static string OptionsConvertMenuToolTip {
+            get {
+                return ResourceManager.GetString("OptionsConvertMenuToolTip", resourceCulture);
             }
         }
         
@@ -3648,6 +3697,15 @@ namespace AxCrypt.Content.Properties {
         public static string ShowPasswordOptionPrompt {
             get {
                 return ResourceManager.GetString("ShowPasswordOptionPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verify Sign In.
+        /// </summary>
+        public static string SignInVerificationTitle {
+            get {
+                return ResourceManager.GetString("SignInVerificationTitle", resourceCulture);
             }
         }
         
