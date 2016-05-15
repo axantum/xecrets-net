@@ -33,6 +33,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -154,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public ICryptoFactory Update(Guid cryptoId)
         {
-            if (cryptoId == new V1Aes128CryptoFactory().CryptoId)
+            if (cryptoId == new V1Aes128CryptoFactory().CryptoId && New<IUserSettings>().LegacyConversionMode != LegacyConversionMode.AutoConvertLegacyFiles)
             {
                 return Legacy;
             }

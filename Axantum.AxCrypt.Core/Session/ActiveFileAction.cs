@@ -318,12 +318,13 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            if (!activeFile.IsModified)
+
+            if (activeFile.IsModified || (activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId && New<IUserSettings>().LegacyConversionMode == LegacyConversionMode.AutoConvertLegacyFiles))
             {
-                return activeFile;
+                return activeFile.UpdateDecrypted(progress);
             }
 
-            return activeFile.UpdateDecrypted(progress);
+            return activeFile;
         }
 
         private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, IProgressContext progress)

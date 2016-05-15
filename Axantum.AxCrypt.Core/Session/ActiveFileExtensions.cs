@@ -59,6 +59,10 @@ namespace Axantum.AxCrypt.Core.Session
                     New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
                         activeFile = new ActiveFile(activeFile, Resolve.CryptoFactory.Update(activeFile.Properties.CryptoId).CryptoId);
+                        if (activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId && New<IUserSettings>().LegacyConversionMode == LegacyConversionMode.AutoConvertLegacyFiles && New<KnownIdentities>().IsLoggedOn)
+                        {
+                            activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
+                        }
                         EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
                         EncryptedProperties properties = EncryptedProperties.Create(activeFile.EncryptedFileInfo);
                         parameters.Add(properties.SharedKeyHolders);
