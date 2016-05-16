@@ -681,6 +681,10 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mitt AxCrypt ID</value>
   </data>
+  <data name="InformationTitle" xml:space="preserve">
+    <value>Information</value>
+    <comment>A dialog box title for general announcement and informative message dialog boxes</comment>
+  </data>
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet KRÄVS INTE för att använda AxCrypt.
 
@@ -750,6 +754,20 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga aktiveringskoden och sätt di
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Tid</value>
+  </data>
+  <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
+    <value>När filer konverterats från AxCrypt 1.x-formatet, måste du använda det nya inloggningslösenordet för att öppna dem, så bekräfta detta nu.
+
+Kom ihåg det här lösenordet!</value>
+  </data>
+  <data name="LegacyOpenMessage" xml:space="preserve">
+    <value>AxCrypt 2 använder ett nytt filformat.
+
+Du kan öppna äldre AxCrypt 1.x-filer, men om de inte konverteras måste du ange det ursprungliga lösenordet även om du redan loggat in.
+
+Automatisk konvertering kan ställas in via menyerna.
+
+Ska vi aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </value>
   </data>
   <data name="LicenseFreeNameText" xml:space="preserve">
     <value>Gratis</value>
@@ -936,6 +954,14 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Rensa alla inställningar och Avsluta</value>
+  </data>
+  <data name="OptionsConvertMenuItemText" xml:space="preserve">
+    <value>Autokonvertera 1.x-filer</value>
+    <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
+  </data>
+  <data name="OptionsConvertMenuToolTip" xml:space="preserve">
+    <value>Aktivera eller inaktivera automatisk uppgradering och konvertering av äldre AxCrypt 1.x-filer allteftersom.</value>
+    <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Språk</value>
@@ -1251,6 +1277,9 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Visa Lösenord</value>
+  </data>
+  <data name="SignInVerificationTitle" xml:space="preserve">
+    <value>Bekräfta Inloggning</value>
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Varning! Webbsajten startar strax om. Vi ber om ursäkt för besväret.</value>
