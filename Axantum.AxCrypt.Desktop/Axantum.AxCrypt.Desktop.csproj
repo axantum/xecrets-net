@@ -74,6 +74,10 @@
       <Project>{ce9e8614-8dc5-4757-9384-3c416ab61a47}</Project>
       <Name>Axantum.AxCrypt.Mono</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Content\AxCrypt.Content.csproj">
+      <Project>{CB0C5A7A-FBEE-4F02-BDAE-4A7F206C1CD4}</Project>
+      <Name>AxCrypt.Content</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />

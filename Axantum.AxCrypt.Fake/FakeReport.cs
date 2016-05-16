@@ -47,5 +47,13 @@ namespace Axantum.AxCrypt.Fake
                 return string.Empty;
             }
         }
+
+        public void Save()
+        {
+        }
+
+        public void Open()
+        {
+        }
     }
 }

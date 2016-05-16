@@ -3553,6 +3553,28 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is a snapshop report of detected errors in AxCrypt. Please copy all of this text and e-mail to:
+        ///
+        ///To: support@axcrypt.net
+        ///Subject: AxCrypt Report Snapshot
+        ///.
+        /// </summary>
+        public static string ReportSnapshotIntro {
+            get {
+                return ResourceManager.GetString("ReportSnapshotIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Open Error Report Snapshot.
+        /// </summary>
+        public static string ReportSnapshotOpenMenuItem {
+            get {
+                return ResourceManager.GetString("ReportSnapshotOpenMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only premium users are allowed to save password entries..
         /// </summary>
         public static string SaveSecretErrorIsReadOnly {

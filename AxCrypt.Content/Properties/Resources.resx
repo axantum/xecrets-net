@@ -1355,6 +1355,17 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link.</value>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Remove from list but keep file secured</value>
   </data>
+  <data name="ReportSnapshotIntro" xml:space="preserve">
+    <value>This is a snapshop report of detected errors in AxCrypt. Please copy all of this text and e-mail to:
+
+To: support@axcrypt.net
+Subject: AxCrypt Report Snapshot
+</value>
+    <comment>Included as the first part of a snapshot report with logged errors etc.</comment>
+  </data>
+  <data name="ReportSnapshotOpenMenuItem" xml:space="preserve">
+    <value>&amp;Open Error Report Snapshot</value>
+  </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Only premium users are allowed to save password entries.</value>
   </data>

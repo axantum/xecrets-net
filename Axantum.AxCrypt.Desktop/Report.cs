@@ -26,8 +26,11 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,9 +43,12 @@ namespace Axantum.AxCrypt.Desktop
     {
         private INow _now;
 
-        public Report()
+        private string _filePath;
+
+        public Report(string folderPath)
         {
             _now = New<INow>();
+            _filePath = Path.Combine(folderPath, "ReportSnapshot.txt");
         }
 
         private class Entry
@@ -74,11 +80,36 @@ namespace Axantum.AxCrypt.Desktop
             }
         }
 
+        public void Save()
+        {
+            try
+            {
+                string snapshot = New<IReport>().Snapshot;
+                if (snapshot.Length > 0)
+                {
+                    File.WriteAllText(_filePath, snapshot);
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public void Open()
+        {
+            Process.Start(_filePath);
+        }
+
         private string SnapshotInternal()
         {
             Stack<Entry> stack = new Stack<Entry>();
             lock (_queue)
             {
+                if (_queue.Count == 0)
+                {
+                    return string.Empty;
+                }
+
                 while (_queue.Count > 0)
                 {
                     stack.Push(_queue.Dequeue());
@@ -86,6 +117,7 @@ namespace Axantum.AxCrypt.Desktop
             }
 
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine(Texts.ReportSnapshotIntro).AppendLine();
             while (stack.Count > 0)
             {
                 if (sb.Length > 0)

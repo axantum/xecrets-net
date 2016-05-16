@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt
             _workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
 
             TypeMap.Register.Singleton<INow>(() => new Now());
-            TypeMap.Register.Singleton<IReport>(() => new Report());
+            TypeMap.Register.Singleton<IReport>(() => new Report(_workFolderPath));
 
             EmbeddedResourceManager.Initialize();
 
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt
             if (commandLineArgs.Length == 1)
             {
                 RunInteractive();
-                ReportSnapshotExceptionSafe();
+                New<IReport>().Save();
             }
             else
             {
@@ -95,21 +95,6 @@ namespace Axantum.AxCrypt
 
             Resolve.CommandService.Dispose();
             TypeMap.Register.Clear();
-        }
-
-        private static void ReportSnapshotExceptionSafe()
-        {
-            try
-            {
-                string snapshot = New<IReport>().Snapshot;
-                if (snapshot.Length > 0)
-                {
-                    File.WriteAllText(Path.Combine(_workFolderPath, "ReportSnapshot.txt"), snapshot);
-                }
-            }
-            catch (Exception)
-            {
-            }
         }
 
         private static bool EnsureNetVersionUsingNothingThatCrashesTheProcess()

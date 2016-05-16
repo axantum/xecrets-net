@@ -62,6 +62,7 @@
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._spanishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsChangePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsClearAllSettingsAndExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -85,6 +86,7 @@
             this._debugLoggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugManageAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._tryBrokenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._debugOpenReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpViewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +105,6 @@
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
-            this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -480,7 +481,7 @@
             // _englishLanguageToolStripMenuItem
             // 
             this._englishLanguageToolStripMenuItem.Name = "_englishLanguageToolStripMenuItem";
-            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._englishLanguageToolStripMenuItem.Tag = "en-US";
             this._englishLanguageToolStripMenuItem.Text = "[&English]";
             this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -488,7 +489,7 @@
             // _francaisLanguageToolStripMenuItem
             // 
             this._francaisLanguageToolStripMenuItem.Name = "_francaisLanguageToolStripMenuItem";
-            this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._francaisLanguageToolStripMenuItem.Tag = "fr-FR";
             this._francaisLanguageToolStripMenuItem.Text = "[&Français]";
             this._francaisLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -496,7 +497,7 @@
             // _swedishLanguageToolStripMenuItem
             // 
             this._swedishLanguageToolStripMenuItem.Name = "_swedishLanguageToolStripMenuItem";
-            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._swedishLanguageToolStripMenuItem.Tag = "sv-SE";
             this._swedishLanguageToolStripMenuItem.Text = "[&Svenska]";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -504,7 +505,7 @@
             // _spanishLanguageToolStripMenuItem
             // 
             this._spanishLanguageToolStripMenuItem.Name = "_spanishLanguageToolStripMenuItem";
-            this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this._spanishLanguageToolStripMenuItem.Tag = "es-ES";
             this._spanishLanguageToolStripMenuItem.Text = "[&Español]";
             this._spanishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -514,6 +515,12 @@
             this._optionsChangePassphraseToolStripMenuItem.Name = "_optionsChangePassphraseToolStripMenuItem";
             this._optionsChangePassphraseToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsChangePassphraseToolStripMenuItem.Text = "[Change &Password]";
+            // 
+            // _optionsAutoConvert1xFilesToolStripMenuItem
+            // 
+            this._optionsAutoConvert1xFilesToolStripMenuItem.Name = "_optionsAutoConvert1xFilesToolStripMenuItem";
+            this._optionsAutoConvert1xFilesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsAutoConvert1xFilesToolStripMenuItem.Text = "[Auto Convert 1.x Files]";
             // 
             // _optionsDebugToolStripMenuItem
             // 
@@ -641,7 +648,8 @@
             this._debugCryptoPolicyToolStripMenuItem,
             this._debugLoggingToolStripMenuItem,
             this._debugManageAccountToolStripMenuItem,
-            this._tryBrokenFileToolStripMenuItem});
+            this._tryBrokenFileToolStripMenuItem,
+            this._debugOpenReportToolStripMenuItem});
             this._debugToolStripMenuItem.Name = "_debugToolStripMenuItem";
             this._debugToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this._debugToolStripMenuItem.Text = "[&Debug]";
@@ -649,43 +657,49 @@
             // _debugCheckVersionNowToolStripMenuItem
             // 
             this._debugCheckVersionNowToolStripMenuItem.Name = "_debugCheckVersionNowToolStripMenuItem";
-            this._debugCheckVersionNowToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._debugCheckVersionNowToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._debugCheckVersionNowToolStripMenuItem.Text = "[&Check Version Now]";
             // 
             // _debugOptionsToolStripMenuItem
             // 
             this._debugOptionsToolStripMenuItem.Name = "_debugOptionsToolStripMenuItem";
-            this._debugOptionsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._debugOptionsToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._debugOptionsToolStripMenuItem.Text = "[&Options]";
             this._debugOptionsToolStripMenuItem.Click += new System.EventHandler(this.SetOptionsToolStripMenuItem_Click);
             // 
             // _debugCryptoPolicyToolStripMenuItem
             // 
             this._debugCryptoPolicyToolStripMenuItem.Name = "_debugCryptoPolicyToolStripMenuItem";
-            this._debugCryptoPolicyToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._debugCryptoPolicyToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._debugCryptoPolicyToolStripMenuItem.Text = "[License &Policy]";
             this._debugCryptoPolicyToolStripMenuItem.Visible = false;
             // 
             // _debugLoggingToolStripMenuItem
             // 
             this._debugLoggingToolStripMenuItem.Name = "_debugLoggingToolStripMenuItem";
-            this._debugLoggingToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._debugLoggingToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._debugLoggingToolStripMenuItem.Text = "[&Logging]";
             this._debugLoggingToolStripMenuItem.Click += new System.EventHandler(this.loggingToolStripMenuItem_Click);
             // 
             // _debugManageAccountToolStripMenuItem
             // 
             this._debugManageAccountToolStripMenuItem.Name = "_debugManageAccountToolStripMenuItem";
-            this._debugManageAccountToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._debugManageAccountToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._debugManageAccountToolStripMenuItem.Text = "[&Manage Account]";
             this._debugManageAccountToolStripMenuItem.Click += new System.EventHandler(this.ManageAccountToolStripMenuItem_Click);
             // 
             // _tryBrokenFileToolStripMenuItem
             // 
             this._tryBrokenFileToolStripMenuItem.Name = "_tryBrokenFileToolStripMenuItem";
-            this._tryBrokenFileToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this._tryBrokenFileToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._tryBrokenFileToolStripMenuItem.Text = "[&Try Broken File]";
             this._tryBrokenFileToolStripMenuItem.Click += new System.EventHandler(this.tryBrokenFileToolStripMenuItem_Click);
+            // 
+            // _debugOpenReportToolStripMenuItem
+            // 
+            this._debugOpenReportToolStripMenuItem.Name = "_debugOpenReportToolStripMenuItem";
+            this._debugOpenReportToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._debugOpenReportToolStripMenuItem.Text = "[&Open Error Report Snapshot]";
             // 
             // _helpToolStripMenuItem
             // 
@@ -895,12 +909,6 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // _autoConvert1xFilesToolStripMenuItem
-            // 
-            this._optionsAutoConvert1xFilesToolStripMenuItem.Name = "_autoConvert1xFilesToolStripMenuItem";
-            this._optionsAutoConvert1xFilesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this._optionsAutoConvert1xFilesToolStripMenuItem.Text = "[Auto Convert 1.x Files]";
-            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1028,6 +1036,7 @@
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersKeySharingMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _spanishLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _optionsAutoConvert1xFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _debugOpenReportToolStripMenuItem;
     }
 }
 

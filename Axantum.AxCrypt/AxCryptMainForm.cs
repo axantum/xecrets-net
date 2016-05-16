@@ -158,6 +158,7 @@ namespace Axantum.AxCrypt
             _debugLoggingToolStripMenuItem.Text = Texts.DebugLoggingToolStripMenuItemText;
             _debugManageAccountToolStripMenuItem.Text = Texts.DebugManageAccountToolStripMenuItemText;
             _debugOptionsToolStripMenuItem.Text = Texts.DebugOptionsToolStripMenuItemText;
+            _debugOpenReportToolStripMenuItem.Text = Texts.ReportSnapshotOpenMenuItem;
             _debugToolStripMenuItem.Text = Texts.DebugToolStripMenuItemText;
             _decryptAndRemoveFromListToolStripMenuItem.Text = Texts.DecryptAndRemoveFromListToolStripMenuItemText;
             _decryptedFileColumnHeader.Text = Texts.DecryptedFileColumnHeaderText;
@@ -725,6 +726,7 @@ namespace Axantum.AxCrypt
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
+            _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Save(); New<IReport>().Open(); };
             _removeRecentFileToolStripMenuItem.Click += (sender, e) => { _mainViewModel.RemoveRecentFiles.Execute(_mainViewModel.SelectedRecentFiles); };
 
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
