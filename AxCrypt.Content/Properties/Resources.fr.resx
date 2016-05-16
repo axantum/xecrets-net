@@ -684,6 +684,17 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="IndexPageTitle" xml:space="preserve">
     <value>My AxCrypt ID</value>
   </data>
+  <data name="InformationTitle" xml:space="preserve">
+    <value>Informations</value>
+    <comment>A dialog box title for general announcement and informative message dialog boxes</comment>
+  </data>
+  <data name="InternetNotRequiredInformation" xml:space="preserve">
+    <value>Internet n'est PAS NECESSAIRE pour utiliser AxCrypt. 
+
+Nous recommandons qu'un accès Internet soit autorisé pour AxCrypt. Certaines fonctionnalités fonctionnent mieux et autrement des mises à jour critiques ne peuvent pas vous atteindre.
+
+Votre mot de passe n'est pas stocké sur le serveur, et la connexion est toujours cryptée.</value>
+  </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Adresse email non valide.</value>
   </data>
@@ -745,6 +756,20 @@ Connectez-vous à AxCrypt avec {2}, entrez le code d'activation à 6 chiffres et
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Heure</value>
   </data>
+  <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
+    <value>Une fois les fichiers convertis du format AxCrypt 1.x, vous devez utiliser le nouveau mot de passe de connexion pour les ouvrir, s'il vous plaît vérifiez le ici.
+
+Ne pas oublier ce mot de passe!</value>
+  </data>
+  <data name="LegacyOpenMessage" xml:space="preserve">
+    <value>AxCrypt 2 utilise un nouveau format de fichier. 
+
+Vous pouvez ouvrir des fichiers AxCrypt 1.x existants mais à moins qu'ils soient convertis vous devez fournir le mot de passe original même lorsque vous vous connectez. 
+
+La conversion automatique peut également être modifiée dans le menu des options.
+
+Activer la conversion automatique des fichiers AxCrypt 1.x (recommandé)?</value>
+  </data>
   <data name="LicenseFreeNameText" xml:space="preserve">
     <value>Gratuit</value>
   </data>
@@ -779,6 +804,9 @@ Connectez-vous à AxCrypt avec {2}, entrez le code d'activation à 6 chiffres et
   </data>
   <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
     <value>Passez à Premium pour bénéficier du niveau de protection le plus élevé.</value>
+  </data>
+  <data name="MagicGuidMIssingFileStatus" xml:space="preserve">
+    <value>'{0}' n'est pas un fichier AxCrypt. </value>
   </data>
   <data name="MailBodyFooter" xml:space="preserve">
     <value>Si vous ne savez pas pourquoi vous recevez ceci de &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;, vous pouvez ignorer cet e-mail ou le signaler à {1}.</value>
@@ -843,7 +871,9 @@ L'Equipe AxCrypt</value>
     <value>Connexion</value>
   </data>
   <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
-    <value>Accès internet requis. Veuillez vérifier votre connexion et réessayer.</value>
+    <value>L'accès à Internet est nécessaire la première fois qu'AxCrypt est démarré. S'il vous plaît, vérifiez votre connexion, et essayez de nouveau.
+
+Après sa première utilisation, Internet n'est PAS NECESSAIRE à AxCrypt. </value>
   </data>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>Pas d'accès à Internet</value>
@@ -924,6 +954,14 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Effacer tous les Paramètres et Quitter</value>
+  </data>
+  <data name="OptionsConvertMenuItemText" xml:space="preserve">
+    <value>Auto Conversion 1.x Fichiers</value>
+    <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
+  </data>
+  <data name="OptionsConvertMenuToolTip" xml:space="preserve">
+    <value>Activer ou désactiver la mise à jour automatique et la conversion des anciens fichiers AxCrypt 1.x  car ils sont utilisés.</value>
+    <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Language</value>
@@ -1239,6 +1277,9 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Montrer le Mot de passe</value>
   </data>
+  <data name="SignInVerificationTitle" xml:space="preserve">
+    <value>Vérifier la connexion</value>
+  </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Attention: Le site va être redémarré dans quelques minutes. Nous vous prions de nous excuser pour la gêne occasionnée.</value>
   </data>
@@ -1253,6 +1294,9 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   </data>
   <data name="SupportPageTitle" xml:space="preserve">
     <value>Support Premium</value>
+  </data>
+  <data name="SupportPremiumIntro" xml:space="preserve">
+    <value>Bienvenue sur le support AxCrypt. Nous donnons à nos abonnés Premium un support prioritaire et personnel via e-mail. </value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Désolé, le support direct n'est utilisable que par les utilisateurs qui payent, s'il vous plaît visitez notre &lt;a href="{0}"&gt;support de communauté&lt;/a&gt;</value>
@@ -1387,6 +1431,9 @@ Pour plus d'information, cliquez sur OK pour naviguer sur notre site web.</value
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Etat 'En cours' avec '{0}'.</value>
+  </data>
+  <data name="WrongFileExtensionWarning" xml:space="preserve">
+    <value>'{0}' a le mauvais nom d'extension. Cela doit être '{1}'!</value>
   </data>
   <data name="WrongPassphrase" xml:space="preserve">
     <value>Mauvais mot de passe. S'il vous plait, essayer à nouveau. </value>
