@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Abstractions.Rest;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
@@ -46,9 +47,9 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 bytes = Convert.FromBase64String(thumbprint.Replace('-', '/') + "==");
             }
-            catch (FormatException)
+            catch (FormatException fex)
             {
-                throw new ArgumentException("Incorrect base64 encoding.", "thumbprint");
+                throw new ArgumentException("Incorrect base64 encoding.", "thumbprint", fex);
             }
 
             return new PublicKeyThumbprint(bytes);
@@ -197,8 +198,9 @@ namespace Axantum.AxCrypt.Core.Extensions
                             return null;
                         }
                     }
-                    catch (FileFormatException)
+                    catch (FileFormatException ffex)
                     {
+                        New<IReport>().Exception(ffex);
                         return null;
                     }
 

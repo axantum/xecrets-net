@@ -33,6 +33,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Fake;
 using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
@@ -54,6 +55,8 @@ namespace Axantum.AxCrypt.Mono.Test
             _workFolderPath = Path.Combine(Path.GetTempPath(), @"Axantum.AxCrypt.Mono.Test.TestRuntimeEnvironment\");
             Directory.CreateDirectory(_workFolderPath);
 
+            TypeMap.Register.Singleton<INow>(() => new FakeNow());
+            TypeMap.Register.Singleton<IReport>(() => new FakeReport());
             TypeMap.Register.New<string, IDataStore>((path) => new DataStore(path));
             TypeMap.Register.New<string, IDataContainer>((path) => new DataContainer(path));
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));

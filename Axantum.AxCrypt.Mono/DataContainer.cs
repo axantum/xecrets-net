@@ -128,9 +128,9 @@ namespace Axantum.AxCrypt.Mono
                     return new DataStore(file.FullName);
                 }
             }
-            catch (IOException)
+            catch (IOException ioex)
             {
-                throw new InternalErrorException("File exists.", ErrorStatus.FileExists);
+                throw new InternalErrorException("File exists.", ErrorStatus.FileExists, ioex);
             }
         }
 

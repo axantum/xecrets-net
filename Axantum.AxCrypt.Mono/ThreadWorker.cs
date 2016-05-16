@@ -33,6 +33,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Mono
 {
     /// <summary>
@@ -132,16 +134,19 @@ namespace Axantum.AxCrypt.Mono
                 OnWork(_e);
                 e.Result = _e.Result;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException ocex)
             {
+                New<IReport>().Exception(ocex);
                 e.Result = new FileOperationContext(string.Empty, ErrorStatus.Canceled);
             }
             catch (AxCryptException ace)
             {
+                New<IReport>().Exception(ace);
                 e.Result = new FileOperationContext(ace.DisplayContext, ace.InnerException?.Message, ErrorStatus.Exception);
             }
             catch (Exception ex)
             {
+                New<IReport>().Exception(ex);
                 e.Result = new FileOperationContext(string.Empty, ex.Message, ErrorStatus.Exception);
             }
         }

@@ -390,6 +390,7 @@ namespace Axantum.AxCrypt.Core
                     }
                     catch (AggregateException ae)
                     {
+                        New<IReport>().Exception(ae);
                         IEnumerable<Exception> exceptions = ae.InnerExceptions.Where(ex1 => ex1.GetType() != typeof(OperationCanceledException));
                         if (!exceptions.Any())
                         {
@@ -995,8 +996,9 @@ namespace Axantum.AxCrypt.Core
                         {
                             progress.AddCount(random.Length);
                         }
-                        catch (OperationCanceledException)
+                        catch (OperationCanceledException ocex)
                         {
+                            New<IReport>().Exception(ocex);
                             cancelPending = true;
                             progress.AddCount(random.Length);
                         }

@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Api.Model;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
@@ -180,14 +181,16 @@ namespace Axantum.AxCrypt
                 await _viewModel.AsyncAddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
                 return true;
             }
-            catch (UserInputException)
+            catch (UserInputException uiex)
             {
+                New<IReport>().Exception(uiex);
                 _errorProvider1.SetError(_newContact, Texts.InvalidEmail);
                 _errorProvider1.SetIconPadding(_newContact, 3);
                 return false;
             }
-            catch (OfflineApiException)
+            catch (OfflineApiException oaex)
             {
+                New<IReport>().Exception(oaex);
                 _errorProvider1.SetError(_newContact, Texts.KeySharingOffline);
                 _errorProvider1.SetIconPadding(_newContact, 3);
                 return false;

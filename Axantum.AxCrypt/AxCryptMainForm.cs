@@ -304,6 +304,8 @@ namespace Axantum.AxCrypt
                     {
                         throw;
                     }
+                    New<IReport>().Exception(ex);
+
                     while (ex.InnerException != null)
                     {
                         ex = ex.InnerException;

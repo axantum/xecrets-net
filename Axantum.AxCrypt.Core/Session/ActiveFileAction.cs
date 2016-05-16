@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -385,8 +386,9 @@ namespace Axantum.AxCrypt.Core.Session
                     activeFile.DecryptedFileInfo.Container.Delete();
                 }
             }
-            catch (IOException)
+            catch (IOException ioex)
             {
+                New<IReport>().Exception(ioex);
                 if (Resolve.Log.IsWarningEnabled)
                 {
                     Resolve.Log.LogWarning("Wiping failed for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));

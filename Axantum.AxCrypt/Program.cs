@@ -35,7 +35,6 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
-using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Desktop;
 using Axantum.AxCrypt.Forms;
@@ -58,6 +57,8 @@ namespace Axantum.AxCrypt
 {
     internal static class Program
     {
+        private static string _workFolderPath;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -69,6 +70,11 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            _workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
+
+            TypeMap.Register.Singleton<INow>(() => new Now());
+            TypeMap.Register.Singleton<IReport>(() => new Report());
+
             EmbeddedResourceManager.Initialize();
 
             string[] commandLineArgs = Environment.GetCommandLineArgs();
@@ -79,6 +85,7 @@ namespace Axantum.AxCrypt
             if (commandLineArgs.Length == 1)
             {
                 RunInteractive();
+                ReportSnapshotExceptionSafe();
             }
             else
             {
@@ -88,6 +95,21 @@ namespace Axantum.AxCrypt
 
             Resolve.CommandService.Dispose();
             TypeMap.Register.Clear();
+        }
+
+        private static void ReportSnapshotExceptionSafe()
+        {
+            try
+            {
+                string snapshot = New<IReport>().Snapshot;
+                if (snapshot.Length > 0)
+                {
+                    File.WriteAllText(Path.Combine(_workFolderPath, "ReportSnapshot.txt"), snapshot);
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private static bool EnsureNetVersionUsingNothingThatCrashesTheProcess()
@@ -109,10 +131,9 @@ namespace Axantum.AxCrypt
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Dependency registration, not real complexity")]
         private static void RegisterTypeFactories(string startPath)
         {
-            string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
             IEnumerable<Assembly> extraAssemblies = LoadFromFiles(new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll"));
 
-            Resolve.RegisterTypeFactories(workFolderPath, extraAssemblies);
+            Resolve.RegisterTypeFactories(_workFolderPath, extraAssemblies);
             RuntimeEnvironment.RegisterTypeFactories();
             DesktopFactory.RegisterTypeFactories();
 
@@ -150,12 +171,14 @@ namespace Axantum.AxCrypt
                 {
                     assemblies.Add(Assembly.LoadFrom(file.FullName));
                 }
-                catch (BadImageFormatException)
+                catch (BadImageFormatException bifex)
                 {
+                    New<IReport>().Exception(bifex);
                     continue;
                 }
-                catch (FileLoadException)
+                catch (FileLoadException flex)
                 {
+                    New<IReport>().Exception(flex);
                     continue;
                 }
             }

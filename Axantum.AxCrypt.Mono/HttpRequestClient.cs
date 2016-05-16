@@ -25,15 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
-using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -52,6 +53,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 if (wex.Status == WebExceptionStatus.ConnectFailure)
                 {
+                    New<IReport>().Exception(wex);
                     return CommandStatus.NoResponse;
                 }
                 throw;

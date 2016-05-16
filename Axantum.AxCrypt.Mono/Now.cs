@@ -26,48 +26,22 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Header;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
-using static Axantum.AxCrypt.Abstractions.TypeResolve;
-
-namespace Axantum.AxCrypt.Forms.Implementation
+namespace Axantum.AxCrypt.Mono
 {
-    public class DataProtection : IDataProtection
+    public class Now : INow
     {
-        private static byte[] _axCryptGuid = AxCrypt1Guid.GetBytes();
-
-        #region IDataProtection Members
-
-        public byte[] Protect(byte[] unprotectedData)
+        public DateTime Utc
         {
-            return ProtectedData.Protect(unprotectedData, null, DataProtectionScope.CurrentUser);
-        }
-
-        public byte[] Unprotect(byte[] protectedData)
-        {
-            if (protectedData.Locate(_axCryptGuid, 0, _axCryptGuid.Length) == 0)
+            get
             {
-                return null;
-            }
-            try
-            {
-                byte[] bytes = ProtectedData.Unprotect(protectedData, null, DataProtectionScope.CurrentUser);
-                return bytes;
-            }
-            catch (CryptographicException cex)
-            {
-                New<IReport>().Exception(cex);
-                return null;
+                return DateTime.UtcNow;
             }
         }
-
-        #endregion IDataProtection Members
     }
 }

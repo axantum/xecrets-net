@@ -46,6 +46,8 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
+            TypeMap.Register.Singleton<INow>(() => new FakeNow());
+            TypeMap.Register.Singleton<IReport>(() => new FakeReport());
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
         }

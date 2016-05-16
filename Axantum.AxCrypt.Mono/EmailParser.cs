@@ -1,9 +1,12 @@
-﻿using Axantum.AxCrypt.Core.UI;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -23,8 +26,9 @@ namespace Axantum.AxCrypt.Mono
                 address = mailAddress.Address.ToLowerInvariant();
                 return true;
             }
-            catch (FormatException)
+            catch (FormatException fex)
             {
+                New<IReport>().Exception(fex);
                 return false;
             }
         }

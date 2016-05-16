@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Header;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
@@ -27,8 +28,9 @@ namespace Axantum.AxCrypt.Core.Session
                     return Create(stream);
                 }
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException fnfex)
             {
+                New<IReport>().Exception(fnfex);
                 return new OpenFileProperties();
             }
         }

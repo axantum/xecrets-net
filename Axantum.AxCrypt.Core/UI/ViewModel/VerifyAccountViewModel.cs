@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
@@ -125,6 +126,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             catch (Exception ex)
             {
+                New<IReport>().Exception(ex);
                 while (ex.InnerException != null)
                 {
                     ex = ex.InnerException;

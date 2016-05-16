@@ -48,12 +48,14 @@ namespace Axantum.AxCrypt.Api
                     ApiVersion apiVersion = Serializer.Deserialize<ApiVersion>(restResponse.Content);
                     return apiVersion;
                 }
-                catch (OfflineApiException)
+                catch (OfflineApiException oaex)
                 {
+                    New<IReport>().Exception(oaex);
                     New<AxCryptOnlineState>().IsOffline = true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    New<IReport>().Exception(ex);
                 }
             }
             return ApiVersion.Zero;
@@ -74,8 +76,9 @@ namespace Axantum.AxCrypt.Api
                 AxCryptVersion axCryptVersion = Serializer.Deserialize<AxCryptVersion>(restResponse.Content);
                 return axCryptVersion;
             }
-            catch (OfflineApiException)
+            catch (OfflineApiException oaex)
             {
+                New<IReport>().Exception(oaex);
                 New<AxCryptOnlineState>().IsOffline = true;
             }
             return AxCryptVersion.Empty;

@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Mono
 
         public DateTime UtcNow
         {
-            get { return DateTime.UtcNow; }
+            get { return New<INow>().Utc; }
         }
 
         public ITiming StartTiming()

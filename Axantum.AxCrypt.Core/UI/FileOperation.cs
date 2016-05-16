@@ -200,6 +200,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             catch (Exception ex)
             {
+                New<IReport>().Exception(ex);
                 if (Resolve.Log.IsErrorEnabled)
                 {
                     Resolve.Log.LogError("Could not launch application for '{0}', Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName, ex.Message));

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
@@ -91,8 +92,9 @@ namespace Axantum.AxCrypt.Core.Session
                     activeFile.EncryptedFileInfo.IsWriteProtected = isWriteProteced;
                 }
             }
-            catch (IOException)
+            catch (IOException ioex)
             {
+                New<IReport>().Exception(ioex);
                 if (log.IsWarningEnabled)
                 {
                     log.LogWarning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
@@ -313,8 +314,9 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
                 }
-                catch (FormatException)
+                catch (FormatException fex)
                 {
+                    New<IReport>().Exception(fex);
                 }
             }
 
@@ -337,8 +339,9 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     return Resolve.Serializer.Deserialize<Salt>(value);
                 }
-                catch (JsonException)
+                catch (JsonException jex)
                 {
+                    New<IReport>().Exception(jex);
                 }
             }
 

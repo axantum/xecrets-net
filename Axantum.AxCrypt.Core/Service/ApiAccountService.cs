@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
@@ -40,6 +39,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Service
 {
@@ -107,8 +108,9 @@ namespace Axantum.AxCrypt.Core.Service
                 await _apiClient.MyAccountAsync().Free();
                 return true;
             }
-            catch (UnauthorizedApiException)
+            catch (UnauthorizedApiException uaex)
             {
+                New<IReport>().Exception(uaex);
                 return false;
             }
         }

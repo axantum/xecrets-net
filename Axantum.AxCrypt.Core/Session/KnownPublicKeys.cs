@@ -10,6 +10,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Session
 {
     [JsonObject(MemberSerialization.OptIn)]
@@ -84,8 +86,9 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 publicKey = _serializer.Deserialize<UserPublicKey>(publicKeyStore);
             }
-            catch (JsonException)
+            catch (JsonException jex)
             {
+                New<IReport>().Exception(jex);
             }
             if (publicKey == null)
             {

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -483,6 +484,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             catch (Exception ex)
             {
+                New<IReport>().Exception(ex);
                 if (Resolve.Log.IsErrorEnabled)
                 {
                     Resolve.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));

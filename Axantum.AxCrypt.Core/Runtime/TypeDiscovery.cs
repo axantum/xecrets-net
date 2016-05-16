@@ -25,10 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -48,8 +51,9 @@ namespace Axantum.AxCrypt.Core.Runtime
                 {
                     ScanAssemblyForNewInterfaces(interfaceToDiscover, assembly, interfaces);
                 }
-                catch (TypeLoadException)
+                catch (TypeLoadException tlex)
                 {
+                    New<IReport>().Exception(tlex);
                 }
             }
             return interfaces;

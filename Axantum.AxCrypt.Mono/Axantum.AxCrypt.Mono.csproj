@@ -58,6 +58,7 @@
     <Compile Include="Cryptography\HMACBase.cs" />
     <Compile Include="EmailParser.cs" />
     <Compile Include="ItemCache.cs" />
+    <Compile Include="Now.cs" />
     <Compile Include="Portable\BlockingBuffer.cs" />
     <Compile Include="Cryptography\AesWrapper.cs" />
     <Compile Include="Cryptography\CryptoStreamWrapper.cs" />

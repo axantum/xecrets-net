@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
@@ -95,8 +96,9 @@ namespace Axantum.AxCrypt.Core.Session
                     return Create(stream, identity);
                 }
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException fnfex)
             {
+                New<IReport>().Exception(fnfex);
                 return new EncryptedProperties();
             }
         }

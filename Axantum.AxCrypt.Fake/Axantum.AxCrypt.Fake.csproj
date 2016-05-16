@@ -65,9 +65,11 @@
     <Compile Include="FakeIterationCalculator.cs" />
     <Compile Include="FakeLauncher.cs" />
     <Compile Include="FakeLogging.cs" />
+    <Compile Include="FakeNow.cs" />
     <Compile Include="FakeProgressBackground.cs" />
     <Compile Include="FakePseudoRandomGenerator.cs" />
     <Compile Include="FakeRandomGenerator.cs" />
+    <Compile Include="FakeReport.cs" />
     <Compile Include="FakeRequestClient.cs" />
     <Compile Include="FakeRequestServer.cs" />
     <Compile Include="FakeRuntimeEnvironment.cs" />

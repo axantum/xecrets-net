@@ -48,6 +48,8 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
+            TypeMap.Register.Singleton<INow>(() => new FakeNow());
+            TypeMap.Register.Singleton<IReport>(() => new FakeReport());
             TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));
             TypeMap.Register.New<string, IDataContainer>((path) => new FakeDataContainer(path));
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());

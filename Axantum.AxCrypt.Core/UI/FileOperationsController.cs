@@ -380,6 +380,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             catch (AxCryptException ace)
             {
+                New<IReport>().Exception(ace);
                 _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ace.ErrorStatus);
                 return false;
             }
@@ -513,6 +514,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             catch (IOException ioex)
             {
+                New<IReport>().Exception(ioex);
                 FileOperationContext status = new FileOperationContext(sourceFileInfo.FullName, ioex.Message, ioex is FileNotFoundException ? ErrorStatus.FileDoesNotExist : ErrorStatus.Exception);
                 e.Status = status;
                 return false;
@@ -591,11 +593,13 @@ namespace Axantum.AxCrypt.Core.UI
             }
             catch (AxCryptException aex)
             {
+                New<IReport>().Exception(aex);
                 _eventArgs.Status = new FileOperationContext(aex.DisplayContext ?? fileInfo.FullName, aex.Messages(), aex.ErrorStatus);
                 throw;
             }
             catch (Exception ex)
             {
+                New<IReport>().Exception(ex);
                 _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ex.Messages(), ErrorStatus.Exception);
                 throw;
             }

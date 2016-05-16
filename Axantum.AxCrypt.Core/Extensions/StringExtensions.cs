@@ -138,6 +138,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                     {
                         throw;
                     }
+                    New<IReport>().Exception(ace);
                 }
                 ++version;
             }
@@ -259,8 +260,9 @@ namespace Axantum.AxCrypt.Core.Extensions
                 EmailAddress.Parse(email);
                 return true;
             }
-            catch (FormatException)
+            catch (FormatException fex)
             {
+                New<IReport>().Exception(fex);
                 return false;
             }
         }

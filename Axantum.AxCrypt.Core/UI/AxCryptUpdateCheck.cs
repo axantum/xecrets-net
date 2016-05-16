@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
@@ -132,6 +133,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             catch (Exception ex)
             {
+                New<IReport>().Exception(ex);
                 if (Resolve.Log.IsWarningEnabled)
                 {
                     Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));

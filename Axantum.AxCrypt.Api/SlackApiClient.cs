@@ -55,8 +55,9 @@ namespace Axantum.AxCrypt.Api
                 restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest("POST", _accessTokenUrl, TimeSpan.Zero, content)).Free();
                 ApiCaller.EnsureStatusOk(restResponse);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                New<IReport>().Exception(ex);
             }
         }
     }

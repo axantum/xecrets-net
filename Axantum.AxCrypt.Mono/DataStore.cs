@@ -144,8 +144,9 @@ namespace Axantum.AxCrypt.Mono
                         return false;
                     }
                 }
-                catch (IOException)
+                catch (IOException ioex)
                 {
+                    New<IReport>().Exception(ioex);
                     return true;
                 }
                 catch (Exception ex)
@@ -260,8 +261,9 @@ namespace Axantum.AxCrypt.Mono
                     _file = new FileInfo(destinationFileName);
                     return;
                 }
-                catch (PlatformNotSupportedException)
+                catch (PlatformNotSupportedException pnsex)
                 {
+                    New<IReport>().Exception(pnsex);
                 }
                 destination.Delete();
             }

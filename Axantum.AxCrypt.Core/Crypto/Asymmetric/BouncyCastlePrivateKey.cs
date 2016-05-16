@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Encodings;
@@ -109,8 +110,9 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
                 byte[] transformed = cipher.ProcessBlock(buffer, 0, (rsaKeyBitLength + 7) / 8);
                 return transformed;
             }
-            catch (Org.BouncyCastle.Crypto.CryptoException)
+            catch (Org.BouncyCastle.Crypto.CryptoException cex)
             {
+                New<IReport>().Exception(cex);
                 return null;
             }
         }
