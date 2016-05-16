@@ -47,14 +47,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             _encryptedFileFullName = encryptedFileFullName;
             InitializePropertyValues();
+            BindPropertyChangedEvents();
         }
 
         private void InitializePropertyValues()
         {
+            ShowPassphrase = New<IUserSettings>().DisplayDecryptPassphrase;
             PassphraseText = string.Empty;
             FileName = string.IsNullOrEmpty(_encryptedFileFullName) ? string.Empty : New<IDataStore>(_encryptedFileFullName).Name;
             AskForKeyFile = ShouldAskForKeyFile(_encryptedFileFullName);
             KeyFileName = string.Empty;
+        }
+
+        private void BindPropertyChangedEvents()
+        {
+            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<IUserSettings>().DisplayDecryptPassphrase = show);
         }
 
         public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }

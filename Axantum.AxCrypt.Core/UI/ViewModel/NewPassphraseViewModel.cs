@@ -44,6 +44,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             _encryptedFileFullName = encryptedFileFullName;
             InitializePropertyValues(passphrase);
+            BindPropertyChangedEvents();
         }
 
         private void InitializePropertyValues(string passphrase)
@@ -51,6 +52,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Passphrase = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
             FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : New<IDataStore>(_encryptedFileFullName).Name;
+            ShowPassphrase = New<IUserSettings>().DisplayEncryptPassphrase;
+        }
+
+        private void BindPropertyChangedEvents()
+        {
+            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<IUserSettings>().DisplayEncryptPassphrase = show);
         }
 
         public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }

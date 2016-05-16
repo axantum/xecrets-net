@@ -201,7 +201,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public bool DisplayDecryptPassphrase
         {
-            get { return Load(nameof(DisplayDecryptPassphrase), true); }
+            get { return Load(nameof(DisplayDecryptPassphrase), false); }
             set { Store(nameof(DisplayDecryptPassphrase), value); }
         }
 

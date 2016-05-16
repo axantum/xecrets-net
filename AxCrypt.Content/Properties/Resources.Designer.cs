@@ -2167,7 +2167,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When files are converted from AxCrypt 1 to AxCrypt 2, this is the password you must know to open them.
+        ///   Looks up a localized string similar to After files are converted from AxCrypt 1.x format, you must use the new Sign In password to open them, so please verify it here.
         ///
         ///Do not forget this password!.
         /// </summary>
@@ -2178,7 +2178,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt 2 uses a new file format. You can open legacy AxCrypt 1.x files but you have to provide the original password even when signed in.
+        ///   Looks up a localized string similar to AxCrypt 2 uses a new file format.
+        ///
+        ///You can open legacy AxCrypt 1.x files but unless they are converted you have to provide the original password even when signed in.
+        ///
+        ///Automatic conversion can also be changed in the options menu.
         ///
         ///Enable automatic conversion of AxCrypt 1.x files (recommended)?.
         /// </summary>

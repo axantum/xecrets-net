@@ -64,13 +64,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             UserEmail = userEmail;
             Passphrase = String.Empty;
-            ShowPassphrase = Resolve.UserSettings.DisplayEncryptPassphrase;
+            ShowPassphrase = New<IUserSettings>().DisplayDecryptPassphrase;
             ShowEmail = true;
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<IUserSettings>().DisplayDecryptPassphrase = show);
             BindPropertyChangedInternal(nameof(ShowEmail), (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
             BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (Validate(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; } });
         }
@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private bool IsKnownPassphrase()
         {
             SymmetricKeyThumbprint thumbprint = new Passphrase(Passphrase).Thumbprint;
-            Passphrase knownPassphrase = Resolve.FileSystemState.KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
+            Passphrase knownPassphrase = New<FileSystemState>().KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
             if (knownPassphrase != null)
             {
                 return true;

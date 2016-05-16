@@ -1107,7 +1107,6 @@ namespace Axantum.AxCrypt
         {
             using (FilePasswordDialog logOnDialog = new FilePasswordDialog(this, e.EncryptedFileFullName))
             {
-                logOnDialog.ViewModel.ShowPassphrase = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
                 if (dialogResult == DialogResult.Retry)
                 {
@@ -1121,7 +1120,6 @@ namespace Axantum.AxCrypt
                     e.Cancel = true;
                     return;
                 }
-                e.DisplayPassphrase = logOnDialog.ViewModel.ShowPassphrase;
                 e.Passphrase = logOnDialog.ViewModel.Passphrase;
             }
             return;
@@ -1132,9 +1130,7 @@ namespace Axantum.AxCrypt
             LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings);
             using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
             {
-                viewModel.ShowPassphrase = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
-                e.DisplayPassphrase = viewModel.ShowPassphrase;
 
                 if (dialogResult == DialogResult.Retry)
                 {

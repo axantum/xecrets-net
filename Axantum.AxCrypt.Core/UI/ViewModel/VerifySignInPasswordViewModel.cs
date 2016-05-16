@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class VerifySignInPasswordViewModel : ViewModelBase
@@ -25,13 +27,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => Resolve.UserSettings.DisplayDecryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<IUserSettings>().DisplayDecryptPassphrase = show);
         }
 
         private void InitializePropertyValues()
         {
             Passphrase = String.Empty;
-            ShowPassphrase = Resolve.UserSettings.DisplayDecryptPassphrase;
+            ShowPassphrase = New<IUserSettings>().DisplayDecryptPassphrase;
         }
 
         protected override bool Validate(string columnName)

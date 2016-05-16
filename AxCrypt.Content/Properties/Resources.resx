@@ -852,7 +852,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
     <value>Time</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>After files are converted from AxCrypt 1 to 2, you must use the new Sign In password to open them.
+    <value>After files are converted from AxCrypt 1.x format, you must use the new Sign In password to open them, so please verify it here.
 
 Do not forget this password!</value>
   </data>
@@ -860,6 +860,8 @@ Do not forget this password!</value>
     <value>AxCrypt 2 uses a new file format.
 
 You can open legacy AxCrypt 1.x files but unless they are converted you have to provide the original password even when signed in.
+
+Automatic conversion can also be changed in the options menu.
 
 Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   </data>

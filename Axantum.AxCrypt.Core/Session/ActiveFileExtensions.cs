@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -40,13 +41,27 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public static class ActiveFileExtensions
     {
-        public static ActiveFile UpdateDecrypted(this ActiveFile activeFile, IProgressContext progress)
+        /// <summary>
+        /// Checks if it's time to update a decrypted file, and does it if so.
+        /// </summary>
+        /// <param name="activeFile">The active file.</param>
+        /// <param name="progress">The progress.</param>
+        /// <returns>The possibly updated ActiveFile</returns>
+        /// <exception cref="System.ArgumentNullException">activeFile</exception>
+        public static ActiveFile CheckUpdateDecrypted(this ActiveFile activeFile, IProgressContext progress)
         {
             if (activeFile == null)
             {
                 throw new ArgumentNullException("activeFile");
             }
 
+            bool shouldConvertLegacy = ShouldConvertLegacy(activeFile);
+            if (!shouldConvertLegacy && !activeFile.IsModified)
+            {
+                return activeFile;
+            }
+
+            ILogging log = New<ILogging>();
             try
             {
                 using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
@@ -58,11 +73,15 @@ namespace Axantum.AxCrypt.Core.Session
                     }
                     New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
-                        activeFile = new ActiveFile(activeFile, Resolve.CryptoFactory.Update(activeFile.Properties.CryptoId).CryptoId);
-                        if (activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId && New<IUserSettings>().LegacyConversionMode == LegacyConversionMode.AutoConvertLegacyFiles && New<KnownIdentities>().IsLoggedOn)
+                        if (!IsLegacy(activeFile) || shouldConvertLegacy)
+                        {
+                            activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
+                        }
+                        if (shouldConvertLegacy)
                         {
                             activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
                         }
+
                         EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
                         EncryptedProperties properties = EncryptedProperties.Create(activeFile.EncryptedFileInfo);
                         parameters.Add(properties.SharedKeyHolders);
@@ -74,17 +93,42 @@ namespace Axantum.AxCrypt.Core.Session
             }
             catch (IOException)
             {
-                if (Resolve.Log.IsWarningEnabled)
+                if (log.IsWarningEnabled)
                 {
-                    Resolve.Log.LogWarning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    log.LogWarning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 return new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable);
             }
-            if (Resolve.Log.IsInfoEnabled)
+            if (log.IsInfoEnabled)
             {
-                Resolve.Log.LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                log.LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
             return new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
+        }
+
+        private static bool IsLegacy(ActiveFile activeFile)
+        {
+            return activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId;
+        }
+
+        private static bool ShouldConvertLegacy(ActiveFile activeFile)
+        {
+            if (!IsLegacy(activeFile))
+            {
+                return false;
+            }
+
+            if (New<IUserSettings>().LegacyConversionMode != LegacyConversionMode.AutoConvertLegacyFiles)
+            {
+                return false;
+            }
+
+            if (!New<KnownIdentities>().IsLoggedOn)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
