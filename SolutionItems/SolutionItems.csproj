@@ -25,6 +25,7 @@
     <None Include="..\Solution.FxCop" />
     <None Include="AxantumStrongName.pub" />
     <None Include="packages.config" />
+    <None Include="sn.exe.config" />
     <None Include="Solution.runsettings">
       <SubType>Designer</SubType>
     </None>
@@ -47,6 +48,7 @@
     <Content Include="nunit.framework.dll" />
     <Content Include="signtool.exe" />
     <Content Include="sn.exe" />
+    <Content Include="snrc.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

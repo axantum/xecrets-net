@@ -34,6 +34,14 @@
     key-container, you need to have KeyOriginatorFile set before loading Microsoft.CSharp.targets. An easy
     way to achieve this is to use properties, enable Signing, select AxantumStrongName.pfx, then disable
     signing. The KeyOriginatorFile property remains set, shown by being grey in the GUI. Go figure.
+    
+    sn -i AxantumStrongName.pfx Axantum
+    sn -i AxantumStrongName.pfx VS_KEY_xxxx
+
+    The original error message from VS states what the VS_KEY_ name should be, it is
+    apparently unique for each system.
+
+    The key needs to be installed in both containers currently.
 
     The Microsoft build files are typically found at:
     C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.CSharp.targets
