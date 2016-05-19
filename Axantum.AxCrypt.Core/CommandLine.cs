@@ -92,7 +92,10 @@ namespace Axantum.AxCrypt.Core
         {
             if (commandItems.Count == 0)
             {
-                EnsureFirstInstanceRunning();
+                if (!EnsureFirstInstanceRunning())
+                {
+                    OS.Current.ExitApplication(2);
+                }
                 return;
             }
             foreach (CommandItem commandItem in commandItems)
@@ -128,7 +131,11 @@ namespace Axantum.AxCrypt.Core
                 return true;
             }
 
-            StartFirstInstance();
+            if (!StartFirstInstance())
+            {
+                OS.Current.ExitApplication(3);
+                return true;
+            }
 
             switch (verb)
             {
@@ -156,26 +163,26 @@ namespace Axantum.AxCrypt.Core
             return false;
         }
 
-        private void EnsureFirstInstanceRunning()
+        private bool EnsureFirstInstanceRunning()
         {
             if (OS.Current.FirstInstanceRunning(TimeSpan.Zero))
             {
-                return;
+                return true;
             }
-            StartFirstInstance();
+            return StartFirstInstance();
         }
 
-        private void StartFirstInstance()
+        private bool StartFirstInstance()
         {
             using (ILauncher launcher = New<ILauncher>())
             {
                 launcher.Launch(_startPath);
             }
-            if (OS.Current.FirstInstanceRunning(TimeSpan.FromSeconds(1)))
+            if (OS.Current.FirstInstanceRunning(TimeSpan.FromSeconds(5)))
             {
-                return;
+                return true;
             }
-            OS.Current.ExitApplication(2);
+            return false;
         }
     }
 }
