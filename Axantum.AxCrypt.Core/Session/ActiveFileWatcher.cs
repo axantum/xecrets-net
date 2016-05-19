@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,9 +31,50 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return;
                 }
+                if (CheckIsSubfolderOfWatched(folder))
+                {
+                    return;
+                }
                 IFileWatcher fileWatcher = New<IFileWatcher>(folder);
+                CheckIfHasWatchedSubfolders(fileWatcher, folder);
                 fileWatcher.FileChanged += HandleActiveFileFolderChangedEvent;
                 _activeFileFolderWatchers.Add(folder, fileWatcher);
+            }
+        }
+
+        private bool CheckIsSubfolderOfWatched(string folder)
+        {
+            foreach (string key in _activeFileFolderWatchers.Keys.ToList())
+            {
+                string keyFolder = key + Resolve.Portable.Path().DirectorySeparatorChar.ToString();
+                if (!folder.StartsWith(keyFolder))
+                {
+                    continue;
+                }
+
+                _activeFileFolderWatchers[key].IncludeSubdirectories = true;
+                return true;
+            }
+            return false;
+        }
+
+        private void CheckIfHasWatchedSubfolders(IFileWatcher fileWatcher, string folder)
+        {
+            folder = folder + Resolve.Portable.Path().DirectorySeparatorChar.ToString();
+            bool hasWatchedSubFolders = false;
+            foreach (string key in _activeFileFolderWatchers.Keys.ToList())
+            {
+                if (key.StartsWith(folder))
+                {
+                    IFileWatcher subWatcher = _activeFileFolderWatchers[key];
+                    _activeFileFolderWatchers.Remove(key);
+                    subWatcher.Dispose();
+                    hasWatchedSubFolders = true;
+                }
+            }
+            if (hasWatchedSubFolders)
+            {
+                fileWatcher.IncludeSubdirectories = true;
             }
         }
 

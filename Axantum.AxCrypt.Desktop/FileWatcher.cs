@@ -79,6 +79,10 @@ namespace Axantum.AxCrypt.Desktop
             }
             set
             {
+                if (_fileSystemWatcher.IncludeSubdirectories == value)
+                {
+                    return;
+                }
                 _fileSystemWatcher.EnableRaisingEvents = false;
                 _fileSystemWatcher.IncludeSubdirectories = value;
                 _fileSystemWatcher.EnableRaisingEvents = true;
