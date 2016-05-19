@@ -40,6 +40,7 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Desktop;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using Microsoft.Win32;
@@ -132,6 +133,7 @@ namespace Axantum.AxCrypt
             WireUpEvents();
             SetupCommandService();
             SendStartSessionNotification();
+            StartupProcessMonitor();
         }
 
         private void GetApiVersion()
@@ -457,6 +459,12 @@ namespace Axantum.AxCrypt
         private static void SendStartSessionNotification()
         {
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
+        }
+
+        private void StartupProcessMonitor()
+        {
+            TypeMap.Register.Singleton(() => new ProcessMonitor());
+            New<ProcessMonitor>();
         }
 
         private void SetupCommandService()

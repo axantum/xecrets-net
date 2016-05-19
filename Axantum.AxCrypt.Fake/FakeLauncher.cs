@@ -71,6 +71,8 @@ namespace Axantum.AxCrypt.Fake
             get { return _path; }
         }
 
+        public string Name { get; set; }
+
         #endregion ILauncher Members
 
         protected virtual void Dispose(bool disposing)

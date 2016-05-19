@@ -41,5 +41,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         bool WasStarted { get; }
 
         string Path { get; }
+
+        string Name { get; }
     }
 }

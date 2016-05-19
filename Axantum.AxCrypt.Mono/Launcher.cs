@@ -39,8 +39,6 @@ namespace Axantum.AxCrypt.Mono
 
         private Process _process;
 
-        private string _path;
-
         public void Launch(string path)
         {
             _process = Process.Start(path);
@@ -49,7 +47,8 @@ namespace Axantum.AxCrypt.Mono
                 return;
             }
             WasStarted = true;
-            _path = _process.StartInfo.FileName;
+            Path = _process.StartInfo.FileName;
+            Name = _process.ProcessName;
             if (OS.Current.CanTrackProcess)
             {
                 // This causes hang-on-exit on at least Mac OS X
@@ -65,13 +64,25 @@ namespace Axantum.AxCrypt.Mono
 
         private void Process_Exited(object sender, EventArgs e)
         {
-            OnExited(e);
+            if (!HasRelatedProcess)
+            {
+                OnExited(e);
+            }
             _process.Exited -= Process_Exited;
             _process.WaitForExit();
             lock (_disposeLock)
             {
                 _process.Dispose();
                 _process = null;
+            }
+        }
+
+        private bool HasRelatedProcess
+        {
+            get
+            {
+                int currentSessionId = Process.GetCurrentProcess().SessionId;
+                return Process.GetProcesses().Where(p => p.SessionId == currentSessionId).Select(p => p.ProcessName).Contains(Name);
             }
         }
 
@@ -85,7 +96,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 lock (_disposeLock)
                 {
-                    return _process == null || _process.HasExited;
+                    return !HasRelatedProcess && (_process == null || _process.HasExited);
                 }
             }
         }
@@ -96,6 +107,11 @@ namespace Axantum.AxCrypt.Mono
             private set;
         }
 
+        public string Name
+        {
+            get;
+            private set;
+        }
         #endregion ILauncher Members
 
         protected virtual void OnExited(EventArgs e)
@@ -131,7 +147,7 @@ namespace Axantum.AxCrypt.Mono
 
         public string Path
         {
-            get { return _path; }
+            get; private set;
         }
 
         #region IDisposable Members
