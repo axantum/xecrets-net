@@ -354,6 +354,11 @@ namespace Axantum.AxCrypt.Core
         {
             using (CancellationTokenSource tokenSource = new CancellationTokenSource())
             {
+                if (IsFileInUse(from))
+                {
+                    throw new FileOperationException("File is in use, cannot write to it.", from.FullName, Abstractions.ErrorStatus.FileLocked, null);
+                }
+
                 using (PipelineStream pipeline = new PipelineStream(tokenSource.Token))
                 {
                     EncryptedProperties encryptedProperties = EncryptedProperties.Create(from, identity);
@@ -364,8 +369,11 @@ namespace Axantum.AxCrypt.Core
 
                     Task decryption = Task.Factory.StartNew(() =>
                     {
-                        Decrypt(from, pipeline, identity);
-                        pipeline.Complete();
+                        using (FileLock fileLock = FileLock.Lock(from))
+                        {
+                            Decrypt(from, pipeline, identity);
+                            pipeline.Complete();
+                        }
                     });
                     decryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
@@ -404,10 +412,30 @@ namespace Axantum.AxCrypt.Core
                         }
 
                         Exception ex = exceptions.First();
-                        throw new InternalErrorException(ex.Message, ErrorStatus.Exception, ex);
+                        throw new InternalErrorException(ex.Message, Abstractions.ErrorStatus.Exception, ex);
                     }
                 }
             }
+        }
+
+        private static bool IsFileInUse(IDataStore destinationFileInfo)
+        {
+            if (destinationFileInfo.IsAvailable)
+            {
+                try
+                {
+                    using (Stream s = destinationFileInfo.OpenUpdate())
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    New<IReport>().Exception(ex);
+                }
+                return true;
+            }
+            return false;
         }
 
         private static bool EncryptionChangeNecessary(LogOnIdentity identity, EncryptedProperties encryptedProperties, EncryptionParameters encryptionParameters)
@@ -682,7 +710,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     if (!document.PassphraseIsValid)
                     {
-                        return new FileOperationContext(sourceStore.FullName, ErrorStatus.Canceled);
+                        return new FileOperationContext(sourceStore.FullName, Abstractions.ErrorStatus.Canceled);
                     }
 
                     IDataStore destinationStore = New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceStore.FullName), document.FileName));
@@ -697,7 +725,7 @@ namespace Axantum.AxCrypt.Core
             {
                 progress.NotifyLevelFinished();
             }
-            return new FileOperationContext(String.Empty, ErrorStatus.Success);
+            return new FileOperationContext(string.Empty, Abstractions.ErrorStatus.Success);
         }
 
         public virtual void DecryptFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
@@ -832,7 +860,7 @@ namespace Axantum.AxCrypt.Core
             }
             catch (Exception ex)
             {
-                AxCryptException ace = new InternalErrorException("An unhandled exception occurred.", ErrorStatus.Unknown, ex);
+                AxCryptException ace = new InternalErrorException("An unhandled exception occurred.", Abstractions.ErrorStatus.Unknown, ex);
                 ace.DisplayContext = displayContext;
                 throw ace;
             }
@@ -849,26 +877,26 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("writeFileStreamTo");
             }
 
-            using (FileLock destinationLock = FileLock.Lock(destinationFileInfo))
+            using (FileLock lockedTemporary = MakeAlternatePath(destinationFileInfo, ".tmp"))
             {
-                using (FileLock lockedTemporary = MakeAlternatePath(destinationFileInfo, ".tmp"))
+                try
                 {
-                    try
+                    using (Stream temporaryStream = lockedTemporary.DataStore.OpenWrite())
                     {
-                        using (Stream temporaryStream = lockedTemporary.DataStore.OpenWrite())
-                        {
-                            writeFileStreamTo(temporaryStream);
-                        }
+                        writeFileStreamTo(temporaryStream);
                     }
-                    catch (Exception ex) when (!(ex is OperationCanceledException))
+                }
+                catch (Exception ex) when (!(ex is OperationCanceledException))
+                {
+                    if (lockedTemporary.DataStore.IsAvailable)
                     {
-                        if (lockedTemporary.DataStore.IsAvailable)
-                        {
-                            Wipe(lockedTemporary.DataStore, progress);
-                        }
-                        throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus.Exception, ex);
+                        Wipe(lockedTemporary.DataStore, progress);
                     }
+                    throw new FileOperationException(ex.Message, lockedTemporary.DataStore.FullName, ErrorStatus(ex), ex);
+                }
 
+                using (FileLock destinationLock = FileLock.Lock(destinationFileInfo))
+                {
                     if (destinationFileInfo.IsAvailable)
                     {
                         using (FileLock lockedBackup = MakeAlternatePath(destinationFileInfo, ".bak"))
@@ -882,7 +910,7 @@ namespace Axantum.AxCrypt.Core
                             {
                                 lockedBackup.DataStore.Delete();
                                 lockedTemporary.DataStore.Delete();
-                                throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus.Exception, ex);
+                                throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus(ex), ex);
                             }
                             try
                             {
@@ -892,7 +920,7 @@ namespace Axantum.AxCrypt.Core
                             {
                                 lockedTemporary.DataStore.Delete();
                                 lockedBackup.DataStore.MoveTo(destinationFileInfo.FullName);
-                                throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus.Exception, ex);
+                                throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus(ex), ex);
                             }
                             try
                             {
@@ -901,7 +929,7 @@ namespace Axantum.AxCrypt.Core
                             catch (Exception ex) when (!(ex is OperationCanceledException))
                             {
                                 backupDataStore.Delete();
-                                throw new FileOperationException(ex.Message, backupDataStore.FullName, ErrorStatus.Exception, ex);
+                                throw new FileOperationException(ex.Message, backupDataStore.FullName, ErrorStatus(ex), ex);
                             }
                         }
                         return;
@@ -913,10 +941,15 @@ namespace Axantum.AxCrypt.Core
                     }
                     catch (Exception ex)
                     {
-                        throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus.Exception, ex);
+                        throw new FileOperationException(ex.Message, destinationFileInfo.FullName, ErrorStatus(ex), ex);
                     }
                 }
             }
+        }
+
+        private static ErrorStatus ErrorStatus(Exception ex)
+        {
+            return ((ex as AxCryptException)?.ErrorStatus).GetValueOrDefault(Abstractions.ErrorStatus.Exception);
         }
 
         private static FileLock MakeAlternatePath(IDataStore store, string extension)

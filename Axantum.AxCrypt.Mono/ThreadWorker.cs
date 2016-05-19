@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Mono
             catch (AxCryptException ace)
             {
                 New<IReport>().Exception(ace);
-                e.Result = new FileOperationContext(ace.DisplayContext, ace.InnerException?.Message, ErrorStatus.Exception);
+                e.Result = new FileOperationContext(ace.DisplayContext, ace.InnerException?.Message, ace.ErrorStatus);
             }
             catch (Exception ex)
             {
