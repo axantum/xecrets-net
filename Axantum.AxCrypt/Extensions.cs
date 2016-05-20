@@ -46,6 +46,19 @@ namespace Axantum.AxCrypt
             return value != default(Point) ? value : fallback;
         }
 
+        public static Point Safe(this Point value)
+        {
+            if (value.X < 0)
+            {
+                value = new Point(0, value.Y);
+            }
+            if (value.Y <0)
+            {
+                value = new Point(value.X, 0);
+            }
+            return value;
+        }
+
         public static IEnumerable<string> GetDragged(this DragEventArgs e)
         {
             IList<string> dropped = e.Data.GetData(DataFormats.FileDrop) as IList<string>;

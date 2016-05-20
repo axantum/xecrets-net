@@ -661,7 +661,7 @@ namespace Axantum.AxCrypt
             _notifyIcon.Text = Texts.AxCryptFileEncryption;
             _notifyIcon.BalloonTipTitle = Texts.AxCryptFileEncryption;
             _notifyIcon.BalloonTipText = Texts.TrayBalloonTooltip;
-            _notifyIcon.Visible = true;
+            _notifyIcon.Visible = false;
 
             _notifyIcon.MouseClick += (sender, e) =>
             {
@@ -696,7 +696,7 @@ namespace Axantum.AxCrypt
             {
                 Height = Preferences.MainWindowHeight.Fallback(Height);
                 Width = Preferences.MainWindowWidth.Fallback(Width);
-                Location = Preferences.MainWindowLocation.Fallback(Location);
+                Location = Preferences.MainWindowLocation.Fallback(Location).Safe();
             }
 
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);

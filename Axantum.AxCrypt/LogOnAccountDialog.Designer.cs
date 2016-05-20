@@ -61,14 +61,14 @@
             this.panel1.Size = new System.Drawing.Size(337, 154);
             this.panel1.TabIndex = 1;
             // 
-            // PassphraseGroupBox
+            // _passphraseGroupBox
             // 
             this._passphraseGroupBox.Controls.Add(this._showPassphrase);
             this._passphraseGroupBox.Controls.Add(this._panel1);
             this._passphraseGroupBox.Controls.Add(this._passphrase);
             this._passphraseGroupBox.Location = new System.Drawing.Point(12, 6);
             this._passphraseGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 13);
-            this._passphraseGroupBox.Name = "PassphraseGroupBox";
+            this._passphraseGroupBox.Name = "_passphraseGroupBox";
             this._passphraseGroupBox.Size = new System.Drawing.Size(298, 131);
             this._passphraseGroupBox.TabIndex = 0;
             this._passphraseGroupBox.TabStop = false;
@@ -155,12 +155,12 @@
             this.EmailPanel.Size = new System.Drawing.Size(337, 59);
             this.EmailPanel.TabIndex = 0;
             // 
-            // groupBox1
+            // _emailGroupBox
             // 
             this._emailGroupBox.Controls.Add(this._email);
             this._emailGroupBox.Location = new System.Drawing.Point(12, 12);
             this._emailGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
-            this._emailGroupBox.Name = "groupBox1";
+            this._emailGroupBox.Name = "_emailGroupBox";
             this._emailGroupBox.Size = new System.Drawing.Size(298, 44);
             this._emailGroupBox.TabIndex = 0;
             this._emailGroupBox.TabStop = false;
