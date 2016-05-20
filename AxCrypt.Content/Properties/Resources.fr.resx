@@ -507,7 +507,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Fichiers AxCrypt Public Sharing Key (*.txt)|*.txt|Tous les Fichiers(*.*)|*.*</value>
   </data>
   <data name="DialogExportSharingKeyTitle" xml:space="preserve">
-    <value>Exporter Public Sharing Key </value>
+    <value>Exporter Public Sharing Key</value>
   </data>
   <data name="DialogFilePasswordTitle" xml:space="preserve">
     <value>Mot de passe du fichier </value>
@@ -592,7 +592,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>&amp;Quitter</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
-    <value>Exporter Clef &amp;Secrète et Clef de Partage </value>
+    <value>Exporter Clef &amp;Secrète et Clef de Partage</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Pour déplacer un compte, exporter la Clé Secrète et la Clé de Partage, puis importez les ailleurs.</value>
@@ -661,7 +661,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Importer &amp;AxCrypt ID avec les clefs de partage et d'accès. </value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>Pour déplacer un compte, exporter la Clé Secrète et la Clé de Partage, puis importez les ici. </value>
+    <value>Pour déplacer un compte, exporter la Clé Secrète et la Clé de Partage, puis importez les ici.</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Importer Clef de Partage Publique d'un Contact</value>
@@ -882,7 +882,7 @@ Après sa première utilisation, Internet n'est PAS NECESSAIRE à AxCrypt. </val
     <value>Quelque chose d'inattendu n'a pas fonctionné. Veuillez réessayer. Si le problème persiste, s'il vous plaît signalez ceci.</value>
   </data>
   <data name="MessageSignUpUnexpectedErrorTitle" xml:space="preserve">
-    <value>Erreur inattendue </value>
+    <value>Erreur inattendue</value>
   </data>
   <data name="MessageUnexpectedErrorText" xml:space="preserve">
     <value>Une erreur inattendue '{0}' s'est produite.</value>
@@ -894,7 +894,7 @@ Après sa première utilisation, Internet n'est PAS NECESSAIRE à AxCrypt. </val
     <value>Créer un nouveau mot de passe</value>
   </data>
   <data name="NewSecretSuccess" xml:space="preserve">
-    <value>Votre nouvelle entrée de mot de passe a été enregistrée. </value>
+    <value>Votre nouvelle entrée de mot de passe a été enregistrée.</value>
   </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} disponible! Cliquez ici pour la télécharger.</value>
@@ -1012,17 +1012,17 @@ Saisissez votre email ci-dessous, afin d'y recevoir votre lien d'activation. Pou
 Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identifié comme spam, et que l'adresse {0} est correcte.</value>
   </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
-    <value>Le mot de passe n'est pas assez sécurisé pour être utilisé. </value>
+    <value>Le mot de passe n'est pas assez sécurisé pour être utilisé.</value>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
-    <value>Le mot de passe est assez sécurisé et bon pour être validé. </value>
+    <value>Le mot de passe est assez sécurisé et bon pour être validé.</value>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
-    <value>Le mot de passe est trop court ou trop similaire à un mot de passe courant pour être accepté. </value>
+    <value>Le mot de passe est trop court ou trop similaire à un mot de passe courant pour être accepté.</value>
     <comment>Shown when no password is typed or it is effectively empty</comment>
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
-    <value>Le mot de passe n'est pas assez sécurisé pour être validé. </value>
+    <value>Le mot de passe n'est pas assez sécurisé pour être validé.</value>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Plus d'information concernant PayPal]</value>
@@ -1041,7 +1041,7 @@ Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identi
     <value>Dites-moi ce que vous pensez AxCrypt - Voulez-vous continuer à l'utiliser et y a-t-il quelque chose que vous aimeriez voir amélioré?</value>
   </data>
   <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
-    <value>Votre abonnement AxCrypt Premium expire bientôt! </value>
+    <value>Votre abonnement AxCrypt Premium expire bientôt!</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>Cette fonctionalité n'est disponible qu'avec Premium!</value>
@@ -1084,7 +1084,7 @@ Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identi
     <comment>The heading of a groupbox where the file name to be opened is displayed.</comment>
   </data>
   <data name="PromptKeepMeSignedIn" xml:space="preserve">
-    <value>Se souvenir de moi et prolonger la session de connexion </value>
+    <value>Se souvenir de moi et prolonger la session de connexion</value>
   </data>
   <data name="PromptKnownContacts" xml:space="preserve">
     <value>Contacts connus</value>
@@ -1153,9 +1153,11 @@ Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identi
     <value>La période de l'abonnement sélectionnée est invalide. Un abonnement valide doit être d'au moins {0} mois et plus de {1} mois.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>AxCrypt protège vos fichiers. Pour utiliser les fonctionnalités avancées comme le chiffrement 256 bits, les Dossiers Protégés ou la Gestion des Mots de Passe, nous vous proposons de passer à AxCrypt Premium, qui vous donnera accès à l'ensemble des fonctionnalités du programme sans limitation.
+    <value>Avec la version Premium, vous pouvez utiliser l'ensemble des fonctionnalités d'AxCrypt sur n'importe quel ordinateur ou appareil. 
 
-Afin d'évaluer les fonctionnalités d'AxCrypt Premium, nous vous offrons une période d'essai de 30 jours à partir du moment où vous activez votre compte. Vous pourrez par la suite prolonger cette période d'essai par l'intermédiaire du formulaire ci-dessous.</value>
+AxCrypt protège vos fichiers. Pour utiliser les fonctionnalités avancées comme le chiffrement 256 bits, les Dossiers Protégés ou la Gestion des Mots de Passe, nous vous proposons de passer à AxCrypt Premium, qui vous donnera accès à l'ensemble des fonctionnalités du programme sans limitation.
+
+Afin d'évaluer les fonctionnalités d'AxCrypt Premium, nous vous offrons une période d'essai de 30 jours à partir du moment où vous activez votre AxCrypt ID. Vous pourrez par la suite prolonger cette période d'essai par l'intermédiaire du formulaire ci-dessous.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Lire Plus Concernant PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoffalways"&gt;La sécurité est cruciale pour nous. Tout ce que nous faisons avec AxCrypt est fait avec la sécurité comme la plus haute priorité. Nous utilisons donc PayPal comme mode de paiement pour AxCrypt Premium. Le site PayPal est hautement sécurisé et crypte automatiquement vos informations confidentielles de votre ordinateur à nos serveurs.

@@ -3372,9 +3372,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Secured Folders and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
+        ///   Looks up a localized string similar to With Premium you can use AxCrypt to its full potential on any number of computers and devices.
         ///
-        ///To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts when you activate your AxCrypt ID. After that you can extend your premium subscription by using th [rest of string was truncated]&quot;;.
+        ///AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Secured Folders and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
+        ///
+        ///To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PurchasePageBody1 {
             get {

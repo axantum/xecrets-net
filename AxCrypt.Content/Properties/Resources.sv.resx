@@ -598,7 +598,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>E&amp;xportera min delningsnyckel</value>
   </data>
   <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>Skicka den exporterade delningsnyckeln till andra som skall få åtkomst till skyddade filer. </value>
+    <value>Skicka den exporterade delningsnyckeln till andra som skall få åtkomst till skyddade filer.</value>
   </data>
   <data name="FailedPrivateImport" xml:space="preserve">
     <value>Importen gick fel. Troligen är filen inte ett giltigt AxCrypt ID.</value>
@@ -1153,7 +1153,9 @@ Om du inte verkar få det inom några minuter, kontrollera ditt skräppostfilter
     <value>Ogiltig tidsperiod, den måste vara minst {0} månad(er) och högst {1} månader.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>AxCrypt fokuserar på att hålla dina filer skyddade mot obehörig insyn. För att kunna använda avancerade funktioner som extra stark 256-bitars kryptering, säkrade mappar och lösenordshanteraren rekommenderar vi att uppgradera till AxCrypt Premium. Med Premium så har du tillgång till alla funktioner, utan begränsning.
+    <value>Med Premium kan du använda AxCrypt fullt ut på ett obegränsat antal datorer och enheter.
+
+AxCrypt fokuserar på att hålla dina filer skyddade mot obehörig insyn. För att kunna använda avancerade funktioner som extra stark 256-bitars kryptering, säkrade mappar och lösenordshanteraren rekommenderar vi att uppgradera till AxCrypt Premium. Med Premium så har du tillgång till alla funktioner, utan begränsning.
 
 Så att du kan prova ut premiumfunktionerna så ger vi dig 30 dagars gratis prov av AxCrypt Premium från aktivering av kontot. Därefter kan du förlänga din prenumeration med formuläret nedan.</value>
   </data>
@@ -1204,7 +1206,7 @@ Ett kvitto på ditt köp har skickats till din epostadress.</value>
   <data name="RegisterPageBody" xml:space="preserve">
     <value>Prova AxCrypt genom att registrera dig för ett AxCrypt ID nedan. Ange din epostadress så skickar vi ett meddelande med en aktiveringslänk. När du klickar på länken kommer du till en aktiveringssidan där du även sätter ditt nya lösenord. Det är allt!
 
-En provperiod på 30 dagar ingår alltid när du aktiverat ditt AxCrypt ID. </value>
+En provperiod på 30 dagar ingår alltid när du aktiverat ditt AxCrypt ID.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Registra ditt AxCrypt ID</value>
