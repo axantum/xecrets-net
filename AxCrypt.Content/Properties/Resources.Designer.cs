@@ -718,7 +718,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to However, since you already have an AxCXrypt ID using this e-mail, the request has been silently ignored..
+        ///   Looks up a localized string similar to However, since you already have an AxCrypt ID using this e-mail, the request has been silently ignored..
         /// </summary>
         public static string ChangeEmailExistMailBody2 {
             get {
