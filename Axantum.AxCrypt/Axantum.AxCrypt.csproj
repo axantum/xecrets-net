@@ -145,6 +145,7 @@
     <Compile Include="MessageDialog.Designer.cs">
       <DependentUpon>MessageDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="SignUpSignIn.cs" />
     <Compile Include="StyledMessageBase.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -43,8 +43,10 @@ namespace Axantum.AxCrypt.Core.UI
             Address = parsed;
         }
 
-        public static EmailAddress Parse(string address)
+        public static bool TryParse(string address, out EmailAddress email)
         {
+            email = Empty;
+
             if (address == null)
             {
                 throw new ArgumentNullException("address");
@@ -52,10 +54,28 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (address.Length == 0)
             {
-                return Empty;
+                return true;
             }
 
-            return new EmailAddress(address);
+            string parsed;
+            if (!New<IEmailParser>().TryParse(address, out parsed))
+            {
+                return false;
+            }
+
+            email = new EmailAddress(parsed);
+            return true;
+        }
+
+        public static EmailAddress Parse(string address)
+        {
+            EmailAddress email;
+            if (TryParse(address, out email))
+            {
+                return email;
+            }
+
+            throw new FormatException("Not recognized as a valid email address.");
         }
 
         public override string ToString()

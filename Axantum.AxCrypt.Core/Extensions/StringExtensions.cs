@@ -255,16 +255,8 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static bool IsValidEmail(this string email)
         {
-            try
-            {
-                EmailAddress.Parse(email);
-                return true;
-            }
-            catch (FormatException fex)
-            {
-                New<IReport>().Exception(fex);
-                return false;
-            }
+            string address;
+            return New<IEmailParser>().TryParse(email, out address);
         }
     }
 }

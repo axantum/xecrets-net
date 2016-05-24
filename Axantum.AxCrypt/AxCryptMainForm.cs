@@ -271,7 +271,15 @@ namespace Axantum.AxCrypt
                 {
                     await WrapMessageDialogsAsync(async () =>
                     {
-                        await StartUpProgramAsync();
+                        SignUpSignIn signUpSignIn = new SignUpSignIn(Resolve.UserSettings.UserEmail);
+                        await signUpSignIn.DialogsAsync(this);
+                        Resolve.UserSettings.UserEmail = signUpSignIn.UserEmail;
+                        if (signUpSignIn.StopAndExit)
+                        {
+                            StopAndExit();
+                            return;
+                        }
+
                         await _fileOperationViewModel.IdentityViewModel.LogOnAsync.ExecuteAsync(null);
                         await LogOnAndDoPendingRequestAsync();
                     });
@@ -329,122 +337,6 @@ namespace Axantum.AxCrypt
                 control.Enabled = enabled;
             }
             Cursor = enabled ? Cursors.Default : Cursors.WaitCursor;
-        }
-
-        private async Task StartUpProgramAsync()
-        {
-            AccountStatus status;
-            DialogResult dialogResult;
-            do
-            {
-                dialogResult = DialogResult.OK;
-                status = await EnsureEmailAccountAsync();
-                switch (status)
-                {
-                    case AccountStatus.NotFound:
-                        await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
-                        MessageDialog.ShowOk(this, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(Resolve.UserSettings.UserEmail));
-                        status = VerifyAccountOnline();
-                        break;
-
-                    case AccountStatus.InvalidName:
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, Texts.MessageInvalidSignUpEmailTitle, Texts.MessageInvalidSignUpEmailText.InvariantFormat(Resolve.UserSettings.UserEmail));
-                        Resolve.UserSettings.UserEmail = String.Empty;
-                        break;
-
-                    case AccountStatus.Unverified:
-                        status = VerifyAccountOnline();
-                        break;
-
-                    case AccountStatus.Verified:
-                        break;
-
-                    case AccountStatus.Offline:
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, Texts.MessageSignUpInternetRequiredTitle, Texts.MessageSignUpInternetRequiredText);
-                        New<AxCryptOnlineState>().IsOnline = true;
-                        break;
-
-                    case AccountStatus.Unknown:
-                    case AccountStatus.Unauthenticated:
-                    case AccountStatus.DefinedByServer:
-                        Resolve.UserSettings.UserEmail = String.Empty;
-                        dialogResult = MessageDialog.ShowOkCancelExit(this, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText);
-                        break;
-
-                    default:
-                        break;
-                }
-                if (dialogResult == DialogResult.Abort)
-                {
-                    StopAndExit();
-                }
-                if (dialogResult == DialogResult.Cancel)
-                {
-                    return;
-                }
-            } while (status != AccountStatus.Verified);
-        }
-
-        private async Task<AccountStatus> EnsureEmailAccountAsync()
-        {
-            AccountStatus status;
-            if (!String.IsNullOrEmpty(Resolve.UserSettings.UserEmail))
-            {
-                status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
-                switch (status)
-                {
-                    case AccountStatus.Unknown:
-                    case AccountStatus.InvalidName:
-                    case AccountStatus.Unverified:
-                    case AccountStatus.NotFound:
-                    case AccountStatus.Offline:
-                        break;
-
-                    default:
-                        return status;
-                }
-            }
-
-            AskForEmailAddressToUse();
-
-            status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
-            return status;
-        }
-
-        private void AskForEmailAddressToUse()
-        {
-            using (EmailDialog dialog = new EmailDialog(this))
-            {
-                dialog.EmailTextBox.Text = Resolve.UserSettings.UserEmail;
-                DialogResult result = dialog.ShowDialog(this);
-                if (result != DialogResult.OK)
-                {
-                    StopAndExit();
-                }
-                Resolve.UserSettings.UserEmail = dialog.EmailTextBox.Text;
-            }
-        }
-
-        private AccountStatus VerifyAccountOnline()
-        {
-            VerifyAccountViewModel viewModel = new VerifyAccountViewModel(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
-            using (VerifyAccountDialog dialog = new VerifyAccountDialog(this, viewModel))
-            {
-                DialogResult dialogResult = dialog.ShowDialog(this);
-                if (dialogResult != DialogResult.OK)
-                {
-                    return AccountStatus.Unverified;
-                }
-            }
-            LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(viewModel.UserEmail), Passphrase.Create(viewModel.Passphrase));
-            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
-
-            DialogResult result = MessageDialog.ShowOkCancel(this, Texts.WelcomeToAxCryptTitle, Texts.WelcomeToAxCrypt);
-            if (result == DialogResult.OK)
-            {
-                Process.Start(Texts.LinkToGettingStarted);
-            }
-            return AccountStatus.Verified;
         }
 
         private async Task LogOnAndDoPendingRequestAsync()
