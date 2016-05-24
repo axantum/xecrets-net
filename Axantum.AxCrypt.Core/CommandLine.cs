@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core
             {
                 launcher.Launch(_startPath);
             }
-            if (OS.Current.FirstInstanceRunning(TimeSpan.FromSeconds(5)))
+            if (OS.Current.FirstInstanceRunning(TimeSpan.FromSeconds(10)))
             {
                 return true;
             }
