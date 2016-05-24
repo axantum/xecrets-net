@@ -634,7 +634,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>&amp;Arkiv</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
-    <value>Mappen '{0}' är redan säkrad.</value>
+    <value>Mappen '{0}' är redan skyddad.</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Det här är AxCrypt ID-webben för axcrypt.net, klicka &lt;a href="{0}"&gt;här&lt;/a&gt; om du vill tillbaka till startsidan.</value>
@@ -709,13 +709,13 @@ Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</valu
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
     <value>Du har blivit inbjuden till AxCrypt av &lt;b&gt;{0}&lt;/b&gt;.
-Du kan börja säkra dina filer från insyn genom att &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;ladda ned&lt;/a&gt; och installera AxCrypt.
+Du kan börja skydda dina filer från insyn genom att &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;ladda ned&lt;/a&gt; och installera AxCrypt.
 Logga in till AxCrypt med &lt;b&gt;{2}&lt;/b&gt;, ange den 6-siffriga aktiveringskoden och sätt ditt nya hemliga lösenord. </value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>Du har blivit inbjuden till AxCrypt av {0}.
 
-Du kan börja säkra dina filer från insyn genom att ladda ned och installera AxCrypt från {1}.
+Du kan börja skydda dina filer från insyn genom att ladda ned och installera AxCrypt från {1}.
 
 Logga in till AxCrypt med {2}, ange den 6-siffriga aktiveringskoden och sätt ditt nya hemliga lösenord. </value>
   </data>
@@ -747,7 +747,7 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga aktiveringskoden och sätt di
     <value>Nya kontakter kan bara läggas till när du är ansluten till Internet.</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
-    <value>Klicka för att välja säkrade filer att dela nycklar för med andra.</value>
+    <value>Klicka för att välja skyddade filer att dela nycklar för med andra.</value>
   </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt måste startas om för att slutföra språkändringen.</value>
@@ -948,6 +948,9 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
   </data>
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>Arkiv</value>
+  </data>
+  <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
+    <value>Klicka och välj en skyddad fil att öppna.</value>
   </data>
   <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
     <value>Byt &amp;Lösenord</value>
@@ -1155,7 +1158,7 @@ Om du inte verkar få det inom några minuter, kontrollera ditt skräppostfilter
   <data name="PurchasePageBody1" xml:space="preserve">
     <value>Med Premium kan du använda AxCrypt fullt ut på ett obegränsat antal datorer och enheter.
 
-AxCrypt fokuserar på att hålla dina filer skyddade mot obehörig insyn. För att kunna använda avancerade funktioner som extra stark 256-bitars kryptering, säkrade mappar och lösenordshanteraren rekommenderar vi att uppgradera till AxCrypt Premium. Med Premium så har du tillgång till alla funktioner, utan begränsning.
+AxCrypt fokuserar på att hålla dina filer skyddade mot obehörig insyn. För att kunna använda avancerade funktioner som extra stark 256-bitars kryptering, skyddade mappar och lösenordshanteraren rekommenderar vi att uppgradera till AxCrypt Premium. Med Premium så har du tillgång till alla funktioner, utan begränsning.
 
 Så att du kan prova ut premiumfunktionerna så ger vi dig 30 dagars gratis prov av AxCrypt Premium från aktivering av kontot. Därefter kan du förlänga din prenumeration med formuläret nedan.</value>
   </data>
