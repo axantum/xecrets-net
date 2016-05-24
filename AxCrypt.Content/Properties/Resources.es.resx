@@ -676,6 +676,10 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mi AxCrypt ID</value>
   </data>
+  <data name="InformationTitle" xml:space="preserve">
+    <value>Información</value>
+    <comment>A dialog box title for general announcement and informative message dialog boxes</comment>
+  </data>
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet NO ES NECESARIO cuando se utiliza AxCrypt.
 
@@ -741,6 +745,20 @@ Iniciar sesión en AxCrypt con {2}, introduzca el código de activación de 6 ci
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Hora</value>
+  </data>
+  <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
+    <value>Después de los archivos se convierten de formato AxCrypt 1.x, debe utilizar el nuevo contraseña de iniciar sesión para abrirlos, así que por favor verificar aquí. 
+
+¡No se olvide esta contraseña!</value>
+  </data>
+  <data name="LegacyOpenMessage" xml:space="preserve">
+    <value>AxCrypt 2 utiliza un nuevo formato de archivos.
+
+Puede abrir archivos AxCrypt 1.x heredados pero a menos que se convierten usted tiene que proporcionar la contraseña original, incluso cuando iniciado sesión.
+
+La conversión automática también se puede cambiar en el menú de opciones.
+
+¿Habilitar la conversión automática de los archivos AxCrypt 1.x (recomendado)?</value>
   </data>
   <data name="LicenseFreeNameText" xml:space="preserve">
     <value>Gratis</value>
@@ -923,6 +941,14 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Borrar todos los ajustes y salir</value>
+  </data>
+  <data name="OptionsConvertMenuItemText" xml:space="preserve">
+    <value>Convertir archivos 1.x automáticamente</value>
+    <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
+  </data>
+  <data name="OptionsConvertMenuToolTip" xml:space="preserve">
+    <value>Activar o desactivar la actualización automática y la conversión de archivos AxCrypt 1.x más viejos ya que se utilizan.</value>
+    <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Idioma</value>
@@ -1234,6 +1260,9 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Mostrar contraseña</value>
   </data>
+  <data name="SignInVerificationTitle" xml:space="preserve">
+    <value>Verificar iniciar sesión</value>
+  </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>¡Advertencia! Un reinicio del sitio está programado en unos pocos minutos. Pedimos disculpas por las molestias.</value>
   </data>
@@ -1245,6 +1274,9 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   </data>
   <data name="SupportPageTitle" xml:space="preserve">
     <value>Soporte Premium</value>
+  </data>
+  <data name="SupportPremiumIntro" xml:space="preserve">
+    <value>Bienvenido a el Soporte AxCrypt. Damos a nuestros suscriptores Premium prioridad y apoyo directo personal a través de correo electrónico.</value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Lo sentimos, el soporte directo sólo está disponible para los suscriptores de pago, visite nuestro &lt;a href="{0}"&gt;soporte comunitario&lt;/a&gt;.</value>
