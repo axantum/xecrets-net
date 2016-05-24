@@ -216,6 +216,7 @@ namespace Axantum.AxCrypt
             _signOutToolStripMenuItem.Text = Texts.LogOffText;
             _optionsAutoConvert1xFilesToolStripMenuItem.Text = Texts.OptionsConvertMenuItemText;
             _optionsAutoConvert1xFilesToolStripMenuItem.ToolTipText = Texts.OptionsConvertMenuToolTip;
+            _openEncryptedToolStripButton.ToolTipText = Texts.OpenToolStripButtonToolTipText;
         }
 
         private static void SetCulture()
@@ -710,7 +711,8 @@ namespace Axantum.AxCrypt
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
-            _openEncryptedToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
+            _openEncryptedToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(string.Empty); };
+            _openEncryptedToolStripButton.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(string.Empty); };
             _secureDeleteToolStripMenuItem.Click += (sender, e) => PremiumFeature_Click(LicenseCapability.SecureWipe, (ss, ee) => { _fileOperationViewModel.WipeFiles.Execute(null); }, sender, e);
             _encryptedFoldersToolStripMenuItem.Click += (sender, e) => PremiumFeature_Click(LicenseCapability.SecureFolders, (ss, ee) => { encryptedFoldersToolStripMenuItem_Click(ss, ee); }, sender, e);
             _addSecureFolderToolStripMenuItem.Click += (sender, e) => PremiumFeature_Click(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); }, sender, e);

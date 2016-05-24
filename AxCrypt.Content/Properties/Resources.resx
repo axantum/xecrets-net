@@ -1077,6 +1077,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
+    <value>Click to select a secured file to open.</value>
+  </data>
   <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
     <value>Change &amp;Password</value>
   </data>

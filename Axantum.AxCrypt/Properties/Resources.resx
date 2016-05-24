@@ -121,17 +121,20 @@
   <data name="inactivefilegreen16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\inactivefilegreen16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="decrypt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\decrypt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dropbox_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dropbox_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="broom_40pxs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\broom_40pxs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="skydrive_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\skydrive_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="share_border_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\share_border_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logo_text_retina" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\logo-text-retina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="exit_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\exit_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="premium_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\premium_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="encryptionkeygreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\encryptionkeygreen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,29 +148,38 @@
   <data name="closeremovestandbyred32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\closeremovestandbyred32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="key_management" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\key_management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bulb_red_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\bulb_red_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="encrypt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\encrypt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="refreshred" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\refreshred.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="plus_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\plus_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="decryptedunknownkeyfilered16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\decryptedunknownkeyfilered16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="decrypt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\decrypt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="open_encrypted" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\open_encrypted.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bulb_green_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\bulb_green_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clean_broom_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\clean_broom_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="activefilegreen16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\activefilegreen16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="premium_yellow_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\premium_yellow_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="exclamationgreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\exclamationgreen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="premium_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\premium_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="folder_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\folder_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,11 +187,14 @@
   <data name="options" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\options.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SkyDrive" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\SkyDrive.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="refresh_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\refresh_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="removeanddecryptgreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\removeanddecryptgreen32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bulb_orange_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\bulb_orange_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clean_recycle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\clean_recycle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="encryptionkeyred32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\encryptionkeyred32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,8 +202,17 @@
   <data name="refresh_grey_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\refresh_grey_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dropbox_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\dropbox_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="open_encrypted_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\open_encrypted_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trashred16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\trashred16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="premium_yellow_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\premium_yellow_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="passwords_grey_premium_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\passwords_grey_premium_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="helpquestiongreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\helpquestiongreen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,14 +226,17 @@
   <data name="addforencryptionred32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\addforencryptionred32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="clean_recycle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\clean_recycle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="feedback_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\feedback_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="refresh_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\refresh_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="passwords_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\passwords_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GoogleDrive" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\GoogleDrive.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="premium_overlay_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\premium_overlay_16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,14 +244,17 @@
   <data name="DropBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\DropBox.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bulb_green_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\bulb_green_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="minus_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\minus_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="broom_red_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\broom_red_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clean_broom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\clean_broom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cleanupneededred32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\cleanupneededred32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,17 +262,23 @@
   <data name="axcrypticon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\axcrypticon.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="removeanddecryptgreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\removeanddecryptgreen32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SkyDrive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\SkyDrive.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="axcrypticon128" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\axcrypticon128.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="clean_broom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\clean_broom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DocumentsLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\DocumentsLibrary.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="exit_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\exit_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="share_border_grey_premium_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\share_border_grey_premium_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="google_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\google_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="minus_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\minus_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="refreshgreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\refreshgreen.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -250,8 +286,17 @@
   <data name="decryptedfilered16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\decryptedfilered16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="decryptedunknownkeyfilered16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\decryptedunknownkeyfilered16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="plus_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plus_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="share_premium_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\share_premium_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="share_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\share_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="share_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\share_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="exclamationgreen16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\exclamationgreen16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,64 +304,25 @@
   <data name="decryptlockopen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\decryptlockopen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bulb_orange_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\bulb_orange_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bulb_red_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\bulb_red_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DocumentsLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\DocumentsLibrary.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="google_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\google_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key_management" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\key_management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="closeremovestandbygreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\closeremovestandbygreen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="trashred16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\trashred16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="skydrive_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\skydrive_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logo_text_retina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logo-text-retina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="broom_red_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\broom_red_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clean_broom_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\clean_broom_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="feedback_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\feedback_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="premium_overlay_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\premium_overlay_16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="premium_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\premium_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="share_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\share_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="share_premium_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\share_premium_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="premium_yellow_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\premium_yellow_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="premium_yellow_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\premium_yellow_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="share_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\share_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="premium_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\premium_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="share_border_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\share_border_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="share_border_grey_premium_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\share_border_grey_premium_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="passwords_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\passwords_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="passwords_grey_premium_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\passwords_grey_premium_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="open_encrypted_80px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\open_encrypted_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

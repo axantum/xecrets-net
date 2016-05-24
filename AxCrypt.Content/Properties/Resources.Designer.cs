@@ -2772,6 +2772,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to select a secured file to open..
+        /// </summary>
+        public static string OpenToolStripButtonToolTipText {
+            get {
+                return ResourceManager.GetString("OpenToolStripButtonToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change &amp;Password.
         /// </summary>
         public static string OptionsChangePassphraseToolStripMenuItemText {
