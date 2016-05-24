@@ -936,6 +936,9 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>Archivo</value>
   </data>
+  <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
+    <value>Haga clic y elija un archivo protegido para abrir.</value>
+  </data>
   <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
     <value>Cambiar &amp;contrasenña</value>
   </data>
@@ -1139,7 +1142,9 @@ Si parece que usted no lo recibe, revise su filtro de correo no deseado y compru
     <value>El tiempo de suscripción seleccionado no es válido. Una suscripción válida tiene que ser al menos {0} mes y no más de {1} meses.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>AxCrypt protege sus archivos. Para utilizar las funciones avanzadas como el cifrado de 256 bits, carpetas protegidas o administración de contraseñas, proponemos actualizar a AxCrypt Premium, que le dará acceso a todas las funciones en AxCrypt, sin limitación. 
+    <value>Con Premium puede utilizar AxCrypt en todo su potencial en cualquier número de computadoras y dispositivos.
+
+AxCrypt está diseñado sobre el concepto principal de mantener sus archivos seguros. Para utilizar las funciones avanzadas como el cifrado de 256 bits, carpetas protegidas o administración de contraseñas, proponemos actualizar a AxCrypt Premium, que le dará acceso a todas las funciones en AxCrypt, sin limitación. 
 
 Para evaluar las funciones de AxCrypt Premium, ofrecemos una prueba gratis de 30 días que inicia cuando se activa su cuenta. A continuación, puede extender el período de prueba a través del siguiente formulario.</value>
   </data>
