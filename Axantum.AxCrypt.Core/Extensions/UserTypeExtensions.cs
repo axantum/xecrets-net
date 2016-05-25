@@ -246,8 +246,8 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             IEnumerable<AccountKey> allKeys = new List<AccountKey>(highPriorityAccount.AccountKeys);
             IEnumerable<AccountKey> newKeys = lowPriorityAccountKeys.Where(lak => !allKeys.Any(ak => ak.KeyPair.PublicPem == lak.KeyPair.PublicPem));
-            allKeys = allKeys.Union(newKeys);
-            UserAccount merged = new UserAccount(highPriorityAccount.UserName, highPriorityAccount.SubscriptionLevel, highPriorityAccount.LevelExpiration, highPriorityAccount.AccountStatus, allKeys);
+            IEnumerable<AccountKey> unionOfKeys = allKeys.Union(newKeys);
+            UserAccount merged = new UserAccount(highPriorityAccount.UserName, highPriorityAccount.SubscriptionLevel, highPriorityAccount.LevelExpiration, highPriorityAccount.AccountStatus, unionOfKeys);
             return merged;
         }
 
