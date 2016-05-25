@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            _fileOperation.DoFiles(files.Select(f => New<IDataStore>(f)).ToList(), EncryptFileWork, (status) => { });
+            EncryptOneOrManyFiles(files.Select(f => New<IDataStore>(f)).ToList());
         }
 
         private void DecryptFilesAction(IEnumerable<string> files)
@@ -344,7 +344,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             e.LogOnIdentity = IdentityViewModel.LogOnIdentity;
         }
 
-        private FileOperationContext EncryptFileWork(IDataStore file, IProgressContext progress)
+        private FileOperationsController EncryptFileWorkController(IProgressContext progress)
         {
             FileOperationsController operationsController = New<IProgressContext, FileOperationsController>(progress);
 
@@ -364,6 +364,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     e.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
                     return;
                 }
+            };
+
+            return operationsController;
+        }
+
+        private FileOperationContext EncryptFileWorkOne(IDataStore file, IProgressContext progress)
+        {
+            FileOperationsController controller = EncryptFileWorkController(progress);
+            controller.Completed += (object sender, FileOperationEventArgs e) =>
+            {
                 if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName, e.Status.InternalMessage))
                 {
                     IDataStore encryptedInfo = New<IDataStore>(e.SaveFileFullName);
@@ -373,8 +383,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     _fileSystemState.Save();
                 }
             };
+            return controller.EncryptFile(file);
+        }
 
-            return operationsController.EncryptFile(file);
+        private FileOperationContext EncryptFileWorkMany(IDataStore file, IProgressContext progress)
+        {
+            FileOperationsController controller = EncryptFileWorkController(progress);
+            return controller.EncryptFile(file);
         }
 
         private FileOperationContext VerifyAndAddActiveWork(IDataStore fullName, IProgressContext progress)
@@ -431,7 +446,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void AddRecentFilesAction(IEnumerable<string> files)
         {
             IEnumerable<IDataStore> fileInfos = files.Select(f => New<IDataStore>(f)).ToList();
-            ProcessEncryptableFilesDroppedInRecentList(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+            EncryptOneOrManyFiles(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
             ProcessEncryptedFilesDroppedInRecentList(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
         }
 
@@ -440,9 +455,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _fileOperation.DoFiles(encryptedFiles, VerifyAndAddActiveWork, (status) => { });
         }
 
-        private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IDataStore> encryptableFiles)
+        private void EncryptOneOrManyFiles(IEnumerable<IDataStore> encryptableFiles)
         {
-            _fileOperation.DoFiles(encryptableFiles, EncryptFileWork, (status) => { });
+            if (encryptableFiles.Count() > 1)
+            {
+                _fileOperation.DoFiles(encryptableFiles, EncryptFileWorkMany, (status) => { });
+            }
+            else
+            {
+                _fileOperation.DoFiles(encryptableFiles, EncryptFileWorkOne, (status) => { });
+            }
         }
 
         private void HandleSessionChanged(object sender, SessionNotificationEventArgs e)
