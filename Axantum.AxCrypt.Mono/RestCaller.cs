@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Mono
         private async static Task<RestResponse> SendGet(RestIdentity identity, RestRequest request)
         {
             string content = String.Empty;
-            using (HttpClient client = new HttpClient())
+            using (HttpClient client = CreateHttpClient())
             {
                 PrepareClient(client, identity, request);
 
@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt.Mono
         private async static Task<RestResponse> SendPut(RestIdentity identity, RestRequest request)
         {
             string content = String.Empty;
-            using (HttpClient client = new HttpClient())
+            using (HttpClient client = CreateHttpClient())
             {
                 PrepareClient(client, identity, request);
 
@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Mono
         private async static Task<RestResponse> SendPost(RestIdentity identity, RestRequest request)
         {
             string content = String.Empty;
-            using (HttpClient client = new HttpClient())
+            using (HttpClient client = CreateHttpClient())
             {
                 PrepareClient(client, identity, request);
 
@@ -171,6 +171,14 @@ namespace Axantum.AxCrypt.Mono
                 string credentials = "{0}:{1}".InvariantFormat(identity.User, identity.Password.ToUtf8Base64());
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(credentials)));
             }
+        }
+
+        private static HttpClient CreateHttpClient()
+        {
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.Proxy = WebRequest.DefaultWebProxy;
+            clientHandler.Proxy.Credentials = CredentialCache.DefaultNetworkCredentials;
+            return new HttpClient(clientHandler);
         }
     }
 }
