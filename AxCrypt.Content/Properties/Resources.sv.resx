@@ -937,6 +937,10 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>Skapa Lokalt AxCrypt ID</value>
   </data>
+  <data name="OfflineIndicatorText" xml:space="preserve">
+    <value>Frånkopplad</value>
+    <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
+  </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Du har en gammal version. Klicka för att kontrollera om det finns en nyare.</value>
   </data>

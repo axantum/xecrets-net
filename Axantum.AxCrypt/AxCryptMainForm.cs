@@ -739,6 +739,14 @@ namespace Axantum.AxCrypt
             SystemEvents.SessionEnding += SystemEvents_SessionEnding;
             SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
             SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
+
+            New<AxCryptOnlineState>().OnlineStateChanged += (sender, e) =>
+            {
+                New<IUIThread>().PostOnUIThread(() =>
+                {
+                    SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
+                });
+            };
         }
 
         private readonly object _autoCleanUpLock = new object();
@@ -1375,7 +1383,12 @@ namespace Axantum.AxCrypt
             {
                 logonStatus = Texts.LoggedOffStatusText;
             }
-            Text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, logonStatus);
+            string text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, logonStatus);
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                text = $"{text} [{Texts.OfflineIndicatorText}]";
+            }
+            Text = text;
         }
 
         private void SetSoftwareStatus()

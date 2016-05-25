@@ -2736,6 +2736,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offline.
+        /// </summary>
+        public static string OfflineIndicatorText {
+            get {
+                return ResourceManager.GetString("OfflineIndicatorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your version is old. Please click to check for a newer version..
         /// </summary>
         public static string OldVersionTooltip {

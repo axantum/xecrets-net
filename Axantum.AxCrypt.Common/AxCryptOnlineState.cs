@@ -8,17 +8,24 @@ namespace Axantum.AxCrypt.Common
 {
     public class AxCryptOnlineState
     {
-        private bool _isOnline = true;
+        private bool? _isOnline;
+
+        public event EventHandler OnlineStateChanged;
 
         public bool IsOnline
         {
             get
             {
-                return _isOnline;
+                return _isOnline.GetValueOrDefault(true);
             }
             set
             {
+                bool? wasOnline = _isOnline;
                 _isOnline = value;
+                if (wasOnline != _isOnline)
+                {
+                    OnOnlineStateChanged(new EventArgs());
+                }
             }
         }
 
@@ -26,12 +33,22 @@ namespace Axantum.AxCrypt.Common
         {
             get
             {
-                return !_isOnline;
+                return !_isOnline.GetValueOrDefault(true);
             }
             set
             {
+                bool? wasOnline = _isOnline;
                 _isOnline = !value;
+                if (wasOnline != _isOnline)
+                {
+                    OnOnlineStateChanged(new EventArgs());
+                }
             }
+        }
+
+        protected virtual void OnOnlineStateChanged(EventArgs e)
+        {
+            OnlineStateChanged?.Invoke(this, e);
         }
     }
 }
