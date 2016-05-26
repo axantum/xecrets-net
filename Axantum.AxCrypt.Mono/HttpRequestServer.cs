@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Ipc;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -37,7 +38,9 @@ namespace Axantum.AxCrypt.Mono
 {
     public class HttpRequestServer : IRequestServer, IDisposable
     {
-        internal static readonly Uri Url = new Uri("http://localhost:53414/AxCrypt/");
+        private static readonly int _sessionLocalPort = 53414 + Process.GetCurrentProcess().SessionId;
+
+        internal static readonly Uri Url = new Uri($"http://localhost:{_sessionLocalPort}/AxCrypt/");
 
         private HttpListener _listener = new HttpListener();
 

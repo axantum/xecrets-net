@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 if (_firstInstanceRunning == null)
                 {
-                    _firstInstanceRunning = new EventWaitHandle(false, EventResetMode.ManualReset, "Axantum.AxCrypt.NET-FirstInstanceRunning");
+                    _firstInstanceRunning = new EventWaitHandle(false, EventResetMode.ManualReset, @"Local\Axantum.AxCrypt.NET-FirstInstanceRunning");
                 }
                 return _firstInstanceRunning;
             }
