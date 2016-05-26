@@ -152,6 +152,13 @@ namespace Axantum.AxCrypt
             List<Assembly> assemblies = new List<Assembly>();
             foreach (FileInfo file in files)
             {
+                switch (file.Name.ToLowerInvariant())
+                {
+                    case "shellext.dll":
+                    case "messages.dll":
+                        continue;
+                }
+
                 try
                 {
                     assemblies.Add(Assembly.LoadFrom(file.FullName));
