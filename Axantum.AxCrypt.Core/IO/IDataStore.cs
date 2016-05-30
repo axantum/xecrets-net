@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// Determine if the file is currently unavailable for exclusive locking.
         /// </summary>
         /// <returns></returns>
-        bool IsLocked { get; }
+        bool IsLocked();
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is write protected.

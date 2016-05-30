@@ -11,7 +11,7 @@ namespace Axantum.AxCrypt.Core.Portable
 
         IPath Path();
 
-        IThreadWorker ThreadWorker(IProgressContext progress, bool startSerializedOnUIThread);
+        IThreadWorker ThreadWorker(string name, IProgressContext progress, bool startSerializedOnUIThread);
 
         ISingleThread SingleThread();
 

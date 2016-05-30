@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -40,11 +41,13 @@ namespace Axantum.AxCrypt.Core.UI
     /// </summary>
     public interface IUIThread
     {
-        bool IsOnUIThread { get; }
+        bool IsOn { get; }
 
-        void RunOnUIThread(Action action);
+        void SendTo(Action action);
 
-        void PostOnUIThread(Action action);
+        Task SendToAsync(Func<Task> action);
+
+        void PostTo(Action action);
 
         void Yield();
     }

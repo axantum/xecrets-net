@@ -39,7 +39,8 @@ using NUnit.Framework;
 using System;
 using System.IO;
 using System.Text;
-
+using System.Threading;
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -448,7 +449,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestDecryptFileUniqueWithWipeOfOriginal()
+        public async void TestDecryptFileUniqueWithWipeOfOriginal()
         {
             IDataStore sourceFileInfo = New<IDataStore>(_helloWorldAxxPath);
             IDataStore destinationFileInfo = New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
@@ -457,7 +458,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(sourceFileInfo.IsAvailable, Is.True, "The source should exist.");
             Assert.That(destinationFileInfo.IsAvailable, Is.False, "The source should not exist yet.");
 
-            New<AxCryptFile>().DecryptFileUniqueWithWipeOfOriginal(sourceFileInfo, passphrase, new ProgressContext());
+            await New<AxCryptFile>().DecryptFileUniqueWithWipeOfOriginal(sourceFileInfo, passphrase, new ProgressContext());
 
             Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
@@ -466,12 +467,12 @@ namespace Axantum.AxCrypt.Core.Test
         // Fails intermittently at "The source should be wiped". Problably a race situation. Must be investigated.
         // 2016-03-10: Attempted fix by adding call to Resolve.ProgressBackground.WaitForIdle(), and implementing it in FakeProgressBackground.
         // 2016-04-25: Not fixed.
+        // 2016-05-28: Not fixed.
         [Test]
-        public void TestDecryptFilesUniqueWithWipeOfOriginal()
+        public async void TestDecryptFilesUniqueWithWipeOfOriginal()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
             TypeMap.Register.Singleton<IProgressBackground>(() => new FakeProgressBackground());
-            TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
             IDataStore sourceFileInfo = New<IDataStore>(_helloWorldAxxPath);
             IDataContainer sourceFolderInfo = New<IDataContainer>(Path.GetDirectoryName(sourceFileInfo.FullName));
             sourceFolderInfo.CreateFolder();
@@ -483,7 +484,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(sourceFileInfo.IsAvailable, Is.True, "The source should exist.");
             Assert.That(destinationFileInfo.IsAvailable, Is.False, "The source should not exist yet.");
 
-            New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(sourceFolderInfo, passphrase, mockStatusChecker.Object, new ProgressContext());
+            await New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(sourceFolderInfo, passphrase, mockStatusChecker.Object, new ProgressContext());
             Resolve.ProgressBackground.WaitForIdle();
 
             Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");

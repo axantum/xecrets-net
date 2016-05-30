@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public void TestHandleSessionEventWatchedFolderAdded(CryptoImplementation cryptoImplementation)
+        public async void TestHandleSessionEventWatchedFolderAdded(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -83,13 +83,13 @@ namespace Axantum.AxCrypt.Core.Test
             LogOnIdentity key = new LogOnIdentity("passphrase");
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents", key.Tag));
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
 
             Assert.That(called, Is.True);
         }
 
         [Test]
-        public void TestHandleSessionEventWatchedFolderRemoved()
+        public async void TestHandleSessionEventWatchedFolderRemoved()
         {
             FakeDataStore.AddFolder(@"C:\My Documents\");
             MockAxCryptFile mock = new MockAxCryptFile();
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
 
             Assert.That(called, Is.True);
         }
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public void TestHandleSessionEventLogOn(CryptoImplementation cryptoImplementation)
+        public async void TestHandleSessionEventLogOn(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
             LogOnIdentity key = new LogOnIdentity("passphrase");
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, key));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.LogOn, key));
 
             Assert.That(called, Is.True);
             Assert.That(folderCount, Is.EqualTo(1), "There should be one folder passed for encryption as a result of the event.");
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public void TestHandleSessionEventLogOffWithWatchedFolders(CryptoImplementation cryptoImplementation)
+        public async void TestHandleSessionEventLogOffWithWatchedFolders(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -154,12 +154,12 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
 
             called = false;
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new LogOnIdentity("passphrase")));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.LogOff, new LogOnIdentity("passphrase")));
             Assert.That(called, Is.True, nameof(AxCryptFile.EncryptFoldersUniqueWithBackupAndWipe) + " should be called when a signing out.");
         }
 
         [Test]
-        public void TestHandleSessionEventLogOffWithNoWatchedFolders()
+        public async void TestHandleSessionEventLogOffWithNoWatchedFolders()
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
@@ -169,13 +169,13 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new LogOnIdentity("passphrase")));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.LogOff, new LogOnIdentity("passphrase")));
 
             Assert.That(called, Is.False);
         }
 
         [Test]
-        public void TestHandleSessionEventActiveFileChange()
+        public async void TestHandleSessionEventActiveFileChange()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
@@ -185,13 +185,13 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, New<AxCryptFile>(), mockStatusChecker.Object);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.ActiveFileChange, new LogOnIdentity("passphrase")));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, new LogOnIdentity("passphrase")));
 
             Assert.That(called, Is.True);
         }
 
         [Test]
-        public void TestHandleSessionEventSessionStart()
+        public async void TestHandleSessionEventSessionStart()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
@@ -201,13 +201,13 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, New<AxCryptFile>(), mockStatusChecker.Object);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionStart, new LogOnIdentity("passphrase")));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.SessionStart, new LogOnIdentity("passphrase")));
 
             Assert.That(called, Is.True);
         }
 
         [Test]
-        public void TestHandleSessionEventPurgeActiveFiles()
+        public async void TestHandleSessionEventPurgeActiveFiles()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, New<AxCryptFile>(), mockStatusChecker.Object);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
 
             Assert.That(called, Is.True);
         }
@@ -231,12 +231,12 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, New<AxCryptFile>(), mockStatusChecker.Object);
 
-            Assert.DoesNotThrow(() =>
+            Assert.DoesNotThrow(async () =>
             {
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.ProcessExit));
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionChange));
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.KnownKeyChange));
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.WorkFolderChange));
+                await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.ProcessExit));
+                await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.SessionChange));
+                await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.KnownKeyChange));
+                await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.WorkFolderChange));
             });
         }
 
@@ -249,16 +249,16 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, New<AxCryptFile>(), mockStatusChecker.Object);
 
-            Assert.Throws<InvalidOperationException>(() =>
+            Assert.Throws<InvalidOperationException>(async () =>
             {
-                handler.HandleNotification(new SessionNotification((SessionNotificationType)(-1)));
+                await handler.HandleNotificationAsync(new SessionNotification((SessionNotificationType)(-1)));
             });
         }
 
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public void TestHandleSessionEvents(CryptoImplementation cryptoImplementation)
+        public async void TestHandleSessionEvents(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -279,7 +279,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             foreach (SessionNotification sessionEvent in sessionEvents)
             {
-                handler.HandleNotification(sessionEvent);
+                await handler.HandleNotificationAsync(sessionEvent);
             }
             Assert.That(callTimes, Is.EqualTo(2));
         }
@@ -287,7 +287,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public void TestNotificationEncryptPendingFilesInLoggedOnFolders(CryptoImplementation cryptoImplementation)
+        public async void TestNotificationEncryptPendingFilesInLoggedOnFolders(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -307,7 +307,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             foreach (SessionNotification sessionEvent in sessionEvents)
             {
-                handler.HandleNotification(sessionEvent);
+                await handler.HandleNotificationAsync(sessionEvent);
             }
             mock.Verify(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.Is<IEnumerable<IDataContainer>>(infos => infos.Any((i) => i.FullName == @"C:\My Documents\".NormalizeFolderPath())), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Exactly(1));
         }

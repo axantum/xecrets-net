@@ -38,14 +38,16 @@ namespace Axantum.AxCrypt.Mono
 {
     public class HttpRequestServer : IRequestServer, IDisposable
     {
-        private static readonly int _sessionLocalPort = 53414 + Process.GetCurrentProcess().SessionId;
+        private static readonly int _sessionId = Process.GetCurrentProcess().SessionId;
 
-        internal static readonly Uri Url = new Uri($"http://localhost:{_sessionLocalPort}/AxCrypt/");
+        internal static readonly Uri Url = new Uri($"http://localhost:53414/AxCrypt/{_sessionId}/");
 
-        private HttpListener _listener = new HttpListener();
+        private HttpListener _listener;
 
         public void Start()
         {
+            _listener = new HttpListener();
+
             _listener.Prefixes.Add(Url.ToString());
             _listener.Start();
             _listener.BeginGetContext(ListenerCallback, _listener);
@@ -76,23 +78,33 @@ namespace Axantum.AxCrypt.Mono
                 return;
             }
             HttpListenerRequest request = context.Request;
-            using (TextReader reader = new StreamReader(request.InputStream, Encoding.UTF8))
+            if (request.Url != Url)
             {
-                string requestJson = reader.ReadToEnd();
-                CommandServiceEventArgs requestArgs = Resolve.Serializer.Deserialize<CommandServiceEventArgs>(requestJson);
-                RequestCommandEventArgs args = new RequestCommandEventArgs(requestArgs);
-                OnRequest(args);
+                throw new InvalidOperationException($"Request received with wrong URL: '{request.Url}'.");
             }
+            RequestCommandEventArgs args = ReadCommand(request);
             using (HttpListenerResponse response = context.Response)
             {
                 response.StatusCode = (int)HttpStatusCode.OK;
                 response.StatusDescription = "OK";
             }
+            OnRequest(args);
+        }
+
+        private static RequestCommandEventArgs ReadCommand(HttpListenerRequest request)
+        {
+            using (TextReader reader = new StreamReader(request.InputStream, Encoding.UTF8))
+            {
+                string requestJson = reader.ReadToEnd();
+                CommandServiceEventArgs requestArgs = Resolve.Serializer.Deserialize<CommandServiceEventArgs>(requestJson);
+                RequestCommandEventArgs args = new RequestCommandEventArgs(requestArgs);
+                return args;
+            }
         }
 
         public void Shutdown()
         {
-            _listener.Stop();
+            DisposeInternal();
         }
 
         public event EventHandler<RequestCommandEventArgs> Request;
@@ -126,6 +138,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 _listener.Stop();
                 _listener.Close();
+                _listener = null;
             }
         }
     }

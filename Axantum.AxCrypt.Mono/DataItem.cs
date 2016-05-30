@@ -81,5 +81,10 @@ namespace Axantum.AxCrypt.Mono
                 return new DataContainer(Path.GetDirectoryName(Location));
             }
         }
+
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 }

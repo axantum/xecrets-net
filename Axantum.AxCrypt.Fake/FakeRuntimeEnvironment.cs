@@ -151,14 +151,19 @@ namespace Axantum.AxCrypt.Fake
 
         public int MaxConcurrency { get; set; }
 
-        public bool IsFirstInstance { get; set; }
+        private bool _isFirstInstanceReady = false;
 
-        public bool IsFirstInstanceRunning { get; set; }
-
-        public bool FirstInstanceRunning(TimeSpan timeout)
+        public bool IsFirstInstanceReady(TimeSpan timeout)
         {
-            return IsFirstInstanceRunning;
+            return _isFirstInstanceReady;
         }
+
+        public void FirstInstanceIsReady()
+        {
+            _isFirstInstanceReady = true;
+        }
+
+        public bool IsFirstInstance { get; set; }
 
         public int ExitCode { get; set; }
 

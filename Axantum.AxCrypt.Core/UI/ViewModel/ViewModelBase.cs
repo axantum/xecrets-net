@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -107,7 +109,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void BindPropertyChanged<T>(string name, Action<T> action)
         {
-            Action<T> actionUi = (T arg) => Resolve.UIThread.RunOnUIThread(() => action((T)arg));
+            Action<T> actionUi = (T arg) => Resolve.UIThread.SendTo(() => action((T)arg));
+            BindPropertyChangedInternal<T>(name, actionUi);
+            actionUi(GetProperty<T>(name));
+        }
+
+        public void BindPropertyAsyncChanged<T>(string name, Func<T, Task> action)
+        {
+            Action<T> actionUi = (T arg) => Resolve.UIThread.SendToAsync(async () => await action((T)arg));
             BindPropertyChangedInternal<T>(name, actionUi);
             actionUi(GetProperty<T>(name));
         }
@@ -157,13 +166,22 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     throw new ArgumentException("Non-existing property name.", columnName);
                 }
-                return Validate(columnName) ? String.Empty : ValidationError.ToString(CultureInfo.InvariantCulture);
+                bool isValid;
+                try
+                {
+                    isValid = Task.Run(async () => await ValidateAsync(columnName)).Result;
+                }
+                catch (AggregateException aex)
+                {
+                    throw aex.InnerExceptions.First();
+                }
+                return isValid ? String.Empty : ValidationError.ToString(CultureInfo.InvariantCulture);
             }
         }
 
-        protected virtual bool Validate(string columnName)
+        protected virtual Task<bool> ValidateAsync(string columnName)
         {
-            return true;
+            return Task.FromResult(true);
         }
     }
 }

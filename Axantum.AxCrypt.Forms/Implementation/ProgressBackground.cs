@@ -32,6 +32,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt.Forms.Implementation
@@ -90,15 +91,16 @@ namespace Axantum.AxCrypt.Forms.Implementation
         /// </summary>
         /// <param name="workFunction">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling/GUI thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the GUI thread.</param>
-        public void Work(Func<IProgressContext, FileOperationContext> workFunction, Action<FileOperationContext> complete)
+        public Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Action<FileOperationContext> complete)
         {
-            Resolve.UIThread.RunOnUIThread(() =>
+            Resolve.UIThread.SendTo(() =>
             {
-                BackgroundWorkWithProgressOnUIThread(workFunction, complete);
+                BackgroundWorkWithProgressOnUIThread(name, workFunction, complete);
             });
+            return Task.FromResult<object>(null);
         }
 
-        private void BackgroundWorkWithProgressOnUIThread(Func<IProgressContext, FileOperationContext> work, Action<FileOperationContext> complete)
+        private void BackgroundWorkWithProgressOnUIThread(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete)
         {
             IProgressContext progress = new CancelProgressContext(new ProgressContext());
             ProgressBar progressBar = CreateProgressBar(progress);
@@ -107,10 +109,10 @@ namespace Axantum.AxCrypt.Forms.Implementation
             {
                 progressBar.Value = e.Percent;
             };
-            IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(progress, false);
-            threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
+            IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(name, progress, false);
+            threadWorker.WorkAsync = async (ThreadWorkerEventArgs e) =>
             {
-                e.Result = work(e.Progress);
+                e.Result = await work(e.Progress);
             };
             threadWorker.Completing += (object sender, ThreadWorkerEventArgs e) =>
             {

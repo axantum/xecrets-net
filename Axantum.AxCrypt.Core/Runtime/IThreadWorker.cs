@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -64,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// Raised when asynchronous execution starts. Runs on a different
         /// thread than the caller thread. Do not interact with the GUI here.
         /// </summary>
-        event EventHandler<ThreadWorkerEventArgs> Work;
+        Func<ThreadWorkerEventArgs, Task> WorkAsync { get; set; }
 
         /// <summary>
         /// Raised when all is about to be done. Runs on the original thread, typically

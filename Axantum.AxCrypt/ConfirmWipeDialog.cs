@@ -1,4 +1,6 @@
-﻿using AxCrypt.Content;
+﻿using Axantum.AxCrypt.Forms.Style;
+using Axantum.AxCrypt.Properties;
+using AxCrypt.Content;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -11,12 +13,7 @@ namespace Axantum.AxCrypt
         public ConfirmWipeDialog()
         {
             InitializeComponent();
-        }
-
-        public ConfirmWipeDialog(Form parent)
-            : this()
-        {
-            InitializeStyle(parent);
+            new Styling(Resources.axcrypticon).Style(this);
         }
 
         protected override void InitializeContentResources()
@@ -34,8 +31,11 @@ namespace Axantum.AxCrypt
             _iconPictureBox.Image = SystemIcons.Warning.ToBitmap();
         }
 
-        private void promptLabel_Click(object sender, EventArgs e)
+        private void ConfirmWipeDialog_Shown(object sender, EventArgs e)
         {
+            Activate();
+            Focus();
+            BringToFront();
         }
     }
 }

@@ -48,7 +48,6 @@
             this._promptLabel.TabIndex = 0;
             this._promptLabel.Text = "[Are you sure want to permanently delete this document? This action cannot be und" +
     "one.]";
-            this._promptLabel.Click += new System.EventHandler(this.promptLabel_Click);
             // 
             // FileNameLabel
             // 
@@ -135,6 +134,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "[AxCrypt Secure Delete]";
             this.Load += new System.EventHandler(this.ConfirmWipeDialog_Load);
+            this.Shown += new System.EventHandler(this.ConfirmWipeDialog_Shown);
             ((System.ComponentModel.ISupportInitialize)(this._iconPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

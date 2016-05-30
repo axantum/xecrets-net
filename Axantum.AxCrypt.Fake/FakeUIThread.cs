@@ -28,28 +28,36 @@
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Fake
 {
     public class FakeUIThread : IUIThread
     {
+        private SynchronizationContext _context;
+
         public FakeUIThread()
         {
-            RunOnUIThreadAction = (action) => action();
+            _context = new SynchronizationContext();
         }
 
-        public bool IsOnUIThread { get; set; }
+        public bool IsOn { get; set; }
 
-        public Action<Action> RunOnUIThreadAction { get; set; }
-
-        public void RunOnUIThread(Action action)
+        public void SendTo(Action action)
         {
-            RunOnUIThreadAction(action);
+            _context.Send((state) => action(), null);
         }
 
-        public void PostOnUIThread(Action action)
+        public Task SendToAsync(Func<Task> action)
         {
-            RunOnUIThreadAction(action);
+            _context.Send(async (state) => await action(), null);
+            return Task.FromResult<object>(null);
+        }
+
+        public void PostTo(Action action)
+        {
+            _context.Post((state) => action(), null);
         }
 
         public void Yield()

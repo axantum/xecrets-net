@@ -80,6 +80,7 @@ namespace Axantum.AxCrypt.Desktop
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public void Save()
         {
             try

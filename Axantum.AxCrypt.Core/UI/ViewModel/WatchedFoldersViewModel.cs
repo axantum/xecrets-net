@@ -145,7 +145,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static void OpenSelectedFolderAction(string folder)
         {
-            New<ILauncher>().Launch(folder);
+            using (ILauncher launcher = New<ILauncher>())
+            {
+                launcher.Launch(folder);
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -73,31 +73,31 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            DecryptFiles = new DelegateAction<IEnumerable<string>>((files) => DecryptFilesAction(files));
-            EncryptFiles = new DelegateAction<IEnumerable<string>>((files) => EncryptFilesAction(files));
-            OpenFiles = new DelegateAction<IEnumerable<string>>((files) => OpenFilesAction(files));
-            DecryptFolders = new DelegateAction<IEnumerable<string>>((folders) => DecryptFoldersAction(folders), (folders) => _knownIdentities.IsLoggedOn);
-            WipeFiles = new DelegateAction<IEnumerable<string>>((files) => WipeFilesAction(files));
-            RandomRenameFiles = new DelegateAction<IEnumerable<string>>((files) => RandomRenameFilesAction(files));
-            OpenFilesFromFolder = new DelegateAction<string>((folder) => OpenFilesFromFolderAction(folder), (folder) => true);
-            AddRecentFiles = new DelegateAction<IEnumerable<string>>((files) => AddRecentFilesAction(files));
+            DecryptFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await DecryptFilesActionAsync(files));
+            EncryptFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await EncryptFilesActionAsync(files));
+            OpenFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await OpenFilesActionAsync(files));
+            DecryptFolders = new AsyncDelegateAction<IEnumerable<string>>(async (folders) => await DecryptFoldersActionAsync(folders), (folders) => _knownIdentities.IsLoggedOn);
+            WipeFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await WipeFilesActionAsync(files));
+            RandomRenameFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await RandomRenameFilesActionAsync(files));
+            OpenFilesFromFolder = new AsyncDelegateAction<string>(async (folder) => await OpenFilesFromFolderActionAsync(folder), (folder) => true);
+            AddRecentFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await AddRecentFilesActionAsync(files));
         }
 
-        public IAction DecryptFiles { get; private set; }
+        public IAsyncAction DecryptFiles { get; private set; }
 
-        public IAction EncryptFiles { get; private set; }
+        public IAsyncAction EncryptFiles { get; private set; }
 
-        public IAction OpenFiles { get; private set; }
+        public IAsyncAction OpenFiles { get; private set; }
 
-        public IAction DecryptFolders { get; private set; }
+        public IAsyncAction DecryptFolders { get; private set; }
 
-        public IAction WipeFiles { get; private set; }
+        public IAsyncAction WipeFiles { get; private set; }
 
-        public IAction RandomRenameFiles { get; private set; }
+        public IAsyncAction RandomRenameFiles { get; private set; }
 
-        public IAction OpenFilesFromFolder { get; private set; }
+        public IAsyncAction OpenFilesFromFolder { get; private set; }
 
-        public IAction AddRecentFiles { get; private set; }
+        public IAsyncAction AddRecentFiles { get; private set; }
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
@@ -124,12 +124,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ToggleLegacyConversion?.Invoke(this, e);
         }
 
-        private void DecryptFoldersAction(IEnumerable<string> folders)
+        private async Task DecryptFoldersActionAsync(IEnumerable<string> folders)
         {
-            _fileOperation.DoFiles(folders.Select(f => New<IDataContainer>(f)).ToList(), DecryptFolderWork, (status) => { });
+            await _fileOperation.DoFilesAsync(folders.Select(f => New<IDataContainer>(f)).ToList(), DecryptFolderWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
         }
 
-        private void EncryptFilesAction(IEnumerable<string> files)
+        private async Task EncryptFilesActionAsync(IEnumerable<string> files)
         {
             files = files ?? SelectFiles(FileSelectionType.Encrypt);
             if (!files.Any())
@@ -144,10 +144,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            EncryptOneOrManyFiles(files.Select(f => New<IDataStore>(f)).ToList());
+            await EncryptOneOrManyFilesAsync(files.Select(f => New<IDataStore>(f)).ToList());
         }
 
-        private void DecryptFilesAction(IEnumerable<string> files)
+        private async Task DecryptFilesActionAsync(IEnumerable<string> files)
         {
             files = files ?? SelectFiles(FileSelectionType.Decrypt);
             if (!files.Any())
@@ -162,27 +162,27 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            _fileOperation.DoFiles(files.Select(f => New<IDataStore>(f)).ToList(), DecryptFileWork, (status) => { });
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), DecryptFileWork, (status) => CheckStatusAndShowMessage(status, string.Empty));
         }
 
-        private void WipeFilesAction(IEnumerable<string> files)
+        private async Task WipeFilesActionAsync(IEnumerable<string> files)
         {
             files = files ?? SelectFiles(FileSelectionType.Wipe);
             if (!files.Any())
             {
                 return;
             }
-            _fileOperation.DoFiles(files.Select(f => New<IDataStore>(f)).ToList(), WipeFileWork, (status) => { });
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), WipeFileWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
         }
 
-        private void RandomRenameFilesAction(IEnumerable<string> files)
+        private async Task RandomRenameFilesActionAsync(IEnumerable<string> files)
         {
             files = files ?? SelectFiles(FileSelectionType.Encrypt);
             if (!files.Any())
             {
                 return;
             }
-            _fileOperation.DoFiles(files.Select(f => New<IDataStore>(f)).ToList(), RandomRenameFileWork, (status) => { });
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), RandomRenameFileWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
         }
 
         private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
@@ -199,16 +199,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return fileSelectionArgs.SelectedFiles;
         }
 
-        private void OpenFilesAction(IEnumerable<string> files)
+        private async Task OpenFilesActionAsync(IEnumerable<string> files)
         {
-            _fileOperation.DoFiles(files.Select(f => New<IDataStore>(f)).ToList(), OpenEncryptedWork, (status) => { });
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), OpenEncryptedWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
         }
 
-        private FileOperationContext DecryptFileWork(IDataStore file, IProgressContext progress)
+        private Task<FileOperationContext> DecryptFileWork(IDataStore file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
-            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
+            operationsController.QueryDecryptionPassphrase = HandleQueryDecryptionPassphraseEventAsync;
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
@@ -232,7 +232,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName, e.Status.InternalMessage))
+                if (e.Status.ErrorStatus == ErrorStatus.Success)
                 {
                     New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(e.OpenFileFullName) }, progress);
                 }
@@ -241,7 +241,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.DecryptFile(file);
         }
 
-        private FileOperationContext WipeFileWork(IDataStore file, IProgressContext progress)
+        private Task<FileOperationContext> WipeFileWorkAsync(IDataStore file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -264,7 +264,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     return;
                 }
-                if (Resolve.StatusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName, e.Status.InternalMessage))
+                if (e.Status.ErrorStatus == ErrorStatus.Success)
                 {
                     New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(e.SaveFileFullName) }, progress);
                 }
@@ -273,18 +273,23 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.WipeFile(file);
         }
 
-        private FileOperationContext RandomRenameFileWork(IDataStore file, IProgressContext progress)
+        private static bool CheckStatusAndShowMessage(FileOperationContext context, string fallbackName)
+        {
+            return Resolve.StatusChecker.CheckStatusAndShowMessage(context.ErrorStatus, string.IsNullOrEmpty(context.FullName) ? fallbackName : context.FullName, context.InternalMessage);
+        }
+
+        private Task<FileOperationContext> RandomRenameFileWorkAsync(IDataStore file, IProgressContext progress)
         {
             file.MoveTo(file.CreateRandomUniqueName().FullName);
 
-            return new FileOperationContext(file.FullName, ErrorStatus.Success);
+            return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
         }
 
-        private FileOperationContext OpenEncryptedWork(IDataStore file, IProgressContext progress)
+        private async Task<FileOperationContext> OpenEncryptedWorkAsync(IDataStore file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
-            operationsController.QueryDecryptionPassphrase += HandleQueryOpenPassphraseEvent;
+            operationsController.QueryDecryptionPassphrase = HandleQueryOpenPassphraseEventAsync;
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
@@ -296,21 +301,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 _knownIdentities.Add(e.LogOnIdentity);
             };
 
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-            {
-                if (e.Status.ErrorStatus == ErrorStatus.Canceled)
-                {
-                    return;
-                }
-                _statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName ?? e.OpenFileFullName, e.Status.InternalMessage);
-            };
-
-            return operationsController.DecryptAndLaunch(file);
+            return await operationsController.DecryptAndLaunchAsync(file);
         }
 
-        private void HandleQueryOpenPassphraseEvent(object sender, FileOperationEventArgs e)
+        private async Task HandleQueryOpenPassphraseEventAsync(FileOperationEventArgs e)
         {
-            HandleQueryDecryptionPassphraseEvent(sender, e);
+            await QueryDecryptPassphraseAsync(e);
+
             if (e.Cancel)
             {
                 return;
@@ -333,9 +330,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
+        private async Task HandleQueryDecryptionPassphraseEventAsync(FileOperationEventArgs e)
         {
-            IdentityViewModel.AskForDecryptPassphrase.Execute(e.OpenFileFullName);
+            await QueryDecryptPassphraseAsync(e);
+        }
+
+        private async Task QueryDecryptPassphraseAsync(FileOperationEventArgs e)
+        {
+            await IdentityViewModel.AskForDecryptPassphrase.ExecuteAsync(e.OpenFileFullName);
             if (IdentityViewModel.LogOnIdentity == LogOnIdentity.Empty)
             {
                 e.Cancel = true;
@@ -344,7 +346,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             e.LogOnIdentity = IdentityViewModel.LogOnIdentity;
         }
 
-        private FileOperationsController EncryptFileWorkController(IProgressContext progress)
+        private static FileOperationsController EncryptFileWorkController(IProgressContext progress)
         {
             FileOperationsController operationsController = New<IProgressContext, FileOperationsController>(progress);
 
@@ -362,19 +364,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 if (e.Status.ErrorStatus == ErrorStatus.FileAlreadyEncrypted)
                 {
                     e.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
-                    return;
                 }
             };
 
             return operationsController;
         }
 
-        private FileOperationContext EncryptFileWorkOne(IDataStore file, IProgressContext progress)
+        private Task<FileOperationContext> EncryptFileWorkOneAsync(IDataStore file, IProgressContext progress)
         {
             FileOperationsController controller = EncryptFileWorkController(progress);
             controller.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.Status.FullName, e.Status.InternalMessage))
+                if (e.Status.ErrorStatus == ErrorStatus.Success)
                 {
                     IDataStore encryptedInfo = New<IDataStore>(e.SaveFileFullName);
                     IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
@@ -386,17 +387,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return controller.EncryptFile(file);
         }
 
-        private FileOperationContext EncryptFileWorkMany(IDataStore file, IProgressContext progress)
+        private Task<FileOperationContext> EncryptFileWorkManyAsync(IDataStore file, IProgressContext progress)
         {
             FileOperationsController controller = EncryptFileWorkController(progress);
             return controller.EncryptFile(file);
         }
 
-        private FileOperationContext VerifyAndAddActiveWork(IDataStore fullName, IProgressContext progress)
+        private Task<FileOperationContext> VerifyAndAddActiveWorkAsync(IDataStore fullName, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
-            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
+            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEventAsync;
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
@@ -410,7 +411,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.ErrorStatus, e.OpenFileFullName, e.Status.InternalMessage))
+                if (e.Status.ErrorStatus == ErrorStatus.Success)
                 {
                     IDataStore encryptedInfo = New<IDataStore>(e.OpenFileFullName);
                     IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.SaveFileFullName));
@@ -423,7 +424,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.VerifyEncrypted(fullName);
         }
 
-        private void OpenFilesFromFolderAction(string folder)
+        private async Task OpenFilesFromFolderActionAsync(string folder)
         {
             FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[] { folder })
             {
@@ -434,36 +435,36 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            OpenFilesAction(fileSelectionArgs.SelectedFiles);
+            await OpenFilesActionAsync(fileSelectionArgs.SelectedFiles);
         }
 
-        private FileOperationContext DecryptFolderWork(IDataContainer folder, IProgressContext progress)
+        private async Task<FileOperationContext> DecryptFolderWorkAsync(IDataContainer folder, IProgressContext progress)
         {
-            New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(folder, _knownIdentities.DefaultEncryptionIdentity, _statusChecker, progress);
+            await New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(folder, _knownIdentities.DefaultEncryptionIdentity, _statusChecker, progress);
             return new FileOperationContext(String.Empty, ErrorStatus.Success);
         }
 
-        private void AddRecentFilesAction(IEnumerable<string> files)
+        private async Task AddRecentFilesActionAsync(IEnumerable<string> files)
         {
             IEnumerable<IDataStore> fileInfos = files.Select(f => New<IDataStore>(f)).ToList();
-            EncryptOneOrManyFiles(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
-            ProcessEncryptedFilesDroppedInRecentList(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
+            await EncryptOneOrManyFilesAsync(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+            await ProcessEncryptedFilesDroppedInRecentListAsync(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
         }
 
-        private void ProcessEncryptedFilesDroppedInRecentList(IEnumerable<IDataStore> encryptedFiles)
+        private async Task ProcessEncryptedFilesDroppedInRecentListAsync(IEnumerable<IDataStore> encryptedFiles)
         {
-            _fileOperation.DoFiles(encryptedFiles, VerifyAndAddActiveWork, (status) => { });
+            await _fileOperation.DoFilesAsync(encryptedFiles, VerifyAndAddActiveWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
         }
 
-        private void EncryptOneOrManyFiles(IEnumerable<IDataStore> encryptableFiles)
+        private async Task EncryptOneOrManyFilesAsync(IEnumerable<IDataStore> encryptableFiles)
         {
             if (encryptableFiles.Count() > 1)
             {
-                _fileOperation.DoFiles(encryptableFiles, EncryptFileWorkMany, (status) => { });
+                await _fileOperation.DoFilesAsync(encryptableFiles, EncryptFileWorkManyAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
             }
             else
             {
-                _fileOperation.DoFiles(encryptableFiles, EncryptFileWorkOne, (status) => { });
+                await _fileOperation.DoFilesAsync(encryptableFiles, EncryptFileWorkOneAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
             }
         }
 
@@ -474,7 +475,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 case SessionNotificationType.LogOff:
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.SessionStart:
-                    ((DelegateAction<string>)OpenFilesFromFolder).RaiseCanExecuteChanged();
+                    ((AsyncDelegateAction<string>)OpenFilesFromFolder).RaiseCanExecuteChanged();
                     break;
             }
         }

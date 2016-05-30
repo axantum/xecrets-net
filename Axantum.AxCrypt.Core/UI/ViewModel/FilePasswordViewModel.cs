@@ -35,7 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -93,7 +93,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        protected override bool Validate(string columnName)
+        protected override Task<bool> ValidateAsync(string columnName)
+        {
+            return Task.FromResult(ValidateInternal(columnName));
+        }
+
+        private bool ValidateInternal(string columnName)
         {
             switch (columnName)
             {

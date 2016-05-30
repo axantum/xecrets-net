@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -23,10 +24,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (Validate(nameof(UserEmail))) { Resolve.UserSettings.UserEmail = userEmail; } });
+            BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { Resolve.UserSettings.UserEmail = userEmail; } });
         }
 
-        protected override bool Validate(string columnName)
+        protected override Task<bool> ValidateAsync(string columnName)
         {
             switch (columnName)
             {
@@ -34,12 +35,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     if (String.IsNullOrEmpty(UserEmail) || !UserEmail.IsValidEmail())
                     {
                         ValidationError = (int)ViewModel.ValidationError.InvalidEmail;
-                        return false;
+                        return Task.FromResult(false);
                     }
-                    return true;
+                    return Task.FromResult(true);
 
                 default:
-                    return true;
+                    return Task.FromResult(true);
             }
         }
     }

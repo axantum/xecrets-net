@@ -50,9 +50,11 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         int MaxConcurrency { get; }
 
-        bool IsFirstInstance { get; }
+        bool IsFirstInstanceReady(TimeSpan timeout);
 
-        bool FirstInstanceRunning(TimeSpan timeout);
+        void FirstInstanceIsReady();
+
+        bool IsFirstInstance { get; set; }
 
         void ExitApplication(int exitCode);
 

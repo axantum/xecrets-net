@@ -47,13 +47,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await _executeMethodAsync((T)parameter);
         }
 
-        public Task ExecuteAsync(object parameter)
+        public async Task ExecuteAsync(object parameter)
         {
             if (!CanExecute(parameter))
             {
                 throw new InvalidOperationException("Execute() invoked when it cannot execute.");
             }
-            return _executeMethodAsync((T)parameter);
+            await _executeMethodAsync((T)parameter);
         }
 
         public event EventHandler CanExecuteChanged;
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             EventHandler handler = CanExecuteChanged;
             if (handler != null)
             {
-                Resolve.UIThread.RunOnUIThread(() => handler(this, new EventArgs()));
+                Resolve.UIThread.SendTo(() => handler(this, new EventArgs()));
             }
         }
 

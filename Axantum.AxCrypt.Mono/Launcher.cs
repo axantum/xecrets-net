@@ -68,13 +68,15 @@ namespace Axantum.AxCrypt.Mono
             {
                 OnExited(e);
             }
-            _process.Exited -= Process_Exited;
-            _process.WaitForExit();
             lock (_disposeLock)
             {
-                _process.Dispose();
-                _process = null;
+                if (_process != null)
+                {
+                    _process.Exited -= Process_Exited;
+                    _process.WaitForExit();
+                }
             }
+            DisposeInternal();
         }
 
         private bool HasRelatedProcess
@@ -112,6 +114,7 @@ namespace Axantum.AxCrypt.Mono
             get;
             private set;
         }
+
         #endregion ILauncher Members
 
         protected virtual void OnExited(EventArgs e)
@@ -129,20 +132,20 @@ namespace Axantum.AxCrypt.Mono
             {
                 return;
             }
-            lock (_disposeLock)
-            {
-                DisposeInternal();
-            }
+            DisposeInternal();
         }
 
         private void DisposeInternal()
         {
-            if (_process == null)
+            lock (_disposeLock)
             {
-                return;
+                if (_process == null)
+                {
+                    return;
+                }
+                _process.Dispose();
+                _process = null;
             }
-            _process.Dispose();
-            _process = null;
         }
 
         public string Path

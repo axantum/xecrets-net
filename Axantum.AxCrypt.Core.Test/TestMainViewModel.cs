@@ -384,7 +384,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), mockStatusChecker.Object));
-            Resolve.SessionNotify.Notification += (sender, e) => New<SessionNotificationHandler>().HandleNotification(e.Notification);
+            Resolve.SessionNotify.Notification += async (sender, e) => await New<SessionNotificationHandler>().HandleNotificationAsync(e.Notification);
 
             using (MainViewModel mvm = New<MainViewModel>())
             {
@@ -392,6 +392,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 mvm.EncryptPendingFiles.Execute(null);
             }
+            New<IProgressBackground>().WaitForIdle();
 
             mockActiveFileAction.Verify(x => x.PurgeActiveFiles(It.IsAny<IProgressContext>()), Times.Once, "Purge should be called.");
         }

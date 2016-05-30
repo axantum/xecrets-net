@@ -31,6 +31,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
@@ -47,17 +48,22 @@ namespace Axantum.AxCrypt
             _context = SynchronizationContext.Current;
         }
 
-        public bool IsOnUIThread
+        public bool IsOn
         {
             get { return !_control.InvokeRequired; }
         }
 
-        public void RunOnUIThread(Action action)
+        public void SendTo(Action action)
         {
             DoOnUIThreadInternal(action, _context.Send);
         }
 
-        public void PostOnUIThread(Action action)
+        public Task SendToAsync(Func<Task> action)
+        {
+            return DoOnUIThreadInternal(action, _context.Send);
+        }
+
+        public void PostTo(Action action)
         {
             DoOnUIThreadInternal(action, _context.Post);
         }
@@ -65,7 +71,7 @@ namespace Axantum.AxCrypt
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
         private void DoOnUIThreadInternal(Action action, Action<SendOrPostCallback, object> method)
         {
-            if (IsOnUIThread)
+            if (IsOn)
             {
                 action();
                 return;
@@ -80,6 +86,36 @@ namespace Axantum.AxCrypt
             {
                 throw new InvalidOperationException("Exception on UI Thread", exception);
             }
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
+        private Task DoOnUIThreadInternal(Func<Task> action, Action<SendOrPostCallback, object> method)
+        {
+            if (IsOn)
+            {
+                return action();
+            }
+            Exception exception = null;
+            method(async (state) =>
+            {
+                try
+                {
+                    await action();
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                }
+            }, null);
+            if (exception is AxCryptException)
+            {
+                throw exception;
+            }
+            if (exception != null)
+            {
+                throw new InvalidOperationException("Exception on UI Thread", exception);
+            }
+            return Task.FromResult<object>(null);
         }
 
         public void Yield()

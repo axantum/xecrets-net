@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 return;
             }
-            _running = Task.Factory.StartNew(() => { while (!_disposed && !IsBufferFull) { AddOneKeyPair(); } });
+            _running = Task.Run(() => { while (!_disposed && !IsBufferFull) { AddOneKeyPair(); } });
         }
 
         private void AddOneKeyPair()

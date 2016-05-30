@@ -240,12 +240,9 @@ namespace Axantum.AxCrypt.Fake
 
         public bool IsWriteProtected { get; set; }
 
-        public bool IsLocked
+        public bool IsLocked()
         {
-            get
-            {
-                return false;
-            }
+            return false;
         }
 
         public string Name

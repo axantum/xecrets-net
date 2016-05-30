@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private AccountStatus VerifyAccountOnline(Form parent)
+        private static AccountStatus VerifyAccountOnline(Form parent)
         {
             VerifyAccountViewModel viewModel = new VerifyAccountViewModel(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
             using (VerifyAccountDialog dialog = new VerifyAccountDialog(parent, viewModel))
@@ -158,8 +158,6 @@ namespace Axantum.AxCrypt
                     return AccountStatus.Unverified;
                 }
             }
-            LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(viewModel.UserEmail), Passphrase.Create(viewModel.Passphrase));
-            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
 
             DialogResult result = MessageDialog.ShowOkCancel(parent, Texts.WelcomeToAxCryptTitle, Texts.WelcomeToAxCrypt);
             if (result == DialogResult.OK)

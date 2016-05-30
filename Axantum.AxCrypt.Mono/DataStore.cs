@@ -133,26 +133,23 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public bool IsLocked
+        public bool IsLocked()
         {
-            get
+            try
             {
-                try
+                using (Stream stream = _file.Open(FileMode.Open, IsWriteProtected ? FileAccess.Read : FileAccess.ReadWrite, IsWriteProtected ? FileShare.Read : FileShare.None))
                 {
-                    using (Stream stream = _file.Open(FileMode.Open, IsWriteProtected ? FileAccess.Read : FileAccess.ReadWrite, IsWriteProtected ? FileShare.Read : FileShare.None))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-                catch (IOException ioex)
-                {
-                    New<IReport>().Exception(ioex);
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    throw new FileOperationException("Lock failed", _file.FullName, ErrorStatus.Exception, ex);
-                }
+            }
+            catch (IOException ioex)
+            {
+                New<IReport>().Exception(ioex);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new FileOperationException("Lock failed", _file.FullName, ErrorStatus.Exception, ex);
             }
         }
 

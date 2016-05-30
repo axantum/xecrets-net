@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 try
                 {
-                    return await _remoteService.IsIdentityValidAsync();
+                    return await _remoteService.IsIdentityValidAsync().Free();
                 }
                 catch (OfflineApiException oaex)
                 {
@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Service
                     New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
-            return await _localService.IsIdentityValidAsync();
+            return await _localService.IsIdentityValidAsync().Free();
         }
 
         public async Task<SubscriptionLevel> LevelAsync()
@@ -101,13 +101,13 @@ namespace Axantum.AxCrypt.Core.Service
             return await _localService.LevelAsync().Free();
         }
 
-        public Task<bool> ChangePassphraseAsync(Passphrase passphrase)
+        public async Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             if (New<AxCryptOnlineState>().IsOnline)
             {
                 try
                 {
-                    return _remoteService.ChangePassphraseAsync(passphrase);
+                    return await _remoteService.ChangePassphraseAsync(passphrase).Free();
                 }
                 catch (OfflineApiException oaex)
                 {
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Service
                     New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
-            return _localService.ChangePassphraseAsync(passphrase);
+            return await _localService.ChangePassphraseAsync(passphrase).Free();
         }
 
         /// <summary>

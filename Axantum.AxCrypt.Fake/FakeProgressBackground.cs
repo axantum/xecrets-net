@@ -30,19 +30,24 @@ using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Fake
 {
     public class FakeProgressBackground : IProgressBackground
     {
-        public void Work(Func<IProgressContext, FileOperationContext> work, Action<FileOperationContext> complete)
+        private string _name;
+
+        public async Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete)
         {
+            _name = name;
+
             Busy = true;
             OnWorkStatusChanged();
             FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
             try
             {
-                status = work(new ProgressContext());
+                status = await Task.Run(async () => await work(new ProgressContext()));
             }
             catch (OperationCanceledException)
             {

@@ -33,7 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -72,10 +72,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void BindPropertyChangedEvents()
         {
             BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
-            BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (Validate(nameof(UserEmail))) { Resolve.UserSettings.UserEmail = userEmail; } });
+            BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { Resolve.UserSettings.UserEmail = userEmail; } });
         }
 
-        protected override bool Validate(string columnName)
+        protected override Task<bool> ValidateAsync(string columnName)
         {
             switch (columnName)
             {
@@ -83,22 +83,22 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     if (!UserEmail.IsValidEmail())
                     {
                         ValidationError = (int)ViewModel.ValidationError.InvalidEmail;
-                        return false;
+                        return Task.FromResult(false);
                     }
-                    return true;
+                    return Task.FromResult(true);
 
                 case nameof(Verification):
                     if (String.IsNullOrEmpty(Verification))
                     {
-                        return false;
+                        return Task.FromResult(false);
                     }
-                    return String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0;
+                    return Task.FromResult(String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0);
 
                 case nameof(Passphrase):
-                    return !String.IsNullOrEmpty(Passphrase);
+                    return Task.FromResult(!String.IsNullOrEmpty(Passphrase));
 
                 default:
-                    return true;
+                    return Task.FromResult(true);
             }
         }
 

@@ -32,6 +32,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -58,8 +59,8 @@ namespace Axantum.AxCrypt.Core.Test
             using (WorkerGroup workerGroup = new WorkerGroup())
             {
                 object threadLock = new object();
-                IThreadWorker worker1 = workerGroup.CreateWorker();
-                worker1.Work += (object sender, ThreadWorkerEventArgs e) =>
+                IThreadWorker worker1 = workerGroup.CreateWorker(nameof(TestCoreFunctionality) + "1");
+                worker1.WorkAsync = (ThreadWorkerEventArgs e) =>
                     {
                         lock (threadLock)
                         {
@@ -70,6 +71,7 @@ namespace Axantum.AxCrypt.Core.Test
                             }
                         }
                         Thread.Sleep(new TimeSpan(0, 0, 0, 0, 100));
+                        return Task.FromResult<object>(null);
                     };
                 worker1.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -77,8 +79,8 @@ namespace Axantum.AxCrypt.Core.Test
                     };
                 worker1.Run();
 
-                IThreadWorker worker2 = workerGroup.CreateWorker();
-                worker2.Work += (object sender, ThreadWorkerEventArgs e) =>
+                IThreadWorker worker2 = workerGroup.CreateWorker(nameof(TestCoreFunctionality) + "2");
+                worker2.WorkAsync = (ThreadWorkerEventArgs e) =>
                     {
                         lock (threadLock)
                         {
@@ -89,6 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
                             }
                         }
                         Thread.Sleep(new TimeSpan(0, 0, 0, 0, 100));
+                        return Task.FromResult<object>(null);
                     };
                 worker2.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -106,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (WorkerGroup workerGroup = new WorkerGroup())
             {
-                IThreadWorker worker = workerGroup.CreateWorker();
+                IThreadWorker worker = workerGroup.CreateWorker(nameof(TestInvalidOperationException));
 
                 bool? f = null;
                 Assert.Throws<InvalidOperationException>(() => { f = worker.HasCompleted; });
@@ -121,16 +124,17 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (WorkerGroup workerGroup = new WorkerGroup())
             {
-                IThreadWorker worker = workerGroup.CreateWorker();
+                IThreadWorker worker = workerGroup.CreateWorker(nameof(TestAddingSubscribersToWorkerThread));
                 bool wasPrepared = false;
                 worker.Prepare += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         wasPrepared = true;
                     };
                 bool didWork = false;
-                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                worker.WorkAsync = (ThreadWorkerEventArgs e) =>
                 {
                     didWork = true;
+                    return Task.FromResult<object>(null);
                 };
                 bool didComplete = false;
                 worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
@@ -150,14 +154,20 @@ namespace Axantum.AxCrypt.Core.Test
             e.Result = new FileOperationContext(String.Empty, ErrorStatus.UnspecifiedError);
         }
 
+        private static Task ThreadWorkerCommandHandler(ThreadWorkerEventArgs e)
+        {
+            e.Result = new FileOperationContext(String.Empty, ErrorStatus.UnspecifiedError);
+            return Task.FromResult<object>(null);
+        }
+
         [Test]
         public static void TestRemovingSubscribersFromWorkerThread()
         {
             using (WorkerGroup workerGroup = new WorkerGroup())
             {
-                IThreadWorker worker = workerGroup.CreateWorker();
+                IThreadWorker worker = workerGroup.CreateWorker(nameof(TestRemovingSubscribersFromWorkerThread) + "1");
                 worker.Prepare += ThreadWorkerEventHandler;
-                worker.Work += ThreadWorkerEventHandler;
+                worker.WorkAsync = ThreadWorkerCommandHandler;
                 worker.Completing += ThreadWorkerEventHandler;
 
                 worker.Run();
@@ -168,13 +178,13 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (WorkerGroup workerGroup = new WorkerGroup())
             {
-                IThreadWorker worker = workerGroup.CreateWorker();
+                IThreadWorker worker = workerGroup.CreateWorker(nameof(TestRemovingSubscribersFromWorkerThread) + "2");
                 worker.Prepare += ThreadWorkerEventHandler;
-                worker.Work += ThreadWorkerEventHandler;
+                worker.WorkAsync = ThreadWorkerCommandHandler;
                 worker.Completing += ThreadWorkerEventHandler;
 
                 worker.Prepare -= ThreadWorkerEventHandler;
-                worker.Work -= ThreadWorkerEventHandler;
+                worker.WorkAsync = null;
                 worker.Completing -= ThreadWorkerEventHandler;
 
                 worker.Run();
@@ -191,7 +201,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     using (WorkerGroup workerGroup = new WorkerGroup())
                     {
-                        IThreadWorker worker = workerGroup.CreateWorker();
+                        IThreadWorker worker = workerGroup.CreateWorker(nameof(TestDoubleDispose));
                         worker.Run();
                         workerGroup.Dispose();
                     }
@@ -202,12 +212,12 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestObjectDisposed()
         {
             WorkerGroup workerGroup = new WorkerGroup();
-            IThreadWorker worker = workerGroup.CreateWorker();
+            IThreadWorker worker = workerGroup.CreateWorker(nameof(TestObjectDisposed));
             worker.Run();
             workerGroup.Dispose();
 
             worker = null;
-            Assert.Throws<ObjectDisposedException>(() => { worker = workerGroup.CreateWorker(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
+            Assert.Throws<ObjectDisposedException>(() => { worker = workerGroup.CreateWorker(nameof(TestObjectDisposed)); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
             Assert.That(worker, Is.Null, "The worker should still be null, since the previous attempt to create should fail with an exception.");
             Assert.Throws<ObjectDisposedException>(() => { workerGroup.WaitAllAndFinish(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
         }
@@ -217,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (WorkerGroup workerGroup = new WorkerGroup())
             {
-                IThreadWorker worker = workerGroup.CreateWorker();
+                IThreadWorker worker = workerGroup.CreateWorker(nameof(TestDoubleFinished));
                 worker.Run();
                 workerGroup.WaitAllAndFinish();
                 Assert.Throws<InvalidOperationException>(() => { workerGroup.WaitAllAndFinish(); });
@@ -235,7 +245,7 @@ namespace Axantum.AxCrypt.Core.Test
                 };
             using (WorkerGroup workerGroup = new WorkerGroup(1, progress))
             {
-                IThreadWorker worker = workerGroup.CreateWorker();
+                IThreadWorker worker = workerGroup.CreateWorker(nameof(TestExplicitConstructor));
                 worker.Run();
                 workerGroup.WaitAllAndFinish();
             }
@@ -252,7 +262,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         percent = e.Percent;
                     };
-                IThreadWorker worker = workerGroup.CreateWorker();
+                IThreadWorker worker = workerGroup.CreateWorker(nameof(TestProgressing));
                 worker.Run();
                 workerGroup.WaitAllAndFinish();
                 Assert.That(percent, Is.EqualTo(100), "Progress at 100 percent should always be reported when the thread completes.");
@@ -269,20 +279,22 @@ namespace Axantum.AxCrypt.Core.Test
                 didComplete = true;
             };
 
-            using (IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(progress, false))
+            using (IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(nameof(TestFinishInBackground) + "Outer", progress, false))
             {
-                threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                threadWorker.WorkAsync = (ThreadWorkerEventArgs e) =>
                 {
                     using (WorkerGroup workerGroup = new WorkerGroup(progress))
                     {
-                        IThreadWorker worker = workerGroup.CreateWorker();
-                        worker.Work += (object sender2, ThreadWorkerEventArgs e2) =>
+                        IThreadWorker worker = workerGroup.CreateWorker(nameof(TestFinishInBackground) + "Inner");
+                        worker.WorkAsync = (ThreadWorkerEventArgs e2) =>
                         {
                             e2.Progress.NotifyLevelStart();
                             e2.Progress.NotifyLevelFinished();
+                            return Task.FromResult<object>(null);
                         };
                         worker.Run();
                     }
+                    return Task.FromResult<object>(null);
                 };
                 threadWorker.Run();
                 threadWorker.Join();

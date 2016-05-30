@@ -63,6 +63,11 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 throw new ArgumentNullException(nameof(format));
             }
+            if (baseUrl == null)
+            {
+                throw new ArgumentNullException(nameof(baseUrl));
+            }
+
             if (parameters == null)
             {
                 throw new ArgumentNullException(nameof(parameters));

@@ -66,8 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestFailedOpen()
         {
             _fakeClient.FakeDispatcher = (command) => { return CommandStatus.Error; };
-            CommandLine cl = new CommandLine("axcrypt.exe", new string[] { "file.axx" });
-            FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = true;
+            CommandLine cl = new CommandLine(new string[] { "file.axx" });
             cl.Execute();
 
             Assert.That(FakeRuntimeEnvironment.Instance.ExitCode, Is.EqualTo(1), "An error during Open shall return status code 1.");
@@ -84,43 +83,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
 
-            CommandLine cl = new CommandLine("axcrypt.exe", new string[] { "--exit" });
-            FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = true;
+            CommandLine cl = new CommandLine(new string[] { "--exit" });
             cl.Execute();
 
             Assert.That(wasExit, Is.True);
-        }
-
-        [Test]
-        public static void TestNeedToLaunchFirstInstance()
-        {
-            var mock = new Mock<FakeLauncher>() { CallBase = true };
-            mock.Setup(x => x.Launch(It.IsAny<string>()))
-                .Callback((string path) =>
-                {
-                    FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = path == "axcrypt.exe";
-                });
-
-            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
-            TypeMap.Register.New<ILauncher>(() => mock.Object);
-
-            _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
-            CommandLine cl = new CommandLine("axcrypt.exe", new string[0]);
-            Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.False);
-            cl.Execute();
-            Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.True);
-        }
-
-        [Test]
-        public static void TestFailedToLaunchFirstInstance()
-        {
-            TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
-            _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
-            CommandLine cl = new CommandLine("axcrypt.exe", new string[0]);
-            Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.False);
-            cl.Execute();
-            Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.False);
-            Assert.That(FakeRuntimeEnvironment.Instance.ExitCode, Is.EqualTo(2), "Failed to start the first instance shall return status code 2.");
         }
     }
 }

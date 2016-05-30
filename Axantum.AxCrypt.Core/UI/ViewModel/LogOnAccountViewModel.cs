@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<IUserSettings>().DisplayDecryptPassphrase = show);
             BindPropertyChangedInternal(nameof(ShowEmail), (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
-            BindPropertyChangedInternal(nameof(UserEmail), (string userEmail) => { if (Validate(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; } });
+            BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; } });
         }
 
         public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool ShowEmail { get { return GetProperty<bool>(nameof(ShowEmail)); } private set { SetProperty(nameof(ShowEmail), value); } }
 
-        protected override bool Validate(string columnName)
+        protected override async Task<bool> ValidateAsync(string columnName)
         {
             switch (columnName)
             {
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return true;
 
                 case nameof(Passphrase):
-                    return ValidatePassphrase();
+                    return await ValidatePassphraseAsync();
 
                 case nameof(ShowPassphrase):
                 case nameof(ShowEmail):
@@ -111,11 +111,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private bool ValidatePassphrase()
+        private async Task<bool> ValidatePassphraseAsync()
         {
             if (ShowEmail && UserEmail.Length > 0)
             {
-                return ValidatePassphraseForEmail();
+                return await ValidatePassphraseForEmailAsync();
             }
             if (IsKnownPassphrase())
             {
@@ -125,14 +125,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return false;
         }
 
-        private bool ValidatePassphraseForEmail()
+        private async Task<bool> ValidatePassphraseForEmailAsync()
         {
             if (!UserEmail.IsValidEmail())
             {
                 return true;
             }
 
-            if (Passphrase.Length > 0 && IsValidAccountLogOn())
+            if (Passphrase.Length > 0 && await IsValidAccountLogOnAsync())
             {
                 return true;
             }
@@ -140,11 +140,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return false;
         }
 
-        private bool IsValidAccountLogOn()
+        private async Task<bool> IsValidAccountLogOnAsync()
         {
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
 
-            return Task.Run(() => accountStorage.IsIdentityValidAsync()).Result;
+            return await accountStorage.IsIdentityValidAsync();
         }
 
         private bool IsKnownPassphrase()

@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.IO;
 using System.Linq;
@@ -43,6 +44,10 @@ namespace Axantum.AxCrypt.Mono
         public CommandStatus Dispatch(CommandServiceEventArgs command)
         {
             string json = Resolve.Serializer.Serialize(command);
+
+            while (!New<IRuntimeEnvironment>().IsFirstInstanceReady(TimeSpan.FromMilliseconds(100)))
+            {
+            }
 
             WebRequest request = HttpWebRequest.Create(HttpRequestServer.Url);
             try

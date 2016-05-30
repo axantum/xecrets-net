@@ -32,7 +32,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Mono
@@ -42,9 +42,9 @@ namespace Axantum.AxCrypt.Mono
     /// </summary>
     public class ThreadWorker : IThreadWorker
     {
-        private ManualResetEvent _joined = new ManualResetEvent(false);
+        private readonly string _name = string.Empty;
 
-        private BackgroundWorker _worker;
+        private ManualResetEvent _joined = new ManualResetEvent(false);
 
         private ThreadWorkerEventArgs _e;
 
@@ -61,12 +61,13 @@ namespace Axantum.AxCrypt.Mono
         public ThreadWorker(IProgressContext progress, bool startOnUIThread)
         {
             _startOnUIThread = startOnUIThread;
-            _worker = new BackgroundWorker();
-
-            _worker.DoWork += new DoWorkEventHandler(_worker_DoWork);
-            _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_worker_RunWorkerCompleted);
 
             _e = new ThreadWorkerEventArgs(new ThreadWorkerProgressContext(progress));
+        }
+
+        public ThreadWorker(string name, IProgressContext progress, bool startOnUIThread) : this(progress, startOnUIThread)
+        {
+            _name = name;
         }
 
         /// <summary>
@@ -84,7 +85,20 @@ namespace Axantum.AxCrypt.Mono
                 _e.Progress.EnterSingleThread();
             }
             OnPrepare(_e);
-            _worker.RunWorkerAsync();
+
+            SynchronizationContext current = SynchronizationContext.Current;
+            if (current == null)
+            {
+                current = new SynchronizationContext();
+                SynchronizationContext.SetSynchronizationContext(current);
+            }
+            Task.Run(async () =>
+            {
+                await DoWorkAsync(_e);
+                current.Send((state) => DoWorkerCompleted(_e), null);
+                Dispose();
+            }
+            );
         }
 
         /// <summary>
@@ -105,7 +119,7 @@ namespace Axantum.AxCrypt.Mono
         {
             _e.Result = new FileOperationContext(String.Empty, ErrorStatus.Aborted);
             OnCompleting(_e);
-            CompleteWorker();
+            CompleteWorker(_e);
         }
 
         /// <summary>
@@ -127,16 +141,14 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private void _worker_DoWork(object sender, DoWorkEventArgs e)
+        private async Task DoWorkAsync(ThreadWorkerEventArgs e)
         {
             try
             {
-                OnWork(_e);
-                e.Result = _e.Result;
+                await OnWorkAsync(e);
             }
-            catch (OperationCanceledException ocex)
+            catch (OperationCanceledException)
             {
-                New<IReport>().Exception(ocex);
                 e.Result = new FileOperationContext(string.Empty, ErrorStatus.Canceled);
             }
             catch (AxCryptException ace)
@@ -151,24 +163,15 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void DoWorkerCompleted(ThreadWorkerEventArgs e)
         {
             try
             {
-                if (e.Error != null)
-                {
-                    AxCryptException ace = e.Error as AxCryptException;
-                    _e.Result = new FileOperationContext(ace?.DisplayContext, ace?.Message, ErrorStatus.Exception);
-                }
-                else
-                {
-                    _e.Result = (FileOperationContext)e.Result;
-                }
-                OnCompleting(_e);
+                OnCompleting(e);
             }
             finally
             {
-                CompleteWorker();
+                CompleteWorker(e);
             }
         }
 
@@ -191,14 +194,14 @@ namespace Axantum.AxCrypt.Mono
         /// Raised when asynchronous execution starts. Runs on a different
         /// thread than the caller thread. Do not interact with the GUI here.
         /// </summary>
-        public event EventHandler<ThreadWorkerEventArgs> Work;
+        public Func<ThreadWorkerEventArgs, Task> WorkAsync { get; set; }
 
-        protected virtual void OnWork(ThreadWorkerEventArgs e)
+        protected virtual async Task OnWorkAsync(ThreadWorkerEventArgs e)
         {
-            EventHandler<ThreadWorkerEventArgs> handler = Work;
-            if (handler != null)
+            Func<ThreadWorkerEventArgs, Task> command = WorkAsync;
+            if (command != null)
             {
-                handler(this, e);
+                await command.Invoke(e);
             }
         }
 
@@ -264,37 +267,25 @@ namespace Axantum.AxCrypt.Mono
             {
                 return;
             }
-            if (_worker != null)
-            {
-                DisposeWorker();
-                _worker = null;
-            }
             if (_joined != null)
             {
                 _joined.Set();
                 _joined.Close();
                 _joined = null;
             }
+            _e.Progress.LeaveSingleThread();
             _disposed = true;
         }
 
-        private void CompleteWorker()
+        private void CompleteWorker(ThreadWorkerEventArgs e)
         {
-            OnCompleted(_e);
+            OnCompleted(e);
             Dispose(true);
         }
 
-        private void DisposeWorker()
+        public override string ToString()
         {
-            _worker.DoWork -= _worker_DoWork;
-            _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
-            _e.Progress.LeaveSingleThread();
-
-            IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
-            if (workerAsDisposibleWhichIsPlatformDependent != null)
-            {
-                workerAsDisposibleWhichIsPlatformDependent.Dispose();
-            }
+            return _name;
         }
     }
 }

@@ -42,7 +42,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -71,10 +71,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             var mockParallelFile = new Mock<ParallelFileOperation>();
             _allCompleted = false;
-            mockParallelFile.Setup(x => x.DoFiles<IDataContainer>(It.IsAny<IEnumerable<IDataContainer>>(), It.IsAny<Func<IDataContainer, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()))
-                .Callback<IEnumerable<IDataContainer>, Func<IDataContainer, IProgressContext, FileOperationContext>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, ErrorStatus.Success)); _allCompleted = true; });
-            mockParallelFile.Setup(x => x.DoFiles<IDataStore>(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()))
-                .Callback<IEnumerable<IDataStore>, Func<IDataStore, IProgressContext, FileOperationContext>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, ErrorStatus.Success)); _allCompleted = true; });
+            mockParallelFile.Setup(x => x.DoFilesAsync<IDataContainer>(It.IsAny<IEnumerable<IDataContainer>>(), It.IsAny<Func<IDataContainer, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()))
+                .Callback<IEnumerable<IDataContainer>, Func<IDataContainer, IProgressContext, Task<FileOperationContext>>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, ErrorStatus.Success)); _allCompleted = true; }).Returns(Task.FromResult<object>(null));
+            mockParallelFile.Setup(x => x.DoFilesAsync<IDataStore>(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()))
+                .Callback<IEnumerable<IDataStore>, Func<IDataStore, IProgressContext, Task<FileOperationContext>>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, ErrorStatus.Success)); _allCompleted = true; }).Returns(Task.FromResult<object>(null));
             TypeMap.Register.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
         }
 
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestAddRecentFiles()
+        public async void TestAddRecentFiles()
         {
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -101,17 +101,17 @@ namespace Axantum.AxCrypt.Core.Test
             LogOnIdentity id = new LogOnIdentity("asdf");
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
             Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
-            mvm.AddRecentFiles.Execute(new string[] { file1, file2, decrypted1 });
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
+            await mvm.AddRecentFiles.ExecuteAsync(new string[] { file1, file2, decrypted1 });
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
         }
 
         [Test]
-        public void TestDecryptFilesInteractively()
+        public async void TestDecryptFilesInteractively()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(EmailAddress.Parse("id@axcrypt.net"), Passphrase.Create("b"));
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 throw new InvalidOperationException("Log on should not be called in this scenario.");
             };
@@ -120,13 +120,13 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\File1.axx");
                 e.SelectedFiles.Add(@"C:\Folder\File2.axx");
             };
-            mvm.DecryptFiles.Execute(null);
+            await mvm.DecryptFiles.ExecuteAsync(null);
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
-        public void TestDecryptFilesWithCancel()
+        public async void TestDecryptFilesWithCancel()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -134,17 +134,17 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            mvm.DecryptFiles.Execute(null);
+            await mvm.DecryptFiles.ExecuteAsync(null);
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
         }
 
         [Test]
-        public void TestDecryptFilesWithList()
+        public async void TestDecryptFilesWithList()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(EmailAddress.Parse("id@axcrypt.net"), Passphrase.Create("b"));
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 throw new InvalidOperationException("Log on should not be called in this scenario.");
             };
@@ -154,18 +154,19 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\File2.axx");
             };
 
-            mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File3.axx" });
+            await mvm.DecryptFiles.ExecuteAsync(new string[] { @"C:\Folder\File3.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
-        public void TestEncryptFilesInteractively()
+        public async void TestEncryptFilesInteractively()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("a");
+                return Task.FromResult<object>(null);
             };
             mvm.SelectingFiles += (sender, e) =>
             {
@@ -174,13 +175,13 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
-            mvm.EncryptFiles.Execute(null);
+            await mvm.EncryptFiles.ExecuteAsync(null);
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
-        public void TestEncryptFilesWithCancel()
+        public async void TestEncryptFilesWithCancel()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -188,18 +189,19 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            mvm.EncryptFiles.Execute(null);
+            await mvm.EncryptFiles.ExecuteAsync(null);
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
         }
 
         [Test]
-        public void TestEncryptFilesWithList()
+        public async void TestEncryptFilesWithList()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("a");
+                return Task.FromResult<object>(null);
             };
             mvm.SelectingFiles += (sender, e) =>
             {
@@ -208,18 +210,18 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
-            mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
+            await mvm.EncryptFiles.ExecuteAsync(new string[] { @"C:\Folder\File3.txt" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
-        public void TestOpenFilesWithList()
+        public async void TestOpenFilesWithList()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
+            await mvm.OpenFiles.ExecuteAsync(new string[] { @"C:\Folder\File3.txt" });
             Assert.That(_allCompleted, Is.True);
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
@@ -244,9 +246,10 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(identity);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("a");
+                return Task.FromResult<object>(null);
             };
 
             mvm.IdentityViewModel.LogOnLogOff.Execute(null);
@@ -259,10 +262,11 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnown()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("b");
                 e.Name = "Name";
+                return Task.FromResult<object>(null);
             };
 
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("b"));
@@ -277,9 +281,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnownAndNoPassphraseGiven()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = Passphrase.Empty;
+                return Task.FromResult<object>(null);
             };
 
             mvm.IdentityViewModel.LogOnLogOff.Execute(null);
@@ -290,28 +295,28 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestDecryptFoldersWhenLoggedIn()
+        public async void TestDecryptFoldersWhenLoggedIn()
         {
             LogOnIdentity id = new LogOnIdentity("a");
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
             Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" });
+            await mvm.DecryptFolders.ExecuteAsync(new string[] { @"C:\Folder\" });
 
             Assert.That(_allCompleted, Is.True);
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataContainer>>(f => f.Count() == 1), It.IsAny<Func<IDataContainer, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataContainer>>(f => f.Count() == 1), It.IsAny<Func<IDataContainer, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
         public void TestDecryptFoldersWhenNotLoggedIn()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            Assert.Throws<InvalidOperationException>(() => mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" }));
+            Assert.Throws<InvalidOperationException>(async () => await mvm.DecryptFolders.ExecuteAsync(new string[] { @"C:\Folder\" }));
         }
 
         [Test]
-        public void TestWipeFilesInteractively()
+        public async void TestWipeFilesInteractively()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -320,13 +325,13 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\File2.txt");
             };
 
-            mvm.WipeFiles.Execute(null);
+            await mvm.WipeFiles.ExecuteAsync(null);
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
-        public void TestWipeFilesWithCancel()
+        public async void TestWipeFilesWithCancel()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -334,13 +339,13 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            mvm.WipeFiles.Execute(null);
+            await mvm.WipeFiles.ExecuteAsync(null);
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
         }
 
         [Test]
-        public void TestWipeFilesWithList()
+        public async void TestWipeFilesWithList()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -349,13 +354,13 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\File2.txt");
             };
 
-            mvm.WipeFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
+            await mvm.WipeFiles.ExecuteAsync(new string[] { @"C:\Folder\File3.txt" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
-        public void TestOpenFilesFromFolderWithCancelWhenLoggedOn()
+        public async void TestOpenFilesFromFolderWithCancelWhenLoggedOn()
         {
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("b");
 
@@ -365,13 +370,13 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            mvm.OpenFilesFromFolder.Execute(@"C:\Folder\");
+            await mvm.OpenFilesFromFolder.ExecuteAsync(@"C:\Folder\");
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
         }
 
         [Test]
-        public void TestOpenFilesFromFolderWhenLoggedOn()
+        public async void TestOpenFilesFromFolderWhenLoggedOn()
         {
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("c");
 
@@ -383,13 +388,13 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\File2.axx");
             };
 
-            mvm.OpenFilesFromFolder.Execute(@"C:\Folder\");
+            await mvm.OpenFilesFromFolder.ExecuteAsync(@"C:\Folder\");
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(files => files.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(files => files.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
         }
 
         [Test]
-        public void TestEncryptFilesAction()
+        public async void TestEncryptFilesAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -404,21 +409,22 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\File2.txt");
             };
 
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("a");
+                return Task.FromResult<object>(null);
             };
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
-            mvm.EncryptFiles.Execute(null);
+            await mvm.EncryptFiles.ExecuteAsync(null);
 
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Null);
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Null);
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
         }
 
         [Test]
-        public void TestEncryptFileAction()
+        public async void TestEncryptFileAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -432,20 +438,21 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\File1.txt");
             };
 
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("a");
+                return Task.FromResult<object>(null);
             };
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
-            mvm.EncryptFiles.Execute(null);
+            await mvm.EncryptFiles.ExecuteAsync(null);
 
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Not.Null);
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Exactly(1));
         }
 
         [Test]
-        public void TestEncryptFilesWithSaveAsAction()
+        public async void TestEncryptFilesWithSaveAsAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -459,21 +466,22 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\Copy of File1-txt.axx");
             };
 
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("a");
+                return Task.FromResult<object>(null);
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
-            mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
+            await mvm.EncryptFiles.ExecuteAsync(new string[] { @"C:\Folder\File1.txt" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Exactly(1));
         }
 
         [Test]
-        public void TestEncryptFilesWithAlreadyEncryptedFile()
+        public async void TestEncryptFilesWithAlreadyEncryptedFile()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -482,20 +490,21 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("a");
+                return Task.FromResult<object>(null);
             };
 
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
-            mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
+            await mvm.EncryptFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Never);
         }
 
         [Test]
-        public void TestEncryptFilesWithCanceledLoggingOnAction()
+        public async void TestEncryptFilesWithCanceledLoggingOnAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -504,19 +513,20 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Cancel = true;
+                return Task.FromResult<object>(null);
             };
 
-            mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
+            await mvm.EncryptFiles.ExecuteAsync(new string[] { @"C:\Folder\File1.txt" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Never);
         }
 
         [Test]
-        public void TestDecryptFileAction()
+        public async void TestDecryptFileAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -552,7 +562,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.SelectedFiles.Add(@"C:\Folder\File2-txt.axx");
             };
 
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 throw new InvalidOperationException("Log on should not be called in this scenario.");
             };
@@ -560,9 +570,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
-            mvm.DecryptFiles.Execute(null);
+            await mvm.DecryptFiles.ExecuteAsync(null);
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             // Intermittent only invoked once below. Needs investigation.
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
@@ -571,7 +581,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestDecryptFileFileSaveAsAction()
+        public async void TestDecryptFileFileSaveAsAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -601,22 +611,22 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(EmailAddress.Parse("testing@axcrypt.net"), Passphrase.Create("a"));
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 throw new InvalidOperationException("Log on should not be called in this scenario.");
             };
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             FakeDataStore.AddFile(@"C:\Folder\File1.txt", null);
-            mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx".NormalizeFilePath() });
+            await mvm.DecryptFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx".NormalizeFilePath() });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.DecryptFile(It.Is<IAxCryptDocument>((a) => a.FileName == @"File1.txt"), It.Is<string>((s) => s == @"C:\Folder\Copy of File1.txt".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>((i) => i.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
         }
 
         [Test]
-        public void TestDecryptFileFileSaveAsCanceledAction()
+        public async void TestDecryptFileFileSaveAsCanceledAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -637,15 +647,16 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("a");
+                return Task.FromResult<object>(null);
             };
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File1.txt", null);
-            mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
+            await mvm.DecryptFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 0), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 0), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Never);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
@@ -653,7 +664,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestDecryptLoggingOnCanceledAction()
+        public async void TestDecryptLoggingOnCanceledAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -662,15 +673,16 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Cancel = true;
+                return Task.FromResult<object>(null);
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
-            mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
+            await mvm.DecryptFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 0), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 0), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Never);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
@@ -678,7 +690,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestAddRecentFilesActionAddingEncryptedWithWork()
+        public async void TestAddRecentFilesActionAddingEncryptedWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -694,21 +706,22 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("a");
+                return Task.FromResult<object>(null);
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
-            mvm.AddRecentFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
+            await mvm.AddRecentFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
         }
 
         [Test]
-        public void TestAddRecentFilesActionAddingEncryptedButCancelingWithWork()
+        public async void TestAddRecentFilesActionAddingEncryptedButCancelingWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -725,24 +738,25 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             int logonTries = 0;
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Cancel = true;
                 logonTries++;
+                return Task.FromResult<object>(null);
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
-            mvm.AddRecentFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
+            await mvm.AddRecentFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
             Assert.That(logonTries, Is.EqualTo(1), "There should be only one logon try, since the first one cancels.");
         }
 
         [Test]
-        public void TestWipeFilesWithWork()
+        public async void TestWipeFilesWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -757,14 +771,14 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
-            mvm.WipeFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
+            await mvm.WipeFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
         }
 
         [Test]
-        public void TestWipeFilesSkippingOneWithWork()
+        public async void TestWipeFilesSkippingOneWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -784,16 +798,16 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File3-txt.axx", null);
-            mvm.WipeFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx", @"C:\Folder\File3-txt.axx" });
+            await mvm.WipeFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx", @"C:\Folder\File3-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 3), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 3), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Never);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File3-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
         }
 
         [Test]
-        public void TestWipeFilesCancelingAfterOneWithWork()
+        public async void TestWipeFilesCancelingAfterOneWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -816,10 +830,10 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File3-txt.axx", null);
-            mvm.WipeFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx", @"C:\Folder\File3-txt.axx" });
+            await mvm.WipeFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx", @"C:\Folder\File3-txt.axx" });
 
             Assert.That(callTimes, Is.EqualTo(2), "Only the first two calls should be made.");
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 3), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 3), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Never);
@@ -833,7 +847,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable *is* a word.")]
         [Test]
-        public void TestAddRecentFilesActionWithEncryptableFilesNonInteractive()
+        public async void TestAddRecentFilesActionWithEncryptableFilesNonInteractive()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -851,20 +865,20 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(@"C:\Folder\File2.txt", null);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.AddRecentFiles.Execute(new string[] { @"C:\Folder\File1.txt", @"C:\Folder\File2.txt", @"C:\Folder\File3-txt.axx" });
+            await mvm.AddRecentFiles.ExecuteAsync(new string[] { @"C:\Folder\File1.txt", @"C:\Folder\File2.txt", @"C:\Folder\File3-txt.axx" });
 
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Null);
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.1.axx"), Is.Null);
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Null);
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File3-txt.axx"), Is.Null);
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File1-txt.1.axx".NormalizeFilePath()), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Once);
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable *is* a word.")]
         [Test]
-        public void TestAddRecentFileActionWithEncryptableFileNonInteractive()
+        public async void TestAddRecentFileActionWithEncryptableFileNonInteractive()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -882,15 +896,15 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(@"C:\Folder\File2.txt", null);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.AddRecentFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
+            await mvm.AddRecentFiles.ExecuteAsync(new string[] { @"C:\Folder\File1.txt" });
 
             Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.1.axx"), Is.Not.Null);
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File1-txt.1.axx".NormalizeFilePath()), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Once);
         }
 
         [Test]
-        public void TestOpenFilesActionWithWork()
+        public async void TestOpenFilesActionWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -923,16 +937,17 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<FileOperation>(() => fileOperationMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("b");
+                return Task.FromResult<object>(null);
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
-            mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
+            await mvm.OpenFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.IsAny<LogOnIdentity>(), It.Is<IDataStore>(ds => ds.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.IsAny<LogOnIdentity>(), It.Is<IDataStore>(ds => ds.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
@@ -940,7 +955,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestOpenFilesActionCancelingWithWork()
+        public async void TestOpenFilesActionCancelingWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -969,21 +984,22 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 if (count == 1)
                 {
                     e.Cancel = true;
-                    return;
+                    return Task.FromResult<object>(null);
                 }
                 e.Passphrase = new Passphrase("b");
+                return Task.FromResult<object>(null);
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", Stream.Null);
             FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", Stream.Null);
-            mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
+            await mvm.OpenFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.IsAny<LogOnIdentity>(), It.Is<IDataStore>(ds => ds.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.IsAny<LogOnIdentity>(), It.Is<IDataStore>(ds => ds.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False, "Should be logged on.");
@@ -991,7 +1007,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestDecryptFoldersWithWork()
+        public async void TestDecryptFoldersWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -1008,10 +1024,10 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(@"C:\Folder2\File1-txt.axx", null);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.DecryptFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
+            await mvm.DecryptFolders.ExecuteAsync(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
 
-            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(It.Is<IDataContainer>(r => r.FullName == @"C:\Folder1\".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IStatusChecker>(), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(It.Is<IDataContainer>(r => r.FullName == @"C:\Folder2\".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IStatusChecker>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(It.Is<IDataContainer>(r => r.FullName == @"C:\Folder1\".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IStatusChecker>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(It.Is<IDataContainer>(r => r.FullName == @"C:\Folder2\".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IStatusChecker>(), It.IsAny<IProgressContext>()), Times.Once);
         }
     }
 }

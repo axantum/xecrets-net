@@ -33,6 +33,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -58,12 +59,13 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationContext returnedStatus = new FileOperationContext(String.Empty, ErrorStatus.UnspecifiedError);
 
             bool done = false;
-            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(nameof(TestSimple), new ProgressContext(), false))
             {
-                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                worker.WorkAsync = (ThreadWorkerEventArgs e) =>
                     {
                         workThreadId = Thread.CurrentThread.ManagedThreadId;
                         e.Result = new FileOperationContext(String.Empty, ErrorStatus.Success);
+                        return Task.FromResult<object>(null);
                     };
                 worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -86,13 +88,14 @@ namespace Axantum.AxCrypt.Core.Test
             int progressCalls = 0;
 
             ProgressContext progress = new ProgressContext();
-            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(progress, false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(nameof(TestProgress), progress, false))
             {
-                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                worker.WorkAsync = (ThreadWorkerEventArgs e) =>
                     {
                         environment.CurrentTiming.CurrentTiming = TimeSpan.FromSeconds(1);
                         e.Progress.AddCount(1);
                         e.Result = new FileOperationContext(String.Empty, ErrorStatus.Success);
+                        return Task.FromResult<object>(null);
                     };
                 progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
@@ -108,10 +111,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectDisposedException()
         {
-            IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false);
-            worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+            IThreadWorker worker = Resolve.Portable.ThreadWorker(nameof(TestObjectDisposedException), new ProgressContext(), false);
+            worker.WorkAsync = (ThreadWorkerEventArgs e) =>
                 {
                     e.Result = new FileOperationContext(String.Empty, ErrorStatus.Success);
+                    return Task.FromResult<object>(null);
                 };
             try
             {
@@ -135,9 +139,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCancellationByException()
         {
             bool wasCanceled = false;
-            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(nameof(TestCancellationByException), new ProgressContext(), false))
             {
-                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                worker.WorkAsync = (ThreadWorkerEventArgs e) =>
                     {
                         throw new OperationCanceledException();
                     };
@@ -157,13 +161,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasCanceled = false;
             FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
-            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new CancelProgressContext(new ProgressContext()), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(nameof(TestCancellationByRequest), new CancelProgressContext(new ProgressContext()), false))
             {
-                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                worker.WorkAsync = (ThreadWorkerEventArgs e) =>
                 {
                     e.Progress.Cancel = true;
                     environment.CurrentTiming.CurrentTiming = TimeSpan.FromSeconds(1);
                     e.Progress.AddCount(1);
+                    return Task.FromResult<object>(null);
                 };
                 worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                 {
@@ -180,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestPrepare()
         {
             bool wasPrepared = false;
-            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(nameof(TestPrepare), new ProgressContext(), false))
             {
                 worker.Prepare += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -197,9 +202,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestErrorSetInWorkCompleted()
         {
             bool errorInWork = false;
-            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(nameof(TestErrorSetInWorkCompleted), new ProgressContext(), false))
             {
-                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                worker.WorkAsync = (ThreadWorkerEventArgs e) =>
                 {
                     throw new InvalidOperationException();
                 };
@@ -217,12 +222,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHasCompleted()
         {
-            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(nameof(TestHasCompleted), new ProgressContext(), false))
             {
                 bool wasCompletedInWork = false;
-                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                worker.WorkAsync = (ThreadWorkerEventArgs e) =>
                 {
                     wasCompletedInWork = worker.HasCompleted;
+                    return Task.FromResult<object>(null);
                 };
                 bool wasCompletedInCompleted = false;
                 worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
@@ -241,9 +247,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestExceptionDuringWork()
         {
             FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
-            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(nameof(TestExceptionDuringWork), new ProgressContext(), false))
             {
-                worker.Work += (sender, e) =>
+                worker.WorkAsync = (e) =>
                 {
                     throw new InvalidOperationException("Something went intentionally wrong.");
                 };

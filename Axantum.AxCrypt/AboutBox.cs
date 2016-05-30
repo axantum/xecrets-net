@@ -1,4 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Forms.Style;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +16,7 @@ namespace Axantum.AxCrypt
         public AboutBox()
         {
             InitializeComponent();
-        }
-
-        public AboutBox(Form parent)
-            : this()
-        {
-            InitializeStyle(parent);
+            new Styling(Resources.axcrypticon).Style(this);
         }
 
         protected override void InitializeContentResources()
@@ -118,5 +115,27 @@ namespace Axantum.AxCrypt
         }
 
         #endregion Assembly Attribute Accessors
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+        }
+
+        public void ShowNow()
+        {
+            Show();
+            Activate();
+            Focus();
+            BringToFront();
+        }
+
+        private void AboutBox_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
     }
 }

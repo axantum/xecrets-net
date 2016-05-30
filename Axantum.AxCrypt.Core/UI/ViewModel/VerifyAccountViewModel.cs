@@ -78,7 +78,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(VerificationCode), (string code) => VerificationCode = code.Replace(" ", String.Empty));
         }
 
-        protected override bool Validate(string columnName)
+        protected override Task<bool> ValidateAsync(string columnName)
+        {
+            return Task.FromResult(ValidateInternal(columnName));
+        }
+
+        private bool ValidateInternal(string columnName)
         {
             switch (columnName)
             {

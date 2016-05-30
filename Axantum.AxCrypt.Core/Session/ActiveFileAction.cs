@@ -157,7 +157,6 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-
             using (FileLock encryptedFileLock = FileLock.Lock(activeFile.DecryptedFileInfo))
             {
                 using (FileLock decryptedFileLock = FileLock.Lock(activeFile.EncryptedFileInfo))

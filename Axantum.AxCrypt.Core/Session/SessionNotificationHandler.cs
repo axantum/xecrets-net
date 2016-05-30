@@ -34,7 +34,7 @@ using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -60,15 +60,15 @@ namespace Axantum.AxCrypt.Core.Session
             _statusChecker = statusChecker;
         }
 
-        public virtual void HandleNotification(SessionNotification notification)
+        public virtual async Task HandleNotificationAsync(SessionNotification notification)
         {
-            Resolve.ProgressBackground.Work(
-                (IProgressContext progress) =>
+            await Resolve.ProgressBackground.WorkAsync($"{nameof(HandleNotificationAsync)} {notification.NotificationType}",
+                async (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
                     try
                     {
-                        HandleNotificationInternal(notification, progress);
+                        await HandleNotificationInternalAsync(notification, progress);
                         _activeFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
                     }
                     finally
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Session
                 });
         }
 
-        private void HandleNotificationInternal(SessionNotification notification, IProgressContext progress)
+        private async Task HandleNotificationInternalAsync(SessionNotification notification, IProgressContext progress)
         {
             if (Resolve.Log.IsInfoEnabled)
             {
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Session
                         IDataContainer removedFolderInfo = New<IDataContainer>(fullName);
                         if (removedFolderInfo.IsAvailable)
                         {
-                            _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(removedFolderInfo, notification.Identity, _statusChecker, progress);
+                            await _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(removedFolderInfo, notification.Identity, _statusChecker, progress);
                         }
                     }
                     break;

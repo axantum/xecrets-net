@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt
     {
         public static void ShowWarning(this string message, Form parent, string title)
         {
-            New<IUIThread>().PostOnUIThread(() => MessageDialog.ShowOk(parent, title, message));
+            New<IUIThread>().PostTo(() => MessageDialog.ShowOk(parent, title, message));
         }
 
         public static Point Fallback(this Point value, Point fallback)

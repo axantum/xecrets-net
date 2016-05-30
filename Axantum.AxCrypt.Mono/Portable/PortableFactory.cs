@@ -80,9 +80,9 @@ namespace Axantum.AxCrypt.Mono.Portable
             return new PortablePathImplementation();
         }
 
-        public Core.Runtime.IThreadWorker ThreadWorker(Core.UI.IProgressContext progress, bool startSerializedOnUIThread)
+        public Core.Runtime.IThreadWorker ThreadWorker(string name, Core.UI.IProgressContext progress, bool startSerializedOnUIThread)
         {
-            return new ThreadWorker(progress, startSerializedOnUIThread);
+            return new ThreadWorker(name, progress, startSerializedOnUIThread);
         }
 
         public ISingleThread SingleThread()

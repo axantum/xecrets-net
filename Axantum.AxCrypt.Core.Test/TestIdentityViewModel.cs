@@ -33,7 +33,7 @@ using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -74,9 +74,10 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(id);
 
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("p");
+                return Task.FromResult<object>(null);
             };
 
             ivm.LogOnLogOff.Execute(null);
@@ -93,9 +94,10 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(id);
 
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 e.Cancel = true;
+                return Task.FromResult<object>(null);
             };
 
             ivm.LogOnLogOff.Execute(null);
@@ -115,9 +117,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             bool wasLoggingOn = false;
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 wasLoggingOn = true;
+                return Task.FromResult<object>(null);
             };
 
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
@@ -133,11 +136,12 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasCreateNew = true;
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 wasCreateNew = e.IsAskingForPreviouslyUnknownPassphrase;
                 e.Passphrase = new Passphrase("ccc");
                 e.Name = "New User Passphrase";
+                return Task.FromResult<object>(null);
             };
 
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("ccc"));
@@ -153,9 +157,10 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestLogOnLogOffWhenLoggedOffAndNoIdentitiesWithCancel()
         {
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 e.Cancel = true;
+                return Task.FromResult<object>(null);
             };
 
             ivm.LogOnIdentity = new LogOnIdentity("testing");
@@ -171,10 +176,11 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
             LogOnIdentity id = null;
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 id = e.Identity;
                 e.Passphrase = new Passphrase("p");
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
@@ -193,10 +199,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnIdentity id = null;
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 id = e.Identity;
                 e.Passphrase = new Passphrase("p");
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
@@ -217,9 +224,10 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
 
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("p");
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
@@ -235,10 +243,11 @@ namespace Axantum.AxCrypt.Core.Test
             LogOnIdentity id = key;
 
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("ppp");
                 e.IsAskingForPreviouslyUnknownPassphrase = true;
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForLogOnPassphrase.Execute(id);
@@ -255,9 +264,10 @@ namespace Axantum.AxCrypt.Core.Test
             LogOnIdentity id = key;
 
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 e.Cancel = true;
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForLogOnPassphrase.Execute(id);
@@ -272,16 +282,17 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase defaultPassphrase = null;
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Empty);
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 if (!e.IsAskingForPreviouslyUnknownPassphrase)
                 {
                     e.IsAskingForPreviouslyUnknownPassphrase = true;
                     e.Passphrase = new Passphrase("xxx");
-                    return;
+                    return Task.FromResult<object>(null);
                 }
                 defaultPassphrase = e.Passphrase;
                 e.Passphrase = new Passphrase("aaa");
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForLogOnPassphrase.Execute(null);
@@ -299,10 +310,11 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("aaa"));
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("aaa");
                 e.Name = "New User Passphrase";
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForLogOnPassphrase.Execute(LogOnIdentity.Empty);
@@ -321,21 +333,22 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Empty);
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
             bool isCancelling = false;
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 if (isCancelling)
                 {
                     e.Cancel = true;
-                    return;
+                    return Task.FromResult<object>(null);
                 }
                 if (!e.IsAskingForPreviouslyUnknownPassphrase)
                 {
                     e.IsAskingForPreviouslyUnknownPassphrase = true;
                     e.Passphrase = new Passphrase("xxx");
-                    return;
+                    return Task.FromResult<object>(null);
                 }
                 defaultPassphrase = e.Passphrase;
                 e.Cancel = isCancelling = true;
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForLogOnPassphrase.Execute(null);
@@ -356,13 +369,14 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(id);
 
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 if (!e.IsAskingForPreviouslyUnknownPassphrase)
                 {
                     e.IsAskingForPreviouslyUnknownPassphrase = true;
                 }
                 e.Passphrase = new Passphrase("aaa");
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForLogOnPassphrase.Execute(null);
@@ -380,9 +394,10 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(id);
 
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("aaa");
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForLogOnPassphrase.Execute(null);
@@ -400,9 +415,10 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(id);
 
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
-            ivm.LoggingOn += (sender, e) =>
+            ivm.LoggingOnAsync = (e) =>
             {
                 e.Passphrase = new Passphrase("bbb");
+                return Task.FromResult<object>(null);
             };
 
             ivm.AskForLogOnPassphrase.Execute(null);

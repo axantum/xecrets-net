@@ -34,7 +34,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -81,7 +81,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
         }
 
-        protected override bool Validate(string columnName)
+        protected override Task<bool> ValidateAsync(string columnName)
+        {
+            return Task.FromResult(ValidateInternal(columnName));
+        }
+
+        private bool ValidateInternal(string columnName)
         {
             IDataStore privateKeyDataStore;
             switch (columnName)
@@ -95,7 +100,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return privateKeyDataStore.IsAvailable;
 
                 case nameof(Passphrase):
-                    if (!Validate(nameof(PrivateKeyFileName)))
+                    if (!ValidateInternal(nameof(PrivateKeyFileName)))
                     {
                         return false;
                     }

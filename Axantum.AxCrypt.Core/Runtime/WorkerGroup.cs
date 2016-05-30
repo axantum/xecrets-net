@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -95,10 +96,10 @@ namespace Axantum.AxCrypt.Core.Runtime
             /// Raised when asynchronous execution starts. Runs on a different
             /// thread than the caller thread. Do not interact with the GUI here.
             /// </summary>
-            public event EventHandler<ThreadWorkerEventArgs> Work
+            public Func<ThreadWorkerEventArgs, Task> WorkAsync
             {
-                add { _worker.Work += value; }
-                remove { _worker.Work -= value; }
+                get { return _worker.WorkAsync; }
+                set { _worker.WorkAsync = value; }
             }
 
             /// <summary>
@@ -231,9 +232,9 @@ namespace Axantum.AxCrypt.Core.Runtime
             Progress.NotifyLevelFinished();
         }
 
-        public IThreadWorker CreateWorker()
+        public IThreadWorker CreateWorker(string name)
         {
-            return CreateWorker(false);
+            return CreateWorker(name, false);
         }
 
         /// <summary>
@@ -243,14 +244,14 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// Since this call may block, it should not be called from the GUI thread if there is a risk of blocking.
         /// </remarks>
         /// <returns></returns>
-        public IThreadWorker CreateWorker(bool startSerializedOnUIThread)
+        public IThreadWorker CreateWorker(string name, bool startSerializedOnUIThread)
         {
             if (_disposed)
             {
                 throw new ObjectDisposedException("WorkerGroup");
             }
             AcquireOneConcurrencyRight();
-            IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(Progress, startSerializedOnUIThread);
+            IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(name, Progress, startSerializedOnUIThread);
             threadWorker.Completed += new EventHandler<ThreadWorkerEventArgs>(HandleThreadWorkerCompletedEvent);
             return new ThreadWorkerWrapper(threadWorker);
         }

@@ -93,6 +93,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._mainToolStrip = new System.Windows.Forms.ToolStrip();
+            this._openEncryptedToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._encryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._keyShareToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._secretsToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -105,7 +106,6 @@
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
-            this._openEncryptedToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -788,6 +788,17 @@
             this._mainToolStrip.Size = new System.Drawing.Size(258, 40);
             this._mainToolStrip.TabIndex = 10;
             // 
+            // _openEncryptedToolStripButton
+            // 
+            this._openEncryptedToolStripButton.AutoSize = false;
+            this._openEncryptedToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._openEncryptedToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.open_encrypted_80px1;
+            this._openEncryptedToolStripButton.ImageTransparentColor = System.Drawing.Color.White;
+            this._openEncryptedToolStripButton.Margin = new System.Windows.Forms.Padding(0);
+            this._openEncryptedToolStripButton.Name = "_openEncryptedToolStripButton";
+            this._openEncryptedToolStripButton.Size = new System.Drawing.Size(40, 40);
+            this._openEncryptedToolStripButton.ToolTipText = "[Click to select documents to encrypt]";
+            // 
             // _encryptToolStripButton
             // 
             this._encryptToolStripButton.AutoSize = false;
@@ -911,17 +922,6 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // _openEncryptedToolStripButton
-            // 
-            this._openEncryptedToolStripButton.AutoSize = false;
-            this._openEncryptedToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._openEncryptedToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.open_encrypted_80px1;
-            this._openEncryptedToolStripButton.ImageTransparentColor = System.Drawing.Color.White;
-            this._openEncryptedToolStripButton.Margin = new System.Windows.Forms.Padding(0);
-            this._openEncryptedToolStripButton.Name = "_openEncryptedToolStripButton";
-            this._openEncryptedToolStripButton.Size = new System.Drawing.Size(40, 40);
-            this._openEncryptedToolStripButton.ToolTipText = "[Click to select documents to encrypt]";
-            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -934,6 +934,7 @@
             this.MinimumSize = new System.Drawing.Size(650, 300);
             this.Name = "AxCryptMainForm";
             this.Text = "[AxCrypt]";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AxCryptMainForm_FormClosing);
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
             this.Shown += new System.EventHandler(this.AxCryptMainForm_ShownAsync);

@@ -26,10 +26,14 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -48,38 +52,39 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="files">The files to operation on.</param>
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
-        public virtual void DoFiles<T>(IEnumerable<T> files, Func<T, IProgressContext, FileOperationContext> work, Action<FileOperationContext> allComplete)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
+        public virtual async Task DoFilesAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> allComplete)
         {
             WorkerGroup workerGroup = null;
-            Resolve.ProgressBackground.Work(
-                (IProgressContext progress) =>
+            await Resolve.ProgressBackground.WorkAsync(nameof(DoFilesAsync),
+            (IProgressContext progress) =>
+            {
+                using (workerGroup = new WorkerGroup(OS.Current.MaxConcurrency, progress))
                 {
-                    using (workerGroup = new WorkerGroup(OS.Current.MaxConcurrency, progress))
+                    foreach (T file in files)
                     {
-                        foreach (T file in files)
+                        IThreadWorker worker = workerGroup.CreateWorker(file.ToString(), true);
+                        if (workerGroup.FirstError.ErrorStatus != ErrorStatus.Success)
                         {
-                            IThreadWorker worker = workerGroup.CreateWorker(true);
-                            if (workerGroup.FirstError.ErrorStatus != ErrorStatus.Success)
-                            {
-                                worker.Abort();
-                                break;
-                            }
-
-                            T closureOverCopyOfLoopVariableFile = file;
-                            worker.Work += (sender, e) =>
-                            {
-                                e.Result = work(closureOverCopyOfLoopVariableFile, new CancelProgressContext(e.Progress));
-                            };
-                            worker.Run();
+                            worker.Abort();
+                            break;
                         }
-                        workerGroup.WaitAllAndFinish();
-                        return workerGroup.FirstError;
+
+                        T closureOverCopyOfLoopVariableFile = file;
+                        worker.WorkAsync = async (e) =>
+                        {
+                            e.Result = await work(closureOverCopyOfLoopVariableFile, new CancelProgressContext(e.Progress));
+                        };
+                        New<IUIThread>().SendTo(() => worker.Run());
                     }
-                },
-                (FileOperationContext status) =>
-                {
-                    allComplete(status);
-                });
+                    workerGroup.WaitAllAndFinish();
+                    return Task.FromResult(workerGroup.FirstError);
+                }
+            },
+            (FileOperationContext status) =>
+            {
+                allComplete(status);
+            });
         }
     }
 }

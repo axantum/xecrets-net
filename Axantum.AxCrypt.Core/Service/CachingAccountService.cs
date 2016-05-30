@@ -54,15 +54,12 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<SubscriptionLevel> LevelAsync()
         {
-            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(LevelAsync)), () => _service.LevelAsync()).Free();
+            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(LevelAsync)), async () => await _service.LevelAsync()).Free();
         }
 
-        public Task<bool> ChangePassphraseAsync(Passphrase passphrase)
+        public async Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
-            bool result = false;
-            New<ICache>().UpdateItem(async () => result = await _service.ChangePassphraseAsync(passphrase), _key);
-
-            return Task.FromResult<bool>(result);
+            return await New<ICache>().UpdateItemAsync(async () => await _service.ChangePassphraseAsync(passphrase), _key).Free();
         }
 
         /// <summary>
@@ -73,17 +70,17 @@ namespace Axantum.AxCrypt.Core.Service
         /// </returns>
         public async Task<UserAccount> AccountAsync()
         {
-            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(AccountAsync)), () => _service.AccountAsync()).Free();
+            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(AccountAsync)), async () => await _service.AccountAsync()).Free();
         }
 
         public async Task<IList<UserKeyPair>> ListAsync()
         {
-            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(ListAsync)), () => _service.ListAsync()).Free();
+            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(ListAsync)), async () => await _service.ListAsync()).Free();
         }
 
         public async Task<UserKeyPair> CurrentKeyPairAsync()
         {
-            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(CurrentKeyPairAsync)), () => _service.CurrentKeyPairAsync()).Free();
+            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(CurrentKeyPairAsync)), async () => await _service.CurrentKeyPairAsync()).Free();
         }
 
         public async Task PasswordResetAsync(string verificationCode)
@@ -93,22 +90,22 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task SaveAsync(UserAccount account)
         {
-            await New<ICache>().UpdateItemAsync(() => _service.SaveAsync(account), _key).Free();
+            await New<ICache>().UpdateItemAsync(async () => await _service.SaveAsync(account), _key).Free();
         }
 
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
-            await New<ICache>().UpdateItemAsync(() => _service.SaveAsync(keyPairs), _key).Free();
+            await New<ICache>().UpdateItemAsync(async () => await _service.SaveAsync(keyPairs), _key).Free();
         }
 
         public async Task SignupAsync(EmailAddress email)
         {
-            await New<ICache>().UpdateItemAsync(() => _service.SignupAsync(email), _key);
+            await New<ICache>().UpdateItemAsync(async () => await _service.SignupAsync(email), _key).Free();
         }
 
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
-            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(StatusAsync)), () => _service.StatusAsync(email)).Free();
+            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(StatusAsync)), async () => await _service.StatusAsync(email)).Free();
             if (status == AccountStatus.Offline || status == AccountStatus.Unknown)
             {
                 New<ICache>().RemoveItem(_key);
@@ -118,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
-            return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherPublicKeyAsync)), () => _service.OtherPublicKeyAsync(email)).Free();
+            return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherPublicKeyAsync)), async () => await _service.OtherPublicKeyAsync(email)).Free();
         }
     }
 }

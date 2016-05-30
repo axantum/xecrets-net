@@ -85,19 +85,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction LogOnLogOff { get; private set; }
 
-        public IAction AskForDecryptPassphrase { get; private set; }
+        public IAsyncAction AskForDecryptPassphrase { get; private set; }
 
         public IAction AskForLogOnPassphrase { get; private set; }
 
-        public event EventHandler<LogOnEventArgs> LoggingOn;
+        public Func<LogOnEventArgs, Task> LoggingOnAsync { get; set; }
 
-        protected virtual void OnLoggingOn(LogOnEventArgs e)
+        protected virtual async Task OnLoggingOnAsync(LogOnEventArgs e)
         {
-            EventHandler<LogOnEventArgs> handler = LoggingOn;
-            if (handler != null)
+            New<AxCryptOnlineState>().IsOnline = true;
+            Func<LogOnEventArgs, Task> command = LoggingOnAsync;
+            if (command != null)
             {
-                New<AxCryptOnlineState>().IsOnline = true;
-                handler(this, e);
+                await LoggingOnAsync.Invoke(e);
             }
         }
 
@@ -183,9 +183,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 Identity = LogOnIdentity.Empty,
                 EncryptedFileFullName = encryptedFileFullName,
             };
-            OnLoggingOn(logOnArgs);
+            await OnLoggingOnAsync(logOnArgs);
 
-            return await AddKnownIdentityFromEventAsync(logOnArgs);
+            LogOnIdentity identy = await AddKnownIdentityFromEventAsync(logOnArgs);
+            if (!_knownIdentities.IsLoggedOn && identy.UserEmail != EmailAddress.Empty)
+            {
+                _knownIdentities.DefaultEncryptionIdentity = identy;
+            }
+            return identy;
         }
 
         private async Task<LogOnIdentity> AskForLogOnPassphraseActionAsync(LogOnIdentity identity, string encryptedFileFullName)
@@ -208,7 +213,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 Identity = identity,
                 EncryptedFileFullName = encryptedFileFullName,
             };
-            OnLoggingOn(logOnArgs);
+            await OnLoggingOnAsync(logOnArgs);
 
             while (logOnArgs.IsAskingForPreviouslyUnknownPassphrase)
             {
@@ -218,7 +223,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return newIdentity;
                 }
                 logOnArgs.IsAskingForPreviouslyUnknownPassphrase = false;
-                OnLoggingOn(logOnArgs);
+                await OnLoggingOnAsync(logOnArgs);
             }
 
             if (logOnArgs.Cancel || logOnArgs.Passphrase == Passphrase.Empty)
@@ -240,7 +245,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 Passphrase = defaultPassphrase,
                 EncryptedFileFullName = encryptedFileFullName,
             };
-            OnLoggingOn(logOnArgs);
+            await OnLoggingOnAsync(logOnArgs);
 
             return await AddKnownIdentityFromEventAsync(logOnArgs);
         }

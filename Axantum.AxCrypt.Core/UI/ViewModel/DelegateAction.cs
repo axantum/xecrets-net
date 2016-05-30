@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             EventHandler handler = CanExecuteChanged;
             if (handler != null)
             {
-                Resolve.UIThread.RunOnUIThread(() => handler(this, new EventArgs()));
+                Resolve.UIThread.SendTo(() => handler(this, new EventArgs()));
             }
         }
 

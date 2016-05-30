@@ -33,6 +33,11 @@ namespace Axantum.AxCrypt
         public KeyShareDialog(Form parent, SharingListViewModel viewModel)
             : this()
         {
+            if (viewModel == null)
+            {
+                throw new ArgumentNullException(nameof(viewModel));
+            }
+
             InitializeStyle(parent);
 
             _viewModel = viewModel;

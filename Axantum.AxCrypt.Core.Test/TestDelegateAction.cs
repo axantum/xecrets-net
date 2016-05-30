@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCanExecuteChanged()
         {
             TypeMap.Register.Singleton<IUIThread>(() => new Mock<IUIThread>().Object);
-            Mock.Get(Resolve.UIThread).Setup(u => u.RunOnUIThread(It.IsAny<Action>())).Callback<Action>(a => a());
+            Mock.Get(Resolve.UIThread).Setup(u => u.SendTo(It.IsAny<Action>())).Callback<Action>(a => a());
 
             int result = 0;
             bool canExecuteChanged = false;
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             action.RaiseCanExecuteChanged();
             Assert.That(canExecuteChanged, Is.True, "This should have raised the CanExecuteChanged event.");
-            Mock.Get(Resolve.UIThread).Verify(u => u.RunOnUIThread(It.IsAny<Action>()), Times.Once);
+            Mock.Get(Resolve.UIThread).Verify(u => u.SendTo(It.IsAny<Action>()), Times.Once);
         }
 
         [Test]

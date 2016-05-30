@@ -27,12 +27,14 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
     public interface IProgressBackground
     {
-        void Work(Func<IProgressContext, FileOperationContext> workFunction, Action<FileOperationContext> complete);
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
+        Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Action<FileOperationContext> complete);
 
         void WaitForIdle();
 

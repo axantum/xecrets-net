@@ -80,21 +80,49 @@ namespace Axantum.AxCrypt
             string[] commandLineArgs = Environment.GetCommandLineArgs();
 
             RegisterTypeFactories(commandLineArgs[0]);
+
+            CommandLine commandLine = commandLineArgs.Length > 1 ? new CommandLine(commandLineArgs.Skip(1)) : null;
+
+            bool isFirstInstance = New<IRuntimeEnvironment>().IsFirstInstance;
+            if (commandLine != null && !commandLine.CommandItems.Any(ci => ci.Verb == CommandVerb.Startup) && isFirstInstance)
+            {
+                OS.Current.IsFirstInstance = isFirstInstance = false;
+                Process.Start(commandLineArgs[0], "--start");
+            }
+
             WireupEvents();
 
-            if (commandLineArgs.Length == 1)
+            try
             {
-                RunInteractive();
-                New<IReport>().Save();
+                if (isFirstInstance)
+                {
+                    RunInteractive(commandLine);
+                    New<IReport>().Save();
+                }
+                else
+                {
+                    RunBackground(commandLine);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                new CommandLine(commandLineArgs[0], commandLineArgs.Skip(1)).Execute();
-                ExplorerRefresh.Notify();
+                New<IReport>().Exception(ex);
+                throw;
             }
 
             Resolve.CommandService.Dispose();
             TypeMap.Register.Clear();
+        }
+
+        private static void RunBackground(CommandLine commandLine)
+        {
+            if (commandLine == null)
+            {
+                Resolve.CommandService.Call(CommandVerb.Show, -1);
+                return;
+            }
+            commandLine.Execute();
+            ExplorerRefresh.Notify();
         }
 
         private static bool EnsureNetVersionUsingNothingThatCrashesTheProcess()
@@ -182,13 +210,8 @@ namespace Axantum.AxCrypt
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private static void RunInteractive()
+        private static void RunInteractive(CommandLine commandLine)
         {
-            if (!OS.Current.IsFirstInstance)
-            {
-                Resolve.CommandService.Call(CommandVerb.Show, -1);
-                return;
-            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += Application_ThreadException;
@@ -196,7 +219,7 @@ namespace Axantum.AxCrypt
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             try
             {
-                Application.Run(new AxCryptMainForm());
+                Application.Run(new AxCryptMainForm(commandLine));
             }
             catch (Exception ex)
             {

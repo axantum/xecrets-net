@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 _done.Reset();
             }
-            Task.Factory.StartNew(async () =>
+            Task.Run(async () =>
             {
                 try
                 {

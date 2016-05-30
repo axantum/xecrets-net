@@ -33,7 +33,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -54,17 +54,17 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestParallelFileOperationSimple()
+        public static async void TestParallelFileOperationSimple()
         {
             IDataStore info1 = New<IDataStore>(@"c:\file1.txt");
             IDataStore info2 = New<IDataStore>(@"c:\file2.txt");
             ParallelFileOperation pfo = new ParallelFileOperation();
             int callCount = 0;
-            pfo.DoFiles(new IDataStore[] { info1, info2 },
+            await pfo.DoFilesAsync(new IDataStore[] { info1, info2 },
                 (info, progress) =>
                 {
                     ++callCount;
-                    return new FileOperationContext(String.Empty, ErrorStatus.Success);
+                    return Task.FromResult(new FileOperationContext(String.Empty, ErrorStatus.Success));
                 },
                 (status) =>
                 {
@@ -74,10 +74,10 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestQuitAllOnError()
+        public static async void TestQuitAllOnError()
         {
             FakeUIThread fakeUIThread = new FakeUIThread();
-            fakeUIThread.IsOnUIThread = true;
+            fakeUIThread.IsOn = true;
             TypeMap.Register.Singleton<IUIThread>(() => fakeUIThread);
 
             FakeRuntimeEnvironment.Instance.MaxConcurrency = 2;
@@ -89,16 +89,16 @@ namespace Axantum.AxCrypt.Core.Test
             ParallelFileOperation pfo = new ParallelFileOperation();
 
             int callCount = 0;
-            pfo.DoFiles(new IDataStore[] { info1, info2, info3, info4 },
+            await pfo.DoFilesAsync(new IDataStore[] { info1, info2, info3, info4 },
                 (info, progress) =>
                 {
                     int result = Interlocked.Increment(ref callCount);
                     if (result == 1)
                     {
-                        return new FileOperationContext(String.Empty, ErrorStatus.UnspecifiedError);
+                        return Task.FromResult(new FileOperationContext(String.Empty, ErrorStatus.UnspecifiedError));
                     }
                     Thread.Sleep(1);
-                    return new FileOperationContext(String.Empty, ErrorStatus.Success);
+                    return Task.FromResult(new FileOperationContext(String.Empty, ErrorStatus.Success));
                 },
                 (status) => { });
             Assert.That(callCount, Is.LessThanOrEqualTo(2), "There are several files, but max concurrency is two, so there could be up to two calls.");

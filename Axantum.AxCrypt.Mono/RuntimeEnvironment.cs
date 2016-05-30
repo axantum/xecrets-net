@@ -128,10 +128,10 @@ namespace Axantum.AxCrypt.Mono
                 _firstInstanceMutex.Close();
                 _firstInstanceMutex = null;
             }
-            if (_firstInstanceRunning != null)
+            if (_firstInstanceReady != null)
             {
-                _firstInstanceRunning.Close();
-                _firstInstanceRunning = null;
+                _firstInstanceReady.Close();
+                _firstInstanceReady = null;
             }
         }
 
@@ -150,18 +150,28 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private EventWaitHandle _firstInstanceRunning;
+        private EventWaitHandle _firstInstanceReady;
 
         private EventWaitHandle FirstInstanceEvent
         {
             get
             {
-                if (_firstInstanceRunning == null)
+                if (_firstInstanceReady == null)
                 {
-                    _firstInstanceRunning = new EventWaitHandle(false, EventResetMode.ManualReset, @"Local\Axantum.AxCrypt.NET-FirstInstanceRunning");
+                    _firstInstanceReady = new EventWaitHandle(false, EventResetMode.ManualReset, @"Local\Axantum.AxCrypt.NET-FirstInstanceReady");
                 }
-                return _firstInstanceRunning;
+                return _firstInstanceReady;
             }
+        }
+
+        public bool IsFirstInstanceReady(TimeSpan timeout)
+        {
+            return FirstInstanceEvent.WaitOne(timeout, false);
+        }
+
+        public void FirstInstanceIsReady()
+        {
+            FirstInstanceEvent.Set();
         }
 
         private Mutex _firstInstanceMutex;
@@ -174,19 +184,23 @@ namespace Axantum.AxCrypt.Mono
             {
                 if (_firstInstanceMutex == null)
                 {
-                    _firstInstanceMutex = new Mutex(true, "Axantum.AxCrypt.NET-FirstInstance", out _isFirstInstance);
-                    if (_isFirstInstance)
-                    {
-                        FirstInstanceEvent.Set();
-                    }
+                    _firstInstanceMutex = new Mutex(true, @"Local\Axantum.AxCrypt.NET-FirstInstance", out _isFirstInstance);
                 }
                 return _isFirstInstance;
             }
-        }
-
-        public bool FirstInstanceRunning(TimeSpan timeout)
-        {
-            return FirstInstanceEvent.WaitOne(timeout, false);
+            set
+            {
+                if (!IsFirstInstance && value)
+                {
+                    throw new InvalidOperationException("Can't claim first instance when someone else already is.");
+                }
+                if (IsFirstInstance && !value)
+                {
+                    _firstInstanceMutex.Close();
+                    _firstInstanceMutex.Dispose();
+                    _firstInstanceMutex = null;
+                }
+            }
         }
 
         public void ExitApplication(int exitCode)
