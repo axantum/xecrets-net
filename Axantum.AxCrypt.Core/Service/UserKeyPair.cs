@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Service
         public UserKeyPair(EmailAddress userEmail, int bits)
             : this(userEmail)
         {
-            Timestamp = Resolve.Environment.UtcNow;
+            Timestamp = New<INow>().Utc;
             UserEmail = userEmail;
             KeyPair = New<IAsymmetricFactory>().CreateKeyPair(bits);
         }

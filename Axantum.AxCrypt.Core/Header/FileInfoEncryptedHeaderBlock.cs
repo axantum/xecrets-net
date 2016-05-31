@@ -25,9 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -55,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 return;
             }
-            byte[] timeBytes = GetTimeStampBytes(OS.Current.UtcNow);
+            byte[] timeBytes = GetTimeStampBytes(New<INow>().Utc);
 
             byte[] rawData = new byte[32];
             Array.Copy(timeBytes, 0, rawData, CreationTimeOffset, timeBytes.Length);

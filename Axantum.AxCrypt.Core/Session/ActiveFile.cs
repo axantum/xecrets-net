@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -140,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("key");
             }
-            Initialize(encryptedFileInfo, decryptedFileInfo, key, null, status, new ActiveFileProperties(OS.Current.UtcNow, encryptedFileInfo.LastWriteTimeUtc, cryptoId));
+            Initialize(encryptedFileInfo, decryptedFileInfo, key, null, status, new ActiveFileProperties(New<INow>().Utc, encryptedFileInfo.LastWriteTimeUtc, cryptoId));
         }
 
         private void Initialize(ActiveFile other)
@@ -155,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Session
             Identity = key;
             Thumbprint = thumbprint;
             Status = status;
-            Properties = new ActiveFileProperties(OS.Current.UtcNow, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
+            Properties = new ActiveFileProperties(New<INow>().Utc, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
         }
 
         public IDataStore DecryptedFileInfo

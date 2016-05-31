@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core
                 using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(encryptionParameters))
                 {
                     document.FileName = sourceFileName;
-                    document.CreationTimeUtc = OS.Current.UtcNow;
+                    document.CreationTimeUtc = New<INow>().Utc;
                     document.LastAccessTimeUtc = document.CreationTimeUtc;
                     document.LastWriteTimeUtc = document.CreationTimeUtc;
 

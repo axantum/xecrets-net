@@ -163,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 throw new ArgumentNullException(nameof(userPublicKey));
             }
 
-            AccountKey accountKey = new AccountKey(userPublicKey.Email.Address, userPublicKey.PublicKey.Thumbprint.ToString(), new KeyPair(userPublicKey.PublicKey.ToString(), String.Empty), Resolve.Environment.UtcNow);
+            AccountKey accountKey = new AccountKey(userPublicKey.Email.Address, userPublicKey.PublicKey.Thumbprint.ToString(), new KeyPair(userPublicKey.PublicKey.ToString(), String.Empty), New<INow>().Utc);
             return accountKey;
         }
 

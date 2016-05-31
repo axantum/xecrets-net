@@ -25,3 +25,5 @@ UpgradeLog.htm
 TestResults/*
 TestResult.xml
 AxCrypt.NET.sdf
+.vs/config/applicationhost.config
+cov-int/*

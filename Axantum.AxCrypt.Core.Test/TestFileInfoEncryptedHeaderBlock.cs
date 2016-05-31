@@ -25,11 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -57,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileInfoEncryptedHeaderBlock fileInfoHeaderBlock = new FileInfoEncryptedHeaderBlock(new V1AesCrypto(new V1Aes128CryptoFactory(), new V1DerivedKey(new Passphrase("nonutc")).DerivedKey, SymmetricIV.Zero128));
 
-            DateTime utcNow = OS.Current.UtcNow;
+            DateTime utcNow = New<INow>().Utc;
             DateTime localNow = utcNow.ToLocalTime();
 
             fileInfoHeaderBlock.CreationTimeUtc = localNow;

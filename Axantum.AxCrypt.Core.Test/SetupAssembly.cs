@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
     {
         public static void AssemblySetup()
         {
-            TypeMap.Register.New<INow>(() => new FakeNow());
+            TypeMap.Register.Singleton<INow>(() => new FakeNow());
             TypeMap.Register.Singleton<IReport>(() => new FakeReport());
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
             TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(Path.GetPathRoot(Environment.CurrentDirectory) + @"WorkFolder\"));

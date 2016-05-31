@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Fake
         public FakeDataStore(string fullName)
         {
             fullName = fullName.NormalizeFilePath();
-            DateTime utcNow = OS.Current.UtcNow;
+            DateTime utcNow = New<INow>().Utc;
             if (_fakeFileSystem.ContainsKey(fullName))
             {
                 _file = _fakeFileSystem[fullName];
@@ -190,7 +190,7 @@ namespace Axantum.AxCrypt.Fake
 
         private static void EnsureDateTimes(FakeFileInfo fakeFileInfo)
         {
-            DateTime utcNow = Resolve.Environment.UtcNow;
+            DateTime utcNow = New<INow>().Utc;
             if (fakeFileInfo.CreationTimeUtc == DateTime.MinValue)
             {
                 fakeFileInfo.CreationTimeUtc = utcNow;
@@ -365,7 +365,7 @@ namespace Axantum.AxCrypt.Fake
         public void CreateFolder()
         {
             string directory = Path.GetDirectoryName(_file.FullName);
-            DateTime utcNow = Resolve.Environment.UtcNow;
+            DateTime utcNow = New<INow>().Utc;
 
             if (_fakeFileSystem.ContainsKey(directory))
             {

@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             SharedKeyHolders = new UserPublicKey[0];
 
-            DateTime utcNow = Resolve.Environment.UtcNow;
+            DateTime utcNow = New<INow>().Utc;
             CreationTimeUtc = utcNow;
             LastAccessTimeUtc = utcNow;
             LastWriteTimeUtc = utcNow;

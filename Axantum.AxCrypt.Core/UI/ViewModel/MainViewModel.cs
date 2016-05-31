@@ -209,12 +209,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void Handle_VersionUpdate(object sender, VersionEventArgs e)
         {
-            _userSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
+            _userSettings.LastUpdateCheckUtc = New<INow>().Utc;
             _userSettings.NewestKnownVersion = e.DownloadVersion.Version.ToString();
             _userSettings.UpdateUrl = e.DownloadVersion.Url;
             _userSettings.UpdateLevel = e.DownloadVersion.Level;
 
-            VersionUpdateStatus = e.DownloadVersion.CalculateStatus(New<IVersion>().Current, Resolve.Environment.UtcNow, e.LastUpdateCheck);
+            VersionUpdateStatus = e.DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, e.LastUpdateCheck);
             DownloadVersion = e.DownloadVersion;
         }
 

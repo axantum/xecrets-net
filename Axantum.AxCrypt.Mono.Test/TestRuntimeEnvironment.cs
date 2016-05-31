@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void TestUtcNow()
         {
             DateTime utcNow = DateTime.UtcNow;
-            DateTime utcNowAgain = OS.Current.UtcNow;
+            DateTime utcNowAgain = New<INow>().Utc;
             Assert.That(utcNowAgain - utcNow < new TimeSpan(0, 0, 1), "The difference should not be greater than one second, that's not reasonable.");
         }
     }

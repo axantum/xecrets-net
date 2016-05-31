@@ -25,8 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -55,13 +58,13 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             long iterationsIncrement = 1000;
             long totalIterations = 0;
-            DateTime startTime = OS.Current.UtcNow;
+            DateTime startTime = New<INow>().Utc;
             DateTime endTime;
             do
             {
                 iterate(cryptoId, iterationsIncrement);
                 totalIterations += iterationsIncrement;
-                endTime = OS.Current.UtcNow;
+                endTime = New<INow>().Utc;
             } while ((endTime - startTime).TotalMilliseconds < 500);
             long iterationsPerSecond = totalIterations * 1000 / (long)(endTime - startTime).TotalMilliseconds;
             return iterationsPerSecond;

@@ -39,26 +39,9 @@ namespace Axantum.AxCrypt.Fake
     {
         private bool _isLittleEndian = BitConverter.IsLittleEndian;
 
-        private FakeNow _now;
-
-        public Func<DateTime> TimeFunction
-        {
-            get
-            {
-                return _now.TimeFunction;
-            }
-            set
-            {
-                _now.TimeFunction = value;
-            }
-        }
-
         public FakeRuntimeEnvironment()
         {
-            _now = (FakeNow)New<INow>();
-
             AxCryptExtension = ".axx";
-            TimeFunction = StandardTimeFunction;
             Platform = Platform.WindowsDesktop;
             CurrentTiming = new FakeTiming();
             EnvironmentVariables = new Dictionary<string, string>();
@@ -76,11 +59,6 @@ namespace Axantum.AxCrypt.Fake
         public static FakeRuntimeEnvironment Instance
         {
             get { return (FakeRuntimeEnvironment)New<IRuntimeEnvironment>(); }
-        }
-
-        private static DateTime StandardTimeFunction()
-        {
-            return DateTime.UtcNow;
         }
 
         public bool IsLittleEndian
@@ -103,14 +81,6 @@ namespace Axantum.AxCrypt.Fake
         public int StreamBufferSize
         {
             get { return 512; }
-        }
-
-        public DateTime UtcNow
-        {
-            get
-            {
-                return _now.Utc;
-            }
         }
 
         public Func<string, ILauncher> Launcher { get; set; }

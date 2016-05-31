@@ -40,8 +40,6 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         int StreamBufferSize { get; }
 
-        DateTime UtcNow { get; }
-
         ITiming StartTiming();
 
         bool CanTrackProcess { get; }

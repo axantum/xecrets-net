@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
@@ -162,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Service
             if (keyPair == null)
             {
                 AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(Identity));
-                keyPair = new UserKeyPair(Identity.UserEmail, Resolve.Environment.UtcNow, New<KeyPairService>().New());
+                keyPair = new UserKeyPair(Identity.UserEmail, New<INow>().Utc, New<KeyPairService>().New());
                 store.ImportAsync(keyPair).Wait();
             }
 

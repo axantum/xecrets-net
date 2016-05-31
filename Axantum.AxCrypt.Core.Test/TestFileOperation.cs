@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
             IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(keys, fileInfo, new ProgressContext());
 
@@ -215,7 +215,7 @@ namespace Axantum.AxCrypt.Core.Test
             IEnumerable<LogOnIdentity> keys = new LogOnIdentity[] { new LogOnIdentity("a") };
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(keys, dataStore, new ProgressContext());
 

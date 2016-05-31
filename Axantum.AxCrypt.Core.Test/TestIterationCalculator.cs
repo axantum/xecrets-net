@@ -25,11 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
@@ -66,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
             bool shouldTerminate = false;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () =>
+            ((FakeNow)New<INow>()).TimeFunction = () =>
             {
                 if (shouldTerminate)
                 {
@@ -95,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
             bool shouldTerminate = false;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () =>
+            ((FakeNow)New<INow>()).TimeFunction = () =>
             {
                 if (shouldTerminate)
                 {
@@ -124,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
             bool shouldTerminate = false;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () =>
+            ((FakeNow)New<INow>()).TimeFunction = () =>
             {
                 if (shouldTerminate)
                 {
@@ -148,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
             bool shouldTerminate = false;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () =>
+            ((FakeNow)New<INow>()).TimeFunction = () =>
             {
                 if (shouldTerminate)
                 {

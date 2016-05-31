@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new ObjectDisposedException("_done");
             }
-            if (lastCheckTimeUtc.AddDays(1) >= OS.Current.UtcNow)
+            if (lastCheckTimeUtc.AddDays(1) >= New<INow>().Utc)
             {
                 if (Resolve.Log.IsInfoEnabled)
                 {

@@ -229,7 +229,7 @@ namespace Axantum.AxCrypt.Mono
         /// <param name="lastWriteTimeUtc">The last write time UTC.</param>
         public void SetFileTimes(DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc)
         {
-            DateTime utcNow = Resolve.Environment.UtcNow;
+            DateTime utcNow = New<INow>().Utc;
             CreationTimeUtc = creationTimeUtc <= utcNow ? creationTimeUtc : utcNow;
             LastAccessTimeUtc = lastAccessTimeUtc <= utcNow ? lastAccessTimeUtc : utcNow;
             LastWriteTimeUtc = lastWriteTimeUtc <= utcNow ? lastWriteTimeUtc : utcNow;

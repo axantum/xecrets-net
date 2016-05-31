@@ -415,7 +415,7 @@ namespace Axantum.AxCrypt
                     {
                         return;
                     }
-                    string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), loggingEventArgs.Message.TrimLogMessage());
+                    string formatted = "{0} {1}".InvariantFormat(New<INow>().Utc.ToString("o", CultureInfo.InvariantCulture), loggingEventArgs.Message.TrimLogMessage());
                     _debugOutput.AppendText(formatted);
                 });
             };
@@ -1876,7 +1876,7 @@ namespace Axantum.AxCrypt
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                 case VersionUpdateStatus.NewerVersionIsAvailable:
-                    Resolve.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
+                    Resolve.UserSettings.LastUpdateCheckUtc = New<INow>().Utc;
                     Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
                     break;
 

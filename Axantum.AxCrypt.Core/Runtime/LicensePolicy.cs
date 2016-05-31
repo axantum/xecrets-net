@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Api.Model;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Service;
@@ -57,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             get
             {
-                DateTime utcNow = Resolve.Environment.UtcNow;
+                DateTime utcNow = New<INow>().Utc;
                 if (utcNow >= SubscriptionExpiration)
                 {
                     return TimeSpan.Zero;
@@ -138,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 {
                     return TimeSpan.MaxValue;
                 }
-                DateTime utcNow = Resolve.Environment.UtcNow;
+                DateTime utcNow = New<INow>().Utc;
                 expiration = expiration < utcNow ? utcNow : expiration;
 
                 TimeSpan timeLeft = expiration - utcNow;

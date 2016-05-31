@@ -56,10 +56,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDateComparer()
         {
-            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2013, 01, 01);
+            ((FakeNow)New<INow>()).TimeFunction = () => new DateTime(2013, 01, 01);
             ActiveFile activeFile1a = new ActiveFile(New<IDataStore>((@"C:\encrypted1.axx")), New<IDataStore>(@"C:\decrypted1.txt"), new LogOnIdentity("activeFile1a"), ActiveFileStatus.NotDecrypted, new V2Aes256CryptoFactory().CryptoId);
 
-            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2013, 01, 01);
+            ((FakeNow)New<INow>()).TimeFunction = () => new DateTime(2013, 01, 01);
             ActiveFile activeFile1b = new ActiveFile(New<IDataStore>((@"C:\encrypted2.axx")), New<IDataStore>(@"C:\decrypted2.txt"), new LogOnIdentity("activeFile1b"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
 
             ActiveFileComparer comparer = ActiveFileComparer.DateComparer;
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(comparer.Compare(activeFile1b, activeFile1a), Is.EqualTo(0));
             comparer.ReverseSort = false;
 
-            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2013, 01, 02);
+            ((FakeNow)New<INow>()).TimeFunction = () => new DateTime(2013, 01, 02);
             ActiveFile activeFile2 = new ActiveFile(New<IDataStore>((@"C:\encrypted3.axx")), New<IDataStore>(@"C:\decrypted3.txt"), new LogOnIdentity("activeFile2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
 
             Assert.That(comparer.Compare(activeFile1a, activeFile2), Is.LessThan(0));

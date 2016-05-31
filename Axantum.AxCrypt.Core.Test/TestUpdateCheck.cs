@@ -37,6 +37,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
@@ -62,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Test
             );
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 307, 0);
@@ -93,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Test
             );
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
@@ -159,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Test
             );
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 307, 0);
@@ -192,7 +194,7 @@ namespace Axantum.AxCrypt.Core.Test
             );
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 207, 0);
@@ -222,7 +224,7 @@ namespace Axantum.AxCrypt.Core.Test
             );
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 300, 0);
@@ -255,7 +257,7 @@ namespace Axantum.AxCrypt.Core.Test
             );
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
@@ -289,7 +291,7 @@ namespace Axantum.AxCrypt.Core.Test
             );
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 400, 0);
@@ -324,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Test
             );
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
@@ -355,7 +357,7 @@ namespace Axantum.AxCrypt.Core.Test
             );
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
@@ -384,7 +386,7 @@ namespace Axantum.AxCrypt.Core.Test
             );
 
             DateTime utcNow = DateTime.UtcNow;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            ((FakeNow)New<INow>()).TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");

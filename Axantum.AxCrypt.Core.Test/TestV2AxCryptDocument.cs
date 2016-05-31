@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
@@ -177,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Test
                     using (V2AxCryptDocument document = new V2AxCryptDocument(encryptionParameters, 1000))
                     {
                         document.FileName = fileName;
-                        document.CreationTimeUtc = OS.Current.UtcNow;
+                        document.CreationTimeUtc = New<INow>().Utc;
                         document.LastAccessTimeUtc = document.CreationTimeUtc;
                         document.LastWriteTimeUtc = document.CreationTimeUtc;
 
@@ -515,7 +516,7 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] buffer = new byte[3000];
                 using (IAxCryptDocument document = new V2AxCryptDocument(new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("properties")), 15))
                 {
-                    DateTime utcNow = OS.Current.UtcNow;
+                    DateTime utcNow = New<INow>().Utc;
                     DateTime lastWrite = utcNow.AddHours(1);
                     DateTime lastAccess = utcNow.AddHours(2);
                     DateTime create = utcNow.AddHours(3);
