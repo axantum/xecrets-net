@@ -252,16 +252,6 @@ namespace Axantum.AxCrypt.Mono
             IDataStore destination = New<IDataStore>(destinationFileName);
             if (destination.IsAvailable)
             {
-                try
-                {
-                    File.Replace(_file.FullName, destinationFileName, null);
-                    _file = new FileInfo(destinationFileName);
-                    return;
-                }
-                catch (PlatformNotSupportedException pnsex)
-                {
-                    New<IReport>().Exception(pnsex);
-                }
                 destination.Delete();
             }
             _file.MoveTo(destinationFileName);
