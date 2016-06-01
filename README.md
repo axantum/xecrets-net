@@ -9,9 +9,9 @@ Although the software is in release status, internal API:s may break at any mome
 ### How To Build? ###
 
 For Windows, download the source code and open in Visual Studio. There
-are no external dependencies that are note resolved with Nuget.
+are no external dependencies that are not resolved with Nuget.
 
-Unit tests require a NUnit-compatible unit test runnere.
+Unit tests require a NUnit-compatible unit test runner.
 
 ### How to Contribute ###
 
