@@ -255,6 +255,7 @@ namespace Axantum.AxCrypt.Mono
                 destination.Delete();
             }
             _file.MoveTo(destinationFileName);
+            _file.Refresh();
         }
 
         /// <summary>
@@ -263,6 +264,7 @@ namespace Axantum.AxCrypt.Mono
         public override void Delete()
         {
             _file.Delete();
+            _file.Refresh();
         }
 
         /// <summary>
