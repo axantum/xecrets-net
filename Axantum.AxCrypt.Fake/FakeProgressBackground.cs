@@ -82,5 +82,10 @@ namespace Axantum.AxCrypt.Fake
             get;
             set;
         }
+
+        public override string ToString()
+        {
+            return _name;
+        }
     }
 }
