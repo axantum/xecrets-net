@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.UI
             lock (_progressLock)
             {
                 _current += count;
-                if (_stopwatch.Elapsed > _nextProgressTime)
+                if (_stopwatch.Elapsed < _nextProgressTime)
                 {
                     return;
                 }
