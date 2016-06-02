@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             foreach (WatchedFolder watchedFolder in _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)))
             {
-                EncryptionParameters encryptionParameters = encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity, watchedFolder.KeyShares);
+                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity, watchedFolder.KeyShares);
                 _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { New<IDataContainer>(watchedFolder.Path) }, encryptionParameters, progress);
             }
         }
