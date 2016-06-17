@@ -25,9 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Fake
 {
@@ -35,6 +38,11 @@ namespace Axantum.AxCrypt.Fake
     {
         public void Time(TimeSpan value)
         {
+            FakeNow fakeNow = New<INow>() as FakeNow;
+            if (fakeNow != null)
+            {
+                fakeNow.NowIs(fakeNow.Utc + value);
+            }
             OnElapsed(new SleepEventArgs(value));
         }
 

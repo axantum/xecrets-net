@@ -41,6 +41,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             TypeMap.Register.Singleton<ISleep>(() => new FakeSleep());
+            TypeMap.Register.Singleton<INow>(() => new FakeNow());
         }
 
         [TearDown]
