@@ -1,6 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Extensions;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -86,6 +89,16 @@ namespace Axantum.AxCrypt.Core.UI
         public override bool Equals(object obj)
         {
             return Equals(obj as EmailAddress);
+        }
+
+        public string Tag
+        {
+            get
+            {
+                string canonical = Address.ToUpperInvariant();
+                uint id = BitConverter.ToUInt32(New<Sha256>().ComputeHash(System.Text.Encoding.UTF8.GetBytes(canonical)).Reduce(4), 0);
+                return id.ToString("x8", CultureInfo.InvariantCulture);
+            }
         }
 
         public override int GetHashCode()
