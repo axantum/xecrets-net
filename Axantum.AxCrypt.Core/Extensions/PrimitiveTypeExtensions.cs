@@ -129,7 +129,12 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static bool IsOlderThan(this DateTime time, TimeSpan interval)
         {
-            return time < New<INow>().Utc - interval;
+            return time.IsOlderThan(New<INow>().Utc - interval);
+        }
+
+        public static bool IsOlderThan(this DateTime time, DateTime thanTime)
+        {
+            return time < thanTime;
         }
     }
 }
