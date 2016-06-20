@@ -25,8 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using System;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -122,6 +125,11 @@ namespace Axantum.AxCrypt.Core.Extensions
         public static T Fallback<T>(this T value, T fallbackValue) where T : IEquatable<T>
         {
             return !value.Equals(default(T)) ? value : fallbackValue;
+        }
+
+        public static bool IsOlderThan(this DateTime time, TimeSpan interval)
+        {
+            return time < New<INow>().Utc - interval;
         }
     }
 }

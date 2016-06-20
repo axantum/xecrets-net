@@ -161,7 +161,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your activation code is &lt;b&gt;{0}&lt;/b&gt;.
+        ///   Looks up a localized string similar to Your AxCrypt ID activation code is &lt;b&gt;{0}&lt;/b&gt; . Use it in the AxCrypt app, or click the button below for the web.  This will verify and activate your account..
         /// </summary>
         public static string ActivateMailBodyCode {
             get {
@@ -170,7 +170,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your activation code is {0}.
+        ///   Looks up a localized string similar to Your activation code is {0} ..
         /// </summary>
         public static string ActivateMailBodyCodePlainText {
             get {
@@ -197,7 +197,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have signed up for an AxCrypt ID. To verify your registration you must  enter the activation code below in the AxCrypt app or our web site..
+        ///   Looks up a localized string similar to You have signed up for an AxCrypt ID. To verify your account you must  enter the activation code below in the AxCrypt app or our web site..
         /// </summary>
         public static string ActivateMailBodyIntro {
             get {
@@ -356,16 +356,34 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ~/Templates/AutoDeletionEmail.html.
+        ///   Looks up a localized string similar to You do not need to respond or do anything. If you do nothing, no more e-mails will be sent and your AxCrypt ID account will be deleted permanently..
         /// </summary>
-        public static string AutoDeletionMailBodyVirtualPath {
+        public static string AutoDeletionEmailOutro {
             get {
-                return ResourceManager.GetString("AutoDeletionMailBodyVirtualPath", resourceCulture);
+                return ResourceManager.GetString("AutoDeletionEmailOutro", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt ID Deletion.
+        ///   Looks up a localized string similar to You gave us your e-mail as part of installing or using AxCrypt, through an app or the web. We sent you an activation code via e-mail, but you&apos;ve not used it. If you do not immediately verify your AxCrypt ID account by using the activation code we&apos;ll be removing you permanently from our system..
+        /// </summary>
+        public static string AutoDeletionMailBodyIntro {
+            get {
+                return ResourceManager.GetString("AutoDeletionMailBodyIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We&apos;re about to delete your AxCrypt ID!.
+        /// </summary>
+        public static string AutoDeletionMailBodyTitle {
+            get {
+                return ResourceManager.GetString("AutoDeletionMailBodyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt ID account will soon be deleted!.
         /// </summary>
         public static string AutoDeletionMailSubject {
             get {
@@ -2435,7 +2453,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.axcrypt.net.
+        ///   Looks up a localized string similar to http://www.axcrypt.net/.
         /// </summary>
         public static string MainSiteUrl {
             get {
@@ -2907,7 +2925,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have requested to reset your AxCrypt ID password. To complete this process and pick a new password, please click the button below..
+        ///   Looks up a localized string similar to You have requested to reset your AxCrypt ID password. This will not restore access to encrypted files or passwords, it will only let you sign in again. To complete this process and pick a new password, please click the button below..
         /// </summary>
         public static string PasswordResetMailBody1 {
             get {

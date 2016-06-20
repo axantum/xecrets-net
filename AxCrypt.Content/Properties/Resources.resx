@@ -152,10 +152,10 @@
     <value>Activate AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
-    <value>Your activation code is &lt;b&gt;{0}&lt;/b&gt;</value>
+    <value>Your AxCrypt ID activation code is &lt;b&gt;{0}&lt;/b&gt; . Use it in the AxCrypt app, or click the button below for the web.  This will verify and activate your account.</value>
   </data>
   <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
-    <value>Your activation code is {0}</value>
+    <value>Your activation code is {0} .</value>
   </data>
   <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
     <value>You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your AxCrypt ID.</value>
@@ -164,7 +164,7 @@
     <value>You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your AxCrypt ID.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>You have signed up for an AxCrypt ID. To verify your registration you must  enter the activation code below in the AxCrypt app or our web site.</value>
+    <value>You have signed up for an AxCrypt ID. To verify your account you must  enter the activation code below in the AxCrypt app or our web site.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>If you wish to use the web instead of the app, go to &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your AxCrypt ID.</value>
@@ -224,12 +224,19 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="AuthenticationError" xml:space="preserve">
     <value>The page you tried to visit requires authentication. Please sign in to proceed.</value>
   </data>
-  <data name="AutoDeletionMailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/AutoDeletionEmail.html</value>
-    <comment>Do Not Translate</comment>
+  <data name="AutoDeletionEmailOutro" xml:space="preserve">
+    <value>You do not need to respond or do anything. If you do nothing, no more e-mails will be sent and your AxCrypt ID account will be deleted permanently.</value>
+    <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
+  </data>
+  <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
+    <value>You gave us your e-mail as part of installing or using AxCrypt, through an app or the web. We sent you an activation code via e-mail, but you've not used it. If you do not immediately verify your AxCrypt ID account by using the activation code we'll be removing you permanently from our system.</value>
+  </data>
+  <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
+    <value>We're about to delete your AxCrypt ID!</value>
+    <comment>The title of the deletion e-mail</comment>
   </data>
   <data name="AutoDeletionMailSubject" xml:space="preserve">
-    <value>AxCrypt ID Deletion</value>
+    <value>Your AxCrypt ID account will soon be deleted!</value>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>File Security For You and Your Team by AxCrypt AB
@@ -956,7 +963,7 @@ The AxCrypt Team</value>
     <comment>Do Not Translate</comment>
   </data>
   <data name="MainSiteUrl" xml:space="preserve">
-    <value>http://www.axcrypt.net</value>
+    <value>http://www.axcrypt.net/</value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>A parsing error occured when updating the site management property. Please check that you're using the correct format.</value>
@@ -1126,7 +1133,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Forgot your password? Click here</value>
   </data>
   <data name="PasswordResetMailBody1" xml:space="preserve">
-    <value>You have requested to reset your AxCrypt ID password. To complete this process and pick a new password, please click the button below.</value>
+    <value>You have requested to reset your AxCrypt ID password. This will not restore access to encrypted files or passwords, it will only let you sign in again. To complete this process and pick a new password, please click the button below.</value>
   </data>
   <data name="PasswordResetMailBodyButton" xml:space="preserve">
     <value>Reset password</value>
