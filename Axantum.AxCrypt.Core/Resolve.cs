@@ -93,11 +93,6 @@ namespace Axantum.AxCrypt.Core
             get { return New<IUIThread>(); }
         }
 
-        public static IProgressBackground ProgressBackground
-        {
-            get { return New<IProgressBackground>(); }
-        }
-
         public static ParallelFileOperation ParallelFileOperation
         {
             get { return New<ParallelFileOperation>(); }

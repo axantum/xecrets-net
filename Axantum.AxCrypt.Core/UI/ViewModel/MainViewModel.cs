@@ -171,13 +171,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SubscribeToModelEvents()
         {
             Resolve.SessionNotify.Notification += HandleSessionChanged;
-            Resolve.ProgressBackground.WorkStatusChanged += HandleWorkStatusChanged;
+            New<IProgressBackground>().WorkStatusChanged += HandleWorkStatusChanged;
             _fileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
         private void HandleWorkStatusChanged(object sender, EventArgs e)
         {
-            Working = Resolve.ProgressBackground.Busy;
+            Working = New<IProgressBackground>().Busy;
         }
 
         public bool CanShare(IEnumerable<IDataStore> items)
@@ -439,7 +439,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 _fileSystemState.ActiveFileChanged -= HandleActiveFileChangedEvent;
                 Resolve.SessionNotify.Notification -= HandleSessionChanged;
-                Resolve.ProgressBackground.WorkStatusChanged -= HandleWorkStatusChanged;
+                New<IProgressBackground>().WorkStatusChanged -= HandleWorkStatusChanged;
 
                 _axCryptUpdateCheck.AxCryptUpdate -= Handle_VersionUpdate;
                 _axCryptUpdateCheck.Dispose();

@@ -58,6 +58,7 @@ namespace Axantum.AxCrypt.Mono
             TypeMap.Register.New<string, IDataContainer>((path) => new DataContainer(path));
             TypeMap.Register.New<string, IDataItem>((path) => DataItem.Create(path));
             TypeMap.Register.New<IRestCaller>(() => new RestCaller());
+            TypeMap.Register.New<ISingleThread>(() => new SingleThread());
         }
 
         public RuntimeEnvironment(string extension)
@@ -141,7 +142,7 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
-                return Environment.ProcessorCount > 2 ? Environment.ProcessorCount - 1 : 2;
+                return -1;
             }
         }
 

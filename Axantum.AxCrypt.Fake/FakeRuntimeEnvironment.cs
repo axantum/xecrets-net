@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Fake
             Platform = Platform.WindowsDesktop;
             CurrentTiming = new FakeTiming();
             EnvironmentVariables = new Dictionary<string, string>();
-            MaxConcurrency = 2;
+            MaxConcurrency = -1;
             IsFirstInstance = true;
             ExitCode = Int32.MinValue;
         }

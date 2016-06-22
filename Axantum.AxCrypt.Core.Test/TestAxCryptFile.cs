@@ -468,6 +468,7 @@ namespace Axantum.AxCrypt.Core.Test
         // 2016-03-10: Attempted fix by adding call to Resolve.ProgressBackground.WaitForIdle(), and implementing it in FakeProgressBackground.
         // 2016-04-25: Not fixed.
         // 2016-05-28: Not fixed.
+        // 2016-06-21: Attempted fix by 'capturing' result of enumeration of encrypted files in DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(). Still not fixed.
         [Test]
         public async void TestDecryptFilesUniqueWithWipeOfOriginal()
         {
@@ -485,7 +486,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationFileInfo.IsAvailable, Is.False, "The source should not exist yet.");
 
             await New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(sourceFolderInfo, passphrase, mockStatusChecker.Object, new ProgressContext());
-            Resolve.ProgressBackground.WaitForIdle();
+            //Resolve.ProgressBackground.WaitForIdle();
 
             Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");

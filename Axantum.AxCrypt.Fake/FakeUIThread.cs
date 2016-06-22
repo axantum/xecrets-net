@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Fake
 
         public void PostTo(Action action)
         {
-            _context.Post((state) => action(), null);
+            _context.Send((state) => action(), null);
         }
 
         public void Yield()

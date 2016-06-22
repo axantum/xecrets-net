@@ -26,6 +26,8 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
@@ -38,7 +40,7 @@ namespace Axantum.AxCrypt.Fake
     {
         private string _name;
 
-        public async Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete)
+        public async Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete, IProgressContext progress)
         {
             _name = name;
 
@@ -47,7 +49,7 @@ namespace Axantum.AxCrypt.Fake
             FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
             try
             {
-                status = await Task.Run(async () => await work(new ProgressContext()));
+                status = await Task.Run(async () => await work(progress).Free());
             }
             catch (OperationCanceledException)
             {

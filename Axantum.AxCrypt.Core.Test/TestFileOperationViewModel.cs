@@ -817,14 +817,16 @@ namespace Axantum.AxCrypt.Core.Test
 
             int callTimes = 0;
             FileOperationViewModel mvm = New<FileOperationViewModel>();
+            string selectedFile = string.Empty;
             mvm.SelectingFiles += (sender, e) =>
             {
                 ++callTimes;
-                if (e.SelectedFiles[0].Contains("File2"))
+                if (callTimes == 2)
                 {
-                    SimulateDelayOfUserInteractionAllowingEarlierThreadsToReallyStartTheAsyncPart();
                     e.Cancel = true;
+                    return;
                 }
+                selectedFile = e.SelectedFiles.First();
             };
 
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
@@ -835,14 +837,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(callTimes, Is.EqualTo(2), "Only the first two calls should be made.");
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 3), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Never);
-            axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File3-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Never);
-        }
-
-        private static void SimulateDelayOfUserInteractionAllowingEarlierThreadsToReallyStartTheAsyncPart()
-        {
-            Thread.Sleep(1);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == selectedFile.NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable *is* a word.")]

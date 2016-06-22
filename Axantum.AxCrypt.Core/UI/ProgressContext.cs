@@ -29,6 +29,8 @@ using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Threading;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI
 {
     /// <summary>
@@ -42,8 +44,6 @@ namespace Axantum.AxCrypt.Core.UI
         private static readonly TimeSpan ProgressTimeInterval = TimeSpan.FromMilliseconds(100);
 
         private TimeSpan _nextProgressTime;
-
-        private SynchronizationContext _synchronizationContext;
 
         private ITiming _stopwatch = OS.Current.StartTiming();
 
@@ -65,7 +65,6 @@ namespace Axantum.AxCrypt.Core.UI
         public ProgressContext(TimeSpan timeToFirstProgress)
         {
             _nextProgressTime = timeToFirstProgress;
-            _synchronizationContext = OS.Current.SynchronizationContext;
         }
 
         /// <summary>
@@ -101,11 +100,7 @@ namespace Axantum.AxCrypt.Core.UI
             EventHandler<ProgressEventArgs> handler = Progressing;
             if (handler != null)
             {
-                _synchronizationContext.Post((state) =>
-                {
-                    handler(this, (ProgressEventArgs)state);
-                },
-                e);
+                New<IUIThread>().PostTo(() => handler(this, e));
             }
         }
 

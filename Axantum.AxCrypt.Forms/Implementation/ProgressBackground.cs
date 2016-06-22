@@ -35,6 +35,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Forms.Implementation
 {
     /// <summary>
@@ -89,56 +91,40 @@ namespace Axantum.AxCrypt.Forms.Implementation
         /// <summary>
         /// Perform a background operation with support for progress bars and cancel.
         /// </summary>
-        /// <param name="workFunction">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling/GUI thread.</param>
+        /// <param name="workFunction">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the GUI thread.</param>
-        public Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Action<FileOperationContext> complete)
+        public async Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Action<FileOperationContext> complete, IProgressContext progress)
         {
-            Resolve.UIThread.SendTo(() =>
+            await New<IUIThread>().SendToAsync(async () =>
             {
-                BackgroundWorkWithProgressOnUIThread(name, workFunction, complete);
+                await BackgroundWorkWithProgressOnUIThreadAsync(name, workFunction, complete, progress);
             });
-            return Task.FromResult<object>(null);
         }
 
-        private void BackgroundWorkWithProgressOnUIThread(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete)
+        private async Task BackgroundWorkWithProgressOnUIThreadAsync(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete, IProgressContext progress)
         {
-            IProgressContext progress = new CancelProgressContext(new ProgressContext());
             ProgressBar progressBar = CreateProgressBar(progress);
             OnProgressBarCreated(new ControlEventArgs(progressBar));
             progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
                 progressBar.Value = e.Percent;
             };
-            IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(name, progress, false);
-            threadWorker.WorkAsync = async (ThreadWorkerEventArgs e) =>
-            {
-                e.Result = await work(e.Progress);
-            };
-            threadWorker.Completing += (object sender, ThreadWorkerEventArgs e) =>
-            {
-                try
-                {
-                    complete(e.Result);
-                    progressBar.Parent = null;
-                }
-                finally
-                {
-                    progressBar.Dispose();
-                }
-            };
-            threadWorker.Completed += (object sender, ThreadWorkerEventArgs e) =>
-            {
-                IDisposable disposable = sender as IDisposable;
-                if (disposable != null)
-                {
-                    disposable.Dispose();
-                }
-                Interlocked.Decrement(ref _workerCount);
-                OnWorkStatusChanged();
-            };
+
             Interlocked.Increment(ref _workerCount);
             OnWorkStatusChanged();
-            threadWorker.Run();
+
+            FileOperationContext result = await Task.Run(async () => await work(progress));
+            try
+            {
+                complete(result);
+                progressBar.Parent = null;
+            }
+            finally
+            {
+                Interlocked.Decrement(ref _workerCount);
+                progressBar.Dispose();
+            }
+            OnWorkStatusChanged();
         }
 
         private ProgressBar CreateProgressBar(IProgressContext progress)

@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual async Task HandleNotificationAsync(SessionNotification notification)
         {
-            await Resolve.ProgressBackground.WorkAsync($"{nameof(HandleNotificationAsync)} {notification.NotificationType}",
+            await New<IProgressBackground>().WorkAsync($"{nameof(HandleNotificationAsync)} {notification.NotificationType}",
                 async (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
@@ -84,7 +84,8 @@ namespace Axantum.AxCrypt.Core.Session
                         return;
                     }
                     _statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
-                });
+                },
+                new ProgressContext());
         }
 
         private async Task HandleNotificationInternalAsync(SessionNotification notification, IProgressContext progress)

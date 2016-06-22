@@ -26,7 +26,9 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
@@ -53,38 +55,66 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        public virtual async Task DoFilesAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> allComplete)
+        public async virtual Task DoFilesAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> allComplete)
         {
-            WorkerGroup workerGroup = null;
-            await Resolve.ProgressBackground.WorkAsync(nameof(DoFilesAsync),
+            WorkerGroupProgressContext groupProgress = new WorkerGroupProgressContext(new CancelProgressContext(new ProgressContext()), New<ISingleThread>());
+            await New<IProgressBackground>().WorkAsync(nameof(DoFilesAsync),
             (IProgressContext progress) =>
             {
-                using (workerGroup = new WorkerGroup(OS.Current.MaxConcurrency, progress))
-                {
-                    foreach (T file in files)
+                progress.NotifyLevelStart();
+                FileOperationContext result = new FileOperationContext(string.Empty, ErrorStatus.Success);
+                Parallel.ForEach(files,
+                    new ParallelOptions() { MaxDegreeOfParallelism = New<IRuntimeEnvironment>().MaxConcurrency, },
+                    () =>
                     {
-                        IThreadWorker worker = workerGroup.CreateWorker(file.ToString(), true);
-                        if (workerGroup.FirstError.ErrorStatus != ErrorStatus.Success)
+                        return new FileOperationContext(string.Empty, ErrorStatus.Success);
+                    },
+                    (file, loopState, fileOperationContext) =>
+                    {
+                        if (fileOperationContext.ErrorStatus != ErrorStatus.Success)
                         {
-                            worker.Abort();
-                            break;
+                            loopState.Stop();
                         }
-
-                        T closureOverCopyOfLoopVariableFile = file;
-                        worker.WorkAsync = async (e) =>
+                        if (loopState.IsStopped)
                         {
-                            e.Result = await work(closureOverCopyOfLoopVariableFile, new CancelProgressContext(e.Progress));
-                        };
-                        New<IUIThread>().SendTo(() => worker.Run());
+                            return new FileOperationContext(file.ToString(), ErrorStatus.Aborted);
+                        }
+                        try
+                        {
+                            return work(file, progress).Result;
+                        }
+                        catch (AggregateException ae) when (ae.InnerException is OperationCanceledException)
+                        {
+                            return new FileOperationContext(string.Empty, ErrorStatus.Canceled);
+                        }
+                        catch (AggregateException ae) when (ae.InnerException is AxCryptException)
+                        {
+                            AxCryptException ace = ae.InnerException as AxCryptException;
+                            New<IReport>().Exception(ace);
+                            return new FileOperationContext(ace.DisplayContext, ace.InnerException?.Message, ace.ErrorStatus);
+                        }
+                        catch (Exception ex)
+                        {
+                            New<IReport>().Exception(ex.InnerException);
+                            return new FileOperationContext(string.Empty, ex.InnerException.Message, ErrorStatus.Exception);
+                        }
+                    },
+                    (fileOperationContext) =>
+                    {
+                        if (fileOperationContext.ErrorStatus != ErrorStatus.Success)
+                        {
+                            result = fileOperationContext;
+                        }
                     }
-                    workerGroup.WaitAllAndFinish();
-                    return Task.FromResult(workerGroup.FirstError);
-                }
+                );
+                progress.NotifyLevelFinished();
+                return Task.FromResult(result);
             },
             (FileOperationContext status) =>
             {
                 allComplete(status);
-            });
+            },
+            groupProgress).Free();
         }
     }
 }

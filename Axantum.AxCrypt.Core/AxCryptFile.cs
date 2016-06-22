@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
@@ -678,17 +679,16 @@ namespace Axantum.AxCrypt.Core
 
         public virtual async Task DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(IDataContainer sourceContainer, LogOnIdentity logOnIdentity, IStatusChecker statusChecker, IProgressContext progress)
         {
-            IEnumerable<IDataStore> files = sourceContainer.ListEncrypted();
+            IEnumerable<IDataStore> files = sourceContainer.ListEncrypted().ToList();
             await Resolve.ParallelFileOperation.DoFilesAsync(files, async (file, context) =>
             {
-                context.LeaveSingleThread();
-                return await DecryptFileUniqueWithWipeOfOriginal(file, logOnIdentity, context);
+                return await DecryptFileUniqueWithWipeOfOriginal(file, logOnIdentity, context).Free();
             },
             (status) =>
             {
                 Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.UpdateActiveFiles));
                 statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
-            });
+            }).Free();
         }
 
         public Task<FileOperationContext> DecryptFileUniqueWithWipeOfOriginal(IDataStore sourceStore, LogOnIdentity logOnIdentity, IProgressContext progress)
