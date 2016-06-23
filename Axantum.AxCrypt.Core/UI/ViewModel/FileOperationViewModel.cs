@@ -359,14 +359,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
             };
 
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-            {
-                if (e.Status.ErrorStatus == ErrorStatus.FileAlreadyEncrypted)
-                {
-                    e.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
-                }
-            };
-
             return operationsController;
         }
 
@@ -460,12 +452,22 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (encryptableFiles.Count() > 1)
             {
-                await _fileOperation.DoFilesAsync(encryptableFiles, EncryptFileWorkManyAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
+                await _fileOperation.DoFilesAsync(encryptableFiles, this.EncryptFileWorkManyAsync, (status) => CheckEncryptionStatus(status));
             }
             else
             {
-                await _fileOperation.DoFilesAsync(encryptableFiles, EncryptFileWorkOneAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
+                await _fileOperation.DoFilesAsync(encryptableFiles, EncryptFileWorkOneAsync, (status) => CheckEncryptionStatus(status));
             }
+        }
+
+        private static void CheckEncryptionStatus(FileOperationContext foc)
+        {
+            if (foc.ErrorStatus == ErrorStatus.FileAlreadyEncrypted)
+            {
+                foc = new FileOperationContext(foc.FullName, ErrorStatus.Success);
+            }
+
+            CheckStatusAndShowMessage(foc, string.Empty);
         }
 
         private void HandleSessionChanged(object sender, SessionNotificationEventArgs e)
