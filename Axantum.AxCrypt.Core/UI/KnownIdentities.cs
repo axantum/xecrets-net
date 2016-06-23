@@ -65,11 +65,6 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public void LogOff()
-        {
-            DefaultEncryptionIdentity = LogOnIdentity.Empty;
-        }
-
         public virtual void Add(LogOnIdentity logOnIdentity)
         {
             if (logOnIdentity == LogOnIdentity.Empty)
@@ -97,7 +92,7 @@ namespace Axantum.AxCrypt.Core.UI
             _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange, logOnIdentity));
         }
 
-        public void Clear()
+        private void Clear()
         {
             lock (_logOnIdentities)
             {
@@ -107,7 +102,6 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 _logOnIdentities.Clear();
             }
-            LogOff();
         }
 
         public IEnumerable<LogOnIdentity> Identities
@@ -142,16 +136,24 @@ namespace Axantum.AxCrypt.Core.UI
                     throw new ArgumentNullException("value");
                 }
 
+                if (value == LogOnIdentity.Empty)
+                {
+                    Clear();
+                }
+
                 if (_defaultEncryptionIdentity == value)
                 {
                     return;
                 }
+
                 if (_defaultEncryptionIdentity != LogOnIdentity.Empty)
                 {
+                    Clear();
                     LogOnIdentity oldKey = _defaultEncryptionIdentity;
                     _defaultEncryptionIdentity = LogOnIdentity.Empty;
                     _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOff, oldKey));
                 }
+
                 if (value == LogOnIdentity.Empty)
                 {
                     return;

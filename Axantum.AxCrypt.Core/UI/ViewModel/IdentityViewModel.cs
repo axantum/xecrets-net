@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            _knownIdentities.Clear();
+            _knownIdentities.DefaultEncryptionIdentity = LogOnIdentity.Empty;
         }
 
         private async Task<LogOnIdentity> LogOnLogOffActionAsync()

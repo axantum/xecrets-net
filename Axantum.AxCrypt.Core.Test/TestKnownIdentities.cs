@@ -130,10 +130,10 @@ namespace Axantum.AxCrypt.Core.Test
             knownIdentities.Add(key2);
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(2), "There should be two keys in the collection.");
 
-            knownIdentities.Clear();
+            knownIdentities.DefaultEncryptionIdentity = LogOnIdentity.Empty;
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(0), "There should be zero keys in the collection after Clear().");
 
-            knownIdentities.Clear();
+            knownIdentities.DefaultEncryptionIdentity = LogOnIdentity.Empty;
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(0), "There should be zero keys in the collection after Clear() with zero keys to start with.");
         }
 
@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(2), "Setting the DefaultEncryptionKey should also add it as a known key.");
 
             knownIdentities.DefaultEncryptionIdentity = LogOnIdentity.Empty;
-            Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(2), "Setting the DefaultEncryptionKey to null should not affect the known keys.");
+            Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(0), "Setting the DefaultEncryptionKey to empty should clear the known keys.");
         }
 
         [Test]
