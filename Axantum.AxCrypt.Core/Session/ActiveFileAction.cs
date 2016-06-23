@@ -137,7 +137,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseNever, (ActiveFile activeFile) =>
             {
-                return new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.Exception);
+                if (activeFile.Status.HasFlag(ActiveFileStatus.Exception))
+                {
+                    activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.Exception);
+                }
+                return activeFile;
             });
         }
 

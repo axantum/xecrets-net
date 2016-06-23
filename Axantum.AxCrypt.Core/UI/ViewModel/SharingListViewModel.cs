@@ -72,6 +72,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SubscribeToModelEvents();
         }
 
+        public async Task ReadyAsync()
+        {
+            await _missingKeysLoader;
+        }
+
         private void InitializePropertyValues(IEnumerable<UserPublicKey> sharedWith)
         {
             EmailAddress userEmail = _logOnIdentity.UserKeys.UserEmail;
@@ -98,7 +103,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task RemoveKeySharesActionAsync(IEnumerable<UserPublicKey> keySharesToRemove)
         {
-            await _missingKeysLoader;
+            await ReadyAsync();
 
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
             HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
@@ -111,7 +116,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task AddKeySharesActionAsync(IEnumerable<EmailAddress> keySharesToAdd)
         {
-            await _missingKeysLoader;
+            await ReadyAsync();
 
             IEnumerable<UserPublicKey> publicKeysToAdd = await TryAddMissingUnsharedPublicKeysFromServerAsync(keySharesToAdd).Free();
 
@@ -126,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task AddNewKeyShareActionAsync(string email)
         {
-            await _missingKeysLoader;
+            await ReadyAsync();
             await AddKeySharesActionAsync(new EmailAddress[] { EmailAddress.Parse(email), }).Free();
         }
 
