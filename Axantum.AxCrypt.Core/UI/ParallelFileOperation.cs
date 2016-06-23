@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.UI
                         }
                         if (loopState.IsStopped)
                         {
-                            return new FileOperationContext(file.ToString(), ErrorStatus.Aborted);
+                            return new FileOperationContext(file.ToString(), ErrorStatus.Canceled);
                         }
                         try
                         {
