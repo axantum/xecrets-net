@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestMoveOneFromUnsharedToShared()
+        public async void TestMoveOneFromUnsharedToShared()
         {
             IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
@@ -127,13 +127,13 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
-            model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey2.Email, });
+            await model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey2.Email, });
             Assert.That(model.SharedWith.Count(), Is.EqualTo(1), "One was set as shared, so there should be one here now.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "One unshared was set as shared, so there should be only one here now.");
         }
 
         [Test]
-        public void TestMoveTwoFromUnsharedToShared()
+        public async void TestMoveTwoFromUnsharedToShared()
         {
             IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
@@ -150,13 +150,13 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
-            model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey2.Email, userPublicKey1.Email, });
+            await model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey2.Email, userPublicKey1.Email, });
             Assert.That(model.SharedWith.Count(), Is.EqualTo(2), "Two were set as shared, so there should be two here now.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(0), "Both unshared were set as shared, so there should be none here now.");
         }
 
         [Test]
-        public void TestRemoveOneFromShared()
+        public async void TestRemoveOneFromShared()
         {
             IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
@@ -173,17 +173,17 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
-            model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey2.Email, userPublicKey1.Email, });
+            await model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey2.Email, userPublicKey1.Email, });
             Assert.That(model.SharedWith.Count(), Is.EqualTo(2), "Two were set as shared, so there should be two here now.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(0), "Both unshared were set as shared, so there should be none here now.");
 
-            model.RemoveKeyShares.Execute(new[] { userPublicKey1, });
+            await model.AsyncRemoveKeyShares.ExecuteAsync(new[] { userPublicKey1, });
             Assert.That(model.SharedWith.Count(), Is.EqualTo(1), "One shared of two was removed, so there should be one here now.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "One shared of two was removed, so there should be one here now.");
         }
 
         [Test]
-        public void TestRemoveNonexistingFromShared()
+        public async void TestRemoveNonexistingFromShared()
         {
             IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
@@ -200,11 +200,11 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
-            model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey1.Email, });
+            await model.AsyncAddKeyShares.ExecuteAsync(new[] { userPublicKey1.Email, });
             Assert.That(model.SharedWith.Count(), Is.EqualTo(1), "One was set as shared, so there should be one here now.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "One unshared was set as shared, so there should be one here now.");
 
-            model.RemoveKeyShares.Execute(new[] { userPublicKey2, });
+            await model.AsyncRemoveKeyShares.ExecuteAsync(new[] { userPublicKey2, });
             Assert.That(model.SharedWith.Count(), Is.EqualTo(1), "A key that was not set as shared was attempted to remove, nothing should happen.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "A key that was not set as shared was attempted to remove, nothing should happen.");
         }

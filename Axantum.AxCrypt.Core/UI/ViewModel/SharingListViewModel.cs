@@ -55,13 +55,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction AsyncAddKeyShares { get; private set; }
 
-        public IAction RemoveKeyShares { get; private set; }
+        public IAsyncAction AsyncRemoveKeyShares { get; private set; }
 
         public IAsyncAction AsyncAddNewKeyShare { get; private set; }
+
+        private Task _missingKeysLoader;
 
         public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
+
+            _missingKeysLoader = Task.Run(() => TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email)));
 
             InitializePropertyValues(sharedWith);
             BindPropertyChangedEvents();
@@ -79,9 +83,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             NewKeyShare = String.Empty;
 
-            AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));
-            RemoveKeyShares = new DelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesAction(upks));
-            AsyncAddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => this[nameof(NewKeyShare)].Length == 0);
+            AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>(async (upks) => await AddKeySharesActionAsync(upks));
+            AsyncRemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>(async (upks) => await RemoveKeySharesActionAsync(upks));
+            AsyncAddNewKeyShare = new AsyncDelegateAction<string>(async (email) => await AddNewKeyShareActionAsync(email), (email) => this[nameof(NewKeyShare)].Length == 0);
         }
 
         private static void BindPropertyChangedEvents()
@@ -92,8 +96,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
         }
 
-        private void RemoveKeySharesAction(IEnumerable<UserPublicKey> keySharesToRemove)
+        private async Task RemoveKeySharesActionAsync(IEnumerable<UserPublicKey> keySharesToRemove)
         {
+            await _missingKeysLoader;
+
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
             HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
 
@@ -105,6 +111,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task AddKeySharesActionAsync(IEnumerable<EmailAddress> keySharesToAdd)
         {
+            await _missingKeysLoader;
+
             IEnumerable<UserPublicKey> publicKeysToAdd = await TryAddMissingUnsharedPublicKeysFromServerAsync(keySharesToAdd).Free();
 
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
@@ -118,6 +126,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task AddNewKeyShareActionAsync(string email)
         {
+            await _missingKeysLoader;
             await AddKeySharesActionAsync(new EmailAddress[] { EmailAddress.Parse(email), }).Free();
         }
 

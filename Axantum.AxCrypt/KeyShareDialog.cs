@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt
             _sharedWith.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
             _notSharedWith.SelectedIndexChanged += (sender, e) => SetShareButtonState();
 
-            _sharedWith.MouseDoubleClick += (sender, e) => Unshare(_sharedWith.IndexFromPoint(e.Location));
+            _sharedWith.MouseDoubleClick += async (sender, e) => await Unshare(_sharedWith.IndexFromPoint(e.Location));
             _notSharedWith.MouseDoubleClick += async (sender, e) =>
             {
                 await ShareAsync(_notSharedWith.IndexFromPoint(e.Location));
@@ -56,9 +56,9 @@ namespace Axantum.AxCrypt
             };
 
             _newContact.TextChanged += (sender, e) =>
-        {
-            _viewModel.NewKeyShare = _newContact.Text;
-        };
+            {
+                _viewModel.NewKeyShare = _newContact.Text;
+            };
             _newContact.Enter += (sender, e) => { _sharedWith.ClearSelected(); _notSharedWith.ClearSelected(); };
 
             _shareButton.Click += async (sender, e) =>
@@ -72,9 +72,9 @@ namespace Axantum.AxCrypt
                 _newContact.Text = String.Empty;
                 SetShareButtonState();
             };
-            _unshareButton.Click += (sender, e) =>
+            _unshareButton.Click += async (sender, e) =>
             {
-                Unshare();
+                await Unshare();
                 SetUnshareButtonState();
             };
 
@@ -146,19 +146,19 @@ namespace Axantum.AxCrypt
             AcceptButton = _okButton;
         }
 
-        private void Unshare()
+        private async Task Unshare()
         {
-            _viewModel.RemoveKeyShares.Execute(_sharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWith.Items[i]));
+            await _viewModel.AsyncRemoveKeyShares.ExecuteAsync(_sharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWith.Items[i]));
         }
 
-        private void Unshare(int index)
+        private async Task Unshare(int index)
         {
             if (index == ListBox.NoMatches)
             {
                 return;
             }
 
-            _viewModel.RemoveKeyShares.Execute(new UserPublicKey[] { (UserPublicKey)_sharedWith.Items[index] });
+            await _viewModel.AsyncRemoveKeyShares.ExecuteAsync(new UserPublicKey[] { (UserPublicKey)_sharedWith.Items[index] });
             SetUnshareButtonState();
         }
 
