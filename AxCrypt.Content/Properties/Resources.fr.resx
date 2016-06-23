@@ -152,7 +152,7 @@
     <value>Activer AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
-    <value>Votre code d'activation est &lt;b&gt;{0}&lt;/b&gt;</value>
+    <value>Votre code d'activation est &lt;b&gt;{0}&lt;/b&gt; . Utilisez le dans l'application AxCrypt, ou cliquez sur le bouton ci-dessous pour aller sur le site internet. Ceci va vérifier et activer votre compte. </value>
   </data>
   <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
     <value>Votre code d'activation est {0}</value>
@@ -212,8 +212,19 @@ Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger
   <data name="AuthenticationError" xml:space="preserve">
     <value>La page à laquelle vous souhaitez accéder requière une authentification. S'il vous plait, connectez-vous pour poursuivre. </value>
   </data>
+  <data name="AutoDeletionEmailOutro" xml:space="preserve">
+    <value>Vous n'avez pas besoin de répondre ou faire quoi que ce soit. Si vous ne faites rien, nous n'enverrons plus d'e-mail et votre compte AxCrypt ID sera supprimé définitivement. </value>
+    <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
+  </data>
+  <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
+    <value>Vous nous avez donné votre e-mail pour installer ou utiliser AxCrypt, à travers une application ou le web. Nous vous avons envoyé un code d'activation par e-mail, mais vous ne l'avez pas utilisé. Si vous ne vérifiez pas immédiatement votre compte AxCrypt ID en utilisant le code d'activation, nous allons vous enlever définitivement de notre système. </value>
+  </data>
+  <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
+    <value>Vous êtes en train de supprimer votre AxCrypt ID! </value>
+    <comment>The title of the deletion e-mail</comment>
+  </data>
   <data name="AutoDeletionMailSubject" xml:space="preserve">
-    <value>Effacement de AxCrypt ID</value>
+    <value>Votre compte AxCrypt ID va bientôt être supprimé!</value>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Protection de Fichiers Pour Vous et Votre Equipe par Axcrypt AB
@@ -937,6 +948,10 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>Création de AxCrypt ID déconnecté. </value>
   </data>
+  <data name="OfflineIndicatorText" xml:space="preserve">
+    <value>Hors ligne</value>
+    <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
+  </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Votre version n'est pas à jour. Cliquez ici pour rechercher une mise à jour.</value>
   </data>
@@ -948,6 +963,9 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   </data>
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>Fichier</value>
+  </data>
+  <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
+    <value>Cliquez pour sélectionner un fichier sécurisé à ouvrir. </value>
   </data>
   <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
     <value>Modifier Mot de &amp;Passe</value>
@@ -988,7 +1006,7 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
     <value>Vous avez oubliez votre mot de passe? Cliquez ici.</value>
   </data>
   <data name="PasswordResetMailBody1" xml:space="preserve">
-    <value>Vous avez demandé une réinitialisation du mot de passe de votre compte AxCrypt. Afin d'achever ce processus et choisir un nouveau mot de passe, s'il-vous-plaît cliquez sur le bouton ci-dessous. </value>
+    <value>Vous avez demandé une réinitialisation du mot de passe de votre compte AxCrypt. Cela ne va pas restaurer l'accès à vos fichiers chiffrés ou aux mots de passe, cela va juste vous permettre de vous connecter de nouveau. Afin d'achever ce processus et choisir un nouveau mot de passe, s'il-vous-plaît cliquez sur le bouton ci-dessous. </value>
   </data>
   <data name="PasswordResetMailBodyButton" xml:space="preserve">
     <value>Réinitialiser le mot de passe</value>
