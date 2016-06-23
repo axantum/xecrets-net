@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Mono
@@ -39,8 +41,13 @@ namespace Axantum.AxCrypt.Mono
                 return false;
             }
 
+            if (!email.Split('.').Last().IsValidTopLevelDomain())
+            {
+                return false;
+            }
             return true;
         }
+
         public bool TryParse(string email, out string address)
         {
             address = String.Empty;

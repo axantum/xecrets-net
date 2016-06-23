@@ -27,9 +27,12 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Properties;
 using Axantum.AxCrypt.Core.UI;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -262,6 +265,57 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             string address;
             return New<IEmailParser>().TryParse(email, out address);
+        }
+
+        private static string[] _topLevelDomains = LoadTopLevelDomains();
+
+        /// <summary>
+        /// Loads the top level domains. Get the updated list here: http://data.iana.org/TLD/tlds-alpha-by-domain.txt .
+        /// </summary>
+        /// <returns>A sorted array of TLDs without dots.</returns>
+        private static string[] LoadTopLevelDomains()
+        {
+            List<string> topLevelDomains = new List<string>();
+            using (StringReader sr = new StringReader(Resources.tlds_alpha_by_domain))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line.StartsWith("#"))
+                    {
+                        continue;
+                    }
+                    topLevelDomains.Add(line);
+                }
+            }
+            topLevelDomains.Sort(StringComparer.OrdinalIgnoreCase);
+            return topLevelDomains.ToArray();
+        }
+
+        /// <summary>
+        /// Determines whether the value is a valid top level domain name, whithout
+        /// a preceeding 'dot'.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"></exception>
+        public static bool IsValidTopLevelDomain(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (String.Compare(value, "local", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                return true;
+            }
+
+            if (Array.BinarySearch(_topLevelDomains, value, StringComparer.OrdinalIgnoreCase) < 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

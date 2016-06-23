@@ -359,6 +359,7 @@
     </CodeAnalysisDictionary>
     <Content Include="AboutThisAssembly.txt" />
     <Content Include="resources\json.netlicense.txt" />
+    <Content Include="resources\tlds-alpha-by-domain.txt" />
     <EmbeddedResource Include="resources\axcrypticon.ico" />
     <Content Include="resources\bouncycastlelicense.txt" />
   </ItemGroup>

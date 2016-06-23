@@ -596,5 +596,20 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(roundtripKeys, Is.EqualTo(originalPartialKeys));
         }
+
+        [Test]
+        public static void TestUrlUtilityIsValidTopLevelDomain()
+        {
+            string value = null;
+            Assert.Throws<ArgumentNullException>(() => value.IsValidTopLevelDomain());
+
+            Assert.That(string.Empty.IsValidTopLevelDomain(), Is.False, nameof(string.Empty));
+            Assert.That(".se".IsValidTopLevelDomain(), Is.False, ".se");
+            Assert.That("se".IsValidTopLevelDomain(), Is.True, "se");
+            Assert.That(".xyzx".IsValidTopLevelDomain(), Is.False, ".xyzx");
+            Assert.That("xyzz".IsValidTopLevelDomain(), Is.False, "xyzz");
+            Assert.That("xyz".IsValidTopLevelDomain(), Is.True, "xyz");
+            Assert.That("local".IsValidTopLevelDomain(), Is.True, "local");
+        }
     }
 }

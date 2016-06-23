@@ -86,5 +86,78 @@ namespace Axantum.AxCrypt.Core.Properties {
                 return ResourceManager.GetString("json_netlicense", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Version 2016062300, Last Updated Thu Jun 23 07:07:01 2016 UTC
+        ///AAA
+        ///AARP
+        ///ABB
+        ///ABBOTT
+        ///ABBVIE
+        ///ABLE
+        ///ABOGADO
+        ///ABUDHABI
+        ///AC
+        ///ACADEMY
+        ///ACCENTURE
+        ///ACCOUNTANT
+        ///ACCOUNTANTS
+        ///ACO
+        ///ACTIVE
+        ///ACTOR
+        ///AD
+        ///ADAC
+        ///ADS
+        ///ADULT
+        ///AE
+        ///AEG
+        ///AERO
+        ///AETNA
+        ///AF
+        ///AFL
+        ///AG
+        ///AGAKHAN
+        ///AGENCY
+        ///AI
+        ///AIG
+        ///AIRBUS
+        ///AIRFORCE
+        ///AIRTEL
+        ///AKDN
+        ///AL
+        ///ALIBABA
+        ///ALIPAY
+        ///ALLFINANZ
+        ///ALLY
+        ///ALSACE
+        ///ALSTOM
+        ///AM
+        ///AMICA
+        ///AMSTERDAM
+        ///ANALYTICS
+        ///ANDROID
+        ///ANQUAN
+        ///ANZ
+        ///AO
+        ///APARTMENTS
+        ///APP
+        ///APPLE
+        ///AQ
+        ///AQUARELLE
+        ///AR
+        ///ARAMCO
+        ///ARCHI
+        ///ARMY
+        ///ARPA
+        ///ARTE
+        ///AS
+        ///ASIA
+        ///ASSOCIA [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string tlds_alpha_by_domain {
+            get {
+                return ResourceManager.GetString("tlds_alpha_by_domain", resourceCulture);
+            }
+        }
     }
 }
