@@ -29,16 +29,17 @@ using Axantum.AxCrypt.Core.Portable;
 using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono.Portable
 {
     public class SingleThread : ISingleThread
     {
-        private Semaphore _singleThreadSemaphore = new Semaphore(1, 1);
+        private SemaphoreSlim _singleThreadSemaphore = new SemaphoreSlim(1, 1);
 
-        public virtual void Enter()
+        public virtual Task Enter()
         {
-            _singleThreadSemaphore.WaitOne();
+            return _singleThreadSemaphore.WaitAsync();
         }
 
         public virtual void Leave()
@@ -64,7 +65,7 @@ namespace Axantum.AxCrypt.Mono.Portable
         {
             if (_singleThreadSemaphore != null)
             {
-                _singleThreadSemaphore.Close();
+                _singleThreadSemaphore.Dispose();
                 _singleThreadSemaphore = null;
             }
         }

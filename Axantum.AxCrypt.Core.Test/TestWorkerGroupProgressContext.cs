@@ -96,9 +96,9 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEnterSingleThread()
+        public async static void TestEnterSingleThread()
         {
-            _progress.EnterSingleThread();
+            await _progress.EnterSingleThread();
             _singleThreadMock.Verify(s => s.Enter(), Times.Once);
         }
 

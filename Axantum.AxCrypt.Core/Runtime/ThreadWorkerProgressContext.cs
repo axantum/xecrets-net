@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -103,14 +104,15 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
-        public void EnterSingleThread()
+        public Task EnterSingleThread()
         {
             if (_isSingleThread)
             {
-                return;
+                return Task.FromResult(default(object));
             }
             _progress.EnterSingleThread();
             _isSingleThread = true;
+            return Task.FromResult(default(object));
         }
 
         public void LeaveSingleThread()

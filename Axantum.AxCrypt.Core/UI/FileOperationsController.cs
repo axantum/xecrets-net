@@ -591,7 +591,7 @@ namespace Axantum.AxCrypt.Core.UI
         private async Task<bool> RunSequentiallyAsync(IDataStore fileInfo, Func<IDataStore, Task<bool>> preparation)
         {
             bool ok = false;
-            _progress.EnterSingleThread();
+            await _progress.EnterSingleThread();
             try
             {
                 if (_progress.Cancel)

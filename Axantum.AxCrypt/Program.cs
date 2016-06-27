@@ -112,6 +112,8 @@ namespace Axantum.AxCrypt
 
             Resolve.CommandService.Dispose();
             TypeMap.Register.Clear();
+
+            Environment.ExitCode = 0;
         }
 
         private static void RunBackground(CommandLine commandLine)

@@ -27,6 +27,7 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -127,9 +128,9 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public void EnterSingleThread()
+        public Task EnterSingleThread()
         {
-            _progress.EnterSingleThread();
+            return _progress.EnterSingleThread();
         }
 
         public void LeaveSingleThread()

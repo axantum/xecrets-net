@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -105,9 +106,9 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
-        public void EnterSingleThread()
+        public Task EnterSingleThread()
         {
-            _singleThread.Enter();
+            return _singleThread.Enter();
         }
 
         public void LeaveSingleThread()

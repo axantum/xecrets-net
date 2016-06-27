@@ -28,7 +28,7 @@
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Threading;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -227,8 +227,9 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public void EnterSingleThread()
+        public Task EnterSingleThread()
         {
+            return Task.FromResult(default(object));
         }
 
         public void LeaveSingleThread()

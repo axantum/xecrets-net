@@ -27,6 +27,7 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -48,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         bool AllItemsConfirmed { get; set; }
 
-        void EnterSingleThread();
+        Task EnterSingleThread();
 
         void LeaveSingleThread();
     }
