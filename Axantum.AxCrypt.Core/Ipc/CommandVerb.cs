@@ -41,6 +41,7 @@ namespace Axantum.AxCrypt.Core.Ipc
         Decrypt,
         Open,
         Show,
+        SignOut,
         Exit,
         Wipe,
         RandomRename,

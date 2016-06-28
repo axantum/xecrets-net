@@ -1347,6 +1347,14 @@ namespace Axantum.AxCrypt
                     RestoreWindowWithFocus();
                     break;
 
+                case CommandVerb.SignOut:
+                    if (New<KnownIdentities>().IsLoggedOn)
+                    {
+                        New<KnownIdentities>().DefaultEncryptionIdentity = LogOnIdentity.Empty;
+                        await SignInAsync();
+                    }
+                    break;
+
                 case CommandVerb.Register:
                     Process.Start(Texts.LinkToSignUpWebPage.QueryFormat(Resolve.UserSettings.AccountWebUrl));
                     break;

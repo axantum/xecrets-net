@@ -74,6 +74,7 @@ namespace Axantum.AxCrypt.Core
                 {"start", var => _commandItems.Add(new CommandItem(CommandVerb.Startup, bundleId, NoArguments))},
                 {"show", var => _commandItems.Add(new CommandItem(CommandVerb.Show, bundleId, NoArguments))},
                 {"exit", var => _commandItems.Add(new CommandItem(CommandVerb.Exit, bundleId, NoArguments))},
+                {"signout", var => _commandItems.Add(new CommandItem(CommandVerb.SignOut, bundleId, NoArguments))},
                 {"use_application=", (string path) => _commandItems.Add(new CommandItem(CommandVerb.UseForOpen, bundleId, new string[]{path}))},
                 {"login=", (string name) =>_commandItems.Add(new CommandItem(CommandVerb.LogOn, bundleId, new string[]{name}))},
                 {"passphrase=", (string passphrase) => _commandItems.Add(new CommandItem(CommandVerb.SetPassphrase, bundleId, new string[]{passphrase}))},
