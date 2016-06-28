@@ -181,6 +181,8 @@ namespace Axantum.AxCrypt
             _encryptedPathColumnHeader.Text = Texts.EncryptedPathColumnHeaderText;
             _encryptToolStripButton.ToolTipText = Texts.EncryptToolStripButtonToolTipText;
             _encryptToolStripMenuItem.Text = Texts.EncryptToolStripMenuItemText;
+            _renameToolStripMenuItem.Text = Texts.AnonymousRenameMenuText;
+            _renameToolStripMenuItem.ToolTipText = Texts.AnonymousRenameToolTip;
             _englishLanguageToolStripMenuItem.Text = Texts.EnglishLanguageToolStripMenuItemText;
             _exitToolStripMenuItem.Text = Texts.ExitToolStripMenuItemText;
             _exportMyPrivateKeyToolStripMenuItem.Text = Texts.ExportMyPrivateKeyToolStripMenuItemText;
@@ -518,6 +520,7 @@ namespace Axantum.AxCrypt
             ConfigureSecureWipe(license);
             ConfigureKeyShareMenus(license);
             ConfigureSecretsMenus(license);
+            ConfigureAnonymousRename(license);
         }
 
         private void ConfigureKeyShareMenus(LicensePolicy license)
@@ -559,6 +562,20 @@ namespace Axantum.AxCrypt
             {
                 _secureDeleteToolStripMenuItem.Image = Resources.premium_32px;
                 _secureDeleteToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
+            }
+        }
+
+        private void ConfigureAnonymousRename(LicensePolicy license)
+        {
+            if (license.Has(LicenseCapability.RandomRename))
+            {
+                _renameToolStripMenuItem.Image = null;
+                _renameToolStripMenuItem.ToolTipText = Texts.AnonymousRenameToolTip;
+            }
+            else
+            {
+                _renameToolStripMenuItem.Image = Resources.premium_32px;
+                _renameToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
             }
         }
 
@@ -649,6 +666,7 @@ namespace Axantum.AxCrypt
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RandomRenameEnabled), (bool enabled) => { _renameToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; });
@@ -751,7 +769,8 @@ namespace Axantum.AxCrypt
             _secretsToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.PasswordManagement, (ss, ee) => { Process.Start(Texts.LinkToSecretsPageWithUserNameFormat.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); return Task.FromResult<object>(null); }, sender, e); };
             _decryptToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFiles.ExecuteAsync(null); };
             _encryptToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.EncryptFiles.ExecuteAsync(null); };
-            _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
+            _encryptToolStripMenuItem.Click += (sender, e) => _fileOperationViewModel.EncryptFiles.Execute(null);
+            _renameToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(null); }, sender, e);
             _openEncryptedToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
             _openEncryptedToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
             _secureDeleteToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureWipe, async (ss, ee) => { await _fileOperationViewModel.WipeFiles.ExecuteAsync(null); }, sender, e);
@@ -1169,6 +1188,16 @@ namespace Axantum.AxCrypt
                         ofd.Multiselect = true;
                         break;
 
+                    case FileSelectionType.Rename:
+                        ofd.Title = Texts.AnonymousRenameSelectFilesDialogTitle;
+                        ofd.Multiselect = true;
+                        ofd.CheckFileExists = true;
+                        ofd.CheckPathExists = true;
+                        ofd.DefaultExt = OS.Current.AxCryptExtension;
+                        ofd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
+                        ofd.Multiselect = true;
+                        break;
+
                     case FileSelectionType.Encrypt:
                         ofd.Title = Texts.EncryptFileOpenDialogTitle;
                         ofd.Multiselect = true;
@@ -1311,7 +1340,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case CommandVerb.RandomRename:
-                    await _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(e.Arguments);
+                    await PremiumFeatureAction(LicenseCapability.RandomRename, () => _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(e.Arguments));
                     break;
 
                 case CommandVerb.Show:
@@ -1807,6 +1836,16 @@ namespace Axantum.AxCrypt
             }
 
             Process.Start(Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail));
+        }
+
+        private Task PremiumFeatureAction(LicenseCapability requiredCapability, Func<Task> realHandler)
+        {
+            if (_mainViewModel.License.Has(requiredCapability))
+            {
+                return realHandler();
+            }
+
+            return MessageDialog.ShowOkAsync(this, Texts.WarningTitle, Texts.PremiumFeatureToolTipText);
         }
 
         private void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)

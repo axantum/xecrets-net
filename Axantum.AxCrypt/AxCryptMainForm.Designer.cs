@@ -106,6 +106,7 @@
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
+            this._renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -363,7 +364,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -373,6 +374,7 @@
             this._encryptToolStripMenuItem,
             this._decryptToolStripMenuItem,
             this._encryptedFoldersToolStripMenuItem,
+            this._renameToolStripMenuItem,
             this._addSecureFolderToolStripMenuItem,
             this._toolStripSeparator6,
             this._cleanDecryptedToolStripMenuItem,
@@ -922,6 +924,12 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
+            // _renameToolStripMenuItem
+            // 
+            this._renameToolStripMenuItem.Name = "_renameToolStripMenuItem";
+            this._renameToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._renameToolStripMenuItem.Text = "[&Rename]";
+            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1052,6 +1060,7 @@
         private System.Windows.Forms.ToolStripMenuItem _optionsAutoConvert1xFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _debugOpenReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton _openEncryptedToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem _renameToolStripMenuItem;
     }
 }
 

@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task RandomRenameFilesActionAsync(IEnumerable<string> files)
         {
-            files = files ?? SelectFiles(FileSelectionType.Encrypt);
+            files = files ?? SelectFiles(FileSelectionType.Rename);
             if (!files.Any())
             {
                 return;

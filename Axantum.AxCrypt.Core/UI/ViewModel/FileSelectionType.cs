@@ -35,6 +35,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         Unknown,
         Decrypt,
         Encrypt,
+        Rename,
         Open,
         Wipe,
         WipeConfirm,

@@ -213,6 +213,15 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Select a folder to keep secured with AxCrypt. Existing files will be encrypted now.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AnonymousRenameMenuText" xml:space="preserve">
+    <value>&amp;Anonymous Rename</value>
+  </data>
+  <data name="AnonymousRenameSelectFilesDialogTitle" xml:space="preserve">
+    <value>Select encrypted files to rename!</value>
+  </data>
+  <data name="AnonymousRenameToolTip" xml:space="preserve">
+    <value>Hide the real name of a secured file by renaming it to something random.</value>
+  </data>
   <data name="AppActivateMailBodyVirtualPath" xml:space="preserve">
     <value>~/Templates/AppActivateEmail.cshtml</value>
     <comment>Do Not Translate</comment>
@@ -840,9 +849,6 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Key Management</value>
   </data>
-  <data name="KeyShareToolStripButtonToolTipText" xml:space="preserve">
-    <value>Click to select files to stop securing.</value>
-  </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>The file key is shared with other AxCrypt users.</value>
   </data>
@@ -1448,6 +1454,9 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   <data name="SpanishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Español</value>
     <comment>Do Not Translate</comment>
+  </data>
+  <data name="StopSecuringToolTipText" xml:space="preserve">
+    <value>Click to select files to stop securing.</value>
   </data>
   <data name="SubscriptionsErrorAmount" xml:space="preserve">
     <value>Invalid format for field Amount. Please use decimal format, i.e. 10.50.</value>

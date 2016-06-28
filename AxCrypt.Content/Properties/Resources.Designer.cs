@@ -329,6 +329,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Anonymous Rename.
+        /// </summary>
+        public static string AnonymousRenameMenuText {
+            get {
+                return ResourceManager.GetString("AnonymousRenameMenuText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select encrypted files to rename!.
+        /// </summary>
+        public static string AnonymousRenameSelectFilesDialogTitle {
+            get {
+                return ResourceManager.GetString("AnonymousRenameSelectFilesDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide the real name of a secured file by renaming it to something random..
+        /// </summary>
+        public static string AnonymousRenameToolTip {
+            get {
+                return ResourceManager.GetString("AnonymousRenameToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ~/Templates/AppActivateEmail.cshtml.
         /// </summary>
         public static string AppActivateMailBodyVirtualPath {
@@ -2131,15 +2158,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to select files to stop securing..
-        /// </summary>
-        public static string KeyShareToolStripButtonToolTipText {
-            get {
-                return ResourceManager.GetString("KeyShareToolStripButtonToolTipText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The file key is shared with other AxCrypt users..
         /// </summary>
         public static string KeySharingExistsToolTip {
@@ -3788,6 +3806,15 @@ namespace AxCrypt.Content.Properties {
         public static string SpanishLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("SpanishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to select files to stop securing..
+        /// </summary>
+        public static string StopSecuringToolTipText {
+            get {
+                return ResourceManager.GetString("StopSecuringToolTipText", resourceCulture);
             }
         }
         

@@ -50,6 +50,11 @@ namespace Axantum.AxCrypt
 
         public static DialogResult ShowOk(Form parent, string caption, string message)
         {
+            return ShowOkAsync(parent, caption, message).Result;
+        }
+
+        public static Task<DialogResult> ShowOkAsync(Form parent, string caption, string message)
+        {
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
                 messageDialog.HideExit();
@@ -57,7 +62,7 @@ namespace Axantum.AxCrypt
                 messageDialog.Text = caption;
                 messageDialog._text.Text = message;
 
-                return messageDialog.ShowDialog(parent);
+                return Task.FromResult(messageDialog.ShowDialog(parent));
             }
         }
 

@@ -56,6 +56,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool OpenEncryptedEnabled { get { return GetProperty<bool>(nameof(OpenEncryptedEnabled)); } set { SetProperty(nameof(OpenEncryptedEnabled), value); } }
 
+        public bool RandomRenameEnabled { get { return GetProperty<bool>(nameof(RandomRenameEnabled)); } set { SetProperty(nameof(RandomRenameEnabled), value); } }
+
         public bool WatchedFoldersEnabled { get { return GetProperty<bool>(nameof(WatchedFoldersEnabled)); } set { SetProperty(nameof(WatchedFoldersEnabled), value); } }
 
         public LegacyConversionMode LegacyConversionMode { get { return GetProperty<LegacyConversionMode>(nameof(LegacyConversionMode)); } set { SetProperty(nameof(LegacyConversionMode), value); } }
@@ -152,6 +154,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             DecryptFileEnabled = true;
             OpenEncryptedEnabled = true;
+            RandomRenameEnabled = true;
         }
 
         private void BindPropertyChangedEvents()
