@@ -32,7 +32,10 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Delete()
         {
-            _store.Delete();
+            using (FileLock fileLock = FileLock.Lock(_store))
+            {
+                _store.Delete();
+            }
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Used by Json.NET serializer.")]
@@ -62,11 +65,14 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             string json = String.Empty;
-            if (store.IsAvailable)
+            using (FileLock fileLock = FileLock.Lock(store))
             {
-                using (StreamReader reader = new StreamReader(store.OpenRead(), Encoding.UTF8))
+                if (store.IsAvailable)
                 {
-                    json = reader.ReadToEnd();
+                    using (StreamReader reader = new StreamReader(store.OpenRead(), Encoding.UTF8))
+                    {
+                        json = reader.ReadToEnd();
+                    }
                 }
             }
             KnownPublicKeys knownPublicKeys = serializer.Deserialize<KnownPublicKeys>(json);
@@ -142,9 +148,12 @@ namespace Axantum.AxCrypt.Core.Session
             if (_dirty)
             {
                 string json = _serializer.Serialize(this);
-                using (StreamWriter writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8))
+                using (FileLock fileLock = FileLock.Lock(_store))
                 {
-                    writer.Write(json);
+                    using (StreamWriter writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8))
+                    {
+                        writer.Write(json);
+                    }
                 }
             }
             _dirty = false;

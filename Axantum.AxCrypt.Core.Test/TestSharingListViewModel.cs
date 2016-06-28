@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
@@ -56,6 +57,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             FakeInMemoryDataStoreItem store = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
             TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(store, Resolve.Serializer));
+            TypeMap.Register.New<ILogging>(() => new Logging());
         }
 
         [TearDown]
