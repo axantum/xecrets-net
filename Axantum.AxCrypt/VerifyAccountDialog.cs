@@ -1,6 +1,7 @@
 ﻿using Axantum.AxCrypt.Core.UI.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,8 @@ namespace Axantum.AxCrypt
             _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
             _buttonCancel.Text = Texts.ButtonCancelText;
             _buttonOk.Text = Texts.ButtonOkText;
+            _resendButton.Text = Texts.ResendButtonText;
+            _resendButtonToolTip.SetToolTip(_resendButton, Texts.ResendButtonToolTip);
             _buttonOk.Enabled = false;
             _emailGroupBox.Text = Texts.PromptEmailText;
             _activationCodeGroupBox.Text = Texts.PromptActivationCode;
@@ -131,6 +134,13 @@ namespace Axantum.AxCrypt
                 return false;
             }
             return true;
+        }
+
+        private void ResendButton_Click(object sender, EventArgs e)
+        {
+            UriBuilder url = new UriBuilder(Texts.ResendActivationHyperLink);
+            url.Query = $"email={_viewModel.UserEmail}";
+            Process.Start(url.ToString());
         }
     }
 }
