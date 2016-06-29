@@ -538,11 +538,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;New.
+        ///   Looks up a localized string similar to &amp;Switch.
         /// </summary>
         public static string ButtonNewText {
             get {
                 return ResourceManager.GetString("ButtonNewText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to change the AxCrypt ID e-mail to use for sign in..
+        /// </summary>
+        public static string ButtonNewToolTip {
+            get {
+                return ResourceManager.GetString("ButtonNewToolTip", resourceCulture);
             }
         }
         
@@ -561,6 +570,24 @@ namespace AxCrypt.Content.Properties {
         public static string ButtonOkText {
             get {
                 return ResourceManager.GetString("ButtonOkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Reset.
+        /// </summary>
+        public static string ButtonPasswordResetText {
+            get {
+                return ResourceManager.GetString("ButtonPasswordResetText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to reset your password..
+        /// </summary>
+        public static string ButtonPasswordResetToolTip {
+            get {
+                return ResourceManager.GetString("ButtonPasswordResetToolTip", resourceCulture);
             }
         }
         
@@ -2934,6 +2961,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://account.axcrypt.net/Home/PasswordReset.
+        /// </summary>
+        public static string PasswordResetHyperLink {
+            get {
+                return ResourceManager.GetString("PasswordResetHyperLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot your password? Click here.
         /// </summary>
         public static string PasswordResetLink {
@@ -2981,9 +3017,9 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to If you have previously registered but have forgotten the password, or for some reason not received or lost the activation link, you may re-register and request a new activation e-mail here.
         ///
-        ///&lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
+        ///&lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
         ///
-        ///Enter your e-mail below to a send an activation link to  [rest of string was truncated]&quot;;.
+        ///Enter your e-mail below to a send an [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PasswordResetPageBody {
             get {
@@ -3627,6 +3663,33 @@ namespace AxCrypt.Content.Properties {
         public static string ReportSnapshotOpenMenuItem {
             get {
                 return ResourceManager.GetString("ReportSnapshotOpenMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://account.axcrypt.net/Home/Register.
+        /// </summary>
+        public static string ResendActivationHyperLink {
+            get {
+                return ResourceManager.GetString("ResendActivationHyperLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resend.
+        /// </summary>
+        public static string ResendButtonText {
+            get {
+                return ResourceManager.GetString("ResendButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to resend the activation code to your e-mail..
+        /// </summary>
+        public static string ResendButtonToolTip {
+            get {
+                return ResourceManager.GetString("ResendButtonToolTip", resourceCulture);
             }
         }
         

@@ -1,6 +1,7 @@
 ﻿using Axantum.AxCrypt.Core.UI.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -32,6 +33,9 @@ namespace Axantum.AxCrypt
             _passphraseGroupBox.Text = Texts.PassphrasePrompt;
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
             _newButton.Text = Texts.ButtonNewText;
+            _newButtonToolTip.SetToolTip(_newButton, Texts.ButtonNewToolTip);
+            _resetButton.Text = Texts.ButtonPasswordResetText;
+            _resetButtonToolTip.SetToolTip(_resetButton, Texts.ButtonPasswordResetToolTip);
             _buttonCancel.Text = Texts.ButtonCancelText;
             _buttonOk.Text = Texts.ButtonOkText;
             _emailGroupBox.Text = Texts.PromptEmailText;
@@ -124,9 +128,20 @@ namespace Axantum.AxCrypt
             CenterToParent();
         }
 
-        private void _buttonCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.No;
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            if (!AdHocValidateEmail())
+            {
+                return;
+            }
+            UriBuilder url = new UriBuilder(Texts.PasswordResetHyperLink);
+            url.Query = $"email={_viewModel.UserEmail}";
+            Process.Start(url.ToString());
         }
     }
 }

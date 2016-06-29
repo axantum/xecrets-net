@@ -278,13 +278,25 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>&amp;Hjälp</value>
   </data>
   <data name="ButtonNewText" xml:space="preserve">
-    <value>&amp;Nytt</value>
+    <value>&amp;Byt</value>
+  </data>
+  <data name="ButtonNewToolTip" xml:space="preserve">
+    <value>Klicka för att ändra AxCrypt ID e-postadress att logga in med.</value>
+    <comment>The new AxCrypt ID button tooltip</comment>
   </data>
   <data name="ButtonNoText" xml:space="preserve">
     <value>Nej</value>
   </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="ButtonPasswordResetText" xml:space="preserve">
+    <value>Återställ</value>
+    <comment>Button text for a password reset button</comment>
+  </data>
+  <data name="ButtonPasswordResetToolTip" xml:space="preserve">
+    <value>Klicak för att återställa ditt lösenord.</value>
+    <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Spara</value>
@@ -1023,9 +1035,9 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
   <data name="PasswordResetPageBody" xml:space="preserve">
     <value>Om du har registrerat dig för ett AxCrypt ID men glömt lösenordet eller förlorat aktiveringslänken så kan du omregistrera dig och begära ett nytt aktiveringsmejl här.
 
-&lt;span class="red"&gt;Om du har glömt ditt lösenord kommer du att kunna logga in igen, men du återfår inte åtkomst till poster i lösenordshanteraren eller filer som är skyddade med det gamla lösenordet.&lt;/span&gt;
+&lt;span class="red"&gt;Om du har glömt ditt lösenord kommer du att kunna logga in igen, men du återfår inte åtkomst till filer eller poster i lösenordshanteraren som är skyddade med det gamla lösenordet.&lt;/span&gt;
 
-Ange din epostadress nedan så skickar vi en aktiveringslänk dit. Av integritetsskäl ger vi &lt;b&gt;ingen indikation&lt;/b&gt; på om det gick bra eller inte att skicka meddelandet.</value>
+Ange din epostadress nedan så skickar vi en länk dit. Av integritetsskäl ger vi &lt;b&gt;ingen indikation&lt;/b&gt; på om det gick bra eller inte att skicka meddelandet.</value>
   </data>
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Återställ Lösenord</value>
@@ -1246,6 +1258,13 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ak
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Ta bort från listan men behåll filskyddet</value>
+  </data>
+  <data name="ResendButtonText" xml:space="preserve">
+    <value>Återsänd</value>
+    <comment>A button in a verification dialog that causes the verification to be resent.</comment>
+  </data>
+  <data name="ResendButtonToolTip" xml:space="preserve">
+    <value>Klicka för att återsända aktiveringskoden till din e-post.</value>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Endast Premiumanvändare kan spara lösenordsposter.</value>

@@ -209,6 +209,15 @@ Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger
     <value>Choisissez un dossier à protéger avec AxCrypt. Les fichiers qu'il contient seront chiffrés immédiatement.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AnonymousRenameMenuText" xml:space="preserve">
+    <value>&amp;Anonyme Renommer </value>
+  </data>
+  <data name="AnonymousRenameSelectFilesDialogTitle" xml:space="preserve">
+    <value>Sélectionner des fichiers chiffrés pour renommer! </value>
+  </data>
+  <data name="AnonymousRenameToolTip" xml:space="preserve">
+    <value>Cacher le nom réel d'un fichier sécurisé en le renommant avec un nom au hasard. </value>
+  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>La page à laquelle vous souhaitez accéder requière une authentification. S'il vous plait, connectez-vous pour poursuivre. </value>
   </data>
@@ -748,9 +757,6 @@ Connectez-vous à AxCrypt avec {2}, entrez le code d'activation à 6 chiffres et
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Gestion des Clefs</value>
-  </data>
-  <data name="KeyShareToolStripButtonToolTipText" xml:space="preserve">
-    <value>Cliquez pour choisir les fichiers à ne plus protéger.</value>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>La clef du fichier est partagée avec d'autres utilisateurs d'AxCrypt.</value>
@@ -1302,6 +1308,9 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Attention: Le site va être redémarré dans quelques minutes. Nous vous prions de nous excuser pour la gêne occasionnée.</value>
+  </data>
+  <data name="StopSecuringToolTipText" xml:space="preserve">
+    <value>Cliquez pour choisir les fichiers à ne plus protéger.</value>
   </data>
   <data name="SubscriptionsErrorAmount" xml:space="preserve">
     <value>Format non valide pour le champ Montant. S'il vous plaît utiliser le format décimal, par exemple 10.50.</value>

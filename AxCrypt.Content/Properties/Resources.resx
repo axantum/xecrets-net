@@ -290,13 +290,25 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>&amp;Help</value>
   </data>
   <data name="ButtonNewText" xml:space="preserve">
-    <value>&amp;New</value>
+    <value>&amp;Switch</value>
+  </data>
+  <data name="ButtonNewToolTip" xml:space="preserve">
+    <value>Click to change the AxCrypt ID e-mail to use for sign in.</value>
+    <comment>The new AxCrypt ID button tooltip</comment>
   </data>
   <data name="ButtonNoText" xml:space="preserve">
     <value>&amp;No</value>
   </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="ButtonPasswordResetText" xml:space="preserve">
+    <value>&amp;Reset</value>
+    <comment>Button text for a password reset button</comment>
+  </data>
+  <data name="ButtonPasswordResetToolTip" xml:space="preserve">
+    <value>Click to reset your password.</value>
+    <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Save</value>
@@ -1135,6 +1147,10 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>The password must be at least 10 characters.</value>
   </data>
+  <data name="PasswordResetHyperLink" xml:space="preserve">
+    <value>https://account.axcrypt.net/Home/PasswordReset</value>
+    <comment>The URL to a web page where a password can be reset</comment>
+  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Forgot your password? Click here</value>
   </data>
@@ -1154,9 +1170,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="PasswordResetPageBody" xml:space="preserve">
     <value>If you have previously registered but have forgotten the password, or for some reason not received or lost the activation link, you may re-register and request a new activation e-mail here.
 
-&lt;span class="red"&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
+&lt;span class="red"&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
 
-Enter your e-mail below to a send an activation link to the specified address. For personal integrity reasons, &lt;b&gt;no feedback on the success or failure of this operation will be given&lt;/b&gt;.</value>
+Enter your e-mail below to a send an activation or password reset link to the specified address. For personal integrity reasons, &lt;b&gt;no feedback on the success or failure of this operation will be given&lt;/b&gt;.</value>
   </data>
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Password reset</value>
@@ -1387,6 +1403,16 @@ Subject: AxCrypt Report Snapshot
   </data>
   <data name="ReportSnapshotOpenMenuItem" xml:space="preserve">
     <value>&amp;Open Error Report Snapshot</value>
+  </data>
+  <data name="ResendActivationHyperLink" xml:space="preserve">
+    <value>https://account.axcrypt.net/Home/Register</value>
+  </data>
+  <data name="ResendButtonText" xml:space="preserve">
+    <value>Resend</value>
+    <comment>A button in a verification dialog that causes the verification to be resent.</comment>
+  </data>
+  <data name="ResendButtonToolTip" xml:space="preserve">
+    <value>Click to resend the activation code to your e-mail.</value>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Only premium users are allowed to save password entries.</value>
