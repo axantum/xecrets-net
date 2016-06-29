@@ -105,19 +105,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestUpdateCheckWhenNotExecutable()
-        {
-            var mockUpdateCheck = new Mock<AxCryptUpdateCheck>(new Version(1, 2, 3, 4));
-            TypeMap.Register.New<AxCryptUpdateCheck>(() => mockUpdateCheck.Object);
-
-            using (MainViewModel mvm = New<MainViewModel>())
-            {
-                Assert.That(mvm.AxCryptUpdateCheck.CanExecute(null), Is.False);
-                Assert.Throws<InvalidOperationException>(() => mvm.AxCryptUpdateCheck.Execute(new DateTime(2001, 2, 3)));
-            }
-        }
-
-        [Test]
         public void TestUpdateCheckExecutableWhenSignedIn()
         {
             Version ourVersion = New<IVersion>().Current;
