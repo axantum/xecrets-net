@@ -33,7 +33,7 @@ namespace Axantum.AxCrypt.Common
     public enum VersionUpdateStatus
     {
         Unknown,
-        IsUpToDateOrRecentlyChecked,
+        IsUpToDate,
         NewerVersionIsAvailable,
         ShortTimeSinceLastSuccessfulCheck,
         LongTimeSinceLastSuccessfulCheck,

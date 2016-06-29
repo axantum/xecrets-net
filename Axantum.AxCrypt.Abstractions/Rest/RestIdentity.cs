@@ -21,5 +21,13 @@ namespace Axantum.AxCrypt.Abstractions.Rest
         public string User { get; private set; }
 
         public string Password { get; private set; }
+
+        public bool IsEmpty
+        {
+            get
+            {
+                return string.IsNullOrEmpty(User);
+            }
+        }
     }
 }

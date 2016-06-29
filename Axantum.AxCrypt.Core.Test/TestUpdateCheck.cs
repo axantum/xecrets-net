@@ -211,7 +211,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
-            Assert.That(eventArgs.DownloadVersion.CalculateStatus(thisVersion, utcNow, eventArgs.LastUpdateCheck), Is.EqualTo(VersionUpdateStatus.IsUpToDateOrRecentlyChecked), "The new version was older, so this version is up to date.");
+            Assert.That(eventArgs.DownloadVersion.CalculateStatus(thisVersion, utcNow, eventArgs.LastUpdateCheck), Is.EqualTo(VersionUpdateStatus.IsUpToDate), "The new version was older, so this version is up to date.");
             Assert.That(eventArgs.DownloadVersion.Url, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
             Assert.That(eventArgs.DownloadVersion.Version, Is.EqualTo(newVersion), "The new version should be passed back.");
         }
@@ -241,7 +241,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
-            Assert.That(eventArgs.DownloadVersion.CalculateStatus(thisVersion, utcNow, eventArgs.LastUpdateCheck), Is.EqualTo(VersionUpdateStatus.IsUpToDateOrRecentlyChecked), "The new version was the same and we checked recently.");
+            Assert.That(eventArgs.DownloadVersion.CalculateStatus(thisVersion, utcNow, eventArgs.LastUpdateCheck), Is.EqualTo(VersionUpdateStatus.IsUpToDate), "The new version was the same and we checked recently.");
             Assert.That(eventArgs.DownloadVersion.Url, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
             Assert.That(eventArgs.DownloadVersion.Version, Is.EqualTo(newVersion), "The new version should be passed back.");
         }
@@ -273,7 +273,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
-            Assert.That(eventArgs.DownloadVersion.CalculateStatus(thisVersion, utcNow, eventArgs.LastUpdateCheck), Is.EqualTo(VersionUpdateStatus.IsUpToDateOrRecentlyChecked), "No check should be made, and it is assumed this version is up to date.");
+            Assert.That(eventArgs.DownloadVersion.CalculateStatus(thisVersion, utcNow, eventArgs.LastUpdateCheck), Is.EqualTo(VersionUpdateStatus.IsUpToDate), "No check should be made, and it is assumed this version is up to date.");
             Assert.That(eventArgs.DownloadVersion.Url, Is.EqualTo(updateWebPageUrl), "The original URL should be passed in the event args since no call is made.");
             Assert.That(wasCalled, Is.False, "The web caller should never be called.");
             Assert.That(eventArgs.DownloadVersion.Version, Is.EqualTo(thisVersion), "The new version should not be passed back, since no call should be made.");

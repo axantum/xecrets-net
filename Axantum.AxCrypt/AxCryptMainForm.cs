@@ -1469,7 +1469,8 @@ namespace Axantum.AxCrypt
             VersionUpdateStatus status = _mainViewModel.VersionUpdateStatus;
             switch (status)
             {
-                case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
+                case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
+                case VersionUpdateStatus.IsUpToDate:
                     _softwareStatusButton.ToolTipText = Texts.NoNeedToCheckForUpdatesTooltip;
                     _softwareStatusButton.Image = Resources.bulb_green_40px;
                     break;
@@ -1485,7 +1486,6 @@ namespace Axantum.AxCrypt
                     break;
 
                 case VersionUpdateStatus.Unknown:
-                case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                     _softwareStatusButton.ToolTipText = Texts.ClickToCheckForNewerVersionTooltip;
                     _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
@@ -1922,13 +1922,15 @@ namespace Axantum.AxCrypt
             {
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
+                case VersionUpdateStatus.IsUpToDate:
+                case VersionUpdateStatus.Unknown:
+                    _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue);
+                    break;
+
                 case VersionUpdateStatus.NewerVersionIsAvailable:
-                    Resolve.UserSettings.LastUpdateCheckUtc = New<INow>().Utc;
                     Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
                     break;
 
-                case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
-                case VersionUpdateStatus.Unknown:
                 default:
                     break;
             }

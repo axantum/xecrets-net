@@ -35,11 +35,11 @@ namespace Axantum.AxCrypt.Common
 {
     public class DownloadVersion
     {
-        public static readonly DownloadVersion Empty = new DownloadVersion(null, VersionZero);
-
         public static readonly Version VersionUnknown = new Version(0, 0, 0, 0);
 
         public static readonly Version VersionZero = new Version("2.0.0.0");
+
+        public static readonly DownloadVersion Empty = new DownloadVersion(null, VersionZero);
 
         public DownloadVersion(string link, string version, bool isReliability, bool isSecurity)
         {
@@ -71,9 +71,9 @@ namespace Axantum.AxCrypt.Common
             {
                 return VersionUpdateStatus.NewerVersionIsAvailable;
             }
-            if (Version != VersionUnknown)
+            if (Version != VersionUnknown && Version != VersionZero)
             {
-                return VersionUpdateStatus.IsUpToDateOrRecentlyChecked;
+                return VersionUpdateStatus.IsUpToDate;
             }
             if (lastCheckTimeUtc.AddDays(30) >= utcNow)
             {

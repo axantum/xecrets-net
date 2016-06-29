@@ -208,7 +208,16 @@ namespace Axantum.AxCrypt.Api
 
         public async Task<AxCryptVersion> AxCryptUpdateAsync(Version currentVersion, string cultureName)
         {
-            Uri resource = BaseUrl.PathCombine($"users/axcrypt/version/windowsdesktop?version={currentVersion?.ToString() ?? String.Empty}&culture={cultureName}");
+            Uri resource;
+            if (Identity.IsEmpty)
+            {
+                resource = BaseUrl.PathCombine($"global/axcrypt/version/windowsdesktop?version={currentVersion?.ToString() ?? string.Empty}");
+            }
+            else
+            {
+                resource = BaseUrl.PathCombine($"users/axcrypt/version/windowsdesktop?version={currentVersion?.ToString() ?? string.Empty}&culture={cultureName}");
+            }
+
             if (New<AxCryptOnlineState>().IsOffline)
             {
                 return AxCryptVersion.Empty;

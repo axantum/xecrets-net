@@ -136,8 +136,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DebugMode = _userSettings.DebugMode;
             TryBrokenFile = _userSettings.TryBrokenFile;
             Title = String.Empty;
-            VersionUpdateStatus = VersionUpdateStatus.Unknown;
             DownloadVersion = DownloadVersion.Empty;
+            VersionUpdateStatus = DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, _userSettings.LastUpdateCheckUtc);
             License = New<LicensePolicy>();
             LegacyConversionMode = Resolve.UserSettings.LegacyConversionMode;
 
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ClearPassphraseMemory = new DelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
             RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
-            AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc), (utc) => LoggedOn);
+            AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc));
             LicenseUpdate = new DelegateAction<object>((o) => License = New<LicensePolicy>());
 
             DecryptFileEnabled = true;
