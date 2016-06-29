@@ -94,8 +94,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool TryBrokenFile { get { return GetProperty<bool>(nameof(TryBrokenFile)); } set { SetProperty(nameof(TryBrokenFile), value); } }
 
-        public bool Working { get { return GetProperty<bool>(nameof(Working)); } set { SetProperty(nameof(Working), value); } }
-
         public LicensePolicy License { get { return GetProperty<LicensePolicy>(nameof(License)); } set { SetProperty(nameof(License), value); } }
 
         public IAction RemoveRecentFiles { get; private set; }
@@ -174,13 +172,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SubscribeToModelEvents()
         {
             Resolve.SessionNotify.Notification += HandleSessionChanged;
-            New<IProgressBackground>().WorkStatusChanged += HandleWorkStatusChanged;
             _fileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
-        }
-
-        private void HandleWorkStatusChanged(object sender, EventArgs e)
-        {
-            Working = New<IProgressBackground>().Busy;
         }
 
         public bool CanShare(IEnumerable<IDataStore> items)
@@ -442,7 +434,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 _fileSystemState.ActiveFileChanged -= HandleActiveFileChangedEvent;
                 Resolve.SessionNotify.Notification -= HandleSessionChanged;
-                New<IProgressBackground>().WorkStatusChanged -= HandleWorkStatusChanged;
 
                 _axCryptUpdateCheck.AxCryptUpdate -= Handle_VersionUpdate;
                 _axCryptUpdateCheck.Dispose();

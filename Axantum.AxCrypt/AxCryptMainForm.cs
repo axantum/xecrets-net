@@ -1702,7 +1702,7 @@ namespace Axantum.AxCrypt
 
         private void WaitForBackgroundToComplete()
         {
-            while (_mainViewModel.Working)
+            while (New<IProgressBackground>().Busy)
             {
                 Application.DoEvents();
             }
@@ -1735,7 +1735,7 @@ namespace Axantum.AxCrypt
 
             try
             {
-                while (_mainViewModel.Working)
+                while (New<IProgressBackground>().Busy)
                 {
                     Application.DoEvents();
                 }

@@ -104,27 +104,33 @@ namespace Axantum.AxCrypt.Forms.Implementation
         private async Task BackgroundWorkWithProgressOnUIThreadAsync(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete, IProgressContext progress)
         {
             ProgressBar progressBar = CreateProgressBar(progress);
-            OnProgressBarCreated(new ControlEventArgs(progressBar));
-            progress.Progressing += (object sender, ProgressEventArgs e) =>
-            {
-                progressBar.Value = e.Percent;
-            };
-
-            Interlocked.Increment(ref _workerCount);
-            OnWorkStatusChanged();
-
-            FileOperationContext result = await Task.Run(async () => await work(progress));
             try
             {
-                complete(result);
-                progressBar.Parent = null;
+                OnProgressBarCreated(new ControlEventArgs(progressBar));
+                progress.Progressing += (object sender, ProgressEventArgs e) =>
+                {
+                    progressBar.Value = e.Percent;
+                };
+
+                try
+                {
+                    Interlocked.Increment(ref _workerCount);
+                    OnWorkStatusChanged();
+
+                    FileOperationContext result = await Task.Run(async () => await work(progress));
+                    complete(result);
+                    progressBar.Parent = null;
+                }
+                finally
+                {
+                    Interlocked.Decrement(ref _workerCount);
+                }
+                OnWorkStatusChanged();
             }
             finally
             {
-                Interlocked.Decrement(ref _workerCount);
                 progressBar.Dispose();
             }
-            OnWorkStatusChanged();
         }
 
         private ProgressBar CreateProgressBar(IProgressContext progress)

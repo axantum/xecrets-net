@@ -375,19 +375,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
-                if (Resolve.Log.IsInfoEnabled)
-                {
-                    Resolve.Log.LogInfo("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
-                }
-                if (activeFile.DecryptedFileInfo.IsWriteProtected)
-                {
-                    activeFile.DecryptedFileInfo.IsWriteProtected = false;
-                }
-                New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
-                if (activeFile.DecryptedFileInfo.Container.IsAvailable)
-                {
-                    activeFile.DecryptedFileInfo.Container.Delete();
-                }
+                WipeActiveFile(activeFile, progress);
             }
             catch (IOException ioex)
             {
@@ -400,14 +388,41 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
+            if (activeFile.DecryptedFileInfo.Container.IsAvailable)
+            {
+                activeFile.DecryptedFileInfo.Container.Delete();
+            }
+
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
+            return activeFile;
+        }
+
+        private static void WipeActiveFile(ActiveFile activeFile, IProgressContext progress)
+        {
+            if (!activeFile.DecryptedFileInfo.IsAvailable)
+            {
+                if (Resolve.Log.IsInfoEnabled)
+                {
+                    Resolve.Log.LogInfo("Found '{0}' from '{1}' to be already deleted.".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                }
+                return;
+            }
 
             if (Resolve.Log.IsInfoEnabled)
             {
-                Resolve.Log.LogInfo("Deleted '{0}' from '{1}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                Resolve.Log.LogInfo("Wiping '{0}' from '{1}' .".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
 
-            return activeFile;
+            if (activeFile.DecryptedFileInfo.IsWriteProtected)
+            {
+                activeFile.DecryptedFileInfo.IsWriteProtected = false;
+            }
+            New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
+
+            if (Resolve.Log.IsInfoEnabled)
+            {
+                Resolve.Log.LogInfo("Wiped '{0}' from '{1}' .".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+            }
         }
     }
 }
