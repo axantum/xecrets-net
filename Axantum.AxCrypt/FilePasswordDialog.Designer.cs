@@ -45,6 +45,8 @@
             this.ButtonPanel = new System.Windows.Forms.Panel();
             this._cancelButton = new System.Windows.Forms.Button();
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this._moreButton = new System.Windows.Forms.Button();
+            this._moreButtonToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.DialogFlowLayoutPanel.SuspendLayout();
             this.FileNamePanel.SuspendLayout();
             this._fileNameGroupBox.SuspendLayout();
@@ -125,6 +127,7 @@
             // _passphraseGroupBox
             // 
             this._passphraseGroupBox.AutoSize = true;
+            this._passphraseGroupBox.Controls.Add(this._moreButton);
             this._passphraseGroupBox.Controls.Add(this._passphraseTextBox);
             this._passphraseGroupBox.Controls.Add(this._showPassphraseCheckBox);
             this._passphraseGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -221,6 +224,16 @@
             // 
             this._errorProvider1.ContainerControl = this;
             // 
+            // _moreButton
+            // 
+            this._moreButton.Location = new System.Drawing.Point(202, 42);
+            this._moreButton.Name = "_moreButton";
+            this._moreButton.Size = new System.Drawing.Size(75, 23);
+            this._moreButton.TabIndex = 2;
+            this._moreButton.Text = "[More...]";
+            this._moreButton.UseVisualStyleBackColor = true;
+            this._moreButton.Click += new System.EventHandler(this.MoreButton_Click);
+            // 
             // FilePasswordDialog
             // 
             this.AcceptButton = this._okButton;
@@ -274,5 +287,7 @@
         private System.Windows.Forms.TextBox _passphraseTextBox;
         private System.Windows.Forms.TextBox _fileNameTextBox;
         private System.Windows.Forms.TextBox _keyFileTextBox;
+        private System.Windows.Forms.Button _moreButton;
+        private System.Windows.Forms.ToolTip _moreButtonToolTip;
     }
 }

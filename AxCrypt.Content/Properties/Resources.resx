@@ -1039,6 +1039,14 @@ Internet is NOT REQUIRED to use AxCrypt after this first time.</value>
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Unexpected Error!</value>
   </data>
+  <data name="MoreButtonText" xml:space="preserve">
+    <value>More...</value>
+    <comment>A 'More...' button text</comment>
+  </data>
+  <data name="MoreKeyFileToolTop" xml:space="preserve">
+    <value>Click to enter the name of a key file. Only use if you know you used a key file when securing this file with the previous version of AxCrypt.</value>
+    <comment>A tooltip for a more button displaying a key file entry field</comment>
+  </data>
   <data name="MyAxCryptFolderName" xml:space="preserve">
     <value>My AxCrypt</value>
     <comment>The folder name used for default watching</comment>

@@ -2671,6 +2671,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to More....
+        /// </summary>
+        public static string MoreButtonText {
+            get {
+                return ResourceManager.GetString("MoreButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to enter the name of a key file. Only use if you know you used a key file when securing this file with the previous version of AxCrypt..
+        /// </summary>
+        public static string MoreKeyFileToolTop {
+            get {
+                return ResourceManager.GetString("MoreKeyFileToolTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My AxCrypt.
         /// </summary>
         public static string MyAxCryptFolderName {

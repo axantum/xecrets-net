@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ShowPassphrase = New<IUserSettings>().DisplayDecryptPassphrase;
             PassphraseText = string.Empty;
             FileName = string.IsNullOrEmpty(_encryptedFileFullName) ? string.Empty : New<IDataStore>(_encryptedFileFullName).Name;
-            AskForKeyFile = ShouldAskForKeyFile(_encryptedFileFullName);
+            IsLegacyFile = IsLegacyFileInternal(_encryptedFileFullName);
             KeyFileName = string.Empty;
         }
 
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string FileName { get { return GetProperty<string>(nameof(FileName)); } set { SetProperty(nameof(FileName), value); } }
 
-        public bool AskForKeyFile { get { return GetProperty<bool>(nameof(AskForKeyFile)); } set { SetProperty(nameof(AskForKeyFile), value); } }
+        public bool IsLegacyFile { get { return GetProperty<bool>(nameof(IsLegacyFile)); } set { SetProperty(nameof(IsLegacyFile), value); } }
 
         public string KeyFileName { get { return GetProperty<string>(nameof(KeyFileName)); } set { SetProperty(nameof(KeyFileName), value); } }
 
@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private static bool ShouldAskForKeyFile(string encryptedFileFullName)
+        private static bool IsLegacyFileInternal(string encryptedFileFullName)
         {
             if (string.IsNullOrEmpty(encryptedFileFullName))
             {

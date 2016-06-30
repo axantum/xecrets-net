@@ -61,8 +61,11 @@ namespace Axantum.AxCrypt
             _showPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
             _cancelButton.Text = Texts.ButtonCancelText;
             _okButton.Text = Texts.ButtonOkText;
+            _moreButton.Text = Texts.MoreButtonText;
+            _moreButtonToolTip.SetToolTip(_moreButton, Texts.MoreKeyFileToolTop);
             _fileNameGroupBox.Text = Texts.PromptFileText;
             _keyFileGroupBox.Text = Texts.KeyFilePrompt;
+            KeyFilePanel.Visible = false;
         }
 
         private void InitializePropertyValues()
@@ -76,7 +79,7 @@ namespace Axantum.AxCrypt
         {
             ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.ShowPassphrase), (bool show) => { _passphraseTextBox.UseSystemPasswordChar = !show; _showPassphraseCheckBox.Checked = show; });
             ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.FileName), (string fileName) => { _fileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
-            ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.AskForKeyFile), (bool askForKeyFile) => { KeyFilePanel.Visible = askForKeyFile; });
+            ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.IsLegacyFile), (bool isLegacy) => { _moreButton.Visible = isLegacy; });
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -149,6 +152,12 @@ namespace Axantum.AxCrypt
                     _keyFileTextBox.Focus();
                 }
             }
+        }
+
+        private void MoreButton_Click(object sender, EventArgs e)
+        {
+            KeyFilePanel.Visible = true;
+            _moreButton.Visible = false;
         }
     }
 }
