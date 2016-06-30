@@ -70,7 +70,7 @@
             // 
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonCancel.Location = new System.Drawing.Point(89, 7);
+            this._buttonCancel.Location = new System.Drawing.Point(95, 7);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
             this._buttonCancel.TabIndex = 1;
@@ -86,7 +86,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 59);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(340, 128);
+            this.panel1.Size = new System.Drawing.Size(364, 128);
             this.panel1.TabIndex = 1;
             // 
             // _panel1
@@ -98,13 +98,13 @@
             this._panel1.Controls.Add(this._buttonOk);
             this._panel1.Location = new System.Drawing.Point(3, 82);
             this._panel1.Name = "_panel1";
-            this._panel1.Size = new System.Drawing.Size(334, 37);
+            this._panel1.Size = new System.Drawing.Size(361, 37);
             this._panel1.TabIndex = 3;
             // 
             // _resetButton
             // 
             this._resetButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._resetButton.Location = new System.Drawing.Point(253, 7);
+            this._resetButton.Location = new System.Drawing.Point(271, 7);
             this._resetButton.Name = "_resetButton";
             this._resetButton.Size = new System.Drawing.Size(75, 23);
             this._resetButton.TabIndex = 3;
@@ -116,7 +116,7 @@
             // 
             this._newButton.DialogResult = System.Windows.Forms.DialogResult.Retry;
             this._newButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._newButton.Location = new System.Drawing.Point(171, 7);
+            this._newButton.Location = new System.Drawing.Point(183, 7);
             this._newButton.Name = "_newButton";
             this._newButton.Size = new System.Drawing.Size(75, 23);
             this._newButton.TabIndex = 2;
@@ -131,7 +131,7 @@
             this._passphraseGroupBox.Location = new System.Drawing.Point(12, 6);
             this._passphraseGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 13);
             this._passphraseGroupBox.Name = "_passphraseGroupBox";
-            this._passphraseGroupBox.Size = new System.Drawing.Size(319, 73);
+            this._passphraseGroupBox.Size = new System.Drawing.Size(338, 73);
             this._passphraseGroupBox.TabIndex = 0;
             this._passphraseGroupBox.TabStop = false;
             this._passphraseGroupBox.Text = "[Enter Password]";
@@ -152,7 +152,7 @@
             this._passphrase.AcceptsReturn = true;
             this._passphrase.Location = new System.Drawing.Point(7, 20);
             this._passphrase.Name = "_passphrase";
-            this._passphrase.Size = new System.Drawing.Size(306, 20);
+            this._passphrase.Size = new System.Drawing.Size(312, 20);
             this._passphrase.TabIndex = 0;
             this._passphrase.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
             // 
@@ -163,7 +163,7 @@
             this.EmailPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.EmailPanel.Location = new System.Drawing.Point(0, 0);
             this.EmailPanel.Name = "EmailPanel";
-            this.EmailPanel.Size = new System.Drawing.Size(340, 59);
+            this.EmailPanel.Size = new System.Drawing.Size(364, 59);
             this.EmailPanel.TabIndex = 0;
             // 
             // _emailGroupBox
@@ -201,7 +201,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this._buttonCancel;
-            this.ClientSize = new System.Drawing.Size(340, 187);
+            this.ClientSize = new System.Drawing.Size(364, 187);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.EmailPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
