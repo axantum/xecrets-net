@@ -9,6 +9,8 @@ namespace Axantum.AxCrypt.Common
 {
     public static class FrameworkTypeExtensions
     {
+        public static readonly Task CompletedTask = Task.FromResult(default(object));
+
         /// <summary>
         /// Shorthand extension identical to ConfigureAwait(false), i.e. do not require to resume on captured context.
         /// </summary>

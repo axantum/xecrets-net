@@ -1,5 +1,5 @@
-﻿using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
+﻿using Axantum.AxCrypt.Forms.Properties;
+using Axantum.AxCrypt.Forms.Style;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Forms
 {
     public class StyledMessageBase : Form
     {

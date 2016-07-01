@@ -1,12 +1,12 @@
-﻿using Axantum.AxCrypt.Forms.Style;
-using Axantum.AxCrypt.Properties;
+﻿using Axantum.AxCrypt.Forms.Properties;
+using Axantum.AxCrypt.Forms.Style;
 using AxCrypt.Content;
 using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Forms
 {
     public partial class ConfirmWipeDialog : StyledMessageBase
     {

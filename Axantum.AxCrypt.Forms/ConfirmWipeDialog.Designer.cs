@@ -1,4 +1,4 @@
-﻿namespace Axantum.AxCrypt
+﻿namespace Axantum.AxCrypt.Forms
 {
     partial class ConfirmWipeDialog
     {

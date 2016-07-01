@@ -1622,6 +1622,12 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Updating Status</value>
   </data>
+  <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
+    <value>Upgrade 1.x Files</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
+    <value>Select locations to search for files secured with AxCrypt 1.x and upgrade them.</value>
+  </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Get Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>

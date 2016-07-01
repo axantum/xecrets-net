@@ -26,22 +26,26 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.UI.ViewModel
+namespace Axantum.AxCrypt.Core.UI
 {
-    public enum FileSelectionType
+    public class FileSelectionEventArgs : EventArgs
     {
-        Unknown,
-        Decrypt,
-        Encrypt,
-        Rename,
-        Open,
-        Wipe,
-        WipeConfirm,
-        SaveAsEncrypted,
-        SaveAsDecrypted,
-        ImportPublicKeys,
-        ImportPrivateKeys,
+        public FileSelectionEventArgs(IEnumerable<string> files)
+        {
+            SelectedFiles = new List<string>(files);
+        }
+
+        public FileSelectionType FileSelectionType { get; set; }
+
+        public bool Cancel { get; set; }
+
+        public bool ConfirmAll { get; set; }
+
+        public bool Skip { get; set; }
+
+        public IList<string> SelectedFiles { get; private set; }
     }
 }

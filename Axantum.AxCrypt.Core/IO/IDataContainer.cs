@@ -77,8 +77,13 @@ namespace Axantum.AxCrypt.Core.IO
         IDataContainer FolderItemInfo(string item);
 
         /// <summary>
-        /// Enumerate all files (not folders) in this folder, if it's a folder.
+        /// Enumerate all files (not folders) in this folder.
         /// </summary>
         IEnumerable<IDataStore> Files { get; }
+
+        /// <summary>
+        /// Enumerate all folders (not files) in this folder.
+        /// </summary>
+        IEnumerable<IDataContainer> Folders { get; }
     }
 }

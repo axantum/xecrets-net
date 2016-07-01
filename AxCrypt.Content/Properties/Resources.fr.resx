@@ -278,13 +278,25 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
     <value>&amp;Aide</value>
   </data>
   <data name="ButtonNewText" xml:space="preserve">
-    <value>&amp;Nouveau</value>
+    <value>&amp;Changer</value>
+  </data>
+  <data name="ButtonNewToolTip" xml:space="preserve">
+    <value>Cliquez ici pour changer l'e-mail AxCrypt ID utilisé pour vous connecter. </value>
+    <comment>The new AxCrypt ID button tooltip</comment>
   </data>
   <data name="ButtonNoText" xml:space="preserve">
     <value>&amp;Non</value>
   </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="ButtonPasswordResetText" xml:space="preserve">
+    <value>&amp;Réinitialisation</value>
+    <comment>Button text for a password reset button</comment>
+  </data>
+  <data name="ButtonPasswordResetToolTip" xml:space="preserve">
+    <value>Cliquez ici pour réinitialiser votre mot de passe. </value>
+    <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Enregistrer</value>
@@ -907,6 +919,14 @@ Après sa première utilisation, Internet n'est PAS NECESSAIRE à AxCrypt. </val
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Erreur Inattendue!</value>
   </data>
+  <data name="MoreButtonText" xml:space="preserve">
+    <value>Plus... </value>
+    <comment>A 'More...' button text</comment>
+  </data>
+  <data name="MoreKeyFileToolTop" xml:space="preserve">
+    <value>Cliquez ici pour entrer le nom d'un Fichier Clé. Utilisez uniquement si vous savez que vous utilisiez un Fichier Clé lorsque vous avez sécurisé ce fichier avec l'ancienne version d'AxCrypt. </value>
+    <comment>A tooltip for a more button displaying a key file entry field</comment>
+  </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Créer un nouveau mot de passe</value>
   </data>
@@ -1023,9 +1043,9 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   <data name="PasswordResetPageBody" xml:space="preserve">
     <value>Si vous avez un compte mais que vous avez oublié le mot de passe, ou si vous n'avez pas reçu le lien d'activation, vous pouvez demander l'envoi d'un nouvel email d'activation ici.
 
-&lt;span class="red"&gt;Avec ce nouveau lien d'activation, vous pourrez à nouveau vous connecter. Cependant, toutes données chiffrées auparavant avec un ancien mot de passe oublié seront inaccessibles, même à nous.&lt;/span&gt;
+&lt;span class="red"&gt;Avec ce nouveau lien d'activation, vous pourrez à nouveau vous connecter. Cependant, toutes données chiffrées auparavant avec un ancien mot de passe oublié seront inaccessibles, ainsi que les informations stockées dans le gestionnaire de mots de passe, et nous ne pouvons pas les déchiffrer.&lt;/span&gt;
 
-Saisissez votre email ci-dessous, afin d'y recevoir votre lien d'activation. Pour des raisons de confidentialité, &lt;b&gt;nous ne donnons aucune confirmation du succès ou de l'échec de cette opération.&lt;/b&gt;</value>
+Saisissez votre email ci-dessous, afin d'y recevoir votre lien d'activation ou une réinitialisation de mot de passe. Pour des raisons de confidentialité, &lt;b&gt;nous ne donnons aucune confirmation du succès ou de l'échec de cette opération.&lt;/b&gt;</value>
   </data>
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Réinitialiser le mot de passe</value>
@@ -1246,6 +1266,13 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code d'activation. </value>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Retirer de la liste mais laisser le fichier protégé</value>
   </data>
+  <data name="ResendButtonText" xml:space="preserve">
+    <value>Envoyer de nouveau</value>
+    <comment>A button in a verification dialog that causes the verification to be resent.</comment>
+  </data>
+  <data name="ResendButtonToolTip" xml:space="preserve">
+    <value>Cliquez ici pour envoyer de nouveau votre code d'activation par e-mail. </value>
+  </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Seuls les utilisateurs Premium sont autorisés à enregistrer des entrées des mots de passe.</value>
   </data>
@@ -1401,6 +1428,12 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Mise à jour de l'Etat du fichier</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
+    <value>Mettre à niveau AxCrypt 1.x</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
+    <value>Sélectionner un emplacement pour chercher des fichiers sécurisés avec AxCrypt 1.x et les mettre à niveau. </value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Obtenez Premium! </value>

@@ -35,6 +35,11 @@
             this._watchedFoldersListView = new System.Windows.Forms.ListView();
             this._watchedFolderColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._recentFilesTabPage = new System.Windows.Forms.TabPage();
+            this._recentFilesListView = new Axantum.AxCrypt.RecentFilesListView();
+            this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -46,6 +51,7 @@
             this._encryptedFoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._addSecureFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._upgradeLegacyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this._cleanDecryptedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -102,11 +108,6 @@
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
-            this._recentFilesListView = new Axantum.AxCrypt.RecentFilesListView();
-            this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -233,7 +234,7 @@
             this._watchedFoldersTabPage.Location = new System.Drawing.Point(4, 22);
             this._watchedFoldersTabPage.Name = "_watchedFoldersTabPage";
             this._watchedFoldersTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this._watchedFoldersTabPage.Size = new System.Drawing.Size(640, 150);
+            this._watchedFoldersTabPage.Size = new System.Drawing.Size(650, 150);
             this._watchedFoldersTabPage.TabIndex = 1;
             this._watchedFoldersTabPage.Text = "[Encrypted Folders]";
             this._watchedFoldersTabPage.UseVisualStyleBackColor = true;
@@ -248,7 +249,7 @@
             this._watchedFoldersListView.Location = new System.Drawing.Point(3, 3);
             this._watchedFoldersListView.Name = "_watchedFoldersListView";
             this._watchedFoldersListView.ShowItemToolTips = true;
-            this._watchedFoldersListView.Size = new System.Drawing.Size(634, 144);
+            this._watchedFoldersListView.Size = new System.Drawing.Size(644, 144);
             this._watchedFoldersListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this._watchedFoldersListView.TabIndex = 2;
             this._watchedFoldersListView.UseCompatibleStateImageBehavior = false;
@@ -269,6 +270,43 @@
             this._recentFilesTabPage.TabIndex = 2;
             this._recentFilesTabPage.Text = "[Recent Files]";
             this._recentFilesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // _recentFilesListView
+            // 
+            this._recentFilesListView.AllowDrop = true;
+            this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._decryptedFileColumnHeader,
+            this._lastAccessTimeColumnHeader,
+            this._encryptedPathColumnHeader,
+            this._cryptoName});
+            this._recentFilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._recentFilesListView.FullRowSelect = true;
+            this._recentFilesListView.Location = new System.Drawing.Point(3, 3);
+            this._recentFilesListView.Name = "_recentFilesListView";
+            this._recentFilesListView.ShowItemToolTips = true;
+            this._recentFilesListView.Size = new System.Drawing.Size(644, 144);
+            this._recentFilesListView.TabIndex = 0;
+            this._recentFilesListView.UseCompatibleStateImageBehavior = false;
+            this._recentFilesListView.View = System.Windows.Forms.View.Details;
+            // 
+            // _decryptedFileColumnHeader
+            // 
+            this._decryptedFileColumnHeader.Text = "[Document]";
+            this._decryptedFileColumnHeader.Width = 159;
+            // 
+            // _lastAccessTimeColumnHeader
+            // 
+            this._lastAccessTimeColumnHeader.Text = "[Time]";
+            this._lastAccessTimeColumnHeader.Width = 180;
+            // 
+            // _encryptedPathColumnHeader
+            // 
+            this._encryptedPathColumnHeader.Text = "[Encrypted]";
+            this._encryptedPathColumnHeader.Width = 169;
+            // 
+            // _cryptoName
+            // 
+            this._cryptoName.Text = "[Algorithm]";
             // 
             // _statusTabControl
             // 
@@ -327,7 +365,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -339,6 +377,7 @@
             this._encryptedFoldersToolStripMenuItem,
             this._renameToolStripMenuItem,
             this._addSecureFolderToolStripMenuItem,
+            this._upgradeLegacyMenuItem,
             this._toolStripSeparator6,
             this._cleanDecryptedToolStripMenuItem,
             this._toolStripSeparator3,
@@ -360,70 +399,76 @@
             // 
             this._openEncryptedToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.open_encrypted;
             this._openEncryptedToolStripMenuItem.Name = "_openEncryptedToolStripMenuItem";
-            this._openEncryptedToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._openEncryptedToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._openEncryptedToolStripMenuItem.Text = "[&Open Encrypted]";
             // 
             // _encryptToolStripMenuItem
             // 
             this._encryptToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.encrypt;
             this._encryptToolStripMenuItem.Name = "_encryptToolStripMenuItem";
-            this._encryptToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._encryptToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._encryptToolStripMenuItem.Text = "[&Encrypt]";
             // 
             // _decryptToolStripMenuItem
             // 
             this._decryptToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.decrypt;
             this._decryptToolStripMenuItem.Name = "_decryptToolStripMenuItem";
-            this._decryptToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._decryptToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._decryptToolStripMenuItem.Text = "[&Decrypt]";
             // 
             // _encryptedFoldersToolStripMenuItem
             // 
             this._encryptedFoldersToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.folder;
             this._encryptedFoldersToolStripMenuItem.Name = "_encryptedFoldersToolStripMenuItem";
-            this._encryptedFoldersToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._encryptedFoldersToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._encryptedFoldersToolStripMenuItem.Text = "[Encrypted &Folders]";
             // 
             // _renameToolStripMenuItem
             // 
             this._renameToolStripMenuItem.Name = "_renameToolStripMenuItem";
-            this._renameToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._renameToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._renameToolStripMenuItem.Text = "[&Rename]";
             // 
             // _addSecureFolderToolStripMenuItem
             // 
             this._addSecureFolderToolStripMenuItem.Name = "_addSecureFolderToolStripMenuItem";
-            this._addSecureFolderToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._addSecureFolderToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._addSecureFolderToolStripMenuItem.Text = "[Add &Secure Folder]";
+            // 
+            // _upgradeLegacyMenuItem
+            // 
+            this._upgradeLegacyMenuItem.Name = "_upgradeLegacyMenuItem";
+            this._upgradeLegacyMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._upgradeLegacyMenuItem.Text = "[Upgrade AxCrypt 1.x Files]";
             // 
             // _toolStripSeparator6
             // 
             this._toolStripSeparator6.Name = "_toolStripSeparator6";
-            this._toolStripSeparator6.Size = new System.Drawing.Size(175, 6);
+            this._toolStripSeparator6.Size = new System.Drawing.Size(212, 6);
             // 
             // _cleanDecryptedToolStripMenuItem
             // 
             this._cleanDecryptedToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.clean_broom_red;
             this._cleanDecryptedToolStripMenuItem.Name = "_cleanDecryptedToolStripMenuItem";
-            this._cleanDecryptedToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._cleanDecryptedToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._cleanDecryptedToolStripMenuItem.Text = "[&Clean Decrypted]";
             // 
             // _toolStripSeparator3
             // 
             this._toolStripSeparator3.Name = "_toolStripSeparator3";
-            this._toolStripSeparator3.Size = new System.Drawing.Size(175, 6);
+            this._toolStripSeparator3.Size = new System.Drawing.Size(212, 6);
             // 
             // _secureDeleteToolStripMenuItem
             // 
             this._secureDeleteToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.delete;
             this._secureDeleteToolStripMenuItem.Name = "_secureDeleteToolStripMenuItem";
-            this._secureDeleteToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._secureDeleteToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._secureDeleteToolStripMenuItem.Text = "[&Secure Delete]";
             // 
             // _toolStripSeparator2
             // 
             this._toolStripSeparator2.Name = "_toolStripSeparator2";
-            this._toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
+            this._toolStripSeparator2.Size = new System.Drawing.Size(212, 6);
             // 
             // _optionsToolStripMenuItem
             // 
@@ -435,7 +480,7 @@
             this._optionsClearAllSettingsAndExitToolStripMenuItem});
             this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
             this._optionsToolStripMenuItem.Name = "_optionsToolStripMenuItem";
-            this._optionsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._optionsToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsToolStripMenuItem.Text = "[O&ptions]";
             // 
             // _optionsLanguageToolStripMenuItem
@@ -510,7 +555,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(212, 6);
             // 
             // _keyManagementToolStripMenuItem
             // 
@@ -524,7 +569,7 @@
             this._createAccountToolStripMenuItem});
             this._keyManagementToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.key_management;
             this._keyManagementToolStripMenuItem.Name = "_keyManagementToolStripMenuItem";
-            this._keyManagementToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._keyManagementToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._keyManagementToolStripMenuItem.Text = "[&Key Management]";
             // 
             // _importOthersSharingKeyToolStripMenuItem
@@ -585,30 +630,30 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(212, 6);
             // 
             // _signInToolStripMenuItem
             // 
             this._signInToolStripMenuItem.Name = "_signInToolStripMenuItem";
-            this._signInToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._signInToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._signInToolStripMenuItem.Text = "[Sign &In]";
             // 
             // _signOutToolStripMenuItem
             // 
             this._signOutToolStripMenuItem.Name = "_signOutToolStripMenuItem";
-            this._signOutToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._signOutToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._signOutToolStripMenuItem.Text = "[Sign &Out]";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(212, 6);
             // 
             // _exitToolStripMenuItem
             // 
             this._exitToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.exit;
             this._exitToolStripMenuItem.Name = "_exitToolStripMenuItem";
-            this._exitToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._exitToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._exitToolStripMenuItem.Text = "[E&xit]";
             this._exitToolStripMenuItem.Click += new System.EventHandler(this._exitToolStripMenuItem_Click);
             // 
@@ -893,43 +938,6 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // _recentFilesListView
-            // 
-            this._recentFilesListView.AllowDrop = true;
-            this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this._decryptedFileColumnHeader,
-            this._lastAccessTimeColumnHeader,
-            this._encryptedPathColumnHeader,
-            this._cryptoName});
-            this._recentFilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._recentFilesListView.FullRowSelect = true;
-            this._recentFilesListView.Location = new System.Drawing.Point(3, 3);
-            this._recentFilesListView.Name = "_recentFilesListView";
-            this._recentFilesListView.ShowItemToolTips = true;
-            this._recentFilesListView.Size = new System.Drawing.Size(644, 144);
-            this._recentFilesListView.TabIndex = 0;
-            this._recentFilesListView.UseCompatibleStateImageBehavior = false;
-            this._recentFilesListView.View = System.Windows.Forms.View.Details;
-            // 
-            // _decryptedFileColumnHeader
-            // 
-            this._decryptedFileColumnHeader.Text = "[Document]";
-            this._decryptedFileColumnHeader.Width = 159;
-            // 
-            // _lastAccessTimeColumnHeader
-            // 
-            this._lastAccessTimeColumnHeader.Text = "[Time]";
-            this._lastAccessTimeColumnHeader.Width = 180;
-            // 
-            // _encryptedPathColumnHeader
-            // 
-            this._encryptedPathColumnHeader.Text = "[Encrypted]";
-            this._encryptedPathColumnHeader.Width = 169;
-            // 
-            // _cryptoName
-            // 
-            this._cryptoName.Text = "[Algorithm]";
-            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1061,6 +1069,7 @@
         private System.Windows.Forms.ToolStripMenuItem _debugOpenReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton _openEncryptedToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem _renameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _upgradeLegacyMenuItem;
     }
 }
 

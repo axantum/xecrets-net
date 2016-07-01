@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return false;
             }
 
-            return OpenFileProperties.Create(New<IDataStore>(encryptedFileFullName)).IsLegacyV1;
+            return New<IDataStore>(encryptedFileFullName).IsLegacyV1();
         }
 
         private static bool IsPassphraseValidForFileIfAny(Passphrase passphrase, string encryptedFileFullName)
@@ -159,8 +159,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return true;
             }
-            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { passphrase }, new IAsymmetricPrivateKey[0], Resolve.CryptoFactory.OrderedIds);
-            return New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, New<IDataStore>(encryptedFileFullName)) != null;
+            IDataStore encryptedStore = New<IDataStore>(encryptedFileFullName);
+            IEnumerable<DecryptionParameter> parameters = encryptedStore.DecryptionParameters(passphrase);
+            return New<AxCryptFactory>().FindDecryptionParameter(parameters, encryptedStore) != null;
         }
 
         private bool IsKnownIdentity()

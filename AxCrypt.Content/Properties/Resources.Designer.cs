@@ -4278,6 +4278,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upgrade 1.x Files.
+        /// </summary>
+        public static string UpgradeLegacyFilesMenuItemText {
+            get {
+                return ResourceManager.GetString("UpgradeLegacyFilesMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select locations to search for files secured with AxCrypt 1.x and upgrade them..
+        /// </summary>
+        public static string UpgradeLegacyFilesMenuToolTip {
+            get {
+                return ResourceManager.GetString("UpgradeLegacyFilesMenuToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get Premium!.
         /// </summary>
         public static string UpgradePromptText {

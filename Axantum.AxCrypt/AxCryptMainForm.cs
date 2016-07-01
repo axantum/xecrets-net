@@ -41,6 +41,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Desktop;
+using Axantum.AxCrypt.Forms.Implementation;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using Microsoft.Win32;
@@ -162,6 +163,7 @@ namespace Axantum.AxCrypt
         {
             SetCulture();
 
+            _addSecureFolderToolStripMenuItem.Text = Texts.AddSecureFolderMenuItemText;
             _cleanDecryptedToolStripMenuItem.Text = Texts.CleanDecryptedToolStripMenuItemText;
             _closeAndRemoveOpenFilesToolStripButton.ToolTipText = Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText;
             _createAccountToolStripMenuItem.Text = Texts.CreateAccountToolStripMenuItemText;
@@ -171,8 +173,8 @@ namespace Axantum.AxCrypt
             _debugCryptoPolicyToolStripMenuItem.Text = Texts.DebugCryptoPolicyToolStripMenuItemText;
             _debugLoggingToolStripMenuItem.Text = Texts.DebugLoggingToolStripMenuItemText;
             _debugManageAccountToolStripMenuItem.Text = Texts.DebugManageAccountToolStripMenuItemText;
-            _debugOptionsToolStripMenuItem.Text = Texts.DebugOptionsToolStripMenuItemText;
             _debugOpenReportToolStripMenuItem.Text = Texts.ReportSnapshotOpenMenuItem;
+            _debugOptionsToolStripMenuItem.Text = Texts.DebugOptionsToolStripMenuItemText;
             _debugToolStripMenuItem.Text = Texts.DebugToolStripMenuItemText;
             _decryptAndRemoveFromListToolStripMenuItem.Text = Texts.DecryptAndRemoveFromListToolStripMenuItemText;
             _decryptedFileColumnHeader.Text = Texts.DecryptedFileColumnHeaderText;
@@ -181,8 +183,6 @@ namespace Axantum.AxCrypt
             _encryptedPathColumnHeader.Text = Texts.EncryptedPathColumnHeaderText;
             _encryptToolStripButton.ToolTipText = Texts.EncryptToolStripButtonToolTipText;
             _encryptToolStripMenuItem.Text = Texts.EncryptToolStripMenuItemText;
-            _renameToolStripMenuItem.Text = Texts.AnonymousRenameMenuText;
-            _renameToolStripMenuItem.ToolTipText = Texts.AnonymousRenameToolTip;
             _englishLanguageToolStripMenuItem.Text = Texts.EnglishLanguageToolStripMenuItemText;
             _exitToolStripMenuItem.Text = Texts.ExitToolStripMenuItemText;
             _exportMyPrivateKeyToolStripMenuItem.Text = Texts.ExportMyPrivateKeyToolStripMenuItemText;
@@ -201,9 +201,11 @@ namespace Axantum.AxCrypt
             _importOthersSharingKeyToolStripMenuItem.ToolTipText = Texts.ImportOthersSharingKeyToolStripMenuItemToolTipText;
             _keyManagementToolStripMenuItem.Text = Texts.KeyManagementToolStripMenuItemText;
             _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;
-            _secretsToolStripButton.ToolTipText = Texts.SecretsButtonToolTipText;
             _lastAccessTimeColumnHeader.Text = Texts.LastAccessTimeColumnHeaderText;
+            _openEncryptedToolStripButton.ToolTipText = Texts.OpenToolStripButtonToolTipText;
             _openEncryptedToolStripMenuItem.Text = Texts.OpenEncryptedToolStripMenuItemText;
+            _optionsAutoConvert1xFilesToolStripMenuItem.Text = Texts.OptionsConvertMenuItemText;
+            _optionsAutoConvert1xFilesToolStripMenuItem.ToolTipText = Texts.OptionsConvertMenuToolTip;
             _optionsChangePassphraseToolStripMenuItem.Text = Texts.OptionsChangePassphraseToolStripMenuItemText;
             _optionsClearAllSettingsAndExitToolStripMenuItem.Text = Texts.OptionsClearAllSettingsAndExitToolStripMenuItemText;
             _optionsDebugToolStripMenuItem.Text = Texts.OptionsDebugToolStripMenuItemText;
@@ -213,24 +215,25 @@ namespace Axantum.AxCrypt
             _recentFilesOpenToolStripMenuItem.Text = Texts.RecentFilesOpenToolStripMenuItemText;
             _recentFilesTabPage.Text = Texts.RecentFilesTabPageText;
             _removeRecentFileToolStripMenuItem.Text = Texts.RemoveRecentFileToolStripMenuItemText;
+            _renameToolStripMenuItem.Text = Texts.AnonymousRenameMenuText;
+            _renameToolStripMenuItem.ToolTipText = Texts.AnonymousRenameToolTip;
+            _secretsToolStripButton.ToolTipText = Texts.SecretsButtonToolTipText;
             _secureDeleteToolStripMenuItem.Text = Texts.SecureDeleteToolStripMenuItemText;
             _shareKeysToolStripMenuItem.Text = Texts.ShareKeysToolStripMenuItemText;
-            _swedishLanguageToolStripMenuItem.Text = Texts.SwedishLanguageToolStripMenuItemText;
-            _spanishLanguageToolStripMenuItem.Text = Texts.SpanishLanguageToolStripMenuItemText;
-            _tryBrokenFileToolStripMenuItem.Text = Texts.TryBrokenFileToolStripMenuItemText;
-            _watchedFolderColumnHeader.Text = Texts.WatchedFolderColumnHeaderText;
-            _watchedFoldersdecryptTemporarilyMenuItem.Text = Texts.MenuDecryptTemporarilyText;
-            _watchedFoldersOpenExplorerHereMenuItem.Text = Texts.WatchedFoldersOpenExplorerHereMenuItemText;
-            _watchedFoldersRemoveMenuItem.Text = Texts.WatchedFoldersRemoveMenuItemText;
-            _watchedFoldersAddSecureFolderMenuItem.Text = Texts.AddSecureFolderMenuItemText;
-            _watchedFoldersKeySharingMenuItem.Text = Texts.ShareKeysToolStripMenuItemText;
-            _addSecureFolderToolStripMenuItem.Text = Texts.AddSecureFolderMenuItemText;
-            _watchedFoldersTabPage.Text = Texts.WatchedFoldersTabPageText;
             _signInToolStripMenuItem.Text = Texts.LogOnText;
             _signOutToolStripMenuItem.Text = Texts.LogOffText;
-            _optionsAutoConvert1xFilesToolStripMenuItem.Text = Texts.OptionsConvertMenuItemText;
-            _optionsAutoConvert1xFilesToolStripMenuItem.ToolTipText = Texts.OptionsConvertMenuToolTip;
-            _openEncryptedToolStripButton.ToolTipText = Texts.OpenToolStripButtonToolTipText;
+            _spanishLanguageToolStripMenuItem.Text = Texts.SpanishLanguageToolStripMenuItemText;
+            _swedishLanguageToolStripMenuItem.Text = Texts.SwedishLanguageToolStripMenuItemText;
+            _tryBrokenFileToolStripMenuItem.Text = Texts.TryBrokenFileToolStripMenuItemText;
+            _upgradeLegacyMenuItem.Text = Texts.UpgradeLegacyFilesMenuItemText;
+            _upgradeLegacyMenuItem.ToolTipText = Texts.UpgradeLegacyFilesMenuToolTip;
+            _watchedFolderColumnHeader.Text = Texts.WatchedFolderColumnHeaderText;
+            _watchedFoldersAddSecureFolderMenuItem.Text = Texts.AddSecureFolderMenuItemText;
+            _watchedFoldersdecryptTemporarilyMenuItem.Text = Texts.MenuDecryptTemporarilyText;
+            _watchedFoldersKeySharingMenuItem.Text = Texts.ShareKeysToolStripMenuItemText;
+            _watchedFoldersOpenExplorerHereMenuItem.Text = Texts.WatchedFoldersOpenExplorerHereMenuItemText;
+            _watchedFoldersRemoveMenuItem.Text = Texts.WatchedFoldersRemoveMenuItemText;
+            _watchedFoldersTabPage.Text = Texts.WatchedFoldersTabPageText;
         }
 
         private static void SetCulture()
@@ -435,8 +438,9 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IUIThread>(() => new UIThread(this));
             TypeMap.Register.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
             TypeMap.Register.Singleton<IStatusChecker>(() => this);
-            TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
+            TypeMap.Register.Singleton<IDataItemSelection>(() => new FileFolderSelection(this));
 
+            TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
             TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities, Resolve.ParallelFileOperation, New<IStatusChecker>(), New<IdentityViewModel>()));
             TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState, Resolve.UserSettings));
@@ -501,14 +505,13 @@ namespace Axantum.AxCrypt
 
             _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
 
-            _softwareStatusButton.Click += _softwareStatusButton_Click;
-            _feedbackButton.Click += (sender, e) => Process.Start(Texts.LinkToFeedbackWebPage);
-
-            _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _cleanDecryptedToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
+            _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
+            _feedbackButton.Click += (sender, e) => Process.Start(Texts.LinkToFeedbackWebPage);
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
             _signInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _signOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
+            _softwareStatusButton.Click += _softwareStatusButton_Click;
 #if DEBUG
             _debugCryptoPolicyToolStripMenuItem.Visible = true;
 #endif
@@ -658,63 +661,51 @@ namespace Axantum.AxCrypt
         {
             _mainViewModel.Title = Texts.TitleMainWindow.InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
 
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetSignInSignOutStatus(loggedOn); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { ConfigureMenusAccordingToPolicy(license); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await _recentFilesListView.UpdateRecentFilesAsync(_mainViewModel.RecentFiles); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { SetDaysLeftWarning(); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => _knownFoldersViewModel.UpdateState.Execute(null));
-
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DownloadVersion), (DownloadVersion dv) => { SetSoftwareStatus(); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RandomRenameEnabled), (bool enabled) => { _renameToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LegacyConversionMode), (LegacyConversionMode mode) => _optionsAutoConvert1xFilesToolStripMenuItem.Checked = mode == LegacyConversionMode.AutoConvertLegacyFiles);
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => _knownFoldersViewModel.UpdateState.Execute(null));
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { ConfigureMenusAccordingToPolicy(license); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { SetDaysLeftWarning(); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await _recentFilesListView.UpdateRecentFilesAsync(_mainViewModel.RecentFiles); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetSignInSignOutStatus(loggedOn); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RandomRenameEnabled), (bool enabled) => { _renameToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), async (IEnumerable<ActiveFile> files) => { await _recentFilesListView.UpdateRecentFilesAsync(files); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { _tryBrokenFileToolStripMenuItem.Checked = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), async (IEnumerable<ActiveFile> files) => { await _recentFilesListView.UpdateRecentFilesAsync(files); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DownloadVersion), (DownloadVersion dv) => { SetSoftwareStatus(); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { _tryBrokenFileToolStripMenuItem.Checked = enabled; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LegacyConversionMode), (LegacyConversionMode mode) => _optionsAutoConvert1xFilesToolStripMenuItem.Checked = mode == LegacyConversionMode.AutoConvertLegacyFiles);
 
             _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); };
-
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
-            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
-            _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Save(); New<IReport>().Open(); };
-            _removeRecentFileToolStripMenuItem.Click += (sender, e) => { _mainViewModel.RemoveRecentFiles.Execute(_mainViewModel.SelectedRecentFiles); };
-
-            _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
-            _watchedFoldersListView.MouseDown += (sender, e) => { if (e.Button == MouseButtons.Right) { ShowHideWatchedFoldersContextMenuItems(e.Location); _watchedFoldersContextMenuStrip.Show((Control)sender, e.Location); } };
-            _watchedFoldersListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForWatchedFolders(e); };
-            _watchedFoldersListView.DragDrop += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { _mainViewModel.AddWatchedFolders.Execute(_mainViewModel.DragAndDropFiles); return Task.FromResult<object>(null); }, sender, e); };
-            _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder.Execute(_mainViewModel.SelectedWatchedFolders.First()); };
-            _watchedFoldersRemoveMenuItem.Click += (sender, e) => { _mainViewModel.RemoveWatchedFolders.Execute(_mainViewModel.SelectedWatchedFolders); };
-            _watchedFoldersAddSecureFolderMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); return Task.FromResult<object>(null); }, sender, e); };
-            _watchedFoldersKeySharingMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await WatchedFoldersKeySharingAsync(_mainViewModel.SelectedWatchedFolders); }, sender, e); };
-
-            _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
-            _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
-            _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
-            _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = _mainViewModel.CanShare(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
-            _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
-
-            _shareKeysToolStripMenuItem.Click += async (sender, e) => { await ShareKeysAsync(_mainViewModel.SelectedRecentFiles); };
-            _mainToolStrip.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForMainToolStrip(e); };
-
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = KnownFoldersDiscovery.Discover();
-
+            _mainToolStrip.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForMainToolStrip(e); };
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
-        }
-
-        private void _autoConvert1xFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
+            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
+            _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
+            _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
+            _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
+            _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
+            _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = _mainViewModel.CanShare(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
+            _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
+            _removeRecentFileToolStripMenuItem.Click += (sender, e) => { _mainViewModel.RemoveRecentFiles.Execute(_mainViewModel.SelectedRecentFiles); };
+            _shareKeysToolStripMenuItem.Click += async (sender, e) => { await ShareKeysAsync(_mainViewModel.SelectedRecentFiles); };
+            _watchedFoldersAddSecureFolderMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); return Task.FromResult<object>(null); }, sender, e); };
+            _watchedFoldersKeySharingMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await WatchedFoldersKeySharingAsync(_mainViewModel.SelectedWatchedFolders); }, sender, e); };
+            _watchedFoldersListView.DragDrop += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { _mainViewModel.AddWatchedFolders.Execute(_mainViewModel.DragAndDropFiles); return Task.FromResult<object>(null); }, sender, e); };
+            _watchedFoldersListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForWatchedFolders(e); };
+            _watchedFoldersListView.MouseDown += (sender, e) => { if (e.Button == MouseButtons.Right) { ShowHideWatchedFoldersContextMenuItems(e.Location); _watchedFoldersContextMenuStrip.Show((Control)sender, e.Location); } };
+            _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
+            _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder.Execute(_mainViewModel.SelectedWatchedFolders.First()); };
+            _watchedFoldersRemoveMenuItem.Click += (sender, e) => { _mainViewModel.RemoveWatchedFolders.Execute(_mainViewModel.SelectedWatchedFolders); };
         }
 
         private void ConfigureWatchedFoldersMenus(bool enabled)
@@ -757,39 +748,32 @@ namespace Axantum.AxCrypt
             _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
         }
 
-        private static void BindToWatchedFoldersViewModel()
-        {
-        }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
         private void BindToFileOperationViewModel()
         {
-            _decryptAndRemoveFromListToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
-            _keyShareToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await ShareKeysAsync(_mainViewModel.SelectedRecentFiles); }, sender, e); };
-            _secretsToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.PasswordManagement, (ss, ee) => { Process.Start(Texts.LinkToSecretsPageWithUserNameFormat.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); return Task.FromResult<object>(null); }, sender, e); };
-            _decryptToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFiles.ExecuteAsync(null); };
-            _encryptToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.EncryptFiles.ExecuteAsync(null); };
-            _encryptToolStripMenuItem.Click += (sender, e) => _fileOperationViewModel.EncryptFiles.Execute(null);
-            _renameToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(null); }, sender, e);
-            _openEncryptedToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
-            _openEncryptedToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
-            _secureDeleteToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureWipe, async (ss, ee) => { await _fileOperationViewModel.WipeFiles.ExecuteAsync(null); }, sender, e);
-            _encryptedFoldersToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { encryptedFoldersToolStripMenuItem_Click(ss, ee); return Task.FromResult<object>(null); }, sender, e);
             _addSecureFolderToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); return Task.FromResult<object>(null); }, sender, e);
-
-            _watchedFoldersListView.MouseDoubleClick += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
-            _watchedFoldersdecryptTemporarilyMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
-
-            _recentFilesOpenToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
-            _recentFilesListView.MouseDoubleClick += async (sender, e) => { await _fileOperationViewModel.OpenFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
-            _recentFilesListView.DragDrop += async (sender, e) => { await DropFilesOrFoldersInRecentFilesListViewAsync(); };
-
-            _fileOperationViewModel.IdentityViewModel.LoggingOnAsync = async (e) => await New<IUIThread>().SendToAsync(async () => await HandleLogOn(e));
-            _fileOperationViewModel.SelectingFiles += (sender, e) => New<IUIThread>().SendTo(() => HandleFileSelection(e));
-            _fileOperationViewModel.FirstLegacyOpen += (sender, e) => New<IUIThread>().SendTo(() => SetLegacyOpenMode(e));
-            _fileOperationViewModel.ToggleLegacyConversion += (sender, e) => New<IUIThread>().SendTo(() => ToggleLegacyConversion());
-
+            _decryptAndRemoveFromListToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
+            _decryptToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFiles.ExecuteAsync(null); };
+            _encryptedFoldersToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { encryptedFoldersToolStripMenuItem_Click(ss, ee); return Task.FromResult<object>(null); }, sender, e);
+            _encryptToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.EncryptFiles.ExecuteAsync(null); };
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
+            _encryptToolStripMenuItem.Click += (sender, e) => _fileOperationViewModel.EncryptFiles.Execute(null);
+            _fileOperationViewModel.FirstLegacyOpen += (sender, e) => New<IUIThread>().SendTo(() => SetLegacyOpenMode(e));
+            _fileOperationViewModel.IdentityViewModel.LoggingOnAsync = async (e) => await New<IUIThread>().SendToAsync(async () => await HandleLogOn(e));
+            _fileOperationViewModel.SelectingFiles += (sender, e) => New<IUIThread>().SendTo(() => New<IDataItemSelection>().HandleSelection(e));
+            _fileOperationViewModel.ToggleLegacyConversion += (sender, e) => New<IUIThread>().SendTo(() => ToggleLegacyConversion());
+            _keyShareToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await ShareKeysAsync(_mainViewModel.SelectedRecentFiles); }, sender, e); };
+            _openEncryptedToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
+            _openEncryptedToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
+            _recentFilesListView.DragDrop += async (sender, e) => { await DropFilesOrFoldersInRecentFilesListViewAsync(); };
+            _recentFilesListView.MouseDoubleClick += async (sender, e) => { await _fileOperationViewModel.OpenFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
+            _recentFilesOpenToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
+            _renameToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(null); }, sender, e);
+            _secretsToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.PasswordManagement, (ss, ee) => { Process.Start(Texts.LinkToSecretsPageWithUserNameFormat.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); return Task.FromResult<object>(null); }, sender, e); };
+            _secureDeleteToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureWipe, async (ss, ee) => { await _fileOperationViewModel.WipeFiles.ExecuteAsync(null); }, sender, e);
+            _upgradeLegacyMenuItem.Click += async (sender, e) => await _fileOperationViewModel.AsyncUpgradeFiles.ExecuteAsync(null);
+            _watchedFoldersdecryptTemporarilyMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
+            _watchedFoldersListView.MouseDoubleClick += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
         }
 
         private void WireUpEvents()
@@ -882,20 +866,21 @@ namespace Axantum.AxCrypt
 
         private void SetSignInSignOutStatus(bool isSignedIn)
         {
+            SetWindowTextWithLogonStatus(isSignedIn);
+
             bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null;
 
-            SetWindowTextWithLogonStatus(isSignedIn);
-            _debugManageAccountToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _optionsChangePassphraseToolStripMenuItem.Enabled = isSignedInWithAxCryptId && New<AxCryptOnlineState>().IsOnline;
-            _optionsAutoConvert1xFilesToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _exportSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-
-            _importMyPrivateKeyToolStripMenuItem.Enabled = !isSignedIn;
             _createAccountToolStripMenuItem.Enabled = !isSignedIn;
+            _debugManageAccountToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _exportSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _importMyPrivateKeyToolStripMenuItem.Enabled = !isSignedIn;
+            _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _optionsAutoConvert1xFilesToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _optionsChangePassphraseToolStripMenuItem.Enabled = isSignedInWithAxCryptId && New<AxCryptOnlineState>().IsOnline;
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _signOutToolStripMenuItem.Visible = isSignedIn;
+            _upgradeLegacyMenuItem.Enabled = isSignedInWithAxCryptId;
         }
 
         private void SetDaysLeftWarning()
@@ -1130,157 +1115,6 @@ namespace Axantum.AxCrypt
                 e.UserEmail = viewModel.UserEmail;
             }
             return;
-        }
-
-        private static void HandleFileSelection(FileSelectionEventArgs e)
-        {
-            switch (e.FileSelectionType)
-            {
-                case FileSelectionType.SaveAsEncrypted:
-                case FileSelectionType.SaveAsDecrypted:
-                    HandleSaveAsFileSelection(e);
-                    break;
-
-                case FileSelectionType.WipeConfirm:
-                    HandleWipeConfirm(e);
-                    break;
-
-                default:
-                    HandleOpenFileSelection(e);
-                    break;
-            }
-        }
-
-        private static void HandleWipeConfirm(FileSelectionEventArgs e)
-        {
-            using (ConfirmWipeDialog cwd = new ConfirmWipeDialog())
-            {
-                cwd.FileNameLabel.Text = Path.GetFileName(e.SelectedFiles[0]);
-                e.Skip = false;
-                DialogResult confirmResult = cwd.ShowDialog();
-                e.ConfirmAll = cwd._confirmAllCheckBox.Checked;
-                e.Skip = confirmResult == DialogResult.No;
-                e.Cancel = confirmResult == DialogResult.Cancel;
-            }
-        }
-
-        private static void HandleOpenFileSelection(FileSelectionEventArgs e)
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                if (e.SelectedFiles != null && e.SelectedFiles.Count > 0 && !String.IsNullOrEmpty(e.SelectedFiles[0]))
-                {
-                    IDataContainer initialFolder = New<IDataContainer>(e.SelectedFiles[0]);
-                    if (initialFolder.IsAvailable)
-                    {
-                        ofd.InitialDirectory = initialFolder.FullName;
-                    }
-                }
-                switch (e.FileSelectionType)
-                {
-                    case FileSelectionType.Decrypt:
-                        ofd.Title = Texts.DecryptFileOpenDialogTitle;
-                        ofd.Multiselect = true;
-                        ofd.CheckFileExists = true;
-                        ofd.CheckPathExists = true;
-                        ofd.DefaultExt = OS.Current.AxCryptExtension;
-                        ofd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
-                        ofd.Multiselect = true;
-                        break;
-
-                    case FileSelectionType.Rename:
-                        ofd.Title = Texts.AnonymousRenameSelectFilesDialogTitle;
-                        ofd.Multiselect = true;
-                        ofd.CheckFileExists = true;
-                        ofd.CheckPathExists = true;
-                        ofd.DefaultExt = OS.Current.AxCryptExtension;
-                        ofd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
-                        ofd.Multiselect = true;
-                        break;
-
-                    case FileSelectionType.Encrypt:
-                        ofd.Title = Texts.EncryptFileOpenDialogTitle;
-                        ofd.Multiselect = true;
-                        ofd.CheckFileExists = true;
-                        ofd.CheckPathExists = true;
-                        break;
-
-                    case FileSelectionType.Open:
-                        ofd.Title = Texts.OpenEncryptedFileOpenDialogTitle;
-                        ofd.Multiselect = false;
-                        ofd.CheckFileExists = true;
-                        ofd.CheckPathExists = true;
-                        ofd.DefaultExt = OS.Current.AxCryptExtension;
-                        ofd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
-                        break;
-
-                    case FileSelectionType.Wipe:
-                        ofd.Title = Texts.WipeFileSelectFileDialogTitle;
-                        ofd.Multiselect = true;
-                        ofd.CheckFileExists = true;
-                        ofd.CheckPathExists = true;
-                        break;
-
-                    case FileSelectionType.ImportPublicKeys:
-                        ofd.Title = Texts.ImportPublicKeysFileSelectionTitle;
-                        ofd.Multiselect = true;
-                        ofd.CheckFileExists = true;
-                        ofd.CheckPathExists = true;
-                        ofd.Filter = Texts.ImportPublicKeysFileFilter;
-                        break;
-
-                    case FileSelectionType.ImportPrivateKeys:
-                        ofd.Title = Texts.ImportPrivateKeysFileSelectionTitle;
-                        ofd.Multiselect = false;
-                        ofd.CheckFileExists = true;
-                        ofd.CheckPathExists = true;
-                        ofd.Filter = Texts.ImportPrivateKeysFileFilter;
-                        break;
-
-                    default:
-                        break;
-                }
-                DialogResult result = ofd.ShowDialog();
-                e.Cancel = result != DialogResult.OK;
-                e.SelectedFiles.Clear();
-                foreach (string fileName in ofd.FileNames)
-                {
-                    e.SelectedFiles.Add(fileName);
-                }
-            }
-        }
-
-        private static void HandleSaveAsFileSelection(FileSelectionEventArgs e)
-        {
-            using (SaveFileDialog sfd = new SaveFileDialog())
-            {
-                switch (e.FileSelectionType)
-                {
-                    case FileSelectionType.SaveAsEncrypted:
-                        sfd.Title = Texts.EncryptFileSaveAsDialogTitle;
-                        sfd.DefaultExt = OS.Current.AxCryptExtension;
-                        sfd.AddExtension = true;
-                        sfd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
-                        break;
-
-                    case FileSelectionType.SaveAsDecrypted:
-                        string extension = Path.GetExtension(e.SelectedFiles[0]);
-                        sfd.Title = Texts.DecryptedSaveAsFileDialogTitle;
-                        sfd.DefaultExt = extension;
-                        sfd.AddExtension = !String.IsNullOrEmpty(extension);
-                        sfd.Filter = Texts.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
-                        break;
-                }
-                sfd.CheckPathExists = true;
-                sfd.FileName = Path.GetFileName(e.SelectedFiles[0]);
-                sfd.InitialDirectory = Path.GetDirectoryName(e.SelectedFiles[0]);
-                sfd.ValidateNames = true;
-                sfd.OverwritePrompt = true;
-                sfd.RestoreDirectory = true;
-                DialogResult saveAsResult = sfd.ShowDialog();
-                e.Cancel = saveAsResult != DialogResult.OK;
-                e.SelectedFiles[0] = sfd.FileName;
-            }
         }
 
         private void AxCryptMainForm_CommandComplete(object sender, CommandCompleteEventArgs e)
@@ -2140,7 +1974,7 @@ namespace Axantum.AxCrypt
         private void ImportOthersSharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileSelectionViewModel fileSelection = new FileSelectionViewModel();
-            fileSelection.SelectingFiles += (sfsender, sfe) => { HandleOpenFileSelection(sfe); };
+            fileSelection.SelectingFiles += (sfsender, sfe) => { New<IDataItemSelection>().HandleSelection(sfe); };
             fileSelection.SelectFiles.Execute(FileSelectionType.ImportPublicKeys);
 
             ImportPublicKeysViewModel importPublicKeys = new ImportPublicKeysViewModel(New<KnownPublicKeys>);

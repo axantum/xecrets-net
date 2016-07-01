@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using AxCrypt.Content;

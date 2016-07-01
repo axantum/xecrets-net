@@ -919,6 +919,14 @@ Internet KRÄVS INTE efter denna första gång.</value>
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Oväntat Fel!</value>
   </data>
+  <data name="MoreButtonText" xml:space="preserve">
+    <value>Mer...</value>
+    <comment>A 'More...' button text</comment>
+  </data>
+  <data name="MoreKeyFileToolTop" xml:space="preserve">
+    <value>Klicka för att ange namnet på en nyckelfil. Endast relevant om du vet att du använt en nyckelfil när du skyddade filen med den tidigare versionen av AxCrypt.</value>
+    <comment>A tooltip for a more button displaying a key file entry field</comment>
+  </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Sätt ett nytt lösenord</value>
   </data>
@@ -1421,6 +1429,12 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Uppdaterar Status</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
+    <value>Uppgradera 1.x-Filer</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
+    <value>Välj platser att söka efter filer skyddade med AxCrypt 1.x,  och uppgradera dem.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Skaffa Premium!</value>

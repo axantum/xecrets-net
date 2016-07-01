@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Forms;
 using System;
 using System.Linq;
 using System.Windows.Forms;

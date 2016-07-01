@@ -232,6 +232,11 @@ namespace Axantum.AxCrypt.Core.UI
             return DoFileAsync(fileInfo, WipeFilePreparation, WipeFileOperation);
         }
 
+        public Task<FileOperationContext> UpgradeFileAsync(IDataStore store)
+        {
+            return DoFileAsync(store, UpgradeFilePreparationAsync, UpgradeFileOperation);
+        }
+
         #endregion Public Methods
 
         #region Private Methods
@@ -322,6 +327,32 @@ namespace Axantum.AxCrypt.Core.UI
 
         private async Task<bool> DecryptFilePreparationAsync(IDataStore fileInfo)
         {
+            if (!await CheckDecryptionIdentityAndLocking(fileInfo))
+            {
+                return false;
+            }
+
+            IDataStore destination = New<IDataStore>(_eventArgs.SaveFileFullName);
+            if (destination.IsAvailable)
+            {
+                OnQuerySaveFileAs(_eventArgs);
+                if (_eventArgs.Cancel)
+                {
+                    _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ErrorStatus.Canceled);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private Task<bool> UpgradeFilePreparationAsync(IDataStore store)
+        {
+            return CheckDecryptionIdentityAndLocking(store);
+        }
+
+        private async Task<bool> CheckDecryptionIdentityAndLocking(IDataStore fileInfo)
+        {
             _eventArgs.OpenFileFullName = fileInfo.FullName;
             if (!fileInfo.IsEncrypted())
             {
@@ -341,18 +372,6 @@ namespace Axantum.AxCrypt.Core.UI
                     return false;
                 }
             }
-
-            IDataStore destination = New<IDataStore>(_eventArgs.SaveFileFullName);
-            if (destination.IsAvailable)
-            {
-                OnQuerySaveFileAs(_eventArgs);
-                if (_eventArgs.Cancel)
-                {
-                    _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ErrorStatus.Canceled);
-                    return false;
-                }
-            }
-
             return true;
         }
 
@@ -468,6 +487,29 @@ namespace Axantum.AxCrypt.Core.UI
             try
             {
                 New<AxCryptFile>().Wipe(New<IDataStore>(_eventArgs.SaveFileFullName), _progress);
+            }
+            finally
+            {
+                _progress.NotifyLevelFinished();
+            }
+
+            _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
+            return true;
+        }
+
+        private bool UpgradeFileOperation()
+        {
+            if (_eventArgs.Skip)
+            {
+                _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
+                return true;
+            }
+
+            _progress.NotifyLevelStart();
+            try
+            {
+                EncryptionParameters encryptionParameters = new EncryptionParameters(New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
+                New<AxCryptFile>().ChangeEncryption(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, encryptionParameters, _progress);
             }
             finally
             {

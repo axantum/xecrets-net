@@ -27,8 +27,10 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -96,6 +98,26 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             return String.Compare(Resolve.Portable.Path().GetExtension(fullName.Name), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0;
+        }
+
+        public static bool IsLegacyV1(this IDataStore dataStore)
+        {
+            return dataStore.IsEncrypted() && OpenFileProperties.Create(dataStore).IsLegacyV1;
+        }
+
+        public static IEnumerable<DecryptionParameter> DecryptionParameters(this IDataStore dataStore, Passphrase password)
+        {
+            if (!dataStore.IsEncrypted())
+            {
+                return new DecryptionParameter[0];
+            }
+
+            if (dataStore.IsLegacyV1())
+            {
+                return new DecryptionParameter[] { new DecryptionParameter(password, new V1Aes128CryptoFactory().CryptoId), };
+            }
+
+            return DecryptionParameter.CreateAll(new Passphrase[] { password }, new IAsymmetricPrivateKey[0], Resolve.CryptoFactory.OrderedIds);
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]

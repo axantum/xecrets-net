@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;

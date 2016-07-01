@@ -162,8 +162,19 @@ namespace Axantum.AxCrypt.Mono
                 {
                     return new IDataStore[0];
                 }
-                DirectoryInfo di = new DirectoryInfo(_info.FullName);
-                return di.GetFiles().Select((FileInfo fi) => { return (IDataStore)new DataStore(fi.FullName); });
+                return _info.EnumerateFiles().Select((fi) => new DataStore(fi.FullName));
+            }
+        }
+
+        public IEnumerable<IDataContainer> Folders
+        {
+            get
+            {
+                if (!IsAvailable)
+                {
+                    return new IDataContainer[0];
+                }
+                return _info.EnumerateDirectories().Select((fi) => new DataContainer(fi.FullName));
             }
         }
 

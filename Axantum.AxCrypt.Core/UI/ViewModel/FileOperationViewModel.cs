@@ -35,6 +35,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using static Axantum.AxCrypt.Common.FrameworkTypeExtensions;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -81,6 +82,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RandomRenameFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await RandomRenameFilesActionAsync(files));
             OpenFilesFromFolder = new AsyncDelegateAction<string>(async (folder) => await OpenFilesFromFolderActionAsync(folder), (folder) => true);
             AddRecentFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await AddRecentFilesActionAsync(files));
+            AsyncUpgradeFiles = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => UpgradeFilesActionAsync(containers), (containers) => _knownIdentities.IsLoggedOn);
         }
 
         public IAsyncAction DecryptFiles { get; private set; }
@@ -99,15 +101,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction AddRecentFiles { get; private set; }
 
+        public IAsyncAction AsyncUpgradeFiles { get; private set; }
+
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
         protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
         {
-            EventHandler<FileSelectionEventArgs> handler = SelectingFiles;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            SelectingFiles?.Invoke(this, e);
         }
 
         public event EventHandler<FileOperationEventArgs> FirstLegacyOpen;
@@ -173,6 +173,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
             await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), WipeFileWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
+        }
+
+        private Task UpgradeFilesActionAsync(IEnumerable<IDataContainer> containers)
+        {
+            containers = containers ?? SelectFiles(FileSelectionType.Folder).Select((fn) => New<IDataContainer>(fn));
+
+            if (!containers.Any())
+            {
+                return CompletedTask;
+            }
+
+            return _fileOperation.DoFilesAsync(new DataContainerEnumerator(containers).Where((ds) => ds.IsLegacyV1()), UpgradeFilesWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
         }
 
         private async Task RandomRenameFilesActionAsync(IEnumerable<string> files)
@@ -271,6 +283,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.WipeFile(file);
+        }
+
+        private Task<FileOperationContext> UpgradeFilesWorkAsync(IDataStore store, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            operationsController.QueryDecryptionPassphrase = HandleQueryDecryptionPassphraseEventAsync;
+
+            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                _knownIdentities.Add(e.LogOnIdentity);
+            };
+
+            return operationsController.UpgradeFileAsync(store);
         }
 
         private static bool CheckStatusAndShowMessage(FileOperationContext context, string fallbackName)

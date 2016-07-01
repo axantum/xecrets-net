@@ -138,5 +138,13 @@ namespace Axantum.AxCrypt.Fake
         {
             get { return new FakeDataContainer(Resolve.Portable.Path().GetDirectoryName(_fileInfo.FullName)); }
         }
+
+        public IEnumerable<IDataContainer> Folders
+        {
+            get
+            {
+                return new IDataContainer[0];
+            }
+        }
     }
 }
