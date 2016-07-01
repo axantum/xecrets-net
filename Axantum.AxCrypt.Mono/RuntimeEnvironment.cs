@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
-                return -1;
+                return Environment.ProcessorCount > 2 ? Environment.ProcessorCount - 1 : 2;
             }
         }
 
