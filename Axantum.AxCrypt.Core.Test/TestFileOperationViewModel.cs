@@ -949,6 +949,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
         }
 
+        // Intermittently failed 2016-07-01 - the OpenAndLaunchApplication expected once was not called.
         [Test]
         public async void TestOpenFilesActionCancelingWithWork()
         {
@@ -979,13 +980,17 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
+            string nameExcecuted = string.Empty;
+            string nameSkipped = string.Empty;
             mvm.IdentityViewModel.LoggingOnAsync = (e) =>
             {
                 if (count == 1)
                 {
+                    nameSkipped = e.EncryptedFileFullName;
                     e.Cancel = true;
                     return Task.FromResult<object>(null);
                 }
+                nameExcecuted = e.EncryptedFileFullName;
                 e.Passphrase = new Passphrase("b");
                 return Task.FromResult<object>(null);
             };
@@ -995,8 +1000,8 @@ namespace Axantum.AxCrypt.Core.Test
             await mvm.OpenFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
-            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.IsAny<LogOnIdentity>(), It.Is<IDataStore>(ds => ds.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
-            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.IsAny<LogOnIdentity>(), It.Is<IDataStore>(ds => ds.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Never);
+            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.IsAny<LogOnIdentity>(), It.Is<IDataStore>(ds => ds.FullName == nameExcecuted.NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
+            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.IsAny<LogOnIdentity>(), It.Is<IDataStore>(ds => ds.FullName == nameSkipped.NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False, "Should be logged on.");
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1), "One known key.");
         }

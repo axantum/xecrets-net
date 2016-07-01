@@ -1000,7 +1000,7 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>&amp;Rensa alla inställningar och Avsluta</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Autokonvertera 1.x-filer</value>
+    <value>Uppgradera 1.x-filer Automatiskt</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
@@ -1434,7 +1434,7 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
     <value>Uppgradera 1.x-Filer</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Välj platser att söka efter filer skyddade med AxCrypt 1.x,  och uppgradera dem.</value>
+    <value>Välj en plats att söka efter filer skyddade med AxCrypt 1.x,  och uppgradera.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Skaffa Premium!</value>

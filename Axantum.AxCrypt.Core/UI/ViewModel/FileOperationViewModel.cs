@@ -338,21 +338,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            if (Resolve.UserSettings.LegacyConversionMode == LegacyConversionMode.NotDecided)
-            {
-                OnFirstLegacyOpen(e);
-            }
-
-            if (e.Cancel)
-            {
-                Resolve.UserSettings.LegacyConversionMode = LegacyConversionMode.RetainLegacyFiles;
-                e.Cancel = false;
-                return;
-            }
 
             if (Resolve.UserSettings.LegacyConversionMode == LegacyConversionMode.NotDecided)
             {
-                OnToggleLegacyConversion(e);
+                Resolve.UserSettings.LegacyConversionMode = LegacyConversionMode.AutoConvertLegacyFiles;
             }
         }
 

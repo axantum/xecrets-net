@@ -1124,7 +1124,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>&amp;Clear All Settings and Exit</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Auto Convert 1.x Files</value>
+    <value>Auto Upgrade 1.x Files</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
@@ -1626,7 +1626,7 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Upgrade 1.x Files</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Select locations to search for files secured with AxCrypt 1.x and upgrade them.</value>
+    <value>Select a place to search for files secured with AxCrypt 1.x and upgrade them.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Get Premium!</value>

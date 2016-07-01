@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
 
-            bool shouldConvertLegacy = ShouldConvertLegacy(activeFile);
+            bool shouldConvertLegacy = activeFile.ShouldConvertLegacy();
             if (!shouldConvertLegacy && !activeFile.IsModified)
             {
                 return activeFile;
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId;
         }
 
-        private static bool ShouldConvertLegacy(ActiveFile activeFile)
+        public static bool ShouldConvertLegacy(this ActiveFile activeFile)
         {
             if (!IsLegacy(activeFile))
             {

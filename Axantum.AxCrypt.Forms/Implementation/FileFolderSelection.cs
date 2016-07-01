@@ -52,6 +52,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
             using (FolderBrowserDialog fbd = new FolderBrowserDialog())
             {
                 fbd.ShowNewFolderButton = false;
+                fbd.Description = Texts.UpgradeLegacyFilesMenuToolTip;
                 fbd.RootFolder = Environment.SpecialFolder.MyComputer;
                 DialogResult result = fbd.ShowDialog(_owner);
                 e.SelectedFiles.Clear();

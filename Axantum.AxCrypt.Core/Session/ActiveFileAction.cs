@@ -76,14 +76,11 @@ namespace Axantum.AxCrypt.Core.Session
                         }
                         return activeFile;
                     }
-                    if (activeFile.IsModified)
+                    if (activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
                     {
-                        if (activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
-                        {
-                            activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
-                        }
-                        activeFile = CheckIfTimeToUpdate(activeFile, progress);
+                        activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
                     }
+                    activeFile = CheckIfTimeToUpdate(activeFile, progress);
                     if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                     {
                         activeFile = TryDelete(activeFile, progress);
