@@ -36,6 +36,7 @@
             this._fileNameTextBox = new System.Windows.Forms.TextBox();
             this.PasswordPanel = new System.Windows.Forms.Panel();
             this._passphraseGroupBox = new System.Windows.Forms.GroupBox();
+            this._moreButton = new System.Windows.Forms.Button();
             this._passphraseTextBox = new System.Windows.Forms.TextBox();
             this._showPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.KeyFilePanel = new System.Windows.Forms.Panel();
@@ -45,7 +46,6 @@
             this.ButtonPanel = new System.Windows.Forms.Panel();
             this._cancelButton = new System.Windows.Forms.Button();
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this._moreButton = new System.Windows.Forms.Button();
             this._moreButtonToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.DialogFlowLayoutPanel.SuspendLayout();
             this.FileNamePanel.SuspendLayout();
@@ -138,6 +138,16 @@
             this._passphraseGroupBox.TabStop = false;
             this._passphraseGroupBox.Text = "[Enter Password]";
             // 
+            // _moreButton
+            // 
+            this._moreButton.Location = new System.Drawing.Point(202, 42);
+            this._moreButton.Name = "_moreButton";
+            this._moreButton.Size = new System.Drawing.Size(75, 23);
+            this._moreButton.TabIndex = 2;
+            this._moreButton.Text = "[More...]";
+            this._moreButton.UseVisualStyleBackColor = true;
+            this._moreButton.Click += new System.EventHandler(this.MoreButton_Click);
+            // 
             // _passphraseTextBox
             // 
             this._passphraseTextBox.Location = new System.Drawing.Point(7, 19);
@@ -181,6 +191,7 @@
             // 
             // _keyFileTextBox
             // 
+            this._keyFileTextBox.Enabled = false;
             this._keyFileTextBox.Location = new System.Drawing.Point(7, 20);
             this._keyFileTextBox.Name = "_keyFileTextBox";
             this._keyFileTextBox.Size = new System.Drawing.Size(234, 20);
@@ -223,16 +234,6 @@
             // _errorProvider1
             // 
             this._errorProvider1.ContainerControl = this;
-            // 
-            // _moreButton
-            // 
-            this._moreButton.Location = new System.Drawing.Point(202, 42);
-            this._moreButton.Name = "_moreButton";
-            this._moreButton.Size = new System.Drawing.Size(75, 23);
-            this._moreButton.TabIndex = 2;
-            this._moreButton.Text = "[More...]";
-            this._moreButton.UseVisualStyleBackColor = true;
-            this._moreButton.Click += new System.EventHandler(this.MoreButton_Click);
             // 
             // FilePasswordDialog
             // 
