@@ -39,5 +39,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         InvalidEmail,
         OnlineRequired,
         PremiumRequired,
+        SamePasswordAsSignedIn,
     }
 }

@@ -394,6 +394,10 @@
       <Project>{FB429566-E4A5-4391-805B-0E2A2AE297AC}</Project>
       <Name>Axantum.AxCrypt.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Content\AxCrypt.Content.csproj">
+      <Project>{CB0C5A7A-FBEE-4F02-BDAE-4A7F206C1CD4}</Project>
+      <Name>AxCrypt.Content</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj">
       <Project>{3680C939-B21F-4444-B646-42FB4B29A786}</Project>
       <Name>BouncyCastle.AxCrypt</Name>

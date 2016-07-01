@@ -1422,6 +1422,10 @@ Subject: AxCrypt Report Snapshot
   <data name="ResendButtonToolTip" xml:space="preserve">
     <value>Click to resend the activation code to your e-mail.</value>
   </data>
+  <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
+    <value>You are already signed in with this password! Please provide another password for this file.</value>
+    <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
+  </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Only premium users are allowed to save password entries.</value>
   </data>

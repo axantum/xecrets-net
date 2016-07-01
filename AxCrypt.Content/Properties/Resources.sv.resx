@@ -1274,6 +1274,10 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ak
   <data name="ResendButtonToolTip" xml:space="preserve">
     <value>Klicka för att återsända aktiveringskoden till din e-post.</value>
   </data>
+  <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
+    <value>Du är redan inloggad med det lösenordet! Ange det ursprungliga lösenordet för filen.</value>
+    <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
+  </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Endast Premiumanvändare kan spara lösenordsposter.</value>
   </data>

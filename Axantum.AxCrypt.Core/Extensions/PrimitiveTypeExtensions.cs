@@ -26,6 +26,8 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.UI.ViewModel;
+using AxCrypt.Content;
 using System;
 using System.Linq;
 
@@ -135,6 +137,33 @@ namespace Axantum.AxCrypt.Core.Extensions
         public static bool IsOlderThan(this DateTime time, DateTime thanTime)
         {
             return time < thanTime;
+        }
+
+        public static string ToValidationMessage(this int validationError)
+        {
+            switch ((ValidationError)validationError)
+            {
+                case ValidationError.None:
+                    return string.Empty;
+
+                case ValidationError.VerificationPassphraseWrong:
+                    return Texts.PassphraseVerificationMismatch;
+
+                case ValidationError.WrongPassphrase:
+                    return Texts.WrongPassphrase;
+
+                case ValidationError.InvalidEmail:
+                    return Texts.InvalidEmail;
+
+                case ValidationError.SamePasswordAsSignedIn:
+                    return Texts.SameFilePasswordAsSignedInError;
+
+                case ValidationError.IdentityExistsAlready:
+                case ValidationError.OnlineRequired:
+                case ValidationError.PremiumRequired:
+                default:
+                    return "Unexpected Validation Error";
+            }
         }
     }
 }

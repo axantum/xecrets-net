@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
@@ -114,7 +114,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                _errorProvider1.SetError(_passphraseTextBox, Texts.WrongPassphrase);
+                _errorProvider1.SetError(_passphraseTextBox, ViewModel.ValidationError.ToValidationMessage());
             }
             return false;
         }

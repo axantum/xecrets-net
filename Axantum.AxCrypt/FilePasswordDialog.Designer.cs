@@ -175,6 +175,7 @@
             this.KeyFilePanel.Padding = new System.Windows.Forms.Padding(12, 12, 12, 0);
             this.KeyFilePanel.Size = new System.Drawing.Size(313, 62);
             this.KeyFilePanel.TabIndex = 2;
+            this.KeyFilePanel.Visible = false;
             // 
             // _keyFileGroupBox
             // 

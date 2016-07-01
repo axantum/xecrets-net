@@ -2889,7 +2889,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Convert 1.x Files.
+        ///   Looks up a localized string similar to Auto Upgrade 1.x Files.
         /// </summary>
         public static string OptionsConvertMenuItemText {
             get {
@@ -3712,6 +3712,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are already signed in with this password! Please provide another password for this file..
+        /// </summary>
+        public static string SameFilePasswordAsSignedInError {
+            get {
+                return ResourceManager.GetString("SameFilePasswordAsSignedInError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only premium users are allowed to save password entries..
         /// </summary>
         public static string SaveSecretErrorIsReadOnly {
@@ -4287,7 +4296,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select locations to search for files secured with AxCrypt 1.x and upgrade them..
+        ///   Looks up a localized string similar to Select a place to search for files secured with AxCrypt 1.x and upgrade them..
         /// </summary>
         public static string UpgradeLegacyFilesMenuToolTip {
             get {
