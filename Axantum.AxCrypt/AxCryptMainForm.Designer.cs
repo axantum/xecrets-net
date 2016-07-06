@@ -108,6 +108,7 @@
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
+            this._germanLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -487,9 +488,10 @@
             // 
             this._optionsLanguageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._englishLanguageToolStripMenuItem,
+            this._germanLanguageToolStripMenuItem,
+            this._spanishLanguageToolStripMenuItem,
             this._francaisLanguageToolStripMenuItem,
-            this._swedishLanguageToolStripMenuItem,
-            this._spanishLanguageToolStripMenuItem});
+            this._swedishLanguageToolStripMenuItem});
             this._optionsLanguageToolStripMenuItem.Name = "_optionsLanguageToolStripMenuItem";
             this._optionsLanguageToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsLanguageToolStripMenuItem.Text = "[&Language]";
@@ -498,7 +500,7 @@
             // _englishLanguageToolStripMenuItem
             // 
             this._englishLanguageToolStripMenuItem.Name = "_englishLanguageToolStripMenuItem";
-            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._englishLanguageToolStripMenuItem.Tag = "en-US";
             this._englishLanguageToolStripMenuItem.Text = "[&English]";
             this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -506,7 +508,7 @@
             // _francaisLanguageToolStripMenuItem
             // 
             this._francaisLanguageToolStripMenuItem.Name = "_francaisLanguageToolStripMenuItem";
-            this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._francaisLanguageToolStripMenuItem.Tag = "fr-FR";
             this._francaisLanguageToolStripMenuItem.Text = "[&Français]";
             this._francaisLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -514,7 +516,7 @@
             // _swedishLanguageToolStripMenuItem
             // 
             this._swedishLanguageToolStripMenuItem.Name = "_swedishLanguageToolStripMenuItem";
-            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._swedishLanguageToolStripMenuItem.Tag = "sv-SE";
             this._swedishLanguageToolStripMenuItem.Text = "[&Svenska]";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -522,7 +524,7 @@
             // _spanishLanguageToolStripMenuItem
             // 
             this._spanishLanguageToolStripMenuItem.Name = "_spanishLanguageToolStripMenuItem";
-            this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._spanishLanguageToolStripMenuItem.Tag = "es-ES";
             this._spanishLanguageToolStripMenuItem.Text = "[&Español]";
             this._spanishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
@@ -938,6 +940,14 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
+            // _germanLanguageToolStripMenuItem
+            // 
+            this._germanLanguageToolStripMenuItem.Name = "_germanLanguageToolStripMenuItem";
+            this._germanLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._germanLanguageToolStripMenuItem.Tag = "de-DE";
+            this._germanLanguageToolStripMenuItem.Text = "[&Deutsch]";
+            this._germanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1070,6 +1080,7 @@
         private System.Windows.Forms.ToolStripButton _openEncryptedToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem _renameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _upgradeLegacyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _germanLanguageToolStripMenuItem;
     }
 }
 

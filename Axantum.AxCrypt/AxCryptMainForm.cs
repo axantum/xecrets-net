@@ -192,6 +192,7 @@ namespace Axantum.AxCrypt
             _feedbackButton.Text = Texts.FeedbackButtonText;
             _fileToolStripMenuItem.Text = Texts.FileToolStripMenuItemText;
             _francaisLanguageToolStripMenuItem.Text = Texts.FrancaisLanguageToolStripMenuItemText;
+            _germanLanguageToolStripMenuItem.Text = Texts.GermanLanguageSelectionText;
             _helpAboutToolStripMenuItem.Text = Texts.HelpAboutToolStripMenuItemText;
             _helpToolStripMenuItem.Text = Texts.HelpToolStripMenuItemText;
             _helpViewHelpMenuItem.Text = Texts.HelpViewHelpMenuItemText;

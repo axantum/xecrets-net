@@ -1565,6 +1565,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We try to send mailings in your language, but if you send us email we may respond in English. Please use Google Translate or similar if required..
+        /// </summary>
+        public static string EmailLanguageInformation {
+            get {
+                return ResourceManager.GetString("EmailLanguageInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [No Description].
         /// </summary>
         public static string EmptySecretTruncatedDescriptionLinkText {
@@ -1885,6 +1894,15 @@ namespace AxCrypt.Content.Properties {
         public static string FrancaisLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("FrancaisLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deutsch.
+        /// </summary>
+        public static string GermanLanguageSelectionText {
+            get {
+                return ResourceManager.GetString("GermanLanguageSelectionText", resourceCulture);
             }
         }
         
@@ -3712,7 +3730,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are already signed in with this password! Please provide another password for this file..
+        ///   Looks up a localized string similar to You are already signed in with this password! Please provide the original password for this file..
         /// </summary>
         public static string SameFilePasswordAsSignedInError {
             get {
