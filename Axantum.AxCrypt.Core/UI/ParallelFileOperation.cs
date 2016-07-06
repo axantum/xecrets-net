@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.UI
                         }
                         catch (AggregateException ae) when (ae.InnerException is OperationCanceledException)
                         {
-                            return new FileOperationContext(string.Empty, ErrorStatus.Canceled);
+                            return new FileOperationContext(file.ToString(), ErrorStatus.Canceled);
                         }
                         catch (AggregateException ae) when (ae.InnerException is AxCryptException)
                         {
@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.UI
                         catch (Exception ex)
                         {
                             New<IReport>().Exception(ex.InnerException);
-                            return new FileOperationContext(string.Empty, ex.InnerException.Message, ErrorStatus.Exception);
+                            return new FileOperationContext(file.ToString(), ex.InnerException.Message, ErrorStatus.Exception);
                         }
                     },
                     (fileOperationContext) =>
