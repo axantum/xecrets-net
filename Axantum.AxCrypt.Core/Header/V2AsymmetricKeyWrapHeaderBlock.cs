@@ -105,6 +105,10 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 return null;
             }
+            if (DecryptedDataBlock.Length != masterKey.Length + iv.Length)
+            {
+                return null;
+            }
 
             Array.Copy(DecryptedDataBlock, 0, masterKey, 0, masterKey.Length);
             Array.Copy(DecryptedDataBlock, masterKey.Length, iv, 0, iv.Length);
