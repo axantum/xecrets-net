@@ -2230,6 +2230,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 한국어 (Korean).
+        /// </summary>
+        public static string KoreanLanguageSelection {
+            get {
+                return ResourceManager.GetString("KoreanLanguageSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt must be restarted in order for the language change to take effect..
         /// </summary>
         public static string LanguageChangeRestartPrompt {

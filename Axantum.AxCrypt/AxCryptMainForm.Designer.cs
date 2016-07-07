@@ -60,9 +60,10 @@
             this._optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._englishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._germanLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._spanishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._francaisLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._spanishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsChangePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,7 +109,7 @@
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
-            this._germanLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._koreanLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -491,6 +492,7 @@
             this._germanLanguageToolStripMenuItem,
             this._spanishLanguageToolStripMenuItem,
             this._francaisLanguageToolStripMenuItem,
+            this._koreanLanguageToolStripMenuItem,
             this._swedishLanguageToolStripMenuItem});
             this._optionsLanguageToolStripMenuItem.Name = "_optionsLanguageToolStripMenuItem";
             this._optionsLanguageToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
@@ -504,6 +506,22 @@
             this._englishLanguageToolStripMenuItem.Tag = "en-US";
             this._englishLanguageToolStripMenuItem.Text = "[&English]";
             this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            // 
+            // _germanLanguageToolStripMenuItem
+            // 
+            this._germanLanguageToolStripMenuItem.Name = "_germanLanguageToolStripMenuItem";
+            this._germanLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._germanLanguageToolStripMenuItem.Tag = "de-DE";
+            this._germanLanguageToolStripMenuItem.Text = "[&Deutsch]";
+            this._germanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            // 
+            // _spanishLanguageToolStripMenuItem
+            // 
+            this._spanishLanguageToolStripMenuItem.Name = "_spanishLanguageToolStripMenuItem";
+            this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._spanishLanguageToolStripMenuItem.Tag = "es-ES";
+            this._spanishLanguageToolStripMenuItem.Text = "[&Español]";
+            this._spanishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // _francaisLanguageToolStripMenuItem
             // 
@@ -520,14 +538,6 @@
             this._swedishLanguageToolStripMenuItem.Tag = "sv-SE";
             this._swedishLanguageToolStripMenuItem.Text = "[&Svenska]";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
-            // 
-            // _spanishLanguageToolStripMenuItem
-            // 
-            this._spanishLanguageToolStripMenuItem.Name = "_spanishLanguageToolStripMenuItem";
-            this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this._spanishLanguageToolStripMenuItem.Tag = "es-ES";
-            this._spanishLanguageToolStripMenuItem.Text = "[&Español]";
-            this._spanishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // _optionsChangePassphraseToolStripMenuItem
             // 
@@ -940,13 +950,13 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // _germanLanguageToolStripMenuItem
+            // _koreanLanguageToolStripMenuItem
             // 
-            this._germanLanguageToolStripMenuItem.Name = "_germanLanguageToolStripMenuItem";
-            this._germanLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this._germanLanguageToolStripMenuItem.Tag = "de-DE";
-            this._germanLanguageToolStripMenuItem.Text = "[&Deutsch]";
-            this._germanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._koreanLanguageToolStripMenuItem.Name = "_koreanLanguageToolStripMenuItem";
+            this._koreanLanguageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._koreanLanguageToolStripMenuItem.Tag = "ko";
+            this._koreanLanguageToolStripMenuItem.Text = "[Korean]";
+            this._koreanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
@@ -1081,6 +1091,7 @@
         private System.Windows.Forms.ToolStripMenuItem _renameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _upgradeLegacyMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _germanLanguageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _koreanLanguageToolStripMenuItem;
     }
 }
 

@@ -1,0 +1,1480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+	
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+  <data name="AbortedFileStatus" xml:space="preserve">
+    <value>({0}) '중단' 상태.</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>{0}에 대해</value>
+  </data>
+  <data name="AccountLoggedOnStatusText" xml:space="preserve">
+    <value>{0}</value>
+    <comment>Title bar status text when logged on to an account.</comment>
+  </data>
+  <data name="AccountStatusLight" xml:space="preserve">
+    <value>AxCrypt 무료</value>
+  </data>
+  <data name="AccountStatusPremium" xml:space="preserve">
+    <value>AxCrypt Premium</value>
+  </data>
+  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
+    <value>AxCrypt Premium (무한정)</value>
+  </data>
+  <data name="AccountStatusPremiumTrial" xml:space="preserve">
+    <value>AxCrypt Premium 사용해보기</value>
+  </data>
+  <data name="ActivateErrorEmailOrCode" xml:space="preserve">
+    <value>작성하신 이메일 주소나 활성화 번호가 맞지 않습니다.</value>
+  </data>
+  <data name="ActivateErrorNoRequest" xml:space="preserve">
+    <value>비밀번호 재설정을 실패하였습니다. AxCrypt ID로 비밀번호 재설정 요청을 하지 않으셨습니다.</value>
+  </data>
+  <data name="ActivateErrorPassword" xml:space="preserve">
+    <value>비밀번호 재설정 실패.</value>
+  </data>
+  <data name="ActivateMailBodyButton" xml:space="preserve">
+    <value>AxCrypt ID 활성화</value>
+  </data>
+  <data name="ActivateMailBodyCode" xml:space="preserve">
+    <value>사용자의 AxCrypt ID 활성화 번호는 &lt;b&gt;{0}&lt;/b&gt; 입니다. AxCrypt 앱에 사용하시거나 사이트로 가시려면 아래 버튼을 눌러주시기 바랍니다. 이를 통해 사용자의 계정이 확인됩니다.</value>
+  </data>
+  <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
+    <value>활성화 번호는 {0} 와 같습니다.</value>
+  </data>
+  <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
+    <value>AxCrypt Premium 을 &lt;b&gt;30 일간의 무료 체험&lt;/b&gt;을 AxCrypt ID가 확인되신 직후에 하실수 있습니다.</value>
+  </data>
+  <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
+    <value>계정등록이 확인되신 순간부터 AxCrypt Premium이 제공하는 기능들에 30일간의 무료 사용이 가능합니다.</value>
+  </data>
+  <data name="ActivateMailBodyIntro" xml:space="preserve">
+    <value>AxCrypt ID에 계정을 만드셨습니다.  사용자의 계정 인증을 위해 아래에 인증번호를 AxCrypt app, 또는 저희 사이트에 작성해주시기 바랍니다.</value>
+  </data>
+  <data name="ActivateMailBodyManualLink" xml:space="preserve">
+    <value>&lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt;앱말고 사이트를 사용하고 싶으시면 &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt;로 가시고 &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt;를 작성해 AxCrypt ID를 활성화 시키십시오.</value>
+  </data>
+  <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
+    <value>사이트를 통해 AxCrypt ID를 확인하시고 싶으시면 {0}에 가셔서 {1} 와 활성화 코드 {2}를 눌러 주십시오.</value>
+  </data>
+  <data name="ActivateMailBodyTitle" xml:space="preserve">
+    <value>안녕하세요, AxCrypt에 오신것을 환영합니다!</value>
+  </data>
+  <data name="ActivateMailSubject" xml:space="preserve">
+    <value>AxCrypt ID 작동</value>
+  </data>
+  <data name="ActivateManuallyPageBody" xml:space="preserve">
+    <value>&lt;b&gt;정지!&lt;/b&gt;
+AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴습니다. 물론 AxCrypt ID를 만들기 전에 회원가입을 하셔야 합니다.
+활성화 링크를 받은 편지함에 받으셨으나 링크사용이 불가능해질 시에만 이메일 주소와 번호를 작성해주시기 바랍니다.</value>
+  </data>
+  <data name="ActivatePageBody" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; AxCrypt ID를 확인하시려면 비밀번호를 선택해주십시오.
+
+안전한 보안을 위해 추측하기 어려운 비밀번호를 사용해주십시오.  절데로 비밀번호를 잊지 말아주시길 바랍니다. </value>
+  </data>
+  <data name="ActivatePageTitle" xml:space="preserve">
+    <value>AxCrypt ID 활성화</value>
+  </data>
+  <data name="ActivateSuccess" xml:space="preserve">
+    <value>AxCrypt ID가 확인 되셨습니다. 로그인 해주시기 바랍니다. </value>
+  </data>
+  <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
+    <value>더블 클릭으로 보안된 파일을 엽니다.</value>
+  </data>
+  <data name="ActiveFileToolTip" xml:space="preserve">
+    <value>더블클릭을 하시면 보안 파일을 열기전에 보안창이 떠 비밀번호를 입력하시면 됩니다. </value>
+  </data>
+  <data name="AddSecureFolderMenuItemText" xml:space="preserve">
+    <value>보안된 파일 추가</value>
+  </data>
+  <data name="AddSecureFolderTitle" xml:space="preserve">
+    <value>AxCrypt와 보안될 파일을 선택해주십시오. 기존의 있는 파일들은 암호화됩니다.</value>
+    <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AnonymousRenameMenuText" xml:space="preserve">
+    <value>&amp;익명 이름 다시 짓기</value>
+  </data>
+  <data name="AnonymousRenameSelectFilesDialogTitle" xml:space="preserve">
+    <value>개명을 위해 암호화된 파일들을 선택해주시기 바랍니다!</value>
+  </data>
+  <data name="AnonymousRenameToolTip" xml:space="preserve">
+    <value>보안된 파일의 실제 이름을 숨기기 위해서 개명을 하시기 바랍니다.</value>
+  </data>
+  <data name="AuthenticationError" xml:space="preserve">
+    <value>요청하신 페이지를 보고싶으시면 로그인 해주시기 바랍니다.</value>
+  </data>
+  <data name="AutoDeletionEmailOutro" xml:space="preserve">
+    <value>답변을 안 하셔도 됩니다. 무시하시면 AxCrypt ID는 지속적으로 삭제되고 메일을 더이상 안 받으실겁니다.</value>
+    <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
+  </data>
+  <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
+    <value>AxCrypt 다운로드를 위해 사용자분께서는 이메일 주소를 주셨습니다. 활성화 번호를 보냈으나 사용하지 않으셨습니다. 그 번호로 Crypt ID를 확인 안하시는 즉시 저희 시스템에서 사용자분을 추방 시킬 수 밖에 없습니다.</value>
+  </data>
+  <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
+    <value>AxCrypt ID를 삭제하려고 합니다!</value>
+    <comment>The title of the deletion e-mail</comment>
+  </data>
+  <data name="AutoDeletionMailSubject" xml:space="preserve">
+    <value>AxCrypt ID 계정이 곧 삭제됩니다!</value>
+  </data>
+  <data name="AxCryptAboutDescription" xml:space="preserve">
+    <value>사용자와 사용자의 팀을 위한 AxCrypt AB로 본안된 파일은 http://www.bouncycastle.org/  소프트웨어에서 생긴 것입니다.</value>
+  </data>
+  <data name="AxCryptFileEncryption" xml:space="preserve">
+    <value>AxCrypt 파일 보호</value>
+  </data>
+  <data name="BadEmail" xml:space="preserve">
+    <value>이메일 주소가 맞지 않습니다.</value>
+    <comment>Displayed when email address format validation fails.</comment>
+  </data>
+  <data name="ButtonActivateText" xml:space="preserve">
+    <value>활성화시키기</value>
+  </data>
+  <data name="ButtonCancelAllText" xml:space="preserve">
+    <value>&amp;모두 취소</value>
+  </data>
+  <data name="ButtonCancelText" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="ButtonChangePasswordText" xml:space="preserve">
+    <value>비밀번호 변경</value>
+  </data>
+  <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
+    <value>AxCrypt ID 삭제</value>
+  </data>
+  <data name="ButtonDeleteText" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="ButtonEditText" xml:space="preserve">
+    <value>편집</value>
+  </data>
+  <data name="ButtonEllipsisText" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="ButtonExitText" xml:space="preserve">
+    <value>%나가기</value>
+  </data>
+  <data name="ButtonHelpText" xml:space="preserve">
+    <value>&amp;도움</value>
+  </data>
+  <data name="ButtonNewText" xml:space="preserve">
+    <value>&amp;스위치</value>
+  </data>
+  <data name="ButtonNewToolTip" xml:space="preserve">
+    <value>AxCrypt ID 이메일 주소를 변경하시려면 클릭하십시오.</value>
+    <comment>The new AxCrypt ID button tooltip</comment>
+  </data>
+  <data name="ButtonNoText" xml:space="preserve">
+    <value>&amp;아니요</value>
+  </data>
+  <data name="ButtonOkText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ButtonPasswordResetText" xml:space="preserve">
+    <value>&amp;재설정</value>
+    <comment>Button text for a password reset button</comment>
+  </data>
+  <data name="ButtonPasswordResetToolTip" xml:space="preserve">
+    <value>비밀번호를 재설정하시려면 클릭해주십시오.</value>
+    <comment>Tooltip text for a button to click for resetting password.</comment>
+  </data>
+  <data name="ButtonSaveText" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="ButtonSendText" xml:space="preserve">
+    <value>보내기</value>
+  </data>
+  <data name="ButtonShareRightText" xml:space="preserve">
+    <value>공유 &gt;&gt;</value>
+  </data>
+  <data name="ButtonSignInBuyText" xml:space="preserve">
+    <value>로그인 &amp; 바로 구입</value>
+  </data>
+  <data name="ButtonSignInText" xml:space="preserve">
+    <value>로그인</value>
+  </data>
+  <data name="ButtonSignUpText" xml:space="preserve">
+    <value>로그인</value>
+  </data>
+  <data name="ButtonSuggestText" xml:space="preserve">
+    <value>비밀번호 추천</value>
+  </data>
+  <data name="ButtonUnshareLeftText" xml:space="preserve">
+    <value>&lt;&lt; 공유 하지 않기</value>
+  </data>
+  <data name="ButtonYesText" xml:space="preserve">
+    <value>&amp;네</value>
+  </data>
+  <data name="CancelButtonText" xml:space="preserve">
+    <value>취소&amp;모든</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>'{0}'이 취소.</value>
+  </data>
+  <data name="CannotStartApplication" xml:space="preserve">
+    <value>'{0}'로 앱 시작이 불가능합니다.</value>
+  </data>
+  <data name="CannotWrite" xml:space="preserve">
+    <value>'{0}'를 못 씁니다.</value>
+  </data>
+  <data name="CaptchaError" xml:space="preserve">
+    <value>Captcha 답이 맞지 않습니다.</value>
+  </data>
+  <data name="CaptchaLabel" xml:space="preserve">
+    <value>자동화 소프크웨어가 아닌 실재 인물이라는 입증을 해주시기 바랍니다!</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
+    <value>&lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt; 로 현재 AxCrypt ID 이메일 주소 변경을 요청하셨습니다. 변경하시는 것이 맞으시다면 아래 버튼을 눌러 주시기 바랍니다.</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
+    <value>존재하는 비밀번호를 작성하고 로그인해주시기 바랍니다. 이전 AxCrypt ID는 완전히 삭제됩니다.</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
+    <value>이메일 계정 수정</value>
+  </data>
+  <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
+    <value>AxCrypt ID 이메일 주소 변경이 인증되셨습니다! 완전한 완료를 위해 로그인 해주시기 바랍니다.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
+    <value>이메일 변경을 알려지지 않은 사용자가 &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; 에서 &lt;b&gt;{1}&lt;/b&gt; 로 요청하셨습니다.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody2" xml:space="preserve">
+    <value>작성하신 이메일 주소를 이미 사용중인 AxCrypt ID가 있어 요청하신것을 고려하지 않았습니다.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody3" xml:space="preserve">
+    <value>이 메일을 무시하거나 {0}에 알리시기 바랍니다. 모든 정보는 안전하게 보관되어있습니다.</value>
+  </data>
+  <data name="ChangeEmailExistMailSubject" xml:space="preserve">
+    <value>AxCrypt ID 이메일 주소 변경 요청</value>
+  </data>
+  <data name="ChangeEmailMarkError" xml:space="preserve">
+    <value>내부 오류로 인해 이메일 주소 변경이 실패됐습니다. 다시 시도를 하거나 저희 지원부로 연락주시기 바랍니다. </value>
+  </data>
+  <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
+    <value>새 이메일 주소는 이전 주소와 다르게 사용해주시기 바랍니다.</value>
+  </data>
+  <data name="ChangeEmailMarkSuccess" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; 로 메일을 보냈습니다. 메일을 확인하시고 수정한 내용이 확인될수있게 저희 팀이 보낸 링크를 클릭해주시기 바랍니다.</value>
+  </data>
+  <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
+    <value>선호하시는 알림이 변경되었습니다.</value>
+  </data>
+  <data name="ChangePassphraseDialogTitle" xml:space="preserve">
+    <value>비밀번호 바꾸기</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>비밀번호가 바뀌셨습니다.</value>
+  </data>
+  <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;열린 파일들을 정리하기</value>
+  </data>
+  <data name="CleanUpNeededToolTip" xml:space="preserve">
+    <value>파일이 열렸으나 정리를 하셔야 됩니다. 열려있는 모든 앱을 닫아주시고 '정리하기' 버튼을 눌러 주시기 바랍니다.</value>
+  </data>
+  <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
+    <value>새 버전을 보시려면 클릭하십시오.</value>
+  </data>
+  <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
+    <value>열린 파일들을 삭제, 또는 비우시려면 여기를 누르시기 바랍니다. 그러나 본파일이 이미 사용중이 아닌지를 확인 해주시기 바랍니다.</value>
+  </data>
+  <data name="ColumnAmountPaidHeader" xml:space="preserve">
+    <value>지불한 금액</value>
+  </data>
+  <data name="ColumnExpiresHeader" xml:space="preserve">
+    <value>UTC 만료</value>
+  </data>
+  <data name="ColumnFolderHeader" xml:space="preserve">
+    <value>폴더</value>
+    <comment>Columnheader containing a folder name.</comment>
+  </data>
+  <data name="ColumnProductHeader" xml:space="preserve">
+    <value>제품</value>
+  </data>
+  <data name="ColumnTimestampHeader" xml:space="preserve">
+    <value>시간</value>
+  </data>
+  <data name="ColumnTransactionDateHeader" xml:space="preserve">
+    <value>UTC 거래</value>
+  </data>
+  <data name="ContactInfoPhone" xml:space="preserve">
+    <value>+46 (0)8 550 10 274</value>
+  </data>
+  <data name="ContactInfoTitle" xml:space="preserve">
+    <value>연락처 &amp; 도움</value>
+  </data>
+  <data name="CookiePolicyBlockedError" xml:space="preserve">
+    <value>사용자의 바라우저내에 쿠키사용이 불가능하므로 작업이 차단되었습니다.</value>
+  </data>
+  <data name="CookiePolicyPageBody" xml:space="preserve">
+    <value>하드 디스크에 장기적인 쿠키를 저장하지 않습니다. 브라우저를 닫으실 때 임시 쿠키가 없어지게끔 만들었습니다. 하지만 사용가의 보안을 위해서 임시 쿠키는 필수적입니다. 저희는 사용자의 정보를 추적하지도 타사용자께 보내지도 않습니다. 
+
+임시쿠키는 HTTPS로 암호화된 소통으로 보안되어있고, 임시 쿠키가 사용자의 브라우저를 추적하지 못하게 해놨습니다.
+
+ 임시 쿠키 사용을 거절하시면 회원가입은 물론 사이트 실행성이 예상밖으로 낮을 수 있습니다.</value>
+  </data>
+  <data name="CookiePolicyPageTitle" xml:space="preserve">
+    <value>쿠키 정책</value>
+  </data>
+  <data name="CookiesDisabledError" xml:space="preserve">
+    <value>브라우저에서 쿠키가 사용 불가능으로 설정되었습니다. 임시 쿠키를 수락하지 않는 이상 가입 또는 로그인이 불가능합니다. 자세한 내용은 &lt;a href="{0}"&gt;cookie policy&lt;/a&gt; 에 참고해주시기 바랍니다.</value>
+  </data>
+  <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
+    <value>AxCrypt ID 만들기</value>
+  </data>
+  <data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>안전한 파일 공유와 사용을위해 공유 키와 접속 키로 AxCrypt ID를 만들어주시기 바랍니다. </value>
+  </data>
+  <data name="CryptoNameText" xml:space="preserve">
+    <value>알고리즘</value>
+  </data>
+  <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
+    <value>{0} 일</value>
+  </data>
+  <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
+    <value>&lt; 1일</value>
+  </data>
+  <data name="DaysLeftWarningToolTip" xml:space="preserve">
+    <value>Premium 구독이 곧 만료 됍니다. 재구독하시려면 클릭해주시기 바랍니다. </value>
+  </data>
+  <data name="DebugCheckVersionNowToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;버전 지금 확인</value>
+  </data>
+  <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;로그인</value>
+  </data>
+  <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;보안 정지그리고 리스트에서 추방</value>
+  </data>
+  <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
+    <value>파일</value>
+  </data>
+  <data name="DecryptedFilesWarning" xml:space="preserve">
+    <value>이 파일들은 다시 암호화 할 수 없는 파일들입니다:</value>
+    <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
+  </data>
+  <data name="DecryptedFileToolTip" xml:space="preserve">
+    <value>파일이 열려 있습니다. 앱을 닫아주시거나, 삭제 기능을 사용하여 없애주십시오.</value>
+  </data>
+  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
+    <value>파일 (*{0})|*{0}|모든 파일(*.*)|*.*</value>
+  </data>
+  <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
+    <value>파일이 존재합니다, 새로운 이름을 지어 이와 같이 저장</value>
+  </data>
+  <data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
+    <value>비밀번호를 아직 작성하시지 않았습니다. 입력하시려면 더블 클릭을 하시고 열거나, 옵션에 들어가시려면 마우스 오른쪽을 클릭해주시기 바랍니다.</value>
+  </data>
+  <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
+    <value>보안이 불필요한 파일을 선택해주십시오</value>
+  </data>
+  <data name="DecryptToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;보안 정지</value>
+  </data>
+  <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
+    <value>로그인 하셨습니다. 로그아웃을 위해 클릭해 주시기 바랍니다. </value>
+  </data>
+  <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
+    <value>잘못된 비밀번호로 인해 삭제 불가능.</value>
+  </data>
+  <data name="DeleteAccountSuccess" xml:space="preserve">
+    <value>AxCrypt ID가 성공적으로 삭제되었습니다.
+
+이용해주셔서 감사합니다. 또 뵙겠습니다.</value>
+  </data>
+  <data name="DeleteSecretErrorNotFound" xml:space="preserve">
+    <value>요청하신 비밀번호를 못 찾았습니다. 삭제를 실패했습니다.</value>
+  </data>
+  <data name="DeleteSecretSuccess" xml:space="preserve">
+    <value>비밀번호가 삭제되었습니다.</value>
+  </data>
+  <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
+    <value>AxCrypt ID</value>
+  </data>
+  <data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
+    <value>AxCrypt를 처음 사용하신 분께는 실재 이메일 주소가 필요합니다. 더 많은 정보가 필요하시면 도움을 누르시기 바랍니다.</value>
+  </data>
+  <data name="DialogDecryptTitle" xml:space="preserve">
+    <value>비밀번호 필수</value>
+  </data>
+  <data name="DialogExportAxCryptIdFileName" xml:space="preserve">
+    <value>AxCrypt ID (#{1}) - {0}.axx</value>
+  </data>
+  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
+    <value>AxCrypt ID 파일 (*.axx)|*.axx|모든 파일 (*.*)|*.*"</value>
+  </data>
+  <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
+    <value>AxCrypt ID 수출</value>
+  </data>
+  <data name="DialogExportSharingKeyFileName" xml:space="preserve">
+    <value>AxCrypt 공유 키 (#{1}) - {0}.txt</value>
+  </data>
+  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
+    <value>AxCrypt 공개 키 공유 키 파일 (*.txt)|*.txt|모든 파일 (*.*)|*.*</value>
+  </data>
+  <data name="DialogExportSharingKeyTitle" xml:space="preserve">
+    <value>공개 키 수출</value>
+  </data>
+  <data name="DialogFilePasswordTitle" xml:space="preserve">
+    <value>파일 비밀번호</value>
+  </data>
+  <data name="DialogImportPrivateAxCryptIdAccessIdPrompt" xml:space="preserve">
+    <value>AxCrypt ID</value>
+  </data>
+  <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
+    <value>AxCrypt ID 옮기기</value>
+  </data>
+  <data name="DialogKeyShareTitle" xml:space="preserve">
+    <value>접속 공유</value>
+  </data>
+  <data name="DialogManageAxcryptIdTitle" xml:space="preserve">
+    <value>AxCrypt ID 관리</value>
+  </data>
+  <data name="DialogNewPasswordTitle" xml:space="preserve">
+    <value>새 비밀번호 정하기</value>
+  </data>
+  <data name="DialogVerifyAccountTitle" xml:space="preserve">
+    <value>AxCrypt ID 작동시키기</value>
+  </data>
+  <data name="DialogWatchedFoldersTitle" xml:space="preserve">
+    <value>보안된 폴더</value>
+  </data>
+  <data name="DoubleClickToOpenToolTip" xml:space="preserve">
+    <value>더블클릭해서 열기. 필요시 비밀번호작성을 요구할수 있습니다.</value>
+  </data>
+  <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
+    <value>사용자는 읽기 전용으로만 접속이 가능합니다! Premium사용자분들께만 편집이나 비밀번호 재설정이 가능합니다.</value>
+  </data>
+  <data name="EditSecretErrorNotFound" xml:space="preserve">
+    <value>요청하신 비밀번호 입력을 찾을수가 없었습니다.</value>
+  </data>
+  <data name="EditSecretSuccess" xml:space="preserve">
+    <value>가입이 업데이트 되었습니다.</value>
+  </data>
+  <data name="EmailLanguageInformation">
+    <value>사용자의 언어로 메세지를 보내려 시도 하고 있습니다. 하지만 사용자분께서 저희에게 메일을 보내시면 영어로 답변을 드릴 수 있습니다. 구글 번역등을 사용해주시기 바랍니다.</value>
+    <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate.</comment>
+  </data>
+  <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
+    <value>[설명이 없음]</value>
+  </data>
+  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
+    <value>AxCrypt 파일 (*{0})|*{0}|모든 파일 (*.*)|*.*</value>
+  </data>
+  <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
+    <value>보안 &amp;폴더</value>
+  </data>
+  <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
+    <value>보안</value>
+  </data>
+  <data name="EncryptedSourceColumnHeader" xml:space="preserve">
+    <value>보안된 파일</value>
+  </data>
+  <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
+    <value>파일을 보안하시려면 서택해주십시오</value>
+  </data>
+  <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
+    <value>파일 존재, 이와 같이 저장</value>
+  </data>
+  <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
+    <value>보안할 파일들을 선택하십시오. </value>
+  </data>
+  <data name="EncryptToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;보안</value>
+  </data>
+  <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
+    <value>아이디'{0}'비밀번호</value>
+  </data>
+  <data name="ErrorEmailMismatch" xml:space="preserve">
+    <value>입증이 이메일 주소와 맞지 않습니다.</value>
+  </data>
+  <data name="ErrorPasswordMismatch" xml:space="preserve">
+    <value>비밀번호 확인과 비밀번호가 맞지 않습니다.</value>
+  </data>
+  <data name="ErrorPasswordTooLong" xml:space="preserve">
+    <value>비밀번호는 최소한 {2} 이며 최대는 {1} 자로 사용해주시기 바랍니다.</value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>'{0}' 프로세싱중 예외.</value>
+    <comment>@Invariant</comment>
+  </data>
+  <data name="ExitToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;나가기</value>
+  </data>
+  <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
+    <value> AxCrypt ID &amp;암호 키와 공유 키 수출</value>
+  </data>
+  <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>AxCript ID를 옮기시고 싶으시면 비밀 키와 공유 키를 수출 한뒤 원하시는 위치에 옮기시면 됩니다.</value>
+  </data>
+  <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>암호화된 파일들을 다른 사용자들과 공유하시려면 수출한 공유 공개 키를 보내시기 바랍니다.</value>
+  </data>
+  <data name="FailedPrivateImport" xml:space="preserve">
+    <value>옮기기 실패. 무효한 AxCrypt ID 파일일수도 있습니다.</value>
+  </data>
+  <data name="FeedbackButtonText" xml:space="preserve">
+    <value>고객님의 의견을 듣고 싶습니다! 저희 팀이 잘 하고 있나요?</value>
+  </data>
+  <data name="FileAlreadyEncrypted" xml:space="preserve">
+    <value>'{0}' 파일은 이미 보안 되어있습니다.</value>
+  </data>
+  <data name="FileAlreadyEncryptedStatus" xml:space="preserve">
+    <value>'{0}'파일이 이미 보안 되어있습니다.</value>
+  </data>
+  <data name="FileAlreadyExists" xml:space="preserve">
+    <value>'{0}' 파일은 이미 존재합니다.</value>
+  </data>
+  <data name="FileDoesNotExist" xml:space="preserve">
+    <value>'{0}'파일은 없는 파일입니다.</value>
+  </data>
+  <data name="FileIsLockedWarning" xml:space="preserve">
+    <value>'{0}' 이/가 다른 앱에 열려있습니다. 그 앱을 닫아주신 후, 다시한번 시도해주시기 바랍니다.</value>
+  </data>
+  <data name="FileIsWriteProtectedWarning" xml:space="preserve">
+    <value>'{0}' 는 보안되어 있다고 적혀있습니다.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>파일이 존재하지 않습니다.</value>
+  </data>
+  <data name="FileOperationFailed" xml:space="preserve">
+    <value>'{0}' 오류.</value>
+  </data>
+  <data name="FileToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;파일</value>
+  </data>
+  <data name="FolderAlreadyWatched" xml:space="preserve">
+    <value>폴더 '{0}' 이미 보안.</value>
+  </data>
+  <data name="FooterInfoBody" xml:space="preserve">
+    <value>AxCrypt.net의 AxCrypt ID 섹션입니다. 시작 페이지로 돌아가고 싶으시면 &lt;a href="{0}"&gt;here&lt;/a&gt;  클릭해 주십시오.</value>
+  </data>
+  <data name="FooterInfoTitle" xml:space="preserve">
+    <value>AxCrypt ID</value>
+  </data>
+  <data name="GetLogErrorDateFormat" xml:space="preserve">
+    <value>시작 날짜와 종료 날짜가 유효하지 않습니다. XXX년-XX월-XX일 형식으로 다시 시도 해주시기 바랍니다.</value>
+  </data>
+  <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;에 관하여</value>
+  </data>
+  <data name="HelpToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;도움</value>
+  </data>
+  <data name="HelpViewHelpMenuItemText" xml:space="preserve">
+    <value>&amp;도움</value>
+  </data>
+  <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
+    <value>액세스 공유 키와 &amp;AxCrypt ID 옮기기</value>
+  </data>
+  <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;타사용자의 공유 키를 옯기기</value>
+  </data>
+  <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>대화 상대에게 공개 공유 키를 요청하신뒤 여기로 옮기십시오. 후에 암호화된 파일들을 공유하실수 있습니다.</value>
+  </data>
+  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
+    <value>AxCrypt ID 파일 (*.axx)|*.axx|All Files (*.*)|*.*</value>
+  </data>
+  <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
+    <value>AxCrypt ID 선택</value>
+  </data>
+  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
+    <value>문서 파일 (*.txt)|*.txt|모든 파일 (*.*)|*.*</value>
+  </data>
+  <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
+    <value>공유 키 파일들을 선택해주십시오</value>
+  </data>
+  <data name="IndexPageTitle" xml:space="preserve">
+    <value>나의 AxCrypt ID</value>
+  </data>
+  <data name="InformationTitle" xml:space="preserve">
+    <value>정보</value>
+    <comment>A dialog box title for general announcement and informative message dialog boxes</comment>
+  </data>
+  <data name="InternetNotRequiredInformation" xml:space="preserve">
+    <value>AxCrypt를 이용할 때 인터넷 접속이 불필요합니다 하지만 접속을 추천합니다. 몇가지 기능과 업데이트에는 접속이 필요할 수 있습니다.
+사용자의 비밀번호가 서버에 저장되어있지 않습니다. 접속도 항상 암호화 되어있습니다.
+
+</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>이메일 주소 형식이 잘못 되었습니다.</value>
+  </data>
+  <data name="InvalidKey" xml:space="preserve">
+    <value>'{0}'에 키가 올바르지 않습니다. </value>
+  </data>
+  <data name="InvalidPath" xml:space="preserve">
+    <value>'{0}' 파일이 잘못 되었습니다.</value>
+  </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>시간을 'hh:mm:ss.mmm'을 토대로 작성해주시기 바랍니다. </value>
+  </data>
+  <data name="Invalid_URL" xml:space="preserve">
+    <value>URL 링크가 올바르지 않습니다.</value>
+  </data>
+  <data name="InvitationMailBodyIntro" xml:space="preserve">
+    <value> 파일 보안에 &lt;b&gt;{0}&lt;/b&gt; 께서 초데하셨습니다. 파일 보안을 하시려면  &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; 을 하시고 AxCrypt를 다운로드 하십시오. &lt;b&gt;{2}&lt;/b&gt;로 AxCrypt에 로그인 하신뒤, 활성화 코드와 비밀번호를 작성해주십시오. </value>
+  </data>
+  <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
+    <value>{0}께서 AxCrypt 보안 파일에 초대하셨습니다. 
+파일 보안을 위해 AxCrypt을 {1} 에서 다운 받으십시오.
+{2} 과 AxCrypt에 로그인을 위해 6자리 활성화 번호를 누르신뒤 비밀번호를 작성해주십시오.</value>
+  </data>
+  <data name="InvitationMailSubject" xml:space="preserve">
+    <value>AxCrypt 보안 파일사용을 위한 초대</value>
+  </data>
+  <data name="JavaScriptDisabledError" xml:space="preserve">
+    <value>JavaScript가 현재 사용중이신 브라우저로 인해 사용이 불가능합니다. JavaScript사용이 불가능한 이상 로그인 및 사이트 실행이 예상대로 안될수도 있습니다.</value>
+  </data>
+  <data name="KeyFileBrowseFilter" xml:space="preserve">
+    <value>AxCrypt 키 파일 (*.txt)|*.txt|모든 파일 (*.*)|*.*</value>
+  </data>
+  <data name="KeyFileBrowseTitle" xml:space="preserve">
+    <value>키 파일 선택하기</value>
+  </data>
+  <data name="KeyFilePrompt" xml:space="preserve">
+    <value>키 파일</value>
+  </data>
+  <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;관리 키</value>
+  </data>
+  <data name="KeySharingExistsToolTip" xml:space="preserve">
+    <value>파일 키는 다른 AxCrypt 사용자분들과 공유 되고 있습니다.</value>
+  </data>
+  <data name="KeySharingOffline" xml:space="preserve">
+    <value>새로운 연락처는 인터넷 연결이 된 다음에 추가 가능합니다!</value>
+  </data>
+  <data name="KeySharingToolTip" xml:space="preserve">
+    <value>타들과 키를 공유하시려는 암호화된 파일들을 선택하기 위해서 클릭 해주시기 바랍니다.</value>
+  </data>
+  <data name="LanguageChangeRestartPrompt" xml:space="preserve">
+    <value>언어를 변경하신 후 AxCrypt를 재시작해주시기 바랍니다.</value>
+  </data>
+  <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
+    <value>시간</value>
+  </data>
+  <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
+    <value>AxCrypt 1.x 형태로 파일들이 전환된후 파일을 열고싶으시다면 새로 작성하신 비밀번호를 사용해주시기 바랍니다.
+비밀번호를 잊지마시기 바랍니다.</value>
+  </data>
+  <data name="LegacyOpenMessage" xml:space="preserve">
+    <value>AxCrypt 2는 새로운 형식의 파일을 사용합니다.
+
+AxCrypt 1.x 레거시 파일을 여실수 있습니다, 하지만 전환되어있지않는한 본래의 비밀번호는 작성하셔야 합니다. 
+
+자동적인 전환은 옵션 메뉴에서 수정이 가능합니다.
+
+AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
+  </data>
+  <data name="LicenseFreeNameText" xml:space="preserve">
+    <value>무료</value>
+  </data>
+  <data name="LicensePremiumNameText" xml:space="preserve">
+    <value>Premium</value>
+  </data>
+  <data name="LinkTextBackToMainSite" xml:space="preserve">
+    <value>메인 사이트에 가기</value>
+    <comment>Menus and similar to link back to main site.</comment>
+  </data>
+  <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
+    <value>{0}홈/구입?이메일={1}</value>
+  </data>
+  <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
+    <value>{0}secrets?email={1}</value>
+  </data>
+  <data name="LoggedOffStatusText" xml:space="preserve">
+    <value>로그아웃</value>
+  </data>
+  <data name="LoggedOnStatusText" xml:space="preserve">
+    <value>비밀번호</value>
+    <comment>Shown in the title bar to display the log on status.</comment>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>작성하신 이메일 주소나 비밀번호가 맞지 않습니다.</value>
+  </data>
+  <data name="LoginPageTitle" xml:space="preserve">
+    <value>AxCrypt에 로그인</value>
+  </data>
+  <data name="LoginPurchaseError" xml:space="preserve">
+    <value>지불 요청중에 무언가가 잘못 되었습니다. 다시 시도 해 주십시오.</value>
+  </data>
+  <data name="LogOffText" xml:space="preserve">
+    <value>로그아웃</value>
+  </data>
+  <data name="LogOnText" xml:space="preserve">
+    <value>로그인</value>
+  </data>
+  <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
+    <value>더 강력한 보안을 위해 Premium으로 업그레이드 해주시기 바랍니다.</value>
+  </data>
+  <data name="MagicGuidMIssingFileStatus" xml:space="preserve">
+    <value>'{0}' 는 AxCrypt 파일이 아닙니다.</value>
+  </data>
+  <data name="MailBodyFooter" xml:space="preserve">
+    <value> &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;로 무슨 이유로 이것을 받으셨는지 불확실합니다. 이 메세지를 무시하거나 {1}로 알리시기 바랍니다.</value>
+  </data>
+  <data name="MailBodyFooterPlainText" xml:space="preserve">
+    <value>AxCrypt.net에서 아래 내용을 무슨 이유로 받으셨는지 모르시다면 이 메세지를 무시하거나 {0}에 알리시기 바랍니다.</value>
+  </data>
+  <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
+    <value>&lt;ul&gt;
+&lt;li&gt;256-bit AES&lt;/li&gt;
+&lt;li&gt;공유 키&lt;/li&gt; 
+&lt;li&gt;보안된 파일&lt;/li&gt;
+&lt;li&gt;비밀번호 관리&lt;/li&gt;
+&lt;li&gt;클라우드 스토리지 파악&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="MailBodySignature" xml:space="preserve">
+    <value>AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt; 를 사용해주셔서 감사합니다</value>
+  </data>
+  <data name="MailBodySignaturePlainText" xml:space="preserve">
+    <value>AxCrypt를 사요해주셔서 감사합니다!
+- Svante
+AxCrypt 팀</value>
+  </data>
+  <data name="MailBodyTitle" xml:space="preserve">
+    <value>안녕하세요 {0},</value>
+  </data>
+  <data name="MailBodyTitleHtml" xml:space="preserve">
+    <value>안녕하세요 {0},</value>
+  </data>
+  <data name="MenuAxCryptIdText" xml:space="preserve">
+    <value>나의 AxCrypt ID</value>
+  </data>
+  <data name="MenuDecryptPermanentlyText" xml:space="preserve">
+    <value>&amp;지속적으로 해독</value>
+  </data>
+  <data name="MenuDecryptTemporarilyText" xml:space="preserve">
+    <value>&amp;임시로 해독</value>
+  </data>
+  <data name="MenuOpenExplorerHereText" xml:space="preserve">
+    <value>열고 &amp;탐구하기</value>
+  </data>
+  <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
+    <value>'{0}' 로 가입이 불가능 합니다. 실제의 이메일 주소를 작성하시고 다시시도 하시길 바랍니다. </value>
+  </data>
+  <data name="MessageInvalidSignUpEmailTitle" xml:space="preserve">
+    <value>이메일 주소가 맞지 않습니다</value>
+  </data>
+  <data name="MessageServerUpdateText" xml:space="preserve">
+    <value>AxCrypt-서버가 업데이트 되셨습니다. AxCrypt를 업데이트 해주시기 바랍니다. 그렇지 않으면 예상치 못한 우료가 생길 수 있습니다.</value>
+  </data>
+  <data name="MessageServerUpdateTitle" xml:space="preserve">
+    <value>AxCrypt 서버가 업데이트 되셨습니다.</value>
+  </data>
+  <data name="MessageSigningUpText" xml:space="preserve">
+    <value>'{0}' (으)로 저장되셨습니다. 받은편지함에 6자리 활성화 번호를 확인해주시기 바랍니다.</value>
+  </data>
+  <data name="MessageSigningUpTitle" xml:space="preserve">
+    <value>AxCrypt ID를 위해 가입하기</value>
+  </data>
+  <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
+    <value>처음 AxCrypt를 시작할때 인터넷 접속이 필요합니다. 접속이 되어있는 지 확인하시고 재시도 해주시기 바랍니다.
+
+후에 AxCrypt를 사용하실때 인터넷 접속이 불필요합니다.</value>
+  </data>
+  <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
+    <value>인터넷 접속 불가능</value>
+  </data>
+  <data name="MessageSignUpUnexpectedErrorText" xml:space="preserve">
+    <value>예상외에 오류가 생겼습니다. 다시 시도해주시기 바랍니다. 문제가 지속될시 보고해주시기 바랍니다. </value>
+  </data>
+  <data name="MessageUnexpectedErrorText" xml:space="preserve">
+    <value>예상치 못한 '{0}' 오류가 생겼습니다.</value>
+  </data>
+  <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
+    <value>예상외의 오류!</value>
+  </data>
+  <data name="MoreButtonText" xml:space="preserve">
+    <value>더..</value>
+    <comment>A 'More...' button text</comment>
+  </data>
+  <data name="MoreKeyFileToolTop" xml:space="preserve">
+    <value>키 파일 이름을 작성하시려면 여기를 클릭하십시오. 이 파일을 보안하실때 키 파일을 AxCrypt 이전 버전으로 사용하셨을 때만 사용가능합니다.</value>
+    <comment>A tooltip for a more button displaying a key file entry field</comment>
+  </data>
+  <data name="NewPassphraseDialogTitle" xml:space="preserve">
+    <value>새 비밀번호 입력하기</value>
+  </data>
+  <data name="NewSecretSuccess" xml:space="preserve">
+    <value>새 비밀번호가 성공적으로 저장되었습니다.</value>
+  </data>
+  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
+    <value>{0} 버전은 현재 이용 가늘합니다! 다운로드 실행하시려면 클릭해주십시오.</value>
+  </data>
+  <data name="NoButtonText" xml:space="preserve">
+    <value>&amp;아니요</value>
+  </data>
+  <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
+    <value>로그아웃 하셨습니다. 로그인을 하시려면 클릭해 주십시오.</value>
+  </data>
+  <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
+    <value>업데이트를 안하셔도 됩니다.</value>
+  </data>
+  <data name="NoPremiumWarning" xml:space="preserve">
+    <value>Premium 구독 만료일이 다 돼셨습니다. 최상의 보안 시스템 사용을 안 하고 계십니다. 업그레이드를 위해 클릭해주시기 바랍니다.</value>
+  </data>
+  <data name="NotFoundPageBody" xml:space="preserve">
+    <value>요청한 페이지를 찾을수가 없습니다. 서버 재시작으로 인해 브라우저 세션이 구식이 되었거나, 다른 서버들의 오류로 인해 요청하신 것의 진행을 방해하고있습니다. 
+
+요청한 페이지:
+{2}
+
+요청하신 페이지를 저장했습니다. 올바른 경로 또는 연결이 끊어진 링크 &lt;a href="mailto:{0}"&gt;report&lt;/a&gt; 로  재시도 해주시기 바랍니다. 
+
+시작 페이지로 이동하시려면, &lt;a href="{1}"&gt;here&lt;/a&gt; 을 클릭해주시기 바랍니다. 
+</value>
+  </data>
+  <data name="NotFoundPageTitle" xml:space="preserve">
+    <value>페이지를 찾을 수 없었습니다.</value>
+  </data>
+  <data name="NotFoundSafePageBody" xml:space="preserve">
+    <value>요청한 페이지를 찾을수가 없습니다. 서버 재시작으로 인해 브라우저 세션이 구식이 되었거나, 다른 서버들의 오류로 인해 요청하신 것의 진행을 방해하고있습니다. 
+
+요청하신 페이지를 저장했습니다. 올바른 경로 또는 연결이 끊어진 링크 &lt;a href="mailto:{0}"&gt;report&lt;/a&gt; 로  재시도 해주시기 바랍니다. 
+
+시작 페이지로 이동하시려면, &lt;a href="{1}"&gt;here&lt;/a&gt; 을 클릭해주시기 바랍니다. 
+</value>
+  </data>
+  <data name="OfflineAccountBePatient" xml:space="preserve">
+    <value>실행 작업이 몇분 걸릴수 있습니다. 잠시만 기다려주시기 바랍니다.</value>
+  </data>
+  <data name="OfflineAccountTitle" xml:space="preserve">
+    <value>AxCrypt ID 창조 접속이 끊김.</value>
+  </data>
+  <data name="OfflineIndicatorText" xml:space="preserve">
+    <value>오프라인</value>
+    <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
+  </data>
+  <data name="OldVersionTooltip" xml:space="preserve">
+    <value>사용자는 구식 버전을 사용하고 계십니다. 새 버전을 위해서 클릭해주시기 바랍니다.</value>
+  </data>
+  <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
+    <value>보안된 파일들을 여시려면 클릭해 주십시오</value>
+  </data>
+  <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;보안 열기</value>
+  </data>
+  <data name="OpenFileColumnHeader" xml:space="preserve">
+    <value>파일</value>
+  </data>
+  <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
+    <value>보안된 파일을 열기위해 클릭하십시오.</value>
+  </data>
+  <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
+    <value>변경 &amp;비밀번호</value>
+  </data>
+  <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;모든 설정을 완료해서 나가기</value>
+  </data>
+  <data name="OptionsConvertMenuItemText" xml:space="preserve">
+    <value>1.x 파일 자동 업그레이드</value>
+    <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
+  </data>
+  <data name="OptionsConvertMenuToolTip" xml:space="preserve">
+    <value>자동적 업데이트와 제일 오래된 AxCrypt 1.x 파일들을 잔환 하기 혹은 안 하기.</value>
+    <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
+  </data>
+  <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;언어</value>
+  </data>
+  <data name="OptionsToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;옵션</value>
+  </data>
+  <data name="PassphrasePrompt" xml:space="preserve">
+    <value>비밀번호</value>
+  </data>
+  <data name="PassphraseVerificationMismatch" xml:space="preserve">
+    <value>비밀번호가 일치 하지 않습니다.</value>
+  </data>
+  <data name="PasswordManagementListPageBody" xml:space="preserve">
+    <value>&lt;span class="text-cutoff"&gt; 에서 AxCrypt 비밀번호 관리를 위한 보안 설정을 통해 온라인으로 비밀번호, 핀 코드등을 관리하시기 바랍니다. 
+비밀번호는 기록 보관소에 안전하게 저장되어 사용자에게만 이용 가능합니다.  &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Read more]&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="PasswordManagementPageTitle" xml:space="preserve">
+    <value>비밀번호 관리</value>
+  </data>
+  <data name="PasswordPolicyViolation" xml:space="preserve">
+    <value>비밀번호는 최소한 10자리를 사용하셔야 합니다.</value>
+  </data>
+  <data name="PasswordResetHyperLink" xml:space="preserve">
+    <value>https://account.axcrypt.net/Home/PasswordReset</value>
+    <comment>The URL to a web page where a password can be reset</comment>
+  </data>
+  <data name="PasswordResetLink" xml:space="preserve">
+    <value>비밀번호를 잊으셨습니까? 여기를 클릭해 주십시오.</value>
+  </data>
+  <data name="PasswordResetMailBody1" xml:space="preserve">
+    <value>AxCrypt ID 비밀번호 재설정을 요구하셨습니다. 그러나 재설정시 암호화된 파일에 접속하실 수 없게 됩니다. 이 과정을 계속 실행하고 싶다면 아래 버튼을 눌러 주십시오. </value>
+  </data>
+  <data name="PasswordResetMailBodyButton" xml:space="preserve">
+    <value>비밀번호 재설정</value>
+  </data>
+  <data name="PasswordResetMailSubject" xml:space="preserve">
+    <value>AxCrypt ID 비밀번호 재설정</value>
+  </data>
+  <data name="PasswordResetPageBody" xml:space="preserve">
+    <value>비밀번호를 잊었거나 활성화 링크를 못 받으셨다면 회원가입을 재시도하시고 새로운 이메일 주소를 여기에 작성해주시기 바랍니다.
+
+비밀번호를 잊으셨다면 &lt;span class="red"&gt;을 통해 재등록이 가능합니다. 하지만 이전 비밀번호로 저장된 보안된 파일에 접근할 수 없고, 해독도 할 수 없습니다.&lt;/span&gt;
+
+아래에 이메일 주소를 작성하시면 활성화 링크를 받으셔서 계정확인하시기 바랍니다. 개인의 성실성을 이유로, &lt;b&gt;본 작전의 성공또는 실패에 대한 피드백을 드리지 않습니다&lt;/b&gt;.
+</value>
+  </data>
+  <data name="PasswordResetPageTitle" xml:space="preserve">
+    <value>비밀번호 재설정</value>
+  </data>
+  <data name="PasswordResetSuccess" xml:space="preserve">
+    <value>AxCrypt ID 확인을 위한 활성화 코드를 &lt;b&gt;{0}&lt;/b&gt; 로 보냈습니다. 받은 편지함을 확인 해주시기 바랍니다.
+
+메일을 못 받으셨다면, {0} 이 맞는지 확인 해주시고 안티 스팸 조치 때문에  못 받으신건지 확인해 주십시오.</value>
+  </data>
+  <data name="PasswordStrengthBadTip" xml:space="preserve">
+    <value>비밀번호가 너무 약해 안전하지 않습니다.</value>
+  </data>
+  <data name="PasswordStrengthStrongTip" xml:space="preserve">
+    <value>비밀번호가 안정적이고 적학해 추천합니다.</value>
+  </data>
+  <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
+    <value>비밀번호 수가 적거나 평범해 허용할 수 없습니다.</value>
+    <comment>Shown when no password is typed or it is effectively empty</comment>
+  </data>
+  <data name="PasswordStrengthWeakTip" xml:space="preserve">
+    <value>비밀번호가 너무 약해 비추천합니다.</value>
+  </data>
+  <data name="PayPalReadMoreLink" xml:space="preserve">
+    <value>[PayPal에 대한 자세한 정보]</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>저희 팀은 사용자가 간편하게 Premium기능들을 사용하셨으면 좋겠습니다. &lt;a href="{0}Home/Login?email={1}"&gt;sign in&lt;/a&gt;를 AxCrypt에 하시고 언제든지 구독해주시기 바랍니다.</value>
+    <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
+  </data>
+  <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Premium 구독으로 다음과 같은 혜택을 받으실수 있습니다:</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
+    <value>AxCrypt사용에 대한 의견을 알고 싶습니다 - 계속 사용 하시고 싶으신가요 ? 수정해야될 점들이 있나요 ?</value>
+  </data>
+  <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
+    <value>AxCrypt Premium 구독 만료일이 다되어갑니다!</value>
+  </data>
+  <data name="PremiumFeatureToolTipText" xml:space="preserve">
+    <value>이 기능은 Premium을 구입하신뒤 사용이 가능합니다.</value>
+  </data>
+  <data name="PremiumNeededForKeyShare" xml:space="preserve">
+    <value>공유 키는 Premium이 필요합니다. 업그레이드를 위해 클릭하십시오!</value>
+  </data>
+  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;취소</value>
+  </data>
+  <data name="PromptActivationCode" xml:space="preserve">
+    <value>활성화 번호</value>
+  </data>
+  <data name="PromptAddContact" xml:space="preserve">
+    <value>연락처 추가</value>
+  </data>
+  <data name="PromptBackLinkText" xml:space="preserve">
+    <value>이전</value>
+  </data>
+  <data name="PromptBuyNow" xml:space="preserve">
+    <value>지금 구입</value>
+  </data>
+  <data name="PromptBuyPremium" xml:space="preserve">
+    <value>Premium 구매</value>
+  </data>
+  <data name="PromptChange" xml:space="preserve">
+    <value>변경</value>
+  </data>
+  <data name="PromptCurrentPasswordText" xml:space="preserve">
+    <value>현재 사용중인 비밀번호</value>
+  </data>
+  <data name="PromptDeleteAxCryptIdText" xml:space="preserve">
+    <value>AxCrypt ID 삭제</value>
+  </data>
+  <data name="PromptEmailText" xml:space="preserve">
+    <value>이메일 주소</value>
+  </data>
+  <data name="PromptFileText" xml:space="preserve">
+    <value>파일</value>
+    <comment>The heading of a groupbox where the file name to be opened is displayed.</comment>
+  </data>
+  <data name="PromptKeepMeSignedIn" xml:space="preserve">
+    <value>나를 기억하고 로그인 상태를 연장하기</value>
+  </data>
+  <data name="PromptKnownContacts" xml:space="preserve">
+    <value>아는 연락처</value>
+  </data>
+  <data name="PromptMonths" xml:space="preserve">
+    <value>개월</value>
+  </data>
+  <data name="PromptMyAxCryptId" xml:space="preserve">
+    <value>나의 AxCrypt ID</value>
+  </data>
+  <data name="PromptNewEmail" xml:space="preserve">
+    <value>새로운 이메일 주소</value>
+  </data>
+  <data name="PromptNewPasswordText" xml:space="preserve">
+    <value>새로운 비밀번호</value>
+  </data>
+  <data name="PromptNotificationsText" xml:space="preserve">
+    <value>알림</value>
+  </data>
+  <data name="PromptPasswordManager" xml:space="preserve">
+    <value>비밀번호 관리자</value>
+  </data>
+  <data name="PromptSetNewPassword" xml:space="preserve">
+    <value>사용자의 비밀번호를 설정해 주시기 바랍니다</value>
+  </data>
+  <data name="PromptSharedWith" xml:space="preserve">
+    <value>와 공유</value>
+  </data>
+  <data name="PromptSignIn" xml:space="preserve">
+    <value>로그인</value>
+  </data>
+  <data name="PromptSignOut" xml:space="preserve">
+    <value>로그오프</value>
+  </data>
+  <data name="PromptSignUp" xml:space="preserve">
+    <value>로그인</value>
+  </data>
+  <data name="PromptSubscription" xml:space="preserve">
+    <value>구독</value>
+  </data>
+  <data name="PromptSupport" xml:space="preserve">
+    <value>지원</value>
+  </data>
+  <data name="PromptVerifyEmail" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="PromptXecretsDescriptionText" xml:space="preserve">
+    <value>묘사 (관련된 사이트, 사용자 이름등)</value>
+  </data>
+  <data name="PromptXecretsNew" xml:space="preserve">
+    <value>새로운</value>
+  </data>
+  <data name="PromptXecretsSearchText" xml:space="preserve">
+    <value>검색</value>
+  </data>
+  <data name="PromptXecretsSecretText" xml:space="preserve">
+    <value>비밀번호 또는 비밀</value>
+  </data>
+  <data name="PurchaseErrorSubscriptionTime" xml:space="preserve">
+    <value>선택하신 구독 날짜가 잘못되었습니다. 유효한 구독은 최소 {0} 개월, 최대는 {1} 개월입니다.</value>
+  </data>
+  <data name="PurchasePageBody1" xml:space="preserve">
+    <value>Premium을 통해 AxCrypt의 모든 기능들은 그 어느 장치와 사용이 가능합니다.
+
+AxCrypt는 사용자의 파일을 안전하게 보관되어있게 만들어졌습니다. 256-bit 암호화, 보안된 폴더, 비밀번호 보안 설정등 최신 기능을 사용하시려면  AxCrypt Premium으로 업그레이드를 해주시기 바랍니다.
+
+저희 팀은 30일간의 AxCrypt Premium 무료 체험을 즐길 수 있는 혜택을 드리고 있습니다. AxCrypt ID를 활성화하시는 직후 무료 체험을 하시게 됩니다. 무료 체험 간이 만료되시면 구독 요청을 아래에 하실  있습니다.</value>
+  </data>
+  <data name="PurchasePageBody2" xml:space="preserve">
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;저희 팀은 보안정책이 최우선이라고 생각합니다. 그러므로 저희는 AxCrypt Premium 지급방법을 PayPal을 통해 사용합니다. PaypPal 사이트는 매우 안정적이며 사용자의 컴퓨터에서 저희 서버로 개인정보를 자동적으로 암호화합니다.
+
+사용자의 정보가 PayPal사이트에 도달하는 순간 서버에 안전하게 보호되어있습니다. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="PurchasePageTitle" xml:space="preserve">
+    <value>AxCrypt Premium 구매</value>
+  </data>
+  <data name="PurchaseReceiptError" xml:space="preserve">
+    <value>구매가 취소되었습니다.</value>
+  </data>
+  <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
+    <value>사용자의 지불금을 받지 않았습니다. PayPal을 통해 구매를 취소 시켰거나 계정잔액이 부족한 탓일 수 있습니다. </value>
+  </data>
+  <data name="PurchaseReceiptPageTitle" xml:space="preserve">
+    <value>AxCrypt Premium 영수증</value>
+  </data>
+  <data name="PurchaseReceiptSuccess" xml:space="preserve">
+    <value>AxCrypt Premium을 구입해주셔서 감사합니다!</value>
+  </data>
+  <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
+    <value>사용자분께서는 AxCrypt Premium의 모든 기능들을 사용하실수 있습니다. 문제를 경험하시는 분께는 저희 지원부에 문의해주시기 바랍니다.
+
+구입 내역을 본인 이메일 주소로 보냈습니다.</value>
+  </data>
+  <data name="PurchaseVatPercent" xml:space="preserve">
+    <value>&lt;b&gt;VAT excluded&lt;/b&gt;. 본 VAT는 사용자의 나라에 의존하고 지불 페이지에 뜹니다.</value>
+  </data>
+  <data name="PurgingActiveFiles" xml:space="preserve">
+    <value>횔동적인 파일들을 추방</value>
+  </data>
+  <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;열기</value>
+  </data>
+  <data name="RecentFilesTabPageText" xml:space="preserve">
+    <value>최근 파일</value>
+  </data>
+  <data name="RegisterError" xml:space="preserve">
+    <value>가입에 실패하셨습니다. 이메일 주소를 다시 확인하시고 재시도 해주시기 바랍니다.</value>
+  </data>
+  <data name="RegisterLink" xml:space="preserve">
+    <value>새로운 사용자이신가요? 회원가입해주시기 바랍니다</value>
+  </data>
+  <data name="RegisterPageBody" xml:space="preserve">
+    <value>AxCrypt을 사용하시려면 AxCrypt ID로 계정을 아래와 같이 만드셔야 합니다. 작성하신 이메일 주소로 메일을 하나 보내드립니다. 그 메일안에 홀성화 링크를 클릭하시면 비밀번호 요청에 원하시는 비밀번호를 작성하시기만 하면 됍니다. 
+
+30일간의 무료 AxCrypt Premium을 AxCrypt ID가 확인 되신 직후에 사용이 돼십니다.</value>
+  </data>
+  <data name="RegisterPageTitle" xml:space="preserve">
+    <value>AxCrypt ID를 위해 회원가입</value>
+  </data>
+  <data name="RegisterSuccess" xml:space="preserve">
+    <value>AxCrypt ID를 위해 회원가입을 하셨습니다!
+
+&lt;b&gt;{0}&lt;/b&gt; 메일 확인하시고 활성화 링크를 클릭해주시기 바랍니다.</value>
+  </data>
+  <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
+    <value>보안 문제로 소프트웨어 업데이트를 하셔야 됩니다.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
+  </data>
+  <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;리스트에서 빼고 파일 보안을 유지</value>
+  </data>
+  <data name="ResendActivationHyperLink" xml:space="preserve">
+    <value>https://account.axcrypt.net/Home/Register</value>
+  </data>
+  <data name="ResendButtonText" xml:space="preserve">
+    <value>다시 보내기</value>
+    <comment>A button in a verification dialog that causes the verification to be resent.</comment>
+  </data>
+  <data name="ResendButtonToolTip" xml:space="preserve">
+    <value>횔성화 코드 재발송을 위해 클릭해주시기 바랍니다.</value>
+  </data>
+  <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
+    <value>같은 비밀번호로 가입을 이미 하셨습니다! 파일 본래의 비밀번호를 박성해 주시기 바랍니다.</value>
+    <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
+  </data>
+  <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
+    <value>Premium 사용자분들께서만 암호 항목을 작성하실수 있습니다.</value>
+  </data>
+  <data name="SecretsButtonToolTipText" xml:space="preserve">
+    <value>비밀번호 관리로 가기.</value>
+  </data>
+  <data name="SecretsWarningIsReadOnly" xml:space="preserve">
+    <value>Premium 구독이 만료 되어 더이상 비밀번호 재설정이 불가능합니다. 하지만 읽기 전용으로 접속하실 수 있습니다.</value>
+  </data>
+  <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
+    <value>{0}에 Premium 구독 만료일이 곧 끝납니다. 새로운 비밀번호 입력이나 비밀번호 재설정을 원하시면 Premium 구독 신청을 연장하셔야 됩니다.  읽기 전용으로만 접속이 가능합니다.</value>
+  </data>
+  <data name="SecureDeleteDialogTitle" xml:space="preserve">
+    <value>AxCrypt 보안 삭제</value>
+  </data>
+  <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;보안 삭제</value>
+  </data>
+  <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
+    <value>보안 문제로 사용자의 소프트웨어 업데이트가 필요합니다.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SettingsDeletePageBody" xml:space="preserve">
+    <value>여기서 AxCrypt ID를 지속적으로 삭제 하실수 있습니다.
+&lt;span class="red"&gt;AxCrypt ID와 관련된 모든 정보, 비밀번호등이 삭제되실겁니다.&lt;/span&gt;⏎ 
+⏎ 
+AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍니다.</value>
+  </data>
+  <data name="SettingsEmailPageBody" xml:space="preserve">
+    <value>AxCrypt ID와 연결된 이메일 주소를 수정하시려면 아래에 새로운 주소를 써주시기 바랍니다. 메일들이 맞는 주소에 메세지가 보내질수 있도록 해주시기 바랍니다.  
+
+인증 메세지가 새로운 이메일 편지함에 보내졌습니다. 내용에 있는 링크를 클릭하셔야 확인이 완료되십니다.</value>
+  </data>
+  <data name="SettingsNotificationsPageBody" xml:space="preserve">
+    <value>아래 AxCrypt 이메일 주소를 통해 원하시는 알림 설정을 선택해주시기 바랍니다.</value>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="SettingsPasswordPageBody" xml:space="preserve">
+    <value>비밀번호를 변경하시려면 이전 비밀번호와 새 비밀번호를 입력해주시기 바랍니다.
+
+추측하기 어려운 번호로 변경하셔야 완전한 보안을 유지 하실 수 있습니다. 절대로 비밀번호를 잊지 말아 주시길 바랍니다.</value>
+  </data>
+  <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
+    <value>새 AxCrypt 사용자</value>
+  </data>
+  <data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
+    <value>AxCrypt로 통해 초대를 받은 다른 사용자와 AxCrypt사용을 공유하려고 합니다.
+
+'{0}'로 AxCrypt 파일 보안의 대해서 정보를 알리시기 바랍니다.</value>
+  </data>
+  <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;공유 키</value>
+  </data>
+  <data name="ShowPasswordOptionPrompt" xml:space="preserve">
+    <value>비밀번호 보여주기</value>
+  </data>
+  <data name="SignInVerificationTitle" xml:space="preserve">
+    <value>로그인 확인</value>
+  </data>
+  <data name="SiteRestartWarning" xml:space="preserve">
+    <value>경고! 사이트 재시동이 몇분후에 예정되어있습니다. 불편을 드려 죄송합니다.</value>
+  </data>
+  <data name="StopSecuringToolTipText" xml:space="preserve">
+    <value>보안이 더이상 불필요한 파일들은 선택하십시오.</value>
+  </data>
+  <data name="SubscriptionsErrorAmount" xml:space="preserve">
+    <value>수체 합계 형식이 올바르지 않습니다. 10.50과 같은 소수 형식을 사용해주시기 바랍니다.</value>
+  </data>
+  <data name="SubscriptionsSuccessAdd" xml:space="preserve">
+    <value>구독이 성공적으로 저장되었습니다. </value>
+  </data>
+  <data name="SupportBodyPrompt" xml:space="preserve">
+    <value>어떻게 도와드릴까요?</value>
+  </data>
+  <data name="SupportPageTitle" xml:space="preserve">
+    <value>Premium 지원</value>
+  </data>
+  <data name="SupportPremiumIntro" xml:space="preserve">
+    <value>AxCrypt 지원부에 오신 것을 환영합니다. 저희 팀은 Premium 구독자분들께 완벽한 지원을 메일을 통해 드립니다.</value>
+  </data>
+  <data name="SupportWarningOnlyPremium" xml:space="preserve">
+    <value>죄송합니다, 직접지원은 지불하신 사용자분들께서만 사용이 가능하십니다. &lt;a href="{0}"&gt;community support&lt;/a&gt; 를 방문해 주시기 바랍니다.</value>
+  </data>
+  <data name="TextCheckEmailAndSpam" xml:space="preserve">
+    <value>이메일과 스팸메일을 확인하기!</value>
+  </data>
+  <data name="TextPreferenceCritical" xml:space="preserve">
+    <value>알림 - AxCrypt 업데이트를 알려주기</value>
+  </data>
+  <data name="TextPreferenceDecline" xml:space="preserve">
+    <value>거절- AxCrypt 업데이트 알림을 받지 않기</value>
+  </data>
+  <data name="TextPreferenceUnknown" xml:space="preserve">
+    <value>알수없음 -  명확한 파라미터를 지정하시지 않았습니다</value>
+  </data>
+  <data name="TextPreferenceUpdate" xml:space="preserve">
+    <value>업데이트- 모든 AxCrypt 업데이트 알림 받기</value>
+  </data>
+  <data name="TitleAxCryptIdSignInText" xml:space="preserve">
+    <value>AxCrypt ID 로그인</value>
+  </data>
+  <data name="TitleCreateAxCryptIdTitle" xml:space="preserve">
+    <value>AxCrypt ID 만들기</value>
+  </data>
+  <data name="TitleMainWindow" xml:space="preserve">
+    <value>{0} {1}{2}</value>
+  </data>
+  <data name="TitleSignInToAxCrypt" xml:space="preserve">
+    <value>AxCrypt에 로그인</value>
+    <comment>Title on the web page for signin for example.</comment>
+  </data>
+  <data name="TitleWindowSignInStatus" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+  <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
+    <value>비밀번호 관리는 Premium을 통해 하실수 있습니다. 업그레이드를 하시려면 클릭해주십시오!</value>
+  </data>
+  <data name="TransactionHistoryTitle" xml:space="preserve">
+    <value>거래 목록</value>
+  </data>
+  <data name="TrayBalloonTooltip" xml:space="preserve">
+    <value>AxCrypt 응용 프로그램 윈도를 회복하시려면 클릭해주시기 바랍니다.</value>
+    <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
+  </data>
+  <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
+    <value>&amp;끊어진 파일 사용을 시도하기</value>
+  </data>
+  <data name="UnknownCrypto" xml:space="preserve">
+    <value>알 수 없음</value>
+    <comment>Displayed when an unknown CryptoId is encountered.</comment>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>알 수 없는 오류가 생겼습니다. 알리시기 바랍니다.</value>
+  </data>
+  <data name="UnknownFileStatus" xml:space="preserve">
+    <value>'{0}'로 '알 수 없는' 상태.</value>
+  </data>
+  <data name="UnknownLogOn" xml:space="preserve">
+    <value>모르는 비밀번호입니다. 새로운 비밀번호를 원하시다면 ''새로운 비밀번호''를 클릭해주십시오.</value>
+  </data>
+  <data name="UnrecognizedError" xml:space="preserve">
+    <value>{1} 으로 '{0}'.</value>
+  </data>
+  <data name="UnregisterMailBody1" xml:space="preserve">
+    <value>AxCrypt ID가 &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; 에서 성공적으로 삭제된것이 확인 되었습니다. </value>
+  </data>
+  <data name="UnregisterMailBody2" xml:space="preserve">
+    <value>저희 팀과 좋은 시간을 보내셨길 바라면서 다시 저희와 같이 일을 하게되었으면 좋겠습니다! 감사합니다!</value>
+  </data>
+  <data name="UnregisterMailSubject" xml:space="preserve">
+    <value>AxCrypt ID 삭제 완료</value>
+  </data>
+  <data name="UpdatingStatus" xml:space="preserve">
+    <value>파일 상태를 업데이트 하고 있습니다</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
+    <value>파일 1.x 업그레이드</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
+    <value>안정적이게 AxCrypt 1.x로 저장된 파일들을 선택할수 있는 공간을 찾아주시고 업그레이드를 해주시기 바랍니다. </value>
+  </data>
+  <data name="UpgradePromptText" xml:space="preserve">
+    <value>Premium 갖기!</value>
+    <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
+    <value>AxCrypt를 업데이트 하셨습니다. 하지만 구성 재설정을 하셔야합니다. 재시작을 하신 다음, 저장하신 장치들을 모두 잃을 수 있습니다. 불편을 드려 죄송합니다. 암호화된 파일들은 안정적으로 저장되어있습니다.</value>
+  </data>
+  <data name="VerifyPasswordPrompt" xml:space="preserve">
+    <value>비밀번호를 확인해 주시기 바랍니다.</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>경고!</value>
+    <comment>The title of a pop up or dialog with a warning.</comment>
+  </data>
+  <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
+    <value>폴더</value>
+  </data>
+  <data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
+    <value>&amp;Explorer 에 열기</value>
+  </data>
+  <data name="WatchedFoldersRemoveMenuItemText" xml:space="preserve">
+    <value>지속적으로 &amp;해독</value>
+  </data>
+  <data name="WatchedFoldersTabPageText" xml:space="preserve">
+    <value>보안된 폴더</value>
+  </data>
+  <data name="WelcomeMailBody0Html" xml:space="preserve">
+    <value>AxCrypt에 오신것을 환영합니다!</value>
+  </data>
+  <data name="WelcomeMailBody1Html" xml:space="preserve">
+    <value>가입해주셔서 대단히 감사합니다. 가입하신 기념으로 저희 팀이 30일간 Premium 기능들을 무료로 체험할 수 있는 기회를 드립니다.</value>
+  </data>
+  <data name="WelcomeMailBody2Html" xml:space="preserve">
+    <value>AxCrypt무료 또는 AxCrypt Premium으로 간편하게 파일들을 보안하실수 있습니다. 클릭 하나로 파일 또는 폴더를 암호 형태로 저장할수 있습니다.</value>
+  </data>
+  <data name="WelcomeMailBody3Html" xml:space="preserve">
+    <value>Premium 구독자분들께는 많은 추가 기능을 사용하실 수 있습니다. 이와 같은 기능들을 사용:</value>
+  </data>
+  <data name="WelcomeMailSubject" xml:space="preserve">
+    <value>AxCrypt에 오신것을 환영합니다!</value>
+  </data>
+  <data name="WelcomeToAxCrypt" xml:space="preserve">
+    <value>AxCrypt에 오신것을 환영합니다!
+
+AxCrypt사용은 매우 쉽습니다. 매인 창으로 시작하거나 더블클릭, 또는 마우스 오른쪽 클릭으로 윈도우즈 익스플로러를 통해 사용하시면 됩니다.
+
+파일을 암호화하시고 싶으시면 툴바에 있는 + 이콘을 클릭하시고 파일을 선택하십시오.
+
+자세한 정보는 저희 사이트를 방문해 봐주시기 바랍니다. </value>
+  </data>
+  <data name="WelcomeToAxCryptTitle" xml:space="preserve">
+    <value>AxCrypt와 시작합니다</value>
+  </data>
+  <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
+    <value>안전한 삭제를 위래 파일들을 선택하십시오</value>
+  </data>
+  <data name="WorkingFileStatus" xml:space="preserve">
+    <value>'{0}'과 '근무중' 상태.</value>
+  </data>
+  <data name="WrongFileExtensionWarning" xml:space="preserve">
+    <value>'{0}'는 잘못된 확장파일명을 갖고 있습니다. '{1}' 로 바꾸셔야 합니다!</value>
+  </data>
+  <data name="WrongPassphrase" xml:space="preserve">
+    <value>비밀번호가 맞지 않습니다. 다시 시도해 주십시오.</value>
+  </data>
+  <data name="WrongVerificationCode" xml:space="preserve">
+    <value>활성화 번호가 잘못되었습니다. 이메일 주소를 다시 확인해주시기 바랍니다.</value>
+  </data>
+  <data name="WrongVerificationCodeFormat" xml:space="preserve">
+    <value>활성화 코드는 정확히 6자리로 되어있습니다.</value>
+  </data>
+</root>

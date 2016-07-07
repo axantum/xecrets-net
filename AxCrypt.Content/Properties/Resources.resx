@@ -877,6 +877,10 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Click to select encrypted files to share keys with others.</value>
   </data>
+  <data name="KoreanLanguageSelection" xml:space="preserve">
+    <value>한국어 (Korean)</value>
+    <comment>The text to display when selecting Korean as the UI language. It should always be in Korean.</comment>
+  </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt must be restarted in order for the language change to take effect.</value>
   </data>
