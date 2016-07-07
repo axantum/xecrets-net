@@ -62,6 +62,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Två Öâr är Brà..
+        /// </summary>
+        public static string AaaUtfDummy {
+            get {
+                return ResourceManager.GetString("AaaUtfDummy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status &apos;Aborted&apos; ({0})..
         /// </summary>
         public static string AbortedFileStatus {
@@ -2548,6 +2557,15 @@ namespace AxCrypt.Content.Properties {
         public static string ManagementSuccess {
             get {
                 return ResourceManager.GetString("ManagementSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operationa cancelled..
+        /// </summary>
+        public static string McWrnCancel {
+            get {
+                return ResourceManager.GetString("McWrnCancel", resourceCulture);
             }
         }
         
