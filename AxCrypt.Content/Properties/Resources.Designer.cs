@@ -4482,6 +4482,391 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must uninstall the currently installed AxCrypt on this computer first..
+        /// </summary>
+        public static string WixAxNeedUninstall {
+            get {
+                return ResourceManager.GetString("WixAxNeedUninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This computer&apos;s version of Windows is not supported..
+        /// </summary>
+        public static string WixAxOsNotSupported {
+            get {
+                return ResourceManager.GetString("WixAxOsNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [WixBundleName] Setup.
+        /// </summary>
+        public static string WixCaption {
+            get {
+                return ResourceManager.GetString("WixCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to cancel?.
+        /// </summary>
+        public static string WixConfirmCancelMessage {
+            get {
+                return ResourceManager.GetString("WixConfirmCancelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous version.
+        /// </summary>
+        public static string WixExecuteUpgradeRelatedBundleMessage {
+            get {
+                return ResourceManager.GetString("WixExecuteUpgradeRelatedBundleMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string WixFailureCloseButton {
+            get {
+                return ResourceManager.GetString("WixFailureCloseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup Failed.
+        /// </summary>
+        public static string WixFailureHeader {
+            get {
+                return ResourceManager.GetString("WixFailureHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One or more issues caused the setup to fail. Please fix the issues and then retry setup. For more information see the &amp;lt;a href=&quot;#&quot;&amp;gt;log file&amp;lt;/a&amp;gt;..
+        /// </summary>
+        public static string WixFailureHyperlinkLogText {
+            get {
+                return ResourceManager.GetString("WixFailureHyperlinkLogText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup Failed.
+        /// </summary>
+        public static string WixFailureInstallHeader {
+            get {
+                return ResourceManager.GetString("WixFailureInstallHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repair Failed.
+        /// </summary>
+        public static string WixFailureRepairHeader {
+            get {
+                return ResourceManager.GetString("WixFailureRepairHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart.
+        /// </summary>
+        public static string WixFailureRestartButton {
+            get {
+                return ResourceManager.GetString("WixFailureRestartButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must restart your computer to complete the rollback of the software..
+        /// </summary>
+        public static string WixFailureRestartText {
+            get {
+                return ResourceManager.GetString("WixFailureRestartText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstall Failed.
+        /// </summary>
+        public static string WixFailureUninstallHeader {
+            get {
+                return ResourceManager.GetString("WixFailureUninstallHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string WixFilesInUseCancelButton {
+            get {
+                return ResourceManager.GetString("WixFilesInUseCancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close the applications and attempt to restart them..
+        /// </summary>
+        public static string WixFilesInUseCloseRadioButton {
+            get {
+                return ResourceManager.GetString("WixFilesInUseCloseRadioButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not close applications. A reboot will be required..
+        /// </summary>
+        public static string WixFilesInUseDontCloseRadioButton {
+            get {
+                return ResourceManager.GetString("WixFilesInUseDontCloseRadioButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files In Use.
+        /// </summary>
+        public static string WixFilesInUseHeader {
+            get {
+                return ResourceManager.GetString("WixFilesInUseHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following applications are using files that need to be updated:.
+        /// </summary>
+        public static string WixFilesInUseLabel {
+            get {
+                return ResourceManager.GetString("WixFilesInUseLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string WixFilesInUseOkButton {
+            get {
+                return ResourceManager.GetString("WixFilesInUseOkButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string WixHelpCloseButton {
+            get {
+                return ResourceManager.GetString("WixHelpCloseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup Help.
+        /// </summary>
+        public static string WixHelpHeader {
+            get {
+                return ResourceManager.GetString("WixHelpHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /install | /repair | /uninstall | /layout [directory] - installs, repairs, uninstalls or
+        ///creates a complete local copy of the bundle in directory. Install is the default.
+        ///
+        ////passive | /quiet -  displays minimal UI with no prompts or displays no UI and
+        ///no prompts. By default UI and all prompts are displayed.
+        ///
+        ////norestart   - suppress any attempts to restart. By default UI will prompt before restart.
+        ////log log.txt - logs to a specific file. By default a log file is created in %TEMP%..
+        /// </summary>
+        public static string WixHelpText {
+            get {
+                return ResourceManager.GetString("WixHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I agree to the license terms and conditions.
+        /// </summary>
+        public static string WixInstallAcceptCheckbox {
+            get {
+                return ResourceManager.GetString("WixInstallAcceptCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string WixInstallCloseButton {
+            get {
+                return ResourceManager.GetString("WixInstallCloseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install.
+        /// </summary>
+        public static string WixInstallInstallButton {
+            get {
+                return ResourceManager.GetString("WixInstallInstallButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version [WixBundleVersion].
+        /// </summary>
+        public static string WixInstallVersion {
+            get {
+                return ResourceManager.GetString("WixInstallVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string WixModifyCloseButton {
+            get {
+                return ResourceManager.GetString("WixModifyCloseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify Setup.
+        /// </summary>
+        public static string WixModifyHeader {
+            get {
+                return ResourceManager.GetString("WixModifyHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repair.
+        /// </summary>
+        public static string WixModifyRepairButton {
+            get {
+                return ResourceManager.GetString("WixModifyRepairButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstall.
+        /// </summary>
+        public static string WixModifyUninstallButton {
+            get {
+                return ResourceManager.GetString("WixModifyUninstallButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initializing....
+        /// </summary>
+        public static string WixOverallProgressPackageText {
+            get {
+                return ResourceManager.GetString("WixOverallProgressPackageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string WixProgressCancelButton {
+            get {
+                return ResourceManager.GetString("WixProgressCancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup Progress.
+        /// </summary>
+        public static string WixProgressHeader {
+            get {
+                return ResourceManager.GetString("WixProgressHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processing:.
+        /// </summary>
+        public static string WixProgressLabel {
+            get {
+                return ResourceManager.GetString("WixProgressLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string WixSuccessCloseButton {
+            get {
+                return ResourceManager.GetString("WixSuccessCloseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup Successful.
+        /// </summary>
+        public static string WixSuccessHeader {
+            get {
+                return ResourceManager.GetString("WixSuccessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installation Successfully Completed.
+        /// </summary>
+        public static string WixSuccessInstallHeader {
+            get {
+                return ResourceManager.GetString("WixSuccessInstallHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch.
+        /// </summary>
+        public static string WixSuccessLaunchButton {
+            get {
+                return ResourceManager.GetString("WixSuccessLaunchButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repair Successfully Completed.
+        /// </summary>
+        public static string WixSuccessRepairHeader {
+            get {
+                return ResourceManager.GetString("WixSuccessRepairHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart.
+        /// </summary>
+        public static string WixSuccessRestartButton {
+            get {
+                return ResourceManager.GetString("WixSuccessRestartButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must restart your computer before you can use the software..
+        /// </summary>
+        public static string WixSuccessRestartText {
+            get {
+                return ResourceManager.GetString("WixSuccessRestartText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstall Successfully Completed.
+        /// </summary>
+        public static string WixSuccessUninstallHeader {
+            get {
+                return ResourceManager.GetString("WixSuccessUninstallHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status &apos;Working&apos; with &apos;{0}&apos;..
         /// </summary>
         public static string WorkingFileStatus {

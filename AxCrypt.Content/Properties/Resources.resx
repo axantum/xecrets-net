@@ -647,7 +647,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="EmailLanguageInformation" xml:space="preserve">
     <value>We try to send mailings in your language, but if you send us email we may respond in English. Please use Google Translate or similar if required.</value>
-    <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate.</comment>
+    <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate. The translation should probably read: "We try to send mailings in [Language], but if you...2</comment>
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[No Description]</value>
@@ -1698,6 +1698,139 @@ For more information, click OK to open a web browser to our web site.</value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Select files to securely delete</value>
+  </data>
+  <data name="WixAxNeedUninstall" xml:space="preserve">
+    <value>You must uninstall the currently installed AxCrypt on this computer first.</value>
+  </data>
+  <data name="WixAxOsNotSupported" xml:space="preserve">
+    <value>This computer's version of Windows is not supported.</value>
+  </data>
+  <data name="WixCaption" xml:space="preserve">
+    <value>[WixBundleName] Setup</value>
+  </data>
+  <data name="WixConfirmCancelMessage" xml:space="preserve">
+    <value>Are you sure you want to cancel?</value>
+  </data>
+  <data name="WixExecuteUpgradeRelatedBundleMessage" xml:space="preserve">
+    <value>Previous version</value>
+  </data>
+  <data name="WixFailureCloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="WixFailureHeader" xml:space="preserve">
+    <value>Setup Failed</value>
+  </data>
+  <data name="WixFailureHyperlinkLogText" xml:space="preserve">
+    <value>One or more issues caused the setup to fail. Please fix the issues and then retry setup. For more information see the &amp;lt;a href="#"&amp;gt;log file&amp;lt;/a&amp;gt;.</value>
+  </data>
+  <data name="WixFailureInstallHeader" xml:space="preserve">
+    <value>Setup Failed</value>
+  </data>
+  <data name="WixFailureRepairHeader" xml:space="preserve">
+    <value>Repair Failed</value>
+  </data>
+  <data name="WixFailureRestartButton" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="WixFailureRestartText" xml:space="preserve">
+    <value>You must restart your computer to complete the rollback of the software.</value>
+  </data>
+  <data name="WixFailureUninstallHeader" xml:space="preserve">
+    <value>Uninstall Failed</value>
+  </data>
+  <data name="WixFilesInUseCancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="WixFilesInUseCloseRadioButton" xml:space="preserve">
+    <value>Close the applications and attempt to restart them.</value>
+  </data>
+  <data name="WixFilesInUseDontCloseRadioButton" xml:space="preserve">
+    <value>Do not close applications. A reboot will be required.</value>
+  </data>
+  <data name="WixFilesInUseHeader" xml:space="preserve">
+    <value>Files In Use</value>
+  </data>
+  <data name="WixFilesInUseLabel" xml:space="preserve">
+    <value>The following applications are using files that need to be updated:</value>
+  </data>
+  <data name="WixFilesInUseOkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="WixHelpCloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="WixHelpHeader" xml:space="preserve">
+    <value>Setup Help</value>
+  </data>
+  <data name="WixHelpText" xml:space="preserve">
+    <value>/install | /repair | /uninstall | /layout [directory] - installs, repairs, uninstalls or
+creates a complete local copy of the bundle in directory. Install is the default.
+
+/passive | /quiet -  displays minimal UI with no prompts or displays no UI and
+no prompts. By default UI and all prompts are displayed.
+
+/norestart   - suppress any attempts to restart. By default UI will prompt before restart.
+/log log.txt - logs to a specific file. By default a log file is created in %TEMP%.</value>
+  </data>
+  <data name="WixInstallAcceptCheckbox" xml:space="preserve">
+    <value>I agree to the license terms and conditions</value>
+  </data>
+  <data name="WixInstallCloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="WixInstallInstallButton" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="WixInstallVersion" xml:space="preserve">
+    <value>Version [WixBundleVersion]</value>
+  </data>
+  <data name="WixModifyCloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="WixModifyHeader" xml:space="preserve">
+    <value>Modify Setup</value>
+  </data>
+  <data name="WixModifyRepairButton" xml:space="preserve">
+    <value>Repair</value>
+  </data>
+  <data name="WixModifyUninstallButton" xml:space="preserve">
+    <value>Uninstall</value>
+  </data>
+  <data name="WixOverallProgressPackageText" xml:space="preserve">
+    <value>Initializing...</value>
+  </data>
+  <data name="WixProgressCancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="WixProgressHeader" xml:space="preserve">
+    <value>Setup Progress</value>
+  </data>
+  <data name="WixProgressLabel" xml:space="preserve">
+    <value>Processing:</value>
+  </data>
+  <data name="WixSuccessCloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="WixSuccessHeader" xml:space="preserve">
+    <value>Setup Successful</value>
+  </data>
+  <data name="WixSuccessInstallHeader" xml:space="preserve">
+    <value>Installation Successfully Completed</value>
+  </data>
+  <data name="WixSuccessLaunchButton" xml:space="preserve">
+    <value>Launch</value>
+  </data>
+  <data name="WixSuccessRepairHeader" xml:space="preserve">
+    <value>Repair Successfully Completed</value>
+  </data>
+  <data name="WixSuccessRestartButton" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="WixSuccessRestartText" xml:space="preserve">
+    <value>You must restart your computer before you can use the software.</value>
+  </data>
+  <data name="WixSuccessUninstallHeader" xml:space="preserve">
+    <value>Uninstall Successfully Completed</value>
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Status 'Working' with '{0}'.</value>

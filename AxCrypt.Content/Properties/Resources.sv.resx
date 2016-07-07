@@ -574,6 +574,10 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Lösenordsposten uppdaterad.</value>
   </data>
+  <data name="EmailLanguageInformation" xml:space="preserve">
+    <value>Vi försöker göra utskick på svenska, men när vi besvarar frågor svarar vi ibland på engelska. Använd isåfall gärna Google Translate eller liknande tjänst om det behövs.</value>
+    <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate. The translation should probably read: "We try to send mailings in [Language], but if you...2</comment>
+  </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Ingen beskrivning]</value>
   </data>
@@ -1495,6 +1499,139 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Välj filer för säker radering</value>
+  </data>
+  <data name="WixAxNeedUninstall" xml:space="preserve">
+    <value>Du måste avinstallera den gamla versionen av AxCrypt först.</value>
+  </data>
+  <data name="WixAxOsNotSupported" xml:space="preserve">
+    <value>Den här datorns version av Windows stöds ej.</value>
+  </data>
+  <data name="WixCaption" xml:space="preserve">
+    <value>[WixBundleName]-installation</value>
+  </data>
+  <data name="WixConfirmCancelMessage" xml:space="preserve">
+    <value>Vill du avbryta?</value>
+  </data>
+  <data name="WixExecuteUpgradeRelatedBundleMessage" xml:space="preserve">
+    <value>Tidigare version</value>
+  </data>
+  <data name="WixFailureCloseButton" xml:space="preserve">
+    <value>Stäng</value>
+  </data>
+  <data name="WixFailureHeader" xml:space="preserve">
+    <value>Installationen Misslyckades</value>
+  </data>
+  <data name="WixFailureHyperlinkLogText" xml:space="preserve">
+    <value>Installationen misslyckades på grund av ett eller flera problem. Åtgärda problemen och försök igen. Se &amp;lt;a href="#"&amp;gt;loggfilen&amp;lt;/a&amp;gt; för mer information.</value>
+  </data>
+  <data name="WixFailureInstallHeader" xml:space="preserve">
+    <value>Installationen Misslyckades</value>
+  </data>
+  <data name="WixFailureRepairHeader" xml:space="preserve">
+    <value>Reparationen Misslyckades</value>
+  </data>
+  <data name="WixFailureRestartButton" xml:space="preserve">
+    <value>Starta om</value>
+  </data>
+  <data name="WixFailureRestartText" xml:space="preserve">
+    <value>Starta om</value>
+  </data>
+  <data name="WixFailureUninstallHeader" xml:space="preserve">
+    <value>Avinstallationen Misslyckades</value>
+  </data>
+  <data name="WixFilesInUseCancelButton" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="WixFilesInUseCloseRadioButton" xml:space="preserve">
+    <value>Stäng inte applikationerna. En omstart kommer att krävas.</value>
+  </data>
+  <data name="WixFilesInUseDontCloseRadioButton" xml:space="preserve">
+    <value>Stäng inte applikationerna. En omstart kommer att krävas.</value>
+  </data>
+  <data name="WixFilesInUseHeader" xml:space="preserve">
+    <value>Filer låsta</value>
+  </data>
+  <data name="WixFilesInUseLabel" xml:space="preserve">
+    <value>Följande applikationer använder filer som behöver uppdateras:</value>
+  </data>
+  <data name="WixFilesInUseOkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="WixHelpCloseButton" xml:space="preserve">
+    <value>Stäng</value>
+  </data>
+  <data name="WixHelpHeader" xml:space="preserve">
+    <value>Installationshjälp</value>
+  </data>
+  <data name="WixHelpText" xml:space="preserve">
+    <value>/install | /repair | /uninstall | /layout [katalog] - installerar, reparerar, avinstallerar eller
+skapar en lokal kopia i katalog. Standard är installera.
+
+/norestart   - hejdar omstart. Som standard visar användargränssnittet en
+prompt före omstart.
+/log log.txt - skapar logg till en specifik fil. Som standard skapas loggfilen
+i %TEMP%.
+</value>
+  </data>
+  <data name="WixInstallAcceptCheckbox" xml:space="preserve">
+    <value>Jag godkänner licensvillkoren.</value>
+  </data>
+  <data name="WixInstallCloseButton" xml:space="preserve">
+    <value>Stäng</value>
+  </data>
+  <data name="WixInstallInstallButton" xml:space="preserve">
+    <value>Installera</value>
+  </data>
+  <data name="WixInstallVersion" xml:space="preserve">
+    <value>Version [WixBundleVersion]</value>
+  </data>
+  <data name="WixModifyCloseButton" xml:space="preserve">
+    <value>Stäng</value>
+  </data>
+  <data name="WixModifyHeader" xml:space="preserve">
+    <value>Ändra Installation</value>
+  </data>
+  <data name="WixModifyRepairButton" xml:space="preserve">
+    <value>Reparera</value>
+  </data>
+  <data name="WixModifyUninstallButton" xml:space="preserve">
+    <value>Avinstallera</value>
+  </data>
+  <data name="WixOverallProgressPackageText" xml:space="preserve">
+    <value>Initierar...</value>
+  </data>
+  <data name="WixProgressCancelButton" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="WixProgressHeader" xml:space="preserve">
+    <value>Installationsförlopp</value>
+  </data>
+  <data name="WixProgressLabel" xml:space="preserve">
+    <value>Bearbetar:</value>
+  </data>
+  <data name="WixSuccessCloseButton" xml:space="preserve">
+    <value>Stäng</value>
+  </data>
+  <data name="WixSuccessHeader" xml:space="preserve">
+    <value>Installationen Klar</value>
+  </data>
+  <data name="WixSuccessInstallHeader" xml:space="preserve">
+    <value>Installationen Klar</value>
+  </data>
+  <data name="WixSuccessLaunchButton" xml:space="preserve">
+    <value>Starta</value>
+  </data>
+  <data name="WixSuccessRepairHeader" xml:space="preserve">
+    <value>Reparationen Klar</value>
+  </data>
+  <data name="WixSuccessRestartButton" xml:space="preserve">
+    <value>Starta om</value>
+  </data>
+  <data name="WixSuccessRestartText" xml:space="preserve">
+    <value>Du måste starta om datorn innan du kan använda programvaran.</value>
+  </data>
+  <data name="WixSuccessUninstallHeader" xml:space="preserve">
+    <value>Avinstallationen Klar</value>
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Status 'Arbetar' med '{0}'.</value>
