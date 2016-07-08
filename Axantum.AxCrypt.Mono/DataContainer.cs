@@ -88,11 +88,13 @@ namespace Axantum.AxCrypt.Mono
         /// </summary>
         public void CreateFolder(string item)
         {
+            _info.Refresh();
             Directory.CreateDirectory(Path.Combine(_info.FullName, item));
         }
 
         public void CreateFolder()
         {
+            _info.Refresh();
             _info.Create();
         }
 
@@ -120,6 +122,7 @@ namespace Axantum.AxCrypt.Mono
         /// </summary>
         public IDataStore CreateNewFile(string item)
         {
+            _info.Refresh();
             FileInfo file = new FileInfo(Path.Combine(_info.FullName, item));
             try
             {
@@ -162,6 +165,7 @@ namespace Axantum.AxCrypt.Mono
                 {
                     return new IDataStore[0];
                 }
+                _info.Refresh();
                 return _info.EnumerateFiles().Select((fi) => new DataStore(fi.FullName));
             }
         }
@@ -174,6 +178,7 @@ namespace Axantum.AxCrypt.Mono
                 {
                     return new IDataContainer[0];
                 }
+                _info.Refresh();
                 return _info.EnumerateDirectories().Select((fi) => new DataContainer(fi.FullName));
             }
         }
@@ -190,11 +195,16 @@ namespace Axantum.AxCrypt.Mono
 
         public override string Name
         {
-            get { return _info.Name; }
+            get
+            {
+                _info.Refresh();
+                return _info.Name;
+            }
         }
 
         public override void Delete()
         {
+            _info.Refresh();
             if (_info.EnumerateDirectories().Any() || _info.EnumerateFiles().Any())
             {
                 return;
@@ -204,7 +214,11 @@ namespace Axantum.AxCrypt.Mono
 
         public override string FullName
         {
-            get { return _info.FullName; }
+            get
+            {
+                _info.Refresh();
+                return _info.FullName;
+            }
         }
     }
 }

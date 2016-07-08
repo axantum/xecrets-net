@@ -66,6 +66,7 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
+                _file.Refresh();
                 return _file.FullName;
             }
             set
@@ -82,6 +83,7 @@ namespace Axantum.AxCrypt.Mono
         /// </returns>
         public Stream OpenRead()
         {
+            _file.Refresh();
             Stream stream = new FileStream(_file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, OS.Current.StreamBufferSize);
             return stream;
         }
@@ -107,7 +109,9 @@ namespace Axantum.AxCrypt.Mono
         /// </returns>
         public Stream OpenUpdate()
         {
+            _file.Refresh();
             Directory.CreateDirectory(Path.GetDirectoryName(_file.FullName));
+            _file.Refresh();
             FileStream stream = new FileStream(_file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, OS.Current.StreamBufferSize);
             return stream;
         }
@@ -128,6 +132,7 @@ namespace Axantum.AxCrypt.Mono
                 }
                 catch (Exception ex)
                 {
+                    _file.Refresh();
                     throw new FileOperationException("Could not change write protection.", _file.FullName, ErrorStatus.Exception, ex);
                 }
             }
@@ -137,6 +142,7 @@ namespace Axantum.AxCrypt.Mono
         {
             try
             {
+                _file.Refresh();
                 using (Stream stream = _file.Open(FileMode.Open, IsWriteProtected ? FileAccess.Read : FileAccess.ReadWrite, IsWriteProtected ? FileShare.Read : FileShare.None))
                 {
                     return false;
@@ -149,6 +155,7 @@ namespace Axantum.AxCrypt.Mono
             }
             catch (Exception ex)
             {
+                _file.Refresh();
                 throw new FileOperationException("Lock failed", _file.FullName, ErrorStatus.Exception, ex);
             }
         }
@@ -160,6 +167,7 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
+                _file.Refresh();
                 return _file.Name;
             }
         }
@@ -179,6 +187,7 @@ namespace Axantum.AxCrypt.Mono
             }
             set
             {
+                _file.Refresh();
                 _file.CreationTimeUtc = value;
             }
         }
@@ -198,6 +207,7 @@ namespace Axantum.AxCrypt.Mono
             }
             set
             {
+                _file.Refresh();
                 _file.LastAccessTimeUtc = value;
             }
         }
@@ -217,6 +227,7 @@ namespace Axantum.AxCrypt.Mono
             }
             set
             {
+                _file.Refresh();
                 _file.LastWriteTimeUtc = value;
             }
         }
@@ -240,7 +251,11 @@ namespace Axantum.AxCrypt.Mono
         /// </summary>
         public override string FullName
         {
-            get { return _file.FullName; }
+            get
+            {
+                _file.Refresh();
+                return _file.FullName;
+            }
         }
 
         /// <summary>
@@ -254,8 +269,8 @@ namespace Axantum.AxCrypt.Mono
             {
                 destination.Delete();
             }
-            _file.MoveTo(destinationFileName);
             _file.Refresh();
+            _file.MoveTo(destinationFileName);
         }
 
         /// <summary>
@@ -263,8 +278,8 @@ namespace Axantum.AxCrypt.Mono
         /// </summary>
         public override void Delete()
         {
-            _file.Delete();
             _file.Refresh();
+            _file.Delete();
         }
 
         /// <summary>
