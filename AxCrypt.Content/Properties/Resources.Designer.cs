@@ -2561,7 +2561,335 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operationa cancelled..
+        ///   Looks up a localized string similar to Internal error, invalid function argument in %4.
+        /// </summary>
+        public static string McErrArgument {
+            get {
+                return ResourceManager.GetString("McErrArgument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unspecified error..
+        /// </summary>
+        public static string McErrUnspecified {
+            get {
+                return ResourceManager.GetString("McErrUnspecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System error reading version resource..
+        /// </summary>
+        public static string McErrVersionResource {
+            get {
+                return ResourceManager.GetString("McErrVersionResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string McHlpMenuAbout {
+            get {
+                return ResourceManager.GetString("McHlpMenuAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug: Display the file name and do nothing..
+        /// </summary>
+        public static string McHlpMenuDebug {
+            get {
+                return ResourceManager.GetString("McHlpMenuDebug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrypt and open document with associated application..
+        /// </summary>
+        public static string McHlpMenuOpen {
+            get {
+                return ResourceManager.GetString("McHlpMenuOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename with an anonymous name. The original will be restored on decryption..
+        /// </summary>
+        public static string McHlpMenuRename {
+            get {
+                return ResourceManager.GetString("McHlpMenuRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open the full application for advanced functions..
+        /// </summary>
+        public static string McHlpMenuShow {
+            get {
+                return ResourceManager.GetString("McHlpMenuShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to Sign Out..
+        /// </summary>
+        public static string McHlpMenuSignOut {
+            get {
+                return ResourceManager.GetString("McHlpMenuSignOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrypt the document and restore name and modification time..
+        /// </summary>
+        public static string McHlpMenuUnwrap {
+            get {
+                return ResourceManager.GetString("McHlpMenuUnwrap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwrite the entire file with random data and then delete permanently..
+        /// </summary>
+        public static string McHlpMenuWipe {
+            get {
+                return ResourceManager.GetString("McHlpMenuWipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First compress, then encrypt the document..
+        /// </summary>
+        public static string McHlpMenuWrapZ {
+            get {
+                return ResourceManager.GetString("McHlpMenuWrapZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First compress, then encrypt the document. Keep the original..
+        /// </summary>
+        public static string McHlpMenuWrapZC {
+            get {
+                return ResourceManager.GetString("McHlpMenuWrapZC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compressing and Encrypting Wrapper and Application Launcher for Secure Local, Server or Web Storage of Document Files.
+        ///This program is licensed according to the agreement.
+        ///%n%n%2
+        ///%n%nAcknowledgements:
+        ///%nThe Legion of the Bouncy Castly Inc..
+        /// </summary>
+        public static string McInfAbout {
+            get {
+                return ResourceManager.GetString("McInfAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HMAC-SHA-512, RFC2104..
+        /// </summary>
+        public static string McInfAuth {
+            get {
+                return ResourceManager.GetString("McInfAuth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Integrity:.
+        /// </summary>
+        public static string McInfAuthLead {
+            get {
+                return ResourceManager.GetString("McInfAuthLead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zlib/Deflate, RFC1950 and RFC1951..
+        /// </summary>
+        public static string McInfComp {
+            get {
+                return ResourceManager.GetString("McInfComp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compression:.
+        /// </summary>
+        public static string McInfCompLead {
+            get {
+                return ResourceManager.GetString("McInfCompLead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AES-128/256 CTR.
+        /// </summary>
+        public static string McInfEnc {
+            get {
+                return ResourceManager.GetString("McInfEnc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption:.
+        /// </summary>
+        public static string McInfEncLead {
+            get {
+                return ResourceManager.GetString("McInfEncLead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string McInfMenuAbout {
+            get {
+                return ResourceManager.GetString("McInfMenuAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug.
+        /// </summary>
+        public static string McInfMenuDebug {
+            get {
+                return ResourceManager.GetString("McInfMenuDebug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt;&gt;ERROR&lt;&lt;.
+        /// </summary>
+        public static string McInfMenuError {
+            get {
+                return ResourceManager.GetString("McInfMenuError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string McInfMenuOpen {
+            get {
+                return ResourceManager.GetString("McInfMenuOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename.
+        /// </summary>
+        public static string McInfMenuRename {
+            get {
+                return ResourceManager.GetString("McInfMenuRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string McInfMenuShow {
+            get {
+                return ResourceManager.GetString("McInfMenuShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Out.
+        /// </summary>
+        public static string McInfMenuSignOut {
+            get {
+                return ResourceManager.GetString("McInfMenuSignOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrypt.
+        /// </summary>
+        public static string McInfMenuUnwrap {
+            get {
+                return ResourceManager.GetString("McInfMenuUnwrap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shred and Delete.
+        /// </summary>
+        public static string McInfMenuWipe {
+            get {
+                return ResourceManager.GetString("McInfMenuWipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt.
+        /// </summary>
+        public static string McInfMenuWrapZ {
+            get {
+                return ResourceManager.GetString("McInfMenuWrapZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt a copy.
+        /// </summary>
+        public static string McInfMenuWrapZC {
+            get {
+                return ResourceManager.GetString("McInfMenuWrapZC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows CSP.
+        /// </summary>
+        public static string McInfRand {
+            get {
+                return ResourceManager.GetString("McInfRand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRNG:.
+        /// </summary>
+        public static string McInfRandLead {
+            get {
+                return ResourceManager.GetString("McInfRandLead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internal error in %3. Please report..
+        /// </summary>
+        public static string McMsgInternalError {
+            get {
+                return ResourceManager.GetString("McMsgInternalError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Memory allocation error in %3.
+        /// </summary>
+        public static string McMsgMemoryAlloc {
+            get {
+                return ResourceManager.GetString("McMsgMemoryAlloc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error in system call to %3, %2.
+        /// </summary>
+        public static string McMsgSystemCall {
+            get {
+                return ResourceManager.GetString("McMsgSystemCall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation cancelled..
         /// </summary>
         public static string McWrnCancel {
             get {

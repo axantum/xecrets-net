@@ -1004,8 +1004,156 @@ The AxCrypt Team</value>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>The site management property was updated successfully.</value>
   </data>
+  <data name="McErrArgument" xml:space="preserve">
+    <value>Internal error, invalid function argument in %4</value>
+    <comment>Internal use only. Do not translate.</comment>
+  </data>
+  <data name="McErrUnspecified" xml:space="preserve">
+    <value>Unspecified error.</value>
+    <comment>Internal use only. Do not translate</comment>
+  </data>
+  <data name="McErrVersionResource" xml:space="preserve">
+    <value>System error reading version resource.</value>
+    <comment>Internal use only. Do not translate.</comment>
+  </data>
+  <data name="McHlpMenuAbout" xml:space="preserve">
+    <value>About</value>
+    <comment>Tooltip for the about context menu.</comment>
+  </data>
+  <data name="McHlpMenuDebug" xml:space="preserve">
+    <value>Debug: Display the file name and do nothing.</value>
+    <comment>Internal use only. Do not translate.</comment>
+  </data>
+  <data name="McHlpMenuOpen" xml:space="preserve">
+    <value>Decrypt and open document with associated application.</value>
+    <comment>Tooltip for open document context menu (double-click)</comment>
+  </data>
+  <data name="McHlpMenuRename" xml:space="preserve">
+    <value>Rename with an anonymous name. The original will be restored on decryption.</value>
+    <comment>Tooltip for rename context menu</comment>
+  </data>
+  <data name="McHlpMenuShow" xml:space="preserve">
+    <value>Open the full application for advanced functions.</value>
+    <comment>Tooltip for show full program interface with all advanced funtions context menu.</comment>
+  </data>
+  <data name="McHlpMenuSignOut" xml:space="preserve">
+    <value>Click to Sign Out.</value>
+    <comment>Tooltip for sign out context menu</comment>
+  </data>
+  <data name="McHlpMenuUnwrap" xml:space="preserve">
+    <value>Decrypt the document and restore name and modification time.</value>
+    <comment>Tooltip for decryption context menu</comment>
+  </data>
+  <data name="McHlpMenuWipe" xml:space="preserve">
+    <value>Overwrite the entire file with random data and then delete permanently.</value>
+    <comment>Shred and Delete tooltip for context menu</comment>
+  </data>
+  <data name="McHlpMenuWrapZ" xml:space="preserve">
+    <value>First compress, then encrypt the document.</value>
+    <comment>Tooltip for the encrypt inplace context menu command</comment>
+  </data>
+  <data name="McHlpMenuWrapZC" xml:space="preserve">
+    <value>First compress, then encrypt the document. Keep the original.</value>
+    <comment>Tooltip for the context menu for encryption</comment>
+  </data>
+  <data name="McInfAbout" xml:space="preserve">
+    <value>Compressing and Encrypting Wrapper and Application Launcher for Secure Local, Server or Web Storage of Document Files.
+This program is licensed according to the agreement.
+%n%n%2
+%n%nAcknowledgements:
+%nThe Legion of the Bouncy Castly Inc.</value>
+    <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
+  </data>
+  <data name="McInfAuth" xml:space="preserve">
+    <value>HMAC-SHA-512, RFC2104.</value>
+    <comment>Name of authentication code, HMAC. Should probably not be translated.</comment>
+  </data>
+  <data name="McInfAuthLead" xml:space="preserve">
+    <value>Integrity:</value>
+    <comment>Lead-in header for Message Authentication Code, i.e. integrity validation</comment>
+  </data>
+  <data name="McInfComp" xml:space="preserve">
+    <value>Zlib/Deflate, RFC1950 and RFC1951.</value>
+    <comment>Name of compression algorithms and standards in property sheet.</comment>
+  </data>
+  <data name="McInfCompLead" xml:space="preserve">
+    <value>Compression:</value>
+    <comment>Lead-in header for compression algorithm in property sheet</comment>
+  </data>
+  <data name="McInfEnc" xml:space="preserve">
+    <value>AES-128/256 CTR</value>
+    <comment>Name of the encryption algorithm in the property sheet. Should probably not be translated.</comment>
+  </data>
+  <data name="McInfEncLead" xml:space="preserve">
+    <value>Encryption:</value>
+    <comment>Property page header for encryption algorithms.</comment>
+  </data>
+  <data name="McInfMenuAbout" xml:space="preserve">
+    <value>About</value>
+    <comment>Context menu for About</comment>
+  </data>
+  <data name="McInfMenuDebug" xml:space="preserve">
+    <value>Debug</value>
+    <comment>Internal use only. Do not translate.</comment>
+  </data>
+  <data name="McInfMenuError" xml:space="preserve">
+    <value>&gt;&gt;ERROR&lt;&lt;</value>
+    <comment>Internal use only. Do not translate.</comment>
+  </data>
+  <data name="McInfMenuOpen" xml:space="preserve">
+    <value>Open</value>
+    <comment>Context Menu for open action</comment>
+  </data>
+  <data name="McInfMenuRename" xml:space="preserve">
+    <value>Rename</value>
+    <comment>Context menu for anonymous rename</comment>
+  </data>
+  <data name="McInfMenuShow" xml:space="preserve">
+    <value>Advanced</value>
+    <comment>Context menu to show the main user inteface window, i.e. open AxCrypt</comment>
+  </data>
+  <data name="McInfMenuSignOut" xml:space="preserve">
+    <value>Sign Out</value>
+    <comment>Context Menu for Signing out</comment>
+  </data>
+  <data name="McInfMenuUnwrap" xml:space="preserve">
+    <value>Decrypt</value>
+    <comment>Context menu for decrypt</comment>
+  </data>
+  <data name="McInfMenuWipe" xml:space="preserve">
+    <value>Shred and Delete</value>
+    <comment>Context menu for Wipe</comment>
+  </data>
+  <data name="McInfMenuWrapZ" xml:space="preserve">
+    <value>Encrypt</value>
+    <comment>Context menu for encrypt</comment>
+  </data>
+  <data name="McInfMenuWrapZC" xml:space="preserve">
+    <value>Encrypt a copy</value>
+    <comment>Context menu for encrypting a copy</comment>
+  </data>
+  <data name="McInfRand" xml:space="preserve">
+    <value>Windows CSP</value>
+    <comment>This is the name of the PRNG. It should probably not be translated.</comment>
+  </data>
+  <data name="McInfRandLead" xml:space="preserve">
+    <value>PRNG:</value>
+    <comment>This is the lead-in for the name of the Pseudo Random Number Generator used. It should probably not be translated.</comment>
+  </data>
+  <data name="McMsgInternalError" xml:space="preserve">
+    <value>Internal error in %3. Please report.</value>
+    <comment>Internal use only. Do not translate.</comment>
+  </data>
+  <data name="McMsgMemoryAlloc" xml:space="preserve">
+    <value>Memory allocation error in %3</value>
+    <comment>Internal use only. Do not translate.</comment>
+  </data>
+  <data name="McMsgSystemCall" xml:space="preserve">
+    <value>Error in system call to %3, %2</value>
+    <comment>General error message. Careful about the %-stuff</comment>
+  </data>
   <data name="McWrnCancel" xml:space="preserve">
-    <value>Operationa cancelled.</value>
+    <value>Operation cancelled.</value>
   </data>
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>My AxCrypt ID</value>

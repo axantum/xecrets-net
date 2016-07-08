@@ -152,7 +152,7 @@
     <value>Activar AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
-    <value>Su código de activación es &lt;b&gt;{0}&lt;/b&gt;</value>
+    <value>Su código de activación es &lt;b&gt;{0}&lt;/b&gt;. Introducir el código de activación en la aplicación AxCrypt o nuestro sitio web. Esto verificará y activará su cuenta.</value>
   </data>
   <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
     <value>Su código de activación es {0}</value>
@@ -164,7 +164,7 @@
     <value>Usted tiene acceso gratuito a las funciones de AxCrypt Premium durante una prueba gratis de 30 días desde el momento en que active su cuenta.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Se ha registrado una cuenta de AxCrypt. Por favor confirmar su suscripción haciendo clic en el botón de abajo.</value>
+    <value>Se ha registrado un AxCrypt ID. Por favor confirmar su suscripción debe introducir el código de activación en la aplicación AxCrypt o nuestro sitio web.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>Si el botón no funciona, vaya a &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; e introduzca&lt;b&gt;{1}&lt;/b&gt; y el código de activación &lt;b&gt;{2}&lt;/b&gt; para activar manualmente su cuenta.</value>
@@ -208,11 +208,32 @@ Elija algo que es difícil de adivinar, ya que protegerá las contraseñas del a
     <value>Seleccione una carpeta para mantener protegidos con AxCrypt. Los archivos existentes serán cifrados ahora.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AnonymousRenameMenuText" xml:space="preserve">
+    <value>&amp;Anónimo Renombre</value>
+  </data>
+  <data name="AnonymousRenameSelectFilesDialogTitle" xml:space="preserve">
+    <value>Seleccione los archivos cifrados para cambiar el nombre!</value>
+  </data>
+  <data name="AnonymousRenameToolTip" xml:space="preserve">
+    <value>Ocultar el nombre real de un archivo protegido por cambiar el nombre de archivo aleatorio. </value>
+  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>La página que intentó visitar requiere autenticación. Por favor, inicie sesión para continuar.</value>
   </data>
+  <data name="AutoDeletionEmailOutro" xml:space="preserve">
+    <value>No es necesario para responder o hacer cualquier cosa. Si no hace nada, no hay más correos electrónicos se enviarán y  su cuenta AxCrypt ID se eliminará permanentemente.</value>
+    <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
+  </data>
+  <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
+    <value>Nos ha transmitido su correo electrónico como parte de la instalación o uso de AxCrypt, a través de una aplicación o la web. Le enviamos un código de activación por correo electrónico, pero no la ha usado. 
+Si no verifica inmediatamente su AxCrypt ID utilizando el código de activación, nosotros lo removeremos de nuestro sistema.</value>
+  </data>
+  <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
+    <value>Estamos a punto de eliminar su AxCrypt ID!</value>
+    <comment>The title of the deletion e-mail</comment>
+  </data>
   <data name="AutoDeletionMailSubject" xml:space="preserve">
-    <value>Eliminación de AxCrypt ID</value>
+    <value>Eliminación de su AxCrypt ID! </value>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Seguridad para usted y su equipo por AxCrypt AB
@@ -256,13 +277,25 @@ Incluye el software de http://www.bouncycastle.org/. </value>
     <value>&amp;Ayuda</value>
   </data>
   <data name="ButtonNewText" xml:space="preserve">
-    <value>&amp;Nuevo</value>
+    <value>&amp;Cambiar</value>
+  </data>
+  <data name="ButtonNewToolTip" xml:space="preserve">
+    <value>Haga clic para cambiar el correo electrónico de AxCrypt ID a utilizar para iniciar sesión. </value>
+    <comment>The new AxCrypt ID button tooltip</comment>
   </data>
   <data name="ButtonNoText" xml:space="preserve">
     <value>&amp;No</value>
   </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="ButtonPasswordResetText" xml:space="preserve">
+    <value>&amp;Reiniciar</value>
+    <comment>Button text for a password reset button</comment>
+  </data>
+  <data name="ButtonPasswordResetToolTip" xml:space="preserve">
+    <value>Haga clic para restablecer su contraseña.</value>
+    <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Guardar</value>
@@ -537,6 +570,10 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Su entrada se ha actualizado.</value>
   </data>
+  <data name="EmailLanguageInformation" xml:space="preserve">
+    <value>Intentamos de enviar correos electrónicos en su idioma, pero si nos envía un correo electrónico podamos responder en Inglés. Por favor, use Google Translate o similar si es necesario.</value>
+    <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate. The translation should probably read: "We try to send mailings in [Language], but if you...2</comment>
+  </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[No Descripción]</value>
   </data>
@@ -637,9 +674,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
   </data>
-  <data name="GetLogErrorDateFormat" xml:space="preserve">
-    <value>El formato de la fecha de inicio y/o la fecha final no es válida. Por favor, utilice el formato AAAA-MM-DD.</value>
-  </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Acerca de</value>
   </data>
@@ -727,9 +761,6 @@ Iniciar sesión en AxCrypt con {2}, introduzca el código de activación de 6 ci
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Administración de claves</value>
-  </data>
-  <data name="KeyShareToolStripButtonToolTipText" xml:space="preserve">
-    <value>Haga clic para seleccionar archivos para detener su protección.</value>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>El clave del archivo se comparte con otros usuarios AxCrypt.</value>
@@ -830,6 +861,101 @@ El equipo AxCrypt</value>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Hola {0},</value>
   </data>
+  <data name="McHlpMenuAbout" xml:space="preserve">
+    <value>Acerca de</value>
+    <comment>Tooltip for the about context menu.</comment>
+  </data>
+  <data name="McHlpMenuOpen" xml:space="preserve">
+    <value>Descifrar y abrir el documento con la aplicación asociada.</value>
+    <comment>Tooltip for open document context menu (double-click)</comment>
+  </data>
+  <data name="McHlpMenuRename" xml:space="preserve">
+    <value>Renombra con un nombre anónimo. El nombre original será restaurado al descifrar.</value>
+    <comment>Tooltip for rename context menu</comment>
+  </data>
+  <data name="McHlpMenuSignOut" xml:space="preserve">
+    <value>Haga clic para cerrar la sesión.</value>
+    <comment>Tooltip for sign out context menu</comment>
+  </data>
+  <data name="McHlpMenuUnwrap" xml:space="preserve">
+    <value>Descifrar el documento y restaurar el nombre y la hora de modificación.</value>
+    <comment>Tooltip for decryption context menu</comment>
+  </data>
+  <data name="McHlpMenuWipe" xml:space="preserve">
+    <value>Sobreescribir todo el fichero con datos aleatorios y borrar permanentemente.</value>
+    <comment>Shred and Delete tooltip for context menu</comment>
+  </data>
+  <data name="McHlpMenuWrapZ" xml:space="preserve">
+    <value>Comprimir antes de cifrar el documento.</value>
+    <comment>Tooltip for the encrypt inplace context menu command</comment>
+  </data>
+  <data name="McHlpMenuWrapZC" xml:space="preserve">
+    <value>Comprimir antes de cifrar y copiar el documento.</value>
+    <comment>Tooltip for the context menu for encryption</comment>
+  </data>
+  <data name="McInfAbout" xml:space="preserve">
+    <value>Cifrador, Compresor y Lanzador de Aplicaciones para el Almacenamiento Seguro de Archivos Locales, en Servidores o Alojamiento Web.
+Este programa se licencia según el acuerdo.
+%n%n%2
+%nContribuciones:
+%nThe Legion of the Bouncy Castly Inc.</value>
+    <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
+  </data>
+  <data name="McInfAuthLead" xml:space="preserve">
+    <value>Integridad:</value>
+    <comment>Lead-in header for Message Authentication Code, i.e. integrity validation</comment>
+  </data>
+  <data name="McInfComp" xml:space="preserve">
+    <value>Zlib/Deflate, RFC1950 y RFC1951.</value>
+    <comment>Name of compression algorithms and standards in property sheet.</comment>
+  </data>
+  <data name="McInfCompLead" xml:space="preserve">
+    <value>Compresión:</value>
+    <comment>Lead-in header for compression algorithm in property sheet</comment>
+  </data>
+  <data name="McInfEncLead" xml:space="preserve">
+    <value>Cifrado:</value>
+    <comment>Property page header for encryption algorithms.</comment>
+  </data>
+  <data name="McInfMenuAbout" xml:space="preserve">
+    <value>Acerca de</value>
+    <comment>Context menu for About</comment>
+  </data>
+  <data name="McInfMenuOpen" xml:space="preserve">
+    <value>Abrir</value>
+    <comment>Context Menu for open action</comment>
+  </data>
+  <data name="McInfMenuRename" xml:space="preserve">
+    <value>Renombrar</value>
+    <comment>Context menu for anonymous rename</comment>
+  </data>
+  <data name="McInfMenuSignOut" xml:space="preserve">
+    <value>Cerrar sesión</value>
+    <comment>Context Menu for Signing out</comment>
+  </data>
+  <data name="McInfMenuUnwrap" xml:space="preserve">
+    <value>Descifrar</value>
+    <comment>Context menu for decrypt</comment>
+  </data>
+  <data name="McInfMenuWipe" xml:space="preserve">
+    <value>Destruir datos y Borrar</value>
+    <comment>Context menu for Wipe</comment>
+  </data>
+  <data name="McInfMenuWrapZ" xml:space="preserve">
+    <value>Cifrar</value>
+    <comment>Context menu for encrypt</comment>
+  </data>
+  <data name="McInfMenuWrapZC" xml:space="preserve">
+    <value>Cifrar y copiar</value>
+    <comment>Context menu for encrypting a copy</comment>
+  </data>
+  <data name="McMsgSystemCall" xml:space="preserve">
+    <value>Error en la llamada al sistema a %3, %2</value>
+    <comment>General error message. Careful about the %-stuff</comment>
+  </data>
+  <data name="McWrnCancel" xml:space="preserve">
+    <value>Operación cancelada.</value>
+  </data>
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>Mi AxCrypt ID</value>
   </data>
@@ -880,6 +1006,14 @@ Internet NO ES NECESARIO para utilizar AxCrypt después de esta primera vez.</va
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>¡Error inesperado!</value>
   </data>
+  <data name="MoreButtonText" xml:space="preserve">
+    <value>Más...</value>
+    <comment>A 'More...' button text</comment>
+  </data>
+  <data name="MoreKeyFileToolTop" xml:space="preserve">
+    <value>Haga clic para introducir el nombre de un archivo clave. Sólo usar si usted sabe que utilizó un archivo clave cuando proteger este archivo con la versión anterior de AxCrypt.</value>
+    <comment>A tooltip for a more button displaying a key file entry field</comment>
+  </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Crear una contraseña nueva</value>
   </data>
@@ -923,6 +1057,10 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
   </data>
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>Creación de AxCrypt ID desconectado.</value>
+  </data>
+  <data name="OfflineIndicatorText" xml:space="preserve">
+    <value>Desconectado</value>
+    <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Su versión es antigua. Por favor, haga clic para comprobar si hay una nueva versión.</value>
@@ -978,7 +1116,7 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
     <value>¿Olvidaste tu contraseña? Haga clic aquí</value>
   </data>
   <data name="PasswordResetMailBody1" xml:space="preserve">
-    <value>Ha solicitado restablecer su contraseña se su cuenta AxCrypt. Para completar este proceso y elegir una nueva contraseña, por favor haga clic en el botón de abajo.</value>
+    <value>Ha solicitado restablecer su contraseña de su cuenta AxCrypt ID. Esto no va a restaurar el acceso a los archivos cifrados o contraseñas, que sólo le permitirá acceder de nuevo.Para completar este proceso y elegir una  nueva contraseña, por favor haga clic en el botón de abajo.</value>
   </data>
   <data name="PasswordResetMailBodyButton" xml:space="preserve">
     <value>Restablecer la contraseña</value>
@@ -988,7 +1126,8 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
   </data>
   <data name="PasswordResetPageBody" xml:space="preserve">
     <value>Si se ha registrado anteriormente, pero ha olvidado la contraseña, o por alguna otra razón no se ha recibido o ha perdido el enlace de activación, puede volver a registrarse y solicitar una nueva activación en correo electrónico aquí.
-&lt;span class="red"&gt;Si ha olvidado su contraseña esto le permitirá iniciar la sesión de nuevo, pero no vas a volver a tener acceso a cualquier información almacenada en el administrador de contraseñas en línea. Se permanecen cifrados con su contraseña anterior, y no podemos descifrarlo.&lt;/span&gt;
+
+&lt;span class="red"&gt;Si ha olvidado su contraseña esto le permitirá iniciar la sesión de nuevo, pero no volver a tener acceso a los archivos cifrados o la información almacenada en el gestor de contraseñas en línea. Se permanecen cifrados con su contraseña anterior, y no podemos descifrarlo.&lt;/span&gt;
 
 Introduzca su correo electrónico abajo para enviar una enlace de activación a la dirección especificada. Por razones de integridad, &lt;b&gt;no se dará feedback sobre el el éxito o la falla de esta operación&lt;/b&gt;</value>
   </data>
@@ -1209,6 +1348,17 @@ Revise su correo electrónico &lt;b&gt;{0}&lt;/b&gt; para un enlace de activaci�
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>&amp;Eliminar de la lista pero mantener archivo protegido.</value>
   </data>
+  <data name="ResendButtonText" xml:space="preserve">
+    <value>Reenviar</value>
+    <comment>A button in a verification dialog that causes the verification to be resent.</comment>
+  </data>
+  <data name="ResendButtonToolTip" xml:space="preserve">
+    <value>Haga clic para reenviar el código de activación a su correo electrónico.</value>
+  </data>
+  <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
+    <value>Ya ha iniciado sesión con esta contraseña! Por favor, introducir la contraseña original para este archivo.</value>
+    <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
+  </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Sólo los usuarios premium pueden guardar entradas de contraseñas.</value>
   </data>
@@ -1270,6 +1420,9 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>¡Advertencia! Un reinicio del sitio está programado en unos pocos minutos. Pedimos disculpas por las molestias.</value>
+  </data>
+  <data name="StopSecuringToolTipText" xml:space="preserve">
+    <value>Haga clic para seleccionar archivos para detener su protección.</value>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>La suscripción se ha guardado correctamente.</value>
@@ -1358,6 +1511,12 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Actualizando el estado</value>
   </data>
+  <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
+    <value>Los archivos de actualización 1.x</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
+    <value>Seleccionar un lugar para buscar los archivos protegidos con AxCrypt 1.x. y mejorarlas.</value>
+  </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>¡Obtener Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
@@ -1411,6 +1570,36 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Seleccionar archivos para eliminar de forma segura</value>
+  </data>
+  <data name="WixCaption" xml:space="preserve">
+    <value>[WixBundleName] Configuración</value>
+  </data>
+  <data name="WixConfirmCancelMessage" xml:space="preserve">
+    <value>¿Estas seguro que quiere cancelar?</value>
+  </data>
+  <data name="WixFailureInstallHeader" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="WixFailureRepairHeader" xml:space="preserve">
+    <value>Reparación Falló</value>
+  </data>
+  <data name="WixFilesInUseCancelButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="WixHelpCloseButton" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="WixInstallVersion" xml:space="preserve">
+    <value>Versión [WixBundleVersion]</value>
+  </data>
+  <data name="WixModifyRepairButton" xml:space="preserve">
+    <value>Reiniciar </value>
+  </data>
+  <data name="WixProgressHeader" xml:space="preserve">
+    <value>Avances de la Configuración</value>
+  </data>
+  <data name="WixSuccessLaunchButton" xml:space="preserve">
+    <value>Lanzar</value>
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Estado 'En proceso' con '{0}'.</value>

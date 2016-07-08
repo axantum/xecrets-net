@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AaaUtfDummy" xml:space="preserve">
+    <value> </value>
+    <comment>A text containing non-Ansi characters to make Phraseapp download behave. Does not need translation, but should be there.</comment>
+  </data>
   <data name="AbortedFileStatus" xml:space="preserve">
     <value>Etat 'Interrompu' ({0})</value>
   </data>
@@ -577,6 +581,10 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Entrée mise à jour.</value>
   </data>
+  <data name="EmailLanguageInformation" xml:space="preserve">
+    <value>Nous essayons d'envoyer des e-mails en Français, mais il est possible que nous répondions en Anglais. S'il vous plait, utilisez Google Traduction ou un autre site de traduction si besoin. </value>
+    <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate. The translation should probably read: "We try to send mailings in [Language], but if you...2</comment>
+  </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Pas de Description]</value>
   </data>
@@ -676,9 +684,6 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
-  </data>
-  <data name="GetLogErrorDateFormat" xml:space="preserve">
-    <value>Le format de début et/ou de fin de la date est invalide. S'il vous plaît, utilisez le format AAAA-MM-JJ.</value>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>&amp;A Propos</value>
@@ -869,6 +874,101 @@ L'Equipe AxCrypt</value>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Bonjour {0},</value>
   </data>
+  <data name="McHlpMenuAbout" xml:space="preserve">
+    <value>A propos</value>
+    <comment>Tooltip for the about context menu.</comment>
+  </data>
+  <data name="McHlpMenuOpen" xml:space="preserve">
+    <value>Décrypter et ouvrir avec l'application associée.</value>
+    <comment>Tooltip for open document context menu (double-click)</comment>
+  </data>
+  <data name="McHlpMenuRename" xml:space="preserve">
+    <value>Retitrez avec un nom anonyme. L'original sera reconstitué sur le déchiffrage.</value>
+    <comment>Tooltip for rename context menu</comment>
+  </data>
+  <data name="McHlpMenuSignOut" xml:space="preserve">
+    <value>Cliquez pour vous déconnecter.</value>
+    <comment>Tooltip for sign out context menu</comment>
+  </data>
+  <data name="McHlpMenuUnwrap" xml:space="preserve">
+    <value>Décrypter et restaurer nom et date de modification.</value>
+    <comment>Tooltip for decryption context menu</comment>
+  </data>
+  <data name="McHlpMenuWipe" xml:space="preserve">
+    <value>Réécrire le fichier avec des données aléatoires puis supprimer définitivement.</value>
+    <comment>Shred and Delete tooltip for context menu</comment>
+  </data>
+  <data name="McHlpMenuWrapZ" xml:space="preserve">
+    <value>Comprimer d'abord, puis crypter.</value>
+    <comment>Tooltip for the encrypt inplace context menu command</comment>
+  </data>
+  <data name="McHlpMenuWrapZC" xml:space="preserve">
+    <value>Comprimer d'abord, puis crypter et copier.</value>
+    <comment>Tooltip for the context menu for encryption</comment>
+  </data>
+  <data name="McInfAbout" xml:space="preserve">
+    <value>Outil de compression, cryptage et ouverture de fichiers pour stockage et partage sécurisés de documents électroniques.
+Ce logiciel est livré d'après la licence.
+%n%n%2
+%n%nContributions:
+%nThe Legion of the Bouncy Castly Inc.</value>
+    <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
+  </data>
+  <data name="McInfAuthLead" xml:space="preserve">
+    <value>Intégrité:</value>
+    <comment>Lead-in header for Message Authentication Code, i.e. integrity validation</comment>
+  </data>
+  <data name="McInfComp" xml:space="preserve">
+    <value>Zlib/Deflate, RFC1950 et RFC1951.</value>
+    <comment>Name of compression algorithms and standards in property sheet.</comment>
+  </data>
+  <data name="McInfCompLead" xml:space="preserve">
+    <value>Compression:</value>
+    <comment>Lead-in header for compression algorithm in property sheet</comment>
+  </data>
+  <data name="McInfEncLead" xml:space="preserve">
+    <value>Cryptage:</value>
+    <comment>Property page header for encryption algorithms.</comment>
+  </data>
+  <data name="McInfMenuAbout" xml:space="preserve">
+    <value>A propos</value>
+    <comment>Context menu for About</comment>
+  </data>
+  <data name="McInfMenuOpen" xml:space="preserve">
+    <value>Ouvrir</value>
+    <comment>Context Menu for open action</comment>
+  </data>
+  <data name="McInfMenuRename" xml:space="preserve">
+    <value>Retitrez</value>
+    <comment>Context menu for anonymous rename</comment>
+  </data>
+  <data name="McInfMenuSignOut" xml:space="preserve">
+    <value>Se déconnecter</value>
+    <comment>Context Menu for Signing out</comment>
+  </data>
+  <data name="McInfMenuUnwrap" xml:space="preserve">
+    <value>Décrypter</value>
+    <comment>Context menu for decrypt</comment>
+  </data>
+  <data name="McInfMenuWipe" xml:space="preserve">
+    <value>Brouiller et supprimer</value>
+    <comment>Context menu for Wipe</comment>
+  </data>
+  <data name="McInfMenuWrapZ" xml:space="preserve">
+    <value>Crypter</value>
+    <comment>Context menu for encrypt</comment>
+  </data>
+  <data name="McInfMenuWrapZC" xml:space="preserve">
+    <value>Crypter et copier</value>
+    <comment>Context menu for encrypting a copy</comment>
+  </data>
+  <data name="McMsgSystemCall" xml:space="preserve">
+    <value>Erreur lors de l'appel système %3, %2</value>
+    <comment>General error message. Careful about the %-stuff</comment>
+  </data>
+  <data name="McWrnCancel" xml:space="preserve">
+    <value>Opération supprimée. </value>
+  </data>
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>My AxCrypt ID</value>
   </data>
@@ -1000,7 +1100,7 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
     <value>&amp;Effacer tous les Paramètres et Quitter</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Auto Conversion 1.x Fichiers</value>
+    <value>Auto Mise à niveau des fichiers 1.x </value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
@@ -1273,6 +1373,10 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code d'activation. </value>
   <data name="ResendButtonToolTip" xml:space="preserve">
     <value>Cliquez ici pour envoyer de nouveau votre code d'activation par e-mail. </value>
   </data>
+  <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
+    <value>Vous êtes déjà connecté avec ce mot de passe! S'il vous plait, donnez le mot de passe d'origine pour ce fichier. </value>
+    <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
+  </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Seuls les utilisateurs Premium sont autorisés à enregistrer des entrées des mots de passe.</value>
   </data>
@@ -1430,10 +1534,10 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
     <value>Mise à jour de l'Etat du fichier</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>Mettre à niveau AxCrypt 1.x</value>
+    <value>Mettre à niveau les fichiers AxCrypt 1.x</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Sélectionner un emplacement pour chercher des fichiers sécurisés avec AxCrypt 1.x et les mettre à niveau. </value>
+    <value>Choisissez un emplacement pour chercher des fichiers sécurisés avec AxCrypt 1.x et les mettre à niveau. </value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Obtenez Premium! </value>
@@ -1490,6 +1594,139 @@ Pour plus d'information, cliquez sur OK pour naviguer sur notre site web.</value
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Choisissez les fichiers à supprimer de manière sécurisée.</value>
+  </data>
+  <data name="WixAxNeedUninstall" xml:space="preserve">
+    <value>Vous devez d'abord désinstaller la version d'AxCrypt actuelle que vous avez sur cet ordinateur. </value>
+  </data>
+  <data name="WixAxOsNotSupported" xml:space="preserve">
+    <value>Cette version de Windows n'est pas prise en charge. </value>
+  </data>
+  <data name="WixCaption" xml:space="preserve">
+    <value>[WixBundleName] Paramètres </value>
+  </data>
+  <data name="WixConfirmCancelMessage" xml:space="preserve">
+    <value>Etes-vous sur de vouloir supprimer? </value>
+  </data>
+  <data name="WixExecuteUpgradeRelatedBundleMessage" xml:space="preserve">
+    <value>Version précédente</value>
+  </data>
+  <data name="WixFailureCloseButton" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="WixFailureHeader" xml:space="preserve">
+    <value>Echec de la configuration</value>
+  </data>
+  <data name="WixFailureHyperlinkLogText" xml:space="preserve">
+    <value>Un ou plusieurs problèmes ont causé l'échec de la configuration. S'il vous plait résolvez les problèmes et réessayez la configuration. Pour plus d'informations, voir le &amp;lt;ahref="#"&amp;gt;journal&amp;lt;/a&amp;gt;.</value>
+  </data>
+  <data name="WixFailureInstallHeader" xml:space="preserve">
+    <value>Echec de la configuration</value>
+  </data>
+  <data name="WixFailureRepairHeader" xml:space="preserve">
+    <value>Echec de la réparation </value>
+  </data>
+  <data name="WixFailureRestartButton" xml:space="preserve">
+    <value>Redémarrer </value>
+  </data>
+  <data name="WixFailureRestartText" xml:space="preserve">
+    <value>Vous devez redémarrer votre ordinateur pour compléter la restauration du logiciel. </value>
+  </data>
+  <data name="WixFailureUninstallHeader" xml:space="preserve">
+    <value>Echec de la désinstallation. </value>
+  </data>
+  <data name="WixFilesInUseCancelButton" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="WixFilesInUseCloseRadioButton" xml:space="preserve">
+    <value>Fermer les applications et tenter de les redémarrer. </value>
+  </data>
+  <data name="WixFilesInUseDontCloseRadioButton" xml:space="preserve">
+    <value>Ne fermer pas les application. Un redémarrage va être requis. </value>
+  </data>
+  <data name="WixFilesInUseHeader" xml:space="preserve">
+    <value>Fichiers en utilisation</value>
+  </data>
+  <data name="WixFilesInUseLabel" xml:space="preserve">
+    <value>Les applications suivantes utilisent des fichiers qui ont besoin d'être mis à jour: </value>
+  </data>
+  <data name="WixFilesInUseOkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="WixHelpCloseButton" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="WixHelpHeader" xml:space="preserve">
+    <value>Aide à la configuration</value>
+  </data>
+  <data name="WixHelpText" xml:space="preserve">
+    <value>/install | /repair | /uninstall | /layout [directory] - installe ,répare, désinstalle, ou 
+crée une copie locale complète du faisceau dans le répertoire. Installer est la valeur par défaut.
+
+/passive | /quiet -  affiche l'interface utilisateur minimale sans invite ou affiche aucune interface utilisateur et
+sans invite. Par défaut, l'interface utilisateur et les invites sont supprimées. 
+
+/norestart - supprimer et tenter de redémarrer. Par défaut l'interface utilisateur vous invite avant de redémarrer. 
+/log log.txt - connecte à un fichier spécifique. Par défaut un journal est créé dans %TEMP%.</value>
+  </data>
+  <data name="WixInstallAcceptCheckbox" xml:space="preserve">
+    <value>J'accepte les termes de la license et les conditions</value>
+  </data>
+  <data name="WixInstallCloseButton" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="WixInstallInstallButton" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="WixInstallVersion" xml:space="preserve">
+    <value>Version [WixBundleVersion]</value>
+  </data>
+  <data name="WixModifyCloseButton" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="WixModifyHeader" xml:space="preserve">
+    <value>Modifier les paramètres</value>
+  </data>
+  <data name="WixModifyRepairButton" xml:space="preserve">
+    <value>Réparer</value>
+  </data>
+  <data name="WixModifyUninstallButton" xml:space="preserve">
+    <value>Désinstaller </value>
+  </data>
+  <data name="WixOverallProgressPackageText" xml:space="preserve">
+    <value>Initialisation... </value>
+  </data>
+  <data name="WixProgressCancelButton" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="WixProgressHeader" xml:space="preserve">
+    <value>Progrès de la configuration</value>
+  </data>
+  <data name="WixProgressLabel" xml:space="preserve">
+    <value>En cours de traitement: </value>
+  </data>
+  <data name="WixSuccessCloseButton" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="WixSuccessHeader" xml:space="preserve">
+    <value>Configuration réussie </value>
+  </data>
+  <data name="WixSuccessInstallHeader" xml:space="preserve">
+    <value>Installation réussie avec succès</value>
+  </data>
+  <data name="WixSuccessLaunchButton" xml:space="preserve">
+    <value>Lancement</value>
+  </data>
+  <data name="WixSuccessRepairHeader" xml:space="preserve">
+    <value>Réparation réussie avec succès</value>
+  </data>
+  <data name="WixSuccessRestartButton" xml:space="preserve">
+    <value>Redémarrer </value>
+  </data>
+  <data name="WixSuccessRestartText" xml:space="preserve">
+    <value>Vous devez redémarrer votre ordinateur avant d'utiliser le logiciel. </value>
+  </data>
+  <data name="WixSuccessUninstallHeader" xml:space="preserve">
+    <value>Succès de la désinstallation </value>
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Etat 'En cours' avec '{0}'.</value>
