@@ -34,7 +34,7 @@
     key-container, you need to have KeyOriginatorFile set before loading Microsoft.CSharp.targets. An easy
     way to achieve this is to use properties, enable Signing, select AxantumStrongName.pfx, then disable
     signing. The KeyOriginatorFile property remains set, shown by being grey in the GUI. Go figure.
-    
+
     sn -i AxantumStrongName.pfx Axantum
     sn -i AxantumStrongName.pfx VS_KEY_xxxx
 
@@ -211,6 +211,7 @@
     <TemplateFileTask TemplateFile="Properties\AssemblyInfo.template"
                       TargetFile="$(IntermediateOutputPath)AssemblyInfo.cs"
                       Values="@(_AxTemplateValues)" />
+    <Touch Files="$(IntermediateOutputPath)AssemblyInfo.cs" />
     <ItemGroup>
       <Compile Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
       <FileWrites Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
