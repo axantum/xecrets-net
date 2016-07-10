@@ -5105,6 +5105,204 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt File Encryption.
+        /// </summary>
+        public static string WixMsiArpComments {
+            get {
+                return ResourceManager.GetString("WixMsiArpComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in to your AxCrypt ID.
+        /// </summary>
+        public static string WixMsiAxCryptIdSignInShortcut {
+            get {
+                return ResourceManager.GetString("WixMsiAxCryptIdSignInShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in to or create an AxCrypt ID.
+        /// </summary>
+        public static string WixMsiAxCryptIdSignInShortcutDescription {
+            get {
+                return ResourceManager.GetString("WixMsiAxCryptIdSignInShortcutDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string WixMsiDescription {
+            get {
+                return ResourceManager.GetString("WixMsiDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a 32 bit MSI installer. You have 64-bit Windows. Get the MSI with &apos;x64&apos; in the filename instead of &apos;Win32&apos;..
+        /// </summary>
+        public static string WixMsiDoNotInstall32BitOn64Bit {
+            get {
+                return ResourceManager.GetString("WixMsiDoNotInstall32BitOn64Bit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QUICK START: To encrypt a file, right-click the file in Windows Explorer and select AxCrypt | Encrypt..
+        /// </summary>
+        public static string WixMsiExitDialogText {
+            get {
+                return ResourceManager.GetString("WixMsiExitDialogText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt.
+        /// </summary>
+        public static string WixMsiExternalName {
+            get {
+                return ResourceManager.GetString("WixMsiExternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Encrypted File.
+        /// </summary>
+        public static string WixMsiFileTypeName {
+            get {
+                return ResourceManager.GetString("WixMsiFileTypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home Page.
+        /// </summary>
+        public static string WixMsiHomePageShortcut {
+            get {
+                return ResourceManager.GetString("WixMsiHomePageShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse to AxCrypt Home Page.
+        /// </summary>
+        public static string WixMsiHomePageShortcutDescription {
+            get {
+                return ResourceManager.GetString("WixMsiHomePageShortcutDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt.
+        /// </summary>
+        public static string WixMsiLaunchAxCrypt {
+            get {
+                return ResourceManager.GetString("WixMsiLaunchAxCrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start AxCrypt.
+        /// </summary>
+        public static string WixMsiLaunchAxCryptDescription {
+            get {
+                return ResourceManager.GetString("WixMsiLaunchAxCryptDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must uninstall the previous version of AxCrypt before proceeding. Be sure to reboot when asked to..
+        /// </summary>
+        public static string WixMsiLegacyAxCrypt {
+            get {
+                return ResourceManager.GetString("WixMsiLegacyAxCrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Program Files.
+        /// </summary>
+        public static string WixMsiMainExecutablesTitle {
+            get {
+                return ResourceManager.GetString("WixMsiMainExecutablesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documentation.
+        /// </summary>
+        public static string WixMsiManualShortcut {
+            get {
+                return ResourceManager.GetString("WixMsiManualShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Documentation.
+        /// </summary>
+        public static string WixMsiManualShortcutDescription {
+            get {
+                return ResourceManager.GetString("WixMsiManualShortcutDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This application requires .NET Framework 4.5 or higher. Please install the .NET Framework then run this installer again..
+        /// </summary>
+        public static string WixMsiNet45Required {
+            get {
+                return ResourceManager.GetString("WixMsiNet45Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Newer or same version already installed! Please uninstall that version before proceeding. Be sure to reboot when asked to..
+        /// </summary>
+        public static string WixMsiNoDowngrade {
+            get {
+                return ResourceManager.GetString("WixMsiNoDowngrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Right-Click Integration.
+        /// </summary>
+        public static string WixMsiShellExtensionTitle {
+            get {
+                return ResourceManager.GetString("WixMsiShellExtensionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start AxCrypt.
+        /// </summary>
+        public static string WixMsiStartAxCrypt {
+            get {
+                return ResourceManager.GetString("WixMsiStartAxCrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstall AxCrypt.
+        /// </summary>
+        public static string WixMsiUninstallAxCrypt {
+            get {
+                return ResourceManager.GetString("WixMsiUninstallAxCrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstalls AxCrypt.
+        /// </summary>
+        public static string WixMsiUninstallAxCryptDescription {
+            get {
+                return ResourceManager.GetString("WixMsiUninstallAxCryptDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Initializing....
         /// </summary>
         public static string WixOverallProgressPackageText {
