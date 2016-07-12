@@ -49,6 +49,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.ko.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.it.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.it.resx</DependentUpon>
+    </Compile>
     <Compile Include="Texts.cs" />
     <Compile Include="ContentResourceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,8 +81,6 @@
   <ItemGroup>
     <None Include="Properties\AssemblyInfo.template" />
     <None Include="AxantumStrongName.pfx" />
-    <None Include="AxCrypt.Content.zredb" />
-    <None Include="AxCrypt.Content.zreproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -108,6 +111,10 @@
     <EmbeddedResource Include="Properties\Resources.ko.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ko.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.it.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
