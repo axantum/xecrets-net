@@ -200,6 +200,7 @@ namespace Axantum.AxCrypt
             _importMyPrivateKeyToolStripMenuItem.ToolTipText = Texts.ImportMyPrivateKeyToolStripMenuItemToolTipText;
             _importOthersSharingKeyToolStripMenuItem.Text = Texts.ImportOthersSharingKeyToolStripMenuItemText;
             _importOthersSharingKeyToolStripMenuItem.ToolTipText = Texts.ImportOthersSharingKeyToolStripMenuItemToolTipText;
+            _italianLanguageToolStripMenuItem.Text = Texts.ItalianLanguageSelection;
             _keyManagementToolStripMenuItem.Text = Texts.KeyManagementToolStripMenuItemText;
             _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;
             _koreanLanguageToolStripMenuItem.Text = Texts.KoreanLanguageSelection;

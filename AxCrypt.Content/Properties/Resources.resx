@@ -634,6 +634,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Double click to open. If required you will be prompted for a password.</value>
   </data>
+  <data name="DutchLanguageSelection" xml:space="preserve">
+    <value>Nederlands</value>
+    <comment>The name of the Dutch language for selection.</comment>
+  </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>You are limited to read-only access! Only Premium users are allowed to edit or create new password entries.</value>
   </data>
@@ -857,6 +861,10 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Invitation to use AxCrypt File Security</value>
   </data>
+  <data name="ItalianLanguageSelection" xml:space="preserve">
+    <value>Italiano</value>
+    <comment>The name of the language Italian in Italian. It should never be translated.</comment>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript appears to be disabled in your browser. Unless you enable JavaScript you cannot sign in and the site may not perform as expected.</value>
   </data>
@@ -1061,7 +1069,7 @@ The AxCrypt Team</value>
 This program is licensed according to the agreement.
 %n%n%2
 %n%nAcknowledgements:
-%nThe Legion of the Bouncy Castly Inc.</value>
+%nThe Legion of the Bouncy Castle Inc.</value>
     <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
   </data>
   <data name="McInfAuth" xml:space="preserve">
@@ -1372,6 +1380,10 @@ If you appear not to receive it, check that it does not get caught by your anti-
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>
   </data>
+  <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
+    <value>Português (Brasil)</value>
+    <comment>The name of the Portuguese Brazil language. Do not translate.</comment>
+  </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
     <value>Your AxCrypt Premium subscription is coming to an end soon. I sincerely hope you have enjoyed using our features and found them useful.</value>
   </data>
@@ -1587,6 +1599,10 @@ Subject: AxCrypt Report Snapshot
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
     <value>Click to resend the activation code to your e-mail.</value>
+  </data>
+  <data name="RussianLanguageSelection" xml:space="preserve">
+    <value>русский</value>
+    <comment>The name of the Russian Language in Russian. It should never be translated.</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>You are already signed in with this password! Please provide the original password for this file.</value>

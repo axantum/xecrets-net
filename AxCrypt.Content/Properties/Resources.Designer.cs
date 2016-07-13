@@ -1529,6 +1529,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nederlands.
+        /// </summary>
+        public static string DutchLanguageSelection {
+            get {
+                return ResourceManager.GetString("DutchLanguageSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are limited to read-only access! Only Premium users are allowed to edit or create new password entries..
         /// </summary>
         public static string EditSecretErrorIsReadOnly {
@@ -2167,6 +2176,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Italiano.
+        /// </summary>
+        public static string ItalianLanguageSelection {
+            get {
+                return ResourceManager.GetString("ItalianLanguageSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JavaScript appears to be disabled in your browser. Unless you enable JavaScript you cannot sign in and the site may not perform as expected..
         /// </summary>
         public static string JavaScriptDisabledError {
@@ -2682,7 +2700,7 @@ namespace AxCrypt.Content.Properties {
         ///This program is licensed according to the agreement.
         ///%n%n%2
         ///%n%nAcknowledgements:
-        ///%nThe Legion of the Bouncy Castly Inc..
+        ///%nThe Legion of the Bouncy Castle Inc..
         /// </summary>
         public static string McInfAbout {
             get {
@@ -3484,6 +3502,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Português (Brasil).
+        /// </summary>
+        public static string PortugueseBrazilLanguageSelection {
+            get {
+                return ResourceManager.GetString("PortugueseBrazilLanguageSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your AxCrypt Premium subscription is coming to an end soon. I sincerely hope you have enjoyed using our features and found them useful..
         /// </summary>
         public static string PremiumExpiresSoonMailBody0Html {
@@ -4081,6 +4108,15 @@ namespace AxCrypt.Content.Properties {
         public static string ResendButtonToolTip {
             get {
                 return ResourceManager.GetString("ResendButtonToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to русский.
+        /// </summary>
+        public static string RussianLanguageSelection {
+            get {
+                return ResourceManager.GetString("RussianLanguageSelection", resourceCulture);
             }
         }
         
