@@ -1636,6 +1636,7 @@ Per ulteriori informazioni, clicca OK per aprire il nostro sito web.</value>
   </data>
   <data name="WixCaption" xml:space="preserve">
     <value>[WixBundleName] Configurazione</value>
+    <comment>[WixBundlePart] should NOT be translated.</comment>
   </data>
   <data name="WixConfirmCancelMessage" xml:space="preserve">
     <value>Sei sicuro di voler annullare?</value>
@@ -1699,6 +1700,7 @@ crea una copia locale del contenuto della cartella. Installa è l'azione predefi
 
 /norestart - reprimi ogni tentativo di riavviare. Per impostazione predefinita, l'interfaccia utente vi da una segnalazione prima di riavviare.
 /log log.txt - connessione a un file specifico. Per impostazione predefinita, la connessione a un file è stabilita in %TEMP%.</value>
+    <comment>The /install, /uninstall and all other /xxxxxx shold NOT BE TRANSLATED</comment>
   </data>
   <data name="WixInstallAcceptCheckbox" xml:space="preserve">
     <value>Accetto i termini e le condizioni della licenza</value>
@@ -1711,6 +1713,7 @@ crea una copia locale del contenuto della cartella. Installa è l'azione predefi
   </data>
   <data name="WixInstallVersion" xml:space="preserve">
     <value>Versione [WixBundleVersion]</value>
+    <comment>[WixBundleVersion] should NOT BE TRANSLATED</comment>
   </data>
   <data name="WixModifyCloseButton" xml:space="preserve">
     <value>Chiudi</value>
