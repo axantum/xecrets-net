@@ -384,6 +384,9 @@
     <None Include="resources\refreshgreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <_AxCanonicalName>AxCrypt</_AxCanonicalName>
+  </PropertyGroup>
   <Import Project="..\SolutionItems\Axantum.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

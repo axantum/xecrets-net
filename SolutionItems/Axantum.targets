@@ -56,7 +56,6 @@
     <AxBuildNumber Condition=" '$(AxBuildNumber)' == '' ">0</AxBuildNumber>
   </PropertyGroup>
   <PropertyGroup>
-    <_AxCanonicalName>AxCrypt</_AxCanonicalName>
     <_AxIsAxantumDeveloper>false</_AxIsAxantumDeveloper>
     <_AxIsAxantumDeveloper Condition=" '$(AX_AXANTUM)' == 'True' ">true</_AxIsAxantumDeveloper>
     <_AxIsAxantumBuildServer>false</_AxIsAxantumBuildServer>
@@ -145,7 +144,7 @@
   <Target Name="_AxRecopyMerged"
           Condition=" '$(_AxIsBuildServerBuild)' != 'true' ">
     <Copy SourceFiles="$(OutputPath)$(_AxMergedBaseFileName).exe"
-          DestinationFiles="$(MSBuildThisFileDirectory)..\Axantum.AxCrypt\bin\$(Configuration)\$(_AxCanonicalName).exe"
+          DestinationFiles="$(OutputPath)$(_AxCanonicalName).exe"
           SkipUnchangedFiles="true"
           Condition=" '$(_AxMergedBaseFileName)' != '$(_AxCanonicalName)' " />
   </Target>
@@ -159,7 +158,7 @@
 
   <Target Name="_AxSetVersionedFileName">
     <PropertyGroup Condition=" '$(AxBuildNumber)' != '' ">
-      <_AxVersionedFileName>AxCrypt-$(_AxCryptMajor).$(_AxCryptMinor).$(AxBuildNumber).0.exe</_AxVersionedFileName>
+      <_AxVersionedFileName>$(_AxCanonicalName)-$(_AxCryptMajor).$(_AxCryptMinor).$(AxBuildNumber).0.exe</_AxVersionedFileName>
     </PropertyGroup>
   </Target>
 
