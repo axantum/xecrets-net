@@ -1,0 +1,1719 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AbortedFileStatus" xml:space="preserve">
+    <value>Status "interrompido" ({0}).</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Sobre {0}</value>
+  </data>
+  <data name="AccountLoggedOnStatusText" xml:space="preserve">
+    <value>{0}</value>
+    <comment>Title bar status text when logged on to an account.</comment>
+  </data>
+  <data name="AccountStatusLight" xml:space="preserve">
+    <value>AxCrypt Grátis</value>
+  </data>
+  <data name="AccountStatusPremium" xml:space="preserve">
+    <value>AxCrypt Premium</value>
+  </data>
+  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
+    <value>AxCrypt Premium (indefinido)</value>
+  </data>
+  <data name="AccountStatusPremiumTrial" xml:space="preserve">
+    <value>Teste de AxCrypt Premium</value>
+  </data>
+  <data name="ActivateErrorEmailOrCode" xml:space="preserve">
+    <value>O e-mail ou código de ativação fornecido está incorreto.</value>
+  </data>
+  <data name="ActivateErrorNoRequest" xml:space="preserve">
+    <value>Solicitação de senha falhou. Uma solicitação para fazer uma nova senha não foi feita para este ID AxCrypt.</value>
+  </data>
+  <data name="ActivateErrorPassword" xml:space="preserve">
+    <value>Mudança de senha falhou.</value>
+  </data>
+  <data name="ActivateMailBodyButton" xml:space="preserve">
+    <value>Ativar ID AxCrypt</value>
+  </data>
+  <data name="ActivateMailBodyCode" xml:space="preserve">
+    <value>O seu código de ativação para o ID AxCrypt é &lt;b&gt;{0}&lt;/b&gt;. Use-o no aplicativo AxCrypt, ou clique abaixo para usá-lo na internet. Isso irá verificar e ativar sua conta.</value>
+  </data>
+  <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
+    <value>Seu código de ativação é {0}.</value>
+  </data>
+  <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
+    <value>Você tem acesso às funções do AxCrypt Premium &lt;b&gt;por 30 dias de teste&lt;/b&gt;, a partir do momento em que ativar seu ID AxCrypt.</value>
+  </data>
+  <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
+    <value>Você terá acesso aos serviços do AxCrypt Premium por um período de teste de 30 dias, assim que ativar seu ID AxCrypt.</value>
+  </data>
+  <data name="ActivateMailBodyManualLink" xml:space="preserve">
+    <value>Se deseja usar a internet ao invés do aplicativo, vá para &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; e entre &lt;b&gt;{1}&lt;/b&gt; com o código de ativação&lt;b&gt;{2}&lt;/b&gt; para ativar manualmente seu ID AxCrypt.</value>
+  </data>
+  <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
+    <value>Se você quer usar o site ao invés do aplicativo AxCrypt, vá para {0} e clique {1} e o código de ativação {2} para ativar manualmente seu ID AxCrypt.</value>
+  </data>
+  <data name="ActivateMailBodyTitle" xml:space="preserve">
+    <value>Olá, e bem-vindo ao AxCrypt!</value>
+  </data>
+  <data name="ActivateMailSubject" xml:space="preserve">
+    <value>Ativação do ID AxCrypt</value>
+  </data>
+  <data name="ActivateManuallyPageBody" xml:space="preserve">
+    <value>&lt;b&gt;Pare!&lt;/b&gt;
+
+Você só deveria estar aqui porque o link no e-mail de ativação do ID AxCrypt não funcionou (você deve, é claro, registrar-se no ID AxCrypt para receber um em-mail de ativação).
+
+Insira seu e-mail e digite manualmente aqui somente se você recebeu o e-mail de ativação, mas o link não funcionou.</value>
+  </data>
+  <data name="ActivatePageBody" xml:space="preserve">
+    <value>Para ativar seu ID AxCrypt &lt;b&gt;{0}&lt;/b&gt; você deve selecionar uma senha.
+
+Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador de Senhas online, assim como o acesso ao site. Digite devagar e cuidadosamente, e não esqueça sua senha!</value>
+  </data>
+  <data name="ActivatePageTitle" xml:space="preserve">
+    <value>Ativar ID AxCrypt</value>
+  </data>
+  <data name="ActivateSuccess" xml:space="preserve">
+    <value>Seu ID AxCrypt foi ativado! Por favor, faça o login.</value>
+  </data>
+  <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
+    <value>Duplo clique abre os arquivos protegidos.</value>
+  </data>
+  <data name="AddSecureFolderMenuItemText" xml:space="preserve">
+    <value>Adicionar pasta protegida</value>
+  </data>
+  <data name="AnonymousRenameMenuText" xml:space="preserve">
+    <value>Renomeação anônima</value>
+  </data>
+  <data name="AnonymousRenameSelectFilesDialogTitle" xml:space="preserve">
+    <value>Selecione os arquivos encriptados para renomeá-los!</value>
+  </data>
+  <data name="AnonymousRenameToolTip" xml:space="preserve">
+    <value>Esconda o nome real de um arquivo seguro renomeando-o para algo aleatório</value>
+  </data>
+  <data name="AuthenticationError" xml:space="preserve">
+    <value>A página que você tentou visitar necessita autentificação. Por favor, faça login para continuar.</value>
+  </data>
+  <data name="AutoDeletionEmailOutro" xml:space="preserve">
+    <value>Você não precisa responder ou fazer qualquer coisa. Se não fizer nada, não receberá mais e-mails e sua conta ID AxCrypt será deletada permanentemente.</value>
+    <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
+  </data>
+  <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
+    <value>Você nos deu seu e-mail como parte da instalação ou uso do AxCrypt, através de um app ou da internet. Nós enviamos um código de ativação por e-mail, mas você não o usou. Caso não verifique imediatamente sua conta ID AxCrypt com o link de ativação, você será permanentemente removido do nosso sistema.</value>
+  </data>
+  <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
+    <value>Estamos a ponto de deletar seu ID AxCrypt!</value>
+    <comment>The title of the deletion e-mail</comment>
+  </data>
+  <data name="AutoDeletionMailSubject" xml:space="preserve">
+    <value>Seu ID AxCrypt em breve será deletado!</value>
+  </data>
+  <data name="AxCryptAboutDescription" xml:space="preserve">
+    <value>Segurança de arquivo para você e sua equipe, de AxCrypt AB
+
+Inclui software de http://www.bouncycastle.org/</value>
+  </data>
+  <data name="AxCryptFileEncryption" xml:space="preserve">
+    <value>Segurança do arquivo AxCrypt</value>
+  </data>
+  <data name="ButtonActivateText" xml:space="preserve">
+    <value>Ativar</value>
+  </data>
+  <data name="ButtonCancelAllText" xml:space="preserve">
+    <value>Cancelar tudo</value>
+  </data>
+  <data name="ButtonCancelText" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
+    <value>Deletar ID AxCrypt</value>
+  </data>
+  <data name="ButtonDeleteText" xml:space="preserve">
+    <value>Deletar</value>
+  </data>
+  <data name="ButtonEditText" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="ButtonEllipsisText" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="ButtonExitText" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="ButtonHelpText" xml:space="preserve">
+    <value>Ajuda</value>
+  </data>
+  <data name="ButtonNewText" xml:space="preserve">
+    <value>Mudar</value>
+  </data>
+  <data name="ButtonNewToolTip" xml:space="preserve">
+    <value>Clique para mudar o seu ID AxCrypt para fazer login</value>
+    <comment>The new AxCrypt ID button tooltip</comment>
+  </data>
+  <data name="ButtonOkText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ButtonPasswordResetText" xml:space="preserve">
+    <value>Desfazer</value>
+    <comment>Button text for a password reset button</comment>
+  </data>
+  <data name="ButtonPasswordResetToolTip" xml:space="preserve">
+    <value>Clique para resetar sua senha</value>
+    <comment>Tooltip text for a button to click for resetting password.</comment>
+  </data>
+  <data name="ButtonSaveText" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="ButtonSendText" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="ButtonShareRightText" xml:space="preserve">
+    <value>Compartilhar &gt;&gt;</value>
+  </data>
+  <data name="ButtonSignInBuyText" xml:space="preserve">
+    <value>Entre &amp; Compre agora</value>
+  </data>
+  <data name="ButtonSignInText" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="ButtonSignUpText" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="ButtonSuggestText" xml:space="preserve">
+    <value>Sugerir senha</value>
+  </data>
+  <data name="ButtonUnshareLeftText" xml:space="preserve">
+    <value>&lt;&lt; Descompartilhar</value>
+  </data>
+  <data name="ButtonYesText" xml:space="preserve">
+    <value>Sim</value>
+  </data>
+  <data name="CancelButtonText" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Cancelado '{0}'.</value>
+  </data>
+  <data name="CannotStartApplication" xml:space="preserve">
+    <value>Não foi possível iniciar aplicação por '{0}'.</value>
+  </data>
+  <data name="CannotWrite" xml:space="preserve">
+    <value>Não pode escrever '{0}'.</value>
+  </data>
+  <data name="CaptchaError" xml:space="preserve">
+    <value>Resposta captcha incorreta.</value>
+  </data>
+  <data name="CaptchaLabel" xml:space="preserve">
+    <value>Prove que você é uma pessoa de verdade e não um robô!</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
+    <value>Você fez uma solicitação para mudar o e-mail do seu ID AxCrypt para &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. Para confirmar, por favor, clique no botão abaixo.</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
+    <value>Use sua senha existente para entrar e o antigo ID AxCrypt será permanentemente deletado.</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
+    <value>Mudar email</value>
+  </data>
+  <data name="ChangeEmailConfirmMailSubject" xml:space="preserve">
+    <value>Mudança de email do ID AxCrypt</value>
+  </data>
+  <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
+    <value>A mudança do seu e-mail foi confirmada! Por favor, faça login para completar o processo.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody2" xml:space="preserve">
+    <value>No entanto, como você já tem um ID AxCrypt com este email, o seu pedido foi silenciosamente ignorado.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody3" xml:space="preserve">
+    <value>Ignore este e-mail ou reporte-o para {0}. Nenhum mal foi feito, e nenhuma informação foi revelada.</value>
+  </data>
+  <data name="ChangeEmailExistMailSubject" xml:space="preserve">
+    <value>Solicitação de mudança do e-mail ID AxCrypt</value>
+  </data>
+  <data name="ChangeEmailMarkError" xml:space="preserve">
+    <value>Mudança de e-mail mudou por causa de um erro interno. Por favor, tente novamente mais tarde ou entre em contato com nosso suporte.</value>
+  </data>
+  <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
+    <value>O novo endereço de e-mail deve ser diferente do antigo!</value>
+  </data>
+  <data name="ChangeEmailMarkSuccess" xml:space="preserve">
+    <value>Enviamos um email para &lt;b&gt;{0}&lt;/b&gt;. Por favor, cheque sua caixa de entrada e clique no link fornecido para confirmar a mudança.
+
+Depois disso, poderá acessar usando &lt;b&gt;{0}&lt;/b&gt; e sua senha existente.
+
+É necessário completar estes passos para finalizar o processo.</value>
+  </data>
+  <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
+    <value>Suas preferências de notificação foram modificadas.</value>
+  </data>
+  <data name="ChangePassphraseDialogTitle" xml:space="preserve">
+    <value>Mudar senha</value>
+  </data>
+  <data name="ChangePasswordError" xml:space="preserve">
+    <value>Não foi possível mudar a senha porque a senha atual está incorreta ou a nova senha é inválida.</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>Sua senha foi alterada.</value>
+  </data>
+  <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
+    <value>Limpar arquivos abertos</value>
+  </data>
+  <data name="CleanUpNeededToolTip" xml:space="preserve">
+    <value>Arquivo está aberto e pode necessitar limpeza. Feche todas as aplicações e clique no botão Limpar.</value>
+  </data>
+  <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
+    <value>Clique para ver se há uma nova versão disponível.</value>
+  </data>
+  <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
+    <value>Clique para limpar e remover quaisquer arquivos abertos, mas primeiro certifique-se de que não estão sendo usados</value>
+  </data>
+  <data name="ColumnAmountPaidHeader" xml:space="preserve">
+    <value>Quantidade paga</value>
+  </data>
+  <data name="ColumnExpiresHeader" xml:space="preserve">
+    <value>Expira UTC</value>
+  </data>
+  <data name="ColumnFolderHeader" xml:space="preserve">
+    <value>Pasta</value>
+    <comment>Columnheader containing a folder name.</comment>
+  </data>
+  <data name="ColumnProductHeader" xml:space="preserve">
+    <value>Produto</value>
+  </data>
+  <data name="ColumnTimestampHeader" xml:space="preserve">
+    <value>Marca temporal</value>
+  </data>
+  <data name="ConfirmAllCheckBoxText" xml:space="preserve">
+    <value>Fazer isso para todos os arquivos restantes?</value>
+  </data>
+  <data name="ContactInfoTitle" xml:space="preserve">
+    <value>Contato &amp; Suporte</value>
+  </data>
+  <data name="CookiePolicyBlockedError" xml:space="preserve">
+    <value>A ação foi bloqueada porque os cookies estão desabilitados no seu navegador.</value>
+  </data>
+  <data name="CookiePolicyPageBody" xml:space="preserve">
+    <value>Nós não armazenamos cookies permanentes no seu disco rígido; colocamos algumas sessões de cookies que são removidos quando o navegador é fechado. Eles são necessários para manter seu login válido e seguro. Nós não rastreamos seu uso do site, e eles tampouco estão disponíveis para terceiros.
+
+Os cookies são posteriormente assegurados solicitando que toda a comunicação sensitiva com o servidor esteja criptografada com HTTPs, criptografando os cookies e fazendo-os se tornarem indisponíveis de escrever no seu navegador. 
+
+Se você não aceitar nossa sessão temporária de cookies, você não poderá fazer login, e o site não responderá como desejado.</value>
+  </data>
+  <data name="CookiePolicyPageTitle" xml:space="preserve">
+    <value>Política de cookies</value>
+  </data>
+  <data name="CookiesDisabledError" xml:space="preserve">
+    <value>Parece que os cookies estão desabilitados no seu navegador. A não ser que aceite nossa sessão de cookies, você não pode fazer login e o site pode não operar como desejado. Leia mais na nossa &lt;a href="{0}"&gt;política de cookies&lt;/a&gt;.</value>
+  </data>
+  <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
+    <value>Criar um ID AxCrypt</value>
+  </data>
+  <data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Para usar e compartilhar arquivos com segurança, crie um ID AxCrypt com chaves de compartilhamento e acesso.</value>
+  </data>
+  <data name="CryptoNameText" xml:space="preserve">
+    <value>Algoritmo</value>
+  </data>
+  <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
+    <value>{0} Dias</value>
+  </data>
+  <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
+    <value>&lt; 1 dia</value>
+  </data>
+  <data name="DaysLeftWarningToolTip" xml:space="preserve">
+    <value>Sua inscrição Premium acaba de expirar. Clique para renová-la.</value>
+  </data>
+  <data name="DebugCheckVersionNowToolStripMenuItemText" xml:space="preserve">
+    <value>Checar versão agora</value>
+  </data>
+  <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
+    <value>Logando</value>
+  </data>
+  <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
+    <value>Parar proteção e remover da lista</value>
+  </data>
+  <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
+    <value>Arquivo</value>
+  </data>
+  <data name="DecryptedFilesWarning" xml:space="preserve">
+    <value>Estes arquivos não puderam ser re-criptografados.</value>
+    <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
+  </data>
+  <data name="DecryptedFileToolTip" xml:space="preserve">
+    <value>Arquivo aberto. Tente fechar a aplicação ou use a função Limpar para removê-lo.</value>
+  </data>
+  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
+    <value>Arquivos (*{0})|*{0}|Todos os arquivos(*.*)|*.*</value>
+  </data>
+  <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
+    <value>Arquivos existem, escolha um novo nome para salvar como</value>
+  </data>
+  <data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
+    <value>A senha ainda não foi informada. Duplo clique para colocar senha e Abrir, ou clique com o botão direito do mouse para opções.</value>
+  </data>
+  <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
+    <value>Selecione o arquivo para deixar de protegê-lo</value>
+  </data>
+  <data name="DecryptToolStripMenuItemText" xml:space="preserve">
+    <value>Parar proteção</value>
+  </data>
+  <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
+    <value>Você está logado. Clique para sair.</value>
+  </data>
+  <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
+    <value>Eliminação falhou devido à senha incorreta.</value>
+  </data>
+  <data name="DeleteAccountSuccess" xml:space="preserve">
+    <value>Seu ID AxCrypt foi deletado com sucesso.
+
+Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado do seu tempo com o AxCrypt!</value>
+  </data>
+  <data name="DeleteSecretErrorNotFound" xml:space="preserve">
+    <value>A eliminação falhou porque a senha requerida não foi encontrada.</value>
+  </data>
+  <data name="DeleteSecretSuccess" xml:space="preserve">
+    <value>Sua senha foi deletada.</value>
+  </data>
+  <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
+    <value>ID AxCrypt</value>
+  </data>
+  <data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
+    <value>A primeira vez que você acessa o AxCrypt um endereço válido de email é necessário. Clique em ajuda para mais informações.</value>
+  </data>
+  <data name="DialogDecryptTitle" xml:space="preserve">
+    <value>Senha necessária</value>
+  </data>
+  <data name="DialogExportAxCryptIdFileName" xml:space="preserve">
+    <value>ID AxCrypt (#{1}) - {0}.axx</value>
+  </data>
+  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
+    <value>Arquivos ID AxCrypt (*.axx)|*.axx|Todos os Arquivos(*.*)|*.*"</value>
+  </data>
+  <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
+    <value>Exportar ID AxCrypt</value>
+  </data>
+  <data name="DialogExportSharingKeyFileName" xml:space="preserve">
+    <value>Chave compartilhada AxCrypt (#{1})-{0}.txt</value>
+  </data>
+  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
+    <value>Compartilhamento público de arquivos-chave AxCrypt (*.txt)|*.txt|Todos os Arquivos(*.*)|*.*</value>
+  </data>
+  <data name="DialogExportSharingKeyTitle" xml:space="preserve">
+    <value>Exportando Chave de Compartilhamento Pública</value>
+  </data>
+  <data name="DialogFilePasswordTitle" xml:space="preserve">
+    <value>Arquivar senha</value>
+  </data>
+  <data name="DialogImportPrivateAxCryptIdAccessIdPrompt" xml:space="preserve">
+    <value>ID AxCrypt</value>
+  </data>
+  <data name="DialogKeyShareTitle" xml:space="preserve">
+    <value>Acessando Compartilhamento</value>
+  </data>
+  <data name="DialogManageAxcryptIdTitle" xml:space="preserve">
+    <value>Gerenciar ID AxCrypt</value>
+  </data>
+  <data name="DialogNewPasswordTitle" xml:space="preserve">
+    <value>Criar nova senha</value>
+  </data>
+  <data name="DialogVerifyAccountTitle" xml:space="preserve">
+    <value>Ativar ID AxCrypt</value>
+  </data>
+  <data name="DialogWatchedFoldersTitle" xml:space="preserve">
+    <value>Proteger pastas</value>
+  </data>
+  <data name="DoubleClickToOpenToolTip" xml:space="preserve">
+    <value>Duplo clique para abrir. Se solicitado, você deverá sugerir uma senha.</value>
+  </data>
+  <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
+    <value>Você está limitado ao acesso de leitura, apenas! Somente os usuários Premium podem editar ou criar novas entradas de senhas.</value>
+  </data>
+  <data name="EditSecretErrorNotFound" xml:space="preserve">
+    <value>A solicitação de senha não pode ser encontrada.</value>
+  </data>
+  <data name="EditSecretSuccess" xml:space="preserve">
+    <value>Sua entrada foi atualizada.</value>
+  </data>
+  <data name="EmailLanguageInformation" xml:space="preserve">
+    <value>Nós tentamos fazer nossos comunicados em seu idioma, mas se você nos enviar um e-mail, pode ser que receba uma resposta em inglês. Por favor, use o Google Translate, ou similar, se for necessário.</value>
+    <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate. The translation should probably read: "We try to send mailings in [Language], but if you...2</comment>
+  </data>
+  <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
+    <value>[Sem descrição]</value>
+  </data>
+  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
+    <value>AxCrypt Arquivos (*{0})|*{0}|Todos os arquivos(*.*)|*.*</value>
+  </data>
+  <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
+    <value>Pastas protegidas</value>
+  </data>
+  <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
+    <value>Protegido</value>
+  </data>
+  <data name="EncryptedSourceColumnHeader" xml:space="preserve">
+    <value>Arquivo protegido</value>
+  </data>
+  <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
+    <value>Selecione arquivos para proteger</value>
+  </data>
+  <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
+    <value>Arquivos existentes, salvar como</value>
+  </data>
+  <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
+    <value>Clique para selecionar arquivos a serem protegidos.</value>
+  </data>
+  <data name="EncryptToolStripMenuItemText" xml:space="preserve">
+    <value>Protegido</value>
+  </data>
+  <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
+    <value>Identidade '{0}' senha</value>
+  </data>
+  <data name="ErrorPasswordMismatch" xml:space="preserve">
+    <value>A verificação de senha não combina com a senha.</value>
+  </data>
+  <data name="ErrorPasswordTooLong" xml:space="preserve">
+    <value>A senha deve ter no mínimo {2} e não mais do que {1} caracteres.</value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>Exceção durante processamento de '{0}'.</value>
+    <comment>@Invariant</comment>
+  </data>
+  <data name="ExitToolStripMenuItemText" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
+    <value>Exportar Segredo do ID AxCrypt e Par de Chaves de Compartilhamento </value>
+  </data>
+  <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Para mover um ID AxCrypt, exporte as Chaves de Segredo e Compartilhamento e importe em outro lugar.</value>
+  </data>
+  <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
+    <value>Exportar minha Chave de Compartilhamento Pública</value>
+  </data>
+  <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Mande a Chave de Compartilhamento Pública exportada para outros que você queira que sejam capazes de compartilhar arquivos criptografados com você.</value>
+  </data>
+  <data name="FailedPrivateImport" xml:space="preserve">
+    <value>Importação falhou. Provavelmente não é um arquivo ID AxCrypt válido.</value>
+  </data>
+  <data name="FileAlreadyEncrypted" xml:space="preserve">
+    <value>Arquivo '{0}' já está protegido.</value>
+  </data>
+  <data name="FileAlreadyEncryptedStatus" xml:space="preserve">
+    <value>Arquivo '{0}' já está protegido.</value>
+  </data>
+  <data name="FileAlreadyExists" xml:space="preserve">
+    <value>Arquivo '{0}' já existe.</value>
+  </data>
+  <data name="FileDoesNotExist" xml:space="preserve">
+    <value>Arquivo '{0}' não existe.</value>
+  </data>
+  <data name="FileIsLockedWarning" xml:space="preserve">
+    <value>'{0}' está aberto em outra aplicação. Por favor, feche-o e tente novamente.</value>
+  </data>
+  <data name="FileIsWriteProtectedWarning" xml:space="preserve">
+    <value>'{0}' está protegido.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>Arquivo não existe.</value>
+  </data>
+  <data name="FileOperationFailed" xml:space="preserve">
+    <value>Falhou '{0}'.</value>
+  </data>
+  <data name="FileToolStripMenuItemText" xml:space="preserve">
+    <value>Arquivo</value>
+  </data>
+  <data name="FolderAlreadyWatched" xml:space="preserve">
+    <value>Pasta '{0}' já está protegida.</value>
+  </data>
+  <data name="FooterInfoTitle" xml:space="preserve">
+    <value>ID AxCrypt</value>
+  </data>
+  <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="HelpToolStripMenuItemText" xml:space="preserve">
+    <value>Ajuda</value>
+  </data>
+  <data name="HelpViewHelpMenuItemText" xml:space="preserve">
+    <value>Veja Ajuda</value>
+  </data>
+  <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Para mover o ID AxCrypt, exporte o Par de Chaves Secretas de Compartilhamento e importe-as aqui.</value>
+  </data>
+  <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
+    <value>Importar a Chave de Compartilhamento Pública de alguém</value>
+  </data>
+  <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Peça ao seu contato para exportar e enviar seu/sua Chave de Compartilhamento Pública a você e importá-la aqui. Depois, você pode compartilhar arquivos criptografados.</value>
+  </data>
+  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
+    <value>Arquivos de ID AxCrypt (*.axx)|*.axx|Todos os Arquivos(*.*)|*.*</value>
+  </data>
+  <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
+    <value>Selecionar ID AxCrypt</value>
+  </data>
+  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
+    <value>Arquivos de texto (*.txt)|*.txt|Todos os Arquivos(*.*)|*.*</value>
+  </data>
+  <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
+    <value>Selecionar Arquivos de Chave de Compartilhamento</value>
+  </data>
+  <data name="IndexPageTitle" xml:space="preserve">
+    <value>Meu ID AxCrypt</value>
+  </data>
+  <data name="InformationTitle" xml:space="preserve">
+    <value>Informação</value>
+    <comment>A dialog box title for general announcement and informative message dialog boxes</comment>
+  </data>
+  <data name="InternetNotRequiredInformation" xml:space="preserve">
+    <value>Internet NÃO É NECESSÁRIA para usar AxCrypt.
+
+Recomendamos que o AxCrypt tenha acesso à internet. Do contrário, algumas funções funcionam melhor e atualizações críticas podem não ser recebidas.
+
+Sua senha não é armazenada em nosso servidor, e a conexão é sempre criptografada.</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Formato incorreto de e-mail.</value>
+  </data>
+  <data name="InvalidKey" xml:space="preserve">
+    <value>Chave inválida para '{0}'.</value>
+  </data>
+  <data name="InvalidPath" xml:space="preserve">
+    <value>O arquivo ou caminho '{0}' é inválido para isso.</value>
+  </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>Por favor, especifique o tempo como 'hh:mm:ss.mmm'.</value>
+  </data>
+  <data name="Invalid_URL" xml:space="preserve">
+    <value>URL inválida.</value>
+  </data>
+  <data name="InvitationMailBodyIntro" xml:space="preserve">
+    <value>Você foi convidado para a Segurança de Arquivo AxCrypt por &lt;b&gt;{0}&lt;/b&gt;. Para começar a proteger seus arquivos, faça o &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; e instale o AxCrypt. Faça login no AxCrypt com &lt;b&gt;{2}&lt;/b&gt;, coloque seu código de ativação e sua senha secreta.</value>
+  </data>
+  <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
+    <value>Você foi convidado à Segurança de Arquivo AxCrypt por {0}.
+
+Para iniciar a proteção de seus arquivos, faça o download e instale AxCrypt de {1}.
+
+Faça login no AxCrypt com {2}, digite o código de ativação de 6 dígitos e defina sua senha secreta.</value>
+  </data>
+  <data name="InvitationMailPlainTextBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/ConvitedeEmailTexto.cshtml</value>
+    <comment>Do Not Translate</comment>
+  </data>
+  <data name="InvitationMailSubject" xml:space="preserve">
+    <value>Convite para usar a Segurança de Arquivo AxCrypt</value>
+  </data>
+  <data name="JavaScriptDisabledError" xml:space="preserve">
+    <value>JavaScript parece estar desabilitado no seu navegador. A menos que habilite JavaScript, você não poderá logar e o site poderá não funcionar como desejado.</value>
+  </data>
+  <data name="KeyFileBrowseFilter" xml:space="preserve">
+    <value>Arquivos-chave AxCrypt (*.txt)|*.txt|Todos os Arquivos(*.*)|*.*</value>
+  </data>
+  <data name="KeyFileBrowseTitle" xml:space="preserve">
+    <value>Selecione um arquivo-chave</value>
+  </data>
+  <data name="KeyFilePrompt" xml:space="preserve">
+    <value>Arquivo-chave</value>
+  </data>
+  <data name="KeySharingExistsToolTip" xml:space="preserve">
+    <value>A chave do arquivo é compartilhada com outros usuários AxCrypt.</value>
+  </data>
+  <data name="KeySharingOffline" xml:space="preserve">
+    <value>Novos contatos só podem ser adicionados quando estiverem online!</value>
+  </data>
+  <data name="KeySharingToolTip" xml:space="preserve">
+    <value>Clique para selecionar os arquivos criptografados para compartilhar com outros. </value>
+  </data>
+  <data name="LanguageChangeRestartPrompt" xml:space="preserve">
+    <value>O AxCrypt precisa ser reiniciado para aceitar a mudança de idioma.</value>
+  </data>
+  <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
+    <value>Tempo</value>
+  </data>
+  <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
+    <value>Após os arquivos serem convertidos do formato AxCrypt 1.x, você deve usar a nova senha de Login para abri-los, então, por favor, verifique aqui.
+
+Não esqueça esta senha!</value>
+  </data>
+  <data name="LegacyOpenMessage" xml:space="preserve">
+    <value>AxCrypt 2 usa um novo formato de arquivo.
+
+Você pode abrir o legado de arquivos de AxCrypt 1.x mas, a menos que sejam convertidos, você terá que fornecer a senha original mesmo quando for fazer login.
+
+A conversão automática também pode ser alterada no menu de opções.
+
+Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</value>
+  </data>
+  <data name="LicensePremiumNameText" xml:space="preserve">
+    <value>Premium</value>
+  </data>
+  <data name="LinkTextBackToMainSite" xml:space="preserve">
+    <value>Voltar ao site principal.</value>
+    <comment>Menus and similar to link back to main site.</comment>
+  </data>
+  <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
+    <value>{0}Home/Compra?email={1}</value>
+  </data>
+  <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
+    <value>{0}segredos?email={1}</value>
+  </data>
+  <data name="LoggedOffStatusText" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="LoggedOnStatusText" xml:space="preserve">
+    <value>Senha</value>
+    <comment>Shown in the title bar to display the log on status.</comment>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>O e-mail ou senha fornecidos estão incorretos.</value>
+  </data>
+  <data name="LoginPageTitle" xml:space="preserve">
+    <value>Entre no AxCrypt</value>
+  </data>
+  <data name="LoginPurchaseError" xml:space="preserve">
+    <value>Alguma coisa deu errado enquanto processávamos sua solicitação de pagamento. Por favor, tente novamente.</value>
+  </data>
+  <data name="LogOffText" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="LogOnText" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
+    <value>Atualize para o Premium para permitir uma segurança mais forte.</value>
+  </data>
+  <data name="MagicGuidMIssingFileStatus" xml:space="preserve">
+    <value>'{0}' não é um arquivo AxCrypt.</value>
+  </data>
+  <data name="MailBodyFooter" xml:space="preserve">
+    <value>Não está claro porquê você está recebendo isso de &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;, você pode ignorar este e-mail ou reportá-lo para {1}.</value>
+  </data>
+  <data name="MailBodyFooterPlainText" xml:space="preserve">
+    <value>Se não é certo porque você está recebendo isso do AxCrypt.net, você pode ignorar este e-mail ou reportá-lo para {0}.</value>
+  </data>
+  <data name="MailBodyOutroHtml" xml:space="preserve">
+    <value>Fique à vontade para entrar em contato comigo caso tenha dúvidas ou feedback. Veja também nosso FAQ e o fórum no nosso site &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
+    <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
+  </data>
+  <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
+    <value>&lt;ul&gt;
+&lt;li&gt;256-bit AES&lt;/li&gt;
+&lt;li&gt;Chave de Compartilhamento&lt;/li&gt;
+&lt;li&gt;Pastas Protegidas&lt;/li&gt;
+&lt;li&gt;Gerenciamento de Senha&lt;/li&gt;
+&lt;li&gt;Conhecimento de Armazenamento da Nuvem&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="MailBodySignature" xml:space="preserve">
+    <value>Obrigado por usar AxCrypt!</value>
+  </data>
+  <data name="MailBodyTitle" xml:space="preserve">
+    <value>Olá, {0}.</value>
+  </data>
+  <data name="MailBodyTitleHtml" xml:space="preserve">
+    <value>Olá, {0},</value>
+  </data>
+  <data name="MailBodyVirtualPath" xml:space="preserve">
+    <value>~/Templates/_EmailLayout.cshtml</value>
+    <comment>Do Not Translate</comment>
+  </data>
+  <data name="McHlpMenuAbout" xml:space="preserve">
+    <value>Sobre</value>
+    <comment>Tooltip for the about context menu.</comment>
+  </data>
+  <data name="McHlpMenuOpen" xml:space="preserve">
+    <value>Decriptar e abrir o documento com o aplicativo associado.</value>
+    <comment>Tooltip for open document context menu (double-click)</comment>
+  </data>
+  <data name="McHlpMenuRename" xml:space="preserve">
+    <value>Renomear como anônimo. O original será restituído ao decriptar.</value>
+    <comment>Tooltip for rename context menu</comment>
+  </data>
+  <data name="McHlpMenuShow" xml:space="preserve">
+    <value>Abra a aplicação inteira para funções avançadas.</value>
+    <comment>Tooltip for show full program interface with all advanced funtions context menu.</comment>
+  </data>
+  <data name="McHlpMenuSignOut" xml:space="preserve">
+    <value>Clique para Sair</value>
+    <comment>Tooltip for sign out context menu</comment>
+  </data>
+  <data name="McHlpMenuUnwrap" xml:space="preserve">
+    <value>Decriptar o documento e restaurar o nome e a hora de modificação.</value>
+    <comment>Tooltip for decryption context menu</comment>
+  </data>
+  <data name="McHlpMenuWipe" xml:space="preserve">
+    <value>Substituir o arquivo com dados aleatórios e então deletá-lo permanentemente.</value>
+    <comment>Shred and Delete tooltip for context menu</comment>
+  </data>
+  <data name="McHlpMenuWrapZ" xml:space="preserve">
+    <value>Compactar antes de encriptar o documento.</value>
+    <comment>Tooltip for the encrypt inplace context menu command</comment>
+  </data>
+  <data name="McHlpMenuWrapZC" xml:space="preserve">
+    <value>Compactar antes de encriptar o documento e manter o original.</value>
+    <comment>Tooltip for the context menu for encryption</comment>
+  </data>
+  <data name="McInfAbout" xml:space="preserve">
+    <value>Software de encriptação, compactação e armazenamento seguro de arquivos locais, em servidores ou web hosting.
+Este programa é licenciado de acordo com a licença.
+%n%n%2
+%n%nAgradecimentos:
+%nThe Legion of the Bouncy Castle Inc.</value>
+    <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
+  </data>
+  <data name="McInfAuthLead" xml:space="preserve">
+    <value>Integridade:</value>
+    <comment>Lead-in header for Message Authentication Code, i.e. integrity validation</comment>
+  </data>
+  <data name="McInfComp" xml:space="preserve">
+    <value>Zlib/Deflate, RFC1950 e RFC1951.</value>
+    <comment>Name of compression algorithms and standards in property sheet.</comment>
+  </data>
+  <data name="McInfCompLead" xml:space="preserve">
+    <value>Compressão:</value>
+    <comment>Lead-in header for compression algorithm in property sheet</comment>
+  </data>
+  <data name="McInfEncLead" xml:space="preserve">
+    <value>Encriptação:</value>
+    <comment>Property page header for encryption algorithms.</comment>
+  </data>
+  <data name="McInfMenuAbout" xml:space="preserve">
+    <value>Sobre</value>
+    <comment>Context menu for About</comment>
+  </data>
+  <data name="McInfMenuOpen" xml:space="preserve">
+    <value>Abrir</value>
+    <comment>Context Menu for open action</comment>
+  </data>
+  <data name="McInfMenuRename" xml:space="preserve">
+    <value>Renomear</value>
+    <comment>Context menu for anonymous rename</comment>
+  </data>
+  <data name="McInfMenuShow" xml:space="preserve">
+    <value>Avançado</value>
+    <comment>Context menu to show the main user inteface window, i.e. open AxCrypt</comment>
+  </data>
+  <data name="McInfMenuSignOut" xml:space="preserve">
+    <value>Sair</value>
+    <comment>Context Menu for Signing out</comment>
+  </data>
+  <data name="McInfMenuUnwrap" xml:space="preserve">
+    <value>Decriptar</value>
+    <comment>Context menu for decrypt</comment>
+  </data>
+  <data name="McInfMenuWipe" xml:space="preserve">
+    <value>Destruir e Deletar</value>
+    <comment>Context menu for Wipe</comment>
+  </data>
+  <data name="McInfMenuWrapZ" xml:space="preserve">
+    <value>Encriptar</value>
+    <comment>Context menu for encrypt</comment>
+  </data>
+  <data name="McInfMenuWrapZC" xml:space="preserve">
+    <value>Encriptar e copiar</value>
+    <comment>Context menu for encrypting a copy</comment>
+  </data>
+  <data name="McMsgSystemCall" xml:space="preserve">
+    <value>Erro na chamada ao sistema para %3, %2</value>
+    <comment>General error message. Careful about the %-stuff</comment>
+  </data>
+  <data name="McWrnCancel" xml:space="preserve">
+    <value>Operação cancelada.</value>
+  </data>
+  <data name="MenuAxCryptIdText" xml:space="preserve">
+    <value>Meu ID AxCrypt</value>
+  </data>
+  <data name="MenuDecryptPermanentlyText" xml:space="preserve">
+    <value>Descriptografar permanentemente</value>
+  </data>
+  <data name="MenuDecryptTemporarilyText" xml:space="preserve">
+    <value>Descriptografar temporariamente</value>
+  </data>
+  <data name="MenuOpenExplorerHereText" xml:space="preserve">
+    <value>Abrir o Explorer aqui.</value>
+  </data>
+  <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
+    <value>Você não pode se inscrever como '{0}'. Por favor, digite um endereço de e-mail real e tente novamente.</value>
+  </data>
+  <data name="MessageInvalidSignUpEmailTitle" xml:space="preserve">
+    <value>Endereço de e-mail inválido.</value>
+  </data>
+  <data name="MessageServerUpdateTitle" xml:space="preserve">
+    <value>Servidor AxCrypt atualizado!</value>
+  </data>
+  <data name="MessageSigningUpText" xml:space="preserve">
+    <value>Você está logado como '{0}'. Por favor, verifique sua caixa de entrada para um e-mail com um código de ativação de 6 dígitos.</value>
+  </data>
+  <data name="MessageSigningUpTitle" xml:space="preserve">
+    <value>Registre-se para o ID AxCrypt</value>
+  </data>
+  <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
+    <value>O acesso à internet é necessário para a primeira vez que o AxCrypt é iniciado. Por favor, verifique sua conexão e tente novamente.
+
+Internet NÃO É NECESSÁRIA para usar AxCrypt depois da primeira vez.</value>
+  </data>
+  <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
+    <value>Sem acesso à internet.</value>
+  </data>
+  <data name="MessageSignUpUnexpectedErrorText" xml:space="preserve">
+    <value>Alguma coisa inesperada deu errado. Por favor, tente novamente. Se o problema persistir, reporte-o.</value>
+  </data>
+  <data name="MessageSignUpUnexpectedErrorTitle" xml:space="preserve">
+    <value>Erro inesperado</value>
+  </data>
+  <data name="MessageUnexpectedErrorText" xml:space="preserve">
+    <value>Um erro inesperado, '{0}', ocorreu.</value>
+  </data>
+  <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
+    <value>Erro inesperado!</value>
+  </data>
+  <data name="MoreButtonText" xml:space="preserve">
+    <value>Mais...</value>
+    <comment>A 'More...' button text</comment>
+  </data>
+  <data name="MoreKeyFileToolTop" xml:space="preserve">
+    <value>Clique para colocar o nome do arquivo-chave. Somente use se você sabe que usou um arquivo-chave quando protegeu este arquivo com a versão anterior do AxCrypt.</value>
+    <comment>A tooltip for a more button displaying a key file entry field</comment>
+  </data>
+  <data name="NewPassphraseDialogTitle" xml:space="preserve">
+    <value>Criar uma Nova Senha</value>
+  </data>
+  <data name="NewSecretSuccess" xml:space="preserve">
+    <value>Sua nova senha foi salva.</value>
+  </data>
+  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
+    <value>Versão {0} está disponível! Clique para fazer download.</value>
+  </data>
+  <data name="NoButtonText" xml:space="preserve">
+    <value>Não</value>
+  </data>
+  <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
+    <value>Você saiu. Clique para Entrar.</value>
+  </data>
+  <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
+    <value>Não é necessário fazer atualizações.</value>
+  </data>
+  <data name="NoPremiumWarning" xml:space="preserve">
+    <value>Sua assinatura Premium expirou. Você não está usando o nível mais alto de segurança. Clique aqui para atualizá-la!</value>
+  </data>
+  <data name="NotFoundPageBody" xml:space="preserve">
+    <value>Infelizmente não pudemos encontrar a página que você estava procurando. Isso pode ter acontecido ou por causa de um reinício do servidor, que fez com que sua sessão ficasse fora de uso, ou por outro erro do servidor que nos impossibilitou de processar sua solicitação.
+
+Página solicitada:
+{2}
+
+Sua solicitação não foi registrada. Por favor, tente novamente com o caminho correto, ou &lt;a href="mailto:{0}"&gt;reporte&lt;/a&gt; um link quebrado.
+
+Para voltar à página inicial, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value>
+  </data>
+  <data name="NotFoundPageTitle" xml:space="preserve">
+    <value>A página não foi encontrada!</value>
+  </data>
+  <data name="NotFoundSafePageBody" xml:space="preserve">
+    <value>Infelizmente não pudemos encontrar a página que você estava procurando. Isso pode ter acontecido devido a um reinício do servidor, que fez com a sessão de seu browser ficasse fora fora de uso, ou por algum outro erro do servidor que nos impossibilitou de processar o pedido.
+
+Seu pedido foi computado. Por favor, tente novamente com o caminho correto ou &lt;a href="mailto:{0}"&gt;reportar&lt;/a&gt; um link quebrado.
+
+Para retornar à página inicial, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;</value>
+  </data>
+  <data name="OfflineAccountBePatient" xml:space="preserve">
+    <value>Isso pode demorar alguns minutos. Por favor, seja paciente.</value>
+  </data>
+  <data name="OfflineAccountTitle" xml:space="preserve">
+    <value>Criação de ID AxCrypt offline.</value>
+  </data>
+  <data name="OfflineIndicatorText" xml:space="preserve">
+    <value>Offline</value>
+    <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
+  </data>
+  <data name="OldVersionTooltip" xml:space="preserve">
+    <value>Sua versão é antiga. Por favor, clique para uma versão mais nova.</value>
+  </data>
+  <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
+    <value>Selecione arquivo protegido para abrir</value>
+  </data>
+  <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
+    <value>Aberto com segurança</value>
+  </data>
+  <data name="OpenFileColumnHeader" xml:space="preserve">
+    <value>Arquivo</value>
+  </data>
+  <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
+    <value>Clique para selecionar um arquivo seguro para abri-lo.</value>
+  </data>
+  <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
+    <value>Limpar todas as configurações e Sair</value>
+  </data>
+  <data name="OptionsConvertMenuItemText" xml:space="preserve">
+    <value>Atualizar automaticamente arquivos 1.x</value>
+    <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
+  </data>
+  <data name="OptionsConvertMenuToolTip" xml:space="preserve">
+    <value>Habilitar ou desabilitar as atualizações automática e a conversão de antigos arquivos AxCrypt 1.x enquanto  são usados.</value>
+    <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
+  </data>
+  <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="OptionsToolStripMenuItemText" xml:space="preserve">
+    <value>Opções</value>
+  </data>
+  <data name="PassphrasePrompt" xml:space="preserve">
+    <value>Senha</value>
+  </data>
+  <data name="PassphraseVerificationMismatch" xml:space="preserve">
+    <value>Senhas não coincidem</value>
+  </data>
+  <data name="PasswordManagementListPageBody" xml:space="preserve">
+    <value>Gerencie todas as suas senhas online na nuvem &lt;span class="text-cutoff"&gt; com o Gerenciador de Senhas AxCrypt, sua segurança online para depósito de senhas, códigos, pins etc. Suas senhas são armazenadas em arquivos seguros por criptografia e estão disponíveis para você, e somente você, em qualquer lugar, a qualquer hora. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Read more]&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="PasswordManagementPageTitle" xml:space="preserve">
+    <value>Gerenciador de Senhas</value>
+  </data>
+  <data name="PasswordPolicyViolation" xml:space="preserve">
+    <value>A senha deve ter, no mínimo, 10 caracteres.</value>
+  </data>
+  <data name="PasswordResetLink" xml:space="preserve">
+    <value>Esqueceu sua senha? Clique aqui</value>
+  </data>
+  <data name="PasswordResetMailBody1" xml:space="preserve">
+    <value>Você solicitou para resetar sua senha do ID AxCrypt. Isso não restaurará acesso aos arquivos ou senhas criptografados, apenas deixará que você faça login novamente. Para completar esse processo e escolher uma senha nova, por favor, clique no botão abaixo.</value>
+  </data>
+  <data name="PasswordResetMailBodyButton" xml:space="preserve">
+    <value>Resetar senha</value>
+  </data>
+  <data name="PasswordResetMailSubject" xml:space="preserve">
+    <value>Resetar senha do ID AxCrypt</value>
+  </data>
+  <data name="PasswordResetPageBody" xml:space="preserve">
+    <value>Se você já se registrou anteriormente, mas esqueceu sua senha, ou por alguma razão não recebeu ou perdeu o link de ativação, você pode registrar-se novamente e solicitar um novo e-mail de ativação aqui.
+
+&lt;span class="red"&gt;Se você esqueceu sua senha, isso irá permitir que faça o login novamente, mas você não ganhará outro acesso para quaisquer dos arquivos criptografados, ou informações guardadas no gerenciador de senhas online. Continuará criptografado, juntamente com sua senha antiga, e nós não podemos descriptografá-lo.&lt;/span&gt;
+
+Insira seu e-mail abaixo para que lhe enviemos link para ativar ou ressetar sua senha.  Por motivos de integridade pessoal, &lt;b&gt;não daremos feedback sobre o sucesso ou fracasso dessa operação.&lt;/b&gt;</value>
+  </data>
+  <data name="PasswordResetPageTitle" xml:space="preserve">
+    <value>Resetar senha</value>
+  </data>
+  <data name="PasswordResetSuccess" xml:space="preserve">
+    <value>Foi feita uma tentativa de enviar um código de verificação de ID AxCrypt para &lt;b&gt;{0}&lt;/b&gt;. Por favor, verifique a caixa de entrada do seu e-mail.
+
+Se você não recebeu nada, verifique se não está na sua pasta de Lixo Eletrônico, e que {0} está correto.</value>
+  </data>
+  <data name="PasswordStrengthBadTip" xml:space="preserve">
+    <value>Senha é muito fraca e não é seguro usá-la.</value>
+  </data>
+  <data name="PasswordStrengthStrongTip" xml:space="preserve">
+    <value>A senha é forte e boa o suficiente.</value>
+  </data>
+  <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
+    <value>Senha é muito curta ou similar a uma senha comum para ser aceita.</value>
+    <comment>Shown when no password is typed or it is effectively empty</comment>
+  </data>
+  <data name="PasswordStrengthWeakTip" xml:space="preserve">
+    <value>Senha não é forte o suficiente para ser recomendada.</value>
+  </data>
+  <data name="PayPalReadMoreLink" xml:space="preserve">
+    <value>[Mais informações sobre o PayPal]</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Sua assinatura do AxCrypt Premium acabará em breve. Sinceramente, espero que você tenha gostado de usar nossas funções e tenha achado-as úteis.</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>Adoraria que você continuasse usando nossos serviços Premium! Simplesmente &lt;a href="{0}Home/Login?email={1}"&gt;entre&lt;/a&gt; em seu ID AxCrypt aqui para assinar a qualquer momento.</value>
+    <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
+  </data>
+  <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Com sua assinatura Premium, você continuará desfrutando de:</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
+    <value>Deixe-me saber o que você pensa sobre AxCrypt - Você continuará usando e há algo que precisa ser melhorado?</value>
+  </data>
+  <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
+    <value>Sua assinatura do AxCrypt Premium expira em breve!</value>
+  </data>
+  <data name="PremiumFeatureToolTipText" xml:space="preserve">
+    <value>Este recurso requer a conta Premium!</value>
+  </data>
+  <data name="PremiumNeededForKeyShare" xml:space="preserve">
+    <value>Compartilhamento de chave requer Premium. Clique para fazer upgrade agora!</value>
+  </data>
+  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="PromptActivationCode" xml:space="preserve">
+    <value>Código de Ativação</value>
+  </data>
+  <data name="PromptAddContact" xml:space="preserve">
+    <value>Adicionar contato</value>
+  </data>
+  <data name="PromptBackLinkText" xml:space="preserve">
+    <value>Voltar</value>
+  </data>
+  <data name="PromptBuyNow" xml:space="preserve">
+    <value>Comprar agora</value>
+  </data>
+  <data name="PromptBuyPremium" xml:space="preserve">
+    <value>Comprar Premium</value>
+  </data>
+  <data name="PromptChange" xml:space="preserve">
+    <value>Mudar</value>
+  </data>
+  <data name="PromptCurrentPasswordText" xml:space="preserve">
+    <value>Senha atual</value>
+  </data>
+  <data name="PromptFileText" xml:space="preserve">
+    <value>Arquivo</value>
+    <comment>The heading of a groupbox where the file name to be opened is displayed.</comment>
+  </data>
+  <data name="PromptKeepMeSignedIn" xml:space="preserve">
+    <value>Lembre-se de mim e estender sessão</value>
+  </data>
+  <data name="PromptKnownContacts" xml:space="preserve">
+    <value>Contatos conhecidos</value>
+  </data>
+  <data name="PromptLabelText" xml:space="preserve">
+    <value>Tem certeza de que gostaria de deletar este arquivo permanentemente? Esta ação não pode ser desfeita.</value>
+  </data>
+  <data name="PromptMonths" xml:space="preserve">
+    <value>Meses</value>
+  </data>
+  <data name="PromptMyAxCryptId" xml:space="preserve">
+    <value>Meu ID AxCrypt</value>
+  </data>
+  <data name="PromptMySettings" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="PromptNewEmail" xml:space="preserve">
+    <value>Novo email</value>
+  </data>
+  <data name="PromptNewPasswordText" xml:space="preserve">
+    <value>Nova senha</value>
+  </data>
+  <data name="PromptPasswordManager" xml:space="preserve">
+    <value>Gerenciador de Senhas</value>
+  </data>
+  <data name="PromptSetNewPassword" xml:space="preserve">
+    <value>Definir sua senha</value>
+  </data>
+  <data name="PromptSharedWith" xml:space="preserve">
+    <value>Compartilhado com</value>
+  </data>
+  <data name="PromptSignIn" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="PromptSignOut" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="PromptSignUp" xml:space="preserve">
+    <value>Inscrever-se</value>
+  </data>
+  <data name="PromptSubscription" xml:space="preserve">
+    <value>Inscrição.</value>
+  </data>
+  <data name="PromptSupport" xml:space="preserve">
+    <value>Suporte</value>
+  </data>
+  <data name="PromptVerifyEmail" xml:space="preserve">
+    <value>Verificar</value>
+  </data>
+  <data name="PromptXecretsDescriptionText" xml:space="preserve">
+    <value>Descrição (site relacionado, nome de usuário etc)</value>
+  </data>
+  <data name="PromptXecretsNew" xml:space="preserve">
+    <value>Novo</value>
+  </data>
+  <data name="PromptXecretsSearchText" xml:space="preserve">
+    <value>Procurar</value>
+  </data>
+  <data name="PromptXecretsSecretText" xml:space="preserve">
+    <value>Senha ou segredo</value>
+  </data>
+  <data name="PurchaseErrorSubscriptionTime" xml:space="preserve">
+    <value>O tempo de assinatura selecionado é inválido. Uma assinatura válida deve ter no mínimo {0} mês e não mais do que {1} meses.</value>
+  </data>
+  <data name="PurchasePageBody1" xml:space="preserve">
+    <value>Com o Premium, você pode usar o AxCrypt em seu potencial máximo em um variado número de computadores e aparelhos.
+
+AxCrypt foi projetado ao redor do conceito primário de proteger seus arquivos. Para usar funções avançadas - como a criptografia 256-bit, Pastas Protegidas e Gerenciador de Senhas - recomendamos que atualize sua versão para AxCrypt Premium. Com o AxCrypt Premium você pode ter todas as funções do AxCrypt à sua disposição, sem limitações.
+
+Para provar as funções Premium, oferecemos um período teste de 30 dias, que começa quando você ativa seu ID AxCrypt. Depois disso, você pode prorrogar sua assinatura Premium usando o formulário abaixo.</value>
+  </data>
+  <data name="PurchasePageBody2" xml:space="preserve">
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Leia mais sobre oclass="text-cutoff PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Segurança é crucial para nós. Tudo que fazemos com o AxCrypt, é feito tendo a segurança como prioridade máxima. Estamos, portanto, usando o PayPal como método de pagamento para o AxCrypt Premium. O site PayPal é altamente protegido e automaticamente criptografa sua informação pessoal quando está em trânsito do seu computador para nossos servidores.
+
+Assim que sua informação chegar ao site do PayPal, estará armazenada em um servidor que é muito bem protegido, tanto física quanto eletronicamente. &lt;a class="hide-link"&gt;[Colapso]&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="PurchasePageTitle" xml:space="preserve">
+    <value>Compre AxCrypt Premium</value>
+  </data>
+  <data name="PurchaseReceiptError" xml:space="preserve">
+    <value>A compra foi cancelada</value>
+  </data>
+  <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
+    <value>Nós nunca recebemos seu pagamento. Isso pode ter ocorrido devido ao cancelamento manual da compra no PayPal ou por saldo insuficiente na conta.</value>
+  </data>
+  <data name="PurchaseReceiptPageTitle" xml:space="preserve">
+    <value>Recibo para AxCrypt Premium</value>
+  </data>
+  <data name="PurchaseReceiptSuccess" xml:space="preserve">
+    <value>Obrigado por comprar o AxCrypt Premium!</value>
+  </data>
+  <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
+    <value>Você agora pode acessar todas as funções Premium do AxCrypt. Se tiver qualquer problema, por favor, entre em contato com nosso suporte.
+
+Um recibo da compra foi enviado ao seu e-mail.</value>
+  </data>
+  <data name="PurchaseVatPercent" xml:space="preserve">
+    <value>&lt;b&gt;VAT excluído&lt;/b&gt;. O VAT atual depende do seu país de residência e será mostrado na página de cobrança.</value>
+  </data>
+  <data name="PurgingActiveFiles" xml:space="preserve">
+    <value>Expurgando arquivos ativos</value>
+  </data>
+  <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="RecentFilesTabPageText" xml:space="preserve">
+    <value>Arquivos recentes</value>
+  </data>
+  <data name="RegisterError" xml:space="preserve">
+    <value>Registro falhou. Por favor, verifique seu e-mail e tente novamente.</value>
+  </data>
+  <data name="RegisterLink" xml:space="preserve">
+    <value>Novo usuário? Inscreva-se</value>
+  </data>
+  <data name="RegisterPageBody" xml:space="preserve">
+    <value>Para começar a usar AxCrypt você deve criar um usuário para ter uma ID AxCrypt, preenchendo o formulário abaixo com seu endereço de email. Uma mensagem contendo um link de ativação será enviado para especificar o endereço e, quando clicar, você deverá escolher uma senha. Só isso!
+
+Será oferecido um período de 30 dias de teste de AxCrypt Premium, e começará ao ativar seu AxCrypt ID.</value>
+  </data>
+  <data name="RegisterPageTitle" xml:space="preserve">
+    <value>Inscreva-se para obter um ID AxCrypt</value>
+  </data>
+  <data name="RegisterSuccess" xml:space="preserve">
+    <value>Você se inscreveu para ter um ID AxCrypt!
+
+Verifique seu e-mail &lt;b&gt;{0}&lt;/b&gt; para obter um link de ativação.</value>
+  </data>
+  <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
+    <value>Seu software necessita ser atualizado por questões de confiança.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
+  </data>
+  <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
+    <value>Remover da lista, mas manter arquivo protegido.</value>
+  </data>
+  <data name="ResendButtonText" xml:space="preserve">
+    <value>Reenviar</value>
+    <comment>A button in a verification dialog that causes the verification to be resent.</comment>
+  </data>
+  <data name="ResendButtonToolTip" xml:space="preserve">
+    <value>Clique para reenviar o código de ativação para seu email.</value>
+  </data>
+  <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
+    <value>Você já se inscreveu com esta senha! Por favor, forneça a senha original para este arquivo.</value>
+    <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
+  </data>
+  <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
+    <value>Somente os usuários Premium têm permissão de salvar entradas de senhas.</value>
+  </data>
+  <data name="SecretsButtonToolTipText" xml:space="preserve">
+    <value>Ir ao Gerenciador de Senhas.</value>
+  </data>
+  <data name="SecretsWarningIsReadOnly" xml:space="preserve">
+    <value>Sua assinatura Premium expirou e você não pode mais editar ou criar novas entradas de senhas. No entanto, você ainda tem acesso de leitura.</value>
+  </data>
+  <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
+    <value>Sua assinatura Premium terminará em breve, em {0}. Assim sendo, você deverá prolongar sua assinatura Premium para que possa continuar editando e criando novas senhas. Você terá acesso de leitura indefinidamente.</value>
+  </data>
+  <data name="SecureDeleteDialogTitle" xml:space="preserve">
+    <value>Segurança AxCrypt deletada</value>
+  </data>
+  <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
+    <value>Deletar com segurança</value>
+  </data>
+  <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
+    <value>Seu software precisa ser atualizado por motivos de segurança.</value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SettingsEmailPageBody" xml:space="preserve">
+    <value>Para mudar o e-mail associado ao seu AxCrypt ID, coloque um novo email abaixo. Isso mudará a forma como você acessa o site e para onde serão enviados os emails do site.
+
+Um e-mail de confirmação será enviado para o novo endereço. A mudança só será efetuada após clicar no link de confirmação e realizar o login.</value>
+  </data>
+  <data name="SettingsNotificationsPageBody" xml:space="preserve">
+    <value>Escolha sua preferência para os e-mails de notificação do AxCrypt abaixo.</value>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="SettingsPasswordPageBody" xml:space="preserve">
+    <value>Para mudar senhas, forneça a senha atual e então especifique e verifique uma nova senha.
+
+Escolha algo difícil de adivinhar, uma vez que protegerá senhas no Gerenciador de Senhas online, bem como o acesso ao site. Digite devagar, com cuidado, e não esqueça sua nova senha!</value>
+  </data>
+  <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
+    <value>Novo usuário AxCrypt</value>
+  </data>
+  <data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
+    <value>Você está prestes a compartilhar de modo seguro com alguém que recebeu, mas ainda não respondeu, a um convite para usar AxCrypt.
+
+Por favor, considere informar '{0}' diretamente sobre a segurança de arquivos do AxCrypt,</value>
+  </data>
+  <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
+    <value>Chaves de Compartilhamento</value>
+  </data>
+  <data name="ShowPasswordOptionPrompt" xml:space="preserve">
+    <value>Mostrar senha</value>
+  </data>
+  <data name="SignInVerificationTitle" xml:space="preserve">
+    <value>Verificar login</value>
+  </data>
+  <data name="SiteRestartWarning" xml:space="preserve">
+    <value>Atenção! Um reinício do site está programado para daqui alguns minutos. Sentimos muito pelo inconveniente.</value>
+  </data>
+  <data name="StopSecuringToolTipText" xml:space="preserve">
+    <value>Clique para selecionar arquivos para parar proteção.</value>
+  </data>
+  <data name="SubscriptionsErrorAmount" xml:space="preserve">
+    <value>Formato inválido para o campo Quantidade. Por favor, use o formato decimal, i.e. 10.50.</value>
+  </data>
+  <data name="SubscriptionsSuccessAdd" xml:space="preserve">
+    <value>A assinatura foi salva com sucesso.</value>
+  </data>
+  <data name="SupportBodyPrompt" xml:space="preserve">
+    <value>Como podemos te ajudar?</value>
+  </data>
+  <data name="SupportPageTitle" xml:space="preserve">
+    <value>Suporte Premium</value>
+  </data>
+  <data name="SupportPremiumIntro" xml:space="preserve">
+    <value>Bem-vindo ao Suporte AxCrypt. Nós damos aos nossos assinantes Premium suporte pessoal e personalizado por e-mail.</value>
+  </data>
+  <data name="SupportWarningOnlyPremium" xml:space="preserve">
+    <value>Desculpe-me, mas o suporte direto só está disponível para assinantes pagos. Por favor, visite nosso &lt;a href="{0}"&gt;Suporte&lt;/a&gt;</value>
+  </data>
+  <data name="TextCheckEmailAndSpam" xml:space="preserve">
+    <value>Checar e-mail e spam!</value>
+  </data>
+  <data name="TextPreferenceCritical" xml:space="preserve">
+    <value>Crítico - Receba notificações de críticos do AxCrypt</value>
+  </data>
+  <data name="TextPreferenceDecline" xml:space="preserve">
+    <value>Recusar - Nunca receber notificações das atualizações do  AxCrypt</value>
+  </data>
+  <data name="TextPreferenceUnknown" xml:space="preserve">
+    <value>Desconhecido - você não especificou nenhuma preferência</value>
+  </data>
+  <data name="TextPreferenceUpdate" xml:space="preserve">
+    <value>Atualização - Receba notificações de todas as atualizações de AxCrypt</value>
+  </data>
+  <data name="TitleAxCryptIdSignInText" xml:space="preserve">
+    <value>ID AxCrypt Entrar</value>
+  </data>
+  <data name="TitleCreateAxCryptIdTitle" xml:space="preserve">
+    <value>Criar ID AxCrypt</value>
+  </data>
+  <data name="TitleMainWindow" xml:space="preserve">
+    <value>{0} {1}{2}</value>
+  </data>
+  <data name="TitleSignInToAxCrypt" xml:space="preserve">
+    <value>Entrar em AxCrypt</value>
+    <comment>Title on the web page for signin for example.</comment>
+  </data>
+  <data name="TitleWindowSignInStatus" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+  <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
+    <value>A versão Premium é necessária para gerenciar senhas. Clique para fazer a atualização agora!</value>
+  </data>
+  <data name="TransactionHistoryTitle" xml:space="preserve">
+    <value>Histórico de transações</value>
+  </data>
+  <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
+    <value>Tente um arquivo quebrado</value>
+  </data>
+  <data name="UnknownCrypto" xml:space="preserve">
+    <value>Desconhecido</value>
+    <comment>Displayed when an unknown CryptoId is encountered.</comment>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Erro desconhecido. Por favor, reporte-o.</value>
+  </data>
+  <data name="UnknownFileStatus" xml:space="preserve">
+    <value>Status 'Desconhecido' com '{0}'.</value>
+  </data>
+  <data name="UnknownLogOn" xml:space="preserve">
+    <value>Senha não foi utilizada antes. Clique em "Novo" para criar uma.</value>
+  </data>
+  <data name="UnrecognizedError" xml:space="preserve">
+    <value>{1} para '{0}'.</value>
+  </data>
+  <data name="UnregisterMailBody1" xml:space="preserve">
+    <value>Essa é a confirmação que seu ID AxCrypt em &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; foi deletado com êxito.</value>
+  </data>
+  <data name="UnregisterMailBody2" xml:space="preserve">
+    <value>Estamos tristes de vê-lo partir, mas esperamos que tenha se divertido conosco!</value>
+  </data>
+  <data name="UnregisterMailSubject" xml:space="preserve">
+    <value>ID AxCrypt deletado</value>
+  </data>
+  <data name="UpdatingStatus" xml:space="preserve">
+    <value>Atualizando status</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
+    <value>Atualizar arquivos 1.x</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
+    <value>Selecionar um lugar para procurar arquivos protegidos com AxCrypt 1.x e atualizá-los.</value>
+  </data>
+  <data name="UpgradePromptText" xml:space="preserve">
+    <value>Seja Premium!</value>
+    <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
+    <value>Você atualizou o AxCrypt. Infelizmente, sua configuração deve ser zerada. Depois de reiniciar, suas preferências e configurações serão perdidas. Nós lamentamos o inconveniente. Seus arquivos criptografados ainda estão ok.</value>
+  </data>
+  <data name="VerifyPasswordPrompt" xml:space="preserve">
+    <value>Verifique a senha</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Aviso!</value>
+    <comment>The title of a pop up or dialog with a warning.</comment>
+  </data>
+  <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
+    <value>Pasta</value>
+  </data>
+  <data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
+    <value>Abrir Explorer aqui</value>
+  </data>
+  <data name="WatchedFoldersRemoveMenuItemText" xml:space="preserve">
+    <value>Descriptografar permanentemente</value>
+  </data>
+  <data name="WatchedFoldersTabPageText" xml:space="preserve">
+    <value>Arquivos protegidos</value>
+  </data>
+  <data name="WelcomeMailBody0Html" xml:space="preserve">
+    <value>Bem-vindo ao AxCrypt!</value>
+  </data>
+  <data name="WelcomeMailBody1Html" xml:space="preserve">
+    <value>Estou realmente contente que você se inscreveu! Para fazer você se sentir bem-vindo, dei acesso grátis para nossas funções Premium por 30 dias.</value>
+  </data>
+  <data name="WelcomeMailBody2Html" xml:space="preserve">
+    <value>Com o AxCrypt Grátis ou o AxCrypt Premium, você pode proteger seus arquivos de uma maneira realmente fácil. Criptografar seus arquivos e pastas inteiras está a apenas um clique de distância. Trabalhar com arquivos criptografados é igualmente fácil!</value>
+  </data>
+  <data name="WelcomeMailBody3Html" xml:space="preserve">
+    <value>Como um assinante Premium, há uma grande quantidade de funções adicionais para você além das que existem aos assinantes gratuitos. Com o Premium, você ganha funções como:</value>
+  </data>
+  <data name="WelcomeMailSubject" xml:space="preserve">
+    <value>Bem-vindo ao AxCrypt!</value>
+  </data>
+  <data name="WelcomeToAxCrypt" xml:space="preserve">
+    <value>Bem-vindo ao AxCrypt!
+
+Usar AxCrypt é muito fácil. Comece com a janela principal ou use duplo clique e o botão direito do Windows Explorer para um uso integrado completo.
+
+Para criptografar seus primeiros arquivos, clique no ícone de + na barra de ferramentas e selecione-os.
+
+Para mais informações, clique OK para abrir uma janela do navegador para nosso site.</value>
+  </data>
+  <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
+    <value>Selecione os arquivos para deletá-los com segurança</value>
+  </data>
+  <data name="WixAxNeedUninstall" xml:space="preserve">
+    <value>Você deve desinstalar a versão atual do AxCrypt instalada neste computador primeiro.</value>
+  </data>
+  <data name="WixAxOsNotSupported" xml:space="preserve">
+    <value>Esta versão do Windows não é compatível.</value>
+  </data>
+  <data name="WixConfirmCancelMessage" xml:space="preserve">
+    <value>Tem certeza que quer cancelar?</value>
+  </data>
+  <data name="WixExecuteUpgradeRelatedBundleMessage" xml:space="preserve">
+    <value>Versão anterior</value>
+  </data>
+  <data name="WixFailureCloseButton" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="WixFailureHeader" xml:space="preserve">
+    <value>Setup falhou</value>
+  </data>
+  <data name="WixFailureHyperlinkLogText" xml:space="preserve">
+    <value>Uma ou mais coisas fizeram com que o setup falhasse. Por favor, conserte essas questões e tente iniciar o setup novamente. Para mais informações, veja &amp;lt;ahref="#"&amp;gt;logfile&amp;lt;/a&amp;gt;.</value>
+  </data>
+  <data name="WixFailureRepairHeader" xml:space="preserve">
+    <value>Reparo falhou</value>
+  </data>
+  <data name="WixFailureRestartButton" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="WixFailureRestartText" xml:space="preserve">
+    <value>Você precisa reiniciar seu computador para que as mudanças sejam desfeitas e o software volte à configuração inicial.</value>
+  </data>
+  <data name="WixFailureUninstallHeader" xml:space="preserve">
+    <value>Desinstalação falhou</value>
+  </data>
+  <data name="WixFilesInUseCloseRadioButton" xml:space="preserve">
+    <value>Feche as aplicações e tente reiniciá-las.</value>
+  </data>
+  <data name="WixFilesInUseHeader" xml:space="preserve">
+    <value>Arquivos em uso</value>
+  </data>
+  <data name="WixFilesInUseLabel" xml:space="preserve">
+    <value>As seguintes aplicações estão usando arquivos que precisam de atualização:</value>
+  </data>
+  <data name="WixFilesInUseOkButton" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="WixHelpHeader" xml:space="preserve">
+    <value>Ajuda do setup</value>
+  </data>
+  <data name="WixInstallAcceptCheckbox" xml:space="preserve">
+    <value>Estou de acordo com as condições e termos da licença</value>
+  </data>
+  <data name="WixInstallCloseButton" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="WixInstallInstallButton" xml:space="preserve">
+    <value>Instalar</value>
+  </data>
+  <data name="WixModifyCloseButton" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="WixModifyHeader" xml:space="preserve">
+    <value>Modificar setup</value>
+  </data>
+  <data name="WixModifyUninstallButton" xml:space="preserve">
+    <value>Desinstalar</value>
+  </data>
+  <data name="WixMsiArpComments" xml:space="preserve">
+    <value>Criptografia de arquivo AxCrypt</value>
+    <comment>The title in Control Panel add/remove</comment>
+  </data>
+  <data name="WixMsiAxCryptIdSignInShortcut" xml:space="preserve">
+    <value>Entre no seu ID AxCrypt</value>
+    <comment>Start Menu text to go the web page to sign in</comment>
+  </data>
+  <data name="WixMsiAxCryptIdSignInShortcutDescription" xml:space="preserve">
+    <value>Entre para criar um ID AxCrypt</value>
+    <comment>Tooltip for start menu link to sign in page on the web</comment>
+  </data>
+  <data name="WixMsiDescription" xml:space="preserve">
+    <value>Descrição</value>
+    <comment>Description in MSI</comment>
+  </data>
+  <data name="WixMsiDoNotInstall32BitOn64Bit" xml:space="preserve">
+    <value>Este é um instalador 32 bit MSI. Você tem um Windows de 64-bit.  Consiga o MSI com 'x64' no nome do arquivo, ao invés de 'Win32'.</value>
+  </data>
+  <data name="WixMsiExitDialogText" xml:space="preserve">
+    <value>INÍCIO RÁPIDO: Para criptografar um arquivo, clique no arquivo com o botão direito dentro do Windows Explorer e selecione AxCrypt | Criptografar.</value>
+    <comment>The final message in the MSI installer</comment>
+  </data>
+  <data name="WixMsiFileTypeName" xml:space="preserve">
+    <value>Arquivo criptografado AxCrypt</value>
+    <comment>How encrypted files are named in Windows Explorer</comment>
+  </data>
+  <data name="WixMsiHomePageShortcutDescription" xml:space="preserve">
+    <value>Navegar para a página inicial do AxCrypt</value>
+    <comment>Start Menu Home Page tooltip</comment>
+  </data>
+  <data name="WixMsiLaunchAxCryptDescription" xml:space="preserve">
+    <value>Iniciar AxCrypt</value>
+    <comment>Start Menu tooltip to start AxCrypt</comment>
+  </data>
+  <data name="WixMsiLegacyAxCrypt" xml:space="preserve">
+    <value>Você precisa desinstalar a versão anterior de AxCrypt antes de continuar. Assegure-se de reiniciar o computador quando solicitado.</value>
+    <comment>Error message when too old AxCrypt is already installed.</comment>
+  </data>
+  <data name="WixMsiMainExecutablesTitle" xml:space="preserve">
+    <value>Arquivos de Programa AxCrypt</value>
+    <comment>Feature name in installer</comment>
+  </data>
+  <data name="WixMsiManualShortcut" xml:space="preserve">
+    <value>Documentação</value>
+    <comment>Start Menu name for documentation</comment>
+  </data>
+  <data name="WixMsiNet45Required" xml:space="preserve">
+    <value>Esta aplicação necessita um .NET Framework  4.5 ou maior. Por favor, instale o .NET Framework e inicie o instalador novamente.</value>
+    <comment>Error message when .NET 4.5 is missing</comment>
+  </data>
+  <data name="WixMsiNoDowngrade" xml:space="preserve">
+    <value>Nova versão já está instalada! Por favor, desinstale esta versão antes de continuar. Assegure-se de reiniciar o computador quando solicitado.</value>
+    <comment>Error message during installation when a newer version already is installed.</comment>
+  </data>
+  <data name="WixMsiShellExtensionTitle" xml:space="preserve">
+    <value>Integração Right-Click do Windows</value>
+    <comment>Feature name for the shell extension during installation</comment>
+  </data>
+  <data name="WixMsiStartAxCrypt" xml:space="preserve">
+    <value>Iniciar AxCrypt</value>
+    <comment>Prompt to start AxCrypt after installation</comment>
+  </data>
+  <data name="WixMsiUninstallAxCryptDescription" xml:space="preserve">
+    <value>Desinstala AxCrypt</value>
+    <comment>Tooltip for Start Menu link to uninstallation</comment>
+  </data>
+  <data name="WixOverallProgressPackageText" xml:space="preserve">
+    <value>Iniciando...</value>
+  </data>
+  <data name="WixProgressCancelButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="WixProgressLabel" xml:space="preserve">
+    <value>Processando:</value>
+  </data>
+  <data name="WixSuccessCloseButton" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="WixSuccessHeader" xml:space="preserve">
+    <value>Setup realizado com sucesso</value>
+  </data>
+  <data name="WixSuccessLaunchButton" xml:space="preserve">
+    <value>Iniciar</value>
+  </data>
+  <data name="WixSuccessRepairHeader" xml:space="preserve">
+    <value>Conserto completado com sucesso</value>
+  </data>
+  <data name="WixSuccessRestartButton" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="WixSuccessRestartText" xml:space="preserve">
+    <value>Você deve reiniciar o computador antes de usar o software.</value>
+  </data>
+  <data name="WixSuccessUninstallHeader" xml:space="preserve">
+    <value>Desinstalação completada com sucesso.</value>
+  </data>
+  <data name="WorkingFileStatus" xml:space="preserve">
+    <value>Status 'Trabalhando' com '{0}'.</value>
+  </data>
+  <data name="WrongFileExtensionWarning" xml:space="preserve">
+    <value>'{0}' tem o nome de extensão errado. Deve ser '{1}'!</value>
+  </data>
+  <data name="WrongPassphrase" xml:space="preserve">
+    <value>Senha errada. Por favor, tente novamente.</value>
+  </data>
+  <data name="WrongVerificationCode" xml:space="preserve">
+    <value>Código de ativação errado. Por favor, cheque seu e-mail.</value>
+  </data>
+  <data name="WrongVerificationCodeFormat" xml:space="preserve">
+    <value>O código de verificação deve ter, exatamente, 6 dígitos.</value>
+  </data>
+</root>
