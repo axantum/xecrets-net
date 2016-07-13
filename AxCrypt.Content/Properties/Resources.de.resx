@@ -594,7 +594,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Gesicherte Datei </value>
   </data>
   <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Wählen Sie Dateien zum sichern aus </value>
+    <value>Wählen Sie Dateien zum Sichern aus </value>
   </data>
   <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
     <value>Datei existiert, sichern als </value>
@@ -609,7 +609,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Identität '{0}' Passwort </value>
   </data>
   <data name="ErrorEmailMismatch" xml:space="preserve">
-    <value>Die Überprüfung stimmt nicht mit der -Mail überein</value>
+    <value>Die Überprüfung stimmt nicht mit der E-Mail überein</value>
   </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>Die Passwortverifizierung stimmt nicht mit dem Passwort überein. </value>
@@ -791,7 +791,7 @@ Vergessen Sie das Passwort nicht! </value>
   <data name="LegacyOpenMessage" xml:space="preserve">
     <value>AxCrypt 2 nutzt ein neues Dateiformat. 
 
-Sie können legacy AxCrypt 1.x Dateien öffnen aber es sei denn diese sind bereits konvertiert müssen Sie das Originalpasswort bereitstellen, auch wenn Sie bereits angemeldet sind.
+Sie können legacy AxCrypt 1.x Dateien öffnen, aber sofern Sie noch nicht konvertiert wurden, müssen Sie das Originalpasswort bereitstellen, auch wenn Sie bereits angemeldet sind.
 
 Automatische Konvertierung kann im Options Menü geändert werden. 
 
@@ -869,7 +869,7 @@ Das AxCrypt Team </value>
     <value>Hallo {0},</value>
   </data>
   <data name="McHlpMenuAbout" xml:space="preserve">
-    <value>Info</value>
+    <value>Über</value>
     <comment>Tooltip for the about context menu.</comment>
   </data>
   <data name="McHlpMenuOpen" xml:space="preserve">
@@ -901,7 +901,7 @@ Das AxCrypt Team </value>
 Dieses Programm wird entsprechend der Vereinbarung genehmigt.
 %n%n%2
 %n%nBeitrag:
-%nThe Legion of the Bouncy Castly Inc.</value>
+%nThe Legion of the Bouncy Castle Inc.</value>
     <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
   </data>
   <data name="McInfAuthLead" xml:space="preserve">
@@ -1178,7 +1178,7 @@ Wenn Sie nichts empfangen haben, überprüfen Sie bitte Ihren Spam Ordner, und o
     <value>Lassen Sie mich wissen, wie Sie über AxCrypt denken - Werden Sie es weiterhin nutzen und würden Sie die Dienste gerne verbessert sehen? </value>
   </data>
   <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
-    <value>Ihre AxCrypt Premium Abonnement läuft bald ab! </value>
+    <value>Ihr AxCrypt Premium Abonnement läuft bald ab! </value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>Diese Funktion erfordert den Kauf von Premium! </value>
@@ -1441,7 +1441,7 @@ Bitte ziehen Sie es in Erwägung '{0}' direkt über die AxCrypt Datensicherheit 
     <value>Das Abonnement wurde erfolgreich gesichert. </value>
   </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
-    <value>Wie können wir Ihnen behilflich sein? Ax</value>
+    <value>Wie können wir Ihnen behilflich sein?</value>
   </data>
   <data name="SupportPageTitle" xml:space="preserve">
     <value>Premium Support</value>
@@ -1490,7 +1490,7 @@ Bitte ziehen Sie es in Erwägung '{0}' direkt über die AxCrypt Datensicherheit 
     <value>Transaktionsverlauf </value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Klicken um das AxCrypt Anwendungsfenster widerherzustellen. </value>
+    <value>Klicken um das AxCrypt Anwendungsfenster wiederherzustellen. </value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
@@ -1596,35 +1596,93 @@ Für mehr Informationen, klicken Sie OK um einen Webbrowser zu öffnen und zu un
   <data name="WixConfirmCancelMessage" xml:space="preserve">
     <value>Sind Sie sicher, dass Sie abbrechen möchten?</value>
   </data>
+  <data name="WixFailureHeader" xml:space="preserve">
+    <value>Setup fehlgeschlagen </value>
+  </data>
   <data name="WixFailureRepairHeader" xml:space="preserve">
     <value>Reparatur fehlgeschlagen</value>
+  </data>
+  <data name="WixFailureRestartButton" xml:space="preserve">
+    <value>Neustart</value>
+  </data>
+  <data name="WixFailureRestartText" xml:space="preserve">
+    <value>Sie müssen Ihren Computer neu starten um das Rollback der Software abzuschließen.  </value>
   </data>
   <data name="WixFailureUninstallHeader" xml:space="preserve">
     <value>Deinstallation fehlgeschlagen</value>
   </data>
+  <data name="WixFilesInUseCloseRadioButton" xml:space="preserve">
+    <value>Schließen Sie die Anwendungen und versuchen Sie sie neu zu starten. </value>
+  </data>
+  <data name="WixFilesInUseDontCloseRadioButton" xml:space="preserve">
+    <value>Schließen Sie keine Anwendungen. Ein Neustart wird erforderlich sein.</value>
+  </data>
   <data name="WixFilesInUseHeader" xml:space="preserve">
     <value>Benutzte Dateien </value>
+  </data>
+  <data name="WixFilesInUseLabel" xml:space="preserve">
+    <value>Die folgenden Anwendungen benutzen Dateien die aktualisiert werden müssen.</value>
+  </data>
+  <data name="WixFilesInUseOkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="WixHelpHeader" xml:space="preserve">
+    <value>Setup Hilfe</value>
+  </data>
+  <data name="WixInstallCloseButton" xml:space="preserve">
+    <value>Schließen </value>
+  </data>
+  <data name="WixInstallInstallButton" xml:space="preserve">
+    <value>Installieren </value>
+  </data>
+  <data name="WixInstallVersion" xml:space="preserve">
+    <value>Version [WixBundleVersion]</value>
+    <comment>[WixBundleVersion] should NOT BE TRANSLATED</comment>
   </data>
   <data name="WixModifyCloseButton" xml:space="preserve">
     <value>Schließen</value>
   </data>
+  <data name="WixModifyHeader" xml:space="preserve">
+    <value>ändern Sie Einstellungen </value>
+  </data>
+  <data name="WixModifyRepairButton" xml:space="preserve">
+    <value>Reparieren </value>
+  </data>
   <data name="WixModifyUninstallButton" xml:space="preserve">
     <value>Deinstallieren </value>
+  </data>
+  <data name="WixOverallProgressPackageText" xml:space="preserve">
+    <value>Initialisiert.. </value>
+  </data>
+  <data name="WixProgressCancelButton" xml:space="preserve">
+    <value>Abbrechen </value>
   </data>
   <data name="WixProgressLabel" xml:space="preserve">
     <value>Verarbeitung: </value>
   </data>
+  <data name="WixSuccessCloseButton" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
   <data name="WixSuccessHeader" xml:space="preserve">
     <value>Installation erfolgreich </value>
   </data>
+  <data name="WixSuccessInstallHeader" xml:space="preserve">
+    <value>Installation erfolgreich abgeschlossen</value>
+  </data>
   <data name="WixSuccessLaunchButton" xml:space="preserve">
     <value>Einführung </value>
+  </data>
+  <data name="WixSuccessRepairHeader" xml:space="preserve">
+    <value>Reparatur erfolgreich beendet </value>
   </data>
   <data name="WixSuccessRestartButton" xml:space="preserve">
     <value>Neustart</value>
   </data>
   <data name="WixSuccessRestartText" xml:space="preserve">
     <value>Sie müssen Ihren Computer neu starten bevor Sie die Software nutzen können.</value>
+  </data>
+  <data name="WixSuccessUninstallHeader" xml:space="preserve">
+    <value>Deinstallation erfolgreich beendet </value>
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Status 'In Arbeit' mit '{0}'.</value>
