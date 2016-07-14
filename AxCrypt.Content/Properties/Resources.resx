@@ -1878,6 +1878,7 @@ For more information, click OK to open a web browser to our web site.</value>
   </data>
   <data name="WixCaption" xml:space="preserve">
     <value>[WixBundleName] Setup</value>
+    <comment>[WixBundlePart] should NOT be translated.</comment>
   </data>
   <data name="WixConfirmCancelMessage" xml:space="preserve">
     <value>Are you sure you want to cancel?</value>
@@ -1942,6 +1943,7 @@ no prompts. By default UI and all prompts are displayed.
 
 /norestart   - suppress any attempts to restart. By default UI will prompt before restart.
 /log log.txt - logs to a specific file. By default a log file is created in %TEMP%.</value>
+    <comment>The /install, /uninstall and all other /xxxxxx shold NOT BE TRANSLATED</comment>
   </data>
   <data name="WixInstallAcceptCheckbox" xml:space="preserve">
     <value>I agree to the license terms and conditions</value>
@@ -1954,6 +1956,7 @@ no prompts. By default UI and all prompts are displayed.
   </data>
   <data name="WixInstallVersion" xml:space="preserve">
     <value>Version [WixBundleVersion]</value>
+    <comment>[WixBundleVersion] should NOT BE TRANSLATED</comment>
   </data>
   <data name="WixModifyCloseButton" xml:space="preserve">
     <value>Close</value>
@@ -1980,7 +1983,7 @@ no prompts. By default UI and all prompts are displayed.
     <comment>Tooltip for start menu link to sign in page on the web</comment>
   </data>
   <data name="WixMsiDescription" xml:space="preserve">
-    <value>Description</value>
+    <value>AxCrypt File Encryption</value>
     <comment>Description in MSI</comment>
   </data>
   <data name="WixMsiDoNotInstall32BitOn64Bit" xml:space="preserve">
@@ -1995,7 +1998,7 @@ no prompts. By default UI and all prompts are displayed.
     <comment>How AxCrypt is written for users</comment>
   </data>
   <data name="WixMsiFileTypeName" xml:space="preserve">
-    <value>AxCrypt Encrypted File</value>
+    <value>AxCrypt</value>
     <comment>How encrypted files are named in Windows Explorer</comment>
   </data>
   <data name="WixMsiHomePageShortcut" xml:space="preserve">
