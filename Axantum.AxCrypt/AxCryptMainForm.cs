@@ -214,6 +214,7 @@ namespace Axantum.AxCrypt
             _optionsDebugToolStripMenuItem.Text = Texts.OptionsDebugToolStripMenuItemText;
             _optionsLanguageToolStripMenuItem.Text = Texts.OptionsLanguageToolStripMenuItemText;
             _optionsToolStripMenuItem.Text = Texts.OptionsToolStripMenuItemText;
+            _portugueseBrazilToolStripMenuItem.Text = Texts.PortugueseBrazilLanguageSelection;
             _progressContextCancelToolStripMenuItem.Text = Texts.ButtonCancelText;
             _recentFilesOpenToolStripMenuItem.Text = Texts.RecentFilesOpenToolStripMenuItemText;
             _recentFilesTabPage.Text = Texts.RecentFilesTabPageText;

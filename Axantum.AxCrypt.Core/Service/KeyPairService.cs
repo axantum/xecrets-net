@@ -45,21 +45,21 @@ namespace Axantum.AxCrypt.Core.Service
 
         private int _firstBatch;
 
-        private int _bufferCount;
+        private int _preGenerationTargetCount;
 
         private int _keyBits;
 
         private Queue<IAsymmetricKeyPair> _keyPairs = new Queue<IAsymmetricKeyPair>();
 
-        public KeyPairService(int firstBatch, int bufferCount, int keyBits)
+        public KeyPairService(int firstBatch, int preGenerationTargetCount, int keyBits)
         {
             if (firstBatch < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(firstBatch));
             }
-            if (bufferCount < 0)
+            if (preGenerationTargetCount < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(bufferCount));
+                throw new ArgumentOutOfRangeException(nameof(preGenerationTargetCount));
             }
 #if DEBUG
             if (keyBits != 768 && keyBits != 4096)
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
 
             _firstBatch = firstBatch;
-            _bufferCount = bufferCount;
+            _preGenerationTargetCount = preGenerationTargetCount;
             _keyBits = keyBits;
         }
 
@@ -108,11 +108,11 @@ namespace Axantum.AxCrypt.Core.Service
                 throw new ObjectDisposedException(nameof(KeyPairService));
             }
 
-            if (_running != null && !_running.IsCompleted)
+            if (!(_running?.IsCompleted).GetValueOrDefault(true))
             {
                 return;
             }
-            _running = Task.Run(() => { while (!_disposed && !IsBufferFull) { AddOneKeyPair(); } });
+            _running = Task.Run(() => { while (!_disposed && KeyPairsNeeded()) { AddOneKeyPair(); } });
         }
 
         private void AddOneKeyPair()
@@ -125,19 +125,16 @@ namespace Axantum.AxCrypt.Core.Service
             return;
         }
 
-        private bool IsBufferFull
+        private bool KeyPairsNeeded()
         {
-            get
+            lock (_keyPairs)
             {
-                lock (_keyPairs)
+                if (_firstBatch > 0)
                 {
-                    if (_firstBatch > 0)
-                    {
-                        --_firstBatch;
-                        return false;
-                    }
-                    return _keyPairs.Count >= _bufferCount;
+                    --_firstBatch;
+                    return true;
                 }
+                return _keyPairs.Count < _preGenerationTargetCount;
             }
         }
 
