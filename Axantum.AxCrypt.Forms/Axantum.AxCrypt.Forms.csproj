@@ -60,6 +60,7 @@
     <Compile Include="EmbeddedResourceManager.cs" />
     <Compile Include="Implementation\DataProtection.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Implementation\DeviceLocked.cs" />
     <Compile Include="Implementation\FileFolderSelection.cs" />
     <Compile Include="Implementation\ProgressBackground.cs">
       <SubType>Component</SubType>

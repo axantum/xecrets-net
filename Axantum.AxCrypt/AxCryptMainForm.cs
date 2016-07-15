@@ -443,6 +443,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
             TypeMap.Register.Singleton<IStatusChecker>(() => this);
             TypeMap.Register.Singleton<IDataItemSelection>(() => new FileFolderSelection(this));
+            TypeMap.Register.Singleton<IDeviceLocked>(() => new DeviceLocked());
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
@@ -783,10 +784,8 @@ namespace Axantum.AxCrypt
         private void WireUpEvents()
         {
             Resolve.SessionNotify.Notification += async (sender, e) => await New<SessionNotificationHandler>().HandleNotificationAsync(e.Notification);
-
-            SystemEvents.SessionEnding += SystemEvents_SessionEnding;
-            SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
-            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
+            New<IDeviceLocked>().DeviceWasLocked += DeviceWasLocked;
+            New<IDeviceLocked>().Start(null);
 
             New<AxCryptOnlineState>().OnlineStateChanged += (sender, e) =>
             {
@@ -797,75 +796,36 @@ namespace Axantum.AxCrypt
             };
         }
 
-        private readonly object _autoCleanUpLock = new object();
-
-        private async void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
-        {
-            switch (e.Mode)
-            {
-                case PowerModes.Suspend:
-                    await Task.Run(() =>
-                    {
-                        lock (_autoCleanUpLock)
-                        {
-                            EncryptPendingFiles();
-                            WaitForBackgroundToComplete();
-                        }
-                    });
-                    await LogOffAndLogOnAgainAsync();
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        private async void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
-        {
-            switch (e.Reason)
-            {
-                case SessionSwitchReason.SessionLogoff:
-                    ShutDownAndExit();
-                    break;
-
-                case SessionSwitchReason.ConsoleDisconnect:
-                case SessionSwitchReason.RemoteDisconnect:
-                case SessionSwitchReason.SessionLock:
-                    await Task.Run(() =>
-                    {
-                        lock (_autoCleanUpLock)
-                        {
-                            EncryptPendingFiles();
-                            WaitForBackgroundToComplete();
-                        }
-                    });
-                    await LogOffAndLogOnAgainAsync();
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        private void SystemEvents_SessionEnding(object sender, SessionEndingEventArgs e)
-        {
-            switch (e.Reason)
-            {
-                case SessionEndReasons.Logoff:
-                case SessionEndReasons.SystemShutdown:
-                    ShutDownAndExit();
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
         private void WireDownEvents()
         {
-            SystemEvents.SessionEnding -= SystemEvents_SessionEnding;
-            SystemEvents.SessionSwitch -= SystemEvents_SessionSwitch;
-            SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
+            New<IDeviceLocked>().DeviceWasLocked -= DeviceWasLocked;
+        }
+
+        private readonly object _autoCleanUpLock = new object();
+
+        private async void DeviceWasLocked(object sender, DeviceLockedEventArgs e)
+        {
+            switch (e.Reason)
+            {
+                case DeviceLockReason.Permanent:
+                    ShutDownAndExit();
+                    break;
+
+                case DeviceLockReason.Temporary:
+                    await Task.Run(() =>
+                    {
+                        lock (_autoCleanUpLock)
+                        {
+                            EncryptPendingFiles();
+                            WaitForBackgroundToComplete();
+                        }
+                    });
+                    await LogOffAndLogOnAgainAsync();
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void SetSignInSignOutStatus(bool isSignedIn)

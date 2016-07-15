@@ -27,3 +27,5 @@ TestResult.xml
 AxCrypt.NET.sdf
 .vs/config/applicationhost.config
 cov-int/*
+AxCrypt.NET.VC.db
+AxCrypt.NET.VC.VC.opendb
