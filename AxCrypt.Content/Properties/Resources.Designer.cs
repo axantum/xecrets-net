@@ -5150,25 +5150,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign in to your AxCrypt ID.
-        /// </summary>
-        public static string WixMsiAxCryptIdSignInShortcut {
-            get {
-                return ResourceManager.GetString("WixMsiAxCryptIdSignInShortcut", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sign in to or create an AxCrypt ID.
-        /// </summary>
-        public static string WixMsiAxCryptIdSignInShortcutDescription {
-            get {
-                return ResourceManager.GetString("WixMsiAxCryptIdSignInShortcutDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Description.
+        ///   Looks up a localized string similar to AxCrypt File Encryption.
         /// </summary>
         public static string WixMsiDescription {
             get {
@@ -5204,38 +5186,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Encrypted File.
+        ///   Looks up a localized string similar to AxCrypt.
         /// </summary>
         public static string WixMsiFileTypeName {
             get {
                 return ResourceManager.GetString("WixMsiFileTypeName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Home Page.
-        /// </summary>
-        public static string WixMsiHomePageShortcut {
-            get {
-                return ResourceManager.GetString("WixMsiHomePageShortcut", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Browse to AxCrypt Home Page.
-        /// </summary>
-        public static string WixMsiHomePageShortcutDescription {
-            get {
-                return ResourceManager.GetString("WixMsiHomePageShortcutDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AxCrypt.
-        /// </summary>
-        public static string WixMsiLaunchAxCrypt {
-            get {
-                return ResourceManager.GetString("WixMsiLaunchAxCrypt", resourceCulture);
             }
         }
         
@@ -5263,24 +5218,6 @@ namespace AxCrypt.Content.Properties {
         public static string WixMsiMainExecutablesTitle {
             get {
                 return ResourceManager.GetString("WixMsiMainExecutablesTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Documentation.
-        /// </summary>
-        public static string WixMsiManualShortcut {
-            get {
-                return ResourceManager.GetString("WixMsiManualShortcut", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to View Documentation.
-        /// </summary>
-        public static string WixMsiManualShortcutDescription {
-            get {
-                return ResourceManager.GetString("WixMsiManualShortcutDescription", resourceCulture);
             }
         }
         
@@ -5317,24 +5254,6 @@ namespace AxCrypt.Content.Properties {
         public static string WixMsiStartAxCrypt {
             get {
                 return ResourceManager.GetString("WixMsiStartAxCrypt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Uninstall AxCrypt.
-        /// </summary>
-        public static string WixMsiUninstallAxCrypt {
-            get {
-                return ResourceManager.GetString("WixMsiUninstallAxCrypt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Uninstalls AxCrypt.
-        /// </summary>
-        public static string WixMsiUninstallAxCryptDescription {
-            get {
-                return ResourceManager.GetString("WixMsiUninstallAxCryptDescription", resourceCulture);
             }
         }
         

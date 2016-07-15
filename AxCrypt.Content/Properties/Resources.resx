@@ -1974,14 +1974,6 @@ no prompts. By default UI and all prompts are displayed.
     <value>AxCrypt File Encryption</value>
     <comment>The title in Control Panel add/remove</comment>
   </data>
-  <data name="WixMsiAxCryptIdSignInShortcut" xml:space="preserve">
-    <value>Sign in to your AxCrypt ID</value>
-    <comment>Start Menu text to go the web page to sign in</comment>
-  </data>
-  <data name="WixMsiAxCryptIdSignInShortcutDescription" xml:space="preserve">
-    <value>Sign in to or create an AxCrypt ID</value>
-    <comment>Tooltip for start menu link to sign in page on the web</comment>
-  </data>
   <data name="WixMsiDescription" xml:space="preserve">
     <value>AxCrypt File Encryption</value>
     <comment>Description in MSI</comment>
@@ -2001,18 +1993,6 @@ no prompts. By default UI and all prompts are displayed.
     <value>AxCrypt</value>
     <comment>How encrypted files are named in Windows Explorer</comment>
   </data>
-  <data name="WixMsiHomePageShortcut" xml:space="preserve">
-    <value>Home Page</value>
-    <comment>Start Menu Shortcut Name</comment>
-  </data>
-  <data name="WixMsiHomePageShortcutDescription" xml:space="preserve">
-    <value>Browse to AxCrypt Home Page</value>
-    <comment>Start Menu Home Page tooltip</comment>
-  </data>
-  <data name="WixMsiLaunchAxCrypt" xml:space="preserve">
-    <value>AxCrypt</value>
-    <comment>Start Menu name to start AxCrypt. Should typically probably not be translated.</comment>
-  </data>
   <data name="WixMsiLaunchAxCryptDescription" xml:space="preserve">
     <value>Start AxCrypt</value>
     <comment>Start Menu tooltip to start AxCrypt</comment>
@@ -2024,14 +2004,6 @@ no prompts. By default UI and all prompts are displayed.
   <data name="WixMsiMainExecutablesTitle" xml:space="preserve">
     <value>AxCrypt Program Files</value>
     <comment>Feature name in installer</comment>
-  </data>
-  <data name="WixMsiManualShortcut" xml:space="preserve">
-    <value>Documentation</value>
-    <comment>Start Menu name for documentation</comment>
-  </data>
-  <data name="WixMsiManualShortcutDescription" xml:space="preserve">
-    <value>View Documentation</value>
-    <comment>Tooltip to view documentation</comment>
   </data>
   <data name="WixMsiNet45Required" xml:space="preserve">
     <value>This application requires .NET Framework 4.5 or higher. Please install the .NET Framework then run this installer again.</value>
@@ -2048,14 +2020,6 @@ no prompts. By default UI and all prompts are displayed.
   <data name="WixMsiStartAxCrypt" xml:space="preserve">
     <value>Start AxCrypt</value>
     <comment>Prompt to start AxCrypt after installation</comment>
-  </data>
-  <data name="WixMsiUninstallAxCrypt" xml:space="preserve">
-    <value>Uninstall AxCrypt</value>
-    <comment>Start Menu link to uninstall</comment>
-  </data>
-  <data name="WixMsiUninstallAxCryptDescription" xml:space="preserve">
-    <value>Uninstalls AxCrypt</value>
-    <comment>Tooltip for Start Menu link to uninstallation</comment>
   </data>
   <data name="WixOverallProgressPackageText" xml:space="preserve">
     <value>Initializing...</value>

@@ -911,7 +911,7 @@ AxCrypt-teamet</value>
 Detta program är licensierat i enlighet med avtalet.
 %n%n%2
 %n%nBidrag:
-%nThe Legion of the Bouncy Castly Inc.</value>
+%nThe Legion of the Bouncy Castle Inc.</value>
     <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
   </data>
   <data name="McInfAuthLead" xml:space="preserve">
@@ -1608,6 +1608,7 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
   </data>
   <data name="WixCaption" xml:space="preserve">
     <value>[WixBundleName]-installation</value>
+    <comment>[WixBundlePart] should NOT be translated.</comment>
   </data>
   <data name="WixConfirmCancelMessage" xml:space="preserve">
     <value>Vill du avbryta?</value>
@@ -1672,6 +1673,7 @@ prompt före omstart.
 /log log.txt - skapar logg till en specifik fil. Som standard skapas loggfilen
 i %TEMP%.
 </value>
+    <comment>The /install, /uninstall and all other /xxxxxx shold NOT BE TRANSLATED</comment>
   </data>
   <data name="WixInstallAcceptCheckbox" xml:space="preserve">
     <value>Jag godkänner licensvillkoren.</value>
@@ -1684,6 +1686,7 @@ i %TEMP%.
   </data>
   <data name="WixInstallVersion" xml:space="preserve">
     <value>Version [WixBundleVersion]</value>
+    <comment>[WixBundleVersion] should NOT BE TRANSLATED</comment>
   </data>
   <data name="WixModifyCloseButton" xml:space="preserve">
     <value>Stäng</value>
@@ -1701,18 +1704,6 @@ i %TEMP%.
     <value>AxCrypt Filkryptering</value>
     <comment>The title in Control Panel add/remove</comment>
   </data>
-  <data name="WixMsiAxCryptIdSignInShortcut" xml:space="preserve">
-    <value>Logga in med ditt AxCrypt ID</value>
-    <comment>Start Menu text to go the web page to sign in</comment>
-  </data>
-  <data name="WixMsiAxCryptIdSignInShortcutDescription" xml:space="preserve">
-    <value>Logga in eller skapa AxCrypt ID</value>
-    <comment>Tooltip for start menu link to sign in page on the web</comment>
-  </data>
-  <data name="WixMsiDescription" xml:space="preserve">
-    <value>AxCrypt Filkryptering</value>
-    <comment>Description in MSI</comment>
-  </data>
   <data name="WixMsiDoNotInstall32BitOn64Bit" xml:space="preserve">
     <value>Detta installationsprogram är för 32-bit. Din dator kör 64-bit Windows. Hämta installationsprogrammet med 'x64' i filnamnet istället.</value>
   </data>
@@ -1723,22 +1714,6 @@ i %TEMP%.
   <data name="WixMsiExternalName" xml:space="preserve">
     <value>AxCrypt</value>
     <comment>How AxCrypt is written for users</comment>
-  </data>
-  <data name="WixMsiFileTypeName" xml:space="preserve">
-    <value>AxCrypt Skyddad</value>
-    <comment>How encrypted files are named in Windows Explorer</comment>
-  </data>
-  <data name="WixMsiHomePageShortcut" xml:space="preserve">
-    <value>Hemsidan</value>
-    <comment>Start Menu Shortcut Name</comment>
-  </data>
-  <data name="WixMsiHomePageShortcutDescription" xml:space="preserve">
-    <value>Gå till AxCrypt hemsida</value>
-    <comment>Start Menu Home Page tooltip</comment>
-  </data>
-  <data name="WixMsiLaunchAxCrypt" xml:space="preserve">
-    <value>AxCrypt</value>
-    <comment>Start Menu name to start AxCrypt. Should typically probably not be translated.</comment>
   </data>
   <data name="WixMsiLaunchAxCryptDescription" xml:space="preserve">
     <value>Starta AxCrypt</value>
@@ -1751,14 +1726,6 @@ i %TEMP%.
   <data name="WixMsiMainExecutablesTitle" xml:space="preserve">
     <value>AxCrypt Programfiler</value>
     <comment>Feature name in installer</comment>
-  </data>
-  <data name="WixMsiManualShortcut" xml:space="preserve">
-    <value>Dokumentation</value>
-    <comment>Start Menu name for documentation</comment>
-  </data>
-  <data name="WixMsiManualShortcutDescription" xml:space="preserve">
-    <value>Visa Dokumentation</value>
-    <comment>Tooltip to view documentation</comment>
   </data>
   <data name="WixMsiNet45Required" xml:space="preserve">
     <value>.NET Framework 4.5 eller högre krävs. Installera .NET Framework och kör sedan installationen igen.</value>
@@ -1775,14 +1742,6 @@ i %TEMP%.
   <data name="WixMsiStartAxCrypt" xml:space="preserve">
     <value>Starta AxCrypt</value>
     <comment>Prompt to start AxCrypt after installation</comment>
-  </data>
-  <data name="WixMsiUninstallAxCrypt" xml:space="preserve">
-    <value>Avinstallera AxCrypt</value>
-    <comment>Start Menu link to uninstall</comment>
-  </data>
-  <data name="WixMsiUninstallAxCryptDescription" xml:space="preserve">
-    <value>Avinstallerar AxCrypt</value>
-    <comment>Tooltip for Start Menu link to uninstallation</comment>
   </data>
   <data name="WixOverallProgressPackageText" xml:space="preserve">
     <value>Initierar...</value>

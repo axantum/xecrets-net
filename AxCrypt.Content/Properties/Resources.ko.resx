@@ -329,6 +329,9 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
     <value>이메일 계정 수정</value>
   </data>
+  <data name="ChangeEmailConfirmMailSubject" xml:space="preserve">
+    <value>AxCrypt ID 이메일 주소 변경</value>
+  </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>AxCrypt ID 이메일 주소 변경이 인증되셨습니다! 완전한 완료를 위해 로그인 해주시기 바랍니다.</value>
   </data>
@@ -358,6 +361,9 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>비밀번호 바꾸기</value>
+  </data>
+  <data name="ChangePasswordError" xml:space="preserve">
+    <value>비밀번호가 틀렸거나 무효해 비밀번호를 바꿀 수 없었습니다.</value>
   </data>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>비밀번호가 바뀌셨습니다.</value>
@@ -392,6 +398,9 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   </data>
   <data name="ColumnTransactionDateHeader" xml:space="preserve">
     <value>UTC 거래</value>
+  </data>
+  <data name="ConfirmAllCheckBoxText" xml:space="preserve">
+    <value>&amp;남은 모든 파일에 하시겠습니까?</value>
   </data>
   <data name="ContactInfoPhone" xml:space="preserve">
     <value>+46 (0)8 550 10 274</value>
@@ -547,9 +556,9 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>가입이 업데이트 되었습니다.</value>
   </data>
-  <data name="EmailLanguageInformation">
+  <data name="EmailLanguageInformation" xml:space="preserve">
     <value>사용자의 언어로 메세지를 보내려 시도 하고 있습니다. 하지만 사용자분께서 저희에게 메일을 보내시면 영어로 답변을 드릴 수 있습니다. 구글 번역등을 사용해주시기 바랍니다.</value>
-    <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate.</comment>
+    <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate. The translation should probably read: "We try to send mailings in [Language], but if you...2</comment>
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[설명이 없음]</value>
@@ -603,6 +612,9 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>AxCript ID를 옮기시고 싶으시면 비밀 키와 공유 키를 수출 한뒤 원하시는 위치에 옮기시면 됩니다.</value>
   </data>
+  <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
+    <value>공유 공개 키를 &amp;수출</value>
+  </data>
   <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>암호화된 파일들을 다른 사용자들과 공유하시려면 수출한 공유 공개 키를 보내시기 바랍니다.</value>
   </data>
@@ -648,9 +660,6 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
   </data>
-  <data name="GetLogErrorDateFormat" xml:space="preserve">
-    <value>시작 날짜와 종료 날짜가 유효하지 않습니다. XXX년-XX월-XX일 형식으로 다시 시도 해주시기 바랍니다.</value>
-  </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>&amp;에 관하여</value>
   </data>
@@ -662,6 +671,9 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>액세스 공유 키와 &amp;AxCrypt ID 옮기기</value>
+  </data>
+  <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>AxCrypt ID를 옮기시려면 암호 키와 공유 키를 수출한뒤 여기로 옮기시면 됩니다.</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
     <value>&amp;타사용자의 공유 키를 옯기기</value>
@@ -813,6 +825,10 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="MailBodyFooterPlainText" xml:space="preserve">
     <value>AxCrypt.net에서 아래 내용을 무슨 이유로 받으셨는지 모르시다면 이 메세지를 무시하거나 {0}에 알리시기 바랍니다.</value>
   </data>
+  <data name="MailBodyOutroHtml" xml:space="preserve">
+    <value>궁금한 점이 있으시면 저희 팀한테 문의 해주시기 바랍니다. 저희 사이트에 있는 FAQ와 포럼을 &lt;a href="{0}"&gt;{0}&lt;/a&gt;에 방문해 주시기 바랍니다.</value>
+    <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
+  </data>
   <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
@@ -835,6 +851,105 @@ AxCrypt 팀</value>
   </data>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>안녕하세요 {0},</value>
+  </data>
+  <data name="McHlpMenuAbout" xml:space="preserve">
+    <value>에 대해</value>
+    <comment>Tooltip for the about context menu.</comment>
+  </data>
+  <data name="McHlpMenuOpen" xml:space="preserve">
+    <value>연결된 프로그램을 기준으로 파일을 열고 해독.</value>
+    <comment>Tooltip for open document context menu (double-click)</comment>
+  </data>
+  <data name="McHlpMenuRename" xml:space="preserve">
+    <value>익명으로 개명해 주십시오. 해독후 본명으로 회복됩니다.</value>
+    <comment>Tooltip for rename context menu</comment>
+  </data>
+  <data name="McHlpMenuShow" xml:space="preserve">
+    <value>고도 기능 사용을 위해 응용 프로그램을 완전히 열어 주시길 바랍니다.</value>
+    <comment>Tooltip for show full program interface with all advanced funtions context menu.</comment>
+  </data>
+  <data name="McHlpMenuSignOut" xml:space="preserve">
+    <value>로그아웃을 위해 클릭해 주십시오.</value>
+    <comment>Tooltip for sign out context menu</comment>
+  </data>
+  <data name="McHlpMenuUnwrap" xml:space="preserve">
+    <value>문서를 해독하신귀 문서의 명과 변경 시간을 복구 시켜 주십시오.</value>
+    <comment>Tooltip for decryption context menu</comment>
+  </data>
+  <data name="McHlpMenuWipe" xml:space="preserve">
+    <value>랜덤 데이터로 파일 전체를 고쳐 쓰신 다음 완전히 삭제해 주시기 바랍니다.</value>
+    <comment>Shred and Delete tooltip for context menu</comment>
+  </data>
+  <data name="McHlpMenuWrapZ" xml:space="preserve">
+    <value>먼저 문서를 압축하신뒤 암호화해 주시기 바랍니다.</value>
+    <comment>Tooltip for the encrypt inplace context menu command</comment>
+  </data>
+  <data name="McHlpMenuWrapZC" xml:space="preserve">
+    <value>먼저 문서를 압축한 뒤 암호화 해주세요. 본 문서는 갖고 있으시길 바랍니다.</value>
+    <comment>Tooltip for the context menu for encryption</comment>
+  </data>
+  <data name="McInfAbout" xml:space="preserve">
+    <value>암호화, 암축 기능을 웹, 서버 스토리지등을 보안. 본 프로그램은 %n%n%2 %n%nAcknowledgements: %nThe Legion of the Bouncy Castle Inc. 에 허가를 받았습니다.</value>
+    <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
+  </data>
+  <data name="McInfAuthLead" xml:space="preserve">
+    <value>완전성:</value>
+    <comment>Lead-in header for Message Authentication Code, i.e. integrity validation</comment>
+  </data>
+  <data name="McInfComp" xml:space="preserve">
+    <value>Zlib/Deflate, RFC1950 와 RFC1951.</value>
+    <comment>Name of compression algorithms and standards in property sheet.</comment>
+  </data>
+  <data name="McInfCompLead" xml:space="preserve">
+    <value>압축:</value>
+    <comment>Lead-in header for compression algorithm in property sheet</comment>
+  </data>
+  <data name="McInfEncLead" xml:space="preserve">
+    <value>암호화:</value>
+    <comment>Property page header for encryption algorithms.</comment>
+  </data>
+  <data name="McInfMenuAbout" xml:space="preserve">
+    <value>에 대해</value>
+    <comment>Context menu for About</comment>
+  </data>
+  <data name="McInfMenuOpen" xml:space="preserve">
+    <value>열기</value>
+    <comment>Context Menu for open action</comment>
+  </data>
+  <data name="McInfMenuRename" xml:space="preserve">
+    <value>개명</value>
+    <comment>Context menu for anonymous rename</comment>
+  </data>
+  <data name="McInfMenuShow" xml:space="preserve">
+    <value>고급</value>
+    <comment>Context menu to show the main user inteface window, i.e. open AxCrypt</comment>
+  </data>
+  <data name="McInfMenuSignOut" xml:space="preserve">
+    <value>로그아웃</value>
+    <comment>Context Menu for Signing out</comment>
+  </data>
+  <data name="McInfMenuUnwrap" xml:space="preserve">
+    <value>해독</value>
+    <comment>Context menu for decrypt</comment>
+  </data>
+  <data name="McInfMenuWipe" xml:space="preserve">
+    <value>파쇄 그리고 삭제 하기</value>
+    <comment>Context menu for Wipe</comment>
+  </data>
+  <data name="McInfMenuWrapZ" xml:space="preserve">
+    <value>암호화 하기</value>
+    <comment>Context menu for encrypt</comment>
+  </data>
+  <data name="McInfMenuWrapZC" xml:space="preserve">
+    <value>사본을 암호화 하기</value>
+    <comment>Context menu for encrypting a copy</comment>
+  </data>
+  <data name="McMsgSystemCall" xml:space="preserve">
+    <value>%3, %2을 부를 때 시스템에 문제가 생겼습니다. </value>
+    <comment>General error message. Careful about the %-stuff</comment>
+  </data>
+  <data name="McWrnCancel" xml:space="preserve">
+    <value>작전이 취소되었습니다.</value>
   </data>
   <data name="MenuAxCryptIdText" xml:space="preserve">
     <value>나의 AxCrypt ID</value>
@@ -876,6 +991,9 @@ AxCrypt 팀</value>
   </data>
   <data name="MessageSignUpUnexpectedErrorText" xml:space="preserve">
     <value>예상외에 오류가 생겼습니다. 다시 시도해주시기 바랍니다. 문제가 지속될시 보고해주시기 바랍니다. </value>
+  </data>
+  <data name="MessageSignUpUnexpectedErrorTitle" xml:space="preserve">
+    <value>예상치 못 한 오류가 생겼습니다</value>
   </data>
   <data name="MessageUnexpectedErrorText" xml:space="preserve">
     <value>예상치 못한 '{0}' 오류가 생겼습니다.</value>
@@ -1043,6 +1161,9 @@ AxCrypt 팀</value>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[PayPal에 대한 자세한 정보]</value>
   </data>
+  <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>사용자의 AxCrypt Premium 구독 만료일이 다 되어갑니다. 저희가 제공한 모든 기능들을 유용하게 잘 쓰셨길 바랍니다.</value>
+  </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
     <value>저희 팀은 사용자가 간편하게 Premium기능들을 사용하셨으면 좋겠습니다. &lt;a href="{0}Home/Login?email={1}"&gt;sign in&lt;/a&gt;를 AxCrypt에 하시고 언제든지 구독해주시기 바랍니다.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
@@ -1102,11 +1223,17 @@ AxCrypt 팀</value>
   <data name="PromptKnownContacts" xml:space="preserve">
     <value>아는 연락처</value>
   </data>
+  <data name="PromptLabelText" xml:space="preserve">
+    <value>이 파일을 지속적으로 삭제 하시겠습까? 삭제하시면 되돌아 올 수 없습니다.</value>
+  </data>
   <data name="PromptMonths" xml:space="preserve">
     <value>개월</value>
   </data>
   <data name="PromptMyAxCryptId" xml:space="preserve">
     <value>나의 AxCrypt ID</value>
+  </data>
+  <data name="PromptMySettings" xml:space="preserve">
+    <value>설정</value>
   </data>
   <data name="PromptNewEmail" xml:space="preserve">
     <value>새로운 이메일 주소</value>
@@ -1461,6 +1588,183 @@ AxCrypt사용은 매우 쉽습니다. 매인 창으로 시작하거나 더블클
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>안전한 삭제를 위래 파일들을 선택하십시오</value>
+  </data>
+  <data name="WixAxNeedUninstall" xml:space="preserve">
+    <value>먼저 현재 설치된 AxCrypt를 삭제해 주십시오.</value>
+  </data>
+  <data name="WixAxOsNotSupported" xml:space="preserve">
+    <value>사용자 컴퓨터의 윈도우즈 버전으로는 지원되지 않습니다.</value>
+  </data>
+  <data name="WixCaption" xml:space="preserve">
+    <value>[WixBundleName] 설정</value>
+    <comment>[WixBundlePart] should NOT be translated.</comment>
+  </data>
+  <data name="WixConfirmCancelMessage" xml:space="preserve">
+    <value>취소 하시겠습니까?</value>
+  </data>
+  <data name="WixExecuteUpgradeRelatedBundleMessage" xml:space="preserve">
+    <value>이전 버전</value>
+  </data>
+  <data name="WixFailureCloseButton" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="WixFailureHeader" xml:space="preserve">
+    <value>설치 실패</value>
+  </data>
+  <data name="WixFailureHyperlinkLogText" xml:space="preserve">
+    <value>몇가지의 문제점들로 인해 설치를 실패하였습니다. 문제 점들을 확인해주신 다음 다시 시도해 주시기 바랍니다. &amp;lt;a href="#"&amp;gt;log file&amp;lt;/a&amp;gt; 에 더 자세한  정보가 있습니다.</value>
+  </data>
+  <data name="WixFailureInstallHeader" xml:space="preserve">
+    <value>성정 실패</value>
+  </data>
+  <data name="WixFailureRepairHeader" xml:space="preserve">
+    <value>복구 실패</value>
+  </data>
+  <data name="WixFailureRestartButton" xml:space="preserve">
+    <value>다시 시작</value>
+  </data>
+  <data name="WixFailureRestartText" xml:space="preserve">
+    <value>소프트웨어 롤백 기능을 완성시키시려면 컴퓨터를 다시 시작해 주십시오.</value>
+  </data>
+  <data name="WixFailureUninstallHeader" xml:space="preserve">
+    <value>프로그램 삭제에 실패하였습니다</value>
+  </data>
+  <data name="WixFilesInUseCancelButton" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="WixFilesInUseCloseRadioButton" xml:space="preserve">
+    <value>응용 프로그램을 닫으신뒤 다시 시작해 주시기 바랍니다.</value>
+  </data>
+  <data name="WixFilesInUseDontCloseRadioButton" xml:space="preserve">
+    <value>응용 프로그램을 닫지 마십시오. 프로그램을 다시 시작해야 됩니다.</value>
+  </data>
+  <data name="WixFilesInUseHeader" xml:space="preserve">
+    <value>사용중인 파일</value>
+  </data>
+  <data name="WixFilesInUseLabel" xml:space="preserve">
+    <value>다음과 같은 앱들은 업데이트가 필요한 파일들을 사용하고있습니다:</value>
+  </data>
+  <data name="WixFilesInUseOkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="WixHelpCloseButton" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="WixHelpHeader" xml:space="preserve">
+    <value>설치 도움말</value>
+  </data>
+  <data name="WixHelpText" xml:space="preserve">
+    <value>-/install | /repair | /uninstall | /layout [directory] - 는 설치, 고침, 삭제와 디렉터리에 번들의 로컬 복사본을 만듭니다. 설치는 기본으로 됩니다.
+
+/passive | /quiet -는 최저의 사용자를 확인 메세지 없이 표시합니다. 기본으로는 최저파워 사용자와 확인 메세지가 표시됩니다.
+
+/norestart - 삭제하고 다시 시작하기. 기본으로 최저파워 사용자가 다시 시작하기 전에 표시될겁니다.
+/log log.txt - 는 특정한 파일에 접속합니다. 기본으로 %TEMP% 내에 기록파일이 만들어집니다.</value>
+    <comment>The /install, /uninstall and all other /xxxxxx shold NOT BE TRANSLATED</comment>
+  </data>
+  <data name="WixInstallAcceptCheckbox" xml:space="preserve">
+    <value>이용 약관에 동의합니다</value>
+  </data>
+  <data name="WixInstallCloseButton" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="WixInstallInstallButton" xml:space="preserve">
+    <value>설치</value>
+  </data>
+  <data name="WixInstallVersion" xml:space="preserve">
+    <value>[WixBundleVersion] 버전</value>
+    <comment>[WixBundleVersion] should NOT BE TRANSLATED</comment>
+  </data>
+  <data name="WixModifyCloseButton" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="WixModifyHeader" xml:space="preserve">
+    <value>설치를 변경하기</value>
+  </data>
+  <data name="WixModifyRepairButton" xml:space="preserve">
+    <value>고치기</value>
+  </data>
+  <data name="WixModifyUninstallButton" xml:space="preserve">
+    <value>프로그램 삭제하기</value>
+  </data>
+  <data name="WixMsiArpComments" xml:space="preserve">
+    <value>AxCrypt 파일 암호화</value>
+    <comment>The title in Control Panel add/remove</comment>
+  </data>
+  <data name="WixMsiDoNotInstall32BitOn64Bit" xml:space="preserve">
+    <value>본 설치는 32 bit MSI 설치자입니다. 사용자분께서는 64-bit Windows를 갖고 계십니다. MSI를 파일명에 있는 'x64'로 바꿔주시기 바랍니다.</value>
+  </data>
+  <data name="WixMsiExitDialogText" xml:space="preserve">
+    <value>빠른 시작: 파일을 암호화 시키려면 윈도우즈 익스플로러 파일을 오른 쪽 클릭 한 다음, AxCrypt | Encrypt 를 선택해 주십시오.</value>
+    <comment>The final message in the MSI installer</comment>
+  </data>
+  <data name="WixMsiExternalName" xml:space="preserve">
+    <value>AxCrypt</value>
+    <comment>How AxCrypt is written for users</comment>
+  </data>
+  <data name="WixMsiLaunchAxCryptDescription" xml:space="preserve">
+    <value>AxCrypt 시작</value>
+    <comment>Start Menu tooltip to start AxCrypt</comment>
+  </data>
+  <data name="WixMsiLegacyAxCrypt" xml:space="preserve">
+    <value>이전 AxCrypt 버전을 삭제하시고 계속해 주시기 바랍니다.  재부팅을 청할시 해주시기 바합니다.</value>
+    <comment>Error message when too old AxCrypt is already installed.</comment>
+  </data>
+  <data name="WixMsiMainExecutablesTitle" xml:space="preserve">
+    <value>AxCrypt 프로그램 파일</value>
+    <comment>Feature name in installer</comment>
+  </data>
+  <data name="WixMsiNet45Required" xml:space="preserve">
+    <value>응용 프로그램은  .NET Framework 4.5를 필요로 합니다.  .NET Framework 를 설치한 뒤 다시 시도해 주시기 바랍니다.</value>
+    <comment>Error message when .NET 4.5 is missing</comment>
+  </data>
+  <data name="WixMsiNoDowngrade" xml:space="preserve">
+    <value>같은 버전을 이미 설치하셨습니다! 진행하시기 전에 본 버전을 삭제해 주시기 바랍니다. 요청시 자시 시작해 주시기 바랍니다.</value>
+    <comment>Error message during installation when a newer version already is installed.</comment>
+  </data>
+  <data name="WixMsiShellExtensionTitle" xml:space="preserve">
+    <value>윈도우즈 통합 오른 쪽 클릭</value>
+    <comment>Feature name for the shell extension during installation</comment>
+  </data>
+  <data name="WixMsiStartAxCrypt" xml:space="preserve">
+    <value>AxCrypt 시작</value>
+    <comment>Prompt to start AxCrypt after installation</comment>
+  </data>
+  <data name="WixOverallProgressPackageText" xml:space="preserve">
+    <value>초기화 하는중..</value>
+  </data>
+  <data name="WixProgressCancelButton" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="WixProgressHeader" xml:space="preserve">
+    <value>설정 진행</value>
+  </data>
+  <data name="WixProgressLabel" xml:space="preserve">
+    <value>처리중:</value>
+  </data>
+  <data name="WixSuccessCloseButton" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="WixSuccessHeader" xml:space="preserve">
+    <value>설정을 성공하였습니다.</value>
+  </data>
+  <data name="WixSuccessInstallHeader" xml:space="preserve">
+    <value>설치가 성공적으로 완료되었습니다</value>
+  </data>
+  <data name="WixSuccessLaunchButton" xml:space="preserve">
+    <value>실행</value>
+  </data>
+  <data name="WixSuccessRepairHeader" xml:space="preserve">
+    <value>성공적으로 수리하였습니다</value>
+  </data>
+  <data name="WixSuccessRestartButton" xml:space="preserve">
+    <value>다시 시작</value>
+  </data>
+  <data name="WixSuccessRestartText" xml:space="preserve">
+    <value>소프트웨어를 사용하시기 전에 컴퓨터를 다시 시작해 주십시오.</value>
+  </data>
+  <data name="WixSuccessUninstallHeader" xml:space="preserve">
+    <value>삭제가 성공적으로 마쳤습니다.</value>
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>'{0}'과 '근무중' 상태.</value>

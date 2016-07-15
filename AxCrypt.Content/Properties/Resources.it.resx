@@ -1731,18 +1731,6 @@ crea una copia locale del contenuto della cartella. Installa è l'azione predefi
     <value>Criptaggio dei File AxCrypt</value>
     <comment>The title in Control Panel add/remove</comment>
   </data>
-  <data name="WixMsiAxCryptIdSignInShortcut" xml:space="preserve">
-    <value>Connettiti al tuo AxCrypt ID</value>
-    <comment>Start Menu text to go the web page to sign in</comment>
-  </data>
-  <data name="WixMsiAxCryptIdSignInShortcutDescription" xml:space="preserve">
-    <value>Connettiti o crea un AxCrypt ID</value>
-    <comment>Tooltip for start menu link to sign in page on the web</comment>
-  </data>
-  <data name="WixMsiDescription" xml:space="preserve">
-    <value>Descrizione</value>
-    <comment>Description in MSI</comment>
-  </data>
   <data name="WixMsiDoNotInstall32BitOn64Bit" xml:space="preserve">
     <value>Questo è un programma di installazione a 32 bit MSI. Tu hai Windows a 64 bit. Procurati MSI con 'x64' nel nome del file invece di 'Win32'.</value>
   </data>
@@ -1753,22 +1741,6 @@ crea una copia locale del contenuto della cartella. Installa è l'azione predefi
   <data name="WixMsiExternalName" xml:space="preserve">
     <value>AxCrypt</value>
     <comment>How AxCrypt is written for users</comment>
-  </data>
-  <data name="WixMsiFileTypeName" xml:space="preserve">
-    <value>File Criptati di AxCrypt</value>
-    <comment>How encrypted files are named in Windows Explorer</comment>
-  </data>
-  <data name="WixMsiHomePageShortcut" xml:space="preserve">
-    <value>Pagina Iniziale</value>
-    <comment>Start Menu Shortcut Name</comment>
-  </data>
-  <data name="WixMsiHomePageShortcutDescription" xml:space="preserve">
-    <value>Accedi alla pagina iniziale di AxCrypt</value>
-    <comment>Start Menu Home Page tooltip</comment>
-  </data>
-  <data name="WixMsiLaunchAxCrypt" xml:space="preserve">
-    <value>AxCrypt</value>
-    <comment>Start Menu name to start AxCrypt. Should typically probably not be translated.</comment>
   </data>
   <data name="WixMsiLaunchAxCryptDescription" xml:space="preserve">
     <value>Avvia AxCrypt</value>
@@ -1781,14 +1753,6 @@ crea una copia locale del contenuto della cartella. Installa è l'azione predefi
   <data name="WixMsiMainExecutablesTitle" xml:space="preserve">
     <value>File del Programma AxCrypt</value>
     <comment>Feature name in installer</comment>
-  </data>
-  <data name="WixMsiManualShortcut" xml:space="preserve">
-    <value>Documentazione</value>
-    <comment>Start Menu name for documentation</comment>
-  </data>
-  <data name="WixMsiManualShortcutDescription" xml:space="preserve">
-    <value>Vedi Documentazione</value>
-    <comment>Tooltip to view documentation</comment>
   </data>
   <data name="WixMsiNet45Required" xml:space="preserve">
     <value>Questa applicazione richiede .NET 4.5 o superiore. Per favore installa .NET e in seguito esegui di nuovo il programma di installazione.</value>
@@ -1805,14 +1769,6 @@ crea una copia locale del contenuto della cartella. Installa è l'azione predefi
   <data name="WixMsiStartAxCrypt" xml:space="preserve">
     <value>Avvia AxCrypt</value>
     <comment>Prompt to start AxCrypt after installation</comment>
-  </data>
-  <data name="WixMsiUninstallAxCrypt" xml:space="preserve">
-    <value>Disinstalla AxCrypt</value>
-    <comment>Start Menu link to uninstall</comment>
-  </data>
-  <data name="WixMsiUninstallAxCryptDescription" xml:space="preserve">
-    <value>Disinstalla AxCrypt</value>
-    <comment>Tooltip for Start Menu link to uninstallation</comment>
   </data>
   <data name="WixOverallProgressPackageText" xml:space="preserve">
     <value>Inizializzazione in corso...</value>

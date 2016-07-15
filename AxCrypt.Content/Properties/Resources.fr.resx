@@ -915,7 +915,7 @@ L'Equipe AxCrypt</value>
 Ce logiciel est livré d'après la licence.
 %n%n%2
 %n%nContributions:
-%nThe Legion of the Bouncy Castly Inc.</value>
+%nThe Legion of the Bouncy Castle Inc.</value>
     <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
   </data>
   <data name="McInfAuthLead" xml:space="preserve">
@@ -1611,6 +1611,7 @@ Pour plus d'information, cliquez sur OK pour naviguer sur notre site web.</value
   </data>
   <data name="WixCaption" xml:space="preserve">
     <value>[WixBundleName] Paramètres </value>
+    <comment>[WixBundlePart] should NOT be translated.</comment>
   </data>
   <data name="WixConfirmCancelMessage" xml:space="preserve">
     <value>Etes-vous sur de vouloir supprimer? </value>
@@ -1675,6 +1676,7 @@ sans invite. Par défaut, l'interface utilisateur et les invites sont supprimée
 
 /norestart - supprimer et tenter de redémarrer. Par défaut l'interface utilisateur vous invite avant de redémarrer. 
 /log log.txt - connecte à un fichier spécifique. Par défaut un journal est créé dans %TEMP%.</value>
+    <comment>The /install, /uninstall and all other /xxxxxx shold NOT BE TRANSLATED</comment>
   </data>
   <data name="WixInstallAcceptCheckbox" xml:space="preserve">
     <value>J'accepte les termes de la license et les conditions</value>
@@ -1687,6 +1689,7 @@ sans invite. Par défaut, l'interface utilisateur et les invites sont supprimée
   </data>
   <data name="WixInstallVersion" xml:space="preserve">
     <value>Version [WixBundleVersion]</value>
+    <comment>[WixBundleVersion] should NOT BE TRANSLATED</comment>
   </data>
   <data name="WixModifyCloseButton" xml:space="preserve">
     <value>Fermer</value>
@@ -1704,18 +1707,6 @@ sans invite. Par défaut, l'interface utilisateur et les invites sont supprimée
     <value>Chiffrement d'un fichier AxCrypt</value>
     <comment>The title in Control Panel add/remove</comment>
   </data>
-  <data name="WixMsiAxCryptIdSignInShortcut" xml:space="preserve">
-    <value>Se connecter à votre AxCrypt ID</value>
-    <comment>Start Menu text to go the web page to sign in</comment>
-  </data>
-  <data name="WixMsiAxCryptIdSignInShortcutDescription" xml:space="preserve">
-    <value>Connectez vous ou créez un AxCrypt ID</value>
-    <comment>Tooltip for start menu link to sign in page on the web</comment>
-  </data>
-  <data name="WixMsiDescription" xml:space="preserve">
-    <value>Description</value>
-    <comment>Description in MSI</comment>
-  </data>
   <data name="WixMsiDoNotInstall32BitOn64Bit" xml:space="preserve">
     <value>Ceci est un installateur 32 bit MSI. Vous avez Windows 64 bits. Obtenez le MSI avec 'x64' dans le nom de fichier au lieu de 'Win32'.</value>
   </data>
@@ -1726,22 +1717,6 @@ sans invite. Par défaut, l'interface utilisateur et les invites sont supprimée
   <data name="WixMsiExternalName" xml:space="preserve">
     <value>AxCrypt</value>
     <comment>How AxCrypt is written for users</comment>
-  </data>
-  <data name="WixMsiFileTypeName" xml:space="preserve">
-    <value>Fichier AxCrypt crypté </value>
-    <comment>How encrypted files are named in Windows Explorer</comment>
-  </data>
-  <data name="WixMsiHomePageShortcut" xml:space="preserve">
-    <value>Page d'accueil</value>
-    <comment>Start Menu Shortcut Name</comment>
-  </data>
-  <data name="WixMsiHomePageShortcutDescription" xml:space="preserve">
-    <value>Accédez à la page d'accueil AxCrypt</value>
-    <comment>Start Menu Home Page tooltip</comment>
-  </data>
-  <data name="WixMsiLaunchAxCrypt" xml:space="preserve">
-    <value>AxCrypt</value>
-    <comment>Start Menu name to start AxCrypt. Should typically probably not be translated.</comment>
   </data>
   <data name="WixMsiLaunchAxCryptDescription" xml:space="preserve">
     <value>Démarrer AxCrypt</value>
@@ -1754,14 +1729,6 @@ sans invite. Par défaut, l'interface utilisateur et les invites sont supprimée
   <data name="WixMsiMainExecutablesTitle" xml:space="preserve">
     <value>Fichiers du programme AxCrypt</value>
     <comment>Feature name in installer</comment>
-  </data>
-  <data name="WixMsiManualShortcut" xml:space="preserve">
-    <value>Documentation</value>
-    <comment>Start Menu name for documentation</comment>
-  </data>
-  <data name="WixMsiManualShortcutDescription" xml:space="preserve">
-    <value>Voir Documentation</value>
-    <comment>Tooltip to view documentation</comment>
   </data>
   <data name="WixMsiNet45Required" xml:space="preserve">
     <value>Cette application nécessite .NET 4.5 ou supérieur. S'il vous plaît, installez  .NET puis exécutez à nouveau ce programme d'installation.</value>
@@ -1778,14 +1745,6 @@ sans invite. Par défaut, l'interface utilisateur et les invites sont supprimée
   <data name="WixMsiStartAxCrypt" xml:space="preserve">
     <value>Démarrer AxCrypt</value>
     <comment>Prompt to start AxCrypt after installation</comment>
-  </data>
-  <data name="WixMsiUninstallAxCrypt" xml:space="preserve">
-    <value>Désinstaller AxCrypt</value>
-    <comment>Start Menu link to uninstall</comment>
-  </data>
-  <data name="WixMsiUninstallAxCryptDescription" xml:space="preserve">
-    <value>Désinstaller AxCrypt</value>
-    <comment>Tooltip for Start Menu link to uninstallation</comment>
   </data>
   <data name="WixOverallProgressPackageText" xml:space="preserve">
     <value>Initialisation... </value>
