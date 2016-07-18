@@ -398,7 +398,7 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
     <value>Klicka för att kontrollera om det finns en ny version.</value>
   </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
-    <value>Klicka här för att stänga och ta bort öppna filer, men säkerställ först att de inte används.</value>
+    <value>Klicka här för att säkra eventuella öppna filer eller nya filer i skyddade mappar, men säkerställ först att de inte används.</value>
   </data>
   <data name="ColumnAmountPaidHeader" xml:space="preserve">
     <value>Betalt</value>
@@ -492,6 +492,10 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
   </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Du är påloggad. Klicka för att logga ut.</value>
+  </data>
+  <data name="DefaultSecureFolderToolTip">
+    <value>Öppna den fördefinierade säkrade mappen.</value>
+    <comment>A generic tooltip for the default secure folder created for example in Dropbox.</comment>
   </data>
   <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
     <value>Misslyckades att ta bort AxCrypt ID pga felaktigt lösenord.</value>
