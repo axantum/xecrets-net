@@ -1381,7 +1381,7 @@ If you appear not to receive it, check that it does not get caught by your anti-
     <value>Buy now</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Buy Premium</value>
+    <value>Buy or Renew Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Change</value>

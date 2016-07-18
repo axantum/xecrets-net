@@ -1204,7 +1204,7 @@ Om du inte verkar få det inom några minuter, kontrollera ditt skräppostfilter
     <value>Köp nu</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Köp Premium</value>
+    <value>Köp eller Förnya Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Ändra</value>
