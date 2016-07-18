@@ -54,5 +54,62 @@ namespace Axantum.AxCrypt.Forms
         public const int PBT_POWERSETTINGCHANGE = 0x8013;
 
         public const int DEVICE_NOTIFY_WINDOW_HANDLE = 0;
+
+        [DllImport("wininet.dll", SetLastError = true)]
+        public static extern bool InternetGetConnectedState(out int lpdwFlags, int dwReserved);
+
+        [Flags]
+        private enum ConnectionStates
+        {
+            Modem = 0x1,
+            LAN = 0x2,
+            Proxy = 0x4,
+            RasInstalled = 0x10,
+            Offline = 0x20,
+            Configured = 0x40,
+        }
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr LoadLibrary(string dllToLoad);
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr GetProcAddress(IntPtr hModule, string procedureName);
+
+        [DllImport("kernel32.dll")]
+        public static extern bool FreeLibrary(IntPtr hModule);
+
+        private delegate uint IsInternetConnectedDelegate();
+
+        public static bool IsInternetConnected()
+        {
+            IntPtr hModule = NativeMethods.LoadLibrary(@"connect.dll");
+            if (hModule == IntPtr.Zero)
+            {
+                return true;
+            }
+
+            try
+            {
+                IntPtr pointerToIsInternetConnected = NativeMethods.GetProcAddress(hModule, @"IsInternetConnected");
+                if (pointerToIsInternetConnected == IntPtr.Zero)
+                {
+                    return true;
+                }
+
+                IsInternetConnectedDelegate isInternetConnected = (IsInternetConnectedDelegate)Marshal.GetDelegateForFunctionPointer(pointerToIsInternetConnected, typeof(IsInternetConnectedDelegate));
+                uint hResult = isInternetConnected();
+
+                if (hResult == 0)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            finally
+            {
+                NativeMethods.FreeLibrary(hModule);
+            }
+        }
     }
 }

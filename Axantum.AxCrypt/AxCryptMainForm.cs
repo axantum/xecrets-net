@@ -445,6 +445,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IStatusChecker>(() => this);
             TypeMap.Register.Singleton<IDataItemSelection>(() => new FileFolderSelection(this));
             TypeMap.Register.Singleton<IDeviceLocked>(() => new DeviceLocked());
+            TypeMap.Register.Singleton<IInternetState>(() => new InternetState());
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));

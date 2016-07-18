@@ -51,6 +51,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ICache.cs" />
     <Compile Include="ICacheKey.cs" />
+    <Compile Include="IInternetState.cs" />
     <Compile Include="INow.cs" />
     <Compile Include="IReport.cs" />
     <Compile Include="IStringSerializer.cs" />

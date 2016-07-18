@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
@@ -35,8 +36,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -57,6 +61,11 @@ namespace Axantum.AxCrypt.Mono
             if (request == null)
             {
                 throw new ArgumentNullException("request");
+            }
+
+            if (!New<IInternetState>().Connected)
+            {
+                throw new OfflineApiException(ExceptionMessage("Internet Unavailable", request));
             }
 
             try

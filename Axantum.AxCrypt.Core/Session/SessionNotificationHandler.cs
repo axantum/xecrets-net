@@ -133,6 +133,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.LogOff:
                     EncryptWatchedFolders(notification.Identity, progress);
+                    New<IInternetState>().Clear();
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     break;
 

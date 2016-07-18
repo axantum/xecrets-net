@@ -62,6 +62,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Implementation\DeviceLocked.cs" />
     <Compile Include="Implementation\FileFolderSelection.cs" />
+    <Compile Include="Implementation\InternetState.cs" />
     <Compile Include="Implementation\ProgressBackground.cs">
       <SubType>Component</SubType>
     </Compile>
