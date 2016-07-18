@@ -63,6 +63,7 @@
     <Compile Include="FakeDelayTimer.cs" />
     <Compile Include="FakeFileWatcher.cs" />
     <Compile Include="FakeInMemoryDataStoreItem.cs" />
+    <Compile Include="FakeInternetState.cs" />
     <Compile Include="FakeIterationCalculator.cs" />
     <Compile Include="FakeLauncher.cs" />
     <Compile Include="FakeLogging.cs" />

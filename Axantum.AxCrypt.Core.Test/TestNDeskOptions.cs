@@ -35,6 +35,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -967,6 +968,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestOptionException()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             OptionException oe = new OptionException();
 
             Assert.That(oe.Message, Is.EqualTo("Exception of type 'NDesk.Options.OptionException' was thrown."));

@@ -86,6 +86,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
             TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(new Assembly[0]));
             TypeMap.Register.Singleton<IVersion>(() => new FakeVersion());
+            TypeMap.Register.Singleton<IInternetState>(() => new FakeInternetState());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
