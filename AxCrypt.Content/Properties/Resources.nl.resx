@@ -1,0 +1,1496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+	
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+  <data name="AbortedFileStatus" xml:space="preserve">
+    <value>Status 'afgebroken' ({0}).</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Over {0}</value>
+  </data>
+  <data name="AccountStatusLight" xml:space="preserve">
+    <value>AxCrypt Gratis</value>
+  </data>
+  <data name="AccountStatusPremium" xml:space="preserve">
+    <value>AxCrypt Premium</value>
+  </data>
+  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
+    <value>AxCrypt Premium (onbepaald)</value>
+  </data>
+  <data name="AccountStatusPremiumTrial" xml:space="preserve">
+    <value>AxCrypt Premium Proefversie</value>
+  </data>
+  <data name="ActivateErrorEmailOrCode" xml:space="preserve">
+    <value>De email of activatiecode is incorrect.</value>
+  </data>
+  <data name="ActivateErrorNoRequest" xml:space="preserve">
+    <value>Wachtwoord reset mislukt. Er is geen wachtwoord reset voor dit AxCrypt ID.</value>
+  </data>
+  <data name="ActivateErrorPassword" xml:space="preserve">
+    <value>Wachtwoord reset mislukt.</value>
+  </data>
+  <data name="ActivateMailBodyButton" xml:space="preserve">
+    <value>Activeer AxCrypt ID</value>
+  </data>
+  <data name="ActivateMailBodyCode" xml:space="preserve">
+    <value>Uw AxCrypt ID activatiecode is &lt;b&gt;{0}&lt;/b&gt; . Gebruik deze code in de AxCrypt app, of klik de onderstaande knop voor de website. Dit zal uw account verifiëren en activeren.</value>
+  </data>
+  <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
+    <value>Uw activatiecode is {0} .</value>
+  </data>
+  <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
+    <value>U heeft gratis toegang tot AxCrypt Premium onderdelen voor een proefperiode van 30 dagen vanaf het moment dat u uw AxCrypt ID activeert</value>
+  </data>
+  <data name="ActivateMailBodyIntro" xml:space="preserve">
+    <value>U heeft zicht geregistreerd voor een AxCrypt ID. Om uw account to verifiëren moet u de onderstaande activatiecode in de AxCrypt app of op onze website invoeren. </value>
+  </data>
+  <data name="ActivateMailBodyTitle" xml:space="preserve">
+    <value>Hallo en welkom by AxCrypt!</value>
+  </data>
+  <data name="ActivateMailSubject" xml:space="preserve">
+    <value>AxCrypt ID Activatie</value>
+  </data>
+  <data name="ActivateManuallyPageBody" xml:space="preserve">
+    <value>&lt;b&gt;Stop!&lt;/b&gt; 
+ 
+U moet hier alleen zijn wanneer het klikken op de link in de AxCrypt ID activatiemail niet werkte. (U moet zich natuurlijk voor een AxCrypt ID registreren om een activatiemail te ontvangen)
+
+Voer hier uw email en code alleen hangmatig in wanneer u uw activatiemail ontvangen heeft, maar de link niet werkte.</value>
+  </data>
+  <data name="ActivatePageBody" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="ActivatePageTitle" xml:space="preserve">
+    <value>Activeer AxCrypt ID</value>
+  </data>
+  <data name="ActivateSuccess" xml:space="preserve">
+    <value>Uw AxCrypt ID is geactiveerd! Meldt u zich alstublieft aan.</value>
+  </data>
+  <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
+    <value>Dubbelklik opent het beveiligde bestand.</value>
+  </data>
+  <data name="ActiveFileToolTip" xml:space="preserve">
+    <value>Dubbelklik opent een wachtwoord-dialoogvenster voor het openen van het beveiligde bestand.</value>
+  </data>
+  <data name="AddSecureFolderMenuItemText" xml:space="preserve">
+    <value>Voeg Beveiligde Map Toe</value>
+  </data>
+  <data name="AddSecureFolderTitle" xml:space="preserve">
+    <value>Selecteer een map om te beveiligen met AxCrypt. Bestaande bestanden worden nu geëncrypteerd.</value>
+    <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AnonymousRenameMenuText" xml:space="preserve">
+    <value>Anoniem Hernoemen</value>
+  </data>
+  <data name="AnonymousRenameSelectFilesDialogTitle" xml:space="preserve">
+    <value>Selecteer geëncrypteerde bestanden om te hernoemen!</value>
+  </data>
+  <data name="AnonymousRenameToolTip" xml:space="preserve">
+    <value>Verberg de echte naam van een beveiligd bestand door het een willekeurige naam te geven.</value>
+  </data>
+  <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
+    <value>U heeft uw email gegeven tijdens het installeren of gebruik maken van AxCrypt in de applicatie of op de website. Wij hebben u een activatiecode verzonden via email, maar u heeft deze code nog niet gebruikt. Als u uw AxCrypt ID account niet onmiddelijk verifieert met de activatiecode zullen wij u permament uit ons systeem verwijderen.</value>
+  </data>
+  <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
+    <value>We staan op het punt om uw AxCrypt ID te verwijderen!</value>
+    <comment>The title of the deletion e-mail</comment>
+  </data>
+  <data name="AutoDeletionMailSubject" xml:space="preserve">
+    <value>Uw AxCrypt ID wordt binnenkort verwijderd!</value>
+  </data>
+  <data name="AxCryptFileEncryption" xml:space="preserve">
+    <value>AxCrypt Bestand Beveiliging</value>
+  </data>
+  <data name="BadEmail" xml:space="preserve">
+    <value>Onjuist emailadres</value>
+    <comment>Displayed when email address format validation fails.</comment>
+  </data>
+  <data name="ButtonActivateText" xml:space="preserve">
+    <value>Activeer</value>
+  </data>
+  <data name="ButtonCancelAllText" xml:space="preserve">
+    <value>Annuleer Alles</value>
+  </data>
+  <data name="ButtonCancelText" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="ButtonChangePasswordText" xml:space="preserve">
+    <value>Verander Wachtwoord</value>
+  </data>
+  <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
+    <value>Verwijder AxCrypt ID</value>
+  </data>
+  <data name="ButtonDeleteText" xml:space="preserve">
+    <value>Verwijder</value>
+  </data>
+  <data name="ButtonEditText" xml:space="preserve">
+    <value>Bewerken</value>
+  </data>
+  <data name="ButtonEllipsisText" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="ButtonHelpText" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="ButtonNewText" xml:space="preserve">
+    <value>Wissel</value>
+  </data>
+  <data name="ButtonNewToolTip" xml:space="preserve">
+    <value>Klik om de AxCrypt ID email voor het aanmelden te wijzigen.</value>
+    <comment>The new AxCrypt ID button tooltip</comment>
+  </data>
+  <data name="ButtonNoText" xml:space="preserve">
+    <value>Nee</value>
+  </data>
+  <data name="ButtonOkText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ButtonPasswordResetText" xml:space="preserve">
+    <value>Reset</value>
+    <comment>Button text for a password reset button</comment>
+  </data>
+  <data name="ButtonSaveText" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="ButtonSendText" xml:space="preserve">
+    <value>Versturen</value>
+  </data>
+  <data name="ButtonShareRightText" xml:space="preserve">
+    <value>Delen &gt;&gt;</value>
+  </data>
+  <data name="ButtonSignInBuyText" xml:space="preserve">
+    <value>Aanmelden &amp; Koop Nu</value>
+  </data>
+  <data name="ButtonSignInText" xml:space="preserve">
+    <value>Aanmelden</value>
+  </data>
+  <data name="ButtonSignUpText" xml:space="preserve">
+    <value>Inschrijven</value>
+  </data>
+  <data name="ButtonSuggestText" xml:space="preserve">
+    <value>Wachtwoord voorstellen</value>
+  </data>
+  <data name="ButtonUnshareLeftText" xml:space="preserve">
+    <value>&lt;&lt; Stop Delen</value>
+  </data>
+  <data name="ButtonYesText" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>'{0}' geannuleerd.</value>
+  </data>
+  <data name="CannotStartApplication" xml:space="preserve">
+    <value>Kan applicatie niet starten vanwege '{0}'.</value>
+  </data>
+  <data name="CannotWrite" xml:space="preserve">
+    <value>Kan '{0}' niet schrijven.</value>
+  </data>
+  <data name="CaptchaError" xml:space="preserve">
+    <value>Onjuist captcha antwoord.</value>
+  </data>
+  <data name="CaptchaLabel" xml:space="preserve">
+    <value>Bewijs dat u een echt persoon bent en geen geautomatiseerde software!</value>
+  </data>
+  <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
+    <value>Verander e-mail</value>
+  </data>
+  <data name="ChangeEmailConfirmMailSubject" xml:space="preserve">
+    <value>AxCrypt ID Email Veranderen </value>
+  </data>
+  <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
+    <value>Uw wijziging van AxCrypt ID emailadres is bevestigd! Meldt u zich alstublieft aan om het proces te voltooien</value>
+  </data>
+  <data name="ChangeEmailExistMailBody2" xml:space="preserve">
+    <value>U heeft al een AxCrypt ID met dit emailadres en daarom hebben we uw verzoek stilletjes genegeerd.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody3" xml:space="preserve">
+    <value>Negeer deze mail of rapporteer het naar {0}. Er is geen schade veroorzaakt en geen informatie is vrijgegeven.</value>
+  </data>
+  <data name="ChangeEmailExistMailSubject" xml:space="preserve">
+    <value>AxCrypt ID Email Wijziging Aanvraag</value>
+  </data>
+  <data name="ChangeEmailMarkSuccess" xml:space="preserve">
+    <value>Wij hebben een email verstuurd naar &lt;b&gt;{0}&lt;/b&gt;. Lees uw email alstublieft en klik op de link om de wijziging te bevestigen.
+
+Hierna kunt u zich aanmelden met &lt;b&gt;{0}&lt;/b&gt; en uw bestaand wachtwoord.
+
+U moet deze stappen volgen om het proces te voltooien.</value>
+  </data>
+  <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
+    <value>Uw notificatie voorkeuren zijn gewijzigd.</value>
+  </data>
+  <data name="ChangePassphraseDialogTitle" xml:space="preserve">
+    <value>Verander Wachtwoord</value>
+  </data>
+  <data name="ChangePasswordError" xml:space="preserve">
+    <value>Kon het wachtwoord niet wijzigen omdat het huidige wachtwoord incorrect is of het nieuwe wachtwoord ongeldig.</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>Uw wachtwoord is veranderd.</value>
+  </data>
+  <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
+    <value>Open Bestanden Opschonen</value>
+  </data>
+  <data name="CleanUpNeededToolTip" xml:space="preserve">
+    <value>Bestand is open en moet misschien opgeschoond worden. Sluit open applicaties en klik the Opschonen knop.</value>
+  </data>
+  <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
+    <value>Klik om te zoeken naar een nieuwe versie</value>
+  </data>
+  <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
+    <value>Klik om open bestanden op te schonen en te verwijderen, maar maak eerst zeker dat deze bestanden niet in gebruik zijn.</value>
+  </data>
+  <data name="ColumnAmountPaidHeader" xml:space="preserve">
+    <value>Betaald bedrag</value>
+  </data>
+  <data name="ColumnExpiresHeader" xml:space="preserve">
+    <value>Verloopt UTC</value>
+  </data>
+  <data name="ColumnFolderHeader" xml:space="preserve">
+    <value>Map</value>
+    <comment>Columnheader containing a folder name.</comment>
+  </data>
+  <data name="ColumnProductHeader" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="ColumnTimestampHeader" xml:space="preserve">
+    <value>Tijdstempel</value>
+  </data>
+  <data name="ConfirmAllCheckBoxText" xml:space="preserve">
+    <value>Do dit voor alle overgebleven bestanden?</value>
+  </data>
+  <data name="ContactInfoPhone" xml:space="preserve">
+    <value>+46 (0)8 550 10 274</value>
+  </data>
+  <data name="ContactInfoTitle" xml:space="preserve">
+    <value>Contact &amp; ondersteuning</value>
+  </data>
+  <data name="CookiePolicyBlockedError" xml:space="preserve">
+    <value>De actie was geblokkeerd, omdat cookies uitgeschakeld zijn in uw browser.</value>
+  </data>
+  <data name="CookiePolicyPageTitle" xml:space="preserve">
+    <value>Cookie Beleid</value>
+  </data>
+  <data name="CookiesDisabledError" xml:space="preserve">
+    <value>Cookies lijken uitgeschakeld te zijn in uw browser. Alleen wanneer uw cookies accepteert kunt u zich aanmelden en zal de site werken als verwacht. Lees meer in ons &lt;a href="{0}"&gt;cookie beleid&lt;/a&gt;.</value>
+  </data>
+  <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
+    <value>Creëer AxCrypt ID</value>
+  </data>
+  <data name="CryptoNameText" xml:space="preserve">
+    <value>Algoritme</value>
+  </data>
+  <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
+    <value>{0} Dagen</value>
+  </data>
+  <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
+    <value>&lt; 1 Dag</value>
+  </data>
+  <data name="DaysLeftWarningToolTip" xml:space="preserve">
+    <value>Uw Premium abonnement is bijna verlopen. Klik om te vernieuwen.</value>
+  </data>
+  <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
+    <value>Stop beveiligen and verwijder van lijst</value>
+  </data>
+  <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
+    <value>Bestand</value>
+  </data>
+  <data name="DecryptedFilesWarning" xml:space="preserve">
+    <value>Deze bestanden konden niet opnieuw geëncrypteerd worden:</value>
+    <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
+  </data>
+  <data name="DecryptedFileToolTip" xml:space="preserve">
+    <value>Er vanuit gaande dat het geopend is. Probeer de applicatie af te sluiten, of gebruik de opschoon functie om het te verwijderen.</value>
+  </data>
+  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
+    <value>Bestanden (*{0})|*{0}|Alle bestanden (*.*)|*.*</value>
+  </data>
+  <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
+    <value>Bestand bestaat, kies een nieuwe naam om op te slaan als</value>
+  </data>
+  <data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
+    <value>Uw wachtwoord is nog niet ingevoerd. Dubbelklik om uw wachtwoord in te voeren en Open, of klik de rechtermuisknop voor opties.</value>
+  </data>
+  <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
+    <value>Selecteer bestand om beveiligen te stoppen.</value>
+  </data>
+  <data name="DecryptToolStripMenuItemText" xml:space="preserve">
+    <value>Stop Beveiligen</value>
+  </data>
+  <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
+    <value>U bent aangemeld. Klik om af te melden.</value>
+  </data>
+  <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
+    <value>Verwijderen mislukt vanwege onjuist wachtwoord.</value>
+  </data>
+  <data name="DeleteSecretErrorNotFound" xml:space="preserve">
+    <value>Het verwijderen is mislukt omdat het opgevraagde wachtwoord niet gevonden kon worden.</value>
+  </data>
+  <data name="DeleteSecretSuccess" xml:space="preserve">
+    <value>Uw wachtwoord is verwijderd</value>
+  </data>
+  <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
+    <value>AxCrypt ID</value>
+  </data>
+  <data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
+    <value>De eerste keer dat u AxCrypt opstart is een echt email adres vereist. Klik voor meer informatie.</value>
+  </data>
+  <data name="DialogDecryptTitle" xml:space="preserve">
+    <value>Wachtwoord Vereist</value>
+  </data>
+  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
+    <value>AxCrypt ID Bestanden (*.axx)|*.axx|Alle Bestanden (*.*)|*.*"</value>
+  </data>
+  <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
+    <value>Export AxCrypt ID</value>
+  </data>
+  <data name="DialogExportSharingKeyFileName" xml:space="preserve">
+    <value>AxCrypt Sleutel Delen (#{1}) - {0}.txt</value>
+  </data>
+  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
+    <value>AxCrypt Openbaar Sleutel Bestanden Delen (*.txt)|*.txt|Alle Bestanden (*.*)|*.*</value>
+  </data>
+  <data name="DialogExportSharingKeyTitle" xml:space="preserve">
+    <value>Export Openbaar Delen Sleutel</value>
+  </data>
+  <data name="DialogFilePasswordTitle" xml:space="preserve">
+    <value>Bestand Wachtwoord</value>
+  </data>
+  <data name="DialogImportPrivateAxCryptIdAccessIdPrompt" xml:space="preserve">
+    <value>AxCrypt ID</value>
+  </data>
+  <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
+    <value>AxCrypt ID Importeren</value>
+  </data>
+  <data name="DialogManageAxcryptIdTitle" xml:space="preserve">
+    <value>Beheer AxCrypt ID</value>
+  </data>
+  <data name="DialogNewPasswordTitle" xml:space="preserve">
+    <value>Creëer Nieuw Wachtwoord</value>
+  </data>
+  <data name="DialogVerifyAccountTitle" xml:space="preserve">
+    <value>Activeer AxCrypt ID</value>
+  </data>
+  <data name="DialogWatchedFoldersTitle" xml:space="preserve">
+    <value>Beveiligde Mappen</value>
+  </data>
+  <data name="DoubleClickToOpenToolTip" xml:space="preserve">
+    <value>Dubbelklik om te openen. Als het vereist is wordt u om een wachtwoord gevraagd.</value>
+  </data>
+  <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
+    <value>Uw toegang is gelimiteerd tot alleen-lezen. Alleen Premium gebruikers mogen aanpassingen maken of nieuwe wachtwoorden creëren.</value>
+  </data>
+  <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
+    <value>[Geen Beschrijving]</value>
+  </data>
+  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
+    <value>AxCrypt Bestanden (*{0})|*{0}|Alle bestanden (*.*)|*.*</value>
+  </data>
+  <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
+    <value>Beveiligd Mappen</value>
+  </data>
+  <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
+    <value>Beveiligd</value>
+  </data>
+  <data name="EncryptedSourceColumnHeader" xml:space="preserve">
+    <value>Beveiligd bestand</value>
+  </data>
+  <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
+    <value>Selecteer bestanden om te beveiligen</value>
+  </data>
+  <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
+    <value>Bestand Bestaat, Sla Op Als</value>
+  </data>
+  <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
+    <value>Klik om bestanden te selecteren die u wilt beveiligen.</value>
+  </data>
+  <data name="EncryptToolStripMenuItemText" xml:space="preserve">
+    <value>Beveilig</value>
+  </data>
+  <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
+    <value>Identiteit '{0}' wachtwoord</value>
+  </data>
+  <data name="ErrorEmailMismatch" xml:space="preserve">
+    <value>De verificatie komt niet overeen met de email</value>
+  </data>
+  <data name="ErrorPasswordMismatch" xml:space="preserve">
+    <value>De wachtwoord verificatie komt niet overeen met het wachtwoord.</value>
+  </data>
+  <data name="ErrorPasswordTooLong" xml:space="preserve">
+    <value>Het wachtwoord moet minstens {2} en niet meer dan {1} karakters lang zijn.</value>
+  </data>
+  <data name="ExitToolStripMenuItemText" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
+    <value>Export AxCrypt ID Geheim en Delen Sleutel Paar</value>
+  </data>
+  <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
+    <value>Om een AxCrypt ID te verplaatsen, export het Geheim en Delen Sleutel Paar en importeer het ergens anders.</value>
+  </data>
+  <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
+    <value>Export Mijn Openbaar Delen Sleutel</value>
+  </data>
+  <data name="FailedPrivateImport" xml:space="preserve">
+    <value>Importeren mislukt. Mogelijk geen geldig AxCrypt ID bestand.</value>
+  </data>
+  <data name="FeedbackButtonText" xml:space="preserve">
+    <value>Hoe gaat het met u? Geef ons alstublieft feedback!</value>
+  </data>
+  <data name="FileAlreadyEncrypted" xml:space="preserve">
+    <value>Bestand '{0}' is al beveiligd.</value>
+  </data>
+  <data name="FileAlreadyEncryptedStatus" xml:space="preserve">
+    <value>Bestand '{0}' is al beveiligd.</value>
+  </data>
+  <data name="FileAlreadyExists" xml:space="preserve">
+    <value>Bestand '{0}' bestaat al </value>
+  </data>
+  <data name="FileDoesNotExist" xml:space="preserve">
+    <value>Bestand '{0}' bestaat niet.</value>
+  </data>
+  <data name="FileIsLockedWarning" xml:space="preserve">
+    <value>'{0}' is open in een andere applicatie. Sluit het en probeer het nog eens.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>Bestand bestaat niet.</value>
+  </data>
+  <data name="FileOperationFailed" xml:space="preserve">
+    <value>Mislukt '{0}'.</value>
+  </data>
+  <data name="FileToolStripMenuItemText" xml:space="preserve">
+    <value>Bestand</value>
+  </data>
+  <data name="FolderAlreadyWatched" xml:space="preserve">
+    <value>Map '{0}' is al beveiligd</value>
+  </data>
+  <data name="FooterInfoBody" xml:space="preserve">
+    <value>Dit is de AxCrypt ID sectie van AxCrypt.net, klik &lt;a href="{0}"&gt;hier&lt;/a&gt; om terug te gaan naar de startpagina.</value>
+  </data>
+  <data name="FooterInfoTitle" xml:space="preserve">
+    <value>AxCrypt ID</value>
+  </data>
+  <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
+    <value>Over</value>
+  </data>
+  <data name="HelpToolStripMenuItemText" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HelpViewHelpMenuItemText" xml:space="preserve">
+    <value>Bekijk Help</value>
+  </data>
+  <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
+    <value>AxCrypt ID importeren met delen en toegang sleutels</value>
+  </data>
+  <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
+    <value>Importeer Iemands Openbaar Delen Sleutel</value>
+  </data>
+  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
+    <value>AxCrypt ID Bestanden (*.axx)|*.axx|Alle Bestanden (*.*)|*.*</value>
+  </data>
+  <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
+    <value>Selecteer AxCrypt ID</value>
+  </data>
+  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
+    <value>Tekst Bestand (*.txt)|*.txt|Alle Bestanden (*.*)|*.*</value>
+  </data>
+  <data name="IndexPageTitle" xml:space="preserve">
+    <value>Mijn AxCrypt ID</value>
+  </data>
+  <data name="InformationTitle" xml:space="preserve">
+    <value>Informatie</value>
+    <comment>A dialog box title for general announcement and informative message dialog boxes</comment>
+  </data>
+  <data name="InvalidKey" xml:space="preserve">
+    <value>Onjuiste sleutel voor '{0}'.</value>
+  </data>
+  <data name="InvalidPath" xml:space="preserve">
+    <value>Het bestand of '{0}' pad is ongeldig voor dit.</value>
+  </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>Specificeer tijd alstublieft als 'uu:mm:ss.mmm'.</value>
+  </data>
+  <data name="Invalid_URL" xml:space="preserve">
+    <value>Onjuiste URL.</value>
+  </data>
+  <data name="InvitationMailSubject" xml:space="preserve">
+    <value>Uitnodiging om gebruik te maken van AxCrypt Bestand Beveiliging</value>
+  </data>
+  <data name="JavaScriptDisabledError" xml:space="preserve">
+    <value>JavaScript lijkt uitgeschakeld te zijn op uw computer. Zolang u JavaScript niet inschakeld kunt u zich niet aanmelden en kan de site niet functioneren zoals verwacht.</value>
+  </data>
+  <data name="KeyFileBrowseFilter" xml:space="preserve">
+    <value>AxCrypt Sleutel Bestanden(*.txt)|*.txt|Alle Bestanden (*.*)|*.*</value>
+  </data>
+  <data name="KeyFileBrowseTitle" xml:space="preserve">
+    <value>Selecteer een Sleutel Bestand</value>
+  </data>
+  <data name="KeyFilePrompt" xml:space="preserve">
+    <value>Sleutel Bestand</value>
+  </data>
+  <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
+    <value>Sleutel Beheer</value>
+  </data>
+  <data name="KeySharingExistsToolTip" xml:space="preserve">
+    <value>Het Sleutel Bestand is gedeeld met andere AxCrypt gebruikers.</value>
+  </data>
+  <data name="KeySharingToolTip" xml:space="preserve">
+    <value>Klik om geëncrypteerde bestandente selecteren waarvan u de sleutels wilt delen met anderen</value>
+  </data>
+  <data name="LanguageChangeRestartPrompt" xml:space="preserve">
+    <value>AxCrypt moet opnieuw opgestart te worden om taal te wijzigen.</value>
+  </data>
+  <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
+    <value>Tijd</value>
+  </data>
+  <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
+    <value>Nadat bestanden geconverteerd zijn van het AxCrypt 1.x bestandstype, moet u het nieuwe aanmeld wachtwoord gebruiken om ze te openen. Verifieer alstublieft hier.
+
+Vergeet dit wachtwoord niet!</value>
+  </data>
+  <data name="LicenseFreeNameText" xml:space="preserve">
+    <value>Gratis</value>
+  </data>
+  <data name="LicensePremiumNameText" xml:space="preserve">
+    <value>Premium</value>
+  </data>
+  <data name="LinkTextBackToMainSite" xml:space="preserve">
+    <value>Terug naar de hoofdsite</value>
+    <comment>Menus and similar to link back to main site.</comment>
+  </data>
+  <data name="LoggedOffStatusText" xml:space="preserve">
+    <value>Afgemeld</value>
+  </data>
+  <data name="LoggedOnStatusText" xml:space="preserve">
+    <value>Wachtwoord</value>
+    <comment>Shown in the title bar to display the log on status.</comment>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>De email of wachtwoord is incorrect.</value>
+  </data>
+  <data name="LoginPageTitle" xml:space="preserve">
+    <value>AxCrypt aanmelden</value>
+  </data>
+  <data name="LoginPurchaseError" xml:space="preserve">
+    <value>Er is iets mis gegaan tijdens uw betalingsverzoek. Probeer het alstublieft nog eens.</value>
+  </data>
+  <data name="LogOffText" xml:space="preserve">
+    <value>Afmelden</value>
+  </data>
+  <data name="LogOnText" xml:space="preserve">
+    <value>Aanmelden</value>
+  </data>
+  <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
+    <value>Upgrade naar Premium om de sterkste beveiliging te activeren.</value>
+  </data>
+  <data name="MagicGuidMIssingFileStatus" xml:space="preserve">
+    <value>'{0}' is geen AxCrypt bestand.</value>
+  </data>
+  <data name="MailBodyFooter" xml:space="preserve">
+    <value>Als u niet weet waarom u dit ontvangt van &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; kunt u deze mail negeren of rapporteren naar {1}.</value>
+  </data>
+  <data name="MailBodyFooterPlainText" xml:space="preserve">
+    <value>Als u niet weer waarom u dit onvangt van AxCrypt.net, kunt u deze email negeren of rapporteren naar {0}.</value>
+  </data>
+  <data name="MailBodySignature" xml:space="preserve">
+    <value>Bedankt voor het gebruiken van AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;Het AxCrypt team&lt;/i&gt;</value>
+  </data>
+  <data name="MailBodySignaturePlainText" xml:space="preserve">
+    <value>Bedankt voor het gebruiken van AxCrypt!
+- Svante
+Het AxCrypt Team</value>
+  </data>
+  <data name="MailBodyTitle" xml:space="preserve">
+    <value>Hallo {0},</value>
+  </data>
+  <data name="MailBodyTitleHtml" xml:space="preserve">
+    <value>Hallo {0},</value>
+  </data>
+  <data name="McHlpMenuAbout" xml:space="preserve">
+    <value>Info</value>
+    <comment>Tooltip for the about context menu.</comment>
+  </data>
+  <data name="McHlpMenuOpen" xml:space="preserve">
+    <value>Bestand ontsleutelen en openen met bijbehorende toepassing.</value>
+    <comment>Tooltip for open document context menu (double-click)</comment>
+  </data>
+  <data name="McHlpMenuRename" xml:space="preserve">
+    <value>De naam naar een anonieme naam wijzigen. De originele naam wordt hersteld bij het ontsleutelen.</value>
+    <comment>Tooltip for rename context menu</comment>
+  </data>
+  <data name="McHlpMenuShow" xml:space="preserve">
+    <value>Open de hele applicatie voor geavanceerde functies.</value>
+    <comment>Tooltip for show full program interface with all advanced funtions context menu.</comment>
+  </data>
+  <data name="McHlpMenuSignOut" xml:space="preserve">
+    <value>Klik om af te melden</value>
+    <comment>Tooltip for sign out context menu</comment>
+  </data>
+  <data name="McHlpMenuUnwrap" xml:space="preserve">
+    <value>Het bestand ontsleutelen en de bestandsnaam en tijd van laatste wijziging herstellen.</value>
+    <comment>Tooltip for decryption context menu</comment>
+  </data>
+  <data name="McHlpMenuWipe" xml:space="preserve">
+    <value>Het gehele bestand met willekeurige gegevens overschrijven en vervolgens definitief verwijderen.</value>
+    <comment>Shred and Delete tooltip for context menu</comment>
+  </data>
+  <data name="McHlpMenuWrapZ" xml:space="preserve">
+    <value>Het bestand eerst comprimeren en daarna versleutelen.</value>
+    <comment>Tooltip for the encrypt inplace context menu command</comment>
+  </data>
+  <data name="McHlpMenuWrapZC" xml:space="preserve">
+    <value>Het bestand eerst comprimeren en daarna versleutelen. Het origineel blijft behouden.</value>
+    <comment>Tooltip for the context menu for encryption</comment>
+  </data>
+  <data name="McInfAbout" xml:space="preserve">
+    <value>Compressie- en versleutelingswrapper en toepassingsstarter voor beveiligde opslag van gegevensbestanden op locale computers, servers of online.
+De licentie voor dit programma is conform de overeenkomst.
+%n%n%2
+%n%nMet dank aan:
+%nThe Legion of the Bouncy Castle Inc.</value>
+    <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
+  </data>
+  <data name="McInfAuthLead" xml:space="preserve">
+    <value>Integriteit:</value>
+    <comment>Lead-in header for Message Authentication Code, i.e. integrity validation</comment>
+  </data>
+  <data name="McInfComp" xml:space="preserve">
+    <value>Zlib/Deflate, RFC1950 en RFC1951.</value>
+    <comment>Name of compression algorithms and standards in property sheet.</comment>
+  </data>
+  <data name="McInfCompLead" xml:space="preserve">
+    <value>Compressie:</value>
+    <comment>Lead-in header for compression algorithm in property sheet</comment>
+  </data>
+  <data name="McInfEncLead" xml:space="preserve">
+    <value>Versleuteling:</value>
+    <comment>Property page header for encryption algorithms.</comment>
+  </data>
+  <data name="McInfMenuAbout" xml:space="preserve">
+    <value>Info</value>
+    <comment>Context menu for About</comment>
+  </data>
+  <data name="McInfMenuOpen" xml:space="preserve">
+    <value>Openen</value>
+    <comment>Context Menu for open action</comment>
+  </data>
+  <data name="McInfMenuRename" xml:space="preserve">
+    <value>Naam wijzigen</value>
+    <comment>Context menu for anonymous rename</comment>
+  </data>
+  <data name="McInfMenuShow" xml:space="preserve">
+    <value>Geavanceerd</value>
+    <comment>Context menu to show the main user inteface window, i.e. open AxCrypt</comment>
+  </data>
+  <data name="McInfMenuSignOut" xml:space="preserve">
+    <value>Afmelden</value>
+    <comment>Context Menu for Signing out</comment>
+  </data>
+  <data name="McInfMenuUnwrap" xml:space="preserve">
+    <value>Ontsleutelen</value>
+    <comment>Context menu for decrypt</comment>
+  </data>
+  <data name="McInfMenuWipe" xml:space="preserve">
+    <value>Vernietigen en verwijderen</value>
+    <comment>Context menu for Wipe</comment>
+  </data>
+  <data name="McInfMenuWrapZ" xml:space="preserve">
+    <value>Versleutelen</value>
+    <comment>Context menu for encrypt</comment>
+  </data>
+  <data name="McInfMenuWrapZC" xml:space="preserve">
+    <value>Kopie versleutelen</value>
+    <comment>Context menu for encrypting a copy</comment>
+  </data>
+  <data name="McMsgSystemCall" xml:space="preserve">
+    <value>Fout in systeemaanroep naar %3. %2</value>
+    <comment>General error message. Careful about the %-stuff</comment>
+  </data>
+  <data name="McWrnCancel" xml:space="preserve">
+    <value>Actie geannuleerd.</value>
+  </data>
+  <data name="MenuAxCryptIdText" xml:space="preserve">
+    <value>Mijn AxCrypt ID</value>
+  </data>
+  <data name="MenuDecryptPermanentlyText" xml:space="preserve">
+    <value>Decrypteer Permanent</value>
+  </data>
+  <data name="MenuDecryptTemporarilyText" xml:space="preserve">
+    <value>Decrypteren Tijdelijk</value>
+  </data>
+  <data name="MenuOpenExplorerHereText" xml:space="preserve">
+    <value>Open Verkenner Hier</value>
+  </data>
+  <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
+    <value>U kunt zicht niet aanmelden als '{0}'. Voer alstublieft een echt emailadres, en probeer het nog eens.</value>
+  </data>
+  <data name="MessageInvalidSignUpEmailTitle" xml:space="preserve">
+    <value>Ongeldig emailadres</value>
+  </data>
+  <data name="MessageServerUpdateText" xml:space="preserve">
+    <value>De AxCrypt-server is geüpdatet. Update AxCrypt alstublieft binnenkort. Onverwachte fouten kunnen anders voorkomen.</value>
+  </data>
+  <data name="MessageServerUpdateTitle" xml:space="preserve">
+    <value>AxCrypt Server Geüpdatet!</value>
+  </data>
+  <data name="MessageSigningUpText" xml:space="preserve">
+    <value>U heeft zich geregistreerd als '{0}'. Check alstublieft uw inbox voor een email met een 6-cijferige activatiecode.</value>
+  </data>
+  <data name="MessageSigningUpTitle" xml:space="preserve">
+    <value>Registreer voor een AxCrypt ID</value>
+  </data>
+  <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
+    <value>Geen Internet Toegang</value>
+  </data>
+  <data name="MessageSignUpUnexpectedErrorText" xml:space="preserve">
+    <value>Een onverwachte fout is opgetreden. Probeer het alstublieft nog eens. Mocht het probleem zich opnieuw voordoen, rapporteer dit dan alstubieft.</value>
+  </data>
+  <data name="MessageSignUpUnexpectedErrorTitle" xml:space="preserve">
+    <value>Onverwachte Fout</value>
+  </data>
+  <data name="MessageUnexpectedErrorText" xml:space="preserve">
+    <value>Een overwachte fout '{0}' heeft zich voorgedaan.</value>
+  </data>
+  <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
+    <value>Onverwachte Fout!</value>
+  </data>
+  <data name="MoreButtonText" xml:space="preserve">
+    <value>Meer...</value>
+    <comment>A 'More...' button text</comment>
+  </data>
+  <data name="MoreKeyFileToolTop" xml:space="preserve">
+    <value>Klik om de naam van een sleutel bestand in te voeren. Gebruik dit alleen wanneer u weet dat u een sleutel bestand heeft gebruikt tijdens het beveiligen van dit bestand in de vorige versie van AxCrypt.</value>
+    <comment>A tooltip for a more button displaying a key file entry field</comment>
+  </data>
+  <data name="NewPassphraseDialogTitle" xml:space="preserve">
+    <value>Creëer een Nieuw Wachtwoord</value>
+  </data>
+  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
+    <value>Versie {0} is beschikbaar! Klik om te downloaden.</value>
+  </data>
+  <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
+    <value>U bent afgemeld. Klik om aan te melden.</value>
+  </data>
+  <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
+    <value>Check voor updates niet nodig.</value>
+  </data>
+  <data name="NoPremiumWarning" xml:space="preserve">
+    <value>Uw Premium abonnement is verlopen. U gebruikt niet het hoogste beveiligingsniveau. Klik hier om te upgraden.</value>
+  </data>
+  <data name="NotFoundPageBody" xml:space="preserve">
+    <value>Helaas konden we de pagina die u zocht niet vinden.
+Dit kan mogelijk komen doordat de server opnieuw is opgestart waardoor uw browser sessie verlopen is, of een andere server fout waardoor we het verzoek niet konden verwerken.
+
+Opgevraagde pagina:
+{2}
+
+Uw verzoek is gelogd. Probeer het alstublieft nog eens met het juiste pad, of  &lt;a href="mailto:{0}"&gt;rapporteer&lt;/a&gt; een niet werkende link. 
+ 
+Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.</value>
+  </data>
+  <data name="NotFoundPageTitle" xml:space="preserve">
+    <value>De pagina was niet gevonden!</value>
+  </data>
+  <data name="NotFoundSafePageBody" xml:space="preserve">
+    <value>Helaas konden wij de pagina die u zocht niet vinden. Dit komt mogelijk door het opnieuw opstarten van een server waardoor uw browsersessie is verlopen, of door een andere server error waardoor we uw verzoek niet konden verwerken.
+
+Uw verzoek is gelogd. Probeer het alstublieft nog eens met het juiste pad, of &lt;a href="mailto:{0}"&gt;rapporteer&lt;/a&gt; een niet werkende link. 
+ 
+Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.</value>
+  </data>
+  <data name="OfflineAccountBePatient" xml:space="preserve">
+    <value>Dit kan enekele minuten duren. Wees alstublieft geduldig.</value>
+  </data>
+  <data name="OfflineAccountTitle" xml:space="preserve">
+    <value>Offline AxCrypt ID Creatie</value>
+  </data>
+  <data name="OfflineIndicatorText" xml:space="preserve">
+    <value>Offline</value>
+    <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
+  </data>
+  <data name="OldVersionTooltip" xml:space="preserve">
+    <value>Uw versie is verouderd. Klik alstublieft om te checken voor een nieuwe versie. </value>
+  </data>
+  <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
+    <value>Selecteer beveiligde bestanden om te openen</value>
+  </data>
+  <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
+    <value>Open Beveiligd</value>
+  </data>
+  <data name="OpenFileColumnHeader" xml:space="preserve">
+    <value>Bestand</value>
+  </data>
+  <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
+    <value>Klik om een beveiligd bestand te selecteren dat geopend moet worden.</value>
+  </data>
+  <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
+    <value>Verander Wachtwoord</value>
+  </data>
+  <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
+    <value>Wis Alle Instellingen en Sluit</value>
+  </data>
+  <data name="OptionsConvertMenuItemText" xml:space="preserve">
+    <value>Automatisch 1.x Bestanden Upgraden</value>
+    <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
+  </data>
+  <data name="OptionsConvertMenuToolTip" xml:space="preserve">
+    <value>Schakel het automatisch upgraden en converteren van oudere AxCrypt 1.x bestanden wanneer ze gebruikt worden in of uit.</value>
+    <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
+  </data>
+  <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="OptionsToolStripMenuItemText" xml:space="preserve">
+    <value>Opties</value>
+  </data>
+  <data name="PassphrasePrompt" xml:space="preserve">
+    <value>Wachtwoord</value>
+  </data>
+  <data name="PassphraseVerificationMismatch" xml:space="preserve">
+    <value>Wachtwoorden komen niet overeen </value>
+  </data>
+  <data name="PasswordManagementListPageBody" xml:space="preserve">
+    <value>Beer al uw wachtwoorden online in de cloud&lt;span class="text-cutoff"&gt; met AxCrypt Wachtwoord Management, uw online kluis voor wachtwoorden. codes, pins, etc. Uw wachtwoorden worden bewaard in een veilig geëncrypteerd archief en zijn beschikbaar voor u, en alleen u, overal op elk moment. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Lees meer]&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="PasswordManagementPageTitle" xml:space="preserve">
+    <value>Wachtwoord Beheer</value>
+  </data>
+  <data name="PasswordPolicyViolation" xml:space="preserve">
+    <value>Het wachtwoord moet minstens 10 karakters lang zijn.</value>
+  </data>
+  <data name="PasswordResetLink" xml:space="preserve">
+    <value>Wachtwoord vergeten? Klik hier</value>
+  </data>
+  <data name="PasswordResetMailBodyButton" xml:space="preserve">
+    <value>Reset wachtwoord</value>
+  </data>
+  <data name="PasswordResetMailSubject" xml:space="preserve">
+    <value>AxCrypt ID Wachtwoord Reset</value>
+  </data>
+  <data name="PasswordResetPageBody" xml:space="preserve">
+    <value>Als u zich eerder geregistreerd heeft, maar het wachtwoord vergeten bent, of vanwege een andere reden de activatielink niet onvangen of verloren heeft, kunt u zich opnieuw registreren en een nieuw activatiemail hier aanvragen.
+
+&lt;span class="red"&gt;Als u uw wachtwoord vergeten bent zorgt dit ervoor dat u zich weer kan aanmelden, maar u kan geen toegang meer krijgen tot geëncrypteerde bestanden of informatie die in de online wachtwoord beheerder zijn opgeslagen. Dit blijft geëncrypteerd met uw oude wachtwoord en wij kunnen dit niet decrypteren.&lt;/span&gt; 
+ 
+Voer uw emailadres hieronder in om een activatie of wachtwoord reset link naar het gespecificeerde adres te sturen. Vanwege persoonlijke betrouwbaarheidsredenen &lt;b&gt;wordt er geen feedback gegeven of de operatie succesvol of een mislukking was&lt;/b&gt;.</value>
+  </data>
+  <data name="PasswordResetPageTitle" xml:space="preserve">
+    <value>Wachtwoord reset</value>
+  </data>
+  <data name="PasswordResetSuccess" xml:space="preserve">
+    <value>Een poging om de AxCrypt activatie bevestigingscode naar &lt;b&gt;{0}&lt;/b&gt; te verzenden is gedaan. Check alstublieft uw email inbox. 
+ 
+Wanneer het er op lijkt dat u geen email ontvangen heeft, check of het niet tussen uw spam terecht is gekomen, en dat {0} correct is.</value>
+  </data>
+  <data name="PasswordStrengthBadTip" xml:space="preserve">
+    <value>Wachtwoord is te zwak om veilig te gebruiken.</value>
+  </data>
+  <data name="PasswordStrengthStrongTip" xml:space="preserve">
+    <value>Wachtwoord is sterk en goed genoeg om aanbevolen te worden</value>
+  </data>
+  <data name="PasswordStrengthWeakTip" xml:space="preserve">
+    <value>Wachtwoord is niet sterk genoeg om aanbevolen te worden.</value>
+  </data>
+  <data name="PayPalReadMoreLink" xml:space="preserve">
+    <value>{Meer informatie over PayPal]</value>
+  </data>
+  <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>Ik zou het geweldig vinden voor u als u gebruik blijft maken van onze Premium eigenschappen. Meldt u zich simpelweg &lt;a href="{0}Home/Login?email={1}"&gt;hier&lt;/a&gt; aan met uw AxCrypt ID u te abonneren.</value>
+    <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
+  </data>
+  <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
+    <value>Uw AxCrypt Premium abonnement verloopt binnenkort!</value>
+  </data>
+  <data name="PremiumFeatureToolTipText" xml:space="preserve">
+    <value>Deze eigenschap vereist het aanschaffen van Premium!</value>
+  </data>
+  <data name="PremiumNeededForKeyShare" xml:space="preserve">
+    <value>Om sleutels te delen heeft u Premium nodig. Klik hier om nu te upgraden!</value>
+  </data>
+  <data name="PromptActivationCode" xml:space="preserve">
+    <value>Activatiecode</value>
+  </data>
+  <data name="PromptAddContact" xml:space="preserve">
+    <value>Contact Toevoegen</value>
+  </data>
+  <data name="PromptBackLinkText" xml:space="preserve">
+    <value>Terug</value>
+  </data>
+  <data name="PromptBuyNow" xml:space="preserve">
+    <value>Koop nu</value>
+  </data>
+  <data name="PromptBuyPremium" xml:space="preserve">
+    <value>Koop Premium</value>
+  </data>
+  <data name="PromptChange" xml:space="preserve">
+    <value>Wijzigen</value>
+  </data>
+  <data name="PromptCurrentPasswordText" xml:space="preserve">
+    <value>Huidige wachtwoord</value>
+  </data>
+  <data name="PromptDeleteAxCryptIdText" xml:space="preserve">
+    <value>Verwijder AxCrypt ID</value>
+  </data>
+  <data name="PromptEmailText" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="PromptFileText" xml:space="preserve">
+    <value>Bestand</value>
+    <comment>The heading of a groupbox where the file name to be opened is displayed.</comment>
+  </data>
+  <data name="PromptKeepMeSignedIn" xml:space="preserve">
+    <value>Herriner mij en verleng aanmeld sessie</value>
+  </data>
+  <data name="PromptKnownContacts" xml:space="preserve">
+    <value>Bekende Contacten</value>
+  </data>
+  <data name="PromptLabelText" xml:space="preserve">
+    <value>Weet u zeker dat u dit bestand permanent wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.</value>
+  </data>
+  <data name="PromptMonths" xml:space="preserve">
+    <value>Maanden</value>
+  </data>
+  <data name="PromptMyAxCryptId" xml:space="preserve">
+    <value>Mijn AxCrypt ID</value>
+  </data>
+  <data name="PromptMySettings" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="PromptNewEmail" xml:space="preserve">
+    <value>Nieuwe email</value>
+  </data>
+  <data name="PromptNewPasswordText" xml:space="preserve">
+    <value>Nieuw wachtwoord</value>
+  </data>
+  <data name="PromptNotificationsText" xml:space="preserve">
+    <value>Notificaties</value>
+  </data>
+  <data name="PromptPasswordManager" xml:space="preserve">
+    <value>Wachtwoorder Beheerder</value>
+  </data>
+  <data name="PromptSetNewPassword" xml:space="preserve">
+    <value>Stel uw wachtwoord in</value>
+  </data>
+  <data name="PromptSharedWith" xml:space="preserve">
+    <value>Gedeeld met</value>
+  </data>
+  <data name="PromptSignIn" xml:space="preserve">
+    <value>Aanmelden</value>
+  </data>
+  <data name="PromptSignOut" xml:space="preserve">
+    <value>Afmelden</value>
+  </data>
+  <data name="PromptSignUp" xml:space="preserve">
+    <value>Registreren </value>
+  </data>
+  <data name="PromptSubscription" xml:space="preserve">
+    <value>Abonnement</value>
+  </data>
+  <data name="PromptSupport" xml:space="preserve">
+    <value>Ondersteuning</value>
+  </data>
+  <data name="PromptVerifyEmail" xml:space="preserve">
+    <value>Bevestig</value>
+  </data>
+  <data name="PromptXecretsDescriptionText" xml:space="preserve">
+    <value>Beschrijving (gerelateerde website, gebruikersnaam, etc.)</value>
+  </data>
+  <data name="PromptXecretsNew" xml:space="preserve">
+    <value>Nieuw</value>
+  </data>
+  <data name="PromptXecretsSearchText" xml:space="preserve">
+    <value>Zoeken</value>
+  </data>
+  <data name="PromptXecretsSecretText" xml:space="preserve">
+    <value>Wachtoowrd of geheim</value>
+  </data>
+  <data name="PurchaseErrorSubscriptionTime" xml:space="preserve">
+    <value>De geselecteerde abonnementsduur is ongeldig. Een geldig abonnement moet minstens {0} maand duren en niet langer zijn dan {1} maanden.</value>
+  </data>
+  <data name="PurchasePageBody1" xml:space="preserve">
+    <value>Met Premium kunt u volledig gebruik maken van AxCrypt op al uw computers en apparaten.
+
+AxCrypt is ontworpen met het idee om uw bestanden veilig te houden. Om van geavanceerde eigenschappen zoals 256-bit encryptie, Beveiligde Mappen en Wachtwoord Beheer gebruik te maken adviseren we u om naar AxCrypt Premium te upgraden. Met AxCrypt Premium heeft u altijd de gehele AxCrypt applicatie beschikbaar zonder beperkingen.
+
+Om de Premium eigenschappen te proberen bieden wij u een 30 dagen durende proefperiode van AxCrypt Premium aan zodra u uw AxCrypt ID heeft geactiveerd. Hierna kunt u uw Premium abonnement verlengen door het onderstaande formulier in te vullen.</value>
+  </data>
+  <data name="PurchasePageTitle" xml:space="preserve">
+    <value>Koop AxCrypt Premium</value>
+  </data>
+  <data name="PurchaseReceiptError" xml:space="preserve">
+    <value>De aankoop was geannuleerd</value>
+  </data>
+  <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
+    <value>We hebben uw betaling nooit ontvangen. Dit komt mogelijk door het handmatig annuleren van uw aankoop op PayPal of door een ontoereikend saldo.</value>
+  </data>
+  <data name="PurchaseReceiptSuccess" xml:space="preserve">
+    <value>Bedankt voor het aanschaffen van AxCrypt Premium!</value>
+  </data>
+  <data name="PurchaseVatPercent" xml:space="preserve">
+    <value>&lt;b&gt;Zonder BTW&lt;/b&gt;. De BTW is afhankelijk van het land waar u woont en wordt getoond op betalingspagina. </value>
+  </data>
+  <data name="PurgingActiveFiles" xml:space="preserve">
+    <value>Actieve Bestanden Opschonen</value>
+  </data>
+  <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="RecentFilesTabPageText" xml:space="preserve">
+    <value>Recente Bestanden</value>
+  </data>
+  <data name="RegisterError" xml:space="preserve">
+    <value>Registratie mislukt. Check alstublieft uw email en probeer het nog eens.</value>
+  </data>
+  <data name="RegisterLink" xml:space="preserve">
+    <value>Nieuwe gebruiker? Registreer</value>
+  </data>
+  <data name="RegisterPageBody" xml:space="preserve">
+    <value>Om te beginnen met AxCrypt heeft u een AxCrypt ID nodig die u kunt verkrijgen door uw emailadres in het onderstaande formulier in te voeren. Een bericht met een activatielink zal naar het gespecificeerde adres worden verstuurd en wanneer u op de link klinkt wordt u gevraagd om een wachtwoord te kiezen. Dat is het!
+ 
+Een 30 dagen durende proefperiode voor AxCrypt Premium is hierbij inbegrepen en zal beginnen wanneer u uw AxCrypt ID activeerd.</value>
+  </data>
+  <data name="RegisterPageTitle" xml:space="preserve">
+    <value>Registreer voor een AxCrypt ID</value>
+  </data>
+  <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
+    <value>Verwijder van lijst maar houdt bestand beveiligd</value>
+  </data>
+  <data name="ResendButtonText" xml:space="preserve">
+    <value>Opnieuw versturen</value>
+    <comment>A button in a verification dialog that causes the verification to be resent.</comment>
+  </data>
+  <data name="ResendButtonToolTip" xml:space="preserve">
+    <value>Klik om de activatiecode opnieuw naar uw emailadres to versturen.</value>
+  </data>
+  <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
+    <value>Alleen premium gebruikers kunnen hun ingevoerde wachtwoorden opslaan.</value>
+  </data>
+  <data name="SecretsButtonToolTipText" xml:space="preserve">
+    <value>Ga naar wachtwoord beheer.</value>
+  </data>
+  <data name="SecretsWarningIsReadOnly" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="SecureDeleteDialogTitle" xml:space="preserve">
+    <value>AxCrypt Beveiligd Verwijderen</value>
+  </data>
+  <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
+    <value>Veilig Verwijderen</value>
+  </data>
+  <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
+    <value>Uw software moet geüpdatet worden vanwege een beveiligings probleem. </value>
+    <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SettingsDeletePageBody" xml:space="preserve">
+    <value>Hier kunt u uw AxCrypt ID permanent van het systeem verwijderen. &lt;span class="red"&gt;Alle data geassocieerd met  uw AxCrypt ID, waaronder opgeslagen wachtwoorden, zal ook worden verwijderd.&lt;/span&gt; 
+ 
+Typ uw wachtwoord hieronder om uw AxCrypt ID te verwijderen.</value>
+  </data>
+  <data name="SettingsEmailPageBody" xml:space="preserve">
+    <value>Om het emailadres dat is geassocieerd met uw AxCrypt ID te veranderen kunt u hieronder een new emailadres invoeren. Dit beïnvloed hoe u zich op de site aanmeldt en naar welk adres emails worden verstuurd.
+
+Een bevestigingsemail wordt verstuurd naar het nieuwe emailadres. De verandering wordt pas doorgevoerd zodra u op de bevestigingslink klikt en zich succesvol aanmeldt.</value>
+  </data>
+  <data name="SettingsNotificationsPageBody" xml:space="preserve">
+    <value>Kies uw voorkeur voor AxCrypt notificaties hieronder.</value>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="SettingsPasswordPageBody" xml:space="preserve">
+    <value>Om uw wachtwoord te veranderen moet u uw huidige wachtwoord invoeren en daarna een nieuw wachtwoord invoeren en verifiëren.
+
+Kies iets dat moeilijk te raden is, sinds het de wachtwoorden beschermd in de online wachtwoord beheerder en toegang geeft tot de website. Typ langzaam en zorgvuldig, en vergeet uw nieuwe wachtwoord niet!</value>
+  </data>
+  <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
+    <value>Nieuwe AxCrypt Gebruiker</value>
+  </data>
+  <data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
+    <value>U staat op het punt om beveiligd te delen met iemand die een AxCrypt uitnodiging heeft ontvangen, maar hier nog niet op heeft gereageerd.
+
+Overweeg '{0}' direct te informeren over AxCrypt bestand beveiliging. </value>
+  </data>
+  <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
+    <value>Sleutels Delen</value>
+  </data>
+  <data name="ShowPasswordOptionPrompt" xml:space="preserve">
+    <value>Toon Wachtwoord</value>
+  </data>
+  <data name="SignInVerificationTitle" xml:space="preserve">
+    <value>Bevestig Aanmelding</value>
+  </data>
+  <data name="SiteRestartWarning" xml:space="preserve">
+    <value>Waarschuwing! Een site restart is gepland in de aankomende minuten. Onze excuses voor het ongemak.</value>
+  </data>
+  <data name="StopSecuringToolTipText" xml:space="preserve">
+    <value>Klik om bestanden te selecteren die u niet meer wilt beveiligen.</value>
+  </data>
+  <data name="SubscriptionsSuccessAdd" xml:space="preserve">
+    <value>Het abonnement was succesvol opgeslagen.</value>
+  </data>
+  <data name="SupportBodyPrompt" xml:space="preserve">
+    <value>Hoe kunnen we u helpen?</value>
+  </data>
+  <data name="SupportPageTitle" xml:space="preserve">
+    <value>Premium Ondersteuning</value>
+  </data>
+  <data name="SupportPremiumIntro" xml:space="preserve">
+    <value>Welkom bij AxCrypt Ondersteuning. Wij geven onze Premium gebruikers voorrang en directe persoonlijke ondersteuning via email.</value>
+  </data>
+  <data name="TextCheckEmailAndSpam" xml:space="preserve">
+    <value>Check email en spam</value>
+  </data>
+  <data name="TextPreferenceCritical" xml:space="preserve">
+    <value>Kritisch - Ontvang notificaties voor kritische AxCrypt updates</value>
+  </data>
+  <data name="TextPreferenceDecline" xml:space="preserve">
+    <value>Afwijzen - Ontvang nooit notificaties over AxCrypt updates</value>
+  </data>
+  <data name="TextPreferenceUnknown" xml:space="preserve">
+    <value>Onbekend - U heeft geen specifieke voorkeur aangegeven</value>
+  </data>
+  <data name="TextPreferenceUpdate" xml:space="preserve">
+    <value>Update - Ontvang een notificatie voor alle AxCrypt updates</value>
+  </data>
+  <data name="TitleAxCryptIdSignInText" xml:space="preserve">
+    <value>AxCrypt ID Aanmelden</value>
+  </data>
+  <data name="TitleCreateAxCryptIdTitle" xml:space="preserve">
+    <value>Creëer AxCrypt ID</value>
+  </data>
+  <data name="TitleMainWindow" xml:space="preserve">
+    <value>{0} {1}{2}</value>
+  </data>
+  <data name="TitleSignInToAxCrypt" xml:space="preserve">
+    <value>AxCrypt Aanmelden</value>
+    <comment>Title on the web page for signin for example.</comment>
+  </data>
+  <data name="TitleWindowSignInStatus" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+  <data name="TransactionHistoryTitle" xml:space="preserve">
+    <value>Transactiegeschiedenis</value>
+  </data>
+  <data name="UnknownCrypto" xml:space="preserve">
+    <value>Onbekend</value>
+    <comment>Displayed when an unknown CryptoId is encountered.</comment>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Onbekende Fout. Rapporteer alstublieft.</value>
+  </data>
+  <data name="UnknownFileStatus" xml:space="preserve">
+    <value>Status 'Onbekend' met '{0}'.</value>
+  </data>
+  <data name="UnrecognizedError" xml:space="preserve">
+    <value>{1} voor '{0}'.</value>
+  </data>
+  <data name="UnregisterMailBody1" xml:space="preserve">
+    <value>Dit is een bevestiging dat uw AxCrypt ID op &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; succesvol verwijderd is.</value>
+  </data>
+  <data name="UnregisterMailSubject" xml:space="preserve">
+    <value>AxCrypt ID Verwijderd</value>
+  </data>
+  <data name="UpdatingStatus" xml:space="preserve">
+    <value>Status Updaten</value>
+  </data>
+  <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
+    <value>1.x Bestanden Upgraden</value>
+  </data>
+  <data name="UpgradePromptText" xml:space="preserve">
+    <value>Koop Premium!</value>
+    <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="VerifyPasswordPrompt" xml:space="preserve">
+    <value>Verifieer Wachtwoord</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Waarschuwing!</value>
+    <comment>The title of a pop up or dialog with a warning.</comment>
+  </data>
+  <data name="WatchedFolderColumnHeaderText" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
+    <value>Open Verkenner Hier</value>
+  </data>
+  <data name="WatchedFoldersRemoveMenuItemText" xml:space="preserve">
+    <value>Decrypteer Permanent</value>
+  </data>
+  <data name="WatchedFoldersTabPageText" xml:space="preserve">
+    <value>Beveiligde Mappen</value>
+  </data>
+  <data name="WelcomeMailBody0Html" xml:space="preserve">
+    <value>Welkom bij AxCrypt!</value>
+  </data>
+  <data name="WelcomeMailBody1Html" xml:space="preserve">
+    <value>Ik ben heel blij dat u zich heeft aangemeld! Om u welkom te heten, heb ik u gratis toegang gegeven tot onze Premium eigenschappen voor 30 dagen.</value>
+  </data>
+  <data name="WelcomeMailSubject" xml:space="preserve">
+    <value>Welkom bij AxCrypt!</value>
+  </data>
+  <data name="WelcomeToAxCryptTitle" xml:space="preserve">
+    <value>Beginnen met AxCrypt</value>
+  </data>
+  <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
+    <value>Selecteer bestanden om beveiligd te verwijderen</value>
+  </data>
+  <data name="WixAxNeedUninstall" xml:space="preserve">
+    <value>U moet de huidig geïnstalleerde versie van AxCrypt op deze computer eerst deïnstalleren.</value>
+  </data>
+  <data name="WixAxOsNotSupported" xml:space="preserve">
+    <value>De versie van Windows op deze computer is niet ondersteund</value>
+  </data>
+  <data name="WixCaption" xml:space="preserve">
+    <value>[WixBundleName] Setup</value>
+    <comment>[WixBundlePart] should NOT be translated.</comment>
+  </data>
+  <data name="WixConfirmCancelMessage" xml:space="preserve">
+    <value>Weet u zeker dat u wilt annuleren?</value>
+  </data>
+  <data name="WixExecuteUpgradeRelatedBundleMessage" xml:space="preserve">
+    <value>Vorige versie</value>
+  </data>
+  <data name="WixFailureCloseButton" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="WixFailureHeader" xml:space="preserve">
+    <value>Setup Mislukt</value>
+  </data>
+  <data name="WixFailureInstallHeader" xml:space="preserve">
+    <value>Setup Mislukt</value>
+  </data>
+  <data name="WixFailureRepairHeader" xml:space="preserve">
+    <value>Reparatie Mislukt</value>
+  </data>
+  <data name="WixFailureRestartButton" xml:space="preserve">
+    <value>Opnieuw opstarten</value>
+  </data>
+  <data name="WixFailureUninstallHeader" xml:space="preserve">
+    <value>De-installeren Mislukt</value>
+  </data>
+  <data name="WixFilesInUseCancelButton" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="WixFilesInUseCloseRadioButton" xml:space="preserve">
+    <value>Sluit de applicaties en probeer ze opnieuw op te starten</value>
+  </data>
+  <data name="WixFilesInUseDontCloseRadioButton" xml:space="preserve">
+    <value>Sluit de applicaties niet. Opnieuw opstarten is vereist.</value>
+  </data>
+  <data name="WixFilesInUseHeader" xml:space="preserve">
+    <value>Documenten In Gebruik</value>
+  </data>
+  <data name="WixFilesInUseOkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="WixHelpCloseButton" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="WixHelpHeader" xml:space="preserve">
+    <value>Setup Help</value>
+  </data>
+  <data name="WixInstallAcceptCheckbox" xml:space="preserve">
+    <value>Ik ga akkoord met de algemene voorwaarden</value>
+  </data>
+  <data name="WixInstallCloseButton" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="WixInstallInstallButton" xml:space="preserve">
+    <value>Installeren</value>
+  </data>
+  <data name="WixInstallVersion" xml:space="preserve">
+    <value>Versie [WixBundleVersion]</value>
+    <comment>[WixBundleVersion] should NOT BE TRANSLATED</comment>
+  </data>
+  <data name="WixModifyCloseButton" xml:space="preserve">
+    <value>Sluit</value>
+  </data>
+  <data name="WixModifyHeader" xml:space="preserve">
+    <value>Setup Aanpassen</value>
+  </data>
+  <data name="WixModifyRepairButton" xml:space="preserve">
+    <value>Repareren </value>
+  </data>
+  <data name="WixModifyUninstallButton" xml:space="preserve">
+    <value>De-installeren</value>
+  </data>
+  <data name="WixMsiArpComments" xml:space="preserve">
+    <value>AxCrypt Bestand Encryptie</value>
+    <comment>The title in Control Panel add/remove</comment>
+  </data>
+  <data name="WixMsiDoNotInstall32BitOn64Bit" xml:space="preserve">
+    <value>Dit is een 32 bit MSI installer. U gebruikt een 64-bit versie van Windows. Gebruik de MSI met 'x64' in de bestandsnaam in plaats van 'Win32'.</value>
+  </data>
+  <data name="WixMsiExternalName" xml:space="preserve">
+    <value>AxCrypt</value>
+    <comment>How AxCrypt is written for users</comment>
+  </data>
+  <data name="WixMsiLaunchAxCryptDescription" xml:space="preserve">
+    <value>Start AxCrypt</value>
+    <comment>Start Menu tooltip to start AxCrypt</comment>
+  </data>
+  <data name="WixMsiMainExecutablesTitle" xml:space="preserve">
+    <value>AxCrypt Programma Bestanden</value>
+    <comment>Feature name in installer</comment>
+  </data>
+  <data name="WixMsiNet45Required" xml:space="preserve">
+    <value>Deze applicatie vereist .NET Framework 4.5 of hoger. Installeer de .NET Framework en start de installatie opnieuw.</value>
+    <comment>Error message when .NET 4.5 is missing</comment>
+  </data>
+  <data name="WixMsiNoDowngrade" xml:space="preserve">
+    <value>U heeft al de huidige of een nieuwere versie geïnstalleerd! De-installeer deze versie alstublieft voor u doorgaat. Vergeet niet opnieuw op te starten wanneer dit van u wordt gevraagd.</value>
+    <comment>Error message during installation when a newer version already is installed.</comment>
+  </data>
+  <data name="WixMsiShellExtensionTitle" xml:space="preserve">
+    <value>Windows Rechtermuisknop-Klik Integratie</value>
+    <comment>Feature name for the shell extension during installation</comment>
+  </data>
+  <data name="WixMsiStartAxCrypt" xml:space="preserve">
+    <value>Start AxCrypt</value>
+    <comment>Prompt to start AxCrypt after installation</comment>
+  </data>
+  <data name="WixOverallProgressPackageText" xml:space="preserve">
+    <value>Initialiseren...</value>
+  </data>
+  <data name="WixProgressCancelButton" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="WixProgressHeader" xml:space="preserve">
+    <value>Setup Voortgang</value>
+  </data>
+  <data name="WixProgressLabel" xml:space="preserve">
+    <value>Verwerken:</value>
+  </data>
+  <data name="WixSuccessCloseButton" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="WixSuccessHeader" xml:space="preserve">
+    <value>Setup succesvol </value>
+  </data>
+  <data name="WixSuccessInstallHeader" xml:space="preserve">
+    <value>Installatie Succesvol Voltooid</value>
+  </data>
+  <data name="WixSuccessLaunchButton" xml:space="preserve">
+    <value>Opstarten</value>
+  </data>
+  <data name="WixSuccessRepairHeader" xml:space="preserve">
+    <value>Reparatie Succesvol Voltooid</value>
+  </data>
+  <data name="WixSuccessRestartButton" xml:space="preserve">
+    <value>Opnieuw opstarten</value>
+  </data>
+  <data name="WixSuccessRestartText" xml:space="preserve">
+    <value>U moet uw computer opnieuw opstarten voordat u van de software gebruik kan maken.</value>
+  </data>
+  <data name="WixSuccessUninstallHeader" xml:space="preserve">
+    <value>De-installeren Succesvol Voltooid</value>
+  </data>
+  <data name="WorkingFileStatus" xml:space="preserve">
+    <value>Status 'In Gebruik' met '{0}'.</value>
+  </data>
+  <data name="WrongPassphrase" xml:space="preserve">
+    <value>Onjuist Wachtwoord. Probeer het alstublieft nog eens.</value>
+  </data>
+  <data name="WrongVerificationCode" xml:space="preserve">
+    <value>Verkeerde activatiecode. Controleer uw email alstublieft opnieuw.</value>
+  </data>
+  <data name="WrongVerificationCodeFormat" xml:space="preserve">
+    <value>De verificatiecode moet exact 6 cijfers lang zijn.</value>
+  </data>
+</root>
