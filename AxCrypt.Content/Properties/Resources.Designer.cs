@@ -884,7 +884,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to clean and remove any open files, but ensure they are not in use first..
+        ///   Looks up a localized string similar to Click to encrypt any opened files  or new files in secured folders, but ensure they are not in use first..
         /// </summary>
         public static string CloseAndRemoveOpenFilesToolStripButtonToolTipText {
             get {
@@ -1226,6 +1226,15 @@ namespace AxCrypt.Content.Properties {
         public static string DefaultEncryptionKeyIsIsetToolTip {
             get {
                 return ResourceManager.GetString("DefaultEncryptionKeyIsIsetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to open a default secure folder..
+        /// </summary>
+        public static string DefaultSecureFolderToolTip {
+            get {
+                return ResourceManager.GetString("DefaultSecureFolderToolTip", resourceCulture);
             }
         }
         

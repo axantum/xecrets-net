@@ -1366,6 +1366,7 @@ namespace Axantum.AxCrypt
                 button.AutoSize = false;
                 button.ImageAlign = ContentAlignment.MiddleCenter;
                 button.Tag = knownFolder;
+                button.ToolTipText = Texts.DefaultSecureFolderToolTip;
                 button.Click += async (sender, e) =>
                 {
                     ToolStripItem item = sender as ToolStripItem;
