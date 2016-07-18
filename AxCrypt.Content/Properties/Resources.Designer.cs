@@ -329,7 +329,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Anonymous Rename.
+        ///   Looks up a localized string similar to Anonymous Rename.
         /// </summary>
         public static string AnonymousRenameMenuText {
             get {
@@ -439,7 +439,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Cancel All.
+        ///   Looks up a localized string similar to Cancel All.
         /// </summary>
         public static string ButtonCancelAllText {
             get {
@@ -502,7 +502,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E&amp;xit.
+        ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string ButtonExitText {
             get {
@@ -511,7 +511,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Help.
+        ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string ButtonHelpText {
             get {
@@ -520,7 +520,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Switch.
+        ///   Looks up a localized string similar to Switch.
         /// </summary>
         public static string ButtonNewText {
             get {
@@ -538,7 +538,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;No.
+        ///   Looks up a localized string similar to No.
         /// </summary>
         public static string ButtonNoText {
             get {
@@ -556,7 +556,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Reset.
+        ///   Looks up a localized string similar to Reset.
         /// </summary>
         public static string ButtonPasswordResetText {
             get {
@@ -646,20 +646,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Yes.
+        ///   Looks up a localized string similar to Yes.
         /// </summary>
         public static string ButtonYesText {
             get {
                 return ResourceManager.GetString("ButtonYesText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel &amp;All.
-        /// </summary>
-        public static string CancelButtonText {
-            get {
-                return ResourceManager.GetString("CancelButtonText", resourceCulture);
             }
         }
         
@@ -866,7 +857,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Clean Open Files.
+        ///   Looks up a localized string similar to Clean Open Files.
         /// </summary>
         public static string CleanDecryptedToolStripMenuItemText {
             get {
@@ -965,7 +956,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do this for &amp;all remaining files?.
+        ///   Looks up a localized string similar to Do this for all remaining files?.
         /// </summary>
         public static string ConfirmAllCheckBoxText {
             get {
@@ -1095,7 +1086,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Check Version Now.
+        ///   Looks up a localized string similar to Check Version Now.
         /// </summary>
         public static string DebugCheckVersionNowToolStripMenuItemText {
             get {
@@ -1104,7 +1095,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to License &amp;Policy.
+        ///   Looks up a localized string similar to License Policy.
         /// </summary>
         public static string DebugCryptoPolicyToolStripMenuItemText {
             get {
@@ -1113,7 +1104,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Logging.
+        ///   Looks up a localized string similar to Logging.
         /// </summary>
         public static string DebugLoggingToolStripMenuItemText {
             get {
@@ -1122,7 +1113,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Manage AxCrypt ID.
+        ///   Looks up a localized string similar to Manage AxCrypt ID.
         /// </summary>
         public static string DebugManageAccountToolStripMenuItemText {
             get {
@@ -1131,7 +1122,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Options.
+        ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string DebugOptionsToolStripMenuItemText {
             get {
@@ -1140,7 +1131,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Debug.
+        ///   Looks up a localized string similar to Debug.
         /// </summary>
         public static string DebugToolStripMenuItemText {
             get {
@@ -1149,7 +1140,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Stop securing and remove from list.
+        ///   Looks up a localized string similar to Stop securing and remove from list.
         /// </summary>
         public static string DecryptAndRemoveFromListToolStripMenuItemText {
             get {
@@ -1221,7 +1212,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Stop Securing.
+        ///   Looks up a localized string similar to Stop Securing.
         /// </summary>
         public static string DecryptToolStripMenuItemText {
             get {
@@ -1565,7 +1556,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secured &amp;Folders.
+        ///   Looks up a localized string similar to Secured Folders.
         /// </summary>
         public static string EncryptedFoldersToolStripMenuItemText {
             get {
@@ -1619,7 +1610,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Secure.
+        ///   Looks up a localized string similar to Secure.
         /// </summary>
         public static string EncryptToolStripMenuItemText {
             get {
@@ -1628,7 +1619,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;English.
+        ///   Looks up a localized string similar to English.
         /// </summary>
         public static string EnglishLanguageToolStripMenuItemText {
             get {
@@ -1691,7 +1682,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E&amp;xit.
+        ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string ExitToolStripMenuItemText {
             get {
@@ -1700,7 +1691,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export AxCrypt ID &amp;Secret and Sharing Key Pair.
+        ///   Looks up a localized string similar to Export AxCrypt ID Secret and Sharing Key Pair.
         /// </summary>
         public static string ExportMyPrivateKeyToolStripMenuItemText {
             get {
@@ -1718,7 +1709,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E&amp;xport My Public Sharing Key.
+        ///   Looks up a localized string similar to Export My Public Sharing Key.
         /// </summary>
         public static string ExportSharingKeyToolStripMenuItemText {
             get {
@@ -1826,7 +1817,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;File.
+        ///   Looks up a localized string similar to File.
         /// </summary>
         public static string FileToolStripMenuItemText {
             get {
@@ -1862,7 +1853,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Français.
+        ///   Looks up a localized string similar to Français.
         /// </summary>
         public static string FrancaisLanguageToolStripMenuItemText {
             get {
@@ -1898,7 +1889,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;About.
+        ///   Looks up a localized string similar to About.
         /// </summary>
         public static string HelpAboutToolStripMenuItemText {
             get {
@@ -1907,7 +1898,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Help.
+        ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string HelpToolStripMenuItemText {
             get {
@@ -1916,7 +1907,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;View Help.
+        ///   Looks up a localized string similar to View Help.
         /// </summary>
         public static string HelpViewHelpMenuItemText {
             get {
@@ -1925,7 +1916,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import &amp;AxCrypt ID with sharing and access keys..
+        ///   Looks up a localized string similar to Import AxCrypt ID with sharing and access keys..
         /// </summary>
         public static string ImportMyPrivateKeyToolStripMenuItemText {
             get {
@@ -1943,7 +1934,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Import Someone&apos;s Public Sharing Key.
+        ///   Looks up a localized string similar to Import Someone&apos;s Public Sharing Key.
         /// </summary>
         public static string ImportOthersSharingKeyToolStripMenuItemText {
             get {
@@ -2158,7 +2149,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Key Management.
+        ///   Looks up a localized string similar to Key Management.
         /// </summary>
         public static string KeyManagementToolStripMenuItemText {
             get {
@@ -2853,7 +2844,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Decrypt Permanently.
+        ///   Looks up a localized string similar to Decrypt Permanently.
         /// </summary>
         public static string MenuDecryptPermanentlyText {
             get {
@@ -2862,7 +2853,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Decrypt &amp;Temporarily.
+        ///   Looks up a localized string similar to Decrypt Temporarily.
         /// </summary>
         public static string MenuDecryptTemporarilyText {
             get {
@@ -2871,7 +2862,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open &amp;Explorer Here.
+        ///   Looks up a localized string similar to Open Explorer Here.
         /// </summary>
         public static string MenuOpenExplorerHereText {
             get {
@@ -3044,15 +3035,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;No.
-        /// </summary>
-        public static string NoButtonText {
-            get {
-                return ResourceManager.GetString("NoButtonText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You are Signed Out. Click to Sign In..
         /// </summary>
         public static string NoDefaultEncryptionKeySetToolTip {
@@ -3163,7 +3145,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Open Secured.
+        ///   Looks up a localized string similar to Open Secured.
         /// </summary>
         public static string OpenEncryptedToolStripMenuItemText {
             get {
@@ -3190,7 +3172,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change &amp;Password.
+        ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string OptionsChangePassphraseToolStripMenuItemText {
             get {
@@ -3199,7 +3181,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Clear All Settings and Exit.
+        ///   Looks up a localized string similar to Clear All Settings and Exit.
         /// </summary>
         public static string OptionsClearAllSettingsAndExitToolStripMenuItemText {
             get {
@@ -3226,7 +3208,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Debug.
+        ///   Looks up a localized string similar to Debug.
         /// </summary>
         public static string OptionsDebugToolStripMenuItemText {
             get {
@@ -3235,7 +3217,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Language.
+        ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string OptionsLanguageToolStripMenuItemText {
             get {
@@ -3244,7 +3226,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O&amp;ptions.
+        ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string OptionsToolStripMenuItemText {
             get {
@@ -3489,15 +3471,6 @@ namespace AxCrypt.Content.Properties {
         public static string PremiumNeededForKeyShare {
             get {
                 return ResourceManager.GetString("PremiumNeededForKeyShare", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &amp;Cancel.
-        /// </summary>
-        public static string ProgressContextCancelToolStripMenuItemText {
-            get {
-                return ResourceManager.GetString("ProgressContextCancelToolStripMenuItemText", resourceCulture);
             }
         }
         
@@ -3897,7 +3870,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Open.
+        ///   Looks up a localized string similar to Open.
         /// </summary>
         public static string RecentFilesOpenToolStripMenuItemText {
             get {
@@ -3973,7 +3946,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Remove from list but keep file secured.
+        ///   Looks up a localized string similar to Remove from list but keep file secured.
         /// </summary>
         public static string RemoveRecentFileToolStripMenuItemText {
             get {
@@ -3995,7 +3968,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Open Error Report Snapshot.
+        ///   Looks up a localized string similar to Open Error Report Snapshot.
         /// </summary>
         public static string ReportSnapshotOpenMenuItem {
             get {
@@ -4094,7 +4067,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Secure Delete.
+        ///   Looks up a localized string similar to Secure Delete.
         /// </summary>
         public static string SecureDeleteToolStripMenuItemText {
             get {
@@ -4183,7 +4156,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Share Keys.
+        ///   Looks up a localized string similar to Share Keys.
         /// </summary>
         public static string ShareKeysToolStripMenuItemText {
             get {
@@ -4219,7 +4192,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Español.
+        ///   Looks up a localized string similar to Español.
         /// </summary>
         public static string SpanishLanguageToolStripMenuItemText {
             get {
@@ -4363,7 +4336,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Svenska.
+        ///   Looks up a localized string similar to Svenska.
         /// </summary>
         public static string SwedishLanguageToolStripMenuItemText {
             get {
@@ -4516,7 +4489,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Try Broken File.
+        ///   Looks up a localized string similar to Try Broken File.
         /// </summary>
         public static string TryBrokenFileToolStripMenuItemText {
             get {
@@ -4669,7 +4642,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open &amp;Explorer Here.
+        ///   Looks up a localized string similar to Open Explorer Here.
         /// </summary>
         public static string WatchedFoldersOpenExplorerHereMenuItemText {
             get {
@@ -4678,7 +4651,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Decrypt Permanently.
+        ///   Looks up a localized string similar to Decrypt Permanently.
         /// </summary>
         public static string WatchedFoldersRemoveMenuItemText {
             get {

@@ -36,9 +36,9 @@ namespace Axantum.AxCrypt
             Text = Texts.DialogWatchedFoldersTitle;
 
             _watchedFolderColumnHeader.Text = Texts.ColumnFolderHeader;
-            _watchedFoldersRemoveMenuItem.Text = Texts.MenuDecryptPermanentlyText;
-            _watchedFoldersdecryptTemporarilyMenuItem.Text = Texts.MenuDecryptTemporarilyText;
-            _watchedFoldersOpenExplorerHereMenuItem.Text = Texts.MenuOpenExplorerHereText;
+            _watchedFoldersRemoveMenuItem.Text = "&" + Texts.MenuDecryptPermanentlyText;
+            _watchedFoldersdecryptTemporarilyMenuItem.Text = "&" + Texts.MenuDecryptTemporarilyText;
+            _watchedFoldersOpenExplorerHereMenuItem.Text = "&" + Texts.MenuOpenExplorerHereText;
         }
 
         private void WatchedFoldersDialog_Load(object sender, EventArgs e)

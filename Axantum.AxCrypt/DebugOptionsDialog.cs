@@ -25,8 +25,8 @@ namespace Axantum.AxCrypt
         {
             Text = Texts.DialogDebugLogTitle;
 
-            _okButton.Text = Texts.ButtonOkText;
-            _cancelButton.Text = Texts.ButtonCancelText;
+            _okButton.Text = "&" + Texts.ButtonOkText;
+            _cancelButton.Text = "&" + Texts.ButtonCancelText;
             _restApiBaseUrlLabel.Text = Texts.DialogDebugOptionsRestApiUrlPrompt;
             _restApiTimeoutLabel.Text = Texts.DialogDebugOptionsRestApiTimeoutPrompt;
         }

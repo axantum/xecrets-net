@@ -206,7 +206,7 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
-    <value>&amp;Anonymt Namnbyte</value>
+    <value>Anonymt Namnbyte</value>
   </data>
   <data name="AnonymousRenameSelectFilesDialogTitle" xml:space="preserve">
     <value>Välj krypterade filer att byta namn på!</value>
@@ -268,13 +268,13 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>...</value>
   </data>
   <data name="ButtonExitText" xml:space="preserve">
-    <value>&amp;Avsluta</value>
+    <value>Avsluta</value>
   </data>
   <data name="ButtonHelpText" xml:space="preserve">
-    <value>&amp;Hjälp</value>
+    <value>Hjälp</value>
   </data>
   <data name="ButtonNewText" xml:space="preserve">
-    <value>&amp;Byt</value>
+    <value>Byt</value>
   </data>
   <data name="ButtonNewToolTip" xml:space="preserve">
     <value>Klicka för att ändra AxCrypt ID e-postadress att logga in med.</value>
@@ -320,9 +320,6 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   </data>
   <data name="ButtonYesText" xml:space="preserve">
     <value>Ja</value>
-  </data>
-  <data name="CancelButtonText" xml:space="preserve">
-    <value>&amp;Avbryt allt</value>
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>Avbröt '{0}'.</value>
@@ -392,7 +389,7 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
     <value>Lösenordet har ändrats.</value>
   </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Städa Öppna Filer</value>
+    <value>Städa Öppna Filer</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>Filen är öppnad, och kan behövas städas. Stäng alla öppna program, och klicka på städaknappen.</value>
@@ -423,7 +420,7 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
     <value>Transaktion UTC</value>
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
-    <value>Gör detta för &amp;alla återstående filer?</value>
+    <value>Gör detta för alla återstående filer?</value>
   </data>
   <data name="ContactInfoPhone" xml:space="preserve">
     <value>08 550 10 274</value>
@@ -448,7 +445,7 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
     <value>Cookies verkar vara inaktiverade i din webbläsare. Om du inte accepterar våra sessionscookies kan du inte logga in och sidan kan bete sig på ett oväntat sätt. Läs mer i vår &lt;a href="{0}"&gt;cookie policy&lt;/a&gt;.</value>
   </data>
   <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
-    <value>Skapa AxCrypt &amp;ID</value>
+    <value>Skapa AxCrypt ID</value>
   </data>
   <data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Skapa ett AxCrypt ID med en delnings- och åtkomstnyckel.</value>
@@ -466,7 +463,7 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
     <value>Ditt Premium-abonnemang går snart ut. Klicka för att förnya.</value>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Avskydda och ta bort från listan</value>
+    <value>Avskydda och ta bort från listan</value>
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Fil</value>
@@ -491,7 +488,7 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
     <value>Välj fil att avskydda</value>
   </data>
   <data name="DecryptToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Avskydda</value>
+    <value>Avskydda</value>
   </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Du är påloggad. Klicka för att logga ut.</value>
@@ -599,7 +596,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Klicka för att välja filer att skydda.</value>
   </data>
   <data name="EncryptToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Skydda</value>
+    <value>Skydda</value>
   </data>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Ange lösenord för '{0}'</value>
@@ -618,7 +615,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <comment>@Invariant</comment>
   </data>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Avsluta</value>
+    <value>Avsluta</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Exportera AxCrypt ID</value>
@@ -627,7 +624,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Flytta ett AxCrypt ID genom att exportera delnings- och åtkomstnycklarna, och sedan importera det i en annan enhet.</value>
   </data>
   <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
-    <value>E&amp;xportera min delningsnyckel</value>
+    <value>Exportera min delningsnyckel</value>
   </data>
   <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Skicka den exporterade delningsnyckeln till andra som skall få åtkomst till skyddade filer.</value>
@@ -663,7 +660,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Fel med '{0}'.</value>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Arkiv</value>
+    <value>Arkiv</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Mappen '{0}' är redan skyddad.</value>
@@ -675,22 +672,22 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>AxCrypt ID</value>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Om</value>
+    <value>Om</value>
   </data>
   <data name="HelpToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Hjälp</value>
+    <value>Hjälp</value>
   </data>
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
-    <value>&amp;Visa Hjälp</value>
+    <value>Visa Hjälp</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
-    <value>Importera &amp;AxCrypt ID med både delnings- och åtkomstnyckel.</value>
+    <value>Importera AxCrypt ID med både delnings- och åtkomstnyckel.</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Flytta ett konto genom att exportera AxCrypt ID med delnings- och åtkomstnycklar, och sedan importera de i en annan enhet.</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Importera Någon Annans Delningsnyckel</value>
+    <value>Importera Någon Annans Delningsnyckel</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Be din kontakt att exportera och skicka dig dennes delningsnyckel, och importera den här. Sedan kan ni dela åtkomst till skyddade filer.</value>
@@ -764,7 +761,7 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga aktiveringskoden och sätt di
     <value>Nyckelfil</value>
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Nyckelhantering</value>
+    <value>Nyckelhantering</value>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Filens nyckel är delad med andra AxCrypt-användare.</value>
@@ -973,13 +970,13 @@ Detta program är licensierat i enlighet med avtalet.
     <value>Mitt AxCrypt ID</value>
   </data>
   <data name="MenuDecryptPermanentlyText" xml:space="preserve">
-    <value>Tag &amp;Bort Skydd Permanent</value>
+    <value>Tag Bort Skydd Permanent</value>
   </data>
   <data name="MenuDecryptTemporarilyText" xml:space="preserve">
-    <value>Tag Bort Skydd &amp;Temporärt</value>
+    <value>Tag Bort Skydd Temporärt</value>
   </data>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
-    <value>&amp;Öppna Utforskaren Här</value>
+    <value>Öppna Utforskaren Här</value>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>Det går inte att använda '{0}'. Vänligen ange din riktiga e-postadress och försök igen.</value>
@@ -1036,9 +1033,6 @@ Internet KRÄVS INTE efter denna första gång.</value>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} finns tillgänglig! Klicka för att komma till nedladdningssidan.</value>
   </data>
-  <data name="NoButtonText" xml:space="preserve">
-    <value>&amp;Nej</value>
-  </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>Du är utloggad. Klicka för att logga på.</value>
   </data>
@@ -1085,7 +1079,7 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>Välj skyddad fil att öppna</value>
   </data>
   <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Öppna Skyddat</value>
+    <value>Öppna Skyddat</value>
   </data>
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>Arkiv</value>
@@ -1094,10 +1088,10 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>Klicka och välj en skyddad fil att öppna.</value>
   </data>
   <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
-    <value>Byt &amp;Lösenord</value>
+    <value>Byt Lösenord</value>
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Rensa alla inställningar och Avsluta</value>
+    <value>Rensa alla inställningar och Avsluta</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
     <value>Uppgradera 1.x-filer Automatiskt</value>
@@ -1108,10 +1102,10 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Språk</value>
+    <value>Språk</value>
   </data>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Alternativ</value>
+    <value>Alternativ</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Lösenord</value>
@@ -1192,9 +1186,6 @@ Om du inte verkar få det inom några minuter, kontrollera ditt skräppostfilter
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Nyckeldelning kräver Premium. Klicka för att uppgradera!</value>
-  </data>
-  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
-    <value>Avbryt</value>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Aktiveringskod</value>
@@ -1336,7 +1327,7 @@ Ett kvitto på ditt köp har skickats till din epostadress.</value>
     <value>Rensar Aktiva Dokument</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Öppna</value>
+    <value>Öppna</value>
   </data>
   <data name="RecentFilesTabPageText" xml:space="preserve">
     <value>Aktuella</value>
@@ -1394,7 +1385,7 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ak
     <value>AxCrypt Säker Radering</value>
   </data>
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Säker Radering</value>
+    <value>Säker Radering</value>
   </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Programmet behöver uppdateras beroende på en säkerhetsbrist.</value>
@@ -1503,9 +1494,6 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
     <value>Dubbelklicka för att öppna AxCrypt.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
-  <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Försök med Trasig Fel</value>
-  </data>
   <data name="UnknownCrypto" xml:space="preserve">
     <value>Okänt</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
@@ -1558,10 +1546,10 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
     <value>Mapp</value>
   </data>
   <data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
-    <value>Öppna &amp;Utforskaren Här</value>
+    <value>Öppna Utforskaren Här</value>
   </data>
   <data name="WatchedFoldersRemoveMenuItemText" xml:space="preserve">
-    <value>&amp;Ta Bort Skydd Permanent</value>
+    <value>Ta Bort Skydd Permanent</value>
   </data>
   <data name="WatchedFoldersTabPageText" xml:space="preserve">
     <value>Skyddade Mappar</value>

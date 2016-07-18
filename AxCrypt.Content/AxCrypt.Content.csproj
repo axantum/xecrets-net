@@ -59,6 +59,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.pt.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.nl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.nl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Texts.cs" />
     <Compile Include="ContentResourceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +121,7 @@
     <EmbeddedResource Include="Properties\Resources.ko.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ko.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -124,6 +130,10 @@
     <EmbeddedResource Include="Properties\Resources.pt.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.pt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.nl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.nl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

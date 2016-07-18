@@ -214,7 +214,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
-    <value>&amp;Anonymous Rename</value>
+    <value>Anonymous Rename</value>
   </data>
   <data name="AnonymousRenameSelectFilesDialogTitle" xml:space="preserve">
     <value>Select encrypted files to rename!</value>
@@ -255,7 +255,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Activate</value>
   </data>
   <data name="ButtonCancelAllText" xml:space="preserve">
-    <value>&amp;Cancel All</value>
+    <value>Cancel All</value>
   </data>
   <data name="ButtonCancelText" xml:space="preserve">
     <value>Cancel</value>
@@ -276,26 +276,26 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>...</value>
   </data>
   <data name="ButtonExitText" xml:space="preserve">
-    <value>E&amp;xit</value>
+    <value>Exit</value>
   </data>
   <data name="ButtonHelpText" xml:space="preserve">
-    <value>&amp;Help</value>
+    <value>Help</value>
   </data>
   <data name="ButtonNewText" xml:space="preserve">
-    <value>&amp;Switch</value>
+    <value>Switch</value>
   </data>
   <data name="ButtonNewToolTip" xml:space="preserve">
     <value>Click to change the AxCrypt ID e-mail to use for sign in.</value>
     <comment>The new AxCrypt ID button tooltip</comment>
   </data>
   <data name="ButtonNoText" xml:space="preserve">
-    <value>&amp;No</value>
+    <value>No</value>
   </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="ButtonPasswordResetText" xml:space="preserve">
-    <value>&amp;Reset</value>
+    <value>Reset</value>
     <comment>Button text for a password reset button</comment>
   </data>
   <data name="ButtonPasswordResetToolTip" xml:space="preserve">
@@ -327,10 +327,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>&lt;&lt; Unshare</value>
   </data>
   <data name="ButtonYesText" xml:space="preserve">
-    <value>&amp;Yes</value>
-  </data>
-  <data name="CancelButtonText" xml:space="preserve">
-    <value>Cancel &amp;All</value>
+    <value>Yes</value>
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>Canceled '{0}'.</value>
@@ -403,7 +400,7 @@ You must complete these steps to complete the process.</value>
     <value>Your password has been changed.</value>
   </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Clean Open Files</value>
+    <value>Clean Open Files</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>File is open, and may need to be cleaned. Close any open applications, and click the Clean Up button.</value>
@@ -437,7 +434,7 @@ You must complete these steps to complete the process.</value>
     <value>The application configuration property was updated successfully. You might have to restart the server to make the changes take effect.</value>
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
-    <value>Do this for &amp;all remaining files?</value>
+    <value>Do this for all remaining files?</value>
   </data>
   <data name="ContactInfoEmail" xml:space="preserve">
     <value>support@axcrypt.net</value>
@@ -483,25 +480,25 @@ If you do not accept our temporary session cookies you cannot sign in and the si
     <value>Your Premium subscription is about to expire. Click to renew.</value>
   </data>
   <data name="DebugCheckVersionNowToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Check Version Now</value>
+    <value>Check Version Now</value>
   </data>
   <data name="DebugCryptoPolicyToolStripMenuItemText" xml:space="preserve">
-    <value>License &amp;Policy</value>
+    <value>License Policy</value>
   </data>
   <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Logging</value>
+    <value>Logging</value>
   </data>
   <data name="DebugManageAccountToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Manage AxCrypt ID</value>
+    <value>Manage AxCrypt ID</value>
   </data>
   <data name="DebugOptionsToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Options</value>
+    <value>Options</value>
   </data>
   <data name="DebugToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Debug</value>
+    <value>Debug</value>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Stop securing and remove from list</value>
+    <value>Stop securing and remove from list</value>
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>File</value>
@@ -526,7 +523,7 @@ If you do not accept our temporary session cookies you cannot sign in and the si
     <value>Select file to stop securing</value>
   </data>
   <data name="DecryptToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Stop Securing</value>
+    <value>Stop Securing</value>
   </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>You are Signed In. Click to Sign Out.</value>
@@ -644,7 +641,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
-    <value>Secured &amp;Folders</value>
+    <value>Secured Folders</value>
   </data>
   <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
     <value>Secured</value>
@@ -662,10 +659,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Click to select files to secure.</value>
   </data>
   <data name="EncryptToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Secure</value>
+    <value>Secure</value>
   </data>
   <data name="EnglishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;English</value>
+    <value>English</value>
   </data>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Identity '{0}' password</value>
@@ -687,16 +684,16 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <comment>@Invariant</comment>
   </data>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
-    <value>E&amp;xit</value>
+    <value>Exit</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
-    <value>Export AxCrypt ID &amp;Secret and Sharing Key Pair</value>
+    <value>Export AxCrypt ID Secret and Sharing Key Pair</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>To move an AxCrypt ID, export the Secret and Sharing Key Pair and then import it elsewhere.</value>
   </data>
   <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
-    <value>E&amp;xport My Public Sharing Key</value>
+    <value>Export My Public Sharing Key</value>
   </data>
   <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Send the exported Public Sharing Key to others you want to be able to share encrypted files with you.</value>
@@ -732,7 +729,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Failed '{0}'.</value>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;File</value>
+    <value>File</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Folder '{0}' already secured.</value>
@@ -744,7 +741,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>AxCrypt ID</value>
   </data>
   <data name="FrancaisLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Français</value>
+    <value>Français</value>
   </data>
   <data name="GermanLanguageSelectionText" xml:space="preserve">
     <value>Deutsch</value>
@@ -756,22 +753,22 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>The selected log type is invalid.</value>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;About</value>
+    <value>About</value>
   </data>
   <data name="HelpToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Help</value>
+    <value>Help</value>
   </data>
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
-    <value>&amp;View Help</value>
+    <value>View Help</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
-    <value>Import &amp;AxCrypt ID with sharing and access keys.</value>
+    <value>Import AxCrypt ID with sharing and access keys.</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>To move an AxCrypt ID, export the Secret and Sharing Key Pair and then import it here.</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Import Someone's Public Sharing Key</value>
+    <value>Import Someone's Public Sharing Key</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Ask your contact to export and send his/her Public Sharing Key to you and import it here. Then you can share encrypted files.</value>
@@ -850,7 +847,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
     <value>Key File</value>
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Key Management</value>
+    <value>Key Management</value>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>The file key is shared with other AxCrypt users.</value>
@@ -1135,13 +1132,13 @@ This program is licensed according to the agreement.
     <value>My AxCrypt ID</value>
   </data>
   <data name="MenuDecryptPermanentlyText" xml:space="preserve">
-    <value>&amp;Decrypt Permanently</value>
+    <value>Decrypt Permanently</value>
   </data>
   <data name="MenuDecryptTemporarilyText" xml:space="preserve">
-    <value>Decrypt &amp;Temporarily</value>
+    <value>Decrypt Temporarily</value>
   </data>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
-    <value>Open &amp;Explorer Here</value>
+    <value>Open Explorer Here</value>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>You cannot sign up as '{0}'. Please enter a real email address, and try again.</value>
@@ -1202,9 +1199,6 @@ Internet is NOT REQUIRED to use AxCrypt after this first time.</value>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} is available! Click to download.</value>
   </data>
-  <data name="NoButtonText" xml:space="preserve">
-    <value>&amp;No</value>
-  </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>You are Signed Out. Click to Sign In.</value>
   </data>
@@ -1251,7 +1245,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Select secured file to open</value>
   </data>
   <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Open Secured</value>
+    <value>Open Secured</value>
   </data>
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>File</value>
@@ -1260,10 +1254,10 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Click to select a secured file to open.</value>
   </data>
   <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
-    <value>Change &amp;Password</value>
+    <value>Change Password</value>
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Clear All Settings and Exit</value>
+    <value>Clear All Settings and Exit</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
     <value>Auto Upgrade 1.x Files</value>
@@ -1274,13 +1268,13 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Debug</value>
+    <value>Debug</value>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Language</value>
+    <value>Language</value>
   </data>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
-    <value>O&amp;ptions</value>
+    <value>Options</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Password</value>
@@ -1369,9 +1363,6 @@ If you appear not to receive it, check that it does not get caught by your anti-
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Key sharing requires Premium. Click to upgrade now!</value>
-  </data>
-  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Cancel</value>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Activation Code</value>
@@ -1512,7 +1503,7 @@ A receipt of your purchase has been sent to your e-mail.</value>
     <value>Purging Active Files</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Open</value>
+    <value>Open</value>
   </data>
   <data name="RecentFilesTabPageText" xml:space="preserve">
     <value>Recent Files</value>
@@ -1541,7 +1532,7 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Remove from list but keep file secured</value>
+    <value>Remove from list but keep file secured</value>
   </data>
   <data name="ReportSnapshotIntro" xml:space="preserve">
     <value>This is a snapshop report of detected errors in AxCrypt. Please copy all of this text and e-mail to:
@@ -1552,7 +1543,7 @@ Subject: AxCrypt Report Snapshot
     <comment>Included as the first part of a snapshot report with logged errors etc.</comment>
   </data>
   <data name="ReportSnapshotOpenMenuItem" xml:space="preserve">
-    <value>&amp;Open Error Report Snapshot</value>
+    <value>Open Error Report Snapshot</value>
   </data>
   <data name="ResendActivationHyperLink" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/Register</value>
@@ -1588,7 +1579,7 @@ Subject: AxCrypt Report Snapshot
     <value>AxCrypt Secure Delete</value>
   </data>
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Secure Delete</value>
+    <value>Secure Delete</value>
   </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Your software needs to be updated due to a security issue.</value>
@@ -1624,7 +1615,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
 Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Share Keys</value>
+    <value>Share Keys</value>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Show Password</value>
@@ -1636,7 +1627,7 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Warning! A site restart is scheduled in a few minutes. We're sorry about the inconvenience.</value>
   </data>
   <data name="SpanishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Español</value>
+    <value>Español</value>
     <comment>Do Not Translate</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
@@ -1685,7 +1676,7 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Sorry, direct support is only available to paying subscribers, please visit our &lt;a href="{0}"&gt;community support&lt;/a&gt;.</value>
   </data>
   <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Svenska</value>
+    <value>Svenska</value>
   </data>
   <data name="SyntheticWordsSuccessActivate" xml:space="preserve">
     <value>The culture was successfully activated.</value>
@@ -1738,7 +1729,7 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Try Broken File</value>
+    <value>Try Broken File</value>
   </data>
   <data name="UnknownCrypto" xml:space="preserve">
     <value>Unknown</value>
@@ -1792,10 +1783,10 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Folder</value>
   </data>
   <data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
-    <value>Open &amp;Explorer Here</value>
+    <value>Open Explorer Here</value>
   </data>
   <data name="WatchedFoldersRemoveMenuItemText" xml:space="preserve">
-    <value>&amp;Decrypt Permanently</value>
+    <value>Decrypt Permanently</value>
   </data>
   <data name="WatchedFoldersTabPageText" xml:space="preserve">
     <value>Secured Folders</value>

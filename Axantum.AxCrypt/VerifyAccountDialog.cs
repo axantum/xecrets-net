@@ -35,9 +35,9 @@ namespace Axantum.AxCrypt
             PassphraseGroupBox.Text = Texts.PromptSetNewPassword;
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
             _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
-            _buttonCancel.Text = Texts.ButtonCancelText;
-            _buttonOk.Text = Texts.ButtonOkText;
-            _resendButton.Text = Texts.ResendButtonText;
+            _buttonCancel.Text = "&" + Texts.ButtonCancelText;
+            _buttonOk.Text = "&" + Texts.ButtonOkText;
+            _resendButton.Text = "&" + Texts.ResendButtonText;
             _resendButtonToolTip.SetToolTip(_resendButton, Texts.ResendButtonToolTip);
             _buttonOk.Enabled = false;
             _emailGroupBox.Text = Texts.PromptEmailText;

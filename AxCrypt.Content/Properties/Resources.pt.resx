@@ -321,9 +321,6 @@ Inclui software de http://www.bouncycastle.org/</value>
   <data name="ButtonYesText" xml:space="preserve">
     <value>Sim</value>
   </data>
-  <data name="CancelButtonText" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
   <data name="Canceled" xml:space="preserve">
     <value>Cancelado '{0}'.</value>
   </data>
@@ -464,12 +461,6 @@ Se você não aceitar nossa sessão temporária de cookies, você não poderá f
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Sua inscrição Premium acaba de expirar. Clique para renová-la.</value>
-  </data>
-  <data name="DebugCheckVersionNowToolStripMenuItemText" xml:space="preserve">
-    <value>Checar versão agora</value>
-  </data>
-  <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
-    <value>Logando</value>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Parar proteção e remover da lista</value>
@@ -690,7 +681,7 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
     <value>Veja Ajuda</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
-    <value>Importar ID &amp;AxCrypt com compartilhamento e chaves de acesso.</value>
+    <value>Importar ID AxCrypt com compartilhamento e chaves de acesso.</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Para mover o ID AxCrypt, exporte o Par de Chaves Secretas de Compartilhamento e importe-as aqui.</value>
@@ -1040,9 +1031,6 @@ Internet NÃO É NECESSÁRIA para usar AxCrypt depois da primeira vez.</value>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Versão {0} está disponível! Clique para fazer download.</value>
   </data>
-  <data name="NoButtonText" xml:space="preserve">
-    <value>Não</value>
-  </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>Você saiu. Clique para Entrar.</value>
   </data>
@@ -1196,9 +1184,6 @@ Se você não recebeu nada, verifique se não está na sua pasta de Lixo Eletrô
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Compartilhamento de chave requer Premium. Clique para fazer upgrade agora!</value>
-  </data>
-  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
-    <value>Cancelar</value>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Código de Ativação</value>
@@ -1505,9 +1490,6 @@ Por favor, considere informar '{0}' diretamente sobre a segurança de arquivos d
   <data name="TrayBalloonTooltip" xml:space="preserve">
     <value>Clique para restaurar a janela de aplicação do AxCrypt.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
-  </data>
-  <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
-    <value>Tente um arquivo quebrado</value>
   </data>
   <data name="UnknownCrypto" xml:space="preserve">
     <value>Desconhecido</value>

@@ -45,8 +45,8 @@ namespace Axantum.AxCrypt
             _passphraseGroupBox.Text = Texts.PassphrasePrompt;
             ShowPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
             _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
-            _buttonCancel.Text = Texts.ButtonCancelText;
-            _buttonOk.Text = Texts.ButtonOkText;
+            _buttonCancel.Text = "&" + Texts.ButtonCancelText;
+            _buttonOk.Text = "&" + Texts.ButtonOkText;
             _buttonOk.Enabled = false;
             _emailGroupBox.Text = Texts.PromptEmailText;
         }

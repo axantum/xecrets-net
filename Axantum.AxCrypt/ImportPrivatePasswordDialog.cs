@@ -41,8 +41,8 @@ namespace Axantum.AxCrypt
 
             PassphraseGroupBox.Text = Texts.PassphrasePrompt;
             _showPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
-            _buttonCancel.Text = Texts.ButtonCancelText;
-            _buttonOk.Text = Texts.ButtonOkText;
+            _buttonCancel.Text = "&" + Texts.ButtonCancelText;
+            _buttonOk.Text = "&" + Texts.ButtonOkText;
             _accessIdGroupBox.Text = Texts.DialogImportPrivateAxCryptIdAccessIdPrompt;
             _browsePrivateKeyFileButton.Text = Texts.ButtonEllipsisText;
         }

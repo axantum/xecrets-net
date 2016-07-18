@@ -206,7 +206,7 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
-    <value>&amp;Anonym Neubenennen </value>
+    <value>Anonym Neubenennen </value>
   </data>
   <data name="AnonymousRenameSelectFilesDialogTitle" xml:space="preserve">
     <value>Wählen Sie verschlüsselte Dateien zum Umbenennen. </value>
@@ -247,7 +247,7 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
     <value>Aktivieren </value>
   </data>
   <data name="ButtonCancelAllText" xml:space="preserve">
-    <value>&amp;Alles Löschen </value>
+    <value>Alles Löschen</value>
   </data>
   <data name="ButtonCancelText" xml:space="preserve">
     <value>Löschen</value>
@@ -268,26 +268,26 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
     <value>...</value>
   </data>
   <data name="ButtonExitText" xml:space="preserve">
-    <value>E&amp;xit</value>
+    <value>Exit</value>
   </data>
   <data name="ButtonHelpText" xml:space="preserve">
-    <value>&amp;Hilfe</value>
+    <value>Hilfe</value>
   </data>
   <data name="ButtonNewText" xml:space="preserve">
-    <value>&amp;Wechseln </value>
+    <value>Wechseln</value>
   </data>
   <data name="ButtonNewToolTip" xml:space="preserve">
     <value>Klicken Sie um die AxCrypt ID E-Mail für die Anmeldung zu ändern. </value>
     <comment>The new AxCrypt ID button tooltip</comment>
   </data>
   <data name="ButtonNoText" xml:space="preserve">
-    <value>&amp;Nein</value>
+    <value>Nein</value>
   </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="ButtonPasswordResetText" xml:space="preserve">
-    <value>&amp;Zurücksetzen</value>
+    <value>Zurücksetzen</value>
     <comment>Button text for a password reset button</comment>
   </data>
   <data name="ButtonPasswordResetToolTip" xml:space="preserve">
@@ -319,10 +319,7 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
     <value>&lt;&lt; Teilen aufheben </value>
   </data>
   <data name="ButtonYesText" xml:space="preserve">
-    <value>&amp;Ja </value>
-  </data>
-  <data name="CancelButtonText" xml:space="preserve">
-    <value>Löschen &amp; Alles </value>
+    <value>Ja</value>
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>Abgebrochen '{0}'.</value>
@@ -392,7 +389,7 @@ Sie müssen diese Schritte vollenden, um den Prozess abzuschließen. </value>
     <value>Ihr Passwort wurde geändert. </value>
   </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Offene Dateien Säubern </value>
+    <value>Offene Dateien Säubern</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>Die Datei ist offen und muss eventuell bereinigt werden. Schließen Sie alle offenen Anwendungen und klicken Sie auf die Reinigungstaste. </value>
@@ -466,7 +463,7 @@ Wenn Sie unsere temporären Session-Cookies nicht akzeptieren, können Sie sich 
     <value>Ihr Premium Abonnement läuft bald ab. Klicken Sie zum erneuern. </value>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Sicherung stoppen und von der Liste entfernen </value>
+    <value>Sicherung stoppen und von der Liste entfernen</value>
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Ordner </value>
@@ -491,7 +488,7 @@ Wenn Sie unsere temporären Session-Cookies nicht akzeptieren, können Sie sich 
     <value>Wählen Sie eine Datei zum Sichern aus </value>
   </data>
   <data name="DecryptToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Sicherung Anhalten</value>
+    <value>Sicherung Anhalten</value>
   </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Sie sind angemeldet. Klicken Sie zum abmelden.</value>
@@ -581,7 +578,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>(*{0})|*{0}|All files (*.*)|*.*</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
-    <value>Gesicherte &amp;Ordner </value>
+    <value>Gesicherte Ordner</value>
   </data>
   <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
     <value>Gesichert</value>
@@ -599,7 +596,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Klicken Sie um Dateien zum Sichern auszuwählen. </value>
   </data>
   <data name="EncryptToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Sicherheit </value>
+    <value>Sicherheit</value>
   </data>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Identität '{0}' Passwort </value>
@@ -618,7 +615,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <comment>@Invariant</comment>
   </data>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
-    <value>E&amp;xit</value>
+    <value>Exit</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>AxCrypt ID,  Secret und Sharing Key Pair exportieren. </value>
@@ -627,7 +624,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Um eine AxCrypt ID zu verschieben, exportieren Sie den Secret und Sharing Key Pair um Sie an einer anderen Stelle zu platzieren.</value>
   </data>
   <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
-    <value>E&amp;xport Mein Public Sharing Key</value>
+    <value>Export Mein Public Sharing Key</value>
   </data>
   <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Senden Sie den exportierten öffentlichen Sharing Key an diejenigen, mit denen Sie die verschlüsselten Dateien teilen wollen.</value>
@@ -663,7 +660,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>'{0}' Fehlgeschlagen. </value>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Ordner </value>
+    <value>Ordner</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Ordner '{0}' bereits gesichert. </value>
@@ -675,13 +672,13 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>AxCrypt ID</value>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Über </value>
+    <value>Über</value>
   </data>
   <data name="HelpToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Hilfe</value>
+    <value>Hilfe</value>
   </data>
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
-    <value>&amp;Ansehen Hilfe</value>
+    <value>Ansehen Hilfe</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>AxCrypt ID mit Sharing- und Zugangskeys importieren. </value>
@@ -690,7 +687,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Um eine AxCrypt ID zu bewegen, exportieren Sie den Secret und Sharing Key Pair und importieren Sie diese hier.</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Importieren eines Public Sharing Keys </value>
+    <value>Importieren eines Public Sharing Keys </value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Bitten Sie Ihren Kontakt um die Zusendung seines öffentlichen Sharing Keys und importieren Sie diesen hierhin. Dann können Sie diese verschlüsselten Dateien teilen. </value>
@@ -762,7 +759,7 @@ Melden Sie sich bei AxCrypt mit {2} an, geben Sie den 6-stelligen Aktivierungsco
     <value>Schlüsseldatei </value>
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Schlüssel Verwaltung </value>
+    <value>Schlüssel Verwaltung </value>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Der Dateischlüssel wird mit anderen AxCrypt Benutzern geteilt. </value>
@@ -955,13 +952,13 @@ Dieses Programm wird entsprechend der Vereinbarung genehmigt.
     <value>Meine AxCrypt ID</value>
   </data>
   <data name="MenuDecryptPermanentlyText" xml:space="preserve">
-    <value>&amp;Permanent Entschlüsseln</value>
+    <value>Permanent Entschlüsseln</value>
   </data>
   <data name="MenuDecryptTemporarilyText" xml:space="preserve">
-    <value>&amp;Temporär Entschlüsseln</value>
+    <value>Temporär Entschlüsseln</value>
   </data>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
-    <value>Hier Öffnen &amp; Entdecken</value>
+    <value>Hier Öffnen Entdecken</value>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>Sie können sich nicht als '{0}' anmelden. Bitte geben Sie eine richtige E-Mail Adresse an und versuchen Sie es erneut. </value>
@@ -1018,9 +1015,6 @@ Nach dieser ersten Benutzung von AxCrypt ist das Internet NICHT ERFORDERLICH. </
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} ist verfügbar! Klicken Sie zum downloaden. </value>
   </data>
-  <data name="NoButtonText" xml:space="preserve">
-    <value>&amp;Nein</value>
-  </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>Sie sind abgemeldet. Klicken Sie zum anmelden.</value>
   </data>
@@ -1067,7 +1061,7 @@ Um zur Startseite zurückzukehren, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt
     <value>Eine Datei zum Sichern auswählen</value>
   </data>
   <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Gesichert Öffnen </value>
+    <value>Gesichert Öffnen</value>
   </data>
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>Datei</value>
@@ -1076,10 +1070,10 @@ Um zur Startseite zurückzukehren, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt
     <value>Klicken Sie, um eine gesicherte Datei zum Öffnen auszuwählen. </value>
   </data>
   <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
-    <value>Passwort &amp;Ändern </value>
+    <value>Passwort Ändern</value>
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Alle Einstellungen Reinigen und Beenden</value>
+    <value>Alle Einstellungen Reinigen und Beenden</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
     <value>Auto Upgrade 1.x Dateien </value>
@@ -1090,10 +1084,10 @@ Um zur Startseite zurückzukehren, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Sprache </value>
+    <value>Sprache</value>
   </data>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
-    <value>O&amp;ptions</value>
+    <value>Options</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Passwort</value>
@@ -1181,9 +1175,6 @@ Wenn Sie nichts empfangen haben, überprüfen Sie bitte Ihren Spam Ordner, und o
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Key Sharing erfordert Premium. Klicken Sie jetzt für das Upgrade! </value>
-  </data>
-  <data name="ProgressContextCancelToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Löschen</value>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Aktivierungscode </value>
@@ -1324,7 +1315,7 @@ Eine Rechnung Ihres Einkaufs wurde an Ihre E-Mail geschickt.</value>
     <value>Aktive Dateien säubern </value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Öffnen</value>
+    <value>Öffnen</value>
   </data>
   <data name="RecentFilesTabPageText" xml:space="preserve">
     <value>Zuletzt verwendete Dateien </value>
@@ -1353,7 +1344,7 @@ Eine 30-tägige Testphase von AxCrypt Premium ist beeinhaltet und beginnt, wenn 
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Entfernen von der Liste aber Ordner gesichert lassen</value>
+    <value>Entfernen von der Liste aber Ordner gesichert lassen</value>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Erneut senden </value>
@@ -1382,7 +1373,7 @@ Eine 30-tägige Testphase von AxCrypt Premium ist beeinhaltet und beginnt, wenn 
     <value>AxCrypt sicher löschen </value>
   </data>
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Sichern Löschen </value>
+    <value>Sichern Löschen </value>
   </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Ihre Software muss aufgrund einer Sicherheitslücke aktualisiert werden. </value>
@@ -1416,7 +1407,7 @@ Wählen Sie ein schwer zu erratendes Passwort, da es sowohl die vom Passwort Man
 Bitte ziehen Sie es in Erwägung '{0}' direkt über die AxCrypt Datensicherheit zu informieren.</value>
   </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Teile Schlüssel </value>
+    <value>Teile Schlüssel</value>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Passwort zeigen</value>
@@ -1489,9 +1480,6 @@ Bitte ziehen Sie es in Erwägung '{0}' direkt über die AxCrypt Datensicherheit 
     <value>Klicken um das AxCrypt Anwendungsfenster wiederherzustellen. </value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
-  <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
-    <value>&amp;Defekte Datei Versuchen </value>
-  </data>
   <data name="UnknownCrypto" xml:space="preserve">
     <value>Unbekannt </value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
@@ -1544,10 +1532,10 @@ Bitte ziehen Sie es in Erwägung '{0}' direkt über die AxCrypt Datensicherheit 
     <value>Ordner </value>
   </data>
   <data name="WatchedFoldersOpenExplorerHereMenuItemText" xml:space="preserve">
-    <value>Öffnen &amp;Explorer Hier</value>
+    <value>Öffnen Explorer Hier</value>
   </data>
   <data name="WatchedFoldersRemoveMenuItemText" xml:space="preserve">
-    <value>&amp;Dauerhaft Entschlüsseln</value>
+    <value>Dauerhaft Entschlüsseln</value>
   </data>
   <data name="WatchedFoldersTabPageText" xml:space="preserve">
     <value>Gesicherte Ordner </value>

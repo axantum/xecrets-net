@@ -92,8 +92,8 @@ namespace Axantum.AxCrypt
             _unshareButton.Text = Texts.ButtonUnshareLeftText;
             _shareButton.Text = Texts.ButtonShareRightText;
             _sharedWithGroupBox.Text = Texts.PromptSharedWith;
-            _okButton.Text = Texts.ButtonOkText;
-            _cancelButton.Text = Texts.ButtonCancelText;
+            _okButton.Text = "&" + Texts.ButtonOkText;
+            _cancelButton.Text = "&" + Texts.ButtonCancelText;
         }
 
         private async Task DisplayInviteMessageAsync(string email)

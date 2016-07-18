@@ -48,8 +48,8 @@ namespace Axantum.AxCrypt
             _verifyInstructionLabel.Text = Texts.LegacyConversionVerificationPrompt;
             _passphraseGroupBox.Text = Texts.VerifyPasswordPrompt;
             _showPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
-            _buttonCancel.Text = Texts.ButtonCancelText;
-            _buttonOk.Text = Texts.ButtonOkText;
+            _buttonCancel.Text = "&" + Texts.ButtonCancelText;
+            _buttonOk.Text = "&" + Texts.ButtonOkText;
         }
 
         private void ButtonOk_Click(object sender, EventArgs e)

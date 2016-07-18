@@ -35,6 +35,11 @@
             this._watchedFoldersListView = new System.Windows.Forms.ListView();
             this._watchedFolderColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._recentFilesTabPage = new System.Windows.Forms.TabPage();
+            this._recentFilesListView = new Axantum.AxCrypt.RecentFilesListView();
+            this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -58,9 +63,11 @@
             this._germanLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._spanishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._francaisLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._koreanLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._italianLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._koreanLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._portugueseBrazilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._dutchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsChangePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,13 +112,7 @@
             this._feedbackButton = new System.Windows.Forms.ToolStripButton();
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this._recentFilesListView = new Axantum.AxCrypt.RecentFilesListView();
-            this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
-            this._portugueseBrazilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -274,6 +275,43 @@
             this._recentFilesTabPage.TabIndex = 2;
             this._recentFilesTabPage.Text = "[Recent Files]";
             this._recentFilesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // _recentFilesListView
+            // 
+            this._recentFilesListView.AllowDrop = true;
+            this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._decryptedFileColumnHeader,
+            this._lastAccessTimeColumnHeader,
+            this._encryptedPathColumnHeader,
+            this._cryptoName});
+            this._recentFilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._recentFilesListView.FullRowSelect = true;
+            this._recentFilesListView.Location = new System.Drawing.Point(3, 3);
+            this._recentFilesListView.Name = "_recentFilesListView";
+            this._recentFilesListView.ShowItemToolTips = true;
+            this._recentFilesListView.Size = new System.Drawing.Size(644, 144);
+            this._recentFilesListView.TabIndex = 0;
+            this._recentFilesListView.UseCompatibleStateImageBehavior = false;
+            this._recentFilesListView.View = System.Windows.Forms.View.Details;
+            // 
+            // _decryptedFileColumnHeader
+            // 
+            this._decryptedFileColumnHeader.Text = "[Document]";
+            this._decryptedFileColumnHeader.Width = 159;
+            // 
+            // _lastAccessTimeColumnHeader
+            // 
+            this._lastAccessTimeColumnHeader.Text = "[Time]";
+            this._lastAccessTimeColumnHeader.Width = 180;
+            // 
+            // _encryptedPathColumnHeader
+            // 
+            this._encryptedPathColumnHeader.Text = "[Encrypted]";
+            this._encryptedPathColumnHeader.Width = 169;
+            // 
+            // _cryptoName
+            // 
+            this._cryptoName.Text = "[Algorithm]";
             // 
             // _statusTabControl
             // 
@@ -455,6 +493,7 @@
             this._optionsLanguageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._englishLanguageToolStripMenuItem,
             this._germanLanguageToolStripMenuItem,
+            this._dutchToolStripMenuItem,
             this._spanishLanguageToolStripMenuItem,
             this._francaisLanguageToolStripMenuItem,
             this._italianLanguageToolStripMenuItem,
@@ -498,6 +537,14 @@
             this._francaisLanguageToolStripMenuItem.Text = "[Français]";
             this._francaisLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
+            // _italianLanguageToolStripMenuItem
+            // 
+            this._italianLanguageToolStripMenuItem.Name = "_italianLanguageToolStripMenuItem";
+            this._italianLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._italianLanguageToolStripMenuItem.Tag = "it-IT";
+            this._italianLanguageToolStripMenuItem.Text = "[Italiano]";
+            this._italianLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            // 
             // _koreanLanguageToolStripMenuItem
             // 
             this._koreanLanguageToolStripMenuItem.Name = "_koreanLanguageToolStripMenuItem";
@@ -505,6 +552,14 @@
             this._koreanLanguageToolStripMenuItem.Tag = "ko";
             this._koreanLanguageToolStripMenuItem.Text = "[Korean]";
             this._koreanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            // 
+            // _portugueseBrazilToolStripMenuItem
+            // 
+            this._portugueseBrazilToolStripMenuItem.Name = "_portugueseBrazilToolStripMenuItem";
+            this._portugueseBrazilToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._portugueseBrazilToolStripMenuItem.Tag = "pt-BR";
+            this._portugueseBrazilToolStripMenuItem.Text = "[Português (Brasil)]";
+            this._portugueseBrazilToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // _swedishLanguageToolStripMenuItem
             // 
@@ -514,13 +569,13 @@
             this._swedishLanguageToolStripMenuItem.Text = "[Svenska]";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
-            // _italianLanguageToolStripMenuItem
+            // _dutchToolStripMenuItem
             // 
-            this._italianLanguageToolStripMenuItem.Name = "_italianLanguageToolStripMenuItem";
-            this._italianLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this._italianLanguageToolStripMenuItem.Tag = "it-IT";
-            this._italianLanguageToolStripMenuItem.Text = "[Italiano]";
-            this._italianLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._dutchToolStripMenuItem.Name = "_dutchToolStripMenuItem";
+            this._dutchToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._dutchToolStripMenuItem.Tag = "nl-NL";
+            this._dutchToolStripMenuItem.Text = "[Dutch]";
+            this._dutchToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // _optionsChangePassphraseToolStripMenuItem
             // 
@@ -928,55 +983,10 @@
             this._softwareStatusButton.Size = new System.Drawing.Size(40, 40);
             this._softwareStatusButton.Text = "[toolStripButton1]";
             // 
-            // _recentFilesListView
-            // 
-            this._recentFilesListView.AllowDrop = true;
-            this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this._decryptedFileColumnHeader,
-            this._lastAccessTimeColumnHeader,
-            this._encryptedPathColumnHeader,
-            this._cryptoName});
-            this._recentFilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._recentFilesListView.FullRowSelect = true;
-            this._recentFilesListView.Location = new System.Drawing.Point(3, 3);
-            this._recentFilesListView.Name = "_recentFilesListView";
-            this._recentFilesListView.ShowItemToolTips = true;
-            this._recentFilesListView.Size = new System.Drawing.Size(644, 144);
-            this._recentFilesListView.TabIndex = 0;
-            this._recentFilesListView.UseCompatibleStateImageBehavior = false;
-            this._recentFilesListView.View = System.Windows.Forms.View.Details;
-            // 
-            // _decryptedFileColumnHeader
-            // 
-            this._decryptedFileColumnHeader.Text = "[Document]";
-            this._decryptedFileColumnHeader.Width = 159;
-            // 
-            // _lastAccessTimeColumnHeader
-            // 
-            this._lastAccessTimeColumnHeader.Text = "[Time]";
-            this._lastAccessTimeColumnHeader.Width = 180;
-            // 
-            // _encryptedPathColumnHeader
-            // 
-            this._encryptedPathColumnHeader.Text = "[Encrypted]";
-            this._encryptedPathColumnHeader.Width = 169;
-            // 
-            // _cryptoName
-            // 
-            this._cryptoName.Text = "[Algorithm]";
-            // 
             // _progressBackgroundWorker
             // 
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
-            // 
-            // _portugueseBrazilToolStripMenuItem
-            // 
-            this._portugueseBrazilToolStripMenuItem.Name = "_portugueseBrazilToolStripMenuItem";
-            this._portugueseBrazilToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this._portugueseBrazilToolStripMenuItem.Tag = "pt-BR";
-            this._portugueseBrazilToolStripMenuItem.Text = "[Português (Brasil)]";
-            this._portugueseBrazilToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
@@ -1114,6 +1124,7 @@
         private System.Windows.Forms.ToolStripMenuItem _koreanLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _italianLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _portugueseBrazilToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _dutchToolStripMenuItem;
     }
 }
 

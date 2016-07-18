@@ -33,12 +33,12 @@ namespace Axantum.AxCrypt
 
             _passphraseGroupBox.Text = Texts.PassphrasePrompt;
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
-            _newButton.Text = Texts.ButtonNewText;
+            _newButton.Text = "&" + Texts.ButtonNewText;
             _newButtonToolTip.SetToolTip(_newButton, Texts.ButtonNewToolTip);
-            _resetButton.Text = Texts.ButtonPasswordResetText;
+            _resetButton.Text = "&" + Texts.ButtonPasswordResetText;
             _resetButtonToolTip.SetToolTip(_resetButton, Texts.ButtonPasswordResetToolTip);
-            _buttonCancel.Text = Texts.ButtonCancelText;
-            _buttonOk.Text = Texts.ButtonOkText;
+            _buttonCancel.Text = "&" + Texts.ButtonCancelText;
+            _buttonOk.Text = "&" + Texts.ButtonOkText;
             _emailGroupBox.Text = Texts.PromptEmailText;
         }
 

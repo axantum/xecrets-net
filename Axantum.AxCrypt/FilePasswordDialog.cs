@@ -60,8 +60,8 @@ namespace Axantum.AxCrypt
 
             _passphraseGroupBox.Text = Texts.PassphrasePrompt;
             _showPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
-            _cancelButton.Text = Texts.ButtonCancelText;
-            _okButton.Text = Texts.ButtonOkText;
+            _cancelButton.Text = "&" + Texts.ButtonCancelText;
+            _okButton.Text = "&" + Texts.ButtonOkText;
             _moreButton.Text = Texts.MoreButtonText;
             _moreButtonToolTip.SetToolTip(_moreButton, Texts.MoreKeyFileToolTop);
             _fileNameGroupBox.Text = Texts.PromptFileText;

@@ -54,8 +54,8 @@ namespace Axantum.AxCrypt
         {
             Text = Texts.DialogDecryptTitle;
 
-            _buttonOk.Text = Texts.ButtonOkText;
-            _buttonCancel.Text = Texts.ButtonCancelText;
+            _buttonOk.Text = "&" + Texts.ButtonOkText;
+            _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             PassphraseGroupBox.Text = Texts.PassphrasePrompt;
             ShowPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
         }

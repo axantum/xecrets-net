@@ -19,11 +19,11 @@ namespace Axantum.AxCrypt.Forms
         protected override void InitializeContentResources()
         {
             Text = Texts.SecureDeleteDialogTitle;
-            _cancelButton.Text = Texts.ButtonCancelText;
-            _noButton.Text = Texts.ButtonNoText;
+            _cancelButton.Text = "&" + Texts.ButtonCancelText;
+            _noButton.Text = "&" + Texts.ButtonNoText;
             _promptLabel.Text = Texts.PromptLabelText;
-            _yesButton.Text = Texts.ButtonYesText;
-            _confirmAllCheckBox.Text = Texts.ConfirmAllCheckBoxText;
+            _yesButton.Text = "&" + Texts.ButtonYesText;
+            _confirmAllCheckBox.Text = "&" + Texts.ConfirmAllCheckBoxText;
         }
 
         private void ConfirmWipeDialog_Load(object sender, EventArgs e)
