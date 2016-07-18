@@ -123,10 +123,6 @@
   <data name="About" xml:space="preserve">
     <value>Acerca de {0}</value>
   </data>
-  <data name="AccountLoggedOnStatusText" xml:space="preserve">
-    <value>{0}</value>
-    <comment>Title bar status text when logged on to an account.</comment>
-  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Gratis</value>
   </data>
@@ -873,6 +869,10 @@ El equipo AxCrypt</value>
     <value>Renombra con un nombre anónimo. El nombre original será restaurado al descifrar.</value>
     <comment>Tooltip for rename context menu</comment>
   </data>
+  <data name="McHlpMenuShow" xml:space="preserve">
+    <value>Abre totalmente la aplicación para funciones avanzadas.</value>
+    <comment>Tooltip for show full program interface with all advanced funtions context menu.</comment>
+  </data>
   <data name="McHlpMenuSignOut" xml:space="preserve">
     <value>Haga clic para cerrar la sesión.</value>
     <comment>Tooltip for sign out context menu</comment>
@@ -898,7 +898,7 @@ El equipo AxCrypt</value>
 Este programa se licencia según el acuerdo.
 %n%n%2
 %nContribuciones:
-%nThe Legion of the Bouncy Castly Inc.</value>
+%nThe Legion of the Bouncy Castle Inc.</value>
     <comment>Abut text in property sheet. Be careful with the %-coded things.</comment>
   </data>
   <data name="McInfAuthLead" xml:space="preserve">
@@ -1578,8 +1578,12 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
   <data name="WixAxNeedUninstall" xml:space="preserve">
     <value>Debe desinstalar el AxCrypt actualmente instalado en este equipo por primera vez.</value>
   </data>
+  <data name="WixAxOsNotSupported" xml:space="preserve">
+    <value>La versión de este ordenador de Windows no es compatible.</value>
+  </data>
   <data name="WixCaption" xml:space="preserve">
     <value>[WixBundleName] Configuración</value>
+    <comment>[WixBundlePart] should NOT be translated.</comment>
   </data>
   <data name="WixConfirmCancelMessage" xml:space="preserve">
     <value>¿Estas seguro que quiere cancelar?</value>
@@ -1590,8 +1594,14 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
   <data name="WixFailureCloseButton" xml:space="preserve">
     <value>Cerrar</value>
   </data>
+  <data name="WixFailureHeader" xml:space="preserve">
+    <value>Instalación falló</value>
+  </data>
+  <data name="WixFailureHyperlinkLogText" xml:space="preserve">
+    <value>Una o más cosas hizo con que la instalación fallara. Por favor, arreglalas e intenta instalar otra vez. Para más información, accede a &amp;lt;ahref="#"&amp;gt;logfile&amp;lt;/a&amp;gt;.</value>
+  </data>
   <data name="WixFailureInstallHeader" xml:space="preserve">
-    <value />
+    <value>Instalación falló</value>
   </data>
   <data name="WixFailureRepairHeader" xml:space="preserve">
     <value>Reparación Falló</value>
@@ -1599,11 +1609,26 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
   <data name="WixFailureRestartButton" xml:space="preserve">
     <value>Reiniciar</value>
   </data>
+  <data name="WixFailureRestartText" xml:space="preserve">
+    <value>Necesita reiniciar su ordenador para deshacer los cambios hechos en el software.</value>
+  </data>
+  <data name="WixFailureUninstallHeader" xml:space="preserve">
+    <value>Desinstalación falló</value>
+  </data>
   <data name="WixFilesInUseCancelButton" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="WixFilesInUseCloseRadioButton" xml:space="preserve">
+    <value>Cierra las aplicaciones e intenta reiniciarlas.</value>
+  </data>
+  <data name="WixFilesInUseDontCloseRadioButton" xml:space="preserve">
+    <value>No cierre las aplicaciones. Será necesario reiniciar el ordenador.</value>
+  </data>
   <data name="WixFilesInUseHeader" xml:space="preserve">
     <value>Archivo en uso</value>
+  </data>
+  <data name="WixFilesInUseLabel" xml:space="preserve">
+    <value>Las siguientes aplicaciones están usando archivos que necesitan de actualización:</value>
   </data>
   <data name="WixFilesInUseOkButton" xml:space="preserve">
     <value>OK</value>
@@ -1613,6 +1638,16 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
   </data>
   <data name="WixHelpHeader" xml:space="preserve">
     <value>Configuración Ayuda</value>
+  </data>
+  <data name="WixHelpText" xml:space="preserve">
+    <value>/install | /repair | /uninstall | /layout [directorio] - instala, repara, desinstala o crea una cópia local completa del lote en el directorio. Instalar es el patrón.
+
+/passive | /quiet - enseña UI minima sin entradas o monitores, sin UI o entradas. Por patrón, UI y monitores son enseñados.
+
+/norestart - inibe cualquier tentativa de reiniciar. Como patrón, UI será mostrado antes de reiniciar. 
+
+/log registro.txt - registra un archivo específico. Por patrón, un registro de archivo es creado en %TEMP%.</value>
+    <comment>The /install, /uninstall and all other /xxxxxx shold NOT BE TRANSLATED</comment>
   </data>
   <data name="WixInstallAcceptCheckbox" xml:space="preserve">
     <value>Estoy de acuerdo con los términos y condiciones de la licencia</value>
@@ -1625,9 +1660,13 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
   </data>
   <data name="WixInstallVersion" xml:space="preserve">
     <value>Versión [WixBundleVersion]</value>
+    <comment>[WixBundleVersion] should NOT BE TRANSLATED</comment>
   </data>
   <data name="WixModifyCloseButton" xml:space="preserve">
     <value>Cerrar</value>
+  </data>
+  <data name="WixModifyHeader" xml:space="preserve">
+    <value>Cambiar instalación</value>
   </data>
   <data name="WixModifyRepairButton" xml:space="preserve">
     <value>Reiniciar </value>
@@ -1635,49 +1674,48 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
   <data name="WixModifyUninstallButton" xml:space="preserve">
     <value>Desinstalación</value>
   </data>
-  <data name="WixMsiAxCryptIdSignInShortcutDescription" xml:space="preserve">
-    <value>Iniciar sesión o crear una AxCrypt ID</value>
-    <comment>Tooltip for start menu link to sign in page on the web</comment>
+  <data name="WixMsiArpComments" xml:space="preserve">
+    <value>Criptografía de archivo de AxCrypt</value>
+    <comment>The title in Control Panel add/remove</comment>
   </data>
-  <data name="WixMsiDescription" xml:space="preserve">
-    <value>Descripción</value>
-    <comment>Description in MSI</comment>
+  <data name="WixMsiDoNotInstall32BitOn64Bit" xml:space="preserve">
+    <value>Esta es una versión de 32 bit del instalador MSI. Usted tiene un Windows de 64-bit. Descargue el MSI con 'x64' en el nombre del archivo en vez de 'Win32'.</value>
+  </data>
+  <data name="WixMsiExitDialogText" xml:space="preserve">
+    <value>INÍCIO RAPIDO: Para criptografar un archivo, pulsa con el botón derecho del ratón en archivo en Explorador de Archivos de Windows y seleciona AxCrypt | Criptografar.</value>
+    <comment>The final message in the MSI installer</comment>
   </data>
   <data name="WixMsiExternalName" xml:space="preserve">
     <value>AxCrypt</value>
     <comment>How AxCrypt is written for users</comment>
   </data>
-  <data name="WixMsiHomePageShortcut" xml:space="preserve">
-    <value>Página Principal</value>
-    <comment>Start Menu Shortcut Name</comment>
-  </data>
-  <data name="WixMsiLaunchAxCrypt" xml:space="preserve">
-    <value>AxCrypt</value>
-    <comment>Start Menu name to start AxCrypt. Should typically probably not be translated.</comment>
-  </data>
   <data name="WixMsiLaunchAxCryptDescription" xml:space="preserve">
     <value>Inicio AxCrypt</value>
     <comment>Start Menu tooltip to start AxCrypt</comment>
   </data>
-  <data name="WixMsiManualShortcut" xml:space="preserve">
-    <value>Documentación</value>
-    <comment>Start Menu name for documentation</comment>
+  <data name="WixMsiLegacyAxCrypt" xml:space="preserve">
+    <value>Usted necesita desinstalar la versión anterior de AxCrypt antes de continuar. Esté seguro de reiniciar el ordenador cuando se lo pida.</value>
+    <comment>Error message when too old AxCrypt is already installed.</comment>
   </data>
-  <data name="WixMsiManualShortcutDescription" xml:space="preserve">
-    <value>Ver Documentación</value>
-    <comment>Tooltip to view documentation</comment>
+  <data name="WixMsiMainExecutablesTitle" xml:space="preserve">
+    <value>Archivo de Programas AxCrypt</value>
+    <comment>Feature name in installer</comment>
+  </data>
+  <data name="WixMsiNet45Required" xml:space="preserve">
+    <value>Esta aplicación necesita .NET Framework 4.5 o mayor. Por favor, instala el .NET Framework y después abre el instalador otra vez.</value>
+    <comment>Error message when .NET 4.5 is missing</comment>
+  </data>
+  <data name="WixMsiNoDowngrade" xml:space="preserve">
+    <value>La versión más reciente ya está instalada! Por favor, desinstala esa versión antes de continuar. Esté seguro de reiniciar el ordenador cuando se lo pida.</value>
+    <comment>Error message during installation when a newer version already is installed.</comment>
+  </data>
+  <data name="WixMsiShellExtensionTitle" xml:space="preserve">
+    <value>Integración del botón derecho de Windows</value>
+    <comment>Feature name for the shell extension during installation</comment>
   </data>
   <data name="WixMsiStartAxCrypt" xml:space="preserve">
     <value>Inicio AxCrypt</value>
     <comment>Prompt to start AxCrypt after installation</comment>
-  </data>
-  <data name="WixMsiUninstallAxCrypt" xml:space="preserve">
-    <value>Desinstalación AxCrypt</value>
-    <comment>Start Menu link to uninstall</comment>
-  </data>
-  <data name="WixMsiUninstallAxCryptDescription" xml:space="preserve">
-    <value>Desinstalación AxCrypt</value>
-    <comment>Tooltip for Start Menu link to uninstallation</comment>
   </data>
   <data name="WixOverallProgressPackageText" xml:space="preserve">
     <value>Inicializando...</value>
@@ -1694,14 +1732,26 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
   <data name="WixSuccessCloseButton" xml:space="preserve">
     <value>Cerrar</value>
   </data>
+  <data name="WixSuccessHeader" xml:space="preserve">
+    <value>Instalación realizada con éxito</value>
+  </data>
+  <data name="WixSuccessInstallHeader" xml:space="preserve">
+    <value>Instalación completada con éxito</value>
+  </data>
   <data name="WixSuccessLaunchButton" xml:space="preserve">
     <value>Lanzar</value>
+  </data>
+  <data name="WixSuccessRepairHeader" xml:space="preserve">
+    <value>Reparo completado con éxito</value>
   </data>
   <data name="WixSuccessRestartButton" xml:space="preserve">
     <value>Reiniciar</value>
   </data>
   <data name="WixSuccessRestartText" xml:space="preserve">
     <value>Debe reiniciar el ordenador para poder utilizar el software.</value>
+  </data>
+  <data name="WixSuccessUninstallHeader" xml:space="preserve">
+    <value>Desinstalación completada con éxito</value>
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Estado 'En proceso' con '{0}'.</value>

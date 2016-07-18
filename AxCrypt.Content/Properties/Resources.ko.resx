@@ -104,10 +104,6 @@
   <data name="About" xml:space="preserve">
     <value>{0}에 대해</value>
   </data>
-  <data name="AccountLoggedOnStatusText" xml:space="preserve">
-    <value>{0}</value>
-    <comment>Title bar status text when logged on to an account.</comment>
-  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt 무료</value>
   </data>
@@ -502,9 +498,6 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>비밀번호 필수</value>
   </data>
-  <data name="DialogExportAxCryptIdFileName" xml:space="preserve">
-    <value>AxCrypt ID (#{1}) - {0}.axx</value>
-  </data>
   <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
     <value>AxCrypt ID 파일 (*.axx)|*.axx|모든 파일 (*.*)|*.*"</value>
   </data>
@@ -784,12 +777,6 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>메인 사이트에 가기</value>
     <comment>Menus and similar to link back to main site.</comment>
-  </data>
-  <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
-    <value>{0}홈/구입?이메일={1}</value>
-  </data>
-  <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
-    <value>{0}secrets?email={1}</value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>로그아웃</value>

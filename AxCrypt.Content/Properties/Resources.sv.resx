@@ -123,10 +123,6 @@
   <data name="About" xml:space="preserve">
     <value>Om {0}</value>
   </data>
-  <data name="AccountLoggedOnStatusText" xml:space="preserve">
-    <value>{0}</value>
-    <comment>Title bar status text when logged on to an account.</comment>
-  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Free</value>
   </data>

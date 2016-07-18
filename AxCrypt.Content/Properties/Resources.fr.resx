@@ -127,10 +127,6 @@
   <data name="About" xml:space="preserve">
     <value>A propos de {0}</value>
   </data>
-  <data name="AccountLoggedOnStatusText" xml:space="preserve">
-    <value>{0}</value>
-    <comment>Title bar status text when logged on to an account.</comment>
-  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Gratuit</value>
   </data>
@@ -526,9 +522,6 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Mot de passe Requis</value>
-  </data>
-  <data name="DialogExportAxCryptIdFileName" xml:space="preserve">
-    <value>AxCrypt ID (#{1}) - {0}.axx</value>
   </data>
   <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
     <value>Identifiants AxCrypt ID (*.axx)|*.axx|Tous les fichiers (*.*)|*.*"</value>

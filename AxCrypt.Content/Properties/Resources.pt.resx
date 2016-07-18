@@ -123,10 +123,6 @@
   <data name="About" xml:space="preserve">
     <value>Sobre {0}</value>
   </data>
-  <data name="AccountLoggedOnStatusText" xml:space="preserve">
-    <value>{0}</value>
-    <comment>Title bar status text when logged on to an account.</comment>
-  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Grátis</value>
   </data>
@@ -529,9 +525,6 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Senha necessária</value>
   </data>
-  <data name="DialogExportAxCryptIdFileName" xml:space="preserve">
-    <value>ID AxCrypt (#{1}) - {0}.axx</value>
-  </data>
   <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
     <value>Arquivos ID AxCrypt (*.axx)|*.axx|Todos os Arquivos(*.*)|*.*"</value>
   </data>
@@ -759,10 +752,6 @@ Para iniciar a proteção de seus arquivos, faça o download e instale AxCrypt d
 
 Faça login no AxCrypt com {2}, digite o código de ativação de 6 dígitos e defina sua senha secreta.</value>
   </data>
-  <data name="InvitationMailPlainTextBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/ConvitedeEmailTexto.cshtml</value>
-    <comment>Do Not Translate</comment>
-  </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Convite para usar a Segurança de Arquivo AxCrypt</value>
   </data>
@@ -819,12 +808,6 @@ Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</valu
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Voltar ao site principal.</value>
     <comment>Menus and similar to link back to main site.</comment>
-  </data>
-  <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
-    <value>{0}Home/Compra?email={1}</value>
-  </data>
-  <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
-    <value>{0}segredos?email={1}</value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Sair</value>
@@ -886,10 +869,6 @@ A Equipe AxCrypt</value>
   </data>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Olá, {0},</value>
-  </data>
-  <data name="MailBodyVirtualPath" xml:space="preserve">
-    <value>~/Templates/_EmailLayout.cshtml</value>
-    <comment>Do Not Translate</comment>
   </data>
   <data name="McHlpMenuAbout" xml:space="preserve">
     <value>Sobre</value>
