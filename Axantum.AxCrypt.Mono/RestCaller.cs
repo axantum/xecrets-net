@@ -95,6 +95,7 @@ namespace Axantum.AxCrypt.Mono
             }
             catch (HttpRequestException hrex)
             {
+                New<IInternetState>().Clear();
                 throw new OfflineApiException(ExceptionMessage("Offline", request), hrex);
             }
         }
