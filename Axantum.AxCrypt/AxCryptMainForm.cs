@@ -123,7 +123,6 @@ namespace Axantum.AxCrypt
 
         private void InitializeProgram()
         {
-            GetApiVersion();
             InitializeContentResources();
             RegisterTypeFactories();
             EnsureUiContextInitialized();
@@ -133,6 +132,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            GetApiVersion();
             StartKeyPairService();
             SetupViewModels();
             AttachLogListener();
