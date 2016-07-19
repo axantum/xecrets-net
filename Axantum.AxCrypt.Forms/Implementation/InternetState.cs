@@ -1,10 +1,13 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Forms.Implementation
 {
@@ -41,6 +44,11 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         private static bool GetCurrentState()
         {
+            if (New<IUserSettings>().OfflineMode)
+            {
+                return false;
+            }
+
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
                 return false;

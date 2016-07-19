@@ -174,6 +174,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(NewestKnownVersion), value); }
         }
 
+        public string ThisVersion
+        {
+            get { return Load(nameof(ThisVersion), string.Empty); }
+            set { Store(nameof(ThisVersion), value); }
+        }
+
         public bool DebugMode
         {
             get { return Load(nameof(DebugMode), false); }
@@ -256,6 +262,12 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get { return Load(nameof(IsFirstSignIn), true); }
             set { Store(nameof(IsFirstSignIn), value); }
+        }
+
+        public bool OfflineMode
+        {
+            get { return Load(nameof(OfflineMode), false); }
+            set { Store(nameof(OfflineMode), value); }
         }
 
         public LegacyConversionMode LegacyConversionMode

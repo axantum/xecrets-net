@@ -213,6 +213,14 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Select a folder to keep secured with AxCrypt. Existing files will be encrypted now.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AlwaysOffline" xml:space="preserve">
+    <value>Always Offline</value>
+    <comment>Menu choice with checkbox indicating if we are running offline or not.</comment>
+  </data>
+  <data name="AlwaysOfflineToolTip" xml:space="preserve">
+    <value>When enabled, Internet access is never used or required, until disabled.</value>
+    <comment>A tool tip explaining that this causes AxCrypt never to access the Internet.</comment>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anonymous Rename</value>
   </data>
@@ -528,7 +536,7 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>You are Signed In. Click to Sign Out.</value>
   </data>
-  <data name="DefaultSecureFolderToolTip">
+  <data name="DefaultSecureFolderToolTip" xml:space="preserve">
     <value>Click to open a file from the default secure folder.</value>
     <comment>A generic tooltip for the default secure folder created for example in Dropbox.</comment>
   </data>

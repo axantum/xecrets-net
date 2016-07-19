@@ -33,6 +33,8 @@ namespace Axantum.AxCrypt.Core.Ipc
 {
     public class CommandCompleteEventArgs : EventArgs
     {
+        public static new readonly CommandCompleteEventArgs Empty = new CommandCompleteEventArgs(CommandVerb.Unknown, new string[0]);
+
         public CommandVerb Verb { get; private set; }
 
         public IEnumerable<string> Arguments { get; private set; }

@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt
             : this()
         {
             _commandLine = commandLine;
-            _startMinimized = commandLine != null;
+            _startMinimized = commandLine.HasCommands;
         }
 
         private void AxCryptMainForm_Load(object sender, EventArgs e)
@@ -132,7 +132,9 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            CheckOfflineModeFirst();
             GetApiVersion();
+            SetThisVersion();
             StartKeyPairService();
             SetupViewModels();
             AttachLogListener();
@@ -149,9 +151,22 @@ namespace Axantum.AxCrypt
             ExecuteCommandLine();
         }
 
+        private void CheckOfflineModeFirst()
+        {
+            if (_commandLine.IsOfflineCommand)
+            {
+                New<IUserSettings>().OfflineMode = true;
+            }
+        }
+
         private void GetApiVersion()
         {
             _apiVersion = New<ICache>().GetItemAsync(CacheKey.RootKey.Subkey("WrapMessageDialogsAsync_ApiVersion"), () => New<GlobalApiClient>().ApiVersionAsync()).Result;
+        }
+
+        private void SetThisVersion()
+        {
+            New<IUserSettings>().ThisVersion = New<IVersion>().Current.ToString();
         }
 
         private static void EnsureUiContextInitialized()
@@ -164,6 +179,8 @@ namespace Axantum.AxCrypt
             SetCulture();
 
             _addSecureFolderToolStripMenuItem.Text = "&" + Texts.AddSecureFolderMenuItemText;
+            _alwaysOfflineToolStripMenuItem.Text = "&" + Texts.AlwaysOffline;
+            _alwaysOfflineToolStripMenuItem.ToolTipText = Texts.AlwaysOfflineToolTip;
             _cleanDecryptedToolStripMenuItem.Text = "&" + Texts.CleanDecryptedToolStripMenuItemText;
             _closeAndRemoveOpenFilesToolStripButton.ToolTipText = Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText;
             _createAccountToolStripMenuItem.Text = "&" + Texts.CreateAccountToolStripMenuItemText;
@@ -274,7 +291,7 @@ namespace Axantum.AxCrypt
 
         private async void AxCryptMainForm_ShownAsync(object sender, EventArgs e)
         {
-            _pendingRequest = new CommandCompleteEventArgs(CommandVerb.Startup, new string[0]);
+            _pendingRequest = CommandCompleteEventArgs.Empty;
             if (_startMinimized)
             {
                 ShowNotifyIcon();
@@ -373,7 +390,7 @@ namespace Axantum.AxCrypt
             {
                 await DoRequestAsync(_pendingRequest);
             }
-            _pendingRequest = new CommandCompleteEventArgs(CommandVerb.Unknown, new string[0]);
+            _pendingRequest = CommandCompleteEventArgs.Empty;
         }
 
         private static void SendStartSessionNotification()
@@ -389,7 +406,7 @@ namespace Axantum.AxCrypt
 
         private void ExecuteCommandLine()
         {
-            if (_commandLine == null)
+            if (!_commandLine.CommandItems.Any() || _commandLine.IsOfflineCommand)
             {
                 return;
             }
@@ -397,7 +414,6 @@ namespace Axantum.AxCrypt
             Task.Run(() =>
             {
                 _commandLine.Execute();
-                _commandLine = null;
                 ExplorerRefresh.Notify();
             });
         }
@@ -518,6 +534,13 @@ namespace Axantum.AxCrypt
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
             _signInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _signOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
+            _alwaysOfflineToolStripMenuItem.Click += (sender, e) =>
+            {
+                bool offlineMode = !New<IUserSettings>().OfflineMode;
+                _alwaysOfflineToolStripMenuItem.Checked = offlineMode;
+                New<IUserSettings>().OfflineMode = offlineMode;
+                New<AxCryptOnlineState>().IsOffline = offlineMode;
+            };
             _softwareStatusButton.Click += _softwareStatusButton_Click;
 #if DEBUG
             _debugCryptoPolicyToolStripMenuItem.Visible = true;
@@ -660,6 +683,7 @@ namespace Axantum.AxCrypt
             }
 
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
+            _alwaysOfflineToolStripMenuItem.Checked = New<IUserSettings>().OfflineMode;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
@@ -791,6 +815,12 @@ namespace Axantum.AxCrypt
 
             New<AxCryptOnlineState>().OnlineStateChanged += (sender, e) =>
             {
+                AxCryptOnlineState onLineState = (AxCryptOnlineState)sender;
+                if (onLineState.IsOnline)
+                {
+                    New<ICache>().RemoveItem(CacheKey.RootKey);
+                    New<IInternetState>().Clear();
+                }
                 New<IUIThread>().PostTo(() =>
                 {
                     SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
@@ -1145,6 +1175,10 @@ namespace Axantum.AxCrypt
 
                 case CommandVerb.Show:
                     RestoreWindowWithFocus();
+                    break;
+
+                case CommandVerb.SetOfflineMode:
+                    New<IUserSettings>().OfflineMode = true;
                     break;
 
                 case CommandVerb.SignOut:

@@ -62,6 +62,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         string NewestKnownVersion { get; set; }
 
+        string ThisVersion { get; set; }
+
         UpdateLevels UpdateLevel { get; set; }
 
         bool DebugMode { get; set; }
@@ -91,6 +93,8 @@ namespace Axantum.AxCrypt.Core.UI
         bool TryBrokenFile { get; set; }
 
         bool IsFirstSignIn { get; set; }
+
+        bool OfflineMode { get; set; }
 
         LegacyConversionMode LegacyConversionMode { get; set; }
     }

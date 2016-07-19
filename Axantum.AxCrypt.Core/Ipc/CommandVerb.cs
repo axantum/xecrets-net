@@ -53,5 +53,6 @@ namespace Axantum.AxCrypt.Core.Ipc
         SetKeyFile,
         LogOn,
         Startup,
+        SetOfflineMode,
     }
 }

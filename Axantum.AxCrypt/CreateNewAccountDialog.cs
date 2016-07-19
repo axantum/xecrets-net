@@ -63,7 +63,15 @@ namespace Axantum.AxCrypt
             _viewModel.BindPropertyChanged(nameof(CreateNewAccountViewModel.Verification), (string v) => { VerifyPassphraseTextbox.Text = v; });
             _viewModel.BindPropertyChanged(nameof(CreateNewAccountViewModel.UserEmail), (string u) => { EmailTextBox.Text = u; });
 
-            EmailTextBox.Focus();
+            EmailTextBox.Enabled = EmailTextBox.Text.Length == 0;
+            if (EmailTextBox.Enabled)
+            {
+                EmailTextBox.Focus();
+            }
+            else
+            {
+                PassphraseTextBox.Focus();
+            }
         }
 
         private void _buttonOk_Click(object sender, EventArgs e)
@@ -76,7 +84,7 @@ namespace Axantum.AxCrypt
 
             if (!New<KeyPairService>().IsAnyAvailable)
             {
-                MessageBox.Show(this, Texts.OfflineAccountBePatient, Texts.OfflineAccountTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageDialog.ShowOk(this, Texts.OfflineAccountTitle, Texts.OfflineAccountBePatient);
             }
             CreateAccountAsync();
         }

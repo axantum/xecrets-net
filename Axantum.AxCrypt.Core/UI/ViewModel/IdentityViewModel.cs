@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
@@ -93,7 +94,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         protected virtual async Task OnLoggingOnAsync(LogOnEventArgs e)
         {
-            New<AxCryptOnlineState>().IsOnline = true;
+            New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Connected;
             Func<LogOnEventArgs, Task> command = LoggingOnAsync;
             if (command != null)
             {

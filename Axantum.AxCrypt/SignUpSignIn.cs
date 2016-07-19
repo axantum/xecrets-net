@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Api.Model;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
@@ -65,8 +66,15 @@ namespace Axantum.AxCrypt
                         break;
 
                     case AccountStatus.Offline:
-                        dialogResult = MessageDialog.ShowOkCancelExit(parent, Texts.MessageSignUpInternetRequiredTitle, Texts.MessageSignUpInternetRequiredText);
-                        New<AxCryptOnlineState>().IsOnline = true;
+                        New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Connected;
+                        using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(parent, String.Empty, EmailAddress.Parse(UserEmail)))
+                        {
+                            DialogResult result = dialog.ShowDialog();
+                            if (result == DialogResult.OK)
+                            {
+                                status = AccountStatus.Verified;
+                            }
+                        }
                         break;
 
                     case AccountStatus.Unknown:

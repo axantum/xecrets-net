@@ -329,6 +329,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always Offline.
+        /// </summary>
+        public static string AlwaysOffline {
+            get {
+                return ResourceManager.GetString("AlwaysOffline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When enabled, Internet access is never used or required, until disabled..
+        /// </summary>
+        public static string AlwaysOfflineToolTip {
+            get {
+                return ResourceManager.GetString("AlwaysOfflineToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Anonymous Rename.
         /// </summary>
         public static string AnonymousRenameMenuText {
@@ -1230,7 +1248,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to open a default secure folder..
+        ///   Looks up a localized string similar to Click to open a file from the default secure folder..
         /// </summary>
         public static string DefaultSecureFolderToolTip {
             get {
@@ -3520,7 +3538,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Buy Premium.
+        ///   Looks up a localized string similar to Buy or Renew Premium.
         /// </summary>
         public static string PromptBuyPremium {
             get {

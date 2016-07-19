@@ -81,10 +81,10 @@ namespace Axantum.AxCrypt
 
             RegisterTypeFactories(commandLineArgs[0]);
 
-            CommandLine commandLine = commandLineArgs.Length > 1 ? new CommandLine(commandLineArgs.Skip(1)) : null;
+            CommandLine commandLine = new CommandLine(commandLineArgs.Skip(1));
 
             bool isFirstInstance = New<IRuntimeEnvironment>().IsFirstInstance;
-            if (commandLine != null && !commandLine.CommandItems.Any(ci => ci.Verb == CommandVerb.Startup) && isFirstInstance)
+            if (isFirstInstance && commandLine.HasCommands)
             {
                 OS.Current.IsFirstInstance = isFirstInstance = false;
                 Process.Start(commandLineArgs[0], "--start");

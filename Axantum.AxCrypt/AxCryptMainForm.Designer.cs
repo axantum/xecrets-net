@@ -61,17 +61,18 @@
             this._optionsLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._englishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._germanLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._dutchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._spanishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._francaisLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._italianLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._koreanLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._portugueseBrazilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._dutchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsChangePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsClearAllSettingsAndExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._alwaysOfflineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._keyManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._importOthersSharingKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -481,6 +482,7 @@
             this._optionsLanguageToolStripMenuItem,
             this._optionsChangePassphraseToolStripMenuItem,
             this._optionsAutoConvert1xFilesToolStripMenuItem,
+            this._alwaysOfflineToolStripMenuItem,
             this._optionsDebugToolStripMenuItem,
             this._optionsClearAllSettingsAndExitToolStripMenuItem});
             this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
@@ -520,6 +522,14 @@
             this._germanLanguageToolStripMenuItem.Tag = "de-DE";
             this._germanLanguageToolStripMenuItem.Text = "[Deutsch]";
             this._germanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            // 
+            // _dutchToolStripMenuItem
+            // 
+            this._dutchToolStripMenuItem.Name = "_dutchToolStripMenuItem";
+            this._dutchToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._dutchToolStripMenuItem.Tag = "nl-NL";
+            this._dutchToolStripMenuItem.Text = "[Dutch]";
+            this._dutchToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // _spanishLanguageToolStripMenuItem
             // 
@@ -569,14 +579,6 @@
             this._swedishLanguageToolStripMenuItem.Text = "[Svenska]";
             this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
-            // _dutchToolStripMenuItem
-            // 
-            this._dutchToolStripMenuItem.Name = "_dutchToolStripMenuItem";
-            this._dutchToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this._dutchToolStripMenuItem.Tag = "nl-NL";
-            this._dutchToolStripMenuItem.Text = "[Dutch]";
-            this._dutchToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
-            // 
             // _optionsChangePassphraseToolStripMenuItem
             // 
             this._optionsChangePassphraseToolStripMenuItem.Name = "_optionsChangePassphraseToolStripMenuItem";
@@ -601,6 +603,12 @@
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Text = "[&Clear All Settings and Exit]";
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Click += new System.EventHandler(this.ClearPassphraseMemoryToolStripMenuItem_Click);
+            // 
+            // _alwaysOfflineToolStripMenuItem
+            // 
+            this._alwaysOfflineToolStripMenuItem.Name = "_alwaysOfflineToolStripMenuItem";
+            this._alwaysOfflineToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._alwaysOfflineToolStripMenuItem.Text = "[Always Offline]";
             // 
             // toolStripSeparator1
             // 
@@ -1125,6 +1133,7 @@
         private System.Windows.Forms.ToolStripMenuItem _italianLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _portugueseBrazilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _dutchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _alwaysOfflineToolStripMenuItem;
     }
 }
 
