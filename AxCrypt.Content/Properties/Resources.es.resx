@@ -151,7 +151,7 @@
     <value>Su código de activación es &lt;b&gt;{0}&lt;/b&gt;. Introducir el código de activación en la aplicación AxCrypt o nuestro sitio web. Esto verificará y activará su cuenta.</value>
   </data>
   <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
-    <value>Su código de activación es {0}</value>
+    <value>Su código de activación es {0} </value>
   </data>
   <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
     <value>Usted tiene acceso gratuito a las funciones de AxCrypt Premium durante una &lt;b&gt; prueba gratis de 30 días &lt;/ b&gt; desde el momento en que active su cuenta.</value>
@@ -204,6 +204,14 @@ Elija algo que es difícil de adivinar, ya que protegerá las contraseñas del a
     <value>Seleccione una carpeta para mantener protegidos con AxCrypt. Los archivos existentes serán cifrados ahora.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AlwaysOffline" xml:space="preserve">
+    <value>Siempre offline</value>
+    <comment>Menu choice with checkbox indicating if we are running offline or not.</comment>
+  </data>
+  <data name="AlwaysOfflineToolTip" xml:space="preserve">
+    <value>Cuando activado, el acceso a internet nunca es usado o solicitado sin que antes sea desactivado.</value>
+    <comment>A tool tip explaining that this causes AxCrypt never to access the Internet.</comment>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anónimo Renombre</value>
   </data>
@@ -233,7 +241,7 @@ Si no verifica inmediatamente su AxCrypt ID utilizando el código de activación
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Seguridad para usted y su equipo por AxCrypt AB
-Incluye el software de http://www.bouncycastle.org/. </value>
+Incluye el software de http://www.bouncycastle.org/.</value>
   </data>
   <data name="AxCryptFileEncryption" xml:space="preserve">
     <value>AxCrypt seguridad de archivos</value>
@@ -397,7 +405,7 @@ Usted debe completar estos pasos para completar el proceso.</value>
     <value>Haga clic para comprobar si hay una nueva versión.</value>
   </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
-    <value>Haga clic para limpiar y eliminar todos los archivos abiertos, pero primero asegúrese de que no están en uso.</value>
+    <value>Haga clic para criptografar todos los archivos abiertos o archivos nuevos en carpetas protegidas, pero asegúrese de que no están en uso.</value>
   </data>
   <data name="ColumnAmountPaidHeader" xml:space="preserve">
     <value>Cantidad pagada</value>
@@ -490,6 +498,10 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Has iniciado sesión. Haga clic para cerrar la sesión.</value>
   </data>
+  <data name="DefaultSecureFolderToolTip" xml:space="preserve">
+    <value>Haga clic para abrir un archivo desde la carpeta protegida patrón.</value>
+    <comment>A generic tooltip for the default secure folder created for example in Dropbox.</comment>
+  </data>
   <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
     <value>Eliminación falló debido a una contraseña incorrecta.</value>
   </data>
@@ -537,7 +549,7 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
     <value>Importar AxCrypt ID</value>
   </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
-    <value>Compartir Acceso </value>
+    <value>Compartir Acceso</value>
   </data>
   <data name="DialogManageAxcryptIdTitle" xml:space="preserve">
     <value>Administrar AxCrypt ID</value>
@@ -549,7 +561,7 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
     <value>Activar AxCrypt ID</value>
   </data>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
-    <value>Las carpetas protegidos</value>
+    <value>Carpetas protegidas</value>
   </data>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Haga doble clic para abrir. Si es necesario se le pedirá una contraseña.</value>
@@ -589,7 +601,7 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
     <value>El archivo ya existe, guardar como</value>
   </data>
   <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
-    <value>Haga click para seleccionar archivos para proteger. </value>
+    <value>Haga click para seleccionar archivos para proteger.</value>
   </data>
   <data name="EncryptToolStripMenuItemText" xml:space="preserve">
     <value>Proteger</value>
@@ -674,7 +686,7 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
     <value>Ayuda</value>
   </data>
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
-    <value>Ayuda</value>
+    <value>Ver ayuda</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Importar AxCrypt ID con claves de compartir y acceso.</value>
@@ -708,9 +720,9 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
     <comment>A dialog box title for general announcement and informative message dialog boxes</comment>
   </data>
   <data name="InternetNotRequiredInformation" xml:space="preserve">
-    <value>Internet NO ES NECESARIO cuando se utiliza AxCrypt.
+    <value>Internet NO ES NECESARIA cuando se utiliza AxCrypt.
 
-Recomendamos que AxCrypt se permite el acceso a Internet. Algunas características funcionan mejor y se pueden perder las actualizaciones críticas de otro modo.
+Es recomendable tener acceso a la internet, y es imprescindible para la activación del servicio Premium. De otro modo, algunas características no funcionarán tan bien y se podrán perder las actualizaciones críticas.
 
 La contraseña no se almacena en el servidor, y la conexión siempre está cifrada.</value>
   </data>
@@ -987,11 +999,6 @@ Este programa se licencia según el acuerdo.
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Regístrese para un AxCrypt ID</value>
   </data>
-  <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
-    <value>Se requiere acceso a Internet en este momento. Por favor, compruebe su conexión , y vuelve a intentarlo .
-
-Internet NO ES NECESARIO para utilizar AxCrypt después de esta primera vez.</value>
-  </data>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>Sin conexión a Internet</value>
   </data>
@@ -1082,7 +1089,7 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
     <value>Borrar todos los ajustes y salir</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Convertir archivos 1.x automáticamente</value>
+    <value>Convertir archivos 1.x automáticamente </value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
@@ -1102,7 +1109,7 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
     <value>Las contraseñas no coinciden</value>
   </data>
   <data name="PasswordManagementListPageBody" xml:space="preserve">
-    <value>Administrar todas sus contraseñas en línea en la nube &lt;span class="text-cutoff"&gt; con administración de contraseñas AxCrypt, su depósito de seguridad en línea de contraseñas, códigos, pines, etc. Las contraseñas se guardan en un archivo cifrado de forma segura y están disponibles para usted, y solamente usted, en cualquier lugar en cualquier momento. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Leer más]&lt;/a&gt;&lt;/span&gt; </value>
+    <value>Administrar todas sus contraseñas en línea en la nube &lt;span class="text-cutoff"&gt; con administración de contraseñas AxCrypt, su depósito de seguridad en línea de contraseñas, códigos, pines, etc. Las contraseñas se guardan en un archivo cifrado de forma segura y están disponibles para usted, y solamente usted, en cualquier lugar en cualquier momento. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Leer más]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PasswordManagementPageTitle" xml:space="preserve">
     <value>Administración de contraseñas</value>
@@ -1188,7 +1195,7 @@ Si parece que usted no lo recibe, revise su filtro de correo no deseado y compru
     <value>Comprar ahora</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Comprar Premium</value>
+    <value>Comprar o renovar Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Cambiar</value>
@@ -1748,7 +1755,7 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
     <value>¡'{0}' tiene la extensión incorrecta del nombre de archivo. Debe ser '{1}'!</value>
   </data>
   <data name="WrongPassphrase" xml:space="preserve">
-    <value>Contraseña incorrecta. Por favor, inténtelo de nuevo. </value>
+    <value>Contraseña incorrecta. Por favor, inténtelo de nuevo.</value>
   </data>
   <data name="WrongVerificationCode" xml:space="preserve">
     <value>Código de activación incorrecto. Por favor, vuelva a revisar su correo electrónico.</value>

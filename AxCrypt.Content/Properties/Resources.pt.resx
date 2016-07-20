@@ -205,6 +205,14 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
     <value>Selecione uma pasta para mantê-la protegida com o AxCrypt. Arquivos existentes serão criptografados agora.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AlwaysOffline" xml:space="preserve">
+    <value>Sempre desconectado</value>
+    <comment>Menu choice with checkbox indicating if we are running offline or not.</comment>
+  </data>
+  <data name="AlwaysOfflineToolTip" xml:space="preserve">
+    <value>Quando ativado, o acesso à internet nunca é usado ou solicitado, até que seja desabilitado.</value>
+    <comment>A tool tip explaining that this causes AxCrypt never to access the Internet.</comment>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Renomeação anônima</value>
   </data>
@@ -398,7 +406,7 @@ Depois disso, poderá acessar usando &lt;b&gt;{0}&lt;/b&gt; e sua senha existent
     <value>Clique para ver se há uma nova versão disponível.</value>
   </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
-    <value>Clique para limpar e remover quaisquer arquivos abertos, mas primeiro certifique-se de que não estão sendo usados</value>
+    <value>Clique para critptografar quaisquer arquivos abertos ou novos arquivos, mas primeiro certifique-se de que não estão sendo usados</value>
   </data>
   <data name="ColumnAmountPaidHeader" xml:space="preserve">
     <value>Quantidade paga</value>
@@ -492,6 +500,10 @@ Se você não aceitar nossa sessão temporária de cookies, você não poderá f
   </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Você está logado. Clique para sair.</value>
+  </data>
+  <data name="DefaultSecureFolderToolTip" xml:space="preserve">
+    <value>Clique para abrir um arquivo desde uma pasta protegida padrão.</value>
+    <comment>A generic tooltip for the default secure folder created for example in Dropbox.</comment>
   </data>
   <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
     <value>Eliminação falhou devido à senha incorreta.</value>
@@ -714,7 +726,7 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet NÃO É NECESSÁRIA para usar AxCrypt.
 
-Recomendamos que o AxCrypt tenha acesso à internet. Do contrário, algumas funções funcionam melhor e atualizações críticas podem não ser recebidas.
+É recomendável o acesso à internet, e necessário para as funções Premium. Do contrário, algumas funções não funcionarão tão bem e atualizações críticas podem não ser recebidas.
 
 Sua senha não é armazenada em nosso servidor, e a conexão é sempre criptografada.</value>
   </data>
@@ -994,11 +1006,6 @@ Este programa é licenciado de acordo com a licença.
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Registre-se para o ID AxCrypt</value>
   </data>
-  <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
-    <value>O acesso à internet é necessário para a primeira vez que o AxCrypt é iniciado. Por favor, verifique sua conexão e tente novamente.
-
-Internet NÃO É NECESSÁRIA para usar AxCrypt depois da primeira vez.</value>
-  </data>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>Sem acesso à internet.</value>
   </data>
@@ -1198,7 +1205,7 @@ Se você não recebeu nada, verifique se não está na sua pasta de Lixo Eletrô
     <value>Comprar agora</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Comprar Premium</value>
+    <value>Comprar ou renovar Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Mudar</value>

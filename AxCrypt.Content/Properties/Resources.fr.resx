@@ -726,7 +726,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet n'est PAS NECESSAIRE pour utiliser AxCrypt. 
 
-Nous recommandons qu'un accès Internet soit autorisé pour AxCrypt. Certaines fonctionnalités fonctionnent mieux et autrement des mises à jour critiques ne peuvent pas vous atteindre.
+Nous recommandons qu'un accès Internet soit autorisé pour AxCrypt, et celui-ci il est nécessaire pour l'activation Premium. Avec, certaines fonctionnalités fonctionnent mieux et autrement des mises à jour critiques ne peuvent pas vous atteindre.
 
 Votre mot de passe n'est pas stocké sur le serveur, et la connexion est toujours cryptée.</value>
   </data>

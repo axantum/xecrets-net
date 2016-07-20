@@ -24,7 +24,8 @@ namespace Axantum.AxCrypt.Api
         {
             try
             {
-                return await RestCaller.SendAsync(identity, request).Free();
+                RestResponse response = await RestCaller.SendAsync(identity, request).Free();
+                return response;
             }
             catch (OfflineApiException)
             {

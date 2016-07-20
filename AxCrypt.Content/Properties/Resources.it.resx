@@ -205,6 +205,14 @@ Scegli una password difficile da indovinare, poichè proteggerà sia le password
     <value>Seleziona una cartella da proteggere con AxCrypt. I file esistenti nella cartella verranno criptati immediatamente.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AlwaysOffline" xml:space="preserve">
+    <value>Sempre Non in Linea</value>
+    <comment>Menu choice with checkbox indicating if we are running offline or not.</comment>
+  </data>
+  <data name="AlwaysOfflineToolTip" xml:space="preserve">
+    <value>Quando è abilitato, l'accesso a Internet non è mai usato o richiesto, finché non viene disabilitato.</value>
+    <comment>A tool tip explaining that this causes AxCrypt never to access the Internet.</comment>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Rinomina Anonimo</value>
   </data>
@@ -492,6 +500,10 @@ Se non accetti i nostri cookie temporanei di sessione, non puoi connetterti e il
   </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Sei Connesso. Clicca per Disconnetterti.</value>
+  </data>
+  <data name="DefaultSecureFolderToolTip" xml:space="preserve">
+    <value>Clicca per aprire un file contenuto in una cartella protetta di default.</value>
+    <comment>A generic tooltip for the default secure folder created for example in Dropbox.</comment>
   </data>
   <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
     <value>Eliminazione fallita a causa della password non corretta.</value>
@@ -994,11 +1006,6 @@ Questo programma è autorizzato secondo l'accordo.
   </data>
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Registrati per un AxCrypt ID</value>
-  </data>
-  <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
-    <value>Per il primo utilizzo di AxCrypt è richiesto l'accesso ad Internet. Per favore controlla la tua connessione e riprova.
-
-Internet NON è RICHIESTO per usare AxCrypt dopo il primo utilizzo.</value>
   </data>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>Nessun Accesso ad Internet</value>
