@@ -810,9 +810,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet is NOT REQUIRED to use AxCrypt.
 
-We recommend AxCrypt is allowed Internet access. Some features work better and critical updates may not reach you otherwise.
+Internet access is recommended, and required for Premium activation. Some features work better and critical updates may not reach you otherwise.
 
-Your password is not stored on the server, and the connection is always encrypted.</value>
+Your password is not stored on our servers, and the connection is always encrypted.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Incorrect format for an email address.</value>
@@ -1169,11 +1169,6 @@ This program is licensed according to the agreement.
   </data>
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Sign Up for AxCrypt ID</value>
-  </data>
-  <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
-    <value>Internet access is required the first time AxCrypt is started. Please check your connection, and try again.
-
-Internet is NOT REQUIRED to use AxCrypt after this first time.</value>
   </data>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>No Internet Acccess</value>

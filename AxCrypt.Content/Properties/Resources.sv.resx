@@ -205,6 +205,14 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
     <value>Välj en mapp som skall säkras med AxCrypt. Befintliga filer kommer att krypteras.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AlwaysOffline" xml:space="preserve">
+    <value>Alltid Frånkopplad</value>
+    <comment>Menu choice with checkbox indicating if we are running offline or not.</comment>
+  </data>
+  <data name="AlwaysOfflineToolTip" xml:space="preserve">
+    <value>Om Alltid Frånkopplad aktiveras, kommer ingen Internetåtkomst att krävas eller användas tills funktionen avaktiveras.</value>
+    <comment>A tool tip explaining that this causes AxCrypt never to access the Internet.</comment>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anonymt Namnbyte</value>
   </data>
@@ -493,7 +501,7 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Du är påloggad. Klicka för att logga ut.</value>
   </data>
-  <data name="DefaultSecureFolderToolTip">
+  <data name="DefaultSecureFolderToolTip" xml:space="preserve">
     <value>Öppna den fördefinierade säkrade mappen.</value>
     <comment>A generic tooltip for the default secure folder created for example in Dropbox.</comment>
   </data>
@@ -718,7 +726,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet KRÄVS INTE för att använda AxCrypt.
 
-Vi rekommenderar att AxCrypt tillåts använda Internet. Vissa funktioner fungerar bättre, och kritiska uppdateringar kanske inte når fram annars.
+Internetåtkomst rekommenderas, och krävs för Premium-aktivering. Vissa funktioner fungerar bättre och kritiska uppdateringar kanske inte når fram annars.
 
 Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</value>
   </data>
@@ -999,11 +1007,6 @@ Detta program är licensierat i enlighet med avtalet.
   </data>
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Teckna AxCrypt ID</value>
-  </data>
-  <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
-    <value>Internetåtkomst krävs första gången. Kontrollera anslutningen och försök igen.
-
-Internet KRÄVS INTE efter denna första gång.</value>
   </data>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>Internetåtkomst Saknas!</value>

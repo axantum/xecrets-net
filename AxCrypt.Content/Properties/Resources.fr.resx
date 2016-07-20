@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AaaUtfDummy" xml:space="preserve">
-    <value> </value>
-    <comment>A text containing non-Ansi characters to make Phraseapp download behave. Does not need translation, but should be there.</comment>
-  </data>
   <data name="AbortedFileStatus" xml:space="preserve">
     <value>Etat 'Interrompu' ({0})</value>
   </data>
@@ -208,6 +204,14 @@ Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>Choisissez un dossier à protéger avec AxCrypt. Les fichiers qu'il contient seront chiffrés immédiatement.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AlwaysOffline" xml:space="preserve">
+    <value>Toujours Hors Ligne</value>
+    <comment>Menu choice with checkbox indicating if we are running offline or not.</comment>
+  </data>
+  <data name="AlwaysOfflineToolTip" xml:space="preserve">
+    <value>Quand activé, l'accès à Internet n'est jamais utilisé ou nécessaire, jusqu'à la désactivation. </value>
+    <comment>A tool tip explaining that this causes AxCrypt never to access the Internet.</comment>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anonyme Renommer</value>
@@ -402,7 +406,7 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
     <value>Cliquez pour vérifier si une mise à jour est disponible.</value>
   </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
-    <value>Cliquez ici pour nettoyer et supprimer les fichiers ouverts. Assurez-vous auparavant qu'ils ne soient pas en cours d'utilisation.</value>
+    <value>Cliquez ici pour chiffrer des fichiers ouverts ou des nouveaux fichiers dans des dossiers sécurisés, assurez-vous auparavant qu'ils ne soient pas en cours d'utilisation.</value>
   </data>
   <data name="ColumnAmountPaidHeader" xml:space="preserve">
     <value>Montant payé</value>
@@ -496,6 +500,10 @@ Si vous n'acceptez pas nos cookies de session temporaires, vous ne pouvez pas vo
   </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>Vous êtes connecté. Cliquez pour vous déconnecter.</value>
+  </data>
+  <data name="DefaultSecureFolderToolTip" xml:space="preserve">
+    <value>Cliquez pour ouvrir un fichier depuis le fichier sécurisé par défaut </value>
+    <comment>A generic tooltip for the default secure folder created for example in Dropbox.</comment>
   </data>
   <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
     <value>Suppression échouée en raison d'un mot de passe incorrect.</value>
@@ -682,7 +690,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Aide</value>
   </data>
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
-    <value>Aide</value>
+    <value>Voir Aide</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Importer AxCrypt ID avec les clefs de partage et d'accès. </value>
@@ -997,11 +1005,6 @@ Ce logiciel est livré d'après la licence.
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Connexion</value>
   </data>
-  <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
-    <value>L'accès à Internet est nécessaire la première fois qu'AxCrypt est démarré. S'il vous plaît, vérifiez votre connexion, et essayez de nouveau.
-
-Après sa première utilisation, Internet n'est PAS NECESSAIRE à AxCrypt. </value>
-  </data>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>Pas d'accès à Internet</value>
   </data>
@@ -1201,7 +1204,7 @@ Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identi
     <value>Acheter maintenant </value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Acheter la version Premium</value>
+    <value>Acheter ou renouveler la version Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Changer</value>
