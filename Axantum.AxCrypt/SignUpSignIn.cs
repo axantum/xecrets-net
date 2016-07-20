@@ -4,10 +4,12 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Forms.Style;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
@@ -23,24 +25,27 @@ namespace Axantum.AxCrypt
 {
     internal class SignUpSignIn
     {
-        public string UserEmail { get; private set; }
+        public string UserEmail { get; set; }
 
-        public bool StopAndExit { get; private set; }
+        public bool StopAndExit { get; set; }
 
-        public SignUpSignIn(string userEmail)
+        public ApiVersion Version { get; set; }
+
+        public SignUpSignIn()
         {
-            UserEmail = userEmail;
         }
 
-        public async Task DialogsAsync(Form parent)
+        public async Task DialogsAsync(Form parent, ISignInState signingInState)
         {
-            SignUpSignInViewModel viewModel = new SignUpSignInViewModel()
+            SignUpSignInViewModel viewModel = new SignUpSignInViewModel(signingInState)
             {
                 UserEmail = UserEmail,
+                Version = Version,
             };
 
             viewModel.BindPropertyChanged(nameof(viewModel.UserEmail), (string email) => UserEmail = email);
             viewModel.BindPropertyChanged(nameof(viewModel.StopAndExit), (bool stop) => StopAndExit = stop);
+            viewModel.BindPropertyChanged(nameof(viewModel.TopControlsEnabled), (bool enabled) => SetTopControlsEnabled(parent, enabled));
 
             viewModel.CreateAccount += (sender, e) =>
             {
@@ -82,7 +87,21 @@ namespace Axantum.AxCrypt
                 }
             };
 
-            await viewModel.DoDialogs.ExecuteAsync(null);
+            viewModel.RestoreWindow += (sender, e) =>
+            {
+                Styling.RestoreWindowWithFocus(parent);
+            };
+
+            await viewModel.SignIn.ExecuteAsync(null);
+        }
+
+        private void SetTopControlsEnabled(Form parent, bool enabled)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                control.Enabled = enabled;
+            }
+            parent.Cursor = enabled ? Cursors.Default : Cursors.WaitCursor;
         }
     }
 }

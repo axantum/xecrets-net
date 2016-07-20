@@ -23,7 +23,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool StopAndExit { get { return GetProperty<bool>(nameof(StopAndExit)); } set { SetProperty(nameof(StopAndExit), value); } }
 
+        public bool TopControlsEnabled { get { return GetProperty<bool>(nameof(TopControlsEnabled)); } set { SetProperty(nameof(TopControlsEnabled), value); } }
+
+        public ApiVersion Version { get { return GetProperty<ApiVersion>(nameof(Version)); } set { SetProperty(nameof(Version), value); } }
+
         public IAsyncAction DoDialogs { get { return new AsyncDelegateAction<object>((o) => DoDialogsActionAsync()); } }
+
+        public IAsyncAction SignIn { get { return new AsyncDelegateAction<object>((o) => SignInActionAsync()); } }
 
         public event EventHandler<CancelEventArgs> CreateAccount;
 
@@ -31,8 +37,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public event EventHandler<CancelEventArgs> RequestEmail;
 
-        public SignUpSignInViewModel()
+        public event EventHandler RestoreWindow;
+
+        private ISignInState _signInState;
+
+        public SignUpSignInViewModel(ISignInState signInState)
         {
+            _signInState = signInState;
+
             InitializePropertyValues();
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
@@ -48,6 +60,88 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SubscribeToModelEvents()
         {
+        }
+
+        private async Task SignInActionAsync()
+        {
+            CancelEventArgs e = new CancelEventArgs();
+            OnRestoreWindow(e);
+            if (_signInState.IsSigningIn)
+            {
+                return;
+            }
+
+            _signInState.IsSigningIn = true;
+            try
+            {
+                do
+                {
+                    await WrapMessageDialogsAsync(async () =>
+                    {
+                        await DoDialogsActionAsync();
+                        if (StopAndExit)
+                        {
+                            return;
+                        }
+
+                        await _signInState.SignIn();
+                    });
+                    if (StopAndExit)
+                    {
+                        return;
+                    }
+                } while (String.IsNullOrEmpty(UserEmail));
+            }
+            finally
+            {
+                _signInState.IsSigningIn = false;
+            }
+            if (Resolve.UserSettings.IsFirstSignIn)
+            {
+                New<IPopup>().Show(PopupButtons.Ok, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
+                Resolve.UserSettings.IsFirstSignIn = false;
+            }
+        }
+
+        private async Task WrapMessageDialogsAsync(Func<Task> dialogFunctionAsync)
+        {
+            TopControlsEnabled = false;
+            if (Version != ApiVersion.Zero && Version != new ApiVersion())
+            {
+                New<IPopup>().Show(PopupButtons.Ok, Texts.MessageServerUpdateTitle, Texts.MessageServerUpdateText);
+            }
+            while (true)
+            {
+                try
+                {
+                    await dialogFunctionAsync();
+                    if (StopAndExit)
+                    {
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex is ApplicationExitException)
+                    {
+                        throw;
+                    }
+                    New<IReport>().Exception(ex);
+
+                    while (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    New<IPopup>().Show(PopupButtons.Ok, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText.InvariantFormat(ex.Message));
+                    continue;
+                }
+                finally
+                {
+                    TopControlsEnabled = true;
+                }
+                break;
+            }
+            return;
         }
 
         public async Task DoDialogsActionAsync()
@@ -199,6 +293,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void OnRequestEmail(CancelEventArgs e)
         {
             RequestEmail?.Invoke(this, e);
+        }
+
+        private void OnRestoreWindow(EventArgs e)
+        {
+            RestoreWindow?.Invoke(this, e);
         }
     }
 }

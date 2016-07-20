@@ -116,6 +116,7 @@
     <Compile Include="Algorithm\Sha256.cs" />
     <Compile Include="Algorithm\SymmetricAlgorithm.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
+    <Compile Include="Runtime\AsyncCompletionEventArgs.cs" />
     <Compile Include="Runtime\CryptoException.cs" />
     <Compile Include="Runtime\FileOperationException.cs" />
     <Compile Include="Runtime\FreeForcedLicensePolicy.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="UI\IDataItemSelection.cs" />
     <Compile Include="UI\IDeviceLocked.cs" />
     <Compile Include="UI\IPopup.cs" />
+    <Compile Include="UI\ISignInState.cs" />
     <Compile Include="UI\LegacyConversionMode.cs" />
     <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />

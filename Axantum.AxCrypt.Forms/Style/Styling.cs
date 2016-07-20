@@ -112,5 +112,24 @@ namespace Axantum.AxCrypt.Forms.Style
                 Style(childControl);
             }
         }
+
+        public static void RestoreWindowWithFocus(Form form)
+        {
+            if (form.ContainsFocus)
+            {
+                return;
+            }
+
+            do
+            {
+                form.Show();
+                form.WindowState = FormWindowState.Normal;
+                form.Activate();
+                form.Focus();
+                form.BringToFront();
+
+                form = form.OwnedForms.FirstOrDefault();
+            } while (form != null);
+        }
     }
 }

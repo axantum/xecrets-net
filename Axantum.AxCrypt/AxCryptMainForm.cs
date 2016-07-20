@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Ax")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
-    public partial class AxCryptMainForm : Form, IStatusChecker
+    public partial class AxCryptMainForm : Form, IStatusChecker, ISignInState
     {
         private NotifyIcon _notifyIcon = null;
 
@@ -300,79 +300,30 @@ namespace Axantum.AxCrypt
             await SignInAsync();
         }
 
-        private bool _isSigningIn = false;
+        public bool IsSigningIn { get; set; }
+
+        public async Task SignIn()
+        {
+            await LogOnAndDoPendingRequestAsync();
+        }
 
         private async Task SignInAsync()
         {
-            RestoreWindowWithFocus();
-            if (_isSigningIn)
+            SignUpSignIn signUpSignIn = new SignUpSignIn()
             {
+                Version = _apiVersion,
+                UserEmail = New<IUserSettings>().UserEmail,
+            };
+
+            await signUpSignIn.DialogsAsync(this, this);
+
+            New<IUserSettings>().UserEmail = signUpSignIn.UserEmail;
+
+            if (signUpSignIn.StopAndExit)
+            {
+                StopAndExit();
                 return;
             }
-            _isSigningIn = true;
-            try
-            {
-                do
-                {
-                    await WrapMessageDialogsAsync(async () =>
-                    {
-                        SignUpSignIn signUpSignIn = new SignUpSignIn(Resolve.UserSettings.UserEmail);
-                        await signUpSignIn.DialogsAsync(this);
-                        Resolve.UserSettings.UserEmail = signUpSignIn.UserEmail;
-                        if (signUpSignIn.StopAndExit)
-                        {
-                            StopAndExit();
-                            return;
-                        }
-
-                        await _fileOperationViewModel.IdentityViewModel.LogOnAsync.ExecuteAsync(null);
-                        await LogOnAndDoPendingRequestAsync();
-                    });
-                } while (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail));
-            }
-            finally
-            {
-                _isSigningIn = false;
-            }
-            if (Resolve.UserSettings.IsFirstSignIn)
-            {
-                New<IPopup>().Show(PopupButtons.Ok, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
-                Resolve.UserSettings.IsFirstSignIn = false;
-            }
-        }
-
-        private async Task WrapMessageDialogsAsync(Func<Task> dialogFunctionAsync)
-        {
-            SetTopControlsEnabled(false);
-            if (_apiVersion != ApiVersion.Zero && _apiVersion != new ApiVersion())
-            {
-                New<IPopup>().Show(PopupButtons.Ok, Texts.MessageServerUpdateTitle, Texts.MessageServerUpdateText);
-            }
-            while (true)
-            {
-                try
-                {
-                    await dialogFunctionAsync();
-                }
-                catch (Exception ex)
-                {
-                    if (ex is ApplicationExitException)
-                    {
-                        throw;
-                    }
-                    New<IReport>().Exception(ex);
-
-                    while (ex.InnerException != null)
-                    {
-                        ex = ex.InnerException;
-                    }
-                    New<IPopup>().Show(PopupButtons.Ok, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText.InvariantFormat(ex.Message));
-                    continue;
-                }
-                SetTopControlsEnabled(true);
-                break;
-            }
-            return;
         }
 
         private void SetTopControlsEnabled(bool enabled)
@@ -386,6 +337,8 @@ namespace Axantum.AxCrypt
 
         private async Task LogOnAndDoPendingRequestAsync()
         {
+            await _fileOperationViewModel.IdentityViewModel.LogOnAsync.ExecuteAsync(null);
+
             if (_mainViewModel.LoggedOn)
             {
                 await DoRequestAsync(_pendingRequest);
@@ -1003,7 +956,7 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewLogOn(LogOnEventArgs e)
         {
-            RestoreWindowWithFocus();
+            Styling.RestoreWindowWithFocus(this);
             if (!String.IsNullOrEmpty(e.EncryptedFileFullName))
             {
                 HandleCreateNewLogOnForEncryptedFile(e);
@@ -1050,7 +1003,7 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
-            RestoreWindowWithFocus();
+            Styling.RestoreWindowWithFocus(this);
             if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
             {
                 HandleExistingLogOnForEncryptedFile(e);
@@ -1176,7 +1129,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case CommandVerb.Show:
-                    RestoreWindowWithFocus();
+                    Styling.RestoreWindowWithFocus(this);
                     break;
 
                 case CommandVerb.SetOfflineMode:
@@ -1198,30 +1151,6 @@ namespace Axantum.AxCrypt
                 default:
                     break;
             }
-        }
-
-        private void RestoreWindowWithFocus()
-        {
-            if (ContainsFocus)
-            {
-                return;
-            }
-
-            RestoreFormWithFocus(this);
-        }
-
-        private static void RestoreFormWithFocus(Form form)
-        {
-            do
-            {
-                form.Show();
-                form.WindowState = FormWindowState.Normal;
-                form.Activate();
-                form.Focus();
-                form.BringToFront();
-
-                form = form.OwnedForms.FirstOrDefault();
-            } while (form != null);
         }
 
         private DragDropEffects GetEffectsForMainToolStrip(DragEventArgs e)
