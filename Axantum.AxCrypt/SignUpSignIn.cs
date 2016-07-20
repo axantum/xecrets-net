@@ -34,145 +34,55 @@ namespace Axantum.AxCrypt
 
         public async Task DialogsAsync(Form parent)
         {
-            AccountStatus status;
-            PopupButtons dialogResult;
-            do
+            SignUpSignInViewModel viewModel = new SignUpSignInViewModel()
             {
-                dialogResult = PopupButtons.Ok;
-                status = await EnsureEmailAccountAsync(parent);
-                if (StopAndExit)
-                {
-                    return;
-                }
+                UserEmail = UserEmail,
+            };
 
-                switch (status)
-                {
-                    case AccountStatus.NotFound:
-                        await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(UserEmail));
-                        New<IPopup>().Show(PopupButtons.Ok, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(UserEmail));
-                        status = VerifyAccountOnline(parent);
-                        break;
+            viewModel.BindPropertyChanged(nameof(viewModel.UserEmail), (string email) => UserEmail = email);
+            viewModel.BindPropertyChanged(nameof(viewModel.StopAndExit), (bool stop) => StopAndExit = stop);
 
-                    case AccountStatus.InvalidName:
-                        dialogResult = New<IPopup>().Show(PopupButtons.OkCancelExit, Texts.MessageInvalidSignUpEmailTitle, Texts.MessageInvalidSignUpEmailText.InvariantFormat(UserEmail));
-                        UserEmail = string.Empty;
-                        break;
-
-                    case AccountStatus.Unverified:
-                        status = VerifyAccountOnline(parent);
-                        break;
-
-                    case AccountStatus.Verified:
-                        break;
-
-                    case AccountStatus.Offline:
-                        New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Connected;
-                        using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(parent, String.Empty, EmailAddress.Parse(UserEmail)))
-                        {
-                            DialogResult result = dialog.ShowDialog();
-                            if (result == DialogResult.OK)
-                            {
-                                status = AccountStatus.Verified;
-                            }
-                        }
-                        break;
-
-                    case AccountStatus.Unknown:
-                    case AccountStatus.Unauthenticated:
-                    case AccountStatus.DefinedByServer:
-                        dialogResult = New<IPopup>().Show(PopupButtons.OkCancelExit, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText);
-                        UserEmail = string.Empty;
-                        break;
-
-                    default:
-                        break;
-                }
-                if (dialogResult == PopupButtons.Exit)
-                {
-                    StopAndExit = true;
-                    return;
-                }
-                if (dialogResult == PopupButtons.Cancel)
-                {
-                    return;
-                }
-            } while (status != AccountStatus.Verified);
-        }
-
-        private async Task<AccountStatus> EnsureEmailAccountAsync(Form parent)
-        {
-            AccountStatus status;
-            if (!string.IsNullOrEmpty(UserEmail))
+            viewModel.CreateAccount += (sender, e) =>
             {
-                status = await GetCurrentStatusAsync();
-                switch (status)
+                using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(parent, String.Empty, EmailAddress.Parse(UserEmail)))
                 {
-                    case AccountStatus.Unknown:
-                    case AccountStatus.InvalidName:
-                    case AccountStatus.Unverified:
-                    case AccountStatus.NotFound:
-                    case AccountStatus.Offline:
-                        break;
-
-                    default:
-                        return status;
+                    DialogResult result = dialog.ShowDialog();
+                    if (result != DialogResult.OK)
+                    {
+                        e.Cancel = true; ;
+                    }
                 }
-            }
+            };
 
-            AskForEmailAddressToUse(parent);
-            if (StopAndExit)
+            viewModel.RequestEmail += (sender, e) =>
             {
-                return AccountStatus.Unknown;
-            }
-
-            status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(UserEmail));
-            return status;
-        }
-
-        private async Task<AccountStatus> GetCurrentStatusAsync()
-        {
-            EmailAddress email;
-            if (!EmailAddress.TryParse(UserEmail, out email))
-            {
-                return AccountStatus.InvalidName;
-            }
-            AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(email);
-            return status;
-        }
-
-        private void AskForEmailAddressToUse(Form parent)
-        {
-            using (EmailDialog dialog = new EmailDialog(parent))
-            {
-                dialog.EmailTextBox.Text = UserEmail;
-                DialogResult result = dialog.ShowDialog(parent);
-                if (result != DialogResult.OK)
+                using (EmailDialog dialog = new EmailDialog(parent))
                 {
-                    StopAndExit = true;
-                    return;
+                    dialog.EmailTextBox.Text = viewModel.UserEmail;
+                    DialogResult result = dialog.ShowDialog(parent);
+                    if (result != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    viewModel.UserEmail = dialog.EmailTextBox.Text;
                 }
-                UserEmail = dialog.EmailTextBox.Text;
-            }
-        }
+            };
 
-        private static AccountStatus VerifyAccountOnline(Form parent)
-        {
-            VerifyAccountViewModel viewModel = new VerifyAccountViewModel(EmailAddress.Parse(Resolve.UserSettings.UserEmail));
-            using (VerifyAccountDialog dialog = new VerifyAccountDialog(parent, viewModel))
+            viewModel.VerifyAccount += (sender, e) =>
             {
-                DialogResult dialogResult = dialog.ShowDialog(parent);
-                if (dialogResult != DialogResult.OK)
+                VerifyAccountViewModel vav = new VerifyAccountViewModel(EmailAddress.Parse(viewModel.UserEmail));
+                using (VerifyAccountDialog dialog = new VerifyAccountDialog(parent, vav))
                 {
-                    return AccountStatus.Unverified;
+                    DialogResult result = dialog.ShowDialog(parent);
+                    if (result != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                    }
                 }
-            }
+            };
 
-            PopupButtons result = New<IPopup>().Show(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.WelcomeToAxCrypt);
-            if (result == PopupButtons.Ok)
-            {
-                Process.Start(Texts.LinkToGettingStarted);
-            }
-            return AccountStatus.Verified;
+            await viewModel.DoDialogs.ExecuteAsync(null);
         }
     }
 }
