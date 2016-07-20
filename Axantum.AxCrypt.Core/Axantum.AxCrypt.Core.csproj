@@ -188,11 +188,13 @@
     <Compile Include="UI\DeviceLockReason.cs" />
     <Compile Include="UI\IDataItemSelection.cs" />
     <Compile Include="UI\IDeviceLocked.cs" />
+    <Compile Include="UI\IPopup.cs" />
     <Compile Include="UI\LegacyConversionMode.cs" />
     <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="UI\IEmailParser.cs" />
     <Compile Include="UI\PasswordStrengthCalculator.cs" />
+    <Compile Include="UI\PopupButtons.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />
     <Compile Include="UI\ViewModel\AccountProperties.cs" />
     <Compile Include="UI\ViewModel\AsyncDelegateAction.cs" />
@@ -206,6 +208,7 @@
     <Compile Include="UI\ViewModel\PasswordStrength.cs" />
     <Compile Include="UI\ViewModel\PasswordStrengthMeterViewModel.cs" />
     <Compile Include="UI\ViewModel\SharingListViewModel.cs" />
+    <Compile Include="UI\ViewModel\SignUpSignInViewModel.cs" />
     <Compile Include="UI\ViewModel\VerifyAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\VerifySignInPasswordViewModel.cs" />
     <Compile Include="UI\ViewModel\WatchedFoldersViewModel.cs" />

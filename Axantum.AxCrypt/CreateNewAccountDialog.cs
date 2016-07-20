@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt
 
             if (!New<KeyPairService>().IsAnyAvailable)
             {
-                MessageDialog.ShowOk(this, Texts.OfflineAccountTitle, Texts.OfflineAccountBePatient);
+                New<IPopup>().Show(PopupButtons.Ok, Texts.OfflineAccountTitle, Texts.OfflineAccountBePatient);
             }
             CreateAccountAsync();
         }

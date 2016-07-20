@@ -35,10 +35,10 @@ namespace Axantum.AxCrypt
         public async Task DialogsAsync(Form parent)
         {
             AccountStatus status;
-            DialogResult dialogResult;
+            PopupButtons dialogResult;
             do
             {
-                dialogResult = DialogResult.OK;
+                dialogResult = PopupButtons.Ok;
                 status = await EnsureEmailAccountAsync(parent);
                 if (StopAndExit)
                 {
@@ -49,12 +49,12 @@ namespace Axantum.AxCrypt
                 {
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(UserEmail));
-                        MessageDialog.ShowOk(parent, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(UserEmail));
+                        New<IPopup>().Show(PopupButtons.Ok, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(UserEmail));
                         status = VerifyAccountOnline(parent);
                         break;
 
                     case AccountStatus.InvalidName:
-                        dialogResult = MessageDialog.ShowOkCancelExit(parent, Texts.MessageInvalidSignUpEmailTitle, Texts.MessageInvalidSignUpEmailText.InvariantFormat(UserEmail));
+                        dialogResult = New<IPopup>().Show(PopupButtons.OkCancelExit, Texts.MessageInvalidSignUpEmailTitle, Texts.MessageInvalidSignUpEmailText.InvariantFormat(UserEmail));
                         UserEmail = string.Empty;
                         break;
 
@@ -80,19 +80,19 @@ namespace Axantum.AxCrypt
                     case AccountStatus.Unknown:
                     case AccountStatus.Unauthenticated:
                     case AccountStatus.DefinedByServer:
-                        dialogResult = MessageDialog.ShowOkCancelExit(parent, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText);
+                        dialogResult = New<IPopup>().Show(PopupButtons.OkCancelExit, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText);
                         UserEmail = string.Empty;
                         break;
 
                     default:
                         break;
                 }
-                if (dialogResult == DialogResult.Abort)
+                if (dialogResult == PopupButtons.Exit)
                 {
                     StopAndExit = true;
                     return;
                 }
-                if (dialogResult == DialogResult.Cancel)
+                if (dialogResult == PopupButtons.Cancel)
                 {
                     return;
                 }
@@ -167,8 +167,8 @@ namespace Axantum.AxCrypt
                 }
             }
 
-            DialogResult result = MessageDialog.ShowOkCancel(parent, Texts.WelcomeToAxCryptTitle, Texts.WelcomeToAxCrypt);
-            if (result == DialogResult.OK)
+            PopupButtons result = New<IPopup>().Show(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.WelcomeToAxCrypt);
+            if (result == PopupButtons.Ok)
             {
                 Process.Start(Texts.LinkToGettingStarted);
             }

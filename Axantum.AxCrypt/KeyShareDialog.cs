@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            MessageDialog.ShowOk(this, Texts.SharedWithUnverfiedMessageTitle, Texts.SharedWithUnverifiedMessagePattern.InvariantFormat(email));
+            New<IPopup>().Show(PopupButtons.Ok, Texts.SharedWithUnverfiedMessageTitle, Texts.SharedWithUnverifiedMessagePattern.InvariantFormat(email));
         }
 
         private void SetShareButtonState()

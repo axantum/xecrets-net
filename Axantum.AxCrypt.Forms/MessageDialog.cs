@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Forms
 {
-    public partial class MessageDialog : StyledMessageBase
+    internal partial class MessageDialog : StyledMessageBase
     {
         public MessageDialog()
         {
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt
                 messageDialog.HideExit();
                 messageDialog.HideCancel();
                 messageDialog.Text = caption;
-                messageDialog._text.Text = message;
+                messageDialog.Message.Text = message;
 
                 return Task.FromResult(messageDialog.ShowDialog(parent));
             }
@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt
             {
                 messageDialog.HideExit();
                 messageDialog.Text = caption;
-                messageDialog._text.Text = message;
+                messageDialog.Message.Text = message;
 
                 return messageDialog.ShowDialog(parent);
             }
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
                 messageDialog.Text = caption;
-                messageDialog._text.Text = message;
+                messageDialog.Message.Text = message;
 
                 return messageDialog.ShowDialog(parent);
             }
@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt
             {
                 messageDialog.HideCancel();
                 messageDialog.Text = caption;
-                messageDialog._text.Text = message;
+                messageDialog.Message.Text = message;
 
                 return messageDialog.ShowDialog(parent);
             }

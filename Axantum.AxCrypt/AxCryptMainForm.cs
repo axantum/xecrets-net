@@ -283,7 +283,7 @@ namespace Axantum.AxCrypt
                 return true;
             }
 
-            Texts.UserSettingsFormatChangeNeedsReset.ShowWarning(this, Texts.WarningTitle);
+            Texts.UserSettingsFormatChangeNeedsReset.ShowWarning(Texts.WarningTitle);
             ClearAllSettingsAndReinitialize();
             StopAndExit();
             return false;
@@ -336,7 +336,7 @@ namespace Axantum.AxCrypt
             }
             if (Resolve.UserSettings.IsFirstSignIn)
             {
-                MessageDialog.ShowOk(this, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
+                New<IPopup>().Show(PopupButtons.Ok, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
                 Resolve.UserSettings.IsFirstSignIn = false;
             }
         }
@@ -346,7 +346,7 @@ namespace Axantum.AxCrypt
             SetTopControlsEnabled(false);
             if (_apiVersion != ApiVersion.Zero && _apiVersion != new ApiVersion())
             {
-                MessageDialog.ShowOk(this, Texts.MessageServerUpdateTitle, Texts.MessageServerUpdateText);
+                New<IPopup>().Show(PopupButtons.Ok, Texts.MessageServerUpdateTitle, Texts.MessageServerUpdateText);
             }
             while (true)
             {
@@ -366,7 +366,7 @@ namespace Axantum.AxCrypt
                     {
                         ex = ex.InnerException;
                     }
-                    MessageDialog.ShowOk(this, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText.InvariantFormat(ex.Message));
+                    New<IPopup>().Show(PopupButtons.Ok, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText.InvariantFormat(ex.Message));
                     continue;
                 }
                 SetTopControlsEnabled(true);
@@ -471,6 +471,8 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<WatchedFoldersViewModel>(() => new WatchedFoldersViewModel(Resolve.FileSystemState));
 
             TypeMap.Register.Singleton<AboutBox>(() => new AboutBox());
+
+            FormsTypes.Register(this);
         }
 
         private static void SetupPathFilters()
@@ -911,8 +913,8 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            DialogResult dr = MessageDialog.ShowOkCancel(this, Texts.WarningTitle, Texts.LegacyOpenMessage);
-            if (dr == DialogResult.Cancel)
+            PopupButtons click = New<IPopup>().Show(PopupButtons.OkCancel, Texts.WarningTitle, Texts.LegacyOpenMessage);
+            if (click == PopupButtons.Cancel)
             {
                 e.Cancel = true;
                 return;
@@ -1331,7 +1333,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            MessageDialog.ShowOk(this, string.Empty, msg);
+            New<IPopup>().Show(PopupButtons.Ok, string.Empty, msg);
             Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
         }
 
@@ -1432,31 +1434,31 @@ namespace Axantum.AxCrypt
                     return true;
 
                 case ErrorStatus.UnspecifiedError:
-                    Texts.FileOperationFailed.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    Texts.FileOperationFailed.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.FileAlreadyExists:
-                    Texts.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
+                    Texts.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.FileDoesNotExist:
-                    Texts.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
+                    Texts.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.CannotWriteDestination:
-                    Texts.CannotWrite.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
+                    Texts.CannotWrite.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.CannotStartApplication:
-                    Texts.CannotStartApplication.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    Texts.CannotStartApplication.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.InconsistentState:
-                    Texts.InconsistentState.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    Texts.InconsistentState.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.InvalidKey:
-                    Texts.InvalidKey.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    Texts.InvalidKey.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.Canceled:
@@ -1468,51 +1470,51 @@ namespace Axantum.AxCrypt
                     {
                         msg = "{0} [{1}]".InvariantFormat(msg, message);
                     }
-                    msg.ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    msg.ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.InvalidPath:
-                    Texts.InvalidPath.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    Texts.InvalidPath.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.FolderAlreadyWatched:
-                    Texts.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    Texts.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.FileLocked:
-                    Texts.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
+                    Texts.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.FileWriteProtected:
-                    Texts.FileIsWriteProtectedWarning.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
+                    Texts.FileIsWriteProtectedWarning.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.WrongFileExtensionError:
-                    Texts.WrongFileExtensionWarning.InvariantFormat(displayContext, OS.Current.AxCryptExtension).ShowWarning(this, Texts.WarningTitle);
+                    Texts.WrongFileExtensionWarning.InvariantFormat(displayContext, OS.Current.AxCryptExtension).ShowWarning(Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.Unknown:
-                    Texts.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    Texts.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.Working:
-                    Texts.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    Texts.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.Aborted:
-                    Texts.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    Texts.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
 
                 case ErrorStatus.FileAlreadyEncrypted:
-                    Texts.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
+                    Texts.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
                     break;
 
                 case ErrorStatus.MagicGuidMissing:
-                    Texts.MagicGuidMIssingFileStatus.InvariantFormat(displayContext).ShowWarning(this, Texts.WarningTitle);
+                    Texts.MagicGuidMIssingFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
                     break;
 
                 default:
-                    Texts.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning(this, Texts.MessageUnexpectedErrorTitle);
+                    Texts.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning(Texts.MessageUnexpectedErrorTitle);
                     break;
             }
             return false;
@@ -1618,7 +1620,7 @@ namespace Axantum.AxCrypt
             {
                 sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine));
             }
-            MessageDialog.ShowOk(this, Texts.WarningTitle, sb.ToString());
+            New<IPopup>().Show(PopupButtons.Ok, Texts.WarningTitle, sb.ToString());
         }
 
         private void SetSortOrder(int column)
@@ -1688,7 +1690,7 @@ namespace Axantum.AxCrypt
                 return realHandler();
             }
 
-            return MessageDialog.ShowOkAsync(this, Texts.WarningTitle, Texts.PremiumFeatureToolTipText);
+            return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.PremiumFeatureToolTipText);
         }
 
         private void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)

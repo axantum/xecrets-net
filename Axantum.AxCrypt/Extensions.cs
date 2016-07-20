@@ -36,9 +36,9 @@ namespace Axantum.AxCrypt
 {
     internal static class Extensions
     {
-        public static void ShowWarning(this string message, Form parent, string title)
+        public static void ShowWarning(this string message, string title)
         {
-            New<IUIThread>().PostTo(() => MessageDialog.ShowOk(parent, title, message));
+            New<IUIThread>().PostTo(() => New<IPopup>().Show(PopupButtons.Ok, title, message));
         }
 
         public static Point Fallback(this Point value, Point fallback)
@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt
             {
                 value = new Point(0, value.Y);
             }
-            if (value.Y <0)
+            if (value.Y < 0)
             {
                 value = new Point(value.X, 0);
             }

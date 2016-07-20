@@ -137,12 +137,6 @@
     <Compile Include="ManageAccountDialog.Designer.cs">
       <DependentUpon>ManageAccountDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MessageDialog.Designer.cs">
-      <DependentUpon>MessageDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="SignUpSignIn.cs" />
     <Compile Include="VerifyAccountDialog.cs">
       <SubType>Form</SubType>
@@ -216,9 +210,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageAccountDialog.resx">
       <DependentUpon>ManageAccountDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MessageDialog.resx">
-      <DependentUpon>MessageDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VerifyAccountDialog.resx">
       <DependentUpon>VerifyAccountDialog.cs</DependentUpon>
