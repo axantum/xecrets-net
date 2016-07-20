@@ -1478,7 +1478,7 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
     <value>Créer AxCrypt ID</value>
   </data>
   <data name="TitleMainWindow" xml:space="preserve">
-    <value>{0}{1}{2}</value>
+    <value>{0} {1}{2}</value>
   </data>
   <data name="TitleSignInToAxCrypt" xml:space="preserve">
     <value>Connexion à AxCrypt</value>
