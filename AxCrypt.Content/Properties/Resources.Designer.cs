@@ -2044,9 +2044,9 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Internet is NOT REQUIRED to use AxCrypt.
         ///
-        ///We recommend AxCrypt is allowed Internet access. Some features work better and critical updates may not reach you otherwise.
+        ///Internet access is recommended, and required for Premium activation. Some features work better and critical updates may not reach you otherwise.
         ///
-        ///Your password is not stored on the server, and the connection is always encrypted..
+        ///Your password is not stored on our servers, and the connection is always encrypted..
         /// </summary>
         public static string InternetNotRequiredInformation {
             get {
@@ -2948,17 +2948,6 @@ namespace AxCrypt.Content.Properties {
         public static string MessageSigningUpTitle {
             get {
                 return ResourceManager.GetString("MessageSigningUpTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Internet access is required the first time AxCrypt is started. Please check your connection, and try again.
-        ///
-        ///Internet is NOT REQUIRED to use AxCrypt after this first time..
-        /// </summary>
-        public static string MessageSignUpInternetRequiredText {
-            get {
-                return ResourceManager.GetString("MessageSignUpInternetRequiredText", resourceCulture);
             }
         }
         
