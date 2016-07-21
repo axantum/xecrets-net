@@ -80,6 +80,12 @@ namespace Axantum.AxCrypt.Api.Model
         public DateTime LevelExpiration { get; private set; }
 
         /// <summary>
+        /// Gets the offers the user has accepted already.
+        /// </summary>
+        [JsonProperty("offers")]
+        public Offers Offers { get; private set; }
+
+        /// <summary>
         /// Gets the account status.
         /// </summary>
         /// <value>

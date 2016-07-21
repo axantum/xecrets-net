@@ -60,6 +60,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Model\ApiVersion.cs" />
     <Compile Include="Model\AxCryptVersion.cs" />
+    <Compile Include="Model\Offers.cs" />
     <Compile Include="Model\PasswordSuggestion.cs" />
     <Compile Include="Model\SlackPayload.cs" />
     <Compile Include="Implementation\AbstractTypeSerializer.cs" />
