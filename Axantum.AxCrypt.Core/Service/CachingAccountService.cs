@@ -113,6 +113,17 @@ namespace Axantum.AxCrypt.Core.Service
             return status;
         }
 
+        public async Task<Offers> OffersAsync()
+        {
+            Offers offers = await New<ICache>().GetItemAsync(_key.Subkey(nameof(OffersAsync)), async () => await _service.OffersAsync()).Free();
+            return offers;
+        }
+
+        public async Task StartPremiumTrial()
+        {
+            await New<ICache>().UpdateItemAsync(async () => await _service.StartPremiumTrial(), _key).Free();
+        }
+
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
             return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherPublicKeyAsync)), async () => await _service.OtherPublicKeyAsync(email)).Free();

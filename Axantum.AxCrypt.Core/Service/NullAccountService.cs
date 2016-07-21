@@ -74,6 +74,16 @@ namespace Axantum.AxCrypt.Core.Service
             return Task.FromResult(AccountStatus.Unknown);
         }
 
+        public Task<Offers> OffersAsync()
+        {
+            return Task.FromResult(Offers.None);
+        }
+
+        public Task StartPremiumTrial()
+        {
+            return Task.FromResult(default(object));
+        }
+
         public Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             Identity = new LogOnIdentity(Identity.UserEmail, passphrase);

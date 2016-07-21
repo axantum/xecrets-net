@@ -152,6 +152,15 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
+        public bool IsTrialAvailable
+        {
+            get
+            {
+                bool trialAvailable = !Account.Offers.HasFlag(Offers.AxCryptTrial);
+                return trialAvailable;
+            }
+        }
+
         public ICryptoPolicy CryptoPolicy
         {
             get

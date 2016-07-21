@@ -126,6 +126,18 @@ namespace Axantum.AxCrypt.Api
         }
 
         /// <summary>
+        /// Start a Premium Trial period for the user.
+        /// </summary>
+        /// <returns></returns>
+        public async Task PostMyAccountPremiumTrial()
+        {
+            Uri resource = BaseUrl.PathCombine("users/my/account/premiumtrial".With(ApiCaller.UrlEncode(Identity.User)));
+
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout));
+            ApiCaller.EnsureStatusOk(restResponse);
+        }
+
+        /// <summary>
         /// Changes the password of the user.
         /// </summary>
         /// <param name="newPassword">The new password.</param>

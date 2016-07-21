@@ -145,6 +145,25 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
+        /// Gets the offers used by the account.
+        /// </summary>
+        /// <returns>A combination of flags for offers used.</returns>
+        public async Task<Offers> OffersAsync()
+        {
+            UserAccount userAccount = await _apiClient.MyAccountAsync().Free();
+            return userAccount.Offers;
+        }
+
+        /// <summary>
+        /// Start a trial period for the user.
+        /// </summary>
+        /// <returns></returns>
+        public async Task StartPremiumTrial()
+        {
+            await _apiClient.PostMyAccountPremiumTrial().Free();
+        }
+
+        /// <summary>
         /// Changes the password for the account.
         /// </summary>
         /// <param name="passphrase">The password.</param>

@@ -4505,11 +4505,42 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Great! Now you can use all features of AxCrypt for free during the trial period.
+        ///
+        ///Good Luck and Enjoy,
+        ///
+        ///The AxCrypt Team.
+        /// </summary>
+        public static string TrialPremiumStartInfo {
+            get {
+                return ResourceManager.GetString("TrialPremiumStartInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Try Broken File.
         /// </summary>
         public static string TryBrokenFileToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("TryBrokenFileToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try Premium!.
+        /// </summary>
+        public static string TryPremiumLabel {
+            get {
+                return ResourceManager.GetString("TryPremiumLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not using the highest level of security. Click to try Premium for free now!.
+        /// </summary>
+        public static string TryPremiumToolTip {
+            get {
+                return ResourceManager.GetString("TryPremiumToolTip", resourceCulture);
             }
         }
         

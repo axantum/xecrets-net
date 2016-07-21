@@ -75,6 +75,18 @@ namespace Axantum.AxCrypt.Core.Service
         Task<AccountStatus> StatusAsync(EmailAddress email);
 
         /// <summary>
+        /// Gets the offers used by the account.
+        /// </summary>
+        /// <returns>A combination of flags for offers used.</returns>
+        Task<Offers> OffersAsync();
+
+        /// <summary>
+        /// Start a premium trial now.
+        /// </summary>
+        /// <returns></returns>
+        Task StartPremiumTrial();
+
+        /// <summary>
         /// Determines whether the Identity is valid for sign in.
         /// </summary>
         /// <returns>true if a user can be considered to be signed in using the Identity as credential.</returns>

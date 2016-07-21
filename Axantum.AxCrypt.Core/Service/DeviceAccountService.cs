@@ -101,6 +101,41 @@ namespace Axantum.AxCrypt.Core.Service
             return await _localService.LevelAsync().Free();
         }
 
+        public async Task<Offers> OffersAsync()
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                try
+                {
+                    return await _remoteService.OffersAsync().Free();
+                }
+                catch (OfflineApiException oaex)
+                {
+                    New<IReport>().Exception(oaex);
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
+            }
+            return await _localService.OffersAsync().Free();
+        }
+
+        public async Task StartPremiumTrial()
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                try
+                {
+                    await _remoteService.StartPremiumTrial().Free();
+                    return;
+                }
+                catch (OfflineApiException oaex)
+                {
+                    New<IReport>().Exception(oaex);
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
+            }
+            await _localService.StartPremiumTrial();
+        }
+
         public async Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             if (New<AxCryptOnlineState>().IsOnline)

@@ -103,6 +103,20 @@ namespace Axantum.AxCrypt.Core.Service
             }).Free();
         }
 
+        public Task<Offers> OffersAsync()
+        {
+            if (Identity == LogOnIdentity.Empty)
+            {
+                return Task.FromResult(Api.Model.Offers.None);
+            }
+            return Task.FromResult(LoadUserAccount().Offers);
+        }
+
+        public Task StartPremiumTrial()
+        {
+            throw new InvalidOperationException("A premium trial cannot be started locally.");
+        }
+
         public bool HasAccounts
         {
             get

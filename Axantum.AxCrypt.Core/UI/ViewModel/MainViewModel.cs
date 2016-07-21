@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(TryBrokenFile), (bool enabled) => { _userSettings.TryBrokenFile = enabled; });
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFiles(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
-            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (LoggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
+            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
             BindPropertyChangedInternal(nameof(License), (LicensePolicy policy) => SetWatchedFolders());
             BindPropertyChangedInternal(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
         }

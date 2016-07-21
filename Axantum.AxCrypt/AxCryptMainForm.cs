@@ -326,15 +326,6 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void SetTopControlsEnabled(bool enabled)
-        {
-            foreach (Control control in Controls)
-            {
-                control.Enabled = enabled;
-            }
-            Cursor = enabled ? Cursors.Default : Cursors.WaitCursor;
-        }
-
         private async Task LogOnAndDoPendingRequestAsync()
         {
             await _fileOperationViewModel.IdentityViewModel.LogOnAsync.ExecuteAsync(null);
@@ -668,7 +659,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
 
-            _daysLeftPremiumLabel.Click += (sender, e) => { Process.Start(Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); };
+            _daysLeftPremiumLabel.Click += async (sender, e) => { await PremiumWarningClickAsync(); };
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Save(); New<IReport>().Open(); };
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
@@ -845,10 +836,7 @@ namespace Axantum.AxCrypt
 
             if (license.SubscriptionWarningTime == TimeSpan.Zero)
             {
-                _daysLeftPremiumLabel.Text = Texts.UpgradePromptText;
-                _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
-                _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.NoPremiumWarning);
-                _daysLeftPremiumLabel.Visible = true;
+                SetUpgradeOrTrial(license);
                 return;
             }
 
@@ -857,6 +845,46 @@ namespace Axantum.AxCrypt
             _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
             _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.DaysLeftWarningToolTip);
             _daysLeftPremiumLabel.Visible = true;
+        }
+
+        private void SetUpgradeOrTrial(LicensePolicy license)
+        {
+            if (!license.IsTrialAvailable)
+            {
+                _daysLeftPremiumLabel.Text = Texts.UpgradePromptText;
+                _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
+                _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.NoPremiumWarning);
+                _daysLeftPremiumLabel.Visible = true;
+                return;
+            }
+
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                _daysLeftPremiumLabel.Visible = false;
+                return;
+            }
+
+            _daysLeftPremiumLabel.Text = Texts.TryPremiumLabel;
+            _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
+            _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.TryPremiumToolTip);
+            _daysLeftPremiumLabel.Visible = true;
+        }
+
+        private async Task PremiumWarningClickAsync()
+        {
+            if (_daysLeftPremiumLabel.Text == Texts.TryPremiumLabel)
+            {
+                await New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity).StartPremiumTrial();
+                _mainViewModel.LicenseUpdate.Execute(null);
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
+                return;
+            }
+
+            using (ILauncher launcher = New<ILauncher>())
+            {
+                launcher.Launch(Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail));
+            }
+            return;
         }
 
         private void SetLegacyOpenMode(FileOperationEventArgs e)
