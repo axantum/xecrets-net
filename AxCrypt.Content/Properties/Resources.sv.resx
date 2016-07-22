@@ -1501,6 +1501,22 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
     <value>Dubbelklicka för att öppna AxCrypt.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
+  <data name="TrialPremiumStartInfo" xml:space="preserve">
+    <value>Härligt! Nu kan kan du använda alla funktioner i AxCrypt gratis under provperioden.
+
+Lycka till och mycket nöje!
+
+Vi på AxCrypt</value>
+    <comment>A short message congratulating the user on having started the trial period.</comment>
+  </data>
+  <data name="TryPremiumLabel" xml:space="preserve">
+    <value>Prova Premium!</value>
+    <comment>A clickable link with text similar to "Try Premium"</comment>
+  </data>
+  <data name="TryPremiumToolTip" xml:space="preserve">
+    <value>Du har inte den högsta säkerhetsnivån. Klicka för att prova Premium gratis nu!</value>
+    <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
+  </data>
   <data name="UnknownCrypto" xml:space="preserve">
     <value>Okänt</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>

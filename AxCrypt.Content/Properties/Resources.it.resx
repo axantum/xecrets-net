@@ -406,7 +406,7 @@ Devi effettuare queste operazioni per completare il processo.</value>
     <value>Clicca qui per verificare se una nuova versione è disponibile.</value>
   </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
-    <value>Clicca qui per pulire e rimuovere tutti i file aperti, ma prima assicurati che non siano in uso.</value>
+    <value>Clicca qui per criptare i file aperti o nuovi file contenuti in cartelle protette, ma prima assicurati che non siano in uso.</value>
   </data>
   <data name="ColumnAmountPaidHeader" xml:space="preserve">
     <value>Importo pagato</value>
@@ -726,9 +726,9 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet NON è RICHIESTO per utilizzare AxCrypt.
 
-Raccomandiamo che AxCrypt sia autorizzato ad accedere a Internet. Alcune funzionalità funzionano meglio e aggiornamenti necessari non potrebbero essere effettuati altrimenti.
+L'accesso a Internet è fortemente consigliato e richiesto per l'attivazione di Premium. Alcune funzionalità funzionano meglio e aggiornamenti necessari non potrebbero essere effettuati altrimenti.
 
-La tua password non è salvata nel server e la connessione è sempre criptata.</value>
+La tua password non è salvata nei nostri server e la connessione è sempre criptata.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Formato dell'indirizzo e-mail non corretto</value>
@@ -1210,7 +1210,7 @@ Se non lo ricevi, controlla nello spam e controlla che {0} sia corretto.</value>
     <value>Acquista ora</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Acquista Premium</value>
+    <value>Acquista o Rinnova Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Cambia</value>
@@ -1505,6 +1505,22 @@ Potrebbe essere necessario informare direttamente '{0}' riguardo la protezione d
   <data name="TrayBalloonTooltip" xml:space="preserve">
     <value>Clicca per ripristinare la finestra dell'applicazione AxCrypt.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
+  </data>
+  <data name="TrialPremiumStartInfo" xml:space="preserve">
+    <value>Ottimo! Ora puoi utilizzare tutte le funzionalità di AxCrypt gratuitamente durante il periodo di prova.
+
+Buona fortuna e buon divertimento!
+
+Il Team di AxCrypt</value>
+    <comment>A short message congratulating the user on having started the trial period.</comment>
+  </data>
+  <data name="TryPremiumLabel" xml:space="preserve">
+    <value>Prova Premium!</value>
+    <comment>A clickable link with text similar to "Try Premium"</comment>
+  </data>
+  <data name="TryPremiumToolTip" xml:space="preserve">
+    <value>Non stai utilizzando il massimo livello di protezione. Clicca qui per provare Premium gratuitamente!</value>
+    <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
   </data>
   <data name="UnknownCrypto" xml:space="preserve">
     <value>Sconosciuto</value>
