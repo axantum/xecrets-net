@@ -607,19 +607,16 @@ namespace Axantum.AxCrypt.Core.UI
             catch (OperationCanceledException ocex)
             {
                 _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ocex.Messages(), ErrorStatus.Canceled);
-                throw;
             }
             catch (AxCryptException aex)
             {
                 New<IReport>().Exception(aex);
                 _eventArgs.Status = new FileOperationContext(string.IsNullOrEmpty(aex.DisplayContext) ? fileInfo.FullName : aex.DisplayContext, aex.Messages(), aex.ErrorStatus);
-                throw;
             }
             catch (Exception ex)
             {
                 New<IReport>().Exception(ex);
                 _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ex.Messages(), ErrorStatus.Exception);
-                throw;
             }
             finally
             {

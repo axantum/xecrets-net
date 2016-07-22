@@ -99,6 +99,15 @@ namespace Axantum.AxCrypt.Core.Extensions
             return formatted;
         }
 
+        public static string Default(this string value, object defaultValue)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return defaultValue.ToString();
+            }
+            return value;
+        }
+
         public static string ToUtf8Base64(this string passphrase)
         {
             return Convert.ToBase64String(Encoding.UTF8.GetBytes(passphrase));

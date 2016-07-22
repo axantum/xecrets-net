@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
@@ -34,7 +35,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.UI
                         {
                             AxCryptException ace = ae.InnerException as AxCryptException;
                             New<IReport>().Exception(ace);
-                            return new FileOperationContext(ace.DisplayContext, ace.InnerException?.Message, ace.ErrorStatus);
+                            return new FileOperationContext(ace.DisplayContext.Default(file), ace.InnerException?.Message, ace.ErrorStatus);
                         }
                         catch (Exception ex)
                         {
