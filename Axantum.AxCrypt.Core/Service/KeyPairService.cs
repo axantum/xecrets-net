@@ -51,6 +51,10 @@ namespace Axantum.AxCrypt.Core.Service
 
         private Queue<IAsymmetricKeyPair> _keyPairs = new Queue<IAsymmetricKeyPair>();
 
+        public KeyPairService()
+        {
+        }
+
         public KeyPairService(int firstBatch, int preGenerationTargetCount, int keyBits)
         {
             if (firstBatch < 0)
@@ -70,6 +74,11 @@ namespace Axantum.AxCrypt.Core.Service
                 throw new ArgumentOutOfRangeException(nameof(keyBits));
             }
 
+            Initialize(firstBatch, preGenerationTargetCount, keyBits);
+        }
+
+        protected void Initialize(int firstBatch, int preGenerationTargetCount, int keyBits)
+        {
             _firstBatch = firstBatch;
             _preGenerationTargetCount = preGenerationTargetCount;
             _keyBits = keyBits;
