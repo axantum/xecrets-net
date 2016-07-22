@@ -770,6 +770,7 @@ namespace Axantum.AxCrypt
                 New<IUIThread>().PostTo(() =>
                 {
                     SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
+                    SetDaysLeftWarning();
                 });
             };
         }
