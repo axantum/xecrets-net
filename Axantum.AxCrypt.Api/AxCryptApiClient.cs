@@ -55,11 +55,11 @@ namespace Axantum.AxCrypt.Api
             RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
             if (restResponse.StatusCode == HttpStatusCode.NotFound)
             {
-                return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.NotFound);
+                return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.NotFound, Offers.None);
             }
             if (restResponse.StatusCode == HttpStatusCode.BadRequest)
             {
-                return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.InvalidName);
+                return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.InvalidName, Offers.None);
             }
             ApiCaller.EnsureStatusOk(restResponse);
 
