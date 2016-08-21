@@ -194,6 +194,11 @@
     </PropertyGroup>
   </Target>
 
+  <Target Name="_AxClearVersion"
+          Condition=" '$(ClearVersion)' == 'true' ">
+    <Delete Files="$(IntermediateOutputPath)AssemblyInfo.cs" />
+  </Target>
+
   <Target Name="_AxFixupVersion"
           Inputs="Properties\AssemblyInfo.template;$(MSBuildProjectFullPath)"
           Outputs="$(IntermediateOutputPath)AssemblyInfo.cs"
@@ -215,10 +220,6 @@
       <Compile Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
       <FileWrites Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
     </ItemGroup>
-  </Target>
-
-  <Target Name="AxVersion">
-    <Delete Files="$(IntermediateOutputPath)AssemblyInfo.cs" />
   </Target>
 
   <Target Name="_AxFixupAssemblyStrongNaming"
