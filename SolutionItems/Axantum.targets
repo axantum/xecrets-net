@@ -194,8 +194,8 @@
     </PropertyGroup>
   </Target>
 
-  <Target Name="_AxClearVersion"
-          Condition=" '$(ClearVersion)' == 'true' ">
+  <Target Name="_AxNewVersion"
+          Condition=" '$(NewVersion)' == 'true' ">
     <Delete Files="$(IntermediateOutputPath)AssemblyInfo.cs" />
   </Target>
 
@@ -231,7 +231,7 @@
   </Target>
 
   <Target Name="_AxBeforeBuild"
-          DependsOnTargets="_AxClearVersion;_AxFixupVersion">
+          DependsOnTargets="_AxNewVersion;_AxFixupVersion">
     <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
       <_AxPreviousDefineConstants>$(DefineConstants)</_AxPreviousDefineConstants>
       <DefineConstants>$(DefineConstants);AXANTUM</DefineConstants>
