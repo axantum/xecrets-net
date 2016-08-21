@@ -231,7 +231,7 @@
   </Target>
 
   <Target Name="_AxBeforeBuild"
-          DependsOnTargets="_AxFixupVersion">
+          DependsOnTargets="_AxClearVersion;_AxFixupVersion">
     <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
       <_AxPreviousDefineConstants>$(DefineConstants)</_AxPreviousDefineConstants>
       <DefineConstants>$(DefineConstants);AXANTUM</DefineConstants>
