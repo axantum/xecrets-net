@@ -217,6 +217,10 @@
     </ItemGroup>
   </Target>
 
+  <Target Name="AxVersion">
+    <Delete Files="$(IntermediateOutputPath)AssemblyInfo.cs" />
+  </Target>
+
   <Target Name="_AxFixupAssemblyStrongNaming"
           Condition=" '$(KeyContainerName)' == '' And '$(KeyOriginatorFile)' == 'AxantumStrongName.pfx' ">
     <PropertyGroup>
