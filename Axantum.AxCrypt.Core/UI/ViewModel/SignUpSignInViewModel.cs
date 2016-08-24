@@ -37,6 +37,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public event EventHandler<CancelEventArgs> RequestEmail;
 
+        public event EventHandler<CancelEventArgs> SigningIn;
+
         public event EventHandler RestoreWindow;
 
         private ISignInState _signInState;
@@ -84,7 +86,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                             return;
                         }
 
-                        await _signInState.SignIn();
+                        OnSigningIn(e);
                         UserEmail = New<IUserSettings>().UserEmail;
                     });
                     if (StopAndExit)
@@ -294,6 +296,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void OnRequestEmail(CancelEventArgs e)
         {
             RequestEmail?.Invoke(this, e);
+        }
+
+        private void OnSigningIn(CancelEventArgs e)
+        {
+            SigningIn?.Invoke(this, e);
         }
 
         private void OnRestoreWindow(EventArgs e)

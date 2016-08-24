@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core
 
         public IEnumerable<CommandItem> CommandItems { get { return _commandItems; } }
 
-        private bool IsStartCommand
+        public bool IsStartCommand
         {
             get
             {

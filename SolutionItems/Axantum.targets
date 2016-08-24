@@ -134,11 +134,12 @@
   </Target>
 
   <Target Name="_AxSignExe"
-          Condition="'$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
+          Condition="'$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true'">
     <Exec Command="&quot;$(MSBuildThisFileDirectory)sn.exe&quot; -Rca &quot;$(OutputPath)$(_AxMergedBaseFileName).exe&quot; $(KeyContainerName)" />
     <MSBuild Projects="$(MSBuildProjectFullPath)"
              Targets="AxAuthenticodeSignOneFile"
-             Properties="AxAuthenticodeFile=$(OutputPath)$(_AxMergedBaseFileName).exe" />
+             Properties="AxAuthenticodeFile=$(OutputPath)$(_AxMergedBaseFileName).exe"
+             Condition="'$(Configuration)' != 'Debug'" />
   </Target>
 
   <Target Name="_AxRecopyMerged"

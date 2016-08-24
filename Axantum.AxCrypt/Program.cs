@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt
 
         private static void RunBackground(CommandLine commandLine)
         {
-            if (commandLine == null)
+            if (!commandLine.HasCommands)
             {
                 Resolve.CommandService.Call(CommandVerb.Show, -1);
                 return;

@@ -115,11 +115,6 @@ namespace Axantum.AxCrypt.Forms.Style
 
         public static void RestoreWindowWithFocus(Form form)
         {
-            if (form.ContainsFocus)
-            {
-                return;
-            }
-
             do
             {
                 form.Show();

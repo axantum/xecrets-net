@@ -87,9 +87,17 @@ namespace Axantum.AxCrypt
                 }
             };
 
+            viewModel.SigningIn += async (sender, e) =>
+            {
+                await signingInState.SignIn();
+            };
+
             viewModel.RestoreWindow += (sender, e) =>
             {
-                Styling.RestoreWindowWithFocus(parent);
+                foreach (Form owned in parent.OwnedForms)
+                {
+                    Styling.RestoreWindowWithFocus(owned);
+                }
             };
 
             await viewModel.SignIn.ExecuteAsync(null);

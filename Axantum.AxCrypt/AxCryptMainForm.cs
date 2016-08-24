@@ -292,11 +292,13 @@ namespace Axantum.AxCrypt
         private async void AxCryptMainForm_ShownAsync(object sender, EventArgs e)
         {
             _pendingRequest = CommandCompleteEventArgs.Empty;
-            if (_startMinimized)
+            if (_startMinimized || _commandLine.IsStartCommand)
             {
                 ShowNotifyIcon();
                 return;
             }
+
+            Styling.RestoreWindowWithFocus(this);
             await SignInAsync();
         }
 
@@ -350,7 +352,7 @@ namespace Axantum.AxCrypt
 
         private void ExecuteCommandLine()
         {
-            if (!_commandLine.CommandItems.Any() || _commandLine.IsOfflineCommand)
+            if (!_commandLine.CommandItems.Any() || _commandLine.IsOfflineCommand || _commandLine.IsStartCommand)
             {
                 return;
             }
@@ -589,8 +591,7 @@ namespace Axantum.AxCrypt
 
             _notifyIcon.MouseClick += (sender, e) =>
             {
-                Show();
-                WindowState = FormWindowState.Normal;
+                Styling.RestoreWindowWithFocus(this);
             };
 
             Resize += (sender, e) =>
@@ -621,12 +622,9 @@ namespace Axantum.AxCrypt
 
         private void RestoreUserPreferences()
         {
-            if (WindowState == FormWindowState.Normal)
-            {
-                Height = Preferences.MainWindowHeight.Fallback(Height);
-                Width = Preferences.MainWindowWidth.Fallback(Width);
-                Location = Preferences.MainWindowLocation.Fallback(Location).Safe();
-            }
+            Height = Preferences.MainWindowHeight.Fallback(Height);
+            Width = Preferences.MainWindowWidth.Fallback(Width);
+            Location = Preferences.MainWindowLocation.Fallback(Location).Safe();
 
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
             _alwaysOfflineToolStripMenuItem.Checked = New<IUserSettings>().OfflineMode;
@@ -985,7 +983,6 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewLogOn(LogOnEventArgs e)
         {
-            Styling.RestoreWindowWithFocus(this);
             if (!String.IsNullOrEmpty(e.EncryptedFileFullName))
             {
                 HandleCreateNewLogOnForEncryptedFile(e);
@@ -1032,7 +1029,6 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
-            Styling.RestoreWindowWithFocus(this);
             if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
             {
                 HandleExistingLogOnForEncryptedFile(e);
@@ -1121,6 +1117,14 @@ namespace Axantum.AxCrypt
             {
                 switch (e.Verb)
                 {
+                    case CommandVerb.Show:
+                    case CommandVerb.ShowLogOn:
+                        Styling.RestoreWindowWithFocus(this);
+                        break;
+                }
+
+                switch (e.Verb)
+                {
                     case CommandVerb.Encrypt:
                     case CommandVerb.Decrypt:
                     case CommandVerb.Open:
@@ -1128,11 +1132,23 @@ namespace Axantum.AxCrypt
                     case CommandVerb.ShowLogOn:
                         _pendingRequest = e;
                         await SignInAsync();
-                        return;
+                        break;
 
                     default:
                         break;
                 }
+
+                switch (e.Verb)
+                {
+                    case CommandVerb.Show:
+                    case CommandVerb.ShowLogOn:
+                        return;
+                }
+            }
+
+            if (!Resolve.KnownIdentities.IsLoggedOn)
+            {
+                return;
             }
 
             switch (e.Verb)

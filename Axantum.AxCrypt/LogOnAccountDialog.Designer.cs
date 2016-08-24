@@ -205,11 +205,12 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.EmailPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LogOnAccountDialog";
             this.Text = "[Account Sign In]";
             this.Activated += new System.EventHandler(this.LogOnAccountDialog_Activated);
             this.Load += new System.EventHandler(this.LogOnAccountDialog_Load);
-            this.ResizeEnd += new System.EventHandler(this.LogOnAccountDialog_ResizeAndMoveEnd);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this._panel1.ResumeLayout(false);

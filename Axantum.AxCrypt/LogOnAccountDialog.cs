@@ -124,11 +124,6 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
         }
 
-        private void LogOnAccountDialog_ResizeAndMoveEnd(object sender, EventArgs e)
-        {
-            CenterToParent();
-        }
-
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.No;

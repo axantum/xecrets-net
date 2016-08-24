@@ -15,13 +15,20 @@ namespace Axantum.AxCrypt.Forms
         public StyledMessageBase()
         {
             Load += (sender, e) => InitializeContentResources();
+            Shown += (sender, e) => Style.Styling.RestoreWindowWithFocus(sender as Form);
         }
 
         protected void InitializeStyle(Form owner)
         {
             new Styling(Resources.axcrypticon).Style(this);
-            Owner = owner;
-            StartPosition = FormStartPosition.CenterParent;
+            if (owner == null || owner.WindowState == FormWindowState.Minimized)
+            {
+                StartPosition = FormStartPosition.CenterScreen;
+            }
+            else
+            {
+                StartPosition = FormStartPosition.CenterParent;
+            }
 
             Shown += StyledMessageBase_Shown;
             Move += StyledMessageBase_Move;
@@ -41,6 +48,10 @@ namespace Axantum.AxCrypt.Forms
         private void StyledMessageBase_Move(object sender, EventArgs e)
         {
             if (_lastLocation == null)
+            {
+                return;
+            }
+            if (Owner == null || Owner.WindowState == FormWindowState.Minimized)
             {
                 return;
             }
