@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api.Implementation;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Runtime;
@@ -54,10 +55,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
+            TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
+
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             FakeInMemoryDataStoreItem store = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
             TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(store, Resolve.Serializer));
             TypeMap.Register.New<ILogging>(() => new Logging());
+
+            New<AxCryptOnlineState>().IsOnline = true;
         }
 
         [TearDown]
