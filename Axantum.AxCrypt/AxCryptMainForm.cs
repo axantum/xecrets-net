@@ -181,6 +181,8 @@ namespace Axantum.AxCrypt
             _addSecureFolderToolStripMenuItem.Text = "&" + Texts.AddSecureFolderMenuItemText;
             _alwaysOfflineToolStripMenuItem.Text = "&" + Texts.AlwaysOffline;
             _alwaysOfflineToolStripMenuItem.ToolTipText = Texts.AlwaysOfflineToolTip;
+            _checkForUpdateToolStripMenuItem.Text = "&" + Texts.CheckForUpdateMenuText;
+            _checkForUpdateToolStripMenuItem.ToolTipText = Texts.CheckForUpdateMenuToolTip;
             _cleanDecryptedToolStripMenuItem.Text = "&" + Texts.CleanDecryptedToolStripMenuItemText;
             _closeAndRemoveOpenFilesToolStripButton.ToolTipText = Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText;
             _createAccountToolStripMenuItem.Text = "&" + Texts.CreateAccountToolStripMenuItemText;
@@ -657,6 +659,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
 
+            _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _daysLeftPremiumLabel.Click += async (sender, e) => { await PremiumWarningClickAsync(); };
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Save(); New<IReport>().Open(); };

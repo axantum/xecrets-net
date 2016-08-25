@@ -407,6 +407,12 @@ You must complete these steps to complete the process.</value>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Your password has been changed.</value>
   </data>
+  <data name="CheckForUpdateMenuText" xml:space="preserve">
+    <value>Check for Update</value>
+  </data>
+  <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
+    <value>Check if a newer version is available for download. Requires Internet access.</value>
+  </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
     <value>Clean Open Files</value>
   </data>

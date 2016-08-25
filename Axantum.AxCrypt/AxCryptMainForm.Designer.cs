@@ -70,9 +70,9 @@
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsChangePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._alwaysOfflineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsClearAllSettingsAndExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._alwaysOfflineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._keyManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._importOthersSharingKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,6 +114,7 @@
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
+            this._checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -371,7 +372,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -591,6 +592,12 @@
             this._optionsAutoConvert1xFilesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsAutoConvert1xFilesToolStripMenuItem.Text = "[Auto Convert 1.x Files]";
             // 
+            // _alwaysOfflineToolStripMenuItem
+            // 
+            this._alwaysOfflineToolStripMenuItem.Name = "_alwaysOfflineToolStripMenuItem";
+            this._alwaysOfflineToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._alwaysOfflineToolStripMenuItem.Text = "[Always Offline]";
+            // 
             // _optionsDebugToolStripMenuItem
             // 
             this._optionsDebugToolStripMenuItem.Name = "_optionsDebugToolStripMenuItem";
@@ -603,12 +610,6 @@
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Text = "[&Clear All Settings and Exit]";
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Click += new System.EventHandler(this.ClearPassphraseMemoryToolStripMenuItem_Click);
-            // 
-            // _alwaysOfflineToolStripMenuItem
-            // 
-            this._alwaysOfflineToolStripMenuItem.Name = "_alwaysOfflineToolStripMenuItem";
-            this._alwaysOfflineToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this._alwaysOfflineToolStripMenuItem.Text = "[Always Offline]";
             // 
             // toolStripSeparator1
             // 
@@ -780,7 +781,8 @@
             // 
             this._helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._helpViewHelpMenuItem,
-            this._helpAboutToolStripMenuItem});
+            this._helpAboutToolStripMenuItem,
+            this._checkForUpdateToolStripMenuItem});
             this._helpToolStripMenuItem.Name = "_helpToolStripMenuItem";
             this._helpToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this._helpToolStripMenuItem.Text = "[&Help]";
@@ -788,14 +790,14 @@
             // _helpViewHelpMenuItem
             // 
             this._helpViewHelpMenuItem.Name = "_helpViewHelpMenuItem";
-            this._helpViewHelpMenuItem.Size = new System.Drawing.Size(127, 22);
+            this._helpViewHelpMenuItem.Size = new System.Drawing.Size(173, 22);
             this._helpViewHelpMenuItem.Text = "&View Help";
             this._helpViewHelpMenuItem.Click += new System.EventHandler(this._viewHelpMenuItem_Click);
             // 
             // _helpAboutToolStripMenuItem
             // 
             this._helpAboutToolStripMenuItem.Name = "_helpAboutToolStripMenuItem";
-            this._helpAboutToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this._helpAboutToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this._helpAboutToolStripMenuItem.Text = "[&About]";
             this._helpAboutToolStripMenuItem.Click += new System.EventHandler(this._aboutToolStripMenuItem_Click);
             // 
@@ -996,6 +998,12 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
+            // _checkForUpdateToolStripMenuItem
+            // 
+            this._checkForUpdateToolStripMenuItem.Name = "_checkForUpdateToolStripMenuItem";
+            this._checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this._checkForUpdateToolStripMenuItem.Text = "[&Check for update]";
+            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1134,6 +1142,7 @@
         private System.Windows.Forms.ToolStripMenuItem _portugueseBrazilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _dutchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _alwaysOfflineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _checkForUpdateToolStripMenuItem;
     }
 }
 

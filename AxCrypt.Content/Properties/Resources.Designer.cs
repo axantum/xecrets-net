@@ -875,6 +875,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for Update.
+        /// </summary>
+        public static string CheckForUpdateMenuText {
+            get {
+                return ResourceManager.GetString("CheckForUpdateMenuText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check if a newer version is available for download. Requires Internet access..
+        /// </summary>
+        public static string CheckForUpdateMenuToolTip {
+            get {
+                return ResourceManager.GetString("CheckForUpdateMenuToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clean Open Files.
         /// </summary>
         public static string CleanDecryptedToolStripMenuItemText {
