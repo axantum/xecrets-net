@@ -45,6 +45,7 @@ namespace Axantum.AxCrypt
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWith.Items.Clear(); _sharedWith.Items.AddRange(aks.ToArray()); });
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWith.Items.Clear(); _notSharedWith.Items.AddRange(aks.ToArray()); });
             _viewModel.BindPropertyChanged<string>(nameof(SharingListViewModel.NewKeyShare), (email) => SetShareButtonState());
+            _viewModel.BindPropertyChanged<bool>(nameof(SharingListViewModel.CanAddNewKey), (canAdd) => { if (_newContact.Enabled = canAdd) { _newContact.Text = _viewModel.NewKeyShare; } else { _newContact.Text = $"[{Texts.OfflineIndicatorText}]"; } });
 
             _sharedWith.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
             _notSharedWith.SelectedIndexChanged += (sender, e) => SetShareButtonState();
