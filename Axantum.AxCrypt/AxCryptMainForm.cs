@@ -800,7 +800,7 @@ namespace Axantum.AxCrypt
                             WaitForBackgroundToComplete();
                         }
                     });
-                    await LogOffAndLogOnAgainAsync();
+                    _fileOperationViewModel.IdentityViewModel.LogOff.Execute(null);
                     break;
 
                 default:
