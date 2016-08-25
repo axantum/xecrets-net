@@ -854,18 +854,21 @@ namespace Axantum.AxCrypt
 
         private void SetUpgradeOrTrial(LicensePolicy license)
         {
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                _daysLeftPremiumLabel.Text = Texts.UpgradePromptText;
+                _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.OfflineNoPremiumWarning);
+                _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
+                _daysLeftPremiumLabel.Visible = true;
+                return;
+            }
+
             if (!license.IsTrialAvailable)
             {
                 _daysLeftPremiumLabel.Text = Texts.UpgradePromptText;
                 _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
                 _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.NoPremiumWarning);
                 _daysLeftPremiumLabel.Visible = true;
-                return;
-            }
-
-            if (New<AxCryptOnlineState>().IsOffline)
-            {
-                _daysLeftPremiumLabel.Visible = false;
                 return;
             }
 

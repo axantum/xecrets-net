@@ -1251,6 +1251,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Offline</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
+  <data name="OfflineNoPremiumWarning" xml:space="preserve">
+    <value>You're offline with no valid Premium subscription. Go online and purchase or update your license.</value>
+  </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Your version is old. Please click to check for a newer version.</value>
   </data>

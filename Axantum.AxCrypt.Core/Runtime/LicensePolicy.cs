@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 SubscriptionLevel level = SubscriptionLevel;
                 if (level == SubscriptionLevel.Unknown)
                 {
-                    return TimeSpan.MaxValue;
+                    return TimeSpan.Zero;
                 }
 
                 if (level == SubscriptionLevel.Free)
@@ -156,6 +156,10 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             get
             {
+                if (_identity == LogOnIdentity.Empty)
+                {
+                    return false;
+                }
                 bool trialAvailable = !Account.Offers.HasFlag(Offers.AxCryptTrial);
                 return trialAvailable;
             }

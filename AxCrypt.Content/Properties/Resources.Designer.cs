@@ -3161,6 +3161,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You&apos;re offline with no valid Premium subscription. Go online and purchase or update your license..
+        /// </summary>
+        public static string OfflineNoPremiumWarning {
+            get {
+                return ResourceManager.GetString("OfflineNoPremiumWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your version is old. Please click to check for a newer version..
         /// </summary>
         public static string OldVersionTooltip {
