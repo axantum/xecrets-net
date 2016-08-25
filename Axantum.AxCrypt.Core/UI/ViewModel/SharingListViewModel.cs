@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
 
-            _missingKeysLoader = Task.Run(() => TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email)));
+            _missingKeysLoader = Task.Run(() => TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email), sharedWith));
 
             InitializePropertyValues(sharedWith);
             BindPropertyChangedEvents();
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             await ReadyAsync();
 
-            IEnumerable<UserPublicKey> publicKeysToAdd = await TryAddMissingUnsharedPublicKeysFromServerAsync(keySharesToAdd).Free();
+            IEnumerable<UserPublicKey> publicKeysToAdd = await TryAddMissingUnsharedPublicKeysFromServerAsync(keySharesToAdd, NotSharedWith).Free();
 
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
             HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await AddKeySharesActionAsync(new EmailAddress[] { EmailAddress.Parse(email), }).Free();
         }
 
-        private async Task<IEnumerable<UserPublicKey>> TryAddMissingUnsharedPublicKeysFromServerAsync(IEnumerable<EmailAddress> keySharesToAdd)
+        private async Task<IEnumerable<UserPublicKey>> TryAddMissingUnsharedPublicKeysFromServerAsync(IEnumerable<EmailAddress> keySharesToAdd, IEnumerable<UserPublicKey> fileShares)
         {
             List<UserPublicKey> publicKeys = new List<UserPublicKey>();
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
@@ -150,7 +150,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     {
                         userPublicKey = await AddMissingPublicKeyFromServerAsync(keyShareToAdd).Free();
                     }
-                    publicKeys.Add(userPublicKey);
+                    if (userPublicKey == null)
+                    {
+                        userPublicKey = fileShares.FirstOrDefault(pk => pk.Email == keyShareToAdd);
+                    }
+                    if (userPublicKey != null)
+                    {
+                        knownPublicKeys.AddOrReplace(userPublicKey);
+                        publicKeys.Add(userPublicKey);
+                    }
                 }
             }
             return publicKeys;
@@ -158,6 +166,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task<UserPublicKey> AddMissingPublicKeyFromServerAsync(EmailAddress email)
         {
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return null;
+            }
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
             return userPublicKey;
