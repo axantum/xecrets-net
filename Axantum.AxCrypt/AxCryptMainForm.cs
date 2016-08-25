@@ -800,7 +800,10 @@ namespace Axantum.AxCrypt
                             WaitForBackgroundToComplete();
                         }
                     });
-                    _fileOperationViewModel.IdentityViewModel.LogOff.Execute(null);
+                    if (_fileOperationViewModel.IdentityViewModel.LogOff.CanExecute(null))
+                    {
+                        _fileOperationViewModel.IdentityViewModel.LogOff.Execute(null);
+                    }
                     break;
 
                 default:
