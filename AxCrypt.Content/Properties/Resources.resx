@@ -1311,7 +1311,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Password Management</value>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
-    <value>The password must be at least 10 characters.</value>
+    <value>The password is not good enough to be acceptable.</value>
   </data>
   <data name="PasswordResetHyperLink" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/PasswordReset</value>
@@ -1344,11 +1344,23 @@ Enter your e-mail below to a send an activation or password reset link to the sp
 
 If you appear not to receive it, check that it does not get caught by your anti-spam measures, and that {0} is correct.</value>
   </data>
+  <data name="PasswordRulesInfo" xml:space="preserve">
+    <value>AxCrypt has a sophisticated password strength evaluator based on measuring the actual strength of the password. It must also be at least 8 effective characters long.
+
+We evaluate the password by estimating the strength, which is based on how long and complex the password is.
+
+The evaluation entirely disregards parts of the password that is recognized as being among the 1,000 most common passwords, as well as white space. For example the password 'secretX password Y 123456' is evaluated as just 'XY', since spaces, 'secret', 'password' and '123456' are ignored!
+
+We classify the password in 4 categories of increasing strength, were we do not accept any password in the lowest category. The above example is not accepted for that reason.</value>
+    <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
+  </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>Password is too weak to be safe to use.</value>
+    <comment>Status 'Red' We'll accept it, but it's really not a good idea!</comment>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
     <value>Password is strong and good enough to recommend.</value>
+    <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
     <value>Password is too short or too similar to a common password to be acceptable.</value>
@@ -1356,6 +1368,7 @@ If you appear not to receive it, check that it does not get caught by your anti-
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>Password is not strong enough to be recommended.</value>
+    <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>

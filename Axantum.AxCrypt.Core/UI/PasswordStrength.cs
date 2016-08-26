@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Core.UI.ViewModel
+namespace Axantum.AxCrypt.Core.UI
 {
     public enum PasswordStrength
     {
-        Unacceptable,
+        Unacceptable = 0,
         Bad,
         Weak,
         Strong,

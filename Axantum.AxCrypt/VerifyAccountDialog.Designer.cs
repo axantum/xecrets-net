@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this._toolTipActivation = new System.Windows.Forms.ToolTip(this.components);
+            this._activationCode = new System.Windows.Forms.TextBox();
             this._resendButtonToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._buttonOk = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
             this._activationCodeGroupBox = new System.Windows.Forms.GroupBox();
             this._checkEmailLabel = new System.Windows.Forms.Label();
-            this._activationCode = new System.Windows.Forms.TextBox();
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
             this._passwordStrengthMeter = new Axantum.AxCrypt.PasswordStrengthMeter();
             this._showPassphrase = new System.Windows.Forms.CheckBox();
@@ -43,6 +43,7 @@
             this._verifyPasswordLabel = new System.Windows.Forms.Label();
             this._passphrase = new System.Windows.Forms.TextBox();
             this._panel1 = new System.Windows.Forms.Panel();
+            this._helpButton = new System.Windows.Forms.Button();
             this._resendButton = new System.Windows.Forms.Button();
             this._emailGroupBox = new System.Windows.Forms.GroupBox();
             this._email = new System.Windows.Forms.TextBox();
@@ -66,12 +67,22 @@
             this._toolTipActivation.InitialDelay = 100;
             this._toolTipActivation.ReshowDelay = 100;
             // 
+            // _activationCode
+            // 
+            this._activationCode.Location = new System.Drawing.Point(9, 18);
+            this._activationCode.Name = "_activationCode";
+            this._activationCode.Size = new System.Drawing.Size(88, 20);
+            this._activationCode.TabIndex = 0;
+            this._toolTipActivation.SetToolTip(this._activationCode, "We\'ve sent a 6-digit code to your email inbox.\r\n\r\nUnfortunately it might be misin" +
+        "terpreted as spam,\r\nso search there if it\'s not in the inbox.\r\n\r\nThe subject sho" +
+        "uld contain the word \'AxCrypt\'.");
+            // 
             // _buttonOk
             // 
             this._buttonOk.CausesValidation = false;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(22, 11);
+            this._buttonOk.Location = new System.Drawing.Point(6, 9);
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(75, 23);
             this._buttonOk.TabIndex = 0;
@@ -84,7 +95,7 @@
             this._buttonCancel.CausesValidation = false;
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonCancel.Location = new System.Drawing.Point(103, 11);
+            this._buttonCancel.Location = new System.Drawing.Point(87, 9);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
             this._buttonCancel.TabIndex = 1;
@@ -98,7 +109,7 @@
             this._activationCodeGroupBox.Location = new System.Drawing.Point(12, 62);
             this._activationCodeGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
             this._activationCodeGroupBox.Name = "_activationCodeGroupBox";
-            this._activationCodeGroupBox.Size = new System.Drawing.Size(280, 44);
+            this._activationCodeGroupBox.Size = new System.Drawing.Size(334, 44);
             this._activationCodeGroupBox.TabIndex = 5;
             this._activationCodeGroupBox.TabStop = false;
             this._activationCodeGroupBox.Text = "[Activation Code]";
@@ -112,16 +123,6 @@
             this._checkEmailLabel.TabIndex = 1;
             this._checkEmailLabel.Text = "[Check email and spam!]";
             // 
-            // _activationCode
-            // 
-            this._activationCode.Location = new System.Drawing.Point(9, 18);
-            this._activationCode.Name = "_activationCode";
-            this._activationCode.Size = new System.Drawing.Size(88, 20);
-            this._activationCode.TabIndex = 0;
-            this._toolTipActivation.SetToolTip(this._activationCode, "We\'ve sent a 6-digit code to your email inbox.\r\n\r\nUnfortunately it might be misin" +
-        "terpreted as spam,\r\nso search there if it\'s not in the inbox.\r\n\r\nThe subject sho" +
-        "uld contain the word \'AxCrypt\'.");
-            // 
             // PassphraseGroupBox
             // 
             this.PassphraseGroupBox.AutoSize = true;
@@ -132,7 +133,7 @@
             this.PassphraseGroupBox.Controls.Add(this._passphrase);
             this.PassphraseGroupBox.Location = new System.Drawing.Point(12, 112);
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
-            this.PassphraseGroupBox.Size = new System.Drawing.Size(280, 145);
+            this.PassphraseGroupBox.Size = new System.Drawing.Size(334, 145);
             this.PassphraseGroupBox.TabIndex = 5;
             this.PassphraseGroupBox.TabStop = false;
             this.PassphraseGroupBox.Text = "[Set Your Password]";
@@ -182,19 +183,32 @@
             // 
             // _panel1
             // 
+            this._panel1.Controls.Add(this._helpButton);
             this._panel1.Controls.Add(this._resendButton);
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
             this._panel1.Location = new System.Drawing.Point(12, 259);
             this._panel1.Name = "_panel1";
-            this._panel1.Size = new System.Drawing.Size(280, 41);
+            this._panel1.Size = new System.Drawing.Size(334, 41);
             this._panel1.TabIndex = 3;
+            // 
+            // _helpButton
+            // 
+            this._helpButton.CausesValidation = false;
+            this._helpButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._helpButton.Location = new System.Drawing.Point(249, 9);
+            this._helpButton.Name = "_helpButton";
+            this._helpButton.Size = new System.Drawing.Size(75, 23);
+            this._helpButton.TabIndex = 3;
+            this._helpButton.Text = "[Help]";
+            this._helpButton.UseVisualStyleBackColor = true;
+            this._helpButton.Click += new System.EventHandler(this._helpButton_Click);
             // 
             // _resendButton
             // 
             this._resendButton.CausesValidation = false;
             this._resendButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._resendButton.Location = new System.Drawing.Point(184, 11);
+            this._resendButton.Location = new System.Drawing.Point(168, 9);
             this._resendButton.Name = "_resendButton";
             this._resendButton.Size = new System.Drawing.Size(75, 23);
             this._resendButton.TabIndex = 2;
@@ -208,7 +222,7 @@
             this._emailGroupBox.Location = new System.Drawing.Point(12, 12);
             this._emailGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
             this._emailGroupBox.Name = "_emailGroupBox";
-            this._emailGroupBox.Size = new System.Drawing.Size(280, 44);
+            this._emailGroupBox.Size = new System.Drawing.Size(334, 44);
             this._emailGroupBox.TabIndex = 4;
             this._emailGroupBox.TabStop = false;
             this._emailGroupBox.Text = "[Email]";
@@ -243,7 +257,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._buttonCancel;
-            this.ClientSize = new System.Drawing.Size(304, 303);
+            this.ClientSize = new System.Drawing.Size(354, 303);
             this.Controls.Add(this._activationCodeGroupBox);
             this.Controls.Add(this.PassphraseGroupBox);
             this.Controls.Add(this._panel1);
@@ -289,5 +303,6 @@
         private PasswordStrengthMeter _passwordStrengthMeter;
         private System.Windows.Forms.Button _resendButton;
         private System.Windows.Forms.ToolTip _resendButtonToolTip;
+        private System.Windows.Forms.Button _helpButton;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.UI.ViewModel;
+﻿using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
@@ -37,9 +38,10 @@ namespace Axantum.AxCrypt
             _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
+            _helpButton.Text = "&" + Texts.ButtonHelpText;
             _resendButton.Text = "&" + Texts.ResendButtonText;
             _resendButtonToolTip.SetToolTip(_resendButton, Texts.ResendButtonToolTip);
-            _buttonOk.Enabled = false;
+            _buttonOk.Enabled = true;
             _emailGroupBox.Text = Texts.PromptEmailText;
             _activationCodeGroupBox.Text = Texts.PromptActivationCode;
             _checkEmailLabel.Text = Texts.TextCheckEmailAndSpam;
@@ -51,8 +53,6 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-
-            _passwordStrengthMeter.MeterChanged += (ss, ee) => _buttonOk.Enabled = _passwordStrengthMeter.IsAcceptable;
 
             _passphrase.TextChanged += (s, ee) => { _viewModel.Passphrase = _passphrase.Text; };
             _passphrase.TextChanged += async (ss, ee) => { await _passwordStrengthMeter.MeterAsync(_passphrase.Text); };
@@ -142,6 +142,11 @@ namespace Axantum.AxCrypt
             UriBuilder url = new UriBuilder(Texts.ResendActivationHyperLink);
             url.Query = $"email={_viewModel.UserEmail}";
             Process.Start(url.ToString());
+        }
+
+        private void _helpButton_Click(object sender, EventArgs e)
+        {
+            New<IPopup>().Show(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
         }
     }
 }

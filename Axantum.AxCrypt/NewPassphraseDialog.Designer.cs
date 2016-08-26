@@ -40,11 +40,12 @@
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
+            this._passwordStrengthMeter = new Axantum.AxCrypt.PasswordStrengthMeter();
             this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.VerifyPassphraseTextbox = new System.Windows.Forms.TextBox();
             this._verifyPasswordLabel = new System.Windows.Forms.Label();
             this.PassphraseTextBox = new System.Windows.Forms.TextBox();
-            this._passwordStrengthMeter = new Axantum.AxCrypt.PasswordStrengthMeter();
+            this._buttonHelp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).BeginInit();
             this._fileGroupBox.SuspendLayout();
@@ -104,11 +105,12 @@
             // 
             // _panel1
             // 
+            this._panel1.Controls.Add(this._buttonHelp);
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Location = new System.Drawing.Point(52, 153);
+            this._panel1.Location = new System.Drawing.Point(12, 153);
             this._panel1.Name = "_panel1";
-            this._panel1.Size = new System.Drawing.Size(200, 37);
+            this._panel1.Size = new System.Drawing.Size(280, 37);
             this._panel1.TabIndex = 1;
             // 
             // _buttonCancel
@@ -116,7 +118,7 @@
             this._buttonCancel.CausesValidation = false;
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonCancel.Location = new System.Drawing.Point(103, 11);
+            this._buttonCancel.Location = new System.Drawing.Point(87, 11);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
             this._buttonCancel.TabIndex = 1;
@@ -128,7 +130,7 @@
             this._buttonOk.CausesValidation = false;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(22, 11);
+            this._buttonOk.Location = new System.Drawing.Point(6, 11);
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(75, 23);
             this._buttonOk.TabIndex = 0;
@@ -150,6 +152,13 @@
             this.PassphraseGroupBox.TabIndex = 0;
             this.PassphraseGroupBox.TabStop = false;
             this.PassphraseGroupBox.Text = "[Enter Password]";
+            // 
+            // _passwordStrengthMeter
+            // 
+            this._passwordStrengthMeter.Location = new System.Drawing.Point(6, 44);
+            this._passwordStrengthMeter.Name = "_passwordStrengthMeter";
+            this._passwordStrengthMeter.Size = new System.Drawing.Size(243, 10);
+            this._passwordStrengthMeter.TabIndex = 4;
             // 
             // ShowPassphraseCheckBox
             // 
@@ -187,12 +196,17 @@
             this.PassphraseTextBox.Size = new System.Drawing.Size(242, 20);
             this.PassphraseTextBox.TabIndex = 0;
             // 
-            // _passwordStrengthMeter
+            // _buttonHelp
             // 
-            this._passwordStrengthMeter.Location = new System.Drawing.Point(6, 44);
-            this._passwordStrengthMeter.Name = "_passwordStrengthMeter";
-            this._passwordStrengthMeter.Size = new System.Drawing.Size(243, 10);
-            this._passwordStrengthMeter.TabIndex = 4;
+            this._buttonHelp.CausesValidation = false;
+            this._buttonHelp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._buttonHelp.Location = new System.Drawing.Point(168, 11);
+            this._buttonHelp.Name = "_buttonHelp";
+            this._buttonHelp.Size = new System.Drawing.Size(75, 23);
+            this._buttonHelp.TabIndex = 2;
+            this._buttonHelp.Text = "[Help]";
+            this._buttonHelp.UseVisualStyleBackColor = true;
+            this._buttonHelp.Click += new System.EventHandler(this._buttonHelp_Click);
             // 
             // NewPassphraseDialog
             // 
@@ -243,5 +257,6 @@
         private System.Windows.Forms.GroupBox _fileGroupBox;
         internal System.Windows.Forms.TextBox FileNameTextBox;
         private PasswordStrengthMeter _passwordStrengthMeter;
+        private System.Windows.Forms.Button _buttonHelp;
     }
 }

@@ -28,7 +28,6 @@ namespace Axantum.AxCrypt
             : this()
         {
             InitializeStyle(parent);
-            _passwordStrengthMeter.MeterChanged += (sender, e) => _buttonOk.Enabled = _passwordStrengthMeter.IsAcceptable;
 
             _viewModel = new CreateNewAccountViewModel(passphrase, email);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
@@ -46,8 +45,9 @@ namespace Axantum.AxCrypt
             ShowPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
             _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
+            _helpButton.Text = "&" + Texts.ButtonHelpText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
-            _buttonOk.Enabled = false;
+            _buttonOk.Enabled = true;
             _emailGroupBox.Text = Texts.PromptEmailText;
         }
 
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(CreateNewAccountViewModel.Passphrase)].Length > 0)
             {
-                _errorProvider1.SetError(PassphraseTextBox, Texts.WrongPassphrase);
+                _errorProvider1.SetError(PassphraseTextBox, Texts.PasswordPolicyViolation);
                 return false;
             }
             return true;
@@ -171,6 +171,11 @@ namespace Axantum.AxCrypt
                 e.Cancel = true;
             }
             base.OnFormClosing(e);
+        }
+
+        private void _helpButton_Click(object sender, EventArgs e)
+        {
+            New<IPopup>().Show(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
         }
     }
 }

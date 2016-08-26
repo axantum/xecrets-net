@@ -3325,7 +3325,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password must be at least 10 characters..
+        ///   Looks up a localized string similar to The password is not good enough to be acceptable..
         /// </summary>
         public static string PasswordPolicyViolation {
             get {
@@ -3408,6 +3408,19 @@ namespace AxCrypt.Content.Properties {
         public static string PasswordResetSuccess {
             get {
                 return ResourceManager.GetString("PasswordResetSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt has a sophisticated password strength evaluator based on measuring the actual strength of the password. It must also be at least 8 effective characters long.
+        ///
+        ///We evaluate the password by estimating the strength, which is based on how long and complex the password is.
+        ///
+        ///The evaluation entirely disregards parts of the password that is recognized as being among the 1,000 most common passwords, as well as white space. For example the password &apos;secretX password Y 123456&apos; is evaluated as just &apos;XY&apos;, sin [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PasswordRulesInfo {
+            get {
+                return ResourceManager.GetString("PasswordRulesInfo", resourceCulture);
             }
         }
         

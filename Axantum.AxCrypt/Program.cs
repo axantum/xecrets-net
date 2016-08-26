@@ -175,6 +175,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<DummyReferencedType>(() => new DummyReferencedType());
             TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
             TypeMap.Register.Singleton<IVersion>(() => new DesktopVersion());
+            TypeMap.Register.Singleton<PasswordStrengthEvaluator>(() => new PasswordStrengthEvaluator(100, 8));
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

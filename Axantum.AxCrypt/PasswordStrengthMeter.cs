@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.UI.ViewModel;
+﻿using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
 using AxCrypt.Content;
 using System;
@@ -13,7 +14,7 @@ namespace Axantum.AxCrypt
 {
     public partial class PasswordStrengthMeter : ProgressBar
     {
-        private PasswordStrengthMeterViewModel _viewModel = new PasswordStrengthMeterViewModel(100);
+        private PasswordStrengthMeterViewModel _viewModel = new PasswordStrengthMeterViewModel();
 
         private ToolTip _toolTip = new ToolTip();
 

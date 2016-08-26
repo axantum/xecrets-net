@@ -96,11 +96,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return Task.FromResult(String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0);
 
                 case nameof(Passphrase):
-                    return Task.FromResult(!String.IsNullOrEmpty(Passphrase));
+                    return Task.FromResult(ValidatePassphrasePolicy(Passphrase));
 
                 default:
                     return Task.FromResult(true);
             }
+        }
+
+        private static bool ValidatePassphrasePolicy(string passphrase)
+        {
+            return New<PasswordStrengthEvaluator>().Evaluate(passphrase).Strength > PasswordStrength.Unacceptable;
         }
 
         private object CreateAccountAction()

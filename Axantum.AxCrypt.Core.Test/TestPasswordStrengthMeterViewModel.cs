@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using NUnit.Framework;
 using System;
@@ -33,15 +35,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
     public class TestPasswordStrengthMeterViewModel
     {
+        [SetUp]
+        public void Setup()
+        {
+            TypeMap.Register.Singleton<PasswordStrengthEvaluator>(() => new PasswordStrengthEvaluator(100, 0));
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            TypeMap.Register.Clear();
+        }
+
         [Test]
         public void TestPasswordStrengthMeterViewModelSimple()
         {
-            PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel(100);
+            PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel();
 
             viewModel.PasswordCandidate = "`Peandled7laSterty";
             Assert.That(viewModel.EstimatedBits, Is.EqualTo(74), nameof(viewModel.EstimatedBits));
@@ -52,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestPasswordStrengthMeterViewModelUnacceptable()
         {
-            PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel(100);
+            PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel();
 
             viewModel.PasswordCandidate = "Password";
             Assert.That(viewModel.EstimatedBits, Is.EqualTo(0), nameof(viewModel.EstimatedBits));
@@ -63,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestPasswordStrengthMeterViewModelBad()
         {
-            PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel(100);
+            PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel();
 
             viewModel.PasswordCandidate = "wrOundst";
             Assert.That(viewModel.EstimatedBits, Is.EqualTo(31), nameof(viewModel.EstimatedBits));
@@ -74,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestPasswordStrengthMeterViewModelStrong()
         {
-            PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel(100);
+            PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel();
 
             viewModel.PasswordCandidate = @"ciStried""Negaist9";
             Assert.That(viewModel.EstimatedBits, Is.EqualTo(80), nameof(viewModel.EstimatedBits));
@@ -85,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestPasswordStrengthMeterViewModelReallyStrong()
         {
-            PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel(100);
+            PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel();
 
             viewModel.PasswordCandidate = @"ciStried""Negaist9 lAtte86Losed";
             Assert.That(viewModel.EstimatedBits, Is.EqualTo(131), nameof(viewModel.EstimatedBits));

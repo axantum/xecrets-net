@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.PassphraseTextBox = new System.Windows.Forms.TextBox();
             this._passphraseGroupBox = new System.Windows.Forms.GroupBox();
+            this._passwordStrengthMeter = new Axantum.AxCrypt.PasswordStrengthMeter();
             this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.VerifyPassphraseTextbox = new System.Windows.Forms.TextBox();
             this._verifyPasswordLabel = new System.Windows.Forms.Label();
@@ -42,7 +43,7 @@
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
-            this._passwordStrengthMeter = new Axantum.AxCrypt.PasswordStrengthMeter();
+            this._helpButton = new System.Windows.Forms.Button();
             this._passphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
             this._emailGroupBox.SuspendLayout();
@@ -74,6 +75,13 @@
             this._passphraseGroupBox.TabStop = false;
             this._passphraseGroupBox.Text = "[Enter Password]";
             // 
+            // _passwordStrengthMeter
+            // 
+            this._passwordStrengthMeter.Location = new System.Drawing.Point(7, 46);
+            this._passwordStrengthMeter.Name = "_passwordStrengthMeter";
+            this._passwordStrengthMeter.Size = new System.Drawing.Size(243, 10);
+            this._passwordStrengthMeter.TabIndex = 5;
+            // 
             // ShowPassphraseCheckBox
             // 
             this.ShowPassphraseCheckBox.AutoSize = true;
@@ -104,11 +112,12 @@
             // 
             // _panel1
             // 
+            this._panel1.Controls.Add(this._helpButton);
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Location = new System.Drawing.Point(42, 192);
+            this._panel1.Location = new System.Drawing.Point(2, 196);
             this._panel1.Name = "_panel1";
-            this._panel1.Size = new System.Drawing.Size(200, 37);
+            this._panel1.Size = new System.Drawing.Size(251, 37);
             this._panel1.TabIndex = 0;
             // 
             // _buttonCancel
@@ -116,7 +125,7 @@
             this._buttonCancel.CausesValidation = false;
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonCancel.Location = new System.Drawing.Point(103, 11);
+            this._buttonCancel.Location = new System.Drawing.Point(87, 6);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
             this._buttonCancel.TabIndex = 1;
@@ -128,7 +137,7 @@
             this._buttonOk.CausesValidation = false;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(22, 11);
+            this._buttonOk.Location = new System.Drawing.Point(6, 6);
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(75, 23);
             this._buttonOk.TabIndex = 0;
@@ -166,18 +175,23 @@
             // 
             this._errorProvider3.ContainerControl = this;
             // 
-            // _passwordStrengthMeter
+            // _helpButton
             // 
-            this._passwordStrengthMeter.Location = new System.Drawing.Point(7, 46);
-            this._passwordStrengthMeter.Name = "_passwordStrengthMeter";
-            this._passwordStrengthMeter.Size = new System.Drawing.Size(243, 10);
-            this._passwordStrengthMeter.TabIndex = 5;
+            this._helpButton.CausesValidation = false;
+            this._helpButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._helpButton.Location = new System.Drawing.Point(168, 6);
+            this._helpButton.Name = "_helpButton";
+            this._helpButton.Size = new System.Drawing.Size(75, 23);
+            this._helpButton.TabIndex = 2;
+            this._helpButton.Text = "[Help]";
+            this._helpButton.UseVisualStyleBackColor = true;
+            this._helpButton.Click += new System.EventHandler(this._helpButton_Click);
             // 
             // CreateNewAccountDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 237);
+            this.ClientSize = new System.Drawing.Size(292, 237);
             this.Controls.Add(this._emailGroupBox);
             this.Controls.Add(this._passphraseGroupBox);
             this.Controls.Add(this._panel1);
@@ -213,5 +227,6 @@
         private System.Windows.Forms.ErrorProvider _errorProvider2;
         private System.Windows.Forms.ErrorProvider _errorProvider3;
         private PasswordStrengthMeter _passwordStrengthMeter;
+        private System.Windows.Forms.Button _helpButton;
     }
 }

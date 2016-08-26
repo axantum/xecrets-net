@@ -31,21 +31,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class PasswordStrengthMeterViewModel : ViewModelBase
     {
-        private int _goodBits;
-
-        public PasswordStrengthMeterViewModel(int goodBits)
+        public PasswordStrengthMeterViewModel()
         {
-            if (goodBits < 64)
-            {
-                throw new ArgumentException("Level of good must be better than 64 bits.", nameof(goodBits));
-            }
-
-            _goodBits = goodBits;
-
             InitializePropertyValues();
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
@@ -74,33 +67,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void TestCandidate(string candidate)
         {
-            int estimatedBits = PasswordStrengthCalculator.Estimate(candidate);
+            PasswordMetrics metrics = New<PasswordStrengthEvaluator>().Evaluate(candidate);
 
-            double fraction = (double)estimatedBits / (double)_goodBits;
-            if (fraction > 1.0)
-            {
-                fraction = 1.0;
-            }
-
-            int percent = (int)Math.Round(fraction * 100);
-
-            PasswordStrength strength = PasswordStrength.Bad;
-            if (percent == 0)
-            {
-                strength = PasswordStrength.Unacceptable;
-            }
-            if (percent > 50 && percent < 75)
-            {
-                strength = PasswordStrength.Weak;
-            }
-            if (percent >= 75)
-            {
-                strength = PasswordStrength.Strong;
-            }
-
-            PercentStrength = percent;
-            EstimatedBits = estimatedBits;
-            PasswordStrength = strength;
+            PercentStrength = metrics.Percent;
+            EstimatedBits = metrics.Bits;
+            PasswordStrength = metrics.Strength;
         }
     }
 }

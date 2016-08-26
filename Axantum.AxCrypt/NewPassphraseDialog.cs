@@ -25,12 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
@@ -67,6 +68,7 @@ namespace Axantum.AxCrypt
 
             _fileGroupBox.Text = Texts.PromptFileText;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
+            _buttonHelp.Text = "&" + Texts.ButtonHelpText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
             _buttonOk.Enabled = false;
             _verifyPasswordLabel.Text = Texts.VerifyPasswordPrompt;
@@ -114,6 +116,11 @@ namespace Axantum.AxCrypt
             }
             _errorProvider2.Clear();
             return validated;
+        }
+
+        private void _buttonHelp_Click(object sender, EventArgs e)
+        {
+            New<IPopup>().Show(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
         }
     }
 }

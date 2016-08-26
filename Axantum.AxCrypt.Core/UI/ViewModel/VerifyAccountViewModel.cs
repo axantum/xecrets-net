@@ -111,12 +111,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static bool ValidatePassphrasePolicy(string passphrase)
         {
-            if (passphrase.Length < 10)
-            {
-                return false;
-            }
-
-            return true;
+            return New<PasswordStrengthEvaluator>().Evaluate(passphrase).Strength > PasswordStrength.Unacceptable;
         }
 
         private async Task VerifyAccountActionAsync()

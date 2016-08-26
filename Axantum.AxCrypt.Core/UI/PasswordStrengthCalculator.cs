@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             int extraBits = password.ToCharArray().Aggregate<char, int>(0, (sum, c) => sum + (c == ' ' ? 1 : 0));
-            password = RemoveCommon(password);
+            password = Effective(password);
             if (password.Length <= 4)
             {
                 return 0;
@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.UI
             return estimate;
         }
 
-        private static string RemoveCommon(string password)
+        public static string Effective(string password)
         {
             password = password.Replace(" ", string.Empty);
             foreach (string word in _commonPasswords)

@@ -195,7 +195,9 @@
     <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="UI\IEmailParser.cs" />
+    <Compile Include="UI\PasswordMetrics.cs" />
     <Compile Include="UI\PasswordStrengthCalculator.cs" />
+    <Compile Include="UI\PasswordStrengthEvaluator.cs" />
     <Compile Include="UI\PopupButtons.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />
     <Compile Include="UI\ViewModel\AccountProperties.cs" />
@@ -207,7 +209,7 @@
     <Compile Include="UI\ViewModel\ImportPublicKeysViewModel.cs" />
     <Compile Include="UI\ViewModel\LogOnAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\ManageAccountViewModel.cs" />
-    <Compile Include="UI\ViewModel\PasswordStrength.cs" />
+    <Compile Include="UI\PasswordStrength.cs" />
     <Compile Include="UI\ViewModel\PasswordStrengthMeterViewModel.cs" />
     <Compile Include="UI\ViewModel\SharingListViewModel.cs" />
     <Compile Include="UI\ViewModel\SignUpSignInViewModel.cs" />
