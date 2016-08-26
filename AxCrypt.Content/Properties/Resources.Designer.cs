@@ -1934,6 +1934,17 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Great! You already have an AxCrypt ID account for &apos;{0}&apos;.
+        ///
+        ///If you for any reason do not know or remember the password, you must perform a password reset..
+        /// </summary>
+        public static string HaveAccountInfo {
+            get {
+                return ResourceManager.GetString("HaveAccountInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string HelpAboutToolStripMenuItemText {

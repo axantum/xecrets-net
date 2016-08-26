@@ -770,6 +770,12 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>The selected log type is invalid.</value>
   </data>
+  <data name="HaveAccountInfo" xml:space="preserve">
+    <value>Great! You already have an AxCrypt ID account for '{0}'.
+
+If you for any reason do not know or remember the password, you must perform a password reset.</value>
+    <comment>A text displayed during initial startup explaining that the user already has an account with that email, and if the password is unknown a password reset must be issued in order to sign in. If {0} is present, the email address will be displayed there.</comment>
+  </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>About</value>
   </data>
