@@ -396,6 +396,12 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Votre mot de passe a été modifié.</value>
   </data>
+  <data name="CheckForUpdateMenuText" xml:space="preserve">
+    <value>Rechercher une mise à jour. </value>
+  </data>
+  <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
+    <value>Rechercher si une version plus récente est disponible au téléchargement. Cela nécessite un accès Internet. </value>
+  </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
     <value>Nettoyer les Fichiers Ouverts</value>
   </data>
@@ -682,6 +688,12 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
+  </data>
+  <data name="HaveAccountInfo" xml:space="preserve">
+    <value>Bien! Vous avez déjà un compte AxCrypt ID pour '{0}'.
+
+Si pour une raison quelconque vous ne connaissez pas ou vous ne souvenez pas de votre mot de passe, vous devez demander une réinitialisation de mot de passe. </value>
+    <comment>A text displayed during initial startup explaining that the user already has an account with that email, and if the password is unknown a password reset must be issued in order to sign in. If {0} is present, the email address will be displayed there.</comment>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>A Propos</value>
@@ -1076,6 +1088,9 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
     <value>Hors ligne</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
+  <data name="OfflineNoPremiumWarning" xml:space="preserve">
+    <value>Vous êtes hors ligne, sans abonnement Premium valide. Allez en ligne et achetez ou mettez à jour votre license. </value>
+  </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Votre version n'est pas à jour. Cliquez ici pour rechercher une mise à jour.</value>
   </data>
@@ -1124,7 +1139,7 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
     <value>Gestion du mot de passe</value>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
-    <value>Le mot de passe doit contenir au moins 10 caractères.</value>
+    <value>Le mot de passe est trop faible pour être accepté. </value>
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Vous avez oubliez votre mot de passe? Cliquez ici.</value>
@@ -1154,17 +1169,20 @@ Saisissez votre email ci-dessous, afin d'y recevoir votre lien d'activation ou u
 Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identifié comme spam, et que l'adresse {0} est correcte.</value>
   </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
-    <value>Le mot de passe n'est pas assez sécurisé pour être utilisé.</value>
+    <value>Le mot de passe est faible et comporte des risques. </value>
+    <comment>Status 'Red' We'll accept it, but it's really not a good idea!</comment>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
     <value>Le mot de passe est assez sécurisé et bon pour être validé.</value>
+    <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
     <value>Le mot de passe est trop court ou trop similaire à un mot de passe courant pour être accepté.</value>
     <comment>Shown when no password is typed or it is effectively empty</comment>
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
-    <value>Le mot de passe n'est pas assez sécurisé pour être validé.</value>
+    <value>Le mot de passe n'est pas assez fort pour être recommandé.</value>
+    <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Plus d'information concernant PayPal]</value>
@@ -1496,6 +1514,22 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   <data name="TrayBalloonTooltip" xml:space="preserve">
     <value>Cliquez pour restaurer la fenêtre de l'application AxCrypt.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
+  </data>
+  <data name="TrialPremiumStartInfo" xml:space="preserve">
+    <value>Bien! Vous pouvez maintenant utilisez toutes les caractéristiques d'AxCrypt gratuitement pendant la période d'essai. 
+
+Bonne chance, et profitez, 
+
+L'équipe AxCrypt </value>
+    <comment>A short message congratulating the user on having started the trial period.</comment>
+  </data>
+  <data name="TryPremiumLabel" xml:space="preserve">
+    <value>Essayez Premium! </value>
+    <comment>A clickable link with text similar to "Try Premium"</comment>
+  </data>
+  <data name="TryPremiumToolTip" xml:space="preserve">
+    <value>Vous n'utilisez pas le niveau maximum de sécurité. Cliquez ici pour essayer la version Premium gratuitement! </value>
+    <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
   </data>
   <data name="UnknownCrypto" xml:space="preserve">
     <value>Inconnu</value>
