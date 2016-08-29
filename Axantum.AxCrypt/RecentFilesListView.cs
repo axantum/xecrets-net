@@ -102,6 +102,10 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
+            if (!files.Any())
+            {
+                return;
+            }
             _updateRecentFilesInProgress = true;
             try
             {
