@@ -263,6 +263,7 @@ namespace Axantum.AxCrypt.Core.Test
             comparer = ActiveFileComparer.DateComparer;
             using (MainViewModel mvm = New<MainViewModel>())
             {
+                mvm.RecentFiles = Resolve.FileSystemState.ActiveFiles;
                 mvm.RecentFilesComparer = comparer;
                 recentFiles = mvm.RecentFiles.ToList();
 
