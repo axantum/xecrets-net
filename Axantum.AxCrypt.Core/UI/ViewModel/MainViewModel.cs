@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => New<IDataItem>(f))); });
             BindPropertyChangedInternal(nameof(DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChangedInternal(nameof(TryBrokenFile), (bool enabled) => { _userSettings.TryBrokenFile = enabled; });
-            BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFiles(); });
+            BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFilesComparer(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
             BindPropertyChangedInternal(nameof(License), (LicensePolicy policy) => SetWatchedFolders());
@@ -334,6 +334,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             RecentFiles = activeFiles;
             DecryptedFiles = _fileSystemState.DecryptedActiveFiles;
+        }
+
+        private void SetRecentFilesComparer()
+        {
+            if (RecentFilesComparer == null)
+            {
+                return;
+            }
+            List<ActiveFile> recentFiles = RecentFiles.ToList();
+            if (recentFiles.Count < 2)
+            {
+                return;
+            }
+            recentFiles.Sort(RecentFilesComparer);
+            RecentFiles = recentFiles;
         }
 
         private void SetFilesArePending()
