@@ -34,11 +34,15 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class ActiveFileChangedEventArgs : EventArgs
     {
-        public ActiveFileChangedEventArgs(ActiveFile activeFile)
+        public ActiveFileChangedEventArgs(ActiveFile activeFile) : this(new ActiveFile[] { activeFile })
         {
-            ActiveFile = activeFile;
         }
 
-        public ActiveFile ActiveFile { get; set; }
+        public ActiveFileChangedEventArgs(IEnumerable<ActiveFile> activeFiles)
+        {
+            ActiveFiles = activeFiles.ToList();
+        }
+
+        public IEnumerable<ActiveFile> ActiveFiles { get; set; }
     }
 }

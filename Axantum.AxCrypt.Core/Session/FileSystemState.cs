@@ -442,9 +442,9 @@ namespace Axantum.AxCrypt.Core.Session
                 SetRangeInternal(activeFiles, ActiveFileStatus.None);
                 Save();
             }
-            foreach (ActiveFile updatedActiveFile in updatedActiveFiles)
+            if (updatedActiveFiles.Count > 0)
             {
-                OnActiveFileChanged(new ActiveFileChangedEventArgs(updatedActiveFile));
+                OnActiveFileChanged(new ActiveFileChangedEventArgs(updatedActiveFiles));
             }
         }
 
