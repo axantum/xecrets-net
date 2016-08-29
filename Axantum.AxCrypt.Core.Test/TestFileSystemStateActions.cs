@@ -93,11 +93,11 @@ namespace Axantum.AxCrypt.Core.Test
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as decrypted being created.");
         }
 
@@ -113,15 +113,15 @@ namespace Axantum.AxCrypt.Core.Test
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
             using (FileLock fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
             {
                 Task.Run((Action)(() =>
                 {
-                    New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                    New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
                 })).Wait();
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the encrypted file is locked.");
@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Task.Run((Action)(() =>
                 {
-                    New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                    New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
                 })).Wait();
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the decrypted file is locked.");
@@ -160,12 +160,12 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
             ((FakeNow)New<INow>()).TimeFunction = () => DateTime.UtcNow;
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as modified, because it is considered open and decrypted, has a proper key, is modified, no running process so it should be re-encrypted and deleted.");
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(activeFile, Is.Not.Null, "The encrypted file should be found.");
@@ -189,16 +189,16 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(activeFile.Identity == LogOnIdentity.Empty, "The key should be null after loading of new FileSystemState");
 
             Resolve.KnownIdentities.Add(passphrase);
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
@@ -224,20 +224,20 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(activeFile.Identity == LogOnIdentity.Empty, "The key should be null after loading of new FileSystemState");
 
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
             Resolve.KnownIdentities.Add(new LogOnIdentity("x"));
             Resolve.KnownIdentities.Add(new LogOnIdentity("y"));
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
@@ -261,13 +261,13 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.KnownIdentities.Add(activeFile.Identity);
 
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
 
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because it's already deleted.");
         }
@@ -285,20 +285,20 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
 
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.Unknown;
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "No change should be raised when the file is not modified and not Desktop Windows.");
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "Nothing should happen with the file when not running as Desktop Windows.");
 
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             changedWasRaised = false;
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "Since the file should be deleted because running as Desktop Windows the changed event should be raised.");
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted), Is.True, "The file should be deleted and marked as Not Decrypted when running as Desktop Windows.");
@@ -320,10 +320,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
 
             Resolve.KnownIdentities.Add(passphrase);
 
@@ -338,7 +338,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.OpeningForRead += eventHandler;
             try
             {
-                New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             }
             finally
             {
@@ -366,12 +366,12 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(changedWasRaised, Is.False, "No changed event should be raised because no change should occur since the process is active.");
@@ -393,13 +393,13 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             fakeLauncher.HasExited = true;
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the process has exited.");
@@ -419,10 +419,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
 
             EventHandler eventHandler = ((object sender, EventArgs e) =>
@@ -438,7 +438,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.OpeningForWrite += eventHandler;
             try
             {
-                New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             }
             finally
             {
@@ -466,10 +466,10 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.Add(activeFile);
 
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
 
             using (FileLock fileLock = FileLock.Lock(decryptedFileInfo))
             {
@@ -505,10 +505,10 @@ namespace Axantum.AxCrypt.Core.Test
             decryptedFileInfo.SetFileTimes(utcLater, utcLater, utcLater);
 
             bool changedWasRaised = false;
-            Resolve.FileSystemState.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = true;
-            });
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
 
             New<ActiveFileAction>().PurgeActiveFiles(new ProgressContext());
 
@@ -576,11 +576,11 @@ namespace Axantum.AxCrypt.Core.Test
             ((FakeNow)New<INow>()).TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
 
             bool somethingWasChanged = false;
-            Resolve.FileSystemState.ActiveFileChanged += (object sender, ActiveFileChangedEventArgs e) =>
-                {
-                    somethingWasChanged = true;
-                };
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            {
+                somethingWasChanged = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(somethingWasChanged, Is.False, "No event should be raised, because nothing should change.");
         }
 
@@ -596,11 +596,11 @@ namespace Axantum.AxCrypt.Core.Test
             ((FakeNow)New<INow>()).TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
 
             bool somethingWasChanged = false;
-            Resolve.FileSystemState.ActiveFileChanged += (object sender, ActiveFileChangedEventArgs e) =>
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                somethingWasChanged = true;
+                somethingWasChanged = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
             };
-            New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(somethingWasChanged, Is.True, "An event should be raised, because status was NotShareable, but no process is active.");
         }
 

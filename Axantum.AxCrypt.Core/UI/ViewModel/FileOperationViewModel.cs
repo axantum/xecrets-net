@@ -214,6 +214,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task OpenFilesActionAsync(IEnumerable<string> files)
         {
             await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), OpenEncryptedWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
+            _fileSystemState.Save();
         }
 
         private Task<FileOperationContext> DecryptFileWork(IDataStore file, IProgressContext progress)
@@ -322,7 +323,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 if (!_fileSystemState.KnownPassphrases.Any(i => i.Thumbprint == e.LogOnIdentity.Passphrase.Thumbprint))
                 {
                     _fileSystemState.KnownPassphrases.Add(e.LogOnIdentity.Passphrase);
-                    _fileSystemState.Save();
                 }
                 _knownIdentities.Add(e.LogOnIdentity);
             };
@@ -388,7 +388,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.LogOnIdentity, ActiveFileStatus.NotDecrypted, e.CryptoId);
                     _fileSystemState.Add(activeFile);
-                    _fileSystemState.Save();
                 }
             };
             return controller.EncryptFile(file);
@@ -411,7 +410,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 if (!_fileSystemState.KnownPassphrases.Any(i => i.Thumbprint == e.LogOnIdentity.Passphrase.Thumbprint))
                 {
                     _fileSystemState.KnownPassphrases.Add(e.LogOnIdentity.Passphrase);
-                    _fileSystemState.Save();
                 }
                 _knownIdentities.Add(e.LogOnIdentity);
             };
@@ -424,7 +422,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.SaveFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.LogOnIdentity, ActiveFileStatus.NotDecrypted, e.CryptoId);
                     _fileSystemState.Add(activeFile);
-                    _fileSystemState.Save();
                 }
             };
 
@@ -461,10 +458,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task ProcessEncryptedFilesDroppedInRecentListAsync(IEnumerable<IDataStore> encryptedFiles)
         {
             await _fileOperation.DoFilesAsync(encryptedFiles, VerifyAndAddActiveWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
+            _fileSystemState.Save();
         }
 
         private async Task EncryptOneOrManyFilesAsync(IEnumerable<IDataStore> encryptableFiles)
         {
+            if (!encryptableFiles.Any())
+            {
+                return;
+            }
             if (encryptableFiles.Count() > 1)
             {
                 await _fileOperation.DoFilesAsync(encryptableFiles, this.EncryptFileWorkManyAsync, (status) => CheckEncryptionStatus(status));
@@ -473,6 +475,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 await _fileOperation.DoFilesAsync(encryptableFiles, EncryptFileWorkOneAsync, (status) => CheckEncryptionStatus(status));
             }
+            New<FileSystemState>().Save();
         }
 
         private static void CheckEncryptionStatus(FileOperationContext foc)

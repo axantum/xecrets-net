@@ -310,11 +310,13 @@ namespace Axantum.AxCrypt.Core.Test
                 FakeDataStore.AddFile(file3, null);
                 activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
+                Resolve.FileSystemState.Save();
 
                 Assert.That(mvm.FilesArePending, Is.True);
 
                 activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
+                Resolve.FileSystemState.Save();
 
                 Assert.That(mvm.FilesArePending, Is.False);
             }

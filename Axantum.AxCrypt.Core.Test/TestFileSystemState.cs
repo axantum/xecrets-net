@@ -136,38 +136,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestActiveFileChangedEvent()
-        {
-            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
-            {
-                bool wasHere;
-                state.ActiveFileChanged += new EventHandler<ActiveFileChangedEventArgs>((object sender, ActiveFileChangedEventArgs e) => { wasHere = true; });
-                ActiveFile activeFile = new ActiveFile(New<IDataStore>(_encryptedAxxPath), New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("a"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
-
-                wasHere = false;
-                state.Add(activeFile);
-                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the Add() the state should have one active file.");
-                Assert.That(wasHere, Is.True, "After the Add(), the changed event should have been raised.");
-
-                wasHere = false;
-                state.RemoveActiveFile(activeFile);
-                Assert.That(!wasHere, "After the Remove(), the changed event should not have been raised, since it is marked as open.");
-                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the Remove() the state have the same number of active files.");
-
-                activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
-                wasHere = false;
-                state.Add(activeFile);
-                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the second Add() the state should have one active file.");
-                Assert.That(wasHere, "After the second Add(), the changed event should have been raised.");
-
-                wasHere = false;
-                state.RemoveActiveFile(activeFile);
-                Assert.That(wasHere, "After the Remove(), the changed event should have been raised, since it is marked as not decrypted now.");
-                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "After the Remove() the state have no active files.");
-            }
-        }
-
-        [Test]
         public void TestStatusMaskAtLoad()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
@@ -203,14 +171,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestForEach()
         {
-            bool changedEventWasRaised = false;
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
-                state.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
-                {
-                    changedEventWasRaised = true;
-                });
-
                 ActiveFile activeFile;
                 activeFile = new ActiveFile(New<IDataStore>(_encrypted1AxxPath), New<IDataStore>(_decrypted1TxtPath), new LogOnIdentity("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().CryptoId);
                 state.Add(activeFile);
@@ -218,37 +180,23 @@ namespace Axantum.AxCrypt.Core.Test
                 state.Add(activeFile);
                 activeFile = new ActiveFile(New<IDataStore>(_encrypted3AxxPath), New<IDataStore>(_decrypted3TxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().CryptoId);
                 state.Add(activeFile);
-                Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised by the adding of active files.");
 
-                changedEventWasRaised = false;
                 Assert.That(state.ActiveFiles.Count(), Is.EqualTo(3), "There should be three.");
                 int i = 0;
-                state.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFileArgument) =>
+                state.ForEach((ActiveFile activeFileArgument) =>
                 {
                     ++i;
                     return activeFileArgument;
                 });
                 Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
-                Assert.That(changedEventWasRaised, Is.False, "No change event should have been raised.");
 
                 i = 0;
-                state.ForEach(ChangedEventMode.RaiseAlways, (ActiveFile activeFileArgument) =>
-                {
-                    ++i;
-                    return activeFileArgument;
-                });
-                Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
-                Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised.");
-
-                changedEventWasRaised = false;
-                i = 0;
-                state.ForEach(ChangedEventMode.RaiseAlways, (ActiveFile activeFileArgument) =>
+                state.ForEach((ActiveFile activeFileArgument) =>
                 {
                     ++i;
                     return new ActiveFile(activeFileArgument, activeFile.Status | ActiveFileStatus.Error);
                 });
                 Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
-                Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised.");
             }
         }
 
@@ -299,7 +247,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<ArgumentNullException>(() => { state.RemoveActiveFile(nullActiveFile); });
                 Assert.Throws<ArgumentNullException>(() => { state.Add(nullActiveFile); });
                 Assert.Throws<ArgumentNullException>(() => { state.FindActiveFileFromEncryptedPath(nullPath); });
-                Assert.Throws<ArgumentNullException>(() => { state.ForEach(ChangedEventMode.RaiseAlways, nullAction); });
+                Assert.Throws<ArgumentNullException>(() => { state.ForEach(nullAction); });
                 Assert.Throws<ArgumentNullException>(() => { FileSystemState.Create(nullFileInfo); });
             }
         }

@@ -69,7 +69,6 @@ namespace Axantum.AxCrypt.Core.Session
                     try
                     {
                         await HandleNotificationInternalAsync(notification, progress);
-                        _activeFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
                     }
                     finally
                     {
@@ -137,10 +136,6 @@ namespace Axantum.AxCrypt.Core.Session
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     break;
 
-                case SessionNotificationType.SessionStart:
-                    _activeFileAction.CheckActiveFiles(ChangedEventMode.RaiseAlways, progress);
-                    break;
-
                 case SessionNotificationType.EncryptPendingFiles:
                     _activeFileAction.ClearExceptionState();
                     _activeFileAction.PurgeActiveFiles(progress);
@@ -154,12 +149,14 @@ namespace Axantum.AxCrypt.Core.Session
                     _fileSystemState.UpdateActiveFiles(notification.FullNames);
                     break;
 
+                case SessionNotificationType.ActiveFileChange:
+                case SessionNotificationType.SessionStart:
                 case SessionNotificationType.WatchedFolderChange:
                 case SessionNotificationType.ProcessExit:
-                case SessionNotificationType.ActiveFileChange:
                 case SessionNotificationType.KnownKeyChange:
                 case SessionNotificationType.SessionChange:
                 case SessionNotificationType.WorkFolderChange:
+                    _activeFileAction.CheckActiveFiles(progress);
                     break;
 
                 default:

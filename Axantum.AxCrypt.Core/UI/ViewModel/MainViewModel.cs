@@ -172,7 +172,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SubscribeToModelEvents()
         {
             Resolve.SessionNotify.Notification += HandleSessionChanged;
-            _fileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
         public bool CanShare(IEnumerable<IDataStore> items)
@@ -211,12 +210,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             VersionUpdateStatus = e.DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, e.LastUpdateCheck);
             DownloadVersion = e.DownloadVersion;
-        }
-
-        private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
-        {
-            SetFilesArePending();
-            SetRecentFiles();
         }
 
         private static FileInfoTypes DetermineFileTypes(IEnumerable<IDataItem> files)
@@ -301,14 +294,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     break;
 
+                case SessionNotificationType.SessionStart:
                 case SessionNotificationType.ActiveFileChange:
+                    SetFilesArePending();
                     SetRecentFiles();
                     break;
 
                 case SessionNotificationType.WorkFolderChange:
                 case SessionNotificationType.ProcessExit:
                 case SessionNotificationType.SessionChange:
-                case SessionNotificationType.SessionStart:
                 default:
                     break;
             }
@@ -447,7 +441,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (_axCryptUpdateCheck != null)
             {
-                _fileSystemState.ActiveFileChanged -= HandleActiveFileChangedEvent;
                 Resolve.SessionNotify.Notification -= HandleSessionChanged;
 
                 _axCryptUpdateCheck.AxCryptUpdate -= Handle_VersionUpdate;

@@ -224,17 +224,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public event EventHandler<ActiveFileChangedEventArgs> ActiveFileChanged;
-
-        protected virtual void OnActiveFileChanged(ActiveFileChangedEventArgs e)
-        {
-            EventHandler<ActiveFileChangedEventArgs> handler = ActiveFileChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
         public IEnumerable<ActiveFile> ActiveFiles
         {
             get
@@ -304,7 +293,6 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
             AddInternal(activeFile);
-            OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
         public void Add(ActiveFile activeFile, ILauncher process)
@@ -320,6 +308,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("fullNames");
             }
 
+            bool dirty = false;
             foreach (ActiveFile activeFile in ActiveFiles)
             {
                 if (!fullNames.Contains(activeFile.EncryptedFileInfo.FullName))
@@ -331,10 +320,14 @@ namespace Axantum.AxCrypt.Core.Session
                     if (!activeFile.EncryptedFileInfo.IsAvailable)
                     {
                         RemoveActiveFile(activeFile);
+                        dirty = true;
                     }
                 }
             }
-            Save();
+            if (dirty)
+            {
+                Save();
+            }
         }
 
         /// <summary>
@@ -356,7 +349,6 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
-            OnActiveFileChanged(new ActiveFileChangedEventArgs(new ActiveFile(activeFile, ActiveFileStatus.None)));
         }
 
         private void AddInternal(ActiveFile activeFile)
@@ -403,9 +395,8 @@ namespace Axantum.AxCrypt.Core.Session
         /// <summary>
         /// Iterate over all active files in the state.
         /// </summary>
-        /// <param name="mode">RaiseAlways to raise Changed event for each active file, RaiseOnlyOnModified to only raise for modified active files.</param>
         /// <param name="action">A delegate with an action to take for each active file, returning the same or updated active file as need be.</param>
-        public void ForEach(ChangedEventMode mode, Func<ActiveFile, ActiveFile> action)
+        public void ForEach(Func<ActiveFile, ActiveFile> action)
         {
             if (action == null)
             {
@@ -414,7 +405,6 @@ namespace Axantum.AxCrypt.Core.Session
 
             bool isAnyModified = false;
             List<ActiveFile> activeFiles = new List<ActiveFile>();
-            List<ActiveFile> updatedActiveFiles = new List<ActiveFile>();
             foreach (ActiveFile activeFile in ActiveFiles)
             {
                 ActiveFile updatedActiveFile;
@@ -430,21 +420,15 @@ namespace Axantum.AxCrypt.Core.Session
                     throw;
                 }
                 activeFiles.Add(updatedActiveFile);
-                bool isModified = updatedActiveFile != activeFile;
-                if ((isModified && mode == ChangedEventMode.RaiseOnlyOnModified) || mode == ChangedEventMode.RaiseAlways)
+                if (!object.ReferenceEquals(updatedActiveFile, activeFile))
                 {
-                    updatedActiveFiles.Add(updatedActiveFile);
+                    isAnyModified = true;
                 }
-                isAnyModified |= isModified;
             }
             if (isAnyModified)
             {
                 SetRangeInternal(activeFiles, ActiveFileStatus.None);
                 Save();
-            }
-            if (updatedActiveFiles.Count > 0)
-            {
-                OnActiveFileChanged(new ActiveFileChangedEventArgs(updatedActiveFiles));
             }
         }
 
@@ -516,6 +500,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 Resolve.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
             }
+            New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
         }
 
         public void Delete()

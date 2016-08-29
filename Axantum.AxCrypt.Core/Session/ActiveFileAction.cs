@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Session
             progress.NotifyLevelStart();
             try
             {
-                Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
+                Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
                 {
                     if (activeFile.Status.HasMask(ActiveFileStatus.Exception))
                     {
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="_fileSystemState">The FileSystemState to enumerate and possibly update.</param>
         /// <param name="mode">Under what circumstances is the FileSystemState.Changed event raised.</param>
         /// <param name="progress">The ProgressContext to provide visual progress feedback via.</param>
-        public virtual void CheckActiveFiles(ChangedEventMode mode, IProgressContext progress)
+        public virtual void CheckActiveFiles(IProgressContext progress)
         {
             if (progress == null)
             {
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Session
             try
             {
                 progress.AddTotal(Resolve.FileSystemState.ActiveFileCount);
-                Resolve.FileSystemState.ForEach(mode, (ActiveFile activeFile) =>
+                Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
                 {
                     try
                     {
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void ClearExceptionState()
         {
-            Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseNever, (ActiveFile activeFile) =>
+            Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
             {
                 if (activeFile.Status.HasFlag(ActiveFileStatus.Exception))
                 {
@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(LogOnIdentity key)
         {
             bool keyMatch = false;
-            Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
+            Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
             {
                 if (activeFile.Identity != LogOnIdentity.Empty)
                 {

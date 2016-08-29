@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
-            mock.CheckActiveFilesMock = (ChangedEventMode mode, IProgressContext progress) => { called = true; };
+            mock.CheckActiveFilesMock = (IProgressContext progress) => { called = true; };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
-            mock.CheckActiveFilesMock = (ChangedEventMode mode, IProgressContext progress) => { called = true; };
+            mock.CheckActiveFilesMock = (IProgressContext progress) => { called = true; };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
