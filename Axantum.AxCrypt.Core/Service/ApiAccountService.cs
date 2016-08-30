@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// Start a trial period for the user.
         /// </summary>
         /// <returns></returns>
-        public async Task StartPremiumTrial()
+        public async Task StartPremiumTrialAsync()
         {
             await _apiClient.PostMyAccountPremiumTrial().Free();
         }

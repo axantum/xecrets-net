@@ -198,10 +198,10 @@ namespace Axantum.AxCrypt.Mono
 
         protected virtual async Task OnWorkAsync(ThreadWorkerEventArgs e)
         {
-            Func<ThreadWorkerEventArgs, Task> command = WorkAsync;
-            if (command != null)
+            Func<ThreadWorkerEventArgs, Task> commandAsync = WorkAsync;
+            if (commandAsync != null)
             {
-                await command.Invoke(e);
+                await commandAsync.Invoke(e);
             }
         }
 

@@ -58,6 +58,7 @@
       <DependentUpon>ConfirmWipeDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="EmbeddedResourceManager.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Implementation\DataProtection.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Implementation\DeviceLocked.cs" />

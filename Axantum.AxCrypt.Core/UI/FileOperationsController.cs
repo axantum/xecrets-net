@@ -207,9 +207,9 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileInfo">The full path to an encrypted file.</param>
         /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
-        public async Task<FileOperationContext> DecryptAndLaunchAsync(IDataStore fileInfo)
+        public Task<FileOperationContext> DecryptAndLaunchAsync(IDataStore fileInfo)
         {
-            return await DoFileAsync(fileInfo, DecryptAndLaunchPreparationAsync, DecryptAndLaunchFileOperation);
+            return DoFileAsync(fileInfo, DecryptAndLaunchPreparationAsync, DecryptAndLaunchFileOperation);
         }
 
         /// <summary>

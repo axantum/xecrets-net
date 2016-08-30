@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Session
                     progress.NotifyLevelStart();
                     try
                     {
-                        await HandleNotificationInternalAsync(notification, progress);
+                        await HandleNotificationInternalAsync(notification, progress).Free();
                     }
                     finally
                     {
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Session
                     }
                     _statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
                 },
-                new ProgressContext());
+                new ProgressContext()).Free();
         }
 
         private async Task HandleNotificationInternalAsync(SessionNotification notification, IProgressContext progress)
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Session
                         IDataContainer removedFolderInfo = New<IDataContainer>(fullName);
                         if (removedFolderInfo.IsAvailable)
                         {
-                            await _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(removedFolderInfo, notification.Identity, _statusChecker, progress);
+                            await _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(removedFolderInfo, notification.Identity, _statusChecker, progress).Free();
                         }
                     }
                     break;

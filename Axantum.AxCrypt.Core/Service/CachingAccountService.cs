@@ -119,9 +119,9 @@ namespace Axantum.AxCrypt.Core.Service
             return offers;
         }
 
-        public async Task StartPremiumTrial()
+        public async Task StartPremiumTrialAsync()
         {
-            await New<ICache>().UpdateItemAsync(async () => await _service.StartPremiumTrial(), _key).Free();
+            await New<ICache>().UpdateItemAsync(async () => await _service.StartPremiumTrialAsync(), _key).Free();
         }
 
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)

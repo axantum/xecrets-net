@@ -2,6 +2,7 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
 using System;
@@ -103,16 +104,7 @@ namespace Axantum.AxCrypt
                 return;
             }
             _updateRecentFilesInProgress = true;
-            try
-            {
-                Cursor = Cursors.WaitCursor;
-                await UpdateRecentFilesUnsynchronizedAsync(files);
-            }
-            finally
-            {
-                _updateRecentFilesInProgress = false;
-                Cursor = Cursors.Default;
-            }
+            await this.WithWaitCursorAsync(() => UpdateRecentFilesUnsynchronizedAsync(files), () => _updateRecentFilesInProgress = false);
         }
 
         private async Task UpdateRecentFilesUnsynchronizedAsync(IEnumerable<ActiveFile> files)

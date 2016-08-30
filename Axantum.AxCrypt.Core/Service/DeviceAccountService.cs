@@ -118,13 +118,13 @@ namespace Axantum.AxCrypt.Core.Service
             return await _localService.OffersAsync().Free();
         }
 
-        public async Task StartPremiumTrial()
+        public async Task StartPremiumTrialAsync()
         {
             if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
             {
                 try
                 {
-                    await _remoteService.StartPremiumTrial().Free();
+                    await _remoteService.StartPremiumTrialAsync().Free();
                     return;
                 }
                 catch (OfflineApiException oaex)
@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Service
                     New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
-            await _localService.StartPremiumTrial();
+            await _localService.StartPremiumTrialAsync().Free();
         }
 
         public async Task<bool> ChangePassphraseAsync(Passphrase passphrase)
@@ -383,7 +383,7 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 try
                 {
-                    return await _remoteService.StatusAsync(email);
+                    return await _remoteService.StatusAsync(email).Free();
                 }
                 catch (OfflineApiException oaex)
                 {
@@ -391,7 +391,7 @@ namespace Axantum.AxCrypt.Core.Service
                     New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
-            AccountStatus status = await _localService.StatusAsync(email);
+            AccountStatus status = await _localService.StatusAsync(email).Free();
             if (status == AccountStatus.NotFound)
             {
                 return AccountStatus.Offline;

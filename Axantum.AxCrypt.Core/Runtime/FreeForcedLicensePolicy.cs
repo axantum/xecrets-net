@@ -14,9 +14,19 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
         }
 
-        protected override SubscriptionLevel SubscriptionLevel
+        protected override Task<SubscriptionLevel> SubscriptionLevelAsync()
         {
-            get { return SubscriptionLevel.Free; }
+            return Task.FromResult(SubscriptionLevel.Free);
+        }
+
+        protected override Task<DateTime> SubscriptionExpirationAsync()
+        {
+            return Task.FromResult(DateTime.MaxValue);
+        }
+
+        public override Task<bool> IsTrialAvailableAsync()
+        {
+            return Task.FromResult(false);
         }
     }
 }

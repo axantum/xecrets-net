@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public async Task<T> GetItemAsync<T>(ICacheKey cacheKey, Func<Task<T>> itemFunction)
+        public async Task<T> GetItemAsync<T>(ICacheKey cacheKey, Func<Task<T>> itemFunctionAsync)
         {
             await _lock.WaitAsync().Free();
             try
@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Mono
                 {
                     return (T)o;
                 }
-                T item = await itemFunction().Free();
+                T item = await itemFunctionAsync().Free();
                 if (item != null)
                 {
                     _cache.Add(cacheKey.Key, item, Policy(cacheKey));
@@ -132,12 +132,12 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public async Task UpdateItemAsync(Func<Task> updateFunction, params ICacheKey[] dependencies)
+        public async Task UpdateItemAsync(Func<Task> updateFunctionAsync, params ICacheKey[] dependencies)
         {
             await _lock.WaitAsync().Free();
             try
             {
-                await updateFunction().Free();
+                await updateFunctionAsync().Free();
                 foreach (ICacheKey key in dependencies)
                 {
                     _cache.Remove(key.Key);
@@ -149,12 +149,12 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public async Task<T> UpdateItemAsync<T>(Func<Task<T>> updateFunction, params ICacheKey[] dependencies)
+        public async Task<T> UpdateItemAsync<T>(Func<Task<T>> updateFunctionAsync, params ICacheKey[] dependencies)
         {
             await _lock.WaitAsync().Free();
             try
             {
-                T item = await updateFunction().Free();
+                T item = await updateFunctionAsync().Free();
                 foreach (ICacheKey key in dependencies)
                 {
                     _cache.Remove(key.Key);

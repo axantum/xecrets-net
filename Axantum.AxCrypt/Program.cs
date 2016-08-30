@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<AxCryptApiClient>(() => new AxCryptApiClient(Resolve.KnownIdentities.DefaultEncryptionIdentity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<LicensePolicy>(() => new LicensePolicy(Resolve.KnownIdentities.DefaultEncryptionIdentity));
-            TypeMap.Register.New<ICryptoPolicy>(() => New<LicensePolicy>().CryptoPolicy);
+            TypeMap.Register.New<ICryptoPolicy>(() => New<LicensePolicy>().CryptoPolicyAsync().Result);
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
 
             TypeMap.Register.Singleton<FontLoader>(() => new FontLoader());

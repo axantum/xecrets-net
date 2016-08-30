@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Service
             return Task.FromResult(LoadUserAccount().Offers);
         }
 
-        public Task StartPremiumTrial()
+        public Task StartPremiumTrialAsync()
         {
             throw new InvalidOperationException("A premium trial cannot be started locally.");
         }

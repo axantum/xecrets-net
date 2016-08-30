@@ -680,9 +680,9 @@ namespace Axantum.AxCrypt.Core
         public virtual async Task DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(IDataContainer sourceContainer, LogOnIdentity logOnIdentity, IStatusChecker statusChecker, IProgressContext progress)
         {
             IEnumerable<IDataStore> files = sourceContainer.ListEncrypted().ToList();
-            await Resolve.ParallelFileOperation.DoFilesAsync(files, async (file, context) =>
+            await Resolve.ParallelFileOperation.DoFilesAsync(files, (file, context) =>
             {
-                return await DecryptFileUniqueWithWipeOfOriginal(file, logOnIdentity, context).Free();
+                return DecryptFileUniqueWithWipeOfOriginalAsync(file, logOnIdentity, context);
             },
             (status) =>
             {
@@ -691,7 +691,7 @@ namespace Axantum.AxCrypt.Core
             }).Free();
         }
 
-        public Task<FileOperationContext> DecryptFileUniqueWithWipeOfOriginal(IDataStore sourceStore, LogOnIdentity logOnIdentity, IProgressContext progress)
+        public Task<FileOperationContext> DecryptFileUniqueWithWipeOfOriginalAsync(IDataStore sourceStore, LogOnIdentity logOnIdentity, IProgressContext progress)
         {
             if (sourceStore == null)
             {

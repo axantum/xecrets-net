@@ -514,7 +514,7 @@
             this._englishLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this._englishLanguageToolStripMenuItem.Tag = "en-US";
             this._englishLanguageToolStripMenuItem.Text = "[English]";
-            this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _germanLanguageToolStripMenuItem
             // 
@@ -522,7 +522,7 @@
             this._germanLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this._germanLanguageToolStripMenuItem.Tag = "de-DE";
             this._germanLanguageToolStripMenuItem.Text = "[Deutsch]";
-            this._germanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._germanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _dutchToolStripMenuItem
             // 
@@ -530,7 +530,7 @@
             this._dutchToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this._dutchToolStripMenuItem.Tag = "nl-NL";
             this._dutchToolStripMenuItem.Text = "[Dutch]";
-            this._dutchToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._dutchToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _spanishLanguageToolStripMenuItem
             // 
@@ -538,7 +538,7 @@
             this._spanishLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this._spanishLanguageToolStripMenuItem.Tag = "es-ES";
             this._spanishLanguageToolStripMenuItem.Text = "[Español]";
-            this._spanishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._spanishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _francaisLanguageToolStripMenuItem
             // 
@@ -546,7 +546,7 @@
             this._francaisLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this._francaisLanguageToolStripMenuItem.Tag = "fr-FR";
             this._francaisLanguageToolStripMenuItem.Text = "[Français]";
-            this._francaisLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._francaisLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _italianLanguageToolStripMenuItem
             // 
@@ -554,7 +554,7 @@
             this._italianLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this._italianLanguageToolStripMenuItem.Tag = "it-IT";
             this._italianLanguageToolStripMenuItem.Text = "[Italiano]";
-            this._italianLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._italianLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _koreanLanguageToolStripMenuItem
             // 
@@ -562,7 +562,7 @@
             this._koreanLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this._koreanLanguageToolStripMenuItem.Tag = "ko";
             this._koreanLanguageToolStripMenuItem.Text = "[Korean]";
-            this._koreanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._koreanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _portugueseBrazilToolStripMenuItem
             // 
@@ -570,7 +570,7 @@
             this._portugueseBrazilToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this._portugueseBrazilToolStripMenuItem.Tag = "pt-BR";
             this._portugueseBrazilToolStripMenuItem.Text = "[Português (Brasil)]";
-            this._portugueseBrazilToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._portugueseBrazilToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _swedishLanguageToolStripMenuItem
             // 
@@ -578,7 +578,7 @@
             this._swedishLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this._swedishLanguageToolStripMenuItem.Tag = "sv-SE";
             this._swedishLanguageToolStripMenuItem.Text = "[Svenska]";
-            this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            this._swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _optionsChangePassphraseToolStripMenuItem
             // 

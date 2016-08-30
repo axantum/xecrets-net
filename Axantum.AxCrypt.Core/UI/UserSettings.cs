@@ -300,10 +300,13 @@ namespace Axantum.AxCrypt.Core.UI
 
         protected virtual void Save()
         {
-            using (TextWriter writer = new StreamWriter(_persistanceFileInfo.OpenWrite()))
+            using (FileLock.Lock(_persistanceFileInfo))
             {
-                JsonSerializer serializer = CreateSerializer();
-                serializer.Serialize(writer, _settings);
+                using (TextWriter writer = new StreamWriter(_persistanceFileInfo.OpenWrite()))
+                {
+                    JsonSerializer serializer = CreateSerializer();
+                    serializer.Serialize(writer, _settings);
+                }
             }
         }
 

@@ -458,7 +458,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(sourceFileInfo.IsAvailable, Is.True, "The source should exist.");
             Assert.That(destinationFileInfo.IsAvailable, Is.False, "The source should not exist yet.");
 
-            await New<AxCryptFile>().DecryptFileUniqueWithWipeOfOriginal(sourceFileInfo, passphrase, new ProgressContext());
+            await New<AxCryptFile>().DecryptFileUniqueWithWipeOfOriginalAsync(sourceFileInfo, passphrase, new ProgressContext());
 
             Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");

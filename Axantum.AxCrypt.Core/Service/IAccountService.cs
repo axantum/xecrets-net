@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// Start a premium trial now.
         /// </summary>
         /// <returns></returns>
-        Task StartPremiumTrial();
+        Task StartPremiumTrialAsync();
 
         /// <summary>
         /// Determines whether the Identity is valid for sign in.

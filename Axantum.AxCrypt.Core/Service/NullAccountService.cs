@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Service
             return Task.FromResult(Offers.None);
         }
 
-        public Task StartPremiumTrial()
+        public Task StartPremiumTrialAsync()
         {
             return Task.FromResult(default(object));
         }

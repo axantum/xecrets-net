@@ -41,6 +41,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Desktop;
+using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Implementation;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
@@ -497,18 +498,18 @@ namespace Axantum.AxCrypt
 #endif
         }
 
-        private void ConfigureMenusAccordingToPolicy(LicensePolicy license)
+        private async Task ConfigureMenusAccordingToPolicyAsync(LicensePolicy license)
         {
-            ConfigurePolicyMenu(license);
-            ConfigureSecureWipe(license);
-            ConfigureKeyShareMenus(license);
-            ConfigureSecretsMenus(license);
-            ConfigureAnonymousRename(license);
+            await ConfigurePolicyMenuAsync(license);
+            await ConfigureSecureWipeAsync(license);
+            await ConfigureKeyShareMenusAsync(license);
+            await ConfigureSecretsMenusAsync(license);
+            await ConfigureAnonymousRenameAsync(license);
         }
 
-        private void ConfigureKeyShareMenus(LicensePolicy license)
+        private async Task ConfigureKeyShareMenusAsync(LicensePolicy license)
         {
-            if (license.Has(LicenseCapability.KeySharing))
+            if (await license.HasAsync(LicenseCapability.KeySharing))
             {
                 _keyShareToolStripButton.Image = Resources.share_border_80px;
                 _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;
@@ -520,9 +521,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ConfigureSecretsMenus(LicensePolicy license)
+        private async Task ConfigureSecretsMenusAsync(LicensePolicy license)
         {
-            if (license.Has(LicenseCapability.PasswordManagement))
+            if (await license.HasAsync(LicenseCapability.PasswordManagement))
             {
                 _secretsToolStripButton.Image = Resources.passwords_80px;
                 _secretsToolStripButton.ToolTipText = Texts.SecretsButtonToolTipText;
@@ -534,9 +535,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ConfigureSecureWipe(LicensePolicy license)
+        private async Task ConfigureSecureWipeAsync(LicensePolicy license)
         {
-            if (license.Has(LicenseCapability.SecureWipe))
+            if (await license.HasAsync(LicenseCapability.SecureWipe))
             {
                 _secureDeleteToolStripMenuItem.Image = Resources.delete;
                 _secureDeleteToolStripMenuItem.ToolTipText = String.Empty;
@@ -548,9 +549,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ConfigureAnonymousRename(LicensePolicy license)
+        private async Task ConfigureAnonymousRenameAsync(LicensePolicy license)
         {
-            if (license.Has(LicenseCapability.RandomRename))
+            if (await license.HasAsync(LicenseCapability.RandomRename))
             {
                 _renameToolStripMenuItem.Image = null;
                 _renameToolStripMenuItem.ToolTipText = Texts.AnonymousRenameToolTip;
@@ -562,20 +563,20 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ConfigurePolicyMenu(LicensePolicy license)
+        private async Task ConfigurePolicyMenuAsync(LicensePolicy license)
         {
             ToolStripMenuItem item;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Clear();
 
             item = new ToolStripMenuItem();
             item.Text = Texts.LicensePremiumNameText;
-            item.Checked = license.Has(LicenseCapability.Premium);
+            item.Checked = await license.HasAsync(LicenseCapability.Premium);
             item.Click += PolicyMenuItem_Click;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
 
             item = new ToolStripMenuItem();
             item.Text = Texts.LicenseFreeNameText;
-            item.Checked = !license.Has(LicenseCapability.Premium);
+            item.Checked = !await license.HasAsync(LicenseCapability.Premium);
             item.Click += PolicyMenuItem_Click;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
         }
@@ -647,14 +648,14 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LegacyConversionMode), (LegacyConversionMode mode) => _optionsAutoConvert1xFilesToolStripMenuItem.Checked = mode == LegacyConversionMode.AutoConvertLegacyFiles);
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => _knownFoldersViewModel.UpdateState.Execute(null));
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { ConfigureMenusAccordingToPolicy(license); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => { SetDaysLeftWarning(); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await ConfigureMenusAccordingToPolicyAsync(license); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await SetDaysLeftWarningAsync(); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await _recentFilesListView.UpdateRecentFilesAsync(_mainViewModel.RecentFiles); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetSignInSignOutStatus(loggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RandomRenameEnabled), (bool enabled) => { _renameToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.RecentFiles), async (IEnumerable<ActiveFile> files) => { await _recentFilesListView.UpdateRecentFilesAsync(files); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SelectedRecentFiles), (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.SelectedRecentFiles), async (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !await _mainViewModel.License.HasAsync(LicenseCapability.KeySharing); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.TryBrokenFile), (bool enabled) => { _tryBrokenFileToolStripMenuItem.Checked = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
@@ -665,14 +666,14 @@ namespace Axantum.AxCrypt
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Save(); New<IReport>().Open(); };
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = KnownFoldersDiscovery.Discover();
-            _mainToolStrip.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForMainToolStrip(e); };
+            _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
-            _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = _mainViewModel.CanShare(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
+            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = await _mainViewModel.CanShareAsync(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
             _removeRecentFileToolStripMenuItem.Click += (sender, e) => { _mainViewModel.RemoveRecentFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _shareKeysToolStripMenuItem.Click += async (sender, e) => { await ShareKeysAsync(_mainViewModel.SelectedRecentFiles); };
@@ -768,10 +769,10 @@ namespace Axantum.AxCrypt
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     New<IInternetState>().Clear();
                 }
-                New<IUIThread>().PostTo(() =>
+                New<IUIThread>().PostTo(async () =>
                 {
                     SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
-                    SetDaysLeftWarning();
+                    await SetDaysLeftWarningAsync();
                 });
             };
         }
@@ -830,29 +831,29 @@ namespace Axantum.AxCrypt
             _upgradeLegacyMenuItem.Enabled = isSignedInWithAxCryptId;
         }
 
-        private void SetDaysLeftWarning()
+        private async Task SetDaysLeftWarningAsync()
         {
             LicensePolicy license = _mainViewModel.License;
-            if (license.SubscriptionWarningTime == TimeSpan.MaxValue)
+            if (await license.SubscriptionWarningTimeAsync() == TimeSpan.MaxValue)
             {
                 _daysLeftPremiumLabel.Visible = false;
                 return;
             }
 
-            if (license.SubscriptionWarningTime == TimeSpan.Zero)
+            if (await license.SubscriptionWarningTimeAsync() == TimeSpan.Zero)
             {
-                SetUpgradeOrTrial(license);
+                await SetUpgradeOrTrialAsync(license);
                 return;
             }
 
-            int days = license.SubscriptionWarningTime.Days;
+            int days = (await license.SubscriptionWarningTimeAsync()).Days;
             _daysLeftPremiumLabel.Text = (days > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(days);
             _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
             _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.DaysLeftWarningToolTip);
             _daysLeftPremiumLabel.Visible = true;
         }
 
-        private void SetUpgradeOrTrial(LicensePolicy license)
+        private async Task SetUpgradeOrTrialAsync(LicensePolicy license)
         {
             if (New<AxCryptOnlineState>().IsOffline)
             {
@@ -863,7 +864,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            if (!license.IsTrialAvailable)
+            if (!await license.IsTrialAvailableAsync())
             {
                 _daysLeftPremiumLabel.Text = Texts.UpgradePromptText;
                 _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
@@ -882,7 +883,7 @@ namespace Axantum.AxCrypt
         {
             if (_daysLeftPremiumLabel.Text == Texts.TryPremiumLabel)
             {
-                await New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity).StartPremiumTrial();
+                await New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity).StartPremiumTrialAsync();
                 _mainViewModel.LicenseUpdate.Execute(null);
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
                 return;
@@ -967,14 +968,17 @@ namespace Axantum.AxCrypt
 
         private async Task DropFilesOrFoldersInRecentFilesListViewAsync()
         {
-            if (_mainViewModel.DroppableAsRecent)
+            await this.WithWaitCursorAsync(async () =>
             {
-                await _fileOperationViewModel.AddRecentFiles.ExecuteAsync(_mainViewModel.DragAndDropFiles);
-            }
-            if (_mainViewModel.DroppableAsWatchedFolder)
-            {
-                ShowWatchedFolders(_mainViewModel.DragAndDropFiles);
-            }
+                if (_mainViewModel.DroppableAsRecent)
+                {
+                    await _fileOperationViewModel.AddRecentFiles.ExecuteAsync(_mainViewModel.DragAndDropFiles);
+                }
+                if (_mainViewModel.DroppableAsWatchedFolder)
+                {
+                    ShowWatchedFolders(_mainViewModel.DragAndDropFiles);
+                }
+            }, () => { });
         }
 
         private Task HandleLogOn(LogOnEventArgs e)
@@ -1207,7 +1211,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private DragDropEffects GetEffectsForMainToolStrip(DragEventArgs e)
+        private async Task<DragDropEffects> GetEffectsForMainToolStripAsync(DragEventArgs e)
         {
             if (_mainViewModel.DragAndDropFiles.Count() != 1)
             {
@@ -1230,7 +1234,7 @@ namespace Axantum.AxCrypt
                     return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
                 }
             }
-            if (button == _keyShareToolStripButton && _mainViewModel.License.Has(LicenseCapability.KeySharing))
+            if (button == _keyShareToolStripButton && await _mainViewModel.License.HasAsync(LicenseCapability.KeySharing))
             {
                 if ((_mainViewModel.DragAndDropFilesTypes & FileInfoTypes.EncryptedFile) == FileInfoTypes.EncryptedFile)
                 {
@@ -1657,7 +1661,7 @@ namespace Axantum.AxCrypt
 
         private async Task PremiumFeature_ClickAsync(LicenseCapability requiredCapability, Func<object, EventArgs, Task> realHandler, object sender, EventArgs e)
         {
-            if (_mainViewModel.License.Has(requiredCapability))
+            if (await _mainViewModel.License.HasAsync(requiredCapability))
             {
                 await realHandler(sender, e);
                 return;
@@ -1666,14 +1670,14 @@ namespace Axantum.AxCrypt
             Process.Start(Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail));
         }
 
-        private Task PremiumFeatureAction(LicenseCapability requiredCapability, Func<Task> realHandler)
+        private async Task PremiumFeatureAction(LicenseCapability requiredCapability, Func<Task> realHandler)
         {
-            if (_mainViewModel.License.Has(requiredCapability))
+            if (await _mainViewModel.License.HasAsync(requiredCapability))
             {
-                return realHandler();
+                await realHandler();
             }
 
-            return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.PremiumFeatureToolTipText);
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.PremiumFeatureToolTipText);
         }
 
         private void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)
@@ -1705,13 +1709,13 @@ namespace Axantum.AxCrypt
             progress.Cancel = true;
         }
 
-        private void LanguageToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void LanguageToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
             ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
-            SetLanguage((string)menuItem.Tag);
+            await SetLanguageAsync((string)menuItem.Tag);
         }
 
-        private void SetLanguage(string cultureName)
+        private async Task SetLanguageAsync(string cultureName)
         {
             Resolve.UserSettings.CultureName = cultureName;
             if (Resolve.Log.IsInfoEnabled)
@@ -1721,7 +1725,7 @@ namespace Axantum.AxCrypt
 
             InitializeContentResources();
             SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
-            SetDaysLeftWarning();
+            await SetDaysLeftWarningAsync();
             SetSoftwareStatus();
         }
 

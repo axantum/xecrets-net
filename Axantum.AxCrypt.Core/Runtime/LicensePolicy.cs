@@ -48,129 +48,111 @@ namespace Axantum.AxCrypt.Core.Runtime
             _identity = identity;
         }
 
+        private Task<UserAccount> _accountTask;
+
+        protected async Task<UserAccount> UserAccountAsync()
+        {
+            if (_accountTask == null)
+            {
+                _accountTask = New<LogOnIdentity, IAccountService>(_identity).AccountAsync();
+            }
+
+            return await _accountTask.Free();
+        }
+
         /// <summary>
         /// Gets the time left offline at this subscription level until a revalidation is required.
         /// </summary>
         /// <value>
         /// The time left offline.
         /// </value>
-        private TimeSpan TimeLeftOffline
+        private async Task<TimeSpan> TimeLeftOfflineAsync()
         {
-            get
+            DateTime utcNow = New<INow>().Utc;
+            if (utcNow >= await SubscriptionExpirationAsync().Free())
             {
-                DateTime utcNow = New<INow>().Utc;
-                if (utcNow >= SubscriptionExpiration)
-                {
-                    return TimeSpan.Zero;
-                }
-
-                TimeSpan untilExpiration = SubscriptionExpiration - utcNow;
-                if (untilExpiration > TimeSpan.FromDays(7))
-                {
-                    return TimeSpan.FromDays(7);
-                }
-                return untilExpiration;
+                return TimeSpan.Zero;
             }
-        }
 
-        private ISet<LicenseCapability> Capabilities
-        {
-            get
+            TimeSpan untilExpiration = await SubscriptionExpirationAsync().Free() - utcNow;
+            if (untilExpiration > TimeSpan.FromDays(7))
             {
-                return SubscriptionLevel == SubscriptionLevel.Premium && TimeLeftOffline > TimeSpan.Zero ? _premiumCapabilities : _freeCapabilities;
+                return TimeSpan.FromDays(7);
             }
+            return untilExpiration;
         }
 
-        protected virtual SubscriptionLevel SubscriptionLevel
+        private async Task<ISet<LicenseCapability>> CapabilitiesAsync()
         {
-            get
+            return await SubscriptionLevelAsync() == SubscriptionLevel.Premium && await TimeLeftOfflineAsync().Free() > TimeSpan.Zero ? _premiumCapabilities : _freeCapabilities;
+        }
+
+        protected virtual async Task<SubscriptionLevel> SubscriptionLevelAsync()
+        {
+            if (_identity == LogOnIdentity.Empty)
             {
-                if (_identity == LogOnIdentity.Empty)
-                {
-                    return SubscriptionLevel.Unknown;
-                }
-                return Account.SubscriptionLevel;
+                return SubscriptionLevel.Unknown;
             }
+            return (await UserAccountAsync().Free()).SubscriptionLevel;
         }
 
-        protected virtual DateTime SubscriptionExpiration
+        protected virtual async Task<DateTime> SubscriptionExpirationAsync()
         {
-            get
+            if (_identity == LogOnIdentity.Empty)
             {
-                if (_identity == LogOnIdentity.Empty)
-                {
-                    return DateTime.MaxValue;
-                }
-                return Account.LevelExpiration;
+                return DateTime.MaxValue;
             }
+            return (await UserAccountAsync().Free()).LevelExpiration;
         }
 
-        private UserAccount Account
+        public async Task<bool> HasAsync(LicenseCapability capability)
         {
-            get
+            return (await CapabilitiesAsync()).Contains(capability);
+        }
+
+        public async Task<TimeSpan> SubscriptionWarningTimeAsync()
+        {
+            SubscriptionLevel level = await SubscriptionLevelAsync().Free();
+            if (level == SubscriptionLevel.Unknown)
             {
-                UserAccount account = Task.Run(async () => await New<LogOnIdentity, IAccountService>(_identity).AccountAsync().Free()).Result;
-                return account;
+                return TimeSpan.Zero;
             }
-        }
 
-        public bool Has(LicenseCapability capability)
-        {
-            return Capabilities.Contains(capability);
-        }
-
-        public TimeSpan SubscriptionWarningTime
-        {
-            get
+            if (level == SubscriptionLevel.Free)
             {
-                SubscriptionLevel level = SubscriptionLevel;
-                if (level == SubscriptionLevel.Unknown)
-                {
-                    return TimeSpan.Zero;
-                }
+                return TimeSpan.Zero;
+            }
 
-                if (level == SubscriptionLevel.Free)
-                {
-                    return TimeSpan.Zero;
-                }
-
-                DateTime expiration = SubscriptionExpiration;
-                if (expiration == DateTime.MaxValue || expiration == DateTime.MinValue)
-                {
-                    return TimeSpan.MaxValue;
-                }
-                DateTime utcNow = New<INow>().Utc;
-                expiration = expiration < utcNow ? utcNow : expiration;
-
-                TimeSpan timeLeft = expiration - utcNow;
-                if (timeLeft < TimeSpan.FromDays(15))
-                {
-                    return timeLeft;
-                }
-
+            DateTime expiration = await SubscriptionExpirationAsync().Free();
+            if (expiration == DateTime.MaxValue || expiration == DateTime.MinValue)
+            {
                 return TimeSpan.MaxValue;
             }
+            DateTime utcNow = New<INow>().Utc;
+            expiration = expiration < utcNow ? utcNow : expiration;
+
+            TimeSpan timeLeft = expiration - utcNow;
+            if (timeLeft < TimeSpan.FromDays(15))
+            {
+                return timeLeft;
+            }
+
+            return TimeSpan.MaxValue;
         }
 
-        public bool IsTrialAvailable
+        public virtual async Task<bool> IsTrialAvailableAsync()
         {
-            get
+            if (_identity == LogOnIdentity.Empty)
             {
-                if (_identity == LogOnIdentity.Empty)
-                {
-                    return false;
-                }
-                bool trialAvailable = !Account.Offers.HasFlag(Offers.AxCryptTrial);
-                return trialAvailable;
+                return false;
             }
+            bool trialAvailable = !(await UserAccountAsync().Free()).Offers.HasFlag(Offers.AxCryptTrial);
+            return trialAvailable;
         }
 
-        public ICryptoPolicy CryptoPolicy
+        public async Task<ICryptoPolicy> CryptoPolicyAsync()
         {
-            get
-            {
-                return Has(LicenseCapability.StrongerEncryption) ? new ProCryptoPolicy() as ICryptoPolicy : new FreeCryptoPolicy() as ICryptoPolicy;
-            }
+            return await HasAsync(LicenseCapability.StrongerEncryption).Free() ? new ProCryptoPolicy() as ICryptoPolicy : new FreeCryptoPolicy() as ICryptoPolicy;
         }
     }
 }

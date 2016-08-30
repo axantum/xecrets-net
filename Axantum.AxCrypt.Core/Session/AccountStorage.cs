@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentException("User email mismatch in key pair and store.", nameof(keyPair));
             }
 
-            IList<UserKeyPair> keyPairs = await _service.ListAsync();
+            IList<UserKeyPair> keyPairs = await _service.ListAsync().Free();
             if (keyPairs.Any(k => k == keyPair))
             {
                 return;

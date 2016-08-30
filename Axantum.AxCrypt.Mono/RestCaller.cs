@@ -77,13 +77,13 @@ namespace Axantum.AxCrypt.Mono
                         {
                             throw new ArgumentException("You can't send content with a GET request.", "request");
                         }
-                        return await SendGet(identity, request).Free();
+                        return await SendGetAsync(identity, request).Free();
 
                     case "PUT":
-                        return await SendPut(identity, request).Free();
+                        return await SendPutAsync(identity, request).Free();
 
                     case "POST":
-                        return await SendPost(identity, request).Free();
+                        return await SendPostAsync(identity, request).Free();
 
                     default:
                         throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Mono
 
         #endregion IRestCaller Members
 
-        private async static Task<RestResponse> SendGet(RestIdentity identity, RestRequest request)
+        private async static Task<RestResponse> SendGetAsync(RestIdentity identity, RestRequest request)
         {
             string content = String.Empty;
             using (HttpClient client = CreateHttpClient())
@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private async static Task<RestResponse> SendPut(RestIdentity identity, RestRequest request)
+        private async static Task<RestResponse> SendPutAsync(RestIdentity identity, RestRequest request)
         {
             string content = String.Empty;
             using (HttpClient client = CreateHttpClient())
@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private async static Task<RestResponse> SendPost(RestIdentity identity, RestRequest request)
+        private async static Task<RestResponse> SendPostAsync(RestIdentity identity, RestRequest request)
         {
             string content = String.Empty;
             using (HttpClient client = CreateHttpClient())

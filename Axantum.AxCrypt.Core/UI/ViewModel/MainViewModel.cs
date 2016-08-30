@@ -35,7 +35,7 @@ using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -165,16 +165,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFilesComparer(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
-            BindPropertyChangedInternal(nameof(License), (LicensePolicy policy) => SetWatchedFolders());
+            BindPropertyChangedInternal(nameof(License), async (LicensePolicy policy) => await SetWatchedFoldersAsync());
             BindPropertyChangedInternal(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
         }
 
         private void SubscribeToModelEvents()
         {
-            Resolve.SessionNotify.Notification += HandleSessionChanged;
+            Resolve.SessionNotify.Notification += HandleSessionChangedAsync;
         }
 
-        public bool CanShare(IEnumerable<IDataStore> items)
+        public async Task<bool> CanShareAsync(IEnumerable<IDataStore> items)
         {
             if (!items.Any())
             {
@@ -186,7 +186,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return false;
             }
 
-            if (!License.Has(LicenseCapability.KeySharing))
+            if (!await License.HasAsync(LicenseCapability.KeySharing))
             {
                 return false;
             }
@@ -258,16 +258,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return true;
         }
 
-        private void HandleSessionChanged(object sender, SessionNotificationEventArgs e)
+        private async void HandleSessionChangedAsync(object sender, SessionNotificationEventArgs e)
         {
             switch (e.Notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
-                    SetWatchedFolders();
+                    await SetWatchedFoldersAsync();
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:
-                    SetWatchedFolders();
+                    await SetWatchedFoldersAsync();
                     break;
 
                 case SessionNotificationType.LogOn:
@@ -308,9 +308,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private void SetWatchedFolders()
+        private async Task SetWatchedFoldersAsync()
         {
-            WatchedFoldersEnabled = New<LicensePolicy>().Has(LicenseCapability.SecureFolders);
+            WatchedFoldersEnabled = await New<LicensePolicy>().HasAsync(LicenseCapability.SecureFolders);
             if (!WatchedFoldersEnabled)
             {
                 WatchedFolders = new string[0];
@@ -441,7 +441,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (_axCryptUpdateCheck != null)
             {
-                Resolve.SessionNotify.Notification -= HandleSessionChanged;
+                Resolve.SessionNotify.Notification -= HandleSessionChangedAsync;
 
                 _axCryptUpdateCheck.AxCryptUpdate -= Handle_VersionUpdate;
                 _axCryptUpdateCheck.Dispose();

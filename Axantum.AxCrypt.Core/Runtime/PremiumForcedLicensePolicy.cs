@@ -10,14 +10,23 @@ namespace Axantum.AxCrypt.Core.Runtime
 {
     public class PremiumForcedLicensePolicy : LicensePolicy
     {
-        public PremiumForcedLicensePolicy()
-            : base(LogOnIdentity.Empty)
+        public PremiumForcedLicensePolicy() : base(LogOnIdentity.Empty)
         {
         }
 
-        protected override SubscriptionLevel SubscriptionLevel
+        protected override Task<SubscriptionLevel> SubscriptionLevelAsync()
         {
-            get { return SubscriptionLevel.Premium; }
+            return Task.FromResult(SubscriptionLevel.Premium);
+        }
+
+        protected override Task<DateTime> SubscriptionExpirationAsync()
+        {
+            return Task.FromResult(DateTime.MaxValue);
+        }
+
+        public override Task<bool> IsTrialAvailableAsync()
+        {
+            return Task.FromResult(false);
         }
     }
 }
