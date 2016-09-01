@@ -20,6 +20,11 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public InternetState()
         {
+            if (New<IUserSettings>().OfflineMode)
+            {
+                return;
+            }
+
             try
             {
                 NetworkChange.NetworkAvailabilityChanged += NetworkChange_NetworkAvailabilityChanged;
