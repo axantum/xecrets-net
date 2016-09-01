@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,9 +16,19 @@ namespace Axantum.AxCrypt.Forms.Implementation
     {
         private bool? _currentState;
 
+        private bool _supportsNetworkAvailabilityChanged;
+
         public InternetState()
         {
-            NetworkChange.NetworkAvailabilityChanged += NetworkChange_NetworkAvailabilityChanged;
+            try
+            {
+                NetworkChange.NetworkAvailabilityChanged += NetworkChange_NetworkAvailabilityChanged;
+                _supportsNetworkAvailabilityChanged = true;
+            }
+            catch (SocketException sex)
+            {
+                New<IReport>().Exception(sex);
+            }
         }
 
         private void NetworkChange_NetworkAvailabilityChanged(object sender, NetworkAvailabilityEventArgs e)
@@ -77,11 +88,16 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 return;
             }
 
-            if (!_isDisposed)
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            if (_supportsNetworkAvailabilityChanged)
             {
                 NetworkChange.NetworkAvailabilityChanged -= NetworkChange_NetworkAvailabilityChanged;
-                _isDisposed = true;
             }
+            _isDisposed = true;
         }
 
         public void Dispose()
