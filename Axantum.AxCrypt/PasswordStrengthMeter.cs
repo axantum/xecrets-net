@@ -12,11 +12,13 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class PasswordStrengthMeter : ProgressBar
+    public partial class PasswordStrengthMeter : Control
     {
         private PasswordStrengthMeterViewModel _viewModel = new PasswordStrengthMeterViewModel();
 
         private ToolTip _toolTip = new ToolTip();
+
+        private int _percent;
 
         public PasswordStrengthMeter()
         {
@@ -32,9 +34,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            SetStyle(ControlStyles.UserPaint, true);
-            Minimum = 0;
-            Maximum = 100;
+            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
 
             _viewModel.BindPropertyChanged(nameof(PasswordStrengthMeterViewModel.PasswordStrength), (PasswordStrength strength) =>
             {
@@ -76,20 +76,17 @@ namespace Axantum.AxCrypt
                 _viewModel.PasswordCandidate = candidate;
             });
 
-            if (Value != _viewModel.PercentStrength)
+            if (_percent != _viewModel.PercentStrength)
             {
-                Value = _viewModel.PercentStrength;
+                _percent = _viewModel.PercentStrength;
+                Invalidate();
                 OnMeterChanged();
             }
         }
 
         protected virtual void OnMeterChanged()
         {
-            EventHandler handler = MeterChanged;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
+            MeterChanged?.Invoke(this, new EventArgs());
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -99,9 +96,11 @@ namespace Axantum.AxCrypt
                 throw new ArgumentNullException(nameof(e));
             }
 
+            base.OnPaint(e);
+
             Rectangle rec = e.ClipRectangle;
 
-            rec.Width = (int)(rec.Width * ((double)Value / Maximum)) - 4;
+            rec.Width = (int)(rec.Width * ((double)_percent / 100)) - 4;
             if (ProgressBarRenderer.IsSupported)
             {
                 ProgressBarRenderer.DrawHorizontalBar(e.Graphics, e.ClipRectangle);
