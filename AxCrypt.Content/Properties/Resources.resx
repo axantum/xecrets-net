@@ -213,6 +213,12 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Select a folder to keep secured with AxCrypt. Existing files will be encrypted now.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AlreadyVerifiedInfo" xml:space="preserve">
+    <value>Oops. You already verified your account, that's great!
+
+Please sign in using the same password you used then.</value>
+    <comment>A brief informative message the account is already verified, and to please use the password already set to sign in.</comment>
+  </data>
   <data name="AlwaysOffline" xml:space="preserve">
     <value>Always Offline</value>
     <comment>Menu choice with checkbox indicating if we are running offline or not.</comment>

@@ -31,6 +31,12 @@ namespace Axantum.AxCrypt.Core.Service
             _key = CacheKey.RootKey.Subkey(nameof(CachingAccountService)).Subkey(service.Identity.UserEmail.Address).Subkey(service.Identity.GetHashCode().ToString(CultureInfo.InvariantCulture));
         }
 
+        public IAccountService Refresh()
+        {
+            New<ICache>().RemoveItem(_key);
+            return this;
+        }
+
         public bool HasAccounts
         {
             get
@@ -85,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task PasswordResetAsync(string verificationCode)
         {
-            await _service.PasswordResetAsync(verificationCode).Free();
+            await New<ICache>().UpdateItemAsync(() => _service.PasswordResetAsync(verificationCode), _key).Free();
         }
 
         public async Task SaveAsync(UserAccount account)
@@ -105,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
-            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(StatusAsync)), async () => await _service.StatusAsync(email)).Free();
+            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(StatusAsync)), () => _service.StatusAsync(email)).Free();
             if (status == AccountStatus.Offline || status == AccountStatus.Unknown)
             {
                 New<ICache>().RemoveItem(_key);

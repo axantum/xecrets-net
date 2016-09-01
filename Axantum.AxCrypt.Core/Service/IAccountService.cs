@@ -43,6 +43,11 @@ namespace Axantum.AxCrypt.Core.Service
     public interface IAccountService
     {
         /// <summary>
+        /// Refresh all values by ensuring flushing any caches etc.
+        /// </summary>
+        IAccountService Refresh();
+
+        /// <summary>
         /// Gets a value indicating whether the service has any accounts at all.
         /// </summary>
         /// <value>

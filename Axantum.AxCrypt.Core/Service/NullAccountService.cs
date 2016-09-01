@@ -46,6 +46,11 @@ namespace Axantum.AxCrypt.Core.Service
             Identity = identity;
         }
 
+        public IAccountService Refresh()
+        {
+            return this;
+        }
+
         public bool HasAccounts
         {
             get

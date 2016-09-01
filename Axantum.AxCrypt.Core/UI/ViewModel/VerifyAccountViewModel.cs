@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
@@ -52,7 +53,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
 
+        public bool AlreadyVerified { get { return GetProperty<bool>(nameof(AlreadyVerified)); } set { SetProperty(nameof(AlreadyVerified), value); } }
+
         public string ErrorMessage { get { return GetProperty<string>(nameof(ErrorMessage)); } set { SetProperty(nameof(ErrorMessage), value); } }
+
+        public IAsyncAction CheckAccountStatus { get { return new AsyncDelegateAction<object>((o) => CheckAccountActionAsync()); } }
 
         public IAsyncAction VerifyAccount { get { return new AsyncDelegateAction<object>((o) => VerifyAccountActionAsync()); } }
 
@@ -65,11 +70,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void InitializePropertyValues(EmailAddress emailAddress)
         {
             UserEmail = emailAddress.Address;
-            VerificationCode = String.Empty;
-            Passphrase = String.Empty;
-            VerificationPassphrase = String.Empty;
+            VerificationCode = string.Empty;
+            Passphrase = string.Empty;
+            VerificationPassphrase = string.Empty;
             ShowPassphrase = Resolve.UserSettings.DisplayEncryptPassphrase;
-            ErrorMessage = String.Empty;
+            ErrorMessage = string.Empty;
         }
 
         private void BindPropertyChangedEvents()
@@ -114,6 +119,23 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return New<PasswordStrengthEvaluator>().Evaluate(passphrase).Strength > PasswordStrength.Unacceptable;
         }
 
+        private async Task CheckAccountActionAsync()
+        {
+            try
+            {
+                AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).Refresh().StatusAsync(EmailAddress.Parse(UserEmail));
+                if (status.HasFlag(AccountStatus.Verified))
+                {
+                    AlreadyVerified = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                New<IReport>().Exception(ex);
+                ErrorMessage = ex.Innermost().Message;
+            }
+        }
+
         private async Task VerifyAccountActionAsync()
         {
             LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(UserEmail), Crypto.Passphrase.Create(Passphrase));
@@ -121,17 +143,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             try
             {
-                await accountService.PasswordResetAsync(VerificationCode).Free();
-                ErrorMessage = String.Empty;
+                await accountService.PasswordResetAsync(VerificationCode);
+                ErrorMessage = string.Empty;
             }
             catch (Exception ex)
             {
                 New<IReport>().Exception(ex);
-                while (ex.InnerException != null)
-                {
-                    ex = ex.InnerException;
-                }
-                ErrorMessage = ex.Message;
+                ErrorMessage = ex.Innermost().Message;
             }
         }
     }

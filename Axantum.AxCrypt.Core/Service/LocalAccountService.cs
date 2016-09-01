@@ -71,6 +71,11 @@ namespace Axantum.AxCrypt.Core.Service
             _workContainer = workContainer;
         }
 
+        public IAccountService Refresh()
+        {
+            return this;
+        }
+
         /// <summary>
         /// Determines whether the Identity is valid for sign in.
         /// </summary>

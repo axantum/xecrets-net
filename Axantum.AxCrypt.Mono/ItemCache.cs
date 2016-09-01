@@ -121,13 +121,13 @@ namespace Axantum.AxCrypt.Mono
             try
             {
                 updateAction();
+            }
+            finally
+            {
                 foreach (ICacheKey key in dependencies)
                 {
                     _cache.Remove(key.Key);
                 }
-            }
-            finally
-            {
                 _lock.Release();
             }
         }
@@ -138,13 +138,13 @@ namespace Axantum.AxCrypt.Mono
             try
             {
                 await updateFunctionAsync().Free();
+            }
+            finally
+            {
                 foreach (ICacheKey key in dependencies)
                 {
                     _cache.Remove(key.Key);
                 }
-            }
-            finally
-            {
                 _lock.Release();
             }
         }
@@ -155,14 +155,14 @@ namespace Axantum.AxCrypt.Mono
             try
             {
                 T item = await updateFunctionAsync().Free();
-                foreach (ICacheKey key in dependencies)
-                {
-                    _cache.Remove(key.Key);
-                }
                 return item;
             }
             finally
             {
+                foreach (ICacheKey key in dependencies)
+                {
+                    _cache.Remove(key.Key);
+                }
                 _lock.Release();
             }
         }

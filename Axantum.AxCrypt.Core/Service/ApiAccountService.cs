@@ -62,6 +62,11 @@ namespace Axantum.AxCrypt.Core.Service
             _apiClient = apiClient;
         }
 
+        public IAccountService Refresh()
+        {
+            return this;
+        }
+
         /// <summary>
         /// Gets a value indicating whether this instance has any at all accounts.
         /// </summary>

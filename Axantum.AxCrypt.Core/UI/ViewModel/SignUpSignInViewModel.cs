@@ -23,6 +23,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool StopAndExit { get { return GetProperty<bool>(nameof(StopAndExit)); } set { SetProperty(nameof(StopAndExit), value); } }
 
+        public bool AlreadyVerified { get { return GetProperty<bool>(nameof(StopAndExit)); } set { SetProperty(nameof(StopAndExit), value); } }
         public bool TopControlsEnabled { get { return GetProperty<bool>(nameof(TopControlsEnabled)); } set { SetProperty(nameof(TopControlsEnabled), value); } }
 
         public ApiVersion Version { get { return GetProperty<ApiVersion>(nameof(Version)); } set { SetProperty(nameof(Version), value); } }
@@ -130,12 +131,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         throw;
                     }
                     New<IReport>().Exception(ex);
-
-                    while (ex.InnerException != null)
-                    {
-                        ex = ex.InnerException;
-                    }
-                    New<IPopup>().Show(PopupButtons.Ok, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText.InvariantFormat(ex.Message));
+                    New<IPopup>().Show(PopupButtons.Ok, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText.InvariantFormat(ex.Innermost().Message));
                     continue;
                 }
                 finally
@@ -165,6 +161,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(UserEmail));
                         New<IPopup>().Show(PopupButtons.Ok, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(UserEmail));
+                        await CheckAccountAsync();
                         status = VerifyAccountOnline();
                         break;
 
@@ -269,11 +266,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private AccountStatus VerifyAccountOnline()
         {
-            CancelEventArgs e = new CancelEventArgs();
-            OnVerifyAccount(e);
-            if (e.Cancel)
+            if (!IsVerified())
             {
                 return AccountStatus.Unverified;
+            }
+
+            if (AlreadyVerified)
+            {
+                AlreadyVerified = false;
+                New<IPopup>().Show(PopupButtons.Ok, Texts.InformationTitle, Texts.AlreadyVerifiedInfo);
             }
 
             PopupButtons result = New<IPopup>().Show(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.WelcomeToAxCrypt);
@@ -285,6 +286,31 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
             }
             return AccountStatus.Verified;
+        }
+
+        private bool IsVerified()
+        {
+            if (AlreadyVerified)
+            {
+                return true;
+            }
+
+            CancelEventArgs e = new CancelEventArgs();
+            OnVerifyAccount(e);
+            return !e.Cancel;
+        }
+
+        private async Task CheckAccountAsync()
+        {
+            try
+            {
+                AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).Refresh().StatusAsync(EmailAddress.Parse(UserEmail));
+                AlreadyVerified = status.HasFlag(AccountStatus.Verified);
+            }
+            catch (Exception ex)
+            {
+                New<IReport>().Exception(ex);
+            }
         }
 
         private void OnCreateAccount(CancelEventArgs e)

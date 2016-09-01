@@ -22,5 +22,18 @@ namespace Axantum.AxCrypt.Forms
                 final();
             }
         }
+
+        public static Task<DialogResult> ShowDialogAsync(this Form self, Form parent)
+        {
+            if (self == null)
+            {
+                throw new ArgumentNullException("self");
+            }
+
+            TaskCompletionSource<DialogResult> completion = new TaskCompletionSource<DialogResult>();
+            self.BeginInvoke(new Action(() => completion.SetResult(self.ShowDialog(parent))));
+
+            return completion.Task;
+        }
     }
 }

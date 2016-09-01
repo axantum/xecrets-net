@@ -64,22 +64,43 @@ namespace Axantum.AxCrypt
             _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.UserEmail), (string u) => { _email.Text = u; });
 
             _activationCode.Focus();
+            Visible = true;
         }
 
         private async void _buttonOk_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.None;
-            if (!AdHocValidationDueToMonoLimitations())
-            {
-                return;
-            }
-
-            await _viewModel.VerifyAccount.ExecuteAsync(null);
-            if (VerifyCode())
+            SetDialogResultNoneToAvoidEarlyExitDuringAsyncOperations();
+            if (await IsAllValidAsync())
             {
                 DialogResult = DialogResult.OK;
             }
-            return;
+        }
+
+        private void SetDialogResultNoneToAvoidEarlyExitDuringAsyncOperations()
+        {
+            DialogResult = DialogResult.None;
+        }
+
+        private async Task<bool> IsAllValidAsync()
+        {
+            await _viewModel.CheckAccountStatus.ExecuteAsync(null);
+            if (_viewModel.AlreadyVerified)
+            {
+                return true;
+            }
+
+            if (!AdHocValidationDueToMonoLimitations())
+            {
+                return false;
+            }
+
+            await _viewModel.VerifyAccount.ExecuteAsync(null);
+            if (!VerifyCode())
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private bool AdHocValidationDueToMonoLimitations()
@@ -129,7 +150,7 @@ namespace Axantum.AxCrypt
         private bool VerifyCode()
         {
             _errorProvider3.Clear();
-            if (_viewModel.ErrorMessage.Length > 0)
+            if (_viewModel[nameof(VerifyAccountViewModel.ErrorMessage)].Length > 0)
             {
                 _errorProvider3.SetError(_activationCode, Texts.WrongVerificationCode);
                 return false;

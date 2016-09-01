@@ -22,5 +22,14 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
             return msg.ToString();
         }
+
+        public static Exception Innermost(this Exception exception)
+        {
+            while (exception.InnerException != null)
+            {
+                exception = exception.InnerException;
+            }
+            return exception;
+        }
     }
 }

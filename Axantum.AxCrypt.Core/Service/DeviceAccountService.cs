@@ -34,6 +34,11 @@ namespace Axantum.AxCrypt.Core.Service
             _remoteService = remoteService;
         }
 
+        public IAccountService Refresh()
+        {
+            return this;
+        }
+
         public bool HasAccounts
         {
             get

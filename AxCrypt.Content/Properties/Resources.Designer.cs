@@ -329,6 +329,17 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oops. Your account was already verified, that&apos;s great!
+        ///
+        ///Please sign in using the password when you did it before..
+        /// </summary>
+        public static string AlreadyVerifiedInfo {
+            get {
+                return ResourceManager.GetString("AlreadyVerifiedInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Always Offline.
         /// </summary>
         public static string AlwaysOffline {

@@ -9,6 +9,7 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Style;
 using AxCrypt.Content;
 using System;
@@ -77,6 +78,8 @@ namespace Axantum.AxCrypt
             viewModel.VerifyAccount += (sender, e) =>
             {
                 VerifyAccountViewModel vav = new VerifyAccountViewModel(EmailAddress.Parse(viewModel.UserEmail));
+                vav.BindPropertyChanged<bool>(nameof(vav.AlreadyVerified), (verified) => viewModel.AlreadyVerified = verified);
+
                 using (VerifyAccountDialog dialog = new VerifyAccountDialog(parent, vav))
                 {
                     DialogResult result = dialog.ShowDialog(parent);
