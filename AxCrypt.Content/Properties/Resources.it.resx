@@ -396,6 +396,12 @@ Devi effettuare queste operazioni per completare il processo.</value>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>La tua password è stata modificata.</value>
   </data>
+  <data name="CheckForUpdateMenuText" xml:space="preserve">
+    <value>Controlla se ci sono aggiornamenti disponibili</value>
+  </data>
+  <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
+    <value>Controlla se una versione più recente è disponibile per il download. L'azione richiede l'accesso ad Internet.</value>
+  </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
     <value>Pulisci i File Aperti</value>
   </data>
@@ -1161,9 +1167,11 @@ Se non lo ricevi, controlla nello spam e controlla che {0} sia corretto.</value>
   </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>La password è troppo debole e non è abbastanza sicura per essere utilizzata.</value>
+    <comment>Status 'Red' We'll accept it, but it's really not a good idea!</comment>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
     <value>La password è abbastanza sicura per essere validata.</value>
+    <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
     <value>La password è troppo corta o troppo simile a una password comune per essere accettata.</value>
@@ -1171,6 +1179,7 @@ Se non lo ricevi, controlla nello spam e controlla che {0} sia corretto.</value>
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>La password non è abbastanza sicura per essere validata.</value>
+    <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Ulteriori informazioni su PayPal]</value>

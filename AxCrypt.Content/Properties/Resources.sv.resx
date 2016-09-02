@@ -1158,9 +1158,11 @@ Om du inte verkar få det inom några minuter, kontrollera ditt skräppostfilter
   </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>Lösenordet är för svagt för att vara säkert.</value>
+    <comment>Status 'Red' We'll accept it, but it's really not a good idea!</comment>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
     <value>Lösenordet är starkt och tillräckligt bra att rekommenderas.</value>
+    <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
     <value>Lösenordet är för kort eller för likt ett vanligt lösenord att vara acceptabelt.</value>
@@ -1168,6 +1170,7 @@ Om du inte verkar få det inom några minuter, kontrollera ditt skräppostfilter
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>Lösenordet är för svagt för att vara rekommenderat.</value>
+    <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Mer om PayPal]</value>

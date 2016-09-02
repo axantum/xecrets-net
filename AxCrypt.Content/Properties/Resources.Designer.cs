@@ -329,9 +329,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oops. Your account was already verified, that&apos;s great!
+        ///   Looks up a localized string similar to Oops. You already verified your account, that&apos;s great!
         ///
-        ///Please sign in using the password when you did it before..
+        ///Please sign in using the same password you used then..
         /// </summary>
         public static string AlreadyVerifiedInfo {
             get {

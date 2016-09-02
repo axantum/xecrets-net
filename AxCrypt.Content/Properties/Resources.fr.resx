@@ -205,6 +205,12 @@ Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger
     <value>Choisissez un dossier à protéger avec AxCrypt. Les fichiers qu'il contient seront chiffrés immédiatement.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AlreadyVerifiedInfo" xml:space="preserve">
+    <value>Oups. Vous avez déjà vérifié votre compte, c'est bien! 
+
+S'il vous plait, connectez-vous en utilisant le même mot de passe que vous aviez utilisé. </value>
+    <comment>A brief informative message the account is already verified, and to please use the password already set to sign in.</comment>
+  </data>
   <data name="AlwaysOffline" xml:space="preserve">
     <value>Toujours Hors Ligne</value>
     <comment>Menu choice with checkbox indicating if we are running offline or not.</comment>
@@ -1167,6 +1173,16 @@ Saisissez votre email ci-dessous, afin d'y recevoir votre lien d'activation ou u
     <value>Un code de vérification a été envoyé à &lt;b&gt;{0}&lt;/b&gt;. Veuillez consulter votre boîte mails.
 
 Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identifié comme spam, et que l'adresse {0} est correcte.</value>
+  </data>
+  <data name="PasswordRulesInfo" xml:space="preserve">
+    <value>AxCrypt possède un évaluateur de forces  de mots de passe sophistiqué, basé sur la mesure de la force actuelle du mot de passe. Ce doit également être d'une longueur de 8 caractères, au minimum. 
+
+Nous évaluons le mot de passe en estimant la force, qui est basée sur la longueur et complexité du mot de passe. 
+
+L'évaluation ne tient pas entièrement comptes de certaines parties du mot de passe qui sont reconnues comme étant parmi les 1000 mots de passe les plus courants, ainsi que l'espace. Par exemple, le mot de passe 'secretX mot de passe Y 123456' est évaluée comme simplement «XY», puisque les espaces, «secret», «mot de passe» et «123456» sont ignorés!
+ 
+Nous classons le mot de passe en 4 catégories de force croissante, où nous n'acceptons pas un mot de passe dans la catégorie la plus basse. L'exemple ci-dessus n'est pas accepté pour cette raison.</value>
+    <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>Le mot de passe est faible et comporte des risques. </value>

@@ -1146,9 +1146,11 @@ Si parece que usted no lo recibe, revise su filtro de correo no deseado y compru
   </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>La contraseña no es suficientemente seguro para su uso.</value>
+    <comment>Status 'Red' We'll accept it, but it's really not a good idea!</comment>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
     <value>La contraseña es fuerte y suficientemente bueno para recomendar.</value>
+    <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
     <value>La contraseña es demasiado corta o demasiado similar a una contraseña común para ser aceptable.</value>
@@ -1156,6 +1158,7 @@ Si parece que usted no lo recibe, revise su filtro de correo no deseado y compru
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>La contraseña no es suficientemente fuerte para recomendar.</value>
+    <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Más información sobre PayPal]</value>

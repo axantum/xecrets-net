@@ -1156,9 +1156,11 @@ Se você não recebeu nada, verifique se não está na sua pasta de Lixo Eletrô
   </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>Senha é muito fraca e não é seguro usá-la.</value>
+    <comment>Status 'Red' We'll accept it, but it's really not a good idea!</comment>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
     <value>A senha é forte e boa o suficiente.</value>
+    <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
     <value>Senha é muito curta ou similar a uma senha comum para ser aceita.</value>
@@ -1166,6 +1168,7 @@ Se você não recebeu nada, verifique se não está na sua pasta de Lixo Eletrô
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>Senha não é forte o suficiente para ser recomendada.</value>
+    <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Mais informações sobre o PayPal]</value>

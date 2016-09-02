@@ -99,7 +99,7 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
   <data name="AbortedFileStatus" xml:space="preserve">
-    <value>Status 'afgebroken' ({0}).</value>
+    <value>Status 'Afgebroken' ({0}).</value>
   </data>
   <data name="About" xml:space="preserve">
     <value>Over {0}</value>
@@ -120,7 +120,7 @@
     <value>De email of activatiecode is incorrect.</value>
   </data>
   <data name="ActivateErrorNoRequest" xml:space="preserve">
-    <value>Wachtwoord reset mislukt. Er is geen wachtwoord reset voor dit AxCrypt ID.</value>
+    <value>Wachtwoord reset mislukt. Er is geen wachtwoord reset voor dit AxCrypt ID aangevraagd.</value>
   </data>
   <data name="ActivateErrorPassword" xml:space="preserve">
     <value>Wachtwoord reset mislukt.</value>
@@ -138,10 +138,10 @@
     <value>U heeft gratis toegang tot AxCrypt Premium eigenschappen voor een &lt;b&gt;30 dagen durende proefperiode&lt;/b&gt; vanaf het moment dat u uw AxCrypt ID activeert.</value>
   </data>
   <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
-    <value>U heeft gratis toegang tot AxCrypt Premium onderdelen voor een proefperiode van 30 dagen vanaf het moment dat u uw AxCrypt ID activeert</value>
+    <value>U heeft gratis toegang tot AxCrypt Premium eigenschappen voor een proefperiode van 30 dagen vanaf het moment dat u uw AxCrypt ID activeert.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>U heeft zicht geregistreerd voor een AxCrypt ID. Om uw account to verifiëren moet u de onderstaande activatiecode in de AxCrypt app of op onze website invoeren. </value>
+    <value>U heeft zicht geregistreerd voor een AxCrypt ID. Om uw account te verifiëren moet u de onderstaande activatiecode in de AxCrypt app of op onze website invoeren. </value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>Als u liever de website gebruikt in plaats van de app kunt u gaan naar &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt;, voer &lt;b&gt;{1}&lt;/b&gt; in en de activatiecode &lt;b&gt;{2}&lt;/b&gt; om uw AxCrypt ID handmatig te activeren.</value>
@@ -186,6 +186,14 @@ Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtw
     <value>Selecteer een map om te beveiligen met AxCrypt. Bestaande bestanden worden nu geëncrypteerd.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AlwaysOffline" xml:space="preserve">
+    <value>Altijd Offline</value>
+    <comment>Menu choice with checkbox indicating if we are running offline or not.</comment>
+  </data>
+  <data name="AlwaysOfflineToolTip" xml:space="preserve">
+    <value>Indien ingeschakeld is toegang tot het internet niet gebruikt of vereist, totdat het uitgeschakeld wordt.</value>
+    <comment>A tool tip explaining that this causes AxCrypt never to access the Internet.</comment>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anoniem Hernoemen</value>
   </data>
@@ -196,7 +204,7 @@ Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtw
     <value>Verberg de echte naam van een beveiligd bestand door het een willekeurige naam te geven.</value>
   </data>
   <data name="AuthenticationError" xml:space="preserve">
-    <value>The pagina die u probeert to bezoeken vereist authenticatie. Meldt u alstublieft aan om verder te gaan.</value>
+    <value>De pagina die u probeert te bezoeken vereist authenticatie. Meldt u zich alstublieft aan om verder te gaan.</value>
   </data>
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
     <value>U hoeft niet te reageren of iets te doen. Wanneer u niks doet worden er geen emails meer verzonden en wordt uw AxCrypt ID permanent verwijderd.</value>
@@ -218,7 +226,7 @@ Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtw
 Bevat software van http://www.bouncycastle.org/ .</value>
   </data>
   <data name="AxCryptFileEncryption" xml:space="preserve">
-    <value>AxCrypt Bestand Beveiliging</value>
+    <value>AxCrypt Bestandsbeveiliging</value>
   </data>
   <data name="BadEmail" xml:space="preserve">
     <value>Onjuist emailadres</value>
@@ -255,7 +263,7 @@ Bevat software van http://www.bouncycastle.org/ .</value>
     <value>Hulp</value>
   </data>
   <data name="ButtonNewText" xml:space="preserve">
-    <value>Wissel</value>
+    <value>Verander</value>
   </data>
   <data name="ButtonNewToolTip" xml:space="preserve">
     <value>Klik om de AxCrypt ID email voor het aanmelden te wijzigen.</value>
@@ -324,7 +332,7 @@ Bevat software van http://www.bouncycastle.org/ .</value>
     <value>Gebruik uw huidige wachtwoord om aan te melden en dan wordt uw oude AxCrypt ID permanent verwijderd.</value>
   </data>
   <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
-    <value>Verander e-mail</value>
+    <value>Verander email</value>
   </data>
   <data name="ChangeEmailConfirmMailSubject" xml:space="preserve">
     <value>AxCrypt ID Email Veranderen </value>
@@ -351,9 +359,9 @@ Bevat software van http://www.bouncycastle.org/ .</value>
     <value>Het nieuwe emailadres moet anders zijn dan uw oude emailadres!</value>
   </data>
   <data name="ChangeEmailMarkSuccess" xml:space="preserve">
-    <value>Wij hebben een email verstuurd naar &lt;b&gt;{0}&lt;/b&gt;. Lees uw email alstublieft en klik op de link om de wijziging te bevestigen.
+    <value>Wij hebben een email verstuurd naar &lt;b&gt;{0}&lt;/b&gt;. Lees alstublieft uw email en klik op de link om de wijziging te bevestigen.
 
-Hierna kunt u zich aanmelden met &lt;b&gt;{0}&lt;/b&gt; en uw bestaand wachtwoord.
+Hierna kunt u zich aanmelden met &lt;b&gt;{0}&lt;/b&gt; en uw bestaande wachtwoord.
 
 U moet deze stappen volgen om het proces te voltooien.</value>
   </data>
@@ -369,11 +377,17 @@ U moet deze stappen volgen om het proces te voltooien.</value>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Uw wachtwoord is veranderd.</value>
   </data>
+  <data name="CheckForUpdateMenuText" xml:space="preserve">
+    <value>Check voor Update</value>
+  </data>
+  <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
+    <value>Check of er een nieuwere versie beschikbaar is om te downloaden. Vereist Internet toegang.</value>
+  </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
     <value>Open Bestanden Opschonen</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
-    <value>Bestand is open en moet misschien opgeschoond worden. Sluit open applicaties en klik the Opschonen knop.</value>
+    <value>Bestand is open en moet misschien opgeschoond worden. Sluit open applicaties en klik op de Opschonen knop.</value>
   </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Klik om te zoeken naar een nieuwe versie</value>
@@ -401,7 +415,7 @@ U moet deze stappen volgen om het proces te voltooien.</value>
     <value>Transactie UTC</value>
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
-    <value>Do dit voor alle overgebleven bestanden?</value>
+    <value>Doe dit voor alle overgebleven bestanden?</value>
   </data>
   <data name="ContactInfoPhone" xml:space="preserve">
     <value>+46 (0)8 550 10 274</value>
@@ -415,7 +429,7 @@ U moet deze stappen volgen om het proces te voltooien.</value>
   <data name="CookiePolicyPageBody" xml:space="preserve">
     <value>Wij slaan cookies niet permanent op op uw hardeschijf. Wij gebruiken enkele sessie cookies die worden verwijderd zodra u uw browser sluit. Deze cookies zijn nodig om uw aanmeld sessie geldig en beveiligd te houden. Wij volgen niet hoe u de website gebruikt noch zijn ze beschikbaar voor derden.
 
-De cookies zijn verder beveiligd doordat alle gevoelige communicatie met de server is geëncrypteerd met HTTPS, door de cookie zelf te encrypteren en door het cookie script onbeschikbaar te maken in uw browser.
+De cookies zijn verder beveiligd doordat alle gevoelige communicatie met de server is geëncrypteerd door middel van HTTPS, door de cookie zelf te encrypteren en door het cookie script onbeschikbaar te maken in uw browser.
 
 Wanneer u onze tijdelijke cookies sessie niet accepteert kunt u zich niet aanmelden en zal de site niet functioneren zoals verwacht.</value>
   </data>
@@ -444,7 +458,7 @@ Wanneer u onze tijdelijke cookies sessie niet accepteert kunt u zich niet aanmel
     <value>Uw Premium abonnement is bijna verlopen. Klik om te vernieuwen.</value>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
-    <value>Stop beveiligen and verwijder van lijst</value>
+    <value>Stop beveiligen en verwijder van lijst</value>
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Bestand</value>
@@ -454,7 +468,7 @@ Wanneer u onze tijdelijke cookies sessie niet accepteert kunt u zich niet aanmel
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
-    <value>Er vanuit gaande dat het geopend is. Probeer de applicatie af te sluiten, of gebruik de opschoon functie om het te verwijderen.</value>
+    <value>Er vanuit gaande dat het geopend is. Probeer de applicatie af te sluiten, of gebruik de Opschoon functie om het te verwijderen.</value>
   </data>
   <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
     <value>Bestanden (*{0})|*{0}|Alle bestanden (*.*)|*.*</value>
@@ -474,7 +488,7 @@ Wanneer u onze tijdelijke cookies sessie niet accepteert kunt u zich niet aanmel
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
     <value>U bent aangemeld. Klik om af te melden.</value>
   </data>
-  <data name="DefaultSecureFolderToolTip">
+  <data name="DefaultSecureFolderToolTip" xml:space="preserve">
     <value>Klik om een bestand te openen van de standaard beveiligde map</value>
     <comment>A generic tooltip for the default secure folder created for example in Dropbox.</comment>
   </data>
@@ -563,7 +577,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>AxCrypt Bestanden (*{0})|*{0}|Alle bestanden (*.*)|*.*</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
-    <value>Beveiligd Mappen</value>
+    <value>Beveiligde Mappen</value>
   </data>
   <data name="EncryptedPathColumnHeaderText" xml:space="preserve">
     <value>Beveiligd</value>
@@ -575,7 +589,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>Selecteer bestanden om te beveiligen</value>
   </data>
   <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
-    <value>Bestand Bestaat, Sla Op Als</value>
+    <value>Bestand Bestaat, Opslaan Als</value>
   </data>
   <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
     <value>Klik om bestanden te selecteren die u wilt beveiligen.</value>
@@ -656,6 +670,12 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
   </data>
+  <data name="HaveAccountInfo" xml:space="preserve">
+    <value>Geweldig! U heeft al een AxCrypt ID account voor '{0}'.
+
+Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herinnert moet u uw wachtwoord resetten.</value>
+    <comment>A text displayed during initial startup explaining that the user already has an account with that email, and if the password is unknown a password reset must be issued in order to sign in. If {0} is present, the email address will be displayed there.</comment>
+  </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>Over</value>
   </data>
@@ -663,7 +683,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>Hulp</value>
   </data>
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
-    <value>Bekijk Help</value>
+    <value>Bekijk Hulp</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>AxCrypt ID importeren met delen en toegang sleutels</value>
@@ -675,7 +695,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>Importeer Iemands Openbaar Delen Sleutel</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>Vraag uw contact om zijn/haar Openbaar Delen Sleutel te exporteren en naar u te versturen waarna u het hiet kunt importeren. Hierna kunt u geëncrypteerde bestanden delen.</value>
+    <value>Vraag uw contact om zijn/haar Openbaar Delen Sleutel te exporteren en naar u te versturen waarna u het hier kunt importeren. Hierna kunt u geëncrypteerde bestanden delen.</value>
   </data>
   <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
     <value>AxCrypt ID Bestanden (*.axx)|*.axx|Alle Bestanden (*.*)|*.*</value>
@@ -699,12 +719,12 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet is NIET NODIG om gebruik te maken van AxCrypt.
 
-We bevelen u aan om AxCrypt internet toegang te geven. Sommige eigenschappen werken dan beter en critische updates kunnen u dan direct bereiken.
+Internet toegang is aanbevolen en benodigd om Premium te activeren. Sommige eigenschappen werken dan beter en kritische updates kunnen u dan direct bereiken.
 
-U wachtwoord is niet opgeslagen op de server en the verbinding is altijd geëncrypteerd.</value>
+U wachtwoord is niet opgeslagen op onze servers en de verbinding is altijd geëncrypteerd.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
-    <value>Incorrect bestandsformaat voor een email adres.</value>
+    <value>Incorrect formaat voor een email adres.</value>
   </data>
   <data name="InvalidKey" xml:space="preserve">
     <value>Onjuiste sleutel voor '{0}'.</value>
@@ -729,7 +749,7 @@ Om te beginnen met het beveiligen van uw bestanden download en installeer AxCryp
 Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige activatiecode in en stel uw geheime wachtwoord in.</value>
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
-    <value>Uitnodiging om gebruik te maken van AxCrypt Bestand Beveiliging</value>
+    <value>Uitnodiging om gebruik te maken van AxCrypt Bestandsbeveiliging</value>
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript lijkt uitgeschakeld te zijn op uw computer. Zolang u JavaScript niet inschakeld kunt u zich niet aanmelden en kan de site niet functioneren zoals verwacht.</value>
@@ -756,7 +776,7 @@ Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige activatiecode in en stel uw 
     <value>Klik om geëncrypteerde bestandente selecteren waarvan u de sleutels wilt delen met anderen</value>
   </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
-    <value>AxCrypt moet opnieuw opgestart te worden om taal te wijzigen.</value>
+    <value>AxCrypt moet opnieuw opgestart te worden om de taal te wijzigen.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Tijd</value>
@@ -769,7 +789,7 @@ Vergeet dit wachtwoord niet!</value>
   <data name="LegacyOpenMessage" xml:space="preserve">
     <value>AxCrypt 2 gebruikt een nieuw bestandsformaat.
 
-U kunt bestaande AxCrypt 1.x bestanden openen tenzij ze geconverteerd zijn. In dit geval moet u, zelf wanneer u bent aangemeld, het orginele wachtwoord gebruiken.
+U kunt bestaande AxCrypt 1.x bestanden openen tenzij ze geconverteerd zijn. In dit geval moet u zelf, wanneer u bent aangemeld, het orginele wachtwoord gebruiken.
 
 Automatisch converteren kan ook gewijzigd worden in het optiesmenu.
 
@@ -793,7 +813,7 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)? 
     <comment>Shown in the title bar to display the log on status.</comment>
   </data>
   <data name="LoginError" xml:space="preserve">
-    <value>De email of wachtwoord is incorrect.</value>
+    <value>Email of wachtwoord is incorrect.</value>
   </data>
   <data name="LoginPageTitle" xml:space="preserve">
     <value>AxCrypt aanmelden</value>
@@ -828,15 +848,15 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)? 
 &lt;li&gt;256-bit AES&lt;/li&gt;
 &lt;li&gt;Sleutel Delen&lt;/li&gt;
 &lt;li&gt;Beveiligde Mappen&lt;/li&gt;
-&lt;li&gt;Wachtwoord Beheer&lt;/li&gt;
+&lt;li&gt;Wachtwoordbeheer&lt;/li&gt;
 &lt;li&gt;Cloud Opslag Bewustzijn&lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Bedankt voor het gebruiken van AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;Het AxCrypt team&lt;/i&gt;</value>
+    <value>Bedankt voor het gebruik maken van AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;Het AxCrypt team&lt;/i&gt;</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
-    <value>Bedankt voor het gebruiken van AxCrypt!
+    <value>Bedankt voor het gebruik maken van AxCrypt!
 - Svante
 Het AxCrypt Team</value>
   </data>
@@ -847,7 +867,7 @@ Het AxCrypt Team</value>
     <value>Hallo {0},</value>
   </data>
   <data name="McHlpMenuAbout" xml:space="preserve">
-    <value>Info</value>
+    <value>Over</value>
     <comment>Tooltip for the about context menu.</comment>
   </data>
   <data name="McHlpMenuOpen" xml:space="preserve">
@@ -855,7 +875,7 @@ Het AxCrypt Team</value>
     <comment>Tooltip for open document context menu (double-click)</comment>
   </data>
   <data name="McHlpMenuRename" xml:space="preserve">
-    <value>De naam naar een anonieme naam wijzigen. De originele naam wordt hersteld bij het ontsleutelen.</value>
+    <value>Hernoemen met een anonieme naam. Het origineel wordt hersteld bij het ontsleutelen.</value>
     <comment>Tooltip for rename context menu</comment>
   </data>
   <data name="McHlpMenuShow" xml:space="preserve">
@@ -867,7 +887,7 @@ Het AxCrypt Team</value>
     <comment>Tooltip for sign out context menu</comment>
   </data>
   <data name="McHlpMenuUnwrap" xml:space="preserve">
-    <value>Het bestand ontsleutelen en de bestandsnaam en tijd van laatste wijziging herstellen.</value>
+    <value>Het bestand ontsleutelen, en de bestandsnaam en tijd van laatste wijziging herstellen.</value>
     <comment>Tooltip for decryption context menu</comment>
   </data>
   <data name="McHlpMenuWipe" xml:space="preserve">
@@ -907,7 +927,7 @@ De licentie voor dit programma is conform de overeenkomst.
     <comment>Property page header for encryption algorithms.</comment>
   </data>
   <data name="McInfMenuAbout" xml:space="preserve">
-    <value>Info</value>
+    <value>Over</value>
     <comment>Context menu for About</comment>
   </data>
   <data name="McInfMenuOpen" xml:space="preserve">
@@ -962,7 +982,7 @@ De licentie voor dit programma is conform de overeenkomst.
     <value>Open Verkenner Hier</value>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
-    <value>U kunt zicht niet aanmelden als '{0}'. Voer alstublieft een echt emailadres, en probeer het nog eens.</value>
+    <value>U kunt zicht niet aanmelden als '{0}'. Voer alstublieft een echt emailadres in en probeer het nog eens.</value>
   </data>
   <data name="MessageInvalidSignUpEmailTitle" xml:space="preserve">
     <value>Ongeldig emailadres</value>
@@ -978,11 +998,6 @@ De licentie voor dit programma is conform de overeenkomst.
   </data>
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Registreer voor een AxCrypt ID</value>
-  </data>
-  <data name="MessageSignUpInternetRequiredText" xml:space="preserve">
-    <value>Internet toegang is nodig wanneer AxCrypt voor de eerste keer wordt opgestart. Check alstublieft uw verbinding en probeer het nog eens.
-
-Na de eerste keer is internet NIET NODIG om gebruik te maken van AxCrypt.</value>
   </data>
   <data name="MessageSignUpInternetRequiredTitle" xml:space="preserve">
     <value>Geen Internet Toegang</value>
@@ -1040,14 +1055,14 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
     <value>De pagina was niet gevonden!</value>
   </data>
   <data name="NotFoundSafePageBody" xml:space="preserve">
-    <value>Helaas konden wij de pagina die u zocht niet vinden. Dit komt mogelijk door het opnieuw opstarten van een server waardoor uw browsersessie is verlopen, of door een andere server error waardoor we uw verzoek niet konden verwerken.
+    <value>Helaas konden wij de pagina die u zocht niet vinden. Dit komt mogelijk door het opnieuw opstarten van een server waardoor uw browsersessie is verlopen, of door een andere server fout waardoor we uw verzoek niet konden verwerken.
 
 Uw verzoek is gelogd. Probeer het alstublieft nog eens met het juiste pad, of &lt;a href="mailto:{0}"&gt;rapporteer&lt;/a&gt; een niet werkende link. 
  
 Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.</value>
   </data>
   <data name="OfflineAccountBePatient" xml:space="preserve">
-    <value>Dit kan enekele minuten duren. Wees alstublieft geduldig.</value>
+    <value>Dit kan enkele minuten duren. Wees alstublieft geduldig.</value>
   </data>
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>Offline AxCrypt ID Creatie</value>
@@ -1055,6 +1070,9 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>Offline</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
+  </data>
+  <data name="OfflineNoPremiumWarning" xml:space="preserve">
+    <value>U bent offline zonder een geldig Premium abonnement. Ga online en koop of update uw licentie.</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Uw versie is verouderd. Klik alstublieft om te checken voor een nieuwe versie. </value>
@@ -1082,7 +1100,7 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Schakel het automatisch upgraden en converteren van oudere AxCrypt 1.x bestanden wanneer ze gebruikt worden in of uit.</value>
+    <value>Schakel het automatisch upgraden en converteren van oude AxCrypt 1.x bestanden wanneer ze gebruikt worden in of uit.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
@@ -1098,13 +1116,13 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
     <value>Wachtwoorden komen niet overeen </value>
   </data>
   <data name="PasswordManagementListPageBody" xml:space="preserve">
-    <value>Beer al uw wachtwoorden online in de cloud&lt;span class="text-cutoff"&gt; met AxCrypt Wachtwoord Management, uw online kluis voor wachtwoorden. codes, pins, etc. Uw wachtwoorden worden bewaard in een veilig geëncrypteerd archief en zijn beschikbaar voor u, en alleen u, overal op elk moment. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Lees meer]&lt;/a&gt;&lt;/span&gt;</value>
+    <value>Beheer al uw wachtwoorden online in de cloud&lt;span class="text-cutoff"&gt; met AxCrypt Wachtwoordbeheer, uw online kluis voor wachtwoorden. codes, pins, etc. Uw wachtwoorden worden bewaard in een veilig geëncrypteerd archief en zijn beschikbaar voor u, en alleen u, overal op elk moment. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Lees meer]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PasswordManagementPageTitle" xml:space="preserve">
-    <value>Wachtwoord Beheer</value>
+    <value>Wachtwoordbeheer</value>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
-    <value>Het wachtwoord moet minstens 10 karakters lang zijn.</value>
+    <value>Het wachtwoord is niet goed genoeg om geaccepteerd te worden.</value>
   </data>
   <data name="PasswordResetHyperLink" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/PasswordReset</value>
@@ -1112,6 +1130,9 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Wachtwoord vergeten? Klik hier</value>
+  </data>
+  <data name="PasswordResetMailBody1" xml:space="preserve">
+    <value>U heeft een wijziging van uw AxCrypt ID wachtwoord aangevraagd. Dit hersteld niet uw toegang tot geëncrypteerde bestanden en wachtwoorden, u kunt zich alleen weer opnieuw aanmelden. Om dit proces te voltooien en een nieuw wachtwoord te kiezen moet u op de onderstaande knop drukken.</value>
   </data>
   <data name="PasswordResetMailBodyButton" xml:space="preserve">
     <value>Reset wachtwoord</value>
@@ -1134,11 +1155,23 @@ Voer uw emailadres hieronder in om een activatie of wachtwoord reset link naar h
  
 Wanneer het er op lijkt dat u geen email ontvangen heeft, check of het niet tussen uw spam terecht is gekomen, en dat {0} correct is.</value>
   </data>
+  <data name="PasswordRulesInfo" xml:space="preserve">
+    <value>AxCrypt heeft een geavanceerde wachtwoord sterke evaluator die de werkelijke sterkte van uw wachtwoord meet. Het moet ook minstens 8 effectieve karakters lang zijn.
+
+Wij evalueren het wachtwoord door de sterkte te schatten, die gebaseerd is op hoe lang en complex het wachtwoord is.
+
+De evaluatie negeert delen van het wachtwoord die overeenkomen met de 1.000 meest voorkomende wachtwoorden, net als spaties. Bijvoorbeeld, het wachtwoord 'geheimX wachtwoord Y 123456' wordt geëvalueerd als 'XY' sinds spaties, 'geheim', 'wachtwoord' en '123456' genegeerd worden.
+
+Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarbij we wachtwoorden in de laagste categorie niet accepteren. Daarom wordt het bovenstaande voorbeeld niet geaccepteerd.</value>
+    <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
+  </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>Wachtwoord is te zwak om veilig te gebruiken.</value>
+    <comment>Status 'Red' We'll accept it, but it's really not a good idea!</comment>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
     <value>Wachtwoord is sterk en goed genoeg om aanbevolen te worden</value>
+    <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
     <value>Wachtwoord is te kort of te vergelijkbaar met een veelvoorkomend wachtwoord om geaccepteerd te worden.</value>
@@ -1146,15 +1179,16 @@ Wanneer het er op lijkt dat u geen email ontvangen heeft, check of het niet tuss
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>Wachtwoord is niet sterk genoeg om aanbevolen te worden.</value>
+    <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>{Meer informatie over PayPal]</value>
   </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Uw AxCrypt Premium abonnement verloopt binnenkort. Ik hoop dat u tevreden bent met onze eigenschappen en dat u ze nuttig vondt.</value>
+    <value>Uw AxCrypt Premium abonnement verloopt binnenkort. Ik hoop dat u tevreden bent met onze eigenschappen en dat u ze nuttig vond.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Ik zou het geweldig vinden voor u als u gebruik blijft maken van onze Premium eigenschappen. Meldt u zich simpelweg &lt;a href="{0}Home/Login?email={1}"&gt;hier&lt;/a&gt; aan met uw AxCrypt ID u te abonneren.</value>
+    <value>Ik zou het geweldig vinden voor u als u gebruik blijft maken van onze Premium eigenschappen. Meldt u zich simpelweg &lt;a href="{0}Home/Login?email={1}"&gt;hier&lt;/a&gt; aan met uw AxCrypt ID om op ieder moment te abonneren.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -1191,7 +1225,7 @@ Wanneer het er op lijkt dat u geen email ontvangen heeft, check of het niet tuss
     <value>Wijzigen</value>
   </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
-    <value>Huidige wachtwoord</value>
+    <value>Huidig wachtwoord</value>
   </data>
   <data name="PromptDeleteAxCryptIdText" xml:space="preserve">
     <value>Verwijder AxCrypt ID</value>
@@ -1231,7 +1265,7 @@ Wanneer het er op lijkt dat u geen email ontvangen heeft, check of het niet tuss
     <value>Notificaties</value>
   </data>
   <data name="PromptPasswordManager" xml:space="preserve">
-    <value>Wachtwoorder Beheerder</value>
+    <value>Wachtwoorderbeheerder</value>
   </data>
   <data name="PromptSetNewPassword" xml:space="preserve">
     <value>Stel uw wachtwoord in</value>
@@ -1267,7 +1301,7 @@ Wanneer het er op lijkt dat u geen email ontvangen heeft, check of het niet tuss
     <value>Zoeken</value>
   </data>
   <data name="PromptXecretsSecretText" xml:space="preserve">
-    <value>Wachtoowrd of geheim</value>
+    <value>Wachtwoord of geheim</value>
   </data>
   <data name="PurchaseErrorSubscriptionTime" xml:space="preserve">
     <value>De geselecteerde abonnementsduur is ongeldig. Een geldig abonnement moet minstens {0} maand duren en niet langer zijn dan {1} maanden.</value>
@@ -1275,7 +1309,7 @@ Wanneer het er op lijkt dat u geen email ontvangen heeft, check of het niet tuss
   <data name="PurchasePageBody1" xml:space="preserve">
     <value>Met Premium kunt u volledig gebruik maken van AxCrypt op al uw computers en apparaten.
 
-AxCrypt is ontworpen met het idee om uw bestanden veilig te houden. Om van geavanceerde eigenschappen zoals 256-bit encryptie, Beveiligde Mappen en Wachtwoord Beheer gebruik te maken adviseren we u om naar AxCrypt Premium te upgraden. Met AxCrypt Premium heeft u altijd de gehele AxCrypt applicatie beschikbaar zonder beperkingen.
+AxCrypt is ontworpen met het idee om uw bestanden veilig te houden. Om van geavanceerde eigenschappen zoals 256-bit encryptie, Beveiligde Mappen en Wachtwoordbeheer gebruik te maken adviseren we u om naar AxCrypt Premium te upgraden. Met AxCrypt Premium heeft u altijd de gehele AxCrypt applicatie beschikbaar zonder beperkingen.
 
 Om de Premium eigenschappen te proberen bieden wij u een 30 dagen durende proefperiode van AxCrypt Premium aan zodra u uw AxCrypt ID heeft geactiveerd. Hierna kunt u uw Premium abonnement verlengen door het onderstaande formulier in te vullen.</value>
   </data>
@@ -1288,7 +1322,7 @@ Zodra uw informatie de PayPal site heeft bereikt wordt het bewaard op een server
     <value>Koop AxCrypt Premium</value>
   </data>
   <data name="PurchaseReceiptError" xml:space="preserve">
-    <value>De aankoop was geannuleerd</value>
+    <value>De aankoop was geannuleerd.</value>
   </data>
   <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
     <value>We hebben uw betaling nooit ontvangen. Dit komt mogelijk door het handmatig annuleren van uw aankoop op PayPal of door een ontoereikend saldo.</value>
@@ -1325,7 +1359,7 @@ Een betaalbewijs van uw aankoop is naar uw email verstuurd.</value>
   <data name="RegisterPageBody" xml:space="preserve">
     <value>Om te beginnen met AxCrypt heeft u een AxCrypt ID nodig die u kunt verkrijgen door uw emailadres in het onderstaande formulier in te voeren. Een bericht met een activatielink zal naar het gespecificeerde adres worden verstuurd en wanneer u op de link klinkt wordt u gevraagd om een wachtwoord te kiezen. Dat is het!
  
-Een 30 dagen durende proefperiode voor AxCrypt Premium is hierbij inbegrepen en zal beginnen wanneer u uw AxCrypt ID activeerd.</value>
+Een 30 dagen durende proefperiode voor AxCrypt Premium is hierbij inbegrepen en zal beginnen wanneer u uw AxCrypt ID activeert.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Registreer voor een AxCrypt ID</value>
@@ -1340,7 +1374,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een activatielink.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>Verwijder van lijst maar houdt bestand beveiligd</value>
+    <value>Verwijder van lijst, maar houdt bestand beveiligd</value>
   </data>
   <data name="ResendActivationHyperLink" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/Register</value>
@@ -1379,12 +1413,12 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een activatielink.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Hier kunt u uw AxCrypt ID permanent van het systeem verwijderen. &lt;span class="red"&gt;Alle data geassocieerd met  uw AxCrypt ID, waaronder opgeslagen wachtwoorden, zal ook worden verwijderd.&lt;/span&gt; 
+    <value>Hier kunt u uw AxCrypt ID permanent van het systeem verwijderen. &lt;span class="red"&gt;Alle data geassocieerd met  uw AxCrypt ID, waaronder opgeslagen wachtwoorden, zullen ook worden verwijderd.&lt;/span&gt; 
  
 Typ uw wachtwoord hieronder om uw AxCrypt ID te verwijderen.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
-    <value>Om het emailadres dat is geassocieerd met uw AxCrypt ID te veranderen kunt u hieronder een new emailadres invoeren. Dit beïnvloed hoe u zich op de site aanmeldt en naar welk adres emails worden verstuurd.
+    <value>Om het emailadres dat is geassocieerd met uw AxCrypt ID te veranderen kunt u hieronder een nieuw emailadres invoeren. Dit beïnvloed hoe u zich op de site aanmeldt en naar welk adres emails worden verstuurd.
 
 Een bevestigingsemail wordt verstuurd naar het nieuwe emailadres. De verandering wordt pas doorgevoerd zodra u op de bevestigingslink klikt en zich succesvol aanmeldt.</value>
   </data>
@@ -1405,7 +1439,7 @@ Kies iets dat moeilijk te raden is, sinds het de wachtwoorden beschermd in de on
   <data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
     <value>U staat op het punt om beveiligd te delen met iemand die een AxCrypt uitnodiging heeft ontvangen, maar hier nog niet op heeft gereageerd.
 
-Overweeg '{0}' direct te informeren over AxCrypt bestand beveiliging. </value>
+Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
   </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Sleutels Delen</value>
@@ -1481,6 +1515,22 @@ Overweeg '{0}' direct te informeren over AxCrypt bestand beveiliging. </value>
     <value>Klik om het AxCrypt applicatie venster te herstellen.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
+  <data name="TrialPremiumStartInfo" xml:space="preserve">
+    <value>Geweldig! U kunt nu gratis gebruik maken van alle AxCrypt eigenschappen tijdens de proefperiode.
+
+Veel succes en geniet er van,
+
+Het AxCrypt team</value>
+    <comment>A short message congratulating the user on having started the trial period.</comment>
+  </data>
+  <data name="TryPremiumLabel" xml:space="preserve">
+    <value>Probeer Premium</value>
+    <comment>A clickable link with text similar to "Try Premium"</comment>
+  </data>
+  <data name="TryPremiumToolTip" xml:space="preserve">
+    <value>U gebruikt niet het hoogste beveiligingsniveau. Klik om Premium nu gratis te proberen!</value>
+    <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
+  </data>
   <data name="UnknownCrypto" xml:space="preserve">
     <value>Onbekend</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
@@ -1548,7 +1598,7 @@ Overweeg '{0}' direct te informeren over AxCrypt bestand beveiliging. </value>
     <value>Ik ben heel blij dat u zich heeft aangemeld! Om u welkom te heten, heb ik u gratis toegang gegeven tot onze Premium eigenschappen voor 30 dagen.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
-    <value>Met AxCrypt Gratis of AxCrypt Premium kunt u uw bestanden makkelijk beveiligen. Uw bestanden en mappen encrypteren is maar één klik van u vandaan. Werken met geëncrypteerde is net zo makkelijk!</value>
+    <value>Met AxCrypt Gratis of AxCrypt Premium kunt u uw bestanden makkelijk beveiligen. Uw bestanden en mappen encrypteren is maar één klik van u vandaan. Werken met geëncrypteerde bestanden is net zo makkelijk!</value>
   </data>
   <data name="WelcomeMailBody3Html" xml:space="preserve">
     <value>Als Premium abonnee zijn er enkele uitstekende aanvullende eigenschappen die u krijgt naast die in de gratis verise. Met Premium krijgt u eigenschappen zoals:</value>
@@ -1575,7 +1625,7 @@ Voor meer informatie klik OK om uw browser te openen en naar onze website te gaa
     <value>U moet de huidig geïnstalleerde versie van AxCrypt op deze computer eerst deïnstalleren.</value>
   </data>
   <data name="WixAxOsNotSupported" xml:space="preserve">
-    <value>De versie van Windows op deze computer is niet ondersteund</value>
+    <value>De versie van Windows op deze computer is niet ondersteund.</value>
   </data>
   <data name="WixCaption" xml:space="preserve">
     <value>[WixBundleName] Setup</value>
@@ -1609,7 +1659,7 @@ Voor meer informatie klik OK om uw browser te openen en naar onze website te gaa
     <value>U moet uw computer opnieuw opstarten om de rollback van de software te voltooien.</value>
   </data>
   <data name="WixFailureUninstallHeader" xml:space="preserve">
-    <value>De-installeren Mislukt</value>
+    <value>Deïnstalleren Mislukt</value>
   </data>
   <data name="WixFilesInUseCancelButton" xml:space="preserve">
     <value>Annuleren</value>
@@ -1633,10 +1683,10 @@ Voor meer informatie klik OK om uw browser te openen en naar onze website te gaa
     <value>Sluiten</value>
   </data>
   <data name="WixHelpHeader" xml:space="preserve">
-    <value>Setup Help</value>
+    <value>Setup Hulp</value>
   </data>
   <data name="WixHelpText" xml:space="preserve">
-    <value>/install | /repair | /uninstall | /layout [directory] -installaties, reparaties, de-installaties of
+    <value>/install | /repair | /uninstall | /layout [directory] -installaties, reparaties, deïnstallaties of
 creëer een compleet lokale kopie van de bundel in de directory. Installeren is de standaard.
 
 /passive | /quiet - Vertoont minimale UI zonder prompts of vertoont geen UI en prompts. Normaal worden de UI en alle prompts vertoont.
@@ -1668,7 +1718,7 @@ creëer een compleet lokale kopie van de bundel in de directory. Installeren is 
     <value>Repareren </value>
   </data>
   <data name="WixModifyUninstallButton" xml:space="preserve">
-    <value>De-installeren</value>
+    <value>Deïnstalleren</value>
   </data>
   <data name="WixMsiArpComments" xml:space="preserve">
     <value>AxCrypt Bestand Encryptie</value>
@@ -1690,7 +1740,7 @@ creëer een compleet lokale kopie van de bundel in de directory. Installeren is 
     <comment>Start Menu tooltip to start AxCrypt</comment>
   </data>
   <data name="WixMsiLegacyAxCrypt" xml:space="preserve">
-    <value>U moet de vorige versie van AxCrypt de-installeren voordat u verder gaat. Zorg ervoor dat u opnieuw opstart wanneer dit van u gevraagd wordt.</value>
+    <value>U moet de vorige versie van AxCrypt deïnstalleren voordat u verder gaat. Zorg ervoor dat u opnieuw opstart wanneer dit van u gevraagd wordt.</value>
     <comment>Error message when too old AxCrypt is already installed.</comment>
   </data>
   <data name="WixMsiMainExecutablesTitle" xml:space="preserve">
@@ -1698,11 +1748,11 @@ creëer een compleet lokale kopie van de bundel in de directory. Installeren is 
     <comment>Feature name in installer</comment>
   </data>
   <data name="WixMsiNet45Required" xml:space="preserve">
-    <value>Deze applicatie vereist .NET Framework 4.5 of hoger. Installeer de .NET Framework en start de installatie opnieuw.</value>
+    <value>Deze applicatie vereist .NET Framework 4.5 of hoger. Installeer het .NET Framework en start de installatie opnieuw.</value>
     <comment>Error message when .NET 4.5 is missing</comment>
   </data>
   <data name="WixMsiNoDowngrade" xml:space="preserve">
-    <value>U heeft al de huidige of een nieuwere versie geïnstalleerd! De-installeer deze versie alstublieft voor u doorgaat. Vergeet niet opnieuw op te starten wanneer dit van u wordt gevraagd.</value>
+    <value>U heeft al de huidige of een nieuwere versie geïnstalleerd! Deïnstalleer deze versie alstublieft voor u doorgaat. Vergeet niet opnieuw op te starten wanneer dit van u wordt gevraagd.</value>
     <comment>Error message during installation when a newer version already is installed.</comment>
   </data>
   <data name="WixMsiShellExtensionTitle" xml:space="preserve">
@@ -1747,7 +1797,7 @@ creëer een compleet lokale kopie van de bundel in de directory. Installeren is 
     <value>U moet uw computer opnieuw opstarten voordat u van de software gebruik kan maken.</value>
   </data>
   <data name="WixSuccessUninstallHeader" xml:space="preserve">
-    <value>De-installeren Succesvol Voltooid</value>
+    <value>Deïnstalleren Succesvol Voltooid</value>
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Status 'In Gebruik' met '{0}'.</value>
