@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
@@ -110,8 +111,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return true;
             }
-            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { new Passphrase(passphrase) }, new IAsymmetricPrivateKey[0], Resolve.CryptoFactory.OrderedIds);
-            return New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, New<IDataStore>(encryptedFileFullName)) != null;
+            IDataStore encryptedStore = New<IDataStore>(encryptedFileFullName);
+            IEnumerable<DecryptionParameter> decryptionParameters = encryptedStore.DecryptionParameters(new Passphrase(passphrase), new IAsymmetricPrivateKey[0]);
+            return New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, encryptedStore) != null;
         }
     }
 }

@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return true;
             }
             IDataStore encryptedStore = New<IDataStore>(encryptedFileFullName);
-            IEnumerable<DecryptionParameter> parameters = encryptedStore.DecryptionParameters(passphrase);
+            IEnumerable<DecryptionParameter> parameters = encryptedStore.DecryptionParameters(passphrase, new IAsymmetricPrivateKey[0]);
             return New<AxCryptFactory>().FindDecryptionParameter(parameters, encryptedStore) != null;
         }
 

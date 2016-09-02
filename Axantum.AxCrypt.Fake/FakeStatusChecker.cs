@@ -46,7 +46,11 @@ namespace Axantum.AxCrypt.Fake
         /// </returns>
         public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext, string message)
         {
-            return status == ErrorStatus.Success;
+            bool success = status == ErrorStatus.Success;
+            ErrorSeen |= !success;
+            return success;
         }
+
+        public bool ErrorSeen { get; set; }
     }
 }

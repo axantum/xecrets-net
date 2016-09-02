@@ -105,8 +105,13 @@ namespace Axantum.AxCrypt.Core.Extensions
             return dataStore.IsEncrypted() && OpenFileProperties.Create(dataStore).IsLegacyV1;
         }
 
-        public static IEnumerable<DecryptionParameter> DecryptionParameters(this IDataStore dataStore, Passphrase password)
+        public static IEnumerable<DecryptionParameter> DecryptionParameters(this IDataStore dataStore, Passphrase password, IEnumerable<IAsymmetricPrivateKey> privateKeys)
         {
+            if (privateKeys == null)
+            {
+                throw new ArgumentNullException(nameof(privateKeys));
+            }
+
             if (!dataStore.IsEncrypted())
             {
                 return new DecryptionParameter[0];
@@ -114,10 +119,10 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             if (dataStore.IsLegacyV1())
             {
-                return new DecryptionParameter[] { new DecryptionParameter(password, new V1Aes128CryptoFactory().CryptoId), };
+                return DecryptionParameter.CreateAll(new Passphrase[] { password }, privateKeys, new Guid[] { new V1Aes128CryptoFactory().CryptoId });
             }
 
-            return DecryptionParameter.CreateAll(new Passphrase[] { password }, new IAsymmetricPrivateKey[0], Resolve.CryptoFactory.OrderedIds);
+            return DecryptionParameter.CreateAll(new Passphrase[] { password }, privateKeys, Resolve.CryptoFactory.OrderedIds.Where(id => id != new V1Aes128CryptoFactory().CryptoId));
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
@@ -199,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             foreach (LogOnIdentity knownKey in Resolve.KnownIdentities.Identities)
             {
-                IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { knownKey.Passphrase }, knownKey.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
+                IEnumerable<DecryptionParameter> decryptionParameters = fileInfo.DecryptionParameters(knownKey.Passphrase, knownKey.PrivateKeys);
                 DecryptionParameter decryptionParameter = New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, fileInfo);
                 if (decryptionParameter != null)
                 {

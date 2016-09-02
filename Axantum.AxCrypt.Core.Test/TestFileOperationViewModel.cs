@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
@@ -41,6 +42,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -553,6 +555,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 return new DecryptionParameter(Passphrase.Empty, new V1Aes128CryptoFactory().CryptoId);
             });
+            axCryptFactoryMock.Setup<Headers>(m => m.Headers(It.IsAny<Stream>())).Returns((Stream s) =>
+            {
+                return new Headers();
+            });
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
@@ -568,9 +574,11 @@ namespace Axantum.AxCrypt.Core.Test
             };
             Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(EmailAddress.Parse("test@axcrypt.net"), Passphrase.Create("bbb"));
 
-            FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
-            FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
+            FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+            FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+
             await mvm.DecryptFiles.ExecuteAsync(null);
+            Assert.That((New<IStatusChecker>() as FakeStatusChecker).ErrorSeen, Is.False, "Oops, an erorror happened.");
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             // Intermittent only invoked once below. Needs investigation.
@@ -926,6 +934,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 return new DecryptionParameter(Passphrase.Empty, new V1Aes128CryptoFactory().CryptoId);
             });
+            axCryptFactoryMock.Setup<Headers>(m => m.Headers(It.IsAny<Stream>())).Returns((Stream s) =>
+            {
+                return new Headers();
+            });
             TypeMap.Register.New<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             Mock<FileOperation> fileOperationMock = new Mock<FileOperation>(Resolve.FileSystemState, Resolve.SessionNotify);
@@ -938,9 +950,11 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
-            FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
+            FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+            FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+
             await mvm.OpenFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
+            Assert.That((New<IStatusChecker>() as FakeStatusChecker).ErrorSeen, Is.False, "Oops, an erorror happened.");
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.IsAny<LogOnIdentity>(), It.Is<IDataStore>(ds => ds.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
