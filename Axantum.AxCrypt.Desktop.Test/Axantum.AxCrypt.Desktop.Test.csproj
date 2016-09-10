@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestFileWatcher.cs" />
+    <Compile Include="TestItemCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
@@ -60,6 +61,10 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
       <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
       <Name>Axantum.AxCrypt.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Common\Axantum.AxCrypt.Common.csproj">
+      <Project>{fb429566-e4a5-4391-805b-0e2a2ae297ac}</Project>
+      <Name>Axantum.AxCrypt.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
       <Project>{966e9510-1a1d-46c7-97b5-460a0ff9b89f}</Project>

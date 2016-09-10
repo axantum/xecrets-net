@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
-            TypeMap.Register.Singleton<ICache>(() => new ItemCache());
+            TypeMap.Register.Singleton<ICache>(() => new FakeCache());
             TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
             TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(new Assembly[0]));
             TypeMap.Register.Singleton<IVersion>(() => new FakeVersion());

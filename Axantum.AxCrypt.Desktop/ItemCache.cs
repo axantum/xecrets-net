@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Mono
+namespace Axantum.AxCrypt.Desktop
 {
     public class ItemCache : ICache, IDisposable
     {

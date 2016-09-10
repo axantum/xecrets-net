@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Mono.Test
+namespace Axantum.AxCrypt.Desktop.Test
 {
     [TestFixture]
     public class TestItemCache

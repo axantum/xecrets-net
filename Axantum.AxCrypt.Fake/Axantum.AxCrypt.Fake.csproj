@@ -57,6 +57,7 @@
     <Compile Include="Endian.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FakeAsymmetricFactory.cs" />
+    <Compile Include="FakeCache.cs" />
     <Compile Include="FakeDataContainer.cs" />
     <Compile Include="FakeDataProtection.cs" />
     <Compile Include="FakeDataStore.cs" />
