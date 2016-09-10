@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MonoPlatform.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Now.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Portable\BlockingBuffer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestCaller.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeEnvironment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataItem.cs" />
