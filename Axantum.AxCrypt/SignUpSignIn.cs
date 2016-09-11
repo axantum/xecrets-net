@@ -94,10 +94,7 @@ namespace Axantum.AxCrypt
 
             viewModel.RestoreWindow += (sender, e) =>
             {
-                foreach (Form owned in parent.OwnedForms)
-                {
-                    Styling.RestoreWindowWithFocus(owned);
-                }
+                Styling.RestoreWindowWithFocus(parent);
             };
 
             await viewModel.DoAll.ExecuteAsync(null);

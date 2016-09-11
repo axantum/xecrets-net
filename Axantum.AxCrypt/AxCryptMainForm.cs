@@ -294,13 +294,14 @@ namespace Axantum.AxCrypt
 
         private async void AxCryptMainForm_ShownAsync(object sender, EventArgs e)
         {
+            New<IRuntimeEnvironment>().FirstInstanceIsReady();
+
             if (_startMinimized || _commandLine.IsStartCommand)
             {
                 ShowNotifyIcon();
                 return;
             }
 
-            Styling.RestoreWindowWithFocus(this);
             await SignInAsync();
         }
 
@@ -360,7 +361,6 @@ namespace Axantum.AxCrypt
             Resolve.CommandService.Received += New<CommandHandler>().RequestReceived;
             Resolve.CommandService.StartListening();
             New<CommandHandler>().CommandComplete += AxCryptMainForm_CommandComplete;
-            New<IRuntimeEnvironment>().FirstInstanceIsReady();
         }
 
         private void ConfigureUiOptions()
