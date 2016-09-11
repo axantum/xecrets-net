@@ -28,9 +28,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public ApiVersion Version { get { return GetProperty<ApiVersion>(nameof(Version)); } set { SetProperty(nameof(Version), value); } }
 
-        public IAsyncAction DoDialogs { get { return new AsyncDelegateAction<object>((o) => DoDialogsActionAsync()); } }
-
-        public IAsyncAction SignIn { get { return new AsyncDelegateAction<object>((o) => SignInActionAsync()); } }
+        public IAsyncAction DoAll { get { return new AsyncDelegateAction<object>((o) => DoAllAsync()); } }
 
         public event EventHandler<CancelEventArgs> CreateAccount;
 
@@ -38,7 +36,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public event EventHandler<CancelEventArgs> RequestEmail;
 
-        public event EventHandler<CancelEventArgs> SigningIn;
+        public Func<Task> SignInCommandAsync { get; set; }
 
         public event EventHandler RestoreWindow;
 
@@ -65,7 +63,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
         }
 
-        private async Task SignInActionAsync()
+        private async Task DoAllAsync()
         {
             CancelEventArgs e = new CancelEventArgs();
             OnRestoreWindow(e);
@@ -87,7 +85,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                             return;
                         }
 
-                        OnSigningIn(e);
+                        await SignInCommandAsync();
                         UserEmail = New<IUserSettings>().UserEmail;
                     });
                     if (StopAndExit)
@@ -326,11 +324,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void OnRequestEmail(CancelEventArgs e)
         {
             RequestEmail?.Invoke(this, e);
-        }
-
-        private void OnSigningIn(CancelEventArgs e)
-        {
-            SigningIn?.Invoke(this, e);
         }
 
         private void OnRestoreWindow(EventArgs e)

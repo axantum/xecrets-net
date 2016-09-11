@@ -294,7 +294,6 @@ namespace Axantum.AxCrypt
 
         private async void AxCryptMainForm_ShownAsync(object sender, EventArgs e)
         {
-            _pendingRequest = CommandCompleteEventArgs.Empty;
             if (_startMinimized || _commandLine.IsStartCommand)
             {
                 ShowNotifyIcon();
@@ -309,7 +308,7 @@ namespace Axantum.AxCrypt
 
         public async Task SignIn()
         {
-            await LogOnAndDoPendingRequestAsync();
+            await _fileOperationViewModel.IdentityViewModel.LogOnAsync.ExecuteAsync(null);
         }
 
         private async Task SignInAsync()
@@ -329,17 +328,6 @@ namespace Axantum.AxCrypt
                 StopAndExit();
                 return;
             }
-        }
-
-        private async Task LogOnAndDoPendingRequestAsync()
-        {
-            await _fileOperationViewModel.IdentityViewModel.LogOnAsync.ExecuteAsync(null);
-
-            if (_mainViewModel.LoggedOn)
-            {
-                await DoRequestAsync(_pendingRequest);
-            }
-            _pendingRequest = CommandCompleteEventArgs.Empty;
         }
 
         private static void SendStartSessionNotification()
@@ -1143,7 +1131,6 @@ namespace Axantum.AxCrypt
                     case CommandVerb.Open:
                     case CommandVerb.Show:
                     case CommandVerb.ShowLogOn:
-                        _pendingRequest = e;
                         await SignInAsync();
                         break;
 

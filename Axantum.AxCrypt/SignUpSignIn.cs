@@ -90,10 +90,7 @@ namespace Axantum.AxCrypt
                 }
             };
 
-            viewModel.SigningIn += async (sender, e) =>
-            {
-                await signingInState.SignIn();
-            };
+            viewModel.SignInCommandAsync = signingInState.SignIn;
 
             viewModel.RestoreWindow += (sender, e) =>
             {
@@ -103,7 +100,7 @@ namespace Axantum.AxCrypt
                 }
             };
 
-            await viewModel.SignIn.ExecuteAsync(null);
+            await viewModel.DoAll.ExecuteAsync(null);
         }
 
         private void SetTopControlsEnabled(Form parent, bool enabled)
