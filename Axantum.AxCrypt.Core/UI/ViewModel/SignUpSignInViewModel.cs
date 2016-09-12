@@ -17,7 +17,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public sealed class SignUpSignInViewModel : ViewModelBase
+    public sealed class SignupSignInViewModel : ViewModelBase
     {
         public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
 
@@ -40,26 +40,26 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public event EventHandler RestoreWindow;
 
-        private ISignInState _signInState;
+        private ISignIn _signinState;
 
-        public SignUpSignInViewModel(ISignInState signInState)
+        public SignupSignInViewModel(ISignIn signIn)
         {
-            _signInState = signInState;
+            _signinState = signIn;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
         }
 
-        private void InitializePropertyValues()
+        private static void InitializePropertyValues()
         {
         }
 
-        private void BindPropertyChangedEvents()
+        private static void BindPropertyChangedEvents()
         {
         }
 
-        private void SubscribeToModelEvents()
+        private static void SubscribeToModelEvents()
         {
         }
 
@@ -67,12 +67,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             CancelEventArgs e = new CancelEventArgs();
             OnRestoreWindow(e);
-            if (_signInState.IsSigningIn)
+            if (_signinState.IsSigningIn)
             {
                 return;
             }
 
-            _signInState.IsSigningIn = true;
+            _signinState.IsSigningIn = true;
             try
             {
                 do
@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             finally
             {
-                _signInState.IsSigningIn = false;
+                _signinState.IsSigningIn = false;
             }
             if (Resolve.UserSettings.IsFirstSignIn)
             {

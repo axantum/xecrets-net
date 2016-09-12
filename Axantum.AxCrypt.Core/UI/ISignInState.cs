@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public interface ISignInState
+    public interface ISignIn
     {
         bool IsSigningIn { get; set; }
 

@@ -101,6 +101,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static string Default(this string value, object defaultValue)
         {
+            if (defaultValue == null)
+            {
+                throw new ArgumentNullException(nameof(defaultValue));
+            }
+
             if (string.IsNullOrEmpty(value))
             {
                 return defaultValue.ToString();

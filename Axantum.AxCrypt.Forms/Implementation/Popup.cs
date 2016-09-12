@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                     return PopupButtons.Exit;
 
                 default:
-                    throw new InvalidOperationException($"Unexpected result from DialogResult: {result}");
+                    throw new InvalidOperationException($"Unexpected result from dialog: {result}");
             }
         }
 

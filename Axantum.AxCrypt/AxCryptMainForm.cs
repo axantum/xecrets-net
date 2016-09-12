@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Ax")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
-    public partial class AxCryptMainForm : Form, IStatusChecker, ISignInState
+    public partial class AxCryptMainForm : Form, IStatusChecker, ISignIn
     {
         private NotifyIcon _notifyIcon = null;
 
@@ -98,6 +98,11 @@ namespace Axantum.AxCrypt
         public AxCryptMainForm(CommandLine commandLine)
             : this()
         {
+            if (commandLine == null)
+            {
+                throw new ArgumentNullException(nameof(commandLine));
+            }
+
             _commandLine = commandLine;
             _startMinimized = commandLine.HasCommands;
         }
@@ -165,7 +170,7 @@ namespace Axantum.AxCrypt
             _apiVersion = New<ICache>().GetItemAsync(CacheKey.RootKey.Subkey("WrapMessageDialogsAsync_ApiVersion"), () => New<GlobalApiClient>().ApiVersionAsync()).Result;
         }
 
-        private void SetThisVersion()
+        private static void SetThisVersion()
         {
             New<IUserSettings>().ThisVersion = New<IVersion>().Current.ToString();
         }
@@ -279,7 +284,7 @@ namespace Axantum.AxCrypt
             New<KeyPairService>().Start();
         }
 
-        private bool ValidateSettings()
+        private static bool ValidateSettings()
         {
             if (Resolve.UserSettings.SettingsVersion >= Resolve.UserSettings.CurrentSettingsVersion)
             {
@@ -621,6 +626,7 @@ namespace Axantum.AxCrypt
             _alwaysOfflineToolStripMenuItem.Checked = New<IUserSettings>().OfflineMode;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         private void BindToViewModels()
@@ -716,6 +722,7 @@ namespace Axantum.AxCrypt
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         private void BindToFileOperationViewModel()
         {
             _addSecureFolderToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); return Task.FromResult<object>(null); }, sender, e);
@@ -884,7 +891,7 @@ namespace Axantum.AxCrypt
             return;
         }
 
-        private void SetLegacyOpenMode(FileOperationEventArgs e)
+        private static void SetLegacyOpenMode(FileOperationEventArgs e)
         {
             if (!Resolve.KnownIdentities.IsLoggedOn)
             {
@@ -1098,8 +1105,6 @@ namespace Axantum.AxCrypt
         {
             Resolve.UIThread.SendToAsync(async () => await DoRequestAsync(e));
         }
-
-        private CommandCompleteEventArgs _pendingRequest = new CommandCompleteEventArgs(CommandVerb.Unknown, new string[0]);
 
         private async Task DoRequestAsync(CommandCompleteEventArgs e)
         {
@@ -1511,7 +1516,7 @@ namespace Axantum.AxCrypt
             Application.Exit();
         }
 
-        private void WaitForBackgroundToComplete()
+        private static void WaitForBackgroundToComplete()
         {
             while (New<IProgressBackground>().Busy)
             {
@@ -1519,7 +1524,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void StopAndExit()
+        private static void StopAndExit()
         {
             ShutDownBackgroundSafe();
 
@@ -1527,7 +1532,7 @@ namespace Axantum.AxCrypt
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private void ShutDownBackgroundSafe()
+        private static void ShutDownBackgroundSafe()
         {
             try
             {
@@ -1810,7 +1815,7 @@ namespace Axantum.AxCrypt
             StopAndExit();
         }
 
-        private void ClearAllSettingsAndReinitialize()
+        private static void ClearAllSettingsAndReinitialize()
         {
             ShutDownBackgroundSafe();
 

@@ -36,9 +36,9 @@ namespace Axantum.AxCrypt
         {
         }
 
-        public async Task DialogsAsync(Form parent, ISignInState signingInState)
+        public async Task DialogsAsync(Form parent, ISignIn signingInState)
         {
-            SignUpSignInViewModel viewModel = new SignUpSignInViewModel(signingInState)
+            SignupSignInViewModel viewModel = new SignupSignInViewModel(signingInState)
             {
                 UserEmail = UserEmail,
                 Version = Version,
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt
             await viewModel.DoAll.ExecuteAsync(null);
         }
 
-        private void SetTopControlsEnabled(Form parent, bool enabled)
+        private static void SetTopControlsEnabled(Form parent, bool enabled)
         {
             foreach (Control control in parent.Controls)
             {

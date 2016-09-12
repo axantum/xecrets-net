@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private List<CommandItem> ParseArguments(IEnumerable<string> arguments)
+        private static List<CommandItem> ParseArguments(IEnumerable<string> arguments)
         {
             List<CommandItem> _commandItems = new List<CommandItem>();
             int bundleId = 0;

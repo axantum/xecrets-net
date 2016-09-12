@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public class DataContainerEnumerator : IEnumerable<IDataStore>
+    public class DataContainerCollection : IEnumerable<IDataStore>
     {
         private IEnumerable<IDataContainer> _containers;
 
         public bool Cancel { get; set; }
 
-        public DataContainerEnumerator(IEnumerable<IDataContainer> containers)
+        public DataContainerCollection(IEnumerable<IDataContainer> containers)
         {
             _containers = containers;
         }

@@ -115,6 +115,11 @@ namespace Axantum.AxCrypt.Forms.Style
 
         public static void RestoreWindowWithFocus(Form form)
         {
+            if (form == null)
+            {
+                throw new ArgumentNullException(nameof(form));
+            }
+
             form.Show();
             form.WindowState = FormWindowState.Normal;
             form.Activate();

@@ -49,11 +49,13 @@ namespace Axantum.AxCrypt.Forms
             flowLayoutPanel1.Left = (flowLayoutPanel1.Parent.ClientRectangle.Width - flowLayoutPanel1.Width) / 2;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         public static DialogResult ShowOk(Form parent, string caption, string message)
         {
             return ShowOkAsync(parent, caption, message).Result;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         public static Task<DialogResult> ShowOkAsync(Form parent, string caption, string message)
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))
@@ -67,6 +69,7 @@ namespace Axantum.AxCrypt.Forms
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         public static DialogResult ShowOkCancel(Form parent, string caption, string message)
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))
@@ -79,6 +82,7 @@ namespace Axantum.AxCrypt.Forms
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         public static DialogResult ShowOkCancelExit(Form parent, string caption, string message)
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))
@@ -90,6 +94,7 @@ namespace Axantum.AxCrypt.Forms
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         public static DialogResult ShowOkExit(Form parent, string caption, string message)
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))

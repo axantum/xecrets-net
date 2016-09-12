@@ -80,6 +80,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         public static string Effective(string password)
         {
+            if (password == null)
+            {
+                throw new ArgumentNullException(nameof(password));
+            }
+
             password = password.Replace(" ", string.Empty);
             foreach (string word in _commonPasswords)
             {

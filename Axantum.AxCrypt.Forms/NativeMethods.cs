@@ -69,10 +69,10 @@ namespace Axantum.AxCrypt.Forms
             Configured = 0x40,
         }
 
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         public static extern IntPtr LoadLibrary(string dllToLoad);
 
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         public static extern IntPtr GetProcAddress(IntPtr hModule, string procedureName);
 
         [DllImport("kernel32.dll")]

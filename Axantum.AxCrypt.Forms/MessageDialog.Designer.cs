@@ -126,7 +126,7 @@
             this.MinimizeBox = false;
             this.Name = "MessageDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "[MessageDialog]";
+            this.Text = "[Message Dialog]";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);

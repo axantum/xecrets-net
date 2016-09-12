@@ -257,5 +257,10 @@ namespace Axantum.AxCrypt.Forms.Implementation
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        ~DeviceLocked()
+        {
+            Dispose(false);
+        }
     }
 }

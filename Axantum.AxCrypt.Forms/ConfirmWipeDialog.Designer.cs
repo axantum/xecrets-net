@@ -56,7 +56,7 @@
             this.FileNameLabel.Name = "FileNameLabel";
             this.FileNameLabel.Size = new System.Drawing.Size(387, 24);
             this.FileNameLabel.TabIndex = 1;
-            this.FileNameLabel.Text = "[MyDocument.ext]";
+            this.FileNameLabel.Text = "[My Document.ext]";
             // 
             // _iconPictureBox
             // 

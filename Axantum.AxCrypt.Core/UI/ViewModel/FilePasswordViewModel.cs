@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 case nameof(PassphraseText):
                     if (New<KnownIdentities>().DefaultEncryptionIdentity.Passphrase == Passphrase)
                     {
-                        ValidationError = (int)ViewModel.ValidationError.SamePasswordAsSignedIn;
+                        ValidationError = (int)ViewModel.ValidationError.SamePasswordAlreadySignedIn;
                         return false;
                     }
                     if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))

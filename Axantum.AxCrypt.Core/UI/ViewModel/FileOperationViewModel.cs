@@ -184,7 +184,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return CompletedTask;
             }
 
-            return _fileOperation.DoFilesAsync(new DataContainerEnumerator(containers).Where((ds) => ds.IsLegacyV1()), UpgradeFilesWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
+            return _fileOperation.DoFilesAsync(new DataContainerCollection(containers).Where((ds) => ds.IsLegacyV1()), UpgradeFilesWorkAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
         }
 
         private async Task RandomRenameFilesActionAsync(IEnumerable<string> files)

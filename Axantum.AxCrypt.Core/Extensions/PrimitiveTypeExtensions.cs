@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 case ValidationError.InvalidEmail:
                     return Texts.InvalidEmail;
 
-                case ValidationError.SamePasswordAsSignedIn:
+                case ValidationError.SamePasswordAlreadySignedIn:
                     return Texts.SameFilePasswordAsSignedInError;
 
                 case ValidationError.IdentityExistsAlready:

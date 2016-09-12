@@ -26,6 +26,11 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public void HandleSelection(FileSelectionEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             switch (e.FileSelectionType)
             {
                 case FileSelectionType.SaveAsEncrypted:
