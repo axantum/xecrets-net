@@ -3064,6 +3064,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Feedback.
+        /// </summary>
+        public static string NavigationPaneFeedback {
+            get {
+                return ResourceManager.GetString("NavigationPaneFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string NavigationPaneHome {
+            get {
+                return ResourceManager.GetString("NavigationPaneHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a New Password.
         /// </summary>
         public static string NewPassphraseDialogTitle {
