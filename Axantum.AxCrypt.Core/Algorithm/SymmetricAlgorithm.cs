@@ -35,6 +35,10 @@ namespace Axantum.AxCrypt.Core.Algorithm
 {
     public abstract class SymmetricAlgorithm : IDisposable
     {
+        protected SymmetricAlgorithm()
+        {
+        }
+
         private KeySizes[] _blockSizes;
 
         protected KeySizes[] BlockSizes()

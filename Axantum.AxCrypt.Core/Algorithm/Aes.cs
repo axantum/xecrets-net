@@ -34,5 +34,8 @@ namespace Axantum.AxCrypt.Core.Algorithm
 {
     public abstract class Aes : SymmetricAlgorithm
     {
+        protected Aes()
+        {
+        }
     }
 }

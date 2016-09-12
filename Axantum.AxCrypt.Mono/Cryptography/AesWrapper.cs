@@ -11,6 +11,10 @@ namespace Axantum.AxCrypt.Mono.Cryptography
     {
         private System.Security.Cryptography.SymmetricAlgorithm _symmetricAlgorithm;
 
+        private AesWrapper()
+        {
+        }
+
         public AesWrapper(System.Security.Cryptography.SymmetricAlgorithm symmetricAlgorithm)
         {
             _symmetricAlgorithm = symmetricAlgorithm;
