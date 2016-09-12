@@ -1215,6 +1215,12 @@ This program is licensed according to the agreement.
     <value>My AxCrypt</value>
     <comment>The folder name used for default watching</comment>
   </data>
+  <data name="NavigationPaneFeedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="NavigationPaneHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Create a New Password</value>
   </data>
