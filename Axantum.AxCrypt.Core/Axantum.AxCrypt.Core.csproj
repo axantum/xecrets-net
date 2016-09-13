@@ -368,6 +368,7 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\SolutionItems\CustomDictionary.xml">
       <Link>CustomDictionary.xml</Link>
+      <SubType>Designer</SubType>
     </CodeAnalysisDictionary>
     <Content Include="AboutThisAssembly.txt" />
     <Content Include="resources\json.netlicense.txt" />
