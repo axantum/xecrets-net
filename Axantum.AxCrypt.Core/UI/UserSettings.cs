@@ -40,7 +40,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public class UserSettings : IUserSettings
+    public class UserSettings
     {
         public int CurrentSettingsVersion { get { return 10; } }
 #if DEBUG
@@ -49,38 +49,24 @@ namespace Axantum.AxCrypt.Core.UI
         private const int ASYMMETRIC_KEY_BITS = 4096;
 #endif
 
-        private Dictionary<string, string> _settings = new Dictionary<string, string>();
-
-        private IDataStore _persistanceFileInfo;
+        private ISettingsStore _settingsStore;
 
         private IterationCalculator _keyWrapIterationCalculator;
 
-        protected UserSettings(IterationCalculator keyWrapIterationCalculator)
+        public UserSettings(ISettingsStore settingsStore, IterationCalculator keyWrapIterationCalculator)
         {
-            _keyWrapIterationCalculator = keyWrapIterationCalculator;
-        }
-
-        public UserSettings(IDataStore fileInfo, IterationCalculator keyWrapIterationCalculator)
-        {
-            if (fileInfo == null)
+            if (settingsStore == null)
             {
-                throw new ArgumentNullException("fileInfo");
+                throw new ArgumentNullException(nameof(settingsStore));
             }
 
-            _persistanceFileInfo = fileInfo;
+            _settingsStore = settingsStore;
 
             _keyWrapIterationCalculator = keyWrapIterationCalculator;
 
-            if (!_persistanceFileInfo.IsAvailable)
+            if (_settingsStore[nameof(SettingsVersion)].Length == 0)
             {
-                _settings[nameof(SettingsVersion)] = Convert.ToString(CurrentSettingsVersion, CultureInfo.InvariantCulture);
-                return;
-            }
-
-            using (JsonReader reader = new JsonTextReader(new StreamReader(_persistanceFileInfo.OpenRead())))
-            {
-                JsonSerializer serializer = CreateSerializer();
-                _settings = serializer.Deserialize<Dictionary<string, string>>(reader) ?? new Dictionary<string, string>();
+                _settingsStore[nameof(SettingsVersion)] = Convert.ToString(CurrentSettingsVersion, CultureInfo.InvariantCulture);
             }
         }
 
@@ -96,10 +82,9 @@ namespace Axantum.AxCrypt.Core.UI
             return JsonSerializer.Create(serializerSettings);
         }
 
-        public void Delete()
+        public void Clear()
         {
-            _persistanceFileInfo.Delete();
-            _settings = new Dictionary<string, string>();
+            _settingsStore.Clear();
         }
 
         public string CultureName
@@ -212,26 +197,20 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(DisplayDecryptPassphrase), value); }
         }
 
-        public long GetKeyWrapIterations(Guid cryptoId)
+        public virtual long GetKeyWrapIterations(Guid cryptoId)
         {
             return Load(cryptoId.ToString("N"), () => _keyWrapIterationCalculator.KeyWrapIterations(cryptoId));
         }
 
-        public void SetKeyWrapIterations(Guid cryptoId, long keyWrapIterations)
+        public virtual void SetKeyWrapIterations(Guid cryptoId, long keyWrapIterations)
         {
             Store(cryptoId.ToString("N"), keyWrapIterations);
         }
 
-        public Salt ThumbprintSalt
+        public virtual Salt ThumbprintSalt
         {
             get { return Load(nameof(ThumbprintSalt), () => New<int, Salt>(512)); }
             set { Store(nameof(ThumbprintSalt), Resolve.Serializer.Serialize(value)); }
-        }
-
-        public TimeSpan SessionNotificationMinimumIdle
-        {
-            get { return Load("WorkFolderMinimumIdle", TimeSpan.FromMilliseconds(500)); }
-            set { Store("WorkFolderMinimumIdle", value); }
         }
 
         public int SettingsVersion
@@ -276,40 +255,6 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(LegacyConversionMode), (int)value); }
         }
 
-        public string this[string key]
-        {
-            get
-            {
-                string value;
-                if (!_settings.TryGetValue(key, out value))
-                {
-                    return String.Empty;
-                }
-                return value;
-            }
-            set
-            {
-                if (this[key] == value)
-                {
-                    return;
-                }
-                _settings[key] = value;
-                Save();
-            }
-        }
-
-        protected virtual void Save()
-        {
-            using (FileLock.Lock(_persistanceFileInfo))
-            {
-                using (TextWriter writer = new StreamWriter(_persistanceFileInfo.OpenWrite()))
-                {
-                    JsonSerializer serializer = CreateSerializer();
-                    serializer.Serialize(writer, _settings);
-                }
-            }
-        }
-
         public T Load<T>(string key)
         {
             return Load(key, default(T));
@@ -322,8 +267,8 @@ namespace Axantum.AxCrypt.Core.UI
                 throw new ArgumentNullException("fallbackAction");
             }
 
-            string value;
-            if (_settings.TryGetValue(key, out value))
+            string value = _settingsStore[key];
+            if (value.Length > 0)
             {
                 try
                 {
@@ -336,7 +281,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             T fallback = fallbackAction();
-            this[key] = Convert.ToString(fallback, CultureInfo.InvariantCulture);
+            _settingsStore[key] = Convert.ToString(fallback, CultureInfo.InvariantCulture);
             return fallback;
         }
 
@@ -347,8 +292,8 @@ namespace Axantum.AxCrypt.Core.UI
                 throw new ArgumentNullException("fallbackAction");
             }
 
-            string value;
-            if (_settings.TryGetValue(key, out value))
+            string value = _settingsStore[key];
+            if (value.Length > 0)
             {
                 try
                 {
@@ -361,14 +306,14 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             Salt fallback = fallbackAction();
-            this[key] = Resolve.Serializer.Serialize(fallback);
+            _settingsStore[key] = Resolve.Serializer.Serialize(fallback);
             return fallback;
         }
 
         public T Load<T>(string key, T fallback)
         {
-            string value;
-            if (!_settings.TryGetValue(key, out value))
+            string value = _settingsStore[key];
+            if (value.Length == 0)
             {
                 return fallback;
             }
@@ -377,8 +322,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Uri Load(string key, Uri fallback)
         {
-            string value;
-            if (!_settings.TryGetValue(key, out value))
+            string value = _settingsStore[key];
+            if (value.Length == 0)
             {
                 return fallback;
             }
@@ -387,8 +332,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         public TimeSpan Load(string key, TimeSpan fallback)
         {
-            string value;
-            if (!_settings.TryGetValue(key, out value))
+            string value = _settingsStore[key];
+            if (value.Length == 0)
             {
                 return fallback;
             }
@@ -397,7 +342,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public void Store<T>(string key, T value)
         {
-            this[key] = Convert.ToString(value, CultureInfo.InvariantCulture);
+            _settingsStore[key] = Convert.ToString(value, CultureInfo.InvariantCulture);
         }
     }
 }

@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt
         {
             if (_commandLine.IsOfflineCommand)
             {
-                New<IUserSettings>().OfflineMode = true;
+                New<UserSettings>().OfflineMode = true;
             }
         }
 
@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt
 
         private static void SetThisVersion()
         {
-            New<IUserSettings>().ThisVersion = New<IVersion>().Current.ToString();
+            New<UserSettings>().ThisVersion = New<IVersion>().Current.ToString();
         }
 
         private static void EnsureUiContextInitialized()
@@ -322,12 +322,12 @@ namespace Axantum.AxCrypt
             SignUpSignIn signUpSignIn = new SignUpSignIn()
             {
                 Version = _apiVersion,
-                UserEmail = New<IUserSettings>().UserEmail,
+                UserEmail = New<UserSettings>().UserEmail,
             };
 
             await signUpSignIn.DialogsAsync(this, this);
 
-            New<IUserSettings>().UserEmail = signUpSignIn.UserEmail;
+            New<UserSettings>().UserEmail = signUpSignIn.UserEmail;
 
             if (signUpSignIn.StopAndExit)
             {
@@ -480,9 +480,9 @@ namespace Axantum.AxCrypt
             _signOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _alwaysOfflineToolStripMenuItem.Click += (sender, e) =>
             {
-                bool offlineMode = !New<IUserSettings>().OfflineMode;
+                bool offlineMode = !New<UserSettings>().OfflineMode;
                 _alwaysOfflineToolStripMenuItem.Checked = offlineMode;
-                New<IUserSettings>().OfflineMode = offlineMode;
+                New<UserSettings>().OfflineMode = offlineMode;
                 New<AxCryptOnlineState>().IsOffline = offlineMode;
             };
             _softwareStatusButton.Click += _softwareStatusButton_Click;
@@ -623,7 +623,7 @@ namespace Axantum.AxCrypt
             Location = Preferences.MainWindowLocation.Fallback(Location).Safe();
 
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
-            _alwaysOfflineToolStripMenuItem.Checked = New<IUserSettings>().OfflineMode;
+            _alwaysOfflineToolStripMenuItem.Checked = New<UserSettings>().OfflineMode;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
@@ -1183,7 +1183,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case CommandVerb.SetOfflineMode:
-                    New<IUserSettings>().OfflineMode = true;
+                    New<UserSettings>().OfflineMode = true;
                     break;
 
                 case CommandVerb.SignOut:
@@ -1819,7 +1819,7 @@ namespace Axantum.AxCrypt
         {
             ShutDownBackgroundSafe();
 
-            Resolve.UserSettings.Delete();
+            Resolve.UserSettings.Clear();
             Resolve.FileSystemState.Delete();
             Resolve.WorkFolder.FileInfo.FileItemInfo(LocalAccountService.FileName).Delete();
             New<KnownPublicKeys>().Delete();

@@ -46,7 +46,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt"), New<IterationCalculator>()));
+            TypeMap.Register.Singleton<ISettingsStore>(() => new SettingsStore(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt")));
+            TypeMap.Register.Singleton<UserSettings>(() => new UserSettings(New<ISettingsStore>(), New<IterationCalculator>()));
             FakeDataStore.AddFolder(@"C:\Folder\");
         }
 
@@ -59,20 +60,20 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSerializeDeserialize()
         {
-            UserSettings settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), new IterationCalculator());
+            UserSettings settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), new IterationCalculator());
 
             Assert.That(settings.DebugMode, Is.False, "The DebugMode is always false by default.");
             settings.DebugMode = true;
             Assert.That(settings.DebugMode, Is.True, "The DebugMode was set to true.");
 
-            settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), new IterationCalculator());
+            settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), new IterationCalculator());
             Assert.That(settings.DebugMode, Is.True, "The DebugMode was set to true, and should have been saved.");
         }
 
         [Test]
         public static void TestNamedStronglyTypedProperties()
         {
-            UserSettings settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), new IterationCalculator());
+            UserSettings settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), new IterationCalculator());
 
             settings.CultureName = "sv-SE";
             Assert.That(settings.CultureName, Is.EqualTo("sv-SE"), "The value should be this.");
@@ -105,9 +106,6 @@ namespace Axantum.AxCrypt.Core.Test
             settings.ThumbprintSalt = salt;
             Assert.That(settings.ThumbprintSalt.GetBytes(), Is.EqualTo(salt.GetBytes()), "The value should be this.");
 
-            settings.SessionNotificationMinimumIdle = new TimeSpan(1, 2, 3);
-            Assert.That(settings.SessionNotificationMinimumIdle, Is.EqualTo(new TimeSpan(1, 2, 3)), "The value should be this.");
-
             settings.SetKeyWrapIterations(new V2Aes256CryptoFactory().CryptoId, 999);
             Assert.That(settings.GetKeyWrapIterations(new V2Aes256CryptoFactory().CryptoId), Is.EqualTo(999));
         }
@@ -117,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IterationCalculator calculator = Mock.Of<IterationCalculator>(c => c.KeyWrapIterations(It.Is<Guid>(g => g == new V1Aes128CryptoFactory().CryptoId)) == 666);
 
-            UserSettings settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), calculator);
+            UserSettings settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), calculator);
             Assert.That(settings.GetKeyWrapIterations(new V1Aes128CryptoFactory().CryptoId), Is.EqualTo(666));
         }
 
@@ -126,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Salt salt = new Salt(128);
             TypeMap.Register.New((int n) => salt);
-            UserSettings settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), new FakeIterationCalculator());
+            UserSettings settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), new FakeIterationCalculator());
 
             Assert.That(settings.ThumbprintSalt.GetBytes(), Is.EqualTo(salt.GetBytes()), "The value should be this.");
         }
@@ -134,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUpdateToSameValueCausesNoSave()
         {
-            UserSettings settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), new FakeIterationCalculator());
+            UserSettings settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), new FakeIterationCalculator());
             int writeCount = 0;
             EventHandler handler = (sender, e) => ++writeCount;
             FakeDataStore.OpeningForWrite += handler;
@@ -157,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadOfDefaultKeyedValues()
         {
-            UserSettings settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), new FakeIterationCalculator());
+            UserSettings settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), new FakeIterationCalculator());
 
             int n = settings.Load<int>("MyKey");
             Assert.That(n, Is.EqualTo(default(int)), "Since the key is unknown, the default value should be returned.");
@@ -170,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadOfInvalidFormatKeyValueWithFallbackReturn()
         {
-            UserSettings settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), new FakeIterationCalculator());
+            UserSettings settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), new FakeIterationCalculator());
             settings.Store<string>("MyKey", "NotANumber");
 
             int n = settings.Load("MyKey", () => 555);
@@ -180,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadOfInvalidFormatKeyWrapSaltWithFallbackReturn()
         {
-            UserSettings settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), new FakeIterationCalculator());
+            UserSettings settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), new FakeIterationCalculator());
             settings.Store<string>("MyKey", "NotASalt");
 
             Salt salt = new Salt(128);
@@ -191,7 +189,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadOfUriWithFallbackReturn()
         {
-            UserSettings settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), new FakeIterationCalculator());
+            UserSettings settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), new FakeIterationCalculator());
 
             Uri url = settings.Load("MyKey", new Uri("http://localhost/fallback"));
             Assert.That(url, Is.EqualTo(new Uri("http://localhost/fallback")));
@@ -200,7 +198,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadOfTimeSpanWithFallbackReturn()
         {
-            UserSettings settings = new UserSettings(New<IDataStore>(@"C:\Folder\UserSettings.txt"), new FakeIterationCalculator());
+            UserSettings settings = new UserSettings(new SettingsStore(New<IDataStore>(@"C:\Folder\UserSettings.txt")), new FakeIterationCalculator());
 
             TimeSpan timeSpan = settings.Load("MyKey", new TimeSpan(1, 2, 3));
             Assert.That(timeSpan, Is.EqualTo(new TimeSpan(1, 2, 3)));

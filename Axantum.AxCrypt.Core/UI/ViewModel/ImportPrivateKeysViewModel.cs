@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class ImportPrivateKeysViewModel : ViewModelBase
     {
-        private IUserSettings _userSettings;
+        private UserSettings _userSettings;
 
         private KnownIdentities _knownIdentities;
 
@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool ImportSuccessful { get { return GetProperty<bool>(nameof(ImportSuccessful)); } set { SetProperty(nameof(ImportSuccessful), value); } }
 
-        public ImportPrivateKeysViewModel(IUserSettings userSettings, KnownIdentities knownIdentities)
+        public ImportPrivateKeysViewModel(UserSettings userSettings, KnownIdentities knownIdentities)
         {
             _userSettings = userSettings;
             _knownIdentities = knownIdentities;

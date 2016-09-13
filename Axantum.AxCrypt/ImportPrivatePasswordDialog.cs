@@ -20,7 +20,7 @@ namespace Axantum.AxCrypt
             InitializeComponent();
         }
 
-        public ImportPrivatePasswordDialog(Form parent, IUserSettings userSettings, KnownIdentities knownIdentities)
+        public ImportPrivatePasswordDialog(Form parent, UserSettings userSettings, KnownIdentities knownIdentities)
             : this()
         {
             InitializeStyle(parent);

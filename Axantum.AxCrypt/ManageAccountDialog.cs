@@ -21,14 +21,14 @@ namespace Axantum.AxCrypt
     {
         private ManageAccountViewModel _viewModel;
 
-        private IUserSettings _userSettings;
+        private UserSettings _userSettings;
 
         public ManageAccountDialog()
         {
             InitializeComponent();
         }
 
-        public ManageAccountDialog(Form parent, IUserSettings userSettings)
+        public ManageAccountDialog(Form parent, UserSettings userSettings)
             : this()
         {
             InitializeStyle(parent);

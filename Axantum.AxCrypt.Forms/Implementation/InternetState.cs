@@ -20,7 +20,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public InternetState()
         {
-            if (New<IUserSettings>().OfflineMode)
+            if (New<UserSettings>().OfflineMode)
             {
                 return;
             }
@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         private static bool GetCurrentState()
         {
-            if (New<IUserSettings>().OfflineMode)
+            if (New<UserSettings>().OfflineMode)
             {
                 return false;
             }

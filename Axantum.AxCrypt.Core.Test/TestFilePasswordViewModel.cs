@@ -40,6 +40,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 namespace Axantum.AxCrypt.Core.Test
@@ -110,10 +112,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestValidatePassphraseOk()
         {
-            Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
-            userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
-            userSettingsMock.Setup<long>(f => f.GetKeyWrapIterations(It.IsAny<Guid>())).Returns(10);
-            TypeMap.Register.Singleton<IUserSettings>(() => userSettingsMock.Object);
+            New<UserSettings>().ThumbprintSalt = Salt.Zero;
+            New<UserSettings>().SetKeyWrapIterations(new V1Aes128CryptoFactory().CryptoId, 10);
 
             Mock<IRuntimeEnvironment> environmentMock = new Mock<IRuntimeEnvironment>();
             environmentMock.Setup<bool>(f => f.IsLittleEndian).Returns(true);
@@ -132,10 +132,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestValidatePassphraseNotOk()
         {
-            Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
-            userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
-            userSettingsMock.Setup<long>(f => f.GetKeyWrapIterations(It.IsAny<Guid>())).Returns(10);
-            TypeMap.Register.Singleton<IUserSettings>(() => userSettingsMock.Object);
+            New<UserSettings>().ThumbprintSalt = Salt.Zero;
+            New<UserSettings>().SetKeyWrapIterations(new V1Aes128CryptoFactory().CryptoId, 10);
 
             Mock<IRuntimeEnvironment> environmentMock = new Mock<IRuntimeEnvironment>();
             environmentMock.Setup<bool>(f => f.IsLittleEndian).Returns(true);

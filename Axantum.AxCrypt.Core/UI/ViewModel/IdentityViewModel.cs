@@ -44,11 +44,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private KnownIdentities _knownIdentities;
 
-        private IUserSettings _userSettings;
+        private UserSettings _userSettings;
 
         private SessionNotify _sessionNotify;
 
-        public IdentityViewModel(FileSystemState fileSystemState, KnownIdentities knownIdentities, IUserSettings userSettings, SessionNotify sessionNotify)
+        public IdentityViewModel(FileSystemState fileSystemState, KnownIdentities knownIdentities, UserSettings userSettings, SessionNotify sessionNotify)
         {
             _fileSystemState = fileSystemState;
             _knownIdentities = knownIdentities;

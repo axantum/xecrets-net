@@ -14,7 +14,10 @@ namespace Axantum.AxCrypt.Fake
 {
     public class FakeUserSettings : UserSettings
     {
-        public FakeUserSettings(IterationCalculator keyWrapIterationCalculator) : base(keyWrapIterationCalculator)
+        private Dictionary<string, string> _settings = new Dictionary<string, string>();
+
+        public FakeUserSettings(IterationCalculator keyWrapIterationCalculator)
+            : base(New<ISettingsStore>(), keyWrapIterationCalculator)
         {
             this.AsymmetricKeyBits = 768;
             this.AxCrypt2HelpUrl = new Uri("http://localhost/AxCrypt2Help");
@@ -25,17 +28,12 @@ namespace Axantum.AxCrypt.Fake
             this.LastUpdateCheckUtc = New<INow>().Utc;
             this.NewestKnownVersion = "2.0.0.0";
             this.ThisVersion = "2.1.1234.0";
-            this.SessionNotificationMinimumIdle = TimeSpan.FromSeconds(1);
             this.SettingsVersion = 5;
             this.ThumbprintSalt = Salt.Zero;
             this.TryBrokenFile = false;
             this.OfflineMode = false;
             this.UpdateUrl = new Uri("http://localhost/update");
             this.UserEmail = String.Empty;
-        }
-
-        protected override void Save()
-        {
         }
     }
 }

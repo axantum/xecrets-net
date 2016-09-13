@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private FileSystemState _fileSystemState;
 
-        private IUserSettings _userSettings;
+        private UserSettings _userSettings;
 
         private AxCryptUpdateCheck _axCryptUpdateCheck;
 
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction LicenseUpdate { get; private set; }
 
-        public MainViewModel(FileSystemState fileSystemState, IUserSettings userSettings)
+        public MainViewModel(FileSystemState fileSystemState, UserSettings userSettings)
         {
             _fileSystemState = fileSystemState;
             _userSettings = userSettings;

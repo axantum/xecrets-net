@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return false;
             }
 
-            if (New<IUserSettings>().LegacyConversionMode != LegacyConversionMode.AutoConvertLegacyFiles)
+            if (New<UserSettings>().LegacyConversionMode != LegacyConversionMode.AutoConvertLegacyFiles)
             {
                 return false;
             }

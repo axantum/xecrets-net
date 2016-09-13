@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         }
 
                         await SignInCommandAsync();
-                        UserEmail = New<IUserSettings>().UserEmail;
+                        UserEmail = New<UserSettings>().UserEmail;
                     });
                     if (StopAndExit)
                     {

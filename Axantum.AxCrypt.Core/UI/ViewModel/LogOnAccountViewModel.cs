@@ -45,9 +45,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// </summary>
     public class LogOnAccountViewModel : ViewModelBase
     {
-        private IUserSettings _userSettings;
+        private UserSettings _userSettings;
 
-        public LogOnAccountViewModel(IUserSettings userSettings)
+        public LogOnAccountViewModel(UserSettings userSettings)
         {
             if (userSettings == null)
             {
@@ -64,13 +64,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             UserEmail = userEmail;
             Passphrase = String.Empty;
-            ShowPassphrase = New<IUserSettings>().DisplayDecryptPassphrase;
+            ShowPassphrase = New<UserSettings>().DisplayDecryptPassphrase;
             ShowEmail = true;
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<IUserSettings>().DisplayDecryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
             BindPropertyChangedInternal(nameof(ShowEmail), (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
             BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; } });
         }

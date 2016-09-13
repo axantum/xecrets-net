@@ -27,13 +27,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<IUserSettings>().DisplayDecryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
         }
 
         private void InitializePropertyValues()
         {
             Passphrase = String.Empty;
-            ShowPassphrase = New<IUserSettings>().DisplayDecryptPassphrase;
+            ShowPassphrase = New<UserSettings>().DisplayDecryptPassphrase;
         }
 
         protected override Task<bool> ValidateAsync(string columnName)

@@ -199,6 +199,7 @@
     <Compile Include="UI\PasswordStrengthCalculator.cs" />
     <Compile Include="UI\PasswordStrengthEvaluator.cs" />
     <Compile Include="UI\PopupButtons.cs" />
+    <Compile Include="UI\SettingsStore.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />
     <Compile Include="UI\ViewModel\AccountProperties.cs" />
     <Compile Include="UI\ViewModel\AsyncDelegateAction.cs" />
@@ -327,7 +328,7 @@
     <Compile Include="Session\SessionNotificationEventArgs.cs" />
     <Compile Include="Session\WatchedFolder.cs" />
     <Compile Include="Session\WatchedFolderChangedEventArgs.cs" />
-    <Compile Include="UI\IUserSettings.cs" />
+    <Compile Include="UI\ISettingsStore.cs" />
     <Compile Include="UI\KnownFolder.cs" />
     <Compile Include="UI\ViewModel\DelegateAction.cs" />
     <Compile Include="UI\ViewModel\FileOperationViewModel.cs" />
