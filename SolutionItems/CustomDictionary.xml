@@ -12,6 +12,8 @@
       <Word>sha</Word>
       <Word>pem</Word>
       <Word>api</Word>
+      <Word>xam</Word>
+      <Word>xamarin</Word>
     </Recognized>
     <Deprecated>
       <Term PreferredAlternate=""></Term>
