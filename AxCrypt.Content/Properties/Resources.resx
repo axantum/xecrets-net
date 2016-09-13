@@ -156,25 +156,25 @@
     <value>Activate AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
-    <value>Your AxCrypt ID activation code is &lt;b&gt;{0}&lt;/b&gt; . Use it in the AxCrypt app, or click the button below for the web.  This will verify and activate your account.</value>
+    <value>Your verification code is &lt;b&gt;{0}&lt;/b&gt; .</value>
   </data>
   <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
-    <value>Your activation code is {0} .</value>
+    <value>Your verification code is {0}.</value>
   </data>
   <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
-    <value>You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your AxCrypt ID.</value>
+    <value>You can start your trial of &lt;b&gt;AxCrypt Premium features for 30 days&lt;/b&gt; in the app!</value>
   </data>
   <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
-    <value>You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your AxCrypt ID.</value>
+    <value>You can start trying AxCrypt Premium features for 30 days in the app!</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>You have signed up for an AxCrypt ID. To verify your account you must  enter the activation code below in the AxCrypt app or our web site.</value>
+    <value>You have signed up to use AxCrypt. To complete the process you must verify your email address.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
-    <value>If you wish to use the web instead of the app, go to &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your AxCrypt ID.</value>
+    <value>To verify manually,  go to &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt;  and enter &lt;b&gt;{1}&lt;/b&gt; and the verification code &lt;b&gt;{2}&lt;/b&gt; .</value>
   </data>
   <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
-    <value>If you wish to use the web site instead of the AxCrypt app, go to {0} and enter {1} and the activation code {2} to manually activate your AxCrypt ID.</value>
+    <value>To verify manually,  go to {0} and enter {1} and the verification code {2} .</value>
   </data>
   <data name="ActivateMailBodyTitle" xml:space="preserve">
     <value>Hello and welcome to AxCrypt!</value>
