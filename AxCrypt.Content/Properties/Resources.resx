@@ -236,6 +236,10 @@ Please sign in using the same password you used then.</value>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Hide the real name of a secured file by renaming it to something random.</value>
   </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>AxCrypt</value>
+    <comment>Title of mobile application</comment>
+  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>The page you tried to visit requires authentication. Please sign in to proceed.</value>
   </data>

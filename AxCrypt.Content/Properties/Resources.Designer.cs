@@ -170,7 +170,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt ID activation code is &lt;b&gt;{0}&lt;/b&gt; . Use it in the AxCrypt app, or click the button below for the web.  This will verify and activate your account..
+        ///   Looks up a localized string similar to Your verification code is &lt;b&gt;{0}&lt;/b&gt; ..
         /// </summary>
         public static string ActivateMailBodyCode {
             get {
@@ -179,7 +179,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your activation code is {0} ..
+        ///   Looks up a localized string similar to Your verification code is {0}..
         /// </summary>
         public static string ActivateMailBodyCodePlainText {
             get {
@@ -188,7 +188,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have free access to AxCrypt Premium features during a &lt;b&gt;30 day trial period&lt;/b&gt; from the moment you activate your AxCrypt ID..
+        ///   Looks up a localized string similar to You can start your trial of &lt;b&gt;AxCrypt Premium features for 30 days&lt;/b&gt; in the app!.
         /// </summary>
         public static string ActivateMailBodyFreeTrial {
             get {
@@ -197,7 +197,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have free access to AxCrypt Premium features during a 30 day trial period from the moment you activate your AxCrypt ID..
+        ///   Looks up a localized string similar to You can start trying AxCrypt Premium features for 30 days in the app!.
         /// </summary>
         public static string ActivateMailBodyFreeTrialPlainText {
             get {
@@ -206,7 +206,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have signed up for an AxCrypt ID. To verify your account you must  enter the activation code below in the AxCrypt app or our web site..
+        ///   Looks up a localized string similar to You have signed up to use AxCrypt. To complete the process you must verify your email address..
         /// </summary>
         public static string ActivateMailBodyIntro {
             get {
@@ -215,7 +215,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you wish to use the web instead of the app, go to &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;{0}&lt;/a&gt; and enter &lt;b&gt;{1}&lt;/b&gt; and the activation code &lt;b&gt;{2}&lt;/b&gt; to manually activate your AxCrypt ID..
+        ///   Looks up a localized string similar to To verify manually,  go to &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;{0}&lt;/a&gt;  and enter &lt;b&gt;{1}&lt;/b&gt; and the verification code &lt;b&gt;{2}&lt;/b&gt; ..
         /// </summary>
         public static string ActivateMailBodyManualLink {
             get {
@@ -224,7 +224,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you wish to use the web site instead of the AxCrypt app, go to {0} and enter {1} and the activation code {2} to manually activate your AxCrypt ID..
+        ///   Looks up a localized string similar to To verify manually,  go to {0} and enter {1} and the verification code {2} ..
         /// </summary>
         public static string ActivateMailBodyManualLinkPlainText {
             get {
@@ -381,6 +381,15 @@ namespace AxCrypt.Content.Properties {
         public static string AnonymousRenameToolTip {
             get {
                 return ResourceManager.GetString("AnonymousRenameToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt.
+        /// </summary>
+        public static string ApplicationTitle {
+            get {
+                return ResourceManager.GetString("ApplicationTitle", resourceCulture);
             }
         }
         
