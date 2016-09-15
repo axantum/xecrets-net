@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class UserSettings
     {
-        public int CurrentSettingsVersion { get { return 10; } }
+        public static int CurrentSettingsVersion { get { return 10; } }
 #if DEBUG
         private const int ASYMMETRIC_KEY_BITS = 768;
 #else
@@ -68,18 +68,6 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _settingsStore[nameof(SettingsVersion)] = Convert.ToString(CurrentSettingsVersion, CultureInfo.InvariantCulture);
             }
-        }
-
-        private static JsonSerializer CreateSerializer()
-        {
-            JsonSerializerSettings serializerSettings = new JsonSerializerSettings()
-            {
-                DefaultValueHandling = DefaultValueHandling.Include,
-                Formatting = Formatting.Indented,
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-                NullValueHandling = NullValueHandling.Include,
-            };
-            return JsonSerializer.Create(serializerSettings);
         }
 
         public void Clear()

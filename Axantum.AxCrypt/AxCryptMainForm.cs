@@ -286,7 +286,7 @@ namespace Axantum.AxCrypt
 
         private static bool ValidateSettings()
         {
-            if (Resolve.UserSettings.SettingsVersion >= Resolve.UserSettings.CurrentSettingsVersion)
+            if (Resolve.UserSettings.SettingsVersion >= UserSettings.CurrentSettingsVersion)
             {
                 return true;
             }
@@ -1823,7 +1823,7 @@ namespace Axantum.AxCrypt
             Resolve.FileSystemState.Delete();
             Resolve.WorkFolder.FileInfo.FileItemInfo(LocalAccountService.FileName).Delete();
             New<KnownPublicKeys>().Delete();
-            Resolve.UserSettings.SettingsVersion = Resolve.UserSettings.CurrentSettingsVersion;
+            Resolve.UserSettings.SettingsVersion = UserSettings.CurrentSettingsVersion;
         }
 
         private void PolicyMenuItem_Click(object sender, EventArgs e)

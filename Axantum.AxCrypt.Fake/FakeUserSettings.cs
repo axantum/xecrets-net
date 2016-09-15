@@ -14,26 +14,30 @@ namespace Axantum.AxCrypt.Fake
 {
     public class FakeUserSettings : UserSettings
     {
-        private Dictionary<string, string> _settings = new Dictionary<string, string>();
-
         public FakeUserSettings(IterationCalculator keyWrapIterationCalculator)
             : base(New<ISettingsStore>(), keyWrapIterationCalculator)
         {
-            this.AsymmetricKeyBits = 768;
-            this.AxCrypt2HelpUrl = new Uri("http://localhost/AxCrypt2Help");
-            this.CultureName = "en-US";
-            this.DebugMode = false;
-            this.DisplayDecryptPassphrase = false;
-            this.DisplayEncryptPassphrase = false;
-            this.LastUpdateCheckUtc = New<INow>().Utc;
-            this.NewestKnownVersion = "2.0.0.0";
-            this.ThisVersion = "2.1.1234.0";
-            this.SettingsVersion = 5;
-            this.ThumbprintSalt = Salt.Zero;
-            this.TryBrokenFile = false;
-            this.OfflineMode = false;
-            this.UpdateUrl = new Uri("http://localhost/update");
-            this.UserEmail = String.Empty;
+        }
+
+        public FakeUserSettings Initialize()
+        {
+            AsymmetricKeyBits = 768;
+            AxCrypt2HelpUrl = new Uri("http://localhost/AxCrypt2Help");
+            CultureName = "en-US";
+            DebugMode = false;
+            DisplayDecryptPassphrase = false;
+            DisplayEncryptPassphrase = false;
+            LastUpdateCheckUtc = New<INow>().Utc;
+            NewestKnownVersion = "2.0.0.0";
+            ThisVersion = "2.1.1234.0";
+            SettingsVersion = 5;
+            ThumbprintSalt = Salt.Zero;
+            TryBrokenFile = false;
+            OfflineMode = false;
+            UpdateUrl = new Uri("http://localhost/update");
+            UserEmail = String.Empty;
+
+            return this;
         }
     }
 }
