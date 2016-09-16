@@ -1241,7 +1241,7 @@ This program is licensed according to the agreement.
     <value>No need to check for updates.</value>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
-    <value>Your Premium subscription has expired. You are not using the highest level of security. Click to upgrade!</value>
+    <value>You do not have a Premium subscription, so you are not using the highest level of security. Click to upgrade!</value>
   </data>
   <data name="NotFoundPageBody" xml:space="preserve">
     <value>Unfortunately we could not find the page you were looking for. This might be due to a server restart that caused your browser session to become outdated, or some other server error that caused us to be unable to process the request.
@@ -1520,7 +1520,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
 
 AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Secured Folders and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
 
-To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts when you activate your AxCrypt ID. After that you can extend your premium subscription by using the form below.</value>
+To try the premium features we offer you a 30 days free trial of AxCrypt Premium that you can start at any time. After that you can extend your premium subscription by using the form below.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Security is crucial to us. Everything we do with AxCrypt is done with security as the highest priority. We are therefore using PayPal as payment method for AxCrypt Premium. The PayPal site is highly secure and automatically encrypts your confidential information in transit from your computer to our servers.
@@ -1568,7 +1568,7 @@ A receipt of your purchase has been sent to your e-mail.</value>
   <data name="RegisterPageBody" xml:space="preserve">
     <value>To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing an activation link will then be sent to the specified address and when you click that link you will be asked to choose a password. That's it!
 
-A 30 day trial of AxCrypt Premium is included and will start when you activate your AxCrypt ID.</value>
+A 30 day trial of AxCrypt Premium is included and you can start it at any time from the AxCrypt app.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Sign up for an AxCrypt ID</value>
@@ -1621,7 +1621,7 @@ Subject: AxCrypt Report Snapshot
     <value>Go to password management.</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Your premium subscription has expired and you can therefore no longer edit or create new password entries. However, you still have read-only access.</value>
+    <value>You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href="http://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Your premium subscription expires soon, on {0}. Thereafter you'll have to extend your premium subscription to be able to edit or create new password entries. You'll retain read-only access indefinitely.</value>

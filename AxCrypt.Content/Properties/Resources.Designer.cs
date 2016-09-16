@@ -3136,7 +3136,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Premium subscription has expired. You are not using the highest level of security. Click to upgrade!.
+        ///   Looks up a localized string similar to You do not have a Premium subscription, so you are not using the highest level of security. Click to upgrade!.
         /// </summary>
         public static string NoPremiumWarning {
             get {
@@ -3881,7 +3881,7 @@ namespace AxCrypt.Content.Properties {
         ///
         ///AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Secured Folders and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
         ///
-        ///To try the premium features we offer you a 30 days free trial of AxCrypt Premium that starts  [rest of string was truncated]&quot;;.
+        ///To try the premium features we offer you a 30 days free trial of AxCrypt Premium that you can [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PurchasePageBody1 {
             get {
@@ -4013,7 +4013,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing an activation link will then be sent to the specified address and when you click that link you will be asked to choose a password. That&apos;s it!
         ///
-        ///A 30 day trial of AxCrypt Premium is included and will start when you activate your AxCrypt ID..
+        ///A 30 day trial of AxCrypt Premium is included and you can start it at any time from the AxCrypt app..
         /// </summary>
         public static string RegisterPageBody {
             get {
@@ -4145,7 +4145,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your premium subscription has expired and you can therefore no longer edit or create new password entries. However, you still have read-only access..
+        ///   Looks up a localized string similar to You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href=&quot;http://www.axcrypt.net/Download/&quot;&gt;AxCrypt app&lt;/a&gt;..
         /// </summary>
         public static string SecretsWarningIsReadOnly {
             get {
