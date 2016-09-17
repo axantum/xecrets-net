@@ -139,6 +139,16 @@ namespace Axantum.AxCrypt.Core.Extensions
             return time < thanTime;
         }
 
+        public static bool IsMoreRecentThan(this DateTime time, DateTime thanTime)
+        {
+            return time > thanTime;
+        }
+
+        public static bool IsMoreRecentThan(this DateTime time, TimeSpan interval)
+        {
+            return time.IsMoreRecentThan(New<INow>().Utc - interval);
+        }
+
         public static string ToValidationMessage(this int validationError)
         {
             switch ((ValidationError)validationError)
