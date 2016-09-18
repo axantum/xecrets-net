@@ -4814,7 +4814,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I’m really happy that you have signed up! To make you feel really welcome, I’ve given you free access to our Premium functions for 30 days..
+        ///   Looks up a localized string similar to I’m really happy that you have signed up! To make you feel really welcome, I’m giving you the chance to try our Premium functions for 30 days for free. Just start your trial at any time from the AxCrypt app..
         /// </summary>
         public static string WelcomeMailBody1Html {
             get {

@@ -1862,7 +1862,7 @@ The AxCrypt Team</value>
     <value>Welcome to AxCrypt!</value>
   </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
-    <value>I’m really happy that you have signed up! To make you feel really welcome, I’ve given you free access to our Premium functions for 30 days.</value>
+    <value>I’m really happy that you have signed up! To make you feel really welcome, I’m giving you the chance to try our Premium functions for 30 days for free. Just start your trial at any time from the AxCrypt app.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>With AxCrypt Free or AxCrypt Premium, you can secure your files in a truly easy way. Encrypting your files and entire folders is just a click away. Working with the encrypted files is just as easy too!</value>
