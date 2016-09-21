@@ -3580,6 +3580,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} excl. VAT..
+        /// </summary>
+        public static string PriceExcludingVat {
+            get {
+                return ResourceManager.GetString("PriceExcludingVat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}/month..
+        /// </summary>
+        public static string PricePerMonth {
+            get {
+                return ResourceManager.GetString("PricePerMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activation Code.
         /// </summary>
         public static string PromptActivationCode {

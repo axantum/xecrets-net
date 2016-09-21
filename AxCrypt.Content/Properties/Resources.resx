@@ -1415,6 +1415,14 @@ We classify the password in 4 categories of increasing strength, were we do not 
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Key sharing requires Premium. Click to upgrade now!</value>
   </data>
+  <data name="PriceExcludingVat" xml:space="preserve">
+    <value>{0} excl. VAT.</value>
+    <comment>Brief text used to display the price exclusive of VAT, as additional information. The price is typically shown inclusive. This text is only displayed if any VAT is added.</comment>
+  </data>
+  <data name="PricePerMonth" xml:space="preserve">
+    <value>{0}/month.</value>
+    <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Activation Code</value>
   </data>
