@@ -148,25 +148,25 @@
     <value>Attiva AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
-    <value>Il tuo codice di attivazione di AxCrypt ID è &lt;b&gt;{0}&lt;/b&gt; . Usalo nell'app di AxCrypt o clicca il pulsante sotto per il sito. Questo verificherà e attiverà il tuo account.</value>
+    <value>Il tuo codice di verifica è &lt;b&gt;{0}&lt;/b&gt; .</value>
   </data>
   <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
-    <value>Il tuo codice di attivazione è {0} .</value>
+    <value>Il tuo codice di verifica è {0} .</value>
   </data>
   <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
-    <value>Hai accesso gratuitamente alle funzionalità di AxCrypt Premium durante un &lt;b&gt;periodo di prova di 30 giorni&lt;/b&gt; dal momento in cui attivi il tuo AxCrypt ID.</value>
+    <value>Puoi iniziare il tuo periodo di prova delle &lt;b&gt;funzionalità di AxCrypt Premium per 30 giorni&lt;/b&gt; sull'app!</value>
   </data>
   <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
-    <value>Puoi accedere gratuitamente alle funzionalità di AxCrypt Premium per un periodo di 30 giorni dal momento in cui viene attivato il tuo account AxCrypt ID.</value>
+    <value>Puoi iniziare a provare le funzionalità di AxCrypt Premium per 30 giorni sull'app!</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Ti sei registrato per un AxCrypt ID. Per verificare il tuo account inserisci il codice di attivazione fornito qui sotto nell'app di AxCrypt o nel nostro sito.</value>
+    <value>Ti sei registrato per usare AxCrypt. Per completare il processo devi verificare il tuo indirizzo e-mail.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
-    <value>Se desideri utilizzare il sito invece dell'app vai a &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; e inserisci &lt;b&gt;{1}&lt;/b&gt; e il codice di attivazione &lt;b&gt;{2}&lt;/b&gt; per attivare manualmente il tuo AxCrypt ID.</value>
+    <value>Per verificare manualmente, vai a &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; e inserisci &lt;b&gt;{1}&lt;/b&gt; e il codice di verifica &lt;b&gt;{2}&lt;/b&gt; .</value>
   </data>
   <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
-    <value>Se desideri utilizzare il sito invece dell'app di AxCrypt vai a {0} e inserisci {1} e il codice di attivazione {2} per attivare manualmente il tuo AxCrypt ID.</value>
+    <value>Per verificare manualmente, vai a {0} e inserisci {1} e il codice di verifica {2}.</value>
   </data>
   <data name="ActivateMailBodyTitle" xml:space="preserve">
     <value>Ciao e benvenuto in AxCrypt!</value>
@@ -204,6 +204,12 @@ Scegli una password difficile da indovinare, poichè proteggerà sia le password
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>Seleziona una cartella da proteggere con AxCrypt. I file esistenti nella cartella verranno criptati immediatamente.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AlreadyVerifiedInfo" xml:space="preserve">
+    <value>Ops! Hai già verificato il tuo account, ottimo!
+
+Per favore connettiti usando la stessa password che avevi già utilizzato.</value>
+    <comment>A brief informative message the account is already verified, and to please use the password already set to sign in.</comment>
   </data>
   <data name="AlwaysOffline" xml:space="preserve">
     <value>Sempre Non in Linea</value>
@@ -689,6 +695,12 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
   </data>
+  <data name="HaveAccountInfo" xml:space="preserve">
+    <value>Ottimo! Hai già un account AxCrypt ID per '{0}'.
+
+Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la password.</value>
+    <comment>A text displayed during initial startup explaining that the user already has an account with that email, and if the password is unknown a password reset must be issued in order to sign in. If {0} is present, the email address will be displayed there.</comment>
+  </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>Riguardo a</value>
   </data>
@@ -1036,6 +1048,12 @@ Questo programma è autorizzato secondo l'accordo.
     <value>Clicca per inserire il nome di un file chiave. Usalo solo in caso tu abbia usato un file chiave per proteggere questo file con la versione precedente di AxCrypt.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
+  <data name="NavigationPaneFeedback" xml:space="preserve">
+    <value>Commenti</value>
+  </data>
+  <data name="NavigationPaneHome" xml:space="preserve">
+    <value>Pagina iniziale</value>
+  </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Crea una Nuova Password</value>
   </data>
@@ -1052,7 +1070,7 @@ Questo programma è autorizzato secondo l'accordo.
     <value>Non è necessario un aggiornamento.</value>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
-    <value>Il tuo abbonamento Premium è scaduto. Non stai usando il massimo livello di protezione. Clicca per aggiornare!</value>
+    <value>Non hai un abbonamento Premium, quindi non stai usando il massimo livello di protezione. Clicca per aggiornare!</value>
   </data>
   <data name="NotFoundPageBody" xml:space="preserve">
     <value>Sfortunatamente la pagina che stavi cercando non è stata trovata. Questo potrebbe essere causato da un riavvio del server che ha fatto scadere la tua sessione o da qualche altro errore del server che ci ha reso impossibile processare la richiesta.
@@ -1083,6 +1101,9 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>Non in linea</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
+  </data>
+  <data name="OfflineNoPremiumWarning" xml:space="preserve">
+    <value>Sei offline e non hai un abbonamento a Premium valido. Connettiti ad Internet e acquista o aggiorna la tua licenza.</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>La tua versione è obsoleta. Per favore clicca per cercare un aggiornamento.</value>
@@ -1132,7 +1153,7 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
     <value>Gestione delle Password</value>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
-    <value>La password deve contenere almeno 10 caratteri.</value>
+    <value>La password non è abbastanza sicura per essere accettabile.</value>
   </data>
   <data name="PasswordResetHyperLink" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/PasswordReset</value>
@@ -1164,6 +1185,16 @@ Inserisci la tua e-mail sotto per inviare un codice di attivazione o di modifica
     <value>Un codice di attivazione di AxCrypt ID è stato inviato a &lt;b&gt;{0}&lt;/b&gt; . Per favore controlla la tua casella di posta.
 
 Se non lo ricevi, controlla nello spam e controlla che {0} sia corretto.</value>
+  </data>
+  <data name="PasswordRulesInfo" xml:space="preserve">
+    <value>AxCrypt ha un sofisticato sistema di valutazione della sicurezza delle password, basato sull'effettiva misurazione della sicurezza della password stessa. Essa deve essere lunga almeno 8 caratteri.
+
+Valutiamo la password stimandone la sicurezza, che è basata su quanto è lunga e complessa la password.
+
+La valutazione trascura completamente le parti della password che sono riconosciute fra le 1000 password più comuni e gli spazi bianchi. Ad esempio la password 'segretaX password Y 123456' è valutata solamente come 'XY', poiché gli spazi, 'segreta', 'password' e '123456' vengono ignorati!
+
+Classifichiamo le password in 4 categorie di sicurezza crescente e non accettiamo alcuna password appartenente alla categoria più bassa. L'esempio di cui sopra non è accettato per questo motivo.</value>
+    <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>La password è troppo debole e non è abbastanza sicura per essere utilizzata.</value>
@@ -1205,6 +1236,14 @@ Se non lo ricevi, controlla nello spam e controlla che {0} sia corretto.</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>La condivisione delle chiavi è possibile solo con Premium. Clicca per passare a Premium ora! </value>
+  </data>
+  <data name="PriceExcludingVat" xml:space="preserve">
+    <value>{0} IVA esclusa</value>
+    <comment>Brief text used to display the price exclusive of VAT, as additional information. The price is typically shown inclusive. This text is only displayed if any VAT is added.</comment>
+  </data>
+  <data name="PricePerMonth" xml:space="preserve">
+    <value>{0}/mese.</value>
+    <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Codice di Attivazione</value>
@@ -1311,7 +1350,7 @@ Se non lo ricevi, controlla nello spam e controlla che {0} sia corretto.</value>
 
 AxCrypt è progettato attorno al concetto fondamentale di tenere i tuoi file al sicuro. Per usare funzionalità avanzate come il criptaggio a 256-bit, le Cartelle Protette o la Gestione delle Password, ti raccomandiamo di passare a AxCrypt Premium. Con AxCrypt Premium hai accesso a tutte le funzionalità AxCrypt, senza limitazioni.
 
-Per provare le funzionalità Premium ti offriamo un periodo gratuito di prova di AxCrypt Premium della durata di 30 giorni che ha inizio quando attivi il tuo AxCrypt ID. In seguito, puoi prolungare il tuo abbonamento premium usando il modulo qui sotto.</value>
+Per provare le funzionalità Premium ti offriamo un periodo gratuito di prova di AxCrypt Premium della durata di 30 giorni che puoi iniziare in qualsiasi momento. In seguito, puoi prolungare il tuo abbonamento premium usando il modulo qui sotto.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Informazioni aggiuntive su PayPal]&lt;/a&gt;&lt;/span&gt; &lt;span class="text-cutoff always"&gt;La sicurezza è fondamentale per noi. Tutto quello che facciamo con AxCrypt è realizzato dando massima priorità alla sicurezza. Per questo usiamo PayPal come metodo di pagamento per AxCrypt Premium. Il sito di PayPal è sicuro e cripta automaticamente le tue informazioni confidenziali durante la transazione dal tuo computer ai nostri server.
@@ -1359,7 +1398,7 @@ La ricevuta del tuo acquisto ti è stata inviata per e-mail.</value>
   <data name="RegisterPageBody" xml:space="preserve">
     <value>Per iniziare ad utilizzare AxCrypt devi registrarti per un AxCrypt ID inserendo il tuo indirizzo e-mail nel modulo qui sotto. Un messaggio contenente un link di attivazione verrà inviato all'indirizzo specificato e quando cliccherai su quel link ti verrà chiesto di scegliere una password. Fatto!
 
-Un periodo di prova di AxCrypt Premium della durata di 30 giorni è incluso e avrà inizio non appena avrai attivato il tuo AxCrypt ID.</value>
+Un periodo di prova di AxCrypt Premium della durata di 30 giorni è incluso e puoi iniziarlo in qualsiasi momento dall'app di AxCrypt.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Registrati per un AxCrypt ID</value>
@@ -1397,7 +1436,7 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di attivazione.</valu
     <value>Vai alla gestione delle password</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Il tuo abbonamento Premium è scaduto e non puoi più modificare o creare nuove password. Tuttavia, hai ancora accesso in sola lettura.</value>
+    <value>Non hai un abbonamento Premium e di conseguenza non puoi più modificare o creare nuove password. Tuttavia, puoi ancora vedere le voci esistenti. Se non hai utilizzato il tuo periodo di prova di 30 giorni di Premium, puoi iniziarlo dall' &lt;a href="http://www.axcrypt.net/Download/"&gt;app di AxCrypt&lt;/a&gt;</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Il tuo abbonamento Premium sta per scadere, il {0}. In seguito dovrai prolungare il tuo abbonamento Premium per modificare o creare nuove password. Avrai accesso in sola lettura per sempre.</value>
@@ -1595,7 +1634,7 @@ Il Team di AxCrypt</value>
     <value>Benvenuto in AxCrypt!</value>
   </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
-    <value>Sono felice che tu ti sia registrato! Per darti il benvenuto, ti ho dato accesso gratuito alle nostre funzionalità Premium per 30 giorni.</value>
+    <value>Sono felice che tu ti sia registrato! Per darti il benvenuto, ti do la possibilità di provare le nostre funzionalità Premium gratis per 30 giorni. Inizia la tua prova quando vuoi dall'app di AxCrypt.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>Con AxCrypt Gratis o AxCrypt Premium, puoi proteggere i tuoi file in modo facilissimo. Per criptare i tuoi file e intere cartelle, basta un click. Anche lavorare con i file criptati è facilissimo!</value>

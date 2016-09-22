@@ -1556,7 +1556,7 @@ Once your information reaches the PayPal site, it resides on a server that is he
 A receipt of your purchase has been sent to your e-mail.</value>
   </data>
   <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>&lt;b&gt;VAT excluded&lt;/b&gt;. Actual VAT depends on your country of residence and will be displayed on the payment page.</value>
+    <value>&lt;b&gt;VAT is estimated&lt;/b&gt;. Actual VAT depends on your country of residence and is finally determined by the payment provider in the next step.</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Purging Active Files</value>
