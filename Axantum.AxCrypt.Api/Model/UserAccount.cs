@@ -97,6 +97,9 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("status")]
         public AccountStatus AccountStatus { get; private set; }
 
+        [JsonProperty("tag")]
+        public string Tag { get; set; }
+
         public bool Equals(UserAccount other)
         {
             if ((object)other == null)

@@ -927,7 +927,7 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <comment>Menus and similar to link back to main site.</comment>
   </data>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
-    <value>{0}Home/Purchase?email={1}</value>
+    <value>{0}Home/Purchase?email={1}&amp;tag={2}</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>http://www.axcrypt.net/forums/</value>

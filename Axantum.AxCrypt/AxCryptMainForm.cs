@@ -876,19 +876,25 @@ namespace Axantum.AxCrypt
 
         private async Task PremiumWarningClickAsync()
         {
+            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+
             if (_daysLeftPremiumLabel.Text == Texts.TryPremiumLabel)
             {
-                await New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity).StartPremiumTrialAsync();
+                await accountService.StartPremiumTrialAsync();
                 _mainViewModel.LicenseUpdate.Execute(null);
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
                 return;
             }
 
-            using (ILauncher launcher = New<ILauncher>())
-            {
-                launcher.Launch(Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail));
-            }
+            await DisplayPremiumPurchasePage(accountService);
             return;
+        }
+
+        private static async Task DisplayPremiumPurchasePage(IAccountService accountService)
+        {
+            string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag : string.Empty;
+            string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, New<KnownIdentities>().DefaultEncryptionIdentity.UserEmail, tag);
+            Process.Start(link);
         }
 
         private static void SetLegacyOpenMode(FileOperationEventArgs e)
@@ -1659,7 +1665,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            Process.Start(Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail));
+            await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity));
         }
 
         private async Task PremiumFeatureAction(LicenseCapability requiredCapability, Func<Task> realHandler)
