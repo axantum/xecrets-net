@@ -3975,11 +3975,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;VAT is estimated&lt;/b&gt;. Actual VAT depends on your country of residence and is finally determined by the payment provider in the next step..
+        ///   Looks up a localized string similar to Actual VAT is determined during payment..
         /// </summary>
-        public static string PurchaseVatPercent {
+        public static string PurchaseVatDepends {
             get {
-                return ResourceManager.GetString("PurchaseVatPercent", resourceCulture);
+                return ResourceManager.GetString("PurchaseVatDepends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT is estimated..
+        /// </summary>
+        public static string PurchaseVatEstimated {
+            get {
+                return ResourceManager.GetString("PurchaseVatEstimated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT excluded..
+        /// </summary>
+        public static string PurchaseVatExcluded {
+            get {
+                return ResourceManager.GetString("PurchaseVatExcluded", resourceCulture);
             }
         }
         

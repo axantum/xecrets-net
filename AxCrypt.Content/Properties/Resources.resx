@@ -1555,8 +1555,16 @@ Once your information reaches the PayPal site, it resides on a server that is he
 
 A receipt of your purchase has been sent to your e-mail.</value>
   </data>
-  <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>&lt;b&gt;VAT is estimated&lt;/b&gt;. Actual VAT depends on your country of residence and is finally determined by the payment provider in the next step.</value>
+  <data name="PurchaseVatDepends" xml:space="preserve">
+    <value>Actual VAT is determined during payment.</value>
+    <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
+  </data>
+  <data name="PurchaseVatEstimated" xml:space="preserve">
+    <value>VAT is estimated.</value>
+  </data>
+  <data name="PurchaseVatExcluded" xml:space="preserve">
+    <value>VAT excluded.</value>
+    <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Purging Active Files</value>
