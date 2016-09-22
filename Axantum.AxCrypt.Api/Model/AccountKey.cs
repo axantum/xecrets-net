@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt.Api.Model
 
             User = user;
             Thumbprint = thumbprint;
-            this.KeyPair = keyPair;
+            KeyPair = keyPair;
             Timestamp = timestamp;
         }
 

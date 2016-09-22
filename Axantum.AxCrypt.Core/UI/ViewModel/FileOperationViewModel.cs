@@ -469,7 +469,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (encryptableFiles.Count() > 1)
             {
-                await _fileOperation.DoFilesAsync(encryptableFiles, this.EncryptFileWorkManyAsync, (status) => CheckEncryptionStatus(status));
+                await _fileOperation.DoFilesAsync(encryptableFiles, EncryptFileWorkManyAsync, (status) => CheckEncryptionStatus(status));
             }
             else
             {
