@@ -892,7 +892,7 @@ namespace Axantum.AxCrypt
 
         private static async Task DisplayPremiumPurchasePage(IAccountService accountService)
         {
-            string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag : string.Empty;
+            string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag ?? string.Empty : string.Empty;
             string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, New<KnownIdentities>().DefaultEncryptionIdentity.UserEmail, tag);
             Process.Start(link);
         }

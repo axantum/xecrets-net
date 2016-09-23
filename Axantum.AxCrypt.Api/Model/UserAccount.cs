@@ -21,6 +21,7 @@ namespace Axantum.AxCrypt.Api.Model
             AccountKeys = keys.ToList();
             AccountStatus = status;
             Offers = offers;
+            Tag = string.Empty;
         }
 
         public UserAccount(string userName, SubscriptionLevel level, DateTime expiration, AccountStatus status, Offers offers)
