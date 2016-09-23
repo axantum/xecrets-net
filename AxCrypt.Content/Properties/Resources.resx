@@ -1244,7 +1244,7 @@ This program is licensed according to the agreement.
     <value>You do not have a Premium subscription, so you are not using the highest level of security. Click to upgrade!</value>
   </data>
   <data name="NotFoundPageBody" xml:space="preserve">
-    <value>Unfortunately we could not find the page you were looking for. This might be due to a server restart that caused your browser session to become outdated, or some other server error that caused us to be unable to process the request.
+    <value>Unfortunately we could not display the page you were looking for. This might be because it does not exist, a server restart caused your browser session to become outdated, or some other error that caused us to be unable to process the request.
 
 Requested page:
 {2}
@@ -1254,7 +1254,7 @@ Your request has been logged. Please try again with the correct path, or &lt;a h
 To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="NotFoundPageTitle" xml:space="preserve">
-    <value>The page was not found!</value>
+    <value>The page could not be displayed!</value>
   </data>
   <data name="NotFoundSafePageBody" xml:space="preserve">
     <value>Unfortunately we could not find the page you were looking for. This might be due to a server restart that caused your browser session to become outdated, or some other server error that caused us to be unable to process the request.

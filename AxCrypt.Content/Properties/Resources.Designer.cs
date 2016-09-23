@@ -3145,7 +3145,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unfortunately we could not find the page you were looking for. This might be due to a server restart that caused your browser session to become outdated, or some other server error that caused us to be unable to process the request.
+        ///   Looks up a localized string similar to Unfortunately we could not display the page you were looking for. This might be because it does not exist, a server restart caused your browser session to become outdated, or some other error that caused us to be unable to process the request.
         ///
         ///Requested page:
         ///{2}
@@ -3161,7 +3161,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The page was not found!.
+        ///   Looks up a localized string similar to The page could not be displayed!.
         /// </summary>
         public static string NotFoundPageTitle {
             get {
@@ -3975,7 +3975,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actual VAT is determined during payment..
+        ///   Looks up a localized string similar to VAT may be adjusted during payment..
         /// </summary>
         public static string PurchaseVatDepends {
             get {
