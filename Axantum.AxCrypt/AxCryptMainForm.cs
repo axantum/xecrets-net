@@ -53,6 +53,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -71,8 +72,6 @@ namespace Axantum.AxCrypt
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     public partial class AxCryptMainForm : Form, IStatusChecker, ISignIn
     {
-        private NotifyIcon _notifyIcon = null;
-
         private MainViewModel _mainViewModel;
 
         private FileOperationViewModel _fileOperationViewModel;
@@ -231,6 +230,13 @@ namespace Axantum.AxCrypt
             _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;
             _koreanLanguageToolStripMenuItem.Text = "&" + Texts.KoreanLanguageSelection;
             _lastAccessTimeColumnHeader.Text = Texts.LastAccessTimeColumnHeaderText;
+            _notifyIcon.Text = Texts.AxCryptFileEncryption;
+            _notifyIcon.BalloonTipTitle = Texts.AxCryptFileEncryption;
+            _notifyIcon.BalloonTipText = Texts.TrayBalloonTooltip;
+            _notifySignInToolStripMenuItem.Text = "&" + Texts.LogOnText;
+            _notifySignOutToolStripMenuItem.Text = "&" + Texts.LogOffText;
+            _notifyExitToolStripMenuItem.Text = "&" + Texts.ExitToolStripMenuItemText;
+            _notifyAdvancedToolStripMenuItem.Text = "&" + Texts.McInfMenuShow;
             _openEncryptedToolStripButton.ToolTipText = Texts.OpenToolStripButtonToolTipText;
             _openEncryptedToolStripMenuItem.Text = "&" + Texts.OpenEncryptedToolStripMenuItemText;
             _optionsAutoConvert1xFilesToolStripMenuItem.Text = "&" + Texts.OptionsConvertMenuItemText;
@@ -309,6 +315,10 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            if (New<UserSettings>().RestoreFullWindow || !_commandLine.HasCommands)
+            {
+                Styling.RestoreWindowWithFocus(this);
+            }
             await SignInAsync();
         }
 
@@ -479,6 +489,8 @@ namespace Axantum.AxCrypt
             _feedbackButton.Click += (sender, e) => Process.Start(Texts.LinkToFeedbackWebPage);
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
             _signInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
+            _notifySignOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
+            _notifySignInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _signOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _alwaysOfflineToolStripMenuItem.Click += (sender, e) =>
             {
@@ -580,16 +592,28 @@ namespace Axantum.AxCrypt
 
         private void InitializeNotifyIcon()
         {
-            _notifyIcon = new NotifyIcon(components);
             _notifyIcon.Icon = Resources.axcrypticon;
-            _notifyIcon.Text = Texts.AxCryptFileEncryption;
-            _notifyIcon.BalloonTipTitle = Texts.AxCryptFileEncryption;
-            _notifyIcon.BalloonTipText = Texts.TrayBalloonTooltip;
             _notifyIcon.Visible = false;
+
+            _notifyIcon.DoubleClick += (object sender, EventArgs e) =>
+            {
+                Styling.RestoreWindowWithFocus(this);
+                New<UserSettings>().RestoreFullWindow = true;
+            };
+
+            _notifyAdvancedToolStripMenuItem.Click += (sender, e) =>
+            {
+                Styling.RestoreWindowWithFocus(this);
+                New<UserSettings>().RestoreFullWindow = true;
+            };
 
             _notifyIcon.MouseClick += (sender, e) =>
             {
-                Styling.RestoreWindowWithFocus(this);
+                if (e.Button == MouseButtons.Left)
+                {
+                    MethodInfo mi = typeof(NotifyIcon).GetMethod("ShowContextMenu", BindingFlags.Instance | BindingFlags.NonPublic);
+                    mi.Invoke(sender, null);
+                }
             };
 
             Resize += (sender, e) =>
@@ -598,6 +622,7 @@ namespace Axantum.AxCrypt
                 {
                     case FormWindowState.Minimized:
                         ShowNotifyIcon();
+                        New<UserSettings>().RestoreFullWindow = false;
                         break;
 
                     case FormWindowState.Normal:
@@ -825,7 +850,9 @@ namespace Axantum.AxCrypt
             _optionsChangePassphraseToolStripMenuItem.Enabled = isSignedInWithAxCryptId && New<AxCryptOnlineState>().IsOnline;
             _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
             _signInToolStripMenuItem.Visible = !isSignedIn;
+            _notifySignInToolStripMenuItem.Visible = !isSignedIn;
             _signOutToolStripMenuItem.Visible = isSignedIn;
+            _notifySignOutToolStripMenuItem.Visible = isSignedIn;
             _upgradeLegacyMenuItem.Enabled = isSignedInWithAxCryptId;
         }
 
@@ -1125,8 +1152,11 @@ namespace Axantum.AxCrypt
                 switch (e.Verb)
                 {
                     case CommandVerb.Show:
-                    case CommandVerb.ShowLogOn:
                         Styling.RestoreWindowWithFocus(this);
+                        break;
+
+                    case CommandVerb.ShowLogOn:
+                        RestoreFormConditionally();
                         break;
                 }
 
@@ -1191,7 +1221,6 @@ namespace Axantum.AxCrypt
                     if (New<KnownIdentities>().IsLoggedOn)
                     {
                         New<KnownIdentities>().DefaultEncryptionIdentity = LogOnIdentity.Empty;
-                        await SignInAsync();
                     }
                     break;
 
@@ -1503,6 +1532,15 @@ namespace Axantum.AxCrypt
         private void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShutDownAndExit();
+        }
+
+        private void RestoreFormConditionally()
+        {
+            if (!New<UserSettings>().RestoreFullWindow)
+            {
+                return;
+            }
+            Styling.RestoreWindowWithFocus(this);
         }
 
         private void ShutDownAndExit()

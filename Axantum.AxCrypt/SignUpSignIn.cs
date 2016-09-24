@@ -94,7 +94,10 @@ namespace Axantum.AxCrypt
 
             viewModel.RestoreWindow += (sender, e) =>
             {
-                Styling.RestoreWindowWithFocus(parent);
+                if (New<UserSettings>().RestoreFullWindow)
+                {
+                    Styling.RestoreWindowWithFocus(parent);
+                }
             };
 
             await viewModel.DoAll.ExecuteAsync(null);

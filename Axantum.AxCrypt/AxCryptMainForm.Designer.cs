@@ -69,10 +69,10 @@
             this._portugueseBrazilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsChangePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._passwordResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._alwaysOfflineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._passwordResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsClearAllSettingsAndExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._keyManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,6 +116,12 @@
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
+            this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this._notifyIconContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this._notifyAdvancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._notifySignInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._notifySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._notifyExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -129,6 +135,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this._mainToolStrip.SuspendLayout();
             this._rightToolStrip.SuspendLayout();
+            this._notifyIconContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _progressTableLayoutPanel
@@ -373,7 +380,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -588,6 +595,13 @@
             this._optionsChangePassphraseToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsChangePassphraseToolStripMenuItem.Text = "[Change &Password]";
             // 
+            // _passwordResetToolStripMenuItem
+            // 
+            this._passwordResetToolStripMenuItem.Name = "_passwordResetToolStripMenuItem";
+            this._passwordResetToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._passwordResetToolStripMenuItem.Text = "[&Password Reset]";
+            this._passwordResetToolStripMenuItem.Click += new System.EventHandler(this.PasswordReset_Click);
+            // 
             // _optionsAutoConvert1xFilesToolStripMenuItem
             // 
             this._optionsAutoConvert1xFilesToolStripMenuItem.Name = "_optionsAutoConvert1xFilesToolStripMenuItem";
@@ -605,13 +619,6 @@
             this._optionsDebugToolStripMenuItem.Name = "_optionsDebugToolStripMenuItem";
             this._optionsDebugToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsDebugToolStripMenuItem.Text = "[&Debug]";
-            // 
-            // _passwordResetToolStripMenuItem
-            // 
-            this._passwordResetToolStripMenuItem.Name = "_passwordResetToolStripMenuItem";
-            this._passwordResetToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this._passwordResetToolStripMenuItem.Text = "[&Password Reset]";
-            this._passwordResetToolStripMenuItem.Click += new System.EventHandler(this.PasswordReset_Click);
             // 
             // _optionsClearAllSettingsAndExitToolStripMenuItem
             // 
@@ -1013,6 +1020,47 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
+            // _notifyIcon
+            // 
+            this._notifyIcon.ContextMenuStrip = this._notifyIconContextMenuStrip;
+            this._notifyIcon.Text = "[AxCrypt]";
+            this._notifyIcon.Visible = true;
+            // 
+            // _notifyIconContextMenuStrip
+            // 
+            this._notifyIconContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._notifyAdvancedToolStripMenuItem,
+            this._notifySignInToolStripMenuItem,
+            this._notifySignOutToolStripMenuItem,
+            this._notifyExitToolStripMenuItem});
+            this._notifyIconContextMenuStrip.Name = "_notifyIconContextMenuStrip";
+            this._notifyIconContextMenuStrip.Size = new System.Drawing.Size(136, 92);
+            // 
+            // _notifyAdvancedToolStripMenuItem
+            // 
+            this._notifyAdvancedToolStripMenuItem.Name = "_notifyAdvancedToolStripMenuItem";
+            this._notifyAdvancedToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this._notifyAdvancedToolStripMenuItem.Text = "[Advanced]";
+            // 
+            // _notifySignInToolStripMenuItem
+            // 
+            this._notifySignInToolStripMenuItem.Name = "_notifySignInToolStripMenuItem";
+            this._notifySignInToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this._notifySignInToolStripMenuItem.Text = "[Sign In]";
+            // 
+            // _notifySignOutToolStripMenuItem
+            // 
+            this._notifySignOutToolStripMenuItem.Name = "_notifySignOutToolStripMenuItem";
+            this._notifySignOutToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this._notifySignOutToolStripMenuItem.Text = "[Sign Out]";
+            // 
+            // _notifyExitToolStripMenuItem
+            // 
+            this._notifyExitToolStripMenuItem.Name = "_notifyExitToolStripMenuItem";
+            this._notifyExitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this._notifyExitToolStripMenuItem.Text = "[&Exit]";
+            this._notifyExitToolStripMenuItem.Click += new System.EventHandler(this._exitToolStripMenuItem_Click);
+            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1048,6 +1096,7 @@
             this._mainToolStrip.PerformLayout();
             this._rightToolStrip.ResumeLayout(false);
             this._rightToolStrip.PerformLayout();
+            this._notifyIconContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1153,6 +1202,12 @@
         private System.Windows.Forms.ToolStripMenuItem _alwaysOfflineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _checkForUpdateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _passwordResetToolStripMenuItem;
+        private System.Windows.Forms.NotifyIcon _notifyIcon;
+        private System.Windows.Forms.ContextMenuStrip _notifyIconContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem _notifyAdvancedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _notifySignOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _notifyExitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _notifySignInToolStripMenuItem;
     }
 }
 

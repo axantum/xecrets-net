@@ -159,6 +159,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(DebugMode), value); }
         }
 
+        public bool RestoreFullWindow
+        {
+            get { return Load(nameof(RestoreFullWindow), false); }
+            set { Store(nameof(RestoreFullWindow), value); }
+        }
+
         public Uri AxCrypt2HelpUrl
         {
             get { return Load(nameof(AxCrypt2HelpUrl), new Uri("http://www.axcrypt.net/documentation/get-started/")); }
