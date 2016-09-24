@@ -110,7 +110,7 @@
             this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._closeAndRemoveOpenFilesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._daysLeftPremiumLabel = new PremiumLinkLabel();
+            this._daysLeftPremiumLabel = new Axantum.AxCrypt.PremiumLinkLabel();
             this._rightToolStrip = new System.Windows.Forms.ToolStrip();
             this._feedbackButton = new System.Windows.Forms.ToolStripButton();
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
