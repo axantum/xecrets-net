@@ -594,7 +594,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset.
+        ///   Looks up a localized string similar to Password Reset.
         /// </summary>
         public static string ButtonPasswordResetText {
             get {

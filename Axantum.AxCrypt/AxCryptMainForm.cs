@@ -240,6 +240,8 @@ namespace Axantum.AxCrypt
             _optionsDebugToolStripMenuItem.Text = "&" + Texts.OptionsDebugToolStripMenuItemText;
             _optionsLanguageToolStripMenuItem.Text = "&" + Texts.OptionsLanguageToolStripMenuItemText;
             _optionsToolStripMenuItem.Text = "&" + Texts.OptionsToolStripMenuItemText;
+            _passwordResetToolStripMenuItem.Text = "&" + Texts.ButtonPasswordResetText;
+            _passwordResetToolStripMenuItem.ToolTipText = Texts.ButtonPasswordResetToolTip;
             _portugueseBrazilToolStripMenuItem.Text = "&" + Texts.PortugueseBrazilLanguageSelection;
             _progressContextCancelToolStripMenuItem.Text = "&" + Texts.ButtonCancelText;
             _recentFilesOpenToolStripMenuItem.Text = "&" + Texts.RecentFilesOpenToolStripMenuItemText;
@@ -821,6 +823,7 @@ namespace Axantum.AxCrypt
             _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsAutoConvert1xFilesToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsChangePassphraseToolStripMenuItem.Enabled = isSignedInWithAxCryptId && New<AxCryptOnlineState>().IsOnline;
+            _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _signOutToolStripMenuItem.Visible = isSignedIn;
             _upgradeLegacyMenuItem.Enabled = isSignedInWithAxCryptId;
@@ -1081,14 +1084,6 @@ namespace Axantum.AxCrypt
             using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
             {
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
-
-                if (dialogResult == DialogResult.Retry)
-                {
-                    e.UserEmail = String.Empty;
-                    e.Passphrase = Passphrase.Empty;
-                    New<ICache>().RemoveItem(CacheKey.RootKey);
-                    return;
-                }
 
                 if (dialogResult == DialogResult.Cancel)
                 {
@@ -1813,6 +1808,13 @@ namespace Axantum.AxCrypt
                 _mainViewModel.Dispose();
                 _mainViewModel = null;
             }
+        }
+
+        private void PasswordReset_Click(object sender, EventArgs e)
+        {
+            UriBuilder url = new UriBuilder(Texts.PasswordResetHyperLink);
+            url.Query = $"email={New<UserSettings>().UserEmail}";
+            Process.Start(url.ToString());
         }
 
         private void ClearPassphraseMemoryToolStripMenuItem_Click(object sender, EventArgs e)

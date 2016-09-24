@@ -33,13 +33,8 @@ namespace Axantum.AxCrypt
 
             _passphraseGroupBox.Text = Texts.PassphrasePrompt;
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
-            _newButton.Text = "&" + Texts.ButtonNewText;
-            _newButtonToolTip.SetToolTip(_newButton, Texts.ButtonNewToolTip);
-            _resetButton.Text = "&" + Texts.ButtonPasswordResetText;
-            _resetButtonToolTip.SetToolTip(_resetButton, Texts.ButtonPasswordResetToolTip);
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
-            _emailGroupBox.Text = Texts.PromptEmailText;
         }
 
         private void LogOnAccountDialog_Load(object sender, EventArgs e)
@@ -49,16 +44,11 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.UserEmail), (string userEmail) => { _email.Text = userEmail; });
-
             _passphrase.LostFocus += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
             _passphrase.Validating += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
             _showPassphrase.CheckedChanged += (s, ea) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
-            _email.LostFocus += (s, ea) => { _viewModel.UserEmail = _email.Text; AdHocValidateEmail(); };
-            _email.Validating += (s, ea) => { _viewModel.UserEmail = _email.Text; AdHocValidateEmail(); };
 
             _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowPassphrase), (bool show) => { _passphrase.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
-            _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowEmail), (bool show) => { EmailPanel.Visible = show; });
         }
 
         private void ButtonOk_Click(object sender, EventArgs e)
@@ -73,7 +63,7 @@ namespace Axantum.AxCrypt
 
         private bool AdHocValidationDueToMonoLimitations()
         {
-            bool validated = AdHocValidatePassphrase() & AdHocValidateEmail();
+            bool validated = AdHocValidatePassphrase();
 
             return validated;
         }
@@ -83,40 +73,16 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             if (_viewModel[nameof(LogOnAccountViewModel.Passphrase)].Length != 0)
             {
-                _errorProvider1.SetError(_passphrase, _email.Text.Length > 0 ? Texts.WrongPassphrase : Texts.UnknownLogOn);
+                _errorProvider1.SetError(_passphrase, Texts.WrongPassphrase);
                 return false;
             }
             return true;
-        }
-
-        private bool AdHocValidateEmail()
-        {
-            _errorProvider2.Clear();
-            if (_email.Text.Length == 0 || _viewModel[nameof(LogOnAccountViewModel.UserEmail)].Length != 0)
-            {
-                _errorProvider2.SetError(_email, Texts.BadEmail);
-                return false;
-            }
-            return true;
-        }
-
-        private void NewButton_Click(object sender, EventArgs e)
-        {
-            _viewModel.UserEmail = String.Empty;
-            DialogResult = DialogResult.Retry;
         }
 
         private void LogOnAccountDialog_Activated(object sender, EventArgs e)
         {
             BringToFront();
-            if (String.IsNullOrEmpty(_email.Text))
-            {
-                _email.Focus();
-            }
-            else
-            {
-                _passphrase.Focus();
-            }
+            _passphrase.Focus();
         }
 
         private void PassphraseTextBox_Enter(object sender, EventArgs e)
@@ -127,17 +93,6 @@ namespace Axantum.AxCrypt
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.No;
-        }
-
-        private void ResetButton_Click(object sender, EventArgs e)
-        {
-            if (!AdHocValidateEmail())
-            {
-                return;
-            }
-            UriBuilder url = new UriBuilder(Texts.PasswordResetHyperLink);
-            url.Query = $"email={_viewModel.UserEmail}";
-            Process.Start(url.ToString());
         }
     }
 }

@@ -72,6 +72,7 @@
             this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._alwaysOfflineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._passwordResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsClearAllSettingsAndExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._keyManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,6 +99,7 @@
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpViewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._mainToolStrip = new System.Windows.Forms.ToolStrip();
@@ -114,7 +116,6 @@
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
             this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
-            this._checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -372,7 +373,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -482,6 +483,7 @@
             this._optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._optionsLanguageToolStripMenuItem,
             this._optionsChangePassphraseToolStripMenuItem,
+            this._passwordResetToolStripMenuItem,
             this._optionsAutoConvert1xFilesToolStripMenuItem,
             this._alwaysOfflineToolStripMenuItem,
             this._optionsDebugToolStripMenuItem,
@@ -603,6 +605,13 @@
             this._optionsDebugToolStripMenuItem.Name = "_optionsDebugToolStripMenuItem";
             this._optionsDebugToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsDebugToolStripMenuItem.Text = "[&Debug]";
+            // 
+            // _passwordResetToolStripMenuItem
+            // 
+            this._passwordResetToolStripMenuItem.Name = "_passwordResetToolStripMenuItem";
+            this._passwordResetToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._passwordResetToolStripMenuItem.Text = "[&Password Reset]";
+            this._passwordResetToolStripMenuItem.Click += new System.EventHandler(this.PasswordReset_Click);
             // 
             // _optionsClearAllSettingsAndExitToolStripMenuItem
             // 
@@ -801,6 +810,12 @@
             this._helpAboutToolStripMenuItem.Text = "[&About]";
             this._helpAboutToolStripMenuItem.Click += new System.EventHandler(this._aboutToolStripMenuItem_Click);
             // 
+            // _checkForUpdateToolStripMenuItem
+            // 
+            this._checkForUpdateToolStripMenuItem.Name = "_checkForUpdateToolStripMenuItem";
+            this._checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this._checkForUpdateToolStripMenuItem.Text = "[&Check for update]";
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -998,12 +1013,6 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // _checkForUpdateToolStripMenuItem
-            // 
-            this._checkForUpdateToolStripMenuItem.Name = "_checkForUpdateToolStripMenuItem";
-            this._checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this._checkForUpdateToolStripMenuItem.Text = "[&Check for update]";
-            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1143,6 +1152,7 @@
         private System.Windows.Forms.ToolStripMenuItem _dutchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _alwaysOfflineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _checkForUpdateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _passwordResetToolStripMenuItem;
     }
 }
 

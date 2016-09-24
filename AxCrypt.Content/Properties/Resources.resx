@@ -313,7 +313,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>OK</value>
   </data>
   <data name="ButtonPasswordResetText" xml:space="preserve">
-    <value>Reset</value>
+    <value>Password Reset</value>
     <comment>Button text for a password reset button</comment>
   </data>
   <data name="ButtonPasswordResetToolTip" xml:space="preserve">

@@ -29,27 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this._newButtonToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this._resetButtonToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._buttonOk = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this._panel1 = new System.Windows.Forms.Panel();
-            this._resetButton = new System.Windows.Forms.Button();
-            this._newButton = new System.Windows.Forms.Button();
             this._passphraseGroupBox = new System.Windows.Forms.GroupBox();
             this._showPassphrase = new System.Windows.Forms.CheckBox();
             this._passphrase = new System.Windows.Forms.TextBox();
-            this.EmailPanel = new System.Windows.Forms.Panel();
-            this._emailGroupBox = new System.Windows.Forms.GroupBox();
-            this._email = new System.Windows.Forms.TextBox();
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             this._panel1.SuspendLayout();
             this._passphraseGroupBox.SuspendLayout();
-            this.EmailPanel.SuspendLayout();
-            this._emailGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).BeginInit();
             this.SuspendLayout();
@@ -58,7 +49,7 @@
             // 
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(7, 7);
+            this._buttonOk.Location = new System.Drawing.Point(99, 7);
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(75, 23);
             this._buttonOk.TabIndex = 0;
@@ -70,7 +61,7 @@
             // 
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonCancel.Location = new System.Drawing.Point(95, 7);
+            this._buttonCancel.Location = new System.Drawing.Point(187, 7);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
             this._buttonCancel.TabIndex = 1;
@@ -84,45 +75,20 @@
             this.panel1.Controls.Add(this._panel1);
             this.panel1.Controls.Add(this._passphraseGroupBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 59);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(364, 128);
+            this.panel1.Size = new System.Drawing.Size(364, 117);
             this.panel1.TabIndex = 1;
             // 
             // _panel1
             // 
             this._panel1.AutoSize = true;
-            this._panel1.Controls.Add(this._resetButton);
-            this._panel1.Controls.Add(this._newButton);
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
             this._panel1.Location = new System.Drawing.Point(3, 82);
             this._panel1.Name = "_panel1";
             this._panel1.Size = new System.Drawing.Size(361, 37);
             this._panel1.TabIndex = 3;
-            // 
-            // _resetButton
-            // 
-            this._resetButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._resetButton.Location = new System.Drawing.Point(271, 7);
-            this._resetButton.Name = "_resetButton";
-            this._resetButton.Size = new System.Drawing.Size(75, 23);
-            this._resetButton.TabIndex = 3;
-            this._resetButton.Text = "[&Reset]";
-            this._resetButton.UseVisualStyleBackColor = true;
-            this._resetButton.Click += new System.EventHandler(this.ResetButton_Click);
-            // 
-            // _newButton
-            // 
-            this._newButton.DialogResult = System.Windows.Forms.DialogResult.Retry;
-            this._newButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._newButton.Location = new System.Drawing.Point(183, 7);
-            this._newButton.Name = "_newButton";
-            this._newButton.Size = new System.Drawing.Size(75, 23);
-            this._newButton.TabIndex = 2;
-            this._newButton.Text = "[&Switch]";
-            this._newButton.UseVisualStyleBackColor = true;
-            this._newButton.Click += new System.EventHandler(this.NewButton_Click);
             // 
             // _passphraseGroupBox
             // 
@@ -156,35 +122,6 @@
             this._passphrase.TabIndex = 0;
             this._passphrase.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
             // 
-            // EmailPanel
-            // 
-            this.EmailPanel.AutoSize = true;
-            this.EmailPanel.Controls.Add(this._emailGroupBox);
-            this.EmailPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EmailPanel.Location = new System.Drawing.Point(0, 0);
-            this.EmailPanel.Name = "EmailPanel";
-            this.EmailPanel.Size = new System.Drawing.Size(364, 59);
-            this.EmailPanel.TabIndex = 0;
-            // 
-            // _emailGroupBox
-            // 
-            this._emailGroupBox.Controls.Add(this._email);
-            this._emailGroupBox.Location = new System.Drawing.Point(12, 12);
-            this._emailGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
-            this._emailGroupBox.Name = "_emailGroupBox";
-            this._emailGroupBox.Size = new System.Drawing.Size(260, 44);
-            this._emailGroupBox.TabIndex = 0;
-            this._emailGroupBox.TabStop = false;
-            this._emailGroupBox.Text = "[Email address]";
-            // 
-            // _email
-            // 
-            this._email.Enabled = false;
-            this._email.Location = new System.Drawing.Point(7, 18);
-            this._email.Name = "_email";
-            this._email.Size = new System.Drawing.Size(242, 20);
-            this._email.TabIndex = 0;
-            // 
             // _errorProvider1
             // 
             this._errorProvider1.ContainerControl = this;
@@ -201,9 +138,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this._buttonCancel;
-            this.ClientSize = new System.Drawing.Size(364, 187);
+            this.ClientSize = new System.Drawing.Size(364, 117);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.EmailPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -216,9 +152,6 @@
             this._panel1.ResumeLayout(false);
             this._passphraseGroupBox.ResumeLayout(false);
             this._passphraseGroupBox.PerformLayout();
-            this.EmailPanel.ResumeLayout(false);
-            this._emailGroupBox.ResumeLayout(false);
-            this._emailGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).EndInit();
             this.ResumeLayout(false);
@@ -231,17 +164,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox _passphraseGroupBox;
         private System.Windows.Forms.ErrorProvider _errorProvider1;
-        private System.Windows.Forms.Panel EmailPanel;
-        private System.Windows.Forms.GroupBox _emailGroupBox;
         private System.Windows.Forms.ErrorProvider _errorProvider2;
-        private System.Windows.Forms.TextBox _email;
         private System.Windows.Forms.CheckBox _showPassphrase;
         private System.Windows.Forms.TextBox _passphrase;
-        private System.Windows.Forms.ToolTip _newButtonToolTip;
-        private System.Windows.Forms.ToolTip _resetButtonToolTip;
         private System.Windows.Forms.Panel _panel1;
-        private System.Windows.Forms.Button _resetButton;
-        private System.Windows.Forms.Button _newButton;
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonOk;
     }
