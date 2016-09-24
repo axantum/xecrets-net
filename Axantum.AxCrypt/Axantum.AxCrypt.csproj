@@ -91,6 +91,9 @@
     <Compile Include="PasswordStrengthMeter.Designer.cs">
       <DependentUpon>PasswordStrengthMeter.cs</DependentUpon>
     </Compile>
+    <Compile Include="PremiumLinkLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RecentFilesListView.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -45,5 +45,6 @@ namespace Axantum.AxCrypt.Core.Session
         EncryptPendingFiles,
         WatchedFolderChange,
         UpdateActiveFiles,
+        LicensePolicyChange,
     }
 }

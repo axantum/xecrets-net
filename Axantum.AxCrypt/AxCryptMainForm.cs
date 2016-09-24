@@ -670,7 +670,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LegacyConversionMode), (LegacyConversionMode mode) => _optionsAutoConvert1xFilesToolStripMenuItem.Checked = mode == LegacyConversionMode.AutoConvertLegacyFiles);
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicensePolicy license) => _knownFoldersViewModel.UpdateState.Execute(null));
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await ConfigureMenusAccordingToPolicyAsync(license); });
-            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await SetDaysLeftWarningAsync(); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await _daysLeftPremiumLabel.ConfigureAsync(_mainViewModel.License); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicensePolicy license) => { await _recentFilesListView.UpdateRecentFilesAsync(_mainViewModel.RecentFiles); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetSignInSignOutStatus(loggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
@@ -682,7 +682,6 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
 
             _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
-            _daysLeftPremiumLabel.Click += async (sender, e) => { await PremiumWarningClickAsync(); };
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Save(); New<IReport>().Open(); };
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
@@ -794,7 +793,7 @@ namespace Axantum.AxCrypt
                 New<IUIThread>().PostTo(async () =>
                 {
                     SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
-                    await SetDaysLeftWarningAsync();
+                    await _daysLeftPremiumLabel.ConfigureAsync(_mainViewModel.License);
                 });
             };
         }
@@ -854,70 +853,6 @@ namespace Axantum.AxCrypt
             _signOutToolStripMenuItem.Visible = isSignedIn;
             _notifySignOutToolStripMenuItem.Visible = isSignedIn;
             _upgradeLegacyMenuItem.Enabled = isSignedInWithAxCryptId;
-        }
-
-        private async Task SetDaysLeftWarningAsync()
-        {
-            LicensePolicy license = _mainViewModel.License;
-            if (await license.SubscriptionWarningTimeAsync() == TimeSpan.MaxValue)
-            {
-                _daysLeftPremiumLabel.Visible = false;
-                return;
-            }
-
-            if (await license.SubscriptionWarningTimeAsync() == TimeSpan.Zero)
-            {
-                await SetUpgradeOrTrialAsync(license);
-                return;
-            }
-
-            int days = (await license.SubscriptionWarningTimeAsync()).Days;
-            _daysLeftPremiumLabel.Text = (days > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(days);
-            _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
-            _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.DaysLeftWarningToolTip);
-            _daysLeftPremiumLabel.Visible = true;
-        }
-
-        private async Task SetUpgradeOrTrialAsync(LicensePolicy license)
-        {
-            if (New<AxCryptOnlineState>().IsOffline)
-            {
-                _daysLeftPremiumLabel.Text = Texts.UpgradePromptText;
-                _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.OfflineNoPremiumWarning);
-                _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
-                _daysLeftPremiumLabel.Visible = true;
-                return;
-            }
-
-            if (!await license.IsTrialAvailableAsync())
-            {
-                _daysLeftPremiumLabel.Text = Texts.UpgradePromptText;
-                _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
-                _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.NoPremiumWarning);
-                _daysLeftPremiumLabel.Visible = true;
-                return;
-            }
-
-            _daysLeftPremiumLabel.Text = Texts.TryPremiumLabel;
-            _daysLeftPremiumLabel.LinkColor = Styling.WarningColor;
-            _daysLeftToolTip.SetToolTip(_daysLeftPremiumLabel, Texts.TryPremiumToolTip);
-            _daysLeftPremiumLabel.Visible = true;
-        }
-
-        private async Task PremiumWarningClickAsync()
-        {
-            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-
-            if (_daysLeftPremiumLabel.Text == Texts.TryPremiumLabel)
-            {
-                await accountService.StartPremiumTrialAsync();
-                _mainViewModel.LicenseUpdate.Execute(null);
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
-                return;
-            }
-
-            await DisplayPremiumPurchasePage(accountService);
-            return;
         }
 
         private static async Task DisplayPremiumPurchasePage(IAccountService accountService)
@@ -1756,7 +1691,7 @@ namespace Axantum.AxCrypt
 
             InitializeContentResources();
             SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
-            await SetDaysLeftWarningAsync();
+            await _daysLeftPremiumLabel.ConfigureAsync(_mainViewModel.License);
             SetSoftwareStatus();
         }
 

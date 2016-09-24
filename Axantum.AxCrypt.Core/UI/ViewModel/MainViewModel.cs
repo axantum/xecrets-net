@@ -300,6 +300,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     SetRecentFiles();
                     break;
 
+                case SessionNotificationType.LicensePolicyChange:
+                    LicenseUpdate.Execute(null);
+                    break;
+
                 case SessionNotificationType.WorkFolderChange:
                 case SessionNotificationType.ProcessExit:
                 case SessionNotificationType.SessionChange:

@@ -110,7 +110,7 @@
             this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._closeAndRemoveOpenFilesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._daysLeftPremiumLabel = new System.Windows.Forms.LinkLabel();
+            this._daysLeftPremiumLabel = new PremiumLinkLabel();
             this._rightToolStrip = new System.Windows.Forms.ToolStrip();
             this._feedbackButton = new System.Windows.Forms.ToolStripButton();
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
@@ -1172,7 +1172,7 @@
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton _closeAndRemoveOpenFilesToolStripButton;
         private System.Windows.Forms.ToolStripSeparator _knownFoldersSeparator;
-        private System.Windows.Forms.LinkLabel _daysLeftPremiumLabel;
+        private PremiumLinkLabel _daysLeftPremiumLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStrip _rightToolStrip;
         private System.Windows.Forms.ToolStripButton _softwareStatusButton;
