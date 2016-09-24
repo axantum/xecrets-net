@@ -110,46 +110,6 @@ namespace Axantum.AxCrypt.Core.Runtime
             return (await CapabilitiesAsync()).Contains(capability);
         }
 
-        public async Task<TimeSpan> SubscriptionWarningTimeAsync()
-        {
-            SubscriptionLevel level = await SubscriptionLevelAsync().Free();
-            if (level == SubscriptionLevel.Unknown)
-            {
-                return TimeSpan.Zero;
-            }
-
-            if (level == SubscriptionLevel.Free)
-            {
-                return TimeSpan.Zero;
-            }
-
-            DateTime expiration = await SubscriptionExpirationAsync().Free();
-            if (expiration == DateTime.MaxValue || expiration == DateTime.MinValue)
-            {
-                return TimeSpan.MaxValue;
-            }
-            DateTime utcNow = New<INow>().Utc;
-            expiration = expiration < utcNow ? utcNow : expiration;
-
-            TimeSpan timeLeft = expiration - utcNow;
-            if (timeLeft < TimeSpan.FromDays(15))
-            {
-                return timeLeft;
-            }
-
-            return TimeSpan.MaxValue;
-        }
-
-        public virtual async Task<bool> IsTrialAvailableAsync()
-        {
-            if (_identity == LogOnIdentity.Empty)
-            {
-                return false;
-            }
-            bool trialAvailable = !(await UserAccountAsync().Free()).Offers.HasFlag(Offers.AxCryptTrial);
-            return trialAvailable;
-        }
-
         public async Task<ICryptoPolicy> CryptoPolicyAsync()
         {
             return await HasAsync(LicenseCapability.StrongerEncryption).Free() ? new ProCryptoPolicy() as ICryptoPolicy : new FreeCryptoPolicy() as ICryptoPolicy;

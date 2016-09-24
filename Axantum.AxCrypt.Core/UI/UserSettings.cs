@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -247,6 +248,18 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get { return (LegacyConversionMode)Load(nameof(LegacyConversionMode), (int)LegacyConversionMode.NotDecided); }
             set { Store(nameof(LegacyConversionMode), (int)value); }
+        }
+
+        public PremiumStatus LastKnownPremiumStatus
+        {
+            get { return (PremiumStatus)Load(nameof(LastKnownPremiumStatus), (int)PremiumStatus.Unknown); }
+            set { Store(nameof(LastKnownPremiumStatus), (int)value); }
+        }
+
+        public int LastKnownPremiumDaysLeft
+        {
+            get { return Load(nameof(LastKnownPremiumDaysLeft), 0); }
+            set { Store(nameof(LastKnownPremiumDaysLeft), value); }
         }
 
         public T Load<T>(string key)

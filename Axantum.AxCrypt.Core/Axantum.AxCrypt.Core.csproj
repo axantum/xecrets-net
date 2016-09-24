@@ -126,6 +126,8 @@
     <Compile Include="Runtime\LicensePolicy.cs" />
     <Compile Include="Runtime\PasswordException.cs" />
     <Compile Include="Runtime\PremiumForcedLicensePolicy.cs" />
+    <Compile Include="Runtime\PremiumInfo.cs" />
+    <Compile Include="Runtime\PremiumStatus.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />
     <Compile Include="Crypto\CryptoExtensions.cs" />
     <Compile Include="Crypto\FreeCryptoPolicy.cs" />

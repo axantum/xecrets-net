@@ -24,51 +24,52 @@ namespace Axantum.AxCrypt
     {
         private ToolTip _toolTip = new ToolTip();
 
-        public async Task ConfigureAsync(LicensePolicy license)
+        public async Task ConfigureAsync(LogOnIdentity identity)
         {
-            if (await license.SubscriptionWarningTimeAsync() == TimeSpan.MaxValue)
+            PremiumInfo pi = await PremiumInfo.CreateAsync(identity);
+            switch (pi.PremiumStatus)
             {
-                Visible = false;
-                return;
+                case PremiumStatus.Unknown:
+                    Visible = false;
+                    break;
+
+                case PremiumStatus.HasPremium:
+                    if (pi.DaysLeft > 15)
+                    {
+                        Visible = false;
+                        break;
+                    }
+
+                    Text = (pi.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(pi.DaysLeft);
+                    LinkColor = Styling.WarningColor;
+                    _toolTip.SetToolTip(this, Texts.DaysLeftWarningToolTip);
+                    Visible = true;
+                    break;
+
+                case PremiumStatus.NoPremium:
+                    Text = Texts.UpgradePromptText;
+                    LinkColor = Styling.WarningColor;
+                    _toolTip.SetToolTip(this, Texts.NoPremiumWarning);
+                    Visible = true;
+                    break;
+
+                case PremiumStatus.CanTryPremium:
+                    Text = Texts.TryPremiumLabel;
+                    LinkColor = Styling.WarningColor;
+                    _toolTip.SetToolTip(this, Texts.TryPremiumToolTip);
+                    Visible = true;
+                    break;
+
+                case PremiumStatus.OfflineNoPremium:
+                    Text = Texts.UpgradePromptText;
+                    _toolTip.SetToolTip(this, Texts.OfflineNoPremiumWarning);
+                    LinkColor = Styling.WarningColor;
+                    Visible = true;
+                    break;
+
+                default:
+                    break;
             }
-
-            if (await license.SubscriptionWarningTimeAsync() == TimeSpan.Zero)
-            {
-                await SetUpgradeOrTrialAsync(license);
-                return;
-            }
-
-            int days = (await license.SubscriptionWarningTimeAsync()).Days;
-            Text = (days > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(days);
-            LinkColor = Styling.WarningColor;
-            _toolTip.SetToolTip(this, Texts.DaysLeftWarningToolTip);
-            Visible = true;
-        }
-
-        private async Task SetUpgradeOrTrialAsync(LicensePolicy license)
-        {
-            if (New<AxCryptOnlineState>().IsOffline)
-            {
-                Text = Texts.UpgradePromptText;
-                _toolTip.SetToolTip(this, Texts.OfflineNoPremiumWarning);
-                LinkColor = Styling.WarningColor;
-                Visible = true;
-                return;
-            }
-
-            if (!await license.IsTrialAvailableAsync())
-            {
-                Text = Texts.UpgradePromptText;
-                LinkColor = Styling.WarningColor;
-                _toolTip.SetToolTip(this, Texts.NoPremiumWarning);
-                Visible = true;
-                return;
-            }
-
-            Text = Texts.TryPremiumLabel;
-            LinkColor = Styling.WarningColor;
-            _toolTip.SetToolTip(this, Texts.TryPremiumToolTip);
-            Visible = true;
         }
 
         protected override async void OnClick(EventArgs e)
@@ -85,7 +86,7 @@ namespace Axantum.AxCrypt
             {
                 await accountService.StartPremiumTrialAsync();
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
-                await ConfigureAsync(New<LicensePolicy>());
+                await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                 New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.LicensePolicyChange));
                 return;
             }

@@ -23,10 +23,5 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             return Task.FromResult(DateTime.MaxValue);
         }
-
-        public override Task<bool> IsTrialAvailableAsync()
-        {
-            return Task.FromResult(false);
-        }
     }
 }
