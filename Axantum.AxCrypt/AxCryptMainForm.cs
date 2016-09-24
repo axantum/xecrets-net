@@ -1087,6 +1087,7 @@ namespace Axantum.AxCrypt
                 switch (e.Verb)
                 {
                     case CommandVerb.Show:
+                        New<UserSettings>().RestoreFullWindow = true;
                         Styling.RestoreWindowWithFocus(this);
                         break;
 
