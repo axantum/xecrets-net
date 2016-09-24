@@ -32,6 +32,7 @@
             this._buttonOk = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this._premiumLinkLabel = new Axantum.AxCrypt.PremiumLinkLabel();
             this._panel1 = new System.Windows.Forms.Panel();
             this._passphraseGroupBox = new System.Windows.Forms.GroupBox();
             this._showPassphrase = new System.Windows.Forms.CheckBox();
@@ -72,13 +73,24 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this._premiumLinkLabel);
             this.panel1.Controls.Add(this._panel1);
             this.panel1.Controls.Add(this._passphraseGroupBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(364, 117);
+            this.panel1.Size = new System.Drawing.Size(364, 149);
             this.panel1.TabIndex = 1;
+            // 
+            // _premiumLinkLabel
+            // 
+            this._premiumLinkLabel.Location = new System.Drawing.Point(26, 122);
+            this._premiumLinkLabel.Name = "_premiumLinkLabel";
+            this._premiumLinkLabel.Size = new System.Drawing.Size(312, 23);
+            this._premiumLinkLabel.TabIndex = 4;
+            this._premiumLinkLabel.TabStop = true;
+            this._premiumLinkLabel.Text = "[Premium Status]";
+            this._premiumLinkLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // _panel1
             // 
@@ -138,7 +150,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this._buttonCancel;
-            this.ClientSize = new System.Drawing.Size(364, 117);
+            this.ClientSize = new System.Drawing.Size(364, 149);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -170,5 +182,6 @@
         private System.Windows.Forms.Panel _panel1;
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonOk;
+        private PremiumLinkLabel _premiumLinkLabel;
     }
 }

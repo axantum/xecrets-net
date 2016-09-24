@@ -80,6 +80,13 @@ namespace Axantum.AxCrypt
 
         private async Task PremiumWarningClickAsync()
         {
+            if (New<KnownIdentities>().DefaultEncryptionIdentity == LogOnIdentity.Empty)
+            {
+                New<IPopup>().Show(PopupButtons.Ok, Texts.ApplicationTitle, Texts.SignInBeforePremiumMessage);
+                New<UserSettings>().RestoreFullWindow = true;
+                return;
+            }
+
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
 
             if (Text == Texts.TryPremiumLabel)

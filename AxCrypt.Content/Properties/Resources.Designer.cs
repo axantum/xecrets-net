@@ -4315,6 +4315,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign in first!.
+        /// </summary>
+        public static string SignInBeforePremiumMessage {
+            get {
+                return ResourceManager.GetString("SignInBeforePremiumMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verify Sign In.
         /// </summary>
         public static string SignInVerificationTitle {

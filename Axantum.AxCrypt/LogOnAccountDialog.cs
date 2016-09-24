@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.UI.ViewModel;
+﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace Axantum.AxCrypt
             _buttonOk.Text = "&" + Texts.ButtonOkText;
         }
 
-        private void LogOnAccountDialog_Load(object sender, EventArgs e)
+        private async void LogOnAccountDialog_Load(object sender, EventArgs e)
         {
             if (DesignMode)
             {
@@ -49,6 +50,7 @@ namespace Axantum.AxCrypt
             _showPassphrase.CheckedChanged += (s, ea) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
 
             _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowPassphrase), (bool show) => { _passphrase.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
+            await _premiumLinkLabel.ConfigureAsync(LogOnIdentity.Empty);
         }
 
         private void ButtonOk_Click(object sender, EventArgs e)

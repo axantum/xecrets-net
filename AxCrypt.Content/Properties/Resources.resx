@@ -1687,6 +1687,10 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Show Password</value>
   </data>
+  <data name="SignInBeforePremiumMessage" xml:space="preserve">
+    <value>Sign in first!</value>
+    <comment>A short message used in the sign in dialog, to explain that a user should sign in first and then purchase or try premium as appropriate.</comment>
+  </data>
   <data name="SignInVerificationTitle" xml:space="preserve">
     <value>Verify Sign In</value>
   </data>
