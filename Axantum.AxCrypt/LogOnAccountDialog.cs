@@ -31,7 +31,10 @@ namespace Axantum.AxCrypt
         protected override void InitializeContentResources()
         {
             Text = Texts.TitleAxCryptIdSignInText;
-
+            if (!string.IsNullOrEmpty(_viewModel.UserEmail))
+            {
+                Text = $"{Text} - {_viewModel.UserEmail}";
+            }
             _passphraseGroupBox.Text = Texts.PassphrasePrompt;
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;

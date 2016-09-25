@@ -489,7 +489,7 @@ namespace Axantum.AxCrypt
             _feedbackButton.Click += (sender, e) => Process.Start(Texts.LinkToFeedbackWebPage);
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
             _signInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
-            _notifySignOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
+            _notifySignOutToolStripMenuItem.Click += (sender, e) => _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(null);
             _notifySignInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _signOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _alwaysOfflineToolStripMenuItem.Click += (sender, e) =>
@@ -956,6 +956,10 @@ namespace Axantum.AxCrypt
             else
             {
                 HandleExistingLogOn(e);
+            }
+            if (New<UserSettings>().RestoreFullWindow)
+            {
+                Styling.RestoreWindowWithFocus(this);
             }
             return Task.FromResult(default(object));
         }
