@@ -1334,8 +1334,8 @@ Sobald die Informationen auf der PayPal Seite angekommen sind, bleiben Sie auf e
 
 Eine Rechnung Ihres Einkaufs wurde an Ihre E-Mail geschickt.</value>
   </data>
-  <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>&lt;b&gt;VAT excluded&lt;/b&gt; Die tatsächliche Mehrwertsteuer hängt von Ihrem Wohnsitz ab und wird auf der Bezahlseite angezeigt werden. </value>
+  <data name="PurchaseVatEstimated" xml:space="preserve">
+    <value>Die tatsächliche Mehrwertsteuer hängt von Ihrem Wohnsitz ab und wird auf der Bezahlseite angezeigt werden.</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Aktive Dateien säubern </value>

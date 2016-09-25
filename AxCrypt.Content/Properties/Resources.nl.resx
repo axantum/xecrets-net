@@ -129,25 +129,25 @@
     <value>Activeer AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
-    <value>Uw AxCrypt ID activatiecode is &lt;b&gt;{0}&lt;/b&gt; . Gebruik deze code in de AxCrypt app, of klik de onderstaande knop voor de website. Dit zal uw account verifiëren en activeren.</value>
+    <value>Uw AxCrypt ID activatiecode is &lt;b&gt;{0}&lt;/b&gt; .</value>
   </data>
   <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
     <value>Uw activatiecode is {0} .</value>
   </data>
   <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
-    <value>U heeft gratis toegang tot AxCrypt Premium eigenschappen voor een &lt;b&gt;30 dagen durende proefperiode&lt;/b&gt; vanaf het moment dat u uw AxCrypt ID activeert.</value>
+    <value>U kunt uw proefperiode van dertig dagen voor de &lt;b&gt;AxCrypt Premium eigenschappen&lt;/b&gt; in de app starten!</value>
   </data>
   <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
-    <value>U heeft gratis toegang tot AxCrypt Premium eigenschappen voor een proefperiode van 30 dagen vanaf het moment dat u uw AxCrypt ID activeert.</value>
+    <value>U kunt gratis gebruik maken van AxCrypt Premium eigenschappen voor een proefperiode van 30 dagen in de app.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>U heeft zicht geregistreerd voor een AxCrypt ID. Om uw account te verifiëren moet u de onderstaande activatiecode in de AxCrypt app of op onze website invoeren. </value>
+    <value>U heeft zich geregistreerd voor een AxCrypt ID. Om het proces te voltooien moet u uw email adres verifiëren.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
-    <value>Als u liever de website gebruikt in plaats van de app kunt u gaan naar &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt;, voer &lt;b&gt;{1}&lt;/b&gt; in en de activatiecode &lt;b&gt;{2}&lt;/b&gt; om uw AxCrypt ID handmatig te activeren.</value>
+    <value>Om hangmatig te verifiëren, ga naar &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; en voer &lt;b&gt;{1}&lt;/b&gt;  en de verificatiecode in&lt;b&gt;{2}&lt;/b&gt; .</value>
   </data>
   <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
-    <value>Als u liever de website gebruikt in plaats van de app kunt u gaan naar {0}, voer {1} in en de activatiecode {2} om uw AxCrypt ID handmatig te activeren.</value>
+    <value>Om handmatig te verifiëren, ga naar {0} en voer {1} en de verificatiecode in {2} .</value>
   </data>
   <data name="ActivateMailBodyTitle" xml:space="preserve">
     <value>Hallo en welkom by AxCrypt!</value>
@@ -165,7 +165,7 @@ Voer hier uw email en code alleen hangmatig in wanneer u uw activatiemail ontvan
   <data name="ActivatePageBody" xml:space="preserve">
     <value>Om uw AxCrypt ID, &lt;b&gt;{0}&lt;/b&gt;, te activeren moet u een wachtwoord kiezen.
 
-Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtwoord beheerder en toegang tot de website beschermd. Typ langzaam, zorgvuldig en vergeet uw wachtwoord niet!</value>
+Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtwoordbeheerder en toegang tot de website beschermd. Typ langzaam, zorgvuldig en vergeet uw wachtwoord niet!</value>
   </data>
   <data name="ActivatePageTitle" xml:space="preserve">
     <value>Activeer AxCrypt ID</value>
@@ -185,6 +185,12 @@ Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtw
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>Selecteer een map om te beveiligen met AxCrypt. Bestaande bestanden worden nu geëncrypteerd.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AlreadyVerifiedInfo" xml:space="preserve">
+    <value>Oops. U heeft uw account al geverifieerd, geweldig!
+
+Meld u alstublieft met het zelfde wachtwoord die u eerder hebt gebruikt aan.</value>
+    <comment>A brief informative message the account is already verified, and to please use the password already set to sign in.</comment>
   </data>
   <data name="AlwaysOffline" xml:space="preserve">
     <value>Altijd Offline</value>
@@ -773,7 +779,7 @@ Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige activatiecode in en stel uw 
     <value>Nieuwe contacten kunnen alleen worden toegevoegd wanneer u online bent!</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
-    <value>Klik om geëncrypteerde bestandente selecteren waarvan u de sleutels wilt delen met anderen</value>
+    <value>Klik om geëncrypteerde bestanden te selecteren waarvan u de sleutels wilt delen met anderen</value>
   </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt moet opnieuw opgestart te worden om de taal te wijzigen.</value>
@@ -1022,6 +1028,12 @@ De licentie voor dit programma is conform de overeenkomst.
     <value>Klik om de naam van een sleutel bestand in te voeren. Gebruik dit alleen wanneer u weet dat u een sleutel bestand heeft gebruikt tijdens het beveiligen van dit bestand in de vorige versie van AxCrypt.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
+  <data name="NavigationPaneFeedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="NavigationPaneHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Creëer een Nieuw Wachtwoord</value>
   </data>
@@ -1143,7 +1155,7 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
   <data name="PasswordResetPageBody" xml:space="preserve">
     <value>Als u zich eerder geregistreerd heeft, maar het wachtwoord vergeten bent, of vanwege een andere reden de activatielink niet onvangen of verloren heeft, kunt u zich opnieuw registreren en een nieuw activatiemail hier aanvragen.
 
-&lt;span class="red"&gt;Als u uw wachtwoord vergeten bent zorgt dit ervoor dat u zich weer kan aanmelden, maar u kan geen toegang meer krijgen tot geëncrypteerde bestanden of informatie die in de online wachtwoord beheerder zijn opgeslagen. Dit blijft geëncrypteerd met uw oude wachtwoord en wij kunnen dit niet decrypteren.&lt;/span&gt; 
+&lt;span class="red"&gt;Als u uw wachtwoord vergeten bent zorgt dit ervoor dat u zich weer kan aanmelden, maar u kan geen toegang meer krijgen tot geëncrypteerde bestanden of informatie die in de online wachtwoordbeheerder zijn opgeslagen. Dit blijft geëncrypteerd met uw oude wachtwoord en wij kunnen dit niet decrypteren.&lt;/span&gt; 
  
 Voer uw emailadres hieronder in om een activatie of wachtwoord reset link naar het gespecificeerde adres te sturen. Vanwege persoonlijke betrouwbaarheidsredenen &lt;b&gt;wordt er geen feedback gegeven of de operatie succesvol of een mislukking was&lt;/b&gt;.</value>
   </data>
@@ -1338,8 +1350,8 @@ Zodra uw informatie de PayPal site heeft bereikt wordt het bewaard op een server
 
 Een betaalbewijs van uw aankoop is naar uw email verstuurd.</value>
   </data>
-  <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>&lt;b&gt;Zonder BTW&lt;/b&gt;. De BTW is afhankelijk van het land waar u woont en wordt getoond op betalingspagina. </value>
+  <data name="PurchaseVatEstimated" xml:space="preserve">
+    <value>De BTW is afhankelijk van het land waar u woont en wordt getoond op betalingspagina. </value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Actieve Bestanden Opschonen</value>
@@ -1394,7 +1406,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een activatielink.</value>
     <value>Alleen premium gebruikers kunnen hun ingevoerde wachtwoorden opslaan.</value>
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
-    <value>Ga naar wachtwoord beheer.</value>
+    <value>Ga naar wachtwoordbeheer.</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
     <value>Uw Premium abonnement is verlopen en daarom kunt u niet langer wachtwoord invoeren maken of aanpassen. U heeft echter nog wel alleen-lezen toegang.</value>
@@ -1409,7 +1421,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een activatielink.</value>
     <value>Veilig Verwijderen</value>
   </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
-    <value>Uw software moet geüpdatet worden vanwege een beveiligings probleem. </value>
+    <value>Uw software moet geüpdatet worden vanwege een beveiligingsprobleem. </value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
@@ -1431,7 +1443,7 @@ Een bevestigingsemail wordt verstuurd naar het nieuwe emailadres. De verandering
   <data name="SettingsPasswordPageBody" xml:space="preserve">
     <value>Om uw wachtwoord te veranderen moet u uw huidige wachtwoord invoeren en daarna een nieuw wachtwoord invoeren en verifiëren.
 
-Kies iets dat moeilijk te raden is, sinds het de wachtwoorden beschermd in de online wachtwoord beheerder en toegang geeft tot de website. Typ langzaam en zorgvuldig, en vergeet uw nieuwe wachtwoord niet!</value>
+Kies iets dat moeilijk te raden is, sinds het de wachtwoorden beschermd in de online wachtwoordbeheerder en toegang geeft tot de website. Typ langzaam en zorgvuldig, en vergeet uw nieuwe wachtwoord niet!</value>
   </data>
   <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>Nieuwe AxCrypt Gebruiker</value>
@@ -1506,7 +1518,7 @@ Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
     <value>{0} - {1}</value>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
-    <value>Premium is nodig voor wachtwoord beheer. Klik om nu te upgraden!</value>
+    <value>Premium is nodig voor wachtwoordbeheer. Klik om nu te upgraden!</value>
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>Transactiegeschiedenis</value>

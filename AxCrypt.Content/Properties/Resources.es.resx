@@ -1316,8 +1316,8 @@ Cuando la información llega a la página de PayPal, reside en un servidor que e
 
 Un recibo de su compra ha sido enviada a su correo electrónico.</value>
   </data>
-  <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>&lt;b&gt;IVA excluido &lt;/b&gt;. IVA real depende de su país de residencia y se mostrará en la página de pago.</value>
+  <data name="PurchaseVatEstimated" xml:space="preserve">
+    <value> IVA real depende de su país de residencia y se mostrará en la página de pago.</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Limpieza de archivos activos</value>

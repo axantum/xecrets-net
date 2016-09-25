@@ -1327,8 +1327,8 @@ Assim que sua informação chegar ao site do PayPal, estará armazenada em um se
 
 Um recibo da compra foi enviado ao seu e-mail.</value>
   </data>
-  <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>&lt;b&gt;VAT excluído&lt;/b&gt;. O VAT atual depende do seu país de residência e será mostrado na página de cobrança.</value>
+  <data name="PurchaseVatEstimated" xml:space="preserve">
+    <value>O VAT atual depende do seu país de residência e será mostrado na página de cobrança.</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Expurgando arquivos ativos</value>

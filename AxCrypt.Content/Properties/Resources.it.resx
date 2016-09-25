@@ -1377,8 +1377,16 @@ Quando le tue informazioni raggiungono il sito di PayPal, si trovano in un serve
 
 La ricevuta del tuo acquisto ti è stata inviata per e-mail.</value>
   </data>
-  <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>&lt;b&gt;VAT excluded&lt;/b&gt; L'IVA dipende dal tuo paese di residenza e sarà mostrata nella pagina di pagamento.</value>
+  <data name="PurchaseVatDepends" xml:space="preserve">
+    <value>L'IVA potrebbe essere modificata durante il pagamento.</value>
+    <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
+  </data>
+  <data name="PurchaseVatEstimated" xml:space="preserve">
+    <value>L'IVA è stimata.</value>
+  </data>
+  <data name="PurchaseVatExcluded" xml:space="preserve">
+    <value>IVA esclusa.</value>
+    <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Pulisci i File Attivi</value>

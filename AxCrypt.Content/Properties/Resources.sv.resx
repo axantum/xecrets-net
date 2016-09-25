@@ -301,7 +301,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>OK</value>
   </data>
   <data name="ButtonPasswordResetText" xml:space="preserve">
-    <value>Återställ</value>
+    <value>Återställ Lösenord</value>
     <comment>Button text for a password reset button</comment>
   </data>
   <data name="ButtonPasswordResetToolTip" xml:space="preserve">
@@ -1074,7 +1074,7 @@ Detta program är licensierat i enlighet med avtalet.
     <value>Ditt Premium-abonnemang har slutat gälla så du har inte den högsta säkerhetsnivån. Skaffa Premium genom att klicka!</value>
   </data>
   <data name="NotFoundPageBody" xml:space="preserve">
-    <value>Tyvärr kunde vi inte hitta sidan du sökte. Det kan bero på en omstart som gjort din webbläsarsession ogiltig, eller något internt fel hos oss.
+    <value>Tyvärr kunde vi inte visa sidan du sökte. Det kan bero på att den inte finns, en omstart som gjort din webbläsarsession ogiltig, eller något internt fel hos oss.
 
 Begärd sida:
 {2}
@@ -1084,7 +1084,7 @@ Begäran har loggats. Försök igen med rätt sökväg, eller &lt;a href="mailto
 För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</value>
   </data>
   <data name="NotFoundPageTitle" xml:space="preserve">
-    <value>Sidan borta!</value>
+    <value>Sidan kunde inte visas!</value>
   </data>
   <data name="NotFoundSafePageBody" xml:space="preserve">
     <value>Tyvärr kunde vi inte hitta sidan du sökte. Det kan bero på en omstart som gjort din webbläsarsession ogiltig, eller något internt fel hos oss.
@@ -1234,6 +1234,14 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Nyckeldelning kräver Premium. Klicka för att uppgradera!</value>
   </data>
+  <data name="PriceExcludingVat" xml:space="preserve">
+    <value>{0} Exkl. Moms.</value>
+    <comment>Brief text used to display the price exclusive of VAT, as additional information. The price is typically shown inclusive. This text is only displayed if any VAT is added.</comment>
+  </data>
+  <data name="PricePerMonth" xml:space="preserve">
+    <value>{0}/månad.</value>
+    <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Aktiveringskod</value>
   </data>
@@ -1367,8 +1375,16 @@ När informationen når PayPal-servrarna lagras den med hög säkerhet både fys
 
 Ett kvitto på ditt köp har skickats till din epostadress.</value>
   </data>
-  <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>&lt;b&gt;Exklusive Moms&lt;/b&gt;. Faktisk moms beror på vilket land du betalar från och kommer att anges på betalningssidan.</value>
+  <data name="PurchaseVatDepends" xml:space="preserve">
+    <value>Moms fastställs slutgiltigt vid betalning.</value>
+    <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
+  </data>
+  <data name="PurchaseVatEstimated" xml:space="preserve">
+    <value>Momsbeloppet är preliminärt.</value>
+  </data>
+  <data name="PurchaseVatExcluded" xml:space="preserve">
+    <value>Exkl. Moms.</value>
+    <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Rensar Aktiva Dokument</value>
@@ -1472,6 +1488,10 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Visa Lösenord</value>
+  </data>
+  <data name="SignInBeforePremiumMessage" xml:space="preserve">
+    <value>Logga in först!</value>
+    <comment>A short message used in the sign in dialog, to explain that a user should sign in first and then purchase or try premium as appropriate.</comment>
   </data>
   <data name="SignInVerificationTitle" xml:space="preserve">
     <value>Bekräfta Inloggning</value>

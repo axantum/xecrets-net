@@ -369,6 +369,9 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>비밀번호가 바뀌셨습니다.</value>
   </data>
+  <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
+    <value>신규 버전 이용이 가능한지 확인해 주시기 바랍니다. 인터넷 접속이 필요합니다.</value>
+  </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
     <value>열린 파일들을 정리하기</value>
   </data>
@@ -379,7 +382,7 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
     <value>새 버전을 보시려면 클릭하십시오.</value>
   </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
-    <value>열린 파일들을 삭제, 또는 비우시려면 여기를 누르시기 바랍니다. 그러나 본파일이 이미 사용중이 아닌지를 확인 해주시기 바랍니다.</value>
+    <value>열린 파일 또는 새 파일들을 암호화하시려면 여기를 누르시기 바랍니다. 그러나 본파일이 이미 사용중이 아닌지를 확인 해주시기 바랍니다.</value>
   </data>
   <data name="ColumnAmountPaidHeader" xml:space="preserve">
     <value>지불한 금액</value>
@@ -1093,7 +1096,7 @@ AxCrypt 팀</value>
     <value>비밀번호 관리</value>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
-    <value>비밀번호는 최소한 10자리를 사용하셔야 합니다.</value>
+    <value>본 비밀번호는 허용되지 않습니다.</value>
   </data>
   <data name="PasswordResetHyperLink" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/PasswordReset</value>
@@ -1181,7 +1184,7 @@ AxCrypt 팀</value>
     <value>지금 구입</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Premium 구매</value>
+    <value>Premium 구매 또는 갱신</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>변경</value>
@@ -1300,8 +1303,8 @@ AxCrypt는 사용자의 파일을 안전하게 보관되어있게 만들어졌�
 
 구입 내역을 본인 이메일 주소로 보냈습니다.</value>
   </data>
-  <data name="PurchaseVatPercent" xml:space="preserve">
-    <value>&lt;b&gt;VAT excluded&lt;/b&gt;. 본 VAT는 사용자의 나라에 의존하고 지불 페이지에 뜹니다.</value>
+  <data name="PurchaseVatEstimated" xml:space="preserve">
+    <value>본 VAT는 사용자의 나라에 의존하고 지불 페이지에 뜹니다.</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>횔동적인 파일들을 추방</value>
