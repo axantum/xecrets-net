@@ -63,11 +63,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SubscribeToModelEvents();
         }
 
-        public IAction ImportFile { get; private set; }
+        public IAsyncAction ImportFile { get; private set; }
 
         private void InitializePropertyValues()
         {
-            ImportFile = new DelegateAction<object>((o) => ImportFileAction());
+            ImportFile = new AsyncDelegateAction<object>((o) => ImportFileActionAsync());
             ImportSuccessful = true;
             ShowPassphrase = _userSettings.DisplayDecryptPassphrase;
         }
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private void ImportFileAction()
+        private async Task ImportFileActionAsync()
         {
             IDataStore privateKeyData = New<IDataStore>(PrivateKeyFileName);
             Passphrase passphrase = new Passphrase(Passphrase);
@@ -131,12 +131,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(_knownIdentities.DefaultEncryptionIdentity));
-            store.ImportAsync(keyPair).Wait();
+            LogOnIdentity identity = new LogOnIdentity(keyPair.UserEmail, passphrase);
+            AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
+            await store.ImportAsync(keyPair);
             ImportSuccessful = true;
 
             _userSettings.UserEmail = keyPair.UserEmail.Address;
-            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(store.ActiveKeyPairAsync().Result, passphrase);
+            _knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity(await store.ActiveKeyPairAsync(), passphrase);
         }
     }
 }

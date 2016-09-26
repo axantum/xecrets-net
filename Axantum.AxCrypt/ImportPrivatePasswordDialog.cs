@@ -47,14 +47,14 @@ namespace Axantum.AxCrypt
             _browsePrivateKeyFileButton.Text = Texts.ButtonEllipsisText;
         }
 
-        private void _buttonOk_Click(object sender, EventArgs e)
+        private async void _buttonOk_Click(object sender, EventArgs e)
         {
             if (!AdHocValidationDueToMonoLimitations())
             {
                 DialogResult = DialogResult.None;
                 return;
             }
-            _viewModel.ImportFile.Execute(null);
+            await _viewModel.ImportFile.ExecuteAsync(null);
             if (!_viewModel.ImportSuccessful)
             {
                 DialogResult = DialogResult.None;
