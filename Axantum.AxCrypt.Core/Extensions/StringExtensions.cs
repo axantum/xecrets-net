@@ -87,6 +87,21 @@ namespace Axantum.AxCrypt.Core.Extensions
         }
 
         /// <summary>
+        /// Removes the 'Controller' suffix, we nameof() can be used.
+        /// </summary>
+        /// <param name="fullName">The full name.</param>
+        /// <returns>The string minus and 'Controller' prefix.</returns>
+        public static string MvcController(this string fullName)
+        {
+            int i = fullName.LastIndexOf("Controller");
+            if (i == -1)
+            {
+                return fullName;
+            }
+            return fullName.Substring(0, i);
+        }
+
+        /// <summary>
         /// Convenience extension for String.Format using the provided CultureInfo
         /// </summary>
         /// <param name="format"></param>
