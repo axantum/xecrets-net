@@ -4351,15 +4351,22 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SSL is required. Please try again using &lt;a href=&quot;{2}&quot;&gt;{2}&lt;/a&gt; .
+        ///   Looks up a localized string similar to A secure SSL connection is required. Please try again using &lt;a href=&quot;{2}&quot;&gt;{2}&lt;/a&gt; .
         ///
-        ///Your request has been logged.
-        ///
-        ///To return to the start page, click &lt;a href=&quot;{1}&quot;&gt;here&lt;/a&gt;..
+        ///To go to the start page, click &lt;a href=&quot;{1}&quot;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string SslRequiredPageBody {
             get {
                 return ResourceManager.GetString("SslRequiredPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Connection Required.
+        /// </summary>
+        public static string SslRequiredTitle {
+            get {
+                return ResourceManager.GetString("SslRequiredTitle", resourceCulture);
             }
         }
         
