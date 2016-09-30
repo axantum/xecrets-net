@@ -1524,16 +1524,10 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <value>The selected subsciption time is invalid. A valid subscription has to be at least {0} month and no longer than {1} months.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>With Premium you can use AxCrypt to its full potential on any number of computers and devices.
-
-AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Secured Folders and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
-
-To try the premium features we offer you a 30 days free trial of AxCrypt Premium that you can start at any time. After that you can extend your premium subscription by using the form below.</value>
+    <value>With &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
-    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Security is crucial to us. Everything we do with AxCrypt is done with security as the highest priority. We are therefore using PayPal as payment method for AxCrypt Premium. The PayPal site is highly secure and automatically encrypts your confidential information in transit from your computer to our servers.
-
-Once your information reaches the PayPal site, it resides on a server that is heavily guarded both physically and electronically. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[More about payments]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Your personal payment details are never sent to or stored on our servers. We send them directly from you to our payment gateway partners via an encrypted connection. We partner with Stripe and PayPal, both of which meet the high standards set by the Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>Buy AxCrypt Premium</value>

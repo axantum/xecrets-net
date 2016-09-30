@@ -3895,11 +3895,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With Premium you can use AxCrypt to its full potential on any number of computers and devices.
-        ///
-        ///AxCrypt is designed around the primary concept of keeping your files secure. To use advanced features such as 256-bit encryption, Secured Folders and Password Management we recommend you to upgrade to AxCrypt Premium. With AxCrypt Premium you will have the entire AxCrypt client at your disposal, without limitations.
-        ///
-        ///To try the premium features we offer you a 30 days free trial of AxCrypt Premium that you can [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to With &lt;a href=&quot;http://www.axcrypt.net/pricing/&quot;&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices..
         /// </summary>
         public static string PurchasePageBody1 {
             get {
@@ -3908,9 +3904,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;span class=&quot;text-cutoff-ellipsis always&quot;&gt;&lt;a id=&quot;paypal-readmore&quot; class=&quot;show-link&quot;&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;text-cutoff always&quot;&gt;Security is crucial to us. Everything we do with AxCrypt is done with security as the highest priority. We are therefore using PayPal as payment method for AxCrypt Premium. The PayPal site is highly secure and automatically encrypts your confidential information in transit from your computer to our servers.
-        ///
-        ///Once your information reaches the PayPal site, i [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;span class=&quot;text-cutoff-ellipsis always&quot;&gt;&lt;a id=&quot;paypal-readmore&quot; class=&quot;show-link&quot;&gt;[More about payments]&lt;/a&gt;&lt;/span&gt;&lt;span class=&quot;text-cutoff always&quot;&gt;Your personal payment details are never sent to or stored on our servers. We send them directly from you to our payment gateway partners via an encrypted connection. We partner with Stripe and PayPal, both of which meet the high standards set by the Payment Card Industry Data Security Standard. &lt;a class=&quot;hide-link&quot;&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;.
         /// </summary>
         public static string PurchasePageBody2 {
             get {
