@@ -540,6 +540,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string ButtonCloseText {
+            get {
+                return ResourceManager.GetString("ButtonCloseText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete AxCrypt ID.
         /// </summary>
         public static string ButtonDeleteAxCryptIdText {
