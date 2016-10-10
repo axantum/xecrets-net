@@ -293,24 +293,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We sent you an email at {0}.
-        /// </summary>
-        public static string ActivationCodeSentMessage {
-            get {
-                return ResourceManager.GetString("ActivationCodeSentMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enter your activation code.
-        /// </summary>
-        public static string ActivationCodeTitle {
-            get {
-                return ResourceManager.GetString("ActivationCodeTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Double-click opens the secured file..
         /// </summary>
         public static string ActiveFileKnownKeyToolTip {
@@ -329,15 +311,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new file.
-        /// </summary>
-        public static string AddFileLabel {
-            get {
-                return ResourceManager.GetString("AddFileLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add Secured Folder.
         /// </summary>
         public static string AddSecureFolderMenuItemText {
@@ -352,15 +325,6 @@ namespace AxCrypt.Content.Properties {
         public static string AddSecureFolderTitle {
             get {
                 return ResourceManager.GetString("AddSecureFolderTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Already registered? Log in here.
-        /// </summary>
-        public static string AlreadyRegisteredLink {
-            get {
-                return ResourceManager.GetString("AlreadyRegisteredLink", resourceCulture);
             }
         }
         
@@ -536,15 +500,6 @@ namespace AxCrypt.Content.Properties {
         public static string ButtonChangePasswordText {
             get {
                 return ResourceManager.GetString("ButtonChangePasswordText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        public static string ButtonCloseText {
-            get {
-                return ResourceManager.GetString("ButtonCloseText", resourceCulture);
             }
         }
         
@@ -1093,15 +1048,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Continue.
-        /// </summary>
-        public static string ContinueLabel {
-            get {
-                return ResourceManager.GetString("ContinueLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The action was blocked because cookies are disabled in your browser..
         /// </summary>
         public static string CookiePolicyBlockedError {
@@ -1115,7 +1061,7 @@ namespace AxCrypt.Content.Properties {
         ///
         ///The cookies are further secured by requiring that all sensitive communication with the server is encrypted with HTTPS, by encrypting the cookie itself and by making the cookie unavailable to script in your browser.
         ///
-        ///If you do not acc [rest of string was truncated]&quot;;.
+        ///If you do not [rest of string was truncated]&quot;;.
         /// </summary>
         public static string CookiePolicyPageBody {
             get {
@@ -1603,24 +1549,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open a secured file directly with click.
-        /// </summary>
-        public static string EasyToWorkDescription {
-            get {
-                return ResourceManager.GetString("EasyToWorkDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Easy to work with.
-        /// </summary>
-        public static string EasyToWorkTitle {
-            get {
-                return ResourceManager.GetString("EasyToWorkTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You are limited to read-only access! Only Premium users are allowed to edit or create new password entries..
         /// </summary>
         public static string EditSecretErrorIsReadOnly {
@@ -1644,15 +1572,6 @@ namespace AxCrypt.Content.Properties {
         public static string EditSecretSuccess {
             get {
                 return ResourceManager.GetString("EditSecretSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Magic link to the email.
-        /// </summary>
-        public static string EmailAppLink {
-            get {
-                return ResourceManager.GetString("EmailAppLink", resourceCulture);
             }
         }
         
@@ -1837,15 +1756,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expire in .
-        /// </summary>
-        public static string ExpireInLabelFirstPart {
-            get {
-                return ResourceManager.GetString("ExpireInLabelFirstPart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Export AxCrypt ID Secret and Sharing Key Pair.
         /// </summary>
         public static string ExportMyPrivateKeyToolStripMenuItemText {
@@ -1896,60 +1806,6 @@ namespace AxCrypt.Content.Properties {
         public static string FeedbackButtonText {
             get {
                 return ResourceManager.GetString("FeedbackButtonText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Idea.
-        /// </summary>
-        public static string FeedbackCategoryIdea {
-            get {
-                return ResourceManager.GetString("FeedbackCategoryIdea", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Praise.
-        /// </summary>
-        public static string FeedbackCategoryPraise {
-            get {
-                return ResourceManager.GetString("FeedbackCategoryPraise", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Problem.
-        /// </summary>
-        public static string FeedbackCategoryProblem {
-            get {
-                return ResourceManager.GetString("FeedbackCategoryProblem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Question.
-        /// </summary>
-        public static string FeedbackCategoryQuestion {
-            get {
-                return ResourceManager.GetString("FeedbackCategoryQuestion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please tell us what you think, and kind of feedback is highly appreciated..
-        /// </summary>
-        public static string FeedbackDescriptionLabel {
-            get {
-                return ResourceManager.GetString("FeedbackDescriptionLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your feedback.
-        /// </summary>
-        public static string FeedbackTextPrompt {
-            get {
-                return ResourceManager.GetString("FeedbackTextPrompt", resourceCulture);
             }
         }
         
@@ -2040,15 +1896,6 @@ namespace AxCrypt.Content.Properties {
         public static string FolderAlreadyWatched {
             get {
                 return ResourceManager.GetString("FolderAlreadyWatched", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Follow us.
-        /// </summary>
-        public static string FollowUsTitle {
-            get {
-                return ResourceManager.GetString("FollowUsTitle", resourceCulture);
             }
         }
         
@@ -3091,15 +2938,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Menu.
-        /// </summary>
-        public static string MenuLabel {
-            get {
-                return ResourceManager.GetString("MenuLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Open Explorer Here.
         /// </summary>
         public static string MenuOpenExplorerHereText {
@@ -3583,7 +3421,7 @@ namespace AxCrypt.Content.Properties {
         ///
         ///&lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
         ///
-        ///Enter your e-mail below to a send an act [rest of string was truncated]&quot;;.
+        ///Enter your e-mail below to a send an [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PasswordResetPageBody {
             get {
@@ -3597,15 +3435,6 @@ namespace AxCrypt.Content.Properties {
         public static string PasswordResetPageTitle {
             get {
                 return ResourceManager.GetString("PasswordResetPageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Forgot password.
-        /// </summary>
-        public static string PasswordResetShortLink {
-            get {
-                return ResourceManager.GetString("PasswordResetShortLink", resourceCulture);
             }
         }
         
@@ -3625,20 +3454,11 @@ namespace AxCrypt.Content.Properties {
         ///
         ///We evaluate the password by estimating the strength, which is based on how long and complex the password is.
         ///
-        ///The evaluation entirely disregards parts of the password that is recognized as being among the 1,000 most common passwords, as well as white space. For example the password &apos;secretX password Y 123456&apos; is evaluated as just &apos;XY&apos;, since s [rest of string was truncated]&quot;;.
+        ///The evaluation entirely disregards parts of the password that is recognized as being among the 1,000 most common passwords, as well as white space. For example the password &apos;secretX password Y 123456&apos; is evaluated as just &apos;XY&apos;, sin [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PasswordRulesInfo {
             get {
                 return ResourceManager.GetString("PasswordRulesInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Weak.
-        /// </summary>
-        public static string PasswordStrengthBadName {
-            get {
-                return ResourceManager.GetString("PasswordStrengthBadName", resourceCulture);
             }
         }
         
@@ -3652,15 +3472,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Strong.
-        /// </summary>
-        public static string PasswordStrengthStrongName {
-            get {
-                return ResourceManager.GetString("PasswordStrengthStrongName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Password is strong and good enough to recommend..
         /// </summary>
         public static string PasswordStrengthStrongTip {
@@ -3670,29 +3481,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Very weak.
-        /// </summary>
-        public static string PasswordStrengthUnacceptableName {
-            get {
-                return ResourceManager.GetString("PasswordStrengthUnacceptableName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Password is too short or too similar to a common password to be acceptable..
         /// </summary>
         public static string PasswordStrengthUnacceptableTip {
             get {
                 return ResourceManager.GetString("PasswordStrengthUnacceptableTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Medium.
-        /// </summary>
-        public static string PasswordStrengthWeakName {
-            get {
-                return ResourceManager.GetString("PasswordStrengthWeakName", resourceCulture);
             }
         }
         
@@ -3720,15 +3513,6 @@ namespace AxCrypt.Content.Properties {
         public static string PortugueseBrazilLanguageSelection {
             get {
                 return ResourceManager.GetString("PortugueseBrazilLanguageSelection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Premium.
-        /// </summary>
-        public static string PremiumAccountLabel {
-            get {
-                return ResourceManager.GetString("PremiumAccountLabel", resourceCulture);
             }
         }
         
@@ -3792,15 +3576,6 @@ namespace AxCrypt.Content.Properties {
         public static string PremiumNeededForKeyShare {
             get {
                 return ResourceManager.GetString("PremiumNeededForKeyShare", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Press and hold to view more.
-        /// </summary>
-        public static string PressAndHoldLabel {
-            get {
-                return ResourceManager.GetString("PressAndHoldLabel", resourceCulture);
             }
         }
         
@@ -4230,33 +4005,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please rate us on .
-        /// </summary>
-        public static string RateApplicationLinkFirstPart {
-            get {
-                return ResourceManager.GetString("RateApplicationLinkFirstPart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Google Play.
-        /// </summary>
-        public static string RateApplicationLinkSecondPartAndroid {
-            get {
-                return ResourceManager.GetString("RateApplicationLinkSecondPartAndroid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to App store.
-        /// </summary>
-        public static string RateApplicationLinkSecondPartIos {
-            get {
-                return ResourceManager.GetString("RateApplicationLinkSecondPartIos", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
         public static string RecentFilesOpenToolStripMenuItemText {
@@ -4324,38 +4072,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reliability.
-        /// </summary>
-        public static string ReliabilityLabel {
-            get {
-                return ResourceManager.GetString("ReliabilityLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AxCrypt has been on the market for 15 years, and has grown to become one of the world’s most popular encryption softwares with more than 20 million downloads. Over the years we have also been mentioned and rated by many as one of the world’s best softwares for encryption..
-        /// </summary>
-        public static string ReliabilitySectionText {
-            get {
-                return ResourceManager.GetString("ReliabilitySectionText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your software needs to be updated due to a reliability issue..
         /// </summary>
         public static string ReliabilityUpdateAvailableWarning {
             get {
                 return ResourceManager.GetString("ReliabilityUpdateAvailableWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove file.
-        /// </summary>
-        public static string RemoveRecentFileLabel {
-            get {
-                return ResourceManager.GetString("RemoveRecentFileLabel", resourceCulture);
             }
         }
         
@@ -4490,38 +4211,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Security.
-        /// </summary>
-        public static string SecurityLabel {
-            get {
-                return ResourceManager.GetString("SecurityLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Security is crucial to us. Everything we do with AxCrypt is done with security as the highest priority. We make sure that no one ever gets access to your encrypted files, as long as you have control of your own password..
-        /// </summary>
-        public static string SecuritySectionText {
-            get {
-                return ResourceManager.GetString("SecuritySectionText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your software needs to be updated due to a security issue..
         /// </summary>
         public static string SecurityUpdateAvailableWarning {
             get {
                 return ResourceManager.GetString("SecurityUpdateAvailableWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set email.
-        /// </summary>
-        public static string SetEmailLabel {
-            get {
-                return ResourceManager.GetString("SetEmailLabel", resourceCulture);
             }
         }
         
@@ -4606,24 +4300,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allow secured files to be opened by other AxCrypt users with their own password.
-        /// </summary>
-        public static string ShareWithOthersDescription {
-            get {
-                return ResourceManager.GetString("ShareWithOthersDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Share with others.
-        /// </summary>
-        public static string ShareWithOthersTitle {
-            get {
-                return ResourceManager.GetString("ShareWithOthersTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show Password.
         /// </summary>
         public static string ShowPasswordOptionPrompt {
@@ -4647,24 +4323,6 @@ namespace AxCrypt.Content.Properties {
         public static string SignInVerificationTitle {
             get {
                 return ResourceManager.GetString("SignInVerificationTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Simplicity.
-        /// </summary>
-        public static string SimplicityLabel {
-            get {
-                return ResourceManager.GetString("SimplicityLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Encryption is complicated, but this has not prevented us from constantly working to simplify it for the user. We have developed unique features that make the use of strong encryption and the sharing of encryption keys more simple and secure than any other software..
-        /// </summary>
-        public static string SimplicitySectionText {
-            get {
-                return ResourceManager.GetString("SimplicitySectionText", resourceCulture);
             }
         }
         
@@ -4712,33 +4370,6 @@ namespace AxCrypt.Content.Properties {
         public static string StopSecuringToolTipText {
             get {
                 return ResourceManager.GetString("StopSecuringToolTipText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File security with 128-bit or 256-bit AES encryption.
-        /// </summary>
-        public static string StrongEncryptionDescription {
-            get {
-                return ResourceManager.GetString("StrongEncryptionDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Strong encryption.
-        /// </summary>
-        public static string StrongEncryptionTitle {
-            get {
-                return ResourceManager.GetString("StrongEncryptionTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Submit feedback.
-        /// </summary>
-        public static string SubmitFeedbackButton {
-            get {
-                return ResourceManager.GetString("SubmitFeedbackButton", resourceCulture);
             }
         }
         
@@ -4905,24 +4536,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By signing up to AxCrypt you agree to our .
-        /// </summary>
-        public static string TermsAndConditionsLinkFirstPart {
-            get {
-                return ResourceManager.GetString("TermsAndConditionsLinkFirstPart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Terms &amp; Conditions.
-        /// </summary>
-        public static string TermsAndConditionsLinkSecondPart {
-            get {
-                return ResourceManager.GetString("TermsAndConditionsLinkSecondPart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Check email and spam!.
         /// </summary>
         public static string TextCheckEmailAndSpam {
@@ -5062,24 +4675,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It&apos;s free.
-        /// </summary>
-        public static string TryItDescription {
-            get {
-                return ResourceManager.GetString("TryItDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Try it!.
-        /// </summary>
-        public static string TryItTitle {
-            get {
-                return ResourceManager.GetString("TryItTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Try Premium!.
         /// </summary>
         public static string TryPremiumLabel {
@@ -5211,15 +4806,6 @@ namespace AxCrypt.Content.Properties {
         public static string UserSettingsFormatChangeNeedsReset {
             get {
                 return ResourceManager.GetString("UserSettingsFormatChangeNeedsReset", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please verify your new account.
-        /// </summary>
-        public static string VerifyAccountLabel {
-            get {
-                return ResourceManager.GetString("VerifyAccountLabel", resourceCulture);
             }
         }
         
