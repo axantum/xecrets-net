@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -200,23 +200,11 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="ActivateSuccess" xml:space="preserve">
     <value>Your AxCrypt ID has been activated! Please sign in.</value>
   </data>
-  <data name="ActivationCodeSentMessage" xml:space="preserve">
-    <value>We sent you an email at {0}</value>
-    <comment>Message about mail with activation code.</comment>
-  </data>
-  <data name="ActivationCodeTitle" xml:space="preserve">
-    <value>Enter your activation code</value>
-    <comment>Title of ActivationCode step on SignUp page in mobile application</comment>
-  </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
     <value>Double-click opens the secured file.</value>
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Double-click opens a Password-dialog before opening the secured file.</value>
-  </data>
-  <data name="AddFileLabel" xml:space="preserve">
-    <value>Add new file</value>
-    <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Add Secured Folder</value>
@@ -224,10 +212,6 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>Select a folder to keep secured with AxCrypt. Existing files will be encrypted now.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
-  </data>
-  <data name="AlreadyRegisteredLink" xml:space="preserve">
-    <value>Already registered? Log in here</value>
-    <comment>Link to sign in page.</comment>
   </data>
   <data name="AlreadyVerifiedInfo" xml:space="preserve">
     <value>Oops. You already verified your account, that's great!
@@ -485,10 +469,6 @@ You must complete these steps to complete the process.</value>
   <data name="ContactInfoTitle" xml:space="preserve">
     <value>Contact &amp; support</value>
   </data>
-  <data name="ContinueLabel" xml:space="preserve">
-    <value>Continue</value>
-    <comment>Text of "Continue" button on SignUp page in mobile application</comment>
-  </data>
   <data name="CookiePolicyBlockedError" xml:space="preserve">
     <value>The action was blocked because cookies are disabled in your browser.</value>
   </data>
@@ -663,14 +643,6 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Nederlands</value>
     <comment>The name of the Dutch language for selection.</comment>
   </data>
-  <data name="EasyToWorkDescription" xml:space="preserve">
-    <value>Open a secured file directly with click</value>
-    <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
-  </data>
-  <data name="EasyToWorkTitle" xml:space="preserve">
-    <value>Easy to work with</value>
-    <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
-  </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>You are limited to read-only access! Only Premium users are allowed to edit or create new password entries.</value>
   </data>
@@ -679,10 +651,6 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Your entry has been updated.</value>
-  </data>
-  <data name="EmailAppLink" xml:space="preserve">
-    <value>Magic link to the email</value>
-    <comment>Text of link for opening mail application.</comment>
   </data>
   <data name="EmailErrorTemplateNotFound" xml:space="preserve">
     <value>Template not found.</value>
@@ -746,10 +714,6 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Exit</value>
   </data>
-  <data name="ExpireInLabelFirstPart" xml:space="preserve">
-    <value>Expire in </value>
-    <comment>The first part of "Expired in x days" label in mobile application</comment>
-  </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Export AxCrypt ID Secret and Sharing Key Pair</value>
   </data>
@@ -767,30 +731,6 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="FeedbackButtonText" xml:space="preserve">
     <value>How are we doing? Please give us feedback!</value>
-  </data>
-  <data name="FeedbackCategoryIdea" xml:space="preserve">
-    <value>Idea</value>
-    <comment>Displayed name of "Idea" feedback category in mobile application</comment>
-  </data>
-  <data name="FeedbackCategoryPraise" xml:space="preserve">
-    <value>Praise</value>
-    <comment>Displayed name of "Praise" feedback category in mobile application</comment>
-  </data>
-  <data name="FeedbackCategoryProblem" xml:space="preserve">
-    <value>Problem</value>
-    <comment>Displayed name of "Problem" feedback category in mobile application</comment>
-  </data>
-  <data name="FeedbackCategoryQuestion" xml:space="preserve">
-    <value>Question</value>
-    <comment>Displayed name of "Question" feedback category in mobile application </comment>
-  </data>
-  <data name="FeedbackDescriptionLabel" xml:space="preserve">
-    <value>Please tell us what you think, and kind of feedback is highly appreciated.</value>
-    <comment>Text which motivates user to send feedback </comment>
-  </data>
-  <data name="FeedbackTextPrompt" xml:space="preserve">
-    <value>Your feedback</value>
-    <comment>Text displayed in feedback content textbox when it is empty</comment>
   </data>
   <data name="FileAlreadyEncrypted" xml:space="preserve">
     <value>File '{0}' is already secured.</value>
@@ -821,10 +761,6 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Folder '{0}' already secured.</value>
-  </data>
-  <data name="FollowUsTitle" xml:space="preserve">
-    <value>Follow us</value>
-    <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>This is the AxCrypt ID section of AxCrypt.net, click &lt;a href="{0}"&gt;here&lt;/a&gt; to go back to the start page.</value>
@@ -1235,10 +1171,6 @@ This program is licensed according to the agreement.
   <data name="MenuDecryptTemporarilyText" xml:space="preserve">
     <value>Decrypt Temporarily</value>
   </data>
-  <data name="MenuLabel" xml:space="preserve">
-    <value>Menu</value>
-    <comment>Tooltip for "Menu" button in mobile application</comment>
-  </data>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Open Explorer Here</value>
   </data>
@@ -1423,10 +1355,6 @@ Enter your e-mail below to a send an activation or password reset link to the sp
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Password reset</value>
   </data>
-  <data name="PasswordResetShortLink" xml:space="preserve">
-    <value>Forgot password</value>
-    <comment>Text of link to Forgot password screen in mobile app</comment>
-  </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
     <value>An attempt to send the AxCrypt ID activation verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
 
@@ -1442,33 +1370,17 @@ The evaluation entirely disregards parts of the password that is recognized as b
 We classify the password in 4 categories of increasing strength, were we do not accept any password in the lowest category. The above example is not accepted for that reason.</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
-  <data name="PasswordStrengthBadName" xml:space="preserve">
-    <value>Weak</value>
-    <comment>Short displayed name of "Bad" password status</comment>
-  </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>Password is too weak to be safe to use.</value>
     <comment>Status 'Red' We'll accept it, but it's really not a good idea!</comment>
-  </data>
-  <data name="PasswordStrengthStrongName" xml:space="preserve">
-    <value>Strong</value>
-    <comment>Short displayed name of the "Strong" password status</comment>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
     <value>Password is strong and good enough to recommend.</value>
     <comment>Status 'Green'. This is a really good password!</comment>
   </data>
-  <data name="PasswordStrengthUnacceptableName" xml:space="preserve">
-    <value>Very weak</value>
-    <comment>Short displayed name of Unacceptable password status</comment>
-  </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
     <value>Password is too short or too similar to a common password to be acceptable.</value>
     <comment>Shown when no password is typed or it is effectively empty</comment>
-  </data>
-  <data name="PasswordStrengthWeakName" xml:space="preserve">
-    <value>Medium</value>
-    <comment>Short displayed name of  "Weak"password status</comment>
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>Password is not strong enough to be recommended.</value>
@@ -1480,10 +1392,6 @@ We classify the password in 4 categories of increasing strength, were we do not 
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
     <value>Português (Brasil)</value>
     <comment>The name of the Portuguese Brazil language. Do not translate.</comment>
-  </data>
-  <data name="PremiumAccountLabel" xml:space="preserve">
-    <value>Premium</value>
-    <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
     <value>Your AxCrypt Premium subscription is coming to an end soon. I sincerely hope you have enjoyed using our features and found them useful.</value>
@@ -1506,10 +1414,6 @@ We classify the password in 4 categories of increasing strength, were we do not 
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Key sharing requires Premium. Click to upgrade now!</value>
-  </data>
-  <data name="PressAndHoldLabel" xml:space="preserve">
-    <value>Press and hold to view more</value>
-    <comment>Tooltip for Press and hold gesture in mobile application</comment>
   </data>
   <data name="PriceExcludingVat" xml:space="preserve">
     <value>{0} excl. VAT.</value>
@@ -1659,18 +1563,6 @@ A receipt of your purchase has been sent to your e-mail.</value>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Purging Active Files</value>
   </data>
-  <data name="RateApplicationLinkFirstPart" xml:space="preserve">
-    <value>Please rate us on </value>
-    <comment>Unclickable part of "Rate us on App Store" link</comment>
-  </data>
-  <data name="RateApplicationLinkSecondPartAndroid" xml:space="preserve">
-    <value>Google Play</value>
-    <comment>Clickable part of "Rate us on Google Play" link in Android mobile application</comment>
-  </data>
-  <data name="RateApplicationLinkSecondPartIos" xml:space="preserve">
-    <value>App store</value>
-    <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
-  </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Open</value>
   </data>
@@ -1696,21 +1588,9 @@ A 30 day trial of AxCrypt Premium is included and you can start it at any time f
 
 Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link.</value>
   </data>
-  <data name="ReliabilityLabel" xml:space="preserve">
-    <value>Reliability</value>
-    <comment>Title of "Reliability" section of About Us page in mobile application.</comment>
-  </data>
-  <data name="ReliabilitySectionText" xml:space="preserve">
-    <value>AxCrypt has been on the market for 15 years, and has grown to become one of the world’s most popular encryption softwares with more than 20 million downloads. Over the years we have also been mentioned and rated by many as one of the world’s best softwares for encryption.</value>
-    <comment>Description of "Reliability" section of About Us page in mobile application.</comment>
-  </data>
   <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
     <value>Your software needs to be updated due to a reliability issue.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
-  </data>
-  <data name="RemoveRecentFileLabel" xml:space="preserve">
-    <value>Remove file</value>
-    <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Remove from list but keep file secured</value>
@@ -1762,21 +1642,9 @@ Subject: AxCrypt Report Snapshot
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>Secure Delete</value>
   </data>
-  <data name="SecurityLabel" xml:space="preserve">
-    <value>Security</value>
-    <comment>Title of "Security" section of About Us page in mobile application. </comment>
-  </data>
-  <data name="SecuritySectionText" xml:space="preserve">
-    <value>Security is crucial to us. Everything we do with AxCrypt is done with security as the highest priority. We make sure that no one ever gets access to your encrypted files, as long as you have control of your own password.</value>
-    <comment>Description of "Security" section of About Us page in mobile application. </comment>
-  </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Your software needs to be updated due to a security issue.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
-  </data>
-  <data name="SetEmailLabel" xml:space="preserve">
-    <value>Set email</value>
-    <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Here you can delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
@@ -1810,14 +1678,6 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Share Keys</value>
   </data>
-  <data name="ShareWithOthersDescription" xml:space="preserve">
-    <value>Allow secured files to be opened by other AxCrypt users with their own password</value>
-    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
-  </data>
-  <data name="ShareWithOthersTitle" xml:space="preserve">
-    <value>Share with others</value>
-    <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
-  </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Show Password</value>
   </data>
@@ -1827,14 +1687,6 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
   <data name="SignInVerificationTitle" xml:space="preserve">
     <value>Verify Sign In</value>
-  </data>
-  <data name="SimplicityLabel" xml:space="preserve">
-    <value>Simplicity</value>
-    <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
-  </data>
-  <data name="SimplicitySectionText" xml:space="preserve">
-    <value>Encryption is complicated, but this has not prevented us from constantly working to simplify it for the user. We have developed unique features that make the use of strong encryption and the sharing of encryption keys more simple and secure than any other software.</value>
-    <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Warning! A site restart is scheduled in a few minutes. We're sorry about the inconvenience.</value>
@@ -1855,18 +1707,6 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Click to select files to stop securing.</value>
-  </data>
-  <data name="StrongEncryptionDescription" xml:space="preserve">
-    <value>File security with 128-bit or 256-bit AES encryption</value>
-    <comment>Text displayed on "Strong Encryption" slide in mobile app</comment>
-  </data>
-  <data name="StrongEncryptionTitle" xml:space="preserve">
-    <value>Strong encryption</value>
-    <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
-  </data>
-  <data name="SubmitFeedbackButton" xml:space="preserve">
-    <value>Submit feedback</value>
-    <comment>Text of Submit feedback button</comment>
   </data>
   <data name="SubscriptionsErrorAmount" xml:space="preserve">
     <value>Invalid format for field Amount. Please use decimal format, i.e. 10.50.</value>
@@ -1922,14 +1762,6 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SyntheticWordsSuccessUpdate" xml:space="preserve">
     <value>The culture was successfully updated.</value>
   </data>
-  <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">
-    <value>By signing up to AxCrypt you agree to our </value>
-    <comment>Unclikable text of link to Terms And Conditions  in mobile application</comment>
-  </data>
-  <data name="TermsAndConditionsLinkSecondPart" xml:space="preserve">
-    <value>Terms &amp; Conditions</value>
-    <comment>Clickable text of link to Terms And Conditions in mobile application</comment>
-  </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>Check email and spam!</value>
   </data>
@@ -1982,14 +1814,6 @@ The AxCrypt Team</value>
   <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
     <value>Try Broken File</value>
   </data>
-  <data name="TryItDescription" xml:space="preserve">
-    <value>It's free</value>
-    <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
-  </data>
-  <data name="TryItTitle" xml:space="preserve">
-    <value>Try it!</value>
-    <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
-  </data>
   <data name="TryPremiumLabel" xml:space="preserve">
     <value>Try Premium!</value>
     <comment>A clickable link with text similar to "Try Premium"</comment>
@@ -2038,10 +1862,6 @@ The AxCrypt Team</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>You have updated AxCrypt. Unfortunately, your configuration must be reset. After restarting, your preferences and settings will unfortunately be lost. We apologize for the inconvenience. Your encrypted files are still safe and ok.</value>
-  </data>
-  <data name="VerifyAccountLabel" xml:space="preserve">
-    <value>Please verify your new account</value>
-    <comment>Text displayed on Activation code page in mobile app.</comment>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verify Password</value>
