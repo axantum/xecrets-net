@@ -129,6 +129,11 @@ namespace Axantum.AxCrypt.Core.Extensions
             return !value.Equals(default(T)) ? value : fallbackValue;
         }
 
+        public static bool IsBetween(this DateTime time, TimeSpan from, TimeSpan to)
+        {
+            return !time.IsOlderThan(from) && !time.IsMoreRecentThan(to);
+        }
+
         public static bool IsOlderThan(this DateTime time, TimeSpan interval)
         {
             return time.IsOlderThan(New<INow>().Utc - interval);
