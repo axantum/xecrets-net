@@ -14,6 +14,7 @@
       <Word>api</Word>
       <Word>xam</Word>
       <Word>xamarin</Word>
+      <Word>mvc</Word>
     </Recognized>
     <Deprecated>
       <Term PreferredAlternate=""></Term>

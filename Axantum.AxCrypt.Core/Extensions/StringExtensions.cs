@@ -93,6 +93,11 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <returns>The string minus and 'Controller' prefix.</returns>
         public static string MvcController(this string fullName)
         {
+            if (fullName == null)
+            {
+                throw new ArgumentNullException(nameof(fullName));
+            }
+
             int i = fullName.LastIndexOf("Controller");
             if (i == -1)
             {
