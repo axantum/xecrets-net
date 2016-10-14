@@ -4203,7 +4203,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT is estimated..
+        ///   Looks up a localized string similar to VAT is estimated. No support for business VAT deduction yet, sorry. .
         /// </summary>
         public static string PurchaseVatEstimated {
             get {
@@ -4333,7 +4333,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt has been on the market for 15 years, and has grown to become one of the worldâ€™s most popular encryption softwares with more than 20 million downloads. Over the years we have also been mentioned and rated by many as one of the worldâ€™s best softwares for encryption..
+        ///   Looks up a localized string similar to AxCrypt has been on the market for 15 years, and has grown to become one of the world’s most popular encryption softwares with more than 20 million downloads. Over the years we have also been mentioned and rated by many as one of the world’s best softwares for encryption..
         /// </summary>
         public static string ReliabilitySectionText {
             get {

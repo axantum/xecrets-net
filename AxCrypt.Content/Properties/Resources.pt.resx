@@ -263,6 +263,10 @@ Inclui software de http://www.bouncycastle.org/</value>
   <data name="ButtonChangePasswordText" xml:space="preserve">
     <value>Mudar senha</value>
   </data>
+  <data name="ButtonCloseText" xml:space="preserve">
+    <value>Fechar</value>
+    <comment>Text of "Close" button.</comment>
+  </data>
   <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
     <value>Deletar ID AxCrypt</value>
   </data>
@@ -1296,11 +1300,7 @@ Se você não recebeu nada, verifique se não está na sua pasta de Lixo Eletrô
     <value>O tempo de assinatura selecionado é inválido. Uma assinatura válida deve ter no mínimo {0} mês e não mais do que {1} meses.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Com o Premium, você pode usar o AxCrypt em seu potencial máximo em um variado número de computadores e aparelhos.
-
-AxCrypt foi projetado ao redor do conceito primário de proteger seus arquivos. Para usar funções avançadas - como a criptografia 256-bit, Pastas Protegidas e Gerenciador de Senhas - recomendamos que atualize sua versão para AxCrypt Premium. Com o AxCrypt Premium você pode ter todas as funções do AxCrypt à sua disposição, sem limitações.
-
-Para provar as funções Premium, oferecemos um período teste de 30 dias, que começa quando você ativa seu ID AxCrypt. Depois disso, você pode prorrogar sua assinatura Premium usando o formulário abaixo.</value>
+    <value>Com o &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;, você pode usar o AxCrypt em seu potencial máximo em um variado número de computadores e aparelhos.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Leia mais sobre oclass="text-cutoff PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Segurança é crucial para nós. Tudo que fazemos com o AxCrypt, é feito tendo a segurança como prioridade máxima. Estamos, portanto, usando o PayPal como método de pagamento para o AxCrypt Premium. O site PayPal é altamente protegido e automaticamente criptografa sua informação pessoal quando está em trânsito do seu computador para nossos servidores.

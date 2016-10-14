@@ -240,6 +240,10 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="ButtonChangePasswordText" xml:space="preserve">
     <value>비밀번호 변경</value>
   </data>
+  <data name="ButtonCloseText" xml:space="preserve">
+    <value>닫기</value>
+    <comment>Text of "Close" button.</comment>
+  </data>
   <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
     <value>AxCrypt ID 삭제</value>
   </data>
@@ -1272,11 +1276,7 @@ AxCrypt 팀</value>
     <value>선택하신 구독 날짜가 잘못되었습니다. 유효한 구독은 최소 {0} 개월, 최대는 {1} 개월입니다.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Premium을 통해 AxCrypt의 모든 기능들은 그 어느 장치와 사용이 가능합니다.
-
-AxCrypt는 사용자의 파일을 안전하게 보관되어있게 만들어졌습니다. 256-bit 암호화, 보안된 폴더, 비밀번호 보안 설정등 최신 기능을 사용하시려면  AxCrypt Premium으로 업그레이드를 해주시기 바랍니다.
-
-저희 팀은 30일간의 AxCrypt Premium 무료 체험을 즐길 수 있는 혜택을 드리고 있습니다. AxCrypt ID를 활성화하시는 직후 무료 체험을 하시게 됩니다. 무료 체험 간이 만료되시면 구독 요청을 아래에 하실  있습니다.</value>
+    <value>href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;을 통해 AxCrypt의 모든 기능들은 그 어느 장치와 사용이 가능합니다.&lt;a </value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;저희 팀은 보안정책이 최우선이라고 생각합니다. 그러므로 저희는 AxCrypt Premium 지급방법을 PayPal을 통해 사용합니다. PaypPal 사이트는 매우 안정적이며 사용자의 컴퓨터에서 저희 서버로 개인정보를 자동적으로 암호화합니다.

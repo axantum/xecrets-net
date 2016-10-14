@@ -269,6 +269,10 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   <data name="ButtonChangePasswordText" xml:space="preserve">
     <value>Byt Lösenord</value>
   </data>
+  <data name="ButtonCloseText" xml:space="preserve">
+    <value>Stäng</value>
+    <comment>Text of "Close" button.</comment>
+  </data>
   <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
     <value>Radera AxCrypt ID</value>
   </data>
@@ -582,6 +586,10 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Dubbelklicka för att öppna. Om det behövs kommer lösenord att efterfrågas.</value>
   </data>
+  <data name="EasyToWorkDescription" xml:space="preserve">
+    <value>Öppna en säkrad fil med ett klick</value>
+    <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
+  </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>Du kan bara läsa lösenordsposter, inte skriva. Det är bara Premium-användare som kan ändra eller radera!</value>
   </data>
@@ -658,6 +666,10 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="FeedbackButtonText" xml:space="preserve">
     <value>Prata med oss! Ris eller ros, allt är välkommet.</value>
+  </data>
+  <data name="FeedbackTextPrompt" xml:space="preserve">
+    <value>Dina kommenterar</value>
+    <comment>Text displayed in feedback content textbox when it is empty</comment>
   </data>
   <data name="FileAlreadyEncrypted" xml:space="preserve">
     <value>Filen '{0}' är redan skyddad.</value>
@@ -1343,17 +1355,10 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
     <value>Ogiltig tidsperiod, den måste vara minst {0} månad(er) och högst {1} månader.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Med Premium kan du använda AxCrypt fullt ut på ett obegränsat antal datorer och enheter.
-
-AxCrypt fokuserar på att hålla dina filer skyddade mot obehörig insyn. För att kunna använda avancerade funktioner som extra stark 256-bitars kryptering, skyddade mappar och lösenordshanteraren rekommenderar vi att uppgradera till AxCrypt Premium. Med Premium så har du tillgång till alla funktioner, utan begränsning.
-
-Så att du kan prova ut premiumfunktionerna kan du starta en gratis 30-dagars provperiod i AxCrypt-programmet som du laddar ned separat. Därefter kan du förlänga din prenumeration med formuläret nedan.</value>
+    <value>Med &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;kan du använda AxCrypt fullt ut på ett obegränsat antal datorer och enheter.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
-    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Läs mer om PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Säkerhet är extremt viktigt för oss. Allt vi gör med AxCrypt har säkerhet som högsta prioritet. Det gäller även betalningar, vi använder bara säkra betalningsförmedlare som skyddar all kommunikation med stark kryptering.
-
-När informationen når PayPal-servrarna lagras den med hög säkerhet både fysiskt och datamässigt.
- &lt;a class="hide-link"&gt;[Visa Mindre]&lt;/a&gt;&lt;/span&gt;</value>
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mer om Betalningar]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Inga personliga detaljer eller kortnummer sänds till eller lagras på våra servrar. Informationen skickas direkt till våra betalningshanterare via en krypterad förbindelse. Vi har Stripe och PayPal som partners, och båda möter höga säkerhetskrav enlig Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Visa Mindre]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>Köp AxCrypt Premium</value>
@@ -1380,7 +1385,7 @@ Ett kvitto på ditt köp har skickats till din epostadress.</value>
     <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
   </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value>Momsbeloppet är preliminärt.</value>
+    <value>Momsbeloppet är preliminärt. Ingen momsfri företagsförsäjning ännu, tyvärr.</value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
     <value>Exkl. Moms.</value>
@@ -1498,6 +1503,10 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Varning! Webbsajten startar strax om. Vi ber om ursäkt för besväret.</value>
+  </data>
+  <data name="SslRequiredTitle" xml:space="preserve">
+    <value>En säker förbindelse krävs.</value>
+    <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Klicka och välj filer att avlägsna skyddet från.</value>

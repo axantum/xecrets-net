@@ -250,6 +250,10 @@ Bevat software van http://www.bouncycastle.org/ .</value>
   <data name="ButtonChangePasswordText" xml:space="preserve">
     <value>Verander Wachtwoord</value>
   </data>
+  <data name="ButtonCloseText" xml:space="preserve">
+    <value>Sluiten</value>
+    <comment>Text of "Close" button.</comment>
+  </data>
   <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
     <value>Verwijder AxCrypt ID</value>
   </data>
@@ -282,7 +286,7 @@ Bevat software van http://www.bouncycastle.org/ .</value>
     <value>OK</value>
   </data>
   <data name="ButtonPasswordResetText" xml:space="preserve">
-    <value>Reset</value>
+    <value>Wachtwoord Reset</value>
     <comment>Button text for a password reset button</comment>
   </data>
   <data name="ButtonPasswordResetToolTip" xml:space="preserve">
@@ -1050,11 +1054,11 @@ De licentie voor dit programma is conform de overeenkomst.
     <value>Check voor updates niet nodig.</value>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
-    <value>Uw Premium abonnement is verlopen. U gebruikt niet het hoogste beveiligingsniveau. Klik hier om te upgraden.</value>
+    <value>Uw Premium abonnement is verlopen, dus u gebruikt niet het hoogste beveiligingsniveau. Klik hier om te upgraden.</value>
   </data>
   <data name="NotFoundPageBody" xml:space="preserve">
-    <value>Helaas konden we de pagina die u zocht niet vinden.
-Dit kan mogelijk komen doordat de server opnieuw is opgestart waardoor uw browser sessie verlopen is, of een andere server fout waardoor we het verzoek niet konden verwerken.
+    <value>Helaas konden we de pagina die u zocht niet weergeven.
+Dit kan mogelijk komen doordat de pagina niet bestaat, de server opnieuw is opgestart waardoor uw browser sessie verlopen is, of een andere server fout waardoor we het verzoek niet konden verwerken.
 
 Opgevraagde pagina:
 {2}
@@ -1064,7 +1068,7 @@ Uw verzoek is gelogd. Probeer het alstublieft nog eens met het juiste pad, of  &
 Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.</value>
   </data>
   <data name="NotFoundPageTitle" xml:space="preserve">
-    <value>De pagina was niet gevonden!</value>
+    <value>De pagina kan niet weergegeven worden!</value>
   </data>
   <data name="NotFoundSafePageBody" xml:space="preserve">
     <value>Helaas konden wij de pagina die u zocht niet vinden. Dit komt mogelijk door het opnieuw opstarten van een server waardoor uw browsersessie is verlopen, of door een andere server fout waardoor we uw verzoek niet konden verwerken.
@@ -1218,6 +1222,14 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Om sleutels te delen heeft u Premium nodig. Klik hier om nu te upgraden!</value>
   </data>
+  <data name="PriceExcludingVat" xml:space="preserve">
+    <value>{0} excl. BTW.</value>
+    <comment>Brief text used to display the price exclusive of VAT, as additional information. The price is typically shown inclusive. This text is only displayed if any VAT is added.</comment>
+  </data>
+  <data name="PricePerMonth" xml:space="preserve">
+    <value>{0}/maand.</value>
+    <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Activatiecode</value>
   </data>
@@ -1319,11 +1331,7 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
     <value>De geselecteerde abonnementsduur is ongeldig. Een geldig abonnement moet minstens {0} maand duren en niet langer zijn dan {1} maanden.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Met Premium kunt u volledig gebruik maken van AxCrypt op al uw computers en apparaten.
-
-AxCrypt is ontworpen met het idee om uw bestanden veilig te houden. Om van geavanceerde eigenschappen zoals 256-bit encryptie, Beveiligde Mappen en Wachtwoordbeheer gebruik te maken adviseren we u om naar AxCrypt Premium te upgraden. Met AxCrypt Premium heeft u altijd de gehele AxCrypt applicatie beschikbaar zonder beperkingen.
-
-Om de Premium eigenschappen te proberen bieden wij u een 30 dagen durende proefperiode van AxCrypt Premium aan zodra u uw AxCrypt ID heeft geactiveerd. Hierna kunt u uw Premium abonnement verlengen door het onderstaande formulier in te vullen.</value>
+    <value>Met &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; kunt u volledig gebruik maken van AxCrypt op al uw computers en apparaten.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Lees meer over PayPal]&lt;/a&gt;&lt;/span&gt;class="text-cutoff always"&gt;Beveiliging is cruciaal voor ons. Alles wat wij doen met Axcrypt heeft beveiliging als de hoogste prioriteit. Om die reden gebruiken wij PayPal als betalingsmethode voor AxCrypt Premium. De PayPal site is zeer veilig en encrypteerd automatisch uw vertrouwlijke informatie wanneer deze informatie van uw computer naar onze servers wordt verzonden.
@@ -1350,8 +1358,16 @@ Zodra uw informatie de PayPal site heeft bereikt wordt het bewaard op een server
 
 Een betaalbewijs van uw aankoop is naar uw email verstuurd.</value>
   </data>
+  <data name="PurchaseVatDepends" xml:space="preserve">
+    <value>BTW kan aangepast worden tijdens betaling.</value>
+    <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
+  </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value>De BTW is afhankelijk van het land waar u woont en wordt getoond op betalingspagina. </value>
+    <value>De BTW is geschat.</value>
+  </data>
+  <data name="PurchaseVatExcluded" xml:space="preserve">
+    <value>Zonder BTW.</value>
+    <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Actieve Bestanden Opschonen</value>
@@ -1371,7 +1387,7 @@ Een betaalbewijs van uw aankoop is naar uw email verstuurd.</value>
   <data name="RegisterPageBody" xml:space="preserve">
     <value>Om te beginnen met AxCrypt heeft u een AxCrypt ID nodig die u kunt verkrijgen door uw emailadres in het onderstaande formulier in te voeren. Een bericht met een activatielink zal naar het gespecificeerde adres worden verstuurd en wanneer u op de link klinkt wordt u gevraagd om een wachtwoord te kiezen. Dat is het!
  
-Een 30 dagen durende proefperiode voor AxCrypt Premium is hierbij inbegrepen en zal beginnen wanneer u uw AxCrypt ID activeert.</value>
+Een 30 dagen durende proefperiode voor AxCrypt Premium is hierbij inbegrepen en en u kunt deze op elk moment in uw AxCrypt app starten.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Registreer voor een AxCrypt ID</value>
@@ -1409,7 +1425,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een activatielink.</value>
     <value>Ga naar wachtwoordbeheer.</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Uw Premium abonnement is verlopen en daarom kunt u niet langer wachtwoord invoeren maken of aanpassen. U heeft echter nog wel alleen-lezen toegang.</value>
+    <value>U heeft geen Premium abonnement waardoor u niet langer wachtwoord invoeren kunt maken of deze aanpassen. Echter u kunt bestaande invoeren nog steeds inkijken. Als u uw 30 dagen durende Premium proefperiode nog niet heeft gebruikt kunt u deze vanaf de &lt;a href="http://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;starten.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Uw Premium abonnement verloopt binnenkort op {0}. U zult uw Premium abonnement moeten verlegen om wachtwoord invoeren aan te passen en te creëren. U houdt altijd alleen-lezen toegang.</value>
@@ -1458,6 +1474,10 @@ Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Toon Wachtwoord</value>
+  </data>
+  <data name="SignInBeforePremiumMessage" xml:space="preserve">
+    <value>Eerst aanmelden!</value>
+    <comment>A short message used in the sign in dialog, to explain that a user should sign in first and then purchase or try premium as appropriate.</comment>
   </data>
   <data name="SignInVerificationTitle" xml:space="preserve">
     <value>Bevestig Aanmelding</value>
@@ -1607,7 +1627,7 @@ Het AxCrypt team</value>
     <value>Welkom bij AxCrypt!</value>
   </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
-    <value>Ik ben heel blij dat u zich heeft aangemeld! Om u welkom te heten, heb ik u gratis toegang gegeven tot onze Premium eigenschappen voor 30 dagen.</value>
+    <value>Ik ben heel blij dat u zich heeft aangemeld! Om u welkom te heten, heb ik u gratis toegang gegeven tot onze Premium eigenschappen voor 30 dagen. U kunt uw proefperiode op elk moment in de AxCrypt app starten.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>Met AxCrypt Gratis of AxCrypt Premium kunt u uw bestanden makkelijk beveiligen. Uw bestanden en mappen encrypteren is maar één klik van u vandaan. Werken met geëncrypteerde bestanden is net zo makkelijk!</value>

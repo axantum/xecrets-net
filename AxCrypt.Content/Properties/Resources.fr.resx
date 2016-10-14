@@ -269,6 +269,10 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="ButtonChangePasswordText" xml:space="preserve">
     <value>Changer le mot de passe</value>
   </data>
+  <data name="ButtonCloseText" xml:space="preserve">
+    <value>Fermer</value>
+    <comment>Text of "Close" button.</comment>
+  </data>
   <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
     <value>Supprimer l'identifiant AxCrypt </value>
   </data>
@@ -1231,6 +1235,14 @@ Nous classons le mot de passe en 4 catégories de force croissante, où nous n'a
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Echanger des clefs n'est possible qu'avec Premium. Cliquez ici pour passer à Premium!</value>
   </data>
+  <data name="PriceExcludingVat" xml:space="preserve">
+    <value>{0} hors taxes</value>
+    <comment>Brief text used to display the price exclusive of VAT, as additional information. The price is typically shown inclusive. This text is only displayed if any VAT is added.</comment>
+  </data>
+  <data name="PricePerMonth" xml:space="preserve">
+    <value>{0}/mois.</value>
+    <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Code d'activation</value>
   </data>
@@ -1332,11 +1344,7 @@ Nous classons le mot de passe en 4 catégories de force croissante, où nous n'a
     <value>La période de l'abonnement sélectionnée est invalide. Un abonnement valide doit être d'au moins {0} mois et plus de {1} mois.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Avec la version Premium, vous pouvez utiliser l'ensemble des fonctionnalités d'AxCrypt sur n'importe quel ordinateur ou appareil. 
-
-AxCrypt protège vos fichiers. Pour utiliser les fonctionnalités avancées comme le chiffrement 256 bits, les Dossiers Protégés ou la Gestion des Mots de Passe, nous vous proposons de passer à AxCrypt Premium, qui vous donnera accès à l'ensemble des fonctionnalités du programme sans limitation.
-
-Afin d'évaluer les fonctionnalités d'AxCrypt Premium, nous vous offrons une période d'essai de 30 jours à partir du moment où vous activez votre AxCrypt ID. Vous pourrez par la suite prolonger cette période d'essai par l'intermédiaire du formulaire ci-dessous.</value>
+    <value>Avec la version &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;, vous pouvez utiliser l'ensemble des fonctionnalités d'AxCrypt sur n'importe quel ordinateur ou appareil. </value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Lire Plus Concernant PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoffalways"&gt;La sécurité est cruciale pour nous. Tout ce que nous faisons avec AxCrypt est fait avec la sécurité comme la plus haute priorité. Nous utilisons donc PayPal comme mode de paiement pour AxCrypt Premium. Le site PayPal est hautement sécurisé et crypte automatiquement vos informations confidentielles de votre ordinateur à nos serveurs.
@@ -1363,8 +1371,16 @@ Une fois que votre information atteint le site PayPal, il réside sur un serveur
 
 Un reçu de votre commande a été envoyé à votre adresse e-mail.</value>
   </data>
+  <data name="PurchaseVatDepends" xml:space="preserve">
+    <value>Les taxes peuvent être ajustées pendant le paiement. </value>
+    <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
+  </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
     <value>La TVA réelle dépend de votre pays de résidence et sera affichée sur la page de paiement.</value>
+  </data>
+  <data name="PurchaseVatExcluded" xml:space="preserve">
+    <value>Hors taxes.</value>
+    <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Nettoyage des fichiers actifs</value>
@@ -1468,6 +1484,10 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Montrer le Mot de passe</value>
+  </data>
+  <data name="SignInBeforePremiumMessage" xml:space="preserve">
+    <value>Connectez-vous d'abord! </value>
+    <comment>A short message used in the sign in dialog, to explain that a user should sign in first and then purchase or try premium as appropriate.</comment>
   </data>
   <data name="SignInVerificationTitle" xml:space="preserve">
     <value>Vérifier la connexion</value>

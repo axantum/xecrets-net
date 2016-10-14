@@ -263,6 +263,10 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
   <data name="ButtonChangePasswordText" xml:space="preserve">
     <value>Passwort ändern </value>
   </data>
+  <data name="ButtonCloseText" xml:space="preserve">
+    <value>Schließen </value>
+    <comment>Text of "Close" button.</comment>
+  </data>
   <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
     <value>AxCrypt ID löschen </value>
   </data>
@@ -1303,11 +1307,7 @@ Wenn Sie nichts empfangen haben, überprüfen Sie bitte Ihren Spam Ordner, und o
     <value>Die gewählte Zeit des Abonnements ist ungültig. Ein gültiges Abonnement muss mindestens {0} Monat und nicht länger als {1} Monate dauern. </value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Mit Premium können Sie AxCrypt zu seinem vollen Potential auf einer beliebigen Zahl von Computern und Geräten nutzen. 
-
-AxCrypt ist designt für die Sicherung unserer Daten. Um die fortgeschrittenen Dienste, wie die 265-bit Verschlüsselung, gesicherte Ordner und Passwort Verwaltung zu nutzen, raten wir Ihnen AxCrypt Premium zu erwerben. Mit AxCrypt Premium stehen Ihnen alle AxCrypt Dienste, ohne Einschränkungen, zur Verfügung. 
-
-Damit Sie die Premium Dienste testen können, bieten wir Ihnen eine 30-tätige  Testphase von AxCrypt Premium an, die mit der Aktivierung Ihrer AxCrypt ID beginnt. Danach können Sie Ihr Premium Abonnement verlängern, indem Sie das unten angefügte Formular ausfüllen. </value>
+    <value>Mit &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; können Sie AxCrypt zu seinem vollen Potential auf einer beliebigen Zahl von Computern und Geräten nutzen.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Sicherheit ist essentiell für uns. Alles was wir bei AxCrypt machen bewahrt Sicherheit als erste Priorität. Daher benutzen wir PayPal als Bezahlmethode für AxCrypt Premium. Die PayPal Seite ist sehr sicher und verschlüsselt automatisch Ihre vertraulichen Informationen während des Weges von Ihrem Computer auf unsere Server.

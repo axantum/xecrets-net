@@ -148,25 +148,25 @@
     <value>Activar AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
-    <value>Su código de activación es &lt;b&gt;{0}&lt;/b&gt;. Introducir el código de activación en la aplicación AxCrypt o nuestro sitio web. Esto verificará y activará su cuenta.</value>
+    <value>Su código de activación es &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
   <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
-    <value>Su código de activación es {0} </value>
+    <value>Su código de activación es {0}.</value>
   </data>
   <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
-    <value>Usted tiene acceso gratuito a las funciones de AxCrypt Premium durante una &lt;b&gt; prueba gratis de 30 días &lt;/ b&gt; desde el momento en que active su cuenta.</value>
+    <value>¡Usted puede iniciar su período de &lt;b&gt;30 días de prueba de AxCrypt Premium&lt;/b&gt; desde la aplicación!</value>
   </data>
   <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
-    <value>Usted tiene acceso gratuito a las funciones de AxCrypt Premium durante una prueba gratis de 30 días desde el momento en que active su cuenta.</value>
+    <value>¡Usted puede iniciar el período de 30 días de prueba de AxCrypt Premium desde la aplicación!</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Se ha registrado un AxCrypt ID. Por favor confirmar su suscripción debe introducir el código de activación en la aplicación AxCrypt o nuestro sitio web.</value>
+    <value>Se ha registrado para utilizar AxCrypt. Para completar el proceso debe verificar su dirección de correo electrónico.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
-    <value>Si el botón no funciona, vaya a &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; e introduzca&lt;b&gt;{1}&lt;/b&gt; y el código de activación &lt;b&gt;{2}&lt;/b&gt; para activar manualmente su cuenta.</value>
+    <value>Para activar manualmente su cuenta, vaya a &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; e introduzca&lt;b&gt;{1}&lt;/b&gt; y el código de activación &lt;b&gt;{2}&lt;/b&gt; .</value>
   </data>
   <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
-    <value>Si el botón no funciona, vaya a {0} e introduzca {1} y el código de activación {2} para activar su cuenta manualmente.</value>
+    <value>Para activar su cuenta manualmente vaya a {0} e introduzca {1} y el código de activación {2} .</value>
   </data>
   <data name="ActivateMailBodyTitle" xml:space="preserve">
     <value>¡Hola y bienvenido a AxCrypt!</value>
@@ -262,6 +262,10 @@ Incluye el software de http://www.bouncycastle.org/.</value>
   <data name="ButtonChangePasswordText" xml:space="preserve">
     <value>Cambiar contraseña</value>
   </data>
+  <data name="ButtonCloseText" xml:space="preserve">
+    <value>Cerrar</value>
+    <comment>Text of "Close" button.</comment>
+  </data>
   <data name="ButtonDeleteAxCryptIdText" xml:space="preserve">
     <value>Eliminar AxCrypt ID</value>
   </data>
@@ -294,7 +298,7 @@ Incluye el software de http://www.bouncycastle.org/.</value>
     <value>OK</value>
   </data>
   <data name="ButtonPasswordResetText" xml:space="preserve">
-    <value>Reiniciar</value>
+    <value>Restablecer contraseña</value>
     <comment>Button text for a password reset button</comment>
   </data>
   <data name="ButtonPasswordResetToolTip" xml:space="preserve">
@@ -1029,7 +1033,7 @@ Este programa se licencia según el acuerdo.
     <value>La contraseña nueva se ha guardado.</value>
   </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>¡Versión {0} está disponible! Haga clic para descargar.</value>
+    <value>¡La versión {0} está disponible! Haga clic para descargar.</value>
   </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>Sesión finaliza. Haga clic para Iniciar sesión.</value>
@@ -1038,17 +1042,20 @@ Este programa se licencia según el acuerdo.
     <value>No es necesario buscar si hay actualizaciones.</value>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
-    <value>Su suscripción Premium ha expirado. No está utilizando el nivel más alto de seguridad. ¡Haga clic para actualizar!</value>
+    <value>Usted no tiene una suscripción Premium, por lo que no está utilizando el nivel más alto de seguridad. ¡Haga clic para actualizar!</value>
   </data>
   <data name="NotFoundPageBody" xml:space="preserve">
-    <value>Desafortunadamente no pudimos encontrar la página que estabas buscando. Esto podría ser debido a un reinicio del servidor o un error interno del servidor que nos impidió responder a la solicitud
-Página solicitada: 
+    <value>Desafortunadamente no pudimos mostrar la página que estabas buscando. Esto podría deberse a que ésta no existe, a un reinicio del servidor que provocó que la sesión en tu explorador quedase obsoleta o a algún otro error que nos impidió responder a la solicitud.
+
+Página solicitada:
 {2} 
-Su solicitud ha sido registrada. Por favor, inténtelo de nuevo con la ruta correcta, o reporte &lt;a href="mailto:{0}"&gt; &lt;/a&gt; un enlace roto .
+
+Su solicitud ha sido registrada. Por favor, inténtelo de nuevo con la dirección correcta, o informe &lt;a href="mailto:{0}"&gt; &lt;/a&gt; sobre un enlace roto.
+
 Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt; aquí &lt;/a&gt;.</value>
   </data>
   <data name="NotFoundPageTitle" xml:space="preserve">
-    <value>¡No pudo encontrar la página!</value>
+    <value>¡No se pudo mostrar la página!</value>
   </data>
   <data name="NotFoundSafePageBody" xml:space="preserve">
     <value>Desafortunadamente no pudimos encontrar la página que estabas buscando. Esto podría ser debido a un reinicio del servidor que se hizo la sesión de navegador obsoleto, o algún otro error en el servidor que causó que seamos incapaces de procesar la solicitud.
@@ -1115,7 +1122,7 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
     <value>Administración de contraseñas</value>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
-    <value>La contraseña debe tener al menos 10 caracteres.</value>
+    <value>La contraseña no es suficientemente segura para ser aceptada.</value>
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>¿Olvidaste tu contraseña? Haga clic aquí</value>
@@ -1286,15 +1293,10 @@ Si parece que usted no lo recibe, revise su filtro de correo no deseado y compru
     <value>El tiempo de suscripción seleccionado no es válido. Una suscripción válida tiene que ser al menos {0} mes y no más de {1} meses.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Con Premium puede utilizar AxCrypt en todo su potencial en cualquier número de computadoras y dispositivos.
-
-AxCrypt está diseñado sobre el concepto principal de mantener sus archivos seguros. Para utilizar las funciones avanzadas como el cifrado de 256 bits, carpetas protegidas o administración de contraseñas, proponemos actualizar a AxCrypt Premium, que le dará acceso a todas las funciones en AxCrypt, sin limitación. 
-
-Para evaluar las funciones de AxCrypt Premium, ofrecemos una prueba gratis de 30 días que inicia cuando se activa su cuenta. A continuación, puede extender el período de prueba a través del siguiente formulario.</value>
+    <value>Con &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; puede utilizar todo el potencial de AxCrypt en todos los ordenadores y dispositivos que quiera.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
-    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;La seguridad es crucial para nosotros. Es la más alta prioridad en todo lo que hacemos en AxCrypt.. Por lo tanto, estamos utilizando PayPal como método de pago para AxCrypt Premium. El sitio de PayPal es muy segura y cifra automáticamente su información confidencial en tránsito desde su ordenador a nuestros servidores.
-Cuando la información llega a la página de PayPal, reside en un servidor que está bien protegido tanto física como electrónicamente. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;</value>
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Sus datos personales y de pago nunca son enviados a nuestros servidores o almacenados en ellos. Los enviamos directamente a nuestro portal de pago asociado a través de una conexión codificada. Estamos asociados con Stripe y PayPal, los cuales reúnen los requisitos más elevados establecidos por la PCI DSS (normativa de seguridad de datos para el sector de las tarjetas de pago). &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;</value>
   </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>Comprar AxCrypt Premium</value>
@@ -1317,7 +1319,7 @@ Cuando la información llega a la página de PayPal, reside en un servidor que e
 Un recibo de su compra ha sido enviada a su correo electrónico.</value>
   </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value> IVA real depende de su país de residencia y se mostrará en la página de pago.</value>
+    <value>El IVA es aproximado.</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Limpieza de archivos activos</value>
@@ -1335,9 +1337,9 @@ Un recibo de su compra ha sido enviada a su correo electrónico.</value>
     <value>¿Nuevo usuario? Regístrate</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>Para empezar a utilizar AxCrypt usted tiene que registrarse para obtener una AxCrypt ID mediante la presentación de su dirección de correo electrónico en el siguiente formulario. Un mensaje que contiene un enlace de activación será enviado a la dirección especificada y al hacer clic en ese enlace se le pedirá que elija una contraseña. ¡Eso es todo!
+    <value>Para empezar a utilizar AxCrypt tiene que registrarse, para obtener una AxCrypt ID, enviando su dirección de correo electrónico en el siguiente formulario. Se le enviará un e-mail a la dirección especificada con un enlace de activación, y al hacer clic en ese enlace se le pedirá que elija una contraseña. ¡Eso es todo!
 
-Una prueba gratis de 30 días de AxCrypt Premium está incluido y se iniciará al activar su AxCrypt ID.</value>
+Está incluida una prueba gratuita de 30 días de AxCrypt Premium, que podrá iniciar en cualquier momento desde la aplicación de AxCrypt.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Regístrese para AxCrypt ID</value>
@@ -1371,7 +1373,7 @@ Revise su correo electrónico &lt;b&gt;{0}&lt;/b&gt; para un enlace de activaci�
     <value>Ve a la administración de contraseñas.</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Su suscripción premium ha expirado y, por tanto, ya no se puede editar o crear nuevas entradas de contraseñas. Sin embargo, usted todavía tiene acceso de sólo lectura.</value>
+    <value>Usted no tiene una suscripción Premium y, por tanto, no puede editar o anotar nuevas contraseñas. Sin embargo, aún puede acceder a las ya existentes. Si aún no ha utilizado su período de prueba de 30 días de AxCrypt Premium, puede iniciarlo desde &lt;a href="http://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Su suscripción premium caducará en breve, en {0}. A partir de entonces tendrá que ampliar su suscripción premium para poder editar o crear nuevas entradas de contraseñas. Vas a retener acceso de sólo lectura indefinidamente.</value>
@@ -1549,7 +1551,7 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
     <value>¡Bienvenido a AxCrypt!</value>
   </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
-    <value>Estoy muy contento de que se haya registrado! Para que se sienta bienvenida, le he dado el acceso libre a nuestras funciones Premium por 30 días.</value>
+    <value>¡Me alegro mucho de que se haya registrado! Para que se sienta realmente bien recibido, le doy la oportunidad de probar nuestras funciones Premium por 30 días de forma gratuita. Tan sólo ha de iniciar la prueba, en cualquier momento, desde la aplicación de AxCrypt.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>Con AxCrypt Gratis o AxCrypt Premium, puede proteger sus archivos de una manera muy fácil. La encriptación de archivos y carpetas simplemente haciendo clic. ¡Trabajar con los archivos cifrados es tan fácil también!</value>

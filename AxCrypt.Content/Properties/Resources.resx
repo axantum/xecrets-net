@@ -1654,7 +1654,7 @@ A receipt of your purchase has been sent to your e-mail.</value>
     <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
   </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value>VAT is estimated.</value>
+    <value>VAT is estimated. No support for business VAT deduction yet, sorry. </value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
     <value>VAT excluded.</value>
@@ -1705,7 +1705,7 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link.</value>
     <comment>Title of "Reliability" section of About Us page in mobile application.</comment>
   </data>
   <data name="ReliabilitySectionText" xml:space="preserve">
-    <value>AxCrypt has been on the market for 15 years, and has grown to become one of the worldâ€™s most popular encryption softwares with more than 20 million downloads. Over the years we have also been mentioned and rated by many as one of the worldâ€™s best softwares for encryption.</value>
+    <value>AxCrypt has been on the market for 15 years, and has grown to become one of the world’s most popular encryption softwares with more than 20 million downloads. Over the years we have also been mentioned and rated by many as one of the world’s best softwares for encryption.</value>
     <comment>Description of "Reliability" section of About Us page in mobile application.</comment>
   </data>
   <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
