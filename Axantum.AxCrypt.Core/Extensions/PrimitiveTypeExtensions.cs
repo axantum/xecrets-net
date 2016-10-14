@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static bool IsBetween(this DateTime time, TimeSpan from, TimeSpan to)
         {
-            return !time.IsOlderThan(from) && !time.IsMoreRecentThan(to);
+            return time.IsOlderThan(from) && time.IsMoreRecentThan(to);
         }
 
         public static bool IsOlderThan(this DateTime time, TimeSpan interval)

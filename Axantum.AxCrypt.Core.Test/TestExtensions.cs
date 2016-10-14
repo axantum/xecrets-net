@@ -611,5 +611,41 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That("xyz".IsValidTopLevelDomain(), Is.True, "xyz");
             Assert.That("local".IsValidTopLevelDomain(), Is.True, "local");
         }
+
+        [Test]
+        public static void TestBetweenDate()
+        {
+            DateTime utcNow = New<INow>().Utc;
+            ((FakeNow)New<INow>()).TimeFunction = () => utcNow;
+
+            DateTime utcFuture = utcNow.AddDays(10);
+            DateTime utc10DaysPast = utcNow.AddDays(-10);
+            DateTime utc29DaysPast = utcNow.AddDays(-29);
+            DateTime utcAlmost30DaysPast = utcNow.AddDays(-30).AddSeconds(1);
+            DateTime utc30DaysPast = utcNow.AddDays(-30);
+            DateTime utcJustMoreThan30DaysPast = utcNow.AddDays(-30).AddSeconds(-1);
+            DateTime utc45daysPast = utcNow.AddDays(-45);
+            DateTime utc59DaysPast = utcNow.AddDays(-59);
+            DateTime utcAlmost60daysPast = utcNow.AddDays(-60).AddSeconds(1);
+            DateTime utc60daysPast = utcNow.AddDays(-60);
+            DateTime utcJustMoreThan60daysPast = utcNow.AddDays(-60).AddSeconds(-1);
+            DateTime utc100DaysPast = utcNow.AddDays(-100);
+
+            TimeSpan days30 = TimeSpan.FromDays(30);
+            TimeSpan days60 = TimeSpan.FromDays(60);
+
+            Assert.That(!utcFuture.IsBetween(days30, days60), nameof(utcFuture));
+            Assert.That(!utc10DaysPast.IsBetween(days30, days60), nameof(utc10DaysPast));
+            Assert.That(!utc29DaysPast.IsBetween(days30, days60), nameof(utc29DaysPast));
+            Assert.That(!utcAlmost30DaysPast.IsBetween(days30, days60), nameof(utcAlmost30DaysPast));
+            Assert.That(!utc30DaysPast.IsBetween(days30, days60), nameof(utc30DaysPast));
+            Assert.That(utcJustMoreThan30DaysPast.IsBetween(days30, days60), nameof(utcJustMoreThan30DaysPast));
+            Assert.That(utc45daysPast.IsBetween(days30, days60), nameof(utc45daysPast));
+            Assert.That(utc59DaysPast.IsBetween(days30, days60), nameof(utc59DaysPast));
+            Assert.That(utcAlmost60daysPast.IsBetween(days30, days60), nameof(utcAlmost60daysPast));
+            Assert.That(!utc60daysPast.IsBetween(days30, days60), nameof(utc60daysPast));
+            Assert.That(!utcJustMoreThan60daysPast.IsBetween(days30, days60), nameof(utcJustMoreThan60daysPast));
+            Assert.That(!utc100DaysPast.IsBetween(days30, days60), nameof(utc100DaysPast));
+        }
     }
 }
