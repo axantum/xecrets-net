@@ -3742,7 +3742,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I’d love for you to continue using our Premium features. Simply &lt;a href=&quot;{0}Home/Login?email={1}&quot;&gt;sign in&lt;/a&gt; to your AxCrypt ID here to subscribe at any time..
+        ///   Looks up a localized string similar to I’d love for you to continue using our Premium features. Extend your subscription &lt;a href=&quot;{0}Home/Purchase?email={1}&quot;&gt;now&lt;/a&gt; ..
         /// </summary>
         public static string PremiumExpiresSoonMailBody1Html {
             get {
@@ -3814,7 +3814,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}/month..
+        ///   Looks up a localized string similar to {0}/month.
         /// </summary>
         public static string PricePerMonth {
             get {

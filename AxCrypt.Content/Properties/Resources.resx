@@ -1493,7 +1493,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <value>Your AxCrypt Premium subscription is coming to an end soon. I sincerely hope you have enjoyed using our features and found them useful.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>I’d love for you to continue using our Premium features. Simply &lt;a href="{0}Home/Login?email={1}"&gt;sign in&lt;/a&gt; to your AxCrypt ID here to subscribe at any time.</value>
+    <value>I’d love for you to continue using our Premium features. Extend your subscription &lt;a href="{0}Home/Purchase?email={1}"&gt;now&lt;/a&gt; .</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -1520,7 +1520,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <comment>Brief text used to display the price exclusive of VAT, as additional information. The price is typically shown inclusive. This text is only displayed if any VAT is added.</comment>
   </data>
   <data name="PricePerMonth" xml:space="preserve">
-    <value>{0}/month.</value>
+    <value>{0}/month</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
