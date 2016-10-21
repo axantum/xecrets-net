@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Mono", "Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj", "{CE9E8614-8DC5-4757-9384-3C416AB61A47}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Content", "AxCrypt.Content\AxCrypt.Content.csproj", "{CB0C5A7A-FBEE-4F02-BDAE-4A7F206C1CD4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Common.Test", "Axantum.AxCrypt.Common.Test\Axantum.AxCrypt.Common.Test.csproj", "{D08C2916-8ECB-4163-8171-BD86EF392858}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5F7EF80E-DFBE-4CD4-853F-5AACE94DDA21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -254,5 +256,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403} = {5F7EF80E-DFBE-4CD4-853F-5AACE94DDA21}
+		{79C4901A-BCAA-49AA-A789-6A8F97ACC881} = {5F7EF80E-DFBE-4CD4-853F-5AACE94DDA21}
+		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF} = {5F7EF80E-DFBE-4CD4-853F-5AACE94DDA21}
+		{D34E5E80-BFF9-4300-8ADA-9085D0EC65BB} = {5F7EF80E-DFBE-4CD4-853F-5AACE94DDA21}
+		{48602976-ABA8-4639-93E1-54CD0B2F0C23} = {5F7EF80E-DFBE-4CD4-853F-5AACE94DDA21}
+		{D08C2916-8ECB-4163-8171-BD86EF392858} = {5F7EF80E-DFBE-4CD4-853F-5AACE94DDA21}
 	EndGlobalSection
 EndGlobal
