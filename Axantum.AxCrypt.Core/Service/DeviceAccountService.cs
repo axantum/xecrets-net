@@ -9,6 +9,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -365,13 +366,13 @@ namespace Axantum.AxCrypt.Core.Service
             await _localService.SaveAsync(keyPairs).Free();
         }
 
-        public async Task SignupAsync(EmailAddress email)
+        public async Task SignupAsync(EmailAddress email, CultureInfo culture)
         {
             if (New<AxCryptOnlineState>().IsOnline)
             {
                 try
                 {
-                    await _remoteService.SignupAsync(email).Free();
+                    await _remoteService.SignupAsync(email, culture).Free();
                 }
                 catch (OfflineApiException oaex)
                 {
@@ -379,7 +380,7 @@ namespace Axantum.AxCrypt.Core.Service
                     New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
-            await _localService.SignupAsync(email).Free();
+            await _localService.SignupAsync(email, culture).Free();
         }
 
         public async Task<AccountStatus> StatusAsync(EmailAddress email)

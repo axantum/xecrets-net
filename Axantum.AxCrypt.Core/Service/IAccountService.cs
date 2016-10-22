@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -154,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// in an email to the provided email address in Identity.
         /// </summary>
         /// <returns></returns>
-        Task SignupAsync(EmailAddress email);
+        Task SignupAsync(EmailAddress email, CultureInfo culture);
 
         /// <summary>
         /// Resets the password for the account.

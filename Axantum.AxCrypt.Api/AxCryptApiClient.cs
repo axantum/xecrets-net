@@ -4,6 +4,7 @@ using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -195,9 +196,18 @@ namespace Axantum.AxCrypt.Api
             return apiResponse;
         }
 
-        public async Task PostAllAccountsUserAsync(string userName)
+        public async Task PostAllAccountsUserAsync(string userName, CultureInfo culture)
         {
-            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}".With(ApiCaller.UrlEncode(userName)));
+            if (userName == null)
+            {
+                throw new ArgumentNullException(nameof(userName));
+            }
+            if (culture == null)
+            {
+                throw new ArgumentNullException(nameof(culture));
+            }
+
+            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}?culture={1}".With(ApiCaller.UrlEncode(userName), culture.Name));
 
             RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest("POST", resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);

@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Service
             return _completedTask;
         }
 
-        public Task SignupAsync(EmailAddress email)
+        public Task SignupAsync(EmailAddress email, CultureInfo culture)
         {
             return _completedTask;
         }
