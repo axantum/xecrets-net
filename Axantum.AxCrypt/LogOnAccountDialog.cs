@@ -1,12 +1,11 @@
 ﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 using Texts = AxCrypt.Content.Texts;
 
@@ -39,6 +38,7 @@ namespace Axantum.AxCrypt
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
+            //_troubleRememberingLabel.Text = Texts.TroubleRememberingLabel;
         }
 
         private async void LogOnAccountDialog_Load(object sender, EventArgs e)
@@ -47,6 +47,11 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
+
+            // The panel gets hidden until the user tries different passwords too many times.
+            // The panel contains a password reset link
+            _troubleRememberingPanel.Hide();
+            _viewModel.TooManyTries += (s, ea) => { New<IUIThread>().PostTo(() => _troubleRememberingPanel.Show()); };
 
             _passphrase.LostFocus += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
             _passphrase.Validating += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
@@ -98,6 +103,11 @@ namespace Axantum.AxCrypt
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.No;
+        }
+
+        private void troubleRememberingLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(Texts.PasswordResetHyperLink);
         }
     }
 }

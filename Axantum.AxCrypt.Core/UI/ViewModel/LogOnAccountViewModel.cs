@@ -38,6 +38,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
+
     /// <summary>
     /// Log On (enable default encryption key). If an email address is provided, an attempt is made to log on to the Internet
     /// server and synchronize keys. If that fails, a locally accessible key-pair is required.
@@ -46,6 +47,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     public class LogOnAccountViewModel : ViewModelBase
     {
         private UserSettings _userSettings;
+        private int _nrOfTries = 0;
+        private readonly int MAX_TRIES = 3;
+        public event EventHandler TooManyTries;
 
         public LogOnAccountViewModel(UserSettings userSettings)
         {
@@ -121,12 +125,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return true;
             }
+
             ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
             return false;
         }
 
         private async Task<bool> ValidatePassphraseForEmailAsync()
         {
+
             if (!UserEmail.IsValidEmail())
             {
                 return true;
@@ -134,8 +140,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             if (Passphrase.Length > 0 && await IsValidAccountLogOnAsync())
             {
+                _nrOfTries = 0;
                 return true;
             }
+
+            _nrOfTries++;
+            if (_nrOfTries == MAX_TRIES)
+            {
+                TooManyTries?.Invoke(this, null);
+            }
+
             ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
             return false;
         }
