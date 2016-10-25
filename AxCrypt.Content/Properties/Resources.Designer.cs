@@ -4284,11 +4284,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please rate us on &lt;a&gt;Google Play&lt;/a&gt;.
+        /// </summary>
+        public static string RateApplicationLinkAndroid {
+            get {
+                return ResourceManager.GetString("RateApplicationLinkAndroid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please rate us on .
         /// </summary>
         public static string RateApplicationLinkFirstPart {
             get {
                 return ResourceManager.GetString("RateApplicationLinkFirstPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please rate us on &lt;a&gt;App store&lt;/a&gt;.
+        /// </summary>
+        public static string RateApplicationLinkIos {
+            get {
+                return ResourceManager.GetString("RateApplicationLinkIos", resourceCulture);
             }
         }
         
@@ -4964,6 +4982,15 @@ namespace AxCrypt.Content.Properties {
         public static string TargetApplicationNotFoundMessage {
             get {
                 return ResourceManager.GetString("TargetApplicationNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By signing up to AxCrypt you agree to our &lt;a&gt;Terms &amp;amp; Conditions &lt;/a&gt;.
+        /// </summary>
+        public static string TermsAndConditionsLink {
+            get {
+                return ResourceManager.GetString("TermsAndConditionsLink", resourceCulture);
             }
         }
         

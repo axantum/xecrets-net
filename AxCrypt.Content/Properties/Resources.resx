@@ -1687,9 +1687,17 @@ A receipt of your purchase has been sent to your e-mail.</value>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Purging Active Files</value>
   </data>
+  <data name="RateApplicationLinkAndroid" xml:space="preserve">
+    <value>Please rate us on &lt;a&gt;Google Play&lt;/a&gt;</value>
+    <comment>Link to app store in mobile application (Android)</comment>
+  </data>
   <data name="RateApplicationLinkFirstPart" xml:space="preserve">
     <value>Please rate us on </value>
     <comment>Unclickable part of "Rate us on App Store" link</comment>
+  </data>
+  <data name="RateApplicationLinkIos" xml:space="preserve">
+    <value>Please rate us on &lt;a&gt;App store&lt;/a&gt;</value>
+    <comment>Link to application store in mobile application (iOS</comment>
   </data>
   <data name="RateApplicationLinkSecondPartAndroid" xml:space="preserve">
     <value>Google Play</value>
@@ -1953,6 +1961,10 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>Can't open current file</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
+  </data>
+  <data name="TermsAndConditionsLink" xml:space="preserve">
+    <value>By signing up to AxCrypt you agree to our &lt;a&gt;Terms &amp;amp; Conditions &lt;/a&gt;</value>
+    <comment>Text of link to Terms And Conditions in mobile application</comment>
   </data>
   <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">
     <value>By signing up to AxCrypt you agree to our </value>
