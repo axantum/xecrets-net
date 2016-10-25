@@ -1648,7 +1648,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Magic link to the email.
+        ///   Looks up a localized string similar to Go to email.
         /// </summary>
         public static string EmailAppLink {
             get {
@@ -2441,6 +2441,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open via:.
+        /// </summary>
+        public static string LauncherPromptHeader {
+            get {
+                return ResourceManager.GetString("LauncherPromptHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to After files are converted from AxCrypt 1.x format, you must use the new Sign In password to open them, so please verify it here.
         ///
         ///Do not forget this password!.
@@ -2696,6 +2705,24 @@ namespace AxCrypt.Content.Properties {
         public static string MailBodyTitleHtml {
             get {
                 return ResourceManager.GetString("MailBodyTitleHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t launch mail app on your device..
+        /// </summary>
+        public static string MailClientNotFoundMessage {
+            get {
+                return ResourceManager.GetString("MailClientNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select mail client:.
+        /// </summary>
+        public static string MailClientPromptHeader {
+            get {
+                return ResourceManager.GetString("MailClientPromptHeader", resourceCulture);
             }
         }
         
@@ -3109,6 +3136,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string MessageErrorTitle {
+            get {
+                return ResourceManager.GetString("MessageErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You cannot sign up as &apos;{0}&apos;. Please enter a real email address, and try again..
         /// </summary>
         public static string MessageInvalidSignUpEmailText {
@@ -3285,6 +3321,15 @@ namespace AxCrypt.Content.Properties {
         public static string NoDefaultEncryptionKeySetToolTip {
             get {
                 return ResourceManager.GetString("NoDefaultEncryptionKeySetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t connect to server right now, please check your internet connection..
+        /// </summary>
+        public static string NoInternetErrorMessage {
+            get {
+                return ResourceManager.GetString("NoInternetErrorMessage", resourceCulture);
             }
         }
         
@@ -3792,6 +3837,15 @@ namespace AxCrypt.Content.Properties {
         public static string PremiumNeededForKeyShare {
             get {
                 return ResourceManager.GetString("PremiumNeededForKeyShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Premium Support Request.
+        /// </summary>
+        public static string PremiumSupportRequestMailSubect {
+            get {
+                return ResourceManager.GetString("PremiumSupportRequestMailSubect", resourceCulture);
             }
         }
         
@@ -4905,6 +4959,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t open current file.
+        /// </summary>
+        public static string TargetApplicationNotFoundMessage {
+            get {
+                return ResourceManager.GetString("TargetApplicationNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By signing up to AxCrypt you agree to our .
         /// </summary>
         public static string TermsAndConditionsLinkFirstPart {
@@ -5049,6 +5112,15 @@ namespace AxCrypt.Content.Properties {
         public static string TrialPremiumStartInfo {
             get {
                 return ResourceManager.GetString("TrialPremiumStartInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trouble remembering your password?.
+        /// </summary>
+        public static string TroubleRememberingLabel {
+            get {
+                return ResourceManager.GetString("TroubleRememberingLabel", resourceCulture);
             }
         }
         

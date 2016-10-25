@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
-            //_troubleRememberingLabel.Text = Texts.TroubleRememberingLabel;
+            _troubleRememberingLabel.Text = "&" + Texts.TroubleRememberingLabel;
         }
 
         private async void LogOnAccountDialog_Load(object sender, EventArgs e)
@@ -48,8 +48,6 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            // The panel gets hidden until the user tries different passwords too many times.
-            // The panel contains a password reset link
             _troubleRememberingPanel.Hide();
             _viewModel.TooManyTries += (s, ea) => { New<IUIThread>().PostTo(() => _troubleRememberingPanel.Show()); };
 

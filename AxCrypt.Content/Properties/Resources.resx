@@ -685,7 +685,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Your entry has been updated.</value>
   </data>
   <data name="EmailAppLink" xml:space="preserve">
-    <value>Magic link to the email</value>
+    <value>Go to email</value>
     <comment>Text of link for opening mail application.</comment>
   </data>
   <data name="EmailErrorTemplateNotFound" xml:space="preserve">
@@ -970,6 +970,10 @@ Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secr
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Time</value>
   </data>
+  <data name="LauncherPromptHeader" xml:space="preserve">
+    <value>Open via:</value>
+    <comment>Header of popup which is displayed for file opening.</comment>
+  </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>After files are converted from AxCrypt 1.x format, you must use the new Sign In password to open them, so please verify it here.
 
@@ -1069,6 +1073,14 @@ The AxCrypt Team</value>
   </data>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Hello {0},</value>
+  </data>
+  <data name="MailClientNotFoundMessage" xml:space="preserve">
+    <value>Can't launch mail app on your device.</value>
+    <comment>Error message which is displayed if mail client isn't installed on device.</comment>
+  </data>
+  <data name="MailClientPromptHeader" xml:space="preserve">
+    <value>Please select mail client:</value>
+    <comment>Header of popup for selecting mail application.</comment>
   </data>
   <data name="MainSiteUrl" xml:space="preserve">
     <value>http://www.axcrypt.net/</value>
@@ -1246,6 +1258,10 @@ This program is licensed according to the agreement.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Open Explorer Here</value>
   </data>
+  <data name="MessageErrorTitle" xml:space="preserve">
+    <value>Error</value>
+    <comment>Title of error message box for generic error</comment>
+  </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>You cannot sign up as '{0}'. Please enter a real email address, and try again.</value>
   </data>
@@ -1308,6 +1324,10 @@ This program is licensed according to the agreement.
   </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>You are Signed Out. Click to Sign In.</value>
+  </data>
+  <data name="NoInternetErrorMessage" xml:space="preserve">
+    <value>Can't connect to server right now, please check your internet connection.</value>
+    <comment>Message which is displayed when device doesn't have internet connection.</comment>
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>No need to check for updates.</value>
@@ -1510,6 +1530,10 @@ We classify the password in 4 categories of increasing strength, were we do not 
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Key sharing requires Premium. Click to upgrade now!</value>
+  </data>
+  <data name="PremiumSupportRequestMailSubect" xml:space="preserve">
+    <value>Premium Support Request</value>
+    <comment>The subject used when sending support requests from the account web.</comment>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Press and hold to view more</value>
@@ -1926,6 +1950,10 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SyntheticWordsSuccessUpdate" xml:space="preserve">
     <value>The culture was successfully updated.</value>
   </data>
+  <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
+    <value>Can't open current file</value>
+    <comment>Message which is displayed when user hasn't application for file opening</comment>
+  </data>
   <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">
     <value>By signing up to AxCrypt you agree to our </value>
     <comment>Unclikable text of link to Terms And Conditions  in mobile application</comment>
@@ -1982,6 +2010,10 @@ Good Luck and Enjoy,
 
 The AxCrypt Team</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
+  </data>
+  <data name="TroubleRememberingLabel" xml:space="preserve">
+    <value>Trouble remembering your password?</value>
+    <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
   </data>
   <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
     <value>Try Broken File</value>

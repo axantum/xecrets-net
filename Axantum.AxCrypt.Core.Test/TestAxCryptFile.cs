@@ -468,6 +468,7 @@ namespace Axantum.AxCrypt.Core.Test
         // 2016-03-10: Attempted fix by adding call to Resolve.ProgressBackground.WaitForIdle(), and implementing it in FakeProgressBackground.
         // 2016-06-21: Attempted fix by 'capturing' result of enumeration of encrypted files in DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(). Still not fixed.
         // 2016-09-12: Not fixed.
+        // 2016-10-25: Still not fixed.
         [Test]
         public async void TestDecryptFilesUniqueWithWipeOfOriginal()
         {
