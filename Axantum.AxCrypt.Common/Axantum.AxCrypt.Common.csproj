@@ -57,6 +57,7 @@
     <Compile Include="DownloadVersion.cs" />
     <Compile Include="DummyReferencedType.cs" />
     <Compile Include="FrameworkTypeExtensions.cs" />
+    <Compile Include="NameOf.cs" />
     <Compile Include="OfflineApiException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateLevels.cs" />

@@ -9,6 +9,7 @@ using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -157,7 +158,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 switch (status)
                 {
                     case AccountStatus.NotFound:
-                        await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(UserEmail));
+                        await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(UserEmail), CultureInfo.CurrentUICulture);
                         New<IPopup>().Show(PopupButtons.Ok, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(UserEmail));
                         await CheckAccountAsync();
                         status = VerifyAccountOnline();

@@ -36,6 +36,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -298,9 +299,9 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public async Task SignupAsync(EmailAddress email)
+        public async Task SignupAsync(EmailAddress email, CultureInfo culture)
         {
-            await _apiClient.PostAllAccountsUserAsync(email.Address).Free();
+            await _apiClient.PostAllAccountsUserAsync(email.Address, culture).Free();
         }
 
         public async Task PasswordResetAsync(string verificationCode)

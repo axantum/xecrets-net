@@ -104,9 +104,9 @@ namespace Axantum.AxCrypt.Core.Service
             await New<ICache>().UpdateItemAsync(async () => await _service.SaveAsync(keyPairs), _key).Free();
         }
 
-        public async Task SignupAsync(EmailAddress email)
+        public async Task SignupAsync(EmailAddress email, CultureInfo culture)
         {
-            await New<ICache>().UpdateItemAsync(async () => await _service.SignupAsync(email), _key).Free();
+            await New<ICache>().UpdateItemAsync(async () => await _service.SignupAsync(email, culture), _key).Free();
         }
 
         public async Task<AccountStatus> StatusAsync(EmailAddress email)

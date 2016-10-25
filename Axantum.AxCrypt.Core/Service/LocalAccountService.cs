@@ -36,6 +36,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -317,7 +318,7 @@ namespace Axantum.AxCrypt.Core.Service
             get;
         }
 
-        public async Task SignupAsync(EmailAddress email)
+        public async Task SignupAsync(EmailAddress email, CultureInfo culture)
         {
             await _completedTask;
         }
