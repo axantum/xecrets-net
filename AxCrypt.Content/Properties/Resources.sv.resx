@@ -192,11 +192,23 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
   <data name="ActivateSuccess" xml:space="preserve">
     <value>Ditt AxCrypt ID har aktiverats. Vänligen logga in!</value>
   </data>
+  <data name="ActivationCodeSentMessage" xml:space="preserve">
+    <value>Vi har skickat epost till {0}</value>
+    <comment>Message about mail with activation code.</comment>
+  </data>
+  <data name="ActivationCodeTitle" xml:space="preserve">
+    <value>Ange verifieringskoden</value>
+    <comment>Title of ActivationCode step on SignUp page in mobile application</comment>
+  </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
     <value>Dubbelklick öppnar den skyddade filen.</value>
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Dubbelklick öppnar en dialog där du kan ange lösenord innan filen kan öppnas.</value>
+  </data>
+  <data name="AddFileLabel" xml:space="preserve">
+    <value>Lägg till fil</value>
+    <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Lägg till Säker Mapp</value>
@@ -204,6 +216,10 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>Välj en mapp som skall säkras med AxCrypt. Befintliga filer kommer att krypteras.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AlreadyRegisteredLink" xml:space="preserve">
+    <value>Redan registrerad? Logga på här</value>
+    <comment>Link to sign in page.</comment>
   </data>
   <data name="AlreadyVerifiedInfo" xml:space="preserve">
     <value>Hoppsan. Du har redan verifierat din epostadress, bra!
@@ -452,6 +468,10 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
   <data name="ContactInfoTitle" xml:space="preserve">
     <value>Kontakt &amp; Support</value>
   </data>
+  <data name="ContinueLabel" xml:space="preserve">
+    <value>Fortsätt</value>
+    <comment>Text of "Continue" button on SignUp page in mobile application</comment>
+  </data>
   <data name="CookiePolicyBlockedError" xml:space="preserve">
     <value>Efterfrågan blockerades eftersom att cookies är inaktiverade i din webbläsare.</value>
   </data>
@@ -590,6 +610,10 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Öppna en säkrad fil med ett klick</value>
     <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
+  <data name="EasyToWorkTitle" xml:space="preserve">
+    <value>Lätt att använda</value>
+    <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
+  </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>Du kan bara läsa lösenordsposter, inte skriva. Det är bara Premium-användare som kan ändra eller radera!</value>
   </data>
@@ -598,6 +622,10 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Lösenordsposten uppdaterad.</value>
+  </data>
+  <data name="EmailAppLink" xml:space="preserve">
+    <value>Öppna epost.</value>
+    <comment>Text of link for opening mail application.</comment>
   </data>
   <data name="EmailLanguageInformation" xml:space="preserve">
     <value>Vi försöker göra utskick på svenska, men när vi besvarar frågor svarar vi ibland på engelska. Använd isåfall gärna Google Translate eller liknande tjänst om det behövs.</value>
@@ -649,6 +677,10 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Avsluta</value>
   </data>
+  <data name="ExpireInLabelFirstPart" xml:space="preserve">
+    <value>Avslutas om</value>
+    <comment>The first part of "Expired in x days" label in mobile application</comment>
+  </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Exportera AxCrypt ID</value>
   </data>
@@ -666,6 +698,26 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="FeedbackButtonText" xml:space="preserve">
     <value>Prata med oss! Ris eller ros, allt är välkommet.</value>
+  </data>
+  <data name="FeedbackCategoryIdea" xml:space="preserve">
+    <value>Tips</value>
+    <comment>Displayed name of "Idea" feedback category in mobile application</comment>
+  </data>
+  <data name="FeedbackCategoryPraise" xml:space="preserve">
+    <value>Beröm</value>
+    <comment>Displayed name of "Praise" feedback category in mobile application</comment>
+  </data>
+  <data name="FeedbackCategoryProblem" xml:space="preserve">
+    <value>Problem</value>
+    <comment>Displayed name of "Problem" feedback category in mobile application</comment>
+  </data>
+  <data name="FeedbackCategoryQuestion" xml:space="preserve">
+    <value>Fråga</value>
+    <comment>Displayed name of "Question" feedback category in mobile application </comment>
+  </data>
+  <data name="FeedbackDescriptionLabel" xml:space="preserve">
+    <value>Berätta vad du tycker om AxCrypt, alla kommenterar är välkomna.</value>
+    <comment>Text which motivates user to send feedback </comment>
   </data>
   <data name="FeedbackTextPrompt" xml:space="preserve">
     <value>Dina kommenterar</value>
@@ -700,6 +752,10 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Mappen '{0}' är redan skyddad.</value>
+  </data>
+  <data name="FollowUsTitle" xml:space="preserve">
+    <value>Följ oss</value>
+    <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Det här är AxCrypt ID-webben för axcrypt.net, klicka &lt;a href="{0}"&gt;här&lt;/a&gt; om du vill tillbaka till startsidan.</value>
@@ -820,6 +876,10 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga aktiveringskoden och sätt di
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Tid</value>
   </data>
+  <data name="LauncherPromptHeader" xml:space="preserve">
+    <value>Öppna med:</value>
+    <comment>Header of popup which is displayed for file opening.</comment>
+  </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>När filer konverterats från AxCrypt 1.x-formatet, måste du använda det nya inloggningslösenordet för att öppna dem, så bekräfta detta nu.
 
@@ -904,6 +964,14 @@ AxCrypt-teamet</value>
   </data>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Hej {0},</value>
+  </data>
+  <data name="MailClientNotFoundMessage" xml:space="preserve">
+    <value>Kan inte starta ditt mejlprogram.</value>
+    <comment>Error message which is displayed if mail client isn't installed on device.</comment>
+  </data>
+  <data name="MailClientPromptHeader" xml:space="preserve">
+    <value>Välj epost-program</value>
+    <comment>Header of popup for selecting mail application.</comment>
   </data>
   <data name="McHlpMenuAbout" xml:space="preserve">
     <value>Om</value>
@@ -1017,8 +1085,16 @@ Detta program är licensierat i enlighet med avtalet.
   <data name="MenuDecryptTemporarilyText" xml:space="preserve">
     <value>Tag Bort Skydd Temporärt</value>
   </data>
+  <data name="MenuLabel" xml:space="preserve">
+    <value>Meny</value>
+    <comment>Tooltip for "Menu" button in mobile application</comment>
+  </data>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Öppna Utforskaren Här</value>
+  </data>
+  <data name="MessageErrorTitle" xml:space="preserve">
+    <value>Fel</value>
+    <comment>Title of error message box for generic error</comment>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>Det går inte att använda '{0}'. Vänligen ange din riktiga e-postadress och försök igen.</value>
@@ -1078,6 +1154,10 @@ Detta program är licensierat i enlighet med avtalet.
   </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>Du är utloggad. Klicka för att logga på.</value>
+  </data>
+  <data name="NoInternetErrorMessage" xml:space="preserve">
+    <value>Kan inte ansluta för tillfället, kontrollera din Internetanslutning.</value>
+    <comment>Message which is displayed when device doesn't have internet connection.</comment>
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Inget uppdateringsbehov.</value>
@@ -1190,6 +1270,10 @@ Ange din epostadress nedan så skickar vi en länk dit. Av integritetsskäl ger 
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Återställ Lösenord</value>
   </data>
+  <data name="PasswordResetShortLink" xml:space="preserve">
+    <value>Glömt lösenord</value>
+    <comment>Text of link to Forgot password screen in mobile app</comment>
+  </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
     <value>Vi har försökt skicka en aktiveringskod till &lt;b&gt;{0}&lt;/b&gt;. Kontrollera din inbox.
 
@@ -1205,17 +1289,33 @@ Beräkningen bortser helt från delar av lösenordet som känns igenom som någo
 Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte ett lösenord som är i den lägsta kategorin. Ovanstående är ett sådant exempel.</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
+  <data name="PasswordStrengthBadName" xml:space="preserve">
+    <value>Svagt</value>
+    <comment>Short displayed name of "Bad" password status</comment>
+  </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>Lösenordet är för svagt för att vara säkert.</value>
     <comment>Status 'Red' We'll accept it, but it's really not a good idea!</comment>
+  </data>
+  <data name="PasswordStrengthStrongName" xml:space="preserve">
+    <value>Starkt</value>
+    <comment>Short displayed name of the "Strong" password status</comment>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
     <value>Lösenordet är starkt och tillräckligt bra att rekommenderas.</value>
     <comment>Status 'Green'. This is a really good password!</comment>
   </data>
+  <data name="PasswordStrengthUnacceptableName" xml:space="preserve">
+    <value>Mycket svagt</value>
+    <comment>Short displayed name of Unacceptable password status</comment>
+  </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
     <value>Lösenordet är för kort eller för likt ett vanligt lösenord att vara acceptabelt.</value>
     <comment>Shown when no password is typed or it is effectively empty</comment>
+  </data>
+  <data name="PasswordStrengthWeakName" xml:space="preserve">
+    <value>Mellan</value>
+    <comment>Short displayed name of  "Weak"password status</comment>
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>Lösenordet är för svagt för att vara rekommenderat.</value>
@@ -1224,11 +1324,15 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Mer om PayPal]</value>
   </data>
+  <data name="PremiumAccountLabel" xml:space="preserve">
+    <value>Premium</value>
+    <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
+  </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
     <value>Ditt Premium-abonnemang löper snart ut. Jag hoppas verkligen att du har gillat Premium-funktionerna, och att du haft nytta av dem.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Jag skulle verkligen gilla om du fortsätter använda våra Premium-funktioner. Det är bara att &lt;a href="{0}Home/Login?email={1}"&gt;logga in&lt;/a&gt; på ditt AxCrypt ID här och abonnera när som helst.</value>
+    <value>Jag skulle verkligen gilla om du fortsätter använda våra Premium-funktioner. Fortsätt abonnera &lt;a href="{0}Home/Purchase?email={1}"&gt;här&lt;/a&gt; .</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -1246,12 +1350,16 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Nyckeldelning kräver Premium. Klicka för att uppgradera!</value>
   </data>
+  <data name="PressAndHoldLabel" xml:space="preserve">
+    <value>Tryck och håll för att se mer</value>
+    <comment>Tooltip for Press and hold gesture in mobile application</comment>
+  </data>
   <data name="PriceExcludingVat" xml:space="preserve">
     <value>{0} Exkl. Moms.</value>
     <comment>Brief text used to display the price exclusive of VAT, as additional information. The price is typically shown inclusive. This text is only displayed if any VAT is added.</comment>
   </data>
   <data name="PricePerMonth" xml:space="preserve">
-    <value>{0}/månad.</value>
+    <value>{0}/månad</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
@@ -1394,6 +1502,26 @@ Ett kvitto på ditt köp har skickats till din epostadress.</value>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Rensar Aktiva Dokument</value>
   </data>
+  <data name="RateApplicationLinkAndroid" xml:space="preserve">
+    <value>Betygsätt oss på &lt;a&gt;Google Play&lt;/a&gt;.</value>
+    <comment>Link to app store in mobile application (Android)</comment>
+  </data>
+  <data name="RateApplicationLinkFirstPart" xml:space="preserve">
+    <value>Bedöm oss på</value>
+    <comment>Unclickable part of "Rate us on App Store" link</comment>
+  </data>
+  <data name="RateApplicationLinkIos" xml:space="preserve">
+    <value>Betygsätt oss på &lt;a&gt;App store&lt;/a&gt;.</value>
+    <comment>Link to application store in mobile application (iOS</comment>
+  </data>
+  <data name="RateApplicationLinkSecondPartAndroid" xml:space="preserve">
+    <value>Google Play</value>
+    <comment>Clickable part of "Rate us on Google Play" link in Android mobile application</comment>
+  </data>
+  <data name="RateApplicationLinkSecondPartIos" xml:space="preserve">
+    <value>App-butik</value>
+    <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
+  </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Öppna</value>
   </data>
@@ -1419,9 +1547,21 @@ En provperiod på 30 dagar ingår alltid och du kan påbörja den när som helst
 
 Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en aktiveringslänk.</value>
   </data>
+  <data name="ReliabilityLabel" xml:space="preserve">
+    <value>Tillförlitlighet</value>
+    <comment>Title of "Reliability" section of About Us page in mobile application.</comment>
+  </data>
+  <data name="ReliabilitySectionText" xml:space="preserve">
+    <value>AxCrypt har funnits i över 15 år, och har vuxit till att bli en av världens mest populära krypteringsprogram med över 20 millioner nedladdningar. Genom åren har vi också blivit omnämnda och rankade som en av världens bästa program för kryptering.</value>
+    <comment>Description of "Reliability" section of About Us page in mobile application.</comment>
+  </data>
   <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
     <value>Programmet behöver uppdateras pga ett tillförlitlighetsproblem.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
+  </data>
+  <data name="RemoveRecentFileLabel" xml:space="preserve">
+    <value>Ta bort fil</value>
+    <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Ta bort från listan men behåll filskyddet</value>
@@ -1455,9 +1595,21 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ak
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>Säker Radering</value>
   </data>
+  <data name="SecurityLabel" xml:space="preserve">
+    <value>Säkerhet</value>
+    <comment>Title of "Security" section of About Us page in mobile application. </comment>
+  </data>
+  <data name="SecuritySectionText" xml:space="preserve">
+    <value>Säkerhet är kritiskt för oss. Allt som har med AxCrypt att göra sker med säkerhet som högsta prioritet. Vi säkerställer att ingen kan öppna dina filer, så länge ditt lösenord är hemligt.</value>
+    <comment>Description of "Security" section of About Us page in mobile application. </comment>
+  </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Programmet behöver uppdateras beroende på en säkerhetsbrist.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SetEmailLabel" xml:space="preserve">
+    <value>Epostadress</value>
+    <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Har kan du ta bort ditt AxCrypt ID permanent. &lt;span class="red"&gt;All information tas bort, vilket innefattar sparade lösenordsposter.&lt;/span&gt;
@@ -1491,6 +1643,14 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Åtkomstdela</value>
   </data>
+  <data name="ShareWithOthersDescription" xml:space="preserve">
+    <value>Låt andra AxCrypt-användare öppna skyddade filer med sitt eget lösenord.</value>
+    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
+  </data>
+  <data name="ShareWithOthersTitle" xml:space="preserve">
+    <value>Dela med andra</value>
+    <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
+  </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Visa Lösenord</value>
   </data>
@@ -1501,8 +1661,22 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   <data name="SignInVerificationTitle" xml:space="preserve">
     <value>Bekräfta Inloggning</value>
   </data>
+  <data name="SimplicityLabel" xml:space="preserve">
+    <value>Enkelhet</value>
+    <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
+  </data>
+  <data name="SimplicitySectionText" xml:space="preserve">
+    <value>Kryptering är svårt, men det har inte hindrat oss från att försöka förenkla för användaren. Vi har utvecklat unika funktioner som gör användandet av stark kryptering och att dela krypterad information lättare och säkrare än någonsin förut.</value>
+    <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
+  </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Varning! Webbsajten startar strax om. Vi ber om ursäkt för besväret.</value>
+  </data>
+  <data name="SslRequiredPageBody" xml:space="preserve">
+    <value>En krypterad SSL-förbindelse krävs. Försök igen med &lt;a href="{2}"&gt;{2}&lt;/a&gt; . 
+ 
+För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</value>
+    <comment>A friendly page telling a user that SSL is required. The status code will be 403 Bad Request.</comment>
   </data>
   <data name="SslRequiredTitle" xml:space="preserve">
     <value>En säker förbindelse krävs.</value>
@@ -1510,6 +1684,18 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Klicka och välj filer att avlägsna skyddet från.</value>
+  </data>
+  <data name="StrongEncryptionDescription" xml:space="preserve">
+    <value>Säkerhet med 128- eller 256-bit AES-kryptering</value>
+    <comment>Text displayed on "Strong Encryption" slide in mobile app</comment>
+  </data>
+  <data name="StrongEncryptionTitle" xml:space="preserve">
+    <value>Stark kryptering</value>
+    <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
+  </data>
+  <data name="SubmitFeedbackButton" xml:space="preserve">
+    <value>Vad tycker du?</value>
+    <comment>Text of Submit feedback button</comment>
   </data>
   <data name="SubscriptionsErrorAmount" xml:space="preserve">
     <value>Internt fel. Beloppet är ogiltigt, ange belop med decimalavgränsare.</value>
@@ -1528,6 +1714,22 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Tyvärr så är direkthjälp bara tillgänglig för betalande Premium-användare, använd våra &lt;a href="{0}"&gt;användarforum&lt;/a&gt; istället.</value>
+  </data>
+  <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
+    <value>Kan inte öppna filen</value>
+    <comment>Message which is displayed when user hasn't application for file opening</comment>
+  </data>
+  <data name="TermsAndConditionsLink" xml:space="preserve">
+    <value>Genom att registra dig för AxCrypt godkänner du våra &lt;a&gt;villkor&lt;/a&gt;.</value>
+    <comment>Text of link to Terms And Conditions in mobile application</comment>
+  </data>
+  <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">
+    <value>Genom att registrera dig för AxCrypt så godkänner du våra</value>
+    <comment>Unclikable text of link to Terms And Conditions  in mobile application</comment>
+  </data>
+  <data name="TermsAndConditionsLinkSecondPart" xml:space="preserve">
+    <value>Villkor</value>
+    <comment>Clickable text of link to Terms And Conditions in mobile application</comment>
   </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>Finns i inbox eller skräppost!</value>
@@ -1578,6 +1780,18 @@ Lycka till och mycket nöje!
 Vi på AxCrypt</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
   </data>
+  <data name="TroubleRememberingLabel" xml:space="preserve">
+    <value>Glömt lösenordet?</value>
+    <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
+  </data>
+  <data name="TryItDescription" xml:space="preserve">
+    <value>Det är gratis</value>
+    <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
+  </data>
+  <data name="TryItTitle" xml:space="preserve">
+    <value>Prova!</value>
+    <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
+  </data>
   <data name="TryPremiumLabel" xml:space="preserve">
     <value>Prova Premium!</value>
     <comment>A clickable link with text similar to "Try Premium"</comment>
@@ -1626,6 +1840,10 @@ Vi på AxCrypt</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Du har uppdaterat AxCrypt. Dessfärre måste dina inställningar återställas. Efter omstart av AxCrypt kommer inställningarna återgå till utgångsläget. Vi ber om ursäkt för besväret. Dina skyddade filer är lika säkra som alltd.</value>
+  </data>
+  <data name="VerifyAccountLabel" xml:space="preserve">
+    <value>Verifiera ditt nya konto</value>
+    <comment>Text displayed on Activation code page in mobile app.</comment>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verifiera Lösenord</value>
