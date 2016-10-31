@@ -1501,6 +1501,10 @@ Un reçu de votre commande a été envoyé à votre adresse e-mail.</value>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Nettoyage des fichiers actifs</value>
   </data>
+  <data name="RateApplicationLinkAndroid" xml:space="preserve">
+    <value>Notez-nous sur &lt;a&gt;Google Play&lt;/a&gt;</value>
+    <comment>Link to app store in mobile application (Android)</comment>
+  </data>
   <data name="RateApplicationLinkFirstPart" xml:space="preserve">
     <value>S'il vous plait notez nous sur</value>
     <comment>Unclickable part of "Rate us on App Store" link</comment>
@@ -1545,6 +1549,10 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code d'activation. </value>
   <data name="ReliabilityLabel" xml:space="preserve">
     <value>Fiabilité</value>
     <comment>Title of "Reliability" section of About Us page in mobile application.</comment>
+  </data>
+  <data name="ReliabilitySectionText" xml:space="preserve">
+    <value>AxCrypt est sur le marché depuis 15 ans, et a grandi pour devenir l'un des logiciels de chiffrement les plus connus, avec plus de 20 millions de téléchargements. Au fil des années, nous avons été notés et mentionnés comme l'un des meilleurs logiciels de chiffrement.  </value>
+    <comment>Description of "Reliability" section of About Us page in mobile application.</comment>
   </data>
   <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
     <value>Votre logiciel doit être mis à jour en raison d'un problème de fiabilité.</value>
@@ -1634,6 +1642,10 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Partager clefs</value>
   </data>
+  <data name="ShareWithOthersDescription" xml:space="preserve">
+    <value>Autorise les fichiers sécurisés d'être ouvert par d'autres utilisateurs AxCrypt avec leur propre mot de passe</value>
+    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
+  </data>
   <data name="ShareWithOthersTitle" xml:space="preserve">
     <value>Partager avec les autres</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
@@ -1650,6 +1662,10 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   </data>
   <data name="SimplicityLabel" xml:space="preserve">
     <value>Simplicité</value>
+    <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
+  </data>
+  <data name="SimplicitySectionText" xml:space="preserve">
+    <value>Le chiffrement est complexe, mais cela nous encourage a constamment travailler afin de le simplifier pour l'utilisateur.  Nous avons développer des caractéristiques uniques qui font que l'utilisation du chiffrement fort et du partage de clés de chiffrement sont plus simples et sécurisés que n'importe quel autre logiciel. </value>
     <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">

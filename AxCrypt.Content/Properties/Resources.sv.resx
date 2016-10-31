@@ -1196,7 +1196,7 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OfflineNoPremiumWarning" xml:space="preserve">
-    <value>Du är oansluten och har ingen giltig Premium-prenumeration. Anslut till Internet och köp eller uppdatera din prenumeration.</value>
+    <value>Vi kan inte kontrollera din prenumeration eftersom du inte är ansluten till Internet. Anslut så kan vi uppdatera din status.</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Du har en gammal version. Klicka för att kontrollera om det finns en nyare.</value>

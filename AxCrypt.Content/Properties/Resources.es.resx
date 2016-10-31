@@ -1205,7 +1205,7 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
     <value>Haga clic y elija un archivo protegido para abrir.</value>
   </data>
   <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
-    <value>Cambiar contrasenña</value>
+    <value>Cambiar contraseña</value>
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
     <value>Borrar todos los ajustes y salir</value>
