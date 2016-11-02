@@ -166,6 +166,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(RestoreFullWindow), value); }
         }
 
+		public bool IsFileImportHelpMessageAlreadyDisplayed
+		{
+			get { return Load(nameof(IsFileImportHelpMessageAlreadyDisplayed), false); }
+			set { Store(nameof(IsFileImportHelpMessageAlreadyDisplayed), value); }
+		}
+
         public Uri AxCrypt2HelpUrl
         {
             get { return Load(nameof(AxCrypt2HelpUrl), new Uri("http://www.axcrypt.net/documentation/get-started/")); }
