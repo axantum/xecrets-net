@@ -3417,7 +3417,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re offline with no valid Premium subscription. Go online and purchase or update your license..
+        ///   Looks up a localized string similar to You&apos;re offline so we can&apos;t check your Premium subscription. Please go online so we can update your status!.
         /// </summary>
         public static string OfflineNoPremiumWarning {
             get {

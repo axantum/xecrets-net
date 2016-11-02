@@ -173,11 +173,23 @@ Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtw
   <data name="ActivateSuccess" xml:space="preserve">
     <value>Uw AxCrypt ID is geactiveerd! Meldt u zich alstublieft aan.</value>
   </data>
+  <data name="ActivationCodeSentMessage" xml:space="preserve">
+    <value>We hebben u een email verstuurd naar {0}</value>
+    <comment>Message about mail with activation code.</comment>
+  </data>
+  <data name="ActivationCodeTitle" xml:space="preserve">
+    <value>Voer uw activatiecode in</value>
+    <comment>Title of ActivationCode step on SignUp page in mobile application</comment>
+  </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
     <value>Dubbelklik opent het beveiligde bestand.</value>
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Dubbelklik opent een wachtwoord-dialoogvenster voor het openen van het beveiligde bestand.</value>
+  </data>
+  <data name="AddFileLabel" xml:space="preserve">
+    <value>Voeg nieuw bestand toe</value>
+    <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Voeg Beveiligde Map Toe</value>
@@ -185,6 +197,10 @@ Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtw
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>Selecteer een map om te beveiligen met AxCrypt. Bestaande bestanden worden nu geëncrypteerd.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AlreadyRegisteredLink" xml:space="preserve">
+    <value>Al geregistreerd? Hier aanmelden</value>
+    <comment>Link to sign in page.</comment>
   </data>
   <data name="AlreadyVerifiedInfo" xml:space="preserve">
     <value>Oops. U heeft uw account al geverifieerd, geweldig!
@@ -433,6 +449,10 @@ U moet deze stappen volgen om het proces te voltooien.</value>
   <data name="ContactInfoTitle" xml:space="preserve">
     <value>Contact &amp; ondersteuning</value>
   </data>
+  <data name="ContinueLabel" xml:space="preserve">
+    <value>Doorgaan</value>
+    <comment>Text of "Continue" button on SignUp page in mobile application</comment>
+  </data>
   <data name="CookiePolicyBlockedError" xml:space="preserve">
     <value>De actie was geblokkeerd, omdat cookies uitgeschakeld zijn in uw browser.</value>
   </data>
@@ -567,6 +587,14 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Dubbelklik om te openen. Als het vereist is wordt u om een wachtwoord gevraagd.</value>
   </data>
+  <data name="EasyToWorkDescription" xml:space="preserve">
+    <value>Open een beveiligd bestand direct met klik</value>
+    <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
+  </data>
+  <data name="EasyToWorkTitle" xml:space="preserve">
+    <value>Makkelijk om mee te werken</value>
+    <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
+  </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>Uw toegang is gelimiteerd tot alleen-lezen. Alleen Premium gebruikers mogen aanpassingen maken of nieuwe wachtwoorden creëren.</value>
   </data>
@@ -575,6 +603,10 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   </data>
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Uw invoer is geüpdatet.</value>
+  </data>
+  <data name="EmailAppLink" xml:space="preserve">
+    <value>Magische link naar de email</value>
+    <comment>Text of link for opening mail application.</comment>
   </data>
   <data name="EmailLanguageInformation" xml:space="preserve">
     <value>Wij proberen mails in uw taal te versturen, maar als u ons mailt kunnen wij in het Engels reageren. Gebruik alstublieft Google Translate of iets vergelijkbaars wanneer nodig.</value>
@@ -626,6 +658,10 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Sluiten</value>
   </data>
+  <data name="ExpireInLabelFirstPart" xml:space="preserve">
+    <value>Verloopt in</value>
+    <comment>The first part of "Expired in x days" label in mobile application</comment>
+  </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Export AxCrypt ID Geheim en Delen Sleutel Paar</value>
   </data>
@@ -643,6 +679,30 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   </data>
   <data name="FeedbackButtonText" xml:space="preserve">
     <value>Hoe gaat het met u? Geef ons alstublieft feedback!</value>
+  </data>
+  <data name="FeedbackCategoryIdea" xml:space="preserve">
+    <value>Idee</value>
+    <comment>Displayed name of "Idea" feedback category in mobile application</comment>
+  </data>
+  <data name="FeedbackCategoryPraise" xml:space="preserve">
+    <value>Loven</value>
+    <comment>Displayed name of "Praise" feedback category in mobile application</comment>
+  </data>
+  <data name="FeedbackCategoryProblem" xml:space="preserve">
+    <value>Probleem</value>
+    <comment>Displayed name of "Problem" feedback category in mobile application</comment>
+  </data>
+  <data name="FeedbackCategoryQuestion" xml:space="preserve">
+    <value>Vraag</value>
+    <comment>Displayed name of "Question" feedback category in mobile application </comment>
+  </data>
+  <data name="FeedbackDescriptionLabel" xml:space="preserve">
+    <value>Vertel ons alstublieft wat u denkt. Alle feedback wordt gewaardeerd.</value>
+    <comment>Text which motivates user to send feedback </comment>
+  </data>
+  <data name="FeedbackTextPrompt" xml:space="preserve">
+    <value>Uw feedback</value>
+    <comment>Text displayed in feedback content textbox when it is empty</comment>
   </data>
   <data name="FileAlreadyEncrypted" xml:space="preserve">
     <value>Bestand '{0}' is al beveiligd.</value>
@@ -673,6 +733,10 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Map '{0}' is al beveiligd</value>
+  </data>
+  <data name="FollowUsTitle" xml:space="preserve">
+    <value>Volg ons</value>
+    <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Dit is de AxCrypt ID sectie van AxCrypt.net, klik &lt;a href="{0}"&gt;hier&lt;/a&gt; om terug te gaan naar de startpagina.</value>
@@ -791,6 +855,10 @@ Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige activatiecode in en stel uw 
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Tijd</value>
   </data>
+  <data name="LauncherPromptHeader" xml:space="preserve">
+    <value>Open via:</value>
+    <comment>Header of popup which is displayed for file opening.</comment>
+  </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>Nadat bestanden geconverteerd zijn van het AxCrypt 1.x bestandstype, moet u het nieuwe aanmeld wachtwoord gebruiken om ze te openen. Verifieer alstublieft hier.
 
@@ -875,6 +943,14 @@ Het AxCrypt Team</value>
   </data>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>Hallo {0},</value>
+  </data>
+  <data name="MailClientNotFoundMessage" xml:space="preserve">
+    <value>Kan email app op uw apparaat niet openen</value>
+    <comment>Error message which is displayed if mail client isn't installed on device.</comment>
+  </data>
+  <data name="MailClientPromptHeader" xml:space="preserve">
+    <value>Kies alstublieft uw email client:</value>
+    <comment>Header of popup for selecting mail application.</comment>
   </data>
   <data name="McHlpMenuAbout" xml:space="preserve">
     <value>Over</value>
@@ -988,8 +1064,16 @@ De licentie voor dit programma is conform de overeenkomst.
   <data name="MenuDecryptTemporarilyText" xml:space="preserve">
     <value>Decrypteren Tijdelijk</value>
   </data>
+  <data name="MenuLabel" xml:space="preserve">
+    <value>Menu</value>
+    <comment>Tooltip for "Menu" button in mobile application</comment>
+  </data>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Open Verkenner Hier</value>
+  </data>
+  <data name="MessageErrorTitle" xml:space="preserve">
+    <value>Fout</value>
+    <comment>Title of error message box for generic error</comment>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>U kunt zicht niet aanmelden als '{0}'. Voer alstublieft een echt emailadres in en probeer het nog eens.</value>
@@ -1049,6 +1133,10 @@ De licentie voor dit programma is conform de overeenkomst.
   </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>U bent afgemeld. Klik om aan te melden.</value>
+  </data>
+  <data name="NoInternetErrorMessage" xml:space="preserve">
+    <value>Kan op dit moment niet met de server verbinden, check alstublieft uw internetverbinding.</value>
+    <comment>Message which is displayed when device doesn't have internet connection.</comment>
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Check voor updates niet nodig.</value>
@@ -1166,6 +1254,10 @@ Voer uw emailadres hieronder in om een activatie of wachtwoord reset link naar h
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Wachtwoord reset</value>
   </data>
+  <data name="PasswordResetShortLink" xml:space="preserve">
+    <value>Wachtwoord vergeten</value>
+    <comment>Text of link to Forgot password screen in mobile app</comment>
+  </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
     <value>Een poging om de AxCrypt activatie bevestigingscode naar &lt;b&gt;{0}&lt;/b&gt; te verzenden is gedaan. Check alstublieft uw email inbox. 
  
@@ -1181,17 +1273,33 @@ De evaluatie negeert delen van het wachtwoord die overeenkomen met de 1.000 mees
 Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarbij we wachtwoorden in de laagste categorie niet accepteren. Daarom wordt het bovenstaande voorbeeld niet geaccepteerd.</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
+  <data name="PasswordStrengthBadName" xml:space="preserve">
+    <value>Zwak</value>
+    <comment>Short displayed name of "Bad" password status</comment>
+  </data>
   <data name="PasswordStrengthBadTip" xml:space="preserve">
     <value>Wachtwoord is te zwak om veilig te gebruiken.</value>
     <comment>Status 'Red' We'll accept it, but it's really not a good idea!</comment>
+  </data>
+  <data name="PasswordStrengthStrongName" xml:space="preserve">
+    <value>Sterk</value>
+    <comment>Short displayed name of the "Strong" password status</comment>
   </data>
   <data name="PasswordStrengthStrongTip" xml:space="preserve">
     <value>Wachtwoord is sterk en goed genoeg om aanbevolen te worden</value>
     <comment>Status 'Green'. This is a really good password!</comment>
   </data>
+  <data name="PasswordStrengthUnacceptableName" xml:space="preserve">
+    <value>Erg zwak</value>
+    <comment>Short displayed name of Unacceptable password status</comment>
+  </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
     <value>Wachtwoord is te kort of te vergelijkbaar met een veelvoorkomend wachtwoord om geaccepteerd te worden.</value>
     <comment>Shown when no password is typed or it is effectively empty</comment>
+  </data>
+  <data name="PasswordStrengthWeakName" xml:space="preserve">
+    <value>Gemiddeld</value>
+    <comment>Short displayed name of  "Weak"password status</comment>
   </data>
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>Wachtwoord is niet sterk genoeg om aanbevolen te worden.</value>
@@ -1200,11 +1308,15 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>{Meer informatie over PayPal]</value>
   </data>
+  <data name="PremiumAccountLabel" xml:space="preserve">
+    <value>Premium</value>
+    <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
+  </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
     <value>Uw AxCrypt Premium abonnement verloopt binnenkort. Ik hoop dat u tevreden bent met onze eigenschappen en dat u ze nuttig vond.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Ik zou het geweldig vinden voor u als u gebruik blijft maken van onze Premium eigenschappen. Meldt u zich simpelweg &lt;a href="{0}Home/Login?email={1}"&gt;hier&lt;/a&gt; aan met uw AxCrypt ID om op ieder moment te abonneren.</value>
+    <value>Ik zou het geweldig vinden voor u als u gebruik blijft maken van onze Premium eigenschappen. Verleng uw abonnement &lt;a href="{0}Home/Login?email={1}"&gt;nu&lt;/a&gt;</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -1222,12 +1334,16 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Om sleutels te delen heeft u Premium nodig. Klik hier om nu te upgraden!</value>
   </data>
+  <data name="PressAndHoldLabel" xml:space="preserve">
+    <value>Ingedrukt houden om meer te zien</value>
+    <comment>Tooltip for Press and hold gesture in mobile application</comment>
+  </data>
   <data name="PriceExcludingVat" xml:space="preserve">
     <value>{0} excl. BTW.</value>
     <comment>Brief text used to display the price exclusive of VAT, as additional information. The price is typically shown inclusive. This text is only displayed if any VAT is added.</comment>
   </data>
   <data name="PricePerMonth" xml:space="preserve">
-    <value>{0}/maand.</value>
+    <value>{0}/maand</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
@@ -1334,9 +1450,7 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
     <value>Met &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; kunt u volledig gebruik maken van AxCrypt op al uw computers en apparaten.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
-    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Lees meer over PayPal]&lt;/a&gt;&lt;/span&gt;class="text-cutoff always"&gt;Beveiliging is cruciaal voor ons. Alles wat wij doen met Axcrypt heeft beveiliging als de hoogste prioriteit. Om die reden gebruiken wij PayPal als betalingsmethode voor AxCrypt Premium. De PayPal site is zeer veilig en encrypteerd automatisch uw vertrouwlijke informatie wanneer deze informatie van uw computer naar onze servers wordt verzonden.
-
-Zodra uw informatie de PayPal site heeft bereikt wordt het bewaard op een server die zowel fysiek als electronisch zwaar bewaakt is. &lt;a class="hide-link"&gt;[Minder]&lt;/a&gt;</value>
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Meer over betalingen]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;  Uw persoonlijke betalingsdetails worden nooit naar onze server verzonden of daar op opgeslagen. Wij versturen ze direct vanaf u naar onze betalings gateway partners via een geëncrypteerde verbinding. Wij werken samen met Stripe en PayPal die beiden de hoge standaarden volgen van de Payment Card Industry Security Standard. &lt;a class="hide-link"&gt;[Sluiten]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>Koop AxCrypt Premium</value>
@@ -1363,7 +1477,7 @@ Een betaalbewijs van uw aankoop is naar uw email verstuurd.</value>
     <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
   </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value>De BTW is geschat.</value>
+    <value>De BTW is geschat. Geen ondersteuning voor bedrijfs BTW aftrek op dit moment, once excuses.</value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
     <value>Zonder BTW.</value>
@@ -1371,6 +1485,18 @@ Een betaalbewijs van uw aankoop is naar uw email verstuurd.</value>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Actieve Bestanden Opschonen</value>
+  </data>
+  <data name="RateApplicationLinkFirstPart" xml:space="preserve">
+    <value>Beoordeel ons op</value>
+    <comment>Unclickable part of "Rate us on App Store" link</comment>
+  </data>
+  <data name="RateApplicationLinkSecondPartAndroid" xml:space="preserve">
+    <value>Google Play</value>
+    <comment>Clickable part of "Rate us on Google Play" link in Android mobile application</comment>
+  </data>
+  <data name="RateApplicationLinkSecondPartIos" xml:space="preserve">
+    <value>App store</value>
+    <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Open</value>
@@ -1397,9 +1523,21 @@ Een 30 dagen durende proefperiode voor AxCrypt Premium is hierbij inbegrepen en 
 
 Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een activatielink.</value>
   </data>
+  <data name="ReliabilityLabel" xml:space="preserve">
+    <value>Betrouwbaardheid</value>
+    <comment>Title of "Reliability" section of About Us page in mobile application.</comment>
+  </data>
+  <data name="ReliabilitySectionText" xml:space="preserve">
+    <value>AxCrypt bestaat al voor 15 jaar en is doorgegroeid tot 's werelds meest populaire encryptie software met meer dan 20 miljoen downloads. Door de jaren heen zijn wij genoemd en beoordeelt door velen als een van de beste encryptie sofwares ter wereld.</value>
+    <comment>Description of "Reliability" section of About Us page in mobile application.</comment>
+  </data>
   <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
     <value>Uw software moet geüpdatet worden vanwege een betrouwbaarheidsprobleem.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
+  </data>
+  <data name="RemoveRecentFileLabel" xml:space="preserve">
+    <value>Verwijder bestand</value>
+    <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Verwijder van lijst, maar houdt bestand beveiligd</value>
@@ -1436,9 +1574,21 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een activatielink.</value>
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>Veilig Verwijderen</value>
   </data>
+  <data name="SecurityLabel" xml:space="preserve">
+    <value>Beveiliging</value>
+    <comment>Title of "Security" section of About Us page in mobile application. </comment>
+  </data>
+  <data name="SecuritySectionText" xml:space="preserve">
+    <value>Beveiliging is belangrijk voor ons. Alles wat wij doen met AxCrypt heeft beveiliging als de hoogste prioriteit. Wij verzekeren dat niemand ooit toegang krijgt tot uw geëncrypteerde bestanden, zolang u controle heeft over uw eigen wachtwoord.</value>
+    <comment>Description of "Security" section of About Us page in mobile application. </comment>
+  </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Uw software moet geüpdatet worden vanwege een beveiligingsprobleem. </value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SetEmailLabel" xml:space="preserve">
+    <value>Email instellen</value>
+    <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Hier kunt u uw AxCrypt ID permanent van het systeem verwijderen. &lt;span class="red"&gt;Alle data geassocieerd met  uw AxCrypt ID, waaronder opgeslagen wachtwoorden, zullen ook worden verwijderd.&lt;/span&gt; 
@@ -1472,6 +1622,14 @@ Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Sleutels Delen</value>
   </data>
+  <data name="ShareWithOthersDescription" xml:space="preserve">
+    <value>Sta toe beveiligde bestanden geopend te laten worden door andere AxCrypt gebruikers met hun eigen wachtwoord.</value>
+    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
+  </data>
+  <data name="ShareWithOthersTitle" xml:space="preserve">
+    <value>Met anderen delen</value>
+    <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
+  </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Toon Wachtwoord</value>
   </data>
@@ -1482,11 +1640,41 @@ Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
   <data name="SignInVerificationTitle" xml:space="preserve">
     <value>Bevestig Aanmelding</value>
   </data>
+  <data name="SimplicityLabel" xml:space="preserve">
+    <value>Eenvoud</value>
+    <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
+  </data>
+  <data name="SimplicitySectionText" xml:space="preserve">
+    <value>Encryptie is gecompliceerd, maar dit heeft ons er niet van weerhouden om constant te werken aan een vereenvoudigde versie voor onze gebuikers. Wij hebben unieke eigenschappen ontwikkeld die het gebruik maken van sterke encryptie en delen van encryptie sleutels makkelijker en eenvoudiger maken dan andere software.</value>
+    <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
+  </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Waarschuwing! Een site restart is gepland in de aankomende minuten. Onze excuses voor het ongemak.</value>
   </data>
+  <data name="SslRequiredPageBody" xml:space="preserve">
+    <value>Een beveiligde SSL verbinding is verplicht. Probeer het alstublieft nog eens met &lt;a href="{2}"&gt;{2}&lt;/a&gt; .
+
+Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
+    <comment>A friendly page telling a user that SSL is required. The status code will be 403 Bad Request.</comment>
+  </data>
+  <data name="SslRequiredTitle" xml:space="preserve">
+    <value>Beveiligde Verbinding Verplicht</value>
+    <comment>The page title for the "A Secure Connection is required" page.</comment>
+  </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Klik om bestanden te selecteren die u niet meer wilt beveiligen.</value>
+  </data>
+  <data name="StrongEncryptionDescription" xml:space="preserve">
+    <value>Bestandsbeveiliging met 128-bit of 256-bit AES encryptie</value>
+    <comment>Text displayed on "Strong Encryption" slide in mobile app</comment>
+  </data>
+  <data name="StrongEncryptionTitle" xml:space="preserve">
+    <value>Sterke encryptie</value>
+    <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
+  </data>
+  <data name="SubmitFeedbackButton" xml:space="preserve">
+    <value>Verstuur feedback</value>
+    <comment>Text of Submit feedback button</comment>
   </data>
   <data name="SubscriptionsErrorAmount" xml:space="preserve">
     <value>Onjuist bestandsformaat voor het Aantal veld. Gebruik alstublieft decimalen, bijvoorbeeld 10.50.</value>
@@ -1505,6 +1693,18 @@ Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Onze excuses, directe ondersteuning is alleen beschikbaar voor betalende gebruikers. Bezoek alstublieft onze &lt;a href="{0}"&gt;community ondersteuning&lt;/a&gt;</value>
+  </data>
+  <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
+    <value>Kan huidig bestand niet openen</value>
+    <comment>Message which is displayed when user hasn't application for file opening</comment>
+  </data>
+  <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">
+    <value>Door te registreren voor AxCrypt gaat u akkoord met</value>
+    <comment>Unclikable text of link to Terms And Conditions  in mobile application</comment>
+  </data>
+  <data name="TermsAndConditionsLinkSecondPart" xml:space="preserve">
+    <value>Algemene voorwaarden</value>
+    <comment>Clickable text of link to Terms And Conditions in mobile application</comment>
   </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>Check email en spam</value>
@@ -1555,6 +1755,14 @@ Veel succes en geniet er van,
 Het AxCrypt team</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
   </data>
+  <data name="TryItDescription" xml:space="preserve">
+    <value>Het is gratis</value>
+    <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
+  </data>
+  <data name="TryItTitle" xml:space="preserve">
+    <value>Probeer het!</value>
+    <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
+  </data>
   <data name="TryPremiumLabel" xml:space="preserve">
     <value>Probeer Premium</value>
     <comment>A clickable link with text similar to "Try Premium"</comment>
@@ -1603,6 +1811,10 @@ Het AxCrypt team</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>U heeft AxCrypt geüpdatet. Helaas moet uw configuratie gereset worden. Dit betekent dat na het opnieuw opstarten uw voorkeuren en instellingen helaas verloren zullen gaan. Wij verontschuldigen ons voor het ongemak. Uw geëncrypteerde bestanden zijn nog steeds veilig en ok.</value>
+  </data>
+  <data name="VerifyAccountLabel" xml:space="preserve">
+    <value>Verifieer uw nieuwe account alstublieft</value>
+    <comment>Text displayed on Activation code page in mobile app.</comment>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verifieer Wachtwoord</value>
