@@ -17,8 +17,9 @@ namespace Axantum.AxCrypt.Fake
             }
         }
 
-        public void Clear()
+        public IInternetState Clear()
         {
+            return this;
         }
     }
 }

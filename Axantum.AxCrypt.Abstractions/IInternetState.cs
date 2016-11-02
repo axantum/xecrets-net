@@ -10,6 +10,6 @@ namespace Axantum.AxCrypt.Abstractions
     {
         bool Connected { get; }
 
-        void Clear();
+        IInternetState Clear();
     }
 }

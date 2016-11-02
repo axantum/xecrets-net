@@ -27,11 +27,7 @@ namespace Axantum.AxCrypt.Api
                 RestResponse response = await RestCaller.SendAsync(identity, request).Free();
                 return response;
             }
-            catch (OfflineApiException)
-            {
-                throw;
-            }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is OfflineApiException))
             {
                 throw new ApiException(string.Format(CultureInfo.InvariantCulture, "{2} {1} {0}", request.Url, request.Method, ex.Message), ex);
             }

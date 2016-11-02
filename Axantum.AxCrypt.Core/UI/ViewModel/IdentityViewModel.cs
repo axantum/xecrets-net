@@ -94,12 +94,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         protected virtual async Task OnLoggingOnAsync(LogOnEventArgs e)
         {
-            New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Connected;
+            AlwaysStartSigningInWithOnlineStateRechecked();
             Func<LogOnEventArgs, Task> command = LoggingOnAsync;
             if (command != null)
             {
                 await LoggingOnAsync.Invoke(e);
             }
+        }
+
+        private static void AlwaysStartSigningInWithOnlineStateRechecked()
+        {
+            New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Clear().Connected;
         }
 
         private async Task<LogOnIdentity> LogOnActionAsync()

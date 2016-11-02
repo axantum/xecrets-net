@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public TimeSpan ApiTimeout
         {
-            get { return Load(nameof(ApiTimeout), TimeSpan.FromSeconds(120)); }
+            get { return Load(nameof(ApiTimeout), TimeSpan.FromSeconds(15)); }
             set { Store(nameof(ApiTimeout), value); }
         }
 
@@ -166,11 +166,11 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(RestoreFullWindow), value); }
         }
 
-		public bool IsFileImportHelpMessageAlreadyDisplayed
-		{
-			get { return Load(nameof(IsFileImportHelpMessageAlreadyDisplayed), false); }
-			set { Store(nameof(IsFileImportHelpMessageAlreadyDisplayed), value); }
-		}
+        public bool IsFileImportHelpMessageAlreadyDisplayed
+        {
+            get { return Load(nameof(IsFileImportHelpMessageAlreadyDisplayed), false); }
+            set { Store(nameof(IsFileImportHelpMessageAlreadyDisplayed), value); }
+        }
 
         public Uri AxCrypt2HelpUrl
         {

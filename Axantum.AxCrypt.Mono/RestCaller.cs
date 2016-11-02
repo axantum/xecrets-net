@@ -89,6 +89,10 @@ namespace Axantum.AxCrypt.Mono
                         throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
                 }
             }
+            catch (TaskCanceledException tcex)
+            {
+                throw new OfflineApiException(ExceptionMessage("Offline", request), tcex);
+            }
             catch (WebException wex)
             {
                 throw new OfflineApiException(ExceptionMessage("Offline", request), wex);

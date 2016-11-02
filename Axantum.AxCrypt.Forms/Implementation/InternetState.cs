@@ -53,9 +53,10 @@ namespace Axantum.AxCrypt.Forms.Implementation
             }
         }
 
-        public void Clear()
+        public IInternetState Clear()
         {
             _currentState = null;
+            return this;
         }
 
         private static bool GetCurrentState()

@@ -97,7 +97,6 @@ namespace Axantum.AxCrypt
                 if (isFirstInstance)
                 {
                     RunInteractive(commandLine);
-                    New<IReport>().Save();
                 }
                 else
                 {
@@ -108,6 +107,10 @@ namespace Axantum.AxCrypt
             {
                 New<IReport>().Exception(ex);
                 throw;
+            }
+            finally
+            {
+                New<IReport>().Save();
             }
 
             Resolve.CommandService.Dispose();
