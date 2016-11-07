@@ -134,7 +134,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The provided e-mail or activation code is incorrect..
+        ///   Looks up a localized string similar to The provided e-mail or verification code is incorrect..
         /// </summary>
         public static string ActivateErrorEmailOrCode {
             get {
@@ -161,7 +161,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activate AxCrypt ID.
+        ///   Looks up a localized string similar to Verify AxCrypt ID.
         /// </summary>
         public static string ActivateMailBodyButton {
             get {
@@ -242,7 +242,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt ID Activation.
+        ///   Looks up a localized string similar to AxCrypt ID Verification.
         /// </summary>
         public static string ActivateMailSubject {
             get {
@@ -253,9 +253,9 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;b&gt;Stop!&lt;/b&gt;
         ///
-        ///You should only be here because clicking on the link in the AxCrypt ID activation e-mail from AxCrypt did not work. (You must of course register for an AxCrypt ID to get an activation e-mail)
+        ///You should only be here because clicking on the link in the AxCrypt ID verification e-mail from AxCrypt did not work. (You must of course register for an AxCrypt ID to get an verification e-mail)
         ///
-        ///Enter your e-mail and code manually here only if you have received the activation e-mail, but the link did not work..
+        ///Enter your e-mail and code manually here only if you have received the verification e-mail, but the link did not work..
         /// </summary>
         public static string ActivateManuallyPageBody {
             get {
@@ -264,7 +264,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To activate your AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; you must select a password.
+        ///   Looks up a localized string similar to To create your AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; you must select a password.
         ///
         ///Choose something difficult to guess, since it will protect passwords in the online password manager as well as access to the site. Type slowly and carefully, and do not forget your password!.
         /// </summary>
@@ -275,7 +275,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activate AxCrypt ID.
+        ///   Looks up a localized string similar to Verify AxCrypt ID.
         /// </summary>
         public static string ActivatePageTitle {
             get {
@@ -284,7 +284,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt ID has been activated! Please sign in..
+        ///   Looks up a localized string similar to Your AxCrypt ID has been verified! Please sign in..
         /// </summary>
         public static string ActivateSuccess {
             get {
@@ -302,7 +302,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter your activation code.
+        ///   Looks up a localized string similar to Enter your verification code.
         /// </summary>
         public static string ActivationCodeTitle {
             get {
@@ -448,7 +448,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You gave us your e-mail as part of installing or using AxCrypt, through an app or the web. We sent you an activation code via e-mail, but you&apos;ve not used it. If you do not immediately verify your AxCrypt ID account by using the activation code we&apos;ll be removing you permanently from our system..
+        ///   Looks up a localized string similar to You gave us your e-mail as part of installing or using AxCrypt, through an app or the web. We sent you an verification code via e-mail, but you&apos;ve not used it. If you do not immediately verify your AxCrypt ID account by using the verification code we&apos;ll be removing you permanently from our system..
         /// </summary>
         public static string AutoDeletionMailBodyIntro {
             get {
@@ -504,7 +504,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activate.
+        ///   Looks up a localized string similar to Verify.
         /// </summary>
         public static string ButtonActivateText {
             get {
@@ -1567,7 +1567,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activate AxCrypt ID.
+        ///   Looks up a localized string similar to Verify AxCrypt ID.
         /// </summary>
         public static string DialogVerifyAccountTitle {
             get {
@@ -2246,7 +2246,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Internet is NOT REQUIRED to use AxCrypt.
         ///
-        ///Internet access is recommended, and required for Premium activation. Some features work better and critical updates may not reach you otherwise.
+        ///Internet access is recommended, and required to enable Premium. Some features work better and critical updates may not reach you otherwise.
         ///
         ///Your password is not stored on our servers, and the connection is always encrypted..
         /// </summary>
@@ -2302,7 +2302,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have been invited to AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the activation code and set your secret password..
+        ///   Looks up a localized string similar to You have been invited to AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code and set your secret password..
         /// </summary>
         public static string InvitationMailBodyIntro {
             get {
@@ -2315,7 +2315,7 @@ namespace AxCrypt.Content.Properties {
         ///
         ///To start securing your files just download and install AxCrypt from {1}.
         ///
-        ///Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secret password..
+        ///Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your secret password..
         /// </summary>
         public static string InvitationMailBodyIntroPlainText {
             get {
@@ -3181,7 +3181,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have now signed up as &apos;{0}&apos;. Please check your inbox for an email with a 6-digit activation code..
+        ///   Looks up a localized string similar to You have now signed up as &apos;{0}&apos;. Please check your inbox for an email with a 6-digit verification code..
         /// </summary>
         public static string MessageSigningUpText {
             get {
@@ -3624,11 +3624,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you have previously registered but have forgotten the password, or for some reason not received or lost the activation link, you may re-register and request a new activation e-mail here.
+        ///   Looks up a localized string similar to If you have previously registered but have forgotten the password, or for some reason not received or lost the verification link, you may re-register and request a new verification e-mail here.
         ///
         ///&lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
         ///
-        ///Enter your e-mail below to a send an [rest of string was truncated]&quot;;.
+        ///Enter your e-mail below to a sen [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PasswordResetPageBody {
             get {
@@ -3655,7 +3655,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An attempt to send the AxCrypt ID activation verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
+        ///   Looks up a localized string similar to An attempt to send the AxCrypt ID verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
         ///
         ///If you appear not to receive it, check that it does not get caught by your anti-spam measures, and that {0} is correct..
         /// </summary>
@@ -3877,7 +3877,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activation Code.
+        ///   Looks up a localized string similar to Verification Code.
         /// </summary>
         public static string PromptActivationCode {
             get {
@@ -4365,7 +4365,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing an activation link will then be sent to the specified address and when you click that link you will be asked to choose a password. That&apos;s it!
+        ///   Looks up a localized string similar to To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing an verification link will then be sent to the specified address and when you click that link you will be asked to choose a password. That&apos;s it!
         ///
         ///A 30 day trial of AxCrypt Premium is included and you can start it at any time from the AxCrypt app..
         /// </summary>
@@ -4387,7 +4387,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You have now signed up for an AxCrypt ID!
         ///
-        ///Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link..
+        ///Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an verification link..
         /// </summary>
         public static string RegisterSuccess {
             get {
@@ -4481,7 +4481,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to resend the activation code to your e-mail..
+        ///   Looks up a localized string similar to Click to resend the verification code to your e-mail..
         /// </summary>
         public static string ResendButtonToolTip {
             get {
@@ -5314,6 +5314,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verification Link Sent.
+        /// </summary>
+        public static string VerificationEmailSentTitle {
+            get {
+                return ResourceManager.GetString("VerificationEmailSentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please verify your new account.
         /// </summary>
         public static string VerifyAccountLabel {
@@ -5984,7 +5993,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wrong activation code. Please re-check you email..
+        ///   Looks up a localized string similar to Wrong verification code. Please re-check you email..
         /// </summary>
         public static string WrongVerificationCode {
             get {
