@@ -1187,7 +1187,7 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OfflineNoPremiumWarning" xml:space="preserve">
-    <value>Está desconectado sin una suscripción Premium válida. Conéctese y compre o actualice su licencia.</value>
+    <value>Está desconectado, por lo que no podemos comprobar su suscripción Premium. Por favor, conéctese para que podamos actualizar su estado.</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Su versión es antigua. Por favor, haga clic para comprobar si hay una nueva versión.</value>

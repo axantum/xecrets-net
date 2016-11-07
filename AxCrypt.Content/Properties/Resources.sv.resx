@@ -136,7 +136,7 @@
     <value>AxCrypt Premium Prov</value>
   </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
-    <value>Fel epostadress eller aktiveringskod.</value>
+    <value>Fel epostadress eller verifieringskod.</value>
   </data>
   <data name="ActivateErrorNoRequest" xml:space="preserve">
     <value>Lösenordsåterställelse misslyckades, eftersom ingen sådan begäran inkommit.</value>
@@ -145,7 +145,7 @@
     <value>Lösenordsåterställelse misslyckades.</value>
   </data>
   <data name="ActivateMailBodyButton" xml:space="preserve">
-    <value>Aktivera AxCrypt ID</value>
+    <value>Verifiera AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
     <value>Din verifieringskod är &lt;b&gt;{0}&lt;/b&gt; </value>
@@ -172,25 +172,25 @@
     <value>Hej och välkommen till AxCrypt!</value>
   </data>
   <data name="ActivateMailSubject" xml:space="preserve">
-    <value>AxCrypt ID Aktivering</value>
+    <value>AxCrypt ID Verifiering</value>
   </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stopp!&lt;/b&gt;
 
-Du borde bara komma till den här sidan om länken från ditt aktiveringsmejl inte fungerade. (Du måste så klart registrera dig för ett AxCrypt ID för att få ett aktiveringsmejl).
+Du borde bara komma till den här sidan om länken från ditt verifieringsmejl inte fungerade. (Du måste så klart registrera dig för ett AxCrypt ID för att få ett verifieringsmejl).
 
-Ange din epostadress och aktiveringskod manuellt här om du fått ditt aktiveringsmejl, men direktlänken inte fungerade.</value>
+Ange din epostadress och verifieringskod manuellt här om du fått ditt verifieringsmejl, men direktlänken inte fungerade.</value>
   </data>
   <data name="ActivatePageBody" xml:space="preserve">
-    <value>För att aktivera ditt AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; måste du nu sätta ett lösenord.
+    <value>För att skapa ditt AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; måste du nu sätta ett lösenord.
 
 Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtkomst till dina AxCrypt-skyddade filer, lösenordshanteraren och den här sajten. Skriv långsamt och noggrannt, och glöm inte bort det!</value>
   </data>
   <data name="ActivatePageTitle" xml:space="preserve">
-    <value>Aktivera AxCrypt ID</value>
+    <value>Verifiera AxCrypt ID</value>
   </data>
   <data name="ActivateSuccess" xml:space="preserve">
-    <value>Ditt AxCrypt ID har aktiverats. Vänligen logga in!</value>
+    <value>Ditt AxCrypt ID har verifierats. Vänligen logga in!</value>
   </data>
   <data name="ActivationCodeSentMessage" xml:space="preserve">
     <value>Vi har skickat epost till {0}</value>
@@ -252,7 +252,7 @@ Logga nu in med samma lösenord som du angav då.</value>
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
   </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
-    <value>Vi fick din e-post-address när du installerade AxCrypt, eller via vår webbsida. En aktiveringskod skickades då till dig, men du har inte använt den. Därför kommer vi att radera ditt konto om du inte snarast verifierar ditt konto genom att använda aktiveringskoden.</value>
+    <value>Vi fick din e-post-address när du installerade AxCrypt, eller via vår webbsida. En verifieringskod skickades då till dig, men du har inte använt den. Därför kommer vi att radera ditt konto om du inte snarast verifierar ditt konto genom att använda verifieringskoden.</value>
   </data>
   <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
     <value>Vi kommer strax att radera ditt AxCrypt ID!</value>
@@ -274,7 +274,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
-    <value>Aktivera</value>
+    <value>Verifiera</value>
   </data>
   <data name="ButtonCancelAllText" xml:space="preserve">
     <value>Avbryt Allt</value>
@@ -598,7 +598,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Skapa Nytt Lösenord</value>
   </data>
   <data name="DialogVerifyAccountTitle" xml:space="preserve">
-    <value>Aktivera AxCrypt ID</value>
+    <value>Verifiera AxCrypt ID</value>
   </data>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Skyddade Mappar</value>
@@ -812,7 +812,7 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet KRÄVS INTE för att använda AxCrypt.
 
-Internetåtkomst rekommenderas, och krävs för Premium-aktivering. Vissa funktioner fungerar bättre och kritiska uppdateringar kanske inte når fram annars.
+Internetåtkomst rekommenderas, och krävs för att starta Premium. Vissa funktioner fungerar bättre och kritiska uppdateringar kanske inte når fram annars.
 
 Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</value>
   </data>
@@ -834,14 +834,14 @@ Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</valu
   <data name="InvitationMailBodyIntro" xml:space="preserve">
     <value>Du har blivit inbjuden till AxCrypt av &lt;b&gt;{0}&lt;/b&gt;.
 Du kan börja skydda dina filer från insyn genom att &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;ladda ned&lt;/a&gt; och installera AxCrypt.
-Logga in till AxCrypt med &lt;b&gt;{2}&lt;/b&gt;, ange den 6-siffriga aktiveringskoden och sätt ditt nya hemliga lösenord. </value>
+Logga in till AxCrypt med &lt;b&gt;{2}&lt;/b&gt;, ange den 6-siffriga verifieringskoden och sätt ditt nya hemliga lösenord. </value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>Du har blivit inbjuden till AxCrypt av {0}.
 
 Du kan börja skydda dina filer från insyn genom att ladda ned och installera AxCrypt från {1}.
 
-Logga in till AxCrypt med {2}, ange den 6-siffriga aktiveringskoden och sätt ditt nya hemliga lösenord. </value>
+Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt ditt nya hemliga lösenord. </value>
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Inbjudan till AxCrypt Filskydd</value>
@@ -1109,7 +1109,7 @@ Detta program är licensierat i enlighet med avtalet.
     <value>AxCrypt-servern uppdaterad!</value>
   </data>
   <data name="MessageSigningUpText" xml:space="preserve">
-    <value>Du har nu tecknat dig som '{0}'. Kontrollera din inbox, och leta efter ett meddelande med en 6-siffrig valideringskod.</value>
+    <value>Du har nu tecknat dig som '{0}'. Kontrollera din inbox, och leta efter ett meddelande med en 6-siffrig verifieringskod.</value>
   </data>
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Teckna AxCrypt ID</value>
@@ -1261,11 +1261,11 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>AxCrypt ID Lösenordsåterställelse</value>
   </data>
   <data name="PasswordResetPageBody" xml:space="preserve">
-    <value>Om du har registrerat dig för ett AxCrypt ID men glömt lösenordet eller förlorat aktiveringslänken så kan du omregistrera dig och begära ett nytt aktiveringsmejl här.
+    <value>Om du har registrerat dig för ett AxCrypt ID men glömt lösenordet eller förlorat verifieringslänken så kan du omregistrera dig och begära ett nytt verifieringsmejl här.
 
 &lt;span class="red"&gt;Om du har glömt ditt lösenord kommer du att kunna logga in igen, men du återfår inte åtkomst till filer eller poster i lösenordshanteraren som är skyddade med det gamla lösenordet.&lt;/span&gt;
 
-Ange din epostadress nedan så skickar vi en länk dit. Av integritetsskäl ger vi &lt;b&gt;ingen indikation&lt;/b&gt; på om det gick bra eller inte att skicka meddelandet.</value>
+Ange din epostadress nedan så skickar vi en länk dit. </value>
   </data>
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Återställ Lösenord</value>
@@ -1275,7 +1275,7 @@ Ange din epostadress nedan så skickar vi en länk dit. Av integritetsskäl ger 
     <comment>Text of link to Forgot password screen in mobile app</comment>
   </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
-    <value>Vi har försökt skicka en aktiveringskod till &lt;b&gt;{0}&lt;/b&gt;. Kontrollera din inbox.
+    <value>Vi har försökt skicka en verifieringskod till &lt;b&gt;{0}&lt;/b&gt;. Kontrollera din inbox.
 
 Om du inte verkar få det inom några minuter, kontrollera ditt skräppostfilter och att {0} är rätt adress.</value>
   </data>
@@ -1363,7 +1363,7 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
-    <value>Aktiveringskod</value>
+    <value>Verifieringskod</value>
   </data>
   <data name="PromptAddContact" xml:space="preserve">
     <value>Lägg Till Kontakt</value>
@@ -1535,7 +1535,7 @@ Ett kvitto på ditt köp har skickats till din epostadress.</value>
     <value>Ny användare? Registrera dig</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>Prova AxCrypt genom att registrera dig för ett AxCrypt ID nedan. Ange din epostadress så skickar vi ett meddelande med en aktiveringslänk. När du klickar på länken kommer du till en aktiveringssida där du även sätter ditt nya lösenord. Det är allt!
+    <value>Prova AxCrypt genom att registrera dig för ett AxCrypt ID nedan. Ange din epostadress så skickar vi ett meddelande med en verifieringslänk. När du klickar på länken kommer du till en verifieringssida där du även sätter ditt nya lösenord. Det är allt!
 
 En provperiod på 30 dagar ingår alltid och du kan påbörja den när som helst i AxCrypt-programmet som du laddar ned separat.</value>
   </data>
@@ -1545,7 +1545,7 @@ En provperiod på 30 dagar ingår alltid och du kan påbörja den när som helst
   <data name="RegisterSuccess" xml:space="preserve">
     <value>Nu har du registrerat ditt AxCrypt ID!
 
-Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en aktiveringslänk.</value>
+Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en verifieringslänk.</value>
   </data>
   <data name="ReliabilityLabel" xml:space="preserve">
     <value>Tillförlitlighet</value>
@@ -1571,7 +1571,7 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ak
     <comment>A button in a verification dialog that causes the verification to be resent.</comment>
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
-    <value>Klicka för att återsända aktiveringskoden till din e-post.</value>
+    <value>Klicka för att återsända verifieringskoden till din e-post.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Du är redan inloggad med det lösenordet! Ange det ursprungliga lösenordet för filen.</value>
@@ -1841,6 +1841,10 @@ Vi på AxCrypt</value>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Du har uppdaterat AxCrypt. Dessfärre måste dina inställningar återställas. Efter omstart av AxCrypt kommer inställningarna återgå till utgångsläget. Vi ber om ursäkt för besväret. Dina skyddade filer är lika säkra som alltd.</value>
   </data>
+  <data name="VerificationEmailSentTitle" xml:space="preserve">
+    <value>Verifieringslänk är skickad!</value>
+    <comment>The title of the page stating that a verification email has been sent.</comment>
+  </data>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Verifiera ditt nya konto</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
@@ -2083,7 +2087,7 @@ i %TEMP%.
     <value>Fel lösenord. Försök igen.</value>
   </data>
   <data name="WrongVerificationCode" xml:space="preserve">
-    <value>Fel aktiveringskod. Dubbelkontrollera epostmeddelandet.</value>
+    <value>Fel verifieringskod. Dubbelkontrollera epostmeddelandet.</value>
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>Verifieringskoden måste vara exakt 6 siffror.</value>

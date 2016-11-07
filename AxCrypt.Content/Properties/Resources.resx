@@ -144,7 +144,7 @@
     <value>AxCrypt Premium Trial</value>
   </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
-    <value>The provided e-mail or activation code is incorrect.</value>
+    <value>The provided e-mail or verification code is incorrect.</value>
   </data>
   <data name="ActivateErrorNoRequest" xml:space="preserve">
     <value>Password reset failed. A password reset request has not been made for this AxCrypt ID.</value>
@@ -153,7 +153,7 @@
     <value>Password reset failed.</value>
   </data>
   <data name="ActivateMailBodyButton" xml:space="preserve">
-    <value>Activate AxCrypt ID</value>
+    <value>Verify AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
     <value>Your verification code is &lt;b&gt;{0}&lt;/b&gt; .</value>
@@ -180,32 +180,32 @@
     <value>Hello and welcome to AxCrypt!</value>
   </data>
   <data name="ActivateMailSubject" xml:space="preserve">
-    <value>AxCrypt ID Activation</value>
+    <value>AxCrypt ID Verification</value>
   </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stop!&lt;/b&gt;
 
-You should only be here because clicking on the link in the AxCrypt ID activation e-mail from AxCrypt did not work. (You must of course register for an AxCrypt ID to get an activation e-mail)
+You should only be here because clicking on the link in the AxCrypt ID verification e-mail from AxCrypt did not work. (You must of course register for an AxCrypt ID to get an verification e-mail)
 
-Enter your e-mail and code manually here only if you have received the activation e-mail, but the link did not work.</value>
+Enter your e-mail and code manually here only if you have received the verification e-mail, but the link did not work.</value>
   </data>
   <data name="ActivatePageBody" xml:space="preserve">
-    <value>To activate your AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; you must select a password.
+    <value>To create your AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; you must select a password.
 
 Choose something difficult to guess, since it will protect passwords in the online password manager as well as access to the site. Type slowly and carefully, and do not forget your password!</value>
   </data>
   <data name="ActivatePageTitle" xml:space="preserve">
-    <value>Activate AxCrypt ID</value>
+    <value>Verify AxCrypt ID</value>
   </data>
   <data name="ActivateSuccess" xml:space="preserve">
-    <value>Your AxCrypt ID has been activated! Please sign in.</value>
+    <value>Your AxCrypt ID has been verified! Please sign in.</value>
   </data>
   <data name="ActivationCodeSentMessage" xml:space="preserve">
     <value>We sent you an email at {0}</value>
     <comment>Message about mail with activation code.</comment>
   </data>
   <data name="ActivationCodeTitle" xml:space="preserve">
-    <value>Enter your activation code</value>
+    <value>Enter your verification code</value>
     <comment>Title of ActivationCode step on SignUp page in mobile application</comment>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
@@ -264,7 +264,7 @@ Please sign in using the same password you used then.</value>
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
   </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
-    <value>You gave us your e-mail as part of installing or using AxCrypt, through an app or the web. We sent you an activation code via e-mail, but you've not used it. If you do not immediately verify your AxCrypt ID account by using the activation code we'll be removing you permanently from our system.</value>
+    <value>You gave us your e-mail as part of installing or using AxCrypt, through an app or the web. We sent you an verification code via e-mail, but you've not used it. If you do not immediately verify your AxCrypt ID account by using the verification code we'll be removing you permanently from our system.</value>
   </data>
   <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
     <value>We're about to delete your AxCrypt ID!</value>
@@ -286,7 +286,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
-    <value>Activate</value>
+    <value>Verify</value>
   </data>
   <data name="ButtonCancelAllText" xml:space="preserve">
     <value>Cancel All</value>
@@ -655,7 +655,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Create New Password</value>
   </data>
   <data name="DialogVerifyAccountTitle" xml:space="preserve">
-    <value>Activate AxCrypt ID</value>
+    <value>Verify AxCrypt ID</value>
   </data>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Secured Folders</value>
@@ -900,7 +900,7 @@ If you for any reason do not know or remember the password, you must perform a p
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet is NOT REQUIRED to use AxCrypt.
 
-Internet access is recommended, and required for Premium activation. Some features work better and critical updates may not reach you otherwise.
+Internet access is recommended, and required to enable Premium. Some features work better and critical updates may not reach you otherwise.
 
 Your password is not stored on our servers, and the connection is always encrypted.</value>
   </data>
@@ -920,14 +920,14 @@ Your password is not stored on our servers, and the connection is always encrypt
     <value>Invalid URL.</value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
-    <value>You have been invited to AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the activation code and set your secret password.</value>
+    <value>You have been invited to AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code and set your secret password.</value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>You have been invited to AxCrypt File Security by {0}.
 
 To start securing your files just download and install AxCrypt from {1}.
 
-Sign in to AxCrypt with {2}, enter the 6-digit activation code and set your secret password.</value>
+Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your secret password.</value>
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Invitation to use AxCrypt File Security</value>
@@ -1275,7 +1275,7 @@ This program is licensed according to the agreement.
     <value>AxCrypt Server Updated!</value>
   </data>
   <data name="MessageSigningUpText" xml:space="preserve">
-    <value>You have now signed up as '{0}'. Please check your inbox for an email with a 6-digit activation code.</value>
+    <value>You have now signed up as '{0}'. Please check your inbox for an email with a 6-digit verification code.</value>
   </data>
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Sign Up for AxCrypt ID</value>
@@ -1438,11 +1438,11 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>AxCrypt ID Password Reset</value>
   </data>
   <data name="PasswordResetPageBody" xml:space="preserve">
-    <value>If you have previously registered but have forgotten the password, or for some reason not received or lost the activation link, you may re-register and request a new activation e-mail here.
+    <value>If you have previously registered but have forgotten the password, or for some reason not received or lost the verification link, you may re-register and request a new verification e-mail here.
 
 &lt;span class="red"&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
 
-Enter your e-mail below to a send an activation or password reset link to the specified address. For personal integrity reasons, &lt;b&gt;no feedback on the success or failure of this operation will be given&lt;/b&gt;.</value>
+Enter your e-mail below to a send an verification or password reset link to the specified address. </value>
   </data>
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Password reset</value>
@@ -1452,7 +1452,7 @@ Enter your e-mail below to a send an activation or password reset link to the sp
     <comment>Text of link to Forgot password screen in mobile app</comment>
   </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
-    <value>An attempt to send the AxCrypt ID activation verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
+    <value>An attempt to send the AxCrypt ID verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
 
 If you appear not to receive it, check that it does not get caught by your anti-spam measures, and that {0} is correct.</value>
   </data>
@@ -1548,7 +1548,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
-    <value>Activation Code</value>
+    <value>Verification Code</value>
   </data>
   <data name="PromptAddContact" xml:space="preserve">
     <value>Add Contact</value>
@@ -1720,7 +1720,7 @@ A receipt of your purchase has been sent to your e-mail.</value>
     <value>New user? Sign up</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing an activation link will then be sent to the specified address and when you click that link you will be asked to choose a password. That's it!
+    <value>To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing an verification link will then be sent to the specified address and when you click that link you will be asked to choose a password. That's it!
 
 A 30 day trial of AxCrypt Premium is included and you can start it at any time from the AxCrypt app.</value>
   </data>
@@ -1730,7 +1730,7 @@ A 30 day trial of AxCrypt Premium is included and you can start it at any time f
   <data name="RegisterSuccess" xml:space="preserve">
     <value>You have now signed up for an AxCrypt ID!
 
-Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an activation link.</value>
+Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an verification link.</value>
   </data>
   <data name="ReliabilityLabel" xml:space="preserve">
     <value>Reliability</value>
@@ -1770,7 +1770,7 @@ Subject: AxCrypt Report Snapshot
     <comment>A button in a verification dialog that causes the verification to be resent.</comment>
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
-    <value>Click to resend the activation code to your e-mail.</value>
+    <value>Click to resend the verification code to your e-mail.</value>
   </data>
   <data name="RussianLanguageSelection" xml:space="preserve">
     <value>русский</value>
@@ -2087,6 +2087,10 @@ The AxCrypt Team</value>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>You have updated AxCrypt. Unfortunately, your configuration must be reset. After restarting, your preferences and settings will unfortunately be lost. We apologize for the inconvenience. Your encrypted files are still safe and ok.</value>
   </data>
+  <data name="VerificationEmailSentTitle" xml:space="preserve">
+    <value>Verification Link Sent</value>
+    <comment>The title of the page stating that a verification email has been sent.</comment>
+  </data>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Please verify your new account</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
@@ -2337,7 +2341,7 @@ no prompts. By default UI and all prompts are displayed.
     <value>Wrong Password. Please try again.</value>
   </data>
   <data name="WrongVerificationCode" xml:space="preserve">
-    <value>Wrong activation code. Please re-check you email.</value>
+    <value>Wrong verification code. Please re-check you email.</value>
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>The verfication code must be exactly 6 digits.</value>

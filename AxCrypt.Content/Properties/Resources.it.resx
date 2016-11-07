@@ -1195,7 +1195,7 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OfflineNoPremiumWarning" xml:space="preserve">
-    <value>Sei offline e non hai un abbonamento a Premium valido. Connettiti ad Internet e acquista o aggiorna la tua licenza.</value>
+    <value>Sei offline e non possiamo verificare il tuo abbonamento Premium. Per favore, connettiti così che possiamo aggiornare il tuo stato!</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>La tua versione è obsoleta. Per favore clicca per cercare un aggiornamento.</value>
