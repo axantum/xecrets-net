@@ -136,7 +136,7 @@
     <value>Prova di AxCrypt Premium</value>
   </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
-    <value>L'indirizzo e-mail o il codice di attivazione fornito non è corretto.</value>
+    <value>L'indirizzo e-mail o il codice di verifica fornito non è corretto.</value>
   </data>
   <data name="ActivateErrorNoRequest" xml:space="preserve">
     <value>Impossibile aggiornare la password. Non è stato richiesto alcun aggiornamento della password per questo AxCrypt ID.</value>
@@ -145,7 +145,7 @@
     <value>Aggiornamento della password fallito.</value>
   </data>
   <data name="ActivateMailBodyButton" xml:space="preserve">
-    <value>Attiva AxCrypt ID</value>
+    <value>Verifica AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
     <value>Il tuo codice di verifica è &lt;b&gt;{0}&lt;/b&gt; .</value>
@@ -172,32 +172,32 @@
     <value>Ciao e benvenuto in AxCrypt!</value>
   </data>
   <data name="ActivateMailSubject" xml:space="preserve">
-    <value>Attivazione di AxCrypt ID</value>
+    <value>Verifica di AxCrypt ID</value>
   </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stop!&lt;/b&gt;
 
-Dovresti vedere questa pagina solo se il link di attivazione di AxCrypt ID presente nell'e-mail non ha funzionato correttamente. (Devi registrarti per un AxCrypt ID per ottenere un'e-mail di attivazione)
+Dovresti vedere questa pagina solo se il link di verifica di AxCrypt ID presente nell'e-mail non ha funzionato correttamente. (Ovviamente devi registrarti per un AxCrypt ID per ottenere un'e-mail di verifica)
 
-Inserisci qui la tua e-mail e il tuo codice manualmente solo se hai ricevuto l'e-mail di attivazione, ma il link non ha funzionato correttamente.</value>
+Inserisci qui la tua e-mail e il tuo codice manualmente solo se hai ricevuto l'e-mail di verifica ma il link non ha funzionato correttamente.</value>
   </data>
   <data name="ActivatePageBody" xml:space="preserve">
-    <value>Per attivare il tuo AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; devi selezionare una password.
+    <value>Per creare il tuo AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; devi selezionare una password.
 
-Scegli una password difficile da indovinare, poichè proteggerà sia le password nella gestione online delle password che l'accesso al sito. Digita lentamente e con attenzione, e non dimenticarti la tua password!</value>
+Scegli una password difficile da indovinare, poiché proteggerà sia le password nella gestione online delle password che l'accesso al sito. Digita lentamente e con attenzione, e non dimenticare la tua password!</value>
   </data>
   <data name="ActivatePageTitle" xml:space="preserve">
-    <value>Attiva AxCrypt ID</value>
+    <value>Verifica AxCrypt ID</value>
   </data>
   <data name="ActivateSuccess" xml:space="preserve">
-    <value>Il tuo AxCrypt ID è stato attivato! Per favore connettiti.</value>
+    <value>Il tuo AxCrypt ID è stato verificato! Per favore connettiti.</value>
   </data>
   <data name="ActivationCodeSentMessage" xml:space="preserve">
     <value>Ti abbiamo inviato un'e-mail a {0}</value>
     <comment>Message about mail with activation code.</comment>
   </data>
   <data name="ActivationCodeTitle" xml:space="preserve">
-    <value>Inserisci il tuo codice di attivazione</value>
+    <value>Inserisci il tuo codice di verifica</value>
     <comment>Title of ActivationCode step on SignUp page in mobile application</comment>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
@@ -252,7 +252,7 @@ Per favore connettiti usando la stessa password che avevi già utilizzato.</valu
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
   </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
-    <value>Ci hai fornito il tuo indirizzo e-mail durante l'installazione o l'utilizzo di AxCrypt, attraverso l'app o il sito. Ti abbiamo inviato un codice di attivazione via e-mail, ma non l'hai ancora utilizzato. Se non verifichi immediatamente il tuo account AxCrypt ID utilizzando il codice di attivazione ti rimuoveremo definitivamente dal nostro sistema. </value>
+    <value>Ci hai fornito il tuo indirizzo e-mail durante l'installazione o l'utilizzo di AxCrypt, attraverso l'app o il sito. Ti abbiamo inviato un codice di verifica via e-mail, ma non l'hai ancora utilizzato. Se non verifichi immediatamente il tuo account AxCrypt ID utilizzando il codice di verifica ti rimuoveremo definitivamente dal nostro sistema. </value>
   </data>
   <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
     <value>Stiamo per cancellare il tuo AxCrypt ID!</value>
@@ -274,7 +274,7 @@ Incluso il software da http://www.bouncycastle.org/ .</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
-    <value>Attiva</value>
+    <value>Verifica</value>
   </data>
   <data name="ButtonCancelAllText" xml:space="preserve">
     <value>Cancella Tutto</value>
@@ -598,7 +598,7 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
     <value>Crea una Nuova Password</value>
   </data>
   <data name="DialogVerifyAccountTitle" xml:space="preserve">
-    <value>Attiva AxCrypt ID</value>
+    <value>Verifica AxCrypt ID</value>
   </data>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Cartelle Protette</value>
@@ -668,7 +668,7 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
     <value>La verifica della password non corrisponde alla password.</value>
   </data>
   <data name="ErrorPasswordTooLong" xml:space="preserve">
-    <value>La password deve contenere almeno {2} caratteri e non più di {1} caratteri.</value>
+    <value>La password deve contenere almeno {2} caratteri.</value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>Eccezione durante l'elaborazione di '{0}'.</value>
@@ -812,7 +812,7 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet NON è RICHIESTO per utilizzare AxCrypt.
 
-L'accesso a Internet è fortemente consigliato e richiesto per l'attivazione di Premium. Alcune funzionalità funzionano meglio e aggiornamenti necessari non potrebbero essere effettuati altrimenti.
+L'accesso a Internet è fortemente consigliato e richiesto per attivare Premium. Alcune funzionalità funzionano meglio e aggiornamenti necessari non potrebbero essere effettuati altrimenti.
 
 La tua password non è salvata nei nostri server e la connessione è sempre criptata.</value>
   </data>
@@ -832,14 +832,14 @@ La tua password non è salvata nei nostri server e la connessione è sempre crip
     <value>URL non valido.</value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
-    <value>Sei stato invitato alla Protezione dei File con AxCrypt da &lt;b&gt;{0}&lt;/b&gt;. Per iniziare a proteggere i tuoi file &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;scarica&lt;/a&gt; e installa AxCrypt. Connettiti a AxCrypt con &lt;b&gt;{2}&lt;/b&gt;, inserisci il codice di attivazione e seleziona la tua password segreta.</value>
+    <value>Sei stato invitato alla Protezione dei File con AxCrypt da &lt;b&gt;{0}&lt;/b&gt;. Per iniziare a proteggere i tuoi file &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;scarica&lt;/a&gt; e installa AxCrypt. Connettiti a AxCrypt con &lt;b&gt;{2}&lt;/b&gt;, inserisci il codice di verifica e seleziona la tua password segreta.</value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>Sei stato invitato alla Protezione dei File con AxCrypt da {0}.
 
 Per iniziare a proteggere i tuoi file, scarica e installa AxCrypt da {1}.
 
-Connettiti ad AxCrypt con {2}, inserisci il codice di attivazione a 6 cifre e seleziona la tua password segreta.</value>
+Connettiti ad AxCrypt con {2}, inserisci il codice di verifica a 6 cifre e seleziona la tua password segreta.</value>
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Invito ad utilizzare la Protezione dei File di AxCrypt</value>
@@ -1108,7 +1108,7 @@ Questo programma è autorizzato secondo l'accordo.
     <value>Il Server di AxCrypt è stato Aggiornato!</value>
   </data>
   <data name="MessageSigningUpText" xml:space="preserve">
-    <value>Sei connesso come '{0}'. Per favore controlla la tua casella di posta, ti è stata inviata un'e-mail con un codice di attivazione a 6 cifre.</value>
+    <value>Sei connesso come '{0}'. Per favore controlla la tua casella di posta, ti è stata inviata un'e-mail con un codice di verifica a 6 cifre.</value>
   </data>
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Registrati per un AxCrypt ID</value>
@@ -1264,7 +1264,7 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
     <value>Modifica la Password di AxCrypt ID</value>
   </data>
   <data name="PasswordResetPageBody" xml:space="preserve">
-    <value>Se ti sei già registrato ma hai dimenticato la password, o per qualche ragione non hai ricevuto o hai perso il link di attivazione, puoi registrarti di nuovo e richiedere una nuova e-mail di attivazione qui.
+    <value>Se ti sei già registrato ma hai dimenticato la password, o per qualche ragione non hai ricevuto o hai perso il link di attivazione, puoi registrarti di nuovo e richiedere una nuova e-mail di verifica qui.
 
 &lt;span class="red"&gt;Se hai dimenticato la password, questo ti permette di registrarti di nuovo, ma non avrai di nuovo accesso ai file criptati o alle informazioni salvate nella gestione delle password online. Il tutto rimane criptato con la tua vecchia password e non possiamo decriptarlo.&lt;/span&gt;
 
@@ -1278,7 +1278,7 @@ Inserisci la tua e-mail sotto per inviare un codice di attivazione o di modifica
     <comment>Text of link to Forgot password screen in mobile app</comment>
   </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
-    <value>Un codice di attivazione di AxCrypt ID è stato inviato a &lt;b&gt;{0}&lt;/b&gt; . Per favore controlla la tua casella di posta.
+    <value>Un codice di verifica di AxCrypt ID è stato inviato a &lt;b&gt;{0}&lt;/b&gt; . Per favore controlla la tua casella di posta.
 
 Se non lo ricevi, controlla nello spam e controlla che {0} sia corretto.</value>
   </data>
@@ -1366,7 +1366,7 @@ Classifichiamo le password in 4 categorie di sicurezza crescente e non accettiam
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
-    <value>Codice di Attivazione</value>
+    <value>Codice di Verifica</value>
   </data>
   <data name="PromptAddContact" xml:space="preserve">
     <value>Aggiungi Contatto</value>
@@ -1538,7 +1538,7 @@ La ricevuta del tuo acquisto ti è stata inviata per e-mail.</value>
     <value>Nuovo utente? Registrati</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>Per iniziare ad utilizzare AxCrypt devi registrarti per un AxCrypt ID inserendo il tuo indirizzo e-mail nel modulo qui sotto. Un messaggio contenente un link di attivazione verrà inviato all'indirizzo specificato e quando cliccherai su quel link ti verrà chiesto di scegliere una password. Fatto!
+    <value>Per iniziare ad utilizzare AxCrypt devi registrarti per un AxCrypt ID inserendo il tuo indirizzo e-mail nel modulo qui sotto. Un messaggio contenente un link di verifica verrà inviato all'indirizzo specificato e quando cliccherai su quel link ti verrà chiesto di scegliere una password. Fatto!
 
 Un periodo di prova di AxCrypt Premium della durata di 30 giorni è incluso e puoi iniziarlo in qualsiasi momento dall'app di AxCrypt.</value>
   </data>
@@ -1548,7 +1548,7 @@ Un periodo di prova di AxCrypt Premium della durata di 30 giorni è incluso e pu
   <data name="RegisterSuccess" xml:space="preserve">
     <value>Ti sei registrato per un AxCrypt ID!
 
-Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di attivazione.</value>
+Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
   </data>
   <data name="ReliabilityLabel" xml:space="preserve">
     <value>Affidabilità</value>
@@ -1577,7 +1577,7 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di attivazione.</valu
     <comment>A button in a verification dialog that causes the verification to be resent.</comment>
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
-    <value>Clicca per inviare di nuovo il codice di attivazione al tuo indirizzo e-mail.</value>
+    <value>Clicca per inviare di nuovo il codice di verifica al tuo indirizzo e-mail.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Sei già connesso con questa password! Per favore fornisci la password originale per questo file.</value>
@@ -1847,6 +1847,10 @@ Il Team di AxCrypt</value>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Hai aggiornato AxCrypt. Sfortunatamente, la tua configurazione deve essere resettata. Dopo il riavvio, le tue impostazioni e preferenze andranno perse. Ci scusiamo per l'inconveniente. I tuoi file criptati sono ancora al sicuro.</value>
   </data>
+  <data name="VerificationEmailSentTitle" xml:space="preserve">
+    <value>Link di Verifica Inviato</value>
+    <comment>The title of the page stating that a verification email has been sent.</comment>
+  </data>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Per favore verifica il tuo nuovo account</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
@@ -2088,7 +2092,7 @@ crea una copia locale del contenuto della cartella. Installa è l'azione predefi
     <value>Password Errata. Per favore riprova.</value>
   </data>
   <data name="WrongVerificationCode" xml:space="preserve">
-    <value>Codice di attivazione errato. Per favore controlla di nuovo la tua e-mail.</value>
+    <value>Codice di verifica errato. Per favore controlla di nuovo la tua e-mail.</value>
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>Il codice di verifica deve essere esattamente di 6 cifre.</value>

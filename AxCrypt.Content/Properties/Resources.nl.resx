@@ -117,7 +117,7 @@
     <value>AxCrypt Premium Proefversie</value>
   </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
-    <value>De email of activatiecode is incorrect.</value>
+    <value>De email of verificatiecode is incorrect.</value>
   </data>
   <data name="ActivateErrorNoRequest" xml:space="preserve">
     <value>Wachtwoord reset mislukt. Er is geen wachtwoord reset voor dit AxCrypt ID aangevraagd.</value>
@@ -126,7 +126,7 @@
     <value>Wachtwoord reset mislukt.</value>
   </data>
   <data name="ActivateMailBodyButton" xml:space="preserve">
-    <value>Activeer AxCrypt ID</value>
+    <value>Verifieer AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
     <value>Uw AxCrypt ID activatiecode is &lt;b&gt;{0}&lt;/b&gt; .</value>
@@ -153,32 +153,32 @@
     <value>Hallo en welkom by AxCrypt!</value>
   </data>
   <data name="ActivateMailSubject" xml:space="preserve">
-    <value>AxCrypt ID Activatie</value>
+    <value>AxCrypt ID Verificatie</value>
   </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stop!&lt;/b&gt; 
  
-U moet hier alleen zijn wanneer het klikken op de link in de AxCrypt ID activatiemail niet werkte. (U moet zich natuurlijk voor een AxCrypt ID registreren om een activatiemail te ontvangen)
+U moet hier alleen zijn wanneer het klikken op de link in de AxCrypt ID verificatiemail niet werkte. (U moet zich natuurlijk voor een AxCrypt ID registreren om een verificatiemail te ontvangen)
 
-Voer hier uw email en code alleen hangmatig in wanneer u uw activatiemail ontvangen heeft, maar de link niet werkte.</value>
+Voer hier uw email en code alleen handmatig in wanneer u uw verificatiemail ontvangen heeft, maar de link niet werkte.</value>
   </data>
   <data name="ActivatePageBody" xml:space="preserve">
-    <value>Om uw AxCrypt ID, &lt;b&gt;{0}&lt;/b&gt;, te activeren moet u een wachtwoord kiezen.
+    <value>Om uw AxCrypt ID, &lt;b&gt;{0}&lt;/b&gt;, te creëren moet u een wachtwoord kiezen.
 
 Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtwoordbeheerder en toegang tot de website beschermd. Typ langzaam, zorgvuldig en vergeet uw wachtwoord niet!</value>
   </data>
   <data name="ActivatePageTitle" xml:space="preserve">
-    <value>Activeer AxCrypt ID</value>
+    <value>Verifieer AxCrypt ID</value>
   </data>
   <data name="ActivateSuccess" xml:space="preserve">
-    <value>Uw AxCrypt ID is geactiveerd! Meldt u zich alstublieft aan.</value>
+    <value>Uw AxCrypt ID is geverifieerd! Meldt u zich alstublieft aan.</value>
   </data>
   <data name="ActivationCodeSentMessage" xml:space="preserve">
     <value>We hebben u een email verstuurd naar {0}</value>
     <comment>Message about mail with activation code.</comment>
   </data>
   <data name="ActivationCodeTitle" xml:space="preserve">
-    <value>Voer uw activatiecode in</value>
+    <value>Voer uw verificatiecode in</value>
     <comment>Title of ActivationCode step on SignUp page in mobile application</comment>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
@@ -233,7 +233,7 @@ Meld u alstublieft met het zelfde wachtwoord die u eerder hebt gebruikt aan.</va
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
   </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
-    <value>U heeft uw email gegeven tijdens het installeren of gebruik maken van AxCrypt in de applicatie of op de website. Wij hebben u een activatiecode verzonden via email, maar u heeft deze code nog niet gebruikt. Als u uw AxCrypt ID account niet onmiddelijk verifieert met de activatiecode zullen wij u permament uit ons systeem verwijderen.</value>
+    <value>U heeft uw email gegeven tijdens het installeren of gebruik maken van de AxCrypt applicatie of website. Wij hebben u een verificatiecode verzonden via email, maar u heeft deze code nog niet gebruikt. Als u uw AxCrypt ID account niet onmiddelijk verifieert met de verificatiecode zullen wij u permanent uit ons systeem verwijderen.</value>
   </data>
   <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
     <value>We staan op het punt om uw AxCrypt ID te verwijderen!</value>
@@ -255,7 +255,7 @@ Bevat software van http://www.bouncycastle.org/ .</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
-    <value>Activeer</value>
+    <value>Verifieer</value>
   </data>
   <data name="ButtonCancelAllText" xml:space="preserve">
     <value>Annuleer Alles</value>
@@ -579,7 +579,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>Creëer Nieuw Wachtwoord</value>
   </data>
   <data name="DialogVerifyAccountTitle" xml:space="preserve">
-    <value>Activeer AxCrypt ID</value>
+    <value>Verifieer AxCrypt ID</value>
   </data>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Beveiligde Mappen</value>
@@ -605,7 +605,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>Uw invoer is geüpdatet.</value>
   </data>
   <data name="EmailAppLink" xml:space="preserve">
-    <value>Magische link naar de email</value>
+    <value>Ga naar de email</value>
     <comment>Text of link for opening mail application.</comment>
   </data>
   <data name="EmailLanguageInformation" xml:space="preserve">
@@ -649,7 +649,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>De wachtwoord verificatie komt niet overeen met het wachtwoord.</value>
   </data>
   <data name="ErrorPasswordTooLong" xml:space="preserve">
-    <value>Het wachtwoord moet minstens {2} en niet meer dan {1} karakters lang zijn.</value>
+    <value>Het wachtwoord moet minstens {2} karakters lang zijn.</value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>Uitzondering tijdens het verwerken van '{0}'.</value>
@@ -793,7 +793,7 @@ Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herin
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet is NIET NODIG om gebruik te maken van AxCrypt.
 
-Internet toegang is aanbevolen en benodigd om Premium te activeren. Sommige eigenschappen werken dan beter en kritische updates kunnen u dan direct bereiken.
+Internet toegang is aanbevolen en benodigd om Premium in te schakelen. Sommige eigenschappen werken dan beter en kritische updates kunnen u dan direct bereiken.
 
 U wachtwoord is niet opgeslagen op onze servers en de verbinding is altijd geëncrypteerd.</value>
   </data>
@@ -813,14 +813,14 @@ U wachtwoord is niet opgeslagen op onze servers en de verbinding is altijd geën
     <value>Onjuiste URL.</value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
-    <value>U bent uitgenodigd om gebruik te maken van AxCrypt Bestandsbeveiliging door &lt;b&gt;{0}&lt;/b&gt;. Om te beginnen met het beveiligen van uw bestanden &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; en installeer AxCrypt. Meldt u aan in AxCrypt met &lt;b&gt;{2}&lt;/b&gt;, voer uw activatiecode in en stel uw geheime wachtwoord in.</value>
+    <value>U bent uitgenodigd om gebruik te maken van AxCrypt Bestandsbeveiliging door &lt;b&gt;{0}&lt;/b&gt;. Om te beginnen met het beveiligen van uw bestanden &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; en installeer AxCrypt. Meldt u aan in AxCrypt met &lt;b&gt;{2}&lt;/b&gt;, voer uw verificatiecode in en stel uw geheime wachtwoord in.</value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>U bent uitgenodigd om gebruik te maken van AxCrypt Bestandsbeveiliging door {0}. 
 
 Om te beginnen met het beveiligen van uw bestanden download en installeer AxCrypt hier {1}. 
 
-Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige activatiecode in en stel uw geheime wachtwoord in.</value>
+Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige verificatiecode in en stel uw geheime wachtwoord in.</value>
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Uitnodiging om gebruik te maken van AxCrypt Bestandsbeveiliging</value>
@@ -1088,7 +1088,7 @@ De licentie voor dit programma is conform de overeenkomst.
     <value>AxCrypt Server Geüpdatet!</value>
   </data>
   <data name="MessageSigningUpText" xml:space="preserve">
-    <value>U heeft zich geregistreerd als '{0}'. Check alstublieft uw inbox voor een email met een 6-cijferige activatiecode.</value>
+    <value>U heeft zich geregistreerd als '{0}'. Check alstublieft uw inbox voor een email met een 6-cijferige verificatiecode.</value>
   </data>
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Registreer voor een AxCrypt ID</value>
@@ -1176,7 +1176,7 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OfflineNoPremiumWarning" xml:space="preserve">
-    <value>U bent offline zonder een geldig Premium abonnement. Ga online en koop of update uw licentie.</value>
+    <value>U bent offline dus wij kunnen uw Premium abonnement niet controleren. Ga alstublieft online zodat wij uw status kunnen updaten.</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Uw versie is verouderd. Klik alstublieft om te checken voor een nieuwe versie. </value>
@@ -1245,7 +1245,7 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
     <value>AxCrypt ID Wachtwoord Reset</value>
   </data>
   <data name="PasswordResetPageBody" xml:space="preserve">
-    <value>Als u zich eerder geregistreerd heeft, maar het wachtwoord vergeten bent, of vanwege een andere reden de activatielink niet onvangen of verloren heeft, kunt u zich opnieuw registreren en een nieuw activatiemail hier aanvragen.
+    <value>Als u zich eerder geregistreerd heeft, maar het wachtwoord vergeten bent, of vanwege een andere reden de verificatielink niet ontvangen of verloren heeft, kunt u zich opnieuw registreren en een nieuw verificatiemail hier aanvragen.
 
 &lt;span class="red"&gt;Als u uw wachtwoord vergeten bent zorgt dit ervoor dat u zich weer kan aanmelden, maar u kan geen toegang meer krijgen tot geëncrypteerde bestanden of informatie die in de online wachtwoordbeheerder zijn opgeslagen. Dit blijft geëncrypteerd met uw oude wachtwoord en wij kunnen dit niet decrypteren.&lt;/span&gt; 
  
@@ -1259,7 +1259,7 @@ Voer uw emailadres hieronder in om een activatie of wachtwoord reset link naar h
     <comment>Text of link to Forgot password screen in mobile app</comment>
   </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
-    <value>Een poging om de AxCrypt activatie bevestigingscode naar &lt;b&gt;{0}&lt;/b&gt; te verzenden is gedaan. Check alstublieft uw email inbox. 
+    <value>Een poging om de AxCrypt verificatiecode naar &lt;b&gt;{0}&lt;/b&gt; te verzenden is gedaan. Check alstublieft uw email inbox. 
  
 Wanneer het er op lijkt dat u geen email ontvangen heeft, check of het niet tussen uw spam terecht is gekomen, en dat {0} correct is.</value>
   </data>
@@ -1347,7 +1347,7 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
-    <value>Activatiecode</value>
+    <value>Verificatiecode</value>
   </data>
   <data name="PromptAddContact" xml:space="preserve">
     <value>Contact Toevoegen</value>
@@ -1486,9 +1486,17 @@ Een betaalbewijs van uw aankoop is naar uw email verstuurd.</value>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Actieve Bestanden Opschonen</value>
   </data>
+  <data name="RateApplicationLinkAndroid" xml:space="preserve">
+    <value>Beoordeel ons alstublieft op &lt;a&gt;Google Play&lt;/a&gt;</value>
+    <comment>Link to app store in mobile application (Android)</comment>
+  </data>
   <data name="RateApplicationLinkFirstPart" xml:space="preserve">
     <value>Beoordeel ons op</value>
     <comment>Unclickable part of "Rate us on App Store" link</comment>
+  </data>
+  <data name="RateApplicationLinkIos" xml:space="preserve">
+    <value>Beoordeel ons alstublieft in de &lt;a&gt;App store&lt;/a&gt;</value>
+    <comment>Link to application store in mobile application (iOS</comment>
   </data>
   <data name="RateApplicationLinkSecondPartAndroid" xml:space="preserve">
     <value>Google Play</value>
@@ -1511,7 +1519,7 @@ Een betaalbewijs van uw aankoop is naar uw email verstuurd.</value>
     <value>Nieuwe gebruiker? Registreer</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>Om te beginnen met AxCrypt heeft u een AxCrypt ID nodig die u kunt verkrijgen door uw emailadres in het onderstaande formulier in te voeren. Een bericht met een activatielink zal naar het gespecificeerde adres worden verstuurd en wanneer u op de link klinkt wordt u gevraagd om een wachtwoord te kiezen. Dat is het!
+    <value>Om te beginnen met AxCrypt heeft u een AxCrypt ID nodig die u kunt verkrijgen door uw emailadres in het onderstaande formulier in te voeren. Een bericht met een verificatielink zal naar het gespecificeerde adres worden verstuurd en wanneer u op de link klinkt wordt u gevraagd om een wachtwoord te kiezen. Dat is het!
  
 Een 30 dagen durende proefperiode voor AxCrypt Premium is hierbij inbegrepen en en u kunt deze op elk moment in uw AxCrypt app starten.</value>
   </data>
@@ -1521,7 +1529,7 @@ Een 30 dagen durende proefperiode voor AxCrypt Premium is hierbij inbegrepen en 
   <data name="RegisterSuccess" xml:space="preserve">
     <value>U heeft zich nu geregistreerd voor een AxCrypt ID!
 
-Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een activatielink.</value>
+Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
   </data>
   <data name="ReliabilityLabel" xml:space="preserve">
     <value>Betrouwbaardheid</value>
@@ -1550,7 +1558,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een activatielink.</value>
     <comment>A button in a verification dialog that causes the verification to be resent.</comment>
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
-    <value>Klik om de activatiecode opnieuw naar uw emailadres to versturen.</value>
+    <value>Klik om de verificatiecode opnieuw naar uw emailadres te versturen.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>U bent al aangemeld met dit wachtwoord! Geef alstublieft het orginele wachtwoord voor dit bestand.</value>
@@ -1698,6 +1706,10 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <value>Kan huidig bestand niet openen</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
   </data>
+  <data name="TermsAndConditionsLink" xml:space="preserve">
+    <value>Als u zich aanmeldt voor AxCrypt gaat u akkoord met onze &lt;a&gt;Algemene Voorwaarden &lt;/a&gt;</value>
+    <comment>Text of link to Terms And Conditions in mobile application</comment>
+  </data>
   <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">
     <value>Door te registreren voor AxCrypt gaat u akkoord met</value>
     <comment>Unclikable text of link to Terms And Conditions  in mobile application</comment>
@@ -1755,6 +1767,10 @@ Veel succes en geniet er van,
 Het AxCrypt team</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
   </data>
+  <data name="TroubleRememberingLabel" xml:space="preserve">
+    <value>Heeft u moeite met uw wachtwoord te herinneren?</value>
+    <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
+  </data>
   <data name="TryItDescription" xml:space="preserve">
     <value>Het is gratis</value>
     <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
@@ -1811,6 +1827,10 @@ Het AxCrypt team</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>U heeft AxCrypt geüpdatet. Helaas moet uw configuratie gereset worden. Dit betekent dat na het opnieuw opstarten uw voorkeuren en instellingen helaas verloren zullen gaan. Wij verontschuldigen ons voor het ongemak. Uw geëncrypteerde bestanden zijn nog steeds veilig en ok.</value>
+  </data>
+  <data name="VerificationEmailSentTitle" xml:space="preserve">
+    <value>Verificatielink verstuurd</value>
+    <comment>The title of the page stating that a verification email has been sent.</comment>
   </data>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Verifieer uw nieuwe account alstublieft</value>
@@ -2053,7 +2073,7 @@ creëer een compleet lokale kopie van de bundel in de directory. Installeren is 
     <value>Onjuist Wachtwoord. Probeer het alstublieft nog eens.</value>
   </data>
   <data name="WrongVerificationCode" xml:space="preserve">
-    <value>Verkeerde activatiecode. Controleer uw email alstublieft opnieuw.</value>
+    <value>Verkeerde verificatiecode. Controleer uw email alstublieft opnieuw.</value>
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>De verificatiecode moet exact 6 cijfers lang zijn.</value>

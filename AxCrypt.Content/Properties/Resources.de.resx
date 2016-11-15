@@ -668,7 +668,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Die Passwortverifizierung stimmt nicht mit dem Passwort überein. </value>
   </data>
   <data name="ErrorPasswordTooLong" xml:space="preserve">
-    <value>Das Passwort muss mindestens {2} und nicht mehr als {1} Zeichen haben. </value>
+    <value>Das Passwort muss mindestens {2} Zeichen haben. </value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>Ausnahme bei der Verarbeitung von '{0}'.</value>
@@ -832,14 +832,14 @@ Ihr Passwort wird nicht auf dem Server gespeichert und die Verbindung ist immer 
     <value>Ungültiges URL. </value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
-    <value>Sie wurden von &lt;b&gt;{0}&lt;/b&gt; zu AxCrypt Datensicherheit eingeladen. Um mit dem Sichern Ihrer Daten zu beginnen &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; und installieren Sie AxCrypt. Melden Sie sich mit &lt;b&gt;{2}&lt;/b&gt; an, geben Sie den Aktivierungscode an und setzen Sie Ihr geheimes Passwort fest. </value>
+    <value>Sie wurden von &lt;b&gt;{0}&lt;/b&gt; zu AxCrypt Datensicherheit eingeladen. Um mit dem Sichern Ihrer Daten zu beginnen &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; und installieren Sie AxCrypt. Melden Sie sich mit &lt;b&gt;{2}&lt;/b&gt; an, geben Sie den Bestätigungscode an und setzen Sie Ihr geheimes Passwort fest. </value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>Sie wurden von {0} zu AxCrypt Dateisicherheit eingeladen. 
 
 Um mit der Sicherung Ihrer Dateien zu beginnen, downloaden und installieren Sie AxCrypt von {1}.
 
-Melden Sie sich bei AxCrypt mit {2} an, geben Sie den 6-stelligen Aktivierungscode ein und geben Sie Ihr geheimes Passwort ein. </value>
+Melden Sie sich bei AxCrypt mit {2} an, geben Sie den 6-stelligen Bestätigungscode ein und geben Sie Ihr geheimes Passwort ein. </value>
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Einladung zur Verwendung von AxCrypt Datensicherheit </value>
@@ -1845,6 +1845,10 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Sie haben AxCrypt aktualisiert. Unglücklicherweise muss Ihre Konfiguration zurückgesetzt werden. Nachdem Neustart werden Ihre Einstellungen und Präferenzen leider verloren sein. Wir entschuldigen uns für diese Unannehmlichkeiten. Ihre verschlüsselten Dateien sind immer noch sicher und in Ordnung. </value>
+  </data>
+  <data name="VerificationEmailSentTitle" xml:space="preserve">
+    <value>Bestätigungslink wurde geschickt</value>
+    <comment>The title of the page stating that a verification email has been sent.</comment>
   </data>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Bitte überprüfen Sie Ihr neues Konto</value>
