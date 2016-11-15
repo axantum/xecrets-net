@@ -668,7 +668,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Lösenordsverifieringen matchar inte lösenordet.</value>
   </data>
   <data name="ErrorPasswordTooLong" xml:space="preserve">
-    <value>Lösenordet måste vara minst {2} men inte längre än {1} tecken.</value>
+    <value>Lösenordet måste vara minst {2} tecken.</value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>Exception during processing of '{0}'.</value>
@@ -1540,7 +1540,7 @@ Ett kvitto på ditt köp har skickats till din epostadress.</value>
 En provperiod på 30 dagar ingår alltid och du kan påbörja den när som helst i AxCrypt-programmet som du laddar ned separat.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
-    <value>Registra ditt AxCrypt ID</value>
+    <value>Registrera ditt AxCrypt ID</value>
   </data>
   <data name="RegisterSuccess" xml:space="preserve">
     <value>Nu har du registrerat ditt AxCrypt ID!
@@ -1720,7 +1720,7 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
     <comment>Message which is displayed when user hasn't application for file opening</comment>
   </data>
   <data name="TermsAndConditionsLink" xml:space="preserve">
-    <value>Genom att registra dig för AxCrypt godkänner du våra &lt;a&gt;villkor&lt;/a&gt;.</value>
+    <value>Genom att registrera dig för AxCrypt godkänner du våra &lt;a&gt;villkor&lt;/a&gt;.</value>
     <comment>Text of link to Terms And Conditions in mobile application</comment>
   </data>
   <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">

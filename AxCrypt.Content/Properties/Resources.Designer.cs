@@ -1810,7 +1810,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password must be at least {2} and no more than {1} characters..
+        ///   Looks up a localized string similar to The password must be at least {2} characters..
         /// </summary>
         public static string ErrorPasswordTooLong {
             get {

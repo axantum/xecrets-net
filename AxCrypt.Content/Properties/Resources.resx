@@ -741,7 +741,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>The password verification does not match the password.</value>
   </data>
   <data name="ErrorPasswordTooLong" xml:space="preserve">
-    <value>The password must be at least {2} and no more than {1} characters.</value>
+    <value>The password must be at least {2} characters.</value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>Exception during processing of '{0}'.</value>
