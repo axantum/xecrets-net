@@ -487,7 +487,11 @@ namespace Axantum.AxCrypt.Core
                 {
                     return false;
                 }
-                Decrypt(sourceStore.OpenRead(), destinationStream, passphrase, sourceStore.FullName, new ProgressContext());
+
+                using (Stream sourceStream = sourceStore.OpenRead())
+                {
+                    Decrypt(sourceStream, destinationStream, passphrase, sourceStore.FullName, new ProgressContext());
+                }
             }
             return true;
         }

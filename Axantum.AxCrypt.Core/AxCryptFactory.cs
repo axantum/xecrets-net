@@ -45,9 +45,12 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("encryptedFileInfo");
             }
 
-            using (IAxCryptDocument document = CreateDocument(decryptionParameters, encryptedFileInfo.OpenRead()))
+            using (Stream fileStream = encryptedFileInfo.OpenRead())
             {
-                return document.DecryptionParameter;
+                using (IAxCryptDocument document = CreateDocument(decryptionParameters, fileStream))
+                {
+                    return document.DecryptionParameter;
+                }
             }
         }
 
