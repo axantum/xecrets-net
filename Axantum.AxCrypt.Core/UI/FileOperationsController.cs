@@ -554,7 +554,7 @@ namespace Axantum.AxCrypt.Core.UI
             catch (IOException ioex)
             {
                 New<IReport>().Exception(ioex);
-                FileOperationContext status = new FileOperationContext(sourceFileInfo.FullName, ioex.Message, ioex is FileNotFoundException ? ErrorStatus.FileDoesNotExist : ErrorStatus.Exception);
+                FileOperationContext status = new FileOperationContext(sourceFileInfo.FullName, ioex.Message, ioex.IsFileOrDirectoryNotFound() ? ErrorStatus.FileDoesNotExist : ErrorStatus.Exception);
                 e.Status = status;
                 return false;
             }
