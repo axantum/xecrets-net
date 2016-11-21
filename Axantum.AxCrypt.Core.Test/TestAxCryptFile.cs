@@ -449,7 +449,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestDecryptFileUniqueWithWipeOfOriginal()
+        public async Task TestDecryptFileUniqueWithWipeOfOriginal()
         {
             IDataStore sourceFileInfo = New<IDataStore>(_helloWorldAxxPath);
             IDataStore destinationFileInfo = New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
@@ -470,7 +470,7 @@ namespace Axantum.AxCrypt.Core.Test
         // 2016-09-12: Not fixed.
         // 2016-10-25: Still not fixed.
         [Test]
-        public async void TestDecryptFilesUniqueWithWipeOfOriginal()
+        public async Task TestDecryptFilesUniqueWithWipeOfOriginal()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
             TypeMap.Register.Singleton<IProgressBackground>(() => new FakeProgressBackground());

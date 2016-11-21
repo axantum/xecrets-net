@@ -453,7 +453,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestSimpleDecryptAndLaunchOnThreadWorker()
+        public async Task TestSimpleDecryptAndLaunchOnThreadWorker()
         {
             FakeLauncher launcher = new FakeLauncher();
             bool called = false;

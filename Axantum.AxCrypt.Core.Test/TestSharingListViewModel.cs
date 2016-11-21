@@ -42,7 +42,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestMoveOneFromUnsharedToShared()
+        public async Task TestMoveOneFromUnsharedToShared()
         {
             IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestMoveTwoFromUnsharedToShared()
+        public async Task TestMoveTwoFromUnsharedToShared()
         {
             IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
@@ -163,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestRemoveOneFromShared()
+        public async Task TestRemoveOneFromShared()
         {
             IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
@@ -192,7 +192,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestRemoveNonexistingFromShared()
+        public async Task TestRemoveNonexistingFromShared()
         {
             IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);

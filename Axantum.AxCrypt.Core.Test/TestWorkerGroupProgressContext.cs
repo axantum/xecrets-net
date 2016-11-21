@@ -32,6 +32,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -96,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async static void TestEnterSingleThread()
+        public async static Task TestEnterSingleThread()
         {
             await _progress.EnterSingleThread();
             _singleThreadMock.Verify(s => s.Enter(), Times.Once);

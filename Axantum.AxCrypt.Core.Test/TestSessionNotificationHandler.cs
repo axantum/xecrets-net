@@ -38,7 +38,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public async void TestHandleSessionEventWatchedFolderAdded(CryptoImplementation cryptoImplementation)
+        public async Task TestHandleSessionEventWatchedFolderAdded(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestHandleSessionEventWatchedFolderRemoved()
+        public async Task TestHandleSessionEventWatchedFolderRemoved()
         {
             FakeDataStore.AddFolder(@"C:\My Documents\");
             MockAxCryptFile mock = new MockAxCryptFile();
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public async void TestHandleSessionEventLogOn(CryptoImplementation cryptoImplementation)
+        public async Task TestHandleSessionEventLogOn(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public async void TestHandleSessionEventLogOffWithWatchedFolders(CryptoImplementation cryptoImplementation)
+        public async Task TestHandleSessionEventLogOffWithWatchedFolders(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -159,7 +159,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestHandleSessionEventLogOffWithNoWatchedFolders()
+        public async Task TestHandleSessionEventLogOffWithNoWatchedFolders()
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
@@ -175,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestHandleSessionEventActiveFileChange()
+        public async Task TestHandleSessionEventActiveFileChange()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestHandleSessionEventSessionStart()
+        public async Task TestHandleSessionEventSessionStart()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
@@ -207,7 +207,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestHandleSessionEventPurgeActiveFiles()
+        public async Task TestHandleSessionEventPurgeActiveFiles()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, New<AxCryptFile>(), mockStatusChecker.Object);
 
-            Assert.DoesNotThrow(async () =>
+            Assert.DoesNotThrowAsync(async () =>
             {
                 await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.ProcessExit));
                 await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.SessionChange));
@@ -249,7 +249,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, New<AxCryptFile>(), mockStatusChecker.Object);
 
-            Assert.Throws<InvalidOperationException>(async () =>
+            Assert.ThrowsAsync<InvalidOperationException>(async () =>
             {
                 await handler.HandleNotificationAsync(new SessionNotification((SessionNotificationType)(-1)));
             });
@@ -258,7 +258,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public async void TestHandleSessionEvents(CryptoImplementation cryptoImplementation)
+        public async Task TestHandleSessionEvents(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -287,7 +287,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public async void TestNotificationEncryptPendingFilesInLoggedOnFolders(CryptoImplementation cryptoImplementation)
+        public async Task TestNotificationEncryptPendingFilesInLoggedOnFolders(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 

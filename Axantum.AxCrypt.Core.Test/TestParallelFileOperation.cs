@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static async void TestParallelFileOperationSimple()
+        public static async Task TestParallelFileOperationSimple()
         {
             IDataStore info1 = New<IDataStore>(@"c:\file1.txt");
             IDataStore info2 = New<IDataStore>(@"c:\file2.txt");
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static async void TestQuitAllOnError()
+        public static async Task TestQuitAllOnError()
         {
             FakeUIThread fakeUIThread = new FakeUIThread();
             fakeUIThread.IsOn = true;
