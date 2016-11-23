@@ -3145,6 +3145,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you really want to exit?.
+        /// </summary>
+        public static string MessageExitConfirmation {
+            get {
+                return ResourceManager.GetString("MessageExitConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You cannot sign up as &apos;{0}&apos;. Please enter a real email address, and try again..
         /// </summary>
         public static string MessageInvalidSignUpEmailText {

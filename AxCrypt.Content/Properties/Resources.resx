@@ -1262,6 +1262,10 @@ This program is licensed according to the agreement.
     <value>Error</value>
     <comment>Title of error message box for generic error</comment>
   </data>
+  <data name="MessageExitConfirmation" xml:space="preserve">
+    <value>Do you really want to exit?</value>
+    <comment>Message which is displayed in mobile application, when user tries to exit from app via back button</comment>
+  </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>You cannot sign up as '{0}'. Please enter a real email address, and try again.</value>
   </data>
