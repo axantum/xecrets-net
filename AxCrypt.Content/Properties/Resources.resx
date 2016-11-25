@@ -1258,6 +1258,10 @@ This program is licensed according to the agreement.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Open Explorer Here</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>We noticed you don't have a Premium subscription, so we've started a 30-day free Trial to use the Premium features provided by AxCrypt outside of the app, which are also required for the app to function</value>
+    <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Error</value>
     <comment>Title of error message box for generic error</comment>
@@ -1534,6 +1538,10 @@ We classify the password in 4 categories of increasing strength, were we do not 
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Key sharing requires Premium. Click to upgrade now!</value>
+  </data>
+  <data name="PremiumNeededForMobileApp" xml:space="preserve">
+    <value>Sorry, but you don't have a Premium subscription. Upgrade your account now to use the Premium features provided by AxCrypt outside of the app, which are also required for the app to function.</value>
+    <comment>Message displaying when user works with mobile app without premium subscription.</comment>
   </data>
   <data name="PremiumSupportRequestMailSubect" xml:space="preserve">
     <value>Premium Support Request</value>

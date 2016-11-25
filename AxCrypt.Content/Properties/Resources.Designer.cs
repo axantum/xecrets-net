@@ -3136,6 +3136,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We noticed you don&apos;t have a Premium subscription, so we&apos;ve started a 30-day free Trial to use the Premium features provided by AxCrypt outside of the app, which are also required for the app to function.
+        /// </summary>
+        public static string MessageAskAboutStartTrial {
+            get {
+                return ResourceManager.GetString("MessageAskAboutStartTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string MessageErrorTitle {
@@ -3846,6 +3855,15 @@ namespace AxCrypt.Content.Properties {
         public static string PremiumNeededForKeyShare {
             get {
                 return ResourceManager.GetString("PremiumNeededForKeyShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, but you don&apos;t have a Premium subscription. Upgrade your account now to use the Premium features provided by AxCrypt outside of the app, which are also required for the app to function..
+        /// </summary>
+        public static string PremiumNeededForMobileApp {
+            get {
+                return ResourceManager.GetString("PremiumNeededForMobileApp", resourceCulture);
             }
         }
         
