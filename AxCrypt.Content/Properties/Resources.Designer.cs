@@ -711,6 +711,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start trial.
+        /// </summary>
+        public static string ButtonStartTrial {
+            get {
+                return ResourceManager.GetString("ButtonStartTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Suggest password.
         /// </summary>
         public static string ButtonSuggestText {

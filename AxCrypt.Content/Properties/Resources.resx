@@ -358,6 +358,10 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="ButtonSignUpText" xml:space="preserve">
     <value>Sign Up</value>
   </data>
+  <data name="ButtonStartTrial" xml:space="preserve">
+    <value>Start trial</value>
+    <comment>Text displayed on "Start trial" button prompt.</comment>
+  </data>
   <data name="ButtonSuggestText" xml:space="preserve">
     <value>Suggest password</value>
   </data>

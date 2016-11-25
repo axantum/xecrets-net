@@ -56,5 +56,10 @@ namespace Axantum.AxCrypt.Forms.Implementation
         {
             return Task.FromResult(Show(buttons, title, message));
         }
+
+        public Task<string> ShowAsync(string[] buttons, string title, string message)
+        {
+            throw new NotImplementedException("Popup doesn't support custom buttons.");
+        }
     }
 }
