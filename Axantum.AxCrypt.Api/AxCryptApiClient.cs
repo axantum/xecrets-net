@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Api
         /// <exception cref="System.InvalidOperationException">There must be an identity and password to attempt to get private account information.</exception>
         public async Task<UserAccount> MyAccountAsync()
         {
-            if (String.IsNullOrEmpty(Identity.User) || String.IsNullOrEmpty(Identity.Password))
+            if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
             {
                 throw new InvalidOperationException("There must be an identity and password to attempt to get private account information.");
             }
@@ -215,7 +215,7 @@ namespace Axantum.AxCrypt.Api
 
         public async Task PutAllAccountsUserPasswordAsync(string verification)
         {
-            if (String.IsNullOrEmpty(Identity.User) || String.IsNullOrEmpty(Identity.Password))
+            if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
             {
                 throw new InvalidOperationException("There must be an identity and password to attempt to verify the account information.");
             }
@@ -228,18 +228,26 @@ namespace Axantum.AxCrypt.Api
             ApiCaller.EnsureStatusOk(restResponse);
         }
 
-        public async Task PutFeedbackAsync(string subject, string message)
+        public async Task PostFeedbackAsync(string subject, string message)
         {
-            if (String.IsNullOrEmpty(subject) && String.IsNullOrEmpty(message))
+            if (subject == null)
             {
-                throw new InvalidOperationException("Feedback should contains data.");
+                throw new ArgumentNullException(nameof(subject));
+            }
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+            if (message.Length == 0)
+            {
+                throw new ArgumentException("Message must contain something.", nameof(message));
             }
 
-            Uri resource = BaseUrl.PathCombine("global/stub/feedback");
+            Uri resource = BaseUrl.PathCombine("users/my/account/feedback");
 
             FeedbackData feedbackData = new FeedbackData(subject, message);
             RestContent content = new RestContent(Serializer.Serialize(feedbackData));
-            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
         }
 
