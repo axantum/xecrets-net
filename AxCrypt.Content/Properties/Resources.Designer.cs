@@ -1954,6 +1954,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Feedback from user via app.
+        /// </summary>
+        public static string FeedbackFromUserMailSubject {
+            get {
+                return ResourceManager.GetString("FeedbackFromUserMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your feedback.
         /// </summary>
         public static string FeedbackTextPrompt {

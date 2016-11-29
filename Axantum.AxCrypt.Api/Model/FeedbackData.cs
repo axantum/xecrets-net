@@ -10,15 +10,10 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class FeedbackData
     {
-        [JsonConstructor]
-        public FeedbackData()
-        {
-        }
-
         public FeedbackData(string subject, string message)
         {
-            Subject = subject;
-            Message = message;
+            Subject = subject ?? string.Empty;
+            Message = message ?? string.Empty;
         }
 
         [JsonProperty("subject")]

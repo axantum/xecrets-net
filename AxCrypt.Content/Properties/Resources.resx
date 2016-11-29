@@ -796,6 +796,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Please tell us what you think, and kind of feedback is highly appreciated.</value>
     <comment>Text which motivates user to send feedback </comment>
   </data>
+  <data name="FeedbackFromUserMailSubject" xml:space="preserve">
+    <value>Feedback from user via app</value>
+    <comment>The mail subject used when an email is sent to us as a result of user feedback via an app</comment>
+  </data>
   <data name="FeedbackTextPrompt" xml:space="preserve">
     <value>Your feedback</value>
     <comment>Text displayed in feedback content textbox when it is empty</comment>
