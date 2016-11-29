@@ -1567,6 +1567,30 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <value>{0}/month</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
+<data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
+    <value>Decrypting...</value>
+    <comment>Title of progress indicator which is displayed during file decrypting</comment>
+  </data>
+  <data name="ProgressIndicatorFeedbackMessage" xml:space="preserve">
+    <value>Feedback sending...</value>
+    <comment>Title of progress indicator which is displayed during feedback sending</comment>
+  </data>
+  <data name="ProgressIndicatorRegisteringMessage" xml:space="preserve">
+    <value>Registering...</value>
+    <comment>Title of progress indicator which is displayed during SignUp operation</comment>
+  </data>
+  <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
+    <value>Authenticating...</value>
+    <comment>Title of progress indicator which is displayed during SignIn operation</comment>
+  </data>
+  <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
+    <value>Starting trial...</value>
+    <comment>Title of progress indicator which is displayed during trial starting</comment>
+  </data>
+  <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
+    <value>Please wait!</value>
+    <comment>Message, which is displayed in Android progress indicator.&#13;, Sample of usage:&#13;, (title)Registering...&#13;, (message)Please wait!</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Verification Code</value>
   </data>

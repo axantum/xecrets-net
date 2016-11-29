@@ -3922,6 +3922,60 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decrypting....
+        /// </summary>
+        public static string ProgressIndicatorDecryptingMessage {
+            get {
+                return ResourceManager.GetString("ProgressIndicatorDecryptingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feedback sending....
+        /// </summary>
+        public static string ProgressIndicatorFeedbackMessage {
+            get {
+                return ResourceManager.GetString("ProgressIndicatorFeedbackMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registering....
+        /// </summary>
+        public static string ProgressIndicatorRegisteringMessage {
+            get {
+                return ResourceManager.GetString("ProgressIndicatorRegisteringMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authenticating....
+        /// </summary>
+        public static string ProgressIndicatorSignInMessage {
+            get {
+                return ResourceManager.GetString("ProgressIndicatorSignInMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting trial....
+        /// </summary>
+        public static string ProgressIndicatorTrialMessage {
+            get {
+                return ResourceManager.GetString("ProgressIndicatorTrialMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please wait!.
+        /// </summary>
+        public static string ProgressIndicatorWaitMessage {
+            get {
+                return ResourceManager.GetString("ProgressIndicatorWaitMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verification Code.
         /// </summary>
         public static string PromptActivationCode {
