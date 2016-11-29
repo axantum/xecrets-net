@@ -362,5 +362,10 @@ namespace Axantum.AxCrypt.Core.Service
                 }
             }).Free();
         }
+
+        public Task SendFeedbackAsync(string subject, string message)
+        {
+            throw new InvalidOperationException("Feedback sending can't be performed locally.");
+        }
     }
 }

@@ -299,6 +299,11 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
+        public async Task SendFeedbackAsync(string subject, string message)
+        {
+            await _apiClient.PutFeedbackAsync(subject, message).Free();
+        }
+
         public async Task SignupAsync(EmailAddress email, CultureInfo culture)
         {
             await _apiClient.PostAllAccountsUserAsync(email.Address, culture).Free();

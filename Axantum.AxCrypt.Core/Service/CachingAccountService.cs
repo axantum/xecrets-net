@@ -134,5 +134,10 @@ namespace Axantum.AxCrypt.Core.Service
         {
             return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherPublicKeyAsync)), async () => await _service.OtherPublicKeyAsync(email)).Free();
         }
+
+        public async Task SendFeedbackAsync(string subject, string message)
+        {
+            await New<ICache>().UpdateItemAsync(async () => await _service.SendFeedbackAsync(subject, message), _key).Free();
+        }
     }
 }

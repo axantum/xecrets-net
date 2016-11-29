@@ -141,5 +141,10 @@ namespace Axantum.AxCrypt.Core.Service
         {
             return Task.FromResult((UserKeyPair)null);
         }
+
+        public Task SendFeedbackAsync(string subject, string message)
+        {
+            return Task.FromResult(default(object));
+        }
     }
 }

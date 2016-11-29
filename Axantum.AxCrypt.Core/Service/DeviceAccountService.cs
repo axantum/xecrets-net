@@ -404,5 +404,24 @@ namespace Axantum.AxCrypt.Core.Service
             }
             return status;
         }
+
+        public async Task SendFeedbackAsync(string subject, string message)
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                try
+                {
+                    await _remoteService.SendFeedbackAsync(subject, message).Free();
+                    return;
+                }
+                catch (OfflineApiException oaex)
+                {
+                    New<IReport>().Exception(oaex);
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
+            }
+
+            await _localService.SendFeedbackAsync(subject, message).Free();
+        }
     }
 }

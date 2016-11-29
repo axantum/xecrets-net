@@ -228,6 +228,21 @@ namespace Axantum.AxCrypt.Api
             ApiCaller.EnsureStatusOk(restResponse);
         }
 
+        public async Task PutFeedbackAsync(string subject, string message)
+        {
+            if (String.IsNullOrEmpty(subject) && String.IsNullOrEmpty(message))
+            {
+                throw new InvalidOperationException("Feedback should contains data.");
+            }
+
+            Uri resource = BaseUrl.PathCombine("global/stub/feedback");
+
+            FeedbackData feedbackData = new FeedbackData(subject, message);
+            RestContent content = new RestContent(Serializer.Serialize(feedbackData));
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+        }
+
         public async Task<AxCryptVersion> AxCryptUpdateAsync(Version currentVersion, string cultureName)
         {
             Uri resource;

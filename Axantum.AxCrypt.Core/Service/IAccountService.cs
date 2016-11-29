@@ -163,5 +163,13 @@ namespace Axantum.AxCrypt.Core.Service
         /// <param name="verificationCode">The verification code.</param>
         /// <returns></returns>
         Task PasswordResetAsync(string verificationCode);
+
+        /// <summary>
+        /// Sends user feedback about application.
+        /// </summary>
+        /// <param name="subject">The feedback subject.</param>
+        /// <param name="message">The user message</param>
+        /// <returns></returns>
+        Task SendFeedbackAsync(string subject, string message);
     }
 }
