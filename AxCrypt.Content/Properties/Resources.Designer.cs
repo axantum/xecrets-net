@@ -3931,7 +3931,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feedback sending....
+        ///   Looks up a localized string similar to Sending....
         /// </summary>
         public static string ProgressIndicatorFeedbackMessage {
             get {
@@ -3940,7 +3940,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registering....
+        ///   Looks up a localized string similar to Signing up....
         /// </summary>
         public static string ProgressIndicatorRegisteringMessage {
             get {
@@ -3949,7 +3949,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authenticating....
+        ///   Looks up a localized string similar to Signing in....
         /// </summary>
         public static string ProgressIndicatorSignInMessage {
             get {
@@ -3967,7 +3967,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please wait!.
+        ///   Looks up a localized string similar to Working....
         /// </summary>
         public static string ProgressIndicatorWaitMessage {
             get {

@@ -1572,15 +1572,15 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <comment>Title of progress indicator which is displayed during file decrypting</comment>
   </data>
   <data name="ProgressIndicatorFeedbackMessage" xml:space="preserve">
-    <value>Feedback sending...</value>
+    <value>Sending...</value>
     <comment>Title of progress indicator which is displayed during feedback sending</comment>
   </data>
   <data name="ProgressIndicatorRegisteringMessage" xml:space="preserve">
-    <value>Registering...</value>
+    <value>Signing up...</value>
     <comment>Title of progress indicator which is displayed during SignUp operation</comment>
   </data>
   <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
-    <value>Authenticating...</value>
+    <value>Signing in...</value>
     <comment>Title of progress indicator which is displayed during SignIn operation</comment>
   </data>
   <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
@@ -1588,7 +1588,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <comment>Title of progress indicator which is displayed during trial starting</comment>
   </data>
   <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
-    <value>Please wait!</value>
+    <value>Working...</value>
     <comment>Message, which is displayed in Android progress indicator., Sample of usage:, (title)Registering..., (message)Please wait!</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
