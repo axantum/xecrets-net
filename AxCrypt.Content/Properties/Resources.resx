@@ -215,7 +215,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Double-click opens a Password-dialog before opening the secured file.</value>
   </data>
   <data name="AddFileLabel" xml:space="preserve">
-    <value>Add new file</value>
+    <value>Open AxCrypt File</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
@@ -672,11 +672,11 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <comment>The name of the Dutch language for selection.</comment>
   </data>
   <data name="EasyToWorkDescription" xml:space="preserve">
-    <value>Open a secured file directly with click</value>
+    <value>Open files secured for you by friends and colleagues</value>
     <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EasyToWorkTitle" xml:space="preserve">
-    <value>Easy to work with</value>
+    <value>Access key shared files</value>
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
@@ -1567,7 +1567,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <value>{0}/month</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
-<data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
+  <data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
     <value>Decrypting...</value>
     <comment>Title of progress indicator which is displayed during file decrypting</comment>
   </data>
@@ -1589,7 +1589,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
   </data>
   <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
     <value>Please wait!</value>
-    <comment>Message, which is displayed in Android progress indicator.&#13;, Sample of usage:&#13;, (title)Registering...&#13;, (message)Please wait!</comment>
+    <comment>Message, which is displayed in Android progress indicator., Sample of usage:, (title)Registering..., (message)Please wait!</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Verification Code</value>
@@ -1891,11 +1891,11 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Share Keys</value>
   </data>
   <data name="ShareWithOthersDescription" xml:space="preserve">
-    <value>Allow secured files to be opened by other AxCrypt users with their own password</value>
+    <value>One-click access to the AxCrypt password manager</value>
     <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="ShareWithOthersTitle" xml:space="preserve">
-    <value>Share with others</value>
+    <value>Easy access to passwords</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
@@ -1937,11 +1937,11 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Click to select files to stop securing.</value>
   </data>
   <data name="StrongEncryptionDescription" xml:space="preserve">
-    <value>File security with 128-bit or 256-bit AES encryption</value>
+    <value>Open AxCrypt files on your phone</value>
     <comment>Text displayed on "Strong Encryption" slide in mobile app</comment>
   </data>
   <data name="StrongEncryptionTitle" xml:space="preserve">
-    <value>Strong encryption</value>
+    <value>AxCrypt Mobile</value>
     <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="SubmitFeedbackButton" xml:space="preserve">
@@ -2075,7 +2075,7 @@ The AxCrypt Team</value>
     <value>Try Broken File</value>
   </data>
   <data name="TryItDescription" xml:space="preserve">
-    <value>It's free</value>
+    <value>Secure files on the desktop, and read them on the road</value>
     <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="TryItTitle" xml:space="preserve">

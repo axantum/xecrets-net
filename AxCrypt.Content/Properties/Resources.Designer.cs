@@ -329,7 +329,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new file.
+        ///   Looks up a localized string similar to Open AxCrypt File.
         /// </summary>
         public static string AddFileLabel {
             get {
@@ -1612,7 +1612,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open a secured file directly with click.
+        ///   Looks up a localized string similar to Open files secured for you by friends and colleagues.
         /// </summary>
         public static string EasyToWorkDescription {
             get {
@@ -1621,7 +1621,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Easy to work with.
+        ///   Looks up a localized string similar to Access key shared files.
         /// </summary>
         public static string EasyToWorkTitle {
             get {
@@ -4777,7 +4777,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allow secured files to be opened by other AxCrypt users with their own password.
+        ///   Looks up a localized string similar to One-click access to the AxCrypt password manager.
         /// </summary>
         public static string ShareWithOthersDescription {
             get {
@@ -4786,7 +4786,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Share with others.
+        ///   Looks up a localized string similar to Easy access to passwords.
         /// </summary>
         public static string ShareWithOthersTitle {
             get {
@@ -4887,7 +4887,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File security with 128-bit or 256-bit AES encryption.
+        ///   Looks up a localized string similar to Open AxCrypt files on your phone.
         /// </summary>
         public static string StrongEncryptionDescription {
             get {
@@ -4896,7 +4896,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Strong encryption.
+        ///   Looks up a localized string similar to AxCrypt Mobile.
         /// </summary>
         public static string StrongEncryptionTitle {
             get {
@@ -5260,7 +5260,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It&apos;s free.
+        ///   Looks up a localized string similar to Secure files on the desktop, and read them on the road.
         /// </summary>
         public static string TryItDescription {
             get {
