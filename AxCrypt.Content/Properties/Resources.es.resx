@@ -136,7 +136,7 @@
     <value>AxCrypt Premium prueba gratis</value>
   </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
-    <value>El código de correo electrónico o de activación no es correcta.</value>
+    <value>La dirección de correo electrónico o el código de verificación no es correcto.</value>
   </data>
   <data name="ActivateErrorNoRequest" xml:space="preserve">
     <value>No se puede restablecer la contraseña. Ninguna solicitud de restablecimiento de contraseña ha sido recibido para esta cuenta.</value>
@@ -145,7 +145,7 @@
     <value>Error al crear la contraseña.</value>
   </data>
   <data name="ActivateMailBodyButton" xml:space="preserve">
-    <value>Activar AxCrypt ID</value>
+    <value>Verificar AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
     <value>Su código de verificación es &lt;b&gt;{0}&lt;/b&gt;.</value>
@@ -172,31 +172,31 @@
     <value>¡Hola y bienvenido a AxCrypt!</value>
   </data>
   <data name="ActivateMailSubject" xml:space="preserve">
-    <value>Activación AxCrypt ID</value>
+    <value>Verificación de AxCrypt ID</value>
   </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;¡Para!&lt;/b&gt;
 
-Usted sólo debe llegar a esta página si el enlace de su correo electrónico de activación no funcionó. (Debe registrar, por supuesto, para un AxCrypt ID para recibir un correo electrónico de activación).
+Sólo deberías estar en esta página si el enlace de tu correo electrónico de verificación no funcionó. (Debes crear una AxCrypt ID para recibir un correo electrónico de verificación).
 
-Introduzca su dirección de correo electrónico y el código manualmente aquí sólo si ha recibido el correo electrónico de activación, pero el enlace no funcionó.</value>
+Introduce tu dirección de correo electrónico y el código manualmente aquí sólo si has recibido el correo electrónico de verificación, pero el enlace no funcionó.</value>
   </data>
   <data name="ActivatePageBody" xml:space="preserve">
-    <value>Para activar su cuenta &lt;b&gt;{0}&lt;/b&gt; debe seleccionar una contraseña.
-Elija algo que es difícil de adivinar, ya que protegerá las contraseñas del administrador de contraseñas en línea, así como el acceso al sitio. Llene lentamente y con cuidado, ¡y no se olvide su contraseña!</value>
+    <value>Para activar tu AxCrypt ID &lt;b&gt;{0}&lt;/b&gt; debes elegir una contraseña.
+Elige algo difícil de adivinar, ya que protegerá las contraseñas del Administrador de Contraseñas en línea, así como el acceso al sitio web. Teclea lentamente y con cuidado ¡Y no olvides tu contraseña!</value>
   </data>
   <data name="ActivatePageTitle" xml:space="preserve">
-    <value>Activar AxCrypt ID</value>
+    <value>Verificar AxCrypt ID</value>
   </data>
   <data name="ActivateSuccess" xml:space="preserve">
-    <value>¡Su AxCrypt ID ha sido activada! Por favor inicie sesión.</value>
+    <value>¡Tu AxCrypt ID ha sido activada! Por favor inicia sesión.</value>
   </data>
   <data name="ActivationCodeSentMessage" xml:space="preserve">
     <value>Le hemos enviado un e-mail a {0}</value>
     <comment>Message about mail with activation code.</comment>
   </data>
   <data name="ActivationCodeTitle" xml:space="preserve">
-    <value>Introduzca su código de activación</value>
+    <value>Introduzca su código de verificación</value>
     <comment>Title of ActivationCode step on SignUp page in mobile application</comment>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
@@ -206,7 +206,7 @@ Elija algo que es difícil de adivinar, ya que protegerá las contraseñas del a
     <value>Doble clic abre un cuadro de diálogo antes de abrir el archivo protegido.</value>
   </data>
   <data name="AddFileLabel" xml:space="preserve">
-    <value>Añadir un nuevo archivo</value>
+    <value>Añadir un archivo de AxCrypt</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
@@ -251,8 +251,8 @@ Por favor, inicie sesión usando la misma contraseña que usó entonces.</value>
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
   </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
-    <value>Nos ha transmitido su correo electrónico como parte de la instalación o uso de AxCrypt, a través de una aplicación o la web. Le enviamos un código de activación por correo electrónico, pero no la ha usado. 
-Si no verifica inmediatamente su AxCrypt ID utilizando el código de activación, nosotros lo removeremos de nuestro sistema.</value>
+    <value>Nos has facilitado tu correo electrónico como parte de la instalación o uso de AxCrypt, a través de una aplicación o la web. Te enviamos un código de verificación por correo electrónico, pero no la has usado. 
+Si no verificas inmediatamente tu AxCrypt ID utilizando el código de verificación, la eliminaremos de nuestro sistema.</value>
   </data>
   <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
     <value>Estamos a punto de eliminar su AxCrypt ID!</value>
@@ -273,7 +273,7 @@ Incluye el software de http://www.bouncycastle.org/.</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
-    <value>Activar</value>
+    <value>Verificar</value>
   </data>
   <data name="ButtonCancelAllText" xml:space="preserve">
     <value>Cancelar todo</value>
@@ -344,6 +344,10 @@ Incluye el software de http://www.bouncycastle.org/.</value>
   </data>
   <data name="ButtonSignUpText" xml:space="preserve">
     <value>Registrarse</value>
+  </data>
+  <data name="ButtonStartTrial" xml:space="preserve">
+    <value>Iniciar prueba</value>
+    <comment>Text displayed on "Start trial" button prompt.</comment>
   </data>
   <data name="ButtonSuggestText" xml:space="preserve">
     <value>Sugerir contraseña</value>
@@ -594,7 +598,7 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
     <value>Crear una contraseña nueva.</value>
   </data>
   <data name="DialogVerifyAccountTitle" xml:space="preserve">
-    <value>Activar AxCrypt ID</value>
+    <value>Verificar AxCrypt ID</value>
   </data>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Carpetas protegidas</value>
@@ -603,11 +607,11 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
     <value>Haga doble clic para abrir. Si es necesario se le pedirá una contraseña.</value>
   </data>
   <data name="EasyToWorkDescription" xml:space="preserve">
-    <value>Abrir un archivo protegido con un clic</value>
+    <value>Permite a tus amigos y colegas abrir archivos protegidos por ti</value>
     <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EasyToWorkTitle" xml:space="preserve">
-    <value>Fácil de usar</value>
+    <value>Accede a archivos con contraseña compartida</value>
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
@@ -664,7 +668,7 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
     <value>La confirmación de la contraseña no corresponde al contraseña.</value>
   </data>
   <data name="ErrorPasswordTooLong" xml:space="preserve">
-    <value>La contraseña debe tener al menos {2} y no más de {1} caracteres.</value>
+    <value>La contraseña debe tener al menos {2} caracteres.</value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>Excepción durante el proceso de '{0}'.</value>
@@ -806,11 +810,11 @@ Si, por alguna razón, no recuerda la contraseña, debe proceder a restaurar la 
     <comment>A dialog box title for general announcement and informative message dialog boxes</comment>
   </data>
   <data name="InternetNotRequiredInformation" xml:space="preserve">
-    <value>Internet NO ES NECESARIA cuando se utiliza AxCrypt.
+    <value>Internet NO ES NECESARIO para usar AxCrypt.
 
-Es recomendable tener acceso a la internet, y es imprescindible para la activación del servicio Premium. De otro modo, algunas características no funcionarán tan bien y se podrán perder las actualizaciones críticas.
+Es recomendable tener acceso a Internet, y es imprescindible para la activación del servicio Premium. De otro modo, algunas características no funcionarán tan bien y se podrán perder actualizaciones críticas.
 
-La contraseña no se almacena en el servidor, y la conexión siempre está cifrada.</value>
+La contraseña no se almacena en el servidor, y la conexión siempre está encriptada.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>El formato de correo electrónico no es válido.</value>
@@ -828,12 +832,14 @@ La contraseña no se almacena en el servidor, y la conexión siempre está cifra
     <value>URL no válida.</value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
-    <value>Usted ha sido invitado a AxCrypt seguridad de archivos de &lt;b&gt;{0}&lt;/b&gt;. Para empezar a proteger sus archivos solo &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;descargue&lt;/a&gt; e instalar AxCrypt. Iniciar sesión en AxCrypt con &lt;b&gt;{2}&lt;/b&gt;, introduzca el código de activación y configure su contraseña secreta.</value>
+    <value>Has recibido una invitación de &lt;b&gt;{0}&lt;/b&gt; para usar la aplicación de protección de archivos AxCrypt. Para empezar a proteger tus archivos &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;descarga&lt;/a&gt; e instala AxCrypt. Inicia sesión en AxCrypt con &lt;b&gt;{2}&lt;/b&gt;, introduce el código de verificación y configura tu contraseña secreta.</value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
-    <value>Usted ha sido invitado a AxCrypt Seguridad de archivos por {0}.
-Para iniciar la protección de los archivos sólo tiene que descargar e instalar AxCrypt de {1}.
-Iniciar sesión en AxCrypt con {2}, introduzca el código de activación de 6 cifras y configure el contraseña secreta.</value>
+    <value>Has sido invitado a la aplicación de protección de archivos AxCrypt por {0}.
+
+Para iniciar a proteger tus archivos sólo tienes que descargar e instalar AxCrypt de {1}.
+
+Inicia sesión en AxCrypt con {2}, introduce el código de verificación de 6 cifras y configura tu contraseña secreta.</value>
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Invitación a utilizar AxCrypt Seguridad de archivos</value>
@@ -1083,9 +1089,17 @@ Este programa se licencia según el acuerdo.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Abrir el explorador aquí</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>Hemos notado que no tienes una cuenta Premium, así que hemos iniciado una prueba gratuita de 30 días para que uses las características Premium de AxCrypt fuera de la aplicación, también requeridas para que ésta funcione.</value>
+    <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Error</value>
     <comment>Title of error message box for generic error</comment>
+  </data>
+  <data name="MessageExitConfirmation" xml:space="preserve">
+    <value>¿Seguro que quieres salir?</value>
+    <comment>Message which is displayed in mobile application, when user tries to exit from app via back button</comment>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>No puede inscribirse como '{0}'. Por favor, introduzca una dirección de correo electrónico real, y vuelve a intentarlo.</value>
@@ -1100,7 +1114,7 @@ Este programa se licencia según el acuerdo.
     <value>¡Servidor AxCrypt actualiza!</value>
   </data>
   <data name="MessageSigningUpText" xml:space="preserve">
-    <value>Usted está registrado como '{0}'. Un código de activación de 6 cifras se enviará por correo electrónico.</value>
+    <value>Estás registrado como '{0}'. Por favor, comprueba si has recibido un correo electrónico con un código de verificación de 6 cifras.</value>
   </data>
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>Regístrese para un AxCrypt ID</value>
@@ -1252,11 +1266,11 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
     <value>Restablecimiento de contraseña de AxCrypt ID</value>
   </data>
   <data name="PasswordResetPageBody" xml:space="preserve">
-    <value>Si se ha registrado anteriormente, pero ha olvidado la contraseña, o por alguna otra razón no se ha recibido o ha perdido el enlace de activación, puede volver a registrarse y solicitar una nueva activación en correo electrónico aquí.
+    <value>Si te has registrado anteriormente, pero has olvidado la contraseña, o por alguna otra razón no has recibido o has perdido el enlace de verificación, puedes volverte a registrar y solicitar un nuevo correo de verificación aquí.
 
-&lt;span class="red"&gt;Si ha olvidado su contraseña esto le permitirá iniciar la sesión de nuevo, pero no volver a tener acceso a los archivos cifrados o la información almacenada en el gestor de contraseñas en línea. Se permanecen cifrados con su contraseña anterior, y no podemos descifrarlo.&lt;/span&gt;
+&lt;span class="red"&gt;Si has olvidado tu contraseña, esto te permitirá iniciar sesión de nuevo, pero no volver a tener acceso a los archivos cifrados o la información almacenada en el gestor de contraseñas en línea; éstos permanecerán encriptados con tu contraseña anterior, y no podemos descifrarlo.&lt;/span&gt;
 
-Introduzca su correo electrónico abajo para enviar una enlace de activación a la dirección especificada. Por razones de integridad, &lt;b&gt;no se dará feedback sobre el el éxito o la falla de esta operación&lt;/b&gt;</value>
+Introduce debajo tu correo electrónico para enviar una enlace de activación o de restauración de contraseña a la dirección especificada.</value>
   </data>
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Restablecimiento de contraseña</value>
@@ -1266,9 +1280,9 @@ Introduzca su correo electrónico abajo para enviar una enlace de activación a 
     <comment>Text of link to Forgot password screen in mobile app</comment>
   </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
-    <value>Hemos intentado enviar un código de activación a &lt;b&gt;{0}&lt;/b&gt;. Por favor, compruebe su bandeja de entrada.
+    <value>Hemos intentado enviar un código de verificación a &lt;b&gt;{0}&lt;/b&gt;. Por favor, comprueba tu bandeja de entrada.
 
-Si parece que usted no lo recibe, revise su filtro de correo no deseado y compruebe que {0} es la dirección correcta.</value>
+Si parece que no lo recibes, comprueba tu filtro de correo no deseado y comprueba que {0} es la dirección correcta.</value>
   </data>
   <data name="PasswordRulesInfo" xml:space="preserve">
     <value>AxCrypt tiene un sofisticado evaluador de contraseñas basado en medir la fuerza real de la contraseña. Esta debe tener un mínimo de 8 caracteres.
@@ -1341,6 +1355,10 @@ Clasificamos las contraseñas en 4 categorías de fuerza cada vez mayores, no si
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>El intercambio de claves requiere premium. ¡Haga clic aquí para actualizar ahora!</value>
   </data>
+  <data name="PremiumNeededForMobileApp" xml:space="preserve">
+    <value>Lo sentimos, pero no tienes una cuenta Premium. Mejora tu cuenta ahora para poder usar las características Premium de AxCrypt fuera de la aplicación, también requeridas por ésta para funcionar.</value>
+    <comment>Message displaying when user works with mobile app without premium subscription.</comment>
+  </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Mantenga pulsado para ver más</value>
     <comment>Tooltip for Press and hold gesture in mobile application</comment>
@@ -1353,8 +1371,32 @@ Clasificamos las contraseñas en 4 categorías de fuerza cada vez mayores, no si
     <value>{0}/mes</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
+  <data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
+    <value>Desencriptando...</value>
+    <comment>Title of progress indicator which is displayed during file decrypting</comment>
+  </data>
+  <data name="ProgressIndicatorFeedbackMessage" xml:space="preserve">
+    <value>Enviando...</value>
+    <comment>Title of progress indicator which is displayed during feedback sending</comment>
+  </data>
+  <data name="ProgressIndicatorRegisteringMessage" xml:space="preserve">
+    <value>Registrando...</value>
+    <comment>Title of progress indicator which is displayed during SignUp operation</comment>
+  </data>
+  <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
+    <value>Iniciando sesión...</value>
+    <comment>Title of progress indicator which is displayed during SignIn operation</comment>
+  </data>
+  <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
+    <value>Iniciando prueba...</value>
+    <comment>Title of progress indicator which is displayed during trial starting</comment>
+  </data>
+  <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
+    <value>Procesando...</value>
+    <comment>Message, which is displayed in Android progress indicator.&#13;, Sample of usage:&#13;, (title)Registering...&#13;, (message)Please wait!</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
-    <value>Código de activación</value>
+    <value>Código de Verificación</value>
   </data>
   <data name="PromptAddContact" xml:space="preserve">
     <value>Añadir contacto</value>
@@ -1526,16 +1568,17 @@ Un recibo de su compra ha sido enviada a su correo electrónico.</value>
     <value>¿Nuevo usuario? Regístrate</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>Para empezar a utilizar AxCrypt tiene que registrarse, para obtener una AxCrypt ID, enviando su dirección de correo electrónico en el siguiente formulario. Se le enviará un e-mail a la dirección especificada con un enlace de activación, y al hacer clic en ese enlace se le pedirá que elija una contraseña. ¡Eso es todo!
+    <value>Para empezar a utilizar AxCrypt tienes que registrarte, para obtener una AxCrypt ID, indicando tu dirección de correo electrónico en el siguiente formulario. Se te enviará un e-mail a la dirección especificada con un enlace de verificación, y al hacer clic en ese enlace se te pedirá que elijas una contraseña. ¡Y ya está!
 
-Está incluida una prueba gratuita de 30 días de AxCrypt Premium, que podrá iniciar en cualquier momento desde la aplicación de AxCrypt.</value>
+Se incluye una prueba gratuita de 30 días de AxCrypt Premium, que podrás iniciar en cualquier momento desde la aplicación de AxCrypt.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Regístrese para AxCrypt ID</value>
   </data>
   <data name="RegisterSuccess" xml:space="preserve">
-    <value>Ahora ha registrado un ID AxCrypt!
-Revise su correo electrónico &lt;b&gt;{0}&lt;/b&gt; para un enlace de activación.</value>
+    <value>¡Has creado una AxCrypt ID!
+
+Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verificación.</value>
   </data>
   <data name="ReliabilityLabel" xml:space="preserve">
     <value>Fiabilidad</value>
@@ -1561,7 +1604,7 @@ Revise su correo electrónico &lt;b&gt;{0}&lt;/b&gt; para un enlace de activaci�
     <comment>A button in a verification dialog that causes the verification to be resent.</comment>
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
-    <value>Haga clic para reenviar el código de activación a su correo electrónico.</value>
+    <value>Haga clic para reenviar el código de verificación a su correo electrónico.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Ya ha iniciado sesión con esta contraseña! Por favor, introducir la contraseña original para este archivo.</value>
@@ -1633,11 +1676,11 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
     <value>Compartir claves</value>
   </data>
   <data name="ShareWithOthersDescription" xml:space="preserve">
-    <value>Permite que archivos protegidos sean abiertos por otros usuarios de AxCrypt con sus propias contraseñas.</value>
+    <value>Acceso en un clic al Administrador de Contraseñas de AxCrypt</value>
     <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="ShareWithOthersTitle" xml:space="preserve">
-    <value>Compartir con otros</value>
+    <value>Fácil acceso a contraseñas</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
@@ -1675,11 +1718,11 @@ Para ir a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</
     <value>Haga clic para seleccionar archivos para detener su protección.</value>
   </data>
   <data name="StrongEncryptionDescription" xml:space="preserve">
-    <value>Seguridad de archivos con encriptación AES de 128-bit o 256-bit</value>
+    <value>Abre archivos de AxCrypt en tu teléfono</value>
     <comment>Text displayed on "Strong Encryption" slide in mobile app</comment>
   </data>
   <data name="StrongEncryptionTitle" xml:space="preserve">
-    <value>Encriptación fuerte</value>
+    <value>AxCrypt Móvil</value>
     <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="SubmitFeedbackButton" xml:space="preserve">
@@ -1771,7 +1814,7 @@ El Equipo de AxCrypt</value>
     <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
   </data>
   <data name="TryItDescription" xml:space="preserve">
-    <value>Es gratis.</value>
+    <value>Protege tus archivos en el escritorio y léelos por el camino</value>
     <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="TryItTitle" xml:space="preserve">
@@ -1826,6 +1869,10 @@ El Equipo de AxCrypt</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Ha actualizado AxCrypt. Desafortunadamente, su configuración debe ser reiniciado. Después de reiniciar, por desgracia, se perderán sus preferencias y configuración. Nos disculpamos por el inconveniente. Sus archivos cifrados siguen estando protegidos.</value>
+  </data>
+  <data name="VerificationEmailSentTitle" xml:space="preserve">
+    <value>Enlace de Verificación enviado</value>
+    <comment>The title of the page stating that a verification email has been sent.</comment>
   </data>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Por favor, verifique su nueva cuenta</value>
@@ -2066,7 +2113,7 @@ Para cifrar los primeros archivos, haga clic en el icono + en la barra de herram
     <value>Contraseña incorrecta. Por favor, inténtelo de nuevo.</value>
   </data>
   <data name="WrongVerificationCode" xml:space="preserve">
-    <value>Código de activación incorrecto. Por favor, vuelva a revisar su correo electrónico.</value>
+    <value>Código de verificación incorrecto. Por favor, vuelva a comprobar su correo electrónico.</value>
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>El código de verificación debe ser exactamente 6 cifras</value>
