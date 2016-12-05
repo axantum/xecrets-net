@@ -268,6 +268,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(LastKnownPremiumDaysLeft), value); }
         }
 
+        public bool ShouldDisplayHelpOverlayAutomatically
+        {
+            get { return Load(nameof(ShouldDisplayHelpOverlayAutomatically), true); }
+            set { Store(nameof(ShouldDisplayHelpOverlayAutomatically), value); }
+        }
+
         public T Load<T>(string key)
         {
             return Load(key, default(T));
