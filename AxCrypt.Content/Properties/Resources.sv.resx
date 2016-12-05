@@ -207,7 +207,7 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
     <value>Dubbelklick öppnar en dialog där du kan ange lösenord innan filen kan öppnas.</value>
   </data>
   <data name="AddFileLabel" xml:space="preserve">
-    <value>Lägg till fil</value>
+    <value>Öppna AxCrypt-fil</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
@@ -345,6 +345,10 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   </data>
   <data name="ButtonSignUpText" xml:space="preserve">
     <value>Registrera</value>
+  </data>
+  <data name="ButtonStartTrial" xml:space="preserve">
+    <value>Prova nu</value>
+    <comment>Text displayed on "Start trial" button prompt.</comment>
   </data>
   <data name="ButtonSuggestText" xml:space="preserve">
     <value>Lösenordsförslag</value>
@@ -607,11 +611,11 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Dubbelklicka för att öppna. Om det behövs kommer lösenord att efterfrågas.</value>
   </data>
   <data name="EasyToWorkDescription" xml:space="preserve">
-    <value>Öppna en säkrad fil med ett klick</value>
+    <value>Öppna filer säkrade för dig från vänner eller kollegor</value>
     <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EasyToWorkTitle" xml:space="preserve">
-    <value>Lätt att använda</value>
+    <value>Öppna filer med delad nyckel</value>
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
@@ -1092,9 +1096,17 @@ Detta program är licensierat i enlighet med avtalet.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Öppna Utforskaren Här</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>Det verkar inte som du har Premium, så vi har automatiskt startat en 30-dagars provperiod så att du kan använda funktionerna som erbjuds av AxCrypt utanför appen, som också krävs för appen.</value>
+    <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Fel</value>
     <comment>Title of error message box for generic error</comment>
+  </data>
+  <data name="MessageExitConfirmation" xml:space="preserve">
+    <value>Vill du verkligen avsluta?</value>
+    <comment>Message which is displayed in mobile application, when user tries to exit from app via back button</comment>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>Det går inte att använda '{0}'. Vänligen ange din riktiga e-postadress och försök igen.</value>
@@ -1350,6 +1362,10 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Nyckeldelning kräver Premium. Klicka för att uppgradera!</value>
   </data>
+  <data name="PremiumNeededForMobileApp" xml:space="preserve">
+    <value>Det verkar inte som du har Premium. Uppgradera nu så att du kan använda funktionerna som erbjuds av AxCrypt utanför appen, som också krävs för appen.</value>
+    <comment>Message displaying when user works with mobile app without premium subscription.</comment>
+  </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Tryck och håll för att se mer</value>
     <comment>Tooltip for Press and hold gesture in mobile application</comment>
@@ -1361,6 +1377,30 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
   <data name="PricePerMonth" xml:space="preserve">
     <value>{0}/månad</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
+  <data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
+    <value>Öppnar...</value>
+    <comment>Title of progress indicator which is displayed during file decrypting</comment>
+  </data>
+  <data name="ProgressIndicatorFeedbackMessage" xml:space="preserve">
+    <value>Skickar...</value>
+    <comment>Title of progress indicator which is displayed during feedback sending</comment>
+  </data>
+  <data name="ProgressIndicatorRegisteringMessage" xml:space="preserve">
+    <value>Registrerar...</value>
+    <comment>Title of progress indicator which is displayed during SignUp operation</comment>
+  </data>
+  <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
+    <value>Loggar in...</value>
+    <comment>Title of progress indicator which is displayed during SignIn operation</comment>
+  </data>
+  <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
+    <value>Startar prov...</value>
+    <comment>Title of progress indicator which is displayed during trial starting</comment>
+  </data>
+  <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
+    <value>Arbetar...</value>
+    <comment>Message, which is displayed in Android progress indicator.&#13;, Sample of usage:&#13;, (title)Registering...&#13;, (message)Please wait!</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Verifieringskod</value>
@@ -1644,11 +1684,11 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
     <value>Åtkomstdela</value>
   </data>
   <data name="ShareWithOthersDescription" xml:space="preserve">
-    <value>Låt andra AxCrypt-användare öppna skyddade filer med sitt eget lösenord.</value>
+    <value>Öppna AxCrypt Lösenordshanterare med ett klick</value>
     <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="ShareWithOthersTitle" xml:space="preserve">
-    <value>Dela med andra</value>
+    <value>Enkel åtkomst av lösenord</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
@@ -1686,11 +1726,11 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
     <value>Klicka och välj filer att avlägsna skyddet från.</value>
   </data>
   <data name="StrongEncryptionDescription" xml:space="preserve">
-    <value>Säkerhet med 128- eller 256-bit AES-kryptering</value>
+    <value>Öppna AxCrypt-filer i mobilen</value>
     <comment>Text displayed on "Strong Encryption" slide in mobile app</comment>
   </data>
   <data name="StrongEncryptionTitle" xml:space="preserve">
-    <value>Stark kryptering</value>
+    <value>AxCrypt i Mobilen</value>
     <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="SubmitFeedbackButton" xml:space="preserve">
@@ -1785,7 +1825,7 @@ Vi på AxCrypt</value>
     <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
   </data>
   <data name="TryItDescription" xml:space="preserve">
-    <value>Det är gratis</value>
+    <value>Säkra dokument med AxCrypt i datorn, och läs dem i mobilen</value>
     <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="TryItTitle" xml:space="preserve">
