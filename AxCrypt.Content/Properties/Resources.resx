@@ -1589,7 +1589,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
   </data>
   <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
     <value>Working...</value>
-    <comment>Message, which is displayed in Android progress indicator., Sample of usage:, (title)Registering..., (message)Please wait!</comment>
+    <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Verification Code</value>
@@ -1932,6 +1932,10 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SslRequiredTitle" xml:space="preserve">
     <value>Secure Connection Required</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
+  </data>
+  <data name="StartupTipTryMobileApp" xml:space="preserve">
+    <value>Mobile apps for Android and iOS are now included in AxCrypt Premium. Would you like to know more?</value>
+    <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Click to select files to stop securing.</value>
