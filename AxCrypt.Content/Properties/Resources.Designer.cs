@@ -4878,6 +4878,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mobile apps for Android and iOS are now included in AxCrypt Premium. Would you like to know more?.
+        /// </summary>
+        public static string StartupTipTryMobileApp {
+            get {
+                return ResourceManager.GetString("StartupTipTryMobileApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to select files to stop securing..
         /// </summary>
         public static string StopSecuringToolTipText {
