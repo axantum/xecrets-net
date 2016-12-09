@@ -251,6 +251,32 @@ namespace Axantum.AxCrypt.Api
             ApiCaller.EnsureStatusOk(restResponse);
         }
 
+        public async Task<AccountTip> GetAccountTip(AppTypes appType)
+        {
+            Uri resource = BaseUrl.PathCombine($"users/my/account/tip?apptype={appType}");
+
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return new AccountTip();
+            }
+
+            try
+            {
+                RestResponse response = await Caller.RestAsync(Identity, new RestRequest("GET", resource, Timeout));
+                ApiCaller.EnsureStatusOk(response);
+
+                AccountTip tip = Serializer.Deserialize<AccountTip>(response.Content);
+                return tip;
+            }
+            catch (OfflineApiException oaex)
+            {
+                New<IReport>().Exception(oaex);
+                New<AxCryptOnlineState>().IsOffline = true;
+            }
+
+            return new AccountTip();
+        }
+
         public async Task<AxCryptVersion> AxCryptUpdateAsync(Version currentVersion, string cultureName)
         {
             Uri resource;

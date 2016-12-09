@@ -63,6 +63,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartupTipButtonStyle.cs" />
     <Compile Include="StartupTipLevel.cs" />
+    <Compile Include="StartupTipMessage.cs" />
+    <Compile Include="StartupTipProperties.cs" />
     <Compile Include="StartupTipUrl.cs" />
     <Compile Include="UpdateLevels.cs" />
     <Compile Include="VersionUpdateKind.cs" />

@@ -26,5 +26,8 @@ namespace Axantum.AxCrypt.Api.Model
 
         [JsonProperty("button_style")]
         public StartupTipButtonStyle ButtonStyle { get; set; }
+
+        [JsonProperty("url")]
+        public Uri Url { get; set; }
     }
 }
