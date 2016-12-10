@@ -290,5 +290,62 @@ namespace Axantum.AxCrypt.Core.UI
             }
             return null;
         }
+
+        public FileOperationContext OpenFileLocation(string fileFullName)
+        {
+         
+           ILauncher process;
+            IDataStore fileInfo = New<IDataStore>(fileFullName);
+           try
+            {
+                if (Resolve.Log.IsInfoEnabled)
+                {
+                    Resolve.Log.LogInfo("Starting process to lunch container for '{0}'".InvariantFormat(fileFullName));
+                }
+                process = New<ILauncher>();
+            
+                   process.Launch(fileInfo.Container.FullName);
+                
+                if (process.WasStarted)
+                {
+                    process.Exited += new EventHandler(process_Exited);
+                }
+                else
+                {
+                   
+                    if (Resolve.Log.IsInfoEnabled)
+                    {
+                        Resolve.Log.LogInfo("Starting process to lunch container for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(fileFullName));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                New<IReport>().Exception(ex);
+                if (Resolve.Log.IsErrorEnabled)
+                {
+                    Resolve.Log.LogError("Could not launch container for '{0}', Exception was '{1}'.".InvariantFormat(fileFullName, ex.Message));
+                }
+                return new FileOperationContext(fileFullName, ErrorStatus.CannotStartApplication);
+            }
+
+            if (Resolve.Log.IsWarningEnabled)
+            {
+                if (process.HasExited)
+                {
+                    Resolve.Log.LogWarning("The process seems to exit immediately for '{0}'".InvariantFormat(fileFullName));
+                }
+            }
+
+            if (Resolve.Log.IsInfoEnabled)
+            {
+                Resolve.Log.LogInfo("Launched container for '{0}'.".InvariantFormat(fileFullName));
+            }
+
+           
+
+            return new FileOperationContext(String.Empty, ErrorStatus.Success);
+        }
+
     }
 }

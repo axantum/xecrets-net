@@ -83,6 +83,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             OpenFilesFromFolder = new AsyncDelegateAction<string>(async (folder) => await OpenFilesFromFolderActionAsync(folder), (folder) => true);
             AddRecentFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await AddRecentFilesActionAsync(files));
             AsyncUpgradeFiles = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => UpgradeFilesActionAsync(containers), (containers) => _knownIdentities.IsLoggedOn);
+            ShowInFolder = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await ShowInFolderActionAsync(files));
         }
 
         public IAsyncAction DecryptFiles { get; private set; }
@@ -102,6 +103,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction AddRecentFiles { get; private set; }
 
         public IAsyncAction AsyncUpgradeFiles { get; private set; }
+
+        public IAsyncAction ShowInFolder { get; private set; }
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
@@ -498,6 +501,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     ((AsyncDelegateAction<string>)OpenFilesFromFolder).RaiseCanExecuteChanged();
                     break;
             }
+        }
+
+        private async Task ShowInFolderActionAsync(IEnumerable<string> files)
+        {
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), OpenFileLocationAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
+        }
+        private async Task<FileOperationContext> OpenFileLocationAsync(IDataStore file, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            return await operationsController.OpenFileLocationAsync(file);
         }
     }
 }
