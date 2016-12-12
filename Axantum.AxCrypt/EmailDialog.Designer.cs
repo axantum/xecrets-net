@@ -34,8 +34,6 @@
             this._firstTimePromptlabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this._panel1 = new System.Windows.Forms.Panel();
-            this._buttonHelp = new System.Windows.Forms.Button();
-            this._buttonExit = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
             this.EmailPanel = new System.Windows.Forms.Panel();
             this._emailGroupBox = new System.Windows.Forms.GroupBox();
@@ -61,13 +59,13 @@
             this.panel1.Size = new System.Drawing.Size(307, 55);
             this.panel1.TabIndex = 4;
             // 
-            // label1
+            // _firstTimePromptlabel
             // 
             this._firstTimePromptlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._firstTimePromptlabel.Location = new System.Drawing.Point(3, 7);
-            this._firstTimePromptlabel.Name = "label1";
+            this._firstTimePromptlabel.Name = "_firstTimePromptlabel";
             this._firstTimePromptlabel.Size = new System.Drawing.Size(301, 41);
             this._firstTimePromptlabel.TabIndex = 0;
             this._firstTimePromptlabel.Text = "[The first time you start AxCrypt, Internet access and a real email address is re" +
@@ -87,8 +85,6 @@
             // _panel1
             // 
             this._panel1.AutoSize = true;
-            this._panel1.Controls.Add(this._buttonHelp);
-            this._panel1.Controls.Add(this._buttonExit);
             this._panel1.Controls.Add(this._buttonOk);
             this._panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this._panel1.Location = new System.Drawing.Point(0, 59);
@@ -96,34 +92,12 @@
             this._panel1.Size = new System.Drawing.Size(307, 41);
             this._panel1.TabIndex = 7;
             // 
-            // _buttonHelp
-            // 
-            this._buttonHelp.CausesValidation = false;
-            this._buttonHelp.Location = new System.Drawing.Point(198, 6);
-            this._buttonHelp.Name = "_buttonHelp";
-            this._buttonHelp.Size = new System.Drawing.Size(75, 23);
-            this._buttonHelp.TabIndex = 2;
-            this._buttonHelp.Text = "[Help]";
-            this._buttonHelp.UseVisualStyleBackColor = true;
-            this._buttonHelp.Click += new System.EventHandler(this._buttonHelp_Click);
-            // 
-            // _buttonExit
-            // 
-            this._buttonExit.CausesValidation = false;
-            this._buttonExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._buttonExit.Location = new System.Drawing.Point(116, 6);
-            this._buttonExit.Name = "_buttonExit";
-            this._buttonExit.Size = new System.Drawing.Size(75, 23);
-            this._buttonExit.TabIndex = 1;
-            this._buttonExit.Text = "[Exit]";
-            this._buttonExit.UseVisualStyleBackColor = true;
-            // 
             // _buttonOk
             // 
             this._buttonOk.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(34, 6);
+            this._buttonOk.Location = new System.Drawing.Point(116, 6);
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(75, 23);
             this._buttonOk.TabIndex = 0;
@@ -141,14 +115,14 @@
             this.EmailPanel.Size = new System.Drawing.Size(307, 59);
             this.EmailPanel.TabIndex = 6;
             // 
-            // groupBox1
+            // _emailGroupBox
             // 
             this._emailGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._emailGroupBox.Controls.Add(this.EmailTextBox);
             this._emailGroupBox.Location = new System.Drawing.Point(12, 12);
             this._emailGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
-            this._emailGroupBox.Name = "groupBox1";
+            this._emailGroupBox.Name = "_emailGroupBox";
             this._emailGroupBox.Size = new System.Drawing.Size(282, 44);
             this._emailGroupBox.TabIndex = 0;
             this._emailGroupBox.TabStop = false;
@@ -168,7 +142,6 @@
             this.AcceptButton = this._buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this._buttonExit;
             this.ClientSize = new System.Drawing.Size(307, 155);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -202,7 +175,5 @@
         private System.Windows.Forms.Panel EmailPanel;
         private System.Windows.Forms.GroupBox _emailGroupBox;
         internal System.Windows.Forms.TextBox EmailTextBox;
-        private System.Windows.Forms.Button _buttonExit;
-        private System.Windows.Forms.Button _buttonHelp;
     }
 }
