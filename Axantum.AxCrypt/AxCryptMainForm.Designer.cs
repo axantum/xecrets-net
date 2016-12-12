@@ -122,6 +122,7 @@
             this._notifySignInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifyExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._recentFilesShowInFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -160,9 +161,10 @@
             this._recentFilesOpenToolStripMenuItem,
             this._removeRecentFileToolStripMenuItem,
             this._decryptAndRemoveFromListToolStripMenuItem,
-            this._shareKeysToolStripMenuItem});
+            this._shareKeysToolStripMenuItem,
+            this._recentFilesShowInFolderToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
-            this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 92);
+            this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 136);
             // 
             // _recentFilesOpenToolStripMenuItem
             // 
@@ -1061,6 +1063,12 @@
             this._notifyExitToolStripMenuItem.Text = "[&Exit]";
             this._notifyExitToolStripMenuItem.Click += new System.EventHandler(this._exitToolStripMenuItem_Click);
             // 
+            // _recentFilesShowInFolderToolStripMenuItem
+            // 
+            this._recentFilesShowInFolderToolStripMenuItem.Name = "_recentFilesShowInFolderToolStripMenuItem";
+            this._recentFilesShowInFolderToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this._recentFilesShowInFolderToolStripMenuItem.Text = "[Show in &Folder]";
+            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1208,6 +1216,7 @@
         private System.Windows.Forms.ToolStripMenuItem _notifySignOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _notifyExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _notifySignInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _recentFilesShowInFolderToolStripMenuItem;
     }
 }
 

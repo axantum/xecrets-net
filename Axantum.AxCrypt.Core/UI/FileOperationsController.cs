@@ -213,6 +213,16 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         /// <summary>
+        /// Launch the containing folder.
+        /// </summary>
+        /// <param name="fileInfo">The full path to an encrypted file.</param>
+        /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
+        public Task<FileOperationContext> OpenFileLocationAsync(IDataStore fileInfo)
+        {
+            return DoFileAsync(fileInfo, OpenFileLocationPreparationAsync, OpenFileLocationOperation);
+        }
+
+        /// <summary>
         /// Verify that a file is encrypted with a known key.
         /// </summary>
         /// <param name="fileInfo">The file to verify.</param>
@@ -651,6 +661,18 @@ namespace Axantum.AxCrypt.Core.UI
             return ok;
         }
 
+        private Task<bool> OpenFileLocationPreparationAsync(IDataStore fileInfo)
+        {
+            _eventArgs.OpenFileFullName = fileInfo.FullName;
+
+            return Task.FromResult(true); ;
+        }
+        private bool OpenFileLocationOperation()
+        {
+            _eventArgs.Status = New<FileOperation>().OpenFileLocation(_eventArgs.OpenFileFullName);
+
+            return true;
+        }
         #endregion Private Methods
     }
 }
