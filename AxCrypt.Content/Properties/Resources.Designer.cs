@@ -430,6 +430,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For security reasons, please enter your password again..
+        /// </summary>
+        public static string AppSignInMessage {
+            get {
+                return ResourceManager.GetString("AppSignInMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The page you tried to visit requires authentication. Please sign in to proceed..
         /// </summary>
         public static string AuthenticationError {

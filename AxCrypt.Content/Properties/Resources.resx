@@ -256,6 +256,10 @@ Please sign in using the same password you used then.</value>
     <value>AxCrypt</value>
     <comment>Title of mobile application</comment>
   </data>
+  <data name="AppSignInMessage" xml:space="preserve">
+    <value>For security reasons, please enter your password again.</value>
+    <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
+  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>The page you tried to visit requires authentication. Please sign in to proceed.</value>
   </data>
