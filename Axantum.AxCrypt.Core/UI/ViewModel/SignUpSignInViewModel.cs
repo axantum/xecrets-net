@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
@@ -103,6 +104,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 New<IPopup>().Show(PopupButtons.Ok, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
                 Resolve.UserSettings.IsFirstSignIn = false;
+                return;
+            }
+
+            AccountTip tip = await New<AxCryptApiClient>().GetAccountTipAsync(AppTypes.AxCryptWindows2);
+            if (!string.IsNullOrEmpty(tip.Message))
+            {
+                tip.ShowPopup();
             }
         }
 

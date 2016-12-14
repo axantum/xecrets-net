@@ -1,12 +1,14 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -280,6 +282,54 @@ namespace Axantum.AxCrypt.Core.Extensions
             IEnumerable<EmailAddress> sharedWithEmailAddresses = watchedFolders.SelectMany(wf => wf.KeyShares).Distinct();
 
             return sharedWithEmailAddresses;
+        }
+
+        public static void ShowPopup(this AccountTip tip)
+        {
+            string title;
+            switch (tip.Level)
+            {
+                case StartupTipLevel.Information:
+                    title = Texts.InformationTitle;
+                    break;
+
+                case StartupTipLevel.Warning:
+                    title = Texts.WarningTitle;
+                    break;
+
+                case StartupTipLevel.Critical:
+                    title = Texts.WarningTitle;
+                    break;
+
+                default:
+                    throw new InvalidOperationException("Unexpected tip level.");
+            }
+
+            PopupButtons clicked;
+            switch (tip.ButtonStyle)
+            {
+                case StartupTipButtonStyle.YesNo:
+                    clicked = New<IPopup>().Show(PopupButtons.OkCancel, title, tip.Message);
+                    break;
+
+                case StartupTipButtonStyle.Ok:
+                    clicked = New<IPopup>().Show(PopupButtons.Ok, title, tip.Message);
+                    break;
+
+                default:
+                    clicked = New<IPopup>().Show(PopupButtons.Ok, title, tip.Message);
+                    break;
+            }
+
+            if (clicked != PopupButtons.Ok)
+            {
+                return;
+            }
+            if (tip.Url == null)
+            {
+                return;
+            }
+            New<ILauncher>().Launch(tip.Url.ToString());
         }
     }
 }

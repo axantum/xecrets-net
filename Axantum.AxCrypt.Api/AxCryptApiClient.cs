@@ -251,11 +251,15 @@ namespace Axantum.AxCrypt.Api
             ApiCaller.EnsureStatusOk(restResponse);
         }
 
-        public async Task<AccountTip> GetAccountTip(AppTypes appType)
+        public async Task<AccountTip> GetAccountTipAsync(AppTypes appType)
         {
-            Uri resource = BaseUrl.PathCombine($"users/my/account/tip?apptype={appType}");
+            Uri resource = BaseUrl.PathCombine($"users/my/account/tip?apptype={(int)appType}");
 
             if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return new AccountTip();
+            }
+            if (Identity.IsEmpty)
             {
                 return new AccountTip();
             }
