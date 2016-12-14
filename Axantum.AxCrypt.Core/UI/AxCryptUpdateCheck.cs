@@ -104,7 +104,10 @@ namespace Axantum.AxCrypt.Core.UI
                 try
                 {
                     DownloadVersion newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl, cultureName).Free();
-                    OnVersionUpdate(new VersionEventArgs(newVersion, lastCheckTimeUtc));
+                    if (newVersion.Url != null)
+                    {
+                        OnVersionUpdate(new VersionEventArgs(newVersion, lastCheckTimeUtc));
+                    }
                 }
                 finally
                 {
