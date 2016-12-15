@@ -439,6 +439,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        public static string AppVersionLabel {
+            get {
+                return ResourceManager.GetString("AppVersionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The page you tried to visit requires authentication. Please sign in to proceed..
         /// </summary>
         public static string AuthenticationError {
