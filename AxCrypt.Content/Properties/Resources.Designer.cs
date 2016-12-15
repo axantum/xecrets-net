@@ -2566,7 +2566,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}secrets?email={1}.
+        ///   Looks up a localized string similar to {0}secrets?email={1}&amp;app.
         /// </summary>
         public static string LinkToSecretsPageWithUserNameFormat {
             get {

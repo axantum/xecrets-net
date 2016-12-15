@@ -1024,7 +1024,7 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>http://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
-    <value>{0}secrets?email={1}</value>
+    <value>{0}secrets?email={1}&amp;app</value>
   </data>
   <data name="LinkToSignUpWebPage" xml:space="preserve">
     <value>{0}Home/Register</value>
