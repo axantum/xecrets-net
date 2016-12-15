@@ -262,6 +262,7 @@ namespace Axantum.AxCrypt
             _signOutToolStripMenuItem.Text = "&" + Texts.LogOffText;
             _spanishLanguageToolStripMenuItem.Text = "&" + Texts.SpanishLanguageToolStripMenuItemText;
             _swedishLanguageToolStripMenuItem.Text = "&" + Texts.SwedishLanguageToolStripMenuItemText;
+            _turkishLanguageToolStripMenuItem.Text = "&" + Texts.TurkishLanguageToolStripMenuItemText;
             _tryBrokenFileToolStripMenuItem.Text = "&" + Texts.TryBrokenFileToolStripMenuItemText;
             _upgradeLegacyMenuItem.Text = "&" + Texts.UpgradeLegacyFilesMenuItemText;
             _upgradeLegacyMenuItem.ToolTipText = Texts.UpgradeLegacyFilesMenuToolTip;

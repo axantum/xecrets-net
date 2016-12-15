@@ -5323,6 +5323,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Türkçe.
+        /// </summary>
+        public static string TurkishLanguageToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("TurkishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown.
         /// </summary>
         public static string UnknownCrypto {

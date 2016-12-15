@@ -2102,6 +2102,10 @@ The AxCrypt Team</value>
     <value>You are not using the highest level of security. Click to try Premium for free now!</value>
     <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
   </data>
+  <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>Türkçe</value>
+    <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
   <data name="UnknownCrypto" xml:space="preserve">
     <value>Unknown</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
