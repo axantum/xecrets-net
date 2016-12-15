@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt
 
             _newContact.TextChanged += (sender, e) =>
             {
-                _viewModel.NewKeyShare = _newContact.Text;
+                _viewModel.NewKeyShare = _newContact.Text.Trim();
             };
             _newContact.Enter += (sender, e) => { _sharedWith.ClearSelected(); _notSharedWith.ClearSelected(); };
 
