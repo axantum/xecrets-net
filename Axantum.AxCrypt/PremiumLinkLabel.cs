@@ -23,10 +23,12 @@ namespace Axantum.AxCrypt
     public class PremiumLinkLabel : LinkLabel
     {
         private ToolTip _toolTip = new ToolTip();
+        private PremiumStatus? _status;
 
         public async Task ConfigureAsync(LogOnIdentity identity)
         {
             PremiumInfo pi = await PremiumInfo.CreateAsync(identity);
+            _status = pi.PremiumStatus;
             switch (pi.PremiumStatus)
             {
                 case PremiumStatus.Unknown:
@@ -75,6 +77,11 @@ namespace Axantum.AxCrypt
         protected override async void OnClick(EventArgs e)
         {
             base.OnClick(e);
+            await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
+            if (!Visible)
+            {
+                New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.LicensePolicyChange));
+            }
             await PremiumWarningClickAsync();
         }
 
@@ -89,17 +96,23 @@ namespace Axantum.AxCrypt
 
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
 
-            if (Text == Texts.TryPremiumLabel)
+            switch (_status.GetValueOrDefault())
             {
-                await accountService.StartPremiumTrialAsync();
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
-                await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
-                New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.LicensePolicyChange));
-                return;
-            }
+                case PremiumStatus.CanTryPremium:
+                    await accountService.StartPremiumTrialAsync();
+                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
+                    await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
+                    New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.LicensePolicyChange));
+                    break;
 
-            await DisplayPremiumPurchasePage(accountService);
-            return;
+                case PremiumStatus.NoPremium:
+                case PremiumStatus.OfflineNoPremium:
+                    await DisplayPremiumPurchasePage(accountService);
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private static async Task DisplayPremiumPurchasePage(IAccountService accountService)

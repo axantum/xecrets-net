@@ -1563,7 +1563,10 @@ namespace Axantum.AxCrypt
 
         private void EncryptPendingFiles()
         {
-            _mainViewModel.EncryptPendingFiles.Execute(null);
+            if (_mainViewModel != null)
+            {
+                _mainViewModel.EncryptPendingFiles.Execute(null);
+            }
         }
 
         private void WarnIfAnyDecryptedFiles()
