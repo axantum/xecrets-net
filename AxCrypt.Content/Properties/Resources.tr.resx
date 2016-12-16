@@ -208,6 +208,9 @@ http://www.bouncycastle.org/ tarafından yazılım içerir.</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Otomatik yazılım değil gerçek bir insan olduğunuzu doğrulayın!</value>
   </data>
+  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
+    <value>AxCrypt e-posta adresinizi &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt; olarak değiştirme talebinde bulundunuz. Bu işlemi onaylamak için lütfen aşağıdaki tuşa basın.</value>
+  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Güncel şifrenizle bağlanın ve eski AxCrypt kimliğiniz temelli olarak silinecektir.</value>
   </data>
@@ -718,9 +721,6 @@ Onay bağı için e-posta kutunuzu &lt;b&gt;{0}&lt;/b&gt; kontrol edin.</value>
   <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
     <value>Bir güvenilirlik sorunundan dolayı yazılımınızın güncellenmesi gerekmektedir.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
-  </data>
-  <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Anasayfa/Kayıt</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Zaten bu şifreyle bağlısınız! Lütfen bu dosyanın orijinal şifresini verin.</value>
