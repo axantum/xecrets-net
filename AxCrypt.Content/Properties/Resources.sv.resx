@@ -244,6 +244,14 @@ Logga nu in med samma lösenord som du angav då.</value>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Dölj det verkliga namnet för en skyddad fil genom att ge den ett slumpmässigt namn.</value>
   </data>
+  <data name="AppSignInMessage" xml:space="preserve">
+    <value>Av säkerhetsskäl måste du ange ditt lösenord igen.</value>
+    <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
+  </data>
+  <data name="AppVersionLabel" xml:space="preserve">
+    <value>Version {0}</value>
+    <comment>Text containing information about current application version.</comment>
+  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>Sidan kräver inloggning, vänligen logga in och fortsätt.</value>
   </data>
@@ -1400,7 +1408,7 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
   </data>
   <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
     <value>Arbetar...</value>
-    <comment>Message, which is displayed in Android progress indicator.&#13;, Sample of usage:&#13;, (title)Registering...&#13;, (message)Please wait!</comment>
+    <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Verifieringskod</value>
@@ -1524,7 +1532,7 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
     <value>Tack för att du köpte AxCrypt Premium!</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>Nu har du tillgång till all Premiumfunktionalitet. Om du har några problem, kontakta vår support.
+    <value>Nu har du tillgång till all Premiumfunktionalitet. Du kan behöva logga ut och logga in igen från appen.  Om du har några problem, kontakta vår support.
 
 Ett kvitto på ditt köp har skickats till din epostadress.</value>
   </data>
@@ -1721,6 +1729,10 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="SslRequiredTitle" xml:space="preserve">
     <value>En säker förbindelse krävs.</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
+  </data>
+  <data name="StartupTipTryMobileApp" xml:space="preserve">
+    <value>Mobilappar för Android och iOS ingår nu i AxCrypt Premium. Vill du veta mer?</value>
+    <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Klicka och välj filer att avlägsna skyddet från.</value>

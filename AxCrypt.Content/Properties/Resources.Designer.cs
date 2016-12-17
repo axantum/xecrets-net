@@ -4354,7 +4354,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re now able to access all the premium features of AxCrypt. If you experience any problems, please contact our support.
+        ///   Looks up a localized string similar to You&apos;re now able to access all the premium features of AxCrypt. You may need to sign out of the app and sign in again. If you experience any problems, please contact our support.
         ///
         ///A receipt of your purchase has been sent to your e-mail..
         /// </summary>
