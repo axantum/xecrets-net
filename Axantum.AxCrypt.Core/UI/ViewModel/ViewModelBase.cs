@@ -33,6 +33,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -166,15 +167,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     throw new ArgumentException("Non-existing property name.", columnName);
                 }
+
                 bool isValid;
+
                 try
                 {
                     isValid = Task.Run(async () => await ValidateAsync(columnName)).Result;
                 }
                 catch (AggregateException aex)
                 {
-                    throw aex.InnerExceptions.First();
+                    Exception innerException = aex.InnerExceptions.First();
+                    ExceptionDispatchInfo.Capture(innerException).Throw();
+                    return string.Empty;
                 }
+
                 return isValid ? String.Empty : ValidationError.ToString(CultureInfo.InvariantCulture);
             }
         }

@@ -38,6 +38,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -419,7 +420,7 @@ namespace Axantum.AxCrypt.Core
                         IEnumerable<Exception> axCryptExceptions = exceptions.Where(ex2 => ex2 is AxCryptException);
                         if (axCryptExceptions.Any())
                         {
-                            throw axCryptExceptions.First();
+                            ExceptionDispatchInfo.Capture(axCryptExceptions.First()).Throw();
                         }
 
                         Exception ex = exceptions.First();
