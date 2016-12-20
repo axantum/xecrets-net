@@ -124,6 +124,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         protected void BindPropertyChangedInternal<T>(string name, Action<T> action)
         {
+            PropertyInfo pi = GetType().GetRuntimeProperty(name);
+            if (pi.PropertyType != typeof(T))
+            {
+                throw new InvalidOperationException($"Binding to property {name} with type {pi.PropertyType} using mismatching type {typeof(T)} is not allowed.");
+            }
+
             List<Action<object>> actions;
             if (!_actions.TryGetValue(name, out actions))
             {
