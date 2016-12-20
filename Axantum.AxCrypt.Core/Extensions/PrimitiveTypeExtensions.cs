@@ -176,6 +176,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 case ValidationError.IdentityExistsAlready:
                 case ValidationError.OnlineRequired:
                 case ValidationError.PremiumRequired:
+                case ValidationError.KeyFileInaccessible:
                 default:
                     return "Unexpected Validation Error";
             }

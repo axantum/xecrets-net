@@ -109,6 +109,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     if (!New<IDataStore>(KeyFileName).IsAvailable)
                     {
+                        ValidationError = (int)ViewModel.ValidationError.KeyFileInaccessible;
                         return false;
                     }
                     try
@@ -120,6 +121,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     catch (IOException ioex)
                     {
                         New<IReport>().Exception(ioex);
+                        ValidationError = (int)ViewModel.ValidationError.KeyFileInaccessible;
                         return false;
                     }
                     return true;
