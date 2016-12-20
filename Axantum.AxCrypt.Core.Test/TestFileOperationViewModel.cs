@@ -814,6 +814,11 @@ namespace Axantum.AxCrypt.Core.Test
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File3-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
         }
 
+        // Intermittent. See intermittent issue with TestDecryptFilesUniqueWithWipeOfOriginal.
+        // Expected invocation on the mock once, but was 0 times: m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>())
+        // No setups configured.
+        // No invocations performed.
+        // Last failure: 2016-12-20
         [Test]
         public async Task TestWipeFilesCancelingAfterOneWithWork()
         {
