@@ -48,18 +48,23 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private AccountStorage _accountStorage;
 
-        public ManageAccountViewModel(AccountStorage accountStorage)
+        public static async Task<ManageAccountViewModel> CreateAsync(AccountStorage accountStorage)
         {
-            _accountStorage = accountStorage;
+            ManageAccountViewModel vm = new ManageAccountViewModel();
 
-            InitializePropertyValues();
+            vm._accountStorage = accountStorage;
+
+            await vm.InitializePropertyValuesAsync();
+
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
+
+            return vm;
         }
 
-        private void InitializePropertyValues()
+        private async Task InitializePropertyValuesAsync()
         {
-            AccountProperties = _accountStorage.AllKeyPairsAsync().Result.Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
+            AccountProperties = (await _accountStorage.AllKeyPairsAsync()).Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
 
             ChangePassphraseAsync = new AsyncDelegateAction<string>(async (password) => await ChangePassphraseActionAsync(password), (password) => _accountStorage.AllKeyPairsAsync().Result.Any());
         }

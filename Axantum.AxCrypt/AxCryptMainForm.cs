@@ -1895,7 +1895,7 @@ namespace Axantum.AxCrypt
         private async void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
-            ManageAccountViewModel viewModel = new ManageAccountViewModel(accountStorage);
+            ManageAccountViewModel viewModel = await ManageAccountViewModel.CreateAsync(accountStorage);
 
             string passphrase;
             using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Texts.ChangePassphraseDialogTitle, String.Empty, String.Empty))

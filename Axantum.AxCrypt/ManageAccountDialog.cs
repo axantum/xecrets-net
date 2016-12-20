@@ -31,12 +31,20 @@ namespace Axantum.AxCrypt
         public ManageAccountDialog(Form parent, UserSettings userSettings)
             : this()
         {
-            InitializeStyle(parent);
+        }
 
-            _userSettings = userSettings;
+        public static async Task<ManageAccountDialog> CreateAsync(Form parent, UserSettings userSettings)
+        {
+            ManageAccountDialog mad = new ManageAccountDialog();
+
+            mad.InitializeStyle(parent);
+
+            mad._userSettings = userSettings;
             AccountStorage userKeyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
-            _viewModel = new ManageAccountViewModel(userKeyPairs);
-            _viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>(nameof(ManageAccountViewModel.AccountProperties), ListAccountEmails);
+            mad._viewModel = await ManageAccountViewModel.CreateAsync(userKeyPairs);
+            mad._viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>(nameof(ManageAccountViewModel.AccountProperties), mad.ListAccountEmails);
+
+            return mad;
         }
 
         protected override void InitializeContentResources()
