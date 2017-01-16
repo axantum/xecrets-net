@@ -188,7 +188,7 @@ Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtw
     <value>Dubbelklik opent een wachtwoord-dialoogvenster voor het openen van het beveiligde bestand.</value>
   </data>
   <data name="AddFileLabel" xml:space="preserve">
-    <value>Voeg nieuw bestand toe</value>
+    <value>Open AxCrypt Bestand</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
@@ -224,6 +224,14 @@ Meld u alstublieft met het zelfde wachtwoord die u eerder hebt gebruikt aan.</va
   </data>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Verberg de echte naam van een beveiligd bestand door het een willekeurige naam te geven.</value>
+  </data>
+  <data name="AppSignInMessage" xml:space="preserve">
+    <value>Vanwege veiligsheids redenen vragen wij u om uw wachtwoord opnieuw in te voeren.</value>
+    <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
+  </data>
+  <data name="AppVersionLabel" xml:space="preserve">
+    <value>Versie {0}</value>
+    <comment>Text containing information about current application version.</comment>
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>De pagina die u probeert te bezoeken vereist authenticatie. Meldt u zich alstublieft aan om verder te gaan.</value>
@@ -326,6 +334,10 @@ Bevat software van http://www.bouncycastle.org/ .</value>
   </data>
   <data name="ButtonSignUpText" xml:space="preserve">
     <value>Inschrijven</value>
+  </data>
+  <data name="ButtonStartTrial" xml:space="preserve">
+    <value>Begin Proefversie</value>
+    <comment>Text displayed on "Start trial" button prompt.</comment>
   </data>
   <data name="ButtonSuggestText" xml:space="preserve">
     <value>Wachtwoord voorstellen</value>
@@ -588,11 +600,11 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>Dubbelklik om te openen. Als het vereist is wordt u om een wachtwoord gevraagd.</value>
   </data>
   <data name="EasyToWorkDescription" xml:space="preserve">
-    <value>Open een beveiligd bestand direct met klik</value>
+    <value>Open de door vrienden of collega's beveiligde bestanden die voor u bedoelt zijn</value>
     <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EasyToWorkTitle" xml:space="preserve">
-    <value>Makkelijk om mee te werken</value>
+    <value>Toegang tot gedeelde bestanden</value>
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
@@ -1071,9 +1083,17 @@ De licentie voor dit programma is conform de overeenkomst.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Open Verkenner Hier</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>Wij zagen dat u nog geen Premium abonnement had, dus hebben wij daarom  voor u een 30 dagen durende proefversie geactiveerd met alle Premium eigenschappen die buiten de AxCrypt app om beschikbaar zijn.  Deze eigenschappen zijn benodigd om de app te laten functioneren.</value>
+    <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Fout</value>
     <comment>Title of error message box for generic error</comment>
+  </data>
+  <data name="MessageExitConfirmation" xml:space="preserve">
+    <value>Weet u zeker dat u wilt sluiten?</value>
+    <comment>Message which is displayed in mobile application, when user tries to exit from app via back button</comment>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>U kunt zicht niet aanmelden als '{0}'. Voer alstublieft een echt emailadres in en probeer het nog eens.</value>
@@ -1228,10 +1248,6 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Het wachtwoord is niet goed genoeg om geaccepteerd te worden.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Wachtwoord vergeten? Klik hier</value>
   </data>
@@ -1334,6 +1350,10 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Om sleutels te delen heeft u Premium nodig. Klik hier om nu te upgraden!</value>
   </data>
+  <data name="PremiumNeededForMobileApp" xml:space="preserve">
+    <value>Sorry, maar u heeft geen Premium abonnement. Upgrade uw account om de Premium eigenschappen buiten de AxCrypt app om te gebruiken. Deze eigenschappen zijn benodigd om de app te laten functioneren.</value>
+    <comment>Message displaying when user works with mobile app without premium subscription.</comment>
+  </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Ingedrukt houden om meer te zien</value>
     <comment>Tooltip for Press and hold gesture in mobile application</comment>
@@ -1345,6 +1365,30 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
   <data name="PricePerMonth" xml:space="preserve">
     <value>{0}/maand</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
+  <data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
+    <value>Decrypteren...</value>
+    <comment>Title of progress indicator which is displayed during file decrypting</comment>
+  </data>
+  <data name="ProgressIndicatorFeedbackMessage" xml:space="preserve">
+    <value>Versturen...</value>
+    <comment>Title of progress indicator which is displayed during feedback sending</comment>
+  </data>
+  <data name="ProgressIndicatorRegisteringMessage" xml:space="preserve">
+    <value>Inschrijven...</value>
+    <comment>Title of progress indicator which is displayed during SignUp operation</comment>
+  </data>
+  <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
+    <value>Aanmelden...</value>
+    <comment>Title of progress indicator which is displayed during SignIn operation</comment>
+  </data>
+  <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
+    <value>Proefversie starten...</value>
+    <comment>Title of progress indicator which is displayed during trial starting</comment>
+  </data>
+  <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
+    <value>Verwerken...</value>
+    <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Verificatiecode</value>
@@ -1468,7 +1512,7 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
     <value>Bedankt voor het aanschaffen van AxCrypt Premium!</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>U heeft nu toegang tot alle premium eigenschappen van AxCrypt. Als u problemen ondervindt neem dan alstublieft contact op met onze ondersteuningsdienst.
+    <value>U heeft nu toegang tot alle premium eigenschappen van AxCrypt. U moet zich misschien eerst opnieuw aanmelden. Als u problemen ondervindt neem dan alstublieft contact op met onze ondersteuningsdienst.
 
 Een betaalbewijs van uw aankoop is naar uw email verstuurd.</value>
   </data>
@@ -1550,9 +1594,6 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Verwijder van lijst, maar houdt bestand beveiligd</value>
   </data>
-  <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
-  </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Opnieuw versturen</value>
     <comment>A button in a verification dialog that causes the verification to be resent.</comment>
@@ -1631,11 +1672,11 @@ Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
     <value>Sleutels Delen</value>
   </data>
   <data name="ShareWithOthersDescription" xml:space="preserve">
-    <value>Sta toe beveiligde bestanden geopend te laten worden door andere AxCrypt gebruikers met hun eigen wachtwoord.</value>
+    <value>Één-kliks toegang tot de AxCrypt wachtwoord beheerder.</value>
     <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="ShareWithOthersTitle" xml:space="preserve">
-    <value>Met anderen delen</value>
+    <value>Makkelijk toegang tot wachtwoorden</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
@@ -1669,15 +1710,19 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <value>Beveiligde Verbinding Verplicht</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
+  <data name="StartupTipTryMobileApp" xml:space="preserve">
+    <value>Mobiele apps voor Android en iOS zijn nu bij AxCrypt Premium inbegrepen. Wilt u meer weten?</value>
+    <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
+  </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Klik om bestanden te selecteren die u niet meer wilt beveiligen.</value>
   </data>
   <data name="StrongEncryptionDescription" xml:space="preserve">
-    <value>Bestandsbeveiliging met 128-bit of 256-bit AES encryptie</value>
+    <value>Open AxCrypt bestanden op uw telefoon</value>
     <comment>Text displayed on "Strong Encryption" slide in mobile app</comment>
   </data>
   <data name="StrongEncryptionTitle" xml:space="preserve">
-    <value>Sterke encryptie</value>
+    <value>AxCrypt Mobiel</value>
     <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="SubmitFeedbackButton" xml:space="preserve">
@@ -1772,7 +1817,7 @@ Het AxCrypt team</value>
     <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
   </data>
   <data name="TryItDescription" xml:space="preserve">
-    <value>Het is gratis</value>
+    <value>Beveilig bestanden op uw desktop en lees ze onderweg</value>
     <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="TryItTitle" xml:space="preserve">

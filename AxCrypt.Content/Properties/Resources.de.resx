@@ -207,7 +207,7 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
     <value>Ein Doppelklick öffnet den Passwort Dialog bevor die gesicherte Datei geöffnet wird. </value>
   </data>
   <data name="AddFileLabel" xml:space="preserve">
-    <value>Neue Datei hinzufügen </value>
+    <value>Öffnen Sie eine AxCrypt Datei</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
@@ -243,6 +243,14 @@ Bitte loggen Sie sich mit dem selben Kennwort ein, welches Sie zuvor benutz habe
   </data>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Verstecken Sie den echten Namen einer gesicherten Datei indem Sie es in etwas beliebiges umbenennen. </value>
+  </data>
+  <data name="AppSignInMessage" xml:space="preserve">
+    <value>Aus Sicherheitsgründen, bitte geben Sie ein neues Kennwort ein.</value>
+    <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
+  </data>
+  <data name="AppVersionLabel" xml:space="preserve">
+    <value>Version {0}</value>
+    <comment>Text containing information about current application version.</comment>
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>Die Seite, die Sie besuchen wollen benötigt eine Authentifizierung. Bitte melden Sie sich an um fortzufahren. </value>
@@ -345,6 +353,10 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
   </data>
   <data name="ButtonSignUpText" xml:space="preserve">
     <value>Registrieren </value>
+  </data>
+  <data name="ButtonStartTrial" xml:space="preserve">
+    <value>Probeversion anfangen</value>
+    <comment>Text displayed on "Start trial" button prompt.</comment>
   </data>
   <data name="ButtonSuggestText" xml:space="preserve">
     <value>Passwort vorschlagen </value>
@@ -607,11 +619,11 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Doppelklick zum Öffnen. Bei Bedarf werden Sie nach einem Passwort gefragt. </value>
   </data>
   <data name="EasyToWorkDescription" xml:space="preserve">
-    <value>Öffnen Sie eine gesicherte Datei direkt mit einem Klick</value>
+    <value>Öffnen Sie gesicherte Datei für Sie bei Freunden oder Arbeitskollegen</value>
     <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EasyToWorkTitle" xml:space="preserve">
-    <value>Einfach mit zu arbeiten</value>
+    <value>Zugang zu gemeinsame Dateien</value>
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
@@ -1090,9 +1102,17 @@ Dieses Programm wird entsprechend der Vereinbarung genehmigt.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Hier Explorer öffnen</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>Wir haben bemerkt dass Sie kein Premium Abonnement haben, wir haben deshalb eine 30-Tage Probe angefangen so dass Sie die Premium Funktionalitäten, angeboten bei AxCrypt, außerhalb der App benutzen können. Dies ist auch notwendig für die Funktionsfähigkeit der App.</value>
+    <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Fehler</value>
     <comment>Title of error message box for generic error</comment>
+  </data>
+  <data name="MessageExitConfirmation" xml:space="preserve">
+    <value>Wollen Sie wirklich verlassen?</value>
+    <comment>Message which is displayed in mobile application, when user tries to exit from app via back button</comment>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>Sie können sich nicht als '{0}' anmelden. Bitte geben Sie eine richtige E-Mail Adresse an und versuchen Sie es erneut. </value>
@@ -1356,6 +1376,10 @@ Wir stufen die Kennwörter in 4 Kategorien nach ansteigenden Stärken ein, in de
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Key Sharing erfordert Premium. Klicken Sie jetzt für das Upgrade! </value>
   </data>
+  <data name="PremiumNeededForMobileApp" xml:space="preserve">
+    <value>Entschuldigung aber Sie haben kein Premium Abonnement. Verbessen Sie jetzt Ihr Konto um die Premium AxCrypt Funktionalitäten zu benutzen, dies sind notwendig für die Funktionsweise der App.</value>
+    <comment>Message displaying when user works with mobile app without premium subscription.</comment>
+  </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Drücken und halten sie um mehr zu sehen</value>
     <comment>Tooltip for Press and hold gesture in mobile application</comment>
@@ -1367,6 +1391,30 @@ Wir stufen die Kennwörter in 4 Kategorien nach ansteigenden Stärken ein, in de
   <data name="PricePerMonth" xml:space="preserve">
     <value>{0}/Monat</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
+  <data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
+    <value>Entschlüsselung...</value>
+    <comment>Title of progress indicator which is displayed during file decrypting</comment>
+  </data>
+  <data name="ProgressIndicatorFeedbackMessage" xml:space="preserve">
+    <value>Sendung...</value>
+    <comment>Title of progress indicator which is displayed during feedback sending</comment>
+  </data>
+  <data name="ProgressIndicatorRegisteringMessage" xml:space="preserve">
+    <value>Anmeldung...</value>
+    <comment>Title of progress indicator which is displayed during SignUp operation</comment>
+  </data>
+  <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
+    <value>Verbindung...</value>
+    <comment>Title of progress indicator which is displayed during SignIn operation</comment>
+  </data>
+  <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
+    <value>Anfang der Probeversion...</value>
+    <comment>Title of progress indicator which is displayed during trial starting</comment>
+  </data>
+  <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
+    <value>Bearbeitung...</value>
+    <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Aktivierungscode </value>
@@ -1495,7 +1543,7 @@ Sobald die Informationen auf der PayPal Seite angekommen sind, bleiben Sie auf e
     <value>Vielen Dank für Ihren Einkauf von AxCrypt Premium! </value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>Sie können nun alle Premium Dienste von AxCrypt benutzen. Falls irgendwelche Probleme auftreten, wenden Sie sich bitte an unseren Support. 
+    <value>Sie können nun alle Premium Dienste von AxCrypt benutzen. Sie müssen sich vielleicht ausloggen und wieder einloggen. Falls irgendwelche Probleme auftreten, wenden Sie sich bitte an unseren Support. 
 
 Eine Rechnung Ihres Einkaufs wurde an Ihre E-Mail geschickt.</value>
   </data>
@@ -1653,11 +1701,11 @@ Bitte ziehen Sie es in Erwägung '{0}' direkt über die AxCrypt Datensicherheit 
     <value>Teile Schlüssel</value>
   </data>
   <data name="ShareWithOthersDescription" xml:space="preserve">
-    <value>Erlauben Sie  gesicherte Dateien geöffnet zu werden bei andere AxCrypt Benutzer mit deren eigenen Kennwort</value>
+    <value>Mit einem Klick haben sie Zugang zu dem Kennwort AxCrypt manager</value>
     <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="ShareWithOthersTitle" xml:space="preserve">
-    <value>Mit anderen teilen</value>
+    <value>Einfacher Zugang zu Kennwörter</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
@@ -1691,15 +1739,19 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
     <value>Sichere Verbindung benötigt</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
+  <data name="StartupTipTryMobileApp" xml:space="preserve">
+    <value>Die Handy Apps für Android und iOS sind jetzt inclusive in AxCrypt Premium. Wollen Sie mehr darüber wissen?</value>
+    <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
+  </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Klicken Sie um Dateien auszuwählen, deren Sicherung Sie stoppen wollen. </value>
   </data>
   <data name="StrongEncryptionDescription" xml:space="preserve">
-    <value>Dateisicherheit mit AES Verschlüsselung von 123-bit oder 256-bit</value>
+    <value>Öffnen Sie AxCrypt Dateien auf Ihrem Handy</value>
     <comment>Text displayed on "Strong Encryption" slide in mobile app</comment>
   </data>
   <data name="StrongEncryptionTitle" xml:space="preserve">
-    <value>Starke Verschlüsselung</value>
+    <value>AxCrypt Mobile</value>
     <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="SubmitFeedbackButton" xml:space="preserve">
@@ -1790,7 +1842,7 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
     <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
   </data>
   <data name="TryItDescription" xml:space="preserve">
-    <value>Es ist kostenlos</value>
+    <value>Sichern Sie ihre Datei auf Ihrem Desktop und lesen Sie sie auf dem Weg</value>
     <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="TryItTitle" xml:space="preserve">

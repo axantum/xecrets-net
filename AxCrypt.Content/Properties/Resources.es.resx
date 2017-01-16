@@ -243,6 +243,14 @@ Por favor, inicie sesión usando la misma contraseña que usó entonces.</value>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Ocultar el nombre real de un archivo protegido por cambiar el nombre de archivo aleatorio. </value>
   </data>
+  <data name="AppSignInMessage" xml:space="preserve">
+    <value>Por razones de seguridad, introduce tu contraseña de nuevo.</value>
+    <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
+  </data>
+  <data name="AppVersionLabel" xml:space="preserve">
+    <value>Versión {0}</value>
+    <comment>Text containing information about current application version.</comment>
+  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>La página que intentó visitar requiere autenticación. Por favor, inicie sesión para continuar.</value>
   </data>
@@ -1393,7 +1401,7 @@ Clasificamos las contraseñas en 4 categorías de fuerza cada vez mayores, no si
   </data>
   <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
     <value>Procesando...</value>
-    <comment>Message, which is displayed in Android progress indicator.&#13;, Sample of usage:&#13;, (title)Registering...&#13;, (message)Please wait!</comment>
+    <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Código de Verificación</value>
@@ -1517,9 +1525,9 @@ Clasificamos las contraseñas en 4 categorías de fuerza cada vez mayores, no si
     <value>¡Gracias por comprar AxCrypt Premium!</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>Ahora puede acceder a todas las funciones premium de AxCrypt. Si experimenta algún problema, póngase en contacto con nuestro soporte.
+    <value>Ahora puedes acceder a todas las funciones Premium de AxCrypt. Puede que necesites cerrar la sesión y volverla a iniciar.  Si tienes algún problema, ponte en contacto con nuestro soporte.
 
-Un recibo de su compra ha sido enviada a su correo electrónico.</value>
+Se te ha enviado por correo electrónico un recibo de tu compra.</value>
   </data>
   <data name="PurchaseVatDepends" xml:space="preserve">
     <value>El IVA puede ser modificado durante el pago.</value>
@@ -1713,6 +1721,10 @@ Para ir a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</
   <data name="SslRequiredTitle" xml:space="preserve">
     <value>Se requiere una conexión segura</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
+  </data>
+  <data name="StartupTipTryMobileApp" xml:space="preserve">
+    <value>Las aplicaciones para Android y iOS están ahora incluidas en AxCrypt Premium. ¿Te gustaría saber más?</value>
+    <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Haga clic para seleccionar archivos para detener su protección.</value>

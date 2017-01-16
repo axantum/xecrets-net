@@ -244,6 +244,14 @@ S'il vous plait, connectez-vous en utilisant le même mot de passe que vous avie
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Cacher le nom réel d'un fichier sécurisé en le renommant avec un nom au hasard. </value>
   </data>
+  <data name="AppSignInMessage" xml:space="preserve">
+    <value>Pour des raisons de sécurité, insérez de nouveau votre mot de passe. </value>
+    <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
+  </data>
+  <data name="AppVersionLabel" xml:space="preserve">
+    <value>Version {0}</value>
+    <comment>Text containing information about current application version.</comment>
+  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>La page à laquelle vous souhaitez accéder requière une authentification. S'il vous plait, connectez-vous pour poursuivre. </value>
   </data>
@@ -1397,7 +1405,7 @@ Nous classons le mot de passe en 4 catégories de force croissante, où nous n'a
   </data>
   <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
     <value>En cours...</value>
-    <comment>Message, which is displayed in Android progress indicator.&#13;, Sample of usage:&#13;, (title)Registering...&#13;, (message)Please wait!</comment>
+    <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Code de vérification</value>
@@ -1521,7 +1529,7 @@ Nous classons le mot de passe en 4 catégories de force croissante, où nous n'a
     <value>Merci d'avoir acheté AxCrypt Premium! </value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>Vous êtes maintenant en mesure d'accéder à toutes les fonctionnalités Premium de AxCrypt. Si vous rencontrez des problèmes, s'il vous plaît contactez notre support.
+    <value>Vous êtes maintenant en mesure d'accéder à toutes les fonctionnalités Premium de AxCrypt. Si vous rencontrez des problèmes, s'il vous plaît contactez notre support. 
 
 Un reçu de votre commande a été envoyé à votre adresse e-mail.</value>
   </data>
@@ -1718,6 +1726,10 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="SslRequiredTitle" xml:space="preserve">
     <value>Connexion sécurisée requise </value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
+  </data>
+  <data name="StartupTipTryMobileApp" xml:space="preserve">
+    <value>Les applications mobiles pour Android et iOS sont désormais incluses avec AxCrypt Premium. Souhaitez-vous en savoir plus? </value>
+    <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Cliquez pour choisir les fichiers à ne plus protéger.</value>

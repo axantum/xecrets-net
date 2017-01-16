@@ -244,6 +244,14 @@ Per favore connettiti usando la stessa password che avevi già utilizzato.</valu
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Nascondi il vero nome di un file protetto, rinominandolo in modo casuale.</value>
   </data>
+  <data name="AppSignInMessage" xml:space="preserve">
+    <value>Per motivi di sicurezza, immetti nuovamente la tua password.</value>
+    <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
+  </data>
+  <data name="AppVersionLabel" xml:space="preserve">
+    <value>Versione {0}</value>
+    <comment>Text containing information about current application version.</comment>
+  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>La pagina a cui vuoi accedere richiede l'autenticazione. Per favore connettiti per continuare.</value>
   </data>
@@ -1259,10 +1267,6 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>La password non è abbastanza sicura per essere accettabile.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Password dimenticata? Clicca qui</value>
   </data>
@@ -1403,7 +1407,7 @@ Classifichiamo le password in 4 categorie di sicurezza crescente e non accettiam
   </data>
   <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
     <value>Elaborazione in corso...</value>
-    <comment>Message, which is displayed in Android progress indicator.&#13;, Sample of usage:&#13;, (title)Registering...&#13;, (message)Please wait!</comment>
+    <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Codice di Verifica</value>
@@ -1527,7 +1531,7 @@ Classifichiamo le password in 4 categorie di sicurezza crescente e non accettiam
     <value>Grazie per aver acquistato AxCrypt Premium!</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>Ora puoi accedere a tutte le funzioni Premium di AxCrypt. Se riscontri dei problemi, per favore contatta il nostro supporto.
+    <value>Ora puoi accedere a tutte le funzionalità Premium di AxCrypt. Potrebbe essere necessario disconnettersi dall'app e connettersi di nuovo. Se riscontri dei problemi, per favore contatta il nostro supporto.
 
 La ricevuta del tuo acquisto ti è stata inviata per e-mail.</value>
   </data>
@@ -1608,9 +1612,6 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Rimuovi dalla lista ma mantieni protetto il file</value>
-  </data>
-  <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Invia di nuovo</value>
@@ -1727,6 +1728,10 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   <data name="SslRequiredTitle" xml:space="preserve">
     <value>Connessione Sicura Richiesta</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
+  </data>
+  <data name="StartupTipTryMobileApp" xml:space="preserve">
+    <value>Da oggi le app per Android e iOS sono incluse in AxCrypt Premium. Vuoi saperne di più?</value>
+    <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Clicca per selezionare i file da non proteggere più</value>
