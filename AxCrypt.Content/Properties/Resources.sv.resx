@@ -210,6 +210,10 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
     <value>Öppna AxCrypt-fil</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
+  <data name="AdditionalUnsubscribedConfirmation" xml:space="preserve">
+    <value>Vi kommer fortfarande att skicka epost om det är kritiskt för funktionen eller säkerheten i AxCrypt.</value>
+    <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
+  </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Lägg till Säker Mapp</value>
   </data>
@@ -1149,6 +1153,10 @@ Detta program är licensierat i enlighet med avtalet.
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Oväntat Fel!</value>
   </data>
+  <data name="MessageUnsubscribedConfirmation" xml:space="preserve">
+    <value>Du har nu avslutat din prenumeration på nyhets- och informationsbrev via epost.</value>
+    <comment>The main message displayed when unsubscribed</comment>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>Mer...</value>
     <comment>A 'More...' button text</comment>
@@ -1810,6 +1818,10 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="TitleSignInToAxCrypt" xml:space="preserve">
     <value>Logga in</value>
     <comment>Title on the web page for signin for example.</comment>
+  </data>
+  <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
+    <value>Prenumeration avslutad</value>
+    <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
   </data>
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0} - {1}</value>

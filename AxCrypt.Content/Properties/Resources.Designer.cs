@@ -338,6 +338,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We may still send you email if it&apos;s vital to the function or security of AxCrypt..
+        /// </summary>
+        public static string AdditionalUnsubscribedConfirmation {
+            get {
+                return ResourceManager.GetString("AdditionalUnsubscribedConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Secured Folder.
         /// </summary>
         public static string AddSecureFolderMenuItemText {
@@ -3298,6 +3307,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You&apos;re now unsubscribed from news and information emails..
+        /// </summary>
+        public static string MessageUnsubscribedConfirmation {
+            get {
+                return ResourceManager.GetString("MessageUnsubscribedConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to More....
         /// </summary>
         public static string MoreButtonText {
@@ -5216,6 +5234,15 @@ namespace AxCrypt.Content.Properties {
         public static string TitleSignInToAxCrypt {
             get {
                 return ResourceManager.GetString("TitleSignInToAxCrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsubscribed.
+        /// </summary>
+        public static string TitleUnsubscribeConfirmation {
+            get {
+                return ResourceManager.GetString("TitleUnsubscribeConfirmation", resourceCulture);
             }
         }
         

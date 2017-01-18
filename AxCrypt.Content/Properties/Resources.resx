@@ -218,6 +218,10 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Open AxCrypt File</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
+  <data name="AdditionalUnsubscribedConfirmation" xml:space="preserve">
+    <value>We may still send you email if it's vital to the function or security of AxCrypt.</value>
+    <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
+  </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Add Secured Folder</value>
   </data>
@@ -1319,6 +1323,10 @@ This program is licensed according to the agreement.
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Unexpected Error!</value>
   </data>
+  <data name="MessageUnsubscribedConfirmation" xml:space="preserve">
+    <value>You're now unsubscribed from news and information emails.</value>
+    <comment>The main message displayed when unsubscribed</comment>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>More...</value>
     <comment>A 'More...' button text</comment>
@@ -2057,6 +2065,10 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="TitleSignInToAxCrypt" xml:space="preserve">
     <value>Sign in to AxCrypt</value>
     <comment>Title on the web page for signin for example.</comment>
+  </data>
+  <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
+    <value>Unsubscribed</value>
+    <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
   </data>
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0} - {1}</value>
