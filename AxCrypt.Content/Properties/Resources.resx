@@ -2143,6 +2143,9 @@ The AxCrypt Team</value>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID Deleted</value>
   </data>
+  <data name="UnsubscribeMailFooter" xml:space="preserve">
+    <value>If you would like to unsubscribe click &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; this link&lt;/a&gt;</value>
+  </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Updating Status</value>
   </data>

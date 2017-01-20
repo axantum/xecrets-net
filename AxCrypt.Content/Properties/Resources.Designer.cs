@@ -5431,6 +5431,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you would like to unsubscribe click &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt; this link&lt;/a&gt;.
+        /// </summary>
+        public static string UnsubscribeMailFooter {
+            get {
+                return ResourceManager.GetString("UnsubscribeMailFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updating Status.
         /// </summary>
         public static string UpdatingStatus {
