@@ -1914,6 +1914,10 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Easy access to passwords</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="ShowInFolderText" xml:space="preserve">
+    <value>Show in Folder</value>
+    <comment>The menu text for a context menu for a file to show the folder that the file is in.</comment>
+  </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Show Password</value>
   </data>

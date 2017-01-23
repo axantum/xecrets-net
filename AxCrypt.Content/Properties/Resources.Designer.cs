@@ -4831,6 +4831,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show in Folder.
+        /// </summary>
+        public static string ShowInFolderText {
+            get {
+                return ResourceManager.GetString("ShowInFolderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Password.
         /// </summary>
         public static string ShowPasswordOptionPrompt {

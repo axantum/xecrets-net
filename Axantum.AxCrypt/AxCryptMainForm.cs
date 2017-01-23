@@ -252,6 +252,7 @@ namespace Axantum.AxCrypt
             _progressContextCancelToolStripMenuItem.Text = "&" + Texts.ButtonCancelText;
             _recentFilesOpenToolStripMenuItem.Text = "&" + Texts.RecentFilesOpenToolStripMenuItemText;
             _recentFilesTabPage.Text = Texts.RecentFilesTabPageText;
+            _recentFilesShowInFolderToolStripMenuItem.Text = "&" + Texts.ShowInFolderText;
             _removeRecentFileToolStripMenuItem.Text = "&" + Texts.RemoveRecentFileToolStripMenuItemText;
             _renameToolStripMenuItem.Text = "&" + Texts.AnonymousRenameMenuText;
             _renameToolStripMenuItem.ToolTipText = Texts.AnonymousRenameToolTip;
@@ -273,8 +274,6 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Text = "&" + Texts.WatchedFoldersOpenExplorerHereMenuItemText;
             _watchedFoldersRemoveMenuItem.Text = "&" + Texts.WatchedFoldersRemoveMenuItemText;
             _watchedFoldersTabPage.Text = Texts.WatchedFoldersTabPageText;
-            //Need to replace language for 
-           
         }
 
         private static void SetCulture()
@@ -778,7 +777,6 @@ namespace Axantum.AxCrypt
             _watchedFoldersdecryptTemporarilyMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _watchedFoldersListView.MouseDoubleClick += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
             _recentFilesShowInFolderToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.ShowInFolder.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
-
         }
 
         private void WireUpEvents()
