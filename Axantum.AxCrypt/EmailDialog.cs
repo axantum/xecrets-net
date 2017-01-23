@@ -34,8 +34,6 @@ namespace Axantum.AxCrypt
             Text = Texts.DialogAxCryptIdEmailTitle;
 
             _firstTimePromptlabel.Text = Texts.DialogAxCryptIdFirstTimeText;
-            _buttonHelp.Text = "&" + Texts.ButtonHelpText;
-            _buttonExit.Text = "&" + Texts.ButtonExitText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
             _emailGroupBox.Text = Texts.PromptEmailText;
         }
