@@ -688,12 +688,12 @@ namespace Axantum.AxCrypt
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Save(); New<IReport>().Open(); };
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = KnownFoldersDiscovery.Discover();
-            _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = ApplyFileThreshold(e.GetDragged()); e.Effect = await GetEffectsForMainToolStripAsync(e); };
+            _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
-            _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = ApplyFileThreshold(e.GetDragged()); e.Effect = GetEffectsForRecentFiles(e); };
+            _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
             _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = await _mainViewModel.CanShareAsync(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
@@ -2134,11 +2134,6 @@ namespace Axantum.AxCrypt
                 }
             }
             return String.Empty;
-        }
-
-        private IEnumerable<string> ApplyFileThreshold(IEnumerable<string> files)
-        {
-            return files.Take<string>(Resolve.UserSettings.FileDragAndDropThreshold);
         }
     }
 }

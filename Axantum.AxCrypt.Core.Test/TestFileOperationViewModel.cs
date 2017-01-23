@@ -419,8 +419,8 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("a"));
             await mvm.EncryptFiles.ExecuteAsync(null);
 
-            Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Null);
-            Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Null);
+            Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Not.Null);
+            Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Not.Null);
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.IsAny<IDataStore>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
         }
@@ -855,10 +855,42 @@ namespace Axantum.AxCrypt.Core.Test
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable *is* a word.")]
         [Test]
-        public async Task TestAddRecentFilesActionWithEncryptableFilesNonInteractive()
+        public async Task TestAddRecentFilesActionWithFewEncryptableFilesNonInteractive()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
+
+            LogOnIdentity id = new LogOnIdentity("d");
+            Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
+            Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
+
+            Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
+            TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
+
+            FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
+            FakeDataStore.AddFile(@"C:\Folder\File3-txt.axx", null);
+            FakeDataStore.AddFile(@"C:\Folder\File1.txt", null);
+            FakeDataStore.AddFile(@"C:\Folder\File2.txt", null);
+
+            FileOperationViewModel mvm = New<FileOperationViewModel>();
+            await mvm.AddRecentFiles.ExecuteAsync(new string[] { @"C:\Folder\File1.txt", @"C:\Folder\File2.txt", @"C:\Folder\File3-txt.axx" });
+
+            Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Null);
+            Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.1.axx"), Is.Not.Null);
+            Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Not.Null);
+            Assert.That(Resolve.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File3-txt.axx"), Is.Null);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
+            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File1-txt.1.axx".NormalizeFilePath()), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IDataStore>(), It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()), Times.Once);
+        }
+
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable *is* a word.")]
+        [Test]
+        public async Task TestAddRecentFilesActionWithManyEncryptableFilesNonInteractive()
+        {
+            TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
+            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
+            New<UserSettings>().FewFilesThreshold = 1;
 
             LogOnIdentity id = new LogOnIdentity("d");
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);

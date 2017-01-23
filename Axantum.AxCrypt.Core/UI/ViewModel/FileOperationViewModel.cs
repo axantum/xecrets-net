@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            await EncryptOneOrManyFilesAsync(files.Select(f => New<IDataStore>(f)).ToList());
+            await EncryptFewOrManyFilesAsync(files.Select(f => New<IDataStore>(f)).ToList());
         }
 
         private async Task DecryptFilesActionAsync(IEnumerable<string> files)
@@ -454,7 +454,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task AddRecentFilesActionAsync(IEnumerable<string> files)
         {
             IEnumerable<IDataStore> fileInfos = files.Select(f => New<IDataStore>(f)).ToList();
-            await EncryptOneOrManyFilesAsync(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+            await EncryptFewOrManyFilesAsync(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
             await ProcessEncryptedFilesDroppedInRecentListAsync(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
         }
 
@@ -464,13 +464,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _fileSystemState.Save();
         }
 
-        private async Task EncryptOneOrManyFilesAsync(IEnumerable<IDataStore> encryptableFiles)
+        private async Task EncryptFewOrManyFilesAsync(IEnumerable<IDataStore> encryptableFiles)
         {
             if (!encryptableFiles.Any())
             {
                 return;
             }
-            if (encryptableFiles.Count() > 1)
+            if (encryptableFiles.Count() > New<UserSettings>().FewFilesThreshold)
             {
                 await _fileOperation.DoFilesAsync(encryptableFiles, EncryptFileWorkManyAsync, (status) => CheckEncryptionStatus(status));
             }
@@ -507,6 +507,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), OpenFileLocationAsync, (status) => CheckStatusAndShowMessage(status, string.Empty));
         }
+
         private async Task<FileOperationContext> OpenFileLocationAsync(IDataStore file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);

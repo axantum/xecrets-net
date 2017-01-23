@@ -273,11 +273,13 @@ namespace Axantum.AxCrypt.Core.UI
             get { return Load(nameof(ShouldDisplayHelpOverlayAutomatically), true); }
             set { Store(nameof(ShouldDisplayHelpOverlayAutomatically), value); }
         }
-        public int FileDragAndDropThreshold
+
+        public int FewFilesThreshold
         {
-            get { return Load(nameof(FileDragAndDropThreshold), 10); }
-            set { Store(nameof(FileDragAndDropThreshold), value); }
+            get { return Load(nameof(FewFilesThreshold), 10); }
+            set { Store(nameof(FewFilesThreshold), value); }
         }
+
         public T Load<T>(string key)
         {
             return Load(key, default(T));
@@ -367,7 +369,5 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _settingsStore[key] = Convert.ToString(value, CultureInfo.InvariantCulture);
         }
-       
-
     }
 }

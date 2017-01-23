@@ -36,6 +36,7 @@ namespace Axantum.AxCrypt.Fake
             OfflineMode = false;
             UpdateUrl = new Uri("http://localhost/update");
             UserEmail = String.Empty;
+            FewFilesThreshold = 10;
 
             return this;
         }
