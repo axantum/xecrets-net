@@ -210,6 +210,10 @@ Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger
     <value>Ouvrir un fichier AxCrypt </value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
+  <data name="AdditionalUnsubscribedConfirmation" xml:space="preserve">
+    <value>Nous pouvons malgré tout vous envoyer un email si cela est nécessaire au fonctionnement ou à la sécurité d'AxCrypt. </value>
+    <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
+  </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Ajouter un Dossier Sécurisé</value>
   </data>
@@ -1146,6 +1150,10 @@ Ce logiciel est livré d'après la licence.
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Erreur Inattendue!</value>
   </data>
+  <data name="MessageUnsubscribedConfirmation" xml:space="preserve">
+    <value>Vous êtes désormais désabonné(e) des emails de nouvelles et d'informations. </value>
+    <comment>The main message displayed when unsubscribed</comment>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>Plus... </value>
     <comment>A 'More...' button text</comment>
@@ -1717,6 +1725,10 @@ Il peut être nécessaire de renseigner '{0}' directement sur la protection de f
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Attention: Le site va être redémarré dans quelques minutes. Nous vous prions de nous excuser pour la gêne occasionnée.</value>
   </data>
+  <data name="SocialMediaFollowText" xml:space="preserve">
+    <value>Suivez-nous sur les réseaux sociaux</value>
+    <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
+  </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>Une connexion SSL sécurisée est requise. Veuillez essayer de nouveau en utilisant &lt;a href="{2}"&gt;{2}&lt;/a&gt; . 
 
@@ -1808,6 +1820,10 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
     <value>Connexion à AxCrypt</value>
     <comment>Title on the web page for signin for example.</comment>
   </data>
+  <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
+    <value>Désabonné(e)</value>
+    <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
+  </data>
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0} - {1}</value>
   </data>
@@ -1873,6 +1889,9 @@ L'équipe AxCrypt </value>
   </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value> AxCrypt ID Supprimé</value>
+  </data>
+  <data name="UnsubscribeMailFooter" xml:space="preserve">
+    <value>Si vous souhaitez vous désabonner cliquez sur &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; ce lien &lt;/a&gt;</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Mise à jour de l'Etat du fichier</value>

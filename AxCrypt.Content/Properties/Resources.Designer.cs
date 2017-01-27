@@ -4894,6 +4894,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Follow us on social media.
+        /// </summary>
+        public static string SocialMediaFollowText {
+            get {
+                return ResourceManager.GetString("SocialMediaFollowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Español.
         /// </summary>
         public static string SpanishLanguageToolStripMenuItemText {
