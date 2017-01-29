@@ -1022,10 +1022,10 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>{0}Home/Purchase?email={1}&amp;tag={2}</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>http://www.axcrypt.net/forums/</value>
+    <value>https://www.axcrypt.net/forums/</value>
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>http://www.axcrypt.net/documentation/get-started/</value>
+    <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
@@ -1103,7 +1103,7 @@ The AxCrypt Team</value>
     <comment>Header of popup for selecting mail application.</comment>
   </data>
   <data name="MainSiteUrl" xml:space="preserve">
-    <value>http://www.axcrypt.net/</value>
+    <value>https://www.axcrypt.net/</value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>A parsing error occured when updating the site management property. Please check that you're using the correct format.</value>
@@ -1708,7 +1708,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <value>The selected subsciption time is invalid. A valid subscription has to be at least {0} month and no longer than {1} months.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>With &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices.</value>
+    <value>With &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[More about payments]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Your personal payment details are never sent to or stored on our servers. We send them directly from you to our payment gateway partners via an encrypted connection. We partner with Stripe and PayPal, both of which meet the high standards set by the Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
@@ -1847,7 +1847,7 @@ Subject: AxCrypt Report Snapshot
     <value>Go to password management.</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href="http://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
+    <value>You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Your premium subscription expires soon, on {0}. Thereafter you'll have to extend your premium subscription to be able to edit or create new password entries. You'll retain read-only access indefinitely.</value>

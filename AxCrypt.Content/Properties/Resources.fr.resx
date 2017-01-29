@@ -1516,7 +1516,7 @@ Nous classons le mot de passe en 4 catégories de force croissante, où nous n'a
     <value>La période de l'abonnement sélectionnée est invalide. Un abonnement valide doit être d'au moins {0} mois et plus de {1} mois.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Avec la version &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;, vous pouvez utiliser l'ensemble des fonctionnalités d'AxCrypt sur n'importe quel ordinateur ou appareil. </value>
+    <value>Avec la version &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;, vous pouvez utiliser l'ensemble des fonctionnalités d'AxCrypt sur n'importe quel ordinateur ou appareil. </value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Lire plus concernant les paiements]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Vos détails personnels de paiement ne sont jamais envoyés ou enregistrés sur nos serveurs. Nous les envoyons immédiatement depuis vous jusqu'à notre plateforme de paiement partenaire à travers une connexion chiffrée. Nous avons pour partenaires Stripe et PayPal, ces deux derniers réunissent les standards élevés définis par le Conseil des normes de sécurité PCI.&lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
@@ -1637,7 +1637,7 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code de vérification. </val
     <value>Aller à la Gestion de Mots de passe</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Vous n'avez pas d'abonnement Premium. Vous ne pouvez donc plus modifier ou créer de nouvelles entrées de mot de passe. Cependant, vous avez toujours accès aux entrées existantes. Si vous n'avez pas encore débuté la version d'essai Premium, vous pouvez la commencer depuis &lt;a href="http://www.axcrypt.net/Download/"&gt;l'application AxCrypt&lt;/a&gt;.</value>
+    <value>Vous n'avez pas d'abonnement Premium. Vous ne pouvez donc plus modifier ou créer de nouvelles entrées de mot de passe. Cependant, vous avez toujours accès aux entrées existantes. Si vous n'avez pas encore débuté la version d'essai Premium, vous pouvez la commencer depuis &lt;a href="https://www.axcrypt.net/Download/"&gt;l'application AxCrypt&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Votre abonnement Premium expire bientôt, on {0}. Par la suite, vous aurez à prolonger votre abonnement Premium pour pouvoir modifier ou créer de nouvelles entrées de mot de passe. Vous conservez l'accès en lecture seule indéfiniment.</value>

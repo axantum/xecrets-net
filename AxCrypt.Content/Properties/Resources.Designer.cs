@@ -2557,7 +2557,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.axcrypt.net/forums/.
+        ///   Looks up a localized string similar to https://www.axcrypt.net/forums/.
         /// </summary>
         public static string LinkToFeedbackWebPage {
             get {
@@ -2566,7 +2566,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.axcrypt.net/documentation/get-started/.
+        ///   Looks up a localized string similar to https://www.axcrypt.net/documentation/get-started/.
         /// </summary>
         public static string LinkToGettingStarted {
             get {
@@ -2772,7 +2772,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.axcrypt.net/.
+        ///   Looks up a localized string similar to https://www.axcrypt.net/.
         /// </summary>
         public static string MainSiteUrl {
             get {
@@ -4309,7 +4309,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With &lt;a href=&quot;http://www.axcrypt.net/pricing/&quot;&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices..
+        ///   Looks up a localized string similar to With &lt;a href=&quot;https://www.axcrypt.net/pricing/&quot;&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices..
         /// </summary>
         public static string PurchasePageBody1 {
             get {
@@ -4661,7 +4661,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href=&quot;http://www.axcrypt.net/Download/&quot;&gt;AxCrypt app&lt;/a&gt;..
+        ///   Looks up a localized string similar to You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href=&quot;https://www.axcrypt.net/Download/&quot;&gt;AxCrypt app&lt;/a&gt;..
         /// </summary>
         public static string SecretsWarningIsReadOnly {
             get {

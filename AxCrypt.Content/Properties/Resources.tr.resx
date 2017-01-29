@@ -1512,7 +1512,7 @@ Eğer size ulaşmadıysa lütfe istenmeyen e-posta kutularınızı, ve {0} nin d
     <value>Kaydolma zamanı geçersiz. Geçerli bir kayıt en az {0} ay ve en fazla {1} ay arasında olmalıdır.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>&lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; ile AxCrypt i tüm kapasiteyle herhangi ve istediğiniz kadar bilgisayar veya aygıtta kullanabilirsiniz.</value>
+    <value>&lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; ile AxCrypt i tüm kapasiteyle herhangi ve istediğiniz kadar bilgisayar veya aygıtta kullanabilirsiniz.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Ödemeler hakkında daha fazla bilgi]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Kişisel ödeme bilgileriniz asla sunucularımıza iletilmez ve kaydedilmez. Şifreli bir bağlantı sayesinde ödeme noktası ortaklarımıza yollanıyorlar. Her ikiside Payment Card Industry Data Security Standard larına uyan Stripe ve PayPal ile çalışıyoruz. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
@@ -1633,7 +1633,7 @@ Onay bağı için e-posta kutunuzu &lt;b&gt;{0}&lt;/b&gt; kontrol edin.</value>
     <value>Şifre idaresine git. </value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Premium üyeliğiniz olmadığı için artık şifre düzenleyip yaratamıyorsunuz. Hala var olan girişleri gözlemleyebilirsiniz. 30 günlük Premium deneme paketinizi kullanmadıysanız buradan başlayabilirsiniz &lt;a href="http://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;</value>
+    <value>Premium üyeliğiniz olmadığı için artık şifre düzenleyip yaratamıyorsunuz. Hala var olan girişleri gözlemleyebilirsiniz. 30 günlük Premium deneme paketinizi kullanmadıysanız buradan başlayabilirsiniz &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>{0} da Premium üyeliğinizin süresi dolmak üzere. Sonrasında yeni şifre girişleri yaratmak veya değişiklik yapmak için premium üyeliğinizi uzatmanız gerekmektedir. Yalnızca okumaya süresiz erişiminiz bulunmaktadır.</value>

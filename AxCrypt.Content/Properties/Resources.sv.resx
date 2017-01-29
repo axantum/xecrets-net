@@ -1519,7 +1519,7 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
     <value>Ogiltig tidsperiod, den måste vara minst {0} månad(er) och högst {1} månader.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Med &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;kan du använda AxCrypt fullt ut på ett obegränsat antal datorer och enheter.</value>
+    <value>Med &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;kan du använda AxCrypt fullt ut på ett obegränsat antal datorer och enheter.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mer om Betalningar]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Inga personliga detaljer eller kortnummer sänds till eller lagras på våra servrar. Informationen skickas direkt till våra betalningshanterare via en krypterad förbindelse. Vi har Stripe och PayPal som partners, och båda möter höga säkerhetskrav enlig Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Visa Mindre]&lt;/a&gt;&lt;/span&gt;</value>
@@ -1640,7 +1640,7 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
     <value>Gå till lösenordshantering.</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Din Premiumprenumeration har slutat gälla och därför kan du bara läsa lösenordsposter, inte uppdatera. Om du inte har använt din 30-dagars gratis provperiod för Premium, kan du starta det från  &lt;a href="http://www.axcrypt.net/Download/"&gt;AxCrypt-applikationen&lt;/a&gt;.</value>
+    <value>Din Premiumprenumeration har slutat gälla och därför kan du bara läsa lösenordsposter, inte uppdatera. Om du inte har använt din 30-dagars gratis provperiod för Premium, kan du starta det från  &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt-applikationen&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Din Premiumprenumeration går ut {0}. Därefter kan du bara läsa lösenordsposter om du inte förnyar prenumerationen.</value>
@@ -1706,6 +1706,10 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   <data name="ShareWithOthersTitle" xml:space="preserve">
     <value>Enkel åtkomst av lösenord</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
+  </data>
+  <data name="ShowInFolderText" xml:space="preserve">
+    <value>Visa i Mapp</value>
+    <comment>The menu text for a context menu for a file to show the folder that the file is in.</comment>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Visa Lösenord</value>
@@ -1888,6 +1892,9 @@ Vi på AxCrypt</value>
   </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID Raderat</value>
+  </data>
+  <data name="UnsubscribeMailFooter" xml:space="preserve">
+    <value>För att avbeställa utskick som detta,  &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; klicka här&lt;/a&gt;.</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Uppdaterar Status</value>
