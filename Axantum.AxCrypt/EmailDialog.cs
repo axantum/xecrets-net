@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt
 
         private static void LaunchHelpPage()
         {
-            Process.Start(@"http://www.axcrypt.net/?p=1314");
+            Process.Start(@"https://www.axcrypt.net/documentation/get-started/");
         }
 
         private bool AdHocValidationDueToMonoLimitations()
