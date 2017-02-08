@@ -1102,10 +1102,6 @@ AxCrypt 팀</value>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>본 비밀번호는 허용되지 않습니다.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>비밀번호를 잊으셨습니까? 여기를 클릭해 주십시오.</value>
   </data>
@@ -1276,7 +1272,7 @@ AxCrypt 팀</value>
     <value>선택하신 구독 날짜가 잘못되었습니다. 유효한 구독은 최소 {0} 개월, 최대는 {1} 개월입니다.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;을 통해 AxCrypt의 모든 기능들은 그 어느 장치와 사용이 가능합니다.&lt;a </value>
+    <value>&lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;을 통해 AxCrypt의 모든 기능들은 그 어느 장치와 사용이 가능합니다.&lt;a </value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;저희 팀은 보안정책이 최우선이라고 생각합니다. 그러므로 저희는 AxCrypt Premium 지급방법을 PayPal을 통해 사용합니다. PaypPal 사이트는 매우 안정적이며 사용자의 컴퓨터에서 저희 서버로 개인정보를 자동적으로 암호화합니다.
@@ -1340,9 +1336,6 @@ AxCrypt 팀</value>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>리스트에서 빼고 파일 보안을 유지</value>
-  </data>
-  <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>다시 보내기</value>

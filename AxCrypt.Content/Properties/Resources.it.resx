@@ -210,6 +210,10 @@ Scegli una password difficile da indovinare, poiché proteggerà sia le password
     <value>Apri il File AxCrypt</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
+  <data name="AdditionalUnsubscribedConfirmation" xml:space="preserve">
+    <value>Tuttavia potremmo inviarti email essenziali al funzionamento e alla sicurezza di AxCrypt</value>
+    <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
+  </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Aggiungi Cartelle Protette</value>
   </data>
@@ -1148,6 +1152,10 @@ Questo programma è autorizzato secondo l'accordo.
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Errore Inatteso!</value>
   </data>
+  <data name="MessageUnsubscribedConfirmation" xml:space="preserve">
+    <value>Ora sei disiscritto dalle mail riguardanti notizie e informazioni</value>
+    <comment>The main message displayed when unsubscribed</comment>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>Più...</value>
     <comment>A 'More...' button text</comment>
@@ -1510,7 +1518,7 @@ Classifichiamo le password in 4 categorie di sicurezza crescente e non accettiam
     <value>Il periodo selezionato per l'abbonamento non è valido. Un abbonamento valido deve durare almeno {0} mesi e non più di {1} mesi.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Con &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; puoi usare AxCrypt al massimo delle sue potenzialità su qualsiasi computer e dispositivo.</value>
+    <value>Con &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; puoi usare AxCrypt al massimo delle sue potenzialità su qualsiasi computer e dispositivo.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Informazioni aggiuntive sui pagamenti]&lt;/a&gt;&lt;/span&gt; &lt;span class="text-cutoff always"&gt;I tuoi dati personali di pagamento non sono mai inviati o salvati sui nostri server. Li inviamo direttamente da te ai nostri partner per il pagamento tramite una connessione criptata. Abbiamo una partnership con Stripe e PayPal e entrambi soddisfano gli standard elevati stabiliti dal Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Chiudi]&lt;/a&gt; &lt;/span&gt;</value>
@@ -1631,7 +1639,7 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
     <value>Vai alla gestione delle password</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Non hai un abbonamento Premium e di conseguenza non puoi più modificare o creare nuove password. Tuttavia, puoi ancora vedere le voci esistenti. Se non hai utilizzato il tuo periodo di prova di 30 giorni di Premium, puoi iniziarlo dall' &lt;a href="http://www.axcrypt.net/Download/"&gt;app di AxCrypt&lt;/a&gt;</value>
+    <value>Non hai un abbonamento Premium e di conseguenza non puoi più modificare o creare nuove password. Tuttavia, puoi ancora vedere le voci esistenti. Se non hai utilizzato il tuo periodo di prova di 30 giorni di Premium, puoi iniziarlo dall' &lt;a href="https://www.axcrypt.net/Download/"&gt;app di AxCrypt&lt;/a&gt;</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Il tuo abbonamento Premium sta per scadere, il {0}. In seguito dovrai prolungare il tuo abbonamento Premium per modificare o creare nuove password. Avrai accesso in sola lettura per sempre.</value>
@@ -1698,6 +1706,10 @@ Potrebbe essere necessario informare direttamente '{0}' riguardo la protezione d
     <value>Accesso facile alle password</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="ShowInFolderText" xml:space="preserve">
+    <value>Mostra nella Cartella</value>
+    <comment>The menu text for a context menu for a file to show the folder that the file is in.</comment>
+  </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Mostra la Password</value>
   </data>
@@ -1718,6 +1730,10 @@ Potrebbe essere necessario informare direttamente '{0}' riguardo la protezione d
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Attenzione! Il sito verrà riavviato fra pochi minuti. Ci scusiamo per l'inconveniente.</value>
+  </data>
+  <data name="SocialMediaFollowText" xml:space="preserve">
+    <value>Seguici sui social network</value>
+    <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>Una connessione SSL sicura è richiesta. Per favore riprova usando &lt;a href="{2}"&gt;{2}&lt;/a&gt; .
@@ -1810,6 +1826,10 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
     <value>Connettiti a AxCrypt</value>
     <comment>Title on the web page for signin for example.</comment>
   </data>
+  <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
+    <value>Disiscritto</value>
+    <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
+  </data>
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0} - {1}</value>
   </data>
@@ -1875,6 +1895,9 @@ Il Team di AxCrypt</value>
   </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID Eliminato</value>
+  </data>
+  <data name="UnsubscribeMailFooter" xml:space="preserve">
+    <value>Se vuoi disiscriverti, clicca &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; questo link&lt;/a&gt;</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Aggiornamento dello Stato</value>

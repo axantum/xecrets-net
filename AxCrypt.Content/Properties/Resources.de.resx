@@ -210,6 +210,10 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
     <value>Öffnen Sie eine AxCrypt Datei</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
+  <data name="AdditionalUnsubscribedConfirmation" xml:space="preserve">
+    <value>Wir werden Ihnen eventuell noch Emails schicken falls es vital für die Funktion oder die Sicherheit von AxCrypt ist. </value>
+    <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
+  </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Gesicherten Ordner hinzufügen </value>
   </data>
@@ -1147,6 +1151,10 @@ Dieses Programm wird entsprechend der Vereinbarung genehmigt.
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Unerwarteter Fehler! </value>
   </data>
+  <data name="MessageUnsubscribedConfirmation" xml:space="preserve">
+    <value>Sie sind jetzt ausgetragen von den Neuheiten und Informationen per Email.</value>
+    <comment>The main message displayed when unsubscribed</comment>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>Mehr...</value>
     <comment>A 'More...' button text</comment>
@@ -1517,7 +1525,7 @@ Wir stufen die Kennwörter in 4 Kategorien nach ansteigenden Stärken ein, in de
     <value>Die gewählte Zeit des Abonnements ist ungültig. Ein gültiges Abonnement muss mindestens {0} Monat und nicht länger als {1} Monate dauern. </value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Mit &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; können Sie AxCrypt zu seinem vollen Potential auf einer beliebigen Zahl von Computern und Geräten nutzen.</value>
+    <value>Mit &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; können Sie AxCrypt zu seinem vollen Potential auf einer beliebigen Zahl von Computern und Geräten nutzen.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mehr über die Bezahlung]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Ihre persönlichen Zahlungsdaten werden nie versendet oder auf unserem Server gespeichert. Wir senden diese direkt von Ihnen zu unseren Zahlungsportalpartnern via einer verschlüsselten Verbindung. Unsere Partner sind Stripe und Paypal, beide erfüllen die hohen Standards der Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;
@@ -1643,7 +1651,7 @@ Eine 30-tägige Testphase von AxCrypt Premium ist inklusive und Sie können es j
     <value>Gehe zur Passwortverwaltung. </value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Ihr Premium Abonnement ist nicht mehr gültig, daher können Sie keine Passworteinträge mehr bearbeiten oder erstellen. Sie können jedoch noch bestehende Einträge sehen. Wenn sie Ihre 30-tätige Testphase noch nicht benutzt haben, können Sie sie auf &lt;a href="http://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt; beginnen.</value>
+    <value>Ihr Premium Abonnement ist nicht mehr gültig, daher können Sie keine Passworteinträge mehr bearbeiten oder erstellen. Sie können jedoch noch bestehende Einträge sehen. Wenn sie Ihre 30-tätige Testphase noch nicht benutzt haben, können Sie sie auf &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt; beginnen.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Ihr Premium Abonnement läuft bald ab, am {0}. Danach müssen Sie Ihr Premium Abonnement verlängern um weiterhin Passwort Einträge zu erstellen oder zu verändern. Andernfalls werden Sie nur noch Lesezugriff zu der Seite haben. </value>
@@ -1819,6 +1827,10 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="TitleSignInToAxCrypt" xml:space="preserve">
     <value>In AxCrypt einloggen</value>
     <comment>Title on the web page for signin for example.</comment>
+  </data>
+  <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
+    <value>Sich austragen</value>
+    <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
   </data>
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0} - {1}</value>

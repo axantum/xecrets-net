@@ -191,6 +191,10 @@ Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtw
     <value>Open AxCrypt Bestand</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
+  <data name="AdditionalUnsubscribedConfirmation" xml:space="preserve">
+    <value>Wij sturen u nog emails wanneer het belangrijk is voor het functioneren of de veiligheid van AxCrypt.</value>
+    <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
+  </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Voeg Beveiligde Map Toe</value>
   </data>
@@ -1128,6 +1132,10 @@ De licentie voor dit programma is conform de overeenkomst.
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>Onverwachte Fout!</value>
   </data>
+  <data name="MessageUnsubscribedConfirmation" xml:space="preserve">
+    <value>U ontvangt nu geen nieuws en informatie emails meer.</value>
+    <comment>The main message displayed when unsubscribed</comment>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>Meer...</value>
     <comment>A 'More...' button text</comment>
@@ -1491,7 +1499,7 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
     <value>De geselecteerde abonnementsduur is ongeldig. Een geldig abonnement moet minstens {0} maand duren en niet langer zijn dan {1} maanden.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Met &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; kunt u volledig gebruik maken van AxCrypt op al uw computers en apparaten.</value>
+    <value>Met &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; kunt u volledig gebruik maken van AxCrypt op al uw computers en apparaten.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Meer over betalingen]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;  Uw persoonlijke betalingsdetails worden nooit naar onze server verzonden of daar op opgeslagen. Wij versturen ze direct vanaf u naar onze betalings gateway partners via een geëncrypteerde verbinding. Wij werken samen met Stripe en PayPal die beiden de hoge standaarden volgen van de Payment Card Industry Security Standard. &lt;a class="hide-link"&gt;[Sluiten]&lt;/a&gt;&lt;/span&gt;</value>
@@ -1612,7 +1620,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <value>Ga naar wachtwoordbeheer.</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>U heeft geen Premium abonnement waardoor u niet langer wachtwoord invoeren kunt maken of deze aanpassen. Echter u kunt bestaande invoeren nog steeds inkijken. Als u uw 30 dagen durende Premium proefperiode nog niet heeft gebruikt kunt u deze vanaf de &lt;a href="http://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;starten.</value>
+    <value>U heeft geen Premium abonnement waardoor u niet langer wachtwoord invoeren kunt maken of deze aanpassen. Echter u kunt bestaande invoeren nog steeds inkijken. Als u uw 30 dagen durende Premium proefperiode nog niet heeft gebruikt kunt u deze vanaf de &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;starten.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Uw Premium abonnement verloopt binnenkort op {0}. U zult uw Premium abonnement moeten verlegen om wachtwoord invoeren aan te passen en te creëren. U houdt altijd alleen-lezen toegang.</value>
@@ -1791,6 +1799,10 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <value>AxCrypt Aanmelden</value>
     <comment>Title on the web page for signin for example.</comment>
   </data>
+  <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
+    <value>Uitgeschreven</value>
+    <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
+  </data>
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0} - {1}</value>
   </data>
@@ -1856,6 +1868,9 @@ Het AxCrypt team</value>
   </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID Verwijderd</value>
+  </data>
+  <data name="UnsubscribeMailFooter" xml:space="preserve">
+    <value>Als u zich wilt uitschrijven klik op &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; deze link&lt;/a&gt;</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Status Updaten</value>

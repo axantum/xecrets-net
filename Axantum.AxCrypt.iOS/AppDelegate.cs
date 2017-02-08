@@ -96,15 +96,15 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		void ShowAbout() {
-            PresentWebViewController ("http://www.axcrypt.net/");
+            PresentWebViewController ("https://www.axcrypt.net/");
 		}
 
 		void ShowFaq() {
-            PresentWebViewController ("http://www.axcrypt.net/support/faq/");
+            PresentWebViewController ("https://www.axcrypt.net/support/faq/");
 		}
 
 		void ShowTroubleshooting() {
-            PresentWebViewController ("http://www.axcrypt.net/forums/forum/bugs-issues/");
+            PresentWebViewController ("https://www.axcrypt.net/forums/forum/bugs-issues/");
 		}
 
 		void FreeWebViewController() {
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.iOS
 
 		void ShowFeedbackUi() {
 			if (!MFMailComposeViewController.CanSendMail) {
-                PresentWebViewController ("http://www.axcrypt.net/");
+                PresentWebViewController ("https://www.axcrypt.net/");
 				return;
 			}
 

@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Uri UpdateUrl
         {
-            get { return Load(nameof(UpdateUrl), new Uri("http://www.axcrypt.net/download/")); }
+            get { return Load(nameof(UpdateUrl), new Uri("https://www.axcrypt.net/download/")); }
             set
             {
                 if (value == null)
@@ -174,7 +174,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Uri AxCrypt2HelpUrl
         {
-            get { return Load(nameof(AxCrypt2HelpUrl), new Uri("http://www.axcrypt.net/documentation/get-started/")); }
+            get { return Load(nameof(AxCrypt2HelpUrl), new Uri("https://www.axcrypt.net/documentation/get-started/")); }
             set
             {
                 if (value == null)

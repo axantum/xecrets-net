@@ -1504,7 +1504,7 @@ Clasificamos las contraseñas en 4 categorías de fuerza cada vez mayores, no si
     <value>El tiempo de suscripción seleccionado no es válido. Una suscripción válida tiene que ser al menos {0} mes y no más de {1} meses.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Con &lt;a href="http://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; puede utilizar todo el potencial de AxCrypt en todos los ordenadores y dispositivos que quiera.</value>
+    <value>Con &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; puede utilizar todo el potencial de AxCrypt en todos los ordenadores y dispositivos que quiera.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Read more about PayPal]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Sus datos personales y de pago nunca son enviados a nuestros servidores o almacenados en ellos. Los enviamos directamente a nuestro portal de pago asociado a través de una conexión codificada. Estamos asociados con Stripe y PayPal, los cuales reúnen los requisitos más elevados establecidos por la PCI DSS (normativa de seguridad de datos para el sector de las tarjetas de pago). &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;</value>
@@ -1625,7 +1625,7 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
     <value>Ve a la administración de contraseñas.</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Usted no tiene una suscripción Premium y, por tanto, no puede editar o anotar nuevas contraseñas. Sin embargo, aún puede acceder a las ya existentes. Si aún no ha utilizado su período de prueba de 30 días de AxCrypt Premium, puede iniciarlo desde &lt;a href="http://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
+    <value>Usted no tiene una suscripción Premium y, por tanto, no puede editar o anotar nuevas contraseñas. Sin embargo, aún puede acceder a las ya existentes. Si aún no ha utilizado su período de prueba de 30 días de AxCrypt Premium, puede iniciarlo desde &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Su suscripción premium caducará en breve, en {0}. A partir de entonces tendrá que ampliar su suscripción premium para poder editar o crear nuevas entradas de contraseñas. Vas a retener acceso de sólo lectura indefinidamente.</value>

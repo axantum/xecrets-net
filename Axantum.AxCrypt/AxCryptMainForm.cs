@@ -806,28 +806,53 @@ namespace Axantum.AxCrypt
             New<IDeviceLocked>().DeviceWasLocked -= DeviceWasLocked;
         }
 
-        private readonly object _autoCleanUpLock = new object();
+        private DeviceLockReason _currentLock = DeviceLockReason.None;
 
-        private async void DeviceWasLocked(object sender, DeviceLockedEventArgs e)
+        private void DeviceWasLocked(object sender, DeviceLockedEventArgs e)
         {
+            if (!New<IUIThread>().IsOn)
+            {
+                throw new InternalErrorException("Must be on UI thread to handle device locking events.");
+            }
+
             switch (e.Reason)
             {
                 case DeviceLockReason.Permanent:
-                    ShutDownAndExit();
+                    if (_currentLock != DeviceLockReason.None && _currentLock != DeviceLockReason.Temporary)
+                    {
+                        break;
+                    }
+
+                    _currentLock = DeviceLockReason.Permanent;
+                    try
+                    {
+                        ShutDownAndExit();
+                    }
+                    finally
+                    {
+                        _currentLock = DeviceLockReason.None;
+                    }
                     break;
 
                 case DeviceLockReason.Temporary:
-                    await Task.Run(() =>
+                    if (_currentLock != DeviceLockReason.None)
                     {
-                        lock (_autoCleanUpLock)
+                        break;
+                    }
+
+                    _currentLock = DeviceLockReason.Temporary;
+                    try
+                    {
+                        EncryptPendingFiles();
+
+                        if (_fileOperationViewModel.IdentityViewModel.LogOff.CanExecute(null))
                         {
-                            EncryptPendingFiles();
-                            WaitForBackgroundToComplete();
+                            _fileOperationViewModel.IdentityViewModel.LogOff.Execute(null);
                         }
-                    });
-                    if (_fileOperationViewModel.IdentityViewModel.LogOff.CanExecute(null))
+                    }
+                    finally
                     {
-                        _fileOperationViewModel.IdentityViewModel.LogOff.Execute(null);
+                        _currentLock = DeviceLockReason.None;
                     }
                     break;
 
@@ -1491,7 +1516,6 @@ namespace Axantum.AxCrypt
             ShutDownBackgroundSafe();
 
             EncryptPendingFiles();
-            WaitForBackgroundToComplete();
 
             WarnIfAnyDecryptedFiles();
 
@@ -1567,7 +1591,9 @@ namespace Axantum.AxCrypt
         {
             if (_mainViewModel != null)
             {
+                WaitForBackgroundToComplete();
                 _mainViewModel.EncryptPendingFiles.Execute(null);
+                WaitForBackgroundToComplete();
             }
         }
 

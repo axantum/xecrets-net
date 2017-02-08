@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         protected virtual void OnDeviceWasLocked(DeviceLockedEventArgs e)
         {
-            DeviceWasLocked?.Invoke(this, e);
+            New<IUIThread>().PostTo(() => DeviceWasLocked?.Invoke(this, e));
         }
 
         private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
@@ -168,10 +168,6 @@ namespace Axantum.AxCrypt.Forms.Implementation
         {
             switch (e.Reason)
             {
-                case SessionSwitchReason.SessionLogoff:
-                    OnDeviceWasLocked(new DeviceLockedEventArgs(DeviceLockReason.Permanent));
-                    break;
-
                 case SessionSwitchReason.ConsoleDisconnect:
                 case SessionSwitchReason.RemoteDisconnect:
                 case SessionSwitchReason.SessionLock:
@@ -189,6 +185,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
             {
                 case SessionEndReasons.Logoff:
                 case SessionEndReasons.SystemShutdown:
+                    e.Cancel = true;
                     OnDeviceWasLocked(new DeviceLockedEventArgs(DeviceLockReason.Permanent));
                     break;
 
