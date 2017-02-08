@@ -531,6 +531,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} doesn&apos;t have an account with us, send an invite to register an account and continue..
+        /// </summary>
+        public static string BeneficiaryNoAccount {
+            get {
+                return ResourceManager.GetString("BeneficiaryNoAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verify.
         /// </summary>
         public static string ButtonActivateText {
@@ -2116,6 +2125,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For whom.
+        /// </summary>
+        public static string ForWhomHeadline {
+            get {
+                return ResourceManager.GetString("ForWhomHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Français.
         /// </summary>
         public static string FrancaisLanguageToolStripMenuItemText {
@@ -2378,6 +2396,160 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invite:.
+        /// </summary>
+        public static string Invite {
+            get {
+                return ResourceManager.GetString("Invite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invoice.
+        /// </summary>
+        public static string Invoice {
+            get {
+                return ResourceManager.GetString("Invoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beneficiary:.
+        /// </summary>
+        public static string InvoiceBeneficiary {
+            get {
+                return ResourceManager.GetString("InvoiceBeneficiary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer:.
+        /// </summary>
+        public static string InvoiceCustomer {
+            get {
+                return ResourceManager.GetString("InvoiceCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string InvoiceDateHeadline {
+            get {
+                return ResourceManager.GetString("InvoiceDateHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of issue.
+        /// </summary>
+        public static string InvoiceDateOfIssue {
+            get {
+                return ResourceManager.GetString("InvoiceDateOfIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string InvoiceDescriptionHeadline {
+            get {
+                return ResourceManager.GetString("InvoiceDescriptionHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Invoices.
+        /// </summary>
+        public static string InvoiceHeadline {
+            get {
+                return ResourceManager.GetString("InvoiceHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Issued by AxCrypt.
+        /// </summary>
+        public static string InvoiceIssuedByAxcrypt {
+            get {
+                return ResourceManager.GetString("InvoiceIssuedByAxcrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line Total.
+        /// </summary>
+        public static string InvoiceLineTotalHeadline {
+            get {
+                return ResourceManager.GetString("InvoiceLineTotalHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Nr.
+        /// </summary>
+        public static string InvoiceOrderNr {
+            get {
+                return ResourceManager.GetString("InvoiceOrderNr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BIRGER JARLSGATAN 58
+        ///114 29 Stockholm.
+        /// </summary>
+        public static string InvoiceOurAddress {
+            get {
+                return ResourceManager.GetString("InvoiceOurAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        public static string InvoiceQuantityHeadline {
+            get {
+                return ResourceManager.GetString("InvoiceQuantityHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subtotal.
+        /// </summary>
+        public static string InvoiceSubtotalHeadline {
+            get {
+                return ResourceManager.GetString("InvoiceSubtotalHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string InvoiceTotalHeadline {
+            get {
+                return ResourceManager.GetString("InvoiceTotalHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit price.
+        /// </summary>
+        public static string InvoiceUnitPriceHeadline {
+            get {
+                return ResourceManager.GetString("InvoiceUnitPriceHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT charge.
+        /// </summary>
+        public static string InvoiceVatChargeHeadline {
+            get {
+                return ResourceManager.GetString("InvoiceVatChargeHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Italiano.
         /// </summary>
         public static string ItalianLanguageSelection {
@@ -2557,7 +2729,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.axcrypt.net/forums/.
+        ///   Looks up a localized string similar to https://www.axcrypt.net/forums/.
         /// </summary>
         public static string LinkToFeedbackWebPage {
             get {
@@ -2566,7 +2738,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.axcrypt.net/documentation/get-started/.
+        ///   Looks up a localized string similar to https://www.axcrypt.net/documentation/get-started/.
         /// </summary>
         public static string LinkToGettingStarted {
             get {
@@ -2772,7 +2944,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.axcrypt.net/.
+        ///   Looks up a localized string similar to https://www.axcrypt.net/.
         /// </summary>
         public static string MainSiteUrl {
             get {
@@ -3388,6 +3560,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are Signed Out. Click to Sign In..
         /// </summary>
         public static string NoDefaultEncryptionKeySetToolTip {
@@ -3819,6 +4000,15 @@ namespace AxCrypt.Content.Properties {
         public static string PasswordStrengthWeakTip {
             get {
                 return ResourceManager.GetString("PasswordStrengthWeakTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment on behalf of.
+        /// </summary>
+        public static string PaymentOnBehalfOf {
+            get {
+                return ResourceManager.GetString("PaymentOnBehalfOf", resourceCulture);
             }
         }
         
@@ -4309,7 +4499,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With &lt;a href=&quot;http://www.axcrypt.net/pricing/&quot;&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices..
+        ///   Looks up a localized string similar to With &lt;a href=&quot;https://www.axcrypt.net/pricing/&quot;&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices..
         /// </summary>
         public static string PurchasePageBody1 {
             get {
@@ -4661,7 +4851,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href=&quot;http://www.axcrypt.net/Download/&quot;&gt;AxCrypt app&lt;/a&gt;..
+        ///   Looks up a localized string similar to You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href=&quot;https://www.axcrypt.net/Download/&quot;&gt;AxCrypt app&lt;/a&gt;..
         /// </summary>
         public static string SecretsWarningIsReadOnly {
             get {
@@ -4720,6 +4910,15 @@ namespace AxCrypt.Content.Properties {
         public static string SecurityUpdateAvailableWarning {
             get {
                 return ResourceManager.GetString("SecurityUpdateAvailableWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send invitation.
+        /// </summary>
+        public static string SendInvitation {
+            get {
+                return ResourceManager.GetString("SendInvitation", resourceCulture);
             }
         }
         
