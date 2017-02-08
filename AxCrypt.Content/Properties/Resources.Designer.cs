@@ -4013,6 +4013,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buy for someone else.
+        /// </summary>
+        public static string PaymentOnBehalfOfLinkText {
+            get {
+                return ResourceManager.GetString("PaymentOnBehalfOfLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [More info about PayPal].
         /// </summary>
         public static string PayPalReadMoreLink {

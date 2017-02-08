@@ -1594,6 +1594,9 @@ We classify the password in 4 categories of increasing strength, were we do not 
   <data name="PaymentOnBehalfOf" xml:space="preserve">
     <value>Payment on behalf of</value>
   </data>
+  <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
+    <value>Buy for someone else</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>
   </data>
