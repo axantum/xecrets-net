@@ -332,7 +332,13 @@ namespace Axantum.AxCrypt.Core.Service
 
             using (StreamReader reader = new StreamReader(UserAccountsStore.OpenRead()))
             {
-                return UserAccounts.DeserializeFrom(reader);
+                UserAccounts accounts = UserAccounts.DeserializeFrom(reader);
+                if (accounts == null)
+                {
+                    accounts = new UserAccounts();
+                }
+
+                return accounts;
             }
         }
 
