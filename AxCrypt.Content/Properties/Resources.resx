@@ -471,6 +471,10 @@ You must complete these steps to complete the process.</value>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>File is open, and may need to be cleaned. Close any open applications, and click the Clean Up button.</value>
   </data>
+  <data name="CleanupWorkflowDescription" xml:space="preserve">
+    <value>Please consider that app keeps decrypted copy of file in the local file storage. It will be removed on sign out. You can also remove it manually via cleanup button.</value>
+    <comment>Warning message displayed in mobile application before first decryption.</comment>
+  </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Click to check for a newer version.</value>
   </data>
@@ -1652,6 +1656,10 @@ We classify the password in 4 categories of increasing strength, were we do not 
   <data name="PricePerMonth" xml:space="preserve">
     <value>{0}/month</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
+  <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
+    <value>Cleaning decrypted files...</value>
+    <comment>Message displayed on progress bar during temporary files cleanup.</comment>
   </data>
   <data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
     <value>Decrypting...</value>

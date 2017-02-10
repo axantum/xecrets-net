@@ -1030,6 +1030,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please consider that app keeps decrypted copy of file in the local file storage. It will be removed on sign out. You can also remove it manually via cleanup button..
+        /// </summary>
+        public static string CleanupWorkflowDescription {
+            get {
+                return ResourceManager.GetString("CleanupWorkflowDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to check for a newer version..
         /// </summary>
         public static string ClickToCheckForNewerVersionTooltip {
@@ -4162,6 +4171,15 @@ namespace AxCrypt.Content.Properties {
         public static string PricePerMonth {
             get {
                 return ResourceManager.GetString("PricePerMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cleaning decrypted files....
+        /// </summary>
+        public static string ProgressIndicatorCleanupMessage {
+            get {
+                return ResourceManager.GetString("ProgressIndicatorCleanupMessage", resourceCulture);
             }
         }
         

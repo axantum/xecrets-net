@@ -274,6 +274,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(ShouldDisplayHelpOverlayAutomatically), value); }
         }
 
+        public bool ShouldNotifyUserAboutCleaningWorkflow
+        {
+            get { return Load(nameof(ShouldNotifyUserAboutCleaningWorkflow), true); }
+            set { Store(nameof(ShouldNotifyUserAboutCleaningWorkflow), value); }
+        }
+
         public int FewFilesThreshold
         {
             get { return Load(nameof(FewFilesThreshold), 10); }
