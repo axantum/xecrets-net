@@ -531,6 +531,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Beneficiary is currently {0}.
+        /// </summary>
+        public static string BeneficiaryIs {
+            get {
+                return ResourceManager.GetString("BeneficiaryIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} doesn&apos;t have an account with us, send an invite to register an account and continue..
         /// </summary>
         public static string BeneficiaryNoAccount {

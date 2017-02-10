@@ -297,6 +297,9 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Incorrect email address</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
+  <data name="BeneficiaryIs" xml:space="preserve">
+    <value>Beneficiary is currently {0}</value>
+  </data>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} doesn't have an account with us, send an invite to register an account and continue.</value>
   </data>
