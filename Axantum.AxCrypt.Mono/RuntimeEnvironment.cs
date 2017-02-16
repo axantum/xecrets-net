@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public bool IsFirstInstanceReady(TimeSpan timeout)
+		public virtual bool IsFirstInstanceReady(TimeSpan timeout)
         {
             return FirstInstanceEvent.WaitOne(timeout, false);
         }
@@ -174,7 +174,7 @@ namespace Axantum.AxCrypt.Mono
 
         private bool _isFirstInstance;
 
-        public bool IsFirstInstance
+        public virtual bool IsFirstInstance
         {
             get
             {
