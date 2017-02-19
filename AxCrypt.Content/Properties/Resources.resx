@@ -974,7 +974,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>Beneficiary:</value>
   </data>
-  <data name="InvoiceCustomer">
+  <data name="InvoiceCustomer" xml:space="preserve">
     <value>Customer:</value>
   </data>
   <data name="InvoiceDateHeadline" xml:space="preserve">
@@ -992,7 +992,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
     <value>Issued by AxCrypt</value>
   </data>
-  <data name="InvoiceLineTotalHeadline">
+  <data name="InvoiceLineTotalHeadline" xml:space="preserve">
     <value>Line Total</value>
   </data>
   <data name="InvoiceOrderNr" xml:space="preserve">
@@ -1605,6 +1605,10 @@ We classify the password in 4 categories of increasing strength, were we do not 
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
     <value>Buy for someone else</value>
   </data>
+  <data name="PaymentOnBehalfOfMustBeVerified" xml:space="preserve">
+    <value>The account must be verified by the user first.</value>
+    <comment>Error message when an attempt is made to purchase on behalf of an unverified account.</comment>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>
   </data>
@@ -1658,7 +1662,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <value>{0}/month</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
-  <data name="ProgressIndicatorCleanupMessage">
+  <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Cleaning decrypted files...</value>
     <comment>Message displayed on progress bar during temporary files cleanup.</comment>
   </data>

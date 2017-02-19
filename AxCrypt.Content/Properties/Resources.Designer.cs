@@ -2423,7 +2423,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invoice.
+        ///   Looks up a localized string similar to Receipt.
         /// </summary>
         public static string Invoice {
             get {
@@ -2477,7 +2477,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My Invoices.
+        ///   Looks up a localized string similar to My Receipts.
         /// </summary>
         public static string InvoiceHeadline {
             get {
@@ -2513,8 +2513,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BIRGER JARLSGATAN 58
-        ///114 29 Stockholm.
+        ///   Looks up a localized string similar to Birger Jarlsgatan 58
+        ///SE-114 29 Stockholm
+        ///SWEDEN.
         /// </summary>
         public static string InvoiceOurAddress {
             get {
@@ -4036,6 +4037,15 @@ namespace AxCrypt.Content.Properties {
         public static string PaymentOnBehalfOfLinkText {
             get {
                 return ResourceManager.GetString("PaymentOnBehalfOfLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The account must be verified by the user first..
+        /// </summary>
+        public static string PaymentOnBehalfOfMustBeVerified {
+            get {
+                return ResourceManager.GetString("PaymentOnBehalfOfMustBeVerified", resourceCulture);
             }
         }
         
