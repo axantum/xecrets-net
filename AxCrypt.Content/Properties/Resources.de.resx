@@ -1716,6 +1716,10 @@ Bitte ziehen Sie es in Erwägung '{0}' direkt über die AxCrypt Datensicherheit 
     <value>Einfacher Zugang zu Kennwörter</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="ShowInFolderText" xml:space="preserve">
+    <value>Zeigen in der Datei</value>
+    <comment>The menu text for a context menu for a file to show the folder that the file is in.</comment>
+  </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Passwort zeigen</value>
   </data>
@@ -1736,6 +1740,10 @@ Bitte ziehen Sie es in Erwägung '{0}' direkt über die AxCrypt Datensicherheit 
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Achtung! Die Seite wird in wenigen Minuten neu gestartet. Bitte entschuldigen Sie die Unannehmlichkeiten. </value>
+  </data>
+  <data name="SocialMediaFollowText" xml:space="preserve">
+    <value>Folgen Sie uns auf unseren sozialen Medien</value>
+    <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>Eine sichere SSL Verbindung ist notwendig. Bitte versuchen Sie es erneut mit &lt;a href="{2}"&gt;{2}&lt;/a&gt;. 
@@ -1893,6 +1901,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID gelöscht </value>
+  </data>
+  <data name="UnsubscribeMailFooter" xml:space="preserve">
+    <value>Wenn Sie sich abmelden wollen klicken Sie &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; this link&lt;/a&gt;</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Status aktualisieren </value>

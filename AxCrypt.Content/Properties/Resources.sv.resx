@@ -285,6 +285,12 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Felaktig epostadress</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
+  <data name="BeneficiaryIs" xml:space="preserve">
+    <value>Nuvarande mottagare är {0}</value>
+  </data>
+  <data name="BeneficiaryNoAccount" xml:space="preserve">
+    <value>Det finns inget konto för {0}, bjud in mottagaren att skapa ett konto och försök igen sedan.</value>
+  </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Verifiera</value>
   </data>
@@ -449,6 +455,10 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>Filen är öppnad, och kan behövas städas. Stäng alla öppna program, och klicka på städaknappen.</value>
+  </data>
+  <data name="CleanupWorkflowDescription" xml:space="preserve">
+    <value>Observera att det kommer att skapas en oskyddad kopia av dokumentet i enheten. Den tas bort vid utloggning. Du kan också ta bort den manuellt genom rensa-knappen.</value>
+    <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Klicka för att kontrollera om det finns en ny version.</value>
@@ -779,6 +789,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
   </data>
+  <data name="ForWhomHeadline" xml:space="preserve">
+    <value>Mottagare</value>
+  </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Bra! Du har redan ett AxCrypt ID-konto för '{0}'.
 
@@ -861,6 +874,54 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Inbjudan till AxCrypt Filskydd</value>
+  </data>
+  <data name="Invite" xml:space="preserve">
+    <value>Bjud in:</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Kvitto</value>
+  </data>
+  <data name="InvoiceBeneficiary" xml:space="preserve">
+    <value>Mottagare:</value>
+  </data>
+  <data name="InvoiceCustomer">
+    <value>Kund:</value>
+  </data>
+  <data name="InvoiceDateHeadline" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="InvoiceDateOfIssue" xml:space="preserve">
+    <value>Utfärdandedatum</value>
+  </data>
+  <data name="InvoiceDescriptionHeadline" xml:space="preserve">
+    <value>Beskrivning</value>
+  </data>
+  <data name="InvoiceHeadline" xml:space="preserve">
+    <value>Mina Kvitton</value>
+  </data>
+  <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
+    <value>Utfärdat av AxCrypt AB</value>
+  </data>
+  <data name="InvoiceLineTotalHeadline">
+    <value>Total</value>
+  </data>
+  <data name="InvoiceOrderNr" xml:space="preserve">
+    <value>Ordernummer</value>
+  </data>
+  <data name="InvoiceQuantityHeadline" xml:space="preserve">
+    <value>Antal</value>
+  </data>
+  <data name="InvoiceSubtotalHeadline" xml:space="preserve">
+    <value>Delsumma</value>
+  </data>
+  <data name="InvoiceTotalHeadline" xml:space="preserve">
+    <value>Summa</value>
+  </data>
+  <data name="InvoiceUnitPriceHeadline" xml:space="preserve">
+    <value>Enhetspris</value>
+  </data>
+  <data name="InvoiceVatChargeHeadline" xml:space="preserve">
+    <value>Moms</value>
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript verkar vara inaktiverat i din webbläsare. Om du inte aktiverar JavaScript kan du inte logga in och sidan kan bete sig på ett oväntat sätt.</value>
@@ -1180,6 +1241,9 @@ Detta program är licensierat i enlighet med avtalet.
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} finns tillgänglig! Klicka för att komma till nedladdningssidan.</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Nästa</value>
+  </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>Du är utloggad. Klicka för att logga på.</value>
   </data>
@@ -1349,6 +1413,12 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
     <value>Lösenordet är för svagt för att vara rekommenderat.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
+  <data name="PaymentOnBehalfOf" xml:space="preserve">
+    <value>Betalning för annan</value>
+  </data>
+  <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
+    <value>Köp åt någon annan</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Mer om PayPal]</value>
   </data>
@@ -1393,6 +1463,10 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
   <data name="PricePerMonth" xml:space="preserve">
     <value>{0}/månad</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
+  <data name="ProgressIndicatorCleanupMessage">
+    <value>Rensar öppnade filer...</value>
+    <comment>Message displayed on progress bar during temporary files cleanup.</comment>
   </data>
   <data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
     <value>Öppnar...</value>
@@ -1663,6 +1737,9 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
     <value>Programmet behöver uppdateras beroende på en säkerhetsbrist.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
   </data>
+  <data name="SendInvitation" xml:space="preserve">
+    <value>Skicka inbjudan</value>
+  </data>
   <data name="SetEmailLabel" xml:space="preserve">
     <value>Epostadress</value>
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
@@ -1731,6 +1808,10 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Varning! Webbsajten startar strax om. Vi ber om ursäkt för besväret.</value>
+  </data>
+  <data name="SocialMediaFollowText" xml:space="preserve">
+    <value>Följ oss på sociala media</value>
+    <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>En krypterad SSL-förbindelse krävs. Försök igen med &lt;a href="{2}"&gt;{2}&lt;/a&gt; . 
