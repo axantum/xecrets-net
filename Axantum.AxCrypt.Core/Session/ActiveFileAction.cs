@@ -325,7 +325,8 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, IProgressContext progress)
         {
-            if (OS.Current.Platform != Platform.WindowsDesktop)
+            if (OS.Current.Platform != Platform.WindowsDesktop &&
+			    OS.Current.Platform != Platform.Linux)
             {
                 return activeFile;
             }
