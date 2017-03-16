@@ -84,6 +84,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
                     }
+
+                    if (!IsPassphrasePolicyValid(Passphrase))
+                    {
+                        ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
+                        return false;
+                    }
+
                     break;
 
                 case nameof(Verification):
@@ -114,6 +121,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             IDataStore encryptedStore = New<IDataStore>(encryptedFileFullName);
             IEnumerable<DecryptionParameter> decryptionParameters = encryptedStore.DecryptionParameters(new Passphrase(passphrase), new IAsymmetricPrivateKey[0]);
             return New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, encryptedStore) != null;
+        }
+
+        private static bool IsPassphrasePolicyValid(string passphrase)
+        {
+            return New<PasswordStrengthEvaluator>().Evaluate(passphrase).Strength > PasswordStrength.Unacceptable;
         }
     }
 }
