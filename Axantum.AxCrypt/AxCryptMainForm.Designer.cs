@@ -23,6 +23,7 @@
             this._removeRecentFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._decryptAndRemoveFromListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._shareKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._recentFilesShowInFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -115,7 +116,6 @@
             this._rightToolStrip = new System.Windows.Forms.ToolStrip();
             this._feedbackButton = new System.Windows.Forms.ToolStripButton();
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
-            this._daysLeftToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this._notifyIconContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -123,7 +123,6 @@
             this._notifySignInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifyExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._recentFilesShowInFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -165,7 +164,7 @@
             this._shareKeysToolStripMenuItem,
             this._recentFilesShowInFolderToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
-            this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 136);
+            this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 114);
             // 
             // _recentFilesOpenToolStripMenuItem
             // 
@@ -190,6 +189,12 @@
             this._shareKeysToolStripMenuItem.Name = "_shareKeysToolStripMenuItem";
             this._shareKeysToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
             this._shareKeysToolStripMenuItem.Text = "[&Share Keys]";
+            // 
+            // _recentFilesShowInFolderToolStripMenuItem
+            // 
+            this._recentFilesShowInFolderToolStripMenuItem.Name = "_recentFilesShowInFolderToolStripMenuItem";
+            this._recentFilesShowInFolderToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this._recentFilesShowInFolderToolStripMenuItem.Text = "[Show in &Folder]";
             // 
             // _progressContextMenuStrip
             // 
@@ -1073,12 +1078,6 @@
             this._notifyExitToolStripMenuItem.Text = "[&Exit]";
             this._notifyExitToolStripMenuItem.Click += new System.EventHandler(this._exitToolStripMenuItem_Click);
             // 
-            // _recentFilesShowInFolderToolStripMenuItem
-            // 
-            this._recentFilesShowInFolderToolStripMenuItem.Name = "_recentFilesShowInFolderToolStripMenuItem";
-            this._recentFilesShowInFolderToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
-            this._recentFilesShowInFolderToolStripMenuItem.Text = "[Show in &Folder]";
-            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1197,7 +1196,6 @@
         private System.Windows.Forms.ToolStripMenuItem _recentFilesOpenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _tryBrokenFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton _feedbackButton;
-        private System.Windows.Forms.ToolTip _daysLeftToolTip;
         private System.Windows.Forms.ToolStripMenuItem _signInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _signOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
