@@ -160,8 +160,7 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 default:
-                    // Ignore notification, it can be handled in other place.
-                    break;
+                    throw new InvalidOperationException("Unhandled notification received");
             }
         }
 
