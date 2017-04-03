@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Fake;
 using Moq;
@@ -116,11 +117,12 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestValidatePassphraseOk()
         {
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
+            TypeMap.Register.Singleton<PasswordStrengthEvaluator>(() => new PasswordStrengthEvaluator(64, 0));
 
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
 
-            npvm.Passphrase = "abc1234";
-            npvm.Verification = "abc1234";
+            npvm.Passphrase = "Loadiney4aropRout[";
+            npvm.Verification = "Loadiney4aropRout[";
 
             Assert.That(npvm["Passphrase"], Is.EqualTo(""));
             Assert.That(npvm["Verification"], Is.EqualTo(""));
