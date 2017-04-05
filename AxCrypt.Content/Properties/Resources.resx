@@ -131,6 +131,10 @@
     <value>{0}</value>
     <comment>Title bar status text when logged on to an account.</comment>
   </data>
+  <data name="AccountMustBeVerified" xml:space="preserve">
+    <value>The account must be verified by the user first.</value>
+    <comment>Error message when an attempt is made to use an unverified account.</comment>
+  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Free</value>
   </data>
@@ -297,8 +301,16 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Incorrect email address</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
+  <data name="BeneficiaryEmailLabel" xml:space="preserve">
+    <value>Email address of account to buy Premium for</value>
+    <comment>The prompt text for the input text field where a beneficiary email address is entered</comment>
+  </data>
+  <data name="BeneficiaryInvitationTitle" xml:space="preserve">
+    <value>Invitation required</value>
+    <comment>The main title when a user must be invited to be able to pay for</comment>
+  </data>
   <data name="BeneficiaryIs" xml:space="preserve">
-    <value>Beneficiary is currently {0}</value>
+    <value>You are buying Premium for {0}</value>
   </data>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} doesn't have an account with us, send an invite to register an account and continue.</value>
@@ -966,7 +978,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>Invitation to use AxCrypt File Security</value>
   </data>
   <data name="Invite" xml:space="preserve">
-    <value>Invite:</value>
+    <value>User to invite</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Receipt</value>
@@ -975,7 +987,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>Beneficiary:</value>
   </data>
   <data name="InvoiceCustomer" xml:space="preserve">
-    <value>Customer:</value>
+    <value>Customer Account</value>
   </data>
   <data name="InvoiceDateHeadline" xml:space="preserve">
     <value>Date</value>
@@ -990,7 +1002,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>My Receipts</value>
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
-    <value>Issued by AxCrypt</value>
+    <value>Issued by AxCrypt AB</value>
   </data>
   <data name="InvoiceLineTotalHeadline" xml:space="preserve">
     <value>Line Total</value>
@@ -1002,6 +1014,10 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>Birger Jarlsgatan 58
 SE-114 29 Stockholm
 SWEDEN</value>
+  </data>
+  <data name="InvoicePaidForLabel" xml:space="preserve">
+    <value>Paid for</value>
+    <comment>The label for the email field a payment was made for</comment>
   </data>
   <data name="InvoiceQuantityHeadline" xml:space="preserve">
     <value>Quantity</value>
@@ -1600,14 +1616,10 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PaymentOnBehalfOf" xml:space="preserve">
-    <value>Payment on behalf of</value>
+    <value>Buy Premium for someone else</value>
   </data>
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
     <value>Buy for someone else</value>
-  </data>
-  <data name="PaymentOnBehalfOfMustBeVerified" xml:space="preserve">
-    <value>The account must be verified by the user first.</value>
-    <comment>Error message when an attempt is made to purchase on behalf of an unverified account.</comment>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>

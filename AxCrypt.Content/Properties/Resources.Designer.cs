@@ -98,6 +98,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The account must be verified by the user first..
+        /// </summary>
+        public static string AccountMustBeVerified {
+            get {
+                return ResourceManager.GetString("AccountMustBeVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt Free.
         /// </summary>
         public static string AccountStatusLight {
@@ -531,7 +540,25 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beneficiary is currently {0}.
+        ///   Looks up a localized string similar to Email address of account to buy Premium for.
+        /// </summary>
+        public static string BeneficiaryEmailLabel {
+            get {
+                return ResourceManager.GetString("BeneficiaryEmailLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invitation required.
+        /// </summary>
+        public static string BeneficiaryInvitationTitle {
+            get {
+                return ResourceManager.GetString("BeneficiaryInvitationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are buying Premium for {0}.
         /// </summary>
         public static string BeneficiaryIs {
             get {
@@ -2414,7 +2441,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invite:.
+        ///   Looks up a localized string similar to User to invite.
         /// </summary>
         public static string Invite {
             get {
@@ -2441,7 +2468,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customer:.
+        ///   Looks up a localized string similar to Customer Account.
         /// </summary>
         public static string InvoiceCustomer {
             get {
@@ -2486,7 +2513,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Issued by AxCrypt.
+        ///   Looks up a localized string similar to Issued by AxCrypt AB.
         /// </summary>
         public static string InvoiceIssuedByAxcrypt {
             get {
@@ -2520,6 +2547,15 @@ namespace AxCrypt.Content.Properties {
         public static string InvoiceOurAddress {
             get {
                 return ResourceManager.GetString("InvoiceOurAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paid for.
+        /// </summary>
+        public static string InvoicePaidForLabel {
+            get {
+                return ResourceManager.GetString("InvoicePaidForLabel", resourceCulture);
             }
         }
         
@@ -4023,7 +4059,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Payment on behalf of.
+        ///   Looks up a localized string similar to Buy Premium for someone else.
         /// </summary>
         public static string PaymentOnBehalfOf {
             get {
@@ -4037,15 +4073,6 @@ namespace AxCrypt.Content.Properties {
         public static string PaymentOnBehalfOfLinkText {
             get {
                 return ResourceManager.GetString("PaymentOnBehalfOfLinkText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The account must be verified by the user first..
-        /// </summary>
-        public static string PaymentOnBehalfOfMustBeVerified {
-            get {
-                return ResourceManager.GetString("PaymentOnBehalfOfMustBeVerified", resourceCulture);
             }
         }
         
