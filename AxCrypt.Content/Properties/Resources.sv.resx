@@ -123,6 +123,10 @@
   <data name="About" xml:space="preserve">
     <value>Om {0}</value>
   </data>
+  <data name="AccountMustBeVerified" xml:space="preserve">
+    <value>Kontot måste verifieras av användaren först.</value>
+    <comment>Error message when an attempt is made to use an unverified account.</comment>
+  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Free</value>
   </data>
@@ -285,8 +289,16 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Felaktig epostadress</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
+  <data name="BeneficiaryEmailLabel" xml:space="preserve">
+    <value>E-postadress för kontot som skall få Premium</value>
+    <comment>The prompt text for the input text field where a beneficiary email address is entered</comment>
+  </data>
+  <data name="BeneficiaryInvitationTitle" xml:space="preserve">
+    <value>Inbjudan krävs</value>
+    <comment>The main title when a user must be invited to be able to pay for</comment>
+  </data>
   <data name="BeneficiaryIs" xml:space="preserve">
-    <value>Nuvarande mottagare är {0}</value>
+    <value>Du köper Premium åt {0}</value>
   </data>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>Det finns inget konto för {0}, bjud in mottagaren att skapa ett konto och försök igen sedan.</value>
@@ -876,7 +888,7 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
     <value>Inbjudan till AxCrypt Filskydd</value>
   </data>
   <data name="Invite" xml:space="preserve">
-    <value>Bjud in:</value>
+    <value>Bjud in användare</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Kvitto</value>
@@ -884,14 +896,14 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>Mottagare:</value>
   </data>
-  <data name="InvoiceCustomer">
-    <value>Kund:</value>
+  <data name="InvoiceCustomer" xml:space="preserve">
+    <value>Betalat av</value>
   </data>
   <data name="InvoiceDateHeadline" xml:space="preserve">
     <value>Datum</value>
   </data>
   <data name="InvoiceDateOfIssue" xml:space="preserve">
-    <value>Utfärdandedatum</value>
+    <value>Datum</value>
   </data>
   <data name="InvoiceDescriptionHeadline" xml:space="preserve">
     <value>Beskrivning</value>
@@ -900,19 +912,24 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
     <value>Mina Kvitton</value>
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
-    <value>Utfärdat av AxCrypt AB</value>
+    <value>Betalat till</value>
   </data>
-  <data name="InvoiceLineTotalHeadline">
-    <value>Total</value>
+  <data name="InvoiceLineTotalHeadline" xml:space="preserve">
+    <value>Belopp</value>
   </data>
   <data name="InvoiceOrderNr" xml:space="preserve">
-    <value>Ordernummer</value>
+    <value>Referens</value>
+    <comment>The payment provider reference id of the transaction</comment>
+  </data>
+  <data name="InvoicePaidForLabel" xml:space="preserve">
+    <value>Betalat för</value>
+    <comment>The label for the email field a payment was made for</comment>
   </data>
   <data name="InvoiceQuantityHeadline" xml:space="preserve">
     <value>Antal</value>
   </data>
   <data name="InvoiceSubtotalHeadline" xml:space="preserve">
-    <value>Delsumma</value>
+    <value>Exkl. Moms</value>
   </data>
   <data name="InvoiceTotalHeadline" xml:space="preserve">
     <value>Summa</value>
@@ -1414,7 +1431,7 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PaymentOnBehalfOf" xml:space="preserve">
-    <value>Betalning för annan</value>
+    <value>Köp Premium åt någon</value>
   </data>
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
     <value>Köp åt någon annan</value>
@@ -1464,7 +1481,7 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
     <value>{0}/månad</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
-  <data name="ProgressIndicatorCleanupMessage">
+  <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Rensar öppnade filer...</value>
     <comment>Message displayed on progress bar during temporary files cleanup.</comment>
   </data>

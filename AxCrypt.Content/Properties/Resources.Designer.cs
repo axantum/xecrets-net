@@ -2468,7 +2468,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customer Account.
+        ///   Looks up a localized string similar to Paid by.
         /// </summary>
         public static string InvoiceCustomer {
             get {
@@ -2486,7 +2486,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date of issue.
+        ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string InvoiceDateOfIssue {
             get {
@@ -2513,7 +2513,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Issued by AxCrypt AB.
+        ///   Looks up a localized string similar to Paid to.
         /// </summary>
         public static string InvoiceIssuedByAxcrypt {
             get {
@@ -2522,7 +2522,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Line Total.
+        ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string InvoiceLineTotalHeadline {
             get {
@@ -2531,7 +2531,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Order Nr.
+        ///   Looks up a localized string similar to Reference.
         /// </summary>
         public static string InvoiceOrderNr {
             get {
@@ -2540,9 +2540,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Birger Jarlsgatan 58
+        ///   Looks up a localized string similar to AxCrypt AB
+        ///Birger Jarlsgatan 58
         ///SE-114 29 Stockholm
-        ///SWEDEN.
+        ///SWEDEN
+        ///VAT Number SE 556967618101.
         /// </summary>
         public static string InvoiceOurAddress {
             get {
@@ -2569,7 +2571,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subtotal.
+        ///   Looks up a localized string similar to Excl. VAT.
         /// </summary>
         public static string InvoiceSubtotalHeadline {
             get {
@@ -2596,7 +2598,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT charge.
+        ///   Looks up a localized string similar to VAT.
         /// </summary>
         public static string InvoiceVatChargeHeadline {
             get {

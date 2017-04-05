@@ -987,13 +987,13 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>Beneficiary:</value>
   </data>
   <data name="InvoiceCustomer" xml:space="preserve">
-    <value>Customer Account</value>
+    <value>Paid by</value>
   </data>
   <data name="InvoiceDateHeadline" xml:space="preserve">
     <value>Date</value>
   </data>
   <data name="InvoiceDateOfIssue" xml:space="preserve">
-    <value>Date of issue</value>
+    <value>Date</value>
   </data>
   <data name="InvoiceDescriptionHeadline" xml:space="preserve">
     <value>Description</value>
@@ -1002,18 +1002,21 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>My Receipts</value>
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
-    <value>Issued by AxCrypt AB</value>
+    <value>Paid to</value>
   </data>
   <data name="InvoiceLineTotalHeadline" xml:space="preserve">
-    <value>Line Total</value>
+    <value>Amount</value>
   </data>
   <data name="InvoiceOrderNr" xml:space="preserve">
-    <value>Order Nr</value>
+    <value>Reference</value>
+    <comment>The payment provider reference id of the transaction</comment>
   </data>
   <data name="InvoiceOurAddress" xml:space="preserve">
-    <value>Birger Jarlsgatan 58
+    <value>AxCrypt AB
+Birger Jarlsgatan 58
 SE-114 29 Stockholm
-SWEDEN</value>
+SWEDEN
+VAT Number SE 556967618101</value>
   </data>
   <data name="InvoicePaidForLabel" xml:space="preserve">
     <value>Paid for</value>
@@ -1023,7 +1026,7 @@ SWEDEN</value>
     <value>Quantity</value>
   </data>
   <data name="InvoiceSubtotalHeadline" xml:space="preserve">
-    <value>Subtotal</value>
+    <value>Excl. VAT</value>
   </data>
   <data name="InvoiceTotalHeadline" xml:space="preserve">
     <value>Total</value>
@@ -1032,7 +1035,7 @@ SWEDEN</value>
     <value>Unit price</value>
   </data>
   <data name="InvoiceVatChargeHeadline" xml:space="preserve">
-    <value>VAT charge</value>
+    <value>VAT</value>
   </data>
   <data name="ItalianLanguageSelection" xml:space="preserve">
     <value>Italiano</value>
