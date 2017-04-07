@@ -16,7 +16,7 @@ namespace Axantum.AxCrypt.Core.UI
     /// </summary>
     /// <remarks>Instances of this type are immutable.</remarks>
     [JsonObject(MemberSerialization.OptIn)]
-    public class EmailAddress : IEquatable<EmailAddress>
+    public class EmailAddress : IEquatable<EmailAddress>, IComparable<EmailAddress>
     {
         public static EmailAddress Empty { get { return new EmailAddress(String.Empty); } }
 
@@ -81,6 +81,11 @@ namespace Axantum.AxCrypt.Core.UI
             throw new FormatException("Not recognized as a valid email address.");
         }
 
+        public static IEnumerable<EmailAddress> Extract(string text)
+        {
+            return New<IEmailParser>().Extract(text).Select(s => new EmailAddress(s));
+        }
+
         public override string ToString()
         {
             return Address;
@@ -129,6 +134,15 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             return String.Compare(Address, other.Address, StringComparison.OrdinalIgnoreCase) == 0;
+        }
+
+        public int CompareTo(EmailAddress other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            return Address.CompareTo(other.Address);
         }
     }
 }
