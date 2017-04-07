@@ -18,7 +18,7 @@ namespace Axantum.AxCrypt.Mono
 
         private static Regex validEmail = new Regex(@"^[^\.@]+(\.[^\.@]+)*@[-a-zA-Z0-9]{1,63}(\.[-a-zA-Z0-9]{1,63})+$", RegexOptions.Compiled);
 
-        private static Regex matchEmail = new Regex(@"[-A-Za-z0-9+'_]+(\.[-A-Za-z0-9+'_]+)*@[-a-zA-Z0-9]{1,63}(\.[-a-zA-Z0-9]{1,63})", RegexOptions.Compiled);
+        private static Regex matchEmail = new Regex(@"[-A-Za-z0-9+'_]+(\.[-A-Za-z0-9+'_]+)*@[-a-zA-Z0-9]{1,63}(\.[-a-zA-Z0-9]{1,63})+", RegexOptions.Compiled);
 
         /// <summary>
         /// Determines whether the specified email is a valid string for the purpose.
