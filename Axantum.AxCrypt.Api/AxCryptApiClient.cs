@@ -281,16 +281,31 @@ namespace Axantum.AxCrypt.Api
             return new AccountTip();
         }
 
-        public async Task<AxCryptVersion> AxCryptUpdateAsync(Version currentVersion, string cultureName)
+        public async Task<AxCryptVersion> AxCryptUpdateAsync(Version currentVersion, string cultureName, ClientPlatformKind platform)
         {
+            string platformParameter = string.Empty;
+            switch (platform)
+            {
+                case ClientPlatformKind.WindowsDesktop:
+                    platformParameter = "windowsdesktop";
+                    break;
+
+                case ClientPlatformKind.Mac:
+                    platformParameter = "mac";
+                    break;
+
+                default:
+                    throw new NotSupportedException($"App doesn't support updating on {platform} platform");
+            }
+
             Uri resource;
             if (Identity.IsEmpty)
             {
-                resource = BaseUrl.PathCombine($"global/axcrypt/version/windowsdesktop?version={currentVersion?.ToString() ?? string.Empty}");
+                resource = BaseUrl.PathCombine($"global/axcrypt/version/{platformParameter}?version={currentVersion?.ToString() ?? string.Empty}");
             }
             else
             {
-                resource = BaseUrl.PathCombine($"users/axcrypt/version/windowsdesktop?version={currentVersion?.ToString() ?? string.Empty}&culture={cultureName}");
+                resource = BaseUrl.PathCombine($"users/axcrypt/version/{platformParameter}?version={currentVersion?.ToString() ?? string.Empty}&culture={cultureName}");
             }
 
             if (New<AxCryptOnlineState>().IsOffline)

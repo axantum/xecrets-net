@@ -122,7 +122,22 @@ namespace Axantum.AxCrypt.Core.UI
             Version newVersion = DownloadVersion.VersionUnknown;
             try
             {
-                AxCryptVersion axCryptVersion = await New<AxCryptApiClient>().AxCryptUpdateAsync(_currentVersion, cultureName).Free();
+                ClientPlatformKind platform = ClientPlatformKind.WindowsDesktop;
+                switch (OS.Current.Platform)
+                {
+                    case Runtime.Platform.WindowsDesktop:
+                        platform = ClientPlatformKind.WindowsDesktop;
+                        break;
+
+                    case Runtime.Platform.MacOsx:
+                        platform = ClientPlatformKind.Mac;
+                        break;
+
+                    default:
+                        throw new NotSupportedException($"App doesn't support updating on {OS.Current.Platform} platform");
+                }
+
+                AxCryptVersion axCryptVersion = await New<AxCryptApiClient>().AxCryptUpdateAsync(_currentVersion, cultureName, platform).Free();
 
                 if (!axCryptVersion.IsEmpty)
                 {

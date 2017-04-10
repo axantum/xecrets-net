@@ -61,6 +61,7 @@
     <Compile Include="Model\AccountTip.cs" />
     <Compile Include="Model\ApiVersion.cs" />
     <Compile Include="Model\AxCryptVersion.cs" />
+    <Compile Include="Model\DesktopPlatformKind.cs" />
     <Compile Include="Model\FeedbackData.cs" />
     <Compile Include="Model\Offers.cs" />
     <Compile Include="Model\PasswordSuggestion.cs" />
