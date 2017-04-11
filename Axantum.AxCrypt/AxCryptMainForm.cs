@@ -795,7 +795,7 @@ namespace Axantum.AxCrypt
                 }
                 New<IUIThread>().PostTo(async () =>
                 {
-                    SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
+                    SetWindowTextWithSignInAndPremiumStatus(_mainViewModel.LoggedOn);
                     await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                 });
             };
@@ -863,7 +863,7 @@ namespace Axantum.AxCrypt
 
         private void SetSignInSignOutStatus(bool isSignedIn)
         {
-            SetWindowTextWithLogonStatus(isSignedIn);
+            SetWindowTextWithSignInAndPremiumStatus(isSignedIn);
 
             bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null;
 
@@ -1257,19 +1257,30 @@ namespace Axantum.AxCrypt
             return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
         }
 
-        private void SetWindowTextWithLogonStatus(bool isLoggedOn)
+        private async void SetWindowTextWithSignInAndPremiumStatus(bool isLoggedOn)
         {
+            string licenseStatus ="";
             string logonStatus;
             if (isLoggedOn)
             {
                 UserKeyPair userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
                 logonStatus = userKeys != UserKeyPair.Empty ? Texts.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Texts.LoggedOnStatusText;
+
+                if (await _mainViewModel.License.HasAsync(LicenseCapability.Premium))
+                {
+                    licenseStatus = Texts.LicensePremiumNameText;
+                }
+                else
+                {
+                    licenseStatus = Texts.LicenseFreeNameText;
+                }
             }
             else
             {
                 logonStatus = Texts.LoggedOffStatusText;
             }
-            string text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, logonStatus);
+
+            string text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, licenseStatus, logonStatus);
             if (New<AxCryptOnlineState>().IsOffline)
             {
                 text = $"{text} [{Texts.OfflineIndicatorText}]";
@@ -1727,7 +1738,7 @@ namespace Axantum.AxCrypt
             }
 
             InitializeContentResources();
-            SetWindowTextWithLogonStatus(_mainViewModel.LoggedOn);
+            SetWindowTextWithSignInAndPremiumStatus(_mainViewModel.LoggedOn);
             await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
             SetSoftwareStatus();
         }

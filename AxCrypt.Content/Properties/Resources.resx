@@ -2180,7 +2180,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
   </data>
   <data name="TitleWindowSignInStatus" xml:space="preserve">
-    <value>{0} - {1}</value>
+    <value>{0} {1} - {2}</value>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Premium is required for password management. Click to upgrade now!</value>
