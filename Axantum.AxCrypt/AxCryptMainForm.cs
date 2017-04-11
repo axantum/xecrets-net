@@ -1689,6 +1689,7 @@ namespace Axantum.AxCrypt
             if (await _mainViewModel.License.HasAsync(requiredCapability))
             {
                 await realHandler();
+                return;
             }
 
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.PremiumFeatureToolTipText);
