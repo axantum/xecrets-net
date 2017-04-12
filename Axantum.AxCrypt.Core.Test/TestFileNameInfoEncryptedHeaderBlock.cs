@@ -86,5 +86,35 @@ namespace Axantum.AxCrypt.Core.Test
                 Object.Equals(fileName, null);
             });
         }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestFileNameInfoAnsiName(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            V1AesCrypto headerCrypto = new V1AesCrypto(new V1Aes128CryptoFactory(), new V1DerivedKey(new Passphrase("nonterminating")).DerivedKey, SymmetricIV.Zero128);
+            V1FileNameInfoEncryptedHeaderBlock fileInfoHeaderBlock = new V1FileNameInfoEncryptedHeaderBlock(headerCrypto);
+
+            fileInfoHeaderBlock.FileName = "Dépôsé.txt";
+
+            Assert.That(fileInfoHeaderBlock.FileName, Is.EqualTo("Dépôsé.txt"));
+        }
+
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.WindowsDesktop)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestFileNameInfoAnsiNameWithNonAnsiCharacters(CryptoImplementation cryptoImplementation)
+        {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
+            V1AesCrypto headerCrypto = new V1AesCrypto(new V1Aes128CryptoFactory(), new V1DerivedKey(new Passphrase("nonterminating")).DerivedKey, SymmetricIV.Zero128);
+            V1FileNameInfoEncryptedHeaderBlock fileInfoHeaderBlock = new V1FileNameInfoEncryptedHeaderBlock(headerCrypto);
+
+            fileInfoHeaderBlock.FileName = "Секретный.txt";
+
+            Assert.That(fileInfoHeaderBlock.FileName, Is.EqualTo("_________.txt"));
+        }
     }
 }
