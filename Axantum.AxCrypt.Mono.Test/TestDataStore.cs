@@ -41,14 +41,14 @@ using System.IO;
 namespace Axantum.AxCrypt.Mono.Test
 {
     [TestFixture]
-    public static class TestRuntimeFileInfo
+    public static class TestDataStore
     {
         private static string _tempPath;
 
         [SetUp]
         public static void Setup()
         {
-            _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Mono.Test.TestRuntimeFileInfo");
+            _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Mono.Test.TestDataStore");
             Directory.CreateDirectory(_tempPath);
 
             TypeMap.Register.Singleton<INow>(() => new FakeNow());
@@ -69,19 +69,31 @@ namespace Axantum.AxCrypt.Mono.Test
         }
 
         [Test]
-        public static void TestBadArguments()
+        public static void TestDataStoreNullArgument()
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                DataStore rfi = new DataStore(null);
+                DataStore ds = new DataStore(null);
 
                 // Avoid FxCop error
-                Object.Equals(rfi, null);
+                Object.Equals(ds, null);
             });
         }
 
         [Test]
-        public static void TestCreateDirectory()
+        public static void TestDataStoreInvalidPath()
+        {
+            Assert.Throws<FileOperationException>(() =>
+            {
+                DataStore ds = new DataStore("A?bad*filename.txt");
+
+                // Avoid FxCop error
+                Object.Equals(ds, null);
+            });
+        }
+
+        [Test]
+        public static void TestDataStoreCreateDirectory()
         {
             string testTempFolder = Path.Combine(Path.GetTempPath(), "AxantumTestCreateDirectory" + Path.DirectorySeparatorChar);
             if (Directory.Exists(testTempFolder))
@@ -99,20 +111,20 @@ namespace Axantum.AxCrypt.Mono.Test
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
-        public static void TestMethods()
+        public static void TestDataStoreMethods()
         {
             string tempFileName = Path.GetTempFileName();
-            IDataStore runtimeFileInfo = new DataStore(tempFileName);
+            IDataStore ds = new DataStore(tempFileName);
             try
             {
-                using (Stream writeStream = runtimeFileInfo.OpenWrite())
+                using (Stream writeStream = ds.OpenWrite())
                 {
                     using (TextWriter writer = new StreamWriter(writeStream))
                     {
                         writer.Write("This is AxCrypt!");
                     }
                 }
-                using (Stream readStream = runtimeFileInfo.OpenRead())
+                using (Stream readStream = ds.OpenRead())
                 {
                     using (TextReader reader = new StreamReader(readStream))
                     {
@@ -123,37 +135,37 @@ namespace Axantum.AxCrypt.Mono.Test
                 }
 
                 DateTime dateTime = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
-                runtimeFileInfo.SetFileTimes(dateTime, dateTime + new TimeSpan(3, 0, 0), dateTime + new TimeSpan(5, 0, 0));
+                ds.SetFileTimes(dateTime, dateTime + new TimeSpan(3, 0, 0), dateTime + new TimeSpan(5, 0, 0));
                 if (OS.Current.Platform == Platform.WindowsDesktop)
                 {
-                    Assert.That(runtimeFileInfo.CreationTimeUtc, Is.EqualTo(dateTime), "The creation time should be as set.");
+                    Assert.That(ds.CreationTimeUtc, Is.EqualTo(dateTime), "The creation time should be as set.");
                 }
                 else
                 {
-                    Assert.That(runtimeFileInfo.CreationTimeUtc, Is.EqualTo(dateTime + new TimeSpan(5, 0, 0)), "The creation time should be as last write time due to bug in Mono.");
+                    Assert.That(ds.CreationTimeUtc, Is.EqualTo(dateTime + new TimeSpan(5, 0, 0)), "The creation time should be as last write time due to bug in Mono.");
                 }
-                Assert.That(runtimeFileInfo.LastAccessTimeUtc, Is.EqualTo(dateTime + new TimeSpan(3, 0, 0)), "The last access time should be as set.");
-                Assert.That(runtimeFileInfo.LastWriteTimeUtc, Is.EqualTo(dateTime + new TimeSpan(5, 0, 0)), "The last write time should be as set.");
+                Assert.That(ds.LastAccessTimeUtc, Is.EqualTo(dateTime + new TimeSpan(3, 0, 0)), "The last access time should be as set.");
+                Assert.That(ds.LastWriteTimeUtc, Is.EqualTo(dateTime + new TimeSpan(5, 0, 0)), "The last write time should be as set.");
 
-                Assert.That(runtimeFileInfo.FullName, Is.EqualTo(tempFileName), "The FullName should be the same as the underlying FileInfo.FullName.");
+                Assert.That(ds.FullName, Is.EqualTo(tempFileName), "The FullName should be the same as the underlying FileInfo.FullName.");
 
-                string otherTempFileName = runtimeFileInfo.FullName + ".copy";
-                IDataStore otherTempRuntimeFileInfo = new DataStore(otherTempFileName);
-                Assert.That(otherTempRuntimeFileInfo.IsAvailable, Is.False, "The new temp file should not exist.");
-                Assert.That(runtimeFileInfo.IsAvailable, Is.True, "The old temp file should exist.");
-                runtimeFileInfo.MoveTo(otherTempRuntimeFileInfo.FullName);
-                Assert.That(otherTempRuntimeFileInfo.IsAvailable, Is.True, "The new temp file should exist after moving the old here.");
-                Assert.That(runtimeFileInfo.IsAvailable, Is.True, "The old temp file should exist still because it has changed to refer to the new file.");
+                string otherTempFileName = ds.FullName + ".copy";
+                IDataStore otherTempDataStore = new DataStore(otherTempFileName);
+                Assert.That(otherTempDataStore.IsAvailable, Is.False, "The new temp file should not exist.");
+                Assert.That(ds.IsAvailable, Is.True, "The old temp file should exist.");
+                ds.MoveTo(otherTempDataStore.FullName);
+                Assert.That(otherTempDataStore.IsAvailable, Is.True, "The new temp file should exist after moving the old here.");
+                Assert.That(ds.IsAvailable, Is.True, "The old temp file should exist still because it has changed to refer to the new file.");
             }
             finally
             {
-                runtimeFileInfo.Delete();
+                ds.Delete();
             }
-            Assert.That(runtimeFileInfo.IsAvailable, Is.False, "The file should have been deleted now.");
+            Assert.That(ds.IsAvailable, Is.False, "The file should have been deleted now.");
 
-            IDataStore notEncryptedRuntimeFileInfo = new DataStore("file.txt");
-            IDataStore encryptedRuntimeFileInfo = notEncryptedRuntimeFileInfo.CreateEncryptedName();
-            Assert.That(encryptedRuntimeFileInfo.Name, Is.EqualTo("file-txt.axx"), "The encrypted name should be as expected.");
+            IDataStore notEncryptedDataStore = new DataStore("file.txt");
+            IDataStore encryptedDataStore = notEncryptedDataStore.CreateEncryptedName();
+            Assert.That(encryptedDataStore.Name, Is.EqualTo("file-txt.axx"), "The encrypted name should be as expected.");
         }
     }
 }

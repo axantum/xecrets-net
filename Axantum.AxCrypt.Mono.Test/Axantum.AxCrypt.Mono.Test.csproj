@@ -61,7 +61,7 @@
     <Compile Include="TestEmailParser.cs" />
     <Compile Include="TestLogging.cs" />
     <Compile Include="TestRuntimeEnvironment.cs" />
-    <Compile Include="TestRuntimeFileInfo.cs" />
+    <Compile Include="TestDataStore.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>

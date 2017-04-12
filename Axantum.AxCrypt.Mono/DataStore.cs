@@ -59,7 +59,15 @@ namespace Axantum.AxCrypt.Mono
                 throw new ArgumentNullException("path");
             }
 
-            _file = new FileInfo(path.NormalizeFilePath());
+            string normalized = path.NormalizeFilePath();
+            try
+            {
+                _file = new FileInfo(normalized);
+            }
+            catch (ArgumentException ae)
+            {
+                throw new FileOperationException("Can't create DataStore.", normalized, ErrorStatus.Exception, ae);
+            }
         }
 
         protected override string Location
