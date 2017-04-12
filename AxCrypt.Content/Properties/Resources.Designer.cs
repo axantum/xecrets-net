@@ -3284,7 +3284,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shred and Delete.
+        ///   Looks up a localized string similar to Secure Delete.
         /// </summary>
         public static string McInfMenuWipe {
             get {
@@ -5539,7 +5539,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - {1}.
+        ///   Looks up a localized string similar to {0} {1} - {2}.
         /// </summary>
         public static string TitleWindowSignInStatus {
             get {

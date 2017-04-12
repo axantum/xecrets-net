@@ -1313,7 +1313,7 @@ This program is licensed according to the agreement.
     <comment>Context menu for decrypt</comment>
   </data>
   <data name="McInfMenuWipe" xml:space="preserve">
-    <value>Shred and Delete</value>
+    <value>Secure Delete</value>
     <comment>Context menu for Wipe</comment>
   </data>
   <data name="McInfMenuWrapZ" xml:space="preserve">
