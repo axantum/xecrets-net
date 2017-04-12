@@ -1134,6 +1134,8 @@ namespace Axantum.AxCrypt
                     case CommandVerb.Decrypt:
                     case CommandVerb.Open:
                     case CommandVerb.Show:
+                    case CommandVerb.RandomRename:
+                    case CommandVerb.Wipe:
                     case CommandVerb.ShowLogOn:
                         await SignInAsync();
                         break;
