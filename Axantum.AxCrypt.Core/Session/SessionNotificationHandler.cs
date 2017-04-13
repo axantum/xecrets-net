@@ -159,6 +159,9 @@ namespace Axantum.AxCrypt.Core.Session
                     _activeFileAction.CheckActiveFiles(progress);
                     break;
 
+                case SessionNotificationType.LicensePolicyChange:
+                    break;
+
                 default:
                     throw new InvalidOperationException("Unhandled notification received");
             }
