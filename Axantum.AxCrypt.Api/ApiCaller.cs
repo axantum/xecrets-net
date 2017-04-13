@@ -84,5 +84,10 @@ namespace Axantum.AxCrypt.Api
         {
             return RestCaller.UrlEncode(value);
         }
+
+        public static string PathSegmentEncode(string value)
+        {
+            return UrlEncode(value).Replace("%2B", "+").Replace("%40", "@");
+        }
     }
 }

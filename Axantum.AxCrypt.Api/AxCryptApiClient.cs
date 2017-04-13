@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Api
                 throw new ArgumentNullException(nameof(userName));
             }
 
-            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}".With(ApiCaller.UrlEncode(userName)));
+            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}".With(ApiCaller.PathSegmentEncode(userName)));
 
             RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
             if (restResponse.StatusCode == HttpStatusCode.NotFound)
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Api
 
         public async Task PutMyAccountAsync(UserAccount account)
         {
-            Uri resource = BaseUrl.PathCombine("users/my/account".With(ApiCaller.UrlEncode(Identity.User)));
+            Uri resource = BaseUrl.PathCombine("users/my/account");
 
             RestContent content = new RestContent(Serializer.Serialize(account));
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Api
         /// <param name="accountKeys">The account keys to upload.</param>
         public async Task PutMyAccountKeysAsync(IEnumerable<AccountKey> accountKeys)
         {
-            Uri resource = BaseUrl.PathCombine("users/my/account/keys".With(ApiCaller.UrlEncode(Identity.User)));
+            Uri resource = BaseUrl.PathCombine("users/my/account/keys");
 
             RestContent content = new RestContent(Serializer.Serialize(accountKeys));
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Api
         /// <returns></returns>
         public async Task PostMyAccountPremiumTrial()
         {
-            Uri resource = BaseUrl.PathCombine("users/my/account/premiumtrial".With(ApiCaller.UrlEncode(Identity.User)));
+            Uri resource = BaseUrl.PathCombine("users/my/account/premiumtrial");
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout));
             ApiCaller.EnsureStatusOk(restResponse);
@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt.Api
                 throw new ArgumentNullException(nameof(userName));
             }
 
-            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}/key".With(ApiCaller.UrlEncode(userName)));
+            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}/key".With(ApiCaller.PathSegmentEncode(userName)));
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
@@ -207,7 +207,7 @@ namespace Axantum.AxCrypt.Api
                 throw new ArgumentNullException(nameof(culture));
             }
 
-            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}?culture={1}".With(ApiCaller.UrlEncode(userName), culture.Name));
+            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}?culture={1}".With(ApiCaller.PathSegmentEncode(userName), culture.Name));
 
             RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest("POST", resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
