@@ -38,6 +38,8 @@ using System;
 using System.Globalization;
 using System.IO;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Mono.Test
 {
     [TestFixture]
@@ -83,6 +85,12 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestDataStoreInvalidPath()
         {
+            if (New<IPlatform>().Platform == Platform.MacOsx)
+            {
+                Assert.That(true, Is.True, "Mac OS X File System allows all characters, so this test makes no sense there.");
+                return;
+            }
+
             Assert.Throws<FileOperationException>(() =>
             {
                 DataStore ds = new DataStore("A?bad*filename.txt");
