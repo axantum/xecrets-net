@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -35,7 +36,32 @@ namespace Axantum.AxCrypt.Mono
 {
     public class MonoPlatform : IPlatform
     {
-        public Platform Platform
+		private Lazy<bool> isMac = new Lazy<bool>(IsMac);
+
+		private static bool IsMac()
+		{
+			try
+			{
+				using (Process p = Process.Start(
+					new ProcessStartInfo
+					{
+						FileName = "uname",
+						RedirectStandardOutput = true,
+					    UseShellExecute = false,
+					}
+				))
+				{
+					string output = p.StandardOutput.ReadToEnd().Trim();
+					return output == "Darwin";
+				}
+			}
+			catch (Exception ex)
+			{
+				return ex == null;
+			}
+		}
+
+		public Platform Platform
         {
             get
             {
@@ -49,10 +75,10 @@ namespace Axantum.AxCrypt.Mono
                         return Platform.WindowsDesktop;
 
                     case PlatformID.MacOSX:
-                        return Platform.MacOsx;
+						return  Platform.MacOsx;
 
                     case PlatformID.Unix:
-                        return Platform.Linux;
+						return isMac.Value? Platform.MacOsx : Platform.Linux;
 
                     case PlatformID.WinCE:
                         return Platform.WindowsMobile;
