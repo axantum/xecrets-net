@@ -751,6 +751,47 @@ namespace Axantum.AxCrypt.Core
             Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
         }
 
+        public virtual void TryDecryptBrokenFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
+        {
+            if (document == null)
+            {
+                throw new ArgumentNullException("document");
+            }
+            if (decryptedFileFullName == null)
+            {
+                throw new ArgumentNullException("decryptedFileFullName");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
+            IDataStore decryptedFileInfo = New<IDataStore>(decryptedFileFullName);
+
+            try
+            {
+                if (Resolve.Log.IsInfoEnabled)
+                {
+                    Resolve.Log.LogInfo("Decrypting to '{0}'.".InvariantFormat(decryptedFileInfo.Name));
+                }
+
+                using (Stream destinationStream = decryptedFileInfo.OpenWrite())
+                {
+                    document.DecryptTo(destinationStream);
+                }
+
+                if (Resolve.Log.IsInfoEnabled)
+                {
+                    Resolve.Log.LogInfo("Decrypted to '{0}'.".InvariantFormat(decryptedFileInfo.Name));
+                }
+            }
+            finally
+            {
+                decryptedFileInfo.SetFileTimes(document.CreationTimeUtc, document.LastAccessTimeUtc, document.LastWriteTimeUtc);
+            }
+
+        }
+
         /// <summary>
         /// Load an AxCryptDocument from a source file with a passphrase
         /// </summary>

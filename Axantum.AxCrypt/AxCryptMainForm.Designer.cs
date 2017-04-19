@@ -802,7 +802,6 @@
             this._tryBrokenFileToolStripMenuItem.Name = "_tryBrokenFileToolStripMenuItem";
             this._tryBrokenFileToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._tryBrokenFileToolStripMenuItem.Text = "[&Try Broken File]";
-            this._tryBrokenFileToolStripMenuItem.Click += new System.EventHandler(this.tryBrokenFileToolStripMenuItem_Click);
             // 
             // _debugOpenReportToolStripMenuItem
             // 

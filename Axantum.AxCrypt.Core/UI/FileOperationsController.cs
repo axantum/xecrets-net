@@ -223,6 +223,16 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         /// <summary>
+        /// Try Decrypt a broken file, raising events as required by the situation.
+        /// </summary>
+        /// <param name="fileInfo">The full path to an encrypted file.</param>
+        /// <returns>The resulting status of the operation.</returns>
+        public Task<FileOperationContext> TryDecryptBrokenFile(IDataStore fileInfo)
+        {
+            return DoFileAsync(fileInfo, TryDecryptBrokenFilePreparationAsync, TryDecryptBrokenFileOperation);
+        }
+
+        /// <summary>
         /// Verify that a file is encrypted with a known key.
         /// </summary>
         /// <param name="fileInfo">The file to verify.</param>
@@ -667,12 +677,68 @@ namespace Axantum.AxCrypt.Core.UI
 
             return Task.FromResult(true); ;
         }
+
         private bool OpenFileLocationOperation()
         {
             _eventArgs.Status = New<FileOperation>().OpenFileLocation(_eventArgs.OpenFileFullName);
 
             return true;
         }
+
+        private async Task<bool> TryDecryptBrokenFilePreparationAsync(IDataStore fileInfo)
+        {
+            if (!await CheckDecryptionIdentityAndLocking(fileInfo))
+            {
+                return false;
+            }
+
+            IDataStore destination = New<IDataStore>(_eventArgs.SaveFileFullName);
+            if (destination.IsAvailable)
+            {
+                OnQuerySaveFileAs(_eventArgs);
+                if (_eventArgs.Cancel)
+                {
+                    _eventArgs.Status = new FileOperationContext(fileInfo.FullName, ErrorStatus.Canceled);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool TryDecryptBrokenFileOperation()
+        {
+            _progress.NotifyLevelStart();
+            try
+            {
+                using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
+                {
+                    New<AxCryptFile>().TryDecryptBrokenFile(document, _eventArgs.SaveFileFullName, _progress);
+                    if (_eventArgs.AxCryptFile.IsWriteProtected)
+                    {
+                        New<IDataStore>(_eventArgs.SaveFileFullName).IsWriteProtected = true;
+                    }
+                }
+                if (_eventArgs.AxCryptFile.IsWriteProtected)
+                {
+                    _eventArgs.AxCryptFile.IsWriteProtected = false;
+                }
+                
+            }
+            catch (AxCryptException ace)
+            {
+                New<IReport>().Exception(ace);
+                _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ace.ErrorStatus);
+                return false;
+            }
+            finally
+            {
+                _progress.NotifyLevelFinished();
+            }
+            _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
+            return true;
+        }
+
         #endregion Private Methods
     }
 }
