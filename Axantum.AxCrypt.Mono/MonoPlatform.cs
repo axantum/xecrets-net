@@ -55,9 +55,9 @@ namespace Axantum.AxCrypt.Mono
 					return output == "Darwin";
 				}
 			}
-			catch (Exception ex)
+			catch
 			{
-				return ex == null;
+				return false;
 			}
 		}
 
