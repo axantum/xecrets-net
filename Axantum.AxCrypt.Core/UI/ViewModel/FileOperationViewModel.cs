@@ -84,6 +84,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AddRecentFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await AddRecentFilesActionAsync(files));
             AsyncUpgradeFiles = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => UpgradeFilesActionAsync(containers), (containers) => _knownIdentities.IsLoggedOn);
             ShowInFolder = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await ShowInFolderActionAsync(files));
+            TryBrokenFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await TryBrokenFilesActionAsync(files));
+
         }
 
         public IAsyncAction DecryptFiles { get; private set; }
@@ -105,6 +107,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction AsyncUpgradeFiles { get; private set; }
 
         public IAsyncAction ShowInFolder { get; private set; }
+
+        public IAsyncAction TryBrokenFiles { get; private set; }
+        
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
@@ -513,6 +518,60 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             FileOperationsController operationsController = new FileOperationsController(progress);
 
             return await operationsController.OpenFileLocationAsync(file);
+        }
+
+        private async Task TryBrokenFilesActionAsync(IEnumerable<string> files)
+        {
+            files = files ?? SelectFiles(FileSelectionType.Decrypt);
+            if (!files.Any())
+            {
+                return;
+            }
+            if (!_knownIdentities.IsLoggedOn)
+            {
+                IdentityViewModel.AskForDecryptPassphrase.Execute(files.First());
+            }
+            if (!_knownIdentities.IsLoggedOn)
+            {
+                return;
+            }
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), TryBrokenFileWork, (status) => CheckStatusAndShowMessage(status, string.Empty));
+        }
+        private Task<FileOperationContext> TryBrokenFileWork(IDataStore file, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            operationsController.QueryDecryptionPassphrase = HandleQueryDecryptionPassphraseEventAsync;
+
+            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
+            {
+                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[] { e.SaveFileFullName })
+                {
+                    FileSelectionType = FileSelectionType.SaveAsDecrypted,
+                };
+                OnSelectingFiles(fileSelectionArgs);
+                if (fileSelectionArgs.Cancel)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                e.SaveFileFullName = fileSelectionArgs.SelectedFiles[0];
+            };
+
+            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                _knownIdentities.Add(e.LogOnIdentity);
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (e.Status.ErrorStatus == ErrorStatus.Success)
+                {
+                    New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(e.OpenFileFullName) }, progress);
+                }
+            };
+
+            return operationsController.TryDecryptBrokenFile(file);
         }
     }
 }
