@@ -232,12 +232,6 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(UserEmail), value); }
         }
 
-        public bool TryBrokenFile
-        {
-            get { return Load(nameof(TryBrokenFile), false); }
-            set { Store(nameof(TryBrokenFile), value); }
-        }
-
         public bool IsFirstSignIn
         {
             get { return Load(nameof(IsFirstSignIn), true); }

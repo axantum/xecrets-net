@@ -32,7 +32,6 @@ namespace Axantum.AxCrypt.Fake
             ThisVersion = "2.1.1234.0";
             SettingsVersion = 5;
             ThumbprintSalt = Salt.Zero;
-            TryBrokenFile = false;
             OfflineMode = false;
             UpdateUrl = new Uri("http://localhost/update");
             UserEmail = String.Empty;

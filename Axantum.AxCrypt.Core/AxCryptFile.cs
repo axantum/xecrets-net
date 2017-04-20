@@ -620,7 +620,7 @@ namespace Axantum.AxCrypt.Core
             }
             catch (Exception)
             {
-                if (destinationStore.IsAvailable && !Resolve.UserSettings.TryBrokenFile)
+                if (destinationStore.IsAvailable)
                 {
                     Wipe(destinationStore, progress);
                 }
