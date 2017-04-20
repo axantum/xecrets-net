@@ -50,7 +50,14 @@ namespace Axantum.AxCrypt.Core.UI
 
         public bool Enabled { get; private set; }
 
+        public string DisplayName { get; private set; }
+
         public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, object image, Uri providerUrl)
+            : this(knownFolderInfo, myFolderName, image, providerUrl, null)
+        {
+        }
+
+        public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, object image, Uri providerUrl, string displayName)
         {
             if (knownFolderInfo == null)
             {
@@ -69,6 +76,7 @@ namespace Axantum.AxCrypt.Core.UI
             Image = image;
             ProviderUrl = providerUrl;
             Enabled = false;
+            DisplayName = displayName;
         }
 
         public KnownFolder(KnownFolder knownFolder, bool enabled)
@@ -81,6 +89,7 @@ namespace Axantum.AxCrypt.Core.UI
             My = knownFolder.My;
             Image = knownFolder.Image;
             ProviderUrl = knownFolder.ProviderUrl;
+            DisplayName = knownFolder.DisplayName;
             Enabled = enabled;
         }
     }
