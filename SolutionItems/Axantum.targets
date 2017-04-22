@@ -239,6 +239,9 @@
       <_AxPreviousDefineConstants>$(DefineConstants)</_AxPreviousDefineConstants>
       <DefineConstants>$(DefineConstants);AXANTUM</DefineConstants>
     </PropertyGroup>
+    <PropertyGroup Condition=" '$(OS)' == 'Unix' ">
+		<DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
+	</PropertyGroup>
   </Target>
 
   <Target Name="_AxAfterBuild">
