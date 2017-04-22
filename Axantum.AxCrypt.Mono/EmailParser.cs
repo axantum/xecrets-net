@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Mono
 
         public IEnumerable<string> Extract(string text)
         {
-            foreach (string candidate in matchEmail.Matches(text).Cast<Match>().Select(m => m.Value))
+            foreach (string candidate in matchEmail.Matches(text ?? string.Empty).Cast<Match>().Select(m => m.Value))
             {
                 string validated;
                 if (TryParse(candidate, out validated))
