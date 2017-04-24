@@ -522,6 +522,19 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warning! This is untested beta software. This means that it may be missing features and be unstable. Texts may be missing and user interface might be incomplete.
+        ///
+        ///Use with care and ensure you have up-to-date backups of all your data. Please report any issues to https://bitbucket.org/axantum/axcrypt-net/issues or  support@axcrypt.net .
+        ///
+        ///You have been warned, now enjoy!.
+        /// </summary>
+        public static string AxCryptBetaWarning {
+            get {
+                return ResourceManager.GetString("AxCryptBetaWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt File Security.
         /// </summary>
         public static string AxCryptFileEncryption {

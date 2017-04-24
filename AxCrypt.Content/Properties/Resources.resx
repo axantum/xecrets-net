@@ -294,6 +294,14 @@ Please sign in using the same password you used then.</value>
 
 Includes software from http://www.bouncycastle.org/ .</value>
   </data>
+  <data name="AxCryptBetaWarning">
+    <value>Warning! This is untested beta software. This means that it may be missing features and be unstable. Texts may be missing and user interface might be incomplete.
+
+Use with care and ensure you have up-to-date backups of all your data. Please report any issues to https://bitbucket.org/axantum/axcrypt-net/issues or  support@axcrypt.net .
+
+You have been warned, now enjoy!</value>
+    <comment>A text that is shown to users starting a beta version of our software.</comment>
+  </data>
   <data name="AxCryptFileEncryption" xml:space="preserve">
     <value>AxCrypt File Security</value>
   </data>
