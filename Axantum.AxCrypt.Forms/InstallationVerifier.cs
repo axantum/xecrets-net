@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Axantum.AxCrypt.Forms
 {
-    class InstallationVerifier
+    public class InstallationVerifier
     {
         private bool? _isFileAssociationOk;
 
@@ -26,8 +27,30 @@ namespace Axantum.AxCrypt.Forms
         {
             get
             {
+                if (!_isFileAssociationOk.HasValue)
+                {
+                    _isFileAssociationOk = IsFileAssociationCorrect();
+                }
                 return _isFileAssociationOk.Value;
             }
+        }
+
+        private bool IsFileAssociationCorrect()
+        { 
+            uint pcchOut = 0;
+            NativeMethods.AssocQueryString(NativeMethods.ASSOCF.ASSOCF_VERIFY,
+                NativeMethods.ASSOCSTR.ASSOCSTR_EXECUTABLE, ".axx", null, null, ref pcchOut);
+
+            StringBuilder pszOut = new StringBuilder((int)pcchOut);
+            NativeMethods.AssocQueryString(NativeMethods.ASSOCF.ASSOCF_VERIFY,
+                NativeMethods.ASSOCSTR.ASSOCSTR_EXECUTABLE, ".axx", null, pszOut, ref pcchOut);
+
+            if (Application.ExecutablePath == pszOut.ToString())
+            {
+                return true;
+            }
+                
+             return false;
         }
 
     }
