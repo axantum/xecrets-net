@@ -2093,6 +2093,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The .axx file association has been modified externally..
+        /// </summary>
+        public static string FileAssociationBrokenWarning {
+            get {
+                return ResourceManager.GetString("FileAssociationBrokenWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File &apos;{0}&apos; does not exist..
         /// </summary>
         public static string FileDoesNotExist {
