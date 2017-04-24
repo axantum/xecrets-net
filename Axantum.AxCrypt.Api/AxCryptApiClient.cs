@@ -5,9 +5,7 @@ using Axantum.AxCrypt.Common;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -172,28 +170,6 @@ namespace Axantum.AxCrypt.Api
 
             AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
             return accountKey;
-        }
-
-        /// <summary>
-        /// Checks for the most current version of AxCrypt 2.
-        /// </summary>
-        /// <returns>The current version information</returns>
-        public async Task<CurrentVersionResponse> CheckVersionAsync(string currentVersion)
-        {
-            if (currentVersion == null)
-            {
-                throw new ArgumentNullException("currentVersion");
-            }
-
-            Uri resource = BaseUrl.PathCombine("axcrypt2version/windows?current={0}".With(ApiCaller.UrlEncode(currentVersion)));
-
-            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
-            ApiCaller.EnsureStatusOk(restResponse);
-
-            CurrentVersionResponse apiResponse = Serializer.Deserialize<CurrentVersionResponse>(restResponse.Content);
-            ApiCaller.EnsureStatusOk(apiResponse);
-
-            return apiResponse;
         }
 
         public async Task PostAllAccountsUserAsync(string userName, CultureInfo culture)
