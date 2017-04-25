@@ -67,8 +67,6 @@
     <_AxBuildserverDistinguishingPath>C:\Build</_AxBuildserverDistinguishingPath>
     <_AxIsBuildServerBuild>false</_AxIsBuildServerBuild>
     <_AxIsBuildServerBuild Condition=" Exists('$(_AxBuildserverDistinguishingPath)') ">true</_AxIsBuildServerBuild>
-    <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
-    <_AxCertificateThumbprint>daf3522d80dff73a3e35be95a673ddb43020e446</_AxCertificateThumbprint>
     <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(MSBuildThisFileDirectory)..\packages\ILMerge.2.14.1208\tools\ILMerge.exe') ">$(MSBuildThisFileDirectory)..\packages\ILMerge.2.14.1208\tools\ILMerge.exe</_AxIlMergePath>
     <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
     <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
@@ -76,7 +74,12 @@
     <_AxIlMergePath Condition=" '$(XAMARINSTUDIO_LAUNCHER)' != '' "></_AxIlMergePath>
     <_AxIlMergePath Condition=" '$(XAMARIN STUDIO LAUNCHER_LAUNCHER)' != '' "></_AxIlMergePath>
     <_AxIlMergePath Condition=" '$(OS)' == 'Unix' "></_AxIlMergePath>
-	<AssemblyOriginatorKeyFile Condition=" '$(OS)' == 'Unix' "></AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile Condition=" '$(OS)' == 'Unix' "></AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- Import the certificate to Computer Account - Personal using MMC certificates snap-in -->
+    <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
+    <_AxCertificateThumbprint>daf3522d80dff73a3e35be95a673ddb43020e446</_AxCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
@@ -240,8 +243,8 @@
       <DefineConstants>$(DefineConstants);AXANTUM</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(OS)' == 'Unix' ">
-		<DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
-	</PropertyGroup>
+      <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
+    </PropertyGroup>
   </Target>
 
   <Target Name="_AxAfterBuild">
