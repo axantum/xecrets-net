@@ -131,6 +131,7 @@ namespace Axantum.AxCrypt
             InitializeContentResources();
             RegisterTypeFactories();
             EnsureUiContextInitialized();
+            EnsureFileAssociation();
 
             if (!ValidateSettings())
             {
@@ -154,12 +155,12 @@ namespace Axantum.AxCrypt
             SendStartSessionNotification();
             StartupProcessMonitor();
             ExecuteCommandLine();
-            EnsureFileAssociation();
+
         }
 
         private void EnsureFileAssociation()
         {
-            if (!New<InstallationVerifier>().IsFileAssociationOk)
+            if (New<InstallationVerifier>().IsApplicationInstalled && !New<InstallationVerifier>().IsFileAssociationOk)
             {
                 Texts.FileAssociationBrokenWarning.ShowWarning(Texts.WarningTitle);
             }
@@ -1271,7 +1272,7 @@ namespace Axantum.AxCrypt
 
         private async void SetWindowTextWithSignInAndPremiumStatus(bool isLoggedOn)
         {
-            string licenseStatus ="";
+            string licenseStatus = "";
             string logonStatus;
             if (isLoggedOn)
             {
