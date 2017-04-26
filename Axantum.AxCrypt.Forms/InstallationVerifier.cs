@@ -13,9 +13,9 @@ namespace Axantum.AxCrypt.Forms
 {
     public class InstallationVerifier
     {
-        private readonly Lazy<bool> _isFileAssociationOk= new Lazy<bool>(IsFileAssociationCorrect);
+        private readonly Lazy<bool> _isFileAssociationOk = new Lazy<bool>(IsFileAssociationCorrect);
         private readonly Lazy<bool> _isApplicationInstalled = new Lazy<bool>(CheckApplicationInstallationState);
-        
+
         /// <summary>
         /// This is part of #265 Check and re-assert the ".axx" file name association.
         /// 
@@ -28,11 +28,11 @@ namespace Axantum.AxCrypt.Forms
         ///
         /// </summary>
         public bool IsFileAssociationOk => _isFileAssociationOk.Value;
-        
+
         public bool IsApplicationInstalled => _isApplicationInstalled.Value;
 
         private static bool IsFileAssociationCorrect()
-        { 
+        {
             uint pcchOut = 0;
             NativeMethods.AssocQueryString(NativeMethods.ASSOCF.ASSOCF_VERIFY,
                 NativeMethods.ASSOCSTR.ASSOCSTR_EXECUTABLE, New<IRuntimeEnvironment>().AxCryptExtension, null, null, ref pcchOut);
@@ -41,14 +41,7 @@ namespace Axantum.AxCrypt.Forms
             NativeMethods.AssocQueryString(NativeMethods.ASSOCF.ASSOCF_VERIFY,
                 NativeMethods.ASSOCSTR.ASSOCSTR_EXECUTABLE, New<IRuntimeEnvironment>().AxCryptExtension, null, pszOut, ref pcchOut);
 
-            StringComparer comparerPath = StringComparer.OrdinalIgnoreCase;
-
-            if (comparerPath.Equals(Environment.GetCommandLineArgs()[0],pszOut.ToString()))
-            {
-                return true;
-            }
-                
-             return false;
+            return String.Equals(Environment.GetCommandLineArgs()[0], pszOut.ToString(), StringComparison.OrdinalIgnoreCase);
         }
 
         private static bool CheckApplicationInstallationState()
@@ -56,20 +49,20 @@ namespace Axantum.AxCrypt.Forms
             string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
             using (Microsoft.Win32.RegistryKey key = Registry.LocalMachine.OpenSubKey(registryKey))
             {
-                if (key != null)
+                if (key == null)
                 {
-                    foreach (string subKeyName in key.GetSubKeyNames())
+                    return false;
+                }
+                foreach (string subKeyName in key.GetSubKeyNames())
+                {
+                    using (RegistryKey subKey = key.OpenSubKey(subKeyName))
                     {
-                        using (RegistryKey subKey = key.OpenSubKey(subKeyName))
+                        if (subKey?.GetValue("DisplayName")?.ToString().StartsWith("AxCrypt") ?? false)
                         {
-                            if (subKey?.GetValue("DisplayName")?.ToString().StartsWith("AxCrypt") ?? false)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
-
             }
             return false;
         }
