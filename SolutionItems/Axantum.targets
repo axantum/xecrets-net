@@ -77,7 +77,7 @@
     <AssemblyOriginatorKeyFile Condition=" '$(OS)' == 'Unix' "></AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <!-- Import the certificate to Computer Account - Personal using MMC certificates snap-in -->
+    <!-- Import the certificate to Computer Account - Personal using MMC certificates snap-in, if required give developer and service users permissions also -->
     <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
     <_AxCertificateThumbprint>daf3522d80dff73a3e35be95a673ddb43020e446</_AxCertificateThumbprint>
   </PropertyGroup>
@@ -94,21 +94,21 @@
 
   <!-- Use the parameter AxAuthenticodeFile to determine the file name. -->
   <Target Name="AxAuthenticodeSignOneFile">
-    <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot;"
+    <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /q /sha1 $(_AxCertificateThumbprint) /sm /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot;"
           Condition=" Exists('$(_AxSignToolPath)') "
           ContinueOnError="true">
       <Output TaskParameter="ExitCode"
               PropertyName="_AxExitCode" />
     </Exec>
     <!-- Retry once if there's an error we're not ignoring errors-->
-    <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
+    <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /q /sha1 $(_AxCertificateThumbprint) /sm /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
           Condition=" Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
           ContinueOnError="true">
       <Output TaskParameter="ExitCode"
               PropertyName="_AxExitCode" />
     </Exec>
     <!-- Retry again if there's an error we're not ignoring errors-->
-    <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
+    <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /q /sha1 $(_AxCertificateThumbprint) /sm /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
           Condition=" Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
           ContinueOnError="true">
       <Output TaskParameter="ExitCode"
@@ -138,9 +138,12 @@
     </ItemGroup>
   </Target>
 
-  <Target Name="_AxSignExe"
-          Condition="'$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true'">
+  <Target Name="_AxStrongNameExe"
+          Condition=" '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
     <Exec Command="&quot;$(MSBuildThisFileDirectory)sn.exe&quot; -Rca &quot;$(OutputPath)$(_AxMergedBaseFileName).exe&quot; $(KeyContainerName)" />
+  </Target>
+  <Target Name="_AxAuthenticodeExe"
+          Condition=" '$(Configuration)' == 'Release' And '$(_AxIsAxantum)' == 'true' ">
     <MSBuild Projects="$(MSBuildProjectFullPath)"
              Targets="AxAuthenticodeSignOneFile"
              Properties="AxAuthenticodeFile=$(OutputPath)$(_AxMergedBaseFileName).exe"
@@ -158,7 +161,7 @@
   <Target Name="_AxMergeAndSign"
           Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(_AxIlMergeAssemblies)"
           Outputs="$(OutputPath)$(_AxMergedBaseFileName).exe"
-          DependsOnTargets="_AxMergeExe;_AxSignExe;_AxRecopyMerged"
+          DependsOnTargets="_AxMergeExe;_AxStrongNameExe;_AxAuthenticodeExe;_AxRecopyMerged"
           Condition=" '$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != '' And ( '$(_AxIsBuildServerBuild)' == 'true' Or '$(Configuration)' != 'Debug' ) ">
   </Target>
 
