@@ -142,6 +142,7 @@
           Condition=" '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
     <Exec Command="&quot;$(MSBuildThisFileDirectory)sn.exe&quot; -Rca &quot;$(OutputPath)$(_AxMergedBaseFileName).exe&quot; $(KeyContainerName)" />
   </Target>
+
   <Target Name="_AxAuthenticodeExe"
           Condition=" '$(Configuration)' == 'Release' And '$(_AxIsAxantum)' == 'true' ">
     <MSBuild Projects="$(MSBuildProjectFullPath)"
@@ -185,7 +186,7 @@
 
   <Target Name="_AxSetRevisionAndCopyToVersionedFileName"
           DependsOnTargets="_AxSetVersionedFileName;_AxCopyToVersionedFileName"
-          Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
+          Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' And '$(_AxIsAxantum)' == 'true' ">
   </Target>
 
   <Target Name="_AxFindIlMergeAssemblies">
