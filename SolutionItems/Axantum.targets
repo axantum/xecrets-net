@@ -52,7 +52,7 @@
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_AxCryptMajor>2</_AxCryptMajor>
-    <_AxCryptMinor>1</_AxCryptMinor>
+    <AxMinorVersion Condition =" '$(AxMinorVersion)' == '' ">1</AxMinorVersion>
     <AxBuildNumber Condition=" '$(AxBuildNumber)' == '' ">0</AxBuildNumber>
   </PropertyGroup>
   <PropertyGroup>
@@ -168,7 +168,7 @@
 
   <Target Name="_AxSetVersionedFileName">
     <PropertyGroup Condition=" '$(AxBuildNumber)' != '' ">
-      <_AxVersionedFileName>$(_AxCanonicalName)-$(_AxCryptMajor).$(_AxCryptMinor).$(AxBuildNumber).0.exe</_AxVersionedFileName>
+      <_AxVersionedFileName>$(_AxCanonicalName)-$(_AxCryptMajor).$(AxMinorVersion).$(AxBuildNumber).0.exe</_AxVersionedFileName>
     </PropertyGroup>
   </Target>
 
