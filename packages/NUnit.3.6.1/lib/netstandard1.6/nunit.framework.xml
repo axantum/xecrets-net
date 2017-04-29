@@ -164,7 +164,7 @@
         </member>
         <member name="M:NUnit.Framework.Api.FrameworkController.RunTests(System.Action{System.String},System.String)">
             <summary>
-            Runs the tests in an assembly syncronously reporting back the test results through the callback
+            Runs the tests in an assembly synchronously reporting back the test results through the callback
             or through the return value
             </summary>
             <param name="callback">The callback that receives the test results</param>
@@ -173,7 +173,7 @@
         </member>
         <member name="M:NUnit.Framework.Api.FrameworkController.RunAsync(System.Action{System.String},System.String)">
             <summary>
-            Runs the tests in an assembly asyncronously reporting back the test results through the callback
+            Runs the tests in an assembly asynchronously reporting back the test results through the callback
             </summary>
             <param name="callback">The callback that receives the test results</param>
             <param name="filter">A string containing the XML representation of the filter to use</param>
@@ -190,6 +190,13 @@
             </summary>
             <param name="filter">A string containing the XML representation of the filter to use</param>
             <returns>The number of tests</returns>
+        </member>
+        <member name="M:NUnit.Framework.Api.FrameworkController.InsertEnvironmentElement(NUnit.Framework.Interfaces.TNode)">
+            <summary>
+            Inserts environment element
+            </summary>
+            <param name="targetNode">Target node</param>
+            <returns>The new node</returns>
         </member>
         <member name="M:NUnit.Framework.Api.FrameworkController.InsertSettingsElement(NUnit.Framework.Interfaces.TNode,System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
@@ -1861,6 +1868,7 @@
         </member>
         <member name="M:NUnit.Framework.Assert.Equals(System.Object,System.Object)">
             <summary>
+            DO NOT USE! Use Assert.AreEqual(...) instead.
             The Equals method throws an InvalidOperationException. This is done 
             to make sure there is no mistake by calling this function.
             </summary>
@@ -1869,9 +1877,9 @@
         </member>
         <member name="M:NUnit.Framework.Assert.ReferenceEquals(System.Object,System.Object)">
             <summary>
-            override the default ReferenceEquals to throw an InvalidOperationException. This 
-            implementation makes sure there is no mistake in calling this function 
-            as part of Assert. 
+            DO NOT USE!
+            The ReferenceEquals method throws an InvalidOperationException. This is done 
+            to make sure there is no mistake by calling this function.
             </summary>
             <param name="a"></param>
             <param name="b"></param>
@@ -1921,6 +1929,19 @@
             This is used by the other Assert functions. 
             </summary>
         </member>
+        <member name="M:NUnit.Framework.Assert.Warn(System.String,System.Object[])">
+            <summary>
+            Issues a warning using the message and arguments provided.
+            </summary>
+            <param name="message">The message to display.</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.Assert.Warn(System.String)">
+            <summary>
+            Issues a warning using the message provided.
+            </summary>
+            <param name="message">The message to display.</param>
+        </member>
         <member name="M:NUnit.Framework.Assert.Ignore(System.String,System.Object[])">
             <summary>
             Throws an <see cref="T:NUnit.Framework.IgnoreException"/> with the message and arguments 
@@ -1965,19 +1986,27 @@
         </member>
         <member name="M:NUnit.Framework.Assert.Contains(System.Object,System.Collections.ICollection,System.String,System.Object[])">
             <summary>
-            Asserts that an object is contained in a list.
+            Asserts that an object is contained in a collection.
             </summary>
             <param name="expected">The expected object</param>
-            <param name="actual">The list to be examined</param>
+            <param name="actual">The collection to be examined</param>
             <param name="message">The message to display in case of failure</param>
             <param name="args">Array of objects to be used in formatting the message</param>
         </member>
         <member name="M:NUnit.Framework.Assert.Contains(System.Object,System.Collections.ICollection)">
             <summary>
-            Asserts that an object is contained in a list.
+            Asserts that an object is contained in a collection.
             </summary>
             <param name="expected">The expected object</param>
-            <param name="actual">The list to be examined</param>
+            <param name="actual">The collection to be examined</param>
+        </member>
+        <member name="M:NUnit.Framework.Assert.Multiple(NUnit.Framework.TestDelegate)">
+            <summary>
+            Wraps code containing a series of assertions, which should all
+            be executed, even if they fail. Failed results are saved and
+            reported at the end of the code block.
+            </summary>
+            <param name="testDelegate">A TestDelegate to be executed in Multiple Assertion mode.</param>
         </member>
         <member name="M:NUnit.Framework.Assert.AreEqual(System.Double,System.Double,System.Double,System.String,System.Object[])">
             <summary>
@@ -2735,6 +2764,7 @@
         </member>
         <member name="M:NUnit.Framework.Assume.Equals(System.Object,System.Object)">
             <summary>
+            DO NOT USE!
             The Equals method throws an InvalidOperationException. This is done 
             to make sure there is no mistake by calling this function.
             </summary>
@@ -2744,9 +2774,9 @@
         </member>
         <member name="M:NUnit.Framework.Assume.ReferenceEquals(System.Object,System.Object)">
             <summary>
-            override the default ReferenceEquals to throw an InvalidOperationException. This 
-            implementation makes sure there is no mistake in calling this function 
-            as part of Assert. 
+            DO NOT USE!
+            The ReferenceEquals method throws an InvalidOperationException. This is done 
+            to make sure there is no mistake by calling this function.
             </summary>
             <param name="a">The left object.</param>
             <param name="b">The right object.</param>
@@ -2947,7 +2977,7 @@
         <member name="M:NUnit.Framework.CombiningStrategyAttribute.#ctor(NUnit.Framework.Interfaces.ICombiningStrategy,NUnit.Framework.Interfaces.IParameterDataProvider)">
             <summary>
             Construct a CombiningStrategyAttribute incorporating an
-            ICombiningStrategy and an IParamterDataProvider.
+            ICombiningStrategy and an IParameterDataProvider.
             </summary>
             <param name="strategy">Combining strategy to be used in combining data</param>
             <param name="provider">An IParameterDataProvider to supply data</param>
@@ -3163,6 +3193,16 @@
         <member name="P:NUnit.Framework.IncludeExcludeAttribute.Reason">
             <summary>
             The reason for including or excluding the test
+            </summary>
+        </member>
+        <member name="T:NUnit.Framework.NonTestAssemblyAttribute">
+            <summary>
+            The NonTestAssemblyAttribute may be used by third-party frameworks
+            or other software that references the nunit framework but does not
+            contain tests. Applying the attribute indicates that the assembly
+            is not a test assembly and may prevent errors if certain runners
+            attempt to load the assembly. Note that recognition of the attribute
+            depends on each individual runner.
             </summary>
         </member>
         <member name="T:NUnit.Framework.SingleThreadedAttribute">
@@ -3893,6 +3933,14 @@
             <param name="sourceType">The Type that will provide data</param>
             <param name="sourceName">The name of a static method, property or field that will provide data.</param>
         </member>
+        <member name="M:NUnit.Framework.TestCaseSourceAttribute.#ctor(System.String,System.Object[])">
+            <summary>
+            Construct with a name
+            </summary>
+            <param name="sourceName">The name of a static method, property or field that will provide data.</param>
+            <param name="methodParams">A set of parameters passed to the method, works only if the Source Name is a method. 
+                                If the source name is a field or property has no effect.</param>
+        </member>
         <member name="M:NUnit.Framework.TestCaseSourceAttribute.#ctor(System.Type)">
             <summary>
             Construct with a Type
@@ -4097,7 +4145,7 @@
             Construct one or more TestFixtures from a given Type,
             using available parameter data.
             </summary>
-            <param name="typeInfo">The TypeInfo for which fixures are to be constructed.</param>
+            <param name="typeInfo">The TypeInfo for which fixtures are to be constructed.</param>
             <returns>One or more TestFixtures as TestSuite</returns>
         </member>
         <member name="M:NUnit.Framework.TestFixtureSourceAttribute.GetParametersFor(System.Type)">
@@ -4261,6 +4309,7 @@
         </member>
         <member name="M:NUnit.Framework.CollectionAssert.Equals(System.Object,System.Object)">
             <summary>
+            DO NOT USE! Use CollectionAssert.AreEqual(...) instead.
             The Equals method throws an InvalidOperationException. This is done 
             to make sure there is no mistake by calling this function.
             </summary>
@@ -4269,9 +4318,9 @@
         </member>
         <member name="M:NUnit.Framework.CollectionAssert.ReferenceEquals(System.Object,System.Object)">
             <summary>
-            override the default ReferenceEquals to throw an InvalidOperationException. This 
-            implementation makes sure there is no mistake in calling this function 
-            as part of Assert. 
+            DO NOT USE!
+            The ReferenceEquals method throws an InvalidOperationException. This is done 
+            to make sure there is no mistake by calling this function.
             </summary>
             <param name="a"></param>
             <param name="b"></param>
@@ -5908,6 +5957,20 @@
             collection member.
             </summary>
         </member>
+        <member name="M:NUnit.Framework.Constraints.ConstraintExpression.ContainKey(System.Object)">
+            <summary>
+            Returns a new DictionaryContainsKeyConstraint checking for the
+            presence of a particular key in the Dictionary key collection.
+            </summary>
+            <param name="expected">The key to be matched in the Dictionary key collection</param>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.ConstraintExpression.ContainValue(System.Object)">
+            <summary>
+            Returns a new DictionaryContainsValueConstraint checking for the
+            presence of a particular value in the Dictionary value collection.
+            </summary>
+            <param name="expected">The value to be matched in the Dictionary value collection</param>
+        </member>
         <member name="M:NUnit.Framework.Constraints.ConstraintExpression.StringContaining(System.String)">
             <summary>
             Returns a constraint that succeeds if the actual
@@ -5974,10 +6037,34 @@
             value matches the regular expression supplied as an argument.
             </summary>
         </member>
+        <member name="M:NUnit.Framework.Constraints.ConstraintExpression.SamePath(System.String)">
+            <summary>
+            Returns a constraint that tests whether the path provided 
+            is the same as an expected path after canonicalization.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.ConstraintExpression.SubPathOf(System.String)">
+            <summary>
+            Returns a constraint that tests whether the path provided 
+            is the a subpath of the expected path after canonicalization.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.ConstraintExpression.SamePathOrUnder(System.String)">
+            <summary>
+            Returns a constraint that tests whether the path provided 
+            is the same path or under an expected path after canonicalization.
+            </summary>
+        </member>
         <member name="M:NUnit.Framework.Constraints.ConstraintExpression.InRange(System.IComparable,System.IComparable)">
             <summary>
             Returns a constraint that tests whether the actual value falls 
             within a specified range.
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.ConstraintExpression.Exist">
+            <summary>
+            Returns a constraint that succeeds if the value
+            is a file or directory and it exists.
             </summary>
         </member>
         <member name="T:NUnit.Framework.Constraints.ConstraintFactory">
@@ -6345,6 +6432,24 @@
             value matches the pattern supplied as an argument.
             </summary>
         </member>
+        <member name="M:NUnit.Framework.Constraints.ConstraintFactory.SamePath(System.String)">
+            <summary>
+            Returns a constraint that tests whether the path provided 
+            is the same as an expected path after canonicalization.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.ConstraintFactory.SubPathOf(System.String)">
+            <summary>
+            Returns a constraint that tests whether the path provided 
+            is a subpath of the expected path after canonicalization.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.ConstraintFactory.SamePathOrUnder(System.String)">
+            <summary>
+            Returns a constraint that tests whether the path provided 
+            is the same path or under an expected path after canonicalization.
+            </summary>
+        </member>
         <member name="M:NUnit.Framework.Constraints.ConstraintFactory.InRange(System.IComparable,System.IComparable)">
             <summary>
             Returns a constraint that tests whether the actual value falls 
@@ -6579,6 +6684,24 @@
             </summary>
         </member>
         <member name="M:NUnit.Framework.Constraints.EmptyConstraint.ApplyTo``1(``0)">
+            <summary>
+            Test whether the constraint is satisfied by a given value
+            </summary>
+            <param name="actual">The value to be tested</param>
+            <returns>True for success, false for failure</returns>
+        </member>
+        <member name="T:NUnit.Framework.Constraints.EmptyDirectoryConstraint">
+            <summary>
+            EmptyDirectoryConstraint is used to test that a directory is empty
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.EmptyDirectoryConstraint.Description">
+            <summary>
+            The Description of what this constraint tests, for
+            use in messages and in the ConstraintResult.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.EmptyDirectoryConstraint.ApplyTo``1(``0)">
             <summary>
             Test whether the constraint is satisfied by a given value
             </summary>
@@ -6962,6 +7085,12 @@
             number of items succeed.
             </summary>
         </member>
+        <member name="M:NUnit.Framework.Constraints.ExactCountConstraint.#ctor(System.Int32)">
+            <summary>
+            Construct a standalone ExactCountConstraint
+            </summary>
+            <param name="expectedCount"></param>
+        </member>
         <member name="M:NUnit.Framework.Constraints.ExactCountConstraint.#ctor(System.Int32,NUnit.Framework.Constraints.IConstraint)">
             <summary>
             Construct an ExactCountConstraint on top of an existing constraint
@@ -6976,6 +7105,12 @@
             </summary>
             <param name="actual"></param>
             <returns></returns>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.ExactCountConstraint.Description">
+            <summary>
+            The Description of what this constraint tests, for
+            use in messages and in the ConstraintResult.
+            </summary>
         </member>
         <member name="T:NUnit.Framework.Constraints.ExactTypeConstraint">
             <summary>
@@ -7052,6 +7187,63 @@
             </summary>
             <param name="actual">The value to be tested</param>
             <returns>True for success, false for failure</returns>
+        </member>
+        <member name="T:NUnit.Framework.Constraints.FileExistsConstraint">
+            <summary>
+            FileExistsConstraint is used to determine if a file exists
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.FileExistsConstraint.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NUnit.Framework.Constraints.FileExistsConstraint"/> class.
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.FileExistsConstraint.Description">
+            <summary>
+            The Description of what this constraint tests, for
+            use in messages and in the ConstraintResult.
+            </summary>
+        </member>
+        <member name="T:NUnit.Framework.Constraints.FileOrDirectoryExistsConstraint">
+            <summary>
+            FileOrDirectoryExistsConstraint is used to determine if a file or directory exists
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.FileOrDirectoryExistsConstraint.IgnoreDirectories">
+            <summary>
+            If true, the constraint will only check if files exist, not directories
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.FileOrDirectoryExistsConstraint.IgnoreFiles">
+            <summary>
+            If true, the constraint will only check if directories exist, not files
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.FileOrDirectoryExistsConstraint.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NUnit.Framework.Constraints.FileOrDirectoryExistsConstraint"/> class that
+            will check files and directories.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.FileOrDirectoryExistsConstraint.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NUnit.Framework.Constraints.FileOrDirectoryExistsConstraint"/> class that
+            will only check files if ignoreDirectories is true.
+            </summary>
+            <param name="ignoreDirectories">if set to <c>true</c> [ignore directories].</param>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.FileOrDirectoryExistsConstraint.Description">
+            <summary>
+            The Description of what this constraint tests, for
+            use in messages and in the ConstraintResult.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.FileOrDirectoryExistsConstraint.ApplyTo``1(``0)">
+            <summary>
+            Applies the constraint to an actual value, returning a ConstraintResult.
+            </summary>
+            <param name="actual">The value to be tested</param>
+            <returns>A ConstraintResult</returns>
         </member>
         <member name="T:NUnit.Framework.Constraints.FloatingPointNumerics">
             <summary>Helper routines for working with floating point numbers</summary>
@@ -7297,6 +7489,70 @@
             <param name="actual">The actual argument</param>
             <returns>True if the constraint succeeds, otherwise false.</returns>
         </member>
+        <member name="T:NUnit.Framework.Constraints.Interval">
+            <summary>
+            Keeps track of an interval time which can be represented in
+            Minutes, Seconds or Milliseconds
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.Interval.#ctor(System.Int32)">
+            <summary>
+            Constructs a interval given an value in milliseconds
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Interval.AsTimeSpan">
+            <summary>
+            Gets Interval value represented as a TimeSpan object
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Interval.InMinutes">
+            <summary>
+            Returns the interval with the current value as a number of minutes.
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Interval.InSeconds">
+            <summary>
+            Returns the interval with the current value as a number of seconds.
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Interval.InMilliseconds">
+            <summary>
+            Returns the interval with the current value as a number of milliseconds.
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Interval.IsNotZero">
+            <summary>
+            Is true for intervals created with a non zero value
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.Interval.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>
+            A string that represents the current object.
+            </returns>
+        </member>
+        <member name="T:NUnit.Framework.Constraints.Interval.IntervalUnit">
+            <summary>
+            IntervalUnit provides the semantics to the value stored in Interval class.
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Constraints.Interval.IntervalUnit.Minute">
+            <summary>
+            Unit representing an Interval in minutes
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Constraints.Interval.IntervalUnit.Second">
+            <summary>
+            Unit representing an Interval in seconds
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Constraints.Interval.IntervalUnit.Millisecond">
+            <summary>
+            Unit representing an Interval in milliseconds
+            </summary>
+        </member>
         <member name="T:NUnit.Framework.Constraints.IResolveConstraint">
             <summary>
             The IResolveConstraint interface is implemented by all
@@ -7308,6 +7564,28 @@
             Return the top-level constraint for this expression
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:NUnit.Framework.Constraints.ItemsConstraintExpression">
+            <summary>
+            An extension of ResolvableConstraintExpression that adds a no-op Items property for readability.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.ItemsConstraintExpression.#ctor">
+            <summary>
+            Create a new instance of ItemsConstraintExpression
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.ItemsConstraintExpression.#ctor(NUnit.Framework.Constraints.ConstraintBuilder)">
+            <summary>
+            Create a new instance of ResolvableConstraintExpression,
+            passing in a pre-populated ConstraintBuilder.
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.ItemsConstraintExpression.Items">
+            <summary>
+            No-op property for readability.
+            </summary>
         </member>
         <member name="T:NUnit.Framework.Constraints.LessThanConstraint">
             <summary>
@@ -7361,7 +7639,7 @@
         <member name="M:NUnit.Framework.Constraints.MessageWriter.WriteMessageLine(System.Int32,System.String,System.Object[])">
             <summary>
             Method to write single line  message with optional args, usually
-            written to precede the general failure message, at a givel 
+            written to precede the general failure message, at a given 
             indentation level.
             </summary>
             <param name="level">The indentation level of the message</param>
@@ -7760,7 +8038,7 @@
             Gets the list of failure points for the last Match performed.
             The list consists of objects to be interpreted by the caller.
             This generally means that the caller may only make use of
-            objects it has placed on the list at a particular depthy.
+            objects it has placed on the list at a particular depth.
             </summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.NUnitEqualityComparer.WithSameOffset">
@@ -7782,6 +8060,14 @@
             <summary>
             Helper method to compare two arrays
             </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.NUnitEqualityComparer.DirectoriesEqual(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
+            <summary>
+            Method to compare two DirectoryInfo objects
+            </summary>
+            <param name="x">first directory to compare</param>
+            <param name="y">second directory to compare</param>
+            <returns>true if equivalent, false if not</returns>
         </member>
         <member name="T:NUnit.Framework.Constraints.NUnitEqualityComparer.FailurePoint">
             <summary>
@@ -7966,12 +8252,13 @@
             </summary>
             <param name="expectedCount">The expected count</param>
         </member>
-        <member name="M:NUnit.Framework.Constraints.ExactCountOperator.ApplyPrefix(NUnit.Framework.Constraints.IConstraint)">
+        <member name="M:NUnit.Framework.Constraints.ExactCountOperator.Reduce(NUnit.Framework.Constraints.ConstraintBuilder.ConstraintStack)">
             <summary>
-            Returns a constraint that will apply the argument
-            to the members of a collection, succeeding if
-            none of them succeed.
+            Reduce produces a constraint from the operator and 
+            any arguments. It takes the arguments from the constraint 
+            stack and pushes the resulting constraint on it.
             </summary>
+            <param name="stack"></param>
         </member>
         <member name="T:NUnit.Framework.Constraints.NoneOperator">
             <summary>
@@ -8143,6 +8430,44 @@
             <param name="actual">The actual value</param>
             <returns>True if either constraint succeeded</returns>
         </member>
+        <member name="T:NUnit.Framework.Constraints.PathConstraint">
+            <summary>
+            PathConstraint serves as the abstract base of constraints
+            that operate on paths and provides several helper methods.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.PathConstraint.#ctor(System.String)">
+            <summary>
+            Construct a PathConstraint for a give expected path
+            </summary>
+            <param name="expected">The expected path</param>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.PathConstraint.RespectCase">
+            <summary>
+            Modifies the current instance to be case-sensitive
+            and returns it.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.PathConstraint.GetStringRepresentation">
+            <summary>
+            Returns the string representation of this constraint
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.PathConstraint.Canonicalize(System.String)">
+            <summary>
+            Canonicalize the provided path
+            </summary>
+            <param name="path"></param>
+            <returns>The path in standardized form</returns>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.PathConstraint.IsSubPath(System.String,System.String)">
+            <summary>
+            Test whether one path in canonical form is a subpath of another path
+            </summary>
+            <param name="path1">The first path - supposed to be the parent path</param>
+            <param name="path2">The second path - supposed to be the child path</param>
+            <returns></returns>
+        </member>
         <member name="T:NUnit.Framework.Constraints.PredicateConstraint`1">
             <summary>
             Predicate constraint wraps a Predicate in a constraint,
@@ -8190,6 +8515,11 @@
             <summary>
             The Description of what this constraint tests, for
             use in messages and in the ConstraintResult.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.PrefixConstraint.FormatDescription(System.String,NUnit.Framework.Constraints.IConstraint)">
+            <summary>
+            Formats a prefix constraint's description.
             </summary>
         </member>
         <member name="T:NUnit.Framework.Constraints.PropertyConstraint">
@@ -8410,6 +8740,54 @@
             <param name="actual">The value to be tested</param>
             <returns>True for success, false for failure</returns>
         </member>
+        <member name="T:NUnit.Framework.Constraints.SamePathConstraint">
+            <summary>
+            Summary description for SamePathConstraint.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.SamePathConstraint.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NUnit.Framework.Constraints.SamePathConstraint"/> class.
+            </summary>
+            <param name="expected">The expected path</param>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.SamePathConstraint.Description">
+            <summary>
+            The Description of what this constraint tests, for
+            use in messages and in the ConstraintResult.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.SamePathConstraint.Matches(System.String)">
+            <summary>
+            Test whether the constraint is satisfied by a given value
+            </summary>
+            <param name="actual">The value to be tested</param>
+            <returns>True for success, false for failure</returns>
+        </member>
+        <member name="T:NUnit.Framework.Constraints.SamePathOrUnderConstraint">
+            <summary>
+            SamePathOrUnderConstraint tests that one path is under another
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.SamePathOrUnderConstraint.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NUnit.Framework.Constraints.SamePathOrUnderConstraint"/> class.
+            </summary>
+            <param name="expected">The expected path</param>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.SamePathOrUnderConstraint.Description">
+            <summary>
+            The Description of what this constraint tests, for
+            use in messages and in the ConstraintResult.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.SamePathOrUnderConstraint.Matches(System.String)">
+            <summary>
+            Test whether the constraint is satisfied by a given value
+            </summary>
+            <param name="actual">The value to be tested</param>
+            <returns>True for success, false for failure</returns>
+        </member>
         <member name="T:NUnit.Framework.Constraints.SomeItemsConstraint">
             <summary>
             SomeItemsConstraint applies another constraint to each
@@ -8515,6 +8893,30 @@
             Test whether the constraint is satisfied by a given string
             </summary>
             <param name="actual">The string to be tested</param>
+            <returns>True for success, false for failure</returns>
+        </member>
+        <member name="T:NUnit.Framework.Constraints.SubPathConstraint">
+            <summary>
+            SubPathConstraint tests that the actual path is under the expected path
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.SubPathConstraint.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NUnit.Framework.Constraints.SubPathConstraint"/> class.
+            </summary>
+            <param name="expected">The expected path</param>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.SubPathConstraint.Description">
+            <summary>
+            The Description of what this constraint tests, for
+            use in messages and in the ConstraintResult.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Constraints.SubPathConstraint.Matches(System.String)">
+            <summary>
+            Test whether the constraint is satisfied by a given value
+            </summary>
+            <param name="actual">The value to be tested</param>
             <returns>True for success, false for failure</returns>
         </member>
         <member name="T:NUnit.Framework.Constraints.SubstringConstraint">
@@ -8873,6 +9275,131 @@
             value contains the substring supplied as an argument.
             </summary>
         </member>
+        <member name="T:NUnit.Framework.DirectoryAssert">
+            <summary>
+            Asserts on Directories
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.Equals(System.Object,System.Object)">
+            <summary>
+            DO NOT USE! Use DirectoryAssert.AreEqual(...) instead.
+            The Equals method throws an InvalidOperationException. This is done 
+            to make sure there is no mistake by calling this function.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.ReferenceEquals(System.Object,System.Object)">
+            <summary>
+            DO NOT USE!
+            The ReferenceEquals method throws an InvalidOperationException. This is done 
+            to make sure there is no mistake by calling this function.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.AreEqual(System.IO.DirectoryInfo,System.IO.DirectoryInfo,System.String,System.Object[])">
+            <summary>
+            Verifies that two directories are equal.  Two directories are considered
+            equal if both are null, or if both point to the same directory.
+            If they are not equal an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">A directory containing the value that is expected</param>
+            <param name="actual">A directory containing the actual value</param>
+            <param name="message">The message to display if the directories are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.AreEqual(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
+            <summary>
+            Verifies that two directories are equal.  Two directories are considered
+            equal if both are null, or if both point to the same directory.
+            If they are not equal an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">A directory containing the value that is expected</param>
+            <param name="actual">A directory containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.AreNotEqual(System.IO.DirectoryInfo,System.IO.DirectoryInfo,System.String,System.Object[])">
+            <summary>
+            Asserts that two directories are not equal. If they are equal
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">A directory containing the value that is expected</param>
+            <param name="actual">A directory containing the actual value</param>
+            <param name="message">The message to display if directories are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.AreNotEqual(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
+            <summary>
+            Asserts that two directories are not equal. If they are equal
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">A directory containing the value that is expected</param>
+            <param name="actual">A directory containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.Exists(System.IO.DirectoryInfo,System.String,System.Object[])">
+            <summary>
+            Asserts that the directory exists. If it does not exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">A directory containing the actual value</param>
+            <param name="message">The message to display if directories are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.Exists(System.IO.DirectoryInfo)">
+            <summary>
+            Asserts that the directory exists. If it does not exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">A directory containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.Exists(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that the directory exists. If it does not exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">The path to a directory containing the actual value</param>
+            <param name="message">The message to display if directories are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.Exists(System.String)">
+            <summary>
+            Asserts that the directory exists. If it does not exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">The path to a directory containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.DoesNotExist(System.IO.DirectoryInfo,System.String,System.Object[])">
+            <summary>
+            Asserts that the directory does not exist. If it does exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">A directory containing the actual value</param>
+            <param name="message">The message to display if directories are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.DoesNotExist(System.IO.DirectoryInfo)">
+            <summary>
+            Asserts that the directory does not exist. If it does exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">A directory containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.DoesNotExist(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that the directory does not exist. If it does exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">The path to a directory containing the actual value</param>
+            <param name="message">The message to display if directories are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.DirectoryAssert.DoesNotExist(System.String)">
+            <summary>
+            Asserts that the directory does not exist. If it does exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">The path to a directory containing the actual value</param>
+        </member>
         <member name="T:NUnit.Framework.Does">
             <summary>
             Helper class with properties and methods that supply
@@ -8883,6 +9410,12 @@
             <summary>
             Returns a ConstraintExpression that negates any
             following constraint.
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Does.Exist">
+            <summary>
+            Returns a constraint that succeeds if the value
+            is a file or directory and it exists.
             </summary>
         </member>
         <member name="M:NUnit.Framework.Does.Contain(System.Object)">
@@ -8900,6 +9433,20 @@
             since any other type implies that we are looking for a 
             collection member.
             </summary>
+        </member>
+        <member name="M:NUnit.Framework.Does.ContainKey(System.Object)">
+            <summary>
+            Returns a new DictionaryContainsKeyConstraint checking for the
+            presence of a particular key in the Dictionary key collection.
+            </summary>
+            <param name="expected">The key to be matched in the Dictionary key collection</param>
+        </member>
+        <member name="M:NUnit.Framework.Does.ContainValue(System.Object)">
+            <summary>
+            Returns a new DictionaryContainsValueConstraint checking for the
+            presence of a particular value in the Dictionary value collection.
+            </summary>
+            <param name="expected">The value to be matched in the Dictionary value collection</param>
         </member>
         <member name="M:NUnit.Framework.Does.StartWith(System.String)">
             <summary>
@@ -8978,6 +9525,27 @@
             Gets the ResultState provided by this exception
             </summary>
         </member>
+        <member name="T:NUnit.Framework.MultipleAssertException">
+            <summary>
+            Thrown when an assertion failed.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.MultipleAssertException.#ctor">
+            <summary>
+            Default Constructor (normally used)
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.MultipleAssertException.#ctor(System.String,System.Exception)">
+            <param name="message">The error message that explains 
+            the reason for the exception</param>
+            <param name="inner">The exception that caused the 
+            current exception</param>
+        </member>
+        <member name="P:NUnit.Framework.MultipleAssertException.ResultState">
+            <summary>
+            Gets the ResultState provided by this exception
+            </summary>
+        </member>
         <member name="T:NUnit.Framework.ResultStateException">
             <summary>
             Abstract base for Exceptions that terminate a test and provide a ResultState.
@@ -9016,6 +9584,207 @@
             <summary>
             Gets the ResultState provided by this exception
             </summary>
+        </member>
+        <member name="T:NUnit.Framework.FileAssert">
+            <summary>
+            Asserts on Files
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.Equals(System.Object,System.Object)">
+            <summary>
+            DO NOT USE! Use FileAssert.AreEqual(...) instead.
+            The Equals method throws an InvalidOperationException. This is done 
+            to make sure there is no mistake by calling this function.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.ReferenceEquals(System.Object,System.Object)">
+            <summary>
+            DO NOT USE!
+            The ReferenceEquals method throws an InvalidOperationException. This is done 
+            to make sure there is no mistake by calling this function.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreEqual(System.IO.Stream,System.IO.Stream,System.String,System.Object[])">
+            <summary>
+            Verifies that two Streams are equal.  Two Streams are considered
+            equal if both are null, or if both have the same value byte for byte.
+            If they are not equal an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">The expected Stream</param>
+            <param name="actual">The actual Stream</param>
+            <param name="message">The message to display if Streams are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreEqual(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Verifies that two Streams are equal.  Two Streams are considered
+            equal if both are null, or if both have the same value byte for byte.
+            If they are not equal an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">The expected Stream</param>
+            <param name="actual">The actual Stream</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreEqual(System.IO.FileInfo,System.IO.FileInfo,System.String,System.Object[])">
+            <summary>
+            Verifies that two files are equal.  Two files are considered
+            equal if both are null, or if both have the same value byte for byte.
+            If they are not equal an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">A file containing the value that is expected</param>
+            <param name="actual">A file containing the actual value</param>
+            <param name="message">The message to display if Streams are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreEqual(System.IO.FileInfo,System.IO.FileInfo)">
+            <summary>
+            Verifies that two files are equal.  Two files are considered
+            equal if both are null, or if both have the same value byte for byte.
+            If they are not equal an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">A file containing the value that is expected</param>
+            <param name="actual">A file containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreEqual(System.String,System.String,System.String,System.Object[])">
+            <summary>
+            Verifies that two files are equal.  Two files are considered
+            equal if both are null, or if both have the same value byte for byte.
+            If they are not equal an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">The path to a file containing the value that is expected</param>
+            <param name="actual">The path to a file containing the actual value</param>
+            <param name="message">The message to display if Streams are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreEqual(System.String,System.String)">
+            <summary>
+            Verifies that two files are equal.  Two files are considered
+            equal if both are null, or if both have the same value byte for byte.
+            If they are not equal an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">The path to a file containing the value that is expected</param>
+            <param name="actual">The path to a file containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreNotEqual(System.IO.Stream,System.IO.Stream,System.String,System.Object[])">
+            <summary>
+            Asserts that two Streams are not equal. If they are equal
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">The expected Stream</param>
+            <param name="actual">The actual Stream</param>
+            <param name="message">The message to be displayed when the two Stream are the same.</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreNotEqual(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Asserts that two Streams are not equal. If they are equal
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">The expected Stream</param>
+            <param name="actual">The actual Stream</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreNotEqual(System.IO.FileInfo,System.IO.FileInfo,System.String,System.Object[])">
+            <summary>
+            Asserts that two files are not equal. If they are equal
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">A file containing the value that is expected</param>
+            <param name="actual">A file containing the actual value</param>
+            <param name="message">The message to display if Streams are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreNotEqual(System.IO.FileInfo,System.IO.FileInfo)">
+            <summary>
+            Asserts that two files are not equal. If they are equal
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">A file containing the value that is expected</param>
+            <param name="actual">A file containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreNotEqual(System.String,System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that two files are not equal. If they are equal
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">The path to a file containing the value that is expected</param>
+            <param name="actual">The path to a file containing the actual value</param>
+            <param name="message">The message to display if Streams are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.AreNotEqual(System.String,System.String)">
+            <summary>
+            Asserts that two files are not equal. If they are equal
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="expected">The path to a file containing the value that is expected</param>
+            <param name="actual">The path to a file containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.Exists(System.IO.FileInfo,System.String,System.Object[])">
+            <summary>
+            Asserts that the file exists. If it does not exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">A file containing the actual value</param>
+            <param name="message">The message to display if Streams are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.Exists(System.IO.FileInfo)">
+            <summary>
+            Asserts that the file exists. If it does not exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">A file containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.Exists(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that the file exists. If it does not exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">The path to a file containing the actual value</param>
+            <param name="message">The message to display if Streams are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.Exists(System.String)">
+            <summary>
+            Asserts that the file exists. If it does not exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">The path to a file containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.DoesNotExist(System.IO.FileInfo,System.String,System.Object[])">
+            <summary>
+            Asserts that the file does not exist. If it does exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">A file containing the actual value</param>
+            <param name="message">The message to display if Streams are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.DoesNotExist(System.IO.FileInfo)">
+            <summary>
+            Asserts that the file does not exist. If it does exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">A file containing the actual value</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.DoesNotExist(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that the file does not exist. If it does exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">The path to a file containing the actual value</param>
+            <param name="message">The message to display if Streams are not equal</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.FileAssert.DoesNotExist(System.String)">
+            <summary>
+            Asserts that the file does not exist. If it does exist
+            an <see cref="T:NUnit.Framework.AssertionException"/> is thrown.
+            </summary>
+            <param name="actual">The path to a file containing the actual value</param>
         </member>
         <member name="T:NUnit.Framework.GlobalSettings">
             <summary>
@@ -9160,6 +9929,73 @@
             <summary>
             Returns a new CollectionContainsConstraint checking for the
             presence of a particular object in the collection.
+            </summary>
+        </member>
+        <member name="T:NUnit.Framework.Interfaces.AssertionResult">
+            <summary>
+            The AssertionResult class represents the result of a single assertion.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Interfaces.AssertionResult.#ctor(NUnit.Framework.Interfaces.AssertionStatus,System.String,System.String)">
+            <summary>
+            Construct an AssertionResult
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Interfaces.AssertionResult.Status">
+            <summary> The pass/fail status of the assertion</summary>
+        </member>
+        <member name="P:NUnit.Framework.Interfaces.AssertionResult.Message">
+            <summary>The message produced by the assertion, or null</summary>
+        </member>
+        <member name="P:NUnit.Framework.Interfaces.AssertionResult.StackTrace">
+            <summary>The stacktrace associated with the assertion, or null</summary>
+        </member>
+        <member name="M:NUnit.Framework.Interfaces.AssertionResult.ToString">
+            <summary>
+            ToString Override
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Interfaces.AssertionResult.GetHashCode">
+            <summary>
+            Override GetHashCode
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Interfaces.AssertionResult.Equals(System.Object)">
+            <summary>
+            Override Equals
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NUnit.Framework.Interfaces.AssertionStatus">
+            <summary>
+            AssertionStatus enumeration represents the possible outcomes of an assertion.
+            The order of definition is significant, higher level values override lower
+            ones in determining the overall result of a test.
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Interfaces.AssertionStatus.Inconclusive">
+            <summary>
+            An assumption failed
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Interfaces.AssertionStatus.Passed">
+            <summary>
+            The assertion succeeded
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Interfaces.AssertionStatus.Warning">
+            <summary>
+            A warning message was issued
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Interfaces.AssertionStatus.Failed">
+            <summary>
+            The assertion failed
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Interfaces.AssertionStatus.Error">
+            <summary>
+            An unexpected exception was thrown
             </summary>
         </member>
         <member name="T:NUnit.Framework.Interfaces.IApplyToContext">
@@ -9432,7 +10268,7 @@
                 Assert.That(bag["Tag"],
                   Is.EqualTo(new string[] { "one", "two" })); 
             
-            When working with single-valued propeties, client code
+            When working with single-valued properties, client code
             should use the Set method to set the value and Get to
             retrieve the value. The GetSetting methods may also be
             used to retrieve the value in a type-safe manner while
@@ -9745,11 +10581,11 @@
         </member>
         <member name="M:NUnit.Framework.Interfaces.ITestFilter.IsExplicitMatch(NUnit.Framework.Interfaces.ITest)">
             <summary>
-            Determine if a test matches the filter expicitly. That is, it must
+            Determine if a test matches the filter explicitly. That is, it must
             be a direct match of the test itself or one of it's children.
             </summary>
             <param name="test">The test to which the filter is applied</param>
-            <returns>True if the test matches the filter explicityly, otherwise false</returns>
+            <returns>True if the test matches the filter explicitly, otherwise false</returns>
         </member>
         <member name="T:NUnit.Framework.Interfaces.ITestFixtureData">
             <summary>
@@ -9850,6 +10686,12 @@
             when running the test and all its children.
             </summary>
         </member>
+        <member name="P:NUnit.Framework.Interfaces.ITestResult.WarningCount">
+            <summary>
+            Gets the number of test cases that had warnings
+            when running the test and all its children.
+            </summary>
+        </member>
         <member name="P:NUnit.Framework.Interfaces.ITestResult.PassCount">
             <summary>
             Gets the number of test cases that passed
@@ -9877,7 +10719,7 @@
         </member>
         <member name="P:NUnit.Framework.Interfaces.ITestResult.Children">
             <summary>
-            Gets the the collection of child results.
+            Gets the collection of child results.
             </summary>
         </member>
         <member name="P:NUnit.Framework.Interfaces.ITestResult.Test">
@@ -9888,6 +10730,11 @@
         <member name="P:NUnit.Framework.Interfaces.ITestResult.Output">
             <summary>
             Gets any text output written to this result.
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Interfaces.ITestResult.AssertionResults">
+            <summary>
+            Gets a list of AssertionResults associated with the test
             </summary>
         </member>
         <member name="T:NUnit.Framework.Interfaces.ITypeInfo">
@@ -9967,7 +10814,7 @@
         </member>
         <member name="M:NUnit.Framework.Interfaces.ITypeInfo.GetDisplayName(System.Object[])">
             <summary>
-            Get the display name for an oject of this type, constructed with specific arguments
+            Get the display name for an object of this type, constructed with specific arguments
             </summary>
         </member>
         <member name="M:NUnit.Framework.Interfaces.ITypeInfo.GetGenericTypeDefinition">
@@ -9985,7 +10832,7 @@
             Returns a value indicating whether this type has a method with a specified public attribute
             </summary>
         </member>
-        <member name="M:NUnit.Framework.Interfaces.ITypeInfo.GetMethods(NUnit.Compatibility.BindingFlags)">
+        <member name="M:NUnit.Framework.Interfaces.ITypeInfo.GetMethods(System.Reflection.BindingFlags)">
             <summary>
             Returns an array of IMethodInfos for methods of this Type
             that match the specified flags.
@@ -10090,6 +10937,11 @@
             The test succeeded
             </summary>
         </member>
+        <member name="F:NUnit.Framework.Interfaces.ResultState.Warning">
+            <summary>
+            The test issued a warning
+            </summary>
+        </member>
         <member name="F:NUnit.Framework.Interfaces.ResultState.Failure">
             <summary>
             The test failed
@@ -10155,6 +11007,15 @@
             </summary>
             <param name="site">The FailureSite to use</param>
             <returns>A new ResultState</returns>
+        </member>
+        <member name="M:NUnit.Framework.Interfaces.ResultState.Matches(NUnit.Framework.Interfaces.ResultState)">
+            <summary>
+            Test whether this ResultState has the same Status and Label
+            as another one. In other words, the whether two are equal
+            ignoring the Site.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
         </member>
         <member name="M:NUnit.Framework.Interfaces.ResultState.Equals(System.Object)">
             <summary>
@@ -10253,7 +11114,7 @@
         </member>
         <member name="M:NUnit.Framework.Interfaces.TestOutput.#ctor(System.String,System.String,System.String)">
             <summary>
-            Construct with text, ouput destination type and
+            Construct with text, output destination type and
             the name of the test that produced the output.
             </summary>
             <param name="text">Text to be output</param>
@@ -10304,6 +11165,11 @@
         <member name="F:NUnit.Framework.Interfaces.TestStatus.Passed">
             <summary>
             The test succeeded
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Interfaces.TestStatus.Warning">
+            <summary>
+            There was a warning
             </summary>
         </member>
         <member name="F:NUnit.Framework.Interfaces.TestStatus.Failed">
@@ -10468,6 +11334,13 @@
             <param name="assembly">The assembly.</param>
             <returns>The path.</returns>
         </member>
+        <member name="M:NUnit.Framework.Internal.AssemblyHelper.GetDirectoryName(System.Reflection.Assembly)">
+            <summary>
+            Gets the path to the directory from which an assembly was loaded.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <returns>The path.</returns>
+        </member>
         <member name="M:NUnit.Framework.Internal.AssemblyHelper.GetAssemblyName(System.Reflection.Assembly)">
             <summary>
             Gets the AssemblyName of an assembly.
@@ -10477,9 +11350,18 @@
         </member>
         <member name="M:NUnit.Framework.Internal.AssemblyHelper.Load(System.String)">
             <summary>
-            Loads an assembly given a string, which is the AssemblyName
+            Loads an assembly given a string, which may be the 
+            path to the assembly or the AssemblyName
             </summary>
-            <param name="name"></param>
+            <param name="nameOrPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NUnit.Framework.Internal.AssemblyHelper.GetAssemblyPathFromCodeBase(System.String)">
+            <summary>
+            Gets the assembly path from code base.
+            </summary>
+            <remarks>Public for testing purposes</remarks>
+            <param name="codeBase">The code base.</param>
             <returns></returns>
         </member>
         <member name="M:NUnit.Framework.Internal.AsyncInvocationRegion.WaitForPendingOperationsToComplete(System.Object)">
@@ -11537,6 +12419,41 @@
             Block the thread until the count reaches zero
             </summary>
         </member>
+        <member name="T:NUnit.Framework.Internal.Execution.EventListenerTextWriter">
+            <summary>
+            EventListenerTextWriter sends text output to the currently active
+            ITestEventListener in the form of a TestOutput object. If no event 
+            listener is active in the contet, or if there is no context,
+            the output is forwarded to the supplied default writer.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.Execution.EventListenerTextWriter.#ctor(System.String,System.IO.TextWriter)">
+            <summary>
+            Construct an EventListenerTextWriter
+            </summary>
+            <param name="streamName">The name of the stream to use for events</param>
+            <param name="defaultWriter">The default writer to use if no listener is available</param>
+        </member>
+        <member name="M:NUnit.Framework.Internal.Execution.EventListenerTextWriter.Write(System.Char)">
+            <summary>
+            Write a single char
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.Execution.EventListenerTextWriter.Write(System.String)">
+            <summary>
+            Write a string
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.Execution.EventListenerTextWriter.WriteLine(System.String)">
+            <summary>
+            Write a string followed by a newline
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Internal.Execution.EventListenerTextWriter.Encoding">
+            <summary>
+            Get the Encoding for this TextWriter
+            </summary>
+        </member>
         <member name="T:NUnit.Framework.Internal.Execution.IWorkItemDispatcher">
             <summary>
             An IWorkItemDispatcher handles execution of work items.
@@ -11600,6 +12517,44 @@
             If no run is in process, the call has no effect.
             </summary>
             <param name="force">true if the run should be aborted, false if it should allow its currently running test to complete</param>
+        </member>
+        <member name="T:NUnit.Framework.Internal.Execution.TextCapture">
+            <summary>
+            The TextCapture class intercepts console output and writes it
+            to the current execution context, if one is present on the thread.
+            If no execution context is found, the output is written to a
+            default destination, normally the original destination of the
+            intercepted output.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.Execution.TextCapture.#ctor(System.IO.TextWriter)">
+            <summary>
+            Construct a TextCapture object
+            </summary>
+            <param name="defaultWriter">The default destination for non-intercepted output</param>
+        </member>
+        <member name="P:NUnit.Framework.Internal.Execution.TextCapture.Encoding">
+            <summary>
+            Gets the Encoding in use by this TextWriter
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.Execution.TextCapture.Write(System.Char)">
+            <summary>
+            Writes a single character
+            </summary>
+            <param name="value">The char to write</param>
+        </member>
+        <member name="M:NUnit.Framework.Internal.Execution.TextCapture.Write(System.String)">
+            <summary>
+            Writes a string
+            </summary>
+            <param name="value">The string to write</param>
+        </member>
+        <member name="M:NUnit.Framework.Internal.Execution.TextCapture.WriteLine(System.String)">
+            <summary>
+            Writes a string followed by a line terminator
+            </summary>
+            <param name="value">The string to write</param>
         </member>
         <member name="T:NUnit.Framework.Internal.Execution.WorkItem">
              <summary>
@@ -11777,6 +12732,15 @@
             WriteMessageTo and provides the generic two-line display. 
             </summary>
             <param name="result">The result of the constraint that failed</param>
+        </member>
+        <member name="M:NUnit.Framework.Internal.TextMessageWriter.ResolveTypeNameDifference(System.Object,System.Object,System.String@,System.String@)">
+            <summary>
+            Gets the unique type name between expected and actual.
+            </summary>
+            <param name="expected">The expected value</param>
+            <param name="actual">The actual value causing the failure</param>
+            <param name="expectedType">Output of the unique type name for expected</param>
+            <param name="actualType">Output of the unique type name for actual</param>
         </member>
         <member name="M:NUnit.Framework.Internal.TextMessageWriter.DisplayDifferences(System.Object,System.Object)">
             <summary>
@@ -12115,11 +13079,11 @@
         </member>
         <member name="M:NUnit.Framework.Internal.Filters.NotFilter.IsExplicitMatch(NUnit.Framework.Interfaces.ITest)">
             <summary>
-            Determine if a test matches the filter expicitly. That is, it must
+            Determine if a test matches the filter explicitly. That is, it must
             be a direct match of the test itself or one of it's children.
             </summary>
             <param name="test">The test to which the filter is applied</param>
-            <returns>True if the test matches the filter explicityly, otherwise false</returns>
+            <returns>True if the test matches the filter explicitly, otherwise false</returns>
         </member>
         <member name="M:NUnit.Framework.Internal.Filters.NotFilter.AddToXml(NUnit.Framework.Interfaces.TNode,System.Boolean)">
             <summary>
@@ -12287,7 +13251,7 @@
         </member>
         <member name="M:NUnit.Framework.Internal.GenericMethodHelper.GetTypeArguments(System.Object[])">
             <summary>
-            Return the type argments for the method, deducing them
+            Return the type arguments for the method, deducing them
             from the arguments actually provided.
             </summary>
             <param name="argList">The arguments to the method</param>
@@ -12420,6 +13384,14 @@
             Gets a flag indicating whether the InternalTrace is initialized
             </summary>
         </member>
+        <member name="M:NUnit.Framework.Internal.InternalTrace.Initialize(System.String,NUnit.Framework.Internal.InternalTraceLevel)">
+            <summary>
+            Initialize the internal trace facility using the name of the log
+            to be written to and the trace level.
+            </summary>
+            <param name="logName">The log name</param>
+            <param name="level">The trace level</param>
+        </member>
         <member name="M:NUnit.Framework.Internal.InternalTrace.Initialize(System.IO.TextWriter,NUnit.Framework.Internal.InternalTraceLevel)">
             <summary>
             Initialize the internal trace using a provided TextWriter and level
@@ -12484,6 +13456,12 @@
             A trace listener that writes to a separate file per domain
             and process using it.
             </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.InternalTraceWriter.#ctor(System.String)">
+            <summary>
+            Construct an InternalTraceWriter that writes to a file.
+            </summary>
+            <param name="logPath">Path to the file to use</param>
         </member>
         <member name="M:NUnit.Framework.Internal.InternalTraceWriter.#ctor(System.IO.TextWriter)">
             <summary>
@@ -12678,7 +13656,7 @@
         </member>
         <member name="M:NUnit.Framework.Internal.MethodWrapper.IsDefined``1(System.Boolean)">
             <summary>
-            Gets a value indicating whether one or more attributes of the spcified type are defined on the method.
+            Gets a value indicating whether one or more attributes of the specified type are defined on the method.
             </summary>
         </member>
         <member name="M:NUnit.Framework.Internal.MethodWrapper.Invoke(System.Object,System.Object[])">
@@ -12709,16 +13687,16 @@
             <summary>
             Initializes a new instance of the <see cref="T:NUnit.Framework.Internal.NUnitException"/> class.
             </summary>
-            <param name="message">The error message that explains 
+            <param name="message">The error message that explains
             the reason for the exception</param>
         </member>
         <member name="M:NUnit.Framework.Internal.NUnitException.#ctor(System.String,System.Exception)">
             <summary>
             Initializes a new instance of the <see cref="T:NUnit.Framework.Internal.NUnitException"/> class.
             </summary>
-            <param name="message">The error message that explains 
+            <param name="message">The error message that explains
             the reason for the exception</param>
-            <param name="inner">The exception that caused the 
+            <param name="inner">The exception that caused the
             current exception</param>
         </member>
         <member name="T:NUnit.Framework.Internal.ParameterWrapper">
@@ -12821,7 +13799,7 @@
         </member>
         <member name="M:NUnit.Framework.Internal.PropertyBag.ToXml(System.Boolean)">
             <summary>
-            Returns an XmlNode representating the current PropertyBag.
+            Returns an XmlNode representing the current PropertyBag.
             </summary>
             <param name="recursive">Not used</param>
             <returns>An XmlNode representing the PropertyBag</returns>
@@ -13115,7 +14093,7 @@
         </member>
         <member name="M:NUnit.Framework.Internal.Randomizer.NextBool(System.Double)">
             <summary>
-            Returns a random bool based on the probablility a true result
+            Returns a random bool based on the probability a true result
             </summary>
         </member>
         <member name="M:NUnit.Framework.Internal.Randomizer.NextDouble(System.Double)">
@@ -13295,6 +14273,12 @@
             when running the test and all its children.
             </summary>
         </member>
+        <member name="P:NUnit.Framework.Internal.TestCaseResult.WarningCount">
+            <summary>
+            Gets the number of test cases that had warnings
+            when running the test and all its children.
+            </summary>
+        </member>
         <member name="P:NUnit.Framework.Internal.TestCaseResult.PassCount">
             <summary>
             Gets the number of test cases that passed
@@ -13331,6 +14315,11 @@
         <member name="F:NUnit.Framework.Internal.TestResult.CHILD_ERRORS_MESSAGE">
             <summary>
             Error message for when child tests have errors
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Internal.TestResult.CHILD_WARNINGS_MESSAGE">
+            <summary>
+            Error message for when child tests have warnings
             </summary>
         </member>
         <member name="F:NUnit.Framework.Internal.TestResult.CHILD_IGNORE_MESSAGE">
@@ -13414,6 +14403,12 @@
             when running the test and all its children.
             </summary>
         </member>
+        <member name="P:NUnit.Framework.Internal.TestResult.WarningCount">
+            <summary>
+            Gets the number of test cases that had warnings
+            when running the test and all its children.
+            </summary>
+        </member>
         <member name="P:NUnit.Framework.Internal.TestResult.PassCount">
             <summary>
             Gets the number of test cases that passed
@@ -13452,6 +14447,11 @@
             Gets any text output written to this result.
             </summary>
         </member>
+        <member name="P:NUnit.Framework.Internal.TestResult.AssertionResults">
+            <summary>
+            Gets a list of assertion results associated with the test.
+            </summary>
+        </member>
         <member name="M:NUnit.Framework.Internal.TestResult.ToXml(System.Boolean)">
             <summary>
             Returns the Xml representation of the result.
@@ -13467,6 +14467,16 @@
             <param name="parentNode">The parent node.</param>
             <param name="recursive">If true, descendant results are included</param>
             <returns></returns>
+        </member>
+        <member name="P:NUnit.Framework.Internal.TestResult.PendingFailures">
+            <summary>
+            Gets a count of pending failures (from Multiple Assert)
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Internal.TestResult.WorstAssertionStatus">
+            <summary>
+            Gets the worst assertion status (highest enum) in all the assertion results
+            </summary>
         </member>
         <member name="M:NUnit.Framework.Internal.TestResult.SetResult(NUnit.Framework.Interfaces.ResultState)">
             <summary>
@@ -13500,7 +14510,7 @@
             Set the test result based on the type of exception thrown
             </summary>
             <param name="ex">The exception that was thrown</param>
-            <param name="site">THe FailureSite to use in the result</param>
+            <param name="site">The FailureSite to use in the result</param>
         </member>
         <member name="M:NUnit.Framework.Internal.TestResult.RecordTearDownException(System.Exception)">
             <summary>
@@ -13515,6 +14525,26 @@
             </summary>
             <param name="ex">The Exception to be recorded</param>
         </member>
+        <member name="M:NUnit.Framework.Internal.TestResult.RecordTestCompletion">
+            <summary>
+            Determine result after test has run to completion.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.TestResult.RecordAssertion(NUnit.Framework.Interfaces.AssertionResult)">
+            <summary>
+            Record an assertion result
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.TestResult.RecordAssertion(NUnit.Framework.Interfaces.AssertionStatus,System.String,System.String)">
+            <summary>
+            Record an assertion result
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.TestResult.RecordAssertion(NUnit.Framework.Interfaces.AssertionStatus,System.String)">
+            <summary>
+            Record an assertion result
+            </summary>
+        </member>
         <member name="M:NUnit.Framework.Internal.TestResult.AddReasonElement(NUnit.Framework.Interfaces.TNode)">
             <summary>
             Adds a reason element to a node and returns it.
@@ -13528,6 +14558,14 @@
             </summary>
             <param name="targetNode">The target node.</param>
             <returns>The new failure element.</returns>
+        </member>
+        <member name="M:NUnit.Framework.Internal.TestResult.CreateLegacyFailureMessage">
+            <summary>
+            Creates a failure message incorporating failures
+            from a Multiple Assert block for use by runners
+            that don't know about AssertionResults.
+            </summary>
+            <returns>Message as a string</returns>
         </member>
         <member name="T:NUnit.Framework.Internal.TestSuiteResult">
             <summary>
@@ -13547,6 +14585,12 @@
             </summary>
         </member>
         <member name="P:NUnit.Framework.Internal.TestSuiteResult.PassCount">
+            <summary>
+            Gets the number of test cases that passed
+            when running the test and all its children.
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.Internal.TestSuiteResult.WarningCount">
             <summary>
             Gets the number of test cases that passed
             when running the test and all its children.
@@ -13586,6 +14630,29 @@
             StackFilter class is used to remove internal NUnit
             entries from a stack trace so that the resulting
             trace provides better information about the test.
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.Internal.StackFilter.DefaultFilter">
+            <summary>
+            Single instance of our default filter
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.StackFilter.#ctor(System.String,System.String)">
+            <summary>
+            Construct a stack filter instance
+            </summary>
+            <param name="topOfStackPattern">Regex pattern used to delete lines from the top of the stack</param>
+            <param name="bottomOfStackPattern">Regex pattern used to delete lines from the bottom of the stack</param>
+        </member>
+        <member name="M:NUnit.Framework.Internal.StackFilter.#ctor(System.String)">
+            <summary>
+            Construct a stack filter instance
+            </summary>
+            <param name="topOfStackPattern">Regex pattern used to delete lines from the top of the stack</param>
+        </member>
+        <member name="M:NUnit.Framework.Internal.StackFilter.#ctor">
+            <summary>
+            Construct a stack filter instance
             </summary>
         </member>
         <member name="M:NUnit.Framework.Internal.StackFilter.Filter(System.String)">
@@ -13727,6 +14794,12 @@
             Gets and sets the current context.
             </summary>
         </member>
+        <member name="M:NUnit.Framework.Internal.TestExecutionContext.GetTestExecutionContext">
+            <summary>
+            Get the current context or return null if none is found.
+            </summary>
+            <remarks></remarks>
+        </member>
         <member name="M:NUnit.Framework.Internal.TestExecutionContext.ClearCurrentContext">
             <summary>
             Clear the current context. This is provided to
@@ -13814,6 +14887,11 @@
             </summary>
             <value>The assert count.</value>
         </member>
+        <member name="P:NUnit.Framework.Internal.TestExecutionContext.MultipleAssertLevel">
+            <summary>
+            The current nesting level of multiple assert blocks
+            </summary>
+        </member>
         <member name="P:NUnit.Framework.Internal.TestExecutionContext.TestCaseTimeout">
             <summary>
             Gets or sets the test case timeout value
@@ -13874,6 +14952,33 @@
             </summary>
             <param name="formatterFactory">The new factory</param>
         </member>
+        <member name="T:NUnit.Framework.Internal.TestExecutionContext.IsolatedContext">
+            <summary>
+            An IsolatedContext is used when running code
+            that may effect the current result in ways that 
+            should not impact the final result of the test.
+            A new TestExecutionContext is created with an
+            initially clear result, which is discarded on
+            exiting the context.
+            </summary>
+            <example>
+                using (new TestExecutionContext.IsolatedContext())
+                {
+                    // Code that should not impact the result
+                }
+            </example>
+        </member>
+        <member name="M:NUnit.Framework.Internal.TestExecutionContext.IsolatedContext.#ctor">
+            <summary>
+            Save the original current TestExecutionContext and
+            make a new isolated context current.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Internal.TestExecutionContext.IsolatedContext.Dispose">
+            <summary>
+            Restore the original TestExecutionContext.
+            </summary>
+        </member>
         <member name="T:NUnit.Framework.Internal.TestExecutionStatus">
             <summary>
             Enumeration indicating whether the tests are 
@@ -13931,11 +15036,11 @@
         </member>
         <member name="M:NUnit.Framework.Internal.TestFilter.IsExplicitMatch(NUnit.Framework.Interfaces.ITest)">
             <summary>
-            Determine if a test matches the filter expicitly. That is, it must
+            Determine if a test matches the filter explicitly. That is, it must
             be a direct match of the test itself or one of it's children.
             </summary>
             <param name="test">The test to which the filter is applied</param>
-            <returns>True if the test matches the filter explicityly, otherwise false</returns>
+            <returns>True if the test matches the filter explicitly, otherwise false</returns>
         </member>
         <member name="M:NUnit.Framework.Internal.TestFilter.Match(NUnit.Framework.Interfaces.ITest)">
             <summary>
@@ -14884,7 +15989,7 @@
             <param name="attributeType"></param>
             <returns></returns>
         </member>
-        <member name="M:NUnit.Framework.Internal.TypeWrapper.GetMethods(NUnit.Compatibility.BindingFlags)">
+        <member name="M:NUnit.Framework.Internal.TypeWrapper.GetMethods(System.Reflection.BindingFlags)">
             <summary>
             Returns an array of IMethodInfos for methods of this Type
             that match the specified flags.
@@ -15117,6 +16222,24 @@
             value matches the regular expression supplied as an argument.
             </summary>
         </member>
+        <member name="M:NUnit.Framework.Is.SamePath(System.String)">
+            <summary>
+            Returns a constraint that tests whether the path provided 
+            is the same as an expected path after canonicalization.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Is.SubPathOf(System.String)">
+            <summary>
+            Returns a constraint that tests whether the path provided 
+            is a subpath of the expected path after canonicalization.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Is.SamePathOrUnder(System.String)">
+            <summary>
+            Returns a constraint that tests whether the path provided 
+            is the same path or under an expected path after canonicalization.
+            </summary>
+        </member>
         <member name="M:NUnit.Framework.Is.InRange(System.IComparable,System.IComparable)">
             <summary>
             Returns a constraint that tests whether the actual value falls
@@ -15198,7 +16321,7 @@
         <member name="F:NUnit.Framework.SpecialValue.Null">
             <summary>
             Null represents a null value, which cannot be used as an 
-            argument to an attriute under .NET 1.x
+            argument to an attribute under .NET 1.x
             </summary>
         </member>
         <member name="T:NUnit.Framework.StringAssert">
@@ -15208,6 +16331,7 @@
         </member>
         <member name="M:NUnit.Framework.StringAssert.Equals(System.Object,System.Object)">
             <summary>
+            DO NOT USE! Use StringAssert.AreEqualIgnoringCase(...) or Assert.AreEqual(...) instead.
             The Equals method throws an InvalidOperationException. This is done 
             to make sure there is no mistake by calling this function.
             </summary>
@@ -15216,9 +16340,9 @@
         </member>
         <member name="M:NUnit.Framework.StringAssert.ReferenceEquals(System.Object,System.Object)">
             <summary>
-            override the default ReferenceEquals to throw an InvalidOperationException. This 
-            implementation makes sure there is no mistake in calling this function 
-            as part of Assert. 
+            DO NOT USE!
+            The ReferenceEquals method throws an InvalidOperationException. This is done 
+            to make sure there is no mistake by calling this function.
             </summary>
             <param name="a"></param>
             <param name="b"></param>
@@ -15513,6 +16637,16 @@
             Gets a TextWriter that will send output to the current test result.
             </summary>
         </member>
+        <member name="F:NUnit.Framework.TestContext.Error">
+            <summary>
+            Gets a TextWriter that will send output directly to Console.Error
+            </summary>
+        </member>
+        <member name="F:NUnit.Framework.TestContext.Progress">
+            <summary>
+            Gets a TextWriter for use in displaying immediate progress messages
+            </summary>
+        </member>
         <member name="F:NUnit.Framework.TestContext.Parameters">
             <summary>
             TestParameters object holds parameters for the test run, if any are specified
@@ -15531,6 +16665,11 @@
         <member name="P:NUnit.Framework.TestContext.WorkerId">
             <summary>
             Gets the unique name of the  Worker that is executing this test.
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.TestContext.TestDirectory">
+            <summary>
+            Gets the directory containing the current test assembly.
             </summary>
         </member>
         <member name="P:NUnit.Framework.TestContext.WorkDirectory">
@@ -15649,7 +16788,7 @@
         <member name="M:NUnit.Framework.TestContext.AddFormatter(NUnit.Framework.Constraints.ValueFormatterFactory)">
             <summary>
             This method adds the a new ValueFormatterFactory to the
-            chain of responsibility used for fomatting values in messages.
+            chain of responsibility used for formatting values in messages.
             The scope of the change is the current TestContext.
             </summary>
             <param name="formatterFactory">The factory delegate</param>
@@ -15660,7 +16799,7 @@
             delegate to the chain of responsibility, creating the factory
             delegate internally. It is useful when the Type of the object
             is the only criterion for selection of the formatter, since
-            it can be used without getting involved with a compould function.
+            it can be used without getting involved with a compound function.
             </summary>
             <typeparam name="TSUPPORTED">The type supported by this formatter</typeparam>
             <param name="formatter">The ValueFormatter delegate</param>
@@ -15740,6 +16879,12 @@
         <member name="P:NUnit.Framework.TestContext.ResultAdapter.FailCount">
             <summary>
             Gets the number of test cases that failed
+            when running the test and all its children.
+            </summary>
+        </member>
+        <member name="P:NUnit.Framework.TestContext.ResultAdapter.WarningCount">
+            <summary>
+            Gets the number of test cases that had warnings
             when running the test and all its children.
             </summary>
         </member>
@@ -15846,7 +16991,7 @@
             <summary>
             Get method is a simple alternative to the indexer
             </summary>
-            <param name="name">Name of the paramter</param>
+            <param name="name">Name of the parameter</param>
             <returns>Value of the parameter or null if not present</returns>
         </member>
         <member name="M:NUnit.Framework.TestParameters.Get(System.String,System.String)">
@@ -15934,6 +17079,247 @@
             Creates a constraint specifying the type of exception expected
             </summary>
         </member>
+        <member name="T:NUnit.Framework.Warn">
+            <summary>
+            Provides static methods to express conditions 
+            that must be met for the test to succeed. If
+            any test fails, a warning is issued.
+            </summary>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Equals(System.Object,System.Object)">
+            <summary>
+            DO NOT USE!
+            The Equals method throws an InvalidOperationException. This is done 
+            to make sure there is no mistake by calling this function.
+            </summary>
+            <param name="a">The left object.</param>
+            <param name="b">The right object.</param>
+            <returns>Not applicable</returns>
+        </member>
+        <member name="M:NUnit.Framework.Warn.ReferenceEquals(System.Object,System.Object)">
+            <summary>
+            DO NOT USE!
+            The ReferenceEquals method throws an InvalidOperationException. This is done 
+            to make sure there is no mistake by calling this function.
+            </summary>
+            <param name="a">The left object.</param>
+            <param name="b">The right object.</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless``1(NUnit.Framework.Constraints.ActualValueDelegate{``0},NUnit.Framework.Constraints.IResolveConstraint)">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            is satisfied and issuing a warning on failure.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="del">An ActualValueDelegate returning the value to be tested</param>
+            <param name="expr">A Constraint expression to be applied</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless``1(NUnit.Framework.Constraints.ActualValueDelegate{``0},NUnit.Framework.Constraints.IResolveConstraint,System.String,System.Object[])">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            is satisfied and issuing a warning on failure.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="del">An ActualValueDelegate returning the value to be tested</param>
+            <param name="expr">A Constraint expression to be applied</param>
+            <param name="message">The message that will be displayed on failure</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless``1(NUnit.Framework.Constraints.ActualValueDelegate{``0},NUnit.Framework.Constraints.IResolveConstraint,System.Func{System.String})">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            is satisfied and issuing a warning on failure.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="del">An ActualValueDelegate returning the value to be tested</param>
+            <param name="expr">A Constraint expression to be applied</param>
+            <param name="getExceptionMessage">A function to build the message included with the Exception</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless(System.Boolean,System.String,System.Object[])">
+            <summary>
+            Asserts that a condition is true. If the condition is false a warning is issued.
+            </summary> 
+            <param name="condition">The evaluated condition</param>
+            <param name="message">The message to display if the condition is false</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless(System.Boolean)">
+            <summary>
+            Asserts that a condition is true. If the condition is false a warning is issued. 
+            </summary>
+            <param name="condition">The evaluated condition</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless(System.Boolean,System.Func{System.String})">
+            <summary>
+            Asserts that a condition is true. If the condition is false a warning is issued.
+            </summary> 
+            <param name="condition">The evaluated condition</param>
+            <param name="getExceptionMessage">A function to build the message included with the Exception</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless(System.Func{System.Boolean},System.String,System.Object[])">
+            <summary>
+            Asserts that a condition is true. If the condition is false the method throws
+            an <see cref="T:NUnit.Framework.InconclusiveException"/>.
+            </summary> 
+            <param name="condition">A lambda that returns a Boolean</param>
+            <param name="message">The message to display if the condition is false</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless(System.Func{System.Boolean})">
+            <summary>
+            Asserts that a condition is true. If the condition is false the method throws
+            an <see cref="T:NUnit.Framework.InconclusiveException"/>.
+            </summary>
+            <param name="condition">A lambda that returns a Boolean</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless(System.Func{System.Boolean},System.Func{System.String})">
+            <summary>
+            Asserts that a condition is true. If the condition is false the method throws
+            an <see cref="T:NUnit.Framework.InconclusiveException"/>.
+            </summary> 
+            <param name="condition">A lambda that returns a Boolean</param>
+            <param name="getExceptionMessage">A function to build the message included with the Exception</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless(NUnit.Framework.TestDelegate,NUnit.Framework.Constraints.IResolveConstraint)">
+            <summary>
+            Asserts that the code represented by a delegate throws an exception
+            that satisfies the constraint provided.
+            </summary>
+            <param name="code">A TestDelegate to be executed</param>
+            <param name="constraint">A ThrowsConstraint used in the test</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless``1(``0,NUnit.Framework.Constraints.IResolveConstraint)">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            is satisfied and issuing a warning on failure.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="actual">The actual value to test</param>
+            <param name="expression">A Constraint to be applied</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless``1(``0,NUnit.Framework.Constraints.IResolveConstraint,System.String,System.Object[])">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            is satisfied and issuing a warning on failure.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="actual">The actual value to test</param>
+            <param name="expression">A Constraint expression to be applied</param>
+            <param name="message">The message that will be displayed on failure</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.Unless``1(``0,NUnit.Framework.Constraints.IResolveConstraint,System.Func{System.String})">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            is satisfied and issuing a warning on failure.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="actual">The actual value to test</param>
+            <param name="expression">A Constraint to be applied</param>
+            <param name="getExceptionMessage">A function to build the message included with the Exception</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If``1(NUnit.Framework.Constraints.ActualValueDelegate{``0},NUnit.Framework.Constraints.IResolveConstraint)">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            fails and issuing a warning on success.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="del">An ActualValueDelegate returning the value to be tested</param>
+            <param name="expr">A Constraint expression to be applied</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If``1(NUnit.Framework.Constraints.ActualValueDelegate{``0},NUnit.Framework.Constraints.IResolveConstraint,System.String,System.Object[])">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            fails and issuing a warning on success.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="del">An ActualValueDelegate returning the value to be tested</param>
+            <param name="expr">A Constraint expression to be applied</param>
+            <param name="message">The message that will be displayed on failure</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If``1(NUnit.Framework.Constraints.ActualValueDelegate{``0},NUnit.Framework.Constraints.IResolveConstraint,System.Func{System.String})">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            fails and issuing a warning on failure.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="del">An ActualValueDelegate returning the value to be tested</param>
+            <param name="expr">A Constraint expression to be applied</param>
+            <param name="getExceptionMessage">A function to build the message included with the Exception</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If(System.Boolean,System.String,System.Object[])">
+            <summary>
+            Asserts that a condition is true. If the condition is false a warning is issued.
+            </summary> 
+            <param name="condition">The evaluated condition</param>
+            <param name="message">The message to display if the condition is false</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If(System.Boolean)">
+            <summary>
+            Asserts that a condition is true. If the condition is false a warning is issued. 
+            </summary>
+            <param name="condition">The evaluated condition</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If(System.Boolean,System.Func{System.String})">
+            <summary>
+            Asserts that a condition is true. If the condition is false a warning is issued.
+            </summary> 
+            <param name="condition">The evaluated condition</param>
+            <param name="getExceptionMessage">A function to build the message included with the Exception</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If(System.Func{System.Boolean},System.String,System.Object[])">
+            <summary>
+            Asserts that a condition is false. If the condition is true a warning is issued.
+            </summary> 
+            <param name="condition">A lambda that returns a Boolean</param>
+            <param name="message">The message to display if the condition is true</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If(System.Func{System.Boolean})">
+            <summary>
+            Asserts that a condition is false. If the condition is true a warning is issued.
+            </summary>
+            <param name="condition">A lambda that returns a Boolean</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If(System.Func{System.Boolean},System.Func{System.String})">
+            <summary>
+            Asserts that a condition is false. If the condition is true a warning is issued.
+            </summary> 
+            <param name="condition">A lambda that returns a Boolean</param>
+            <param name="getExceptionMessage">A function to build the message included with the Exception</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If``1(``0,NUnit.Framework.Constraints.IResolveConstraint)">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            fails and issuing a warning if it succeeds.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="actual">The actual value to test</param>
+            <param name="expression">A Constraint to be applied</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If``1(``0,NUnit.Framework.Constraints.IResolveConstraint,System.String,System.Object[])">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            fails and issuing a warning if it succeeds.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="actual">The actual value to test</param>
+            <param name="expression">A Constraint expression to be applied</param>
+            <param name="message">The message that will be displayed on failure</param>
+            <param name="args">Arguments to be used in formatting the message</param>
+        </member>
+        <member name="M:NUnit.Framework.Warn.If``1(``0,NUnit.Framework.Constraints.IResolveConstraint,System.Func{System.String})">
+            <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            is satisfied and issuing a warning on failure.
+            </summary>
+            <typeparam name="TActual">The Type being compared.</typeparam>
+            <param name="actual">The actual value to test</param>
+            <param name="expression">A Constraint to be applied</param>
+            <param name="getExceptionMessage">A function to build the message included with the Exception</param>
+        </member>
         <member name="T:NUnit.FrameworkPackageSettings">
             <summary>
             FrameworkPackageSettings is a static class containing constant values that
@@ -15962,7 +17348,7 @@
         <member name="F:NUnit.FrameworkPackageSettings.WorkDirectory">
             <summary>
             Full path of the directory to be used for work and result files.
-            This path is provided to tests by the frameowrk TestContext.
+            This path is provided to tests by the framework TestContext.
             </summary>
         </member>
         <member name="F:NUnit.FrameworkPackageSettings.DefaultTimeout">
@@ -16015,7 +17401,12 @@
         </member>
         <member name="F:NUnit.FrameworkPackageSettings.TestParameters">
             <summary>
-            Parameters to be passed on to the test
+            Parameters to be passed on to the tests, serialized to a single string which needs parsing. Obsoleted by <see cref="F:NUnit.FrameworkPackageSettings.TestParametersDictionary"/>; kept for backward compatibility.
+            </summary>
+        </member>
+        <member name="F:NUnit.FrameworkPackageSettings.TestParametersDictionary">
+            <summary>
+            Parameters to be passed on to the tests, already parsed into an IDictionary&lt;string, string>. Replaces <see cref="F:NUnit.FrameworkPackageSettings.TestParameters"/>.
             </summary>
         </member>
         <member name="T:NUnit.Compatibility.AttributeHelper">
@@ -16034,51 +17425,6 @@
             <param name="attributeType">Type of the attribute.</param>
             <param name="inherit">if set to <c>true</c> [inherit].</param>
             <returns>A list of the given attribute on the given object.</returns>
-        </member>
-        <member name="T:NUnit.Compatibility.BindingFlags">
-            <summary>
-            Specifies flags that control binding and the way in which the search for members
-            and types is conducted by reflection.
-            </summary>
-        </member>
-        <member name="F:NUnit.Compatibility.BindingFlags.Default">
-            <summary>
-             Specifies no binding flag.
-             </summary>
-        </member>
-        <member name="F:NUnit.Compatibility.BindingFlags.DeclaredOnly">
-            <summary>
-             Specifies that only members declared at the level of the supplied type's hierarchy
-             should be considered. Inherited members are not considered.
-             </summary>
-        </member>
-        <member name="F:NUnit.Compatibility.BindingFlags.Instance">
-            <summary>
-             Specifies that instance members are to be included in the search.
-             </summary>
-        </member>
-        <member name="F:NUnit.Compatibility.BindingFlags.Static">
-            <summary>
-             Specifies that static members are to be included in the search.
-             </summary>
-        </member>
-        <member name="F:NUnit.Compatibility.BindingFlags.Public">
-            <summary>
-             Specifies that public members are to be included in the search.
-             </summary>
-        </member>
-        <member name="F:NUnit.Compatibility.BindingFlags.NonPublic">
-            <summary>
-             Specifies that non-public members are to be included in the search.
-             </summary>
-        </member>
-        <member name="F:NUnit.Compatibility.BindingFlags.FlattenHierarchy">
-            <summary>
-             Specifies that public and protected static members up the hierarchy should be
-             returned. Private static members in inherited classes are not returned. Static
-             members include fields, methods, events, and properties. Nested types are not
-             returned.
-             </summary>
         </member>
         <member name="T:NUnit.Compatibility.LongLivedMarshalByRefObject">
             <summary>
@@ -16141,7 +17487,7 @@
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:NUnit.Compatibility.TypeExtensions.GetMember(System.Type,System.String,NUnit.Compatibility.BindingFlags)">
+        <member name="M:NUnit.Compatibility.TypeExtensions.GetMember(System.Type,System.String,System.Reflection.BindingFlags)">
             <summary>
             Gets the member on a given type by name. BindingFlags ARE IGNORED.
             </summary>
@@ -16150,7 +17496,7 @@
             <param name="ignored"></param>
             <returns></returns>
         </member>
-        <member name="M:NUnit.Compatibility.TypeExtensions.GetMembers(System.Type,NUnit.Compatibility.BindingFlags)">
+        <member name="M:NUnit.Compatibility.TypeExtensions.GetMembers(System.Type,System.Reflection.BindingFlags)">
             <summary>
             Gets all members on a given type. BindingFlags ARE IGNORED.
             </summary>
@@ -16174,7 +17520,7 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:NUnit.Compatibility.TypeExtensions.GetProperty(System.Type,System.String,NUnit.Compatibility.BindingFlags)">
+        <member name="M:NUnit.Compatibility.TypeExtensions.GetProperty(System.Type,System.String,System.Reflection.BindingFlags)">
             <summary>
             Gets property of the given name on the type
             </summary>
@@ -16191,7 +17537,7 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:NUnit.Compatibility.TypeExtensions.GetMethod(System.Type,System.String,NUnit.Compatibility.BindingFlags)">
+        <member name="M:NUnit.Compatibility.TypeExtensions.GetMethod(System.Type,System.String,System.Reflection.BindingFlags)">
             <summary>
             Gets the method with the given name and parameter list
             </summary>
@@ -16216,7 +17562,7 @@
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:NUnit.Compatibility.TypeExtensions.GetMethods(System.Type,NUnit.Compatibility.BindingFlags)">
+        <member name="M:NUnit.Compatibility.TypeExtensions.GetMethods(System.Type,System.Reflection.BindingFlags)">
             <summary>
             Gets methods on a type
             </summary>
@@ -16303,27 +17649,6 @@
             <summary>
             This class is used as a flag when we get a parameter list for a method/constructor, but
             we do not know one of the types because null was passed in.
-            </summary>
-        </member>
-        <member name="T:NUnit.Env">
-            <summary>
-            Env is a static class that provides some of the features of
-            System.Environment that are not available under all runtimes
-            </summary>
-        </member>
-        <member name="F:NUnit.Env.NewLine">
-            <summary>
-            The newline sequence in the current environment.
-            </summary>
-        </member>
-        <member name="F:NUnit.Env.DocumentFolder">
-            <summary>
-            Path to the 'My Documents' folder
-            </summary>
-        </member>
-        <member name="F:NUnit.Env.DefaultWorkDirectory">
-            <summary>
-            Directory used for file output if not specified on commandline.
             </summary>
         </member>
         <member name="T:System.Web.UI.ICallbackEventHandler">
