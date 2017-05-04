@@ -41,5 +41,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         PremiumRequired,
         SamePasswordAlreadySignedIn,
         KeyFileInaccessible,
+        WrongVerificationCode,
     }
 }

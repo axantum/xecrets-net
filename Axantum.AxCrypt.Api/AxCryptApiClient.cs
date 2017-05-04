@@ -189,6 +189,24 @@ namespace Axantum.AxCrypt.Api
             ApiCaller.EnsureStatusOk(restResponse);
         }
 
+        public async Task<bool> GetAllAccountsUserVerify(string verification)
+        {
+            if (string.IsNullOrEmpty(Identity.User))
+            {
+                throw new InvalidOperationException("There must be an identity to attempt to verify.");
+            }
+
+            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}/verify?verification={1}".With(Identity.User, verification));
+            RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest("GET", resource, Timeout)).Free();
+
+            if (restResponse.StatusCode == HttpStatusCode.NotFound)
+            {
+                return false;
+            }
+            ApiCaller.EnsureStatusOk(restResponse);
+            return true;
+        }
+
         public async Task PutAllAccountsUserPasswordAsync(string verification)
         {
             if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
