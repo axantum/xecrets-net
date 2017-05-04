@@ -294,7 +294,7 @@ Please sign in using the same password you used then.</value>
 
 Includes software from http://www.bouncycastle.org/ .</value>
   </data>
-  <data name="AxCryptBetaWarning">
+  <data name="AxCryptBetaWarning" xml:space="preserve">
     <value>Warning! This is untested beta software. This means that it may be missing features and be unstable. Texts may be missing and user interface might be incomplete.
 
 Use with care and ensure you have up-to-date backups of all your data. Please report any issues to https://bitbucket.org/axantum/axcrypt-net/issues or  support@axcrypt.net .
@@ -466,6 +466,9 @@ You must complete these steps to complete the process.</value>
   </data>
   <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
     <value>Your notification preferences have been changed.</value>
+  </data>
+  <data name="ChangeOptionGenericWarning" xml:space="preserve">
+    <value>Changing options may be dangerous. Only do this if you are sure you understand what this option does.</value>
   </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Change Password</value>
@@ -856,7 +859,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>File '{0}' already exists.</value>
   </data>
   <data name="FileAssociationBrokenWarning" xml:space="preserve">
-    <value>The .axx file association has been modified externally.</value>
+    <value>Double-click to open AxCrypt files may not function correctly. Windows file association for file extension ".axx" appears to be broken. Contact your IT support  or search for a solution on the Internet.</value>
     <comment>A text that is shown to users starting the association with .axx file is broken.</comment>
   </data>
   <data name="FileDoesNotExist" xml:space="preserve">
@@ -1535,6 +1538,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="OptionsSecureSubFolderToolStripMenuItemText" xml:space="preserve">
+    <value>Secure Sub Folder</value>
+  </data>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>Options</value>
   </data>
@@ -1967,6 +1973,12 @@ Subject: AxCrypt Report Snapshot
   </data>
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>Secure Delete</value>
+  </data>
+  <data name="SecureSubFolderConfirmationBody" xml:space="preserve">
+    <value>You are about to enable a dangerous option. If you are not careful, you may affect more data then you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?</value>
+  </data>
+  <data name="SecureSubFolderConfirmationTitle" xml:space="preserve">
+    <value>Warning</value>
   </data>
   <data name="SecurityLabel" xml:space="preserve">
     <value>Security</value>

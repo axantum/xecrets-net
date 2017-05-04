@@ -94,6 +94,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool TryBrokenFile { get { return GetProperty<bool>(nameof(TryBrokenFile)); } set { SetProperty(nameof(TryBrokenFile), value); } }
 
+        public bool SecureSubFolder { get { return GetProperty<bool>(nameof(SecureSubFolder)); } set { SetProperty(nameof(SecureSubFolder), value); } }
+
         public LicensePolicy License { get { return GetProperty<LicensePolicy>(nameof(License)); } set { SetProperty(nameof(License), value); } }
 
         public IAction RemoveRecentFiles { get; private set; }
@@ -111,6 +113,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAction AxCryptUpdateCheck { get; private set; }
 
         public IAction LicenseUpdate { get; private set; }
+        
 
         public MainViewModel(FileSystemState fileSystemState, UserSettings userSettings)
         {
@@ -134,6 +137,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SelectedRecentFiles = new string[0];
             SelectedWatchedFolders = new string[0];
             DebugMode = _userSettings.DebugMode;
+            SecureSubFolder = _userSettings.SecureSubFolder;
             Title = String.Empty;
             DownloadVersion = DownloadVersion.Empty;
             VersionUpdateStatus = DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, _userSettings.LastUpdateCheckUtc);
@@ -165,6 +169,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
             BindPropertyChangedInternal(nameof(License), async (LicensePolicy policy) => await SetWatchedFoldersAsync());
             BindPropertyChangedInternal(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
+            BindPropertyChangedInternal(nameof(SecureSubFolder), (bool enabled) => { DetermineSecureSubFolderChange(enabled); });
         }
 
         private void SubscribeToModelEvents()
@@ -350,7 +355,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
-            FilesArePending = openFiles.Count > 0 || Resolve.KnownIdentities.LoggedOnWatchedFolders.SelectMany(wf => New<IDataContainer>(wf.Path).ListEncryptable()).Any();
+            FilesArePending = openFiles.Count > 0 || Resolve.KnownIdentities.LoggedOnWatchedFolders.SelectMany(wf => New<IDataContainer>(wf.Path).ListEncryptable(_fileSystemState.WatchedFolders.Select(x => New<IDataContainer>(x.Path)), _userSettings.SecureSubFolder ? ListFolderMethod.RecurseSubFolders : ListFolderMethod.SingleFolder)).Any();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -423,6 +428,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void AxCryptUpdateCheckAction(DateTime lastUpdateCheckUtc)
         {
             _axCryptUpdateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, _userSettings.CultureName);
+        }
+
+        private void DetermineSecureSubFolderChange(bool enabled)
+        {
+
+            _userSettings.SecureSubFolder = enabled;
+            IDataStore fileSystemStateInfo = Resolve.FileSystemState.PathInfo;
+            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(fileSystemStateInfo));
+            //New<FileSystemState>().Save();
         }
 
         public void Dispose()

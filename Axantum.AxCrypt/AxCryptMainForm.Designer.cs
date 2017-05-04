@@ -123,6 +123,7 @@
             this._notifySignInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifyExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._optionsSecureSubFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -501,6 +502,7 @@
             this._passwordResetToolStripMenuItem,
             this._optionsAutoConvert1xFilesToolStripMenuItem,
             this._alwaysOfflineToolStripMenuItem,
+            this._optionsSecureSubFolderToolStripMenuItem,
             this._optionsDebugToolStripMenuItem,
             this._optionsClearAllSettingsAndExitToolStripMenuItem});
             this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
@@ -1077,6 +1079,12 @@
             this._notifyExitToolStripMenuItem.Text = "[&Exit]";
             this._notifyExitToolStripMenuItem.Click += new System.EventHandler(this._exitToolStripMenuItem_Click);
             // 
+            // _optionsSecureSubFolderToolStripMenuItem
+            // 
+            this._optionsSecureSubFolderToolStripMenuItem.Name = "_optionsSecureSubFolderToolStripMenuItem";
+            this._optionsSecureSubFolderToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsSecureSubFolderToolStripMenuItem.Text = "[Secure Sub Folder]";
+            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1225,6 +1233,7 @@
         private System.Windows.Forms.ToolStripMenuItem _notifySignInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _recentFilesShowInFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _turkishLanguageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _optionsSecureSubFolderToolStripMenuItem;
     }
 }
 
