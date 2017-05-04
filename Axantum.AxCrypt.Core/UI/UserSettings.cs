@@ -160,6 +160,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(DebugMode), value); }
         }
 
+        public bool SecureSubFolder
+        {
+            get { return Load(nameof(SecureSubFolder), false); }
+            set { Store(nameof(SecureSubFolder), value); }
+        }
+
         public bool RestoreFullWindow
         {
             get { return Load(nameof(RestoreFullWindow), false); }

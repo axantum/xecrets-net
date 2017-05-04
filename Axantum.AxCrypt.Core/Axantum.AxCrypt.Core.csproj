@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
@@ -199,6 +199,7 @@
     <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="UI\IEmailParser.cs" />
+    <Compile Include="UI\ListFolderMethod.cs" />
     <Compile Include="UI\PasswordMetrics.cs" />
     <Compile Include="UI\PasswordStrengthCalculator.cs" />
     <Compile Include="UI\PasswordStrengthEvaluator.cs" />

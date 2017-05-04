@@ -14,20 +14,25 @@ namespace Axantum.AxCrypt
     {
         private readonly VerifySignInPasswordViewModel _viewModel;
 
+        private readonly string _verifyInstructionText;
+
         public VerifySignInPasswordDialog()
         {
             InitializeComponent();
         }
 
-        public VerifySignInPasswordDialog(Form owner, VerifySignInPasswordViewModel viewModel)
+        public VerifySignInPasswordDialog(Form owner, VerifySignInPasswordViewModel viewModel, string verifyInstructionText)
             : this()
         {
             InitializeStyle(owner);
 
             _viewModel = viewModel;
+
+            _verifyInstructionText = verifyInstructionText;
         }
 
-        private void VerifySignInPasswordDialog_Load(object sender, EventArgs e)
+
+    private void VerifySignInPasswordDialog_Load(object sender, EventArgs e)
         {
             if (DesignMode)
             {
@@ -45,7 +50,7 @@ namespace Axantum.AxCrypt
         {
             Text = Texts.SignInVerificationTitle;
 
-            _verifyInstructionLabel.Text = Texts.LegacyConversionVerificationPrompt;
+            _verifyInstructionLabel.Text = _verifyInstructionText;
             _passphraseGroupBox.Text = Texts.VerifyPasswordPrompt;
             _showPassphraseCheckBox.Text = Texts.ShowPasswordOptionPrompt;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;

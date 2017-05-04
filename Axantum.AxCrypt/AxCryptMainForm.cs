@@ -255,6 +255,7 @@ namespace Axantum.AxCrypt
             _optionsClearAllSettingsAndExitToolStripMenuItem.Text = "&" + Texts.OptionsClearAllSettingsAndExitToolStripMenuItemText;
             _optionsDebugToolStripMenuItem.Text = "&" + Texts.OptionsDebugToolStripMenuItemText;
             _optionsLanguageToolStripMenuItem.Text = "&" + Texts.OptionsLanguageToolStripMenuItemText;
+            _optionsSecureSubFolderToolStripMenuItem.Text = "&" + Texts.OptionsSecureSubFolderToolStripMenuItemText;
             _optionsToolStripMenuItem.Text = "&" + Texts.OptionsToolStripMenuItemText;
             _passwordResetToolStripMenuItem.Text = "&" + Texts.ButtonPasswordResetText;
             _passwordResetToolStripMenuItem.ToolTipText = Texts.ButtonPasswordResetToolTip;
@@ -692,6 +693,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.SelectedRecentFiles), async (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !await _mainViewModel.License.HasAsync(LicenseCapability.KeySharing); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SecureSubFolder), (bool enabled) => { _optionsSecureSubFolderToolStripMenuItem.Checked = enabled; });
 
             _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
@@ -702,6 +704,7 @@ namespace Axantum.AxCrypt
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
+            _optionsSecureSubFolderToolStripMenuItem.Click += (sender, e) => ToggleSecureSubFolderSelection();
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
@@ -930,7 +933,7 @@ namespace Axantum.AxCrypt
             }
 
             VerifySignInPasswordViewModel viewModel = new VerifySignInPasswordViewModel(Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            using (VerifySignInPasswordDialog dialog = new VerifySignInPasswordDialog(this, viewModel))
+            using (VerifySignInPasswordDialog dialog = new VerifySignInPasswordDialog(this, viewModel, Texts.LegacyConversionVerificationPrompt))
             {
                 DialogResult dr = dialog.ShowDialog(this);
                 if (dr != DialogResult.OK)
@@ -2180,6 +2183,30 @@ namespace Axantum.AxCrypt
                 }
             }
             return String.Empty;
+        }
+        private void ToggleSecureSubFolderSelection()
+        {
+
+
+            if (_mainViewModel.SecureSubFolder == true)
+            {
+                _mainViewModel.SecureSubFolder = false;
+                return;
+            }
+            VerifySignInPasswordViewModel viewModel = new VerifySignInPasswordViewModel(Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            using (VerifySignInPasswordDialog dialog = new VerifySignInPasswordDialog(this, viewModel,Texts.ChangeOptionGenericWarning))
+            {
+                DialogResult dr = dialog.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    PopupButtons result = New<IPopup>().Show(PopupButtons.OkCancel, Texts.SecureSubFolderConfirmationTitle, Texts.SecureSubFolderConfirmationBody);
+                    if (result == PopupButtons.Ok)
+                    {
+                        _mainViewModel.SecureSubFolder = true;
+                    }
+                    return;
+                }
+            }
         }
     }
 }
