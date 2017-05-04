@@ -47,6 +47,24 @@
     <None Include="Properties\AssemblyInfo.template" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\Aes.cs" />
+    <Compile Include="Algorithm\AxCryptHMACSHA1.cs" />
+    <Compile Include="Algorithm\CipherMode.cs" />
+    <Compile Include="Algorithm\CryptoStream.cs" />
+    <Compile Include="Algorithm\CryptoStreamMode.cs" />
+    <Compile Include="Algorithm\HashAlgorithm.cs" />
+    <Compile Include="Algorithm\HMAC.cs" />
+    <Compile Include="Algorithm\HMACSHA1.cs" />
+    <Compile Include="Algorithm\HMACSHA512.cs" />
+    <Compile Include="Algorithm\ICryptoTransform.cs" />
+    <Compile Include="Algorithm\ISymmetricKey.cs" />
+    <Compile Include="Algorithm\KeyedHashAlgorithm.cs" />
+    <Compile Include="Algorithm\KeySizes.cs" />
+    <Compile Include="Algorithm\PaddingMode.cs" />
+    <Compile Include="Algorithm\RandomNumberGenerator.cs" />
+    <Compile Include="Algorithm\Sha1.cs" />
+    <Compile Include="Algorithm\Sha256.cs" />
+    <Compile Include="Algorithm\SymmetricAlgorithm.cs" />
     <Compile Include="AxCryptException.cs" />
     <Compile Include="Creator.cs" />
     <Compile Include="ErrorStatus.cs" />

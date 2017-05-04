@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Abstractions.Algorithm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    internal class RandomNumberGeneratorWrapper : Axantum.AxCrypt.Core.Algorithm.RandomNumberGenerator
+    internal class RandomNumberGeneratorWrapper : RandomNumberGenerator
     {
         private System.Security.Cryptography.RandomNumberGenerator _rng;
 

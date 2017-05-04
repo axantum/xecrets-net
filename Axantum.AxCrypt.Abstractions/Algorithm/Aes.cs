@@ -27,16 +27,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Algorithm
+namespace Axantum.AxCrypt.Abstractions.Algorithm
 {
-    public abstract class CryptoStream : Stream
+    public abstract class Aes : SymmetricAlgorithm
     {
-        public abstract CryptoStream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode);
-
-        public abstract void FinalFlush();
+        protected Aes()
+        {
+        }
     }
 }

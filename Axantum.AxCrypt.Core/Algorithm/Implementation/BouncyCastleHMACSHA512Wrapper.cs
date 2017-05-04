@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Macs;
@@ -46,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
             _hmac = new HMac(new Sha512Digest());
         }
 
-        public override HMAC Initialize(SymmetricKey key)
+        public override HMAC Initialize(ISymmetricKey key)
         {
             if (key == null)
             {

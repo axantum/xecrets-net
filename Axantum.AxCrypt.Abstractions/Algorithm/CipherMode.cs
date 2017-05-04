@@ -30,14 +30,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Algorithm
+namespace Axantum.AxCrypt.Abstractions.Algorithm
 {
-    public enum PaddingMode
+    public enum CipherMode
     {
         None = 0,
-        PKCS7,
-        Zeros,
-        ANSIX923,
-        ISO10126
+        CBC,
+        ECB,
+        OFB,
+        CFB,
+        CTS,
     }
 }

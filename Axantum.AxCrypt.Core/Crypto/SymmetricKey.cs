@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions.Algorithm;
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -34,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// <summary>
     /// Hold a key for a symmetric algorithm. Instances of this class are immutable.
     /// </summary>
-    public class SymmetricKey : IEquatable<SymmetricKey>
+    public class SymmetricKey : IEquatable<SymmetricKey>, ISymmetricKey
     {
         private byte[] _symmetricKey;
 

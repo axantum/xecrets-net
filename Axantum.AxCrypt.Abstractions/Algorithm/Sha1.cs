@@ -30,14 +30,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Algorithm
+namespace Axantum.AxCrypt.Abstractions.Algorithm
 {
-    public class KeySizes
+    public abstract class Sha1 : HashAlgorithm
     {
-        public int MaxSize { get; set; }
-
-        public int MinSize { get; set; }
-
-        public int SkipSize { get; set; }
     }
 }

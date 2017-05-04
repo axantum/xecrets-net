@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions.Algorithm;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Macs;
 using Org.BouncyCastle.Crypto.Parameters;
@@ -35,7 +36,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 {
-    internal class BouncyCastleAxCryptHmacSha1Wrapper : Core.Algorithm.AxCryptHMACSHA1
+    internal class BouncyCastleAxCryptHmacSha1Wrapper : AxCryptHMACSHA1
     {
         private HMac _hmac;
 
@@ -44,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
             _hmac = new HMac(new BouncyCastleAxCryptSha1ForHmacWrapper(new Sha1Digest()));
         }
 
-        public override HMAC Initialize(Core.Crypto.SymmetricKey key)
+        public override HMAC Initialize(ISymmetricKey key)
         {
             if (key == null)
             {
