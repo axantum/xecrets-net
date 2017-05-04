@@ -25,9 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Linq;
-
 namespace Axantum.AxCrypt.Core.Session
 {
     public enum SessionNotificationType
@@ -35,6 +32,7 @@ namespace Axantum.AxCrypt.Core.Session
         ActiveFileChange,
         WatchedFolderAdded,
         WatchedFolderRemoved,
+        WatchedFolderOptionsChanged,
         LogOn,
         LogOff,
         ProcessExit,

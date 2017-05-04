@@ -113,7 +113,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAction AxCryptUpdateCheck { get; private set; }
 
         public IAction LicenseUpdate { get; private set; }
-        
 
         public MainViewModel(FileSystemState fileSystemState, UserSettings userSettings)
         {
@@ -432,11 +431,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void DetermineSecureSubFolderChange(bool enabled)
         {
-
             _userSettings.SecureSubFolder = enabled;
-            IDataStore fileSystemStateInfo = Resolve.FileSystemState.PathInfo;
-            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(fileSystemStateInfo));
-            //New<FileSystemState>().Save();
+            if (!enabled)
+            {
+                return;
+            }
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderOptionsChanged, Resolve.KnownIdentities.DefaultEncryptionIdentity, New<FileSystemState>().WatchedFolders.Select(wf => wf.Path)));
         }
 
         public void Dispose()
