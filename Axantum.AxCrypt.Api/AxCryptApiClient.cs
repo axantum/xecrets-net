@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Api
 
         public async Task<bool> GetAllAccountsUserVerify(string verification)
         {
-            if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
+            if (string.IsNullOrEmpty(Identity.User))
             {
                 throw new InvalidOperationException("There must be an identity to attempt to verify.");
             }
