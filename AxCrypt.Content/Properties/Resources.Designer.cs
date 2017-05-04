@@ -998,6 +998,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Changing options may be dangerous. Only do this if you are sure you understand what this option does..
+        /// </summary>
+        public static string ChangeOptionGenericWarning {
+            get {
+                return ResourceManager.GetString("ChangeOptionGenericWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string ChangePassphraseDialogTitle {
@@ -2093,7 +2102,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The .axx file association has been modified externally..
+        ///   Looks up a localized string similar to Double-click to open AxCrypt files may not function correctly. Windows file association for file extension &quot;.axx&quot; appears to be broken. Contact your IT support  or search for a solution on the Internet..
         /// </summary>
         public static string FileAssociationBrokenWarning {
             get {
@@ -3857,6 +3866,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Secure Sub Folder.
+        /// </summary>
+        public static string OptionsSecureSubFolderToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsSecureSubFolderToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string OptionsToolStripMenuItemText {
@@ -4980,6 +4998,24 @@ namespace AxCrypt.Content.Properties {
         public static string SecureDeleteToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("SecureDeleteToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to enable a dangerous option. If you are not careful, you may affect more data then you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?.
+        /// </summary>
+        public static string SecureSubFolderConfirmationBody {
+            get {
+                return ResourceManager.GetString("SecureSubFolderConfirmationBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string SecureSubFolderConfirmationTitle {
+            get {
+                return ResourceManager.GetString("SecureSubFolderConfirmationTitle", resourceCulture);
             }
         }
         

@@ -39,7 +39,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-
+using Axantum.AxCrypt.Core.UI;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Extensions
@@ -126,15 +126,21 @@ namespace Axantum.AxCrypt.Core.Extensions
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
-        public static IEnumerable<IDataStore> ListEncryptable(this IDataContainer folderPath)
+        public static IEnumerable<IDataStore> ListEncryptable(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, ListFolderMethod listMethod)
         {
             if (folderPath == null)
             {
                 throw new ArgumentNullException("folderPath");
             }
 
-            return folderPath.Files.Where((IDataStore fileInfo) => { return fileInfo.IsEncryptable(); });
+            IEnumerable<IDataStore> files = folderPath.Files.Where(fileInfo => fileInfo.IsEncryptable());
+            IEnumerable<IDataContainer> folders = folderPath.Folders.Where(folderInfo => { return listMethod == ListFolderMethod.RecurseSubFolders && ignoreFolders.All(x => x.FullName != folderInfo.FullName); });
+            IEnumerable<IDataStore> subFolderFiles = folders.SelectMany(folderInfo => folderInfo.ListEncryptable(ignoreFolders, listMethod));
+
+            return files.Concat(subFolderFiles);
+
         }
+
 
         public static IEnumerable<IDataStore> ListEncrypted(this IDataContainer folderPath)
         {

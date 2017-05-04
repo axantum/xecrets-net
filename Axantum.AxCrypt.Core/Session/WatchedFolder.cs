@@ -115,6 +115,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _fileWatcher = New<IFileWatcher>(Path);
                 _fileWatcher.FileChanged += _fileWatcher_FileChanged;
+                _fileWatcher.IncludeSubdirectories = true;
             }
         }
 
