@@ -50,6 +50,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Security" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cryptography\HMACBase.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="ThreadWorker.cs" />
     <Compile Include="Timing.cs" />
     <Compile Include="RestCaller.cs" />
+    <Compile Include="XmlSecretsReaderWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
