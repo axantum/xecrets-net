@@ -32,7 +32,6 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -97,6 +96,7 @@ namespace Axantum.AxCrypt.Core.Session
             switch (notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
+                case SessionNotificationType.WatchedFolderOptionsChanged:
                     progress.NotifyLevelStart();
                     try
                     {

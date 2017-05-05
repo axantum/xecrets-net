@@ -25,24 +25,14 @@
 
 #endregion Coypright and License
 
-namespace Axantum.AxCrypt.Core.Session
+using System;
+using System.Linq;
+
+namespace Axantum.AxCrypt.Core.UI
 {
-    public enum SessionNotificationType
+    public enum ListFolderMethod
     {
-        ActiveFileChange,
-        WatchedFolderAdded,
-        WatchedFolderRemoved,
-        WatchedFolderOptionsChanged,
-        LogOn,
-        LogOff,
-        ProcessExit,
-        SessionChange,
-        SessionStart,
-        KnownKeyChange,
-        WorkFolderChange,
-        EncryptPendingFiles,
-        WatchedFolderChange,
-        UpdateActiveFiles,
-        LicensePolicyChange,
+        SingleFolder,
+        RecurseSubFolders,
     }
 }
