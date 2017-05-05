@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions.Algorithm;
 using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Mono.Cryptography;
@@ -35,7 +36,7 @@ namespace Axantum.AxCrypt.Mono.Portable
 {
     public class PortableFactory : IPortableFactory
     {
-        public static Core.Algorithm.AxCryptHMACSHA1 AxCryptHMACSHA1()
+        public static Abstractions.Algorithm.AxCryptHMACSHA1 AxCryptHMACSHA1()
         {
             return new AxCryptHMACSHA1Wrapper();
         }

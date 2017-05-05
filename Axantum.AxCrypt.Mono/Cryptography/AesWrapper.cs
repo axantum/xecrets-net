@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Algorithm;
+﻿using Axantum.AxCrypt.Abstractions.Algorithm;
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Mono.Portable;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    public class AesWrapper : Axantum.AxCrypt.Core.Algorithm.Aes
+    public class AesWrapper : Aes
     {
         private System.Security.Cryptography.SymmetricAlgorithm _symmetricAlgorithm;
 

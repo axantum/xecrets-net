@@ -30,12 +30,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Algorithm
+namespace Axantum.AxCrypt.Abstractions.Algorithm
 {
-    public abstract class Aes : SymmetricAlgorithm
+    public abstract class HMAC : KeyedHashAlgorithm
     {
-        protected Aes()
-        {
-        }
+        protected int BlockSizeValue { get; set; }
+
+        public abstract string HashName { get; set; }
+
+        public abstract HMAC Initialize(ISymmetricKey key);
     }
 }

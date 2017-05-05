@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Algorithm;
 using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Api.Model;

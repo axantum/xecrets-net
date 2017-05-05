@@ -25,20 +25,26 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Core.Algorithm
+namespace Axantum.AxCrypt.Abstractions.Algorithm
 {
-    public abstract class HMAC : KeyedHashAlgorithm
+    public abstract class RandomNumberGenerator : IDisposable
     {
-        protected int BlockSizeValue { get; set; }
+        public abstract void GetBytes(byte[] data);
 
-        public abstract string HashName { get; set; }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-        public abstract HMAC Initialize(SymmetricKey key);
+        protected virtual void Dispose(bool disposing)
+        {
+        }
     }
 }

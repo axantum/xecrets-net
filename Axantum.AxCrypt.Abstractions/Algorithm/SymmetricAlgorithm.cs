@@ -31,7 +31,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Algorithm
+namespace Axantum.AxCrypt.Abstractions.Algorithm
 {
     public abstract class SymmetricAlgorithm : IDisposable
     {

@@ -29,22 +29,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Core.Algorithm
+namespace Axantum.AxCrypt.Abstractions.Algorithm
 {
-    public abstract class RandomNumberGenerator : IDisposable
+    public class KeySizes
     {
-        public abstract void GetBytes(byte[] data);
+        public int MaxSize { get; set; }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        public int MinSize { get; set; }
 
-        protected virtual void Dispose(bool disposing)
-        {
-        }
+        public int SkipSize { get; set; }
     }
 }
