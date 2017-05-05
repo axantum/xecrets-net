@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                IEnumerable<IDataStore> files = containers.SelectMany((folder) => folder.ListEncryptable(containers, Resolve.UserSettings.SecureSubFolder ? ListFolderMethod.RecurseSubFolders : ListFolderMethod.SingleFolder));
+                IEnumerable<IDataStore> files = containers.SelectMany((folder) => folder.ListEncryptable(containers, Resolve.UserSettings.SecureFolderLevel == SecureFolderLevels.IncludeSubFolders ? ListFolderMethod.RecurseSubFolders : ListFolderMethod.SingleFolder));
                 progress.AddTotal(files.Count());
                 foreach (IDataStore file in files)
                 {

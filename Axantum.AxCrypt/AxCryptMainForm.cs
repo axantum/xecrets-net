@@ -693,7 +693,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.SelectedRecentFiles), async (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !await _mainViewModel.License.HasAsync(LicenseCapability.KeySharing); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SecureSubFolder), (bool enabled) => { _optionsSecureSubFolderToolStripMenuItem.Checked = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SecureFolderLevel), (SecureFolderLevels SecureFolderLevel) => { _optionsSecureSubFolderToolStripMenuItem.Checked = SecureFolderLevel == SecureFolderLevels.IncludeSubFolders ? true : false; });
 
             _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
@@ -2188,13 +2188,13 @@ namespace Axantum.AxCrypt
         {
 
 
-            if (_mainViewModel.SecureSubFolder == true)
+            if (_mainViewModel.SecureFolderLevel == SecureFolderLevels.IncludeSubFolders || _mainViewModel.SecureFolderLevel == SecureFolderLevels.None)
             {
-                _mainViewModel.SecureSubFolder = false;
+                _mainViewModel.SecureFolderLevel = SecureFolderLevels.SingleFolder;
                 return;
             }
             VerifySignInPasswordViewModel viewModel = new VerifySignInPasswordViewModel(Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            using (VerifySignInPasswordDialog dialog = new VerifySignInPasswordDialog(this, viewModel,Texts.ChangeOptionGenericWarning))
+            using (VerifySignInPasswordDialog dialog = new VerifySignInPasswordDialog(this, viewModel, Texts.ChangeOptionGenericWarning))
             {
                 DialogResult dr = dialog.ShowDialog(this);
                 if (dr == DialogResult.OK)
@@ -2202,7 +2202,7 @@ namespace Axantum.AxCrypt
                     PopupButtons result = New<IPopup>().Show(PopupButtons.OkCancel, Texts.SecureSubFolderConfirmationTitle, Texts.SecureSubFolderConfirmationBody);
                     if (result == PopupButtons.Ok)
                     {
-                        _mainViewModel.SecureSubFolder = true;
+                        _mainViewModel.SecureFolderLevel = SecureFolderLevels.IncludeSubFolders;
                     }
                     return;
                 }

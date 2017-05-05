@@ -68,6 +68,7 @@
     <Compile Include="StartupTipMessage.cs" />
     <Compile Include="StartupTipProperties.cs" />
     <Compile Include="StartupTipUrl.cs" />
+    <Compile Include="SecureFolderLevels.cs" />
     <Compile Include="UpdateLevels.cs" />
     <Compile Include="VersionUpdateKind.cs" />
     <Compile Include="VersionUpdateStatus.cs" />
