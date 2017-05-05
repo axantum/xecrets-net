@@ -157,6 +157,13 @@
     <Compile Include="Reader\V2AxCryptReader.cs" />
     <Compile Include="Reader\UnversionedAxCryptReader.cs" />
     <Compile Include="Runtime\UserInputException.cs" />
+    <Compile Include="Secrets\EncryptionKey.cs" />
+    <Compile Include="Secrets\EncryptionKeyCollection.cs" />
+    <Compile Include="Secrets\ISecretsReader.cs" />
+    <Compile Include="Secrets\ISecretsWriter.cs" />
+    <Compile Include="Secrets\Secret.cs" />
+    <Compile Include="Secrets\SecretCollection.cs" />
+    <Compile Include="Secrets\TransientProtectedData.cs" />
     <Compile Include="Service\ApiAccountService.cs" />
     <Compile Include="Service\CachingAccountService.cs" />
     <Compile Include="Service\DeviceAccountService.cs" />
@@ -350,6 +357,12 @@
     <Compile Include="UI\UserSettings.cs" />
     <Compile Include="UI\VersionEventArgs.cs" />
     <Compile Include="Header\V2PlainTextLengthsEncryptedHeaderBlock.cs" />
+    <None Include="Secrets\AxantumXecrets.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Secrets\AxantumXecrets.xsx">
+      <DependentUpon>AxantumXecrets.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
