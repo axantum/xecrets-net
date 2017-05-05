@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Abstractions
         /// <returns>A byte array representing the encrypted data</returns>
         /// <exception cref="System.ArgumentNullException">The userData parameter is null</exception>
         /// <exception cref="System.NotSupportedException">The operating system does not support this method</exception>
-        /// <exception cref="System.Security.Cryptography.CryptographicException">The cryptographic protection failed</exception>
+        /// <exception cref="AxCryptException">The cryptographic protection failed</exception>
         /// <exception cref="System.OutOfMemoryException">Out of memory</exception>
         byte[] Protect(byte[] userData, byte[] optionalEntropy);
 
@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Abstractions
         /// <returns>A byte array representing the encrypted data</returns>
         /// <exception cref="System.ArgumentNullException">The encryptedData parameter is null</exception>
         /// <exception cref="System.NotSupportedException">The operating system does not support this method</exception>
-        /// <exception cref="System.Security.Cryptography.CryptographicException">The cryptographic protection failed</exception>
+        /// <exception cref="AxCryptException">The cryptographic protection failed</exception>
         /// <exception cref="System.OutOfMemoryException">Out of memory</exception>
         byte[] Unprotect(byte[] encryptedData, byte[] optionalEntropy);
     }
