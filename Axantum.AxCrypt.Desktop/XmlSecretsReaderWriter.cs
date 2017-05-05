@@ -47,7 +47,7 @@ using System.Xml;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
-namespace Axantum.AxCrypt.Mono
+namespace Axantum.AxCrypt.Desktop
 {
     public class XmlSecretsReaderWriter : ISecretsReader, ISecretsWriter
     {
