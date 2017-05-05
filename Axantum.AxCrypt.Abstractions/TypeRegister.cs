@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Abstractions
         /// <param name="creator">The Func<TArg, TResult> delegate that creates an instance.</param>
         public void New<TArgument, TResult>(Func<TArgument, TResult> creator)
         {
-            SetAndDisposeIfDisposable(typeof(TResult), creator);
+            SetAndDisposeIfDisposable(typeof(Tuple<TArgument, TResult>), creator);
         }
 
         /// <summary>

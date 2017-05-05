@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Abstractions
         private TResult CreateInternal<TArgument, TResult>(TArgument argument)
         {
             object o;
-            if (!_mapping.TryGetValue(typeof(TResult), out o))
+            if (!_mapping.TryGetValue(typeof(Tuple<TArgument, TResult>), out o))
             {
                 throw new ArgumentException("Unregistered type factory. Initialize with 'TypeMap.Register<{0}, {1}>((argument) => {{ return new {0}(argument); }});'".Format(typeof(TArgument), typeof(TResult)));
             }
