@@ -468,7 +468,7 @@ You must complete these steps to complete the process.</value>
     <value>Your notification preferences have been changed.</value>
   </data>
   <data name="ChangeOptionGenericWarning" xml:space="preserve">
-    <value>Changing options may be dangerous. Only do this if you are sure you understand what this option does.</value>
+    <value>Changing options may be dangerous. Only do this if you are sure you understand what this option does. Confirm by entering your password.</value>
   </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Change Password</value>
@@ -859,7 +859,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>File '{0}' already exists.</value>
   </data>
   <data name="FileAssociationBrokenWarning" xml:space="preserve">
-    <value>Double-click to open AxCrypt files may not function correctly. Windows file association for file extension ".axx" appears to be broken. Contact your IT support  or search for a solution on the Internet.</value>
+    <value>Double-click to open AxCrypt files may not function correctly. Windows file association for extension ".axx" appears to be broken. Contact your IT support  or search for a solution on the Internet.</value>
     <comment>A text that is shown to users starting the association with .axx file is broken.</comment>
   </data>
   <data name="FileDoesNotExist" xml:space="preserve">
@@ -1101,7 +1101,7 @@ VAT Number SE 556967618101</value>
     <comment>Header of popup which is displayed for file opening.</comment>
   </data>
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
-    <value>#We have detected potentially incompatible software that may cause AxCrypt and other software to malfunction. This software is named Lavasoft Web Companion. If AxCrypt malfunctions after this, try to uninstall Lavasoft.</value>
+    <value>We have detected potentially incompatible software that may cause AxCrypt and other software to malfunction. This software is named Lavasoft Web Companion. If AxCrypt malfunctions, try to uninstall Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>After files are converted from AxCrypt 1.x format, you must use the new Sign In password to open them, so please verify it here.
@@ -1545,7 +1545,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Debug</value>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
-    <value>#Include Subfolders</value>
+    <value>Include Subfolders</value>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Language</value>

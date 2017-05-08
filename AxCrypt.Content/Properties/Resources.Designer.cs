@@ -998,7 +998,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changing options may be dangerous. Only do this if you are sure you understand what this option does..
+        ///   Looks up a localized string similar to Changing options may be dangerous. Only do this if you are sure you understand what this option does. Confirm by entering your password..
         /// </summary>
         public static string ChangeOptionGenericWarning {
             get {
@@ -2102,7 +2102,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-click to open AxCrypt files may not function correctly. Windows file association for file extension &quot;.axx&quot; appears to be broken. Contact your IT support  or search for a solution on the Internet..
+        ///   Looks up a localized string similar to Double-click to open AxCrypt files may not function correctly. Windows file association for extension &quot;.axx&quot; appears to be broken. Contact your IT support  or search for a solution on the Internet..
         /// </summary>
         public static string FileAssociationBrokenWarning {
             get {
@@ -2773,7 +2773,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to #We have detected potentially incompatible software that may cause AxCrypt and other software to malfunction. This software is named Lavasoft Web Companion. If AxCrypt malfunctions after this, try to uninstall Lavasoft..
+        ///   Looks up a localized string similar to We have detected potentially incompatible software that may cause AxCrypt and other software to malfunction. This software is named Lavasoft Web Companion. If AxCrypt malfunctions, try to uninstall Lavasoft..
         /// </summary>
         public static string LavasoftWebCompanionExistenceWarning {
             get {
@@ -3884,7 +3884,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to #Include Subfolders.
+        ///   Looks up a localized string similar to Include Subfolders.
         /// </summary>
         public static string OptionsIncludeSubfoldersToolStripMenuItemText {
             get {

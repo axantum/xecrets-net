@@ -447,6 +447,9 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
   <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
     <value>Dina notifieringspreferenser har ändrats.</value>
   </data>
+  <data name="ChangeOptionGenericWarning" xml:space="preserve">
+    <value>Att ändra alternativ kan vara riskabelt. Fortsätt bara om du är säker på vad det här alternativet innebär. Bekräfta genom att ange ditt lösenord.</value>
+  </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Byt Lösenord</value>
   </data>
@@ -770,6 +773,10 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="FileAlreadyExists" xml:space="preserve">
     <value>Filen '{0}' finns redan.</value>
   </data>
+  <data name="FileAssociationBrokenWarning" xml:space="preserve">
+    <value>Dubbelklick för att öppna AxCrypt-filer kanske inte fungerar. Windows filassociering för ändelsen ".axx" verkar trasig. Kontakta din IT-support eller sök efter lösningar på Internet.</value>
+    <comment>A text that is shown to users starting the association with .axx file is broken.</comment>
+  </data>
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Filen '{0}' finns inte.</value>
   </data>
@@ -842,6 +849,12 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Välj Delningsnyckelfil</value>
+  </data>
+  <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
+    <value>Du är på väg att aktivera ett riskabelt alternativ. Om du är oförsiktig kan det hända att mer data än du tänkt dig påverkas. Det kan ta lång tid, och annan programvara kan påverkas negativt, inklusive operativsystemet. Är du säker?</value>
+  </data>
+  <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
+    <value>Varning</value>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mitt AxCrypt ID</value>
@@ -973,6 +986,9 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
   <data name="LauncherPromptHeader" xml:space="preserve">
     <value>Öppna med:</value>
     <comment>Header of popup which is displayed for file opening.</comment>
+  </data>
+  <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
+    <value>Vi har hittat en potentiellt inkompatibel programvara som kan få AxCrypt och annan programvara att sluta fungera. Denna programvara heter Lavasoft Web Companion. Om AxCrypt inte fungerar, försök avinstallera Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>När filer konverterats från AxCrypt 1.x-formatet, måste du använda det nya inloggningslösenordet för att öppna dem, så bekräfta detta nu.
@@ -1152,7 +1168,7 @@ Detta program är licensierat i enlighet med avtalet.
     <comment>Context menu for decrypt</comment>
   </data>
   <data name="McInfMenuWipe" xml:space="preserve">
-    <value>Strimla och Ta Bort</value>
+    <value>Säker Readering</value>
     <comment>Context menu for Wipe</comment>
   </data>
   <data name="McInfMenuWrapZ" xml:space="preserve">
@@ -1335,6 +1351,9 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
     <value>Aktivera eller inaktivera automatisk uppgradering och konvertering av äldre AxCrypt 1.x-filer allteftersom.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
+  </data>
+  <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
+    <value>Inkludera Underkataloger</value>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Språk</value>
@@ -1924,9 +1943,6 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
     <value>Prenumeration avslutad</value>
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
-  </data>
-  <data name="TitleWindowSignInStatus" xml:space="preserve">
-    <value>{0} - {1}</value>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Premium krävs för lösenordshantering. Klicka för att uppgradera nu!</value>
