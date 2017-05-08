@@ -2755,6 +2755,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to #We have detected potentially incompatible software that may cause AxCrypt and other software to malfunction. This software is named Lavasoft Web Companion. If AxCrypt malfunctions after this, try to uninstall Lavasoft..
+        /// </summary>
+        public static string LavasoftWebCompanionExistenceWarning {
+            get {
+                return ResourceManager.GetString("LavasoftWebCompanionExistenceWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to After files are converted from AxCrypt 1.x format, you must use the new Sign In password to open them, so please verify it here.
         ///
         ///Do not forget this password!.
@@ -5345,7 +5354,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Internal error: Invalid value in field Subscription level. If we&apos;ve paid for something, we currently only support subscription level Basic..
+        ///   Looks up a localized string similar to Internal error: Invalid value in field Subscription level. If we&apos;ve paid for something, we currently only support subscription level Premium..
         /// </summary>
         public static string SubscriptionsErrorLevelAmount {
             get {

@@ -1094,6 +1094,9 @@ VAT Number SE 556967618101</value>
     <value>Open via:</value>
     <comment>Header of popup which is displayed for file opening.</comment>
   </data>
+  <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
+    <value>#We have detected potentially incompatible software that may cause AxCrypt and other software to malfunction. This software is named Lavasoft Web Companion. If AxCrypt malfunctions after this, try to uninstall Lavasoft.</value>
+  </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>After files are converted from AxCrypt 1.x format, you must use the new Sign In password to open them, so please verify it here.
 
@@ -2114,7 +2117,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Internal error: Invalid value in field Subscription level.</value>
   </data>
   <data name="SubscriptionsErrorLevelAmount" xml:space="preserve">
-    <value>Internal error: Invalid value in field Subscription level. If we've paid for something, we currently only support subscription level Basic.</value>
+    <value>Internal error: Invalid value in field Subscription level. If we've paid for something, we currently only support subscription level Premium.</value>
   </data>
   <data name="SubscriptionsErrorStartTime" xml:space="preserve">
     <value>Internal error: Invalid format in field Start time.</value>
