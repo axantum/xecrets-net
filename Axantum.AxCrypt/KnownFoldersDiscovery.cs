@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt
         private static void CheckSkyDrive(IList<KnownFolder> knownFolders)
         {
             string skyDriveFolder = FindOneDriveFolder();
-            if (String.IsNullOrEmpty(skyDriveFolder) || !Directory.Exists(skyDriveFolder))
+            if (!Directory.Exists(skyDriveFolder))
             {
                 return;
             }
@@ -115,7 +115,8 @@ namespace Axantum.AxCrypt
                 return skyDriveFolder;
             }
 
-            return null;
+            skyDriveFolder = Path.Combine(Environment.GetEnvironmentVariable("HOMEDRIVE") + Environment.GetEnvironmentVariable("HOMEPATH"), "OneDrive");
+            return skyDriveFolder;
         }
 
         private static string TryRegistryLocationForOneDriveFolder(string name)
