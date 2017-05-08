@@ -7,30 +7,49 @@ using System.Windows.Forms;
 using Axantum.AxCrypt.Core.Runtime;
 using Microsoft.Win32;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-
+using Axantum.AxCrypt.Core.IO;
+using System.IO;
 
 namespace Axantum.AxCrypt.Forms
 {
     public class InstallationVerifier
     {
         private readonly Lazy<bool> _isFileAssociationOk = new Lazy<bool>(IsFileAssociationCorrect);
+
         private readonly Lazy<bool> _isApplicationInstalled = new Lazy<bool>(CheckApplicationInstallationState);
 
+        private readonly Lazy<bool> _isLavasoftApplicationInstalled = new Lazy<bool>(CheckLavasofApplicationInstallationState);
+
         /// <summary>
-        /// This is part of #265 Check and re-assert the ".axx" file name association.
-        /// 
-        /// Use the AssocQueryString in shlwapi.dll . We already do a little P/Invoke in Axantum.AxCrypt.Forms NativeMethods.cs so that's fine to use.
-        /// This will be called from the main program and popping up the appropriate warning. We can then add other properties there. 
-        /// (Such as "HasBrokenWebCompanion" which is needed for another issue).
-        ///
-        /// After analysis we have identify that windows store the file association for user selection if any under 
-        /// Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\Roaming\OpenWith\FileExts
-        ///
+        /// Gets a value indicating whether this instance is application installed.
         /// </summary>
+        /// <value>
+        ///   <c>true</c> if the file extension association is ok; otherwise, <c>false</c>.
+        /// </value>
         public bool IsFileAssociationOk => _isFileAssociationOk.Value;
 
+        /// <summary>
+        /// Gets a value indicating whether AxCrypt is installed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if AxCrypt is installed; otherwise, <c>false</c>.
+        /// </value>
         public bool IsApplicationInstalled => _isApplicationInstalled.Value;
 
+        /// <summary>
+        /// Gets a value indicating whether we found Lavasoft Web Companion to be installed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if lavasoft was found; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsLavasoftApplicationInstalled => _isLavasoftApplicationInstalled.Value;
+
+        /// <summary>
+        /// Using AssocQueryString in shlwapi.dll determine if the .axx file association is correct.
+        ///
+        /// (Another possibility is to check the file association for user selection if any under
+        /// Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\Roaming\OpenWith\FileExts)
+        /// </summary>
         private static bool IsFileAssociationCorrect()
         {
             uint pcchOut = 0;
@@ -41,30 +60,30 @@ namespace Axantum.AxCrypt.Forms
             NativeMethods.AssocQueryString(NativeMethods.ASSOCF.ASSOCF_VERIFY,
                 NativeMethods.ASSOCSTR.ASSOCSTR_EXECUTABLE, New<IRuntimeEnvironment>().AxCryptExtension, null, pszOut, ref pcchOut);
 
-            return String.Equals(Environment.GetCommandLineArgs()[0], pszOut.ToString(), StringComparison.OrdinalIgnoreCase);
+            string associatedProgramFilePath = pszOut.ToString();
+            string axCryptProgramFilePath = Path.Combine(Environment.GetEnvironmentVariable("ProgramFiles"), "AxCrypt", "AxCrypt", "AxCrypt.exe");
+            return String.Equals(axCryptProgramFilePath, associatedProgramFilePath, StringComparison.OrdinalIgnoreCase);
         }
 
         private static bool CheckApplicationInstallationState()
         {
-            string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-            using (Microsoft.Win32.RegistryKey key = Registry.LocalMachine.OpenSubKey(registryKey))
+            string registryKey = @"SOFTWARE\AxCrypt\AxCrypt";
+            using (Microsoft.Win32.RegistryKey key = Registry.CurrentUser.OpenSubKey(registryKey))
             {
                 if (key == null)
                 {
                     return false;
                 }
-                foreach (string subKeyName in key.GetSubKeyNames())
-                {
-                    using (RegistryKey subKey = key.OpenSubKey(subKeyName))
-                    {
-                        if (subKey?.GetValue("DisplayName")?.ToString().StartsWith("AxCrypt") ?? false)
-                        {
-                            return true;
-                        }
-                    }
-                }
+                int? installed = key.GetValue("installed", 0) as int?;
+
+                return installed.GetValueOrDefault() == 1;
             }
-            return false;
+        }
+
+        private static bool CheckLavasofApplicationInstallationState()
+        {
+            string path = Path.Combine(Environment.GetEnvironmentVariable("windir"), "System32", "LavasoftTcpService64.dll");
+            return File.Exists(path);
         }
     }
 }

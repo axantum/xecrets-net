@@ -69,7 +69,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Implementation\FormsTypes.cs" />
-    <Compile Include="IncompatibleSoftwareVerifier.cs" />
     <Compile Include="InstallationVerifier.cs" />
     <Compile Include="MessageDialog.cs">
       <SubType>Form</SubType>

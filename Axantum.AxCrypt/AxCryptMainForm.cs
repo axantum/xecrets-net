@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt
 
         private void CheckLavasoftWebCompanionExistence()
         {
-            if (New<IncompatibleSoftwareVerifier>().IsLavasoftApplicationInstalled)
+            if (New<InstallationVerifier>().IsLavasoftApplicationInstalled)
             {
                 Texts.LavasoftWebCompanionExistenceWarning.ShowWarning(Texts.WarningTitle);
             }
@@ -438,7 +438,6 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IDeviceLocked>(() => new DeviceLocked());
             TypeMap.Register.Singleton<IInternetState>(() => new InternetState());
             TypeMap.Register.Singleton<InstallationVerifier>(() => new InstallationVerifier());
-            TypeMap.Register.Singleton<IncompatibleSoftwareVerifier>(() => new IncompatibleSoftwareVerifier());
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
