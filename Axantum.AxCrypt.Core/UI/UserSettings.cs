@@ -160,11 +160,10 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(DebugMode), value); }
         }
 
-        public SecureFolderLevels SecureFolderLevel
+        public FolderOperationMode FolderOperationMode
         {
-            get { return (SecureFolderLevels)Load(nameof(SecureFolderLevel), (int)SecureFolderLevels.None); }
-            set { Store(nameof(SecureFolderLevel), (int)value); }
-
+            get { return (FolderOperationMode)Load(nameof(FolderOperationMode), (int)FolderOperationMode.SingleFolder); }
+            set { Store(nameof(FolderOperationMode), (int)value); }
         }
 
         public bool RestoreFullWindow

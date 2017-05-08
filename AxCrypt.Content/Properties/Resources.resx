@@ -947,6 +947,12 @@ If you for any reason do not know or remember the password, you must perform a p
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Select Sharing Key Files</value>
   </data>
+  <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
+    <value>You are about to enable a dangerous option. If you are not careful, you may affect more data then you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?</value>
+  </data>
+  <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
+    <value>Warning</value>
+  </data>
   <data name="InconsistentState" xml:space="preserve">
     <value>Inconsistent state with '{0}'.</value>
   </data>
@@ -1538,11 +1544,11 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
     <value>Debug</value>
   </data>
+  <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
+    <value>#Include Subfolders</value>
+  </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Language</value>
-  </data>
-  <data name="OptionsSecureSubFolderToolStripMenuItemText" xml:space="preserve">
-    <value>Secure Sub Folder</value>
   </data>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>Options</value>
@@ -1976,12 +1982,6 @@ Subject: AxCrypt Report Snapshot
   </data>
   <data name="SecureDeleteToolStripMenuItemText" xml:space="preserve">
     <value>Secure Delete</value>
-  </data>
-  <data name="SecureSubFolderConfirmationBody" xml:space="preserve">
-    <value>You are about to enable a dangerous option. If you are not careful, you may affect more data then you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?</value>
-  </data>
-  <data name="SecureSubFolderConfirmationTitle" xml:space="preserve">
-    <value>Warning</value>
   </data>
   <data name="SecurityLabel" xml:space="preserve">
     <value>Security</value>

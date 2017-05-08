@@ -2356,6 +2356,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are about to enable a dangerous option. If you are not careful, you may affect more data then you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?.
+        /// </summary>
+        public static string IncludeSubfoldersConfirmationBody {
+            get {
+                return ResourceManager.GetString("IncludeSubfoldersConfirmationBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string IncludeSubfoldersConfirmationTitle {
+            get {
+                return ResourceManager.GetString("IncludeSubfoldersConfirmationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inconsistent state with &apos;{0}&apos;..
         /// </summary>
         public static string InconsistentState {
@@ -3866,20 +3884,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to #Include Subfolders.
+        /// </summary>
+        public static string OptionsIncludeSubfoldersToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsIncludeSubfoldersToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string OptionsLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("OptionsLanguageToolStripMenuItemText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Secure Sub Folder.
-        /// </summary>
-        public static string OptionsSecureSubFolderToolStripMenuItemText {
-            get {
-                return ResourceManager.GetString("OptionsSecureSubFolderToolStripMenuItemText", resourceCulture);
             }
         }
         
@@ -5007,24 +5025,6 @@ namespace AxCrypt.Content.Properties {
         public static string SecureDeleteToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("SecureDeleteToolStripMenuItemText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are about to enable a dangerous option. If you are not careful, you may affect more data then you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?.
-        /// </summary>
-        public static string SecureSubFolderConfirmationBody {
-            get {
-                return ResourceManager.GetString("SecureSubFolderConfirmationBody", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Warning.
-        /// </summary>
-        public static string SecureSubFolderConfirmationTitle {
-            get {
-                return ResourceManager.GetString("SecureSubFolderConfirmationTitle", resourceCulture);
             }
         }
         

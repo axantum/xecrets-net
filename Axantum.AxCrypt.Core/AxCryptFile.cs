@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                IEnumerable<IDataStore> files = containers.SelectMany((folder) => folder.ListEncryptable(containers, Resolve.UserSettings.SecureFolderLevel == SecureFolderLevels.IncludeSubFolders ? ListFolderMethod.RecurseSubFolders : ListFolderMethod.SingleFolder));
+                IEnumerable<IDataStore> files = containers.SelectMany((folder) => folder.ListEncryptable(containers, Resolve.UserSettings.FolderOperationMode));
                 progress.AddTotal(files.Count());
                 foreach (IDataStore file in files)
                 {
@@ -789,7 +789,6 @@ namespace Axantum.AxCrypt.Core
             {
                 decryptedFileInfo.SetFileTimes(document.CreationTimeUtc, document.LastAccessTimeUtc, document.LastWriteTimeUtc);
             }
-
         }
 
         /// <summary>

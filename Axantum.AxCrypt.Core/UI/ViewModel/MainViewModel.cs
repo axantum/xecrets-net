@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool TryBrokenFile { get { return GetProperty<bool>(nameof(TryBrokenFile)); } set { SetProperty(nameof(TryBrokenFile), value); } }
 
-        public SecureFolderLevels SecureFolderLevel { get { return GetProperty<SecureFolderLevels>(nameof(SecureFolderLevel)); } set { SetProperty(nameof(SecureFolderLevel), value); } }
+        public FolderOperationMode FolderOperationMode { get { return GetProperty<FolderOperationMode>(nameof(FolderOperationMode)); } set { SetProperty(nameof(FolderOperationMode), value); } }
 
         public LicensePolicy License { get { return GetProperty<LicensePolicy>(nameof(License)); } set { SetProperty(nameof(License), value); } }
 
@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SelectedRecentFiles = new string[0];
             SelectedWatchedFolders = new string[0];
             DebugMode = _userSettings.DebugMode;
-            SecureFolderLevel = _userSettings.SecureFolderLevel;
+            FolderOperationMode = _userSettings.FolderOperationMode;
             Title = String.Empty;
             DownloadVersion = DownloadVersion.Empty;
             VersionUpdateStatus = DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, _userSettings.LastUpdateCheckUtc);
@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
             BindPropertyChangedInternal(nameof(License), async (LicensePolicy policy) => await SetWatchedFoldersAsync());
             BindPropertyChangedInternal(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
-            BindPropertyChangedInternal(nameof(SecureFolderLevel), (SecureFolderLevels SecureFolderLevel) => { DetermineSecureSubFolderChange(SecureFolderLevel); });
+            BindPropertyChangedInternal(nameof(FolderOperationMode), (FolderOperationMode mode) => { SetFolderOperationMode(mode); });
         }
 
         private void SubscribeToModelEvents()
@@ -354,7 +354,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
-            FilesArePending = openFiles.Count > 0 || Resolve.KnownIdentities.LoggedOnWatchedFolders.SelectMany(wf => New<IDataContainer>(wf.Path).ListEncryptable(_fileSystemState.WatchedFolders.Select(x => New<IDataContainer>(x.Path)), _userSettings.SecureFolderLevel == SecureFolderLevels.IncludeSubFolders ? ListFolderMethod.RecurseSubFolders : ListFolderMethod.SingleFolder)).Any();
+            FilesArePending = openFiles.Count > 0 || Resolve.KnownIdentities.LoggedOnWatchedFolders.SelectMany(wf => New<IDataContainer>(wf.Path).ListEncryptable(_fileSystemState.WatchedFolders.Select(x => New<IDataContainer>(x.Path)), _userSettings.FolderOperationMode)).Any();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -429,13 +429,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _axCryptUpdateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, _userSettings.CultureName);
         }
 
-        private void DetermineSecureSubFolderChange(SecureFolderLevels secureFolderLevel)
+        private void SetFolderOperationMode(FolderOperationMode folderOperationMode)
         {
-            _userSettings.SecureFolderLevel = secureFolderLevel;
-            if (secureFolderLevel != SecureFolderLevels.IncludeSubFolders)
+            _userSettings.FolderOperationMode = folderOperationMode;
+            if (folderOperationMode != FolderOperationMode.IncludeSubfolders)
             {
                 return;
             }
+
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderOptionsChanged, Resolve.KnownIdentities.DefaultEncryptionIdentity, New<FileSystemState>().WatchedFolders.Select(wf => wf.Path)));
         }
 

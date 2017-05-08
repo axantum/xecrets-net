@@ -156,7 +156,6 @@ namespace Axantum.AxCrypt
             SendStartSessionNotification();
             StartupProcessMonitor();
             ExecuteCommandLine();
-
         }
 
         private void EnsureFileAssociation()
@@ -174,6 +173,7 @@ namespace Axantum.AxCrypt
                 Texts.LavasoftWebCompanionExistenceWarning.ShowWarning(Texts.WarningTitle);
             }
         }
+
         private void CheckOfflineModeFirst()
         {
             if (_commandLine.IsOfflineCommand)
@@ -263,7 +263,7 @@ namespace Axantum.AxCrypt
             _optionsClearAllSettingsAndExitToolStripMenuItem.Text = "&" + Texts.OptionsClearAllSettingsAndExitToolStripMenuItemText;
             _optionsDebugToolStripMenuItem.Text = "&" + Texts.OptionsDebugToolStripMenuItemText;
             _optionsLanguageToolStripMenuItem.Text = "&" + Texts.OptionsLanguageToolStripMenuItemText;
-            _optionsSecureSubFolderToolStripMenuItem.Text = "&" + Texts.OptionsSecureSubFolderToolStripMenuItemText;
+            _optionsIncludeSubfoldersToolStripMenuItem.Text = "&" + Texts.OptionsIncludeSubfoldersToolStripMenuItemText;
             _optionsToolStripMenuItem.Text = "&" + Texts.OptionsToolStripMenuItemText;
             _passwordResetToolStripMenuItem.Text = "&" + Texts.ButtonPasswordResetText;
             _passwordResetToolStripMenuItem.ToolTipText = Texts.ButtonPasswordResetToolTip;
@@ -702,7 +702,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.SelectedRecentFiles), async (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !await _mainViewModel.License.HasAsync(LicenseCapability.KeySharing); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.SecureFolderLevel), (SecureFolderLevels SecureFolderLevel) => { _optionsSecureSubFolderToolStripMenuItem.Checked = SecureFolderLevel == SecureFolderLevels.IncludeSubFolders ? true : false; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FolderOperationMode), (FolderOperationMode SecureFolderLevel) => { _optionsIncludeSubfoldersToolStripMenuItem.Checked = SecureFolderLevel == FolderOperationMode.IncludeSubfolders ? true : false; });
 
             _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
@@ -713,7 +713,7 @@ namespace Axantum.AxCrypt
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
-            _optionsSecureSubFolderToolStripMenuItem.Click += (sender, e) => ToggleSecureSubFolderSelection();
+            _optionsIncludeSubfoldersToolStripMenuItem.Click += (sender, e) => ToggleIncludeSubfoldersOption();
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
@@ -2193,25 +2193,25 @@ namespace Axantum.AxCrypt
             }
             return String.Empty;
         }
-        private void ToggleSecureSubFolderSelection()
+
+        private void ToggleIncludeSubfoldersOption()
         {
-
-
-            if (_mainViewModel.SecureFolderLevel == SecureFolderLevels.IncludeSubFolders || _mainViewModel.SecureFolderLevel == SecureFolderLevels.None)
+            if (_mainViewModel.FolderOperationMode == FolderOperationMode.IncludeSubfolders)
             {
-                _mainViewModel.SecureFolderLevel = SecureFolderLevels.SingleFolder;
+                _mainViewModel.FolderOperationMode = FolderOperationMode.SingleFolder;
                 return;
             }
+
             VerifySignInPasswordViewModel viewModel = new VerifySignInPasswordViewModel(Resolve.KnownIdentities.DefaultEncryptionIdentity);
             using (VerifySignInPasswordDialog dialog = new VerifySignInPasswordDialog(this, viewModel, Texts.ChangeOptionGenericWarning))
             {
                 DialogResult dr = dialog.ShowDialog(this);
                 if (dr == DialogResult.OK)
                 {
-                    PopupButtons result = New<IPopup>().Show(PopupButtons.OkCancel, Texts.SecureSubFolderConfirmationTitle, Texts.SecureSubFolderConfirmationBody);
+                    PopupButtons result = New<IPopup>().Show(PopupButtons.OkCancel, Texts.IncludeSubfoldersConfirmationTitle, Texts.IncludeSubfoldersConfirmationBody);
                     if (result == PopupButtons.Ok)
                     {
-                        _mainViewModel.SecureFolderLevel = SecureFolderLevels.IncludeSubFolders;
+                        _mainViewModel.FolderOperationMode = FolderOperationMode.IncludeSubfolders;
                     }
                     return;
                 }

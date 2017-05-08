@@ -74,6 +74,7 @@
             this._passwordResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._alwaysOfflineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._optionsIncludeSubfoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsClearAllSettingsAndExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -123,7 +124,6 @@
             this._notifySignInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifyExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._optionsSecureSubFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -389,7 +389,7 @@
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -502,7 +502,7 @@
             this._passwordResetToolStripMenuItem,
             this._optionsAutoConvert1xFilesToolStripMenuItem,
             this._alwaysOfflineToolStripMenuItem,
-            this._optionsSecureSubFolderToolStripMenuItem,
+            this._optionsIncludeSubfoldersToolStripMenuItem,
             this._optionsDebugToolStripMenuItem,
             this._optionsClearAllSettingsAndExitToolStripMenuItem});
             this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
@@ -632,6 +632,12 @@
             this._alwaysOfflineToolStripMenuItem.Name = "_alwaysOfflineToolStripMenuItem";
             this._alwaysOfflineToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._alwaysOfflineToolStripMenuItem.Text = "[Always Offline]";
+            // 
+            // _optionsIncludeSubfoldersToolStripMenuItem
+            // 
+            this._optionsIncludeSubfoldersToolStripMenuItem.Name = "_optionsIncludeSubfoldersToolStripMenuItem";
+            this._optionsIncludeSubfoldersToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsIncludeSubfoldersToolStripMenuItem.Text = "[Include Subfolders]";
             // 
             // _optionsDebugToolStripMenuItem
             // 
@@ -1079,12 +1085,6 @@
             this._notifyExitToolStripMenuItem.Text = "[&Exit]";
             this._notifyExitToolStripMenuItem.Click += new System.EventHandler(this._exitToolStripMenuItem_Click);
             // 
-            // _optionsSecureSubFolderToolStripMenuItem
-            // 
-            this._optionsSecureSubFolderToolStripMenuItem.Name = "_optionsSecureSubFolderToolStripMenuItem";
-            this._optionsSecureSubFolderToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this._optionsSecureSubFolderToolStripMenuItem.Text = "[Secure Sub Folder]";
-            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1233,7 +1233,7 @@
         private System.Windows.Forms.ToolStripMenuItem _notifySignInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _recentFilesShowInFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _turkishLanguageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _optionsSecureSubFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _optionsIncludeSubfoldersToolStripMenuItem;
     }
 }
 

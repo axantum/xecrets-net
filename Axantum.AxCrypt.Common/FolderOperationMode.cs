@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Common
 {
-    [Flags]
-    public enum SecureFolderLevels
+    public enum FolderOperationMode
     {
         None = 0,
-        SingleFolder = 1,
-        IncludeSubFolders = 2,
+        SingleFolder,
+        IncludeSubfolders,
     }
 }
