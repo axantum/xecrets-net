@@ -432,7 +432,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void DetermineSecureSubFolderChange(SecureFolderLevels secureFolderLevel)
         {
             _userSettings.SecureFolderLevel = secureFolderLevel;
-            if ((secureFolderLevel & SecureFolderLevels.IncludeSubFolders) != 0)
+            if (secureFolderLevel != SecureFolderLevels.IncludeSubFolders)
             {
                 return;
             }
