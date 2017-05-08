@@ -57,6 +57,7 @@
     <Compile Include="Algorithm\HMACSHA1.cs" />
     <Compile Include="Algorithm\HMACSHA512.cs" />
     <Compile Include="Algorithm\ICryptoTransform.cs" />
+    <Compile Include="Algorithm\IProtectedData.cs" />
     <Compile Include="Algorithm\ISymmetricKey.cs" />
     <Compile Include="Algorithm\KeyedHashAlgorithm.cs" />
     <Compile Include="Algorithm\KeySizes.cs" />
