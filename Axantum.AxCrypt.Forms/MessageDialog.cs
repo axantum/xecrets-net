@@ -27,6 +27,7 @@ namespace Axantum.AxCrypt.Forms
             _buttonOk.Text = "&" + Texts.ButtonOkText;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonExit.Text = "&" + Texts.ButtonExitText;
+            dontShowThisAgain.Text = Texts.DontShowAgainCheckBoxText;
         }
 
         public MessageDialog HideExit()
