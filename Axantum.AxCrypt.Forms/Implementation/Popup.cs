@@ -26,12 +26,9 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public PopupButtons Show(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag)
         {
-            if (dontShowAgainFlag != DontShowAgain.None)
+            if (dontShowAgainFlag != DontShowAgain.None && New<UserSettings>().DontShowAgain.HasFlag(dontShowAgainFlag))
             {
-                if (New<UserSettings>().DontShowAgain.HasFlag(dontShowAgainFlag))
-                {
                     return PopupButtons.None;
-                }
             }
 
             DialogResult result;

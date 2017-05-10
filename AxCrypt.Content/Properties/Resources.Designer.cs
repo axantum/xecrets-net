@@ -1697,6 +1697,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Don&apos;t show this again.
+        /// </summary>
+        public static string DontShowAgainCheckBoxText {
+            get {
+                return ResourceManager.GetString("DontShowAgainCheckBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double click to open. If required you will be prompted for a password..
         /// </summary>
         public static string DoubleClickToOpenToolTip {

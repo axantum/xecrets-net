@@ -709,6 +709,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Secured Folders</value>
   </data>
+  <data name="DontShowAgainCheckBoxText" xml:space="preserve">
+    <value>!!Don't show this again</value>
+  </data>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Double click to open. If required you will be prompted for a password.</value>
   </data>
