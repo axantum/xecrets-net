@@ -57,6 +57,7 @@
     <Compile Include="AppTypes.cs" />
     <Compile Include="AxCryptOnlineState.cs" />
     <Compile Include="CacheKey.cs" />
+    <Compile Include="DontShowAgain.cs" />
     <Compile Include="DownloadVersion.cs" />
     <Compile Include="DummyReferencedType.cs" />
     <Compile Include="FrameworkTypeExtensions.cs" />

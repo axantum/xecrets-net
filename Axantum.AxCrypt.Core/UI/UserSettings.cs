@@ -286,6 +286,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(FewFilesThreshold), value); }
         }
 
+        public DontShowAgain DontShowAgain
+        {
+            get { return (DontShowAgain)Load(nameof(DontShowAgain), (int)DontShowAgain.None); }
+            set { Store(nameof(DontShowAgain), (int)value); }
+        }
+
         public T Load<T>(string key)
         {
             return Load(key, default(T));

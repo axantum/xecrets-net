@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dontShowThisAgain = new System.Windows.Forms.CheckBox();
             this.Message = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this._buttonOk = new System.Windows.Forms.Button();
@@ -43,16 +44,31 @@
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.dontShowThisAgain, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.Message, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(292, 73);
             this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // dontShowThisAgain
+            // 
+            this.dontShowThisAgain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dontShowThisAgain.AutoSize = true;
+            this.dontShowThisAgain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dontShowThisAgain.Location = new System.Drawing.Point(4, 104);
+            this.dontShowThisAgain.Padding = new System.Windows.Forms.Padding(4,0,0,0);
+            this.dontShowThisAgain.Name = "dontShowThisAgain";
+            this.dontShowThisAgain.Size = new System.Drawing.Size(381, 21);
+            this.dontShowThisAgain.TabIndex = 3;
+            this.dontShowThisAgain.Text = "[Don\'t show this again]";
+            this.dontShowThisAgain.UseVisualStyleBackColor = true;
             // 
             // Message
             // 
@@ -120,7 +136,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(292, 73);
+            this.ClientSize = new System.Drawing.Size(292, 113);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -143,5 +159,6 @@
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonExit;
         internal System.Windows.Forms.Label Message;
+        internal System.Windows.Forms.CheckBox dontShowThisAgain;
     }
 }
