@@ -162,15 +162,8 @@ namespace Axantum.AxCrypt
         {
             if (New<InstallationVerifier>().IsApplicationInstalled && !New<InstallationVerifier>().IsFileAssociationOk)
             {
-                DontShowAgain _dontShowAgain = New<UserSettings>().DontShowAgain;
-                if (!_dontShowAgain.HasFlag(DontShowAgain.FileAssociationBrokenWarning))
-                {
-                    bool _dontShowAgainStatus = false;
-                    Texts.FileAssociationBrokenWarning.ShowWarning(Texts.WarningTitle, out _dontShowAgainStatus);
-                    if (_dontShowAgainStatus)
-                        New<UserSettings>().DontShowAgain = _dontShowAgain |
-                                                            DontShowAgain.FileAssociationBrokenWarning;
-                }
+                Texts.FileAssociationBrokenWarning.ShowWarning(Texts.WarningTitle,
+                    DontShowAgain.FileAssociationBrokenWarning);
             }
         }
 
@@ -178,15 +171,8 @@ namespace Axantum.AxCrypt
         {
             if (New<InstallationVerifier>().IsLavasoftApplicationInstalled)
             {
-                DontShowAgain _dontShowAgain = New<UserSettings>().DontShowAgain;
-                if (!_dontShowAgain.HasFlag(DontShowAgain.LavasoftWebCompanionExistenceWarning))
-                {
-                    bool _dontShowAgainStatus = false;
-                    Texts.LavasoftWebCompanionExistenceWarning.ShowWarning(Texts.WarningTitle, out _dontShowAgainStatus);
-                    if (_dontShowAgainStatus)
-                        New<UserSettings>().DontShowAgain = _dontShowAgain |
-                                                            DontShowAgain.LavasoftWebCompanionExistenceWarning;
-                }
+                Texts.LavasoftWebCompanionExistenceWarning.ShowWarning(Texts.WarningTitle,
+                    DontShowAgain.LavasoftWebCompanionExistenceWarning);
             }
         }
 

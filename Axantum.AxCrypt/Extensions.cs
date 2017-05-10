@@ -29,7 +29,7 @@ using Axantum.AxCrypt.Core.UI;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-
+using Axantum.AxCrypt.Common;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt
@@ -41,11 +41,9 @@ namespace Axantum.AxCrypt
             New<IUIThread>().PostTo(() => New<IPopup>().Show(PopupButtons.Ok, title, message));
         }
 
-        public static void ShowWarning(this string message, string title, out bool dontShowAgainStatus)
+        public static void ShowWarning(this string message, string title, DontShowAgain dontShowAgainFlag)
         {
-            bool _dontShowAgainStatus = false;
-            New<IUIThread>().PostTo(() => New<IPopup>().Show(PopupButtons.Ok, title, message, out _dontShowAgainStatus));
-            dontShowAgainStatus = _dontShowAgainStatus;
+            New<IUIThread>().PostTo(() => New<IPopup>().Show(PopupButtons.Ok, title, message, dontShowAgainFlag));
         }
 
         public static Point Fallback(this Point value, Point fallback)

@@ -1,10 +1,12 @@
-﻿using Axantum.AxCrypt.Core.UI;
+﻿using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Forms.Implementation
 {
@@ -19,42 +21,19 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public PopupButtons Show(PopupButtons buttons, string title, string message)
         {
-            DialogResult result;
-            using (MessageDialog dialog = new MessageDialog(_parent))
-            {
-                if (!buttons.HasFlag(PopupButtons.Cancel))
-                {
-                    dialog.HideCancel();
-                }
-                if (!buttons.HasFlag(PopupButtons.Exit))
-                {
-                    dialog.HideExit();
-                }
-                dialog.HideDontShowAgain();
-
-                dialog.Text = title;
-                dialog.Message.Text = message;
-                result = dialog.ShowDialog(_parent);
-            }
-
-            switch (result)
-            {
-                case DialogResult.OK:
-                    return PopupButtons.Ok;
-
-                case DialogResult.Cancel:
-                    return PopupButtons.Cancel;
-
-                case DialogResult.Abort:
-                    return PopupButtons.Exit;
-
-                default:
-                    throw new InvalidOperationException($"Unexpected result from dialog: {result}");
-            }
+            return Show(buttons, title, message, DontShowAgain.None);
         }
 
-        public PopupButtons Show(PopupButtons buttons, string title, string message, out bool dontShowAgainStatus)
+        public PopupButtons Show(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag)
         {
+            if (dontShowAgainFlag != DontShowAgain.None)
+            {
+                if (New<UserSettings>().DontShowAgain.HasFlag(dontShowAgainFlag))
+                {
+                    return PopupButtons.None;
+                }
+            }
+
             DialogResult result;
             using (MessageDialog dialog = new MessageDialog(_parent))
             {
@@ -65,13 +44,21 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 if (!buttons.HasFlag(PopupButtons.Exit))
                 {
                     dialog.HideExit();
+                }
+                if (dontShowAgainFlag == DontShowAgain.None)
+                {
+                    dialog.HideDontShowAgain();
                 }
 
                 dialog.Text = title;
                 dialog.Message.Text = message;
                 
                 result = dialog.ShowDialog(_parent);
-                dontShowAgainStatus = dialog.dontShowThisAgain.Checked;
+
+                if (dontShowAgainFlag != DontShowAgain.None && dialog.dontShowThisAgain.Checked)
+                {
+                    New<UserSettings>().DontShowAgain = New<UserSettings>().DontShowAgain | dontShowAgainFlag;
+                }
             }
 
             switch (result)

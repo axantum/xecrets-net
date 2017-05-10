@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Axantum.AxCrypt.Common;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -10,7 +11,7 @@ namespace Axantum.AxCrypt.Core.UI
     {
         PopupButtons Show(PopupButtons buttons, string title, string message);
 
-        PopupButtons Show(PopupButtons buttons, string title, string message, out bool dontShowAgainStatus);
+        PopupButtons Show(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag);
 
         Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message);
 
