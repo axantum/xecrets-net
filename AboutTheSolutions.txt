@@ -1,15 +1,9 @@
 About the Solutions
 ===================
 
-There are several different solutions (.sln) that are used, depending on the target and development environment.
+There one solution (.sln) that is used.
 
-AxCrypt.NET.sln            - The Windows Forms desktop client for Windows, Linux and Mac. Develop with Visual Studio or MonoDevelop on Windows, Linux or Mac.
-AxCrypt-MonoForAndroid.sln - The Android app. Develop with Visual Studio or MonoDevelop on Windows, Linux or Mac.
-AxCrypt-MonoMac.sln        - The MonoMac 'native' client for Mac. Develop with MonoDevelop on Mac.
-AxCrypt-MonoTouch.sln      - The iOS app for iPhone and iPad. Develop with MonoDevelop on Mac.
-
-Note that for 'AxCrypt-MonoTouch.sln' you must also build 'AxCrypt.NET.sln' in the approprate 'Debug' or 'Release' configuration, because
-the 'Axantum.AxCrypt.Core.dll' dependency must be built by that solution.
+AxCrypt.NET.sln            - The Windows Forms desktop client for Windows. Develop with Visual Studio or MonoDevelop on Windows.
 
 About the Projects
 ==================
