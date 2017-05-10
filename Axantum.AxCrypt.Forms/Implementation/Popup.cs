@@ -30,6 +30,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 {
                     dialog.HideExit();
                 }
+                dialog.HideDontShowAgain();
 
                 dialog.Text = title;
                 dialog.Message.Text = message;

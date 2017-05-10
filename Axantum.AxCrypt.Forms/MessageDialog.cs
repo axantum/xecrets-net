@@ -46,6 +46,7 @@ namespace Axantum.AxCrypt.Forms
         public MessageDialog HideDontShowAgain()
         {
             dontShowThisAgain.Visible = false;
+            tableLayoutPanel1.RowCount = 2;
             return this;
         }
 
