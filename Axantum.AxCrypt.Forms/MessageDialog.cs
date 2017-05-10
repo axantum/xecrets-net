@@ -43,6 +43,12 @@ namespace Axantum.AxCrypt.Forms
             return this;
         }
 
+        public MessageDialog HideDontShowAgain()
+        {
+            dontShowThisAgain.Visible = false;
+            return this;
+        }
+
         private void ReSizeButtonsPanel()
         {
             flowLayoutPanel1.PerformLayout();

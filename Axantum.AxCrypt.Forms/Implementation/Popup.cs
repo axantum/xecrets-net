@@ -52,6 +52,43 @@ namespace Axantum.AxCrypt.Forms.Implementation
             }
         }
 
+        public PopupButtons Show(PopupButtons buttons, string title, string message, out bool dontShowAgainStatus)
+        {
+            DialogResult result;
+            using (MessageDialog dialog = new MessageDialog(_parent))
+            {
+                if (!buttons.HasFlag(PopupButtons.Cancel))
+                {
+                    dialog.HideCancel();
+                }
+                if (!buttons.HasFlag(PopupButtons.Exit))
+                {
+                    dialog.HideExit();
+                }
+
+                dialog.Text = title;
+                dialog.Message.Text = message;
+                
+                result = dialog.ShowDialog(_parent);
+                dontShowAgainStatus = dialog.dontShowThisAgain.Checked;
+            }
+
+            switch (result)
+            {
+                case DialogResult.OK:
+                    return PopupButtons.Ok;
+
+                case DialogResult.Cancel:
+                    return PopupButtons.Cancel;
+
+                case DialogResult.Abort:
+                    return PopupButtons.Exit;
+
+                default:
+                    throw new InvalidOperationException($"Unexpected result from dialog: {result}");
+            }
+        }
+
         public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message)
         {
             return Task.FromResult(Show(buttons, title, message));

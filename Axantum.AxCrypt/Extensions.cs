@@ -41,6 +41,13 @@ namespace Axantum.AxCrypt
             New<IUIThread>().PostTo(() => New<IPopup>().Show(PopupButtons.Ok, title, message));
         }
 
+        public static void ShowWarning(this string message, string title, out bool dontShowAgainStatus)
+        {
+            bool _dontShowAgainStatus = false;
+            New<IUIThread>().PostTo(() => New<IPopup>().Show(PopupButtons.Ok, title, message, out _dontShowAgainStatus));
+            dontShowAgainStatus = _dontShowAgainStatus;
+        }
+
         public static Point Fallback(this Point value, Point fallback)
         {
             return value != default(Point) ? value : fallback;
