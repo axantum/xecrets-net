@@ -21,5 +21,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         AccountKeyBackup,
         CommunitySupport,
         Premium,
+        SecureSubFolders,
     }
 }
