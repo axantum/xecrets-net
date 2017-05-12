@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
             BindPropertyChangedInternal(nameof(License), async (LicensePolicy policy) => await SetWatchedFoldersAsync());
             BindPropertyChangedInternal(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
-            BindPropertyChangedInternal(nameof(FolderOperationMode), (FolderOperationMode mode) => { SetFolderOperationMode(mode); });
+            BindPropertyChangedInternal(nameof(FolderOperationMode), async (FolderOperationMode mode) => await SetFolderOperationMode(mode));
         }
 
         private void SubscribeToModelEvents()
@@ -429,10 +429,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _axCryptUpdateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, _userSettings.CultureName);
         }
 
-        private void SetFolderOperationMode(FolderOperationMode folderOperationMode)
+        private async Task SetFolderOperationMode(FolderOperationMode folderOperationMode)
         {
             _userSettings.FolderOperationMode = folderOperationMode;
-            if (folderOperationMode != FolderOperationMode.IncludeSubfolders)
+            if (folderOperationMode != FolderOperationMode.IncludeSubfolders && !await License.HasAsync(LicenseCapability.SecureSubFolders))
             {
                 return;
             }
