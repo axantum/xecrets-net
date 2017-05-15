@@ -351,10 +351,22 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RecentFiles = recentFiles;
         }
 
-        private void SetFilesArePending()
+        private async void SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
-            FilesArePending = openFiles.Count > 0 || Resolve.KnownIdentities.LoggedOnWatchedFolders.SelectMany(wf => New<IDataContainer>(wf.Path).ListEncryptable(_fileSystemState.WatchedFolders.Select(x => New<IDataContainer>(x.Path)), _userSettings.FolderOperationMode)).Any();
+
+            IEnumerable<Task<IEnumerable<IDataStore>>> asyncFilesTask = Resolve.KnownIdentities.LoggedOnWatchedFolders.Select(wf => New<IDataContainer>(wf.Path).ListEncryptable(_fileSystemState.WatchedFolders.Select(x => New<IDataContainer>(x.Path)), UserTypeExtensions.FolderOperationModePolicy()));
+
+            IEnumerable<IDataStore>[] filesList = await Task.WhenAll(asyncFilesTask);
+            List<IDataStore> files = new List<IDataStore>();
+
+            foreach (IEnumerable<IDataStore> item in filesList)
+            {
+                files.AddRange(item);
+            }
+
+            FilesArePending = openFiles.Count > 0 || files.Count > 0;
+
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -432,7 +444,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task SetFolderOperationMode(FolderOperationMode folderOperationMode)
         {
             _userSettings.FolderOperationMode = folderOperationMode;
-            if (folderOperationMode != FolderOperationMode.IncludeSubfolders && !await License.HasAsync(LicenseCapability.SecureSubFolders))
+            if (folderOperationMode != FolderOperationMode.IncludeSubfolders && !await License.HasAsync(LicenseCapability.IncludeSubfolders))
             {
                 return;
             }
