@@ -222,18 +222,13 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                IEnumerable<Task<IEnumerable<IDataStore>>> asyncFilesTasks = containers.Select(async (folder) => await folder.ListEncryptable(containers, UserTypeExtensions.FolderOperationModePolicy()));
+                IEnumerable<Task<IEnumerable<IDataStore>>> asyncFilesTasks = containers.Select(async (folder) =>  folder.ListEncryptable(containers, await UserTypeExtensions.FolderOperationModePolicy()));
 
-                IEnumerable<IDataStore>[] FilesList = await Task.WhenAll(asyncFilesTasks);
+                IEnumerable<IDataStore>[] filesList = await Task.WhenAll(asyncFilesTasks);
 
-                List<IDataStore> files = new List<IDataStore>();
+                IEnumerable<IDataStore> files = filesList.SelectMany(file => file);
 
-                foreach (IEnumerable<IDataStore> item in FilesList)
-                {
-                    files.AddRange(item);
-                }
-
-                progress.AddTotal(files.Count);
+                progress.AddTotal(files.Count());
                 foreach (IDataStore file in files)
                 {
                     EncryptFileUniqueWithBackupAndWipe(file, encryptionParameters, progress);

@@ -39,7 +39,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Axantum.AxCrypt.Core.UI;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Axantum.AxCrypt.Common;
@@ -128,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
-        public static async Task<IEnumerable<IDataStore>> ListEncryptable(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, Task<FolderOperationMode> folderOperationMode)
+        public static IEnumerable<IDataStore> ListEncryptable(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
         {
             if (folderPath == null)
             {
@@ -136,20 +135,14 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             IEnumerable<IDataStore> files = folderPath.Files.Where(fileInfo => fileInfo.IsEncryptable());
-            if (await folderOperationMode == FolderOperationMode.SingleFolder)
+            if (folderOperationMode == FolderOperationMode.SingleFolder)
             {
                 return files;
             }
 
             IEnumerable<IDataContainer> folders = folderPath.Folders.Where(folderInfo => { return !ignoreFolders.Any(x => x.FullName == folderInfo.FullName); });
-            IEnumerable <Task <IEnumerable<IDataStore>>> asyncSubFolderFilesTasks = folders.Select(async (folder) =>  await folder.ListEncryptable(ignoreFolders, folderOperationMode));
+            IEnumerable<IDataStore> subFolderFiles = folders.SelectMany(folder => folder.ListEncryptable(ignoreFolders, folderOperationMode));
 
-            IEnumerable<IDataStore>[] subFolderFilesList = await Task.WhenAll(asyncSubFolderFilesTasks);
-            List<IDataStore> subFolderFiles = new List<IDataStore>();
-            foreach (var item in subFolderFilesList)
-            {
-                subFolderFiles.AddRange(item);
-            }
             return files.Concat(subFolderFiles);
         }
 
