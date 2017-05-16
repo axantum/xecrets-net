@@ -8,11 +8,8 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using AxCrypt.Content;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -32,15 +29,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction DoAll { get { return new AsyncDelegateAction<object>((o) => DoAllAsync()); } }
 
-        public event EventHandler<CancelEventArgs> CreateAccount;
+        public Func<CancelEventArgs, Task> CreateAccount;
 
-        public event EventHandler<CancelEventArgs> VerifyAccount;
+        public Func<CancelEventArgs, Task> VerifyAccount;
 
-        public event EventHandler<CancelEventArgs> RequestEmail;
+        public Func<CancelEventArgs, Task> RequestEmail;
 
         public Func<Task> SignInCommandAsync { get; set; }
 
-        public event EventHandler RestoreWindow;
+        public Func<Task> RestoreWindow { get; set; }
 
         private ISignIn _signinState;
 
@@ -68,7 +65,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task DoAllAsync()
         {
             CancelEventArgs e = new CancelEventArgs();
-            OnRestoreWindow(e);
+            await OnRestoreWindow(e);
             if (_signinState.IsSigningIn)
             {
                 return;
@@ -169,7 +166,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(UserEmail), CultureInfo.CurrentUICulture);
                         New<IPopup>().Show(PopupButtons.Ok, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(UserEmail));
                         await CheckAccountAsync();
-                        status = VerifyAccountOnline();
+                        status = await VerifyAccountOnline();
                         break;
 
                     case AccountStatus.InvalidName:
@@ -178,7 +175,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         break;
 
                     case AccountStatus.Unverified:
-                        status = VerifyAccountOnline();
+                        status = await VerifyAccountOnline();
                         break;
 
                     case AccountStatus.Verified:
@@ -187,7 +184,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     case AccountStatus.Offline:
                         New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Connected;
                         CancelEventArgs e = new CancelEventArgs();
-                        OnCreateAccount(e);
+                        await OnCreateAccount(e);
                         if (!e.Cancel)
                         {
                             status = AccountStatus.Verified;
@@ -197,7 +194,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     case AccountStatus.Unknown:
                     case AccountStatus.Unauthenticated:
                     case AccountStatus.DefinedByServer:
-                        dialogResult = New<IPopup>().Show(PopupButtons.OkCancelExit, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText);
+                        dialogResult = await New<IPopup>().ShowAsync(PopupButtons.OkCancelExit, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText);
                         UserEmail = string.Empty;
                         break;
 
@@ -236,7 +233,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
             }
 
-            AskForEmailAddressToUse();
+            await AskForEmailAddressToUse();
             if (StopAndExit)
             {
                 return AccountStatus.Unknown;
@@ -245,7 +242,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(UserEmail));
             if (status == AccountStatus.Verified)
             {
-                New<IPopup>().Show(PopupButtons.Ok, Texts.TitleSignInToAxCrypt, Texts.HaveAccountInfo.InvariantFormat(UserEmail));
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.TitleSignInToAxCrypt, Texts.HaveAccountInfo.InvariantFormat(UserEmail));
             }
             return status;
         }
@@ -261,19 +258,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return status;
         }
 
-        private void AskForEmailAddressToUse()
+        private async Task AskForEmailAddressToUse()
         {
             CancelEventArgs e = new CancelEventArgs();
-            OnRequestEmail(e);
+            await OnRequestEmail(e);
             if (e.Cancel)
             {
                 StopAndExit = true;
             }
         }
 
-        private AccountStatus VerifyAccountOnline()
+        private async Task<AccountStatus> VerifyAccountOnline()
         {
-            if (!IsVerified())
+            if (!await IsVerified())
             {
                 return AccountStatus.Unverified;
             }
@@ -295,7 +292,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return AccountStatus.Verified;
         }
 
-        private bool IsVerified()
+        private async Task<bool> IsVerified()
         {
             if (AlreadyVerified)
             {
@@ -303,7 +300,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             CancelEventArgs e = new CancelEventArgs();
-            OnVerifyAccount(e);
+            await OnVerifyAccount(e);
             return !e.Cancel;
         }
 
@@ -320,24 +317,24 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private void OnCreateAccount(CancelEventArgs e)
+        private async Task OnCreateAccount(CancelEventArgs e)
         {
-            CreateAccount?.Invoke(this, e);
+            await CreateAccount(e);
         }
 
-        private void OnVerifyAccount(CancelEventArgs e)
+        private async Task OnVerifyAccount(CancelEventArgs e)
         {
-            VerifyAccount?.Invoke(this, e);
+            await VerifyAccount(e);
         }
 
-        private void OnRequestEmail(CancelEventArgs e)
+        private async Task OnRequestEmail(CancelEventArgs e)
         {
-            RequestEmail?.Invoke(this, e);
+            await RequestEmail(e);
         }
 
-        private void OnRestoreWindow(EventArgs e)
+        private async Task OnRestoreWindow(EventArgs e)
         {
-            RestoreWindow?.Invoke(this, e);
+            await RestoreWindow();
         }
     }
 }

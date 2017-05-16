@@ -4,10 +4,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using AxCrypt.Content;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,7 +21,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
             _owner = owner;
         }
 
-        public void HandleSelection(FileSelectionEventArgs e)
+        public Task HandleSelection(FileSelectionEventArgs e)
         {
             if (e == null)
             {
@@ -50,6 +47,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                     HandleOpenFileSelection(e);
                     break;
             }
+            return Task.FromResult<object>(null);
         }
 
         private void HandleFolderSelection(FileSelectionEventArgs e)
