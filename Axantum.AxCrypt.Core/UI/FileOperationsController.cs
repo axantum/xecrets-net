@@ -271,7 +271,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return Task.FromResult(false);
             }
 
-            using (FileLockReleaser fileLock = FileLockReleaser.Acquire(sourceFileInfo))
+            using (FileLock fileLock = FileLock.Acquire(sourceFileInfo))
             {
                 if (IsLocked(fileLock))
                 {
@@ -311,7 +311,7 @@ namespace Axantum.AxCrypt.Core.UI
             return Task.FromResult(true);
         }
 
-        private bool IsLocked(FileLockReleaser fileLock)
+        private bool IsLocked(FileLock fileLock)
         {
             IDataStore dataStore = fileLock.DataStore;
             if (dataStore.IsLocked())
@@ -323,7 +323,7 @@ namespace Axantum.AxCrypt.Core.UI
             return false;
         }
 
-        private bool IsWriteProtected(FileLockReleaser fileLock)
+        private bool IsWriteProtected(FileLock fileLock)
         {
             IDataStore dataStore = fileLock.DataStore;
             if (dataStore.IsWriteProtected)
@@ -380,7 +380,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            using (FileLockReleaser fileLock = FileLockReleaser.Acquire(fileInfo))
+            using (FileLock fileLock = FileLock.Acquire(fileInfo))
             {
                 if (IsLocked(fileLock))
                 {
@@ -467,7 +467,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Task<bool> WipeFilePreparation(IDataStore fileInfo)
         {
-            using (FileLockReleaser fileLock = FileLockReleaser.Acquire(fileInfo))
+            using (FileLock fileLock = FileLock.Acquire(fileInfo))
             {
                 if (IsWriteProtected(fileLock) || IsLocked(fileLock))
                 {

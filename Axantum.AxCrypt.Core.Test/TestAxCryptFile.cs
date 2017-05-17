@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Document(sourceFileInfo, LogOnIdentity.Empty, nullProgress); }));
 
             Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().WriteToFileWithBackup(null, (Stream stream) => { }, new ProgressContext()); }));
-            using (FileLockReleaser fileInfoLock = FileLockReleaser.Acquire(New<IDataStore>(_testTextPath)))
+            using (FileLock fileInfoLock = FileLock.Acquire(New<IDataStore>(_testTextPath)))
             {
                 Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().WriteToFileWithBackup(fileInfoLock, nullStreamAction, new ProgressContext()); }));
             }
@@ -302,7 +302,7 @@ namespace Axantum.AxCrypt.Core.Test
             string destinationFilePath = _rootPath.PathCombine("Written", "File.txt");
             using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
-                using (FileLockReleaser destinationFileLock = FileLockReleaser.Acquire(New<IDataStore>(destinationFilePath)))
+                using (FileLock destinationFileLock = FileLock.Acquire(New<IDataStore>(destinationFilePath)))
                 {
                     New<AxCryptFile>().WriteToFileWithBackup(destinationFileLock, (Stream stream) => { inputStream.CopyTo(stream, 4096); }, new ProgressContext());
                     using (TextReader read = new StreamReader(destinationFileLock.DataStore.OpenRead()))
@@ -318,7 +318,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestWriteToFileWithBackupWithCancel()
         {
             IDataStore destinationFileInfo = New<IDataStore>(_rootPath.PathCombine("Written", "File.txt"));
-            using (FileLockReleaser destinationFileLock = FileLockReleaser.Acquire(destinationFileInfo))
+            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
             {
                 using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
                 {
@@ -343,7 +343,7 @@ namespace Axantum.AxCrypt.Core.Test
                 writeStream.Write(bytes, 0, bytes.Length);
             }
 
-            using (FileLockReleaser destinationFileLock = FileLockReleaser.Acquire(destinationFileInfo))
+            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
             {
                 using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
                 {
@@ -388,10 +388,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore sourceFileInfo = New<IDataStore>(sourceFilePath);
             IDataStore destinationFileInfo = New<IDataStore>(destinationFilePath);
-            using (FileLockReleaser destinationFileLock = FileLockReleaser.Acquire(destinationFileInfo))
+            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
             {
                 IDataStore nullFileInfo = null;
-                FileLockReleaser nullFileLock = null;
+                FileLock nullFileLock = null;
 
                 EncryptionParameters nullEncryptionParameters = null;
                 EncryptionParameters encryptionParameters = new EncryptionParameters(Guid.Empty, Passphrase.Empty);
@@ -418,7 +418,7 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes128CryptoFactory().CryptoId, new Passphrase("a"));
 
             ProgressContext progress = new ProgressContext();
-            using (FileLockReleaser destinationFileLock = FileLockReleaser.Acquire(destinationFileInfo))
+            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
             {
                 New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
             }

@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         activeFile.EncryptedFileInfo.IsWriteProtected = false;
                     }
-                    using (FileLockReleaser encryptedFileLock = FileLockReleaser.Acquire(activeFile.EncryptedFileInfo))
+                    using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
                     {
                         New<AxCryptFile>().WriteToFileWithBackup(encryptedFileLock, (Stream destination) =>
                         {

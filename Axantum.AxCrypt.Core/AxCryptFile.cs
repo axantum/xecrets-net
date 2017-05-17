@@ -205,7 +205,7 @@ namespace Axantum.AxCrypt.Core
             }
             IDataStore sourceFileInfo = New<IDataStore>(sourceFileName);
             IDataStore destinationFileInfo = New<IDataStore>(destinationFileName);
-            using (FileLockReleaser destinationFileLock = FileLockReleaser.Acquire(destinationFileInfo))
+            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
             {
                 EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
             }
@@ -242,13 +242,13 @@ namespace Axantum.AxCrypt.Core
         public virtual void EncryptFileUniqueWithBackupAndWipe(IDataStore sourceStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             IDataStore destinationFileInfo = sourceStore.CreateEncryptedName();
-            using (FileLockReleaser lockedDestination = destinationFileInfo.FullName.CreateUniqueFile())
+            using (FileLock lockedDestination = destinationFileInfo.FullName.CreateUniqueFile())
             {
                 EncryptFileWithBackupAndWipe(sourceStore, lockedDestination, encryptionParameters, progress);
             }
         }
 
-        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceStore, FileLockReleaser destinationStore, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceStore, FileLock destinationStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (sourceStore == null)
             {
@@ -384,7 +384,7 @@ namespace Axantum.AxCrypt.Core
 
                     Task decryption = Task.Run(() =>
                     {
-                        using (FileLockReleaser fileLock = FileLockReleaser.Acquire(from))
+                        using (FileLock fileLock = FileLock.Acquire(from))
                         {
                             Decrypt(from, pipeline, identity);
                             pipeline.Complete();
@@ -394,7 +394,7 @@ namespace Axantum.AxCrypt.Core
 
                     Task encryption = Task.Run(() =>
                     {
-                        using (FileLockReleaser fileLock = FileLockReleaser.Acquire(from))
+                        using (FileLock fileLock = FileLock.Acquire(from))
                         {
                             bool isWriteProteced = from.IsWriteProtected;
                             if (isWriteProteced)
@@ -724,7 +724,7 @@ namespace Axantum.AxCrypt.Core
                     }
 
                     IDataStore destinationStore = New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceStore.FullName), document.FileName));
-                    using (FileLockReleaser lockedDestination = destinationStore.FullName.CreateUniqueFile())
+                    using (FileLock lockedDestination = destinationStore.FullName.CreateUniqueFile())
                     {
                         DecryptFile(document, lockedDestination.DataStore.FullName, progress);
                     }
@@ -917,7 +917,7 @@ namespace Axantum.AxCrypt.Core
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public void WriteToFileWithBackup(FileLockReleaser destinationFileLock, Action<Stream> writeFileStreamTo, IProgressContext progress)
+        public void WriteToFileWithBackup(FileLock destinationFileLock, Action<Stream> writeFileStreamTo, IProgressContext progress)
         {
             if (destinationFileLock == null)
             {
@@ -928,7 +928,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("writeFileStreamTo");
             }
 
-            using (FileLockReleaser lockedTemporary = MakeAlternatePath(destinationFileLock.DataStore, ".tmp"))
+            using (FileLock lockedTemporary = MakeAlternatePath(destinationFileLock.DataStore, ".tmp"))
             {
                 try
                 {
@@ -948,7 +948,7 @@ namespace Axantum.AxCrypt.Core
 
                 if (destinationFileLock.DataStore.IsAvailable)
                 {
-                    using (FileLockReleaser lockedBackup = MakeAlternatePath(destinationFileLock.DataStore, ".bak"))
+                    using (FileLock lockedBackup = MakeAlternatePath(destinationFileLock.DataStore, ".bak"))
                     {
                         IDataStore backupDataStore = New<IDataStore>(destinationFileLock.DataStore.FullName);
                         try
@@ -1012,7 +1012,7 @@ namespace Axantum.AxCrypt.Core
             return ((ex as AxCryptException)?.ErrorStatus).GetValueOrDefault(Abstractions.ErrorStatus.Exception);
         }
 
-        private static FileLockReleaser MakeAlternatePath(IDataStore store, string extension)
+        private static FileLock MakeAlternatePath(IDataStore store, string extension)
         {
             string alternatePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(store.FullName), Resolve.Portable.Path().GetFileNameWithoutExtension(store.Name) + extension);
             return alternatePath.CreateUniqueFile();

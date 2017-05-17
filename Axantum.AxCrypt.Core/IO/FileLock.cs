@@ -37,99 +37,97 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public sealed class FileLockReleaser : IDisposable
+    public sealed class FileLock : IDisposable
     {
-        private readonly FileLock m_toRelease;
+        private readonly FileLockManager _fileLockManager;
 
-        private FileLockReleaser(FileLock toRelease)
+        private FileLock(FileLockManager toRelease)
         {
-            m_toRelease = toRelease;
+            _fileLockManager = toRelease;
         }
 
-        public static FileLockReleaser Acquire(IDataItem dataItem)
+        public static FileLock Acquire(IDataItem dataItem)
         {
-            return FileLock.Lock(dataItem);
+            return FileLockManager.CreateFileLock(dataItem);
         }
 
-        public IDataStore DataStore { get { return m_toRelease.DataStore; } }
+        public IDataStore DataStore { get { return _fileLockManager.DataStore; } }
 
         public static bool IsLocked(params IDataStore[] dataItems)
         {
-            return FileLock.IsLocked(dataItems);
+            return FileLockManager.IsLocked(dataItems);
         }
 
         public void Dispose()
         {
-            m_toRelease.m_semaphore.Release();
+            _fileLockManager._semaphore.Release();
         }
 
-        private class FileLock : IDisposable
+        private class FileLockManager : IDisposable
         {
-            private static Dictionary<string, FileLock> _lockedFiles = new Dictionary<string, FileLock>();
+            private static Dictionary<string, FileLockManager> _lockedFiles = new Dictionary<string, FileLockManager>();
 
             private int? _currentSchedulerId;
 
-            public readonly SemaphoreSlim m_semaphore = new SemaphoreSlim(1, 1);
+            public readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
-            private readonly Task<FileLockReleaser> m_releaser;
+            private readonly Task<FileLock> _fileLock;
 
             private int _referenceCount = 0;
 
             private string _originalLockedFileName;
 
-            private FileLock(string fullName)
+            private FileLockManager(string fullName)
             {
                 _originalLockedFileName = fullName;
-                m_releaser = Task.FromResult(new FileLockReleaser(this));
+                _fileLock = Task.FromResult(new FileLock(this));
             }
 
             public IDataStore DataStore { get { return New<IDataStore>(_originalLockedFileName); } }
 
-            public Task<FileLockReleaser> LockAsync()
+            public Task<FileLock> LockAsync()
             {
-                Task wait = m_semaphore.WaitAsync();
+                Task wait = _semaphore.WaitAsync();
                 return wait.IsCompleted ?
-                            m_releaser :
-                            wait.ContinueWith((_, state) => (FileLockReleaser)state,
-                                m_releaser.Result, CancellationToken.None,
+                            _fileLock :
+                            wait.ContinueWith((_, state) => (FileLock)state,
+                                _fileLock.Result, CancellationToken.None,
                 TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
             }
 
-            private FileLockReleaser Lock()
+            private FileLock Lock()
             {
-                if (m_semaphore.CurrentCount == 0 && _currentSchedulerId == TaskScheduler.Current?.Id)
+                if (_semaphore.CurrentCount == 0 && _currentSchedulerId == TaskScheduler.Current?.Id)
                 {
                     throw new InternalErrorException($"Potential deadlock detected for {_originalLockedFileName} .");
                 }
 
-                m_semaphore.Wait();
+                _semaphore.Wait();
                 _currentSchedulerId = TaskScheduler.Current?.Id;
-                return m_releaser.Result;
+
+                return _fileLock.Result;
             }
 
-            public static FileLockReleaser Lock(IDataItem dataItem)
+            public static FileLock CreateFileLock(IDataItem dataItem)
             {
                 if (dataItem == null)
                 {
                     throw new ArgumentNullException("dataItem");
                 }
 
-                while (true)
+                lock (_lockedFiles)
                 {
-                    lock (_lockedFiles)
-                    {
-                        FileLock fileLock = GetOrCreateFileLock(dataItem.FullName);
-                        return fileLock.Lock();
-                    }
+                    FileLockManager fileLock = GetOrCreateFileLockUnsafe(dataItem.FullName);
+                    return fileLock.Lock();
                 }
             }
 
-            private static FileLock GetOrCreateFileLock(string fullName)
+            private static FileLockManager GetOrCreateFileLockUnsafe(string fullName)
             {
-                FileLock fileLock = null;
+                FileLockManager fileLock = null;
                 if (!_lockedFiles.TryGetValue(fullName, out fileLock))
                 {
-                    fileLock = new FileLock(fullName);
+                    fileLock = new FileLockManager(fullName);
                     _lockedFiles[fullName] = fileLock;
                 }
                 return fileLock;
@@ -149,7 +147,7 @@ namespace Axantum.AxCrypt.Core.IO
                         throw new ArgumentNullException("dataStoreParameters");
                     }
 
-                    if (TestLocked(dataStore.FullName))
+                    if (IsLocked(dataStore.FullName))
                     {
                         if (Resolve.Log.IsInfoEnabled)
                         {
@@ -161,17 +159,17 @@ namespace Axantum.AxCrypt.Core.IO
                 return false;
             }
 
-            private static bool TestLocked(string fullName)
+            private static bool IsLocked(string fullName)
             {
                 lock (_lockedFiles)
                 {
-                    FileLock fileLock;
+                    FileLockManager fileLock;
                     if (!_lockedFiles.TryGetValue(fullName, out fileLock))
                     {
                         return false;
                     }
 
-                    return fileLock.m_semaphore.CurrentCount == 0;
+                    return fileLock._semaphore.CurrentCount == 0;
                 }
             }
 

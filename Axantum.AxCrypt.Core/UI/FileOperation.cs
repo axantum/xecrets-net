@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return new FileOperationContext(encryptedDataStore.FullName, ErrorStatus.InvalidKey);
             }
 
-            using (FileLockReleaser destinationLock = FileLockReleaser.Acquire(activeFile.DecryptedFileInfo))
+            using (FileLock destinationLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
             {
                 if (!activeFile.DecryptedFileInfo.IsAvailable)
                 {
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private static ActiveFile Decrypt(LogOnIdentity identity, IDataStore encryptedDataStore, FileLockReleaser decryptedLock, ActiveFile activeFile, IProgressContext progress)
+        private static ActiveFile Decrypt(LogOnIdentity identity, IDataStore encryptedDataStore, FileLock decryptedLock, ActiveFile activeFile, IProgressContext progress)
         {
             using (IAxCryptDocument document = New<AxCryptFile>().Document(encryptedDataStore, identity, progress))
             {
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogInfo("Decrypting '{0}'".InvariantFormat(encryptedDataStore.FullName));
                 }
-                using (FileLockReleaser encryptedLock = FileLockReleaser.Acquire(encryptedDataStore))
+                using (FileLock encryptedLock = FileLock.Acquire(encryptedDataStore))
                 {
                     using (IAxCryptDocument document = New<AxCryptFile>().Document(encryptedDataStore, identity, new ProgressContext()))
                     {
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Launching of external application can cause just about anything.")]
-        private FileOperationContext LaunchApplicationForDocument(ActiveFile destinationActiveFile, FileLockReleaser decryptedLock)
+        private FileOperationContext LaunchApplicationForDocument(ActiveFile destinationActiveFile, FileLock decryptedLock)
         {
             ActiveFileStatus status = ActiveFileStatus.AssumedOpenAndDecrypted;
             ILauncher process;
@@ -236,7 +236,7 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
         }
 
-        private static void DecryptActiveFileDocument(ActiveFile destinationActiveFile, FileLockReleaser decryptedLock, IAxCryptDocument document, IProgressContext progress)
+        private static void DecryptActiveFileDocument(ActiveFile destinationActiveFile, FileLock decryptedLock, IAxCryptDocument document, IProgressContext progress)
         {
             New<AxCryptFile>().Decrypt(document, decryptedLock.DataStore, AxCryptOptions.SetFileTimes, progress);
             if (Resolve.Log.IsInfoEnabled)
