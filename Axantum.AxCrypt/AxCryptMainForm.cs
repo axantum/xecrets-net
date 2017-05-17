@@ -1718,7 +1718,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.PremiumFeatureToolTipText);
+            New<IPopup>().Show(PopupButtons.Ok, Texts.WarningTitle, Texts.PremiumFeatureToolTipText);
         }
 
         private void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)
