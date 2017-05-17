@@ -208,7 +208,7 @@ namespace Axantum.AxCrypt.Core
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, encryptionParameters, progress);
         }
 
-        public virtual async void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> containers, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual async Task EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> containers, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (containers == null)
             {
@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                IEnumerable<Task<IEnumerable<IDataStore>>> asyncFilesTasks = containers.Select(async (folder) =>  folder.ListEncryptable(containers, await UserTypeExtensions.FolderOperationModePolicy()));
+                IEnumerable<Task<IEnumerable<IDataStore>>> asyncFilesTasks = containers.Select(async (folder) => folder.ListEncryptable(containers, await UserTypeExtensions.FolderOperationModePolicy()));
 
                 IEnumerable<IDataStore>[] filesList = await Task.WhenAll(asyncFilesTasks);
 

@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                             encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, notification.Identity, watchedFolder.KeyShares);
                             IDataContainer[] dc = new IDataContainer[] { New<IDataContainer>(watchedFolder.Path) };
-                            _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(dc, encryptionParameters, progress);
+                            await _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(dc, encryptionParameters, progress);
                         }
                     }
                     finally
@@ -127,11 +127,11 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 case SessionNotificationType.LogOn:
-                    EncryptWatchedFolders(notification.Identity, progress);
+                    await EncryptWatchedFolders(notification.Identity, progress);
                     break;
 
                 case SessionNotificationType.LogOff:
-                    EncryptWatchedFolders(notification.Identity, progress);
+                    await EncryptWatchedFolders(notification.Identity, progress);
                     New<IInternetState>().Clear();
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     break;
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Session
                     _activeFileAction.PurgeActiveFiles(progress);
                     if (_knownIdentities.DefaultEncryptionIdentity != LogOnIdentity.Empty)
                     {
-                        EncryptWatchedFolders(_knownIdentities.DefaultEncryptionIdentity, progress);
+                        await EncryptWatchedFolders(_knownIdentities.DefaultEncryptionIdentity, progress);
                     }
                     break;
 
@@ -167,12 +167,12 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private void EncryptWatchedFolders(LogOnIdentity identity, IProgressContext progress)
+        private async Task EncryptWatchedFolders(LogOnIdentity identity, IProgressContext progress)
         {
             foreach (WatchedFolder watchedFolder in _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)))
             {
                 EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity, watchedFolder.KeyShares);
-                _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { New<IDataContainer>(watchedFolder.Path) }, encryptionParameters, progress);
+                await _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { New<IDataContainer>(watchedFolder.Path) }, encryptionParameters, progress);
             }
         }
     }
