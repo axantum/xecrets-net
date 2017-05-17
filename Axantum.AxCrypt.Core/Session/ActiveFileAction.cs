@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         return activeFile;
                     }
-                    if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
+                    if (FileLockReleaser.IsLocked(activeFile.DecryptedFileInfo))
                     {
                         if (Resolve.Log.IsInfoEnabled)
                         {
@@ -154,13 +154,13 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
+            if (FileLockReleaser.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
             {
                 return activeFile;
             }
-            using (FileLockReleaser encryptedFileLock = FileLock.Lock(activeFile.DecryptedFileInfo))
+            using (FileLockReleaser encryptedFileLock = FileLockReleaser.Acquire(activeFile.DecryptedFileInfo))
             {
-                using (FileLockReleaser decryptedFileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
+                using (FileLockReleaser decryptedFileLock = FileLockReleaser.Acquire(activeFile.EncryptedFileInfo))
                 {
                     activeFile = CheckActiveFileActions(activeFile, progress);
                     return activeFile;

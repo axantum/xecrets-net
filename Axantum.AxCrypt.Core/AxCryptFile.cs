@@ -205,7 +205,7 @@ namespace Axantum.AxCrypt.Core
             }
             IDataStore sourceFileInfo = New<IDataStore>(sourceFileName);
             IDataStore destinationFileInfo = New<IDataStore>(destinationFileName);
-            using (FileLockReleaser destinationFileLock = FileLock.Lock(destinationFileInfo))
+            using (FileLockReleaser destinationFileLock = FileLockReleaser.Acquire(destinationFileInfo))
             {
                 EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
             }
@@ -384,7 +384,7 @@ namespace Axantum.AxCrypt.Core
 
                     Task decryption = Task.Run(() =>
                     {
-                        using (FileLockReleaser fileLock = FileLock.Lock(from))
+                        using (FileLockReleaser fileLock = FileLockReleaser.Acquire(from))
                         {
                             Decrypt(from, pipeline, identity);
                             pipeline.Complete();
@@ -394,7 +394,7 @@ namespace Axantum.AxCrypt.Core
 
                     Task encryption = Task.Run(() =>
                     {
-                        using (FileLockReleaser fileLock = FileLock.Lock(from))
+                        using (FileLockReleaser fileLock = FileLockReleaser.Acquire(from))
                         {
                             bool isWriteProteced = from.IsWriteProtected;
                             if (isWriteProteced)
