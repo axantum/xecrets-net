@@ -315,7 +315,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     continue;
                 }
-                using (FileLock fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
+                using (FileLockReleaser fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
                 {
                     if (!activeFile.EncryptedFileInfo.IsAvailable)
                     {

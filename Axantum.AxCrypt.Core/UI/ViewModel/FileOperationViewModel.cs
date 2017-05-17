@@ -85,7 +85,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AsyncUpgradeFiles = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => UpgradeFilesActionAsync(containers), (containers) => _knownIdentities.IsLoggedOn);
             ShowInFolder = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await ShowInFolderActionAsync(files));
             TryBrokenFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await TryBrokenFilesActionAsync(files));
-
         }
 
         public IAsyncAction DecryptFiles { get; private set; }
@@ -109,7 +108,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction ShowInFolder { get; private set; }
 
         public IAsyncAction TryBrokenFiles { get; private set; }
-        
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
@@ -375,7 +373,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
-                using (FileLock lockedSave = e.SaveFileFullName.CreateUniqueFile())
+                using (FileLockReleaser lockedSave = e.SaveFileFullName.CreateUniqueFile())
                 {
                     e.SaveFileFullName = lockedSave.DataStore.FullName;
                     lockedSave.DataStore.Delete();
@@ -537,6 +535,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), TryBrokenFileWork, (status) => CheckStatusAndShowMessage(status, string.Empty));
         }
+
         private Task<FileOperationContext> TryBrokenFileWork(IDataStore file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);

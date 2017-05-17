@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
             };
-            using (FileLock fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
+            using (FileLockReleaser fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
             {
                 Task.Run((Action)(() =>
                 {
@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
                 })).Wait();
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the encrypted file is locked.");
-            using (FileLock fileLock = FileLock.Lock(activeFile.DecryptedFileInfo))
+            using (FileLockReleaser fileLock = FileLock.Lock(activeFile.DecryptedFileInfo))
             {
                 Task.Run((Action)(() =>
                 {
@@ -471,7 +471,7 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
             };
 
-            using (FileLock fileLock = FileLock.Lock(decryptedFileInfo))
+            using (FileLockReleaser fileLock = FileLock.Lock(decryptedFileInfo))
             {
                 Task.Run(() => New<ActiveFileAction>().PurgeActiveFiles(new ProgressContext())).Wait();
             }

@@ -27,20 +27,42 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.IO
 {
+    public sealed class FileLockReleaser : IDisposable
+    {
+        private readonly FileLock m_toRelease;
+
+        internal FileLockReleaser(FileLock toRelease)
+        {
+            m_toRelease = toRelease;
+        }
+
+        public IDataStore DataStore { get { return m_toRelease.DataStore; } }
+
+        public void Dispose()
+        {
+            m_toRelease.m_semaphore.Release();
+        }
+    }
+
     public class FileLock : IDisposable
     {
         private static Dictionary<string, FileLock> _lockedFiles = new Dictionary<string, FileLock>();
 
-        private object _lock = new object();
+        private int? _currentSchedulerId;
+
+        public readonly SemaphoreSlim m_semaphore = new SemaphoreSlim(1, 1);
+
+        private readonly Task<FileLockReleaser> m_releaser;
 
         private int _referenceCount = 0;
 
@@ -49,11 +71,34 @@ namespace Axantum.AxCrypt.Core.IO
         private FileLock(string fullName)
         {
             _originalLockedFileName = fullName;
+            m_releaser = Task.FromResult(new FileLockReleaser(this));
         }
 
         public IDataStore DataStore { get { return New<IDataStore>(_originalLockedFileName); } }
 
-        public static FileLock Lock(IDataItem dataItem)
+        public Task<FileLockReleaser> LockAsync()
+        {
+            Task wait = m_semaphore.WaitAsync();
+            return wait.IsCompleted ?
+                        m_releaser :
+                        wait.ContinueWith((_, state) => (FileLockReleaser)state,
+                            m_releaser.Result, CancellationToken.None,
+            TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
+        }
+
+        private FileLockReleaser Lock()
+        {
+            if (m_semaphore.CurrentCount == 0 && _currentSchedulerId == TaskScheduler.Current?.Id)
+            {
+                throw new InternalErrorException($"Potential deadlock detected for {_originalLockedFileName} .");
+            }
+
+            m_semaphore.Wait();
+            _currentSchedulerId = TaskScheduler.Current?.Id;
+            return m_releaser.Result;
+        }
+
+        public static FileLockReleaser Lock(IDataItem dataItem)
         {
             if (dataItem == null)
             {
@@ -65,29 +110,7 @@ namespace Axantum.AxCrypt.Core.IO
                 lock (_lockedFiles)
                 {
                     FileLock fileLock = GetOrCreateFileLock(dataItem.FullName);
-                    bool lockTaken = false;
-                    try
-                    {
-                        Monitor.TryEnter(fileLock._lock, ref lockTaken);
-                        if (!lockTaken)
-                        {
-                            continue;
-                        }
-                        ++fileLock._referenceCount;
-                        if (Resolve.Log.IsInfoEnabled)
-                        {
-                            Resolve.Log.LogInfo("Locking file '{0}'.".InvariantFormat(dataItem.FullName));
-                        }
-                        return fileLock;
-                    }
-                    catch
-                    {
-                        if (lockTaken)
-                        {
-                            fileLock.Dispose();
-                        }
-                        throw;
-                    }
+                    return fileLock.Lock();
                 }
             }
         }
@@ -133,24 +156,13 @@ namespace Axantum.AxCrypt.Core.IO
         {
             lock (_lockedFiles)
             {
-                if (!_lockedFiles.Keys.Contains(fullName))
+                FileLock fileLock;
+                if (!_lockedFiles.TryGetValue(fullName, out fileLock))
                 {
                     return false;
                 }
 
-                bool lockTaken = false;
-                try
-                {
-                    Monitor.TryEnter(_lockedFiles[fullName]._lock, ref lockTaken);
-                }
-                finally
-                {
-                    if (lockTaken)
-                    {
-                        Monitor.Exit(_lockedFiles[fullName]._lock);
-                    }
-                }
-                return !lockTaken;
+                return fileLock.m_semaphore.CurrentCount == 0;
             }
         }
 
@@ -169,7 +181,6 @@ namespace Axantum.AxCrypt.Core.IO
                     return;
                 }
 
-                Monitor.Exit(_lock);
                 if (--_referenceCount == 0)
                 {
                     _lockedFiles.Remove(_originalLockedFileName);

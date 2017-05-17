@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return encryptedName;
         }
 
-        public static FileLock CreateUniqueFile(this string fullName)
+        public static FileLockReleaser CreateUniqueFile(this string fullName)
         {
             IDataStore pathInfo = New<IDataStore>(fullName);
             string extension = Resolve.Portable.Path().GetExtension(fullName);

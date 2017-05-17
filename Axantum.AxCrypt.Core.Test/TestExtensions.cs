@@ -362,7 +362,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateUniqueFileFirstIsOk()
         {
-            using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
+            using (FileLockReleaser lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
             {
                 Assert.That(lockedUnique.DataStore.FullName, Is.EqualTo(@"C:\temp\test.txt".NormalizeFilePath()));
             }
@@ -375,7 +375,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (Stream stream = fileInfo.OpenWrite())
             {
             }
-            using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
+            using (FileLockReleaser lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
             {
                 Assert.That(lockedUnique.DataStore.FullName, Is.EqualTo(@"C:\temp\test.1.txt".NormalizeFilePath()));
             }
@@ -384,12 +384,12 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateUniqueFileReallyCreates()
         {
-            using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
+            using (FileLockReleaser lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
             {
                 Assert.That(lockedUnique.DataStore.FullName, Is.EqualTo(@"C:\temp\test.txt".NormalizeFilePath()));
             }
 
-            using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
+            using (FileLockReleaser lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
             {
                 Assert.That(lockedUnique.DataStore.FullName, Is.EqualTo(@"C:\temp\test.1.txt".NormalizeFilePath()));
             }

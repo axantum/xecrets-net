@@ -96,11 +96,11 @@ namespace Axantum.AxCrypt.Core.UI
                 return new FileOperationContext(encryptedDataStore.FullName, ErrorStatus.InvalidKey);
             }
 
-            using (FileLock destinationLock = FileLock.Lock(activeFile.DecryptedFileInfo))
+            using (FileLockReleaser destinationLock = FileLock.Lock(activeFile.DecryptedFileInfo))
             {
                 if (!activeFile.DecryptedFileInfo.IsAvailable)
                 {
-                    activeFile = Decrypt(activeFile.Identity, activeFile.EncryptedFileInfo, activeFile, progress);
+                    activeFile = Decrypt(activeFile.Identity, activeFile.EncryptedFileInfo, destinationLock, activeFile, progress);
                 }
                 _fileSystemState.Add(activeFile);
                 _fileSystemState.Save();
@@ -110,12 +110,12 @@ namespace Axantum.AxCrypt.Core.UI
                     activeFile.DecryptedFileInfo.IsWriteProtected = true;
                 }
 
-                FileOperationContext status = LaunchApplicationForDocument(activeFile);
+                FileOperationContext status = LaunchApplicationForDocument(activeFile, destinationLock);
                 return status;
             }
         }
 
-        private static ActiveFile Decrypt(LogOnIdentity identity, IDataStore encryptedDataStore, ActiveFile activeFile, IProgressContext progress)
+        private static ActiveFile Decrypt(LogOnIdentity identity, IDataStore encryptedDataStore, FileLockReleaser decryptedLock, ActiveFile activeFile, IProgressContext progress)
         {
             using (IAxCryptDocument document = New<AxCryptFile>().Document(encryptedDataStore, identity, progress))
             {
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.UI
 
                 if (!activeFile.DecryptedFileInfo.IsAvailable)
                 {
-                    DecryptActiveFileDocument(activeFile, document, progress);
+                    DecryptActiveFileDocument(activeFile, decryptedLock, document, progress);
                 }
 
                 activeFile = new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, activeFile.Status);
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogInfo("Decrypting '{0}'".InvariantFormat(encryptedDataStore.FullName));
                 }
-                using (FileLock encryptedLock = FileLock.Lock(encryptedDataStore))
+                using (FileLockReleaser encryptedLock = FileLock.Lock(encryptedDataStore))
                 {
                     using (IAxCryptDocument document = New<AxCryptFile>().Document(encryptedDataStore, identity, new ProgressContext()))
                     {
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Launching of external application can cause just about anything.")]
-        private FileOperationContext LaunchApplicationForDocument(ActiveFile destinationActiveFile)
+        private FileOperationContext LaunchApplicationForDocument(ActiveFile destinationActiveFile, FileLockReleaser decryptedLock)
         {
             ActiveFileStatus status = ActiveFileStatus.AssumedOpenAndDecrypted;
             ILauncher process;
@@ -178,13 +178,10 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 if (Resolve.Log.IsInfoEnabled)
                 {
-                    Resolve.Log.LogInfo("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
+                    Resolve.Log.LogInfo("Starting process for '{0}'".InvariantFormat(decryptedLock.DataStore.FullName));
                 }
                 process = New<ILauncher>();
-                using (FileLock decryptedFileLock = FileLock.Lock(destinationActiveFile.DecryptedFileInfo))
-                {
-                    process.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
-                }
+                process.Launch(decryptedLock.DataStore.FullName);
                 if (process.WasStarted)
                 {
                     process.Exited += new EventHandler(process_Exited);
@@ -194,7 +191,7 @@ namespace Axantum.AxCrypt.Core.UI
                     status |= ActiveFileStatus.NoProcessKnown;
                     if (Resolve.Log.IsInfoEnabled)
                     {
-                        Resolve.Log.LogInfo("Starting process for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
+                        Resolve.Log.LogInfo("Starting process for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(decryptedLock.DataStore.FullName));
                     }
                 }
             }
@@ -203,22 +200,22 @@ namespace Axantum.AxCrypt.Core.UI
                 New<IReport>().Exception(ex);
                 if (Resolve.Log.IsErrorEnabled)
                 {
-                    Resolve.Log.LogError("Could not launch application for '{0}', Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName, ex.Message));
+                    Resolve.Log.LogError("Could not launch application for '{0}', Exception was '{1}'.".InvariantFormat(decryptedLock.DataStore.FullName, ex.Message));
                 }
-                return new FileOperationContext(destinationActiveFile.DecryptedFileInfo.FullName, ErrorStatus.CannotStartApplication);
+                return new FileOperationContext(decryptedLock.DataStore.FullName, ErrorStatus.CannotStartApplication);
             }
 
             if (Resolve.Log.IsWarningEnabled)
             {
                 if (process.HasExited)
                 {
-                    Resolve.Log.LogWarning("The process seems to exit immediately for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
+                    Resolve.Log.LogWarning("The process seems to exit immediately for '{0}'".InvariantFormat(decryptedLock.DataStore.FullName));
                 }
             }
 
             if (Resolve.Log.IsInfoEnabled)
             {
-                Resolve.Log.LogInfo("Launched and opened '{0}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
+                Resolve.Log.LogInfo("Launched and opened '{0}'.".InvariantFormat(decryptedLock.DataStore.FullName));
             }
 
             destinationActiveFile = new ActiveFile(destinationActiveFile, status);
@@ -239,12 +236,9 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
         }
 
-        private static void DecryptActiveFileDocument(ActiveFile destinationActiveFile, IAxCryptDocument document, IProgressContext progress)
+        private static void DecryptActiveFileDocument(ActiveFile destinationActiveFile, FileLockReleaser decryptedLock, IAxCryptDocument document, IProgressContext progress)
         {
-            using (FileLock fileLock = FileLock.Lock(destinationActiveFile.DecryptedFileInfo))
-            {
-                New<AxCryptFile>().Decrypt(document, destinationActiveFile.DecryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
-            }
+            New<AxCryptFile>().Decrypt(document, decryptedLock.DataStore, AxCryptOptions.SetFileTimes, progress);
             if (Resolve.Log.IsInfoEnabled)
             {
                 Resolve.Log.LogInfo("File decrypted from '{0}' to '{1}'".InvariantFormat(destinationActiveFile.EncryptedFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName));
@@ -293,26 +287,24 @@ namespace Axantum.AxCrypt.Core.UI
 
         public FileOperationContext OpenFileLocation(string fileFullName)
         {
-         
-           ILauncher process;
+            ILauncher process;
             IDataStore fileInfo = New<IDataStore>(fileFullName);
-           try
+            try
             {
                 if (Resolve.Log.IsInfoEnabled)
                 {
                     Resolve.Log.LogInfo("Starting process to lunch container for '{0}'".InvariantFormat(fileFullName));
                 }
                 process = New<ILauncher>();
-            
-                   process.Launch(fileInfo.Container.FullName);
-                
+
+                process.Launch(fileInfo.Container.FullName);
+
                 if (process.WasStarted)
                 {
                     process.Exited += new EventHandler(process_Exited);
                 }
                 else
                 {
-                   
                     if (Resolve.Log.IsInfoEnabled)
                     {
                         Resolve.Log.LogInfo("Starting process to lunch container for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(fileFullName));
@@ -342,10 +334,7 @@ namespace Axantum.AxCrypt.Core.UI
                 Resolve.Log.LogInfo("Launched container for '{0}'.".InvariantFormat(fileFullName));
             }
 
-           
-
             return new FileOperationContext(String.Empty, ErrorStatus.Success);
         }
-
     }
 }

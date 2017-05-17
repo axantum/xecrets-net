@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.IO
 {
     public class LockedStream : WrappedBaseStream
     {
-        private FileLock _fileLock;
+        private FileLockReleaser _fileLock;
 
         public static LockedStream OpenWrite(IDataStore dataStore)
         {

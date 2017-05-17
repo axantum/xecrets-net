@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
         private static readonly string _testTextPath = Path.Combine(_rootPath, "test.txt");
         private static readonly string _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
         private static readonly string _uncompressedAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Uncompressed.axx");
-        private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HelloWorld.axx");
+        private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Subfolder", "HelloWorld.axx");
 
         private CryptoImplementation _cryptoImplementation;
 
@@ -129,8 +129,10 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Document(sourceFileInfo, LogOnIdentity.Empty, nullProgress); }));
 
             Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().WriteToFileWithBackup(null, (Stream stream) => { }, new ProgressContext()); }));
-            IDataStore fileInfo = New<IDataStore>(_testTextPath);
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().WriteToFileWithBackup(fileInfo, nullStreamAction, new ProgressContext()); }));
+            using (FileLockReleaser fileInfoLock = FileLock.Lock(New<IDataStore>(_testTextPath)))
+            {
+                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().WriteToFileWithBackup(fileInfoLock, nullStreamAction, new ProgressContext()); }));
+            }
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.MakeAxCryptFileName(nullFileInfo); });
             Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Wipe(nullFileInfo, new ProgressContext()); }));
@@ -300,12 +302,14 @@ namespace Axantum.AxCrypt.Core.Test
             string destinationFilePath = _rootPath.PathCombine("Written", "File.txt");
             using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
-                IDataStore destinationFileInfo = New<IDataStore>(destinationFilePath);
-                New<AxCryptFile>().WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream, 4096); }, new ProgressContext());
-                using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
+                using (FileLockReleaser destinationFileLock = FileLock.Lock(New<IDataStore>(destinationFilePath)))
                 {
-                    string readString = read.ReadToEnd();
-                    Assert.That(readString, Is.EqualTo("A string with some text"), "Where expecting the same string to be read back.");
+                    New<AxCryptFile>().WriteToFileWithBackup(destinationFileLock, (Stream stream) => { inputStream.CopyTo(stream, 4096); }, new ProgressContext());
+                    using (TextReader read = new StreamReader(destinationFileLock.DataStore.OpenRead()))
+                    {
+                        string readString = read.ReadToEnd();
+                        Assert.That(readString, Is.EqualTo("A string with some text"), "Where expecting the same string to be read back.");
+                    }
                 }
             }
         }
@@ -314,12 +318,15 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestWriteToFileWithBackupWithCancel()
         {
             IDataStore destinationFileInfo = New<IDataStore>(_rootPath.PathCombine("Written", "File.txt"));
-            using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+            using (FileLockReleaser destinationFileLock = FileLock.Lock(destinationFileInfo))
             {
-                Assert.Throws<OperationCanceledException>((TestDelegate)(() => { New<AxCryptFile>().WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { throw new OperationCanceledException(); }, new ProgressContext()); }));
-                string tempFilePath = _rootPath.PathCombine("Written", "File.bak");
-                IDataStore tempFileInfo = New<IDataStore>(tempFilePath);
-                Assert.That(tempFileInfo.IsAvailable, Is.False, "The .bak file should be removed.");
+                using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+                {
+                    Assert.Throws<OperationCanceledException>((TestDelegate)(() => { New<AxCryptFile>().WriteToFileWithBackup(destinationFileLock, (Stream stream) => { throw new OperationCanceledException(); }, new ProgressContext()); }));
+                    string tempFilePath = _rootPath.PathCombine("Written", "File.bak");
+                    IDataStore tempFileInfo = New<IDataStore>(tempFilePath);
+                    Assert.That(tempFileInfo.IsAvailable, Is.False, "The .bak file should be removed.");
+                }
             }
         }
 
@@ -336,13 +343,16 @@ namespace Axantum.AxCrypt.Core.Test
                 writeStream.Write(bytes, 0, bytes.Length);
             }
 
-            using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+            using (FileLockReleaser destinationFileLock = FileLock.Lock(destinationFileInfo))
             {
-                New<AxCryptFile>().WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream, 4096); }, new ProgressContext());
-                using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
+                using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
                 {
-                    string readString = read.ReadToEnd();
-                    Assert.That(readString, Is.EqualTo("A string with some text"), "Where expecting the same string to be read back.");
+                    New<AxCryptFile>().WriteToFileWithBackup(destinationFileLock, (Stream stream) => { inputStream.CopyTo(stream, 4096); }, new ProgressContext());
+                    using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
+                    {
+                        string readString = read.ReadToEnd();
+                        Assert.That(readString, Is.EqualTo("A string with some text"), "Where expecting the same string to be read back.");
+                    }
                 }
             }
             Assert.That(bakFileInfo.IsAvailable, Is.False, "The file should not exist afterwards either.");
@@ -378,18 +388,22 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore sourceFileInfo = New<IDataStore>(sourceFilePath);
             IDataStore destinationFileInfo = New<IDataStore>(destinationFilePath);
-            IDataStore nullFileInfo = null;
+            using (FileLockReleaser destinationFileLock = FileLock.Lock(destinationFileInfo))
+            {
+                IDataStore nullFileInfo = null;
+                FileLockReleaser nullFileLock = null;
 
-            EncryptionParameters nullEncryptionParameters = null;
-            EncryptionParameters encryptionParameters = new EncryptionParameters(Guid.Empty, Passphrase.Empty);
+                EncryptionParameters nullEncryptionParameters = null;
+                EncryptionParameters encryptionParameters = new EncryptionParameters(Guid.Empty, Passphrase.Empty);
 
-            ProgressContext progress = new ProgressContext();
-            ProgressContext nullProgress = null;
+                ProgressContext progress = new ProgressContext();
+                ProgressContext nullProgress = null;
 
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().EncryptFileWithBackupAndWipe(nullFileInfo, destinationFileInfo, encryptionParameters, progress); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, nullFileInfo, encryptionParameters, progress); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, nullEncryptionParameters, progress); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, encryptionParameters, nullProgress); }));
+                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().EncryptFileWithBackupAndWipe(nullFileInfo, destinationFileLock, encryptionParameters, progress); }));
+                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, nullFileLock, encryptionParameters, progress); }));
+                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileLock, nullEncryptionParameters, progress); }));
+                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileLock, encryptionParameters, nullProgress); }));
+            }
         }
 
         [Test]
@@ -404,8 +418,10 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes128CryptoFactory().CryptoId, new Passphrase("a"));
 
             ProgressContext progress = new ProgressContext();
-
-            New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, encryptionParameters, progress);
+            using (FileLockReleaser destinationFileLock = FileLock.Lock(destinationFileInfo))
+            {
+                New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
+            }
 
             Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
@@ -470,6 +486,9 @@ namespace Axantum.AxCrypt.Core.Test
         // 2016-09-12: Not fixed.
         // 2016-10-25: Still not fixed.
         // 2016-12-20: Still not fixed. Also see TestWipeFilesCancelingAfterOneWithWork which failed at the same time.
+        // 2017-05-17: Attempted fix. Seems cause was a race where there were actually two files in the folder, only one with the right password. If the right one
+        //             was tried first it, worked. If the other one was tried first, all was cancelled and nothing happened. Found when removing parallelism and
+        //             it deterministically failed.
         [Test]
         public async Task TestDecryptFilesUniqueWithWipeOfOriginal()
         {
@@ -477,7 +496,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IProgressBackground>(() => new FakeProgressBackground());
             IDataStore sourceFileInfo = New<IDataStore>(_helloWorldAxxPath);
             IDataContainer sourceFolderInfo = New<IDataContainer>(Path.GetDirectoryName(sourceFileInfo.FullName));
-            sourceFolderInfo.CreateFolder();
+
             IDataStore destinationFileInfo = New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             LogOnIdentity passphrase = new LogOnIdentity("a");
 
