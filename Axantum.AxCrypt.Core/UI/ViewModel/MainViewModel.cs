@@ -281,7 +281,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     break;
 
                 case SessionNotificationType.WatchedFolderChange:
-                    SetFilesArePending();
+                    await SetFilesArePending();
                     break;
 
                 case SessionNotificationType.KnownKeyChange:
@@ -298,7 +298,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
                 case SessionNotificationType.SessionStart:
                 case SessionNotificationType.ActiveFileChange:
-                    SetFilesArePending();
+                    await SetFilesArePending();
                     SetRecentFiles();
                     break;
 
@@ -351,7 +351,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RecentFiles = recentFiles;
         }
 
-        private async void SetFilesArePending()
+        private async Task SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
 
@@ -360,7 +360,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             IEnumerable<IDataStore>[] filesList = await Task.WhenAll(asyncFilesTask);
 
             FilesArePending = openFiles.Count > 0 || filesList.SelectMany(file => file).Any();
-
         }
 
         private void SetLogOnState(bool isLoggedOn)
