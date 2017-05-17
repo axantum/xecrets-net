@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (Resolve.UserSettings.IsFirstSignIn)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
+                New<IPopup>().Show(PopupButtons.Ok, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
                 Resolve.UserSettings.IsFirstSignIn = false;
                 return;
             }
@@ -116,7 +116,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             TopControlsEnabled = false;
             if (Version != ApiVersion.Zero && Version != new ApiVersion())
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.MessageServerUpdateTitle, Texts.MessageServerUpdateText);
+                New<IPopup>().Show(PopupButtons.Ok, Texts.MessageServerUpdateTitle, Texts.MessageServerUpdateText);
             }
             while (true)
             {
@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         throw;
                     }
                     New<IReport>().Exception(ex);
-                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText.InvariantFormat(ex.Innermost().Message));
+                    New<IPopup>().Show(PopupButtons.Ok, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText.InvariantFormat(ex.Innermost().Message));
                     continue;
                 }
                 finally
@@ -164,13 +164,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(UserEmail), CultureInfo.CurrentUICulture);
-                        await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(UserEmail));
+                        New<IPopup>().Show(PopupButtons.Ok, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(UserEmail));
                         await CheckAccountAsync();
                         status = await VerifyAccountOnline();
                         break;
 
                     case AccountStatus.InvalidName:
-                        dialogResult = await New<IPopup>().ShowAsync(PopupButtons.OkCancelExit, Texts.MessageInvalidSignUpEmailTitle, Texts.MessageInvalidSignUpEmailText.InvariantFormat(UserEmail));
+                        dialogResult = New<IPopup>().Show(PopupButtons.OkCancelExit, Texts.MessageInvalidSignUpEmailTitle, Texts.MessageInvalidSignUpEmailText.InvariantFormat(UserEmail));
                         UserEmail = string.Empty;
                         break;
 
@@ -194,7 +194,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     case AccountStatus.Unknown:
                     case AccountStatus.Unauthenticated:
                     case AccountStatus.DefinedByServer:
-                        dialogResult = await New<IPopup>().ShowAsync(PopupButtons.OkCancelExit, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText);
+                        dialogResult = New<IPopup>().Show(PopupButtons.OkCancelExit, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText);
                         UserEmail = string.Empty;
                         break;
 
@@ -242,7 +242,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(UserEmail));
             if (status == AccountStatus.Verified)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.TitleSignInToAxCrypt, Texts.HaveAccountInfo.InvariantFormat(UserEmail));
+                New<IPopup>().Show(PopupButtons.Ok, Texts.TitleSignInToAxCrypt, Texts.HaveAccountInfo.InvariantFormat(UserEmail));
             }
             return status;
         }
@@ -278,10 +278,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             if (AlreadyVerified)
             {
                 AlreadyVerified = false;
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.AlreadyVerifiedInfo);
+                New<IPopup>().Show(PopupButtons.Ok, Texts.InformationTitle, Texts.AlreadyVerifiedInfo);
             }
 
-            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.WelcomeToAxCrypt);
+            PopupButtons result = New<IPopup>().Show(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.WelcomeToAxCrypt);
             if (result == PopupButtons.Ok)
             {
                 using (ILauncher launcher = New<ILauncher>())
