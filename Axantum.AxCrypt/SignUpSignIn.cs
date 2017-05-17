@@ -1,22 +1,8 @@
-﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Common;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Service;
-using Axantum.AxCrypt.Core.Session;
+﻿using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Style;
-using AxCrypt.Content;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,7 +34,7 @@ namespace Axantum.AxCrypt
             viewModel.BindPropertyChanged(nameof(viewModel.StopAndExit), (bool stop) => StopAndExit = stop);
             viewModel.BindPropertyChanged(nameof(viewModel.TopControlsEnabled), (bool enabled) => SetTopControlsEnabled(parent, enabled));
 
-            viewModel.CreateAccount += (sender, e) =>
+            viewModel.CreateAccount = (e) =>
             {
                 using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(parent, String.Empty, EmailAddress.Parse(UserEmail)))
                 {
@@ -58,9 +44,10 @@ namespace Axantum.AxCrypt
                         e.Cancel = true; ;
                     }
                 }
+                return Task.FromResult<object>(null);
             };
 
-            viewModel.RequestEmail += (sender, e) =>
+            viewModel.RequestEmail = (e) =>
             {
                 using (EmailDialog dialog = new EmailDialog(parent))
                 {
@@ -69,13 +56,14 @@ namespace Axantum.AxCrypt
                     if (result != DialogResult.OK)
                     {
                         e.Cancel = true;
-                        return;
+                        return Task.FromResult<object>(null);
                     }
                     viewModel.UserEmail = dialog.EmailTextBox.Text;
                 }
+                return Task.FromResult<object>(null);
             };
 
-            viewModel.VerifyAccount += (sender, e) =>
+            viewModel.VerifyAccount = (e) =>
             {
                 VerifyAccountViewModel vav = new VerifyAccountViewModel(EmailAddress.Parse(viewModel.UserEmail));
                 vav.BindPropertyChanged<bool>(nameof(vav.AlreadyVerified), (verified) => viewModel.AlreadyVerified = verified);
@@ -88,16 +76,18 @@ namespace Axantum.AxCrypt
                         e.Cancel = true;
                     }
                 }
+                return Task.FromResult<object>(null);
             };
 
             viewModel.SignInCommandAsync = signingInState.SignIn;
 
-            viewModel.RestoreWindow += (sender, e) =>
+            viewModel.RestoreWindow = () =>
             {
                 if (New<UserSettings>().RestoreFullWindow)
                 {
                     Styling.RestoreWindowWithFocus(parent);
                 }
+                return Task.FromResult<object>(null);
             };
 
             await viewModel.DoAll.ExecuteAsync(null);
