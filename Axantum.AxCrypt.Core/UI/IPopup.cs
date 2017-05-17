@@ -12,5 +12,9 @@ namespace Axantum.AxCrypt.Core.UI
         PopupButtons Show(PopupButtons buttons, string title, string message);
 
         PopupButtons Show(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag);
+
+        Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message);
+
+        Task<string> ShowAsync(string[] buttons, string title, string message);
     }
 }

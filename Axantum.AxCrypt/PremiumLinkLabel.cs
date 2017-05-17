@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt
             {
                 case PremiumStatus.CanTryPremium:
                     await accountService.StartPremiumTrialAsync();
-                    New<IPopup>().Show(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
+                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
                     await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                     New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.LicensePolicyChange));
                     break;

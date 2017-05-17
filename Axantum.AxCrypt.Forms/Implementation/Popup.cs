@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
         {
             if (dontShowAgainFlag != DontShowAgain.None && New<UserSettings>().DontShowAgain.HasFlag(dontShowAgainFlag))
             {
-                return PopupButtons.None;
+                    return PopupButtons.None;
             }
 
             DialogResult result;
@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
                 dialog.Text = title;
                 dialog.Message.Text = message;
-
+                
                 result = dialog.ShowDialog(_parent);
 
                 if (dontShowAgainFlag != DontShowAgain.None && dialog.dontShowThisAgain.Checked)
@@ -72,6 +72,16 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 default:
                     throw new InvalidOperationException($"Unexpected result from dialog: {result}");
             }
+        }
+
+        public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message)
+        {
+            return Task.FromResult(Show(buttons, title, message));
+        }
+
+        public Task<string> ShowAsync(string[] buttons, string title, string message)
+        {
+            throw new NotImplementedException("Popup doesn't support custom buttons.");
         }
     }
 }
