@@ -31,6 +31,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Common;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt
 {
@@ -38,12 +39,12 @@ namespace Axantum.AxCrypt
     {
         public static void ShowWarning(this string message, string title)
         {
-            New<IUIThread>().PostTo(() => New<IPopup>().Show(PopupButtons.Ok, title, message));
+            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, title, message));
         }
 
         public static void ShowWarning(this string message, string title, DontShowAgain dontShowAgainFlag)
         {
-            New<IUIThread>().PostTo(() => New<IPopup>().Show(PopupButtons.Ok, title, message, dontShowAgainFlag));
+            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, title, message, dontShowAgainFlag));
         }
 
         public static Point Fallback(this Point value, Point fallback)

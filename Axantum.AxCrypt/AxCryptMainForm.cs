@@ -686,7 +686,7 @@ namespace Axantum.AxCrypt
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DownloadVersion), (DownloadVersion dv) => { SetSoftwareStatus(); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DownloadVersion), async (DownloadVersion dv) => { await SetSoftwareStatus(); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
@@ -714,7 +714,7 @@ namespace Axantum.AxCrypt
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
-            _optionsIncludeSubfoldersToolStripMenuItem.Click += (sender, e) => ToggleIncludeSubfoldersOption();
+            _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => await ToggleIncludeSubfoldersOption();
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
@@ -783,7 +783,7 @@ namespace Axantum.AxCrypt
             _encryptToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.EncryptFiles.ExecuteAsync(null); };
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
             _encryptToolStripMenuItem.Click += (sender, e) => _fileOperationViewModel.EncryptFiles.Execute(null);
-            _fileOperationViewModel.FirstLegacyOpen += (sender, e) => New<IUIThread>().SendTo(() => SetLegacyOpenMode(e));
+            _fileOperationViewModel.FirstLegacyOpen += (sender, e) => New<IUIThread>().SendTo(async () => await SetLegacyOpenMode(e));
             _fileOperationViewModel.IdentityViewModel.LoggingOnAsync = async (e) => await New<IUIThread>().SendToAsync(async () => await HandleLogOn(e));
             _fileOperationViewModel.SelectingFiles += (sender, e) => New<IUIThread>().SendTo(() => New<IDataItemSelection>().HandleSelection(e));
             _fileOperationViewModel.ToggleLegacyConversion += (sender, e) => New<IUIThread>().SendTo(() => ToggleLegacyConversion());
@@ -832,7 +832,7 @@ namespace Axantum.AxCrypt
 
         private DeviceLockReason _currentLock = DeviceLockReason.None;
 
-        private void DeviceWasLocked(object sender, DeviceLockedEventArgs e)
+        private async void DeviceWasLocked(object sender, DeviceLockedEventArgs e)
         {
             if (!New<IUIThread>().IsOn)
             {
@@ -850,7 +850,7 @@ namespace Axantum.AxCrypt
                     _currentLock = DeviceLockReason.Permanent;
                     try
                     {
-                        ShutDownAndExit();
+                        await ShutDownAndExit();
                     }
                     finally
                     {
@@ -914,14 +914,14 @@ namespace Axantum.AxCrypt
             Process.Start(link);
         }
 
-        private static void SetLegacyOpenMode(FileOperationEventArgs e)
+        private static async Task SetLegacyOpenMode(FileOperationEventArgs e)
         {
             if (!Resolve.KnownIdentities.IsLoggedOn)
             {
                 return;
             }
 
-            PopupButtons click = New<IPopup>().Show(PopupButtons.OkCancel, Texts.WarningTitle, Texts.LegacyOpenMessage);
+            PopupButtons click = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WarningTitle, Texts.LegacyOpenMessage);
             if (click == PopupButtons.Cancel)
             {
                 e.Cancel = true;
@@ -1314,7 +1314,7 @@ namespace Axantum.AxCrypt
             Text = text;
         }
 
-        private void SetSoftwareStatus()
+        private async Task SetSoftwareStatus()
         {
             VersionUpdateStatus status = _mainViewModel.VersionUpdateStatus;
             switch (status)
@@ -1347,7 +1347,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            New<IPopup>().Show(PopupButtons.Ok, string.Empty, msg);
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, msg);
             Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
         }
 
@@ -1534,9 +1534,9 @@ namespace Axantum.AxCrypt
             return false;
         }
 
-        private void _exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShutDownAndExit();
+            await ShutDownAndExit();
         }
 
         private void RestoreFormConditionally()
@@ -1548,13 +1548,13 @@ namespace Axantum.AxCrypt
             Styling.RestoreWindowWithFocus(this);
         }
 
-        private void ShutDownAndExit()
+        private async Task ShutDownAndExit()
         {
             ShutDownBackgroundSafe();
 
             EncryptPendingFiles();
 
-            WarnIfAnyDecryptedFiles();
+            await WarnIfAnyDecryptedFiles();
 
             Application.Exit();
         }
@@ -1634,7 +1634,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void WarnIfAnyDecryptedFiles()
+        private async Task WarnIfAnyDecryptedFiles()
         {
             IEnumerable<ActiveFile> openFiles = _mainViewModel.DecryptedFiles;
             if (!openFiles.Any())
@@ -1647,7 +1647,7 @@ namespace Axantum.AxCrypt
             {
                 sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine));
             }
-            New<IPopup>().Show(PopupButtons.Ok, Texts.WarningTitle, sb.ToString());
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, sb.ToString());
         }
 
         private void SetSortOrder(int column)
@@ -1767,7 +1767,7 @@ namespace Axantum.AxCrypt
             InitializeContentResources();
             SetWindowTextWithSignInAndPremiumStatus(_mainViewModel.LoggedOn);
             await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
-            SetSoftwareStatus();
+            await SetSoftwareStatus();
         }
 
         private void OptionsLanguageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -2195,7 +2195,7 @@ namespace Axantum.AxCrypt
             return String.Empty;
         }
 
-        private void ToggleIncludeSubfoldersOption()
+        private async Task ToggleIncludeSubfoldersOption()
         {
             if (_mainViewModel.FolderOperationMode == FolderOperationMode.IncludeSubfolders)
             {
@@ -2209,7 +2209,7 @@ namespace Axantum.AxCrypt
                 DialogResult dr = dialog.ShowDialog(this);
                 if (dr == DialogResult.OK)
                 {
-                    PopupButtons result = New<IPopup>().Show(PopupButtons.OkCancel, Texts.IncludeSubfoldersConfirmationTitle, Texts.IncludeSubfoldersConfirmationBody);
+                    PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.IncludeSubfoldersConfirmationTitle, Texts.IncludeSubfoldersConfirmationBody);
                     if (result == PopupButtons.Ok)
                     {
                         _mainViewModel.FolderOperationMode = FolderOperationMode.IncludeSubfolders;

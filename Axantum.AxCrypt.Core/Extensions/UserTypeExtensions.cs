@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Extensions
@@ -284,7 +284,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return sharedWithEmailAddresses;
         }
 
-        public static void ShowPopup(this AccountTip tip)
+        public static async Task ShowPopup(this AccountTip tip)
         {
             string title;
             switch (tip.Level)
@@ -309,15 +309,15 @@ namespace Axantum.AxCrypt.Core.Extensions
             switch (tip.ButtonStyle)
             {
                 case StartupTipButtonStyle.YesNo:
-                    clicked = New<IPopup>().Show(PopupButtons.OkCancel, title, tip.Message);
+                    clicked = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, title, tip.Message);
                     break;
 
                 case StartupTipButtonStyle.Ok:
-                    clicked = New<IPopup>().Show(PopupButtons.Ok, title, tip.Message);
+                    clicked = await New<IPopup>().ShowAsync(PopupButtons.Ok, title, tip.Message);
                     break;
 
                 default:
-                    clicked = New<IPopup>().Show(PopupButtons.Ok, title, tip.Message);
+                    clicked = await New<IPopup>().ShowAsync(PopupButtons.Ok, title, tip.Message);
                     break;
             }
 

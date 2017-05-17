@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt
         {
             if (New<KnownIdentities>().DefaultEncryptionIdentity == LogOnIdentity.Empty)
             {
-                New<IPopup>().Show(PopupButtons.Ok, Texts.ApplicationTitle, Texts.SignInBeforePremiumMessage);
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.ApplicationTitle, Texts.SignInBeforePremiumMessage);
                 New<UserSettings>().RestoreFullWindow = true;
                 return;
             }
