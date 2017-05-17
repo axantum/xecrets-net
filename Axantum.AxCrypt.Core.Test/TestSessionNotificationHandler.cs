@@ -293,7 +293,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeDataStore.AddFolder(@"C:\My Documents\");
             Mock<AxCryptFile> mock = new Mock<AxCryptFile>();
-            mock.Setup(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.IsAny<IEnumerable<IDataContainer>>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>()));
+            mock.Setup(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.IsAny<IEnumerable<IDataContainer>>(), It.IsAny<EncryptionParameters>(), It.IsAny<IProgressContext>())).Returns(Task.FromResult<object>(null));
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
