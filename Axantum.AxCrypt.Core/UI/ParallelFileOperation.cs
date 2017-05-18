@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.UI
 
                 FileOperationContext result = new FileOperationContext(string.Empty, ErrorStatus.Success);
 
-                await Task<FileOperationContext>.Run(async () =>
+                result = await Task<FileOperationContext>.Run(async () =>
                 {
                     foreach (T file in files)
                     {
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.UI
                         {
                             AxCryptException ace = ex as AxCryptException;
                             New<IReport>().Exception(ace);
-                            return new FileOperationContext(ace.DisplayContext.Default(file), ace.InnerException?.Message, ace.ErrorStatus);
+                            return new FileOperationContext(ace.DisplayContext.Default(file), ace.InnerException?.Message ?? ace.Message, ace.ErrorStatus);
                         }
                         catch (Exception ex)
                         {

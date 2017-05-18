@@ -382,19 +382,16 @@ namespace Axantum.AxCrypt.Core
                         return;
                     }
 
-                    Task decryption = Task.Run(() =>
+                    using (FileLock fileLock = FileLock.Acquire(from))
                     {
-                        using (FileLock fileLock = FileLock.Acquire(from))
+                        Task decryption = Task.Run(() =>
                         {
                             Decrypt(from, pipeline, identity);
                             pipeline.Complete();
-                        }
-                    });
-                    decryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+                        });
+                        decryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
-                    Task encryption = Task.Run(() =>
-                    {
-                        using (FileLock fileLock = FileLock.Acquire(from))
+                        Task encryption = Task.Run(() =>
                         {
                             bool isWriteProteced = from.IsWriteProtected;
                             if (isWriteProteced)
@@ -406,31 +403,31 @@ namespace Axantum.AxCrypt.Core
                                 Encrypt(pipeline, s, encryptedProperties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
                             }, progress);
                             from.IsWriteProtected = isWriteProteced;
-                        }
-                    });
-                    encryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+                        });
+                        encryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
-                    try
-                    {
-                        Task.WaitAll(decryption, encryption);
-                    }
-                    catch (AggregateException ae)
-                    {
-                        New<IReport>().Exception(ae);
-                        IEnumerable<Exception> exceptions = ae.InnerExceptions.Where(ex1 => ex1.GetType() != typeof(OperationCanceledException));
-                        if (!exceptions.Any())
+                        try
                         {
-                            return;
+                            Task.WaitAll(decryption, encryption);
                         }
-
-                        IEnumerable<Exception> axCryptExceptions = exceptions.Where(ex2 => ex2 is AxCryptException);
-                        if (axCryptExceptions.Any())
+                        catch (AggregateException ae)
                         {
-                            ExceptionDispatchInfo.Capture(axCryptExceptions.First()).Throw();
-                        }
+                            New<IReport>().Exception(ae);
+                            IEnumerable<Exception> exceptions = ae.InnerExceptions.Where(ex1 => ex1.GetType() != typeof(OperationCanceledException));
+                            if (!exceptions.Any())
+                            {
+                                return;
+                            }
 
-                        Exception ex = exceptions.First();
-                        throw new InternalErrorException(ex.Message, Abstractions.ErrorStatus.Exception, ex);
+                            IEnumerable<Exception> axCryptExceptions = exceptions.Where(ex2 => ex2 is AxCryptException);
+                            if (axCryptExceptions.Any())
+                            {
+                                ExceptionDispatchInfo.Capture(axCryptExceptions.First()).Throw();
+                            }
+
+                            Exception ex = exceptions.First();
+                            throw new InternalErrorException(ex.Message, Abstractions.ErrorStatus.Exception, ex);
+                        }
                     }
                 }
             }
