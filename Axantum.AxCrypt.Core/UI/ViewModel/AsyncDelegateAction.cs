@@ -33,19 +33,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
         }
 
-        public bool CanExecute(object parameter)
-        {
-            throw new InvalidOperationException("The synchronous execute should never be invoked on an asynchronous delegate.");
-        }
-
         public Task<bool> CanExecuteAsync(object parameter)
         {
             return _canExecuteMethodAsync(parameter != null ? (T)parameter : default(T));
-        }
-
-        public async void Execute(object parameter)
-        {
-            throw new InvalidOperationException("The synchronous execute should never be invoked on an asynchronous delegate.");
         }
 
         public async Task ExecuteAsync(object parameter)
@@ -72,6 +62,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public void RaiseCanExecuteChanged()
         {
             OnCanExecuteChanged();
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Execute(object parameter)
+        {
+            throw new NotImplementedException();
         }
     }
 }

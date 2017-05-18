@@ -227,20 +227,20 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOn()
+        public async Task TestLogOnLogOffWhenLoggedOn()
         {
             LogOnIdentity id = new LogOnIdentity("logonwhenloggedon");
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
             Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+            await mvm.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOffAndIdentityKnown()
+        public async Task TestLogOnLogOffWhenLoggedOffAndIdentityKnown()
         {
             Passphrase passphrase = new Passphrase("a");
 
@@ -254,14 +254,14 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+            await mvm.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1), "There should be one known key now.");
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True, "It should be logged on now.");
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnown()
+        public async Task TestLogOnLogOffWhenLoggedOffAndNoIdentityKnown()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOnAsync = (e) =>
@@ -272,7 +272,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("b"));
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+            await mvm.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
@@ -280,7 +280,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnownAndNoPassphraseGiven()
+        public async Task TestLogOnLogOffWhenLoggedOffAndNoIdentityKnownAndNoPassphraseGiven()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOnAsync = (e) =>
@@ -289,7 +289,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+            await mvm.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);

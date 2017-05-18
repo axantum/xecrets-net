@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (!_knownIdentities.IsLoggedOn)
             {
-                IdentityViewModel.AskForLogOnPassphrase.Execute(LogOnIdentity.Empty);
+                await IdentityViewModel.AskForLogOnPassphrase.ExecuteAsync(LogOnIdentity.Empty);
             }
             if (!_knownIdentities.IsLoggedOn)
             {
@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (!_knownIdentities.IsLoggedOn)
             {
-                IdentityViewModel.AskForDecryptPassphrase.Execute(files.First());
+                await IdentityViewModel.AskForDecryptPassphrase.ExecuteAsync(files.First());
             }
             if (!_knownIdentities.IsLoggedOn)
             {
@@ -527,7 +527,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (!_knownIdentities.IsLoggedOn)
             {
-                IdentityViewModel.AskForDecryptPassphrase.Execute(files.First());
+                await IdentityViewModel.AskForDecryptPassphrase.ExecuteAsync(files.First());
             }
             if (!_knownIdentities.IsLoggedOn)
             {

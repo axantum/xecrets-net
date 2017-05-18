@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestLogOnExistingIdentity()
+        public async Task TestLogOnExistingIdentity()
         {
             Passphrase passphrase = new Passphrase("p");
 
@@ -80,13 +80,13 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.LogOnLogOff.Execute(null);
+            await ivm.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(Resolve.KnownIdentities.IsLoggedOn);
         }
 
         [Test]
-        public void TestLogOnExistingIdentityWithCancel()
+        public async Task TestLogOnExistingIdentityWithCancel()
         {
             Passphrase passphrase = new Passphrase("p");
 
@@ -100,14 +100,14 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.LogOnLogOff.Execute(null);
+            await ivm.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(ivm.LogOnIdentity == LogOnIdentity.Empty);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOn()
+        public async Task TestLogOnLogOffWhenLoggedOn()
         {
             LogOnIdentity passphrase = new LogOnIdentity("p");
 
@@ -125,14 +125,14 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
 
-            ivm.LogOnLogOff.Execute(null);
+            await ivm.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(wasLoggingOn, Is.False);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOffAndNoIdentities()
+        public async Task TestLogOnLogOffWhenLoggedOffAndNoIdentities()
         {
             bool wasCreateNew = true;
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("ccc"));
-            ivm.LogOnLogOff.Execute(null);
+            await ivm.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(wasCreateNew, Is.False, "Logging on event should not be with Create New set.");
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True, "Should be logged on.");
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOffAndNoIdentitiesWithCancel()
+        public async Task TestLogOnLogOffWhenLoggedOffAndNoIdentitiesWithCancel()
         {
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
             ivm.LoggingOnAsync = (e) =>
@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             ivm.LogOnIdentity = new LogOnIdentity("testing");
-            ivm.LogOnLogOff.Execute(null);
+            await ivm.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False, "Not logged on.");
             Assert.That(Resolve.FileSystemState.KnownPassphrases.Count(), Is.EqualTo(0));
@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void AskForLogOnOrDecryptPassphraseActionNotActiveFile()
+        public async Task AskForLogOnOrDecryptPassphraseActionNotActiveFile()
         {
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
             LogOnIdentity id = null;
@@ -183,14 +183,14 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
+            await ivm.AskForDecryptPassphrase.ExecuteAsync(@"C:\Folder\File1-txt.axx");
 
             Assert.That(ivm.LogOnIdentity.Passphrase.Text, Is.EqualTo("p"));
             Assert.That(id.Passphrase.Thumbprint, Is.EqualTo(Passphrase.Empty.Thumbprint));
         }
 
         [Test]
-        public void AskForLogOnOrDecryptPassphraseActionActiveFile()
+        public async Task AskForLogOnOrDecryptPassphraseActionActiveFile()
         {
             LogOnIdentity key = new LogOnIdentity("p");
 
@@ -206,14 +206,14 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
+            await ivm.AskForDecryptPassphrase.ExecuteAsync(@"C:\Folder\File1-txt.axx");
 
             Assert.That(ivm.LogOnIdentity.Passphrase.Text, Is.EqualTo("p"));
             Assert.That(id.Passphrase.Thumbprint, Is.EqualTo(Passphrase.Empty.Thumbprint));
         }
 
         [Test]
-        public void AskForLogOnOrDecryptPassphraseActionActiveFileWithExistingIdentity()
+        public async Task AskForLogOnOrDecryptPassphraseActionActiveFileWithExistingIdentity()
         {
             LogOnIdentity key = new LogOnIdentity("p");
 
@@ -230,13 +230,13 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
+            await ivm.AskForDecryptPassphrase.ExecuteAsync(@"C:\Folder\File1-txt.axx");
 
             Assert.That(ivm.LogOnIdentity.Passphrase.Text, Is.EqualTo("p"));
         }
 
         [Test]
-        public void AskForLogOnPassphraseAction()
+        public async Task AskForLogOnPassphraseAction()
         {
             LogOnIdentity key = new LogOnIdentity("ppp");
 
@@ -250,14 +250,14 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForLogOnPassphrase.Execute(id);
+            await ivm.AskForLogOnPassphrase.ExecuteAsync(id);
 
             Assert.That(ivm.LogOnIdentity.Passphrase.Text, Is.EqualTo("ppp"));
             Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Thumbprint, Is.EqualTo(id.Passphrase.Thumbprint));
         }
 
         [Test]
-        public void AskForLogOnPassphraseActionWithCancel()
+        public async Task AskForLogOnPassphraseActionWithCancel()
         {
             LogOnIdentity key = new LogOnIdentity("ppp");
 
@@ -270,14 +270,14 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForLogOnPassphrase.Execute(id);
+            await ivm.AskForLogOnPassphrase.ExecuteAsync(id);
 
             Assert.That(ivm.LogOnIdentity == LogOnIdentity.Empty);
             Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity == LogOnIdentity.Empty);
         }
 
         [Test]
-        public void AskForNewLogOnPassphrase()
+        public async Task AskForNewLogOnPassphrase()
         {
             Passphrase defaultPassphrase = null;
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Empty);
@@ -295,7 +295,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForLogOnPassphrase.Execute(null);
+            await ivm.AskForLogOnPassphrase.ExecuteAsync(null);
 
             Assert.That(defaultPassphrase, Is.EqualTo(new Passphrase("xxx")));
             Assert.That(ivm.LogOnIdentity.Passphrase.Text, Is.EqualTo("aaa"));
@@ -306,7 +306,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void AskForNewLogOnPassphraseAutomaticallyBecauseNoIdentitiesExists()
+        public async Task AskForNewLogOnPassphraseAutomaticallyBecauseNoIdentitiesExists()
         {
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("aaa"));
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);
@@ -317,7 +317,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForLogOnPassphrase.Execute(LogOnIdentity.Empty);
+            await ivm.AskForLogOnPassphrase.ExecuteAsync(LogOnIdentity.Empty);
 
             Assert.That(ivm.LogOnIdentity.Passphrase.Text, Is.EqualTo("aaa"));
             Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Thumbprint, Is.EqualTo(new Passphrase("aaa").Thumbprint));
@@ -327,7 +327,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void AskForNewLogOnPassphraseWithCancel()
+        public async Task AskForNewLogOnPassphraseWithCancel()
         {
             Passphrase defaultPassphrase = null;
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Empty);
@@ -351,7 +351,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForLogOnPassphrase.Execute(null);
+            await ivm.AskForLogOnPassphrase.ExecuteAsync(null);
 
             Assert.That(defaultPassphrase, Is.EqualTo(new Passphrase("xxx")));
             Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity == LogOnIdentity.Empty);
@@ -362,7 +362,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void AskForNewLogOnPassphraseWithKnownIdentity()
+        public async Task AskForNewLogOnPassphraseWithKnownIdentity()
         {
             Passphrase passphrase = new Passphrase("aaa");
             Passphrase id = passphrase;
@@ -379,7 +379,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForLogOnPassphrase.Execute(null);
+            await ivm.AskForLogOnPassphrase.ExecuteAsync(null);
 
             Assert.That(ivm.LogOnIdentity.Passphrase.Text, Is.EqualTo("aaa"));
             Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Thumbprint, Is.EqualTo(passphrase.Thumbprint));
@@ -387,7 +387,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void AskForLogOnPassphraseWithKnownIdentity()
+        public async Task AskForLogOnPassphraseWithKnownIdentity()
         {
             Passphrase passphrase = new Passphrase("aaa");
             Passphrase id = passphrase;
@@ -400,7 +400,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForLogOnPassphrase.Execute(null);
+            await ivm.AskForLogOnPassphrase.ExecuteAsync(null);
 
             Assert.That(ivm.LogOnIdentity.Passphrase.Text, Is.EqualTo("aaa"));
             Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase.Thumbprint, Is.EqualTo(passphrase.Thumbprint));
@@ -408,7 +408,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void AskForLogOnPassphraseWithKnownIdentityButWrongPassphraseEntered()
+        public async Task AskForLogOnPassphraseWithKnownIdentityButWrongPassphraseEntered()
         {
             Passphrase passphrase = new Passphrase("aaa");
             Passphrase id = passphrase;
@@ -421,7 +421,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            ivm.AskForLogOnPassphrase.Execute(null);
+            await ivm.AskForLogOnPassphrase.ExecuteAsync(null);
 
             Assert.That(ivm.LogOnIdentity == LogOnIdentity.Empty);
             Assert.That(Resolve.FileSystemState.KnownPassphrases.Count(), Is.EqualTo(1));

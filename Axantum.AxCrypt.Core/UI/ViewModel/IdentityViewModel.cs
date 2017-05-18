@@ -84,11 +84,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public DelegateAction<object> LogOff { get; private set; }
 
-        public IAction LogOnLogOff { get; private set; }
+        public IAsyncAction LogOnLogOff { get; private set; }
 
         public IAsyncAction AskForDecryptPassphrase { get; private set; }
 
-        public IAction AskForLogOnPassphrase { get; private set; }
+        public IAsyncAction AskForLogOnPassphrase { get; private set; }
 
         public Func<LogOnEventArgs, Task> LoggingOnAsync { get; set; }
 
