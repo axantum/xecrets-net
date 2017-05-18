@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             AccountProperties = (await _accountStorage.AllKeyPairsAsync()).Select(key => new AccountProperties(key.UserEmail, key.Timestamp));
 
-            ChangePassphraseAsync = new AsyncDelegateAction<string>(async (password) => await ChangePassphraseActionAsync(password), (password) => _accountStorage.AllKeyPairsAsync().Result.Any());
+            ChangePassphraseAsync = new AsyncDelegateAction<string>(async (password) => await ChangePassphraseActionAsync(password), async (password) => (await _accountStorage.AllKeyPairsAsync()).Any());
         }
 
         private static void BindPropertyChangedEvents()

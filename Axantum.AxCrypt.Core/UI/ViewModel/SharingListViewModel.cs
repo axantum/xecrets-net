@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>(async (upks) => await AddKeySharesActionAsync(upks));
             AsyncRemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>(async (upks) => await RemoveKeySharesActionAsync(upks));
-            AsyncAddNewKeyShare = new AsyncDelegateAction<string>(async (email) => await AddNewKeyShareActionAsync(email), (email) => this[nameof(NewKeyShare)].Length == 0);
+            AsyncAddNewKeyShare = new AsyncDelegateAction<string>(async (email) => await AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
         }
 
         private static void BindPropertyChangedEvents()

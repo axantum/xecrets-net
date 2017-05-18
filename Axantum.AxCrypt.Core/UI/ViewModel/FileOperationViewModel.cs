@@ -77,12 +77,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DecryptFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await DecryptFilesActionAsync(files));
             EncryptFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await EncryptFilesActionAsync(files));
             OpenFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await OpenFilesActionAsync(files));
-            DecryptFolders = new AsyncDelegateAction<IEnumerable<string>>(async (folders) => await DecryptFoldersActionAsync(folders), (folders) => _knownIdentities.IsLoggedOn);
+            DecryptFolders = new AsyncDelegateAction<IEnumerable<string>>(async (folders) => await DecryptFoldersActionAsync(folders), (folders) => Task.FromResult(_knownIdentities.IsLoggedOn));
             WipeFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await WipeFilesActionAsync(files));
             RandomRenameFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await RandomRenameFilesActionAsync(files));
-            OpenFilesFromFolder = new AsyncDelegateAction<string>(async (folder) => await OpenFilesFromFolderActionAsync(folder), (folder) => true);
+            OpenFilesFromFolder = new AsyncDelegateAction<string>(async (folder) => await OpenFilesFromFolderActionAsync(folder), (folder) => Task.FromResult(true));
             AddRecentFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await AddRecentFilesActionAsync(files));
-            AsyncUpgradeFiles = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => UpgradeFilesActionAsync(containers), (containers) => _knownIdentities.IsLoggedOn);
+            AsyncUpgradeFiles = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => UpgradeFilesActionAsync(containers), (containers) => Task.FromResult(_knownIdentities.IsLoggedOn));
             ShowInFolder = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await ShowInFolderActionAsync(files));
             TryBrokenFiles = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await TryBrokenFilesActionAsync(files));
         }

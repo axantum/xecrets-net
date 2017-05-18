@@ -11,45 +11,46 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private Func<T, Task> _executeMethodAsync;
 
-        private Func<T, bool> _canExecuteMethod;
+        private Func<T, Task<bool>> _canExecuteMethodAsync;
 
-        public AsyncDelegateAction(Func<T, Task> executeMethodAsync, Func<T, bool> canExecuteMethod)
+        public AsyncDelegateAction(Func<T, Task> executeMethodAsync, Func<T, Task<bool>> canExecuteMethodAsync)
         {
             if (executeMethodAsync == null)
             {
                 throw new ArgumentNullException(nameof(executeMethodAsync));
             }
-            if (canExecuteMethod == null)
+            if (canExecuteMethodAsync == null)
             {
-                throw new ArgumentNullException(nameof(canExecuteMethod));
+                throw new ArgumentNullException(nameof(canExecuteMethodAsync));
             }
 
             _executeMethodAsync = executeMethodAsync;
-            _canExecuteMethod = canExecuteMethod;
+            _canExecuteMethodAsync = canExecuteMethodAsync;
         }
 
         public AsyncDelegateAction(Func<T, Task> executeMethodAsync)
-            : this(executeMethodAsync, (parameter) => true)
+            : this(executeMethodAsync, (parameter) => Task.FromResult(true))
         {
         }
 
         public bool CanExecute(object parameter)
         {
-            return _canExecuteMethod(parameter != null ? (T)parameter : default(T));
+            throw new InvalidOperationException("The synchronous execute should never be invoked on an asynchronous delegate.");
+        }
+
+        public Task<bool> CanExecuteAsync(object parameter)
+        {
+            return _canExecuteMethodAsync(parameter != null ? (T)parameter : default(T));
         }
 
         public async void Execute(object parameter)
         {
-            if (!CanExecute(parameter))
-            {
-                throw new InvalidOperationException("Execute() invoked when it cannot execute.");
-            }
-            await _executeMethodAsync((T)parameter);
+            throw new InvalidOperationException("The synchronous execute should never be invoked on an asynchronous delegate.");
         }
 
         public async Task ExecuteAsync(object parameter)
         {
-            if (!CanExecute(parameter))
+            if (!await CanExecuteAsync(parameter))
             {
                 throw new InvalidOperationException("Execute() invoked when it cannot execute.");
             }
