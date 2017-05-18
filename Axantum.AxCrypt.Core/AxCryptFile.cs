@@ -270,23 +270,26 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                using (Stream activeFileStream = sourceStore.OpenRead())
+                using (FileLock sourceFileLock = FileLock.Acquire(sourceStore))
                 {
-                    WriteToFileWithBackup(destinationStore, (Stream destination) =>
+                    using (Stream activeFileStream = sourceStore.OpenRead())
                     {
-                        Encrypt(sourceStore, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
-                    }, progress);
+                        WriteToFileWithBackup(destinationStore, (Stream destination) =>
+                        {
+                            Encrypt(sourceStore, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
+                        }, progress);
 
+                        if (sourceStore.IsWriteProtected)
+                        {
+                            destinationStore.DataStore.IsWriteProtected = true;
+                        }
+                    }
                     if (sourceStore.IsWriteProtected)
                     {
-                        destinationStore.DataStore.IsWriteProtected = true;
+                        sourceStore.IsWriteProtected = false;
                     }
+                    Wipe(sourceFileLock, progress);
                 }
-                if (sourceStore.IsWriteProtected)
-                {
-                    sourceStore.IsWriteProtected = false;
-                }
-                Wipe(sourceStore, progress);
             }
             finally
             {
@@ -625,7 +628,10 @@ namespace Axantum.AxCrypt.Core
             {
                 if (destinationStore.IsAvailable)
                 {
-                    Wipe(destinationStore, progress);
+                    using (FileLock destinationFileLock = FileLock.Acquire(destinationStore))
+                    {
+                        Wipe(destinationFileLock, progress);
+                    }
                 }
                 throw;
             }
@@ -726,7 +732,10 @@ namespace Axantum.AxCrypt.Core
                         DecryptFile(document, lockedDestination.DataStore.FullName, progress);
                     }
                 }
-                Wipe(sourceStore, progress);
+                using (FileLock sourceFileLock = FileLock.Acquire(sourceStore))
+                {
+                    Wipe(sourceFileLock, progress);
+                }
             }
             finally
             {
@@ -938,7 +947,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     if (lockedTemporary.DataStore.IsAvailable)
                     {
-                        Wipe(lockedTemporary.DataStore, progress);
+                        Wipe(lockedTemporary, progress);
                     }
                     HandleException(ex, lockedTemporary.DataStore);
                 }
@@ -972,7 +981,7 @@ namespace Axantum.AxCrypt.Core
                         }
                         try
                         {
-                            Wipe(backupDataStore, progress);
+                            Wipe(lockedBackup, progress);
                         }
                         catch (Exception ex)
                         {
@@ -1041,7 +1050,7 @@ namespace Axantum.AxCrypt.Core
             return axCryptFileName;
         }
 
-        public virtual void Wipe(IDataStore store, IProgressContext progress)
+        public virtual void Wipe(FileLock store, IProgressContext progress)
         {
             if (progress == null)
             {
@@ -1052,13 +1061,13 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("store");
             }
-            if (!store.IsAvailable)
+            if (!store.DataStore.IsAvailable)
             {
                 return;
             }
             if (Resolve.Log.IsInfoEnabled)
             {
-                Resolve.Log.LogInfo("Wiping '{0}'.".InvariantFormat(store.Name));
+                Resolve.Log.LogInfo("Wiping '{0}'.".InvariantFormat(store.DataStore.Name));
             }
             progress.Cancel = false;
             bool cancelPending = false;
@@ -1069,9 +1078,9 @@ namespace Axantum.AxCrypt.Core
                 string randomName;
                 do
                 {
-                    randomName = GenerateRandomFileName(store.FullName);
+                    randomName = GenerateRandomFileName(store.DataStore.FullName);
                 } while (New<IDataStore>(randomName).IsAvailable);
-                IDataStore moveToFileInfo = New<IDataStore>(store.FullName);
+                IDataStore moveToFileInfo = New<IDataStore>(store.DataStore.FullName);
                 moveToFileInfo.MoveTo(randomName);
 
                 using (Stream stream = moveToFileInfo.OpenUpdate())

@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="progress">The progress.</param>
         /// <returns>The possibly updated ActiveFile</returns>
         /// <exception cref="System.ArgumentNullException">activeFile</exception>
-        public static ActiveFile CheckUpdateDecrypted(this ActiveFile activeFile, IProgressContext progress)
+        public static ActiveFile CheckUpdateDecrypted(this ActiveFile activeFile, FileLock encryptedFileLock, IProgressContext progress)
         {
             if (activeFile == null)
             {
@@ -73,27 +73,24 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         activeFile.EncryptedFileInfo.IsWriteProtected = false;
                     }
-                    using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
+                    New<AxCryptFile>().WriteToFileWithBackup(encryptedFileLock, (Stream destination) =>
                     {
-                        New<AxCryptFile>().WriteToFileWithBackup(encryptedFileLock, (Stream destination) =>
+                        if (!IsLegacy(activeFile) || shouldConvertLegacy)
                         {
-                            if (!IsLegacy(activeFile) || shouldConvertLegacy)
-                            {
-                                activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
-                            }
-                            if (shouldConvertLegacy)
-                            {
-                                activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
-                            }
+                            activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
+                        }
+                        if (shouldConvertLegacy)
+                        {
+                            activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
+                        }
 
-                            EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
-                            EncryptedProperties properties = EncryptedProperties.Create(activeFile.EncryptedFileInfo);
-                            parameters.Add(properties.SharedKeyHolders);
+                        EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
+                        EncryptedProperties properties = EncryptedProperties.Create(activeFile.EncryptedFileInfo);
+                        parameters.Add(properties.SharedKeyHolders);
 
-                            New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
-                        }, progress);
-                        activeFile.EncryptedFileInfo.IsWriteProtected = isWriteProteced;
-                    }
+                        New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
+                    }, progress);
+                    activeFile.EncryptedFileInfo.IsWriteProtected = isWriteProteced;
                 }
             }
             catch (IOException ioex)

@@ -366,7 +366,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void ClearPassphraseMemoryAction()
         {
             IDataStore fileSystemStateInfo = Resolve.FileSystemState.PathInfo;
-            New<AxCryptFile>().Wipe(fileSystemStateInfo, new ProgressContext());
+            using (FileLock fileSystemStateFileLock = FileLock.Acquire(fileSystemStateInfo))
+            {
+                New<AxCryptFile>().Wipe(fileSystemStateFileLock, new ProgressContext());
+            }
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(fileSystemStateInfo));
             TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(_fileSystemState, Resolve.SessionNotify));
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
