@@ -134,8 +134,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("aaa");
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
-            Assert.That(vm.KnownFolders.First().Enabled, Is.False);
-            Assert.That(vm.KnownFolders.Last().Enabled, Is.True);
+            Assert.That(vm.KnownFolders.First().Enabled, Is.False, "This folder should not be enabled, because it's not watched by the signed in identity.");
+            Assert.That(vm.KnownFolders.Last().Enabled, Is.True, "This folder should be enabled, since it is watched by the signed in identity.");
         }
 
         [Test]

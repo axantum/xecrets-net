@@ -55,6 +55,7 @@
     <Compile Include="ApiException.cs" />
     <Compile Include="ApplicationExitException.cs" />
     <Compile Include="AppTypes.cs" />
+    <Compile Include="AsyncLock.cs" />
     <Compile Include="AxCryptOnlineState.cs" />
     <Compile Include="CacheKey.cs" />
     <Compile Include="DontShowAgain.cs" />

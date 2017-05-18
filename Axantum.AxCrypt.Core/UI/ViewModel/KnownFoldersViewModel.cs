@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task<IEnumerable<KnownFolder>> UpdateEnabledStateAsync(IEnumerable<KnownFolder> knownFolders)
         {
             List<KnownFolder> updatedFolders = new List<KnownFolder>();
-            bool hasCloudStorageAwareness = await New<LicensePolicy>().HasAsync(LicenseCapability.CloudStorageAwareness);
+            bool hasCloudStorageAwareness = New<LicensePolicy>().Capabilities.Has(LicenseCapability.CloudStorageAwareness);
             foreach (KnownFolder folder in knownFolders)
             {
                 KnownFolder updated = new KnownFolder(folder, hasCloudStorageAwareness && _knownIdentities.LoggedOnWatchedFolders.Any(f => f.Path == folder.My.FullName));

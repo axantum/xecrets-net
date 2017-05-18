@@ -25,30 +25,46 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
 {
     public class SessionNotify
     {
-        public SessionNotify()
-        {
-        }
+        private List<Func<SessionNotification, Task>> _priorityCommands = new List<Func<SessionNotification, Task>>();
 
         public event EventHandler<SessionNotificationEventArgs> Notification;
 
         protected virtual void OnNotification(SessionNotificationEventArgs e)
         {
-            EventHandler<SessionNotificationEventArgs> handler = Notification;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Notification?.Invoke(this, e);
         }
 
-        public virtual void Notify(SessionNotification notification)
+        public void AddPriorityCommand(Func<SessionNotification, Task> priorityCommand)
         {
+            _priorityCommands.Add(priorityCommand);
+        }
+
+        public void RemovePriorityCommand(Func<SessionNotification, Task> priorityCommand)
+        {
+            _priorityCommands.Remove(priorityCommand);
+        }
+
+        public virtual async void Notify(SessionNotification notification)
+        {
+            foreach (Func<SessionNotification, Task> priorityCommand in _priorityCommands)
+            {
+                await priorityCommand(notification);
+            }
+
             OnNotification(new SessionNotificationEventArgs(notification));
         }
     }

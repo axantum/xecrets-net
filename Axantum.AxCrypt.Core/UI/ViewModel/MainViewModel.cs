@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public FolderOperationMode FolderOperationMode { get { return GetProperty<FolderOperationMode>(nameof(FolderOperationMode)); } set { SetProperty(nameof(FolderOperationMode), value); } }
 
-        public LicensePolicy License { get { return GetProperty<LicensePolicy>(nameof(License)); } set { SetProperty(nameof(License), value); } }
+        public LicenseCapabilities License { get { return GetProperty<LicenseCapabilities>(nameof(License)); } set { SetProperty(nameof(License), value); } }
 
         public IAction RemoveRecentFiles { get; private set; }
 
@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Title = String.Empty;
             DownloadVersion = DownloadVersion.Empty;
             VersionUpdateStatus = DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, _userSettings.LastUpdateCheckUtc);
-            License = New<LicensePolicy>();
+            License = New<LicensePolicy>().Capabilities;
             LegacyConversionMode = Resolve.UserSettings.LegacyConversionMode;
 
             AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders), (folders) => LoggedOn);
@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
             AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc));
-            LicenseUpdate = new DelegateAction<object>((o) => License = New<LicensePolicy>());
+            LicenseUpdate = new DelegateAction<object>((o) => License = New<LicensePolicy>().Capabilities);
 
             DecryptFileEnabled = true;
             OpenEncryptedEnabled = true;
@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFilesComparer(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
-            BindPropertyChangedInternal(nameof(License), async (LicensePolicy policy) => await SetWatchedFoldersAsync());
+            BindPropertyChangedInternal(nameof(License), async (LicenseCapabilities policy) => await SetWatchedFoldersAsync());
             BindPropertyChangedInternal(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
             BindPropertyChangedInternal(nameof(FolderOperationMode), (FolderOperationMode mode) => { SetFolderOperationMode(mode); });
         }
@@ -188,7 +188,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return false;
             }
 
-            if (!await License.HasAsync(LicenseCapability.KeySharing))
+            if (!License.Has(LicenseCapability.KeySharing))
             {
                 return false;
             }
@@ -316,7 +316,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task SetWatchedFoldersAsync()
         {
-            WatchedFoldersEnabled = await New<LicensePolicy>().HasAsync(LicenseCapability.SecureFolders);
+            WatchedFoldersEnabled = License.Has(LicenseCapability.SecureFolders);
             if (!WatchedFoldersEnabled)
             {
                 WatchedFolders = new string[0];

@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt
             await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
             if (!Visible)
             {
-                New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.LicensePolicyChange));
+                New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.LicensePolicyChange, New<KnownIdentities>().DefaultEncryptionIdentity));
             }
             await PremiumWarningClickAsync();
         }
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt
                     await accountService.StartPremiumTrialAsync();
                     await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
                     await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
-                    New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.LicensePolicyChange));
+                    New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.LicensePolicyChange, New<KnownIdentities>().DefaultEncryptionIdentity));
                     break;
 
                 case PremiumStatus.NoPremium:
