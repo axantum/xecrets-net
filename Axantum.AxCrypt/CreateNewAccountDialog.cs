@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void _buttonOk_Click(object sender, EventArgs e)
+        private async void _buttonOk_Click(object sender, EventArgs e)
         {
             if (_isCreating || !AdHocValidationDueToMonoLimitations())
             {
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt
 
             if (!New<KeyPairService>().IsAnyAvailable)
             {
-                New<IPopup>().Show(PopupButtons.Ok, Texts.OfflineAccountTitle, Texts.OfflineAccountBePatient);
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.OfflineAccountTitle, Texts.OfflineAccountBePatient);
             }
             CreateAccountAsync();
         }
@@ -173,9 +173,9 @@ namespace Axantum.AxCrypt
             base.OnFormClosing(e);
         }
 
-        private void _helpButton_Click(object sender, EventArgs e)
+        private async void _helpButton_Click(object sender, EventArgs e)
         {
-            New<IPopup>().Show(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
         }
     }
 }

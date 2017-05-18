@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
@@ -72,24 +73,27 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         activeFile.EncryptedFileInfo.IsWriteProtected = false;
                     }
-                    New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
+                    using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
                     {
-                        if (!IsLegacy(activeFile) || shouldConvertLegacy)
+                        New<AxCryptFile>().WriteToFileWithBackup(encryptedFileLock, (Stream destination) =>
                         {
-                            activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
-                        }
-                        if (shouldConvertLegacy)
-                        {
-                            activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
-                        }
+                            if (!IsLegacy(activeFile) || shouldConvertLegacy)
+                            {
+                                activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
+                            }
+                            if (shouldConvertLegacy)
+                            {
+                                activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
+                            }
 
-                        EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
-                        EncryptedProperties properties = EncryptedProperties.Create(activeFile.EncryptedFileInfo);
-                        parameters.Add(properties.SharedKeyHolders);
+                            EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
+                            EncryptedProperties properties = EncryptedProperties.Create(activeFile.EncryptedFileInfo);
+                            parameters.Add(properties.SharedKeyHolders);
 
-                        New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
-                    }, progress);
-                    activeFile.EncryptedFileInfo.IsWriteProtected = isWriteProteced;
+                            New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
+                        }, progress);
+                        activeFile.EncryptedFileInfo.IsWriteProtected = isWriteProteced;
+                    }
                 }
             }
             catch (IOException ioex)

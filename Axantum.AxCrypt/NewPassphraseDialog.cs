@@ -118,9 +118,9 @@ namespace Axantum.AxCrypt
             return validated;
         }
 
-        private void _buttonHelp_Click(object sender, EventArgs e)
+        private async void _buttonHelp_Click(object sender, EventArgs e)
         {
-            New<IPopup>().Show(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
         }
     }
 }

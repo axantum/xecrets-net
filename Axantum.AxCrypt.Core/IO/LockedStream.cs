@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.IO
         public static LockedStream OpenWrite(IDataStore dataStore)
         {
             LockedStream lockedStream = new LockedStream();
-            lockedStream._fileLock = FileLock.Lock(dataStore);
+            lockedStream._fileLock = FileLock.Acquire(dataStore);
             lockedStream.WrappedStream = dataStore.OpenWrite();
 
             return lockedStream;
@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.IO
         public static LockedStream OpenRead(IDataStore dataStore)
         {
             LockedStream lockedStream = new LockedStream();
-            lockedStream._fileLock = FileLock.Lock(dataStore);
+            lockedStream._fileLock = FileLock.Acquire(dataStore);
             lockedStream.WrappedStream = dataStore.OpenRead();
 
             return lockedStream;

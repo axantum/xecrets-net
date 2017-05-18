@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AccountTip tip = await New<AxCryptApiClient>().GetAccountTipAsync(AppTypes.AxCryptWindows2);
             if (!string.IsNullOrEmpty(tip.Message))
             {
-                tip.ShowPopup();
+                await tip.ShowPopup();
             }
         }
 

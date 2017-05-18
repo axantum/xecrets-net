@@ -165,9 +165,9 @@ namespace Axantum.AxCrypt
             Process.Start(url.ToString());
         }
 
-        private void _helpButton_Click(object sender, EventArgs e)
+        private async void _helpButton_Click(object sender, EventArgs e)
         {
-            New<IPopup>().Show(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
         }
     }
 }

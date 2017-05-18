@@ -158,9 +158,9 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            using (FileLock encryptedFileLock = FileLock.Lock(activeFile.DecryptedFileInfo))
+            using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
             {
-                using (FileLock decryptedFileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
+                using (FileLock decryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
                 {
                     activeFile = CheckActiveFileActions(activeFile, progress);
                     return activeFile;
@@ -326,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Session
         private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, IProgressContext progress)
         {
             if (OS.Current.Platform != Platform.WindowsDesktop &&
-			    OS.Current.Platform != Platform.Linux)
+                OS.Current.Platform != Platform.Linux)
             {
                 return activeFile;
             }

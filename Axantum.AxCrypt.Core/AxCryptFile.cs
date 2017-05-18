@@ -205,7 +205,10 @@ namespace Axantum.AxCrypt.Core
             }
             IDataStore sourceFileInfo = New<IDataStore>(sourceFileName);
             IDataStore destinationFileInfo = New<IDataStore>(destinationFileName);
-            EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, encryptionParameters, progress);
+            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
+            {
+                EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
+            }
         }
 
         public virtual async Task EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> containers, EncryptionParameters encryptionParameters, IProgressContext progress)
@@ -246,11 +249,11 @@ namespace Axantum.AxCrypt.Core
             IDataStore destinationFileInfo = sourceStore.CreateEncryptedName();
             using (FileLock lockedDestination = destinationFileInfo.FullName.CreateUniqueFile())
             {
-                EncryptFileWithBackupAndWipe(sourceStore, lockedDestination.DataStore, encryptionParameters, progress);
+                EncryptFileWithBackupAndWipe(sourceStore, lockedDestination, encryptionParameters, progress);
             }
         }
 
-        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceStore, IDataStore destinationStore, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceStore, FileLock destinationStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (sourceStore == null)
             {
@@ -281,7 +284,7 @@ namespace Axantum.AxCrypt.Core
 
                     if (sourceStore.IsWriteProtected)
                     {
-                        destinationStore.IsWriteProtected = true;
+                        destinationStore.DataStore.IsWriteProtected = true;
                     }
                 }
                 if (sourceStore.IsWriteProtected)
@@ -386,7 +389,7 @@ namespace Axantum.AxCrypt.Core
 
                     Task decryption = Task.Run(() =>
                     {
-                        using (FileLock fileLock = FileLock.Lock(from))
+                        using (FileLock fileLock = FileLock.Acquire(from))
                         {
                             Decrypt(from, pipeline, identity);
                             pipeline.Complete();
@@ -396,16 +399,19 @@ namespace Axantum.AxCrypt.Core
 
                     Task encryption = Task.Run(() =>
                     {
-                        bool isWriteProteced = from.IsWriteProtected;
-                        if (isWriteProteced)
+                        using (FileLock fileLock = FileLock.Acquire(from))
                         {
-                            from.IsWriteProtected = false;
+                            bool isWriteProteced = from.IsWriteProtected;
+                            if (isWriteProteced)
+                            {
+                                from.IsWriteProtected = false;
+                            }
+                            WriteToFileWithBackup(fileLock, (Stream s) =>
+                            {
+                                Encrypt(pipeline, s, encryptedProperties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
+                            }, progress);
+                            from.IsWriteProtected = isWriteProteced;
                         }
-                        WriteToFileWithBackup(from, (Stream s) =>
-                        {
-                            Encrypt(pipeline, s, encryptedProperties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
-                        }, progress);
-                        from.IsWriteProtected = isWriteProteced;
                     });
                     encryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
@@ -916,9 +922,9 @@ namespace Axantum.AxCrypt.Core
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public void WriteToFileWithBackup(IDataStore destinationFileInfo, Action<Stream> writeFileStreamTo, IProgressContext progress)
+        public void WriteToFileWithBackup(FileLock destinationFileLock, Action<Stream> writeFileStreamTo, IProgressContext progress)
         {
-            if (destinationFileInfo == null)
+            if (destinationFileLock == null)
             {
                 throw new ArgumentNullException("destinationFileInfo");
             }
@@ -927,7 +933,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("writeFileStreamTo");
             }
 
-            using (FileLock lockedTemporary = MakeAlternatePath(destinationFileInfo, ".tmp"))
+            using (FileLock lockedTemporary = MakeAlternatePath(destinationFileLock.DataStore, ".tmp"))
             {
                 try
                 {
@@ -945,57 +951,54 @@ namespace Axantum.AxCrypt.Core
                     HandleException(ex, lockedTemporary.DataStore);
                 }
 
-                using (FileLock destinationLock = FileLock.Lock(destinationFileInfo))
+                if (destinationFileLock.DataStore.IsAvailable)
                 {
-                    if (destinationFileInfo.IsAvailable)
+                    using (FileLock lockedBackup = MakeAlternatePath(destinationFileLock.DataStore, ".bak"))
                     {
-                        using (FileLock lockedBackup = MakeAlternatePath(destinationFileInfo, ".bak"))
+                        IDataStore backupDataStore = New<IDataStore>(destinationFileLock.DataStore.FullName);
+                        try
                         {
-                            IDataStore backupDataStore = New<IDataStore>(destinationFileInfo.FullName);
-                            try
-                            {
-                                backupDataStore.MoveTo(lockedBackup.DataStore.FullName);
-                            }
-                            catch (Exception ex)
-                            {
-                                lockedBackup.DataStore.Delete();
-                                lockedTemporary.DataStore.Delete();
-
-                                HandleException(ex, destinationFileInfo);
-                            }
-                            try
-                            {
-                                lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
-                            }
-                            catch (Exception ex)
-                            {
-                                lockedTemporary.DataStore.Delete();
-                                lockedBackup.DataStore.MoveTo(destinationFileInfo.FullName);
-
-                                HandleException(ex, destinationFileInfo);
-                            }
-                            try
-                            {
-                                Wipe(backupDataStore, progress);
-                            }
-                            catch (Exception ex)
-                            {
-                                backupDataStore.Delete();
-
-                                HandleException(ex, backupDataStore);
-                            }
+                            backupDataStore.MoveTo(lockedBackup.DataStore.FullName);
                         }
-                        return;
-                    }
+                        catch (Exception ex)
+                        {
+                            lockedBackup.DataStore.Delete();
+                            lockedTemporary.DataStore.Delete();
 
-                    try
-                    {
-                        lockedTemporary.DataStore.MoveTo(destinationFileInfo.FullName);
+                            HandleException(ex, destinationFileLock.DataStore);
+                        }
+                        try
+                        {
+                            lockedTemporary.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
+                        }
+                        catch (Exception ex)
+                        {
+                            lockedTemporary.DataStore.Delete();
+                            lockedBackup.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
+
+                            HandleException(ex, destinationFileLock.DataStore);
+                        }
+                        try
+                        {
+                            Wipe(backupDataStore, progress);
+                        }
+                        catch (Exception ex)
+                        {
+                            backupDataStore.Delete();
+
+                            HandleException(ex, backupDataStore);
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        HandleException(ex, destinationFileInfo);
-                    }
+                    return;
+                }
+
+                try
+                {
+                    lockedTemporary.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
+                }
+                catch (Exception ex)
+                {
+                    HandleException(ex, destinationFileLock.DataStore);
                 }
             }
         }

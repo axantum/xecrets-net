@@ -19,16 +19,21 @@ namespace Axantum.AxCrypt.Forms.Implementation
             _parent = parent;
         }
 
-        public PopupButtons Show(PopupButtons buttons, string title, string message)
+        public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message)
         {
-            return Show(buttons, title, message, DontShowAgain.None);
+            return ShowAsync(buttons, title, message, DontShowAgain.None);
         }
 
-        public PopupButtons Show(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag)
+        public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag)
+        {
+            return Task.FromResult(ShowSyncInternal(buttons, title, message, dontShowAgainFlag));
+        }
+
+        private PopupButtons ShowSyncInternal(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag)
         {
             if (dontShowAgainFlag != DontShowAgain.None && New<UserSettings>().DontShowAgain.HasFlag(dontShowAgainFlag))
             {
-                    return PopupButtons.None;
+                return PopupButtons.None;
             }
 
             DialogResult result;
@@ -49,7 +54,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
                 dialog.Text = title;
                 dialog.Message.Text = message;
-                
+
                 result = dialog.ShowDialog(_parent);
 
                 if (dontShowAgainFlag != DontShowAgain.None && dialog.dontShowThisAgain.Checked)
@@ -72,11 +77,6 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 default:
                     throw new InvalidOperationException($"Unexpected result from dialog: {result}");
             }
-        }
-
-        public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message)
-        {
-            return Task.FromResult(Show(buttons, title, message));
         }
 
         public Task<string> ShowAsync(string[] buttons, string title, string message)

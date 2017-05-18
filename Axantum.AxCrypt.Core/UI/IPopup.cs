@@ -7,13 +7,15 @@ using Axantum.AxCrypt.Common;
 
 namespace Axantum.AxCrypt.Core.UI
 {
+    /// <summary>
+    /// Display modal alert messages. These need to be async because on some platforms (notably mobile) the implementation
+    /// must be async.
+    /// </summary>
     public interface IPopup
     {
-        PopupButtons Show(PopupButtons buttons, string title, string message);
-
-        PopupButtons Show(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag);
-
         Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message);
+
+        Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag);
 
         Task<string> ShowAsync(string[] buttons, string title, string message);
     }

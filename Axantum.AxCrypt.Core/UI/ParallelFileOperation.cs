@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,56 +60,45 @@ namespace Axantum.AxCrypt.Core.UI
         {
             WorkerGroupProgressContext groupProgress = new WorkerGroupProgressContext(new CancelProgressContext(new ProgressContext()), New<ISingleThread>());
             await New<IProgressBackground>().WorkAsync(nameof(DoFilesAsync),
-            (IProgressContext progress) =>
+            async (IProgressContext progress) =>
             {
                 progress.NotifyLevelStart();
+
                 FileOperationContext result = new FileOperationContext(string.Empty, ErrorStatus.Success);
-                Parallel.ForEach(files,
-                    new ParallelOptions() { MaxDegreeOfParallelism = New<IRuntimeEnvironment>().MaxConcurrency, },
-                    () =>
+
+                await Task<FileOperationContext>.Run(async () =>
+                {
+                    foreach (T file in files)
                     {
-                        return new FileOperationContext(string.Empty, ErrorStatus.Success);
-                    },
-                    (file, loopState, fileOperationContext) =>
-                    {
-                        if (fileOperationContext.ErrorStatus != ErrorStatus.Success)
-                        {
-                            loopState.Stop();
-                        }
-                        if (loopState.IsStopped)
-                        {
-                            return new FileOperationContext(file.ToString(), ErrorStatus.Canceled);
-                        }
                         try
                         {
-                            return work(file, progress).Result;
+                            result = await work(file, progress);
                         }
-                        catch (AggregateException ae) when (ae.InnerException is OperationCanceledException)
+                        catch (Exception ex) when (ex is OperationCanceledException)
                         {
                             return new FileOperationContext(file.ToString(), ErrorStatus.Canceled);
                         }
-                        catch (AggregateException ae) when (ae.InnerException is AxCryptException)
+                        catch (Exception ex) when (ex is AxCryptException)
                         {
-                            AxCryptException ace = ae.InnerException as AxCryptException;
+                            AxCryptException ace = ex as AxCryptException;
                             New<IReport>().Exception(ace);
                             return new FileOperationContext(ace.DisplayContext.Default(file), ace.InnerException?.Message, ace.ErrorStatus);
                         }
                         catch (Exception ex)
                         {
-                            New<IReport>().Exception(ex.InnerException);
-                            return new FileOperationContext(file.ToString(), ex.InnerException.Message, ErrorStatus.Exception);
+                            New<IReport>().Exception(ex);
+                            return new FileOperationContext(file.ToString(), ex.Message, ErrorStatus.Exception);
                         }
-                    },
-                    (fileOperationContext) =>
-                    {
-                        if (fileOperationContext.ErrorStatus != ErrorStatus.Success)
+                        if (result.ErrorStatus != ErrorStatus.Success)
                         {
-                            result = fileOperationContext;
+                            return result;
                         }
                     }
-                );
+                    return result;
+                });
+
                 progress.NotifyLevelFinished();
-                return Task.FromResult(result);
+                return result;
             },
             (FileOperationContext status) =>
             {

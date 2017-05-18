@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return;
             }
 
-            using (FileLock.Lock(_persistanceFileInfo))
+            using (FileLock.Acquire(_persistanceFileInfo))
             {
                 using (TextWriter writer = new StreamWriter(_persistanceFileInfo.OpenWrite()))
                 {
