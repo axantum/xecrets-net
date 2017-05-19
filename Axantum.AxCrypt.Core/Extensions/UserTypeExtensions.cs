@@ -355,7 +355,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static async Task<FolderOperationMode> FolderOperationModePolicy()
         {
-            if (await New<LicensePolicy>().HasAsync(LicenseCapability.IncludeSubfolders))
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.IncludeSubfolders))
             {
                 return Resolve.UserSettings.FolderOperationMode;
             }

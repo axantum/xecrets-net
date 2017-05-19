@@ -614,9 +614,9 @@ namespace Axantum.AxCrypt
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
         }
 
-        private async Task ConfigureIncludeSubfoldersMenuAsync(LicensePolicy license)
+        private async Task ConfigureIncludeSubfoldersMenuAsync(LicenseCapabilities license)
         {
-            if (await license.HasAsync(LicenseCapability.SecureWipe))
+            if (license.Has(LicenseCapability.SecureWipe))
             {
                 _optionsIncludeSubfoldersToolStripMenuItem.Image = null;
                 _optionsIncludeSubfoldersToolStripMenuItem.ToolTipText = String.Empty;
