@@ -613,7 +613,7 @@ namespace Axantum.AxCrypt
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
         }
 
-        private void ConfigureIncludeSubfoldersMenuAsync(LicenseCapabilities license)
+        private async Task ConfigureIncludeSubfoldersMenuAsync(LicenseCapabilities license)
         {
             if (license.Has(LicenseCapability.IncludeSubfolders))
             {
