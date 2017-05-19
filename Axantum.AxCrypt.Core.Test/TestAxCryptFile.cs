@@ -135,7 +135,8 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.MakeAxCryptFileName(nullFileInfo); });
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Wipe(nullFileInfo, new ProgressContext()); }));
+            FileLock nullFileLock = null;
+            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Wipe(nullFileLock, new ProgressContext()); }));
         }
 
         [Test]
@@ -376,7 +377,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
             Assert.That(fileInfo.IsAvailable, "Now it should exist.");
-            New<AxCryptFile>().Wipe(fileInfo, new ProgressContext());
+            using (FileLock fileLock = FileLock.Acquire(fileInfo))
+            {
+                New<AxCryptFile>().Wipe(fileLock, new ProgressContext());
+            }
             Assert.That(!fileInfo.IsAvailable, "And now it should not exist after wiping.");
         }
 
@@ -591,7 +595,10 @@ namespace Axantum.AxCrypt.Core.Test
             string filePath = Path.Combine(Path.Combine(_rootPath, "Folder"), "DoesNot.Exist");
             IDataStore fileInfo = New<IDataStore>(filePath);
 
-            Assert.DoesNotThrow((TestDelegate)(() => { New<AxCryptFile>().Wipe(fileInfo, progress); }));
+            using (FileLock fileLock = FileLock.Acquire(fileInfo))
+            {
+                Assert.DoesNotThrow((TestDelegate)(() => { New<AxCryptFile>().Wipe(fileLock, progress); }));
+            }
             Assert.That(!progressed, "There should be no progress-notification since nothing should happen.");
         }
 
@@ -605,7 +612,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 ((IProgressContext)sender).Cancel = true;
             };
-            Assert.Throws<OperationCanceledException>((TestDelegate)(() => { New<AxCryptFile>().Wipe(fileInfo, progress); }));
+            using (FileLock fileLock = FileLock.Acquire(fileInfo))
+            {
+                Assert.Throws<OperationCanceledException>((TestDelegate)(() => { New<AxCryptFile>().Wipe(fileLock, progress); }));
+            }
             Assert.That(!fileInfo.IsAvailable, "The file should be completely wiped, even if canceled at start.");
         }
 

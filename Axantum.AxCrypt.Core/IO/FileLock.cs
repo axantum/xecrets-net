@@ -67,8 +67,6 @@ namespace Axantum.AxCrypt.Core.IO
         {
             private static Dictionary<string, FileLockManager> _lockedFiles = new Dictionary<string, FileLockManager>();
 
-            private int? _currentSchedulerId;
-
             public readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
             private readonly Task<FileLock> _fileLock;
@@ -97,13 +95,12 @@ namespace Axantum.AxCrypt.Core.IO
 
             private FileLock Lock()
             {
-                if (_semaphore.CurrentCount == 0 && _currentSchedulerId == TaskScheduler.Current?.Id)
+#if DEBUG
+                if (!_semaphore.Wait(TimeSpan.FromSeconds(5)))
                 {
                     throw new InternalErrorException($"Potential deadlock detected for {_originalLockedFileName} .");
                 }
-
-                _semaphore.Wait();
-                _currentSchedulerId = TaskScheduler.Current?.Id;
+#endif
 
                 return _fileLock.Result;
             }

@@ -400,19 +400,22 @@ namespace Axantum.AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
+                using (FileLock encryptedFileLock = FileLock.Acquire(_eventArgs.AxCryptFile))
                 {
-                    New<AxCryptFile>().DecryptFile(document, _eventArgs.SaveFileFullName, _progress);
+                    using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
+                    {
+                        New<AxCryptFile>().DecryptFile(document, _eventArgs.SaveFileFullName, _progress);
+                        if (_eventArgs.AxCryptFile.IsWriteProtected)
+                        {
+                            New<IDataStore>(_eventArgs.SaveFileFullName).IsWriteProtected = true;
+                        }
+                    }
                     if (_eventArgs.AxCryptFile.IsWriteProtected)
                     {
-                        New<IDataStore>(_eventArgs.SaveFileFullName).IsWriteProtected = true;
+                        _eventArgs.AxCryptFile.IsWriteProtected = false;
                     }
+                    New<AxCryptFile>().Wipe(encryptedFileLock, _progress);
                 }
-                if (_eventArgs.AxCryptFile.IsWriteProtected)
-                {
-                    _eventArgs.AxCryptFile.IsWriteProtected = false;
-                }
-                New<AxCryptFile>().Wipe(_eventArgs.AxCryptFile, _progress);
             }
             catch (AxCryptException ace)
             {
@@ -506,7 +509,10 @@ namespace Axantum.AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                New<AxCryptFile>().Wipe(New<IDataStore>(_eventArgs.SaveFileFullName), _progress);
+                using (FileLock wipeFileLock = FileLock.Acquire(New<IDataStore>(_eventArgs.SaveFileFullName)))
+                {
+                    New<AxCryptFile>().Wipe(wipeFileLock, _progress);
+                }
             }
             finally
             {

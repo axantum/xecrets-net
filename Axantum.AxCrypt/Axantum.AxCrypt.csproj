@@ -39,6 +39,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>Axantum.AxCrypt.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>CS1998</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -56,6 +57,7 @@
     <CodeAnalysisRuleSet>Axantum.AxCrypt.ruleset</CodeAnalysisRuleSet>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DebugSymbols>true</DebugSymbols>
+    <NoWarn>CS1998</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

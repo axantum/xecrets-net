@@ -9,5 +9,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     public interface IAsyncAction : IAction
     {
         Task ExecuteAsync(object parameter);
+
+        Task<bool> CanExecuteAsync(object parameter);
     }
 }

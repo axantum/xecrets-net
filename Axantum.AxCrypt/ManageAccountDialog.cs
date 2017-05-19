@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt
             _emailLabel.Text = emails.First().EmailAddress;
         }
 
-        private void _changePassphraseButton_Click(object sender, EventArgs e)
+        private async void _changePassphraseButton_Click(object sender, EventArgs e)
         {
             string passphrase;
             using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Texts.ChangePassphraseDialogTitle, String.Empty, String.Empty))
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt
                 _userSettings.DisplayEncryptPassphrase = dialog.ShowPassphraseCheckBox.Checked;
                 passphrase = dialog.PassphraseTextBox.Text;
             }
-            _viewModel.ChangePassphraseAsync.Execute(passphrase);
+            await _viewModel.ChangePassphraseAsync.ExecuteAsync(passphrase);
         }
 
         private void ManageAccountDialog_Load(object sender, EventArgs e)

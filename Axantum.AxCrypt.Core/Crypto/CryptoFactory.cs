@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             if (id == Guid.Empty)
             {
-                return UserPolicy.DefaultCryptoFactory(_factories.Values);
+                return New<ICryptoPolicy>().DefaultCryptoFactory(_factories.Values);
             }
             CryptoFactoryCreator factory;
             lock (_factories)
@@ -104,14 +104,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             lock (_factories)
             {
                 return policy.DefaultCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
-            }
-        }
-
-        private static ICryptoPolicy UserPolicy
-        {
-            get
-            {
-                return New<ICryptoPolicy>();
             }
         }
 

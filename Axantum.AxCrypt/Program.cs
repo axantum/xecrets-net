@@ -168,10 +168,10 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new CachingAccountService(new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new ApiAccountService(new AxCryptApiClient(identity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout)))));
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<AxCryptApiClient>(() => new AxCryptApiClient(Resolve.KnownIdentities.DefaultEncryptionIdentity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
-            TypeMap.Register.New<LicensePolicy>(() => new LicensePolicy(Resolve.KnownIdentities.DefaultEncryptionIdentity));
-            TypeMap.Register.New<ICryptoPolicy>(() => New<LicensePolicy>().CryptoPolicyAsync().Result);
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.New<ICryptoPolicy>(() => New<LicensePolicy>().Capabilities.CryptoPolicy);
 
+            TypeMap.Register.Singleton<LicensePolicy>(() => new LicensePolicy());
             TypeMap.Register.Singleton<FontLoader>(() => new FontLoader());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.Singleton<KeyPairService>(() => new KeyPairService(0, 0, New<UserSettings>().AsymmetricKeyBits));

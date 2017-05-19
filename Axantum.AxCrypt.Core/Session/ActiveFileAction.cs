@@ -80,10 +80,16 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
                     }
-                    activeFile = CheckIfTimeToUpdate(activeFile, progress);
+                    using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
+                    {
+                        activeFile = CheckIfTimeToUpdate(activeFile, encryptedFileLock, progress);
+                    }
                     if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                     {
-                        activeFile = TryDelete(activeFile, progress);
+                        using (FileLock decryptedFileLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
+                        {
+                            activeFile = TryDelete(activeFile, decryptedFileLock, progress);
+                        }
                     }
                     return activeFile;
                 });
@@ -158,11 +164,11 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
+            using (FileLock decryptedFileLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
             {
-                using (FileLock decryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
+                using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
                 {
-                    activeFile = CheckActiveFileActions(activeFile, progress);
+                    activeFile = CheckActiveFileActions(activeFile, encryptedFileLock, decryptedFileLock, progress);
                     return activeFile;
                 }
             }
@@ -228,13 +234,13 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private static ActiveFile CheckActiveFileActions(ActiveFile activeFile, IProgressContext progress)
+        private static ActiveFile CheckActiveFileActions(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(activeFile);
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile);
-            activeFile = CheckIfTimeToUpdate(activeFile, progress);
-            activeFile = CheckIfTimeToDelete(activeFile, progress);
+            activeFile = CheckIfTimeToUpdate(activeFile, encryptedFileLock, progress);
+            activeFile = CheckIfTimeToDelete(activeFile, decryptedFileLock, progress);
             return activeFile;
         }
 
@@ -309,7 +315,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, IProgressContext progress)
+        private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, FileLock encryptedFileLock, IProgressContext progress)
         {
             if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted) || activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
             {
@@ -320,10 +326,10 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            return activeFile.CheckUpdateDecrypted(progress);
+            return activeFile.CheckUpdateDecrypted(encryptedFileLock, progress);
         }
 
-        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, IProgressContext progress)
+        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, FileLock decryptedFileLock, IProgressContext progress)
         {
             if (OS.Current.Platform != Platform.WindowsDesktop &&
                 OS.Current.Platform != Platform.Linux)
@@ -347,11 +353,11 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            activeFile = TryDelete(activeFile, progress);
+            activeFile = TryDelete(activeFile, decryptedFileLock, progress);
             return activeFile;
         }
 
-        private static ActiveFile TryDelete(ActiveFile activeFile, IProgressContext progress)
+        private static ActiveFile TryDelete(ActiveFile activeFile, FileLock decryptedFileLock, IProgressContext progress)
         {
             if (Resolve.ProcessState.HasActiveProcess(activeFile))
             {
@@ -373,7 +379,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
-                WipeActiveFile(activeFile, progress);
+                WipeActiveFile(activeFile, decryptedFileLock, progress);
             }
             catch (IOException ioex)
             {
@@ -395,7 +401,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static void WipeActiveFile(ActiveFile activeFile, IProgressContext progress)
+        private static void WipeActiveFile(ActiveFile activeFile, FileLock decryptedFileLock, IProgressContext progress)
         {
             if (!activeFile.DecryptedFileInfo.IsAvailable)
             {
@@ -415,7 +421,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 activeFile.DecryptedFileInfo.IsWriteProtected = false;
             }
-            New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
+            New<AxCryptFile>().Wipe(decryptedFileLock, progress);
 
             if (Resolve.Log.IsInfoEnabled)
             {

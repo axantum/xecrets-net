@@ -227,20 +227,20 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOn()
+        public async Task TestLogOnLogOffWhenLoggedOn()
         {
             LogOnIdentity id = new LogOnIdentity("logonwhenloggedon");
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
             Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+            await mvm.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOffAndIdentityKnown()
+        public async Task TestLogOnLogOffWhenLoggedOffAndIdentityKnown()
         {
             Passphrase passphrase = new Passphrase("a");
 
@@ -254,14 +254,14 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+            await mvm.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1), "There should be one known key now.");
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True, "It should be logged on now.");
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnown()
+        public async Task TestLogOnLogOffWhenLoggedOffAndNoIdentityKnown()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOnAsync = (e) =>
@@ -272,7 +272,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             Resolve.FileSystemState.KnownPassphrases.Add(Passphrase.Create("b"));
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+            await mvm.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
@@ -280,7 +280,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnownAndNoPassphraseGiven()
+        public async Task TestLogOnLogOffWhenLoggedOffAndNoIdentityKnownAndNoPassphraseGiven()
         {
             FileOperationViewModel mvm = New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOnAsync = (e) =>
@@ -289,7 +289,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+            await mvm.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
 
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
@@ -583,7 +583,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             // Intermittent only invoked once below. Needs investigation.
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
-            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
+            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<FileLock>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
         }
@@ -629,7 +629,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.DecryptFile(It.Is<IAxCryptDocument>((a) => a.FileName == @"File1.txt"), It.Is<string>((s) => s == @"C:\Folder\Copy of File1.txt".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>((i) => i.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<FileLock>((i) => i.DataStore.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
         }
 
@@ -666,7 +666,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 0), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Never);
-            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Never);
+            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<FileLock>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
         }
@@ -692,7 +692,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 0), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Never);
-            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Never);
+            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<FileLock>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
         }
@@ -782,7 +782,7 @@ namespace Axantum.AxCrypt.Core.Test
             await mvm.WipeFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
+            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<FileLock>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
         }
 
         [Test]
@@ -809,9 +809,9 @@ namespace Axantum.AxCrypt.Core.Test
             await mvm.WipeFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx", @"C:\Folder\File3-txt.axx" });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 3), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Never);
-            axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == @"C:\Folder\File3-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<FileLock>(r => r.DataStore.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<FileLock>(r => r.DataStore.FullName == @"C:\Folder\File2-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Never);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<FileLock>(r => r.DataStore.FullName == @"C:\Folder\File3-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
         }
 
         // Intermittent. See intermittent issue with TestDecryptFilesUniqueWithWipeOfOriginal.
@@ -849,8 +849,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(callTimes, Is.EqualTo(2), "Only the first two calls should be made.");
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 3), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IDataStore>(), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.Is<IDataStore>(r => r.FullName == selectedFile.NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<FileLock>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<FileLock>(r => r.DataStore.FullName == selectedFile.NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable *is* a word.")]

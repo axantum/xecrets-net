@@ -275,23 +275,26 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                using (Stream activeFileStream = sourceStore.OpenRead())
+                using (FileLock sourceFileLock = FileLock.Acquire(sourceStore))
                 {
-                    WriteToFileWithBackup(destinationStore, (Stream destination) =>
+                    using (Stream activeFileStream = sourceStore.OpenRead())
                     {
-                        Encrypt(sourceStore, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
-                    }, progress);
+                        WriteToFileWithBackup(destinationStore, (Stream destination) =>
+                        {
+                            Encrypt(sourceStore, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
+                        }, progress);
 
+                        if (sourceStore.IsWriteProtected)
+                        {
+                            destinationStore.DataStore.IsWriteProtected = true;
+                        }
+                    }
                     if (sourceStore.IsWriteProtected)
                     {
-                        destinationStore.DataStore.IsWriteProtected = true;
+                        sourceStore.IsWriteProtected = false;
                     }
+                    Wipe(sourceFileLock, progress);
                 }
-                if (sourceStore.IsWriteProtected)
-                {
-                    sourceStore.IsWriteProtected = false;
-                }
-                Wipe(sourceStore, progress);
             }
             finally
             {
@@ -387,19 +390,16 @@ namespace Axantum.AxCrypt.Core
                         return;
                     }
 
-                    Task decryption = Task.Run(() =>
+                    using (FileLock fileLock = FileLock.Acquire(from))
                     {
-                        using (FileLock fileLock = FileLock.Acquire(from))
+                        Task decryption = Task.Run(() =>
                         {
                             Decrypt(from, pipeline, identity);
                             pipeline.Complete();
-                        }
-                    });
-                    decryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+                        });
+                        decryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
-                    Task encryption = Task.Run(() =>
-                    {
-                        using (FileLock fileLock = FileLock.Acquire(from))
+                        Task encryption = Task.Run(() =>
                         {
                             bool isWriteProteced = from.IsWriteProtected;
                             if (isWriteProteced)
@@ -411,31 +411,31 @@ namespace Axantum.AxCrypt.Core
                                 Encrypt(pipeline, s, encryptedProperties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
                             }, progress);
                             from.IsWriteProtected = isWriteProteced;
-                        }
-                    });
-                    encryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+                        });
+                        encryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
-                    try
-                    {
-                        Task.WaitAll(decryption, encryption);
-                    }
-                    catch (AggregateException ae)
-                    {
-                        New<IReport>().Exception(ae);
-                        IEnumerable<Exception> exceptions = ae.InnerExceptions.Where(ex1 => ex1.GetType() != typeof(OperationCanceledException));
-                        if (!exceptions.Any())
+                        try
                         {
-                            return;
+                            Task.WaitAll(decryption, encryption);
                         }
-
-                        IEnumerable<Exception> axCryptExceptions = exceptions.Where(ex2 => ex2 is AxCryptException);
-                        if (axCryptExceptions.Any())
+                        catch (AggregateException ae)
                         {
-                            ExceptionDispatchInfo.Capture(axCryptExceptions.First()).Throw();
-                        }
+                            New<IReport>().Exception(ae);
+                            IEnumerable<Exception> exceptions = ae.InnerExceptions.Where(ex1 => ex1.GetType() != typeof(OperationCanceledException));
+                            if (!exceptions.Any())
+                            {
+                                return;
+                            }
 
-                        Exception ex = exceptions.First();
-                        throw new InternalErrorException(ex.Message, Abstractions.ErrorStatus.Exception, ex);
+                            IEnumerable<Exception> axCryptExceptions = exceptions.Where(ex2 => ex2 is AxCryptException);
+                            if (axCryptExceptions.Any())
+                            {
+                                ExceptionDispatchInfo.Capture(axCryptExceptions.First()).Throw();
+                            }
+
+                            Exception ex = exceptions.First();
+                            throw new InternalErrorException(ex.Message, Abstractions.ErrorStatus.Exception, ex);
+                        }
                     }
                 }
             }
@@ -633,7 +633,10 @@ namespace Axantum.AxCrypt.Core
             {
                 if (destinationStore.IsAvailable)
                 {
-                    Wipe(destinationStore, progress);
+                    using (FileLock destinationFileLock = FileLock.Acquire(destinationStore))
+                    {
+                        Wipe(destinationFileLock, progress);
+                    }
                 }
                 throw;
             }
@@ -734,7 +737,10 @@ namespace Axantum.AxCrypt.Core
                         DecryptFile(document, lockedDestination.DataStore.FullName, progress);
                     }
                 }
-                Wipe(sourceStore, progress);
+                using (FileLock sourceFileLock = FileLock.Acquire(sourceStore))
+                {
+                    Wipe(sourceFileLock, progress);
+                }
             }
             finally
             {
@@ -946,7 +952,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     if (lockedTemporary.DataStore.IsAvailable)
                     {
-                        Wipe(lockedTemporary.DataStore, progress);
+                        Wipe(lockedTemporary, progress);
                     }
                     HandleException(ex, lockedTemporary.DataStore);
                 }
@@ -980,7 +986,7 @@ namespace Axantum.AxCrypt.Core
                         }
                         try
                         {
-                            Wipe(backupDataStore, progress);
+                            Wipe(lockedBackup, progress);
                         }
                         catch (Exception ex)
                         {
@@ -1049,7 +1055,7 @@ namespace Axantum.AxCrypt.Core
             return axCryptFileName;
         }
 
-        public virtual void Wipe(IDataStore store, IProgressContext progress)
+        public virtual void Wipe(FileLock store, IProgressContext progress)
         {
             if (progress == null)
             {
@@ -1060,13 +1066,13 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("store");
             }
-            if (!store.IsAvailable)
+            if (!store.DataStore.IsAvailable)
             {
                 return;
             }
             if (Resolve.Log.IsInfoEnabled)
             {
-                Resolve.Log.LogInfo("Wiping '{0}'.".InvariantFormat(store.Name));
+                Resolve.Log.LogInfo("Wiping '{0}'.".InvariantFormat(store.DataStore.Name));
             }
             progress.Cancel = false;
             bool cancelPending = false;
@@ -1077,9 +1083,9 @@ namespace Axantum.AxCrypt.Core
                 string randomName;
                 do
                 {
-                    randomName = GenerateRandomFileName(store.FullName);
+                    randomName = GenerateRandomFileName(store.DataStore.FullName);
                 } while (New<IDataStore>(randomName).IsAvailable);
-                IDataStore moveToFileInfo = New<IDataStore>(store.FullName);
+                IDataStore moveToFileInfo = New<IDataStore>(store.DataStore.FullName);
                 moveToFileInfo.MoveTo(randomName);
 
                 using (Stream stream = moveToFileInfo.OpenUpdate())
