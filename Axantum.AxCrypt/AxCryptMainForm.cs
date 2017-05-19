@@ -537,7 +537,6 @@ namespace Axantum.AxCrypt
             await ConfigureSecretsMenusAsync(license);
             await ConfigureAnonymousRenameAsync(license);
             await ConfigureIncludeSubfoldersMenuAsync(license);
-
         }
 
         private async Task ConfigureKeyShareMenusAsync(LicenseCapabilities license)
@@ -616,7 +615,7 @@ namespace Axantum.AxCrypt
 
         private async Task ConfigureIncludeSubfoldersMenuAsync(LicenseCapabilities license)
         {
-            if (license.Has(LicenseCapability.SecureWipe))
+            if (license.Has(LicenseCapability.IncludeSubfolders))
             {
                 _optionsIncludeSubfoldersToolStripMenuItem.Image = null;
                 _optionsIncludeSubfoldersToolStripMenuItem.ToolTipText = String.Empty;
@@ -627,7 +626,6 @@ namespace Axantum.AxCrypt
                 _optionsIncludeSubfoldersToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
             }
         }
-
 
         private bool _balloonTipShown = false;
 
@@ -731,7 +729,7 @@ namespace Axantum.AxCrypt
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
-            _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, async (ss, ee) => { await ToggleIncludeSubfoldersOption(); }, sender, e); };
+            _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, async (ss, ee) => { await ToggleIncludeSubfoldersOption(); }, sender, e); };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };

@@ -51,10 +51,9 @@ namespace Axantum.AxCrypt.Core.Test
 
         public Action<IEnumerable<IDataContainer>, EncryptionParameters, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
 
-        public override Task EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public override void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             EncryptFilesUniqueWithBackupAndWipeMock(folderInfos, encryptionParameters, progress);
-            return Task.FromResult<object>(null);
         }
 
         public Action<IDataStore, EncryptionParameters, IProgressContext> EncryptFileUniqueWithBackupAndWipeMock { get; set; }
