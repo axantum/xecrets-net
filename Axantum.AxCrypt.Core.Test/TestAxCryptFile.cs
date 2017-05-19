@@ -548,7 +548,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async Task TestEncryptFilesUniqueWithBackupAndWipeWithNoCollision()
+        public void TestEncryptFilesUniqueWithBackupAndWipeWithNoCollision()
         {
             IDataStore sourceFileInfo = New<IDataStore>(_davidCopperfieldTxtPath);
             sourceFileInfo.Container.CreateFolder();
@@ -557,14 +557,14 @@ namespace Axantum.AxCrypt.Core.Test
 
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, new Passphrase("allan"));
 
-            await New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { sourceFolderInfo }, encryptionParameters, new ProgressContext());
+            New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { sourceFolderInfo }, encryptionParameters, new ProgressContext());
 
             Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
-        public async Task TestEncryptFilesUniqueWithBackupAndWipeWithCollision()
+        public void TestEncryptFilesUniqueWithBackupAndWipeWithCollision()
         {
             IDataStore sourceFileInfo = New<IDataStore>(_davidCopperfieldTxtPath);
             sourceFileInfo.Container.CreateFolder();
@@ -575,7 +575,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes128CryptoFactory().CryptoId, new Passphrase("allan"));
 
-            await New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { sourceFolderInfo }, encryptionParameters, new ProgressContext());
+            New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { sourceFolderInfo }, encryptionParameters, new ProgressContext());
 
             Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
 

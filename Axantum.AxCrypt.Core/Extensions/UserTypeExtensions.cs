@@ -73,8 +73,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             string encryptedPrivateKey = EncryptPrivateKey(keys, passphrase);
 
             KeyPair keyPair = new KeyPair(keys.KeyPair.PublicKey.ToString(), encryptedPrivateKey);
-            AccountKey accountKey = new AccountKey(keys.UserEmail.Address, keys.KeyPair.PublicKey.Thumbprint.ToString(),
-                keyPair, keys.Timestamp);
+            AccountKey accountKey = new AccountKey(keys.UserEmail.Address, keys.KeyPair.PublicKey.Thumbprint.ToString(), keyPair, keys.Timestamp);
 
             return accountKey;
         }
@@ -99,13 +98,11 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 using (Stream stream = new MemoryStream(privateKeyPemBytes))
                 {
-                    EncryptionParameters encryptionParameters =
-                        new EncryptionParameters(Resolve.CryptoFactory.Preferred.CryptoId, passphrase);
+                    EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.CryptoId, passphrase);
                     EncryptedProperties properties = new EncryptedProperties("private-key.pem");
                     using (MemoryStream encryptedStream = new MemoryStream())
                     {
-                        AxCryptFile.Encrypt(stream, encryptedStream, properties, encryptionParameters,
-                            AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                        AxCryptFile.Encrypt(stream, encryptedStream, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
                         writer.Write(Convert.ToBase64String(encryptedStream.ToArray()));
                     }
                 }
@@ -132,10 +129,8 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return null;
             }
 
-            IAsymmetricKeyPair keyPair =
-                Resolve.AsymmetricFactory.CreateKeyPair(accountKey.KeyPair.PublicPem, privateKeyPem);
-            UserKeyPair userAsymmetricKeys =
-                new UserKeyPair(EmailAddress.Parse(accountKey.User), accountKey.Timestamp, keyPair);
+            IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(accountKey.KeyPair.PublicPem, privateKeyPem);
+            UserKeyPair userAsymmetricKeys = new UserKeyPair(EmailAddress.Parse(accountKey.User), accountKey.Timestamp, keyPair);
 
             return userAsymmetricKeys;
         }
@@ -170,9 +165,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 throw new ArgumentNullException(nameof(userPublicKey));
             }
 
-            AccountKey accountKey = new AccountKey(userPublicKey.Email.Address,
-                userPublicKey.PublicKey.Thumbprint.ToString(),
-                new KeyPair(userPublicKey.PublicKey.ToString(), String.Empty), New<INow>().Utc);
+            AccountKey accountKey = new AccountKey(userPublicKey.Email.Address, userPublicKey.PublicKey.Thumbprint.ToString(), new KeyPair(userPublicKey.PublicKey.ToString(), String.Empty), New<INow>().Utc);
             return accountKey;
         }
 
@@ -199,14 +192,10 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 using (MemoryStream decryptedPrivateKeyStream = new MemoryStream())
                 {
-                    DecryptionParameter decryptionParameter =
-                        new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.CryptoId);
+                    DecryptionParameter decryptionParameter = new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.CryptoId);
                     try
                     {
-                        if (!New<AxCryptFile>()
-                            .Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream,
-                                new DecryptionParameter[] {decryptionParameter})
-                            .IsValid)
+                        if (!New<AxCryptFile>().Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream, new DecryptionParameter[] { decryptionParameter }).IsValid)
                         {
                             return null;
                         }
@@ -217,8 +206,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                         return null;
                     }
 
-                    return Encoding.UTF8.GetString(decryptedPrivateKeyStream.ToArray(), 0,
-                        (int) decryptedPrivateKeyStream.Length);
+                    return Encoding.UTF8.GetString(decryptedPrivateKeyStream.ToArray(), 0, (int)decryptedPrivateKeyStream.Length);
                 }
             }
         }
@@ -247,8 +235,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys);
         }
 
-        public static UserAccount MergeWith(this UserAccount highPriorityAccount,
-            IEnumerable<AccountKey> lowPriorityAccountKeys)
+        public static UserAccount MergeWith(this UserAccount highPriorityAccount, IEnumerable<AccountKey> lowPriorityAccountKeys)
         {
             if (highPriorityAccount == null)
             {
@@ -260,29 +247,23 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             IEnumerable<AccountKey> allKeys = new List<AccountKey>(highPriorityAccount.AccountKeys);
-            IEnumerable<AccountKey> newKeys =
-                lowPriorityAccountKeys.Where(lak => !allKeys.Any(ak => ak.KeyPair.PublicPem == lak.KeyPair.PublicPem));
+            IEnumerable<AccountKey> newKeys = lowPriorityAccountKeys.Where(lak => !allKeys.Any(ak => ak.KeyPair.PublicPem == lak.KeyPair.PublicPem));
             IEnumerable<AccountKey> unionOfKeys = allKeys.Union(newKeys);
-            UserAccount merged = new UserAccount(highPriorityAccount.UserName, highPriorityAccount.SubscriptionLevel,
-                highPriorityAccount.LevelExpiration, highPriorityAccount.AccountStatus, highPriorityAccount.Offers,
-                unionOfKeys)
+            UserAccount merged = new UserAccount(highPriorityAccount.UserName, highPriorityAccount.SubscriptionLevel, highPriorityAccount.LevelExpiration, highPriorityAccount.AccountStatus, highPriorityAccount.Offers, unionOfKeys)
             {
                 Tag = highPriorityAccount.Tag,
             };
             return merged;
         }
 
-        public static UserAccount MergeWith(this IEnumerable<AccountKey> highPriorityAccountKeys,
-            UserAccount lowPriorityAccount)
+        public static UserAccount MergeWith(this IEnumerable<AccountKey> highPriorityAccountKeys, UserAccount lowPriorityAccount)
         {
             if (lowPriorityAccount == null)
             {
                 throw new ArgumentNullException(nameof(lowPriorityAccount));
             }
 
-            UserAccount highPriorityAccount = new UserAccount(lowPriorityAccount.UserName,
-                lowPriorityAccount.SubscriptionLevel, lowPriorityAccount.LevelExpiration,
-                lowPriorityAccount.AccountStatus, lowPriorityAccount.Offers, highPriorityAccountKeys)
+            UserAccount highPriorityAccount = new UserAccount(lowPriorityAccount.UserName, lowPriorityAccount.SubscriptionLevel, lowPriorityAccount.LevelExpiration, lowPriorityAccount.AccountStatus, lowPriorityAccount.Offers, highPriorityAccountKeys)
             {
                 Tag = lowPriorityAccount.Tag,
             };
@@ -291,16 +272,14 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static IEnumerable<WatchedFolder> ToWatchedFolders(this IEnumerable<string> folderPaths)
         {
-            IEnumerable<WatchedFolder> watched =
-                Resolve.FileSystemState.WatchedFolders.Where((wf) => folderPaths.Contains(wf.Path));
+            IEnumerable<WatchedFolder> watched = Resolve.FileSystemState.WatchedFolders.Where((wf) => folderPaths.Contains(wf.Path));
 
             return watched;
         }
 
         public static IEnumerable<EmailAddress> SharedWith(this IEnumerable<WatchedFolder> watchedFolders)
         {
-            IEnumerable<EmailAddress> sharedWithEmailAddresses =
-                watchedFolders.SelectMany(wf => wf.KeyShares).Distinct();
+            IEnumerable<EmailAddress> sharedWithEmailAddresses = watchedFolders.SelectMany(wf => wf.KeyShares).Distinct();
 
             return sharedWithEmailAddresses;
         }
@@ -353,11 +332,11 @@ namespace Axantum.AxCrypt.Core.Extensions
             New<ILauncher>().Launch(tip.Url.ToString());
         }
 
-        public static async Task<FolderOperationMode> FolderOperationModePolicy()
+        public static FolderOperationMode Policy(this FolderOperationMode operationMode)
         {
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.IncludeSubfolders))
             {
-                return Resolve.UserSettings.FolderOperationMode;
+                return operationMode;
             }
             else
             {

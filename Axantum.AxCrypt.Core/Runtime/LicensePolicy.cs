@@ -66,6 +66,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             LicenseCapability.StandardEncryption,
             LicenseCapability.AccountKeyBackup,
             LicenseCapability.CommunitySupport,
+            LicenseCapability.IncludeSubfolders,
             LicenseCapability.Premium,
         });
 
