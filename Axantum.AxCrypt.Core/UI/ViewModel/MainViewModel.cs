@@ -440,7 +440,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task SetFolderOperationMode(FolderOperationMode folderOperationMode)
         {
             _userSettings.FolderOperationMode = folderOperationMode;
-            if (folderOperationMode != FolderOperationMode.IncludeSubfolders && ! License.Has(LicenseCapability.IncludeSubfolders))
+            if (folderOperationMode != FolderOperationMode.IncludeSubfolders)
             {
                 return;
             }
