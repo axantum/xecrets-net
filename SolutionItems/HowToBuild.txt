@@ -2,18 +2,15 @@
 =======================
 
 The project 'SolutionItems' is a dummy project to bridge the missing feature of a generic MSBuild project
-and also to compensate for Visual Studio Express not supporting the 'Solution Items' feature of the
-non-Express editions of Visual Studio.
+and also to compensate for older versions of Visual Studio Express not supporting the 'Solution Items' feature
+of the non-Express editions of Visual Studio.
 
 How To Build
 ============
 
-Windows: Visual Studio 2010 (Any version including Express) or MonoDevelop. Load the solution and hit 'Build'.
+Windows: Visual Studio 2015 (Any version including Community) or Xamarin Studio. Load the solution and hit 'Build'.
 
-Linux: (Tested on Ubuntu) MonoDevelop. If earlier than 2.11, also need 'mono-gmcs' to compile against 3.5 profile.
-
-MonoDevelop: Under "MonoDevelop | Tools | Options | Preferences | Build | General" enable "Compile projects using MSBuild / XBuild".
-            (Avoid MonoDevlop issue: "Error while trying to invoke 'al2' to generate satellite assembly for 'XX' culture, File Not Found")
+Linux: Not recently tested.
 
 About Configuration and Platforms
 =================================
@@ -22,33 +19,11 @@ One solution file is used for to build all configurations and platforms.
 
 Supported configurations are:
 
-AppStore         - Mac OS X on the Mac with MonoDevelop. Defined for Axantum.AxCrypt.Core, Axantum.AxCrypt.Mono, Axantum.AxCrypt.Mac
-Debug            - Debugging and development. Defined for Axantum.AxCrypt, Axantum.AxCrypt.Core, Axantum.AxCrypt.Core.Test, Axantum.AxCrypt.Mono, Axantum.AxCrypt.Mono.Test
-DebugAndroid     - Android debugging and development. Defined for Axantum.AxCrypt.Core.Android
-Release          - Distributable. Defined for Axantum.AxCrypt, Axantum.AxCrypt.Core, Axantum.AxCrypt.Mono
-ReleaseAndroid   - Distributable. Defined for Axantum.AxCrypt.Core.Android
+Debug            - Debugging and development.
+Release          - Distributable.
 
 Target platforms are:
 
-Mixed Platforms  - x86 for Axantum.AxCrypt, and Any CPU for all rest
-x86              - Defined for all but Axantum.AxCrypt.Core.Android
 Any CPU          - Defined for all
 
-The primary plaform is Any CPU except for Axantum.AxCrypt development where it is x86 due to better edit-and-continue support as well as being the Visual Studio
-default, and also except Axantum.AxCrypt.Mac which only supports x86.
-
-Typical combinations used:
-
-Debug|Mixed Platforms   - Development on Windows
-Release|Mixed Platforms - Testing release-builds on Windows (not actual production builds)
-Release|Any CPU         - Deployable release builds for desktop Mono (Windows, Linux and Mac OS X)
-DebugAndroid|Any CPU    - Development for Android
-ReleaseAndroid|Any CPU  - Release builds for Android
-Debug|x86               - Development for Mac OS X
-Release|x86             - Testing release-buidls for Mac OS X
-AppStore|x86            - Deployable release builds for Mac OS X
-
-Build combinations from a development scenario:
-
-Mono Desktop on Windows - Debug|Mixed Platforms
-Android on Windows      - DebugAndroid|Any CPU
+Unfortunately we cannot provide any level of support for use of the source code. Enjoy responsibly!
