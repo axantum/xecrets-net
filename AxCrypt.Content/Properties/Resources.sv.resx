@@ -644,6 +644,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Skyddade Mappar</value>
   </data>
+  <data name="DontShowAgainCheckBoxText" xml:space="preserve">
+    <value>Visa inte igen.</value>
+  </data>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Dubbelklicka för att öppna. Om det behövs kommer lösenord att efterfrågas.</value>
   </data>
@@ -774,8 +777,8 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Filen '{0}' finns redan.</value>
   </data>
   <data name="FileAssociationBrokenWarning" xml:space="preserve">
-    <value>Dubbelklick för att öppna AxCrypt-filer kanske inte fungerar. Windows filassociering för ändelsen ".axx" verkar trasig. Kontakta din IT-support eller sök efter lösningar på Internet.</value>
-    <comment>A text that is shown to users starting the association with .axx file is broken.</comment>
+    <value>Dubbelklick för att öppna AxCrypt-filer utanför AxCrypt kanske inte fungerar. Filassocieringen för ändelsen ".axx" verkar trasig. Kontakta din IT-support eller sök efter lösningar på Internet.</value>
+    <comment>A text that is shown to users starting the association with .axx file is broken. It should not mention "Windows", or "Mac" etc so it can be used in all environments.</comment>
   </data>
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Filen '{0}' finns inte.</value>

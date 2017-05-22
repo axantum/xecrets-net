@@ -123,6 +123,10 @@
   <data name="About" xml:space="preserve">
     <value>Riguardo a {0}</value>
   </data>
+  <data name="AccountMustBeVerified" xml:space="preserve">
+    <value>L'account deve prima essere verificato dall'utente.</value>
+    <comment>Error message when an attempt is made to use an unverified account.</comment>
+  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Gratis</value>
   </data>
@@ -285,8 +289,16 @@ Incluso il software da http://www.bouncycastle.org/ .</value>
     <value>Indirizzo e-mail non corretto</value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
+  <data name="BeneficiaryEmailLabel" xml:space="preserve">
+    <value>Indirizzo email dell'account per cui si desidera acquistare Premium</value>
+    <comment>The prompt text for the input text field where a beneficiary email address is entered</comment>
+  </data>
+  <data name="BeneficiaryInvitationTitle" xml:space="preserve">
+    <value>Invito necessario</value>
+    <comment>The main title when a user must be invited to be able to pay for</comment>
+  </data>
   <data name="BeneficiaryIs" xml:space="preserve">
-    <value>Il beneficiario è attualmente {0}</value>
+    <value>Stai acquistando Premium per {0}</value>
   </data>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} non è in possesso di un nostro account, inviagli un invito a registrare un account e continua.</value>
@@ -434,6 +446,9 @@ Devi effettuare queste operazioni per completare il processo.</value>
   </data>
   <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
     <value>Le tue preferenze per le notifiche sono state modificate.</value>
+  </data>
+  <data name="ChangeOptionGenericWarning" xml:space="preserve">
+    <value>Cambiare le impostazioni potrebbe essere pericoloso. Cambia un'impostazione solo se sei sicuro di aver capito cosa fa. Conferma inserendo la tua password.</value>
   </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Cambia Password</value>
@@ -758,6 +773,10 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   <data name="FileAlreadyExists" xml:space="preserve">
     <value>Il file '{0}' esiste già.</value>
   </data>
+  <data name="FileAssociationBrokenWarning" xml:space="preserve">
+    <value>Fare doppio click per aprire i file di AxCrypt potrebbe non funzionare correttamente. L'associazione dei file di Windows per l'estensione ".axx" sembra essere interrotta. Contatta il tuo supporto IT o cerca una soluzione su Internet.</value>
+    <comment>A text that is shown to users starting the association with .axx file is broken. It should not mention "Windows", or "Mac" etc so it can be used in all environments.</comment>
+  </data>
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Il file '{0}' non esiste.</value>
   </data>
@@ -831,6 +850,12 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Seleziona i File con Chiave Pubblica</value>
   </data>
+  <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
+    <value>Stai per abilitare un'opzione pericolosa. Se non fai attenzione, potresti coinvolgere più dati di quelli che vorresti, rallentando le operazioni o corrompendo l'esecuzione di altri software, compreso il sistema operativo. Sei sicuro? </value>
+  </data>
+  <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
+    <value>Attenzione</value>
+  </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>il Mio AxCrypt ID</value>
   </data>
@@ -874,7 +899,7 @@ Connettiti ad AxCrypt con {2}, inserisci il codice di verifica a 6 cifre e selez
     <value>Invito ad utilizzare la Protezione dei File di AxCrypt</value>
   </data>
   <data name="Invite" xml:space="preserve">
-    <value>Invito:</value>
+    <value>Utente da invitare</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Ricevuta</value>
@@ -882,14 +907,14 @@ Connettiti ad AxCrypt con {2}, inserisci il codice di verifica a 6 cifre e selez
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>Beneficiario:</value>
   </data>
-  <data name="InvoiceCustomer">
-    <value>Cliente:</value>
+  <data name="InvoiceCustomer" xml:space="preserve">
+    <value>Pagato da</value>
   </data>
   <data name="InvoiceDateHeadline" xml:space="preserve">
     <value>Data</value>
   </data>
   <data name="InvoiceDateOfIssue" xml:space="preserve">
-    <value>Data di emissione</value>
+    <value>Data</value>
   </data>
   <data name="InvoiceDescriptionHeadline" xml:space="preserve">
     <value>Descrizione</value>
@@ -898,19 +923,31 @@ Connettiti ad AxCrypt con {2}, inserisci il codice di verifica a 6 cifre e selez
     <value>Le mie Ricevute</value>
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
-    <value>Emesso da AxCrypt</value>
+    <value>Pagato a</value>
   </data>
-  <data name="InvoiceLineTotalHeadline">
-    <value>Totale</value>
+  <data name="InvoiceLineTotalHeadline" xml:space="preserve">
+    <value>Importo</value>
   </data>
   <data name="InvoiceOrderNr" xml:space="preserve">
-    <value>Ordine n°</value>
+    <value>Riferimento</value>
+    <comment>The payment provider reference id of the transaction</comment>
+  </data>
+  <data name="InvoiceOurAddress" xml:space="preserve">
+    <value>AxCrypt AB
+Birger Jarlsgatan 58
+SE-114 29 Stoccolma
+SVEZIA
+Partita IVA SE 556967618101</value>
+  </data>
+  <data name="InvoicePaidForLabel" xml:space="preserve">
+    <value>Pagamento effettuato per</value>
+    <comment>The label for the email field a payment was made for</comment>
   </data>
   <data name="InvoiceQuantityHeadline" xml:space="preserve">
     <value>Quantità</value>
   </data>
   <data name="InvoiceSubtotalHeadline" xml:space="preserve">
-    <value>Subtotale</value>
+    <value>IVA esclusa</value>
   </data>
   <data name="InvoiceTotalHeadline" xml:space="preserve">
     <value>Totale</value>
@@ -919,7 +956,7 @@ Connettiti ad AxCrypt con {2}, inserisci il codice di verifica a 6 cifre e selez
     <value>Prezzo unitario</value>
   </data>
   <data name="InvoiceVatChargeHeadline" xml:space="preserve">
-    <value>Quota IVA</value>
+    <value>IVA</value>
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript sembra essere disattivato nel tuo browser. Se non attivi JavaScript non puoi connetterti e il sito potrebbe non funzionare come previsto.</value>
@@ -954,6 +991,9 @@ Connettiti ad AxCrypt con {2}, inserisci il codice di verifica a 6 cifre e selez
   <data name="LauncherPromptHeader" xml:space="preserve">
     <value>Apri con:</value>
     <comment>Header of popup which is displayed for file opening.</comment>
+  </data>
+  <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
+    <value>Abbiamo trovato un software potenzialmente incompatibile che potrebbe portare al malfunzionamento di AxCrypt ed altri software. Il software si chiama Lavasoft Web Companion. Se AxCrypt non funziona, prova a disinstallare Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>Dopo che i file vengono convertiti dal formato AxCrypt 1.x, devi usare la nuova password di Connessione per aprirli, per favore verificala qui.
@@ -1134,7 +1174,7 @@ Questo programma è autorizzato secondo l'accordo.
     <comment>Context menu for decrypt</comment>
   </data>
   <data name="McInfMenuWipe" xml:space="preserve">
-    <value>Cancella e rimuove completamente</value>
+    <value>Eliminazione protetta</value>
     <comment>Context menu for Wipe</comment>
   </data>
   <data name="McInfMenuWrapZ" xml:space="preserve">
@@ -1318,6 +1358,9 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
     <value>Abilita o disabilita l'aggiornamento automatico e la conversione dei vecchi file AxCrypt 1.x quando vengono utilizzati.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
+  <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
+    <value>Includi le Sottocartelle</value>
+  </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Lingua</value>
   </data>
@@ -1413,7 +1456,7 @@ Classifichiamo le password in 4 categorie di sicurezza crescente e non accettiam
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PaymentOnBehalfOf" xml:space="preserve">
-    <value>Pagamento per conto di</value>
+    <value>Acquista Premium per qualcun altro</value>
   </data>
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
     <value>Acquista per qualcun altro</value>
@@ -1463,7 +1506,7 @@ Classifichiamo le password in 4 categorie di sicurezza crescente e non accettiam
     <value>{0}/mese</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
-  <data name="ProgressIndicatorCleanupMessage">
+  <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Eliminazione file decriptati in corso...</value>
     <comment>Message displayed on progress bar during temporary files cleanup.</comment>
   </data>
@@ -1906,9 +1949,6 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
     <value>Disiscritto</value>
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
-  </data>
-  <data name="TitleWindowSignInStatus" xml:space="preserve">
-    <value>{0} - {1}</value>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>La versione Premium è richiesta per la gestione delle password. Clicca per aggiornare ora!</value>

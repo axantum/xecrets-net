@@ -104,6 +104,10 @@
   <data name="About" xml:space="preserve">
     <value>Over {0}</value>
   </data>
+  <data name="AccountMustBeVerified" xml:space="preserve">
+    <value>Het account moet eerst door de gebruiker bevestigd worden.</value>
+    <comment>Error message when an attempt is made to use an unverified account.</comment>
+  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Gratis</value>
   </data>
@@ -265,6 +269,20 @@ Bevat software van http://www.bouncycastle.org/ .</value>
   <data name="BadEmail" xml:space="preserve">
     <value>Onjuist emailadres</value>
     <comment>Displayed when email address format validation fails.</comment>
+  </data>
+  <data name="BeneficiaryEmailLabel" xml:space="preserve">
+    <value>Emailadres of account om Premium voor aan te schaffen</value>
+    <comment>The prompt text for the input text field where a beneficiary email address is entered</comment>
+  </data>
+  <data name="BeneficiaryInvitationTitle" xml:space="preserve">
+    <value>Uitnodiging vereist</value>
+    <comment>The main title when a user must be invited to be able to pay for</comment>
+  </data>
+  <data name="BeneficiaryIs" xml:space="preserve">
+    <value>U koopt Premium voor {0}</value>
+  </data>
+  <data name="BeneficiaryNoAccount" xml:space="preserve">
+    <value>{0} heeft geen account bij ons. Stuur een uitnodiging om een account te registreren en ga verder.</value>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Verifieer</value>
@@ -430,6 +448,10 @@ U moet deze stappen volgen om het proces te voltooien.</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>Bestand is open en moet misschien opgeschoond worden. Sluit open applicaties en klik op de Opschonen knop.</value>
+  </data>
+  <data name="CleanupWorkflowDescription" xml:space="preserve">
+    <value>Onthoud dat de app een gedecrypteerde kopie lokaal opslaat. Deze wordt verwijderd wanneer u uitlogt. U kunt het ook handmatig verwijderen met de schoonmaak knop.</value>
+    <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Klik om te zoeken naar een nieuwe versie</value>
@@ -729,6 +751,10 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="FileAlreadyExists" xml:space="preserve">
     <value>Bestand '{0}' bestaat al </value>
   </data>
+  <data name="FileAssociationBrokenWarning" xml:space="preserve">
+    <value>De .axx bestandsassociatie is extern veranderd.</value>
+    <comment>A text that is shown to users starting the association with .axx file is broken. It should not mention "Windows", or "Mac" etc so it can be used in all environments.</comment>
+  </data>
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Bestand '{0}' bestaat niet.</value>
   </data>
@@ -759,6 +785,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   </data>
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
+  </data>
+  <data name="ForWhomHeadline" xml:space="preserve">
+    <value>Voor wie</value>
   </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Geweldig! U heeft al een AxCrypt ID account voor '{0}'.
@@ -840,6 +869,66 @@ Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige verificatiecode in en stel u
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Uitnodiging om gebruik te maken van AxCrypt Bestandsbeveiliging</value>
+  </data>
+  <data name="Invite" xml:space="preserve">
+    <value>Gebruiker uitnodigen</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Kwitantie</value>
+  </data>
+  <data name="InvoiceBeneficiary" xml:space="preserve">
+    <value>Begunstigde:</value>
+  </data>
+  <data name="InvoiceCustomer" xml:space="preserve">
+    <value>Betaald door</value>
+  </data>
+  <data name="InvoiceDateHeadline" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="InvoiceDateOfIssue" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="InvoiceDescriptionHeadline" xml:space="preserve">
+    <value>Beschrijving</value>
+  </data>
+  <data name="InvoiceHeadline" xml:space="preserve">
+    <value>Mijn Kwitanties</value>
+  </data>
+  <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
+    <value>Betaald aan</value>
+  </data>
+  <data name="InvoiceLineTotalHeadline" xml:space="preserve">
+    <value>Bedrag</value>
+  </data>
+  <data name="InvoiceOrderNr" xml:space="preserve">
+    <value>Referentie</value>
+    <comment>The payment provider reference id of the transaction</comment>
+  </data>
+  <data name="InvoiceOurAddress" xml:space="preserve">
+    <value>AxCrypt AB
+Birger Jarlsgatan 58
+SE-114 29 Stockholm
+ZWEDEN
+BTW Nummer SE 556967618101</value>
+  </data>
+  <data name="InvoicePaidForLabel" xml:space="preserve">
+    <value>Betaald voor</value>
+    <comment>The label for the email field a payment was made for</comment>
+  </data>
+  <data name="InvoiceQuantityHeadline" xml:space="preserve">
+    <value>Aantal</value>
+  </data>
+  <data name="InvoiceSubtotalHeadline" xml:space="preserve">
+    <value>Excl. BTW</value>
+  </data>
+  <data name="InvoiceTotalHeadline" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="InvoiceUnitPriceHeadline" xml:space="preserve">
+    <value>Prijs per stuk</value>
+  </data>
+  <data name="InvoiceVatChargeHeadline" xml:space="preserve">
+    <value>BTW</value>
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript lijkt uitgeschakeld te zijn op uw computer. Zolang u JavaScript niet inschakeld kunt u zich niet aanmelden en kan de site niet functioneren zoals verwacht.</value>
@@ -1053,7 +1142,7 @@ De licentie voor dit programma is conform de overeenkomst.
     <comment>Context menu for decrypt</comment>
   </data>
   <data name="McInfMenuWipe" xml:space="preserve">
-    <value>Vernietigen en verwijderen</value>
+    <value>Veilig verwijderen</value>
     <comment>Context menu for Wipe</comment>
   </data>
   <data name="McInfMenuWrapZ" xml:space="preserve">
@@ -1158,6 +1247,9 @@ De licentie voor dit programma is conform de overeenkomst.
   </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Versie {0} is beschikbaar! Klik om te downloaden.</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Volgende</value>
   </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>U bent afgemeld. Klik om aan te melden.</value>
@@ -1329,6 +1421,12 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
     <value>Wachtwoord is niet sterk genoeg om aanbevolen te worden.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
+  <data name="PaymentOnBehalfOf" xml:space="preserve">
+    <value>Koop Premium voor iemand anders</value>
+  </data>
+  <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
+    <value>Koop voor iemand anders</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>{Meer informatie over PayPal]</value>
   </data>
@@ -1373,6 +1471,10 @@ Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarb
   <data name="PricePerMonth" xml:space="preserve">
     <value>{0}/maand</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
+  <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
+    <value>Gedecrypteerde bestanden opschonen...</value>
+    <comment>Message displayed on progress bar during temporary files cleanup.</comment>
   </data>
   <data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
     <value>Decrypteren...</value>
@@ -1643,6 +1745,9 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <value>Uw software moet geüpdatet worden vanwege een beveiligingsprobleem. </value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
   </data>
+  <data name="SendInvitation" xml:space="preserve">
+    <value>Stuur uitnodiging</value>
+  </data>
   <data name="SetEmailLabel" xml:space="preserve">
     <value>Email instellen</value>
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
@@ -1687,6 +1792,10 @@ Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
     <value>Makkelijk toegang tot wachtwoorden</value>
     <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="ShowInFolderText" xml:space="preserve">
+    <value>Bekijk in map</value>
+    <comment>The menu text for a context menu for a file to show the folder that the file is in.</comment>
+  </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Toon Wachtwoord</value>
   </data>
@@ -1707,6 +1816,10 @@ Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>Waarschuwing! Een site restart is gepland in de aankomende minuten. Onze excuses voor het ongemak.</value>
+  </data>
+  <data name="SocialMediaFollowText" xml:space="preserve">
+    <value>Volg ons op social media</value>
+    <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>Een beveiligde SSL verbinding is verplicht. Probeer het alstublieft nog eens met &lt;a href="{2}"&gt;{2}&lt;/a&gt; .
@@ -1802,9 +1915,6 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
     <value>Uitgeschreven</value>
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
-  </data>
-  <data name="TitleWindowSignInStatus" xml:space="preserve">
-    <value>{0} - {1}</value>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Premium is nodig voor wachtwoordbeheer. Klik om nu te upgraden!</value>

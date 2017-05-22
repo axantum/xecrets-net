@@ -1800,9 +1800,6 @@ Para ir a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</
     <value>Iniciar sesión en AxCrypt</value>
     <comment>Title on the web page for signin for example.</comment>
   </data>
-  <data name="TitleWindowSignInStatus" xml:space="preserve">
-    <value>{0} - {1}</value>
-  </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Se requiere Premium para la administración de contraseñas. ¡Haga clic para actualizar ahora!</value>
   </data>
