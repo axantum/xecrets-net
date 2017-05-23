@@ -25,15 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Common;
-using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-
-using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -60,12 +55,19 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual async void Notify(SessionNotification notification)
         {
-            foreach (Func<SessionNotification, Task> priorityCommand in _priorityCommands)
+            try
             {
-                await priorityCommand(notification);
-            }
+                foreach (Func<SessionNotification, Task> priorityCommand in _priorityCommands)
+                {
+                    await priorityCommand(notification);
+                }
 
-            OnNotification(new SessionNotificationEventArgs(notification));
+                OnNotification(new SessionNotificationEventArgs(notification));
+            }
+            catch (Exception ex)
+            {
+                ex.ReportAndDisplay();
+            }
         }
     }
 }

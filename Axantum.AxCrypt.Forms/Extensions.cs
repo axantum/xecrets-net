@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +12,20 @@ namespace Axantum.AxCrypt.Forms
             {
                 control.UseWaitCursor = true;
                 await action();
+            }
+            finally
+            {
+                control.UseWaitCursor = false;
+                final();
+            }
+        }
+
+        public static void WithWaitCursor(this Control control, Action action, Action final)
+        {
+            try
+            {
+                control.UseWaitCursor = true;
+                action();
             }
             finally
             {

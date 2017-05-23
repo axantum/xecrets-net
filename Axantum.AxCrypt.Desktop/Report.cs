@@ -125,7 +125,10 @@ namespace Axantum.AxCrypt.Desktop
                 }
 
                 Entry entry = stack.Pop();
+                AxCryptException ace = entry.Exception as AxCryptException;
+                string displayContext = ace?.DisplayContext ?? string.Empty;
                 sb.AppendFormat("----------- Exception at {0} -----------", entry.DateTime.ToString("u")).AppendLine();
+                sb.AppendLine(displayContext);
                 sb.AppendLine(entry.Exception?.ToString() ?? "(null)");
             }
 

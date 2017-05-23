@@ -262,6 +262,7 @@ namespace Axantum.AxCrypt
             {
                 Application.Exit();
             }
+            ExceptionMessageAndReport(e.Exception as Exception);
         }
     }
 }

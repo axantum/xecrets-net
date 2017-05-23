@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -96,17 +95,17 @@ namespace Axantum.AxCrypt
 
         private bool _updateRecentFilesInProgress = false;
 
-        public async Task UpdateRecentFilesAsync(IEnumerable<ActiveFile> files)
+        public void UpdateRecentFiles(IEnumerable<ActiveFile> files)
         {
             if (_updateRecentFilesInProgress)
             {
                 return;
             }
             _updateRecentFilesInProgress = true;
-            await this.WithWaitCursorAsync(() => UpdateRecentFilesUnsynchronizedAsync(files), () => _updateRecentFilesInProgress = false);
+            this.WithWaitCursor(() => UpdateRecentFilesUnsynchronized(files), () => _updateRecentFilesInProgress = false);
         }
 
-        private async Task UpdateRecentFilesUnsynchronizedAsync(IEnumerable<ActiveFile> files)
+        private void UpdateRecentFilesUnsynchronized(IEnumerable<ActiveFile> files)
         {
             BeginUpdate();
             try
@@ -123,7 +122,7 @@ namespace Axantum.AxCrypt
                 {
                     try
                     {
-                        await UpdateOneItemAsync(currentFiles, file, i++);
+                        UpdateOneItem(currentFiles, file, i++);
                     }
                     catch (Exception ex)
                     {
@@ -167,7 +166,7 @@ namespace Axantum.AxCrypt
             return false;
         }
 
-        private async Task UpdateOneItemAsync(Dictionary<string, int> currentFiles, ActiveFile file, int index)
+        private void UpdateOneItem(Dictionary<string, int> currentFiles, ActiveFile file, int index)
         {
             string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
             ListViewItem item = new ListViewItem(text);
@@ -183,7 +182,7 @@ namespace Axantum.AxCrypt
             ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
             cryptoNameColumn.Name = nameof(ColumnName.CryptoName);
 
-            await UpdateListViewItemAsync(item, file);
+            UpdateListViewItem(item, file);
 
             int i;
             if (!currentFiles.TryGetValue(item.Name, out i))
@@ -255,7 +254,7 @@ namespace Axantum.AxCrypt
             return item.SubItems[nameof(ColumnName.EncryptedPath)].Text;
         }
 
-        private static Task UpdateListViewItemAsync(ListViewItem item, ActiveFile activeFile)
+        private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
         {
             OpenFileProperties openProperties = OpenFileProperties.Create(activeFile.EncryptedFileInfo);
             item.SubItems[nameof(ColumnName.EncryptedPath)].Text = activeFile.EncryptedFileInfo.FullName;
@@ -280,8 +279,6 @@ namespace Axantum.AxCrypt
                 New<IReport>().Exception(aex);
                 item.SubItems[nameof(ColumnName.CryptoName)].Text = Texts.UnknownCrypto;
             }
-
-            return Task.FromResult(true);
         }
 
         private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, int keyShareCount)

@@ -262,6 +262,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async void HandleSessionChangedAsync(object sender, SessionNotificationEventArgs e)
         {
+            try
+            {
+                await HandleSessionChangedInternalAsync(e);
+            }
+            catch (Exception ex)
+            {
+                ex.ReportAndDisplay();
+            }
+        }
+
+        private async Task HandleSessionChangedInternalAsync(SessionNotificationEventArgs e)
+        {
             switch (e.Notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
