@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -122,7 +121,14 @@ namespace Axantum.AxCrypt
                 int i = 0;
                 foreach (ActiveFile file in files)
                 {
-                    await UpdateOneItemAsync(currentFiles, file, i++);
+                    try
+                    {
+                        await UpdateOneItemAsync(currentFiles, file, i++);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ReportAndDisplay();
+                    }
                 }
 
                 while (Items.Count > Preferences.RecentFilesMaxNumber)

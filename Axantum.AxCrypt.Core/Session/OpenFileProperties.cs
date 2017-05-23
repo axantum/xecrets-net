@@ -1,13 +1,10 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -32,6 +29,11 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 New<IReport>().Exception(fnfex);
                 return new OpenFileProperties();
+            }
+            catch (Exception ex)
+            {
+                ex.RethrowFileOperation(dataStore.FullName);
+                return null;
             }
         }
 

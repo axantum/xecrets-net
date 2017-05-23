@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
@@ -117,7 +116,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void BindPropertyAsyncChanged<T>(string name, Func<T, Task> action)
         {
-            Action<T> actionUi = (T arg) => Resolve.UIThread.SendToAsync(async () => await action((T)arg));
+            Action<T> actionUi = (T arg) => Resolve.UIThread.SendToAsync(async () =>
+            {
+                await action((T)arg);
+            });
             BindPropertyChangedInternal<T>(name, actionUi);
             actionUi(GetProperty<T>(name));
         }

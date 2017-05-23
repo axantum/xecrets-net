@@ -31,9 +31,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -128,7 +126,7 @@ namespace Axantum.AxCrypt.Desktop
 
                 Entry entry = stack.Pop();
                 sb.AppendFormat("----------- Exception at {0} -----------", entry.DateTime.ToString("u")).AppendLine();
-                sb.AppendLine(entry.Exception.ToString());
+                sb.AppendLine(entry.Exception?.ToString() ?? "(null)");
             }
 
             return sb.ToString();

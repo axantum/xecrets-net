@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
+using AxCrypt.Content;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -28,6 +30,28 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             return false;
+        }
+
+        public static void ReportAndDisplay(this Exception ex)
+        {
+            New<IReport>().Exception(ex);
+            AxCryptException aex = ex as AxCryptException;
+            if (aex != null)
+            {
+                New<IStatusChecker>().CheckStatusAndShowMessage(aex.ErrorStatus, aex.DisplayContext, aex.Message);
+                return;
+            }
+            New<IStatusChecker>().CheckStatusAndShowMessage(ErrorStatus.Exception, ex?.Message ?? "(null)", Texts.Exception.InvariantFormat("unknown"));
+        }
+
+        public static void RethrowFileOperation(this Exception ex, string displayContext)
+        {
+            AxCryptException aex = ex as AxCryptException;
+            if (aex != null)
+            {
+                throw new FileOperationException(aex.Message, displayContext, aex.ErrorStatus, ex);
+            }
+            throw new FileOperationException(ex.Message, displayContext, ErrorStatus.Exception, ex);
         }
     }
 }
