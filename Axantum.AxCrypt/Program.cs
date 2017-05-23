@@ -30,7 +30,6 @@ using Axantum.AxCrypt.Abstractions.Algorithm;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Ipc;
@@ -50,7 +49,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -230,11 +228,7 @@ namespace Axantum.AxCrypt
             }
             catch (Exception ex)
             {
-                while (ex.InnerException != null)
-                {
-                    ex = ex.InnerException;
-                }
-                MessageBox.Show(ex.Message, "Unhandled Exception");
+                ExceptionMessageAndReport(ex);
             }
             finally
             {
@@ -243,12 +237,23 @@ namespace Axantum.AxCrypt
             }
         }
 
+        private static void ExceptionMessageAndReport(Exception ex)
+        {
+            New<IReport>().Exception(ex);
+            while (ex.InnerException != null)
+            {
+                ex = ex.InnerException;
+            }
+            MessageBox.Show(ex.Message, "Unhandled Exception");
+        }
+
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             if (e.ExceptionObject is ApplicationExitException)
             {
                 Application.Exit();
             }
+            ExceptionMessageAndReport(e.ExceptionObject as Exception);
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
