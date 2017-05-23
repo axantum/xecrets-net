@@ -1697,7 +1697,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Don&apos;t show this again.
+        ///   Looks up a localized string similar to Don&apos;t show this again..
         /// </summary>
         public static string DontShowAgainCheckBoxText {
             get {
@@ -2111,7 +2111,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-click to open AxCrypt files may not function correctly. Windows file association for extension &quot;.axx&quot; appears to be broken. Contact your IT support  or search for a solution on the Internet..
+        ///   Looks up a localized string similar to Double-click to open AxCrypt files outside of AxCrypt may not function correctly. The operating system file association for extension &quot;.axx&quot; appears to be broken. Contact your IT support  or search for a solution on the Internet..
         /// </summary>
         public static string FileAssociationBrokenWarning {
             get {

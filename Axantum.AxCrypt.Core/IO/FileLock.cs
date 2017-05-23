@@ -51,6 +51,11 @@ namespace Axantum.AxCrypt.Core.IO
             return FileLockManager.CreateFileLock(dataItem);
         }
 
+        public static Task<FileLock> AcquireAsync(IDataItem dataItem)
+        {
+        	return FileLockManager.CreateAsyncFileLock(dataItem);
+        }
+
         public IDataStore DataStore { get { return _fileLockManager.DataStore; } }
 
         public static bool IsLocked(params IDataStore[] dataItems)
@@ -100,6 +105,8 @@ namespace Axantum.AxCrypt.Core.IO
                 {
                     throw new InternalErrorException($"Potential deadlock detected for {_originalLockedFileName} .");
                 }
+#else
+                _semaphore.Wait();
 #endif
 
                 return _fileLock.Result;
@@ -116,6 +123,20 @@ namespace Axantum.AxCrypt.Core.IO
                 {
                     FileLockManager fileLock = GetOrCreateFileLockUnsafe(dataItem.FullName);
                     return fileLock.Lock();
+                }
+            }
+
+            public static Task<FileLock> CreateAsyncFileLock(IDataItem dataItem)
+            {
+                if (dataItem == null)
+                {
+                    throw new ArgumentNullException("dataItem");
+                }
+
+                lock (_lockedFiles)
+                {
+                    FileLockManager fileLock = GetOrCreateFileLockUnsafe(dataItem.FullName);
+                    return fileLock.LockAsync();
                 }
             }
 

@@ -123,6 +123,10 @@
   <data name="About" xml:space="preserve">
     <value>Über {0}</value>
   </data>
+  <data name="AccountMustBeVerified" xml:space="preserve">
+    <value>Das Konto muss zuerst von dem Benutzer überprüft werden.</value>
+    <comment>Error message when an attempt is made to use an unverified account.</comment>
+  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Free</value>
   </data>
@@ -285,6 +289,20 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
     <value>Falsche E-Mail Adresse </value>
     <comment>Displayed when email address format validation fails.</comment>
   </data>
+  <data name="BeneficiaryEmailLabel" xml:space="preserve">
+    <value>E-mail Adresse vom Konto für das Sie Premium kaufen</value>
+    <comment>The prompt text for the input text field where a beneficiary email address is entered</comment>
+  </data>
+  <data name="BeneficiaryInvitationTitle" xml:space="preserve">
+    <value>Einladung benötigt</value>
+    <comment>The main title when a user must be invited to be able to pay for</comment>
+  </data>
+  <data name="BeneficiaryIs" xml:space="preserve">
+    <value>Sie kaufen Premium für {0}</value>
+  </data>
+  <data name="BeneficiaryNoAccount" xml:space="preserve">
+    <value>hat kein Konto bei uns, sende eine Einladung um ein Konto zu öffnen und fortsetze.</value>
+  </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Aktivieren </value>
   </data>
@@ -429,6 +447,9 @@ Sie müssen diese Schritte vollenden, um den Prozess abzuschließen. </value>
   <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
     <value>Ihre Benachrichtigungspräferenzen wurden geändert. </value>
   </data>
+  <data name="ChangeOptionGenericWarning" xml:space="preserve">
+    <value>Optionen ändern kann gefährlich sein. Mache Sie es nur wenn Sie sicher sind, dass Ihr die Optionen versteht. Bestätigen durch Eingabe des Passwortes.</value>
+  </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Passwort ändern</value>
   </data>
@@ -449,6 +470,10 @@ Sie müssen diese Schritte vollenden, um den Prozess abzuschließen. </value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>Die Datei ist offen und muss eventuell bereinigt werden. Schließen Sie alle offenen Anwendungen und klicken Sie auf die Reinigungstaste. </value>
+  </data>
+  <data name="CleanupWorkflowDescription" xml:space="preserve">
+    <value>Bitte berücksichtigen diese App beinhaltet  die Kopien von verschlüsselter Datei in der Lokalen Dateispeicherung. Es wir gelöscht beim ausloggen. Sie können es auch Manual löschen via des Leeren-Tasters.</value>
+    <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Klicken Sie um nach einer neueren Version zu suchen. </value>
@@ -619,6 +644,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Gesicherte Ordner </value>
   </data>
+  <data name="DontShowAgainCheckBoxText" xml:space="preserve">
+    <value>Nicht mehr zeigen.</value>
+  </data>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Doppelklick zum Öffnen. Bei Bedarf werden Sie nach einem Passwort gefragt. </value>
   </data>
@@ -748,6 +776,10 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="FileAlreadyExists" xml:space="preserve">
     <value>Datei '{0}' existiert bereits.</value>
   </data>
+  <data name="FileAssociationBrokenWarning" xml:space="preserve">
+    <value>Doppelklick um AxCrypt Datei zu öffnen funktioniert vielleicht nicht richtig. Windows-Dateizuordnung für Erweiterung ".axx" scheint gebrochen zu sein. Kontaktieren Sie Ihren IT-Support oder suchen Sie eine Lösung im Internet.</value>
+    <comment>A text that is shown to users starting the association with .axx file is broken. It should not mention "Windows", or "Mac" etc so it can be used in all environments.</comment>
+  </data>
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Die Datei '{0}' existiert nicht.</value>
   </data>
@@ -778,6 +810,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   </data>
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
+  </data>
+  <data name="ForWhomHeadline" xml:space="preserve">
+    <value>Für wen</value>
   </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Super! Sie haben bereits AxCrypt ID Konto für '{0}'.
@@ -817,6 +852,12 @@ Falls Sie aus irgendeinem  Grund Ihr Kennwort nicht wissen oder vergessen haben,
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Sharing Key Datei auswählen </value>
+  </data>
+  <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
+    <value>Sie sind dabei, eine gefährliche Option zu aktivieren. Wenn Sie nicht vorsichtig sind, können Sie mehr Daten beeinflussen, Operationen können deshalb sehr lange dauern, oder  das Software einschließlich des Betriebssystems brechen. Sind Sie sicher ?</value>
+  </data>
+  <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
+    <value>Warnung</value>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Meine AxCrypt ID</value>
@@ -860,6 +901,59 @@ Melden Sie sich bei AxCrypt mit {2} an, geben Sie den 6-stelligen Bestätigungsc
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Einladung zur Verwendung von AxCrypt Datensicherheit </value>
   </data>
+  <data name="Invite" xml:space="preserve">
+    <value>Benutzer einladen:</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Rechnung</value>
+  </data>
+  <data name="InvoiceBeneficiary" xml:space="preserve">
+    <value>Empfänger:</value>
+  </data>
+  <data name="InvoiceCustomer" xml:space="preserve">
+    <value>Bezahlt von</value>
+  </data>
+  <data name="InvoiceDateHeadline" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="InvoiceDateOfIssue" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="InvoiceDescriptionHeadline" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="InvoiceHeadline" xml:space="preserve">
+    <value>Meine Rechnungen</value>
+  </data>
+  <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
+    <value>Bezahlt zu</value>
+  </data>
+  <data name="InvoiceLineTotalHeadline" xml:space="preserve">
+    <value>Betrag</value>
+  </data>
+  <data name="InvoiceOrderNr" xml:space="preserve">
+    <value>Referenz</value>
+    <comment>The payment provider reference id of the transaction</comment>
+  </data>
+  <data name="InvoicePaidForLabel" xml:space="preserve">
+    <value>Bezahlt</value>
+    <comment>The label for the email field a payment was made for</comment>
+  </data>
+  <data name="InvoiceQuantityHeadline" xml:space="preserve">
+    <value>Quantität</value>
+  </data>
+  <data name="InvoiceSubtotalHeadline" xml:space="preserve">
+    <value>Exkl. MwSt.</value>
+  </data>
+  <data name="InvoiceTotalHeadline" xml:space="preserve">
+    <value>Gesamt</value>
+  </data>
+  <data name="InvoiceUnitPriceHeadline" xml:space="preserve">
+    <value>Stückpreis</value>
+  </data>
+  <data name="InvoiceVatChargeHeadline" xml:space="preserve">
+    <value>MwSt.</value>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript scheint in Ihrem Browser deaktiviert zu sein. Wenn Sie JavaScript nicht aktivieren, können Sie sich nicht anmelden und die Seite funktioniert möglicherweise nicht wie erwartet. </value>
   </data>
@@ -893,6 +987,9 @@ Melden Sie sich bei AxCrypt mit {2} an, geben Sie den 6-stelligen Bestätigungsc
   <data name="LauncherPromptHeader" xml:space="preserve">
     <value>Öffnen via:</value>
     <comment>Header of popup which is displayed for file opening.</comment>
+  </data>
+  <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
+    <value>Wir haben potenziell inkompatible Software erkannt, die dazu führen kann, dass AxCrypt und andere Software zu Fehlfunktionen führen. Diese Software heißt Lavasoft Web Companion. Falls AxCrypt nicht funktioniert, versuchen Sie, Lavasoft zu deinstallieren.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>Nachdem Dateien von AxCrypt 1.x Format konvertiert wurden, müssen Sie das neue Log In Passwort nutzen um diese zu öffnen, also überprüfen Sie Ihr Passwort bitte hier. 
@@ -1072,7 +1169,7 @@ Dieses Programm wird entsprechend der Vereinbarung genehmigt.
     <comment>Context menu for decrypt</comment>
   </data>
   <data name="McInfMenuWipe" xml:space="preserve">
-    <value>Datei löschen und vernichten</value>
+    <value>Sichere Löschung</value>
     <comment>Context menu for Wipe</comment>
   </data>
   <data name="McInfMenuWrapZ" xml:space="preserve">
@@ -1178,6 +1275,9 @@ Dieses Programm wird entsprechend der Vereinbarung genehmigt.
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} ist verfügbar! Klicken Sie zum downloaden. </value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Nächste</value>
+  </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>Sie sind abgemeldet. Klicken Sie zum anmelden.</value>
   </data>
@@ -1252,6 +1352,9 @@ Um zur Startseite zurückzukehren, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
     <value>Aktivieren oder deaktivieren Sie die automatische Aktualisierung und Konvertierung älterer AxCrypt 1.x Dateien.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
+  </data>
+  <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
+    <value>Einschließen Sie Unterordner </value>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Sprache</value>
@@ -1355,6 +1458,12 @@ Wir stufen die Kennwörter in 4 Kategorien nach ansteigenden Stärken ein, in de
     <value>Das Passwort ist nicht stark genug um es Ihnen zu empfehlen.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
+  <data name="PaymentOnBehalfOf" xml:space="preserve">
+    <value>Kaufe Premium für jemand anderem</value>
+  </data>
+  <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
+    <value>Kaufen für jemand anderen</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Mehr Informationen zu PayPal]</value>
   </data>
@@ -1399,6 +1508,10 @@ Wir stufen die Kennwörter in 4 Kategorien nach ansteigenden Stärken ein, in de
   <data name="PricePerMonth" xml:space="preserve">
     <value>{0}/Monat</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
+  <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
+    <value>Reinigung der Verschlüsselte Datei...</value>
+    <comment>Message displayed on progress bar during temporary files cleanup.</comment>
   </data>
   <data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
     <value>Entschlüsselung...</value>
@@ -1674,6 +1787,9 @@ Eine 30-tägige Testphase von AxCrypt Premium ist inklusive und Sie können es j
     <value>Ihre Software muss aufgrund einer Sicherheitslücke aktualisiert werden. </value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
   </data>
+  <data name="SendInvitation" xml:space="preserve">
+    <value>Einladung senden</value>
+  </data>
   <data name="SetEmailLabel" xml:space="preserve">
     <value>Email einstellen</value>
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
@@ -1839,9 +1955,6 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
     <value>Sich austragen</value>
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
-  </data>
-  <data name="TitleWindowSignInStatus" xml:space="preserve">
-    <value>{0} - {1}</value>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Für die Passwort Verwaltung wird Premium benötigt. Klicken Sie um jetzt das Upgrade zu erhalten. </value>
