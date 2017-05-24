@@ -108,7 +108,7 @@
             this._panel1.Controls.Add(this._buttonHelp);
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Location = new System.Drawing.Point(12, 153);
+            this._panel1.Location = new System.Drawing.Point(12, 161);
             this._panel1.Name = "_panel1";
             this._panel1.Size = new System.Drawing.Size(280, 37);
             this._panel1.TabIndex = 1;
@@ -157,14 +157,14 @@
             // 
             this._passwordStrengthMeter.Location = new System.Drawing.Point(6, 44);
             this._passwordStrengthMeter.Name = "_passwordStrengthMeter";
-            this._passwordStrengthMeter.Size = new System.Drawing.Size(243, 10);
+            this._passwordStrengthMeter.Size = new System.Drawing.Size(243, 18);
             this._passwordStrengthMeter.TabIndex = 4;
             // 
             // ShowPassphraseCheckBox
             // 
             this.ShowPassphraseCheckBox.AutoSize = true;
             this.ShowPassphraseCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ShowPassphraseCheckBox.Location = new System.Drawing.Point(7, 103);
+            this.ShowPassphraseCheckBox.Location = new System.Drawing.Point(7, 111);
             this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
             this.ShowPassphraseCheckBox.Size = new System.Drawing.Size(108, 17);
             this.ShowPassphraseCheckBox.TabIndex = 3;
@@ -173,7 +173,7 @@
             // 
             // VerifyPassphraseTextbox
             // 
-            this.VerifyPassphraseTextbox.Location = new System.Drawing.Point(6, 73);
+            this.VerifyPassphraseTextbox.Location = new System.Drawing.Point(6, 81);
             this.VerifyPassphraseTextbox.Name = "VerifyPassphraseTextbox";
             this.VerifyPassphraseTextbox.Size = new System.Drawing.Size(243, 20);
             this.VerifyPassphraseTextbox.TabIndex = 2;
@@ -182,7 +182,7 @@
             // 
             this._verifyPasswordLabel.AutoSize = true;
             this._verifyPasswordLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._verifyPasswordLabel.Location = new System.Drawing.Point(6, 57);
+            this._verifyPasswordLabel.Location = new System.Drawing.Point(6, 65);
             this._verifyPasswordLabel.Name = "_verifyPasswordLabel";
             this._verifyPasswordLabel.Size = new System.Drawing.Size(88, 13);
             this._verifyPasswordLabel.TabIndex = 1;
@@ -216,7 +216,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this._buttonCancel;
-            this.ClientSize = new System.Drawing.Size(315, 267);
+            this.ClientSize = new System.Drawing.Size(315, 275);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.FileNamePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

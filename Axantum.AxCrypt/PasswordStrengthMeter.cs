@@ -98,18 +98,52 @@ namespace Axantum.AxCrypt
 
             base.OnPaint(e);
 
+            Rectangle progressBarRec = e.ClipRectangle;
+
+            progressBarRec.Height = (progressBarRec.Height) / 3;
+
+            if (ProgressBarRenderer.IsSupported)
+            {
+                ProgressBarRenderer.DrawHorizontalBar(e.Graphics, progressBarRec);
+            }
+
             Rectangle rec = e.ClipRectangle;
 
             rec.Width = (int)(rec.Width * ((double)_percent / 100)) - 4;
-            if (ProgressBarRenderer.IsSupported)
-            {
-                ProgressBarRenderer.DrawHorizontalBar(e.Graphics, e.ClipRectangle);
-            }
-            rec.Height = rec.Height - 4;
+
+            rec.Height = (rec.Height / 3) - 4;
 
             using (SolidBrush brush = new SolidBrush(Color()))
             {
                 e.Graphics.FillRectangle(brush, 2, 2, rec.Width, rec.Height);
+            }
+
+            if (!string.IsNullOrEmpty(_viewModel.PasswordCandidate))
+            {
+                using (SolidBrush brush = new SolidBrush(this.ForeColor))
+                {
+                    switch (_viewModel.PasswordStrength)
+                    {
+                        case PasswordStrength.Unacceptable:
+                            e.Graphics.DrawString("Password is too weak to be use.", this.Font, brush, 0,
+                                progressBarRec.Height);
+                            break;
+
+                        case PasswordStrength.Bad:
+                            e.Graphics.DrawString("Password is weak and unsafe.", this.Font, brush, 0,
+                                progressBarRec.Height);
+                            break;
+
+                        case PasswordStrength.Weak:
+                            e.Graphics.DrawString("Password is ok but not recommended.", this.Font, brush, 0,
+                                progressBarRec.Height);
+                            return;
+
+                        case PasswordStrength.Strong:
+                            e.Graphics.DrawString("Password is strong!", this.Font, brush, 0, progressBarRec.Height);
+                            return;
+                    }
+                }
             }
         }
 

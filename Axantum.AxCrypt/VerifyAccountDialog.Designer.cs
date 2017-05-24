@@ -142,14 +142,14 @@
             // 
             this._passwordStrengthMeter.Location = new System.Drawing.Point(6, 46);
             this._passwordStrengthMeter.Name = "_passwordStrengthMeter";
-            this._passwordStrengthMeter.Size = new System.Drawing.Size(243, 10);
+            this._passwordStrengthMeter.Size = new System.Drawing.Size(243, 18);
             this._passwordStrengthMeter.TabIndex = 6;
             // 
             // _showPassphrase
             // 
             this._showPassphrase.AutoSize = true;
             this._showPassphrase.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._showPassphrase.Location = new System.Drawing.Point(7, 109);
+            this._showPassphrase.Location = new System.Drawing.Point(7, 117);
             this._showPassphrase.Name = "_showPassphrase";
             this._showPassphrase.Size = new System.Drawing.Size(108, 17);
             this._showPassphrase.TabIndex = 3;
@@ -158,7 +158,7 @@
             // 
             // _passphraseVerification
             // 
-            this._passphraseVerification.Location = new System.Drawing.Point(6, 79);
+            this._passphraseVerification.Location = new System.Drawing.Point(6, 87);
             this._passphraseVerification.Name = "_passphraseVerification";
             this._passphraseVerification.Size = new System.Drawing.Size(243, 20);
             this._passphraseVerification.TabIndex = 2;
@@ -167,7 +167,7 @@
             // 
             this._verifyPasswordLabel.AutoSize = true;
             this._verifyPasswordLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._verifyPasswordLabel.Location = new System.Drawing.Point(6, 63);
+            this._verifyPasswordLabel.Location = new System.Drawing.Point(6, 71);
             this._verifyPasswordLabel.Name = "_verifyPasswordLabel";
             this._verifyPasswordLabel.Size = new System.Drawing.Size(88, 13);
             this._verifyPasswordLabel.TabIndex = 1;
@@ -187,7 +187,7 @@
             this._panel1.Controls.Add(this._resendButton);
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Location = new System.Drawing.Point(12, 259);
+            this._panel1.Location = new System.Drawing.Point(12, 267);
             this._panel1.Name = "_panel1";
             this._panel1.Size = new System.Drawing.Size(334, 41);
             this._panel1.TabIndex = 3;
@@ -257,7 +257,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._buttonCancel;
-            this.ClientSize = new System.Drawing.Size(354, 303);
+            this.ClientSize = new System.Drawing.Size(354, 315);
             this.Controls.Add(this._activationCodeGroupBox);
             this.Controls.Add(this.PassphraseGroupBox);
             this.Controls.Add(this._panel1);
