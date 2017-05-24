@@ -18,7 +18,7 @@ namespace Axantum.AxCrypt
 
         private ToolTip _toolTip = new ToolTip();
 
-        private int _percent;
+        private int? _percent;
 
         public PasswordStrengthMeter()
         {
@@ -36,27 +36,6 @@ namespace Axantum.AxCrypt
 
             SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
 
-            _viewModel.BindPropertyChanged(nameof(PasswordStrengthMeterViewModel.PasswordStrength), (PasswordStrength strength) =>
-            {
-                switch (strength)
-                {
-                    case PasswordStrength.Unacceptable:
-                        _toolTip.SetToolTip(this, Texts.PasswordStrengthUnacceptableTip);
-                        break;
-
-                    case PasswordStrength.Bad:
-                        _toolTip.SetToolTip(this, Texts.PasswordStrengthBadTip);
-                        break;
-
-                    case PasswordStrength.Weak:
-                        _toolTip.SetToolTip(this, Texts.PasswordStrengthWeakTip);
-                        break;
-
-                    case PasswordStrength.Strong:
-                        _toolTip.SetToolTip(this, Texts.PasswordStrengthStrongTip);
-                        break;
-                }
-            });
         }
 
         public event EventHandler MeterChanged;
@@ -109,7 +88,7 @@ namespace Axantum.AxCrypt
 
             Rectangle rec = e.ClipRectangle;
 
-            rec.Width = (int)(rec.Width * ((double)_percent / 100)) - 4;
+            rec.Width = (int)(rec.Width * ((double)_viewModel.PercentStrength / 100)) - 4;
 
             rec.Height = (rec.Height / 3) - 4;
 
@@ -125,22 +104,22 @@ namespace Axantum.AxCrypt
                     switch (_viewModel.PasswordStrength)
                     {
                         case PasswordStrength.Unacceptable:
-                            e.Graphics.DrawString("Password is too weak to be use.", this.Font, brush, 0,
+                            e.Graphics.DrawString(Texts.PasswordStrengthUnacceptableName, this.Font, brush, 0,
                                 progressBarRec.Height);
                             break;
 
                         case PasswordStrength.Bad:
-                            e.Graphics.DrawString("Password is weak and unsafe.", this.Font, brush, 0,
+                            e.Graphics.DrawString(Texts.PasswordStrengthBadName, this.Font, brush, 0,
                                 progressBarRec.Height);
                             break;
 
                         case PasswordStrength.Weak:
-                            e.Graphics.DrawString("Password is ok but not recommended.", this.Font, brush, 0,
+                            e.Graphics.DrawString(Texts.PasswordStrengthWeakName, this.Font, brush, 0,
                                 progressBarRec.Height);
                             return;
 
                         case PasswordStrength.Strong:
-                            e.Graphics.DrawString("Password is strong!", this.Font, brush, 0, progressBarRec.Height);
+                            e.Graphics.DrawString(Texts.PasswordStrengthStrongName, this.Font, brush, 0, progressBarRec.Height);
                             return;
                     }
                 }
