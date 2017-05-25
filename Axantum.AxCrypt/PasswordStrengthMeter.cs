@@ -18,8 +18,6 @@ namespace Axantum.AxCrypt
 
         private ToolTip _toolTip = new ToolTip();
 
-        private int? _percent;
-
         public PasswordStrengthMeter()
         {
             InitializeComponent();
@@ -35,6 +33,28 @@ namespace Axantum.AxCrypt
             }
 
             SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
+
+            _viewModel.BindPropertyChanged(nameof(PasswordStrengthMeterViewModel.PasswordStrength), (PasswordStrength strength) =>
+            {
+                switch (strength)
+                {
+                    case PasswordStrength.Unacceptable:
+                        _toolTip.SetToolTip(this, Texts.PasswordStrengthUnacceptableTip);
+                        break;
+
+                    case PasswordStrength.Bad:
+                        _toolTip.SetToolTip(this, Texts.PasswordStrengthBadTip);
+                        break;
+
+                    case PasswordStrength.Weak:
+                        _toolTip.SetToolTip(this, Texts.PasswordStrengthWeakTip);
+                        break;
+
+                    case PasswordStrength.Strong:
+                        _toolTip.SetToolTip(this, Texts.PasswordStrengthStrongTip);
+                        break;
+                }
+            });
 
         }
 
@@ -55,12 +75,9 @@ namespace Axantum.AxCrypt
                 _viewModel.PasswordCandidate = candidate;
             });
 
-            if (_percent != _viewModel.PercentStrength)
-            {
-                _percent = _viewModel.PercentStrength;
-                Invalidate();
-                OnMeterChanged();
-            }
+            Invalidate();
+            OnMeterChanged();
+
         }
 
         protected virtual void OnMeterChanged()
