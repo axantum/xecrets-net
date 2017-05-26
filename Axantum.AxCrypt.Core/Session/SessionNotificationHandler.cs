@@ -105,7 +105,9 @@ namespace Axantum.AxCrypt.Core.Session
                             WatchedFolder watchedFolder = _fileSystemState.WatchedFolders.First(wf => wf.Path == fullName);
 
                             encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, notification.Identity, watchedFolder.KeyShares);
-                            IDataContainer[] dc = new IDataContainer[] { New<IDataContainer>(watchedFolder.Path) };
+                            IDataContainer container = New<IDataContainer>(watchedFolder.Path);
+                            progress.Name = container.Name;
+                            IDataContainer[] dc = new IDataContainer[] { container };
                             _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(dc, encryptionParameters, progress);
                         }
                     }
@@ -119,6 +121,7 @@ namespace Axantum.AxCrypt.Core.Session
                     foreach (string fullName in notification.FullNames)
                     {
                         IDataContainer removedFolderInfo = New<IDataContainer>(fullName);
+                        progress.Name = removedFolderInfo.Name;
                         if (removedFolderInfo.IsAvailable)
                         {
                             await _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(removedFolderInfo, notification.Identity, _statusChecker, progress).Free();
@@ -172,7 +175,9 @@ namespace Axantum.AxCrypt.Core.Session
             foreach (WatchedFolder watchedFolder in _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)))
             {
                 EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity, watchedFolder.KeyShares);
-                _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { New<IDataContainer>(watchedFolder.Path) }, encryptionParameters, progress);
+                IDataContainer folder = New<IDataContainer>(watchedFolder.Path);
+                progress.Name = folder.Name;
+                _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { folder }, encryptionParameters, progress);
             }
         }
     }

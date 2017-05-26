@@ -57,6 +57,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         private int _progressLevel = 0;
 
+        private string _name;
+
         public ProgressContext()
             : this(TimeToFirstProgress)
         {
@@ -76,6 +78,25 @@ namespace Axantum.AxCrypt.Core.UI
             get;
             set;
         }
+
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+
+            set
+            {
+                if (_name != value)
+                {
+                    _name = value;
+                    NameChanged?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        public event EventHandler NameChanged;
 
         public bool AllItemsConfirmed { get; set; }
 
