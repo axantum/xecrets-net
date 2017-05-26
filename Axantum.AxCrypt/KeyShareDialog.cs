@@ -57,10 +57,7 @@ namespace Axantum.AxCrypt
                 SetShareButtonState();
             };
 
-            _newContact.TextChanged += (sender, e) =>
-            {
-                _viewModel.NewKeyShare = _newContact.Text.Trim();
-            };
+            _newContact.TextChanged += (sender, e) => { _viewModel.NewKeyShare = _newContact.Text.Trim(); AdHocClearErrorProviders(); };
             _newContact.Enter += (sender, e) => { _sharedWith.ClearSelected(); _notSharedWith.ClearSelected(); };
 
             _shareButton.Click += async (sender, e) =>
@@ -235,6 +232,10 @@ namespace Axantum.AxCrypt
                 return false;
             }
             return true;
+        }
+        private void AdHocClearErrorProviders()
+        {
+            _errorProvider1.Clear();
         }
     }
 }

@@ -53,9 +53,9 @@ namespace Axantum.AxCrypt
 
             Text = title;
             _viewModel = new NewPassphraseViewModel(passphrase, encryptedFileFullName);
-            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
+            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; AdHocClearErrorProviders(); };
             PassphraseTextBox.TextChanged += async (sender, e) => { await _passwordStrengthMeter.MeterAsync(PassphraseTextBox.Text); };
-            VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };
+            VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; AdHocClearErrorProviders(); };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
         }
 
@@ -121,6 +121,11 @@ namespace Axantum.AxCrypt
         private async void _buttonHelp_Click(object sender, EventArgs e)
         {
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
+        }
+        private void AdHocClearErrorProviders()
+        {
+            _errorProvider1.Clear();
+            _errorProvider2.Clear();
         }
     }
 }

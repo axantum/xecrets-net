@@ -54,10 +54,10 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _passphrase.TextChanged += (s, ee) => { _viewModel.Passphrase = _passphrase.Text; };
+            _passphrase.TextChanged += (s, ee) => { _viewModel.Passphrase = _passphrase.Text; AdHocClearErrorProviders(); };
             _passphrase.TextChanged += async (ss, ee) => { await _passwordStrengthMeter.MeterAsync(_passphrase.Text); };
-            _passphraseVerification.TextChanged += (s, ee) => { _viewModel.VerificationPassphrase = _passphraseVerification.Text; };
-            _activationCode.TextChanged += (s, ee) => { _viewModel.VerificationCode = _activationCode.Text; };
+            _passphraseVerification.TextChanged += (s, ee) => { _viewModel.VerificationPassphrase = _passphraseVerification.Text; AdHocClearErrorProviders(); };
+            _activationCode.TextChanged += (s, ee) => { _viewModel.VerificationCode = _activationCode.Text; AdHocClearErrorProviders(); };
             _showPassphrase.CheckedChanged += (s, ee) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
 
             _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.ShowPassphrase), (bool show) => { _passphrase.UseSystemPasswordChar = _passphraseVerification.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
@@ -168,6 +168,13 @@ namespace Axantum.AxCrypt
         private async void _helpButton_Click(object sender, EventArgs e)
         {
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
+        }
+        private void AdHocClearErrorProviders()
+        {
+            _errorProvider1.Clear();
+            _errorProvider2.Clear();
+            _errorProvider3.Clear();
+            _errorProvider4.Clear();
         }
     }
 }

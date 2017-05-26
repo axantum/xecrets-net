@@ -30,10 +30,11 @@ namespace Axantum.AxCrypt
             InitializeStyle(parent);
 
             _viewModel = new CreateNewAccountViewModel(passphrase, email);
-            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; AdHocValidatePassphrase();};
+            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; AdHocClearErrorProviders(); };
             PassphraseTextBox.TextChanged += async (sender, e) => { await _passwordStrengthMeter.MeterAsync(PassphraseTextBox.Text); };
-            VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; AdHocValidateVerfication();};
-            EmailTextBox.LostFocus += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocValidateUserEmail(); AdHocValidateUserEmail(); };
+            VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; AdHocClearErrorProviders(); };
+            EmailTextBox.LostFocus += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; };
+            EmailTextBox.TextChanged += (sender, e) => { AdHocClearErrorProviders(); };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
         }
 
@@ -176,6 +177,13 @@ namespace Axantum.AxCrypt
         private async void _helpButton_Click(object sender, EventArgs e)
         {
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
+        }
+
+        private void AdHocClearErrorProviders()
+        {
+            _errorProvider1.Clear();
+            _errorProvider2.Clear();
+            _errorProvider3.Clear();
         }
     }
 }

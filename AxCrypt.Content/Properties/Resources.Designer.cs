@@ -4101,7 +4101,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Very weak.
+        ///   Looks up a localized string similar to Too weak.
         /// </summary>
         public static string PasswordStrengthUnacceptableName {
             get {

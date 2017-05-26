@@ -45,7 +45,8 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            EmailTextBox.LostFocus += (s, ea) => { _viewModel.UserEmail = EmailTextBox.Text; };
+            EmailTextBox.LostFocus += (s, ea) => { _viewModel.UserEmail = EmailTextBox.Text; AdHocClearErrorProviders(); };
+            EmailTextBox.TextChanged += (s, ea) => { AdHocClearErrorProviders(); };
             EmailTextBox.Focus();
         }
 
@@ -94,6 +95,11 @@ namespace Axantum.AxCrypt
         private void _buttonHelp_Click(object sender, EventArgs e)
         {
             LaunchHelpPage();
+        }
+
+        private void AdHocClearErrorProviders()
+        {
+            _errorProvider1.Clear();
         }
     }
 }

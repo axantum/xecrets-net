@@ -1633,7 +1633,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableName" xml:space="preserve">
-    <value>Very weak</value>
+    <value>Too weak</value>
     <comment>Short displayed name of Unacceptable password status</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">

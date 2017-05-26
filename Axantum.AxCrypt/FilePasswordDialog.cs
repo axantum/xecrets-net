@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt
 
         private void InitializePropertyValues()
         {
-            _passphraseTextBox.TextChanged += (sender, e) => { ViewModel.PassphraseText = _passphraseTextBox.Text; };
+            _passphraseTextBox.TextChanged += (sender, e) => { ViewModel.PassphraseText = _passphraseTextBox.Text; AdHocClearErrorProviders(); };
             _keyFileTextBox.TextChanged += (sender, e) => { ViewModel.KeyFileName = _keyFileTextBox.Text; };
             _showPassphraseCheckBox.CheckedChanged += (sender, e) => { ViewModel.ShowPassphrase = _showPassphraseCheckBox.Checked; };
         }
@@ -159,6 +159,11 @@ namespace Axantum.AxCrypt
         {
             KeyFilePanel.Visible = true;
             _moreButton.Visible = false;
+        }
+
+        private void AdHocClearErrorProviders()
+        {
+            _errorProvider1.Clear();
         }
     }
 }
