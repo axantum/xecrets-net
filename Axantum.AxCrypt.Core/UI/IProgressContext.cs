@@ -33,6 +33,10 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public interface IProgressContext
     {
+        string Name { get; set; }
+
+        event EventHandler NameChanged;
+
         event EventHandler<ProgressEventArgs> Progressing;
 
         void RemoveCount(long totalCount, long progressCount);

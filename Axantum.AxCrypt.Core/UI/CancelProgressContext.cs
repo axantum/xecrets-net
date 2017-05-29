@@ -137,5 +137,31 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _progress.LeaveSingleThread();
         }
+
+        public string Name
+        {
+            get
+            {
+                return _progress.Name;
+            }
+
+            set
+            {
+                _progress.Name = value;
+            }
+        }
+
+        public event EventHandler NameChanged
+        {
+            add
+            {
+                _progress.NameChanged += value;
+            }
+            remove
+            {
+                _progress.NameChanged -= value;
+            }
+        }
+
     }
 }

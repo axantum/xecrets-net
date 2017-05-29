@@ -49,6 +49,24 @@ namespace Axantum.AxCrypt.Core.UI
         {
         }
 
+        // <summary>
+        /// Does an operation on a list of files, with parallelism.
+        /// </summary>
+        /// <param name="files">The files to operation on.</param>
+        /// <param name="work">The work to do for each file.</param>
+        /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
+        public async virtual Task DoFilesAsync<TDataItem>(IEnumerable<TDataItem> files, Func<TDataItem, IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> allComplete)
+            where TDataItem : IDataItem
+        {
+            Func<TDataItem, IProgressContext, Task<FileOperationContext>> singleFileOperation = (file, progress) =>
+            {
+                progress.Name = file.Name;
+                return work((TDataItem)file, progress);
+            };
+
+            await InvokeAsync(files, singleFileOperation, allComplete);
+        }
+
         /// <summary>
         /// Does an operation on a list of files, with parallelism.
         /// </summary>
@@ -56,7 +74,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        public async virtual Task DoFilesAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> allComplete)
+        public async virtual Task InvokeAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> allComplete)
         {
             WorkerGroupProgressContext groupProgress = new WorkerGroupProgressContext(new CancelProgressContext(new ProgressContext()), New<ISingleThread>());
             await New<IProgressBackground>().WorkAsync(nameof(DoFilesAsync),
