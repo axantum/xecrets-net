@@ -40,6 +40,8 @@ namespace Axantum.AxCrypt
     {
         private NewPassphraseViewModel _viewModel;
 
+        private ToolTip _toolTip = new ToolTip();
+
         public NewPassphraseDialog()
         {
             InitializeComponent();
@@ -49,13 +51,12 @@ namespace Axantum.AxCrypt
             : this()
         {
             InitializeStyle(parent);
-            _passwordStrengthMeter.MeterChanged += (sender, e) => _buttonOk.Enabled = _passwordStrengthMeter.IsAcceptable;
 
             Text = title;
             _viewModel = new NewPassphraseViewModel(passphrase, encryptedFileFullName);
-            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; AdHocClearErrorProviders(); };
+            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; ClearErrorProviders(); };
             PassphraseTextBox.TextChanged += async (sender, e) => { await _passwordStrengthMeter.MeterAsync(PassphraseTextBox.Text); };
-            VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; AdHocClearErrorProviders(); };
+            VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; ClearErrorProviders(); };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
         }
 
@@ -80,6 +81,12 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
+
+            _passwordStrengthMeter.MeterChanged += (sender, e) =>
+            {
+                _buttonOk.Enabled = _passwordStrengthMeter.IsAcceptable;
+                _toolTip.SetToolTip(PassphraseTextBox, _passwordStrengthMeter.StrengthTip);
+            };
 
             _viewModel.BindPropertyChanged(nameof(NewPassphraseViewModel.ShowPassphrase), (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !show; });
             _viewModel.BindPropertyChanged(nameof(NewPassphraseViewModel.FileName), (string fileName) => { FileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
@@ -122,7 +129,8 @@ namespace Axantum.AxCrypt
         {
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.DialogVerifyAccountTitle, Texts.PasswordRulesInfo);
         }
-        private void AdHocClearErrorProviders()
+
+        private void ClearErrorProviders()
         {
             _errorProvider1.Clear();
             _errorProvider2.Clear();

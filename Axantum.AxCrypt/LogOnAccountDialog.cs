@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt
             _viewModel.TooManyTries += (s, ea) => { New<IUIThread>().PostTo(() => _troubleRememberingPanel.Show()); };
 
             _passphrase.LostFocus += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
-            _passphrase.TextChanged += (s, ea) => { AdHocClearErrorProviders(); };
+            _passphrase.TextChanged += (s, ea) => { ClearErrorProviders(); };
             _passphrase.Validating += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
             _showPassphrase.CheckedChanged += (s, ea) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
 
@@ -108,7 +108,8 @@ namespace Axantum.AxCrypt
         {
             Process.Start(Texts.PasswordResetHyperLink);
         }
-        private void AdHocClearErrorProviders()
+
+        private void ClearErrorProviders()
         {
             _errorProvider1.Clear();
             _errorProvider2.Clear();

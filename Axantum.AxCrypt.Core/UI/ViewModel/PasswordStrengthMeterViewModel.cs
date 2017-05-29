@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,30 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public int PercentStrength { get { return GetProperty<int>(nameof(PercentStrength)); } set { SetProperty(nameof(PercentStrength), value); } }
 
         public PasswordStrength PasswordStrength { get { return GetProperty<PasswordStrength>(nameof(PasswordStrength)); } set { SetProperty(nameof(PasswordStrength), value); } }
+
+        public string StrengthTip
+        {
+            get
+            {
+                switch (PasswordStrength)
+                {
+                    case PasswordStrength.Unacceptable:
+                        return Texts.PasswordStrengthUnacceptableTip;
+
+                    case PasswordStrength.Bad:
+                        return Texts.PasswordStrengthBadTip;
+
+                    case PasswordStrength.Weak:
+                        return Texts.PasswordStrengthWeakTip;
+
+                    case PasswordStrength.Strong:
+                        return Texts.PasswordStrengthStrongTip;
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
 
         private static void InitializePropertyValues()
         {

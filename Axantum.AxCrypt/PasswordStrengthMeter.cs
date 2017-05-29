@@ -36,26 +36,8 @@ namespace Axantum.AxCrypt
 
             _viewModel.BindPropertyChanged(nameof(PasswordStrengthMeterViewModel.PasswordStrength), (PasswordStrength strength) =>
             {
-                switch (strength)
-                {
-                    case PasswordStrength.Unacceptable:
-                        _toolTip.SetToolTip(this, Texts.PasswordStrengthUnacceptableTip);
-                        break;
-
-                    case PasswordStrength.Bad:
-                        _toolTip.SetToolTip(this, Texts.PasswordStrengthBadTip);
-                        break;
-
-                    case PasswordStrength.Weak:
-                        _toolTip.SetToolTip(this, Texts.PasswordStrengthWeakTip);
-                        break;
-
-                    case PasswordStrength.Strong:
-                        _toolTip.SetToolTip(this, Texts.PasswordStrengthStrongTip);
-                        break;
-                }
+                _toolTip.SetToolTip(this, _viewModel.StrengthTip);
             });
-
         }
 
         public event EventHandler MeterChanged;
@@ -68,6 +50,14 @@ namespace Axantum.AxCrypt
             }
         }
 
+        public string StrengthTip
+        {
+            get
+            {
+                return _viewModel.StrengthTip;
+            }
+        }
+
         public async Task MeterAsync(string candidate)
         {
             await Task.Run(() =>
@@ -77,7 +67,6 @@ namespace Axantum.AxCrypt
 
             Invalidate();
             OnMeterChanged();
-
         }
 
         protected virtual void OnMeterChanged()

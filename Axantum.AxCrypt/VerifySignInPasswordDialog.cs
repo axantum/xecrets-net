@@ -31,7 +31,6 @@ namespace Axantum.AxCrypt
             _verifyInstructionText = verifyInstructionText;
         }
 
-
         private void VerifySignInPasswordDialog_Load(object sender, EventArgs e)
         {
             if (DesignMode)
@@ -40,7 +39,7 @@ namespace Axantum.AxCrypt
             }
 
             _passphraseTextBox.LostFocus += (s, ea) => { _viewModel.Passphrase = _passphraseTextBox.Text; };
-            _passphraseTextBox.TextChanged += (s, ea) => { AdHocClearErrorProviders(); };
+            _passphraseTextBox.TextChanged += (s, ea) => { ClearErrorProviders(); };
             _passphraseTextBox.Validating += (s, ea) => { _viewModel.Passphrase = _passphraseTextBox.Text; };
             _showPassphraseCheckBox.CheckedChanged += (s, ea) => { _viewModel.ShowPassphrase = _showPassphraseCheckBox.Checked; };
 
@@ -106,7 +105,8 @@ namespace Axantum.AxCrypt
         {
             DialogResult = DialogResult.No;
         }
-        private void AdHocClearErrorProviders()
+
+        private void ClearErrorProviders()
         {
             _errorProvider1.Clear();
         }
