@@ -15,6 +15,7 @@ namespace Axantum.AxCrypt
     public partial class PasswordStrengthMeter : Control
     {
         private PasswordStrengthMeterViewModel _viewModel = new PasswordStrengthMeterViewModel();
+        Label helpText = new Label();
 
         private ToolTip _toolTip = new ToolTip();
 
@@ -33,11 +34,47 @@ namespace Axantum.AxCrypt
             }
 
             SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
+            helpText.Location = new Point(0, this.Height / 3);
+            this.Controls.Add(helpText);
 
             _viewModel.BindPropertyChanged(nameof(PasswordStrengthMeterViewModel.PasswordStrength), (PasswordStrength strength) =>
             {
                 _toolTip.SetToolTip(this, _viewModel.StrengthTip);
+
             });
+
+            _viewModel.BindPropertyChanged(nameof(PasswordStrengthMeterViewModel.PasswordCandidate), (string candidate) =>
+            {
+                if (!string.IsNullOrEmpty(_viewModel.PasswordCandidate))
+                {
+                    using (SolidBrush brush = new SolidBrush(this.ForeColor))
+                    {
+                        switch (_viewModel.PasswordStrength)
+                        {
+                            case PasswordStrength.Unacceptable:
+                                helpText.Text = Texts.PasswordStrengthUnacceptableName;
+                                break;
+
+                            case PasswordStrength.Bad:
+                                helpText.Text = Texts.PasswordStrengthBadName;
+                                break;
+
+                            case PasswordStrength.Weak:
+                                helpText.Text = Texts.PasswordStrengthWeakName;
+                                return;
+
+                            case PasswordStrength.Strong:
+                                helpText.Text = Texts.PasswordStrengthStrongName;
+                                return;
+                        }
+                    }
+                }
+                else
+                {
+                    helpText.Text = "";
+                }
+            });
+
         }
 
         public event EventHandler MeterChanged;
@@ -101,34 +138,6 @@ namespace Axantum.AxCrypt
             using (SolidBrush brush = new SolidBrush(Color()))
             {
                 e.Graphics.FillRectangle(brush, 2, 2, rec.Width, rec.Height);
-            }
-
-            if (!string.IsNullOrEmpty(_viewModel.PasswordCandidate))
-            {
-                using (SolidBrush brush = new SolidBrush(this.ForeColor))
-                {
-                    switch (_viewModel.PasswordStrength)
-                    {
-                        case PasswordStrength.Unacceptable:
-                            e.Graphics.DrawString(Texts.PasswordStrengthUnacceptableName, this.Font, brush, 0,
-                                progressBarRec.Height);
-                            break;
-
-                        case PasswordStrength.Bad:
-                            e.Graphics.DrawString(Texts.PasswordStrengthBadName, this.Font, brush, 0,
-                                progressBarRec.Height);
-                            break;
-
-                        case PasswordStrength.Weak:
-                            e.Graphics.DrawString(Texts.PasswordStrengthWeakName, this.Font, brush, 0,
-                                progressBarRec.Height);
-                            return;
-
-                        case PasswordStrength.Strong:
-                            e.Graphics.DrawString(Texts.PasswordStrengthStrongName, this.Font, brush, 0, progressBarRec.Height);
-                            return;
-                    }
-                }
             }
         }
 
