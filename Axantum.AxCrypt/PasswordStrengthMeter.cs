@@ -47,27 +47,25 @@ namespace Axantum.AxCrypt
             {
                 if (!string.IsNullOrEmpty(_viewModel.PasswordCandidate))
                 {
-                    using (SolidBrush brush = new SolidBrush(this.ForeColor))
+                    switch (_viewModel.PasswordStrength)
                     {
-                        switch (_viewModel.PasswordStrength)
-                        {
-                            case PasswordStrength.Unacceptable:
-                                helpText.Text = Texts.PasswordStrengthUnacceptableName;
-                                break;
+                        case PasswordStrength.Unacceptable:
+                            helpText.Text = Texts.PasswordStrengthUnacceptableName;
+                            break;
 
-                            case PasswordStrength.Bad:
-                                helpText.Text = Texts.PasswordStrengthBadName;
-                                break;
+                        case PasswordStrength.Bad:
+                            helpText.Text = Texts.PasswordStrengthBadName;
+                            break;
 
-                            case PasswordStrength.Weak:
-                                helpText.Text = Texts.PasswordStrengthWeakName;
-                                return;
+                        case PasswordStrength.Weak:
+                            helpText.Text = Texts.PasswordStrengthWeakName;
+                            return;
 
-                            case PasswordStrength.Strong:
-                                helpText.Text = Texts.PasswordStrengthStrongName;
-                                return;
-                        }
+                        case PasswordStrength.Strong:
+                            helpText.Text = Texts.PasswordStrengthStrongName;
+                            return;
                     }
+
                 }
                 else
                 {
