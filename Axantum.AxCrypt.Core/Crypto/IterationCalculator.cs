@@ -27,7 +27,6 @@
 
 using Axantum.AxCrypt.Abstractions;
 using System;
-using System.Linq;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -35,6 +34,26 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class IterationCalculator
     {
+        private class WrapIterator
+        {
+            private ICrypto _dummyCrypto;
+
+            private Salt _dummySalt;
+
+            public WrapIterator(Guid cryptoId)
+            {
+                ICryptoFactory factory = Resolve.CryptoFactory.Create(cryptoId);
+                _dummyCrypto = factory.CreateCrypto(factory.CreateDerivedKey(new Passphrase("A dummy passphrase")).DerivedKey, null, 0);
+                _dummySalt = new Salt(_dummyCrypto.Key.Size);
+            }
+
+            public void Iterate(long keyWrapIterations)
+            {
+                KeyWrap keyWrap = new KeyWrap(_dummySalt, keyWrapIterations, KeyWrapMode.Specification);
+                keyWrap.Wrap(_dummyCrypto, new SymmetricKey(_dummyCrypto.Key.Size));
+            }
+        }
+
         /// <summary>
         /// Get the number of key wrap iterations we use by default. This is a calculated value intended to cause the wrapping
         /// operation to take approximately 1/20th of a second in the system where the code is run.
@@ -43,7 +62,10 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="cryptoId">The id of the crypto to use for the wrap.</param>
         public virtual long KeyWrapIterations(Guid cryptoId)
         {
-            long iterationsPerSecond = IterationsPerSecond(cryptoId, KeyWrapIterate);
+            DateTime startTime = New<INow>().Utc;
+            WrapIterator wrapIterator = new WrapIterator(cryptoId);
+
+            long iterationsPerSecond = IterationsPerSecond(startTime, cryptoId, wrapIterator.Iterate);
             long defaultIterations = iterationsPerSecond / 20;
 
             if (defaultIterations < 5000)
@@ -54,30 +76,19 @@ namespace Axantum.AxCrypt.Core.Crypto
             return defaultIterations;
         }
 
-        private static long IterationsPerSecond(Guid cryptoId, Func<Guid, long, object> iterate)
+        private static long IterationsPerSecond(DateTime startTime, Guid cryptoId, Action<long> iterate)
         {
             long iterationsIncrement = 1000;
             long totalIterations = 0;
-            DateTime startTime = New<INow>().Utc;
             DateTime endTime;
             do
             {
-                iterate(cryptoId, iterationsIncrement);
+                iterate(iterationsIncrement);
                 totalIterations += iterationsIncrement;
                 endTime = New<INow>().Utc;
             } while ((endTime - startTime).TotalMilliseconds < 500);
             long iterationsPerSecond = totalIterations * 1000 / (long)(endTime - startTime).TotalMilliseconds;
             return iterationsPerSecond;
-        }
-
-        private static object KeyWrapIterate(Guid cryptoId, long keyWrapIterations)
-        {
-            ICryptoFactory factory = Resolve.CryptoFactory.Create(cryptoId);
-            ICrypto dummyCrypto = factory.CreateCrypto(factory.CreateDerivedKey(new Passphrase("A dummy passphrase")).DerivedKey, null, 0);
-            Salt dummySalt = new Salt(dummyCrypto.Key.Size);
-            KeyWrap keyWrap = new KeyWrap(dummySalt, keyWrapIterations, KeyWrapMode.Specification);
-            byte[] wrapped = keyWrap.Wrap(dummyCrypto, new SymmetricKey(dummyCrypto.Key.Size));
-            return wrapped;
         }
     }
 }
