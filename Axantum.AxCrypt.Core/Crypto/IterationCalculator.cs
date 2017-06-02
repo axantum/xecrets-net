@@ -40,17 +40,20 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             private Salt _dummySalt;
 
+            private SymmetricKey _dummyKey;
+
             public WrapIterator(Guid cryptoId)
             {
                 ICryptoFactory factory = Resolve.CryptoFactory.Create(cryptoId);
                 _dummyCrypto = factory.CreateCrypto(factory.CreateDerivedKey(new Passphrase("A dummy passphrase")).DerivedKey, null, 0);
                 _dummySalt = new Salt(_dummyCrypto.Key.Size);
+                _dummyKey = new SymmetricKey(_dummyCrypto.Key.Size);
             }
 
             public void Iterate(long keyWrapIterations)
             {
                 KeyWrap keyWrap = new KeyWrap(_dummySalt, keyWrapIterations, KeyWrapMode.Specification);
-                keyWrap.Wrap(_dummyCrypto, new SymmetricKey(_dummyCrypto.Key.Size));
+                keyWrap.Wrap(_dummyCrypto, _dummyKey);
             }
         }
 
