@@ -249,10 +249,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, mock, New<AxCryptFile>(), mockStatusChecker.Object);
 
-            Assert.ThrowsAsync<InvalidOperationException>(async () =>
+            Assert.DoesNotThrowAsync(async () =>
             {
                 await handler.HandleNotificationAsync(new SessionNotification((SessionNotificationType)(-1)));
             });
+            mockStatusChecker.Verify(msc => msc.CheckStatusAndShowMessage(It.Is<ErrorStatus>(es => es == ErrorStatus.Exception), It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [TestCase(CryptoImplementation.Mono)]

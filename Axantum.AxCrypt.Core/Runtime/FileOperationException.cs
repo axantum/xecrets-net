@@ -50,6 +50,12 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
         }
 
+        public FileOperationException(string message, string fullName, ErrorStatus errorStatus)
+            : base(message, errorStatus)
+        {
+            DisplayContext = fullName;
+        }
+
         public FileOperationException(string message, Exception innerException)
             : this(message, ErrorStatus.InternalError, innerException)
         {

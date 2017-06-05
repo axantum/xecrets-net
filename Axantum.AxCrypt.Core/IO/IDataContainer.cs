@@ -55,6 +55,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         /// <summary>
         /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
+        /// If the file can't be created for some other reason, the underlying exception is thrown.
         /// </summary>
         IDataStore CreateNewFile(string item);
 

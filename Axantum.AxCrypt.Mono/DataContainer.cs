@@ -119,21 +119,19 @@ namespace Axantum.AxCrypt.Mono
 
         /// <summary>
         /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
+        /// If the file can't be created for some other reason, the underlying exception is thrown.
         /// </summary>
         public IDataStore CreateNewFile(string item)
         {
             _info.Refresh();
             FileInfo file = new FileInfo(Path.Combine(_info.FullName, item));
-            try
+            if (file.Exists)
             {
-                using (FileStream stream = new FileStream(file.FullName, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
-                {
-                    return new DataStore(file.FullName);
-                }
+                throw new FileOperationException("File exists.", file.FullName, ErrorStatus.FileExists);
             }
-            catch (IOException ioex)
+            using (FileStream stream = new FileStream(file.FullName, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
             {
-                throw new FileOperationException("File exists.", file.FullName, ErrorStatus.FileExists, ioex);
+                return new DataStore(file.FullName);
             }
         }
 
