@@ -145,12 +145,12 @@ namespace Axantum.AxCrypt.Core.Test
             };
             _progress.Progressing += handler;
 
-            _progressMock.Raise(p => p.Progressing += null, new ProgressEventArgs(13));
+            _progressMock.Raise(p => p.Progressing += null, new ProgressEventArgs(13, string.Empty));
 
             Assert.That(percent, Is.EqualTo(13));
 
             _progress.Progressing -= handler;
-            _progressMock.Raise(p => p.Progressing += null, new ProgressEventArgs(26));
+            _progressMock.Raise(p => p.Progressing += null, new ProgressEventArgs(26, string.Empty));
 
             Assert.That(percent, Is.EqualTo(13));
         }

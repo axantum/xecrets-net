@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                             encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, notification.Identity, watchedFolder.KeyShares);
                             IDataContainer container = New<IDataContainer>(watchedFolder.Path);
-                            progress.Name = container.Name;
+                            progress.Display = container.Name;
                             IDataContainer[] dc = new IDataContainer[] { container };
                             _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(dc, encryptionParameters, progress);
                         }
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Session
                     foreach (string fullName in notification.FullNames)
                     {
                         IDataContainer removedFolderInfo = New<IDataContainer>(fullName);
-                        progress.Name = removedFolderInfo.Name;
+                        progress.Display = removedFolderInfo.Name;
                         if (removedFolderInfo.IsAvailable)
                         {
                             await _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(removedFolderInfo, notification.Identity, _statusChecker, progress).Free();
@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity, watchedFolder.KeyShares);
                 IDataContainer folder = New<IDataContainer>(watchedFolder.Path);
-                progress.Name = folder.Name;
+                progress.Display = folder.Name;
                 _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { folder }, encryptionParameters, progress);
             }
         }

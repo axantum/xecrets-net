@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             Func<TDataItem, IProgressContext, Task<FileOperationContext>> singleFileOperation = (file, progress) =>
             {
-                progress.Name = file.Name;
+                progress.Display = file.Name;
                 return work((TDataItem)file, progress);
             };
 

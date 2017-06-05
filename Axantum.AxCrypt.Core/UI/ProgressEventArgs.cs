@@ -31,11 +31,14 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class ProgressEventArgs : EventArgs
     {
-        public ProgressEventArgs(int percent)
+        public ProgressEventArgs(int percent, string display)
         {
             Percent = percent;
+            Display = display;
         }
 
         public int Percent { get; private set; }
+
+        public string Display { get; private set; }
     }
 }

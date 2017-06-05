@@ -45,28 +45,16 @@ namespace Axantum.AxCrypt.Core.Runtime
             _singleThread = singleThread;
         }
 
-        public string Name
+        public string Display
         {
             get
             {
-                return _progress.Name;
+                return _progress.Display;
             }
 
             set
             {
-                _progress.Name = value;
-            }
-        }
-
-        public event EventHandler NameChanged
-        {
-            add
-            {
-                _progress.NameChanged += value;
-            }
-            remove
-            {
-                _progress.NameChanged -= value;
+                _progress.Display = value;
             }
         }
 

@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.UI
             set;
         }
 
-        public string Name
+        public string Display
         {
             get
             {
@@ -91,12 +91,10 @@ namespace Axantum.AxCrypt.Core.UI
                 if (_name != value)
                 {
                     _name = value;
-                    NameChanged?.Invoke(this, EventArgs.Empty);
+                    AddCount(0);
                 }
             }
         }
-
-        public event EventHandler NameChanged;
 
         public bool AllItemsConfirmed { get; set; }
 
@@ -169,7 +167,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 _nextProgressTime = _stopwatch.Elapsed.Add(ProgressTimeInterval);
             }
-            ProgressEventArgs e = new ProgressEventArgs(Percent);
+            ProgressEventArgs e = new ProgressEventArgs(Percent, Display);
             OnProgressing(e);
         }
 
@@ -236,7 +234,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 --_progressLevel;
             }
-            ProgressEventArgs e = new ProgressEventArgs(100);
+            ProgressEventArgs e = new ProgressEventArgs(100, string.Empty);
             OnProgressing(e);
         }
 

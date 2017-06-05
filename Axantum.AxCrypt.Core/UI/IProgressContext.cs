@@ -33,9 +33,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public interface IProgressContext
     {
-        string Name { get; set; }
-
-        event EventHandler NameChanged;
+        string Display { get; set; }
 
         event EventHandler<ProgressEventArgs> Progressing;
 
