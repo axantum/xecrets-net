@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
@@ -68,6 +69,14 @@ namespace Axantum.AxCrypt.Core.Session
                     try
                     {
                         await HandleNotificationInternalAsync(notification, progress).Free();
+                    }
+                    catch (AxCryptException acex)
+                    {
+                        return new FileOperationContext(acex.DisplayContext, acex.Messages(), ErrorStatus.Exception);
+                    }
+                    catch (Exception ex)
+                    {
+                        return new FileOperationContext(string.Empty, ex.Messages(), ErrorStatus.Exception);
                     }
                     finally
                     {

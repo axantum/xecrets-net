@@ -155,22 +155,29 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
 
-            if (activeFile.Status.HasMask(ActiveFileStatus.Exception))
+            try
             {
-                return activeFile;
-            }
-
-            if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
-            {
-                return activeFile;
-            }
-            using (FileLock decryptedFileLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
-            {
-                using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
+                if (activeFile.Status.HasMask(ActiveFileStatus.Exception))
                 {
-                    activeFile = CheckActiveFileActions(activeFile, encryptedFileLock, decryptedFileLock, progress);
                     return activeFile;
                 }
+
+                if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
+                {
+                    return activeFile;
+                }
+                using (FileLock decryptedFileLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
+                {
+                    using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
+                    {
+                        activeFile = CheckActiveFileActions(activeFile, encryptedFileLock, decryptedFileLock, progress);
+                        return activeFile;
+                    }
+                }
+            }
+            catch (Exception ex) when (!(ex is AxCryptException))
+            {
+                throw new FileOperationException("Unexpected exception checking active files.", $"{activeFile.EncryptedFileInfo.FullName} : {activeFile.DecryptedFileInfo.FullName}", ErrorStatus.Exception, ex);
             }
         }
 
