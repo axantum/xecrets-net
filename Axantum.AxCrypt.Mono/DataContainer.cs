@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Mono
             }
             catch (IOException ioex)
             {
-                throw new InternalErrorException("File exists.", ErrorStatus.FileExists, ioex);
+                throw new FileOperationException("File exists.", file.FullName, ErrorStatus.FileExists, ioex);
             }
         }
 
