@@ -246,5 +246,25 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
             }
         }
+
+        public static IEnumerable<IDataStore> ListOfFiles(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
+        {
+            if (folderPath == null)
+            {
+                throw new ArgumentNullException("folderPath");
+            }
+
+            IEnumerable<IDataStore> files = folderPath.Files;
+            if (folderOperationMode == FolderOperationMode.SingleFolder)
+            {
+                return files;
+            }
+
+            IEnumerable<IDataContainer> folders = folderPath.Folders.Where(folderInfo => { return !ignoreFolders.Any(x => x.FullName == folderInfo.FullName); });
+            IEnumerable<IDataStore> subFolderFiles = folders.SelectMany(folder => folder.ListOfFiles(ignoreFolders, folderOperationMode));
+
+            return files.Concat(subFolderFiles);
+        }
+
     }
 }
