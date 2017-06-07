@@ -46,6 +46,11 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
         }
 
+        public InternalErrorException(string message, string displayContext) : base(message, ErrorStatus.InternalError)
+        {
+            DisplayContext = displayContext;
+        }
+
         public InternalErrorException(string message, ErrorStatus errorStatus)
             : base(message, errorStatus)
         {

@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public static Task<FileLock> AcquireAsync(IDataItem dataItem)
         {
-        	return FileLockManager.CreateAsyncFileLock(dataItem);
+            return FileLockManager.CreateAsyncFileLock(dataItem);
         }
 
         public IDataStore DataStore { get { return _fileLockManager.DataStore; } }
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.IO
 #if DEBUG
                 if (!_semaphore.Wait(TimeSpan.FromSeconds(5)))
                 {
-                    throw new InternalErrorException($"Potential deadlock detected for {_originalLockedFileName} .");
+                    throw new InternalErrorException("Potential deadlock detected.", _originalLockedFileName);
                 }
 #else
                 _semaphore.Wait();
