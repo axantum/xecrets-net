@@ -319,13 +319,13 @@ namespace Axantum.AxCrypt.Core.Test
             decryptedFileInfo.SetFileTimes(utcNow.AddSeconds(30), utcNow.AddSeconds(30), utcNow.AddSeconds(30));
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
+
+            Resolve.KnownIdentities.Add(passphrase);
             bool changedWasRaised = false;
             Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
                 changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
             };
-
-            Resolve.KnownIdentities.Add(passphrase);
 
             try
             {
@@ -358,30 +358,31 @@ namespace Axantum.AxCrypt.Core.Test
             decryptedFileInfo.SetFileTimes(utcNow.AddSeconds(30), utcNow.AddSeconds(30), utcNow.AddSeconds(30));
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
+
+            Resolve.KnownIdentities.Add(passphrase);
+
             bool changedWasRaised = false;
             Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange && e.Notification.FullNames.Contains(_uncompressedAxxPath);
             };
-
-            Resolve.KnownIdentities.Add(passphrase);
 
             EventHandler eventHandler = ((object sender, EventArgs e) =>
             {
                 FakeDataStore fileInfo = (FakeDataStore)sender;
-                if (fileInfo.FullName == _decryptedFile1)
+                if (fileInfo.FullName == Path.ChangeExtension(_uncompressedAxxPath, ".tmp"))
                 {
                     throw new IOException("Faked access denied.");
                 }
             });
-            FakeDataStore.OpeningForRead += eventHandler;
+            FakeDataStore.OpeningForWrite += eventHandler;
             try
             {
-                New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+                Assert.Throws<FileOperationException>(() => New<ActiveFileAction>().CheckActiveFiles(new ProgressContext()));
             }
             finally
             {
-                FakeDataStore.OpeningForRead -= eventHandler;
+                FakeDataStore.OpeningForWrite -= eventHandler;
             }
 
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should not be modified because it was not accessible.");
