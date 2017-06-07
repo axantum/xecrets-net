@@ -129,9 +129,16 @@ namespace Axantum.AxCrypt.Mono
             {
                 throw new FileOperationException("File exists.", file.FullName, ErrorStatus.FileExists);
             }
-            using (FileStream stream = new FileStream(file.FullName, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
+            try
             {
-                return new DataStore(file.FullName);
+                using (FileStream stream = new FileStream(file.FullName, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
+                {
+                    return new DataStore(file.FullName);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FileOperationException("File creation failed.", file.FullName, ErrorStatus.Exception, ex);
             }
         }
 
