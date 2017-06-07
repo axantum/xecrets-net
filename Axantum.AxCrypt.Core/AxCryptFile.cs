@@ -329,7 +329,7 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                IEnumerable<IDataStore> files = containers.SelectMany((folder) => folder.ListEncrypted());
+                IEnumerable<IDataStore> files = containers.SelectMany((folder) => folder.ListEncrypted(containers, New<UserSettings>().FolderOperationMode.Policy()));
                 ChangeEncryption(files, identity, encryptionParameters, progress);
             }
             finally
@@ -695,7 +695,7 @@ namespace Axantum.AxCrypt.Core
 
         public virtual async Task DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(IDataContainer sourceContainer, LogOnIdentity logOnIdentity, IStatusChecker statusChecker, IProgressContext progress)
         {
-            IEnumerable<IDataStore> files = sourceContainer.ListEncrypted().ToList();
+            IEnumerable<IDataStore> files = sourceContainer.ListEncrypted(Resolve.FileSystemState.WatchedFolders.Select(cn => New <IDataContainer>(cn.Path)), New<UserSettings>().FolderOperationMode.Policy());
             await Resolve.ParallelFileOperation.DoFilesAsync(files, (file, context) =>
             {
                 return DecryptFileUniqueWithWipeOfOriginalAsync(file, logOnIdentity, context);
