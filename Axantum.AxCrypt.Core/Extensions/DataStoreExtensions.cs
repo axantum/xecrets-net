@@ -129,39 +129,12 @@ namespace Axantum.AxCrypt.Core.Extensions
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
         public static IEnumerable<IDataStore> ListEncryptable(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
         {
-            if (folderPath == null)
-            {
-                throw new ArgumentNullException("folderPath");
-            }
-
-            IEnumerable<IDataStore> files = folderPath.Files.Where(fileInfo => fileInfo.IsEncryptable());
-            if (folderOperationMode == FolderOperationMode.SingleFolder)
-            {
-                return files;
-            }
-
-            IEnumerable<IDataContainer> folders = folderPath.Folders.Where(folderInfo => { return !ignoreFolders.Any(x => x.FullName == folderInfo.FullName); });
-            IEnumerable<IDataStore> subFolderFiles = folders.SelectMany(folder => folder.ListEncryptable(ignoreFolders, folderOperationMode));
-
-            return files.Concat(subFolderFiles);
+            return folderPath.ListOfFiles(ignoreFolders,folderOperationMode).Where(fileInfo => fileInfo.IsEncryptable());
         }
 
         public static IEnumerable<IDataStore> ListEncrypted(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
         {
-            if (folderPath == null)
-            {
-                throw new ArgumentNullException("folderPath");
-            }
-            IEnumerable<IDataStore> files = folderPath.Files.Where(fileInfo => fileInfo.IsEncrypted());
-            if (folderOperationMode == FolderOperationMode.SingleFolder)
-            {
-                return files;
-            }
-
-            IEnumerable<IDataContainer> folders = folderPath.Folders.Where(folderInfo => { return !ignoreFolders.Any(x => x.FullName == folderInfo.FullName); });
-            IEnumerable<IDataStore> subFolderFiles = folders.SelectMany(folder => folder.ListEncryptable(ignoreFolders, folderOperationMode));
-
-            return files.Concat(subFolderFiles);
+            return folderPath.ListOfFiles(ignoreFolders, folderOperationMode).Where(fileInfo => fileInfo.IsEncrypted());
         }
 
         /// <summary>
