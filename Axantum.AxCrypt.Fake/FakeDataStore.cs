@@ -73,6 +73,8 @@ namespace Axantum.AxCrypt.Fake
 
         public static event EventHandler ExceptionHook;
 
+        public static Func<FakeDataStore, bool> IsLockedFunc = (fds) => false;
+
         public string TestTag { get; private set; }
 
         public static void AddFile(string path, bool isFolder, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
@@ -242,7 +244,7 @@ namespace Axantum.AxCrypt.Fake
 
         public bool IsLocked()
         {
-            return false;
+            return IsLockedFunc(this);
         }
 
         public string Name

@@ -327,12 +327,51 @@ namespace Axantum.AxCrypt.Core.Test
 
             Resolve.KnownIdentities.Add(passphrase);
 
+            try
+            {
+                FakeDataStore.IsLockedFunc = (fds) => fds.FullName == _decryptedFile1;
+
+                New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            }
+            finally
+            {
+                FakeDataStore.IsLockedFunc = (fds) => false;
+            }
+
+            Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because it should now be marked as not shareable.");
+            activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
+            Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile should be marked as not shareable after the checking of active files.");
+        }
+
+        [Test]
+        public void TestCheckActiveFilesUpdateButWithTargetInaccessible()
+        {
+            DateTime utcNow = New<INow>().Utc;
+            FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+            LogOnIdentity passphrase = new LogOnIdentity("a");
+            New<AxCryptFile>().Decrypt(New<IDataStore>(_uncompressedAxxPath), New<IDataStore>(_decryptedFile1), passphrase, AxCryptOptions.None, new ProgressContext());
+
+            ActiveFile activeFile = new ActiveFile(New<IDataStore>(_uncompressedAxxPath), New<IDataStore>(_decryptedFile1), passphrase, ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
+            Resolve.FileSystemState.Add(activeFile);
+
+            IDataStore decryptedFileInfo = New<IDataStore>(_decryptedFile1);
+            decryptedFileInfo.SetFileTimes(utcNow.AddSeconds(30), utcNow.AddSeconds(30), utcNow.AddSeconds(30));
+
+            ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            bool changedWasRaised = false;
+            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            {
+                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
+            };
+
+            Resolve.KnownIdentities.Add(passphrase);
+
             EventHandler eventHandler = ((object sender, EventArgs e) =>
             {
                 FakeDataStore fileInfo = (FakeDataStore)sender;
                 if (fileInfo.FullName == _decryptedFile1)
                 {
-                    throw new IOException("Faked sharing violation.");
+                    throw new IOException("Faked access denied.");
                 }
             });
             FakeDataStore.OpeningForRead += eventHandler;
@@ -345,9 +384,9 @@ namespace Axantum.AxCrypt.Core.Test
                 FakeDataStore.OpeningForRead -= eventHandler;
             }
 
-            Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because it should now be marked as not shareable.");
+            Assert.That(changedWasRaised, Is.False, "The ActiveFile should not be modified because it was not accessible.");
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
-            Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile should be marked as not shareable after the checking of active files.");
+            Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotShareable), Is.False, "The ActiveFile should not be marked as not shareable after the checking of active files.");
         }
 
         [Test]
