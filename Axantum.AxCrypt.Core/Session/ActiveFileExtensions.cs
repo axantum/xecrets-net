@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="progress">The progress.</param>
         /// <returns>The possibly updated ActiveFile</returns>
         /// <exception cref="System.ArgumentNullException">activeFile</exception>
-        public static ActiveFile CheckUpdateDecrypted(this ActiveFile activeFile, FileLock encryptedFileLock, IProgressContext progress)
+        public static ActiveFile CheckUpdateDecrypted(this ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
         {
             if (activeFile == null)
             {
@@ -63,48 +63,52 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            ILogging log = New<ILogging>();
-            try
+            if (activeFile.DecryptedFileInfo.IsLocked())
             {
-                using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
+                if (New<ILogging>().IsWarningEnabled)
                 {
-                    bool isWriteProteced = activeFile.EncryptedFileInfo.IsWriteProtected;
-                    if (isWriteProteced)
-                    {
-                        activeFile.EncryptedFileInfo.IsWriteProtected = false;
-                    }
-                    New<AxCryptFile>().WriteToFileWithBackup(encryptedFileLock, (Stream destination) =>
-                    {
-                        if (!IsLegacy(activeFile) || shouldConvertLegacy)
-                        {
-                            activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
-                        }
-                        if (shouldConvertLegacy)
-                        {
-                            activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
-                        }
-
-                        EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
-                        EncryptedProperties properties = EncryptedProperties.Create(activeFile.EncryptedFileInfo);
-                        parameters.Add(properties.SharedKeyHolders);
-
-                        New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
-                    }, progress);
-                    activeFile.EncryptedFileInfo.IsWriteProtected = isWriteProteced;
-                }
-            }
-            catch (IOException ioex)
-            {
-                New<IReport>().Exception(ioex);
-                if (log.IsWarningEnabled)
-                {
-                    log.LogWarning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    New<ILogging>().LogWarning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 return new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable);
             }
-            if (log.IsInfoEnabled)
+
+            bool wasWriteProteced = encryptedFileLock.DataStore.IsWriteProtected;
+            if (wasWriteProteced)
             {
-                log.LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                encryptedFileLock.DataStore.IsWriteProtected = false;
+            }
+
+            try
+            {
+                New<AxCryptFile>().WriteToFileWithBackup(encryptedFileLock, (Stream destination) =>
+                {
+                    if (!IsLegacy(activeFile) || shouldConvertLegacy)
+                    {
+                        activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
+                    }
+                    if (shouldConvertLegacy)
+                    {
+                        activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
+                    }
+
+                    EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
+                    EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
+                    parameters.Add(properties.SharedKeyHolders);
+
+                    New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
+                }, progress);
+            }
+            finally
+            {
+                if (wasWriteProteced)
+                {
+                    encryptedFileLock.DataStore.IsWriteProtected = wasWriteProteced;
+                }
+            }
+
+            if (New<ILogging>().IsInfoEnabled)
+            {
+                New<ILogging>().LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
             return new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
         }

@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         return;
                     }
-                    _statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
+                    _statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, $"{status.InternalMessage} ({notification.NotificationType})");
                 },
                 new ProgressContext()).Free();
         }

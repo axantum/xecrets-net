@@ -82,13 +82,13 @@ namespace Axantum.AxCrypt.Core.Session
                     }
                     using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
                     {
-                        activeFile = CheckIfTimeToUpdate(activeFile, encryptedFileLock, progress);
-                    }
-                    if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
-                    {
                         using (FileLock decryptedFileLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
                         {
-                            activeFile = TryDelete(activeFile, decryptedFileLock, progress);
+                            activeFile = CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress);
+                            if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+                            {
+                                activeFile = TryDelete(activeFile, encryptedFileLock, decryptedFileLock, progress);
+                            }
                         }
                     }
                     return activeFile;
@@ -246,8 +246,8 @@ namespace Axantum.AxCrypt.Core.Session
             activeFile = CheckIfKeyIsKnown(activeFile);
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile);
-            activeFile = CheckIfTimeToUpdate(activeFile, encryptedFileLock, progress);
-            activeFile = CheckIfTimeToDelete(activeFile, decryptedFileLock, progress);
+            activeFile = CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress);
+            activeFile = CheckIfTimeToDelete(activeFile, encryptedFileLock, decryptedFileLock, progress);
             return activeFile;
         }
 
@@ -314,6 +314,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
+            if (activeFile.DecryptedFileInfo.IsLocked())
+            {
+                return activeFile;
+            }
             if (Resolve.Log.IsInfoEnabled)
             {
                 Resolve.Log.LogInfo("Process exit for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
@@ -322,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, FileLock encryptedFileLock, IProgressContext progress)
+        private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
         {
             if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted) || activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
             {
@@ -333,10 +337,10 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            return activeFile.CheckUpdateDecrypted(encryptedFileLock, progress);
+            return activeFile.CheckUpdateDecrypted(encryptedFileLock, decryptedFileLock, progress);
         }
 
-        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, FileLock decryptedFileLock, IProgressContext progress)
+        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
         {
             if (OS.Current.Platform != Platform.WindowsDesktop &&
                 OS.Current.Platform != Platform.Linux)
@@ -360,11 +364,11 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            activeFile = TryDelete(activeFile, decryptedFileLock, progress);
+            activeFile = TryDelete(activeFile, encryptedFileLock, decryptedFileLock, progress);
             return activeFile;
         }
 
-        private static ActiveFile TryDelete(ActiveFile activeFile, FileLock decryptedFileLock, IProgressContext progress)
+        private static ActiveFile TryDelete(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
         {
             if (Resolve.ProcessState.HasActiveProcess(activeFile))
             {
@@ -386,7 +390,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
-                WipeActiveFile(activeFile, decryptedFileLock, progress);
+                WipeFile(decryptedFileLock, progress);
             }
             catch (IOException ioex)
             {
@@ -408,31 +412,31 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static void WipeActiveFile(ActiveFile activeFile, FileLock decryptedFileLock, IProgressContext progress)
+        private static void WipeFile(FileLock fileLock, IProgressContext progress)
         {
-            if (!activeFile.DecryptedFileInfo.IsAvailable)
+            if (!fileLock.DataStore.IsAvailable)
             {
                 if (Resolve.Log.IsInfoEnabled)
                 {
-                    Resolve.Log.LogInfo("Found '{0}' from '{1}' to be already deleted.".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                    Resolve.Log.LogInfo("Found '{0}' to be already deleted.".InvariantFormat(fileLock.DataStore.FullName));
                 }
                 return;
             }
 
             if (Resolve.Log.IsInfoEnabled)
             {
-                Resolve.Log.LogInfo("Wiping '{0}' from '{1}' .".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                Resolve.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileLock.DataStore.FullName));
             }
 
-            if (activeFile.DecryptedFileInfo.IsWriteProtected)
+            if (fileLock.DataStore.IsWriteProtected)
             {
-                activeFile.DecryptedFileInfo.IsWriteProtected = false;
+                fileLock.DataStore.IsWriteProtected = false;
             }
-            New<AxCryptFile>().Wipe(decryptedFileLock, progress);
+            New<AxCryptFile>().Wipe(fileLock, progress);
 
             if (Resolve.Log.IsInfoEnabled)
             {
-                Resolve.Log.LogInfo("Wiped '{0}' from '{1}' .".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                Resolve.Log.LogInfo("Wiped '{0}'.".InvariantFormat(fileLock.DataStore.FullName));
             }
         }
     }
