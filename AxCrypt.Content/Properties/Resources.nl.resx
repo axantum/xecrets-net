@@ -108,9 +108,6 @@
     <value>Het account moet eerst door de gebruiker bevestigd worden.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusLight" xml:space="preserve">
-    <value>AxCrypt Gratis</value>
-  </data>
   <data name="AccountStatusPremium" xml:space="preserve">
     <value>AxCrypt Premium</value>
   </data>

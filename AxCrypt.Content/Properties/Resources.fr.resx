@@ -127,9 +127,6 @@
     <value>Le compte doit d'abord être vérifié par l'utilisateur. </value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusLight" xml:space="preserve">
-    <value>AxCrypt Gratuit</value>
-  </data>
   <data name="AccountStatusPremium" xml:space="preserve">
     <value>AxCrypt Premium</value>
   </data>
@@ -164,7 +161,7 @@
     <value>Vous pouvez commencer à utiliser les fonctionnalités AxCrypt Premium pour 30 jours dans l'application! </value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Vous venez de créer un compte AxCrypt. Veuillez confirmer votre inscription pour finaliser la création. </value>
+    <value>Vous venez de créer un compte AxCrypt. Veuillez confirmer votre inscription pour finaliser la création. Cela prouve que vous possédez cette adresse email et nous donne l'autorisation de vous envoyer des emails.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>Pour vérifier manuellement, allez à &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; {0} &lt;/a&gt; et entrez &lt;b&gt; {1} &lt; / b&gt; et le code d'activation &lt;b&gt; {2} &lt;/ b&gt; . </value>
@@ -447,6 +444,9 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
   <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
     <value>Vos préférences de notification ont été modifiées.</value>
   </data>
+  <data name="ChangeOptionGenericWarning" xml:space="preserve">
+    <value>Changer les options peut être dangereux. Faites cela uniquement si vous êtes sûr de comprendre ce que cette option fait. Confirmez en insérant votre mot de passe. </value>
+  </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Modifier le mot de passe</value>
   </data>
@@ -641,6 +641,9 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Dossiers Protégés</value>
   </data>
+  <data name="DontShowAgainCheckBoxText" xml:space="preserve">
+    <value>Ne plus montrer cela. </value>
+  </data>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Double-cliquez pour ouvrir. Un mot de passe vous sera demandé si nécessaire.</value>
   </data>
@@ -770,6 +773,10 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="FileAlreadyExists" xml:space="preserve">
     <value>Le fichier '{0}' existe déjà.</value>
   </data>
+  <data name="FileAssociationBrokenWarning" xml:space="preserve">
+    <value>Le double-clique pour ouvrir les fichiers AxCrypt en dehors d'AxCrypt peut ne pas fonctionner correctement. L'association de fichiers du système d'exploitation pour l'extension ".axx" semble être interrompue. Contactez votre support informatique ou recherchez une solution sur Internet.</value>
+    <comment>A text that is shown to users starting the association with .axx file is broken. It should not mention "Windows", or "Mac" etc so it can be used in all environments.</comment>
+  </data>
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Le fichier '{0}' n'existe pas.</value>
   </data>
@@ -842,6 +849,12 @@ Si pour une raison quelconque vous ne connaissez pas ou vous ne souvenez pas de 
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Choisissez un Fichier de Clef de Partage</value>
+  </data>
+  <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
+    <value>Vous êtes sur le point d'activer une option dangereuse. Si vous n'êtes pas prudent, vous risquez d'affecter davantage de données que celles que vous prévoyez, entraînant des opérations qui prendront plus de temps ou une rupture d'autres logiciels, y compris le système d'exploitation. Êtes-vous sûr?</value>
+  </data>
+  <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
+    <value>Attention</value>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>My AxCrypt ID</value>
@@ -971,6 +984,9 @@ Connectez-vous à AxCrypt avec {2}, entrez le code de vérification à 6 chiffre
   <data name="LauncherPromptHeader" xml:space="preserve">
     <value>Ouvrir avec:</value>
     <comment>Header of popup which is displayed for file opening.</comment>
+  </data>
+  <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
+    <value>Nous avons détecté des logiciels potentiellement incompatibles qui pourraient entraîner un dysfonctionnement d'AxCrypt et d'autres logiciels. Ce logiciel s'appelle Lavasoft Web Companion. Si vous notifiez des dysfonctionnements d'AxCrypt, essayez de désinstaller Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>Une fois les fichiers convertis du format AxCrypt 1.x, vous devez utiliser le nouveau mot de passe de connexion pour les ouvrir, s'il vous plaît vérifiez le ici.
@@ -1332,6 +1348,9 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
     <value>Activer ou désactiver la mise à jour automatique et la conversion des anciens fichiers AxCrypt 1.x  car ils sont utilisés.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
+  </data>
+  <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
+    <value>Inclut des sous-dossiers</value>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Language</value>

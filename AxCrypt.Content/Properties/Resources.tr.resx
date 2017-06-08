@@ -104,9 +104,6 @@
   <data name="About" xml:space="preserve">
     <value>{0} hakkında</value>
   </data>
-  <data name="AccountStatusLight" xml:space="preserve">
-    <value>Ücretsiz AxCrypt</value>
-  </data>
   <data name="AccountStatusPremium" xml:space="preserve">
     <value>AxCrypt Premium</value>
   </data>
@@ -1811,9 +1808,6 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
   <data name="TitleSignInToAxCrypt" xml:space="preserve">
     <value>AxCrypt e bağlan</value>
     <comment>Title on the web page for signin for example.</comment>
-  </data>
-  <data name="TitleWindowSignInStatus" xml:space="preserve">
-    <value>{0} - {1}</value>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Şifre idaresi için Premium gereklidir. Premium'a yükselmek için tıklayın!</value>

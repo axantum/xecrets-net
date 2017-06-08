@@ -127,9 +127,6 @@
     <value>Kontot måste verifieras av användaren först.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusLight" xml:space="preserve">
-    <value>AxCrypt Free</value>
-  </data>
   <data name="AccountStatusPremium" xml:space="preserve">
     <value>AxCrypt Premium</value>
   </data>
@@ -164,7 +161,7 @@
     <value>Du kan starta en gratis 30-dagars provperiod av Premium funktionerna i AxCrypt-programmet som du laddar ned separat.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Du har tecknat dig för att använda AxCrypt. För att slutföra processen måste du verifiera din epostadress.</value>
+    <value>Du har tecknat dig för att använda AxCrypt. För att slutföra processen måste du verifiera din epostadress, vilket bevisar att du äger den eposten och ger oss tillstånd att sända epost till dig.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>För att verifiera manuellt, gå till &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; och ange &lt;b&gt;{1}&lt;/b&gt; samt verifieringskoden &lt;b&gt;{2}&lt;/b&gt; .</value>
@@ -1437,7 +1434,7 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
     <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableName" xml:space="preserve">
-    <value>Mycket svagt</value>
+    <value>För svagt</value>
     <comment>Short displayed name of Unacceptable password status</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
@@ -1632,7 +1629,7 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
     <value>Ogiltig tidsperiod, den måste vara minst {0} månad(er) och högst {1} månader.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Med &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;kan du använda AxCrypt fullt ut på ett obegränsat antal datorer och enheter.</value>
+    <value>Med &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;kan du använda AxCrypt fullt ut på ett obegränsat antal datorer och enheter. Om det är något som du inte är nöjd med,  &lt;a href="mailto:support@axcrypt.net"&gt;kontakta oss&lt;/a&gt;. Vi ger alltid full återbetalning på begäran.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mer om Betalningar]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Inga personliga detaljer eller kortnummer sänds till eller lagras på våra servrar. Informationen skickas direkt till våra betalningshanterare via en krypterad förbindelse. Vi har Stripe och PayPal som partners, och båda möter höga säkerhetskrav enlig Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Visa Mindre]&lt;/a&gt;&lt;/span&gt;</value>
@@ -1650,7 +1647,7 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
     <value>Kvitto för AxCrypt Premium</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
-    <value>Tack för att du köpte AxCrypt Premium!</value>
+    <value>Tack för att du köpte AxCrypt Premium! Logga ut och in igen från appar så  uppdateras de till Premium.</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
     <value>Nu har du tillgång till all Premiumfunktionalitet. Du kan behöva logga ut och logga in igen från appen.  Om du har några problem, kontakta vår support.

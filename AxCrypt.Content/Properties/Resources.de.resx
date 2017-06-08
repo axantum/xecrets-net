@@ -127,9 +127,6 @@
     <value>Das Konto muss zuerst von dem Benutzer überprüft werden.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusLight" xml:space="preserve">
-    <value>AxCrypt Free</value>
-  </data>
   <data name="AccountStatusPremium" xml:space="preserve">
     <value>AxCrypt Premium</value>
   </data>
@@ -1443,7 +1440,7 @@ Wir stufen die Kennwörter in 4 Kategorien nach ansteigenden Stärken ein, in de
     <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableName" xml:space="preserve">
-    <value>Sehr schwach</value>
+    <value>Zu schwach</value>
     <comment>Short displayed name of Unacceptable password status</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">

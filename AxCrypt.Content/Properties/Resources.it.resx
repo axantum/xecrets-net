@@ -127,9 +127,6 @@
     <value>L'account deve prima essere verificato dall'utente.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusLight" xml:space="preserve">
-    <value>AxCrypt Gratis</value>
-  </data>
   <data name="AccountStatusPremium" xml:space="preserve">
     <value>AxCrypt Premium</value>
   </data>
@@ -164,7 +161,7 @@
     <value>Puoi iniziare a provare le funzionalità di AxCrypt Premium per 30 giorni sull'app!</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Ti sei registrato per usare AxCrypt. Per completare il processo devi verificare il tuo indirizzo e-mail.</value>
+    <value>Ti sei registrato per usare AxCrypt. Per completare il processo devi verificare il tuo indirizzo e-mail. In questo modo dimostri di possedere l'indirizzo email e ci dai il permesso di inviarti email.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>Per verificare manualmente, vai a &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; e inserisci &lt;b&gt;{1}&lt;/b&gt; e il codice di verifica &lt;b&gt;{2}&lt;/b&gt; .</value>
@@ -644,6 +641,9 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Cartelle Protette</value>
   </data>
+  <data name="DontShowAgainCheckBoxText" xml:space="preserve">
+    <value>Non mostrare più.</value>
+  </data>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Fai doppio click per aprire. Se necessario, ti verrà richiesta la password.</value>
   </data>
@@ -774,7 +774,7 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
     <value>Il file '{0}' esiste già.</value>
   </data>
   <data name="FileAssociationBrokenWarning" xml:space="preserve">
-    <value>Fare doppio click per aprire i file di AxCrypt potrebbe non funzionare correttamente. L'associazione dei file di Windows per l'estensione ".axx" sembra essere interrotta. Contatta il tuo supporto IT o cerca una soluzione su Internet.</value>
+    <value>Fare doppio click per aprire i file di AxCrypt al di fuori di AxCrypt potrebbe non funzionare correttamente. L'associazione dei file del sistema operativo per l'estensione ".axx" sembra essere corrotta. Contatta il tuo supporto IT o cerca una soluzione su Internet.</value>
     <comment>A text that is shown to users starting the association with .axx file is broken. It should not mention "Windows", or "Mac" etc so it can be used in all environments.</comment>
   </data>
   <data name="FileDoesNotExist" xml:space="preserve">
@@ -1440,7 +1440,7 @@ Classifichiamo le password in 4 categorie di sicurezza crescente e non accettiam
     <comment>Status 'Green'. This is a really good password!</comment>
   </data>
   <data name="PasswordStrengthUnacceptableName" xml:space="preserve">
-    <value>Molto debole</value>
+    <value>Troppo debole</value>
     <comment>Short displayed name of Unacceptable password status</comment>
   </data>
   <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">

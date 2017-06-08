@@ -172,7 +172,7 @@
     <value>You can start trying AxCrypt Premium features for 30 days in the app!</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>You have signed up to use AxCrypt. To complete the process you must verify your email address.</value>
+    <value>You have signed up to use AxCrypt. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to send email to you.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>To verify manually,  go to &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt;  and enter &lt;b&gt;{1}&lt;/b&gt; and the verification code &lt;b&gt;{2}&lt;/b&gt; .</value>
@@ -951,7 +951,7 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>Select Sharing Key Files</value>
   </data>
   <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
-    <value>You are about to enable a dangerous option. If you are not careful, you may affect more data then you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?</value>
+    <value>You are about to enable a dangerous option. If you are not careful, you may affect more data than you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?</value>
   </data>
   <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
     <value>Warning</value>
@@ -1836,7 +1836,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <value>The selected subsciption time is invalid. A valid subscription has to be at least {0} month and no longer than {1} months.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>With &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices.</value>
+    <value>With &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices. If something is not to your satisfaction, please &lt;a href="mailto:support@axcrypt.net"&gt;contact us&lt;/a&gt;. We'll always refund you in full.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[More about payments]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Your personal payment details are never sent to or stored on our servers. We send them directly from you to our payment gateway partners via an encrypted connection. We partner with Stripe and PayPal, both of which meet the high standards set by the Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
@@ -1854,7 +1854,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <value>Receipt for AxCrypt Premium</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
-    <value>Thank you for purchasing AxCrypt Premium!</value>
+    <value>Thank you for purchasing AxCrypt Premium! Please sign out and sign in again from any app to update it to Premium.</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
     <value>You're now able to access all the premium features of AxCrypt. You may need to sign out of the app and sign in again. If you experience any problems, please contact our support.

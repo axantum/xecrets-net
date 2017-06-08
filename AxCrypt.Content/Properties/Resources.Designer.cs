@@ -215,7 +215,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have signed up to use AxCrypt. To complete the process you must verify your email address..
+        ///   Looks up a localized string similar to You have signed up to use AxCrypt. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to send email to you..
         /// </summary>
         public static string ActivateMailBodyIntro {
             get {
@@ -2365,7 +2365,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are about to enable a dangerous option. If you are not careful, you may affect more data then you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?.
+        ///   Looks up a localized string similar to You are about to enable a dangerous option. If you are not careful, you may affect more data than you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?.
         /// </summary>
         public static string IncludeSubfoldersConfirmationBody {
             get {
@@ -4650,7 +4650,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With &lt;a href=&quot;https://www.axcrypt.net/pricing/&quot;&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices..
+        ///   Looks up a localized string similar to With &lt;a href=&quot;https://www.axcrypt.net/pricing/&quot;&gt;Premium&lt;/a&gt; you can use AxCrypt to its full potential on any number of computers and devices. If something is not to your satisfaction, please &lt;a href=&quot;mailto:support@axcrypt.net&quot;&gt;contact us&lt;/a&gt;. We&apos;ll always refund you in full..
         /// </summary>
         public static string PurchasePageBody1 {
             get {
@@ -4704,7 +4704,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you for purchasing AxCrypt Premium!.
+        ///   Looks up a localized string similar to Thank you for purchasing AxCrypt Premium! Please sign out and sign in again from any app to update it to Premium..
         /// </summary>
         public static string PurchaseReceiptSuccess {
             get {
