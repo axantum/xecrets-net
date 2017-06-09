@@ -53,21 +53,24 @@ namespace Axantum.AxCrypt.Core.Session
             _priorityCommands.Remove(priorityCommand);
         }
 
-        public virtual async void Notify(SessionNotification notification)
+        public virtual void Notify(SessionNotification notification)
         {
-            try
+            Task.Run(async () =>
             {
-                foreach (Func<SessionNotification, Task> priorityCommand in _priorityCommands)
+                try
                 {
-                    await priorityCommand(notification);
-                }
+                    foreach (Func<SessionNotification, Task> priorityCommand in _priorityCommands)
+                    {
+                        await priorityCommand(notification);
+                    }
 
-                OnNotification(new SessionNotificationEventArgs(notification));
-            }
-            catch (Exception ex)
-            {
-                ex.ReportAndDisplay();
-            }
+                    OnNotification(new SessionNotificationEventArgs(notification));
+                }
+                catch (Exception ex)
+                {
+                    ex.ReportAndDisplay();
+                }
+            });
         }
     }
 }
