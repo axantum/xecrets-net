@@ -188,6 +188,7 @@
     <Compile Include="UI\IDataItemSelection.cs" />
     <Compile Include="UI\IDeviceLocked.cs" />
     <Compile Include="UI\IKnownFolderImageProvider.cs" />
+    <Compile Include="UI\IKnownFoldersDiscovery.cs" />
     <Compile Include="UI\IPopup.cs" />
     <Compile Include="UI\ISignInState.cs" />
     <Compile Include="UI\KnownFolderKind.cs" />

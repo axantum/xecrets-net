@@ -162,7 +162,6 @@
     <Compile Include="WatchedFoldersDialog.Designer.cs">
       <DependentUpon>WatchedFoldersDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="KnownFoldersDiscovery.cs" />
     <Compile Include="FilePasswordDialog.cs">
       <SubType>Form</SubType>
     </Compile>

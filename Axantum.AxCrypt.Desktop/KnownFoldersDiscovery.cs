@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Properties;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -39,11 +38,11 @@ using System.Linq;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Texts = AxCrypt.Content.Texts;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Desktop
 {
-    internal static class KnownFoldersDiscovery
+    public class KnownFoldersDiscovery : IKnownFoldersDiscovery
     {
-        public static IEnumerable<KnownFolder> Discover()
+        public IEnumerable<KnownFolder> Discover()
         {
             List<KnownFolder> knownFolders = new List<KnownFolder>();
             if (OS.Current.Platform != Platform.WindowsDesktop)
