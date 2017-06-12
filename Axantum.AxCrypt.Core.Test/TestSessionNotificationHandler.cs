@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
             FakeDataStore.AddFolder(@"C:\My Documents");
             LogOnIdentity key = new LogOnIdentity("passphrase");
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents", key.Tag));
+            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\My Documents", key.Tag));
 
             await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
 
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
             FakeDataStore.AddFolder(@"C:\WatchedFolder");
             LogOnIdentity key = new LogOnIdentity("passphrase");
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
+            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
 
             await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.LogOn, key));
 
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
             FakeDataStore.AddFolder(@"C:\WatchedFolder");
             LogOnIdentity key = new LogOnIdentity("passphrase");
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
+            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
 
             called = false;
             await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.LogOff, new LogOnIdentity("passphrase")));
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
-            mock.CheckActiveFilesMock = (IProgressContext progress) => { called = true; };
+            mock.CheckActiveFilesMock = (IProgressContext progress) => { return Task.FromResult(called = true); };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
-            mock.CheckActiveFilesMock = (IProgressContext progress) => { called = true; };
+            mock.CheckActiveFilesMock = (IProgressContext progress) => { return Task.FromResult(called = true); };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -211,7 +211,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
-            mock.PurgeActiveFilesMock = (IProgressContext progress) => { called = true; };
+            mock.PurgeActiveFilesMock = (IProgressContext progress) => { return Task.FromResult(called = true); };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -272,7 +272,7 @@ namespace Axantum.AxCrypt.Core.Test
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
             FakeDataStore.AddFolder(@"C:\My Documents");
             LogOnIdentity key = new LogOnIdentity("passphrase");
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents", key.Tag));
+            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\My Documents", key.Tag));
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
             sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase1"), @"C:\My Documents\"));
@@ -300,8 +300,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock.Object, mockStatusChecker.Object);
             LogOnIdentity defaultKey = new LogOnIdentity("default");
-            Resolve.KnownIdentities.DefaultEncryptionIdentity = defaultKey;
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\", defaultKey.Tag));
+            await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(defaultKey);
+            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\My Documents\", defaultKey.Tag));
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
             sessionEvents.Add(new SessionNotification(SessionNotificationType.EncryptPendingFiles));

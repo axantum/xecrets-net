@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public interface IAsyncAction : IAction
+    public interface IAsyncAction
     {
         Task ExecuteAsync(object parameter);
 

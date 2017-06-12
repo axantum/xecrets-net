@@ -41,10 +41,10 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Text = "&" + Texts.MenuOpenExplorerHereText;
         }
 
-        private void WatchedFoldersDialog_Load(object sender, EventArgs e)
+        private async void WatchedFoldersDialog_Load(object sender, EventArgs e)
         {
             BindToViewModel();
-            _viewModel.AddWatchedFolders.Execute(_additional);
+            await _viewModel.AddWatchedFolders.ExecuteAsync(_additional);
             _additional = new string[0];
         }
 
@@ -55,9 +55,9 @@ namespace Axantum.AxCrypt
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _viewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
             _watchedFoldersListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _watchedFoldersContextMenuStrip.Show((Control)sender, e.Location); };
             _watchedFoldersListView.DragOver += (sender, e) => { _viewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForWatchedFolders(e); };
-            _watchedFoldersListView.DragDrop += (sender, e) => { _viewModel.AddWatchedFolders.Execute(_viewModel.DragAndDropFiles); };
+            _watchedFoldersListView.DragDrop += async (sender, e) => { await _viewModel.AddWatchedFolders.ExecuteAsync(_viewModel.DragAndDropFiles); };
             _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _viewModel.OpenSelectedFolder.Execute(_viewModel.SelectedWatchedFolders.First()); };
-            _watchedFoldersRemoveMenuItem.Click += (sender, e) => { _viewModel.RemoveWatchedFolders.Execute(_viewModel.SelectedWatchedFolders); };
+            _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _viewModel.RemoveWatchedFolders.ExecuteAsync(_viewModel.SelectedWatchedFolders); };
         }
 
         private void UpdateWatchedFolders(IEnumerable<string> watchedFolders)

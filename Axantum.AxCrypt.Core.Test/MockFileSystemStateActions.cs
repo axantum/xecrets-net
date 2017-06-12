@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
@@ -32,6 +33,7 @@ using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -41,7 +43,7 @@ namespace Axantum.AxCrypt.Core.Test
             : base()
         {
             CheckActiveFileMock = (activeFile, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            CheckActiveFilesMock = (progress) => { };
+            CheckActiveFilesMock = (progress) => Constant.CompletedTask;
             PurgeActiveFilesMock = (progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             RemoveRecentFilesMock = (encryptedPaths, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock = (key) => { throw new InvalidOperationException("Unexpected call to this method."); };
@@ -54,30 +56,30 @@ namespace Axantum.AxCrypt.Core.Test
             return CheckActiveFileMock(activeFile, progress);
         }
 
-        public Action<IProgressContext> CheckActiveFilesMock { get; set; }
+        public Func<IProgressContext, Task> CheckActiveFilesMock { get; set; }
 
-        public override void CheckActiveFiles(IProgressContext progress)
+        public override Task CheckActiveFiles(IProgressContext progress)
         {
-            CheckActiveFilesMock(progress);
+            return CheckActiveFilesMock(progress);
         }
 
-        public Action<IProgressContext> PurgeActiveFilesMock { get; set; }
+        public Func<IProgressContext, Task> PurgeActiveFilesMock { get; set; }
 
-        public override void PurgeActiveFiles(IProgressContext progress)
+        public override Task PurgeActiveFiles(IProgressContext progress)
         {
-            PurgeActiveFilesMock(progress);
+            return PurgeActiveFilesMock(progress);
         }
 
-        public Action<IEnumerable<IDataStore>, IProgressContext> RemoveRecentFilesMock { get; set; }
+        public Func<IEnumerable<IDataStore>, IProgressContext, Task> RemoveRecentFilesMock { get; set; }
 
-        public override void RemoveRecentFiles(IEnumerable<IDataStore> encryptedPaths, IProgressContext progress)
+        public override Task RemoveRecentFiles(IEnumerable<IDataStore> encryptedPaths, IProgressContext progress)
         {
-            RemoveRecentFilesMock(encryptedPaths, progress);
+            return RemoveRecentFilesMock(encryptedPaths, progress);
         }
 
-        public Func<LogOnIdentity, bool> UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock { get; set; }
+        public Func<LogOnIdentity, Task<bool>> UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock { get; set; }
 
-        public override bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(LogOnIdentity key)
+        public override Task<bool> UpdateActiveFileWithKeyIfKeyMatchesThumbprint(LogOnIdentity key)
         {
             return UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock(key);
         }

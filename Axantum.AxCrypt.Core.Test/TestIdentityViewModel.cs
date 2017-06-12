@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnIdentity id = passphrase;
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
-            Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
+            await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
 
             bool wasLoggingOn = false;
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify);

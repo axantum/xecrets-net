@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SubscribeToModelEvents()
         {
-            _sessionNotify.Notification += HandleSessionChangedAsync;
+            _sessionNotify.AddCommand(HandleSessionChangedAsync);
         }
 
         public IAsyncAction UpdateState { get; private set; }
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             UpdateState = new AsyncDelegateAction<object>(async (object o) => KnownFolders = await UpdateEnabledStateAsync(KnownFolders));
         }
 
-        private void EnsureKnownFoldersWatched(IEnumerable<KnownFolder> folders)
+        private async Task EnsureKnownFoldersWatched(IEnumerable<KnownFolder> folders)
         {
             foreach (KnownFolder knownFolder in folders)
             {
@@ -84,9 +84,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     knownFolder.Folder.CreateFolder(knownFolder.My.Name);
                 }
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
+                await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
             }
-            _fileSystemState.Save();
+            await _fileSystemState.Save();
         }
 
         private async Task<IEnumerable<KnownFolder>> UpdateEnabledStateAsync(IEnumerable<KnownFolder> knownFolders)
@@ -101,16 +101,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return updatedFolders;
         }
 
-        private async void HandleSessionChangedAsync(object sender, SessionNotificationEventArgs e)
+        private async Task HandleSessionChangedAsync(SessionNotification notification)
         {
-            switch (e.Notification.NotificationType)
+            switch (notification.NotificationType)
             {
                 case SessionNotificationType.LogOff:
                     KnownFolders = await UpdateEnabledStateAsync(KnownFolders);
                     break;
 
                 case SessionNotificationType.LogOn:
-                    EnsureKnownFoldersWatched(KnownFolders);
+                    await EnsureKnownFoldersWatched(KnownFolders);
                     KnownFolders = await UpdateEnabledStateAsync(KnownFolders);
                     break;
             }

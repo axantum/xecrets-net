@@ -42,7 +42,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestDragAndDropFilesPropertyBindSetsDroppableAsRecent()
+        public async Task TestDragAndDropFilesPropertyBindSetsDroppableAsRecent()
         {
             using (MainViewModel mvm = New<MainViewModel>())
             {
@@ -179,12 +179,12 @@ namespace Axantum.AxCrypt.Core.Test
 
                 LogOnIdentity id = new LogOnIdentity("passphrase1");
                 Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
-                Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
+                await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist, even when logged on, is not droppable as recent.");
 
                 FakeDataStore.AddFile(encryptedFilePath, null);
-                Resolve.KnownIdentities.DefaultEncryptionIdentity = LogOnIdentity.Empty;
+                await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(LogOnIdentity.Empty);
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.True, "An encrypted file that exist is droppable as recent even when not logged on.");
 
@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 id = new LogOnIdentity("passphrase");
                 Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
-                Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
+                await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
                 mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.True, "An encryptable existing file with a valid log on should be droppable as recent.");
             }
@@ -283,7 +283,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestOpenFiles()
+        public async Task TestOpenFiles()
         {
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -310,23 +310,23 @@ namespace Axantum.AxCrypt.Core.Test
                 FakeDataStore.AddFile(file3, null);
                 activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
-                Resolve.FileSystemState.Save();
+                await Resolve.FileSystemState.Save();
 
                 Assert.That(mvm.FilesArePending, Is.True);
 
                 activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
-                Resolve.FileSystemState.Save();
+                await Resolve.FileSystemState.Save();
 
                 Assert.That(mvm.FilesArePending, Is.False);
             }
         }
 
         [Test]
-        public void TestRemoveRecentFiles()
+        public async Task TestRemoveRecentFiles()
         {
             var mockFileSystemState = new Mock<FileSystemState>() { CallBase = true };
-            mockFileSystemState.Setup(x => x.Save());
+            mockFileSystemState.Setup(x => x.Save()).Returns(Constant.CompletedTask);
 
             TypeMap.Register.Singleton<FileSystemState>(() => mockFileSystemState.Object);
 
@@ -353,19 +353,19 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                Assert.That(mvm.RemoveRecentFiles.CanExecute(null), Is.True, "RemoveRecentFiles should be executable by default.");
+                Assert.That(await mvm.RemoveRecentFiles.CanExecuteAsync(null), Is.True, "RemoveRecentFiles should be executable by default.");
 
-                mvm.RemoveRecentFiles.Execute(new string[] { file2 });
+                await mvm.RemoveRecentFiles.ExecuteAsync(new string[] { file2 });
                 mockFileSystemState.Verify(x => x.RemoveActiveFile(It.IsAny<ActiveFile>()), Times.Once, "Exactly one recent file should be removed.");
 
                 mockFileSystemState.ResetCalls();
-                mvm.RemoveRecentFiles.Execute(new string[] { file2 });
+                await mvm.RemoveRecentFiles.ExecuteAsync(new string[] { file2 });
             }
             mockFileSystemState.Verify(x => x.RemoveActiveFile(It.IsAny<ActiveFile>()), Times.Never, "There is no longer any matching file, so no call to remove should happen.");
         }
 
         [Test]
-        public void TestPurgeRecentFiles()
+        public async Task TestPurgeRecentFiles()
         {
             var mockActiveFileAction = new Mock<ActiveFileAction>();
 
@@ -374,21 +374,22 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), mockStatusChecker.Object));
-            Resolve.SessionNotify.Notification += async (sender, e) => await New<SessionNotificationHandler>().HandleNotificationAsync(e.Notification);
+            Resolve.SessionNotify.AddCommand(async (notification) => await New<SessionNotificationHandler>().HandleNotificationAsync(notification));
 
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                Assert.That(mvm.EncryptPendingFiles.CanExecute(null), Is.True, "PuregRecentFiles should be executable by default.");
+                Assert.That(await mvm.EncryptPendingFiles.CanExecuteAsync(null), Is.True, "PurgeRecentFiles should be executable by default.");
 
-                mvm.EncryptPendingFiles.Execute(null);
+                await mvm.EncryptPendingFiles.ExecuteAsync(null);
             }
             New<IProgressBackground>().WaitForIdle();
-
+#pragma warning disable 4014
             mockActiveFileAction.Verify(x => x.PurgeActiveFiles(It.IsAny<IProgressContext>()), Times.Once, "Purge should be called.");
+#pragma warning restore 4014
         }
 
         [Test]
-        public void TestClearPassphraseMemory()
+        public async Task TestClearPassphraseMemory()
         {
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -399,10 +400,10 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
-            Resolve.KnownIdentities.Add(new LogOnIdentity("passphrase2"));
+            await Resolve.KnownIdentities.Add(new LogOnIdentity("passphrase2"));
             LogOnIdentity id = new LogOnIdentity("passphrase");
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
-            Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
+            await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
 
             Assert.That(Resolve.FileSystemState.ActiveFileCount, Is.EqualTo(1), "One ActiveFile is expected.");
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(2), "Two known keys are expected.");
@@ -412,21 +413,21 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<SessionNotify>(() => sessionNotificationMonitorMock.Object);
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                mvm.ClearPassphraseMemory.Execute(null);
+                await mvm.ClearPassphraseMemory.ExecuteAsync(null);
             }
 
             Assert.That(Resolve.FileSystemState.ActiveFileCount, Is.EqualTo(0));
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
             Assert.That(Resolve.KnownIdentities.DefaultEncryptionIdentity == LogOnIdentity.Empty);
 
-            sessionNotificationMonitorMock.Verify(x => x.Notify(It.Is<SessionNotification>(sn => sn.NotificationType == SessionNotificationType.SessionStart)), Times.Once);
+            sessionNotificationMonitorMock.Verify(x => x.NotifyAsync(It.Is<SessionNotification>(sn => sn.NotificationType == SessionNotificationType.SessionStart)), Times.Once);
         }
 
         [Test]
-        public void TestRemoveWatchedFolders()
+        public async Task TestRemoveWatchedFolders()
         {
             var mockFileSystemState = new Mock<FileSystemState>() { CallBase = true };
-            mockFileSystemState.Setup(x => x.Save());
+            mockFileSystemState.Setup(x => x.Save()).Returns(Constant.CompletedTask);
 
             TypeMap.Register.Singleton<FileSystemState>(() => mockFileSystemState.Object);
 
@@ -434,10 +435,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 LogOnIdentity id = new LogOnIdentity("passphrase");
                 mockFileSystemState.Object.KnownPassphrases.Add(id.Passphrase);
-                Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
+                await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
                 mockFileSystemState.ResetCalls();
 
-                mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
+                await mvm.RemoveWatchedFolders.ExecuteAsync(new string[] { "File1.txt", "file2.txt" });
             }
 
             mockFileSystemState.Verify(x => x.RemoveWatchedFolder(It.IsAny<IDataContainer>()), Times.Exactly(2));
@@ -445,38 +446,38 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestAddAndRemoveWatchedFolderState()
+        public async Task TestAddAndRemoveWatchedFolderState()
         {
             var fileSystemStateMock = new Mock<FileSystemState>() { CallBase = true };
-            fileSystemStateMock.Setup(x => x.Save());
+            fileSystemStateMock.Setup(x => x.Save()).Returns(Constant.CompletedTask);
 
             TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                Assert.Throws<InvalidOperationException>(() => mvm.RemoveWatchedFolders.Execute(new string[] { }));
+                Assert.ThrowsAsync<InvalidOperationException>(async () => await mvm.RemoveWatchedFolders.ExecuteAsync(new string[] { }));
 
                 LogOnIdentity id = new LogOnIdentity("passphrase");
                 fileSystemStateMock.Object.KnownPassphrases.Add(id.Passphrase);
-                Resolve.KnownIdentities.DefaultEncryptionIdentity = id;
+                await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
                 fileSystemStateMock.ResetCalls();
 
-                mvm.RemoveWatchedFolders.Execute(new string[] { });
+                await mvm.RemoveWatchedFolders.ExecuteAsync(new string[] { });
 
                 fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IDataContainer>()), Times.Never);
                 fileSystemStateMock.Verify(x => x.Save(), Times.Never);
 
                 fileSystemStateMock.ResetCalls();
-                mvm.AddWatchedFolders.Execute(new string[] { });
-                fileSystemStateMock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Never);
+                await mvm.AddWatchedFolders.ExecuteAsync(new string[] { });
+                fileSystemStateMock.Verify(x => x.AddWatchedFolderAsync(It.IsAny<WatchedFolder>()), Times.Never);
                 fileSystemStateMock.Verify(x => x.Save(), Times.Never);
 
-                mvm.AddWatchedFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
+                await mvm.AddWatchedFolders.ExecuteAsync(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
 
-                fileSystemStateMock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
+                fileSystemStateMock.Verify(x => x.AddWatchedFolderAsync(It.IsAny<WatchedFolder>()), Times.Exactly(2));
                 fileSystemStateMock.Verify(x => x.Save(), Times.Once);
 
                 fileSystemStateMock.ResetCalls();
-                mvm.RemoveWatchedFolders.Execute(new string[] { @"C:\Folder1\" });
+                await mvm.RemoveWatchedFolders.ExecuteAsync(new string[] { @"C:\Folder1\" });
             }
 
             fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IDataContainer>()), Times.Exactly(1));
@@ -484,7 +485,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestSetDefaultEncryptionKeyWithoutIdentity()
+        public async Task TestSetDefaultEncryptionKeyWithoutIdentity()
         {
             var fileSystemStateMock = new Mock<FileSystemState>() { CallBase = true };
             fileSystemStateMock.Setup(x => x.Save());
@@ -494,7 +495,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 LogOnIdentity identity = new LogOnIdentity("passphrase");
                 Assert.That(!Resolve.FileSystemState.KnownPassphrases.Any(kp => kp.Thumbprint == identity.Passphrase.Thumbprint));
-                Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("passphrase");
+                await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("passphrase"));
                 Assert.That(Resolve.FileSystemState.KnownPassphrases.Any(kp => kp.Thumbprint == identity.Passphrase.Thumbprint));
             }
         }
@@ -564,15 +565,15 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestNotifyWatchedFolderAdded()
+        public async Task TestNotifyWatchedFolderAdded()
         {
-            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("passphrase");
+            await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("passphrase"));
             FakeDataStore.AddFolder(@"C:\MyFolders\Folder1");
             using (MainViewModel mvm = New<MainViewModel>())
             {
                 Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(0));
 
-                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
+                await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
 
                 Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(1));
                 Assert.That(mvm.WatchedFolders.First(), Is.EqualTo(@"C:\MyFolders\Folder1".NormalizeFolderPath()));
@@ -580,14 +581,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestSetFilesArePending()
+        public async Task TestSetFilesArePending()
         {
-            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("passphrase");
+            await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("passphrase"));
             FakeDataStore.AddFolder(@"C:\MyFolders\Folder1");
             using (MainViewModel mvm = New<MainViewModel>())
             {
                 Assert.That(mvm.FilesArePending, Is.False);
-                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
+                await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
                 FakeDataStore.AddFile(@"C:\MyFolders\Folder1\Encryptable.txt", Stream.Null);
                 Assert.That(mvm.FilesArePending, Is.True);
             }

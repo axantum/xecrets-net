@@ -68,6 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
                 },
                 (status) =>
                 {
+                    return Constant.CompletedTask;
                 });
 
             Assert.That(callCount, Is.EqualTo(2), "There are two files, so there should be two calls.");
@@ -100,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Thread.Sleep(1);
                     return Task.FromResult(new FileOperationContext(String.Empty, ErrorStatus.Success));
                 },
-                (status) => { });
+                (status) => Constant.CompletedTask);
             Assert.That(callCount, Is.LessThanOrEqualTo(2), "There are several files, but max concurrency is two, so there could be up to two calls.");
         }
     }

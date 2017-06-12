@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             _workFolderWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
         }
 
-        private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
+        private async void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
         {
             foreach (string fullName in e.FullNames)
             {
@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                     continue;
                 }
 
-                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, fullName));
+                await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WorkFolderChange, fullName));
             }
         }
 

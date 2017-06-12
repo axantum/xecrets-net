@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt.Desktop
 {
     public class ProcessMonitor : IDisposable
     {
-        DelayedAction _action;
+        private DelayedAction _action;
 
         private HashSet<int> _processIds;
 
@@ -57,9 +57,9 @@ namespace Axantum.AxCrypt.Desktop
             return new HashSet<int>(Process.GetProcesses().Where(p => p.SessionId == _currentSessionId).Select(p => p.Id).ToList());
         }
 
-        private static void ProcessHasExited()
+        private static async void ProcessHasExited()
         {
-            Core.Resolve.SessionNotify.Notify(new Core.Session.SessionNotification(Core.Session.SessionNotificationType.SessionChange));
+            await Core.Resolve.SessionNotify.NotifyAsync(new Core.Session.SessionNotification(Core.Session.SessionNotificationType.SessionChange));
         }
 
         protected virtual void Dispose(bool disposing)

@@ -98,15 +98,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public LicenseCapabilities License { get { return GetProperty<LicenseCapabilities>(nameof(License)); } set { SetProperty(nameof(License), value); } }
 
-        public IAction RemoveRecentFiles { get; private set; }
+        public IAsyncAction RemoveRecentFiles { get; private set; }
 
-        public IAction AddWatchedFolders { get; private set; }
+        public IAsyncAction AddWatchedFolders { get; private set; }
 
-        public IAction EncryptPendingFiles { get; private set; }
+        public IAsyncAction EncryptPendingFiles { get; private set; }
 
-        public IAction ClearPassphraseMemory { get; private set; }
+        public IAsyncAction ClearPassphraseMemory { get; private set; }
 
-        public IAction RemoveWatchedFolders { get; private set; }
+        public IAsyncAction RemoveWatchedFolders { get; private set; }
 
         public IAction OpenSelectedFolder { get; private set; }
 
@@ -143,11 +143,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             License = New<LicensePolicy>().Capabilities;
             LegacyConversionMode = Resolve.UserSettings.LegacyConversionMode;
 
-            AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders), (folders) => LoggedOn);
-            RemoveRecentFiles = new DelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
-            EncryptPendingFiles = new DelegateAction<object>((parameter) => EncryptPendingFilesAction());
-            ClearPassphraseMemory = new DelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
-            RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
+            AddWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersActionAsync(folders), (folders) => Task.FromResult(LoggedOn));
+            RemoveRecentFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
+            EncryptPendingFiles = new AsyncDelegateAction<object>((parameter) => EncryptPendingFilesAction());
+            ClearPassphraseMemory = new AsyncDelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
+            RemoveWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
             AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc));
             LicenseUpdate = new DelegateAction<object>((o) => License = New<LicensePolicy>().Capabilities);
@@ -168,12 +168,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
             BindPropertyChangedInternal(nameof(License), async (LicenseCapabilities policy) => await SetWatchedFoldersAsync());
             BindPropertyChangedInternal(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
-            BindPropertyChangedInternal(nameof(FolderOperationMode), (FolderOperationMode mode) => SetFolderOperationMode(mode));
+            BindPropertyChangedInternal(nameof(FolderOperationMode), async (FolderOperationMode mode) => await SetFolderOperationMode(mode));
         }
 
         private void SubscribeToModelEvents()
         {
-            Resolve.SessionNotify.Notification += HandleSessionChangedAsync;
+            Resolve.SessionNotify.AddCommand(HandleSessionChangedAsync);
         }
 
         public async Task<bool> CanShareAsync(IEnumerable<IDataStore> items)
@@ -260,11 +260,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return true;
         }
 
-        private async void HandleSessionChangedAsync(object sender, SessionNotificationEventArgs e)
+        private async Task HandleSessionChangedAsync(SessionNotification notification)
         {
             try
             {
-                await HandleSessionChangedInternalAsync(e);
+                await HandleSessionChangedInternalAsync(notification);
             }
             catch (Exception ex)
             {
@@ -272,9 +272,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private async Task HandleSessionChangedInternalAsync(SessionNotificationEventArgs e)
+        private async Task HandleSessionChangedInternalAsync(SessionNotification notification)
         {
-            switch (e.Notification.NotificationType)
+            switch (notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
                     await SetWatchedFoldersAsync();
@@ -297,14 +297,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     break;
 
                 case SessionNotificationType.KnownKeyChange:
-                    if (e.Notification.Identity == LogOnIdentity.Empty)
+                    if (notification.Identity == LogOnIdentity.Empty)
                     {
                         throw new InvalidOperationException("Attempt to add the empty identity as a known key.");
                     }
-                    if (!_fileSystemState.KnownPassphrases.Any(p => p.Thumbprint == e.Notification.Identity.Passphrase.Thumbprint))
+                    if (!_fileSystemState.KnownPassphrases.Any(p => p.Thumbprint == notification.Identity.Passphrase.Thumbprint))
                     {
-                        _fileSystemState.KnownPassphrases.Add(e.Notification.Identity.Passphrase);
-                        _fileSystemState.Save();
+                        _fileSystemState.KnownPassphrases.Add(notification.Identity.Passphrase);
+                        await _fileSystemState.Save();
                     }
                     break;
 
@@ -378,7 +378,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             EncryptFileEnabled = isLoggedOn;
         }
 
-        private void ClearPassphraseMemoryAction()
+        private async Task ClearPassphraseMemoryAction()
         {
             IDataStore fileSystemStateInfo = Resolve.FileSystemState.PathInfo;
             using (FileLock fileSystemStateFileLock = FileLock.Acquire(fileSystemStateInfo))
@@ -387,15 +387,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(fileSystemStateInfo));
             TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(_fileSystemState, Resolve.SessionNotify));
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
-        private static void EncryptPendingFilesAction()
+        private static async Task EncryptPendingFilesAction()
         {
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
         }
 
-        private void RemoveRecentFilesAction(IEnumerable<string> files)
+        private async Task RemoveRecentFilesAction(IEnumerable<string> files)
         {
             foreach (string file in files)
             {
@@ -405,10 +405,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     _fileSystemState.RemoveActiveFile(activeFile);
                 }
             }
-            _fileSystemState.Save();
+            await _fileSystemState.Save();
         }
 
-        private void AddWatchedFoldersAction(IEnumerable<string> folders)
+        private async Task AddWatchedFoldersActionAsync(IEnumerable<string> folders)
         {
             if (!folders.Any())
             {
@@ -416,12 +416,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string folder in folders)
             {
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
+                await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(folder, Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
             }
-            _fileSystemState.Save();
+            await _fileSystemState.Save();
         }
 
-        private void RemoveWatchedFoldersAction(IEnumerable<string> folders)
+        private async Task RemoveWatchedFoldersAction(IEnumerable<string> folders)
         {
             if (!folders.Any())
             {
@@ -429,9 +429,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(New<IDataContainer>(watchedFolderPath));
+                await _fileSystemState.RemoveWatchedFolder(New<IDataContainer>(watchedFolderPath));
             }
-            _fileSystemState.Save();
+            await _fileSystemState.Save();
         }
 
         private static void OpenSelectedFolderAction(string folder)
@@ -447,7 +447,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _axCryptUpdateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, _userSettings.CultureName);
         }
 
-        private void SetFolderOperationMode(FolderOperationMode folderOperationMode)
+        private async Task SetFolderOperationMode(FolderOperationMode folderOperationMode)
         {
             _userSettings.FolderOperationMode = folderOperationMode;
             if (folderOperationMode != FolderOperationMode.IncludeSubfolders)
@@ -455,7 +455,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderOptionsChanged, Resolve.KnownIdentities.DefaultEncryptionIdentity, New<FileSystemState>().WatchedFolders.Select(wf => wf.Path)));
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderOptionsChanged, Resolve.KnownIdentities.DefaultEncryptionIdentity, New<FileSystemState>().WatchedFolders.Select(wf => wf.Path)));
         }
 
         public void Dispose()
@@ -476,7 +476,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (_axCryptUpdateCheck != null)
             {
-                Resolve.SessionNotify.Notification -= HandleSessionChangedAsync;
+                Resolve.SessionNotify.RemoveCommand(HandleSessionChangedAsync);
 
                 _axCryptUpdateCheck.AxCryptUpdate -= Handle_VersionUpdate;
                 _axCryptUpdateCheck.Dispose();

@@ -149,8 +149,8 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 case SessionNotificationType.EncryptPendingFiles:
-                    _activeFileAction.ClearExceptionState();
-                    _activeFileAction.PurgeActiveFiles(progress);
+                    await _activeFileAction.ClearExceptionState();
+                    await _activeFileAction.PurgeActiveFiles(progress);
                     if (_knownIdentities.DefaultEncryptionIdentity != LogOnIdentity.Empty)
                     {
                         EncryptWatchedFolders(_knownIdentities.DefaultEncryptionIdentity, progress);
@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 case SessionNotificationType.UpdateActiveFiles:
-                    _fileSystemState.UpdateActiveFiles(notification.FullNames);
+                    await _fileSystemState.UpdateActiveFiles(notification.FullNames);
                     break;
 
                 case SessionNotificationType.ActiveFileChange:
@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Session
                 case SessionNotificationType.KnownKeyChange:
                 case SessionNotificationType.SessionChange:
                 case SessionNotificationType.WorkFolderChange:
-                    _activeFileAction.CheckActiveFiles(progress);
+                    await _activeFileAction.CheckActiveFiles(progress);
                     break;
 
                 case SessionNotificationType.LicensePolicyChange:

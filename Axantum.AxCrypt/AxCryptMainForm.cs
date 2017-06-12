@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt
             _startMinimized = commandLine.HasCommands;
         }
 
-        private void AxCryptMainForm_Load(object sender, EventArgs e)
+        private async void AxCryptMainForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
             {
@@ -114,7 +114,7 @@ namespace Axantum.AxCrypt
 
             try
             {
-                InitializeProgram();
+                await InitializeProgram();
             }
             catch
             {
@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt
 
         private ApiVersion _apiVersion;
 
-        private void InitializeProgram()
+        private async Task InitializeProgram()
         {
             InitializeContentResources();
             RegisterTypeFactories();
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt
             BindToFileOperationViewModel();
             WireUpEvents();
             SetupCommandService();
-            SendStartSessionNotification();
+            await SendStartSessionNotification();
             StartupProcessMonitor();
             ExecuteCommandLine();
         }
@@ -370,9 +370,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static void SendStartSessionNotification()
+        private static async Task SendStartSessionNotification()
         {
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
         private static void StartupProcessMonitor()
@@ -728,24 +728,24 @@ namespace Axantum.AxCrypt
             _knownFoldersViewModel.KnownFolders = KnownFoldersDiscovery.Discover();
             _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
-            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory.Execute(null); };
+            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.ClearPassphraseMemory.ExecuteAsync(null); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
-            _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, async (ss, ee) => { await ToggleIncludeSubfoldersOption(); }, sender, e); };
+            _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
             _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = await _mainViewModel.CanShareAsync(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
-            _removeRecentFileToolStripMenuItem.Click += (sender, e) => { _mainViewModel.RemoveRecentFiles.Execute(_mainViewModel.SelectedRecentFiles); };
+            _removeRecentFileToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _shareKeysToolStripMenuItem.Click += async (sender, e) => { await ShareKeysAsync(_mainViewModel.SelectedRecentFiles); };
-            _watchedFoldersAddSecureFolderMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); return Task.FromResult<object>(null); }, sender, e); };
-            _watchedFoldersKeySharingMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await WatchedFoldersKeySharingAsync(_mainViewModel.SelectedWatchedFolders); }, sender, e); };
-            _watchedFoldersListView.DragDrop += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { _mainViewModel.AddWatchedFolders.Execute(_mainViewModel.DragAndDropFiles); return Task.FromResult<object>(null); }, sender, e); };
+            _watchedFoldersAddSecureFolderMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); return Constant.CompletedTask; }, sender, e); };
+            _watchedFoldersKeySharingMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, (ss, ee) => { return WatchedFoldersKeySharingAsync(_mainViewModel.SelectedWatchedFolders); }, sender, e); };
+            _watchedFoldersListView.DragDrop += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { return _mainViewModel.AddWatchedFolders.ExecuteAsync(_mainViewModel.DragAndDropFiles); }, sender, e); };
             _watchedFoldersListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForWatchedFolders(e); };
             _watchedFoldersListView.MouseDown += (sender, e) => { if (e.Button == MouseButtons.Right) { ShowHideWatchedFoldersContextMenuItems(e.Location); _watchedFoldersContextMenuStrip.Show((Control)sender, e.Location); } };
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
             _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder.Execute(_mainViewModel.SelectedWatchedFolders.First()); };
-            _watchedFoldersRemoveMenuItem.Click += (sender, e) => { _mainViewModel.RemoveWatchedFolders.Execute(_mainViewModel.SelectedWatchedFolders); };
+            _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
         }
 
         private void ConfigureWatchedFoldersMenus(bool enabled)
@@ -821,7 +821,7 @@ namespace Axantum.AxCrypt
 
         private void WireUpEvents()
         {
-            Resolve.SessionNotify.Notification += async (sender, e) => await New<SessionNotificationHandler>().HandleNotificationAsync(e.Notification);
+            Resolve.SessionNotify.AddCommand(async (notification) => await New<SessionNotificationHandler>().HandleNotificationAsync(notification));
             New<IDeviceLocked>().DeviceWasLocked += DeviceWasLocked;
             New<IDeviceLocked>().Start(null);
 
@@ -883,7 +883,7 @@ namespace Axantum.AxCrypt
                     _currentLock = DeviceLockReason.Temporary;
                     try
                     {
-                        EncryptPendingFiles();
+                        await EncryptPendingFiles();
 
                         if (_fileOperationViewModel.IdentityViewModel.LogOff.CanExecute(null))
                         {
@@ -1230,7 +1230,7 @@ namespace Axantum.AxCrypt
                 case CommandVerb.SignOut:
                     if (New<KnownIdentities>().IsLoggedOn)
                     {
-                        New<KnownIdentities>().DefaultEncryptionIdentity = LogOnIdentity.Empty;
+                        await New<KnownIdentities>().SetDefaultEncryptionIdentity(LogOnIdentity.Empty);
                     }
                     break;
 
@@ -1568,7 +1568,7 @@ namespace Axantum.AxCrypt
         {
             ShutDownBackgroundSafe();
 
-            EncryptPendingFiles();
+            await EncryptPendingFiles();
 
             await WarnIfAnyDecryptedFiles();
 
@@ -1640,12 +1640,12 @@ namespace Axantum.AxCrypt
 
         #endregion ToolStrip
 
-        private void EncryptPendingFiles()
+        private async Task EncryptPendingFiles()
         {
             if (_mainViewModel != null)
             {
                 WaitForBackgroundToComplete();
-                _mainViewModel.EncryptPendingFiles.Execute(null);
+                await _mainViewModel.EncryptPendingFiles.ExecuteAsync(null);
                 WaitForBackgroundToComplete();
             }
         }
@@ -1737,9 +1737,9 @@ namespace Axantum.AxCrypt
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.PremiumFeatureToolTipText);
         }
 
-        private void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)
+        private async void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)
         {
-            EncryptPendingFiles();
+            await EncryptPendingFiles();
         }
 
         private void ProgressBackgroundWorker_ProgressBarClicked(object sender, MouseEventArgs e)
@@ -2074,11 +2074,11 @@ namespace Axantum.AxCrypt
                 New<AxCryptFile>().ChangeEncryption(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
                 return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
             },
-            (FileOperationContext foc) =>
+            async (FileOperationContext foc) =>
             {
                 if (foc.ErrorStatus == ErrorStatus.Success)
                 {
-                    Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
+                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
                 }
                 CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
             });
@@ -2129,7 +2129,7 @@ namespace Axantum.AxCrypt
                 foreach (WatchedFolder watchedFolder in folderPaths.ToWatchedFolders())
                 {
                     WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
-                    Resolve.FileSystemState.AddWatchedFolder(wf);
+                    await Resolve.FileSystemState.AddWatchedFolderAsync(wf);
                 }
                 IEnumerable<IDataStore> files = folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
 
@@ -2185,7 +2185,7 @@ namespace Axantum.AxCrypt
             WireDownEvents();
         }
 
-        private void WatchedFoldersAddSecureFolderMenuItem_Click(object sender, EventArgs e)
+        private async void WatchedFoldersAddSecureFolderMenuItem_Click(object sender, EventArgs e)
         {
             string folder = SelectSecureFolder();
             if (string.IsNullOrEmpty(folder))
@@ -2193,7 +2193,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _mainViewModel.AddWatchedFolders.Execute(new string[] { folder });
+            await _mainViewModel.AddWatchedFolders.ExecuteAsync(new string[] { folder });
         }
 
         private string SelectSecureFolder()

@@ -35,7 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -51,12 +51,12 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify = sessionNotify;
         }
 
-        public virtual FileOperationContext OpenAndLaunchApplication(LogOnIdentity identity, IDataStore encryptedDataStore, IProgressContext progress)
+        public virtual async Task<FileOperationContext> OpenAndLaunchApplication(LogOnIdentity identity, IDataStore encryptedDataStore, IProgressContext progress)
         {
-            return OpenAndLaunchApplication(new LogOnIdentity[] { identity }, encryptedDataStore, progress);
+            return await OpenAndLaunchApplication(new LogOnIdentity[] { identity }, encryptedDataStore, progress);
         }
 
-        public virtual FileOperationContext OpenAndLaunchApplication(IEnumerable<LogOnIdentity> identities, IDataStore encryptedDataStore, IProgressContext progress)
+        public virtual async Task<FileOperationContext> OpenAndLaunchApplication(IEnumerable<LogOnIdentity> identities, IDataStore encryptedDataStore, IProgressContext progress)
         {
             if (identities == null)
             {
@@ -103,14 +103,14 @@ namespace Axantum.AxCrypt.Core.UI
                     activeFile = Decrypt(activeFile.Identity, activeFile.EncryptedFileInfo, destinationLock, activeFile, progress);
                 }
                 _fileSystemState.Add(activeFile);
-                _fileSystemState.Save();
+                await _fileSystemState.Save();
 
                 if (encryptedDataStore.IsWriteProtected)
                 {
                     activeFile.DecryptedFileInfo.IsWriteProtected = true;
                 }
 
-                FileOperationContext status = LaunchApplicationForDocument(activeFile, destinationLock);
+                FileOperationContext status = await LaunchApplicationForDocument(activeFile, destinationLock);
                 return status;
             }
         }
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Launching of external application can cause just about anything.")]
-        private FileOperationContext LaunchApplicationForDocument(ActiveFile destinationActiveFile, FileLock decryptedLock)
+        private async Task<FileOperationContext> LaunchApplicationForDocument(ActiveFile destinationActiveFile, FileLock decryptedLock)
         {
             ActiveFileStatus status = ActiveFileStatus.AssumedOpenAndDecrypted;
             ILauncher process;
@@ -220,12 +220,12 @@ namespace Axantum.AxCrypt.Core.UI
 
             destinationActiveFile = new ActiveFile(destinationActiveFile, status);
             _fileSystemState.Add(destinationActiveFile, process);
-            _fileSystemState.Save();
+            await _fileSystemState.Save();
 
             return new FileOperationContext(String.Empty, ErrorStatus.Success);
         }
 
-        private void process_Exited(object sender, EventArgs e)
+        private async void process_Exited(object sender, EventArgs e)
         {
             string path = ((ILauncher)sender).Path;
             if (Resolve.Log.IsInfoEnabled)
@@ -233,7 +233,7 @@ namespace Axantum.AxCrypt.Core.UI
                 Resolve.Log.LogInfo("Process exit event for '{0}'.".InvariantFormat(path));
             }
 
-            _sessionNotify.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
+            await _sessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ProcessExit, path));
         }
 
         private static void DecryptActiveFileDocument(ActiveFile destinationActiveFile, FileLock decryptedLock, IAxCryptDocument document, IProgressContext progress)

@@ -35,7 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// </summary>
         /// <param name="_fileSystemState">The instance of FileSystemState where active files are recorded.</param>
         /// <param name="progress">The context where progress may be reported.</param>
-        public virtual void PurgeActiveFiles(IProgressContext progress)
+        public virtual async Task PurgeActiveFiles(IProgressContext progress)
         {
             if (progress == null)
             {
@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Session
             progress.NotifyLevelStart();
             try
             {
-                Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
+                await Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
                 {
                     if (activeFile.Status.HasMask(ActiveFileStatus.Exception))
                     {
@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="_fileSystemState">The FileSystemState to enumerate and possibly update.</param>
         /// <param name="mode">Under what circumstances is the FileSystemState.Changed event raised.</param>
         /// <param name="progress">The ProgressContext to provide visual progress feedback via.</param>
-        public virtual void CheckActiveFiles(IProgressContext progress)
+        public virtual async Task CheckActiveFiles(IProgressContext progress)
         {
             if (progress == null)
             {
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Session
             try
             {
                 progress.AddTotal(Resolve.FileSystemState.ActiveFileCount);
-                Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
+                await Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
                 {
                     try
                     {
@@ -136,9 +136,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual void ClearExceptionState()
+        public virtual async Task ClearExceptionState()
         {
-            Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
+            await Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
             {
                 if (activeFile.Status.HasFlag(ActiveFileStatus.Exception))
                 {
@@ -188,10 +188,10 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="_fileSystemState">The FileSystemState that contains the list of active files.</param>
         /// <param name="key">The newly added key to check the files for a match with.</param>
         /// <returns>True if any file was updated with the new key, False otherwise.</returns>
-        public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(LogOnIdentity key)
+        public virtual async Task<bool> UpdateActiveFileWithKeyIfKeyMatchesThumbprint(LogOnIdentity key)
         {
             bool keyMatch = false;
-            Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
+            await Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
             {
                 if (activeFile.Identity != LogOnIdentity.Empty)
                 {
@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt.Core.Session
             return keyMatch;
         }
 
-        public virtual void RemoveRecentFiles(IEnumerable<IDataStore> encryptedPaths, IProgressContext progress)
+        public virtual async Task RemoveRecentFiles(IEnumerable<IDataStore> encryptedPaths, IProgressContext progress)
         {
             if (encryptedPaths == null)
             {
@@ -233,7 +233,7 @@ namespace Axantum.AxCrypt.Core.Session
                     }
                     progress.AddCount(1);
                 }
-                Resolve.FileSystemState.Save();
+                await Resolve.FileSystemState.Save();
             }
             finally
             {

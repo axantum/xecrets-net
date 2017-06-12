@@ -36,12 +36,7 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private List<Func<SessionNotification, Task>> _priorityCommands = new List<Func<SessionNotification, Task>>();
 
-        public event EventHandler<SessionNotificationEventArgs> Notification;
-
-        protected virtual void OnNotification(SessionNotificationEventArgs e)
-        {
-            Notification?.Invoke(this, e);
-        }
+        private List<Func<SessionNotification, Task>> _commands = new List<Func<SessionNotification, Task>>();
 
         public void AddPriorityCommand(Func<SessionNotification, Task> priorityCommand)
         {
@@ -53,24 +48,34 @@ namespace Axantum.AxCrypt.Core.Session
             _priorityCommands.Remove(priorityCommand);
         }
 
-        public virtual void Notify(SessionNotification notification)
+        public void AddCommand(Func<SessionNotification, Task> command)
         {
-            Task.Run(async () =>
-            {
-                try
-                {
-                    foreach (Func<SessionNotification, Task> priorityCommand in _priorityCommands)
-                    {
-                        await priorityCommand(notification);
-                    }
+            _commands.Add(command);
+        }
 
-                    OnNotification(new SessionNotificationEventArgs(notification));
-                }
-                catch (Exception ex)
+        public void RemoveCommand(Func<SessionNotification, Task> command)
+        {
+            _commands.Remove(command);
+        }
+
+        public virtual async Task NotifyAsync(SessionNotification notification)
+        {
+            try
+            {
+                foreach (Func<SessionNotification, Task> priorityCommand in _priorityCommands)
                 {
-                    ex.ReportAndDisplay();
+                    await priorityCommand(notification);
                 }
-            });
+
+                foreach (Func<SessionNotification, Task> command in _commands)
+                {
+                    await command(notification);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ReportAndDisplay();
+            }
         }
     }
 }

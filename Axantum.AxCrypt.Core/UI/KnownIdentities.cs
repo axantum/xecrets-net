@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -65,7 +66,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public virtual void Add(LogOnIdentity logOnIdentity)
+        public virtual async Task Add(LogOnIdentity logOnIdentity)
         {
             if (logOnIdentity == LogOnIdentity.Empty)
             {
@@ -89,7 +90,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return;
             }
 
-            _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange, logOnIdentity));
+            await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.KnownKeyChange, logOnIdentity));
         }
 
         private void Clear()
@@ -129,39 +130,40 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return _defaultEncryptionIdentity;
             }
-            set
+        }
+
+        public virtual async Task SetDefaultEncryptionIdentity(LogOnIdentity value)
+        {
+            if (Object.ReferenceEquals(value, null))
             {
-                if (Object.ReferenceEquals(value, null))
-                {
-                    throw new ArgumentNullException("value");
-                }
-
-                if (value == LogOnIdentity.Empty)
-                {
-                    Clear();
-                }
-
-                if (_defaultEncryptionIdentity == value)
-                {
-                    return;
-                }
-
-                if (_defaultEncryptionIdentity != LogOnIdentity.Empty)
-                {
-                    Clear();
-                    LogOnIdentity oldKey = _defaultEncryptionIdentity;
-                    _defaultEncryptionIdentity = LogOnIdentity.Empty;
-                    _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOff, oldKey));
-                }
-
-                if (value == LogOnIdentity.Empty)
-                {
-                    return;
-                }
-                _defaultEncryptionIdentity = value;
-                Add(_defaultEncryptionIdentity);
-                _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOn, value));
+                throw new ArgumentNullException("value");
             }
+
+            if (value == LogOnIdentity.Empty)
+            {
+                Clear();
+            }
+
+            if (_defaultEncryptionIdentity == value)
+            {
+                return;
+            }
+
+            if (_defaultEncryptionIdentity != LogOnIdentity.Empty)
+            {
+                Clear();
+                LogOnIdentity oldKey = _defaultEncryptionIdentity;
+                _defaultEncryptionIdentity = LogOnIdentity.Empty;
+                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOff, oldKey));
+            }
+
+            if (value == LogOnIdentity.Empty)
+            {
+                return;
+            }
+            _defaultEncryptionIdentity = value;
+            await Add(_defaultEncryptionIdentity);
+            await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOn, value));
         }
 
         private List<SymmetricKeyThumbprint> _knownThumbprints;

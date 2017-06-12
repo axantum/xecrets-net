@@ -37,7 +37,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestSettingKnownFoldersAndLoggingOnAndOff()
+        public async Task TestSettingKnownFoldersAndLoggingOnAndOff()
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownIdentities);
@@ -110,19 +110,19 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("aaa");
+            await knownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("aaa"));
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.True);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.True);
 
-            knownIdentities.DefaultEncryptionIdentity = LogOnIdentity.Empty;
+            await knownIdentities.SetDefaultEncryptionIdentity(LogOnIdentity.Empty);
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
         }
 
         [Test]
-        public void TestAlreadyKnownFoldersAndLoggingOn()
+        public async Task TestAlreadyKnownFoldersAndLoggingOn()
         {
             IDataContainer betterCloudInfo = New<IDataContainer>(@"C:\BetterCloud");
             IDataContainer fasterCloudInfo = New<IDataContainer>(@"C:\FasterCloud");
@@ -131,8 +131,8 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFolder(folder1.My.FullName);
             FakeDataStore.AddFolder(folder2.My.FullName);
 
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.My.FullName, new LogOnIdentity("PassPhrase").Tag));
-            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.My.FullName, new LogOnIdentity(new Passphrase("aaa")).Tag));
+            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(folder1.My.FullName, new LogOnIdentity("PassPhrase").Tag));
+            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(folder2.My.FullName, new LogOnIdentity(new Passphrase("aaa")).Tag));
 
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownIdentities);
@@ -144,14 +144,14 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("aaa");
+            await knownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("aaa"));
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False, "This folder should not be enabled, because it's not watched by the signed in identity.");
             Assert.That(vm.KnownFolders.Last().Enabled, Is.True, "This folder should be enabled, since it is watched by the signed in identity.");
         }
 
         [Test]
-        public void TestFileWasCreatedWhereAKnownFolderWasExpected()
+        public async Task TestFileWasCreatedWhereAKnownFolderWasExpected()
         {
             IDataContainer betterCloudInfo = New<IDataContainer>(@"C:\BetterCloud");
             IDataContainer fasterCloudInfo = New<IDataContainer>(@"C:\FasterCloud");
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("aaa");
+            await knownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("aaa"));
             Assert.That(Resolve.FileSystemState.WatchedFolders.Count(), Is.EqualTo(1));
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);

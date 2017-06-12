@@ -315,7 +315,7 @@ namespace Axantum.AxCrypt.Core
         /// or
         /// progress
         /// </exception>
-        public virtual void ChangeEncryption(IEnumerable<IDataContainer> containers, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual async Task ChangeEncryption(IEnumerable<IDataContainer> containers, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (containers == null)
             {
@@ -336,7 +336,7 @@ namespace Axantum.AxCrypt.Core
             {
                 progress.NotifyLevelFinished();
             }
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange));
         }
 
         public void ChangeEncryption(IEnumerable<IDataStore> files, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
@@ -695,14 +695,14 @@ namespace Axantum.AxCrypt.Core
 
         public virtual async Task DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(IDataContainer sourceContainer, LogOnIdentity logOnIdentity, IStatusChecker statusChecker, IProgressContext progress)
         {
-            IEnumerable<IDataStore> files = sourceContainer.ListEncrypted(Resolve.FileSystemState.WatchedFolders.Select(cn => New <IDataContainer>(cn.Path)), New<UserSettings>().FolderOperationMode.Policy());
+            IEnumerable<IDataStore> files = sourceContainer.ListEncrypted(Resolve.FileSystemState.WatchedFolders.Select(cn => New<IDataContainer>(cn.Path)), New<UserSettings>().FolderOperationMode.Policy());
             await Resolve.ParallelFileOperation.DoFilesAsync(files, (file, context) =>
             {
                 return DecryptFileUniqueWithWipeOfOriginalAsync(file, logOnIdentity, context);
             },
-            (status) =>
+            async (status) =>
             {
-                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.UpdateActiveFiles));
+                await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.UpdateActiveFiles));
                 statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
             }).Free();
         }
@@ -716,6 +716,11 @@ namespace Axantum.AxCrypt.Core
             if (progress == null)
             {
                 throw new ArgumentNullException("progress");
+            }
+
+            if (sourceStore.IsWriteProtected)
+            {
+                return Task.FromResult(new FileOperationContext(sourceStore.FullName, Abstractions.ErrorStatus.CannotWriteDestination));
             }
 
             progress.NotifyLevelStart();
@@ -743,7 +748,7 @@ namespace Axantum.AxCrypt.Core
             {
                 progress.NotifyLevelFinished();
             }
-            return Task.FromResult(new FileOperationContext(string.Empty, Abstractions.ErrorStatus.Success));
+            return Task.FromResult(new FileOperationContext(sourceStore.FullName, Abstractions.ErrorStatus.Success));
         }
 
         public virtual void DecryptFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
@@ -1084,7 +1089,7 @@ namespace Axantum.AxCrypt.Core
                 } while (New<IDataStore>(randomName).IsAvailable);
                 IDataStore moveToFileInfo = New<IDataStore>(store.DataStore.FullName);
                 moveToFileInfo.MoveTo(randomName);
-
+                moveToFileInfo.IsWriteProtected = false;
                 using (Stream stream = moveToFileInfo.OpenUpdate())
                 {
                     long length = stream.Length + OS.Current.StreamBufferSize - stream.Length % OS.Current.StreamBufferSize;

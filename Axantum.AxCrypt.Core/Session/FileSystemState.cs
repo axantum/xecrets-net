@@ -38,7 +38,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual void AddWatchedFolder(WatchedFolder watchedFolder)
+        public virtual async Task AddWatchedFolderAsync(WatchedFolder watchedFolder)
         {
             if (watchedFolder == null)
             {
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             AddWatchedFolderInternal(watchedFolder);
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Resolve.KnownIdentities.DefaultEncryptionIdentity, watchedFolder.Path));
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Resolve.KnownIdentities.DefaultEncryptionIdentity, watchedFolder.Path));
         }
 
         private void AddWatchedFolderInternal(WatchedFolder watchedFolder)
@@ -151,23 +151,23 @@ namespace Axantum.AxCrypt.Core.Session
             _watchedFolders.Add(watchedFolder);
         }
 
-        private void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
+        private async void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
         {
             WatchedFolder watchedFolder = (WatchedFolder)sender;
             foreach (string fullName in e.FullNames)
             {
                 IDataStore fileInfo = New<IDataStore>(fullName);
-                HandleWatchedFolderChanges(watchedFolder, fileInfo);
-                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
+                await HandleWatchedFolderChangesAsync(watchedFolder, fileInfo);
+                await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
             }
         }
 
-        private void HandleWatchedFolderChanges(WatchedFolder watchedFolder, IDataItem fileInfo)
+        private async Task HandleWatchedFolderChangesAsync(WatchedFolder watchedFolder, IDataItem fileInfo)
         {
             if (watchedFolder.Path == fileInfo.FullName && !fileInfo.IsAvailable)
             {
-                RemoveWatchedFolder(fileInfo);
-                Save();
+                await RemoveWatchedFolder(fileInfo);
+                await Save();
                 return;
             }
             if (!fileInfo.IsEncrypted())
@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return;
             }
-            RemoveDeletedActiveFile(fileInfo);
+            await RemoveDeletedActiveFile(fileInfo);
         }
 
         private static bool IsExisting(IDataItem fileInfo)
@@ -186,17 +186,17 @@ namespace Axantum.AxCrypt.Core.Session
             return fileInfo.Type() != FileInfoTypes.NonExisting;
         }
 
-        private void RemoveDeletedActiveFile(IDataItem fileInfo)
+        private async Task RemoveDeletedActiveFile(IDataItem fileInfo)
         {
             ActiveFile removedActiveFile = FindActiveFileFromEncryptedPath(fileInfo.FullName);
             if (removedActiveFile != null)
             {
                 RemoveActiveFile(removedActiveFile);
-                Save();
+                await Save();
             }
         }
 
-        public virtual void RemoveWatchedFolder(IDataItem folderInfo)
+        public virtual async Task RemoveWatchedFolder(IDataItem folderInfo)
         {
             if (folderInfo == null)
             {
@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             RemoveWatchedFolderInternal(folderInfo.FullName);
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, folderInfo.FullName));
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, folderInfo.FullName));
         }
 
         private void RemoveWatchedFolderInternal(string path)
@@ -301,7 +301,7 @@ namespace Axantum.AxCrypt.Core.Session
             Add(activeFile);
         }
 
-        public virtual void UpdateActiveFiles(IEnumerable<string> fullNames)
+        public virtual async Task UpdateActiveFiles(IEnumerable<string> fullNames)
         {
             if (fullNames == null)
             {
@@ -326,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             if (dirty)
             {
-                Save();
+                await Save();
             }
         }
 
@@ -396,7 +396,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// Iterate over all active files in the state.
         /// </summary>
         /// <param name="action">A delegate with an action to take for each active file, returning the same or updated active file as need be.</param>
-        public void ForEach(Func<ActiveFile, ActiveFile> action)
+        public async Task ForEach(Func<ActiveFile, ActiveFile> action)
         {
             if (action == null)
             {
@@ -416,7 +416,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     updatedActiveFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.Exception | ActiveFileStatus.AssumedOpenAndDecrypted);
                     AddInternal(updatedActiveFile);
-                    Save();
+                    await Save();
                     throw;
                 }
                 activeFiles.Add(updatedActiveFile);
@@ -428,7 +428,7 @@ namespace Axantum.AxCrypt.Core.Session
             if (isAnyModified)
             {
                 SetRangeInternal(activeFiles, ActiveFileStatus.None);
-                Save();
+                await Save();
             }
         }
 
@@ -486,7 +486,7 @@ namespace Axantum.AxCrypt.Core.Session
             return fileSystemState;
         }
 
-        public virtual void Save()
+        public virtual async Task Save()
         {
             lock (_activeFilesByEncryptedPath)
             {
@@ -500,7 +500,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 Resolve.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
             }
-            New<SessionNotify>().Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
+            await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange));
         }
 
         public void Delete()

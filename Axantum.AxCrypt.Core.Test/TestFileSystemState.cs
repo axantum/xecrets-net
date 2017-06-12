@@ -36,7 +36,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestLoadExistingWithExistingFile()
+        public async Task TestLoadExistingWithExistingFile()
         {
             ActiveFile activeFile;
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 activeFile = new ActiveFile(New<IDataStore>(_encryptedAxxPath), New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 state.Add(activeFile);
-                state.Save();
+                await state.Save();
             }
 
             FakeDataStore.AddFile(_encryptedAxxPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, Stream.Null);
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestLoadExistingWithNonExistingFile()
+        public async Task TestLoadExistingWithNonExistingFile()
         {
             ActiveFile activeFile;
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 activeFile = new ActiveFile(New<IDataStore>(_encryptedAxxPath), New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 state.Add(activeFile);
-                state.Save();
+                await state.Save();
             }
 
             using (FileSystemState reloadedState = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
@@ -136,14 +136,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestStatusMaskAtLoad()
+        public async Task TestStatusMaskAtLoad()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
                 FakeDataStore.AddFile(_encryptedAxxPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, Stream.Null);
                 ActiveFile activeFile = new ActiveFile(New<IDataStore>(_encryptedAxxPath), New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().CryptoId);
                 state.Add(activeFile);
-                state.Save();
+                await state.Save();
 
                 FileSystemState reloadedState = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt"));
                 Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestForEach()
+        public async Task TestForEach()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -183,7 +183,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Assert.That(state.ActiveFiles.Count(), Is.EqualTo(3), "There should be three.");
                 int i = 0;
-                state.ForEach((ActiveFile activeFileArgument) =>
+                await state.ForEach((ActiveFile activeFileArgument) =>
                 {
                     ++i;
                     return activeFileArgument;
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
 
                 i = 0;
-                state.ForEach((ActiveFile activeFileArgument) =>
+                await state.ForEach((ActiveFile activeFileArgument) =>
                 {
                     ++i;
                     return new ActiveFile(activeFileArgument, activeFile.Status | ActiveFileStatus.Error);
@@ -247,7 +247,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<ArgumentNullException>(() => { state.RemoveActiveFile(nullActiveFile); });
                 Assert.Throws<ArgumentNullException>(() => { state.Add(nullActiveFile); });
                 Assert.Throws<ArgumentNullException>(() => { state.FindActiveFileFromEncryptedPath(nullPath); });
-                Assert.Throws<ArgumentNullException>(() => { state.ForEach(nullAction); });
+                Assert.ThrowsAsync<ArgumentNullException>(async () => { await state.ForEach(nullAction); });
                 Assert.Throws<ArgumentNullException>(() => { FileSystemState.Create(nullFileInfo); });
             }
         }
@@ -276,7 +276,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestWatchedFolders()
+        public async Task TestWatchedFolders()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -284,13 +284,13 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders.");
 
                 FakeDataStore.AddFolder(_rootPath);
-                state.AddWatchedFolder(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
+                await state.AddWatchedFolderAsync(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should be one Watched Folder.");
 
-                state.AddWatchedFolder(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
+                await state.AddWatchedFolderAsync(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should still only be one Watched Folder.");
 
-                state.Save();
+                await state.Save();
             }
 
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
@@ -299,21 +299,21 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Assert.That(state.WatchedFolders.First().Matches(_rootPath), "The Watched Folder should be equal to this.");
 
-                state.RemoveWatchedFolder(Resolve.WorkFolder.FileInfo.FolderItemInfo("mystate.txt"));
+                await state.RemoveWatchedFolder(Resolve.WorkFolder.FileInfo.FolderItemInfo("mystate.txt"));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should still be one Watched folders.");
 
-                state.RemoveWatchedFolder(New<IDataContainer>(_rootPath));
+                await state.RemoveWatchedFolder(New<IDataContainer>(_rootPath));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders now.");
             }
         }
 
         [Test]
-        public void TestWatchedFolderChanged()
+        public async Task TestWatchedFolderChanged()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
                 FakeDataStore.AddFolder(_rootPath);
-                state.AddWatchedFolder(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
+                await state.AddWatchedFolderAsync(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
 
                 Assert.That(state.ActiveFileCount, Is.EqualTo(0));
 
@@ -329,12 +329,12 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestWatchedFolderRemoved()
+        public async Task TestWatchedFolderRemoved()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
                 FakeDataStore.AddFolder(_rootPath);
-                state.AddWatchedFolder(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
+                await state.AddWatchedFolderAsync(new WatchedFolder(_rootPath, IdentityPublicTag.Empty));
 
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1));
 
@@ -345,14 +345,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestChangedEvent()
+        public async Task TestChangedEvent()
         {
             bool wasHere = false;
 
             SessionNotify notificationMonitor = new SessionNotify();
 
-            notificationMonitor.Notification += (object sender, SessionNotificationEventArgs e) => { wasHere = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange; };
-            notificationMonitor.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
+            notificationMonitor.AddCommand((SessionNotification notification) => { wasHere = notification.NotificationType == SessionNotificationType.ActiveFileChange; return Constant.CompletedTask; });
+            await notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange));
 
             Assert.That(wasHere, Is.True, "The RaiseChanged() method should raise the event immediately.");
         }

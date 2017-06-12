@@ -58,17 +58,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             LogOnIdentity = LogOnIdentity.Empty;
 
             LogOnAsync = new AsyncDelegateAction<object>(async (o) => { if (!_knownIdentities.IsLoggedOn) { LogOnIdentity = await LogOnActionAsync(); } });
-            LogOff = new DelegateAction<object>((p) => { LogOffAction(); LogOnIdentity = null; }, (o) => _knownIdentities.IsLoggedOn);
+            LogOff = new AsyncDelegateAction<object>(async (p) => { await LogOffAction(); LogOnIdentity = null; }, (o) => Task.FromResult(_knownIdentities.IsLoggedOn));
             LogOnLogOff = new AsyncDelegateAction<object>(async (o) => LogOnIdentity = await LogOnLogOffActionAsync());
             AskForDecryptPassphrase = new AsyncDelegateAction<string>(async (name) => LogOnIdentity = await AskForDecryptPassphraseActionAsync(name));
             AskForLogOnPassphrase = new AsyncDelegateAction<LogOnIdentity>(async (id) => LogOnIdentity = await AskForLogOnPassphraseActionAsync(id, String.Empty));
 
-            _sessionNotify.Notification += HandleLogOnLogOffNotifications;
+            _sessionNotify.AddCommand(HandleLogOnLogOffNotifications);
         }
 
-        private void HandleLogOnLogOffNotifications(object sender, SessionNotificationEventArgs e)
+        private Task HandleLogOnLogOffNotifications(SessionNotification notification)
         {
-            switch (e.Notification.NotificationType)
+            switch (notification.NotificationType)
             {
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
@@ -76,13 +76,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     LogOff.RaiseCanExecuteChanged();
                     break;
             }
+            return Constant.CompletedTask;
         }
 
         public LogOnIdentity LogOnIdentity { get { return GetProperty<LogOnIdentity>(nameof(LogOnIdentity)); } set { SetProperty(nameof(LogOnIdentity), value); } }
 
         public AsyncDelegateAction<object> LogOnAsync { get; private set; }
 
-        public DelegateAction<object> LogOff { get; private set; }
+        public AsyncDelegateAction<object> LogOff { get; private set; }
 
         public IAsyncAction LogOnLogOff { get; private set; }
 
@@ -126,13 +127,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return logOnIdentity;
         }
 
-        private void LogOffAction()
+        private async Task LogOffAction()
         {
             if (!_knownIdentities.IsLoggedOn)
             {
                 return;
             }
-            _knownIdentities.DefaultEncryptionIdentity = LogOnIdentity.Empty;
+            await _knownIdentities.SetDefaultEncryptionIdentity(LogOnIdentity.Empty);
         }
 
         private async Task<LogOnIdentity> LogOnLogOffActionAsync()
@@ -141,7 +142,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return await LogOnActionAsync();
             }
-            LogOffAction();
+            await LogOffAction();
             return LogOnIdentity.Empty;
         }
 
@@ -190,7 +191,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             LogOnIdentity identy = await AddKnownIdentityFromEventAsync(logOnArgs);
             if (!_knownIdentities.IsLoggedOn && identy.UserEmail != EmailAddress.Empty)
             {
-                _knownIdentities.DefaultEncryptionIdentity = identy;
+                await _knownIdentities.SetDefaultEncryptionIdentity(identy);
             }
             return identy;
         }
@@ -203,7 +204,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return LogOnIdentity.Empty;
             }
 
-            _knownIdentities.DefaultEncryptionIdentity = logOnIdentity;
+            await _knownIdentities.SetDefaultEncryptionIdentity(logOnIdentity);
             return logOnIdentity;
         }
 
@@ -267,9 +268,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 identity = new LogOnIdentity(passphrase);
                 _fileSystemState.KnownPassphrases.Add(passphrase);
-                _fileSystemState.Save();
+                await _fileSystemState.Save();
             }
-            _knownIdentities.Add(identity);
+            await _knownIdentities.Add(identity);
             return identity;
         }
     }

@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="files">The files to operation on.</param>
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
-        public async virtual Task DoFilesAsync<TDataItem>(IEnumerable<TDataItem> files, Func<TDataItem, IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> allComplete)
+        public async virtual Task DoFilesAsync<TDataItem>(IEnumerable<TDataItem> files, Func<TDataItem, IProgressContext, Task<FileOperationContext>> work, Func<FileOperationContext, Task> allComplete)
             where TDataItem : IDataItem
         {
             Func<TDataItem, IProgressContext, Task<FileOperationContext>> singleFileOperation = (file, progress) =>
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        public async virtual Task InvokeAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> allComplete)
+        public async virtual Task InvokeAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> work, Func<FileOperationContext, Task> allComplete)
         {
             WorkerGroupProgressContext groupProgress = new WorkerGroupProgressContext(new CancelProgressContext(new ProgressContext()), New<ISingleThread>());
             await New<IProgressBackground>().WorkAsync(nameof(DoFilesAsync),
@@ -118,9 +118,9 @@ namespace Axantum.AxCrypt.Core.UI
                 progress.NotifyLevelFinished();
                 return result;
             },
-            (FileOperationContext status) =>
+            async (FileOperationContext status) =>
             {
-                allComplete(status);
+                await allComplete(status);
             },
             groupProgress).Free();
         }

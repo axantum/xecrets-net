@@ -78,9 +78,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private void HandleActiveFileFolderChangedEvent(object sender, FileWatcherEventArgs e)
+        private async void HandleActiveFileFolderChangedEvent(object sender, FileWatcherEventArgs e)
         {
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.UpdateActiveFiles, e.FullNames));
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.UpdateActiveFiles, e.FullNames));
         }
 
         public void Dispose()

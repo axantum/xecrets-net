@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestCheckActiveFilesIsNotLocked()
+        public async Task TestCheckActiveFilesIsNotLocked()
         {
             DateTime utcNow = New<INow>().Utc;
             DateTime utcYesterday = utcNow.AddDays(-1);
@@ -93,11 +93,12 @@ namespace Axantum.AxCrypt.Core.Test
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as decrypted being created.");
         }
 
@@ -113,30 +114,31 @@ namespace Axantum.AxCrypt.Core.Test
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
             using (FileLock fileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
             {
-                Task.Run((Action)(() =>
+                Task.Run((Action)(async () =>
                 {
-                    New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+                    await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
                 })).Wait();
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the encrypted file is locked.");
             using (FileLock fileLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
             {
-                Task.Run((Action)(() =>
+                Task.Run((Action)(async () =>
                 {
-                    New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+                    await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
                 })).Wait();
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the decrypted file is locked.");
         }
 
         [Test]
-        public void TestCheckActiveFilesKeyIsSet()
+        public async Task TestCheckActiveFilesKeyIsSet()
         {
             DateTime utcNow = New<INow>().Utc;
             DateTime utcJustNow = utcNow.AddMinutes(-1);
@@ -153,19 +155,20 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
             activeFile = new ActiveFile(New<IDataStore>(_uncompressedAxxPath), New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.KnownIdentities.Add(activeFile.Identity);
+            await Resolve.KnownIdentities.Add(activeFile.Identity);
 
             IDataStore decryptedFileInfo = New<IDataStore>(_decryptedFile1);
             decryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
             ((FakeNow)New<INow>()).TimeFunction = () => DateTime.UtcNow;
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as modified, because it is considered open and decrypted, has a proper key, is modified, no running process so it should be re-encrypted and deleted.");
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(activeFile, Is.Not.Null, "The encrypted file should be found.");
@@ -174,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestCheckActiveFilesKeyIsNotSetWithKnownKey()
+        public async Task TestCheckActiveFilesKeyIsNotSetWithKnownKey()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
@@ -183,22 +186,23 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile = new ActiveFile(New<IDataStore>(_uncompressedAxxPath), New<IDataStore>(_decryptedFile1), passphrase, ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.FileSystemState.Save();
+            await Resolve.FileSystemState.Save();
 
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(New<IDataStore>(_fileSystemStateFilePath)));
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(activeFile.Identity == LogOnIdentity.Empty, "The key should be null after loading of new FileSystemState");
 
-            Resolve.KnownIdentities.Add(passphrase);
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            await Resolve.KnownIdentities.Add(passphrase);
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
@@ -206,7 +210,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestCheckActiveFilesKeyIsNotSetWithoutKnownKey()
+        public async Task TestCheckActiveFilesKeyIsNotSetWithoutKnownKey()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
@@ -215,7 +219,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile = new ActiveFile(New<IDataStore>(_uncompressedAxxPath), New<IDataStore>(_decryptedFile1), passphrase, ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.FileSystemState.Save();
+            await Resolve.FileSystemState.Save();
 
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(New<IDataStore>(_fileSystemStateFilePath)));
 
@@ -224,20 +228,21 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(activeFile.Identity == LogOnIdentity.Empty, "The key should be null after loading of new FileSystemState");
 
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
-            Resolve.KnownIdentities.Add(new LogOnIdentity("x"));
-            Resolve.KnownIdentities.Add(new LogOnIdentity("y"));
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            await Resolve.KnownIdentities.Add(new LogOnIdentity("x"));
+            await Resolve.KnownIdentities.Add(new LogOnIdentity("y"));
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
@@ -248,7 +253,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestCheckActiveFilesNotDecryptedAndDoesNotExist()
+        public async Task TestCheckActiveFilesNotDecryptedAndDoesNotExist()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, Stream.Null);
@@ -258,22 +263,23 @@ namespace Axantum.AxCrypt.Core.Test
             New<IDataStore>(_decryptedFile1).Delete();
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.KnownIdentities.Add(activeFile.Identity);
+            await Resolve.KnownIdentities.Add(activeFile.Identity);
 
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
 
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because it's already deleted.");
         }
 
         [Test]
-        public void TestCheckActiveFilesNoDeleteWhenNotDesktopWindows()
+        public async Task TestCheckActiveFilesNoDeleteWhenNotDesktopWindows()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, Stream.Null);
@@ -281,31 +287,32 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile = new ActiveFile(New<IDataStore>(_uncompressedAxxPath), New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.KnownIdentities.Add(activeFile.Identity);
+            await Resolve.KnownIdentities.Add(activeFile.Identity);
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
 
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.Unknown;
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "No change should be raised when the file is not modified and not Desktop Windows.");
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "Nothing should happen with the file when not running as Desktop Windows.");
 
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             changedWasRaised = false;
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "Since the file should be deleted because running as Desktop Windows the changed event should be raised.");
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted), Is.True, "The file should be deleted and marked as Not Decrypted when running as Desktop Windows.");
         }
 
         [Test]
-        public void TestCheckActiveFilesUpdateButWithTargetLockedForSharing()
+        public async Task TestCheckActiveFilesUpdateButWithTargetLockedForSharing()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
@@ -320,18 +327,19 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
 
-            Resolve.KnownIdentities.Add(passphrase);
+            await Resolve.KnownIdentities.Add(passphrase);
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
 
             try
             {
                 FakeDataStore.IsLockedFunc = (fds) => fds.FullName == _decryptedFile1;
 
-                New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+                await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             }
             finally
             {
@@ -344,7 +352,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestCheckActiveFilesUpdateButWithTargetInaccessible()
+        public async Task TestCheckActiveFilesUpdateButWithTargetInaccessible()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
@@ -359,13 +367,14 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
 
-            Resolve.KnownIdentities.Add(passphrase);
+            await Resolve.KnownIdentities.Add(passphrase);
 
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange && e.Notification.FullNames.Contains(_uncompressedAxxPath);
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange && notification.FullNames.Contains(_uncompressedAxxPath);
+                return Constant.CompletedTask;
+            });
 
             EventHandler eventHandler = ((object sender, EventArgs e) =>
             {
@@ -378,7 +387,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.OpeningForWrite += eventHandler;
             try
             {
-                Assert.Throws<FileOperationException>(() => New<ActiveFileAction>().CheckActiveFiles(new ProgressContext()));
+                Assert.ThrowsAsync<FileOperationException>(async () => await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext()));
             }
             finally
             {
@@ -391,7 +400,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestTryDeleteButProcessHasNotExited()
+        public async Task TestTryDeleteButProcessHasNotExited()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, Stream.Null);
@@ -402,16 +411,17 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(New<IDataStore>(_uncompressedAxxPath), New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
             Resolve.FileSystemState.Add(activeFile, fakeLauncher);
-            Resolve.KnownIdentities.Add(activeFile.Identity);
+            await Resolve.KnownIdentities.Add(activeFile.Identity);
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(changedWasRaised, Is.False, "No changed event should be raised because no change should occur since the process is active.");
@@ -419,7 +429,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestCheckProcessExitedWhenExited()
+        public async Task TestCheckProcessExitedWhenExited()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, Stream.Null);
@@ -433,13 +443,14 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             fakeLauncher.HasExited = true;
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the process has exited.");
@@ -448,7 +459,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestTryDeleteButDecryptedSharingLocked()
+        public async Task TestTryDeleteButDecryptedSharingLocked()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, Stream.Null);
@@ -459,10 +470,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
 
             EventHandler eventHandler = ((object sender, EventArgs e) =>
@@ -478,7 +490,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.OpeningForWrite += eventHandler;
             try
             {
-                New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+                await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             }
             finally
             {
@@ -506,10 +518,11 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.Add(activeFile);
 
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
 
             using (FileLock fileLock = FileLock.Acquire(decryptedFileInfo))
             {
@@ -520,7 +533,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestPurgeActiveFilesWhenFileIsModified()
+        public async Task TestPurgeActiveFilesWhenFileIsModified()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, Stream.Null);
@@ -545,12 +558,13 @@ namespace Axantum.AxCrypt.Core.Test
             decryptedFileInfo.SetFileTimes(utcLater, utcLater, utcLater);
 
             bool changedWasRaised = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                changedWasRaised = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
 
-            New<ActiveFileAction>().PurgeActiveFiles(new ProgressContext());
+            await New<ActiveFileAction>().PurgeActiveFiles(new ProgressContext());
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the decrypted file is modified.");
@@ -558,7 +572,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithKnownKey()
+        public async Task TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithKnownKey()
         {
             IDataStore encryptedFileInfo = New<IDataStore>(_uncompressedAxxPath);
             IDataStore decryptedFileInfo = New<IDataStore>(_decryptedFile1);
@@ -566,29 +580,29 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
-            bool updateWasMade = New<ActiveFileAction>().UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
+            bool updateWasMade = await New<ActiveFileAction>().UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
             Assert.That(updateWasMade, Is.False, "Since there are only ActiveFiles with known keys in the list, no update should be made.");
         }
 
         [Test]
-        public void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithWrongThumbprint()
+        public async Task TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithWrongThumbprint()
         {
             IDataStore encryptedFileInfo = New<IDataStore>(_uncompressedAxxPath);
             IDataStore decryptedFileInfo = New<IDataStore>(_decryptedFile1);
             LogOnIdentity key = new LogOnIdentity("a");
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.FileSystemState.Save();
+            await Resolve.FileSystemState.Save();
 
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(New<IDataStore>(_fileSystemStateFilePath)));
 
             LogOnIdentity wrongKey = new LogOnIdentity("b");
-            bool updateWasMade = New<ActiveFileAction>().UpdateActiveFileWithKeyIfKeyMatchesThumbprint(wrongKey);
+            bool updateWasMade = await New<ActiveFileAction>().UpdateActiveFileWithKeyIfKeyMatchesThumbprint(wrongKey);
             Assert.That(updateWasMade, Is.False, "Since there are only ActiveFiles with wrong keys in the list, no update should be made.");
         }
 
         [Test]
-        public void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithMatchingThumbprint()
+        public async Task TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithMatchingThumbprint()
         {
             IDataStore encryptedFileInfo = New<IDataStore>(_uncompressedAxxPath);
             IDataStore decryptedFileInfo = New<IDataStore>(_decryptedFile1);
@@ -596,16 +610,16 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(_uncompressedAxxPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, Stream.Null);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.FileSystemState.Save();
+            await Resolve.FileSystemState.Save();
 
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(New<IDataStore>(_fileSystemStateFilePath)));
 
-            bool updateWasMade = New<ActiveFileAction>().UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
+            bool updateWasMade = await New<ActiveFileAction>().UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
             Assert.That(updateWasMade, Is.True, "Since there is an ActiveFile with the right thumbprint in the list, an update should be made.");
         }
 
         [Test]
-        public void TestUpdateActiveFileButWithNoChangeDueToIrrelevantStatus()
+        public async Task TestUpdateActiveFileButWithNoChangeDueToIrrelevantStatus()
         {
             IDataStore encryptedFileInfo = New<IDataStore>(_uncompressedAxxPath);
             IDataStore decryptedFileInfo = New<IDataStore>(_decryptedFile1);
@@ -615,17 +629,18 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
 
-            bool somethingWasChanged = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            bool changedWasRaised = false;
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                somethingWasChanged = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
-            Assert.That(somethingWasChanged, Is.False, "No event should be raised, because nothing should change.");
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            Assert.That(changedWasRaised, Is.False, "No event should be raised, because nothing should change.");
         }
 
         [Test]
-        public void TestUpdateActiveFileWithEventRaisedSinceItAppearsAProcessHasExited()
+        public async Task TestUpdateActiveFileWithEventRaisedSinceItAppearsAProcessHasExited()
         {
             IDataStore encryptedFileInfo = New<IDataStore>(_uncompressedAxxPath);
             IDataStore decryptedFileInfo = New<IDataStore>(_decryptedFile1);
@@ -635,24 +650,25 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
 
-            bool somethingWasChanged = false;
-            Resolve.SessionNotify.Notification += (object sender, SessionNotificationEventArgs e) =>
+            bool changedWasRaised = false;
+            Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
-                somethingWasChanged = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange;
-            };
-            New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
-            Assert.That(somethingWasChanged, Is.True, "An event should be raised, because status was NotShareable, but no process is active.");
+                changedWasRaised = notification.NotificationType == SessionNotificationType.ActiveFileChange;
+                return Constant.CompletedTask;
+            });
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+            Assert.That(changedWasRaised, Is.True, "An event should be raised, because status was NotShareable, but no process is active.");
         }
 
         [Test]
-        public void TestRemoveRecentFile()
+        public async Task TestRemoveRecentFile()
         {
             IDataStore encryptedFileInfo = New<IDataStore>(_uncompressedAxxPath);
             IDataStore decryptedFileInfo = New<IDataStore>(_decryptedFile1);
             LogOnIdentity key = new LogOnIdentity("passphrase");
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.FileSystemState.Save();
+            await Resolve.FileSystemState.Save();
 
             ActiveFile beforeRemoval = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
@@ -660,26 +676,26 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
             Resolve.FileSystemState.Add(activeFile);
 
-            New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(encryptedFileInfo.FullName) }, new ProgressContext());
+            await New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(encryptedFileInfo.FullName) }, new ProgressContext());
 
             ActiveFile afterRemoval = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterRemoval, Is.Null, "After being removed, the ActiveFile should not be possible to find.");
         }
 
         [Test]
-        public void TestRemoveRecentFileWhenFileDoesNotExist()
+        public async Task TestRemoveRecentFileWhenFileDoesNotExist()
         {
             IDataStore encryptedFileInfo = New<IDataStore>(_uncompressedAxxPath);
             IDataStore decryptedFileInfo = New<IDataStore>(_decryptedFile1);
             LogOnIdentity key = new LogOnIdentity("passphrase");
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, new V2Aes256CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
-            Resolve.FileSystemState.Save();
+            await Resolve.FileSystemState.Save();
 
             ActiveFile beforeRemoval = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
 
-            Assert.DoesNotThrow((TestDelegate)(() => { New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(encryptedFileInfo.FullName + ".notfound") }, new ProgressContext()); }));
+            Assert.DoesNotThrowAsync(async () => { await New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(encryptedFileInfo.FullName + ".notfound") }, new ProgressContext()); });
 
             ActiveFile afterFailedRemoval = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterFailedRemoval, Is.Not.Null, "After failed removal, the ActiveFile should still be possible to find.");

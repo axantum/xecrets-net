@@ -33,6 +33,7 @@ using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
@@ -143,10 +144,10 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestEncryptFileWithDefaultEncryptionKey()
+        public async Task TestEncryptFileWithDefaultEncryptionKey()
         {
             TypeMap.Register.New<ICryptoPolicy>(() => new LegacyCryptoPolicy());
-            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("default");
+            await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("default"));
             FileOperationsController controller = new FileOperationsController();
             bool queryEncryptionPassphraseWasCalled = false;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -264,10 +265,11 @@ namespace Axantum.AxCrypt.Core.Test
                     return Task.FromResult<object>(null);
                 };
             bool knownKeyWasAdded = false;
-            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            controller.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>((FileOperationEventArgs e) =>
                 {
                     knownKeyWasAdded = e.LogOnIdentity.Equals(new LogOnIdentity("a"));
-                };
+                    return Constant.CompletedTask;
+                });
             string destinationPath = String.Empty;
             controller.Completed += (object sender, FileOperationEventArgs e) =>
                 {
@@ -298,10 +300,11 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
             bool knownKeyWasAdded = false;
-            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            controller.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>((FileOperationEventArgs e) =>
             {
                 knownKeyWasAdded = e.LogOnIdentity.Equals(new LogOnIdentity("a"));
-            };
+                return Constant.CompletedTask;
+            });
             string destinationPath = String.Empty;
             FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
             controller.Completed += (object sender, FileOperationEventArgs e) =>
@@ -504,13 +507,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestDecryptWithKnownKey()
+        public async Task TestDecryptWithKnownKey()
         {
             FileOperationsController controller = new FileOperationsController();
-            Resolve.KnownIdentities.Add(new LogOnIdentity("b"));
-            Resolve.KnownIdentities.Add(new LogOnIdentity("c"));
-            Resolve.KnownIdentities.Add(new LogOnIdentity("a"));
-            Resolve.KnownIdentities.Add(new LogOnIdentity("e"));
+            await Resolve.KnownIdentities.Add(new LogOnIdentity("b"));
+            await Resolve.KnownIdentities.Add(new LogOnIdentity("c"));
+            await Resolve.KnownIdentities.Add(new LogOnIdentity("a"));
+            await Resolve.KnownIdentities.Add(new LogOnIdentity("e"));
             bool passphraseWasQueried = false;
             controller.QueryDecryptionPassphrase = (FileOperationEventArgs e) =>
             {
@@ -523,10 +526,11 @@ namespace Axantum.AxCrypt.Core.Test
                 destinationPath = e.SaveFileFullName;
             };
             bool knownKeyWasAdded = false;
-            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            controller.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>((FileOperationEventArgs e) =>
             {
                 knownKeyWasAdded = true;
-            };
+                return Constant.CompletedTask;
+            });
             FileOperationContext status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result;
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
@@ -576,10 +580,11 @@ namespace Axantum.AxCrypt.Core.Test
                 destinationPath = e.SaveFileFullName;
             };
             bool knownKeyWasAdded = false;
-            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            controller.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>((FileOperationEventArgs e) =>
             {
                 knownKeyWasAdded = e.LogOnIdentity.Equals(new LogOnIdentity("a"));
-            };
+                return Constant.CompletedTask;
+            });
             FileOperationContext status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result;
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
@@ -605,15 +610,17 @@ namespace Axantum.AxCrypt.Core.Test
                     e.LogOnIdentity = new LogOnIdentity("a");
                     return Task.FromResult<object>(null);
                 };
-            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
-                {
-                    throw new FileNotFoundException("Just kidding, but we're faking...", e.OpenFileFullName);
-                };
+            controller.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>((FileOperationEventArgs e) =>
+            {
+                throw new FileNotFoundException("Just kidding, but we're faking...", e.OpenFileFullName);
+            });
             string destinationPath = String.Empty;
-            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
-                {
-                    destinationPath = e.SaveFileFullName;
-                };
+            AsyncDelegateAction<FileOperationEventArgs> previous = controller.KnownKeyAdded;
+            controller.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>(async (FileOperationEventArgs e) =>
+            {
+                await previous.ExecuteAsync(e);
+                destinationPath = e.SaveFileFullName;
+            });
             FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
             Assert.DoesNotThrow(() => { status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result; });
 
@@ -753,7 +760,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestVerifyEncrypted()
+        public async Task TestVerifyEncrypted()
         {
             FileOperationsController controller = new FileOperationsController();
             bool passphraseWasQueried = false;
@@ -764,10 +771,11 @@ namespace Axantum.AxCrypt.Core.Test
                 return Task.FromResult<object>(null);
             };
             bool knownKeyWasAdded = false;
-            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            controller.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>((FileOperationEventArgs e) =>
             {
                 knownKeyWasAdded = true;
-            };
+                return Constant.CompletedTask;
+            });
 
             FileOperationContext status = controller.VerifyEncrypted(New<IDataStore>(_helloWorldAxxPath)).Result;
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Canceled));
@@ -780,13 +788,14 @@ namespace Axantum.AxCrypt.Core.Test
                 e.LogOnIdentity = new LogOnIdentity("a");
                 return Task.FromResult<object>(null);
             };
-            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            controller.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>((FileOperationEventArgs e) =>
             {
                 knownKeyWasAdded = true;
-            };
+                return Constant.CompletedTask;
+            });
 
-            Resolve.KnownIdentities.Add(new LogOnIdentity("b"));
-            Resolve.KnownIdentities.Add(new LogOnIdentity("c"));
+            await Resolve.KnownIdentities.Add(new LogOnIdentity("b"));
+            await Resolve.KnownIdentities.Add(new LogOnIdentity("c"));
 
             status = controller.VerifyEncrypted(New<IDataStore>(_helloWorldAxxPath)).Result;
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success));

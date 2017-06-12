@@ -25,10 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -48,20 +50,21 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestNotificationDuringProcessingOfNotification()
+        public static async Task TestNotificationDuringProcessingOfNotification()
         {
             int notificationCount = 0;
 
             SessionNotify monitor = new SessionNotify();
-            monitor.Notification += (sender, e) =>
+            monitor.AddCommand((notification) =>
             {
-                if (e.Notification.NotificationType == SessionNotificationType.LogOn)
+                if (notification.NotificationType == SessionNotificationType.LogOn)
                 {
                     ++notificationCount;
                 }
-            };
+                return Constant.CompletedTask;
+            });
 
-            monitor.Notify(new SessionNotification(SessionNotificationType.LogOn));
+            await monitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOn));
             Assert.That(notificationCount, Is.EqualTo(1));
         }
     }

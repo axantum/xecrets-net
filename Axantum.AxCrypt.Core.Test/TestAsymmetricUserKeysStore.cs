@@ -38,7 +38,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -107,12 +107,12 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestEncryptCreateLoadDecryptWithAsymmetricKeysStore()
+        public async Task TestEncryptCreateLoadDecryptWithAsymmetricKeysStore()
         {
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = New<IDataContainer>(@"C:\Temp\");
             AccountStorage store = new AccountStorage(new LocalAccountService(new LogOnIdentity(EmailAddress.Parse(@"svante@axantum.com"), new Passphrase("secret")), workFolder));
-            Resolve.KnownIdentities.DefaultEncryptionIdentity = new LogOnIdentity("secret");
+            await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("secret"));
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
             store.ImportAsync(userKeyPair).Wait();

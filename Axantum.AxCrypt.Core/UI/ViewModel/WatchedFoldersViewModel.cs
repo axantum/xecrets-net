@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Extensions;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
@@ -6,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -29,9 +30,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IEnumerable<string> DragAndDropFiles { get { return GetProperty<IEnumerable<string>>(nameof(DragAndDropFiles)); } set { SetProperty(nameof(DragAndDropFiles), value.ToList()); } }
 
-        public IAction AddWatchedFolders { get; private set; }
+        public IAsyncAction AddWatchedFolders { get; private set; }
 
-        public IAction RemoveWatchedFolders { get; private set; }
+        public IAsyncAction RemoveWatchedFolders { get; private set; }
 
         public IAction OpenSelectedFolder { get; private set; }
 
@@ -53,8 +54,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DragAndDropFiles = new string[0];
             SelectedWatchedFolders = new string[0];
 
-            AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders), (folders) => LoggedOn);
-            RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
+            AddWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>(async (folders) => await AddWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
+            RemoveWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>(async (folders) => await RemoveWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
         }
 
@@ -65,7 +66,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SubscribeToModelEvents()
         {
-            Resolve.SessionNotify.Notification += HandleSessionChanged;
+            Resolve.SessionNotify.AddCommand(HandleSessionChanged);
         }
 
         private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IDataItem> files)
@@ -89,9 +90,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return true;
         }
 
-        private void HandleSessionChanged(object sender, SessionNotificationEventArgs e)
+        private Task HandleSessionChanged(SessionNotification notification)
         {
-            switch (e.Notification.NotificationType)
+            switch (notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
                 case SessionNotificationType.WatchedFolderRemoved:
@@ -104,6 +105,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     SetWatchedFolders();
                     break;
             }
+            return Constant.CompletedTask;
         }
 
         private void SetWatchedFolders()
@@ -117,7 +119,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             LoggedOn = isLoggedOn;
         }
 
-        private void AddWatchedFoldersAction(IEnumerable<string> folders)
+        private async Task AddWatchedFoldersAction(IEnumerable<string> folders)
         {
             if (!folders.Any())
             {
@@ -125,12 +127,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string folder in folders)
             {
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
+                await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(folder, Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
             }
-            _fileSystemState.Save();
+            await _fileSystemState.Save();
         }
 
-        private void RemoveWatchedFoldersAction(IEnumerable<string> folders)
+        private async Task RemoveWatchedFoldersAction(IEnumerable<string> folders)
         {
             if (!folders.Any())
             {
@@ -138,9 +140,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(New<IDataContainer>(watchedFolderPath));
+                await _fileSystemState.RemoveWatchedFolder(New<IDataContainer>(watchedFolderPath));
             }
-            _fileSystemState.Save();
+            await _fileSystemState.Save();
         }
 
         private static void OpenSelectedFolderAction(string folder)
