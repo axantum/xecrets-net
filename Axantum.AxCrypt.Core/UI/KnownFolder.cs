@@ -30,6 +30,8 @@ using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Linq;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI
 {
     /// <summary>
@@ -46,18 +48,26 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Uri ProviderUrl { get; private set; }
 
-        public object Image { get; private set; }
+        public object Image
+        {
+            get
+            {
+                return New<IKnownFolderImageProvider>().GetImage(_knownFolderKind);
+            }
+        }
 
         public bool Enabled { get; private set; }
 
         public string DisplayName { get; private set; }
 
-        public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, object image, Uri providerUrl)
-            : this(knownFolderInfo, myFolderName, image, providerUrl, null)
+        private KnownFolderKind _knownFolderKind;
+
+        public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, KnownFolderKind knownFolderKind, Uri providerUrl)
+            : this(knownFolderInfo, myFolderName, knownFolderKind, providerUrl, null)
         {
         }
 
-        public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, object image, Uri providerUrl, string displayName)
+        public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, KnownFolderKind knownFolderKind, Uri providerUrl, string displayName)
         {
             if (knownFolderInfo == null)
             {
@@ -67,13 +77,9 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new ArgumentNullException("myFolderName");
             }
-            if (image == null)
-            {
-                throw new ArgumentNullException("image");
-            }
             Folder = knownFolderInfo;
             My = knownFolderInfo.FolderItemInfo(myFolderName);
-            Image = image;
+            _knownFolderKind = knownFolderKind;
             ProviderUrl = providerUrl;
             Enabled = false;
             DisplayName = displayName;
@@ -87,7 +93,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             Folder = knownFolder.Folder;
             My = knownFolder.My;
-            Image = knownFolder.Image;
+            _knownFolderKind = knownFolder._knownFolderKind;
             ProviderUrl = knownFolder.ProviderUrl;
             DisplayName = knownFolder.DisplayName;
             Enabled = enabled;

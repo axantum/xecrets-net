@@ -87,6 +87,7 @@
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DesktopVersion.cs" />
+    <Compile Include="KnownFolderImageProvider.cs" />
     <Compile Include="PasswordStrengthMeter.cs">
       <SubType>Component</SubType>
     </Compile>

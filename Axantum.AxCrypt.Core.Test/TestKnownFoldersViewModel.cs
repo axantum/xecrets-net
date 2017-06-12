@@ -49,6 +49,16 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture(CryptoImplementation.BouncyCastle)]
     public class TestKnownFoldersViewModel
     {
+        private class TestKnownImageProvider : IKnownFolderImageProvider
+        {
+            public static Bitmap Image { get; } = new Bitmap(32, 32);
+
+            public object GetImage(KnownFolderKind folderKind)
+            {
+                return Image;
+            }
+        }
+
         private CryptoImplementation _cryptoImplementation;
 
         public TestKnownFoldersViewModel(CryptoImplementation cryptoImplementation)
@@ -61,6 +71,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
             SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
+
+            TypeMap.Register.Singleton<IKnownFolderImageProvider>(() => new TestKnownImageProvider());
         }
 
         [TearDown]
@@ -88,8 +100,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataContainer betterCloudInfo = New<IDataContainer>(@"C:\BetterCloud");
             IDataContainer fasterCloudInfo = New<IDataContainer>(@"C:\FasterCloud");
-            KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
-            KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
+            KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", KnownFolderKind.WindowsMyDocuments, null);
+            KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", KnownFolderKind.Dropbox, null);
             FakeDataStore.AddFolder(folder1.My.FullName);
             FakeDataStore.AddFolder(folder2.My.FullName);
 
@@ -114,8 +126,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataContainer betterCloudInfo = New<IDataContainer>(@"C:\BetterCloud");
             IDataContainer fasterCloudInfo = New<IDataContainer>(@"C:\FasterCloud");
-            KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
-            KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
+            KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", KnownFolderKind.SkyDrive, null);
+            KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", KnownFolderKind.WindowsMyDocuments, null);
             FakeDataStore.AddFolder(folder1.My.FullName);
             FakeDataStore.AddFolder(folder2.My.FullName);
 
@@ -143,8 +155,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataContainer betterCloudInfo = New<IDataContainer>(@"C:\BetterCloud");
             IDataContainer fasterCloudInfo = New<IDataContainer>(@"C:\FasterCloud");
-            KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
-            KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
+            KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", KnownFolderKind.GoogleDrive, null);
+            KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", KnownFolderKind.Dropbox, null);
             FakeDataStore.AddFile(@"C:\BetterCloud\My AxCrypt", Stream.Null);
             FakeDataStore.AddFolder(folder2.My.FullName);
 

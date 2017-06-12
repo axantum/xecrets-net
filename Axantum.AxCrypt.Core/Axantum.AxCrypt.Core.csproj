@@ -187,8 +187,10 @@
     <Compile Include="UI\DeviceLockReason.cs" />
     <Compile Include="UI\IDataItemSelection.cs" />
     <Compile Include="UI\IDeviceLocked.cs" />
+    <Compile Include="UI\IKnownFolderImageProvider.cs" />
     <Compile Include="UI\IPopup.cs" />
     <Compile Include="UI\ISignInState.cs" />
+    <Compile Include="UI\KnownFolderKind.cs" />
     <Compile Include="UI\LegacyConversionMode.cs" />
     <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />

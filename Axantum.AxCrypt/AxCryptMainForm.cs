@@ -439,6 +439,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IDeviceLocked>(() => new DeviceLocked());
             TypeMap.Register.Singleton<IInternetState>(() => new InternetState());
             TypeMap.Register.Singleton<InstallationVerifier>(() => new InstallationVerifier());
+            TypeMap.Register.Singleton<IKnownFolderImageProvider>(() => new KnownFolderImageProvider());
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
@@ -2131,7 +2132,7 @@ namespace Axantum.AxCrypt
                     Resolve.FileSystemState.AddWatchedFolder(wf);
                 }
                 IEnumerable<IDataStore> files = folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
-                
+
                 EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity, sharedWithPublicKeys.Select(pk => pk.Email));
 
                 await ChangeEncryptionAsync(files.Select(x => x.FullName), encryptionParameters);

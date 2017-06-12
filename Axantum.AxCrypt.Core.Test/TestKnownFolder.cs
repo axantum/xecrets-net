@@ -45,6 +45,16 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestKnownFolder
     {
+        private class TestKnownImageProvider : IKnownFolderImageProvider
+        {
+            public static Bitmap Image { get; } = new Bitmap(32, 32);
+
+            public object GetImage(KnownFolderKind folderKind)
+            {
+                return Image;
+            }
+        }
+
         [SetUp]
         public static void Setup()
         {
@@ -54,6 +64,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<string, IDataContainer>((path) => new FakeDataContainer(path));
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+
+            TypeMap.Register.Singleton<IKnownFolderImageProvider>(() => new TestKnownImageProvider());
         }
 
         [TearDown]
@@ -69,10 +81,10 @@ namespace Axantum.AxCrypt.Core.Test
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
             IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
 
-            KnownFolder kf = new KnownFolder(myInfo, @"AxCrypt", image, providerUrl);
+            KnownFolder kf = new KnownFolder(myInfo, @"AxCrypt", KnownFolderKind.GoogleDrive, providerUrl);
             Assert.That(kf.Folder.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".NormalizeFolderPath()));
             Assert.That(kf.My.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents\AxCrypt".NormalizeFolderPath()));
-            Assert.That(kf.Image, Is.EqualTo(image));
+            Assert.That(kf.Image, Is.EqualTo(TestKnownImageProvider.Image));
             Assert.That(kf.ProviderUrl, Is.EqualTo(providerUrl));
             Assert.That(kf.Enabled, Is.False);
         }
@@ -80,16 +92,15 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCopyConstructor()
         {
-            Bitmap image = new Bitmap(32, 32);
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
             IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
 
-            KnownFolder kf = new KnownFolder(myInfo, @"AxCrypt", image, providerUrl);
+            KnownFolder kf = new KnownFolder(myInfo, @"AxCrypt", KnownFolderKind.Dropbox, providerUrl);
             KnownFolder kfCopy = new KnownFolder(kf, true);
 
             Assert.That(kfCopy.Folder.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".NormalizeFolderPath()));
             Assert.That(kfCopy.My.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents\AxCrypt".NormalizeFolderPath()));
-            Assert.That(kfCopy.Image, Is.EqualTo(image));
+            Assert.That(kfCopy.Image, Is.EqualTo(TestKnownImageProvider.Image));
             Assert.That(kfCopy.ProviderUrl, Is.EqualTo(providerUrl));
             Assert.That(kfCopy.Enabled, Is.True);
         }
@@ -97,10 +108,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestBadArgumentsToConstructor()
         {
-            Bitmap image = new Bitmap(32, 32);
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
 
-            Bitmap nullImage = null;
             Uri nullUrl = null;
             IDataContainer nullInfo = null;
             string nullString = null;
@@ -108,10 +117,9 @@ namespace Axantum.AxCrypt.Core.Test
             IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
             KnownFolder kf;
 
-            Assert.Throws<ArgumentNullException>(() => kf = new KnownFolder(nullInfo, @"AxCrypt", image, providerUrl));
-            Assert.Throws<ArgumentNullException>(() => kf = new KnownFolder(myInfo, nullString, image, providerUrl));
-            Assert.Throws<ArgumentNullException>(() => kf = new KnownFolder(myInfo, @"AxCrypt", nullImage, providerUrl));
-            Assert.DoesNotThrow(() => kf = new KnownFolder(myInfo, @"AxCrypt", image, nullUrl));
+            Assert.Throws<ArgumentNullException>(() => kf = new KnownFolder(nullInfo, @"AxCrypt", KnownFolderKind.GoogleDrive, providerUrl));
+            Assert.Throws<ArgumentNullException>(() => kf = new KnownFolder(myInfo, nullString, KnownFolderKind.GoogleDrive, providerUrl));
+            Assert.DoesNotThrow(() => kf = new KnownFolder(myInfo, @"AxCrypt", KnownFolderKind.GoogleDrive, nullUrl));
             kf = null;
             Assert.Throws<ArgumentNullException>(() => kf = new KnownFolder(kf, true));
         }
