@@ -1089,6 +1089,30 @@ VAT Number SE 556967618101</value>
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Click to select encrypted files to share keys with others.</value>
   </data>
+  <data name="KnownFolderNameDropbox" xml:space="preserve">
+    <value>Dropbox</value>
+    <comment>The non-translatable name for the dropbox could service</comment>
+  </data>
+  <data name="KnownFolderNameGoogleDrive" xml:space="preserve">
+    <value>Google Drive</value>
+    <comment>The non-translatable name of the the Google Drive cloud service provider</comment>
+  </data>
+  <data name="KnownFolderNameICloud" xml:space="preserve">
+    <value>iCloud</value>
+    <comment>The non-translatable name for the Apple iCloud service provider</comment>
+  </data>
+  <data name="KnownFolderNameMacDocuments" xml:space="preserve">
+    <value>Documents</value>
+    <comment>The localized name of the "Documents" folder in Mac OS X. This MUST be translated to the official localization used by Apple for the "Documents" folder.</comment>
+  </data>
+  <data name="KnownFolderNameOneDrive" xml:space="preserve">
+    <value>OneDrive</value>
+    <comment>The non-translatable name for the Microsoft OneDrive cloud service provider</comment>
+  </data>
+  <data name="KnownFolderNameWindowsMyDocuments" xml:space="preserve">
+    <value>Documents</value>
+    <comment>The translatable name for the Windows "My Documents" folder. This MUST be translated to the name used by Microsoft in a localized version of Windows!</comment>
+  </data>
   <data name="KoreanLanguageSelection" xml:space="preserve">
     <value>한국어 (Korean)</value>
     <comment>The text to display when selecting Korean as the UI language. It should always be in Korean.</comment>
@@ -1566,7 +1590,8 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Manage all your passwords online in the cloud&lt;span class="text-cutoff"&gt; with AxCrypt Password Management, your online safety deposit for passwords, codes, pins, etc. Your passwords are stored in a securely encrypted archive and are available to you, and only you, anywhere at any time. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Read more]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PasswordManagementPageTitle" xml:space="preserve">
-    <value>Password Management</value>
+    <value>Passwords</value>
+    <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>The password is not good enough to be acceptable.</value>

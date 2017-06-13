@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataContainer betterCloudInfo = New<IDataContainer>(@"C:\BetterCloud");
             IDataContainer fasterCloudInfo = New<IDataContainer>(@"C:\FasterCloud");
-            KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", KnownFolderKind.SkyDrive, null);
+            KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", KnownFolderKind.OneDrive, null);
             KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", KnownFolderKind.WindowsMyDocuments, null);
             FakeDataStore.AddFolder(folder1.My.FullName);
             FakeDataStore.AddFolder(folder2.My.FullName);

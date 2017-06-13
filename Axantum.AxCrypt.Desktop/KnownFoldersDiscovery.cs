@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Desktop
 
             CheckDocumentsLibrary(knownFolders);
             CheckDropBox(knownFolders);
-            CheckSkyDrive(knownFolders);
+            CheckOneDrive(knownFolders);
             CheckGoogleDrive(knownFolders);
 
             return knownFolders;
@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Desktop
         private static void CheckDocumentsLibrary(IList<KnownFolder> knownFolders)
         {
             IDataContainer myDocumentsInfo = New<IDataContainer>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
-            KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, Texts.MyAxCryptFolderName, KnownFolderKind.WindowsMyDocuments, null);
+            KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, Texts.MyAxCryptFolderName, KnownFolderKind.WindowsMyDocuments, null, Texts.KnownFolderNameWindowsMyDocuments);
             knownFolders.Add(windowsDesktopFolder);
         }
 
@@ -73,62 +73,61 @@ namespace Axantum.AxCrypt.Desktop
             }
 
             IDataContainer dropBoxFolderInfo = New<IDataContainer>(dropBoxFolder);
-            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.Dropbox, null);
+            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.Dropbox, null, Texts.KnownFolderNameDropbox);
 
             knownFolders.Add(knownFolder);
         }
 
-        private static void CheckSkyDrive(IList<KnownFolder> knownFolders)
+        private static void CheckOneDrive(IList<KnownFolder> knownFolders)
         {
-            string skyDriveFolder = FindOneDriveFolder();
-            if (!Directory.Exists(skyDriveFolder))
+            string oneDriveFolder = FindOneDriveFolder();
+            if (!Directory.Exists(oneDriveFolder))
             {
                 return;
             }
 
             Uri url = new Uri("https://onedrive.live.com/");
-
-            IDataContainer skyDriveFolderInfo = New<IDataContainer>(skyDriveFolder);
-            KnownFolder knownFolder = new KnownFolder(skyDriveFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.SkyDrive, url);
+            IDataContainer oneDriveFolderInfo = New<IDataContainer>(oneDriveFolder);
+            KnownFolder knownFolder = new KnownFolder(oneDriveFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.OneDrive, url, Texts.KnownFolderNameOneDrive);
 
             knownFolders.Add(knownFolder);
         }
 
         private static string FindOneDriveFolder()
         {
-            string skyDriveFolder = null;
+            string oneDriveFolder = null;
 
-            skyDriveFolder = TryRegistryLocationForOneDriveFolder(@"Software\Microsoft\OneDrive");
-            if (skyDriveFolder != null)
+            oneDriveFolder = TryRegistryLocationForOneDriveFolder(@"Software\Microsoft\OneDrive");
+            if (oneDriveFolder != null)
             {
-                return skyDriveFolder;
+                return oneDriveFolder;
             }
 
-            skyDriveFolder = TryRegistryLocationForOneDriveFolder(@"Software\Microsoft\Windows\CurrentVersion\SkyDrive");
-            if (skyDriveFolder != null)
+            oneDriveFolder = TryRegistryLocationForOneDriveFolder(@"Software\Microsoft\Windows\CurrentVersion\SkyDrive");
+            if (oneDriveFolder != null)
             {
-                return skyDriveFolder;
+                return oneDriveFolder;
             }
 
-            skyDriveFolder = Path.Combine(Environment.GetEnvironmentVariable("HOMEDRIVE") + Environment.GetEnvironmentVariable("HOMEPATH"), "OneDrive");
-            return skyDriveFolder;
+            oneDriveFolder = Path.Combine(Environment.GetEnvironmentVariable("HOMEDRIVE") + Environment.GetEnvironmentVariable("HOMEPATH"), "OneDrive");
+            return oneDriveFolder;
         }
 
         private static string TryRegistryLocationForOneDriveFolder(string name)
         {
-            RegistryKey skyDriveKey = Registry.CurrentUser.OpenSubKey(name);
-            if (skyDriveKey == null)
+            RegistryKey oneDriveKey = Registry.CurrentUser.OpenSubKey(name);
+            if (oneDriveKey == null)
             {
                 return null;
             }
 
-            string skyDriveFolder = skyDriveKey.GetValue("UserFolder") as string;
-            if (String.IsNullOrEmpty(skyDriveFolder))
+            string oneDriveFolder = oneDriveKey.GetValue("UserFolder") as string;
+            if (String.IsNullOrEmpty(oneDriveFolder))
             {
                 return null;
             }
 
-            return skyDriveFolder;
+            return oneDriveFolder;
         }
 
         private static void CheckGoogleDrive(IList<KnownFolder> knownFolders)
@@ -142,7 +141,7 @@ namespace Axantum.AxCrypt.Desktop
             Uri url = new Uri("https://drive.google.com/");
 
             IDataContainer googleDriveFolderInfo = New<IDataContainer>(googleDriveFolder);
-            KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.GoogleDrive, url);
+            KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.GoogleDrive, url, Texts.KnownFolderNameGoogleDrive);
             knownFolders.Add(knownFolder);
         }
     }

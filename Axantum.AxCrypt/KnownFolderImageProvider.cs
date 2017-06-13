@@ -15,7 +15,7 @@ namespace Axantum.AxCrypt
         {
             switch (folderKind)
             {
-                case KnownFolderKind.SkyDrive:
+                case KnownFolderKind.OneDrive:
                     return Resources.skydrive_40px;
 
                 case KnownFolderKind.GoogleDrive:

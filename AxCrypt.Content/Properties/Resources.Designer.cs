@@ -2746,6 +2746,60 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dropbox.
+        /// </summary>
+        public static string KnownFolderNameDropbox {
+            get {
+                return ResourceManager.GetString("KnownFolderNameDropbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Google Drive.
+        /// </summary>
+        public static string KnownFolderNameGoogleDrive {
+            get {
+                return ResourceManager.GetString("KnownFolderNameGoogleDrive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to iCloud.
+        /// </summary>
+        public static string KnownFolderNameICloud {
+            get {
+                return ResourceManager.GetString("KnownFolderNameICloud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documents.
+        /// </summary>
+        public static string KnownFolderNameMacDocuments {
+            get {
+                return ResourceManager.GetString("KnownFolderNameMacDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneDrive.
+        /// </summary>
+        public static string KnownFolderNameOneDrive {
+            get {
+                return ResourceManager.GetString("KnownFolderNameOneDrive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documents.
+        /// </summary>
+        public static string KnownFolderNameWindowsMyDocuments {
+            get {
+                return ResourceManager.GetString("KnownFolderNameWindowsMyDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 한국어 (Korean).
         /// </summary>
         public static string KoreanLanguageSelection {
@@ -3947,7 +4001,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password Management.
+        ///   Looks up a localized string similar to Passwords.
         /// </summary>
         public static string PasswordManagementPageTitle {
             get {

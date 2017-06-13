@@ -9,7 +9,7 @@ namespace Axantum.AxCrypt.Core.UI
     public enum KnownFolderKind
     {
         None = 0,
-        SkyDrive,
+        OneDrive,
         GoogleDrive,
         Dropbox,
         ICloud,

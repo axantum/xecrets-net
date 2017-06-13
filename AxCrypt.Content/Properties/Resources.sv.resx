@@ -977,6 +977,14 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Klicka för att välja skyddade filer att dela nycklar för med andra.</value>
   </data>
+  <data name="KnownFolderNameMacDocuments" xml:space="preserve">
+    <value>Dokument</value>
+    <comment>The localized name of the "Documents" folder in Mac OS X. This MUST be translated to the official localization used by Apple for the "Documents" folder.</comment>
+  </data>
+  <data name="KnownFolderNameWindowsMyDocuments" xml:space="preserve">
+    <value>Dokument</value>
+    <comment>The translatable name for the Windows "My Documents" folder. This MUST be translated to the name used by Microsoft in a localized version of Windows!</comment>
+  </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt måste startas om för att slutföra språkändringen.</value>
   </data>
@@ -1371,7 +1379,8 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>Hantera alla dina lösenord online i molnet&lt;span class="text-cutoff"&gt; med AxCrypt Lösenordshantering, ditt kassaskåp på nätet för lösenord, pinkoder osv. Dina lösenord lagras säkert i ett krypterat arkiv och bara du har tillgång till dem, när som helst, var som helst. &lt;a class="hide-link"&gt;[Minimera]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Läs mer]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PasswordManagementPageTitle" xml:space="preserve">
-    <value>Lösenordshantering</value>
+    <value>Lösenord</value>
+    <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Lösenordet är för svagt för att kunna användas med AxCrypt.</value>
