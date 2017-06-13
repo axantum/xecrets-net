@@ -56,7 +56,6 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ItemCache.cs" />
     <Compile Include="KnownFoldersDiscovery.cs" />
-    <Compile Include="ProcessMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="XmlSecretsReaderWriter.cs" />

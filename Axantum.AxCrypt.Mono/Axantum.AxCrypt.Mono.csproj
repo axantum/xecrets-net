@@ -80,6 +80,7 @@
     <Compile Include="Cryptography\RandomNumberGeneratorWrapper.cs" />
     <Compile Include="Portable\PortableSemaphoreWrapper.cs" />
     <Compile Include="Portable\SingleThread.cs" />
+    <Compile Include="ProcessMonitor.cs" />
     <Compile Include="RuntimeEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataStore.cs" />

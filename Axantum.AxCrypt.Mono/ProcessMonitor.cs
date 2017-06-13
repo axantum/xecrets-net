@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,11 +9,13 @@ using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
-namespace Axantum.AxCrypt.Desktop
+namespace Axantum.AxCrypt.Mono
 {
     public class ProcessMonitor : IDisposable
     {
         private DelayedAction _action;
+
+        private readonly object _lock = new object();
 
         private HashSet<int> _processIds;
 
@@ -27,22 +30,22 @@ namespace Axantum.AxCrypt.Desktop
             _action.StartIdleTimer();
         }
 
-        private void CheckProcesses(object sender, EventArgs e)
+        private async void CheckProcesses(object sender, EventArgs e)
         {
             bool processHasExited = false;
             processHasExited = CheckForExitedProcesses();
 
             if (processHasExited)
             {
-                ProcessHasExited();
+                await ProcessHasExited();
             }
-            _action.StartIdleTimer();
+            _action?.StartIdleTimer();
         }
 
         private bool CheckForExitedProcesses()
         {
             bool processHasExited;
-            lock (_action)
+            lock (_lock)
             {
                 HashSet<int> currentIds = GetCurrentIds();
                 processHasExited = _processIds.Except(currentIds).Any();
@@ -57,9 +60,9 @@ namespace Axantum.AxCrypt.Desktop
             return new HashSet<int>(Process.GetProcesses().Where(p => p.SessionId == _currentSessionId).Select(p => p.Id).ToList());
         }
 
-        private static async void ProcessHasExited()
+        private static async Task ProcessHasExited()
         {
-            await Core.Resolve.SessionNotify.NotifyAsync(new Core.Session.SessionNotification(Core.Session.SessionNotificationType.SessionChange));
+            await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.SessionChange));
         }
 
         protected virtual void Dispose(bool disposing)
