@@ -650,7 +650,6 @@
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Name = "_optionsClearAllSettingsAndExitToolStripMenuItem";
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsClearAllSettingsAndExitToolStripMenuItem.Text = "[&Clear All Settings and Exit]";
-            this._optionsClearAllSettingsAndExitToolStripMenuItem.Click += new System.EventHandler(this.ClearPassphraseMemoryToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 

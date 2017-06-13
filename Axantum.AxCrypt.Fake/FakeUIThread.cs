@@ -63,5 +63,10 @@ namespace Axantum.AxCrypt.Fake
         public void Yield()
         {
         }
+
+        public void Exit()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

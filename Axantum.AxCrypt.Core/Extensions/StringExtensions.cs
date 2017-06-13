@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Properties;
 using Axantum.AxCrypt.Core.UI;
@@ -350,6 +351,16 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return false;
             }
             return true;
+        }
+
+        public static void ShowWarning(this string message, string title)
+        {
+            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, title, message));
+        }
+
+        public static void ShowWarning(this string message, string title, DontShowAgain dontShowAgainFlag)
+        {
+            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, title, message, dontShowAgainFlag));
         }
     }
 }

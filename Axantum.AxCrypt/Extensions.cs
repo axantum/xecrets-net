@@ -37,16 +37,6 @@ namespace Axantum.AxCrypt
 {
     internal static class Extensions
     {
-        public static void ShowWarning(this string message, string title)
-        {
-            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, title, message));
-        }
-
-        public static void ShowWarning(this string message, string title, DontShowAgain dontShowAgainFlag)
-        {
-            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, title, message, dontShowAgainFlag));
-        }
-
         public static Point Fallback(this Point value, Point fallback)
         {
             return value != default(Point) ? value : fallback;

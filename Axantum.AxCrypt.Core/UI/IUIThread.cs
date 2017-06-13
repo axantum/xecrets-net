@@ -50,5 +50,7 @@ namespace Axantum.AxCrypt.Core.UI
         void PostTo(Action action);
 
         void Yield();
+
+        void Exit();
     }
 }

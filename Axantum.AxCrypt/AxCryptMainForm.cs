@@ -117,10 +117,11 @@ namespace Axantum.AxCrypt
             {
                 await InitializeProgram();
             }
-            catch
+            catch (Exception ex)
             {
-                ClearAllSettingsAndReinitialize();
-                throw;
+                await new ApplicationManager().ClearAllSettings();
+                MessageBox.Show(ex.Message, "AxCrypt failed to start. All Settings cleared.", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Application.Exit();
             }
         }
 
@@ -134,7 +135,7 @@ namespace Axantum.AxCrypt
             EnsureUiContextInitialized();
             EnsureFileAssociation();
 
-            if (!ValidateSettings())
+            if (!await new ApplicationManager().ValidateSettings())
             {
                 return;
             }
@@ -315,19 +316,6 @@ namespace Axantum.AxCrypt
             New<KeyPairService>().Start();
         }
 
-        private static bool ValidateSettings()
-        {
-            if (Resolve.UserSettings.SettingsVersion >= UserSettings.CurrentSettingsVersion)
-            {
-                return true;
-            }
-
-            Texts.UserSettingsFormatChangeNeedsReset.ShowWarning(Texts.WarningTitle);
-            ClearAllSettingsAndReinitialize();
-            StopAndExit();
-            return false;
-        }
-
         private async void AxCryptMainForm_ShownAsync(object sender, EventArgs e)
         {
             New<IRuntimeEnvironment>().FirstInstanceIsReady();
@@ -366,7 +354,7 @@ namespace Axantum.AxCrypt
 
             if (signUpSignIn.StopAndExit)
             {
-                StopAndExit();
+                await new ApplicationManager().StopAndExit();
                 return;
             }
         }
@@ -729,7 +717,7 @@ namespace Axantum.AxCrypt
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
             _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
-            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.ClearPassphraseMemory.ExecuteAsync(null); };
+            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await new ApplicationManager().StopAndExit(); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
@@ -844,7 +832,13 @@ namespace Axantum.AxCrypt
 
         private void WireDownEvents()
         {
-            New<IDeviceLocked>().DeviceWasLocked -= DeviceWasLocked;
+            try
+            {
+                New<IDeviceLocked>().DeviceWasLocked -= DeviceWasLocked;
+            }
+            catch
+            {
+            }
         }
 
         private DeviceLockReason _currentLock = DeviceLockReason.None;
@@ -1016,7 +1010,7 @@ namespace Axantum.AxCrypt
             }, () => { });
         }
 
-        private Task HandleLogOn(LogOnEventArgs e)
+        private async Task HandleLogOn(LogOnEventArgs e)
         {
             if (e.IsAskingForPreviouslyUnknownPassphrase)
             {
@@ -1024,13 +1018,12 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                HandleExistingLogOn(e);
+                await HandleExistingLogOn(e);
             }
             if (New<UserSettings>().RestoreFullWindow)
             {
                 Styling.RestoreWindowWithFocus(this);
             }
-            return Task.FromResult(default(object));
         }
 
         private void HandleCreateNewLogOn(LogOnEventArgs e)
@@ -1079,7 +1072,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void HandleExistingLogOn(LogOnEventArgs e)
+        private async Task HandleExistingLogOn(LogOnEventArgs e)
         {
             if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
             {
@@ -1087,7 +1080,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                HandleExistingAccountLogOn(e);
+                await HandleExistingAccountLogOn(e);
             }
         }
 
@@ -1113,7 +1106,7 @@ namespace Axantum.AxCrypt
             return;
         }
 
-        private void HandleExistingAccountLogOn(LogOnEventArgs e)
+        private async Task HandleExistingAccountLogOn(LogOnEventArgs e)
         {
             LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings);
             using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
@@ -1122,7 +1115,7 @@ namespace Axantum.AxCrypt
 
                 if (dialogResult == DialogResult.Cancel)
                 {
-                    StopAndExit();
+                    await new ApplicationManager().StopAndExit();
                 }
 
                 if (dialogResult != DialogResult.OK || viewModel.Passphrase.Length == 0)
@@ -1151,7 +1144,7 @@ namespace Axantum.AxCrypt
                     return;
 
                 case CommandVerb.Exit:
-                    StopAndExit();
+                    await new ApplicationManager().StopAndExit();
                     return;
             }
 
@@ -1567,58 +1560,13 @@ namespace Axantum.AxCrypt
 
         private async Task ShutDownAndExit()
         {
-            ShutDownBackgroundSafe();
+            await new ApplicationManager().ShutDownBackgroundSafe();
 
             await EncryptPendingFiles();
 
             await WarnIfAnyDecryptedFiles();
 
-            Application.Exit();
-        }
-
-        private static void WaitForBackgroundToComplete()
-        {
-            while (New<IProgressBackground>().Busy)
-            {
-                Application.DoEvents();
-            }
-        }
-
-        private static void StopAndExit()
-        {
-            ShutDownBackgroundSafe();
-
-            throw new ApplicationExitException();
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private static void ShutDownBackgroundSafe()
-        {
-            try
-            {
-                New<WorkFolderWatcher>().Dispose();
-            }
-            catch
-            {
-            }
-            try
-            {
-                New<ActiveFileWatcher>().Dispose();
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                while (New<IProgressBackground>().Busy)
-                {
-                    Application.DoEvents();
-                }
-            }
-            catch
-            {
-            }
+            New<IUIThread>().Exit();
         }
 
         #region ToolStrip
@@ -1645,9 +1593,9 @@ namespace Axantum.AxCrypt
         {
             if (_mainViewModel != null)
             {
-                WaitForBackgroundToComplete();
+                new ApplicationManager().WaitForBackgroundToComplete();
                 await _mainViewModel.EncryptPendingFiles.ExecuteAsync(null);
-                WaitForBackgroundToComplete();
+                new ApplicationManager().WaitForBackgroundToComplete();
             }
         }
 
@@ -1880,23 +1828,6 @@ namespace Axantum.AxCrypt
             UriBuilder url = new UriBuilder(Texts.PasswordResetHyperLink);
             url.Query = $"email={New<UserSettings>().UserEmail}";
             Process.Start(url.ToString());
-        }
-
-        private void ClearPassphraseMemoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ClearAllSettingsAndReinitialize();
-            StopAndExit();
-        }
-
-        private static void ClearAllSettingsAndReinitialize()
-        {
-            ShutDownBackgroundSafe();
-
-            Resolve.UserSettings.Clear();
-            Resolve.FileSystemState.Delete();
-            Resolve.WorkFolder.FileInfo.FileItemInfo(LocalAccountService.FileName).Delete();
-            New<KnownPublicKeys>().Delete();
-            Resolve.UserSettings.SettingsVersion = UserSettings.CurrentSettingsVersion;
         }
 
         private void PolicyMenuItem_Click(object sender, EventArgs e)

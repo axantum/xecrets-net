@@ -114,6 +114,7 @@
     <Compile Include="Runtime\LicenseCapability.cs" />
     <Compile Include="Runtime\LicensePolicy.cs" />
     <Compile Include="Runtime\PasswordException.cs" />
+    <Compile Include="Runtime\ApplicationManager.cs" />
     <Compile Include="Runtime\PremiumForcedLicensePolicy.cs" />
     <Compile Include="Runtime\PremiumInfo.cs" />
     <Compile Include="Runtime\PremiumStatus.cs" />

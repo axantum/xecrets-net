@@ -122,5 +122,10 @@ namespace Axantum.AxCrypt
         {
             Application.DoEvents();
         }
+
+        public void Exit()
+        {
+            Application.Exit();
+        }
     }
 }
