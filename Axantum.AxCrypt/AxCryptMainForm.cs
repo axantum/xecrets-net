@@ -429,6 +429,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IInternetState>(() => new InternetState());
             TypeMap.Register.Singleton<InstallationVerifier>(() => new InstallationVerifier());
             TypeMap.Register.Singleton<IKnownFolderImageProvider>(() => new KnownFolderImageProvider());
+            TypeMap.Register.Singleton<ApplicationTimeout>(() => new ApplicationTimeout());
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
@@ -1126,6 +1127,7 @@ namespace Axantum.AxCrypt
 
                 e.Passphrase = new Passphrase(viewModel.Passphrase);
                 e.UserEmail = viewModel.UserEmail;
+                New<ApplicationTimeout>().Timeout(600);
             }
             return;
         }
