@@ -4317,6 +4317,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This feature requires a paid plan! Would you like us to open a web page where you can make a purchase?.
+        /// </summary>
+        public static string PremiumRequiredBuyNowPopup {
+            get {
+                return ResourceManager.GetString("PremiumRequiredBuyNowPopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Premium Support Request.
         /// </summary>
         public static string PremiumSupportRequestMailSubect {

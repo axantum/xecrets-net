@@ -1720,6 +1720,10 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <value>Sorry, but you don't have a Premium subscription. Upgrade your account now to use the Premium features provided by AxCrypt outside of the app, which are also required for the app to function.</value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
   </data>
+  <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
+    <value>This feature requires a paid plan! Would you like us to open a web page where you can make a purchase?</value>
+    <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
+  </data>
   <data name="PremiumSupportRequestMailSubect" xml:space="preserve">
     <value>Premium Support Request</value>
     <comment>The subject used when sending support requests from the account web.</comment>
