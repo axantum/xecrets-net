@@ -2889,6 +2889,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Viewer.
+        /// </summary>
+        public static string LicenseViewerNameText {
+            get {
+                return ResourceManager.GetString("LicenseViewerNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to main site.
         /// </summary>
         public static string LinkTextBackToMainSite {

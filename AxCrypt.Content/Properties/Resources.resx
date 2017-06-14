@@ -1150,6 +1150,10 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   <data name="LicensePremiumNameText" xml:space="preserve">
     <value>Premium</value>
   </data>
+  <data name="LicenseViewerNameText" xml:space="preserve">
+    <value>Viewer</value>
+    <comment>The name of the viewer plan, where no encryption or re-encryption is allowed.</comment>
+  </data>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Back to main site</value>
     <comment>Menus and similar to link back to main site.</comment>
