@@ -202,6 +202,7 @@
     <Compile Include="UI\PasswordStrengthEvaluator.cs" />
     <Compile Include="UI\PopupButtons.cs" />
     <Compile Include="UI\SettingsStore.cs" />
+    <Compile Include="UI\TrialManager.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />
     <Compile Include="UI\ViewModel\AccountProperties.cs" />
     <Compile Include="UI\ViewModel\AsyncDelegateAction.cs" />
