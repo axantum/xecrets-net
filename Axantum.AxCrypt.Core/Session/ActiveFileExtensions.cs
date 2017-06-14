@@ -62,6 +62,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
+            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.EditExistingFiles))
+            {
+                return activeFile;
+            }
 
             if (activeFile.DecryptedFileInfo.IsLocked())
             {

@@ -379,7 +379,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            if (activeFile.IsModified)
+            if (activeFile.IsModified && New<LicensePolicy>().Capabilities.Has(LicenseCapability.EditExistingFiles))
             {
                 if (Resolve.Log.IsInfoEnabled)
                 {

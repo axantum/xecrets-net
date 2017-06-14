@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.UI
                 _fileSystemState.Add(activeFile);
                 await _fileSystemState.Save();
 
-                if (encryptedDataStore.IsWriteProtected)
+                if (encryptedDataStore.IsWriteProtected || !New<LicensePolicy>().Capabilities.Has(LicenseCapability.EditExistingFiles))
                 {
                     activeFile.DecryptedFileInfo.IsWriteProtected = true;
                 }
