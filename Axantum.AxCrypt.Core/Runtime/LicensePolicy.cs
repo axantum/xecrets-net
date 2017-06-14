@@ -45,15 +45,19 @@ namespace Axantum.AxCrypt.Core.Runtime
     /// </summary>
     public class LicensePolicy : IDisposable, IEquatable<LicensePolicy>
     {
-        private static readonly HashSet<LicenseCapability> _freeCapabilities = new HashSet<LicenseCapability>(new LicenseCapability[]
+        protected static readonly HashSet<LicenseCapability> FreeCapabilitySet = new HashSet<LicenseCapability>(new LicenseCapability[]
         {
             LicenseCapability.StandardEncryption,
             LicenseCapability.AccountKeyBackup,
             LicenseCapability.CommunitySupport,
         });
 
-        private static readonly HashSet<LicenseCapability> _premiumCapabilities = new HashSet<LicenseCapability>(new LicenseCapability[]
+        protected static readonly HashSet<LicenseCapability> PremiumCapabilitySet = new HashSet<LicenseCapability>(new LicenseCapability[]
         {
+            LicenseCapability.StandardEncryption,
+            LicenseCapability.AccountKeyBackup,
+            LicenseCapability.CommunitySupport,
+
             LicenseCapability.SecureWipe,
             LicenseCapability.StrongerEncryption,
             LicenseCapability.KeySharing,
@@ -63,16 +67,25 @@ namespace Axantum.AxCrypt.Core.Runtime
             LicenseCapability.PasswordManagement,
             LicenseCapability.PasswordGeneration,
             LicenseCapability.DirectSupport,
-            LicenseCapability.StandardEncryption,
-            LicenseCapability.AccountKeyBackup,
-            LicenseCapability.CommunitySupport,
             LicenseCapability.IncludeSubfolders,
             LicenseCapability.Premium,
+            LicenseCapability.EncryptNewFiles,
+            LicenseCapability.EditExistingFiles,
         });
 
-        public LicensePolicy()
+        public LicensePolicy() : this(true)
         {
-            New<SessionNotify>().AddPriorityCommand(LicensePolicy_CommandAsync);
+        }
+
+        private bool _handleNotifications;
+
+        protected LicensePolicy(bool handleNotifications)
+        {
+            _handleNotifications = handleNotifications;
+            if (handleNotifications)
+            {
+                New<SessionNotify>().AddPriorityCommand(LicensePolicy_CommandAsync);
+            }
         }
 
         private async Task LicensePolicy_CommandAsync(SessionNotification notification)
@@ -94,12 +107,12 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
-        protected virtual async Task RefreshAsync(LogOnIdentity identity)
+        private async Task RefreshAsync(LogOnIdentity identity)
         {
-            Capabilities = new LicenseCapabilities(await CapabilitiesAsync(identity).Free());
+            Capabilities = await CapabilitiesAsync(identity).Free();
         }
 
-        protected async Task<UserAccount> UserAccountAsync(LogOnIdentity identity)
+        private async Task<UserAccount> UserAccountAsync(LogOnIdentity identity)
         {
             return await New<LogOnIdentity, IAccountService>(identity).AccountAsync().Free();
         }
@@ -126,9 +139,9 @@ namespace Axantum.AxCrypt.Core.Runtime
             return untilExpiration;
         }
 
-        private async Task<ISet<LicenseCapability>> CapabilitiesAsync(LogOnIdentity identity)
+        private async Task<LicenseCapabilities> CapabilitiesAsync(LogOnIdentity identity)
         {
-            return await SubscriptionLevelAsync(identity) == SubscriptionLevel.Premium && await TimeLeftOfflineAsync(identity).Free() > TimeSpan.Zero ? _premiumCapabilities : _freeCapabilities;
+            return await SubscriptionLevelAsync(identity) == SubscriptionLevel.Premium && await TimeLeftOfflineAsync(identity).Free() > TimeSpan.Zero ? PremiumCapabilities : FreeCapabilities;
         }
 
         private async Task<SubscriptionLevel> SubscriptionLevelAsync(LogOnIdentity identity)
@@ -149,11 +162,27 @@ namespace Axantum.AxCrypt.Core.Runtime
             return (await UserAccountAsync(identity).Free()).LevelExpiration;
         }
 
-        protected static LicenseCapabilities FreeCapabilities = new LicenseCapabilities(_freeCapabilities);
+        protected virtual LicenseCapabilities FreeCapabilities { get { return new LicenseCapabilities(FreeCapabilitySet); } }
 
-        protected static LicenseCapabilities PremiumCapabilities = new LicenseCapabilities(_premiumCapabilities);
+        protected virtual LicenseCapabilities PremiumCapabilities { get { return new LicenseCapabilities(PremiumCapabilitySet); } }
 
-        public LicenseCapabilities Capabilities { get; protected set; } = FreeCapabilities;
+        private LicenseCapabilities _currentLicenseCapabilities = null;
+
+        public virtual LicenseCapabilities Capabilities
+        {
+            get
+            {
+                if (_currentLicenseCapabilities == null)
+                {
+                    _currentLicenseCapabilities = FreeCapabilities;
+                }
+                return _currentLicenseCapabilities;
+            }
+            protected set
+            {
+                _currentLicenseCapabilities = value;
+            }
+        }
 
         public void Dispose()
         {
@@ -165,11 +194,17 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing && !disposed)
+            if (!disposing || disposed)
+            {
+                return;
+            }
+
+            if (_handleNotifications)
             {
                 New<SessionNotify>().RemovePriorityCommand(LicensePolicy_CommandAsync);
-                disposed = true;
+                _handleNotifications = false;
             }
+            disposed = true;
         }
 
         #region IEquatable<LicensePolicy> Members

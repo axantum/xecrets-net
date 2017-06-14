@@ -22,5 +22,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         CommunitySupport,
         Premium,
         IncludeSubfolders,
+        EncryptNewFiles,
+        EditExistingFiles,
     }
 }

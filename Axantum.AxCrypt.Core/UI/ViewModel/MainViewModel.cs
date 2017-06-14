@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DownloadVersion = DownloadVersion.Empty;
             VersionUpdateStatus = DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, _userSettings.LastUpdateCheckUtc);
             License = New<LicensePolicy>().Capabilities;
-            LegacyConversionMode = Resolve.UserSettings.LegacyConversionMode;
+            LegacyConversionMode = _userSettings.LegacyConversionMode;
 
             AddWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersActionAsync(folders), (folders) => Task.FromResult(LoggedOn));
             RemoveRecentFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
@@ -166,9 +166,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFilesComparer(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
-            BindPropertyChangedInternal(nameof(License), async (LicenseCapabilities policy) => await SetWatchedFoldersAsync());
-            BindPropertyChangedInternal(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
-            BindPropertyChangedInternal(nameof(FolderOperationMode), async (FolderOperationMode mode) => await SetFolderOperationMode(mode));
+
+            BindPropertyChanged(nameof(LoggedOn), (bool loggedOn) => EncryptFileEnabled = loggedOn || !License.Has(LicenseCapability.EncryptNewFiles));
+            BindPropertyChanged(nameof(License), async (LicenseCapabilities policy) => await SetWatchedFoldersAsync());
+            BindPropertyChanged(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
+            BindPropertyChanged(nameof(FolderOperationMode), async (FolderOperationMode mode) => await SetFolderOperationMode(mode));
         }
 
         private void SubscribeToModelEvents()
@@ -285,11 +287,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     break;
 
                 case SessionNotificationType.LogOn:
-                    SetLogOnState(Resolve.KnownIdentities.IsLoggedOn);
-                    break;
-
                 case SessionNotificationType.LogOff:
-                    SetLogOnState(Resolve.KnownIdentities.IsLoggedOn);
+                    LoggedOn = Resolve.KnownIdentities.IsLoggedOn;
                     break;
 
                 case SessionNotificationType.WatchedFolderChange:
@@ -375,7 +374,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SetLogOnState(bool isLoggedOn)
         {
             LoggedOn = isLoggedOn;
-            EncryptFileEnabled = isLoggedOn;
+            EncryptFileEnabled = isLoggedOn || !License.Has(LicenseCapability.EncryptNewFiles);
         }
 
         private async Task ClearPassphraseMemoryAction()

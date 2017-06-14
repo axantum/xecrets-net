@@ -10,14 +10,20 @@ namespace Axantum.AxCrypt.Core.Runtime
 {
     public class PremiumForcedLicensePolicy : LicensePolicy
     {
-        public PremiumForcedLicensePolicy()
+        public PremiumForcedLicensePolicy() : base(false)
         {
-            Capabilities = PremiumCapabilities;
         }
 
-        protected override Task RefreshAsync(LogOnIdentity identity)
+        public override LicenseCapabilities Capabilities
         {
-            return Task.FromResult<object>(null);
+            get
+            {
+                return PremiumCapabilities;
+            }
+
+            protected set
+            {
+            }
         }
     }
 }
