@@ -3540,7 +3540,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We noticed you don&apos;t have a Premium subscription, so we&apos;ve started a 30-day free Trial to use the Premium features provided by AxCrypt outside of the app, which are also required for the app to function.
+        ///   Looks up a localized string similar to We noticed you don&apos;t have a Premium subscription, so we&apos;ll start a free Trial for you!.
         /// </summary>
         public static string MessageAskAboutStartTrial {
             get {

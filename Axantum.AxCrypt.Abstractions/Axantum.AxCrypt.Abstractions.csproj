@@ -71,6 +71,7 @@
     <Compile Include="Creator.cs" />
     <Compile Include="ErrorStatus.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IBrowser.cs" />
     <Compile Include="ICache.cs" />
     <Compile Include="ICacheKey.cs" />
     <Compile Include="IInternetState.cs" />
