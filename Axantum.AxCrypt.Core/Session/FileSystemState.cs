@@ -55,14 +55,14 @@ namespace Axantum.AxCrypt.Core.Session
         private FileSystemState(IDataStore path)
             : this()
         {
-            _path = path;
+            _dataStore = path;
         }
 
         public IDataStore PathInfo
         {
             get
             {
-                return _path;
+                return _dataStore;
             }
         }
 
@@ -432,7 +432,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private IDataStore _path;
+        private IDataStore _dataStore;
 
         public static FileSystemState Create(IDataStore path)
         {
@@ -482,7 +482,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 Resolve.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(path));
             }
-            fileSystemState._path = path;
+            fileSystemState._dataStore = path;
             return fileSystemState;
         }
 
@@ -490,22 +490,36 @@ namespace Axantum.AxCrypt.Core.Session
         {
             lock (_activeFilesByEncryptedPath)
             {
-                string json = Resolve.Serializer.Serialize(this);
-                using (StreamWriter writer = new StreamWriter(_path.OpenWrite(), Encoding.UTF8))
+                string currentJson = string.Empty;
+                if (_dataStore.IsAvailable)
                 {
-                    writer.Write(json);
+                    using (StreamReader reader = new StreamReader(_dataStore.OpenRead(), Encoding.UTF8))
+                    {
+                        currentJson = reader.ReadToEnd();
+                    }
+                }
+
+                string updatedJson = Resolve.Serializer.Serialize(this);
+                if (currentJson == updatedJson)
+                {
+                    return;
+                }
+
+                using (StreamWriter writer = new StreamWriter(_dataStore.OpenWrite(), Encoding.UTF8))
+                {
+                    writer.Write(updatedJson);
                 }
             }
             if (Resolve.Log.IsInfoEnabled)
             {
-                Resolve.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
+                Resolve.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_dataStore));
             }
             await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange));
         }
 
         public void Delete()
         {
-            _path.Delete();
+            _dataStore.Delete();
         }
 
         #region IDisposable Members

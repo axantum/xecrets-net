@@ -139,11 +139,11 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 case SessionNotificationType.LogOn:
-                    EncryptWatchedFolders(notification.Identity, progress);
+                    EncryptWatchedFoldersIfSupported(notification.Identity, notification.Capabilities, progress);
                     break;
 
                 case SessionNotificationType.LogOff:
-                    EncryptWatchedFolders(notification.Identity, progress);
+                    EncryptWatchedFoldersIfSupported(notification.Identity, notification.Capabilities, progress);
                     New<IInternetState>().Clear();
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     break;
@@ -153,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Session
                     await _activeFileAction.PurgeActiveFiles(progress);
                     if (_knownIdentities.DefaultEncryptionIdentity != LogOnIdentity.Empty)
                     {
-                        EncryptWatchedFolders(_knownIdentities.DefaultEncryptionIdentity, progress);
+                        EncryptWatchedFoldersIfSupported(_knownIdentities.DefaultEncryptionIdentity, notification.Capabilities, progress);
                     }
                     break;
 
@@ -179,8 +179,12 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private void EncryptWatchedFolders(LogOnIdentity identity, IProgressContext progress)
+        private void EncryptWatchedFoldersIfSupported(LogOnIdentity identity, LicenseCapabilities capabilities, IProgressContext progress)
         {
+            if (!capabilities.Has(LicenseCapability.SecureFolders))
+            {
+                return;
+            }
             foreach (WatchedFolder watchedFolder in _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)))
             {
                 EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity, watchedFolder.KeyShares);

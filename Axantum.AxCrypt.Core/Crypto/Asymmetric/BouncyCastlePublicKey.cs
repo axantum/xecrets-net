@@ -93,6 +93,31 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             }
         }
 
+        public byte[] TransformRaw(byte[] buffer, int outputLength)
+        {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
+            IAsymmetricBlockCipher cipher = new RsaEngine();
+            cipher.Init(true, Key);
+            if (outputLength > cipher.GetOutputBlockSize())
+            {
+                throw new ArgumentOutOfRangeException(nameof(outputLength), "Too large output length");
+            }
+
+            byte[] transformed = TransformInternal(buffer, cipher);
+            if (transformed.Length == outputLength)
+            {
+                return transformed;
+            }
+
+            byte[] truncated = new byte[outputLength];
+            Array.Copy(transformed, transformed.Length - outputLength, truncated, 0, outputLength);
+            return truncated;
+        }
+
         public byte[] Transform(byte[] buffer)
         {
             if (buffer == null)
@@ -107,12 +132,18 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             {
                 throw new InvalidOperationException("The RSA Key size is too small to fit the data + 1 + 2 times the padding hash size.");
             }
-            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(paddingHash));
 
+            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(paddingHash));
             cipher.Init(true, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));
+
+            return TransformInternal(buffer, cipher);
+        }
+
+        private byte[] TransformInternal(byte[] buffer, IAsymmetricBlockCipher cipher)
+        {
             byte[] transformed = cipher.ProcessBlock(buffer, 0, buffer.Length);
 
-            int rsaKeyByteLength = (rsaKeyBitSize + 7) / 8;
+            int rsaKeyByteLength = cipher.GetOutputBlockSize();
             if (transformed.Length < rsaKeyByteLength)
             {
                 byte[] tmp = new byte[rsaKeyByteLength];

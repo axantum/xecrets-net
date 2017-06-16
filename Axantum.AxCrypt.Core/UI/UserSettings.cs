@@ -127,8 +127,17 @@ namespace Axantum.AxCrypt.Core.UI
 
         public TimeSpan ApiTimeout
         {
-            get { return Load(nameof(ApiTimeout), TimeSpan.FromSeconds(15)); }
+            get { return Load(nameof(ApiTimeout), DefaultApiTimeout()); }
             set { Store(nameof(ApiTimeout), value); }
+        }
+
+        private static TimeSpan DefaultApiTimeout()
+        {
+#if DEBUG
+            return TimeSpan.Zero;
+#else
+            return TimeSpan.FromSeconds(15);
+#endif
         }
 
         public DateTime LastUpdateCheckUtc

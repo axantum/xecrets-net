@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Newtonsoft.Json;
 using System;
@@ -111,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void Initialize(StreamingContext context)
         {
-            if (New<IDataContainer>(Path).IsAvailable)
+            if (New<IDataContainer>(Path).IsAvailable && New<LicensePolicy>().Capabilities.Has(LicenseCapability.SecureFolders))
             {
                 _fileWatcher = New<IFileWatcher>(Path);
                 _fileWatcher.FileChanged += _fileWatcher_FileChanged;

@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2017, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,21 +25,41 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
-    public interface IAsymmetricPublicKey : IEquatable<IAsymmetricPublicKey>
+    public class Verifier
     {
-        byte[] Transform(byte[] buffer);
+        private IAsymmetricPublicKey _publicKey;
 
-        byte[] TransformRaw(byte[] buffer, int outputLength);
+        public Verifier(IAsymmetricPublicKey publicKey)
+        {
+            _publicKey = publicKey;
+        }
 
-        string Tag { get; }
+        public bool Verify(byte[] signature, params string[] toVerify)
+        {
+            if (signature == null)
+            {
+                throw new ArgumentNullException(nameof(signature));
+            }
+            if (toVerify == null)
+            {
+                throw new ArgumentNullException(nameof(toVerify));
+            }
 
-        PublicKeyThumbprint Thumbprint { get; }
+            byte[] hashToVerify = new SignatureHasher().Hash(toVerify);
+
+            byte[] hash = _publicKey.TransformRaw(signature, hashToVerify.Length);
+
+            return hash.IsEquivalentTo(0, hashToVerify, 0, hashToVerify.Length);
+        }
     }
 }

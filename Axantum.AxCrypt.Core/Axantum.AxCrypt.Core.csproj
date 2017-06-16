@@ -56,7 +56,10 @@
     <Compile Include="Algorithm\Implementation\BouncyCastleCryptoFactory.cs" />
     <Compile Include="AxCryptFactory.cs" />
     <Compile Include="Crypto\Asymmetric\PublicKeyThumbprint.cs" />
+    <Compile Include="Crypto\Asymmetric\SignatureHasher.cs" />
+    <Compile Include="Crypto\Asymmetric\Signer.cs" />
     <Compile Include="Crypto\Asymmetric\UserPublicKey.cs" />
+    <Compile Include="Crypto\Asymmetric\Verifier.cs" />
     <Compile Include="Crypto\DecryptionParameter.cs" />
     <Compile Include="Crypto\EncryptionParameters.cs" />
     <Compile Include="Crypto\ISystemCryptoPolicy.cs" />

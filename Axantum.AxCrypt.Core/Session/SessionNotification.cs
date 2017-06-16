@@ -27,9 +27,12 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -37,39 +40,52 @@ namespace Axantum.AxCrypt.Core.Session
     {
         public LogOnIdentity Identity { get; private set; }
 
+        public LicenseCapabilities Capabilities { get; private set; }
+
         public IEnumerable<string> FullNames { get; private set; }
 
         public SessionNotificationType NotificationType { get; private set; }
 
-        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, IEnumerable<string> fullNames)
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, IEnumerable<string> fullNames, LicenseCapabilities capabilities)
         {
             NotificationType = notificationType;
             Identity = identity;
             FullNames = fullNames.Select(fn => fn.NormalizeFilePath());
+            Capabilities = capabilities;
+        }
+
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, IEnumerable<string> fullNames)
+            : this(notificationType, identity, fullNames, New<LicensePolicy>().Capabilities)
+        {
         }
 
         public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, string fullName)
-            : this(notificationType, identity, new string[] { fullName })
+            : this(notificationType, identity, new string[] { fullName }, New<LicensePolicy>().Capabilities)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType, IEnumerable<string> fullNames)
-            : this(notificationType, LogOnIdentity.Empty, fullNames)
+            : this(notificationType, LogOnIdentity.Empty, fullNames, New<LicenseCapabilities>())
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType, string fullName)
-            : this(notificationType, LogOnIdentity.Empty, new string[] { fullName })
+            : this(notificationType, LogOnIdentity.Empty, new string[] { fullName }, New<LicensePolicy>().Capabilities)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity)
-            : this(notificationType, identity, new string[0])
+            : this(notificationType, identity, new string[0], New<LicensePolicy>().Capabilities)
+        {
+        }
+
+        public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, LicenseCapabilities capabilities)
+            : this(notificationType, identity, new string[0], capabilities)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType)
-            : this(notificationType, LogOnIdentity.Empty, new string[0])
+            : this(notificationType, LogOnIdentity.Empty, new string[0], New<LicensePolicy>().Capabilities)
         {
         }
     }

@@ -35,5 +35,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
     public interface IAsymmetricPrivateKey : IEquatable<IAsymmetricPrivateKey>
     {
         byte[] Transform(byte[] buffer);
+
+        byte[] TransformRaw(byte[] buffer);
     }
 }

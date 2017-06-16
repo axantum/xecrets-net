@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2017, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,21 +25,44 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions.Algorithm;
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
-    public interface IAsymmetricPublicKey : IEquatable<IAsymmetricPublicKey>
+    public class Signer
     {
-        byte[] Transform(byte[] buffer);
+        private IAsymmetricPrivateKey _privateKey;
 
-        byte[] TransformRaw(byte[] buffer, int outputLength);
+        public Signer(IAsymmetricPrivateKey privateKey)
+        {
+            if (privateKey == null)
+            {
+                throw new ArgumentNullException(nameof(privateKey));
+            }
 
-        string Tag { get; }
+            _privateKey = privateKey;
+        }
 
-        PublicKeyThumbprint Thumbprint { get; }
+        public byte[] Sign(params string[] toSign)
+        {
+            if (toSign == null)
+            {
+                throw new ArgumentNullException(nameof(toSign));
+            }
+
+            byte[] hash = new SignatureHasher().Hash(toSign);
+            byte[] signature = _privateKey.TransformRaw(hash);
+
+            return signature;
+        }
     }
 }

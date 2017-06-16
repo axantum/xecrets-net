@@ -26,11 +26,14 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -151,10 +154,12 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (_defaultEncryptionIdentity != LogOnIdentity.Empty)
             {
+                LicenseCapabilities oldCapabilities = New<LicensePolicy>().Capabilities;
                 Clear();
-                LogOnIdentity oldKey = _defaultEncryptionIdentity;
+                LogOnIdentity oldIdentity = _defaultEncryptionIdentity;
                 _defaultEncryptionIdentity = LogOnIdentity.Empty;
-                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOff, oldKey));
+                await New<LicensePolicy>().RefreshAsync(_defaultEncryptionIdentity);
+                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOff, oldIdentity, oldCapabilities));
             }
 
             if (value == LogOnIdentity.Empty)
@@ -163,6 +168,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             _defaultEncryptionIdentity = value;
             await Add(_defaultEncryptionIdentity);
+            await New<LicensePolicy>().RefreshAsync(_defaultEncryptionIdentity);
             await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOn, value));
         }
 
