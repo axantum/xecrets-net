@@ -527,6 +527,7 @@ namespace Axantum.AxCrypt
             await ConfigureSecretsMenusAsync(license);
             await ConfigureAnonymousRenameAsync(license);
             await ConfigureIncludeSubfoldersMenuAsync(license);
+            await ConfigureTimeOutMenuAsync(license);
         }
 
         private async Task ConfigureKeyShareMenusAsync(LicenseCapabilities license)
@@ -614,6 +615,20 @@ namespace Axantum.AxCrypt
             {
                 _optionsIncludeSubfoldersToolStripMenuItem.Image = Resources.premium_32px;
                 _optionsIncludeSubfoldersToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
+            }
+        }
+
+        private async Task ConfigureTimeOutMenuAsync(LicenseCapabilities license)
+        {
+            if (license.Has(LicenseCapability.TimeOut))
+            {
+                _optionsTimeOutToolStripMenuItem.Image = null;
+                _optionsTimeOutToolStripMenuItem.ToolTipText = String.Empty;
+            }
+            else
+            {
+                _optionsTimeOutToolStripMenuItem.Image = Resources.premium_32px;
+                _optionsTimeOutToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
             }
         }
 

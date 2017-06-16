@@ -124,6 +124,12 @@
             this._notifySignInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifyExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._optionsTimeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._disableTimeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._fiveMinuteTimeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._tenMinuteTimeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._twentyMinuteTimeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._thirtyMinuteTimeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -504,7 +510,8 @@
             this._alwaysOfflineToolStripMenuItem,
             this._optionsIncludeSubfoldersToolStripMenuItem,
             this._optionsDebugToolStripMenuItem,
-            this._optionsClearAllSettingsAndExitToolStripMenuItem});
+            this._optionsClearAllSettingsAndExitToolStripMenuItem,
+            this._optionsTimeOutToolStripMenuItem});
             this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
             this._optionsToolStripMenuItem.Name = "_optionsToolStripMenuItem";
             this._optionsToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
@@ -1084,6 +1091,48 @@
             this._notifyExitToolStripMenuItem.Text = "[&Exit]";
             this._notifyExitToolStripMenuItem.Click += new System.EventHandler(this._exitToolStripMenuItem_Click);
             // 
+            // _optionsTimeOutToolStripMenuItem
+            // 
+            this._optionsTimeOutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._disableTimeOutToolStripMenuItem,
+            this._fiveMinuteTimeOutToolStripMenuItem,
+            this._tenMinuteTimeOutToolStripMenuItem,
+            this._twentyMinuteTimeOutToolStripMenuItem,
+            this._thirtyMinuteTimeOutToolStripMenuItem});
+            this._optionsTimeOutToolStripMenuItem.Name = "_optionsTimeOutToolStripMenuItem";
+            this._optionsTimeOutToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsTimeOutToolStripMenuItem.Text = "[&Time Out]";
+            // 
+            // _disableTimeOutToolStripMenuItem
+            // 
+            this._disableTimeOutToolStripMenuItem.Name = "_disableTimeOutToolStripMenuItem";
+            this._disableTimeOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._disableTimeOutToolStripMenuItem.Text = "[Disable]";
+            // 
+            // _fiveMinuteTimeOutToolStripMenuItem
+            // 
+            this._fiveMinuteTimeOutToolStripMenuItem.Name = "_fiveMinuteTimeOutToolStripMenuItem";
+            this._fiveMinuteTimeOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._fiveMinuteTimeOutToolStripMenuItem.Text = "[5 Minutes]";
+            // 
+            // _tenMinuteTimeOutToolStripMenuItem
+            // 
+            this._tenMinuteTimeOutToolStripMenuItem.Name = "_tenMinuteTimeOutToolStripMenuItem";
+            this._tenMinuteTimeOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._tenMinuteTimeOutToolStripMenuItem.Text = "[10 Minutes]";
+            // 
+            // _twentyMinuteTimeOutToolStripMenuItem
+            // 
+            this._twentyMinuteTimeOutToolStripMenuItem.Name = "_twentyMinuteTimeOutToolStripMenuItem";
+            this._twentyMinuteTimeOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._twentyMinuteTimeOutToolStripMenuItem.Text = "[20 Minutes]";
+            // 
+            // _thirtyMinuteTimeOutToolStripMenuItem
+            // 
+            this._thirtyMinuteTimeOutToolStripMenuItem.Name = "_thirtyMinuteTimeOutToolStripMenuItem";
+            this._thirtyMinuteTimeOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._thirtyMinuteTimeOutToolStripMenuItem.Text = "[30 Minutes]";
+            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1233,6 +1282,12 @@
         private System.Windows.Forms.ToolStripMenuItem _recentFilesShowInFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _turkishLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _optionsIncludeSubfoldersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _optionsTimeOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _disableTimeOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _fiveMinuteTimeOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _tenMinuteTimeOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _twentyMinuteTimeOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _thirtyMinuteTimeOutToolStripMenuItem;
     }
 }
 
