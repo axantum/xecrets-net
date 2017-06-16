@@ -104,9 +104,6 @@
   <data name="About" xml:space="preserve">
     <value>{0} hakkında</value>
   </data>
-  <data name="AccountStatusPremium" xml:space="preserve">
-    <value>AxCrypt Premium</value>
-  </data>
   <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
     <value>AxCrypt Premium (belirsiz)</value>
   </data>
@@ -892,12 +889,6 @@ Seçenekler menüsünde otomatik çeviriyi değiştirebilirsiniz.
 
 AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir) ?</value>
   </data>
-  <data name="LicenseFreeNameText" xml:space="preserve">
-    <value>Ücretsiz</value>
-  </data>
-  <data name="LicensePremiumNameText" xml:space="preserve">
-    <value>Premium</value>
-  </data>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Ana siteye geri dön</value>
     <comment>Menus and similar to link back to main site.</comment>
@@ -1262,6 +1253,7 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
   </data>
   <data name="PasswordManagementPageTitle" xml:space="preserve">
     <value>Şifre idaresi </value>
+    <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Şifre kabul edilebilmek için yeterince güçlü değil.</value>

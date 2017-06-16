@@ -1012,6 +1012,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
   </data>
   <data name="InvoiceCustomer" xml:space="preserve">
     <value>Paid by</value>
+    <comment>This is a label on a receipt or invoice, prefixing the user that has actually made a payment, i.e. if bob@axcrypt.net has made a payment, it says: Payed by: bob@axcrypt.net .</comment>
   </data>
   <data name="InvoiceDateHeadline" xml:space="preserve">
     <value>Date</value>
@@ -1027,6 +1028,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
     <value>Paid to</value>
+    <comment>This is a label on an invoice or recieipt stating that it a payment was made to us, i.e.: Paid to: AxCrypt AB</comment>
   </data>
   <data name="InvoiceLineTotalHeadline" xml:space="preserve">
     <value>Amount</value>
@@ -1044,7 +1046,7 @@ VAT Number SE 556967618101</value>
   </data>
   <data name="InvoicePaidForLabel" xml:space="preserve">
     <value>Paid for</value>
-    <comment>The label for the email field a payment was made for</comment>
+    <comment>This is a label on a receipt or invoice, prefixing the user that is the benficiary of a payment made by someone else. if alice@axcrypt.net pays for bob@axcrypt.net, then it says: Paid for: bob@axcrypt.net .</comment>
   </data>
   <data name="InvoiceQuantityHeadline" xml:space="preserve">
     <value>Quantity</value>

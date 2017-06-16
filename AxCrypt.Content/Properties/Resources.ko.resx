@@ -108,9 +108,6 @@
     <value>사용자가 우선 계정을 인증해야 합니다.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusPremium" xml:space="preserve">
-    <value>AxCrypt Premium</value>
-  </data>
   <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
     <value>AxCrypt Premium (무한정)</value>
   </data>
@@ -620,6 +617,14 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>더블클릭해서 열기. 필요시 비밀번호작성을 요구할수 있습니다.</value>
   </data>
+  <data name="EasyToWorkDescription" xml:space="preserve">
+    <value>친구나 동료로부터 보안 설정된 파일 열기</value>
+    <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
+  </data>
+  <data name="EasyToWorkTitle" xml:space="preserve">
+    <value>엑세스 키가 공유된 파일들</value>
+    <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
+  </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>사용자는 읽기 전용으로만 접속이 가능합니다! Premium사용자분들께만 편집이나 비밀번호 재설정이 가능합니다.</value>
   </data>
@@ -738,6 +743,10 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="FileAlreadyExists" xml:space="preserve">
     <value>'{0}' 파일은 이미 존재합니다.</value>
   </data>
+  <data name="FileAssociationBrokenWarning" xml:space="preserve">
+    <value>더블 클릭으로 AxCrypt  외부에서 AxCrypt 파일을 열면 제대로 작동하지 않을 수 있습니다. 확장명 ".axx" 에 대한 운영체제 파일 연결이 끊어진 것 같습니다. IT 지원 담당자에게 문의하거나 인터넷에서 해결 방법을 검색해보세요.</value>
+    <comment>A text that is shown to users starting the association with .axx file is broken. It should not mention "Windows", or "Mac" etc so it can be used in all environments.</comment>
+  </data>
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>'{0}'파일은 없는 파일입니다.</value>
   </data>
@@ -811,6 +820,9 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>공유 키 파일들을 선택해주십시오</value>
   </data>
+  <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
+    <value>위험한 옵션을 사용하려고 하십니다. 사용자님께서 조심하지 않으면, 의도치 않게 더 많은 데이터의 작동을 느리게 하고, 운영체제를 포함한 다른 소프트웨어를 손상시킬 수 도 있습니다. 그래도 계속 하시겠습니까? </value>
+  </data>
   <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
     <value>경고</value>
   </data>
@@ -862,6 +874,10 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>수취인:</value>
   </data>
+  <data name="InvoiceCustomer" xml:space="preserve">
+    <value>지불인</value>
+    <comment>This is a label on a receipt or invoice, prefixing the user that has actually made a payment, i.e. if bob@axcrypt.net has made a payment, it says: Payed by: bob@axcrypt.net .</comment>
+  </data>
   <data name="InvoiceDateHeadline" xml:space="preserve">
     <value>날짜</value>
   </data>
@@ -874,8 +890,35 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="InvoiceHeadline" xml:space="preserve">
     <value>나의 영수증</value>
   </data>
+  <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
+    <value>수취인</value>
+    <comment>This is a label on an invoice or recieipt stating that it a payment was made to us, i.e.: Paid to: AxCrypt AB</comment>
+  </data>
   <data name="InvoiceLineTotalHeadline" xml:space="preserve">
     <value>금액</value>
+  </data>
+  <data name="InvoiceOrderNr" xml:space="preserve">
+    <value>참조</value>
+    <comment>The payment provider reference id of the transaction</comment>
+  </data>
+  <data name="InvoicePaidForLabel" xml:space="preserve">
+    <value>대납 수혜자</value>
+    <comment>This is a label on a receipt or invoice, prefixing the user that is the benficiary of a payment made by someone else. if alice@axcrypt.net pays for bob@axcrypt.net, then it says: Paid for: bob@axcrypt.net .</comment>
+  </data>
+  <data name="InvoiceQuantityHeadline" xml:space="preserve">
+    <value>수량</value>
+  </data>
+  <data name="InvoiceSubtotalHeadline" xml:space="preserve">
+    <value>VAT 별도</value>
+  </data>
+  <data name="InvoiceTotalHeadline" xml:space="preserve">
+    <value>합계</value>
+  </data>
+  <data name="InvoiceUnitPriceHeadline" xml:space="preserve">
+    <value>단가</value>
+  </data>
+  <data name="InvoiceVatChargeHeadline" xml:space="preserve">
+    <value>VAT</value>
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript가 현재 사용중이신 브라우저로 인해 사용이 불가능합니다. JavaScript사용이 불가능한 이상 로그인 및 사이트 실행이 예상대로 안될수도 있습니다.</value>
@@ -901,11 +944,26 @@ AxCrypt ID를 활성화시키는 링크가 잘못 되어서 이 페이지가 떴
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>타들과 키를 공유하시려는 암호화된 파일들을 선택하기 위해서 클릭 해주시기 바랍니다.</value>
   </data>
+  <data name="KnownFolderNameMacDocuments" xml:space="preserve">
+    <value>나의 모든 파일</value>
+    <comment>The localized name of the "Documents" folder in Mac OS X. This MUST be translated to the official localization used by Apple for the "Documents" folder.</comment>
+  </data>
+  <data name="KnownFolderNameWindowsMyDocuments" xml:space="preserve">
+    <value>내 문서</value>
+    <comment>The translatable name for the Windows "My Documents" folder. This MUST be translated to the name used by Microsoft in a localized version of Windows!</comment>
+  </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>언어를 변경하신 후 AxCrypt를 재시작해주시기 바랍니다.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>시간</value>
+  </data>
+  <data name="LauncherPromptHeader" xml:space="preserve">
+    <value> :로 열기</value>
+    <comment>Header of popup which is displayed for file opening.</comment>
+  </data>
+  <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
+    <value>AxCrypt와 다른 소프트웨어가 오류을 일으킬 수있고, 잠재적으로 호환되지 않는 소프트웨어를 발견했습니다. 소프트웨어의 이름은 Lavasoft Web Companion입니다. AxCrypt가 오작동하는 경우 Lavasoft를 제거하십시오.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>AxCrypt 1.x 형태로 파일들이 전환된후 파일을 열고싶으시다면 새로 작성하신 비밀번호를 사용해주시기 바랍니다.
@@ -919,12 +977,6 @@ AxCrypt 1.x 레거시 파일을 여실수 있습니다, 하지만 전환되어�
 자동적인 전환은 옵션 메뉴에서 수정이 가능합니다.
 
 AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
-  </data>
-  <data name="LicenseFreeNameText" xml:space="preserve">
-    <value>무료</value>
-  </data>
-  <data name="LicensePremiumNameText" xml:space="preserve">
-    <value>Premium</value>
   </data>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>메인 사이트에 가기</value>
@@ -990,6 +1042,14 @@ AxCrypt 팀</value>
   </data>
   <data name="MailBodyTitleHtml" xml:space="preserve">
     <value>안녕하세요 {0},</value>
+  </data>
+  <data name="MailClientNotFoundMessage" xml:space="preserve">
+    <value>사용자의 기기에 메일 앱을 설치할 수 없습니다.</value>
+    <comment>Error message which is displayed if mail client isn't installed on device.</comment>
+  </data>
+  <data name="MailClientPromptHeader" xml:space="preserve">
+    <value>메일 클라이언트를 선택해주세요:</value>
+    <comment>Header of popup for selecting mail application.</comment>
   </data>
   <data name="McHlpMenuAbout" xml:space="preserve">
     <value>에 대해</value>
@@ -1099,12 +1159,24 @@ AxCrypt 팀</value>
   <data name="MenuDecryptTemporarilyText" xml:space="preserve">
     <value>임시로 해독</value>
   </data>
+  <data name="MenuLabel" xml:space="preserve">
+    <value>메뉴</value>
+    <comment>Tooltip for "Menu" button in mobile application</comment>
+  </data>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>열고 탐구하기</value>
+  </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>사용자님은 Premium을 구독하고 있지 않으십니다. 그래서 앱 외부에서 AxCrypt가 제공하는 Premium 기능을 사용하기 위해 30일간 무료 체험을 시작했습니다. 앱이 작동하기 위해서도 필요합니다.</value>
+    <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>오류</value>
     <comment>Title of error message box for generic error</comment>
+  </data>
+  <data name="MessageExitConfirmation" xml:space="preserve">
+    <value>정말 나가시겠습니까?</value>
+    <comment>Message which is displayed in mobile application, when user tries to exit from app via back button</comment>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
     <value>'{0}' 로 가입이 불가능 합니다. 실제의 이메일 주소를 작성하시고 다시시도 하시길 바랍니다. </value>
@@ -1138,6 +1210,10 @@ AxCrypt 팀</value>
   </data>
   <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
     <value>예상외의 오류!</value>
+  </data>
+  <data name="MessageUnsubscribedConfirmation" xml:space="preserve">
+    <value>사용자님은 이제 뉴스와 정보 관련 메일을 구독하지 않습니다.</value>
+    <comment>The main message displayed when unsubscribed</comment>
   </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>더..</value>
@@ -1210,6 +1286,9 @@ AxCrypt 팀</value>
     <value>오프라인</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
+  <data name="OfflineNoPremiumWarning" xml:space="preserve">
+    <value>오프라인 상태이므로 Premium 구독을 확인할 수 없습니다. 사용자님의 상태를 업데이트 하기 위해 온라인을 해주세요</value>
+  </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>사용자는 구식 버전을 사용하고 계십니다. 새 버전을 위해서 클릭해주시기 바랍니다.</value>
   </data>
@@ -1239,6 +1318,9 @@ AxCrypt 팀</value>
     <value>자동적 업데이트와 제일 오래된 AxCrypt 1.x 파일들을 잔환 하기 혹은 안 하기.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
+  <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
+    <value>하위 폴더 포함</value>
+  </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>언어</value>
   </data>
@@ -1257,6 +1339,7 @@ AxCrypt 팀</value>
   </data>
   <data name="PasswordManagementPageTitle" xml:space="preserve">
     <value>비밀번호 관리</value>
+    <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>본 비밀번호는 허용되지 않습니다.</value>
@@ -1284,10 +1367,24 @@ AxCrypt 팀</value>
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>비밀번호 재설정</value>
   </data>
+  <data name="PasswordResetShortLink" xml:space="preserve">
+    <value>비밀번호를 잊어버리셨습니까</value>
+    <comment>Text of link to Forgot password screen in mobile app</comment>
+  </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
     <value>AxCrypt ID 확인을 위한 활성화 코드를 &lt;b&gt;{0}&lt;/b&gt; 로 보냈습니다. 받은 편지함을 확인 해주시기 바랍니다.
 
 메일을 못 받으셨다면, {0} 이 맞는지 확인 해주시고 안티 스팸 조치 때문에  못 받으신건지 확인해 주십시오.</value>
+  </data>
+  <data name="PasswordRulesInfo" xml:space="preserve">
+    <value>Axcrypt는 비밀번호의 실제 강도를 측정하는 정교한 비밀번호 강도 평가기가 있습니다. 비밀번호는 8자 이상이어야 합니다.
+
+강도를 추정하여 비밀번호를 평가합니다. 강도는 비밀번호의 길이와 복잡성에 따라 결정됩니다.
+
+이 평가는 비밀번호의 일부가 공백을 포함하여 1000개의 가장 일반적인 비밀번호로 이루어진다면 평가에서 완전히 무시됩니다. 예를 들어, 비밀번호가 'secretX password Y 123456'인 경우, 공백, 'secret', 'password' 그리고 '123456'이 무시되므로 'XY'로 인식됩니다!
+
+우리는 비밀번호 강도 세기에 따라 4가지 범주로 분류합니다. 가장 낮은 범주에 속하는 비밀번호는 허용하지 않습니다. 위의 예도 그 이유 때문에 허용되지 않습니다.</value>
+    <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
   <data name="PasswordStrengthBadName" xml:space="preserve">
     <value>약함</value>
@@ -1321,6 +1418,12 @@ AxCrypt 팀</value>
     <value>비밀번호가 너무 약해 비추천합니다.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
+  <data name="PaymentOnBehalfOf" xml:space="preserve">
+    <value>타사용자를 위한 Premium 구매</value>
+  </data>
+  <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
+    <value>타사용자를 위한 구매</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[PayPal에 대한 자세한 정보]</value>
   </data>
@@ -1350,6 +1453,26 @@ AxCrypt 팀</value>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>공유 키는 Premium이 필요합니다. 업그레이드를 위해 클릭하십시오!</value>
   </data>
+  <data name="PremiumNeededForMobileApp" xml:space="preserve">
+    <value>죄송합니다. 사용자님은 Premium을 구독하고 있지 않습니다. 앱 외부에서 AxCrypt가 제공하는 Premium 기능을 사용하기 위해 당신의 계정을 업그레이드하세요. 앱이 작동하기 위해서도 필요합니다.</value>
+    <comment>Message displaying when user works with mobile app without premium subscription.</comment>
+  </data>
+  <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
+    <value>이 기능을 사용하려면 유료 요금제가 필요합니다! 구매할 수있는 웹 페이지로 이동하시겠습니까?</value>
+    <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
+  </data>
+  <data name="PressAndHoldLabel" xml:space="preserve">
+    <value>더 보려면 길게 누르세요</value>
+    <comment>Tooltip for Press and hold gesture in mobile application</comment>
+  </data>
+  <data name="PriceExcludingVat" xml:space="preserve">
+    <value>{0} VAT 별도.</value>
+    <comment>Brief text used to display the price exclusive of VAT, as additional information. The price is typically shown inclusive. This text is only displayed if any VAT is added.</comment>
+  </data>
+  <data name="PricePerMonth" xml:space="preserve">
+    <value>{0}/월</value>
+    <comment>Brief text used to display the cost / month for a subscription.</comment>
+  </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>해독된 파일들 정리 중...</value>
     <comment>Message displayed on progress bar during temporary files cleanup.</comment>
@@ -1357,6 +1480,26 @@ AxCrypt 팀</value>
   <data name="ProgressIndicatorDecryptingMessage" xml:space="preserve">
     <value>해독 중...</value>
     <comment>Title of progress indicator which is displayed during file decrypting</comment>
+  </data>
+  <data name="ProgressIndicatorFeedbackMessage" xml:space="preserve">
+    <value>보내는 중...</value>
+    <comment>Title of progress indicator which is displayed during feedback sending</comment>
+  </data>
+  <data name="ProgressIndicatorRegisteringMessage" xml:space="preserve">
+    <value>로그인 중...</value>
+    <comment>Title of progress indicator which is displayed during SignUp operation</comment>
+  </data>
+  <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
+    <value>로그인 중...</value>
+    <comment>Title of progress indicator which is displayed during SignIn operation</comment>
+  </data>
+  <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
+    <value/>
+    <comment>Title of progress indicator which is displayed during trial starting</comment>
+  </data>
+  <data name="ProgressIndicatorWaitMessage" xml:space="preserve">
+    <value>진행 중...</value>
+    <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>활성화 번호</value>
@@ -1486,11 +1629,31 @@ AxCrypt 팀</value>
 
 구입 내역을 본인 이메일 주소로 보냈습니다.</value>
   </data>
+  <data name="PurchaseVatDepends" xml:space="preserve">
+    <value>VAT는 지불 과정에 조정될 것입니다.</value>
+    <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
+  </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
     <value>본 VAT는 사용자의 나라에 의존하고 지불 페이지에 뜹니다.</value>
   </data>
+  <data name="PurchaseVatExcluded" xml:space="preserve">
+    <value>VAT 별도.</value>
+    <comment>A sentence saying that VAT is excluded.</comment>
+  </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>횔동적인 파일들을 추방</value>
+  </data>
+  <data name="RateApplicationLinkAndroid" xml:space="preserve">
+    <value>&lt;a&gt;구글 플레이&lt;/a&gt;에서 저희를 평가해주세요</value>
+    <comment>Link to app store in mobile application (Android)</comment>
+  </data>
+  <data name="RateApplicationLinkFirstPart" xml:space="preserve">
+    <value>저희를 평가해주세요</value>
+    <comment>Unclickable part of "Rate us on App Store" link</comment>
+  </data>
+  <data name="RateApplicationLinkIos" xml:space="preserve">
+    <value>&lt;a&gt;앱 스토어&lt;/a&gt;에서 저희를 평가해주세요</value>
+    <comment>Link to application store in mobile application (iOS</comment>
   </data>
   <data name="RateApplicationLinkSecondPartAndroid" xml:space="preserve">
     <value>구글 플레이</value>
@@ -1524,6 +1687,14 @@ AxCrypt 팀</value>
     <value>AxCrypt ID를 위해 회원가입을 하셨습니다!
 
 &lt;b&gt;{0}&lt;/b&gt; 메일 확인하시고 활성화 링크를 클릭해주시기 바랍니다.</value>
+  </data>
+  <data name="ReliabilityLabel" xml:space="preserve">
+    <value>신뢰성</value>
+    <comment>Title of "Reliability" section of About Us page in mobile application.</comment>
+  </data>
+  <data name="ReliabilitySectionText" xml:space="preserve">
+    <value>AxCrypt는 15년 동안 시장에 출시되어 2 천만 건 이상의 다운로드를 통해 세계에서 가장 널리 사용되는 암호화 소프트웨어 중 하나가 되었습니다. 수년 동안 세계 최고의 암호화 소프트웨어로 언급되고 평가되고 있습니다.</value>
+    <comment>Description of "Reliability" section of About Us page in mobile application.</comment>
   </data>
   <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
     <value>보안 문제로 소프트웨어 업데이트를 하셔야 됩니다.</value>
@@ -1569,12 +1740,20 @@ AxCrypt 팀</value>
     <value>보안</value>
     <comment>Title of "Security" section of About Us page in mobile application. </comment>
   </data>
+  <data name="SecuritySectionText" xml:space="preserve">
+    <value>보안은 저희에게 중요한 문제입니다. AxCrypt로 하는 모든 작업은 보안을 최우선으로 생각합니다. 저희는 사용자가 자신의 암호를 제어할 수 있는 한 아무도 암호화된 파일에 액세스할 수 없도록 합니다.</value>
+    <comment>Description of "Security" section of About Us page in mobile application. </comment>
+  </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>보안 문제로 사용자의 소프트웨어 업데이트가 필요합니다.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
   </data>
   <data name="SendInvitation" xml:space="preserve">
     <value>초대장 보내기</value>
+  </data>
+  <data name="SetEmailLabel" xml:space="preserve">
+    <value>이메일을 보냈습니다</value>
+    <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>여기서 AxCrypt ID를 지속적으로 삭제 하실수 있습니다.
@@ -1609,11 +1788,31 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>공유 키</value>
   </data>
+  <data name="ShareWithOthersDescription" xml:space="preserve">
+    <value>원 클릭으로 AxCrypt 비밀번호 관리자에 엑세스하기</value>
+    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
+  </data>
+  <data name="ShareWithOthersTitle" xml:space="preserve">
+    <value>비밀번호에 쉽게 접근하기</value>
+    <comment>Title of "Share With Others" slide on Onboarding screen in mobile application.</comment>
+  </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>비밀번호 보여주기</value>
   </data>
+  <data name="SignInBeforePremiumMessage" xml:space="preserve">
+    <value>먼저 로그인하세요!</value>
+    <comment>A short message used in the sign in dialog, to explain that a user should sign in first and then purchase or try premium as appropriate.</comment>
+  </data>
   <data name="SignInVerificationTitle" xml:space="preserve">
     <value>로그인 확인</value>
+  </data>
+  <data name="SimplicityLabel" xml:space="preserve">
+    <value>단순화</value>
+    <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
+  </data>
+  <data name="SimplicitySectionText" xml:space="preserve">
+    <value>암호화는 복잡하지만 사용자에게 단순할 수 있도록 끊임없이 노력하고 있습니다. 저희는 강력한 암호화와 암호화 키 공유를 다른 소프트웨어보다 간단하고 안전하게 만드는 고유한 기능을 개발했습니다.</value>
+    <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>경고! 사이트 재시동이 몇분후에 예정되어있습니다. 불편을 드려 죄송합니다.</value>
@@ -1622,8 +1821,24 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
     <value>소셜 미디어 팔로우하기 </value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
+  <data name="StartupTipTryMobileApp" xml:space="preserve">
+    <value>Android 및 iOS 용 모바일 앱이 이제 AxCrypt Premium에 포함됩니다. 더 알고 싶으싶니까?</value>
+    <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
+  </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>보안이 더이상 불필요한 파일들은 선택하십시오.</value>
+  </data>
+  <data name="StrongEncryptionDescription" xml:space="preserve">
+    <value>사용자님의 핸드폰에 AxCrypt 파일 열기</value>
+    <comment>Text displayed on "Strong Encryption" slide in mobile app</comment>
+  </data>
+  <data name="StrongEncryptionTitle" xml:space="preserve">
+    <value>AxCrypt 모바일</value>
+    <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
+  </data>
+  <data name="SubmitFeedbackButton" xml:space="preserve">
+    <value>의견 제출하기</value>
+    <comment>Text of Submit feedback button</comment>
   </data>
   <data name="SubscriptionsErrorAmount" xml:space="preserve">
     <value>수체 합계 형식이 올바르지 않습니다. 10.50과 같은 소수 형식을 사용해주시기 바랍니다.</value>
@@ -1642,6 +1857,22 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>죄송합니다, 직접지원은 지불하신 사용자분들께서만 사용이 가능하십니다. &lt;a href="{0}"&gt;community support&lt;/a&gt; 를 방문해 주시기 바랍니다.</value>
+  </data>
+  <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
+    <value>현재 파일을 열 수 없습니다.</value>
+    <comment>Message which is displayed when user hasn't application for file opening</comment>
+  </data>
+  <data name="TermsAndConditionsLink" xml:space="preserve">
+    <value>AxCrypt에 가입함으로써 &lt;a&gt;Terms &amp;amp; Conditions &lt;/a&gt; 약관에 동의합니다</value>
+    <comment>Text of link to Terms And Conditions in mobile application</comment>
+  </data>
+  <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">
+    <value>AxCrypt에 가입함으로써 동의합니다</value>
+    <comment>Unclikable text of link to Terms And Conditions  in mobile application</comment>
+  </data>
+  <data name="TermsAndConditionsLinkSecondPart" xml:space="preserve">
+    <value>약관</value>
+    <comment>Clickable text of link to Terms And Conditions in mobile application</comment>
   </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>이메일과 스팸메일을 확인하기!</value>
@@ -1671,6 +1902,10 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
     <value>AxCrypt에 로그인</value>
     <comment>Title on the web page for signin for example.</comment>
   </data>
+  <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
+    <value>구독하지 않기</value>
+    <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
+  </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>비밀번호 관리는 Premium을 통해 하실수 있습니다. 업그레이드를 하시려면 클릭해주십시오!</value>
   </data>
@@ -1686,6 +1921,18 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
  좋은 경험을 하시기 바랍니다,
 AxCrypt 팀</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
+  </data>
+  <data name="TroubleRememberingLabel" xml:space="preserve">
+    <value>비밀번호 기억에 문제가 있습니까?</value>
+    <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
+  </data>
+  <data name="TryItDescription" xml:space="preserve">
+    <value>파일들을 데스크톱에 보관하고 이동 중에 읽을 수 있습니다</value>
+    <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
+  </data>
+  <data name="TryItTitle" xml:space="preserve">
+    <value>시도해보세요!</value>
+    <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="TryPremiumLabel" xml:space="preserve">
     <value>Premium 시도해 보기 </value>
@@ -1720,6 +1967,9 @@ AxCrypt 팀</value>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID 삭제 완료</value>
   </data>
+  <data name="UnsubscribeMailFooter" xml:space="preserve">
+    <value>만약 사용자님께서 구독하지 않으려면 &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; 여기&lt;/a&gt;를 클릭하세요</value>
+  </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>파일 상태를 업데이트 하고 있습니다</value>
   </data>
@@ -1735,6 +1985,10 @@ AxCrypt 팀</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>AxCrypt를 업데이트 하셨습니다. 하지만 구성 재설정을 하셔야합니다. 재시작을 하신 다음, 저장하신 장치들을 모두 잃을 수 있습니다. 불편을 드려 죄송합니다. 암호화된 파일들은 안정적으로 저장되어있습니다.</value>
+  </data>
+  <data name="VerifyAccountLabel" xml:space="preserve">
+    <value>사용자님의 새로운 계정을 인증해주세요</value>
+    <comment>Text displayed on Activation code page in mobile app.</comment>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>비밀번호를 확인해 주시기 바랍니다.</value>

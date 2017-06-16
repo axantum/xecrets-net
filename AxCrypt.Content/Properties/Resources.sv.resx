@@ -127,9 +127,6 @@
     <value>Kontot måste verifieras av användaren först.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusPremium" xml:space="preserve">
-    <value>AxCrypt Premium</value>
-  </data>
   <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
     <value>AxCrypt Premium (Tillsvidare)</value>
   </data>
@@ -911,6 +908,7 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
   </data>
   <data name="InvoiceCustomer" xml:space="preserve">
     <value>Betalat av</value>
+    <comment>This is a label on a receipt or invoice, prefixing the user that has actually made a payment, i.e. if bob@axcrypt.net has made a payment, it says: Payed by: bob@axcrypt.net .</comment>
   </data>
   <data name="InvoiceDateHeadline" xml:space="preserve">
     <value>Datum</value>
@@ -926,6 +924,7 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
     <value>Betalat till</value>
+    <comment>This is a label on an invoice or recieipt stating that it a payment was made to us, i.e.: Paid to: AxCrypt AB</comment>
   </data>
   <data name="InvoiceLineTotalHeadline" xml:space="preserve">
     <value>Belopp</value>
@@ -936,7 +935,7 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
   </data>
   <data name="InvoicePaidForLabel" xml:space="preserve">
     <value>Betalat för</value>
-    <comment>The label for the email field a payment was made for</comment>
+    <comment>This is a label on a receipt or invoice, prefixing the user that is the benficiary of a payment made by someone else. if alice@axcrypt.net pays for bob@axcrypt.net, then it says: Paid for: bob@axcrypt.net .</comment>
   </data>
   <data name="InvoiceQuantityHeadline" xml:space="preserve">
     <value>Antal</value>
@@ -1011,12 +1010,6 @@ Du kan öppna äldre AxCrypt 1.x-filer, men om de inte konverteras måste du ang
 Automatisk konvertering kan ställas in via menyerna.
 
 Ska vi aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </value>
-  </data>
-  <data name="LicenseFreeNameText" xml:space="preserve">
-    <value>Gratis</value>
-  </data>
-  <data name="LicensePremiumNameText" xml:space="preserve">
-    <value>Premium</value>
   </data>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Till Startsidan</value>
@@ -1211,7 +1204,7 @@ Detta program är licensierat i enlighet med avtalet.
     <value>Öppna Utforskaren Här</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>Det verkar inte som du har Premium, så vi har automatiskt startat en 30-dagars provperiod så att du kan använda funktionerna som erbjuds av AxCrypt utanför appen, som också krävs för appen.</value>
+    <value>Det verkar inte som du har Premium, så vi startar en provperiod åt dig!</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
@@ -1496,6 +1489,10 @@ Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte
   <data name="PremiumNeededForMobileApp" xml:space="preserve">
     <value>Det verkar inte som du har Premium. Uppgradera nu så att du kan använda funktionerna som erbjuds av AxCrypt utanför appen, som också krävs för appen.</value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
+  </data>
+  <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
+    <value>Funktionen kräver en betald prenumeration! Vill du öppna en webbsida där du kan köpa?</value>
+    <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Tryck och håll för att se mer</value>
