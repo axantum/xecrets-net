@@ -179,6 +179,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IVersion>(() => new DesktopVersion());
             TypeMap.Register.Singleton<PasswordStrengthEvaluator>(() => new PasswordStrengthEvaluator(100, 8));
             TypeMap.Register.Singleton<IKnownFoldersDiscovery>(() => new KnownFoldersDiscovery());
+            TypeMap.Register.Singleton<IBrowser>(() => new Browser());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)
