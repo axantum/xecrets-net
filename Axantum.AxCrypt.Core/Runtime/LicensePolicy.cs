@@ -92,12 +92,10 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             switch (notification.NotificationType)
             {
-                case SessionNotificationType.LogOn:
                 case SessionNotificationType.LicensePolicyChange:
                     await RefreshAsync(notification.Identity);
                     break;
 
-                case SessionNotificationType.LogOff:
                 case SessionNotificationType.SessionStart:
                     await RefreshAsync(LogOnIdentity.Empty);
                     break;
@@ -107,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
-        private async Task RefreshAsync(LogOnIdentity identity)
+        public async Task RefreshAsync(LogOnIdentity identity)
         {
             Capabilities = await CapabilitiesAsync(identity).Free();
         }

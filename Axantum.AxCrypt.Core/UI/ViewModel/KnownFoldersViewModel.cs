@@ -110,7 +110,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     break;
 
                 case SessionNotificationType.LogOn:
-                    await EnsureKnownFoldersWatched(KnownFolders);
+                    if (notification.Capabilities.Has(LicenseCapability.SecureFolders))
+                    {
+                        await EnsureKnownFoldersWatched(KnownFolders);
+                    }
                     KnownFolders = await UpdateEnabledStateAsync(KnownFolders);
                     break;
             }
