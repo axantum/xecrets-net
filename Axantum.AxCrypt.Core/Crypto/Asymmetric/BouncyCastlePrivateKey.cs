@@ -94,6 +94,33 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             }
         }
 
+        public byte[] TransformRaw(byte[] buffer)
+        {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException(nameof(buffer));
+            }
+
+            int rsaKeyBitLength = ((RsaKeyParameters)Key).Modulus.BitLength;
+            int rsaKeyByteLength = (rsaKeyBitLength + 7) / 8;
+
+            if (buffer.Length < rsaKeyByteLength)
+            {
+                byte[] extended = new byte[rsaKeyByteLength];
+                Array.Copy(buffer, 0, extended, extended.Length - buffer.Length, buffer.Length);
+                buffer = extended;
+            }
+
+            if (buffer.Length > rsaKeyByteLength)
+            {
+                throw new ArgumentOutOfRangeException(nameof(buffer), "Too long buffer to decrypt");
+            }
+
+            IAsymmetricBlockCipher cipher = new RsaEngine();
+            cipher.Init(false, Key);
+            return TransformInternal(buffer, cipher);
+        }
+
         public byte[] Transform(byte[] buffer)
         {
             if (buffer == null)
@@ -102,9 +129,18 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             }
 
             int rsaKeyBitLength = ((RsaKeyParameters)Key).Modulus.BitLength;
-            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(New<IAsymmetricFactory>().CreatePaddingHash(rsaKeyBitLength)));
+            int rsaKeyByteLength = (rsaKeyBitLength + 7) / 8;
 
+            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(New<IAsymmetricFactory>().CreatePaddingHash(rsaKeyBitLength)));
             cipher.Init(false, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));
+
+            return TransformInternal(buffer, cipher);
+        }
+
+        private byte[] TransformInternal(byte[] buffer, IAsymmetricBlockCipher cipher)
+        {
+            int rsaKeyBitLength = ((RsaKeyParameters)Key).Modulus.BitLength;
+
             try
             {
                 byte[] transformed = cipher.ProcessBlock(buffer, 0, (rsaKeyBitLength + 7) / 8);
