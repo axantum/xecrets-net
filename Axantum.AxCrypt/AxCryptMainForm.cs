@@ -743,7 +743,7 @@ namespace Axantum.AxCrypt
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await new ApplicationManager().StopAndExit(); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
-            _optionsTimeOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.TimeOut, null, sender, e); };
+            _optionsTimeOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.TimeOut, async (ss, ee) => { }, sender, e); };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
@@ -1693,7 +1693,8 @@ namespace Axantum.AxCrypt
         {
             if (_mainViewModel.License.Has(requiredCapability))
             {
-                await realHandler(sender, e);
+                if (realHandler != null)
+                    await realHandler(sender, e);
                 return;
             }
 

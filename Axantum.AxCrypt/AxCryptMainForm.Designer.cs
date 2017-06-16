@@ -511,9 +511,9 @@ namespace Axantum.AxCrypt
             this._optionsAutoConvert1xFilesToolStripMenuItem,
             this._alwaysOfflineToolStripMenuItem,
             this._optionsIncludeSubfoldersToolStripMenuItem,
+            this._optionsTimeOutToolStripMenuItem,
             this._optionsDebugToolStripMenuItem,
-            this._optionsClearAllSettingsAndExitToolStripMenuItem,
-            this._optionsTimeOutToolStripMenuItem});
+            this._optionsClearAllSettingsAndExitToolStripMenuItem});
             this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
             this._optionsToolStripMenuItem.Name = "_optionsToolStripMenuItem";
             this._optionsToolStripMenuItem.Size = new System.Drawing.Size(215, 22);

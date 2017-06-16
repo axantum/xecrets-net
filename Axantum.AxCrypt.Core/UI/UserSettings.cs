@@ -284,6 +284,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(DontShowAgain), (int)value); }
         }
 
+        public int TimeOut
+        {
+            get { return Load(nameof(TimeOut), 0); }
+            set { Store(nameof(TimeOut), value); }
+        }
+
         public T Load<T>(string key)
         {
             return Load(key, default(T));
