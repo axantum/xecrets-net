@@ -1,4 +1,6 @@
-﻿namespace Axantum.AxCrypt
+﻿using System.ComponentModel;
+
+namespace Axantum.AxCrypt
 {
     partial class AxCryptMainForm
     {
@@ -1102,6 +1104,8 @@
             this._optionsTimeOutToolStripMenuItem.Name = "_optionsTimeOutToolStripMenuItem";
             this._optionsTimeOutToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsTimeOutToolStripMenuItem.Text = "[&Time Out]";
+            this._optionsTimeOutToolStripMenuItem.DropDown.Opening += new CancelEventHandler(this.OptionsTimeOutToolStripMenuItem_Opening);
+
             // 
             // _disableTimeOutToolStripMenuItem
             // 

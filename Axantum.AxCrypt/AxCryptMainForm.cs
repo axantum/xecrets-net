@@ -48,6 +48,7 @@ using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -631,7 +632,13 @@ namespace Axantum.AxCrypt
                 _optionsTimeOutToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
             }
         }
-
+        private void OptionsTimeOutToolStripMenuItem_Opening(object sender, CancelEventArgs e)
+        {
+            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.TimeOut))
+            {
+                e.Cancel = true;
+            }
+        }
         private bool _balloonTipShown = false;
 
         private void InitializeNotifyIcon()
@@ -736,6 +743,7 @@ namespace Axantum.AxCrypt
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await new ApplicationManager().StopAndExit(); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
+            _optionsTimeOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.TimeOut, null, sender, e); };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
