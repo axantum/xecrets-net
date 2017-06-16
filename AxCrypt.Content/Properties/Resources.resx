@@ -1419,7 +1419,7 @@ This program is licensed according to the agreement.
     <value>Open Explorer Here</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>We noticed you don't have a Premium subscription, so we've started a 30-day free Trial to use the Premium features provided by AxCrypt outside of the app, which are also required for the app to function</value>
+    <value>We noticed you don't have a Premium subscription, so we'll start a free Trial for you!</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">

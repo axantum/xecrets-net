@@ -53,6 +53,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Browser.cs" />
     <Compile Include="Cryptography\HMACBase.cs" />
     <Compile Include="Cryptography\ProtectedDataImpl.cs" />
     <Compile Include="EmailParser.cs" />
