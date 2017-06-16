@@ -252,6 +252,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             UserAccount merged = new UserAccount(highPriorityAccount.UserName, highPriorityAccount.SubscriptionLevel, highPriorityAccount.LevelExpiration, highPriorityAccount.AccountStatus, highPriorityAccount.Offers, unionOfKeys)
             {
                 Tag = highPriorityAccount.Tag,
+                Signature = highPriorityAccount.Signature,
             };
             return merged;
         }

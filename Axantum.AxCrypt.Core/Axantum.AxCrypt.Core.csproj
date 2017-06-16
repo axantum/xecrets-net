@@ -111,11 +111,13 @@
     <Compile Include="Runtime\CryptoException.cs" />
     <Compile Include="Runtime\FileOperationException.cs" />
     <Compile Include="Runtime\FreeForcedLicensePolicy.cs" />
+    <Compile Include="Runtime\ILicenseAuthority.cs" />
     <Compile Include="Runtime\IPlatform.cs" />
     <Compile Include="Runtime\IVersion.cs" />
     <Compile Include="Runtime\LicenseCapabilities.cs" />
     <Compile Include="Runtime\LicenseCapability.cs" />
     <Compile Include="Runtime\LicensePolicy.cs" />
+    <Compile Include="Runtime\LicenseValidation.cs" />
     <Compile Include="Runtime\PasswordException.cs" />
     <Compile Include="Runtime\ApplicationManager.cs" />
     <Compile Include="Runtime\PremiumForcedLicensePolicy.cs" />
