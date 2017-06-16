@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -144,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private async Task<SubscriptionLevel> SubscriptionLevelAsync(LogOnIdentity identity)
         {
-            if (identity == LogOnIdentity.Empty)
+            if (identity.UserEmail == EmailAddress.Empty)
             {
                 return SubscriptionLevel.Unknown;
             }
@@ -153,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private async Task<DateTime> SubscriptionExpirationAsync(LogOnIdentity identity)
         {
-            if (identity == LogOnIdentity.Empty)
+            if (identity.UserEmail == EmailAddress.Empty)
             {
                 return DateTime.MaxValue;
             }
