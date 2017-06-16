@@ -97,6 +97,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 _signinState.IsSigningIn = false;
             }
+
+            await new PremiumManager().PremiumStatusWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
+
             if (Resolve.UserSettings.IsFirstSignIn)
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
