@@ -57,7 +57,13 @@ namespace Axantum.AxCrypt
             _showPassphrase.CheckedChanged += (s, ea) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
 
             _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowPassphrase), (bool show) => { _passphrase.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
-            await _premiumLinkLabel.ConfigureAsync(LogOnIdentity.Empty);
+            EmailAddress email;
+            LogOnIdentity identity = LogOnIdentity.Empty;
+            if (EmailAddress.TryParse(_viewModel.UserEmail, out email))
+            {
+                identity = new LogOnIdentity(email, Passphrase.Empty);
+            }
+            await _premiumLinkLabel.ConfigureAsync(identity);
         }
 
         private void ButtonOk_Click(object sender, EventArgs e)

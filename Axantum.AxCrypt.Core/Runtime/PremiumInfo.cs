@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             IAccountService service = New<LogOnIdentity, IAccountService>(identity);
 
-            SubscriptionLevel level = await (await service.Refresh().AccountAsync().Free()).ValidatedLevelAsync();
+            SubscriptionLevel level = await (await service.AccountAsync().Free()).ValidatedLevelAsync();
             switch (level)
             {
                 case SubscriptionLevel.Unknown:

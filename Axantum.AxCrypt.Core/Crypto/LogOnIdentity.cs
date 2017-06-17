@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            return Passphrase == other.Passphrase && UserKeys == other.UserKeys;
+            return UserEmail == other.UserEmail && Passphrase == other.Passphrase && UserKeys == other.UserKeys;
         }
 
         public override bool Equals(object obj)

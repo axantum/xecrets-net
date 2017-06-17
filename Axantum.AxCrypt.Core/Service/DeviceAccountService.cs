@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task<UserAccount> AccountAsync()
         {
             UserAccount localAccount = await _localService.AccountAsync().Free();
-            if (New<AxCryptOnlineState>().IsOffline)
+            if (New<AxCryptOnlineState>().IsOffline || Identity.Passphrase == Passphrase.Empty)
             {
                 return localAccount;
             }
