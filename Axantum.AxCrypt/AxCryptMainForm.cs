@@ -880,9 +880,9 @@ namespace Axantum.AxCrypt
                     {
                         await EncryptPendingFiles();
 
-                        if (_fileOperationViewModel.IdentityViewModel.LogOff.CanExecute(null))
+                        if (await _fileOperationViewModel.IdentityViewModel.LogOff.CanExecuteAsync(null))
                         {
-                            _fileOperationViewModel.IdentityViewModel.LogOff.Execute(null);
+                            await _fileOperationViewModel.IdentityViewModel.LogOff.ExecuteAsync(null);
                         }
                     }
                     finally

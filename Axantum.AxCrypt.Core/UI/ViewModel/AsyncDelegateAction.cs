@@ -63,15 +63,5 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             OnCanExecuteChanged();
         }
-
-        public bool CanExecute(object parameter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Execute(object parameter)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
