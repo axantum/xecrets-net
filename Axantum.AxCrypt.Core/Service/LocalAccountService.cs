@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
@@ -75,17 +76,6 @@ namespace Axantum.AxCrypt.Core.Service
         public IAccountService Refresh()
         {
             return this;
-        }
-
-        /// <summary>
-        /// Determines whether the Identity is valid for sign in.
-        /// </summary>
-        /// <returns>
-        /// true if a user can be considered to be signed in using the Identity as credential.
-        /// </returns>
-        public Task<bool> IsIdentityValidAsync()
-        {
-            return Task.FromResult(TryLoadUserKeyPairs().Any());
         }
 
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
@@ -149,6 +139,7 @@ namespace Axantum.AxCrypt.Core.Service
                 throw new InvalidOperationException("The account service requires a user.");
             }
             UserAccount userAccount = LoadUserAccount();
+
             return Task.FromResult(userAccount);
         }
 

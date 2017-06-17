@@ -85,12 +85,6 @@ namespace Axantum.AxCrypt.Core.Service
         Task StartPremiumTrialAsync();
 
         /// <summary>
-        /// Determines whether the Identity is valid for sign in.
-        /// </summary>
-        /// <returns>true if a user can be considered to be signed in using the Identity as credential.</returns>
-        Task<bool> IsIdentityValidAsync();
-
-        /// <summary>
         /// Changes the passphrase for the account.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>

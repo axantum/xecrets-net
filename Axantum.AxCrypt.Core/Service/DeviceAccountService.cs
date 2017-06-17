@@ -68,28 +68,6 @@ namespace Axantum.AxCrypt.Core.Service
             }
         }
 
-        public async Task<bool> IsIdentityValidAsync()
-        {
-            if (Identity == LogOnIdentity.Empty)
-            {
-                return false;
-            }
-
-            if (New<AxCryptOnlineState>().IsOnline)
-            {
-                try
-                {
-                    return await _remoteService.IsIdentityValidAsync().Free();
-                }
-                catch (OfflineApiException oaex)
-                {
-                    New<IReport>().Exception(oaex);
-                    New<AxCryptOnlineState>().IsOffline = true;
-                }
-            }
-            return await _localService.IsIdentityValidAsync().Free();
-        }
-
         public async Task<Offers> OffersAsync()
         {
             if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
@@ -159,17 +137,9 @@ namespace Axantum.AxCrypt.Core.Service
             try
             {
                 UserAccount remoteAccount;
-                try
+                remoteAccount = await _remoteService.AccountAsync().Free();
+                if (remoteAccount.AccountKeys.Count == 0)
                 {
-                    remoteAccount = await _remoteService.AccountAsync().Free();
-                }
-                catch (PasswordException pex)
-                {
-                    if (localAccount.AccountKeys.Count == 0)
-                    {
-                        throw;
-                    }
-                    New<IReport>().Exception(pex);
                     return localAccount;
                 }
 
