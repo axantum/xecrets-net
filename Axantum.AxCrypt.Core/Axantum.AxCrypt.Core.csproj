@@ -114,6 +114,7 @@
     <Compile Include="Runtime\ILicenseAuthority.cs" />
     <Compile Include="Runtime\IPlatform.cs" />
     <Compile Include="Runtime\IVersion.cs" />
+    <Compile Include="Runtime\PublicLicenseAuthority.cs" />
     <Compile Include="Runtime\LicenseCapabilities.cs" />
     <Compile Include="Runtime\LicenseCapability.cs" />
     <Compile Include="Runtime\LicensePolicy.cs" />
@@ -206,6 +207,8 @@
     <Compile Include="UI\PasswordStrengthCalculator.cs" />
     <Compile Include="UI\PasswordStrengthEvaluator.cs" />
     <Compile Include="UI\PopupButtons.cs" />
+    <Compile Include="UI\PremiumManagerWithAutoTrial.cs" />
+    <Compile Include="UI\PremiumManagerWithoutAutoTrial.cs" />
     <Compile Include="UI\SettingsStore.cs" />
     <Compile Include="UI\PremiumManager.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />

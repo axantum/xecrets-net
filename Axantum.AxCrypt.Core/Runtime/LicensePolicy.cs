@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -149,7 +150,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 return SubscriptionLevel.Unknown;
             }
-            return (await UserAccountAsync(identity).Free()).SubscriptionLevel;
+            return (await (await UserAccountAsync(identity).Free()).ValidatedLevelAsync().Free());
         }
 
         private async Task<DateTime> SubscriptionExpirationAsync(LogOnIdentity identity)

@@ -65,14 +65,6 @@ namespace Axantum.AxCrypt.Core.Service
         LogOnIdentity Identity { get; }
 
         /// <summary>
-        /// Gets the subscription level.
-        /// </summary>
-        /// <value>
-        /// The level.
-        /// </value>
-        Task<SubscriptionLevel> LevelAsync();
-
-        /// <summary>
         /// Gets the status of the account.
         /// </summary>
         /// <value>

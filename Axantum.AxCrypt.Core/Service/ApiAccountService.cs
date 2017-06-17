@@ -122,18 +122,6 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
-        /// Gets the subscription level.
-        /// </summary>
-        /// <value>
-        /// The level.
-        /// </value>
-        public async Task<SubscriptionLevel> LevelAsync()
-        {
-            UserAccount userAccount = await _apiClient.MyAccountAsync().Free();
-            return userAccount.SubscriptionLevel;
-        }
-
-        /// <summary>
         /// Gets the status of the account.
         /// </summary>
         /// <value>

@@ -58,11 +58,6 @@ namespace Axantum.AxCrypt.Core.Service
             return await _service.IsIdentityValidAsync().Free();
         }
 
-        public async Task<SubscriptionLevel> LevelAsync()
-        {
-            return await New<ICache>().GetItemAsync(_key.Subkey(nameof(LevelAsync)), async () => await _service.LevelAsync()).Free();
-        }
-
         public async Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             return await New<ICache>().UpdateItemAsync(async () => await _service.ChangePassphraseAsync(passphrase), _key).Free();

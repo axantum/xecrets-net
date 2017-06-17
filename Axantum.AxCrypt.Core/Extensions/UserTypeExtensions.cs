@@ -221,6 +221,11 @@ namespace Axantum.AxCrypt.Core.Extensions
             return new RestIdentity(identity.UserEmail.Address, identity.Passphrase.Text);
         }
 
+        public static Task<SubscriptionLevel> ValidatedLevelAsync(this UserAccount userAccount)
+        {
+            return new LicenseValidation().ValidateLevelAsync(userAccount);
+        }
+
         public static UserAccount MergeWith(this UserAccount highPriorityAccount, UserAccount lowPriorityAccount)
         {
             if (highPriorityAccount == null)
@@ -267,6 +272,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             UserAccount highPriorityAccount = new UserAccount(lowPriorityAccount.UserName, lowPriorityAccount.SubscriptionLevel, lowPriorityAccount.LevelExpiration, lowPriorityAccount.AccountStatus, lowPriorityAccount.Offers, highPriorityAccountKeys)
             {
                 Tag = lowPriorityAccount.Tag,
+                Signature = lowPriorityAccount.Signature,
             };
             return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys);
         }

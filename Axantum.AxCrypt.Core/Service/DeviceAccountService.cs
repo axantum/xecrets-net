@@ -90,23 +90,6 @@ namespace Axantum.AxCrypt.Core.Service
             return await _localService.IsIdentityValidAsync().Free();
         }
 
-        public async Task<SubscriptionLevel> LevelAsync()
-        {
-            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
-            {
-                try
-                {
-                    return await _remoteService.LevelAsync().Free();
-                }
-                catch (OfflineApiException oaex)
-                {
-                    New<IReport>().Exception(oaex);
-                    New<AxCryptOnlineState>().IsOffline = true;
-                }
-            }
-            return await _localService.LevelAsync().Free();
-        }
-
         public async Task<Offers> OffersAsync()
         {
             if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)

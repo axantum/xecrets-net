@@ -88,15 +88,6 @@ namespace Axantum.AxCrypt.Core.Service
             return Task.FromResult(TryLoadUserKeyPairs().Any());
         }
 
-        public Task<SubscriptionLevel> LevelAsync()
-        {
-            if (Identity == LogOnIdentity.Empty)
-            {
-                return Task.FromResult(SubscriptionLevel.Unknown);
-            }
-            return Task.FromResult(LoadUserAccount().SubscriptionLevel);
-        }
-
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
             return await Task.Run(() =>
