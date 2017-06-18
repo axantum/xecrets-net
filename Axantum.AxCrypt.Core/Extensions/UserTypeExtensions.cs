@@ -350,5 +350,28 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return FolderOperationMode.SingleFolder;
             }
         }
+
+        public static async Task<UserPublicKey> GetAsync(this KnownPublicKeys knownPublicKeys, EmailAddress email)
+        {
+            UserPublicKey key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
+            if (key != null)
+            {
+                return key;
+            }
+
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return null;
+            }
+
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity));
+            UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
+
+            if (userPublicKey != null)
+            {
+                knownPublicKeys.AddOrReplace(userPublicKey);
+            }
+            return userPublicKey;
+        }
     }
 }
