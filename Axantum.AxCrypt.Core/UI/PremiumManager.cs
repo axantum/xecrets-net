@@ -12,7 +12,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public class PremiumManager
+    public abstract class PremiumManager
     {
         public async Task<bool> StartTrial(LogOnIdentity identity)
         {
@@ -45,24 +45,10 @@ namespace Axantum.AxCrypt.Core.UI
         public async Task<PremiumStatus> PremiumStatusWithTryPremium(LogOnIdentity identity)
         {
             PremiumInfo premiumInfo = await PremiumInfo.CreateAsync(identity);
-            if (premiumInfo.PremiumStatus == PremiumStatus.HasPremium)
-            {
-                return PremiumStatus.HasPremium;
-            }
-
-            if (premiumInfo.PremiumStatus == PremiumStatus.CanTryPremium)
-            {
-                await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial }, Texts.WelcomeMailSubject, Texts.MessageAskAboutStartTrial);
-                if (!await StartTrial(identity))
-                {
-                    return PremiumStatus.CanTryPremium;
-                }
-
-                return PremiumStatus.HasPremium;
-            }
-
-            return premiumInfo.PremiumStatus;
+            return await TryPremium(identity, premiumInfo);
         }
+
+        protected abstract Task<PremiumStatus> TryPremium(LogOnIdentity identity, PremiumInfo premiumInfo);
 
         public async Task BuyPremium(LogOnIdentity identity)
         {

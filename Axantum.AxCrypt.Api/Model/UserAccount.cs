@@ -22,6 +22,7 @@ namespace Axantum.AxCrypt.Api.Model
             AccountStatus = status;
             Offers = offers;
             Tag = string.Empty;
+            Signature = string.Empty;
         }
 
         public UserAccount(string userName, SubscriptionLevel level, DateTime expiration, AccountStatus status, Offers offers)
@@ -101,6 +102,9 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("tag")]
         public string Tag { get; set; }
 
+        [JsonProperty("signature")]
+        public string Signature { get; set; }
+
         public bool Equals(UserAccount other)
         {
             if ((object)other == null)
@@ -121,6 +125,10 @@ namespace Axantum.AxCrypt.Api.Model
                 return false;
             }
             if (AccountStatus != other.AccountStatus)
+            {
+                return false;
+            }
+            if (Signature != other.Signature)
             {
                 return false;
             }

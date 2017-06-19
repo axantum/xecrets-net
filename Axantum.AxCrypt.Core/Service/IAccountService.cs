@@ -65,14 +65,6 @@ namespace Axantum.AxCrypt.Core.Service
         LogOnIdentity Identity { get; }
 
         /// <summary>
-        /// Gets the subscription level.
-        /// </summary>
-        /// <value>
-        /// The level.
-        /// </value>
-        Task<SubscriptionLevel> LevelAsync();
-
-        /// <summary>
         /// Gets the status of the account.
         /// </summary>
         /// <value>
@@ -91,12 +83,6 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <returns></returns>
         Task StartPremiumTrialAsync();
-
-        /// <summary>
-        /// Determines whether the Identity is valid for sign in.
-        /// </summary>
-        /// <returns>true if a user can be considered to be signed in using the Identity as credential.</returns>
-        Task<bool> IsIdentityValidAsync();
 
         /// <summary>
         /// Changes the passphrase for the account.

@@ -71,6 +71,7 @@
     <Compile Include="FakeInternetState.cs" />
     <Compile Include="FakeIterationCalculator.cs" />
     <Compile Include="FakeLauncher.cs" />
+    <Compile Include="FakeLicenseAuthority.cs" />
     <Compile Include="FakeLogging.cs" />
     <Compile Include="FakeNow.cs" />
     <Compile Include="FakeProgressBackground.cs" />

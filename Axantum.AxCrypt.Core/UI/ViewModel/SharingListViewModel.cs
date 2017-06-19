@@ -145,34 +145,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 foreach (EmailAddress keyShareToAdd in keySharesToAdd)
                 {
-                    UserPublicKey userPublicKey = knownPublicKeys.PublicKeys.FirstOrDefault(pk => pk.Email == keyShareToAdd);
-                    if (userPublicKey == null)
+                    UserPublicKey key = await knownPublicKeys.GetAsync(keyShareToAdd);
+                    if (key != null)
                     {
-                        userPublicKey = await AddMissingPublicKeyFromServerAsync(keyShareToAdd).Free();
-                    }
-                    if (userPublicKey == null)
-                    {
-                        userPublicKey = fileShares.FirstOrDefault(pk => pk.Email == keyShareToAdd);
-                    }
-                    if (userPublicKey != null)
-                    {
-                        knownPublicKeys.AddOrReplace(userPublicKey);
-                        publicKeys.Add(userPublicKey);
+                        publicKeys.Add(key);
                     }
                 }
             }
             return publicKeys;
-        }
-
-        private async Task<UserPublicKey> AddMissingPublicKeyFromServerAsync(EmailAddress email)
-        {
-            if (New<AxCryptOnlineState>().IsOffline)
-            {
-                return null;
-            }
-            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
-            UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
-            return userPublicKey;
         }
 
         private static void MoveKeyShares(IEnumerable<UserPublicKey> keySharesToMove, HashSet<UserPublicKey> fromSet, HashSet<UserPublicKey> toSet)

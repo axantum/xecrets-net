@@ -221,6 +221,11 @@ namespace Axantum.AxCrypt.Core.Extensions
             return new RestIdentity(identity.UserEmail.Address, identity.Passphrase.Text);
         }
 
+        public static Task<SubscriptionLevel> ValidatedLevelAsync(this UserAccount userAccount)
+        {
+            return new LicenseValidation().ValidateLevelAsync(userAccount);
+        }
+
         public static UserAccount MergeWith(this UserAccount highPriorityAccount, UserAccount lowPriorityAccount)
         {
             if (highPriorityAccount == null)
@@ -252,6 +257,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             UserAccount merged = new UserAccount(highPriorityAccount.UserName, highPriorityAccount.SubscriptionLevel, highPriorityAccount.LevelExpiration, highPriorityAccount.AccountStatus, highPriorityAccount.Offers, unionOfKeys)
             {
                 Tag = highPriorityAccount.Tag,
+                Signature = highPriorityAccount.Signature,
             };
             return merged;
         }
@@ -266,6 +272,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             UserAccount highPriorityAccount = new UserAccount(lowPriorityAccount.UserName, lowPriorityAccount.SubscriptionLevel, lowPriorityAccount.LevelExpiration, lowPriorityAccount.AccountStatus, lowPriorityAccount.Offers, highPriorityAccountKeys)
             {
                 Tag = lowPriorityAccount.Tag,
+                Signature = lowPriorityAccount.Signature,
             };
             return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys);
         }
@@ -342,6 +349,29 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 return FolderOperationMode.SingleFolder;
             }
+        }
+
+        public static async Task<UserPublicKey> GetAsync(this KnownPublicKeys knownPublicKeys, EmailAddress email)
+        {
+            UserPublicKey key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
+            if (key != null)
+            {
+                return key;
+            }
+
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return null;
+            }
+
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity));
+            UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
+
+            if (userPublicKey != null)
+            {
+                knownPublicKeys.AddOrReplace(userPublicKey);
+            }
+            return userPublicKey;
         }
     }
 }

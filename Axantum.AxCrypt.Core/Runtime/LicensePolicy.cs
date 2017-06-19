@@ -32,10 +32,9 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -118,12 +117,12 @@ namespace Axantum.AxCrypt.Core.Runtime
         }
 
         /// <summary>
-        /// Gets the time left offline at this subscription level until a revalidation is required.
+        /// Gets the time left at this subscription level
         /// </summary>
         /// <value>
         /// The time left offline.
         /// </value>
-        private async Task<TimeSpan> TimeLeftOfflineAsync(LogOnIdentity identity)
+        private async Task<TimeSpan> TimeUntilSubscriptionExpiration(LogOnIdentity identity)
         {
             DateTime utcNow = New<INow>().Utc;
             if (utcNow >= await SubscriptionExpirationAsync(identity).Free())
@@ -132,16 +131,12 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
 
             TimeSpan untilExpiration = await SubscriptionExpirationAsync(identity).Free() - utcNow;
-            if (untilExpiration > TimeSpan.FromDays(7))
-            {
-                return TimeSpan.FromDays(7);
-            }
             return untilExpiration;
         }
 
         private async Task<LicenseCapabilities> CapabilitiesAsync(LogOnIdentity identity)
         {
-            return await SubscriptionLevelAsync(identity) == SubscriptionLevel.Premium && await TimeLeftOfflineAsync(identity).Free() > TimeSpan.Zero ? PremiumCapabilities : FreeCapabilities;
+            return await SubscriptionLevelAsync(identity) == SubscriptionLevel.Premium && await TimeUntilSubscriptionExpiration(identity).Free() > TimeSpan.Zero ? PremiumCapabilities : FreeCapabilities;
         }
 
         private async Task<SubscriptionLevel> SubscriptionLevelAsync(LogOnIdentity identity)
@@ -150,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 return SubscriptionLevel.Unknown;
             }
-            return (await UserAccountAsync(identity).Free()).SubscriptionLevel;
+            return (await (await UserAccountAsync(identity).Free()).ValidatedLevelAsync().Free());
         }
 
         private async Task<DateTime> SubscriptionExpirationAsync(LogOnIdentity identity)

@@ -102,38 +102,6 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         /// <summary>
-        /// Determines whether the Identity is valid for sign in.
-        /// </summary>
-        /// <returns>
-        /// true if a user can be considered to be signed in using the Identity as credential.
-        /// </returns>
-        public async Task<bool> IsIdentityValidAsync()
-        {
-            try
-            {
-                await _apiClient.MyAccountAsync().Free();
-                return true;
-            }
-            catch (UnauthorizedApiException uaex)
-            {
-                New<IReport>().Exception(uaex);
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Gets the subscription level.
-        /// </summary>
-        /// <value>
-        /// The level.
-        /// </value>
-        public async Task<SubscriptionLevel> LevelAsync()
-        {
-            UserAccount userAccount = await _apiClient.MyAccountAsync().Free();
-            return userAccount.SubscriptionLevel;
-        }
-
-        /// <summary>
         /// Gets the status of the account.
         /// </summary>
         /// <value>
@@ -207,9 +175,9 @@ namespace Axantum.AxCrypt.Core.Service
                 UserAccount userAccount = await _apiClient.MyAccountAsync().Free();
                 return userAccount;
             }
-            catch (UnauthorizedApiException uaex)
+            catch (UnauthorizedApiException)
             {
-                throw new PasswordException("Credentials are not valid for server access.", uaex);
+                return new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, Offers.None, new AccountKey[0]);
             }
         }
 

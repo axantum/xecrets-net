@@ -112,11 +112,14 @@
     <Compile Include="Runtime\CryptoException.cs" />
     <Compile Include="Runtime\FileOperationException.cs" />
     <Compile Include="Runtime\FreeForcedLicensePolicy.cs" />
+    <Compile Include="Runtime\ILicenseAuthority.cs" />
     <Compile Include="Runtime\IPlatform.cs" />
     <Compile Include="Runtime\IVersion.cs" />
+    <Compile Include="Runtime\PublicLicenseAuthority.cs" />
     <Compile Include="Runtime\LicenseCapabilities.cs" />
     <Compile Include="Runtime\LicenseCapability.cs" />
     <Compile Include="Runtime\LicensePolicy.cs" />
+    <Compile Include="Runtime\LicenseValidation.cs" />
     <Compile Include="Runtime\PasswordException.cs" />
     <Compile Include="Runtime\ApplicationManager.cs" />
     <Compile Include="Runtime\PremiumForcedLicensePolicy.cs" />
@@ -172,6 +175,7 @@
     <Compile Include="Secrets\Secret.cs" />
     <Compile Include="Secrets\SecretCollection.cs" />
     <Compile Include="Secrets\TransientProtectedData.cs" />
+    <Compile Include="Service\AccountServiceExtensions.cs" />
     <Compile Include="Service\ApiAccountService.cs" />
     <Compile Include="Service\CachingAccountService.cs" />
     <Compile Include="Service\DeviceAccountService.cs" />
@@ -205,6 +209,8 @@
     <Compile Include="UI\PasswordStrengthCalculator.cs" />
     <Compile Include="UI\PasswordStrengthEvaluator.cs" />
     <Compile Include="UI\PopupButtons.cs" />
+    <Compile Include="UI\PremiumManagerWithAutoTrial.cs" />
+    <Compile Include="UI\PremiumManagerWithoutAutoTrial.cs" />
     <Compile Include="UI\SettingsStore.cs" />
     <Compile Include="UI\PremiumManager.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />

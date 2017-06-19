@@ -56,6 +56,12 @@ namespace Axantum.AxCrypt.Core.Session
             return await _service.IsIdentityValidAsync().Free();
         }
 
+        public AccountStorage Refresh()
+        {
+            _service.Refresh();
+            return this;
+        }
+
         public async Task ImportAsync(UserKeyPair keyPair)
         {
             if (keyPair == null)

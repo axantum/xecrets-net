@@ -65,16 +65,6 @@ namespace Axantum.AxCrypt.Core.Service
             get; private set;
         }
 
-        public Task<bool> IsIdentityValidAsync()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<SubscriptionLevel> LevelAsync()
-        {
-            return Task.FromResult(SubscriptionLevel.Unknown);
-        }
-
         public Task<AccountStatus> StatusAsync(EmailAddress email)
         {
             return Task.FromResult(AccountStatus.Unknown);
