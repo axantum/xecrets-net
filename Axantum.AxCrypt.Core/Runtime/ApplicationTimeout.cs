@@ -5,23 +5,49 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    public class ApplicationTimeout
+    public class ApplicationTimeout : IDisposable
     {
-        private DelayedAction _action;
+        private DelayedAction _signOutDelayedAction;
 
-        public void Timeout()
+        public ApplicationTimeout(TimeSpan timeOut)
         {
-            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.TimeOut) && Resolve.UserSettings.TimeOutDurationInSecond != 0)
+            if (timeOut == TimeSpan.Zero)
             {
-                _action = new DelayedAction(New<IDelayTimer>(), TimeSpan.FromMilliseconds(Resolve.UserSettings.TimeOutDurationInSecond * 1000));
-                _action.Action += LogOffAction;
-                _action.StartIdleTimer();
+                return;
+            }
+
+            _signOutDelayedAction = new DelayedAction(New<IDelayTimer>(), timeOut);
+            _signOutDelayedAction.Action += SignOutAction;
+            _signOutDelayedAction.StartIdleTimer();
+        }
+
+        public void ResetIdleSignOutTimer()
+        {
+            _signOutDelayedAction?.StartIdleTimer();
+        }
+
+        private async void SignOutAction(object sender, EventArgs e)
+        {
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.TimeOut))
+            {
+                await New<KnownIdentities>().SetDefaultEncryptionIdentity(LogOnIdentity.Empty);
             }
         }
 
-        private async void LogOffAction(object sender, EventArgs e)
+        protected virtual void Dispose(bool disposing)
         {
-            await New<KnownIdentities>().SetDefaultEncryptionIdentity(LogOnIdentity.Empty);
+            if (!disposing)
+            {
+                return;
+            }
+            _signOutDelayedAction?.Dispose();
+            _signOutDelayedAction = null;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

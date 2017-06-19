@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     await command(notification);
                 }
-                New<ApplicationTimeout>().Timeout();
+                New<ApplicationTimeout>().ResetIdleSignOutTimer();
             }
             catch (Exception ex)
             {
