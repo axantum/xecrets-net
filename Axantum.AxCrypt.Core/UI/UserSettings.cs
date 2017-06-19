@@ -290,10 +290,10 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(DontShowAgain), (int)value); }
         }
 
-        public int TimeOut
+        public int TimeOutDurationInSecond
         {
-            get { return Load(nameof(TimeOut), 0); }
-            set { Store(nameof(TimeOut), value); }
+            get { return Load(nameof(TimeOutDurationInSecond), 0); }
+            set { Store(nameof(TimeOutDurationInSecond), value); }
         }
 
         public T Load<T>(string key)

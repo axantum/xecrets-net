@@ -1150,7 +1150,7 @@ namespace Axantum.AxCrypt
 
                 e.Passphrase = new Passphrase(viewModel.Passphrase);
                 e.UserEmail = viewModel.UserEmail;
-                New<ApplicationTimeout>().Timeout(600);
+                New<ApplicationTimeout>().Timeout();
             }
             return;
         }
@@ -2193,5 +2193,27 @@ namespace Axantum.AxCrypt
                 }
             }
         }
+        private void OptionsTimeOutToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            ToolStripMenuItem timeOutMenu = (ToolStripMenuItem)sender;
+            int selectedTimeOutDuration = Resolve.UserSettings.TimeOutDurationInSecond;
+            foreach (ToolStripItem item in timeOutMenu.DropDownItems)
+            {
+                int? timeOutDuration = item.Tag as int?;
+                ((ToolStripMenuItem)item).Checked = timeOutDuration == selectedTimeOutDuration;
+            }
+        }
+        private async void TimeOutToolStripMenuItem_ClickAsync(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+            await SetTimeOutAsync((int)menuItem.Tag);
+        }
+
+        private async Task SetTimeOutAsync(int timeOutDurationInSecond)
+        {
+            Resolve.UserSettings.TimeOutDurationInSecond = timeOutDurationInSecond;
+            New<ApplicationTimeout>().Timeout();
+        }
+
     }
 }

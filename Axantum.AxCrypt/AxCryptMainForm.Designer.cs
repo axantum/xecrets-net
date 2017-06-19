@@ -1105,37 +1105,48 @@ namespace Axantum.AxCrypt
             this._optionsTimeOutToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsTimeOutToolStripMenuItem.Text = "[&Time Out]";
             this._optionsTimeOutToolStripMenuItem.DropDown.Opening += new CancelEventHandler(this.OptionsTimeOutToolStripMenuItem_Opening);
+            this._optionsTimeOutToolStripMenuItem.DropDownOpening += new System.EventHandler(this.OptionsTimeOutToolStripMenuItem_DropDownOpening);
 
             // 
             // _disableTimeOutToolStripMenuItem
             // 
             this._disableTimeOutToolStripMenuItem.Name = "_disableTimeOutToolStripMenuItem";
             this._disableTimeOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._disableTimeOutToolStripMenuItem.Tag = 0;
             this._disableTimeOutToolStripMenuItem.Text = "[Disable]";
+            this._disableTimeOutToolStripMenuItem.Click += new System.EventHandler(this.TimeOutToolStripMenuItem_ClickAsync);
             // 
             // _fiveMinuteTimeOutToolStripMenuItem
             // 
             this._fiveMinuteTimeOutToolStripMenuItem.Name = "_fiveMinuteTimeOutToolStripMenuItem";
             this._fiveMinuteTimeOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._fiveMinuteTimeOutToolStripMenuItem.Tag = 300;
             this._fiveMinuteTimeOutToolStripMenuItem.Text = "[5 Minutes]";
+            this._fiveMinuteTimeOutToolStripMenuItem.Click += new System.EventHandler(this.TimeOutToolStripMenuItem_ClickAsync);
             // 
             // _tenMinuteTimeOutToolStripMenuItem
             // 
             this._tenMinuteTimeOutToolStripMenuItem.Name = "_tenMinuteTimeOutToolStripMenuItem";
             this._tenMinuteTimeOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._tenMinuteTimeOutToolStripMenuItem.Tag = 600;
             this._tenMinuteTimeOutToolStripMenuItem.Text = "[10 Minutes]";
+            this._tenMinuteTimeOutToolStripMenuItem.Click += new System.EventHandler(this.TimeOutToolStripMenuItem_ClickAsync);
             // 
             // _twentyMinuteTimeOutToolStripMenuItem
             // 
             this._twentyMinuteTimeOutToolStripMenuItem.Name = "_twentyMinuteTimeOutToolStripMenuItem";
             this._twentyMinuteTimeOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._twentyMinuteTimeOutToolStripMenuItem.Tag = 1200;
             this._twentyMinuteTimeOutToolStripMenuItem.Text = "[20 Minutes]";
+            this._twentyMinuteTimeOutToolStripMenuItem.Click += new System.EventHandler(this.TimeOutToolStripMenuItem_ClickAsync);
             // 
             // _thirtyMinuteTimeOutToolStripMenuItem
             // 
             this._thirtyMinuteTimeOutToolStripMenuItem.Name = "_thirtyMinuteTimeOutToolStripMenuItem";
             this._thirtyMinuteTimeOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._thirtyMinuteTimeOutToolStripMenuItem.Tag = 1800;
             this._thirtyMinuteTimeOutToolStripMenuItem.Text = "[30 Minutes]";
+            this._thirtyMinuteTimeOutToolStripMenuItem.Click += new System.EventHandler(this.TimeOutToolStripMenuItem_ClickAsync);
             // 
             // AxCryptMainForm
             // 

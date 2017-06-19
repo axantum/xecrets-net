@@ -98,8 +98,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public LicenseCapabilities License { get { return GetProperty<LicenseCapabilities>(nameof(License)); } set { SetProperty(nameof(License), value); } }
 
-        public int TimeOut { get { return GetProperty<int>(nameof(TimeOut)); } set { SetProperty(nameof(TimeOut), value); } }
-
         public IAsyncAction RemoveRecentFiles { get; private set; }
 
         public IAsyncAction AddWatchedFolders { get; private set; }
@@ -144,7 +142,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             VersionUpdateStatus = DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, _userSettings.LastUpdateCheckUtc);
             License = New<LicensePolicy>().Capabilities;
             LegacyConversionMode = _userSettings.LegacyConversionMode;
-            TimeOut = _userSettings.TimeOut;
 
             AddWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersActionAsync(folders), (folders) => Task.FromResult(LoggedOn));
             RemoveRecentFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));

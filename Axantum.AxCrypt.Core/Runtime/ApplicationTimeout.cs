@@ -9,11 +9,14 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         private DelayedAction _action;
 
-        public void Timeout(int timeOutInSecond)
+        public void Timeout()
         {
-            _action = new DelayedAction(New<IDelayTimer>(), TimeSpan.FromMilliseconds(timeOutInSecond * 1000));
-            _action.Action += LogOffAction;
-            _action.StartIdleTimer();
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.TimeOut) && Resolve.UserSettings.TimeOutDurationInSecond != 0)
+            {
+                _action = new DelayedAction(New<IDelayTimer>(), TimeSpan.FromMilliseconds(Resolve.UserSettings.TimeOutDurationInSecond * 1000));
+                _action.Action += LogOffAction;
+                _action.StartIdleTimer();
+            }
         }
 
         private async void LogOffAction(object sender, EventArgs e)
