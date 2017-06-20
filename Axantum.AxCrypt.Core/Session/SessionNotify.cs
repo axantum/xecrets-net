@@ -29,6 +29,8 @@ using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Axantum.AxCrypt.Core.Runtime;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -70,6 +72,10 @@ namespace Axantum.AxCrypt.Core.Session
                 foreach (Func<SessionNotification, Task> command in _commands)
                 {
                     await command(notification);
+                }
+                if (notification.NotificationType != SessionNotificationType.SessionChange)
+                {
+                    New<ApplicationTimeout>().ResetIdleSignOutTimer();
                 }
             }
             catch (Exception ex)

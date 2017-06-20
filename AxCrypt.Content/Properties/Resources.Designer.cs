@@ -1697,6 +1697,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Disable.
+        /// </summary>
+        public static string DisableIdleSignOutToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DisableIdleSignOutToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this again..
         /// </summary>
         public static string DontShowAgainCheckBoxText {
@@ -2289,6 +2298,24 @@ namespace AxCrypt.Content.Properties {
         public static string HelpViewHelpMenuItemText {
             get {
                 return ResourceManager.GetString("HelpViewHelpMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!{0} Minutes.
+        /// </summary>
+        public static string IdleMinutesSignOutToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("IdleMinutesSignOutToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Idle Sign Out.
+        /// </summary>
+        public static string IdleSignOutToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("IdleSignOutToolStripMenuItemText", resourceCulture);
             }
         }
         

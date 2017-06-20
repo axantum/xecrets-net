@@ -24,5 +24,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         IncludeSubfolders,
         EncryptNewFiles,
         EditExistingFiles,
+        TimeOut,
     }
 }

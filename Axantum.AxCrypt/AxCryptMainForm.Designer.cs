@@ -1,4 +1,7 @@
-﻿namespace Axantum.AxCrypt
+﻿using System;
+using System.ComponentModel;
+
+namespace Axantum.AxCrypt
 {
     partial class AxCryptMainForm
     {
@@ -124,6 +127,12 @@
             this._notifySignInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifyExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._idleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._disableIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._fiveMinuteIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._tenMinuteIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._twentyMinuteIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._thirtyMinuteIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -503,6 +512,7 @@
             this._optionsAutoConvert1xFilesToolStripMenuItem,
             this._alwaysOfflineToolStripMenuItem,
             this._optionsIncludeSubfoldersToolStripMenuItem,
+            this._idleSignOutToolStripMenuItem,
             this._optionsDebugToolStripMenuItem,
             this._optionsClearAllSettingsAndExitToolStripMenuItem});
             this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
@@ -1084,6 +1094,61 @@
             this._notifyExitToolStripMenuItem.Text = "[&Exit]";
             this._notifyExitToolStripMenuItem.Click += new System.EventHandler(this._exitToolStripMenuItem_Click);
             // 
+            // _idleSignOutToolStripMenuItem
+            // 
+            this._idleSignOutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._disableIdleSignOutToolStripMenuItem,
+            this._fiveMinuteIdleSignOutToolStripMenuItem,
+            this._tenMinuteIdleSignOutToolStripMenuItem,
+            this._twentyMinuteIdleSignOutToolStripMenuItem,
+            this._thirtyMinuteIdleSignOutToolStripMenuItem});
+            this._idleSignOutToolStripMenuItem.Name = "_idleSignOutToolStripMenuItem";
+            this._idleSignOutToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._idleSignOutToolStripMenuItem.Text = "[&Idle Sign Out]";
+            this._idleSignOutToolStripMenuItem.DropDown.Opening += new CancelEventHandler(this.IdleSignOutToolStripMenuItem_Opening);
+            this._idleSignOutToolStripMenuItem.DropDownOpening += new System.EventHandler(this.IdleSignOutToolStripMenuItem_DropDownOpening);
+
+            // 
+            // _disableIdleSignOutToolStripMenuItem
+            // 
+            this._disableIdleSignOutToolStripMenuItem.Name = "_disableIdleSignOutToolStripMenuItem";
+            this._disableIdleSignOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._disableIdleSignOutToolStripMenuItem.Tag = 0;
+            this._disableIdleSignOutToolStripMenuItem.Text = "[Disable]";
+            this._disableIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
+            // 
+            // _fiveMinuteIdleSignOutToolStripMenuItem
+            // 
+            this._fiveMinuteIdleSignOutToolStripMenuItem.Name = "_fiveMinuteIdleSignOutToolStripMenuItem";
+            this._fiveMinuteIdleSignOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._fiveMinuteIdleSignOutToolStripMenuItem.Tag = 300;
+            this._fiveMinuteIdleSignOutToolStripMenuItem.Text = "[5 Minutes]";
+            this._fiveMinuteIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
+            // 
+            // _tenMinuteIdleSignOutToolStripMenuItem
+            // 
+            this._tenMinuteIdleSignOutToolStripMenuItem.Name = "_tenMinuteIdleSignOutToolStripMenuItem";
+            this._tenMinuteIdleSignOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._tenMinuteIdleSignOutToolStripMenuItem.Tag = 600;
+            this._tenMinuteIdleSignOutToolStripMenuItem.Text = "[10 Minutes]";
+            this._tenMinuteIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
+            // 
+            // _twentyMinuteIdleSignOutToolStripMenuItem
+            // 
+            this._twentyMinuteIdleSignOutToolStripMenuItem.Name = "_twentyMinuteIdleSignOutToolStripMenuItem";
+            this._twentyMinuteIdleSignOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._twentyMinuteIdleSignOutToolStripMenuItem.Tag = 1200;
+            this._twentyMinuteIdleSignOutToolStripMenuItem.Text = "[20 Minutes]";
+            this._twentyMinuteIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
+            // 
+            // _thirtyMinuteIdleSignOutToolStripMenuItem
+            // 
+            this._thirtyMinuteIdleSignOutToolStripMenuItem.Name = "_thirtyMinuteIdleSignOutToolStripMenuItem";
+            this._thirtyMinuteIdleSignOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._thirtyMinuteIdleSignOutToolStripMenuItem.Tag = 1800;
+            this._thirtyMinuteIdleSignOutToolStripMenuItem.Text = "[30 Minutes]";
+            this._thirtyMinuteIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
+            // 
             // AxCryptMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1233,6 +1298,12 @@
         private System.Windows.Forms.ToolStripMenuItem _recentFilesShowInFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _turkishLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _optionsIncludeSubfoldersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _idleSignOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _disableIdleSignOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _fiveMinuteIdleSignOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _tenMinuteIdleSignOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _twentyMinuteIdleSignOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _thirtyMinuteIdleSignOutToolStripMenuItem;
     }
 }
 

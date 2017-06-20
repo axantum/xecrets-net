@@ -71,6 +71,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             LicenseCapability.Premium,
             LicenseCapability.EncryptNewFiles,
             LicenseCapability.EditExistingFiles,
+            LicenseCapability.TimeOut, 
         });
 
         public LicensePolicy() : this(true)

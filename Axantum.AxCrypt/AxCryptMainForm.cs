@@ -48,6 +48,7 @@ using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -149,6 +150,7 @@ namespace Axantum.AxCrypt
             ConfigureUiOptions();
             SetupPathFilters();
             IntializeControls();
+            InitializeMouseDownFilter();
             RestoreUserPreferences();
             BindToViewModels();
             BindToFileOperationViewModel();
@@ -157,6 +159,8 @@ namespace Axantum.AxCrypt
             await SendStartSessionNotification();
             StartupProcessMonitor();
             ExecuteCommandLine();
+
+            
         }
 
         private void EnsureFileAssociation()
@@ -296,6 +300,12 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Text = "&" + Texts.WatchedFoldersOpenExplorerHereMenuItemText;
             _watchedFoldersRemoveMenuItem.Text = "&" + Texts.WatchedFoldersRemoveMenuItemText;
             _watchedFoldersTabPage.Text = Texts.WatchedFoldersTabPageText;
+            _idleSignOutToolStripMenuItem.Text = Texts.IdleSignOutToolStripMenuItemText;
+            _disableIdleSignOutToolStripMenuItem.Text = Texts.DisableIdleSignOutToolStripMenuItemText;
+            _fiveMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(5);
+            _tenMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(10);
+            _twentyMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(20);
+            _thirtyMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(30);
         }
 
         private static void SetCulture()
@@ -429,6 +439,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IInternetState>(() => new InternetState());
             TypeMap.Register.Singleton<InstallationVerifier>(() => new InstallationVerifier());
             TypeMap.Register.Singleton<IKnownFolderImageProvider>(() => new KnownFolderImageProvider());
+            TypeMap.Register.Singleton<ApplicationTimeout>(() => new ApplicationTimeout(New<UserSettings>().IdleSignOutTime));
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
@@ -526,6 +537,7 @@ namespace Axantum.AxCrypt
             await ConfigureSecretsMenusAsync(license);
             await ConfigureAnonymousRenameAsync(license);
             await ConfigureIncludeSubfoldersMenuAsync(license);
+            await ConfigureTimeOutMenuAsync(license);
         }
 
         private async Task ConfigureKeyShareMenusAsync(LicenseCapabilities license)
@@ -616,6 +628,28 @@ namespace Axantum.AxCrypt
             }
         }
 
+        private async Task ConfigureTimeOutMenuAsync(LicenseCapabilities license)
+        {
+            if (license.Has(LicenseCapability.TimeOut))
+            {
+                _idleSignOutToolStripMenuItem.Image = null;
+                _idleSignOutToolStripMenuItem.ToolTipText = String.Empty;
+            }
+            else
+            {
+                _idleSignOutToolStripMenuItem.Image = Resources.premium_32px;
+                _idleSignOutToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
+            }
+        }
+
+        private void IdleSignOutToolStripMenuItem_Opening(object sender, CancelEventArgs e)
+        {
+            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.TimeOut))
+            {
+                e.Cancel = true;
+            }
+        }
+
         private bool _balloonTipShown = false;
 
         private void InitializeNotifyIcon()
@@ -699,8 +733,9 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => await _knownFoldersViewModel.UpdateState.ExecuteAsync(null));
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await ConfigureMenusAccordingToPolicyAsync(license); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
-            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicenseCapabilities license) => { _recentFilesListView.UpdateRecentFiles(_mainViewModel.RecentFiles); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { if (loggedOn) New<ApplicationTimeout>().ResetIdleSignOutTimer(); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetSignInSignOutStatus(loggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RandomRenameEnabled), (bool enabled) => { _renameToolStripMenuItem.Enabled = enabled; });
@@ -720,6 +755,7 @@ namespace Axantum.AxCrypt
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await new ApplicationManager().StopAndExit(); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
+            _idleSignOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.TimeOut, async (ss, ee) => { }, sender, e); };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
@@ -1668,7 +1704,8 @@ namespace Axantum.AxCrypt
         {
             if (_mainViewModel.License.Has(requiredCapability))
             {
-                await realHandler(sender, e);
+                if (realHandler != null)
+                    await realHandler(sender, e);
                 return;
             }
 
@@ -2166,6 +2203,42 @@ namespace Axantum.AxCrypt
                     return;
                 }
             }
+        }
+
+        private void IdleSignOutToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            ToolStripMenuItem timeOutMenu = (ToolStripMenuItem)sender;
+            TimeSpan selectedTimeOutDuration = New<UserSettings>().IdleSignOutTime;
+            foreach (ToolStripItem item in timeOutMenu.DropDownItems)
+            {
+                int? timeOutDuration = item.Tag as int?;
+                ((ToolStripMenuItem)item).Checked = timeOutDuration == selectedTimeOutDuration.TotalSeconds;
+            }
+        }
+
+        private async void IdleSignOutToolStripMenuItem_ClickAsync(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+            await SetTimeOutAsync((int)menuItem.Tag);
+        }
+
+        private async Task SetTimeOutAsync(int timeOutDurationInSecond)
+        {
+            New<UserSettings>().IdleSignOutTime = TimeSpan.FromSeconds(timeOutDurationInSecond);
+            TypeMap.Register.Singleton<ApplicationTimeout>(() => new ApplicationTimeout(New<UserSettings>().IdleSignOutTime));
+            New<ApplicationTimeout>().ResetIdleSignOutTimer();
+        }
+
+        private void InitializeMouseDownFilter()
+        {
+            MouseDownFilter mouseDownFilter = new MouseDownFilter(this);
+            mouseDownFilter.FormClicked += AxCryptMainForm_ClickAsync;
+            Application.AddMessageFilter(mouseDownFilter);
+        }
+
+        private async void AxCryptMainForm_ClickAsync(object sender, EventArgs e)
+        {
+            New<ApplicationTimeout>().ResetIdleSignOutTimer();
         }
     }
 }

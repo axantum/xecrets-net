@@ -709,6 +709,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Secured Folders</value>
   </data>
+  <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>!!Disable</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Don't show this again.</value>
   </data>
@@ -925,6 +928,12 @@ If you for any reason do not know or remember the password, you must perform a p
   </data>
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>View Help</value>
+  </data>
+  <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>!!{0} Minutes</value>
+  </data>
+  <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>!!Idle Sign Out</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Import AxCrypt ID with sharing and access keys.</value>
