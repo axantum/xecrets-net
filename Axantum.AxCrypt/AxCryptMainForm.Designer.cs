@@ -130,9 +130,9 @@ namespace Axantum.AxCrypt
             this._idleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._disableIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._fiveMinuteIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._tenMinuteIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._twentyMinuteIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._fifteenMinuteIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._thirtyMinuteIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._sixtyMinuteIdleSignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -1099,9 +1099,9 @@ namespace Axantum.AxCrypt
             this._idleSignOutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._disableIdleSignOutToolStripMenuItem,
             this._fiveMinuteIdleSignOutToolStripMenuItem,
-            this._tenMinuteIdleSignOutToolStripMenuItem,
-            this._twentyMinuteIdleSignOutToolStripMenuItem,
-            this._thirtyMinuteIdleSignOutToolStripMenuItem});
+            this._fifteenMinuteIdleSignOutToolStripMenuItem,
+            this._thirtyMinuteIdleSignOutToolStripMenuItem,
+            this._sixtyMinuteIdleSignOutToolStripMenuItem});
             this._idleSignOutToolStripMenuItem.Name = "_idleSignOutToolStripMenuItem";
             this._idleSignOutToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._idleSignOutToolStripMenuItem.Text = "[&Idle Sign Out]";
@@ -1125,21 +1125,13 @@ namespace Axantum.AxCrypt
             this._fiveMinuteIdleSignOutToolStripMenuItem.Text = "[5 Minutes]";
             this._fiveMinuteIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
             // 
-            // _tenMinuteIdleSignOutToolStripMenuItem
+            // _fifteenMinuteIdleSignOutToolStripMenuItem
             // 
-            this._tenMinuteIdleSignOutToolStripMenuItem.Name = "_tenMinuteIdleSignOutToolStripMenuItem";
-            this._tenMinuteIdleSignOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this._tenMinuteIdleSignOutToolStripMenuItem.Tag = 600;
-            this._tenMinuteIdleSignOutToolStripMenuItem.Text = "[10 Minutes]";
-            this._tenMinuteIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
-            // 
-            // _twentyMinuteIdleSignOutToolStripMenuItem
-            // 
-            this._twentyMinuteIdleSignOutToolStripMenuItem.Name = "_twentyMinuteIdleSignOutToolStripMenuItem";
-            this._twentyMinuteIdleSignOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this._twentyMinuteIdleSignOutToolStripMenuItem.Tag = 1200;
-            this._twentyMinuteIdleSignOutToolStripMenuItem.Text = "[20 Minutes]";
-            this._twentyMinuteIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
+            this._fifteenMinuteIdleSignOutToolStripMenuItem.Name = "_fifteenMinuteIdleSignOutToolStripMenuItem";
+            this._fifteenMinuteIdleSignOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._fifteenMinuteIdleSignOutToolStripMenuItem.Tag = 900;
+            this._fifteenMinuteIdleSignOutToolStripMenuItem.Text = "[15 Minutes]";
+            this._fifteenMinuteIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
             // 
             // _thirtyMinuteIdleSignOutToolStripMenuItem
             // 
@@ -1148,6 +1140,14 @@ namespace Axantum.AxCrypt
             this._thirtyMinuteIdleSignOutToolStripMenuItem.Tag = 1800;
             this._thirtyMinuteIdleSignOutToolStripMenuItem.Text = "[30 Minutes]";
             this._thirtyMinuteIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
+            // 
+            // _sixtyMinuteIdleSignOutToolStripMenuItem
+            // 
+            this._sixtyMinuteIdleSignOutToolStripMenuItem.Name = "_sixtyMinuteIdleSignOutToolStripMenuItem";
+            this._sixtyMinuteIdleSignOutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._sixtyMinuteIdleSignOutToolStripMenuItem.Tag = 3600;
+            this._sixtyMinuteIdleSignOutToolStripMenuItem.Text = "[60 Minutes]";
+            this._sixtyMinuteIdleSignOutToolStripMenuItem.Click += new System.EventHandler(this.IdleSignOutToolStripMenuItem_ClickAsync);
             // 
             // AxCryptMainForm
             // 
@@ -1301,9 +1301,9 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _idleSignOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _disableIdleSignOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _fiveMinuteIdleSignOutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _tenMinuteIdleSignOutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _twentyMinuteIdleSignOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _fifteenMinuteIdleSignOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _thirtyMinuteIdleSignOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _sixtyMinuteIdleSignOutToolStripMenuItem;
     }
 }
 

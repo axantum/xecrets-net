@@ -303,9 +303,9 @@ namespace Axantum.AxCrypt
             _idleSignOutToolStripMenuItem.Text = Texts.IdleSignOutToolStripMenuItemText;
             _disableIdleSignOutToolStripMenuItem.Text = Texts.DisableIdleSignOutToolStripMenuItemText;
             _fiveMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(5);
-            _tenMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(10);
-            _twentyMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(20);
+            _fifteenMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(15);
             _thirtyMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(30);
+            _sixtyMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(60);
         }
 
         private static void SetCulture()
@@ -440,6 +440,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<InstallationVerifier>(() => new InstallationVerifier());
             TypeMap.Register.Singleton<IKnownFolderImageProvider>(() => new KnownFolderImageProvider());
             TypeMap.Register.Singleton<ApplicationTimeout>(() => new ApplicationTimeout(New<UserSettings>().IdleSignOutTime));
+            TypeMap.Register.Singleton<MouseDownFilter>(() => new MouseDownFilter(this));
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
@@ -1705,7 +1706,9 @@ namespace Axantum.AxCrypt
             if (_mainViewModel.License.Has(requiredCapability))
             {
                 if (realHandler != null)
+                {
                     await realHandler(sender, e);
+                }
                 return;
             }
 
@@ -2231,7 +2234,6 @@ namespace Axantum.AxCrypt
 
         private void InitializeMouseDownFilter()
         {
-            TypeMap.Register.Singleton<MouseDownFilter>(() => new MouseDownFilter(this));
             New<MouseDownFilter>().FormClicked += AxCryptMainForm_ClickAsync;
         }
 

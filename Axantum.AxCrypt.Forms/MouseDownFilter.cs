@@ -44,8 +44,7 @@ namespace Axantum.AxCrypt.Forms
             {
                 return;
             }
-            _form?.Dispose();
-            _form = null;
+            Application.RemoveMessageFilter(this);
         }
     }
 }
