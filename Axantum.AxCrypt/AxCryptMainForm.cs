@@ -150,6 +150,7 @@ namespace Axantum.AxCrypt
             ConfigureUiOptions();
             SetupPathFilters();
             IntializeControls();
+            InitializeMouseDownFilter();
             RestoreUserPreferences();
             BindToViewModels();
             BindToFileOperationViewModel();
@@ -158,6 +159,8 @@ namespace Axantum.AxCrypt
             await SendStartSessionNotification();
             StartupProcessMonitor();
             ExecuteCommandLine();
+
+            
         }
 
         private void EnsureFileAssociation()
@@ -2223,6 +2226,18 @@ namespace Axantum.AxCrypt
         {
             New<UserSettings>().IdleSignOutTime = TimeSpan.FromSeconds(timeOutDurationInSecond);
             TypeMap.Register.Singleton<ApplicationTimeout>(() => new ApplicationTimeout(New<UserSettings>().IdleSignOutTime));
+            New<ApplicationTimeout>().ResetIdleSignOutTimer();
+        }
+
+        private void InitializeMouseDownFilter()
+        {
+            MouseDownFilter mouseDownFilter = new MouseDownFilter(this);
+            mouseDownFilter.FormClicked += AxCryptMainForm_ClickAsync;
+            Application.AddMessageFilter(mouseDownFilter);
+        }
+
+        private async void AxCryptMainForm_ClickAsync(object sender, EventArgs e)
+        {
             New<ApplicationTimeout>().ResetIdleSignOutTimer();
         }
     }
