@@ -1697,6 +1697,10 @@ We classify the password in 4 categories of increasing strength, were we do not 
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>
   </data>
+  <data name="PolishLanguageSelection" xml:space="preserve">
+    <value>польски (Polish)</value>
+    <comment>The Polish name for polish in a language selection menu.</comment>
+  </data>
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
     <value>Português (Brasil)</value>
     <comment>The name of the Portuguese Brazil language. Do not translate.</comment>
@@ -2005,7 +2009,7 @@ Subject: AxCrypt Report Snapshot
     <value>Click to resend the verification code to your e-mail.</value>
   </data>
   <data name="RussianLanguageSelection" xml:space="preserve">
-    <value>русский</value>
+    <value>русский (Russian)</value>
     <comment>The name of the Russian Language in Russian. It should never be translated.</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">

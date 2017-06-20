@@ -159,8 +159,6 @@ namespace Axantum.AxCrypt
             await SendStartSessionNotification();
             StartupProcessMonitor();
             ExecuteCommandLine();
-
-            
         }
 
         private void EnsureFileAssociation()
@@ -282,6 +280,7 @@ namespace Axantum.AxCrypt
             _removeRecentFileToolStripMenuItem.Text = "&" + Texts.RemoveRecentFileToolStripMenuItemText;
             _renameToolStripMenuItem.Text = "&" + Texts.AnonymousRenameMenuText;
             _renameToolStripMenuItem.ToolTipText = Texts.AnonymousRenameToolTip;
+            _russianLanguageToolStripMenuItem.Text = "&" + Texts.RussianLanguageSelection;
             _secretsToolStripButton.ToolTipText = Texts.SecretsButtonToolTipText;
             _secureDeleteToolStripMenuItem.Text = "&" + Texts.SecureDeleteToolStripMenuItemText;
             _shareKeysToolStripMenuItem.Text = "&" + Texts.ShareKeysToolStripMenuItemText;

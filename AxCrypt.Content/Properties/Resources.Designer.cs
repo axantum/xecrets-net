@@ -62,15 +62,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Två Öâr är Brà..
-        /// </summary>
-        public static string AaaUtfDummy {
-            get {
-                return ResourceManager.GetString("AaaUtfDummy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Status &apos;Aborted&apos; ({0})..
         /// </summary>
         public static string AbortedFileStatus {
@@ -4254,6 +4245,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to польски (Polish).
+        /// </summary>
+        public static string PolishLanguageSelection {
+            get {
+                return ResourceManager.GetString("PolishLanguageSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Português (Brasil).
         /// </summary>
         public static string PortugueseBrazilLanguageSelection {
@@ -5065,7 +5065,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to русский.
+        ///   Looks up a localized string similar to русский (Russian).
         /// </summary>
         public static string RussianLanguageSelection {
             get {
