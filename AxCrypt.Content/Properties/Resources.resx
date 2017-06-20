@@ -297,7 +297,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="AxCryptBetaWarning" xml:space="preserve">
     <value>Warning! This is untested beta software. This means that it may be missing features and be unstable. Texts may be missing and user interface might be incomplete.
 
-Use with care and ensure you have up-to-date backups of all your data. Please report any issues to https://bitbucket.org/axantum/axcrypt-net/issues or  support@axcrypt.net .
+Use with care and ensure you have up-to-date backups of all your data. Please report any issues to https://bitbucket.org/axcryptab/axcrypt-xwt/issues or  support@axcrypt.net .
 
 You have been warned, now enjoy!</value>
     <comment>A text that is shown to users starting a beta version of our software.</comment>
@@ -452,7 +452,7 @@ You have been warned, now enjoy!</value>
     <value>AxCrypt ID Email Change Request</value>
   </data>
   <data name="ChangeEmailMarkError" xml:space="preserve">
-    <value>Email changed failed due to an internal error, please try again later or contact our support.</value>
+    <value>Email change failed due to an internal error, please try again later or contact our support.</value>
   </data>
   <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
     <value>The new e-mail address must be different from the old!</value>

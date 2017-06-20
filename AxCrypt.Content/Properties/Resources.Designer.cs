@@ -524,7 +524,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Warning! This is untested beta software. This means that it may be missing features and be unstable. Texts may be missing and user interface might be incomplete.
         ///
-        ///Use with care and ensure you have up-to-date backups of all your data. Please report any issues to https://bitbucket.org/axantum/axcrypt-net/issues or  support@axcrypt.net .
+        ///Use with care and ensure you have up-to-date backups of all your data. Please report any issues to https://bitbucket.org/axcryptab/axcrypt-xwt/issues or  support@axcrypt.net .
         ///
         ///You have been warned, now enjoy!.
         /// </summary>
@@ -958,7 +958,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email changed failed due to an internal error, please try again later or contact our support..
+        ///   Looks up a localized string similar to Email change failed due to an internal error, please try again later or contact our support..
         /// </summary>
         public static string ChangeEmailMarkError {
             get {
