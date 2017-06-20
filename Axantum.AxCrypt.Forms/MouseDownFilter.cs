@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt.Forms
 {
-    public class MouseDownFilter : IMessageFilter
+    public class MouseDownFilter : IMessageFilter, IDisposable
     {
         public event EventHandler FormClicked;
         private int WM_LBUTTONDOWN = 0x201;
         private Form _form = null;
 
-        [DllImport("user32.dll")]
-        public static extern bool IsChild(IntPtr hWndParent, IntPtr hWnd);
-
         public MouseDownFilter(Form form)
         {
             _form = form;
+            Application.AddMessageFilter(this);
         }
 
         public bool PreFilterMessage(ref Message m)
@@ -32,10 +29,23 @@ namespace Axantum.AxCrypt.Forms
 
         protected void OnFormClicked()
         {
-            if (FormClicked != null)
+            FormClicked?.Invoke(_form, EventArgs.Empty);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                FormClicked(_form, EventArgs.Empty);
+                return;
             }
+            _form?.Dispose();
+            _form = null;
         }
     }
 }

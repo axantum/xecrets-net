@@ -2231,9 +2231,8 @@ namespace Axantum.AxCrypt
 
         private void InitializeMouseDownFilter()
         {
-            MouseDownFilter mouseDownFilter = new MouseDownFilter(this);
-            mouseDownFilter.FormClicked += AxCryptMainForm_ClickAsync;
-            Application.AddMessageFilter(mouseDownFilter);
+            TypeMap.Register.Singleton<MouseDownFilter>(() => new MouseDownFilter(this));
+            New<MouseDownFilter>().FormClicked += AxCryptMainForm_ClickAsync;
         }
 
         private async void AxCryptMainForm_ClickAsync(object sender, EventArgs e)
