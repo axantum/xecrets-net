@@ -40,10 +40,11 @@ namespace Axantum.AxCrypt.Forms
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (!disposing || _form == null)
             {
                 return;
             }
+            _form = null;
             Application.RemoveMessageFilter(this);
         }
     }
