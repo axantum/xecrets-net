@@ -524,7 +524,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Warning! This is untested beta software. This means that it may be missing features and be unstable. Texts may be missing and user interface might be incomplete.
         ///
-        ///Use with care and ensure you have up-to-date backups of all your data. Please report any issues to https://bitbucket.org/axantum/axcrypt-net/issues or  support@axcrypt.net .
+        ///Use with care and ensure you have up-to-date backups of all your data. Please report any issues to https://bitbucket.org/axcryptab/axcrypt-xwt/issues or  support@axcrypt.net .
         ///
         ///You have been warned, now enjoy!.
         /// </summary>
@@ -958,7 +958,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email changed failed due to an internal error, please try again later or contact our support..
+        ///   Looks up a localized string similar to Email change failed due to an internal error, please try again later or contact our support..
         /// </summary>
         public static string ChangeEmailMarkError {
             get {
@@ -1697,6 +1697,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Disable.
+        /// </summary>
+        public static string DisableIdleSignOutToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DisableIdleSignOutToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this again..
         /// </summary>
         public static string DontShowAgainCheckBoxText {
@@ -2289,6 +2298,24 @@ namespace AxCrypt.Content.Properties {
         public static string HelpViewHelpMenuItemText {
             get {
                 return ResourceManager.GetString("HelpViewHelpMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!{0} Minutes.
+        /// </summary>
+        public static string IdleMinutesSignOutToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("IdleMinutesSignOutToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Idle Sign Out.
+        /// </summary>
+        public static string IdleSignOutToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("IdleSignOutToolStripMenuItemText", resourceCulture);
             }
         }
         

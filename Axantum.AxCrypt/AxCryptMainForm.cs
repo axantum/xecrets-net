@@ -297,6 +297,12 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Text = "&" + Texts.WatchedFoldersOpenExplorerHereMenuItemText;
             _watchedFoldersRemoveMenuItem.Text = "&" + Texts.WatchedFoldersRemoveMenuItemText;
             _watchedFoldersTabPage.Text = Texts.WatchedFoldersTabPageText;
+            _idleSignOutToolStripMenuItem.Text = Texts.IdleSignOutToolStripMenuItemText;
+            _disableIdleSignOutToolStripMenuItem.Text = Texts.DisableIdleSignOutToolStripMenuItemText;
+            _fiveMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(5);
+            _tenMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(10);
+            _twentyMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(20);
+            _thirtyMinuteIdleSignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(30);
         }
 
         private static void SetCulture()
@@ -623,17 +629,17 @@ namespace Axantum.AxCrypt
         {
             if (license.Has(LicenseCapability.TimeOut))
             {
-                _optionsTimeOutToolStripMenuItem.Image = null;
-                _optionsTimeOutToolStripMenuItem.ToolTipText = String.Empty;
+                _idleSignOutToolStripMenuItem.Image = null;
+                _idleSignOutToolStripMenuItem.ToolTipText = String.Empty;
             }
             else
             {
-                _optionsTimeOutToolStripMenuItem.Image = Resources.premium_32px;
-                _optionsTimeOutToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
+                _idleSignOutToolStripMenuItem.Image = Resources.premium_32px;
+                _idleSignOutToolStripMenuItem.ToolTipText = Texts.PremiumFeatureToolTipText;
             }
         }
 
-        private void OptionsTimeOutToolStripMenuItem_Opening(object sender, CancelEventArgs e)
+        private void IdleSignOutToolStripMenuItem_Opening(object sender, CancelEventArgs e)
         {
             if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.TimeOut))
             {
@@ -746,7 +752,7 @@ namespace Axantum.AxCrypt
             _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await new ApplicationManager().StopAndExit(); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
-            _optionsTimeOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.TimeOut, async (ss, ee) => { }, sender, e); };
+            _idleSignOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.TimeOut, async (ss, ee) => { }, sender, e); };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
@@ -2196,7 +2202,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void OptionsTimeOutToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        private void IdleSignOutToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             ToolStripMenuItem timeOutMenu = (ToolStripMenuItem)sender;
             TimeSpan selectedTimeOutDuration = New<UserSettings>().IdleSignOutTime;
@@ -2207,7 +2213,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async void TimeOutToolStripMenuItem_ClickAsync(object sender, EventArgs e)
+        private async void IdleSignOutToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
             ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
             await SetTimeOutAsync((int)menuItem.Tag);
