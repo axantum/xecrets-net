@@ -49,10 +49,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public void WaitForBackgroundToComplete()
         {
-            while (New<IProgressBackground>().Busy)
-            {
-                New<IUIThread>().Yield();
-            }
+            New<IProgressBackground>().WaitForIdle();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
@@ -75,10 +72,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
             try
             {
-                while (New<IProgressBackground>().Busy)
-                {
-                    New<IUIThread>().Yield();
-                }
+                New<IProgressBackground>().WaitForIdle();
             }
             catch
             {

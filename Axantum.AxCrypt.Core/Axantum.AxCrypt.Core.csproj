@@ -211,6 +211,8 @@
     <Compile Include="UI\PopupButtons.cs" />
     <Compile Include="UI\PremiumManagerWithAutoTrial.cs" />
     <Compile Include="UI\PremiumManagerWithoutAutoTrial.cs" />
+    <Compile Include="UI\ProgressBackground.cs" />
+    <Compile Include="UI\ProgressBackgroundEventArgs.cs" />
     <Compile Include="UI\SettingsStore.cs" />
     <Compile Include="UI\PremiumManager.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />
