@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         public SessionNotification(SessionNotificationType notificationType, IEnumerable<string> fullNames)
-            : this(notificationType, LogOnIdentity.Empty, fullNames, New<LicenseCapabilities>())
+            : this(notificationType, LogOnIdentity.Empty, fullNames, New<LicensePolicy>().Capabilities)
         {
         }
 

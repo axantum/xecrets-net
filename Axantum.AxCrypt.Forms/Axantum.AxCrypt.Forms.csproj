@@ -59,15 +59,15 @@
     </Compile>
     <Compile Include="EmbeddedResourceManager.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Implementation\ProgressBackgroundComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Implementation\DataProtection.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Implementation\DeviceLocked.cs" />
     <Compile Include="Implementation\FileFolderSelection.cs" />
     <Compile Include="Implementation\InternetState.cs" />
     <Compile Include="Implementation\Popup.cs" />
-    <Compile Include="Implementation\ProgressBackground.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Implementation\FormsTypes.cs" />
     <Compile Include="InstallationVerifier.cs" />
     <Compile Include="MessageDialog.cs">

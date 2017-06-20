@@ -38,8 +38,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         void WaitForIdle();
 
-        event EventHandler WorkStatusChanged;
-
         bool Busy { get; }
     }
 }

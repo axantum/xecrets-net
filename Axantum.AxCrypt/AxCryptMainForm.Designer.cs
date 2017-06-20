@@ -117,7 +117,7 @@
             this._rightToolStrip = new System.Windows.Forms.ToolStrip();
             this._feedbackButton = new System.Windows.Forms.ToolStripButton();
             this._softwareStatusButton = new System.Windows.Forms.ToolStripButton();
-            this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackground(this.components);
+            this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.Implementation.ProgressBackgroundComponent(this.components);
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this._notifyIconContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._notifyAdvancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1131,7 +1131,7 @@
         private System.Windows.Forms.TableLayoutPanel _progressTableLayoutPanel;
         private System.Windows.Forms.ContextMenuStrip _progressContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem _progressContextCancelToolStripMenuItem;
-        private Axantum.AxCrypt.Forms.Implementation.ProgressBackground _progressBackgroundWorker;
+        private Axantum.AxCrypt.Forms.Implementation.ProgressBackgroundComponent _progressBackgroundWorker;
         private System.Windows.Forms.ToolStripMenuItem _decryptAndRemoveFromListToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip _watchedFoldersContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersRemoveMenuItem;
