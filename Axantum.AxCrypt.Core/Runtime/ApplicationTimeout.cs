@@ -11,7 +11,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public ApplicationTimeout(TimeSpan timeOut)
         {
-            if (timeOut == TimeSpan.Zero)
+            if (timeOut == TimeSpan.Zero || !New<LicensePolicy>().Capabilities.Has(LicenseCapability.TimeOut))
             {
                 return;
             }
