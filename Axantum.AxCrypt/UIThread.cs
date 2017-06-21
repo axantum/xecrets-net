@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -60,41 +59,29 @@ namespace Axantum.AxCrypt
 
         public Task SendToAsync(Func<Task> action)
         {
-            return DoOnUIThreadInternal(action, _context.Send);
+            return DoOnUIThreadInternal(action, _context.Send, new TaskCompletionSource<object>());
         }
 
-        public void PostTo(Action action)
+        public async void PostTo(Action action)
         {
             DoOnUIThreadInternal(action, _context.Post);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
-        private void DoOnUIThreadInternal(Action action, Action<SendOrPostCallback, object> method)
+        private async void DoOnUIThreadInternal(Action action, Action<SendOrPostCallback, object> method)
         {
-            if (IsOn)
-            {
-                action();
-                return;
-            }
-            Exception exception = null;
-            method((state) => { try { action(); } catch (Exception ex) { exception = ex; } }, null);
-            if (exception is AxCryptException)
-            {
-                throw exception;
-            }
-            if (exception != null)
-            {
-                throw new InvalidOperationException("Exception on UI Thread", exception);
-            }
+            await DoOnUIThreadInternal(() => { action(); return Constant.CompletedTask; }, method, null);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
-        private Task DoOnUIThreadInternal(Func<Task> action, Action<SendOrPostCallback, object> method)
+        private async Task DoOnUIThreadInternal(Func<Task> action, Action<SendOrPostCallback, object> method, TaskCompletionSource<object> completion)
         {
             if (IsOn)
             {
-                return action();
+                await action();
+                return;
             }
+
             Exception exception = null;
             method(async (state) =>
             {
@@ -106,7 +93,9 @@ namespace Axantum.AxCrypt
                 {
                     exception = ex;
                 }
+                completion?.SetResult(null);
             }, null);
+            await (completion?.Task ?? Constant.CompletedTask);
             if (exception is AxCryptException)
             {
                 throw exception;
@@ -115,7 +104,6 @@ namespace Axantum.AxCrypt
             {
                 throw new InvalidOperationException("Exception on UI Thread", exception);
             }
-            return Task.FromResult<object>(null);
         }
 
         public void Yield()
