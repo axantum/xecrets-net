@@ -182,6 +182,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IBrowser>(() => new Browser());
             TypeMap.Register.Singleton<ILicenseAuthority>(() => new PublicLicenseAuthority());
             TypeMap.Register.Singleton<PremiumManager>(() => new PremiumManagerWithoutAutoTrial());
+            TypeMap.Register.Singleton<AboutAssembly>(() => new AboutAssembly(Assembly.GetExecutingAssembly()));
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

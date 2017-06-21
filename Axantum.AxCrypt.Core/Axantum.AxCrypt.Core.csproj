@@ -107,6 +107,7 @@
     <Compile Include="Portable\ISemaphore.cs" />
     <Compile Include="Portable\ISingleThread.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
+    <Compile Include="Runtime\AboutAssembly.cs" />
     <Compile Include="Runtime\InactivititySignOut.cs" />
     <Compile Include="Runtime\AsyncCompletionEventArgs.cs" />
     <Compile Include="Runtime\CryptoException.cs" />

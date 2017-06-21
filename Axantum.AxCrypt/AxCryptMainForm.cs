@@ -719,7 +719,7 @@ namespace Axantum.AxCrypt
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         private void BindToViewModels()
         {
-            _mainViewModel.Title = Texts.TitleMainWindow.InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
+            _mainViewModel.Title = Texts.TitleMainWindow.InvariantFormat(New<AboutAssembly>().AssemblyProduct, New<AboutAssembly>().AssemblyVersion, String.IsNullOrEmpty(New<AboutAssembly>().AssemblyDescription) ? string.Empty : " " + New<AboutAssembly>().AssemblyDescription);
 
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
