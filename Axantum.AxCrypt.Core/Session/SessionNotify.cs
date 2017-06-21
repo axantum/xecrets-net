@@ -26,10 +26,10 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Axantum.AxCrypt.Core.Runtime;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 if (notification.NotificationType != SessionNotificationType.SessionChange)
                 {
-                    New<ApplicationTimeout>().ResetIdleSignOutTimer();
+                    New<InactivititySignOut>().RestartInactivitityTimer();
                 }
             }
             catch (Exception ex)
