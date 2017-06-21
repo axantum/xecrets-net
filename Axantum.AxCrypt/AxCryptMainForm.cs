@@ -2214,7 +2214,7 @@ namespace Axantum.AxCrypt
             foreach (ToolStripItem item in timeOutMenu.DropDownItems)
             {
                 ToolStripMenuItem menuItem = (ToolStripMenuItem)item;
-                int timeOutDuration = (int)menuItem.Tag;
+                int timeOutDuration = int.Parse(menuItem.Tag.ToString());
                 menuItem.Checked = TimeSpan.FromMinutes(timeOutDuration) == selectedTimeOutDuration;
                 menuItem.Enabled = hasFeature && !menuItem.Checked;
             }
@@ -2223,7 +2223,7 @@ namespace Axantum.AxCrypt
         private async void IdleSignOutToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
             ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
-            New<UserSettings>().InactivititySignOutTime = TimeSpan.FromMinutes((int)menuItem.Tag);
+            New<UserSettings>().InactivititySignOutTime = TimeSpan.FromMinutes(int.Parse(menuItem.Tag.ToString()));
             TypeMap.Register.Singleton<InactivititySignOut>(() => new InactivititySignOut(New<UserSettings>().InactivititySignOutTime));
             New<InactivititySignOut>().RestartInactivitityTimer();
         }
