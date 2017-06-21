@@ -62,6 +62,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Två Öâr är Brà..
+        /// </summary>
+        public static string AaaUtfDummy {
+            get {
+                return ResourceManager.GetString("AaaUtfDummy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status &apos;Aborted&apos; ({0})..
         /// </summary>
         public static string AbortedFileStatus {
@@ -1688,7 +1697,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Disable.
+        ///   Looks up a localized string similar to Disable.
         /// </summary>
         public static string DisableIdleSignOutToolStripMenuItemText {
             get {
@@ -1715,7 +1724,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nederlands.
+        ///   Looks up a localized string similar to Nederlands (Dutch).
         /// </summary>
         public static string DutchLanguageSelection {
             get {
@@ -2219,7 +2228,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Français.
+        ///   Looks up a localized string similar to Français (French).
         /// </summary>
         public static string FrancaisLanguageToolStripMenuItemText {
             get {
@@ -2228,7 +2237,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deutsch.
+        ///   Looks up a localized string similar to Deutsch (German).
         /// </summary>
         public static string GermanLanguageSelectionText {
             get {
@@ -2293,7 +2302,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!{0} Minutes.
+        ///   Looks up a localized string similar to {0} Minutes.
         /// </summary>
         public static string IdleMinutesSignOutToolStripMenuItemText {
             get {
@@ -2302,7 +2311,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Idle Sign Out.
+        ///   Looks up a localized string similar to Inactivity Sign Out.
         /// </summary>
         public static string IdleSignOutToolStripMenuItemText {
             get {
@@ -2683,7 +2692,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Italiano.
+        ///   Looks up a localized string similar to Italiano (Italian).
         /// </summary>
         public static string ItalianLanguageSelection {
             get {
@@ -5352,7 +5361,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Español.
+        ///   Looks up a localized string similar to Español (Spanish).
         /// </summary>
         public static string SpanishLanguageToolStripMenuItemText {
             get {
@@ -5552,7 +5561,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Svenska.
+        ///   Looks up a localized string similar to Svenska (Swedish).
         /// </summary>
         public static string SwedishLanguageToolStripMenuItemText {
             get {
@@ -5817,7 +5826,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Türkçe.
+        ///   Looks up a localized string similar to Türkçe (Turkish).
         /// </summary>
         public static string TurkishLanguageToolStripMenuItemText {
             get {

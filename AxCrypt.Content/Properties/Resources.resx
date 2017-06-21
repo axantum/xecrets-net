@@ -710,7 +710,8 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Secured Folders</value>
   </data>
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
-    <value>!!Disable</value>
+    <value>Disable</value>
+    <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Don't show this again.</value>
@@ -719,7 +720,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Double click to open. If required you will be prompted for a password.</value>
   </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
-    <value>Nederlands</value>
+    <value>Nederlands (Dutch)</value>
     <comment>The name of the Dutch language for selection.</comment>
   </data>
   <data name="EasyToWorkDescription" xml:space="preserve">
@@ -903,10 +904,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>For whom</value>
   </data>
   <data name="FrancaisLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>Français</value>
+    <value>Français (French)</value>
   </data>
   <data name="GermanLanguageSelectionText" xml:space="preserve">
-    <value>Deutsch</value>
+    <value>Deutsch (German)</value>
   </data>
   <data name="GetLogErrorDateFormat" xml:space="preserve">
     <value>The start and/or end date format is invalid. Please use the format YYYY-MM-DD.</value>
@@ -930,10 +931,12 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>View Help</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
-    <value>!!{0} Minutes</value>
+    <value>{0} Minutes</value>
+    <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
   </data>
   <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
-    <value>!!Idle Sign Out</value>
+    <value>Inactivity Sign Out</value>
+    <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Import AxCrypt ID with sharing and access keys.</value>
@@ -1073,7 +1076,7 @@ VAT Number SE 556967618101</value>
     <value>VAT</value>
   </data>
   <data name="ItalianLanguageSelection" xml:space="preserve">
-    <value>Italiano</value>
+    <value>Italiano (Italian)</value>
     <comment>The name of the language Italian in Italian. It should never be translated.</comment>
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
@@ -2123,7 +2126,7 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
   <data name="SpanishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>Español</value>
+    <value>Español (Spanish)</value>
     <comment>Do Not Translate</comment>
   </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
@@ -2198,7 +2201,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Sorry, direct support is only available to paying subscribers, please visit our &lt;a href="{0}"&gt;community support&lt;/a&gt;.</value>
   </data>
   <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>Svenska</value>
+    <value>Svenska (Swedish)</value>
   </data>
   <data name="SyntheticWordsSuccessActivate" xml:space="preserve">
     <value>The culture was successfully activated.</value>
@@ -2302,7 +2305,7 @@ The AxCrypt Team</value>
     <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
   </data>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>Türkçe</value>
+    <value>Türkçe (Turkish)</value>
     <comment>The name for 'Turkish', in turkish.</comment>
   </data>
   <data name="UnknownCrypto" xml:space="preserve">
