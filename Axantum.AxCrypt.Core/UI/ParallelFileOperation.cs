@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -72,7 +73,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        public async virtual Task InvokeAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> work, Func<FileOperationContext, Task> allComplete)
+        private async Task InvokeAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> work, Func<FileOperationContext, Task> allComplete)
         {
             WorkerGroupProgressContext groupProgress = new WorkerGroupProgressContext(new CancelProgressContext(new ProgressContext()), New<ISingleThread>());
             await New<IProgressBackground>().WorkAsync(nameof(DoFilesAsync),

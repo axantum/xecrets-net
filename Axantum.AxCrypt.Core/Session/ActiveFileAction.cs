@@ -332,7 +332,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            if (activeFile.Identity == LogOnIdentity.Empty)
+            if (New<KnownIdentities>().DefaultEncryptionIdentity == LogOnIdentity.Empty && activeFile.Identity == LogOnIdentity.Empty)
             {
                 return activeFile;
             }
@@ -385,10 +385,6 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     Resolve.Log.LogInfo("Tried delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
-                return activeFile;
-            }
-            if (activeFile.Identity == LogOnIdentity.Empty)
-            {
                 return activeFile;
             }
             try

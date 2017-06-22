@@ -429,12 +429,48 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public async Task TestDeleteModifiedWhenSignedIn()
+        {
+            DateTime utcNow = New<INow>().Utc;
+            FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt));
+            FakeDataStore.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+
+            ActiveFile activeFile = new ActiveFile(New<IDataStore>(_uncompressedAxxPath), New<IDataStore>(_decryptedFile1), LogOnIdentity.Empty, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
+            activeFile = new ActiveFile(activeFile, utcNow.AddMinutes(-1), ActiveFileStatus.AssumedOpenAndDecrypted);
+            Resolve.FileSystemState.Add(activeFile);
+
+            await New<KnownIdentities>().SetDefaultEncryptionIdentity(new LogOnIdentity(EmailAddress.Parse("test@axcrypt.net"), new Passphrase("test")));
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+
+            activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
+            Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted), Is.True, "The ActiveFile plain text should be deleted after the checking of active files because the user is signed in.");
+        }
+
+        [Test]
+        public async Task TestDoNotDeleteModifiedIfNotSignedIn()
+        {
+            DateTime utcNow = New<INow>().Utc;
+            FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, Stream.Null);
+            FakeDataStore.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+
+            ActiveFile activeFile = new ActiveFile(New<IDataStore>(_uncompressedAxxPath), New<IDataStore>(_decryptedFile1), LogOnIdentity.Empty, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
+            activeFile = new ActiveFile(activeFile, utcNow.AddMinutes(-1), ActiveFileStatus.AssumedOpenAndDecrypted);
+            Resolve.FileSystemState.Add(activeFile);
+
+            await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
+
+            activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_uncompressedAxxPath);
+            Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The ActiveFile plain text should not be deleted after the checking of active files because the user is not signed in.");
+        }
+
+        [Test]
         public async Task TestCheckProcessExitedWhenExited()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, Stream.Null);
             FakeDataStore.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
+            await New<KnownIdentities>().SetDefaultEncryptionIdentity(new LogOnIdentity(EmailAddress.Parse("test@axcrypt.net"), new Passphrase("test")));
             FakeLauncher fakeLauncher = new FakeLauncher();
             fakeLauncher.Launch(_decryptedFile1);
             ActiveFile activeFile = new ActiveFile(New<IDataStore>(_uncompressedAxxPath), New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);

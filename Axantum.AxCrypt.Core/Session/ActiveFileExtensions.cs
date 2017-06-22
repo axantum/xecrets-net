@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
                     }
-                    if (shouldConvertLegacy)
+                    if (shouldConvertLegacy || activeFile.Identity == LogOnIdentity.Empty)
                     {
                         activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
                     }

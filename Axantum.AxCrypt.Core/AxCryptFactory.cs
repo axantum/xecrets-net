@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,6 +60,10 @@ namespace Axantum.AxCrypt.Core
             if (encryptionParameters == null)
             {
                 throw new ArgumentNullException("encryptionParameters");
+            }
+            if (encryptionParameters.Passphrase == Passphrase.Empty)
+            {
+                throw new InternalErrorException("Cannot allow encryption with an empty password.", Abstractions.ErrorStatus.InternalError);
             }
 
             long keyWrapIterations = Resolve.UserSettings.GetKeyWrapIterations(encryptionParameters.CryptoId);
