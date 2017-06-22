@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Document(sourceFileInfo, LogOnIdentity.Empty, nullProgress); }));
 
             Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().WriteToFileWithBackup(null, (Stream stream) => { }, new ProgressContext()); }));
-            using (FileLock fileInfoLock = FileLock.Acquire(New<IDataStore>(_testTextPath)))
+            using (FileLock fileInfoLock = New<FileLocker>().Acquire(New<IDataStore>(_testTextPath)))
             {
                 Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().WriteToFileWithBackup(fileInfoLock, nullStreamAction, new ProgressContext()); }));
             }
@@ -303,7 +303,7 @@ namespace Axantum.AxCrypt.Core.Test
             string destinationFilePath = _rootPath.PathCombine("Written", "File.txt");
             using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
-                using (FileLock destinationFileLock = FileLock.Acquire(New<IDataStore>(destinationFilePath)))
+                using (FileLock destinationFileLock = New<FileLocker>().Acquire(New<IDataStore>(destinationFilePath)))
                 {
                     New<AxCryptFile>().WriteToFileWithBackup(destinationFileLock, (Stream stream) => { inputStream.CopyTo(stream, 4096); }, new ProgressContext());
                     using (TextReader read = new StreamReader(destinationFileLock.DataStore.OpenRead()))
@@ -319,7 +319,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestWriteToFileWithBackupWithCancel()
         {
             IDataStore destinationFileInfo = New<IDataStore>(_rootPath.PathCombine("Written", "File.txt"));
-            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
+            using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationFileInfo))
             {
                 using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
                 {
@@ -344,7 +344,7 @@ namespace Axantum.AxCrypt.Core.Test
                 writeStream.Write(bytes, 0, bytes.Length);
             }
 
-            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
+            using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationFileInfo))
             {
                 using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
                 {
@@ -377,7 +377,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
             Assert.That(fileInfo.IsAvailable, "Now it should exist.");
-            using (FileLock fileLock = FileLock.Acquire(fileInfo))
+            using (FileLock fileLock = New<FileLocker>().Acquire(fileInfo))
             {
                 New<AxCryptFile>().Wipe(fileLock, new ProgressContext());
             }
@@ -392,7 +392,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IDataStore sourceFileInfo = New<IDataStore>(sourceFilePath);
             IDataStore destinationFileInfo = New<IDataStore>(destinationFilePath);
-            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
+            using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationFileInfo))
             {
                 IDataStore nullFileInfo = null;
                 FileLock nullFileLock = null;
@@ -422,7 +422,7 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes128CryptoFactory().CryptoId, new Passphrase("a"));
 
             ProgressContext progress = new ProgressContext();
-            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
+            using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationFileInfo))
             {
                 New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
             }
@@ -595,7 +595,7 @@ namespace Axantum.AxCrypt.Core.Test
             string filePath = Path.Combine(Path.Combine(_rootPath, "Folder"), "DoesNot.Exist");
             IDataStore fileInfo = New<IDataStore>(filePath);
 
-            using (FileLock fileLock = FileLock.Acquire(fileInfo))
+            using (FileLock fileLock = New<FileLocker>().Acquire(fileInfo))
             {
                 Assert.DoesNotThrow((TestDelegate)(() => { New<AxCryptFile>().Wipe(fileLock, progress); }));
             }
@@ -612,7 +612,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 ((IProgressContext)sender).Cancel = true;
             };
-            using (FileLock fileLock = FileLock.Acquire(fileInfo))
+            using (FileLock fileLock = New<FileLocker>().Acquire(fileInfo))
             {
                 Assert.Throws<OperationCanceledException>((TestDelegate)(() => { New<AxCryptFile>().Wipe(fileLock, progress); }));
             }

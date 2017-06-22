@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2017, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -41,182 +41,16 @@ namespace Axantum.AxCrypt.Core.IO
     {
         private readonly FileLockManager _fileLockManager;
 
-        private FileLock(FileLockManager toRelease)
+        internal FileLock(FileLockManager toRelease)
         {
             _fileLockManager = toRelease;
         }
 
-        public static FileLock Acquire(IDataItem dataItem)
-        {
-            return FileLockManager.CreateFileLock(dataItem);
-        }
-
-        public static Task<FileLock> AcquireAsync(IDataItem dataItem)
-        {
-            return FileLockManager.CreateAsyncFileLock(dataItem);
-        }
-
         public IDataStore DataStore { get { return _fileLockManager.DataStore; } }
-
-        public static bool IsLocked(params IDataStore[] dataItems)
-        {
-            return FileLockManager.IsLocked(dataItems);
-        }
 
         public void Dispose()
         {
-            _fileLockManager._semaphore.Release();
-        }
-
-        private class FileLockManager : IDisposable
-        {
-            private static Dictionary<string, FileLockManager> _lockedFiles = new Dictionary<string, FileLockManager>();
-
-            public readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
-
-            private readonly Task<FileLock> _fileLock;
-
-            private int _referenceCount = 0;
-
-            private string _originalLockedFileName;
-
-            private FileLockManager(string fullName)
-            {
-                _originalLockedFileName = fullName;
-                _fileLock = Task.FromResult(new FileLock(this));
-            }
-
-            public IDataStore DataStore { get { return New<IDataStore>(_originalLockedFileName); } }
-
-            public Task<FileLock> LockAsync()
-            {
-                Task wait = _semaphore.WaitAsync();
-                return wait.IsCompleted ?
-                            _fileLock :
-                            wait.ContinueWith((_, state) => (FileLock)state,
-                                _fileLock.Result, CancellationToken.None,
-                TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
-            }
-
-            private FileLock Lock()
-            {
-#if DEBUG
-                if (!_semaphore.Wait(TimeSpan.FromSeconds(5)))
-                {
-                    throw new InternalErrorException("Potential deadlock detected.", _originalLockedFileName);
-                }
-#else
-                _semaphore.Wait();
-#endif
-
-                return _fileLock.Result;
-            }
-
-            public static FileLock CreateFileLock(IDataItem dataItem)
-            {
-                if (dataItem == null)
-                {
-                    throw new ArgumentNullException("dataItem");
-                }
-
-                lock (_lockedFiles)
-                {
-                    FileLockManager fileLock = GetOrCreateFileLockUnsafe(dataItem.FullName);
-                    return fileLock.Lock();
-                }
-            }
-
-            public static Task<FileLock> CreateAsyncFileLock(IDataItem dataItem)
-            {
-                if (dataItem == null)
-                {
-                    throw new ArgumentNullException("dataItem");
-                }
-
-                lock (_lockedFiles)
-                {
-                    FileLockManager fileLock = GetOrCreateFileLockUnsafe(dataItem.FullName);
-                    return fileLock.LockAsync();
-                }
-            }
-
-            private static FileLockManager GetOrCreateFileLockUnsafe(string fullName)
-            {
-                FileLockManager fileLock = null;
-                if (!_lockedFiles.TryGetValue(fullName, out fileLock))
-                {
-                    fileLock = new FileLockManager(fullName);
-                    _lockedFiles[fullName] = fileLock;
-                }
-                return fileLock;
-            }
-
-            public static bool IsLocked(params IDataStore[] dataStoreParameters)
-            {
-                if (dataStoreParameters == null)
-                {
-                    throw new ArgumentNullException("dataStoreParameters");
-                }
-
-                foreach (IDataStore dataStore in dataStoreParameters)
-                {
-                    if (dataStore == null)
-                    {
-                        throw new ArgumentNullException("dataStoreParameters");
-                    }
-
-                    if (IsLocked(dataStore.FullName))
-                    {
-                        if (Resolve.Log.IsInfoEnabled)
-                        {
-                            Resolve.Log.LogInfo("File '{0}' was found to be locked.".InvariantFormat(dataStore.FullName));
-                        }
-                        return true;
-                    }
-                }
-                return false;
-            }
-
-            private static bool IsLocked(string fullName)
-            {
-                lock (_lockedFiles)
-                {
-                    FileLockManager fileLock;
-                    if (!_lockedFiles.TryGetValue(fullName, out fileLock))
-                    {
-                        return false;
-                    }
-
-                    return fileLock._semaphore.CurrentCount == 0;
-                }
-            }
-
-            public void Dispose()
-            {
-                Dispose(true);
-                GC.SuppressFinalize(this);
-            }
-
-            protected virtual void Dispose(bool disposing)
-            {
-                lock (_lockedFiles)
-                {
-                    if (_referenceCount == 0)
-                    {
-                        return;
-                    }
-
-                    if (--_referenceCount == 0)
-                    {
-                        _lockedFiles.Remove(_originalLockedFileName);
-                    }
-
-                    if (Resolve.Log.IsInfoEnabled)
-                    {
-                        Resolve.Log.LogInfo("Unlocking file '{0}'.".InvariantFormat(DataStore.FullName));
-                    }
-                }
-            }
+            _fileLockManager.Release();
         }
     }
 }

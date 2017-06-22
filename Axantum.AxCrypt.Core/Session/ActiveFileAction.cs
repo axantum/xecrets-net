@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         return activeFile;
                     }
-                    if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
+                    if (New<FileLocker>().IsLocked(activeFile.DecryptedFileInfo))
                     {
                         if (Resolve.Log.IsInfoEnabled)
                         {
@@ -80,9 +80,9 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
                     }
-                    using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
+                    using (FileLock encryptedFileLock = New<FileLocker>().Acquire(activeFile.EncryptedFileInfo))
                     {
-                        using (FileLock decryptedFileLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
+                        using (FileLock decryptedFileLock = New<FileLocker>().Acquire(activeFile.DecryptedFileInfo))
                         {
                             activeFile = CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress);
                             if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
@@ -162,13 +162,13 @@ namespace Axantum.AxCrypt.Core.Session
                     return activeFile;
                 }
 
-                if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
+                if (New<FileLocker>().IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
                 {
                     return activeFile;
                 }
-                using (FileLock decryptedFileLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
+                using (FileLock decryptedFileLock = New<FileLocker>().Acquire(activeFile.DecryptedFileInfo))
                 {
-                    using (FileLock encryptedFileLock = FileLock.Acquire(activeFile.EncryptedFileInfo))
+                    using (FileLock encryptedFileLock = New<FileLocker>().Acquire(activeFile.EncryptedFileInfo))
                     {
                         activeFile = CheckActiveFileActions(activeFile, encryptedFileLock, decryptedFileLock, progress);
                         return activeFile;
