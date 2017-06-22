@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -35,83 +36,26 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public class UIThread : IUIThread
+    public class UIThread : UIThreadBase
     {
         private Control _control;
 
-        private SynchronizationContext _context;
-
-        public UIThread(Control control)
+        public UIThread(Control control) : base()
         {
             _control = control;
-            _context = SynchronizationContext.Current;
         }
 
-        public bool IsOn
+        public override bool IsOn
         {
             get { return !_control.InvokeRequired; }
         }
 
-        public void SendTo(Action action)
-        {
-            DoOnUIThreadInternal(action, _context.Send);
-        }
-
-        public Task SendToAsync(Func<Task> action)
-        {
-            return DoOnUIThreadInternal(action, _context.Send, new TaskCompletionSource<object>());
-        }
-
-        public async void PostTo(Action action)
-        {
-            DoOnUIThreadInternal(action, _context.Post);
-        }
-
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
-        private async void DoOnUIThreadInternal(Action action, Action<SendOrPostCallback, object> method)
-        {
-            await DoOnUIThreadInternal(() => { action(); return Constant.CompletedTask; }, method, null);
-        }
-
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
-        private async Task DoOnUIThreadInternal(Func<Task> action, Action<SendOrPostCallback, object> method, TaskCompletionSource<object> completion)
-        {
-            if (IsOn)
-            {
-                await action();
-                return;
-            }
-
-            Exception exception = null;
-            method(async (state) =>
-            {
-                try
-                {
-                    await action();
-                }
-                catch (Exception ex)
-                {
-                    exception = ex;
-                }
-                completion?.SetResult(null);
-            }, null);
-            await (completion?.Task ?? Constant.CompletedTask);
-            if (exception is AxCryptException)
-            {
-                throw exception;
-            }
-            if (exception != null)
-            {
-                throw new InvalidOperationException("Exception on UI Thread", exception);
-            }
-        }
-
-        public void Yield()
+        public override void Yield()
         {
             Application.DoEvents();
         }
 
-        public void Exit()
+        public override void Exit()
         {
             Application.Exit();
         }
