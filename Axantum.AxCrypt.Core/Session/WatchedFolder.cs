@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void Initialize(StreamingContext context)
         {
-            if (New<IDataContainer>(Path).IsAvailable && New<LicensePolicy>().Capabilities.Has(LicenseCapability.SecureFolders))
+            if (New<IDataContainer>(Path).IsAvailable)
             {
                 _fileWatcher = New<IFileWatcher>(Path);
                 _fileWatcher.FileChanged += _fileWatcher_FileChanged;
@@ -122,21 +122,21 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void _fileWatcher_FileChanged(object sender, FileWatcherEventArgs e)
         {
+            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.SecureFolders))
+            {
+                return;
+            }
             OnChanged(e);
         }
 
         protected virtual void OnChanged(FileWatcherEventArgs e)
         {
-            EventHandler<FileWatcherEventArgs> handler = Changed;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Changed?.Invoke(this, e);
         }
 
         public bool Matches(string path)
         {
-            return String.Compare(Path, path, StringComparison.OrdinalIgnoreCase) == 0;
+            return string.Compare(Path, path, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         public bool Matches(WatchedFolder watchedFolder)
