@@ -387,7 +387,10 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 return activeFile;
             }
-
+            if (activeFile.Identity == LogOnIdentity.Empty)
+            {
+                return activeFile;
+            }
             try
             {
                 WipeFile(decryptedFileLock, progress);

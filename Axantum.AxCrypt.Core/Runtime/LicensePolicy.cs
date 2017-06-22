@@ -94,6 +94,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             switch (notification.NotificationType)
             {
                 case SessionNotificationType.LicensePolicyChange:
+                case SessionNotificationType.LogOn:
                     await RefreshAsync(notification.Identity);
                     break;
 
