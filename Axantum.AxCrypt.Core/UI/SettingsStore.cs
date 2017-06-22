@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI
 {
     public class SettingsStore : ISettingsStore
@@ -82,7 +84,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return;
             }
 
-            using (FileLock.Acquire(_persistanceFileInfo))
+            using (New<FileLocker>().Acquire(_persistanceFileInfo))
             {
                 using (TextWriter writer = new StreamWriter(_persistanceFileInfo.OpenWrite()))
                 {

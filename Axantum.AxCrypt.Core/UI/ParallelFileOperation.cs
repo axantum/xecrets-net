@@ -32,9 +32,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -84,7 +82,7 @@ namespace Axantum.AxCrypt.Core.UI
 
                 FileOperationContext result = new FileOperationContext(string.Empty, ErrorStatus.Success);
 
-                result = await Task<FileOperationContext>.Run(async () =>
+                result = await Task.Run(async () =>
                 {
                     foreach (T file in files)
                     {
@@ -114,14 +112,10 @@ namespace Axantum.AxCrypt.Core.UI
                     }
                     return result;
                 });
-
                 progress.NotifyLevelFinished();
                 return result;
             },
-            async (FileOperationContext status) =>
-            {
-                await allComplete(status);
-            },
+            (FileOperationContext status) => allComplete(status),
             groupProgress).Free();
         }
     }

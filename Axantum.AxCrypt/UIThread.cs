@@ -26,104 +26,36 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public class UIThread : IUIThread
+    public class UIThread : UIThreadBase
     {
         private Control _control;
 
-        private SynchronizationContext _context;
-
-        public UIThread(Control control)
+        public UIThread(Control control) : base()
         {
             _control = control;
-            _context = SynchronizationContext.Current;
         }
 
-        public bool IsOn
+        public override bool IsOn
         {
             get { return !_control.InvokeRequired; }
         }
 
-        public void SendTo(Action action)
-        {
-            DoOnUIThreadInternal(action, _context.Send);
-        }
-
-        public Task SendToAsync(Func<Task> action)
-        {
-            return DoOnUIThreadInternal(action, _context.Send);
-        }
-
-        public void PostTo(Action action)
-        {
-            DoOnUIThreadInternal(action, _context.Post);
-        }
-
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
-        private void DoOnUIThreadInternal(Action action, Action<SendOrPostCallback, object> method)
-        {
-            if (IsOn)
-            {
-                action();
-                return;
-            }
-            Exception exception = null;
-            method((state) => { try { action(); } catch (Exception ex) { exception = ex; } }, null);
-            if (exception is AxCryptException)
-            {
-                throw exception;
-            }
-            if (exception != null)
-            {
-                throw new InvalidOperationException("Exception on UI Thread", exception);
-            }
-        }
-
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
-        private Task DoOnUIThreadInternal(Func<Task> action, Action<SendOrPostCallback, object> method)
-        {
-            if (IsOn)
-            {
-                return action();
-            }
-            Exception exception = null;
-            method(async (state) =>
-            {
-                try
-                {
-                    await action();
-                }
-                catch (Exception ex)
-                {
-                    exception = ex;
-                }
-            }, null);
-            if (exception is AxCryptException)
-            {
-                throw exception;
-            }
-            if (exception != null)
-            {
-                throw new InvalidOperationException("Exception on UI Thread", exception);
-            }
-            return Task.FromResult<object>(null);
-        }
-
-        public void Yield()
+        public override void Yield()
         {
             Application.DoEvents();
         }
 
-        public void Exit()
+        public override void Exit()
         {
             Application.Exit();
         }

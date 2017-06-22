@@ -43,14 +43,14 @@ namespace Axantum.AxCrypt.Core.UI
     {
         bool IsOn { get; }
 
+        void Yield();
+
+        void Exit();
+
         void SendTo(Action action);
 
         Task SendToAsync(Func<Task> action);
 
         void PostTo(Action action);
-
-        void Yield();
-
-        void Exit();
     }
 }

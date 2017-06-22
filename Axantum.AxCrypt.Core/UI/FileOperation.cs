@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return new FileOperationContext(encryptedDataStore.FullName, ErrorStatus.InvalidKey);
             }
 
-            using (FileLock destinationLock = FileLock.Acquire(activeFile.DecryptedFileInfo))
+            using (FileLock destinationLock = New<FileLocker>().Acquire(activeFile.DecryptedFileInfo))
             {
                 if (!activeFile.DecryptedFileInfo.IsAvailable)
                 {
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogInfo("Decrypting '{0}'".InvariantFormat(encryptedDataStore.FullName));
                 }
-                using (FileLock encryptedLock = FileLock.Acquire(encryptedDataStore))
+                using (FileLock encryptedLock = New<FileLocker>().Acquire(encryptedDataStore))
                 {
                     using (IAxCryptDocument document = New<AxCryptFile>().Document(encryptedDataStore, identity, new ProgressContext()))
                     {

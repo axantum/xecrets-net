@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
@@ -61,6 +62,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeInMemoryDataStoreItem store = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
             TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(store, Resolve.Serializer));
             TypeMap.Register.New<ILogging>(() => new Logging());
+            TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
 
             New<AxCryptOnlineState>().IsOnline = true;
         }

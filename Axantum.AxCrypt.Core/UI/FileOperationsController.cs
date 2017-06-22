@@ -268,7 +268,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return Task.FromResult(false);
             }
 
-            using (FileLock fileLock = FileLock.Acquire(sourceFileInfo))
+            using (FileLock fileLock = New<FileLocker>().Acquire(sourceFileInfo))
             {
                 if (IsLocked(fileLock))
                 {
@@ -377,7 +377,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            using (FileLock fileLock = FileLock.Acquire(fileInfo))
+            using (FileLock fileLock = New<FileLocker>().Acquire(fileInfo))
             {
                 if (IsLocked(fileLock))
                 {
@@ -397,7 +397,7 @@ namespace Axantum.AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                using (FileLock encryptedFileLock = FileLock.Acquire(_eventArgs.AxCryptFile))
+                using (FileLock encryptedFileLock = New<FileLocker>().Acquire(_eventArgs.AxCryptFile))
                 {
                     using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
                     {
@@ -465,7 +465,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Task<bool> WipeFilePreparation(IDataStore fileInfo)
         {
-            using (FileLock fileLock = FileLock.Acquire(fileInfo))
+            using (FileLock fileLock = New<FileLocker>().Acquire(fileInfo))
             {
                 if (IsWriteProtected(fileLock) || IsLocked(fileLock))
                 {
@@ -504,7 +504,7 @@ namespace Axantum.AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                using (FileLock wipeFileLock = FileLock.Acquire(New<IDataStore>(_eventArgs.SaveFileFullName)))
+                using (FileLock wipeFileLock = New<FileLocker>().Acquire(New<IDataStore>(_eventArgs.SaveFileFullName)))
                 {
                     New<AxCryptFile>().Wipe(wipeFileLock, _progress);
                 }

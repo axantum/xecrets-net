@@ -380,7 +380,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task ClearPassphraseMemoryAction()
         {
             IDataStore fileSystemStateInfo = Resolve.FileSystemState.PathInfo;
-            using (FileLock fileSystemStateFileLock = FileLock.Acquire(fileSystemStateInfo))
+            using (FileLock fileSystemStateFileLock = New<FileLocker>().Acquire(fileSystemStateInfo))
             {
                 New<AxCryptFile>().Wipe(fileSystemStateFileLock, new ProgressContext());
             }

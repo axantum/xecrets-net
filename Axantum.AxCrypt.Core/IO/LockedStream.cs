@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2017, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -31,6 +31,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.IO
 {
     public class LockedStream : WrappedBaseStream
@@ -40,7 +42,7 @@ namespace Axantum.AxCrypt.Core.IO
         public static LockedStream OpenWrite(IDataStore dataStore)
         {
             LockedStream lockedStream = new LockedStream();
-            lockedStream._fileLock = FileLock.Acquire(dataStore);
+            lockedStream._fileLock = New<FileLocker>().Acquire(dataStore);
             lockedStream.WrappedStream = dataStore.OpenWrite();
 
             return lockedStream;
@@ -49,7 +51,7 @@ namespace Axantum.AxCrypt.Core.IO
         public static LockedStream OpenRead(IDataStore dataStore)
         {
             LockedStream lockedStream = new LockedStream();
-            lockedStream._fileLock = FileLock.Acquire(dataStore);
+            lockedStream._fileLock = New<FileLocker>().Acquire(dataStore);
             lockedStream.WrappedStream = dataStore.OpenRead();
 
             return lockedStream;

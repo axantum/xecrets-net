@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Core.UI;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,30 +29,26 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="workFunction">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the GUI thread.</param>
-        public async Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Action<FileOperationContext> complete, IProgressContext progress)
+        public Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Action<FileOperationContext> complete, IProgressContext progress)
         {
-            await New<IUIThread>().SendToAsync(async () =>
-            {
-                await BackgroundWorkWithProgressOnUIThreadAsync(name, workFunction, complete, progress);
-            });
+            return New<IUIThread>().SendToAsync(() => BackgroundWorkWithProgressOnUIThreadAsync(name, workFunction, complete, progress));
         }
 
         private async Task BackgroundWorkWithProgressOnUIThreadAsync(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete, IProgressContext progress)
         {
             ProgressBackgroundEventArgs e = new ProgressBackgroundEventArgs(progress);
-            OnOperationStarted(e);
-
             try
             {
                 Interlocked.Increment(ref _workerCount);
+                OnOperationStarted(e);
 
-                FileOperationContext result = await Task.Run(async () => await work(progress));
+                FileOperationContext result = await Task.Run(() => work(progress));
                 complete(result);
             }
             finally
             {
-                Interlocked.Decrement(ref _workerCount);
                 OnOperationCompleted(e);
+                Interlocked.Decrement(ref _workerCount);
             }
         }
 

@@ -290,10 +290,10 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(DontShowAgain), (int)value); }
         }
 
-        public TimeSpan IdleSignOutTime
+        public TimeSpan InactivititySignOutTime
         {
-            get { return Load(nameof(IdleSignOutTime), TimeSpan.Zero); }
-            set { Store(nameof(IdleSignOutTime), value); }
+            get { return Load(nameof(InactivititySignOutTime), TimeSpan.Zero); }
+            set { Store(nameof(InactivititySignOutTime), value); }
         }
 
         public T Load<T>(string key)

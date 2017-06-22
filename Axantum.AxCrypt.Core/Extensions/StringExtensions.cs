@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                     string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
                     string alternateName = Resolve.Portable.Path().GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension;
                     IDataStore alternateFileInfo = pathInfo.Container.CreateNewFile(alternateName);
-                    return FileLock.Acquire(alternateFileInfo);
+                    return New<FileLocker>().Acquire(alternateFileInfo);
                 }
                 catch (AxCryptException ace)
                 {

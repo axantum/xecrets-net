@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
@@ -182,6 +183,8 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IBrowser>(() => new Browser());
             TypeMap.Register.Singleton<ILicenseAuthority>(() => new PublicLicenseAuthority());
             TypeMap.Register.Singleton<PremiumManager>(() => new PremiumManagerWithoutAutoTrial());
+            TypeMap.Register.Singleton<AboutAssembly>(() => new AboutAssembly(Assembly.GetExecutingAssembly()));
+            TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

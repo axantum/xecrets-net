@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Delete()
         {
-            using (FileLock fileLock = FileLock.Acquire(_store))
+            using (FileLock fileLock = New<FileLocker>().Acquire(_store))
             {
                 _store.Delete();
             }
@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             string json = String.Empty;
-            using (FileLock fileLock = FileLock.Acquire(store))
+            using (FileLock fileLock = New<FileLocker>().Acquire(store))
             {
                 if (store.IsAvailable)
                 {
@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Session
             if (_dirty)
             {
                 string json = _serializer.Serialize(this);
-                using (FileLock fileLock = FileLock.Acquire(_store))
+                using (FileLock fileLock = New<FileLocker>().Acquire(_store))
                 {
                     using (StreamWriter writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8))
                     {

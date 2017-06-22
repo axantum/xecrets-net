@@ -75,6 +75,8 @@
     <Compile Include="IO\ByteBuffer.cs" />
     <Compile Include="IO\ChainedStream.cs" />
     <Compile Include="IO\DataContainerEnumerator.cs" />
+    <Compile Include="IO\FileLocker.cs" />
+    <Compile Include="IO\FileLockManager.cs" />
     <Compile Include="IO\IDataContainer.cs" />
     <Compile Include="IO\IDataItem.cs" />
     <Compile Include="IO\LockedStream.cs" />
@@ -107,7 +109,8 @@
     <Compile Include="Portable\ISemaphore.cs" />
     <Compile Include="Portable\ISingleThread.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
-    <Compile Include="Runtime\ApplicationTimeout.cs" />
+    <Compile Include="Runtime\AboutAssembly.cs" />
+    <Compile Include="Runtime\InactivititySignOut.cs" />
     <Compile Include="Runtime\AsyncCompletionEventArgs.cs" />
     <Compile Include="Runtime\CryptoException.cs" />
     <Compile Include="Runtime\FileOperationException.cs" />
@@ -167,6 +170,7 @@
     <Compile Include="Reader\AxCryptReaderBase.cs" />
     <Compile Include="Reader\V2AxCryptReader.cs" />
     <Compile Include="Reader\UnversionedAxCryptReader.cs" />
+    <Compile Include="Runtime\UIThreadBase.cs" />
     <Compile Include="Runtime\UserInputException.cs" />
     <Compile Include="Secrets\EncryptionKey.cs" />
     <Compile Include="Secrets\EncryptionKeyCollection.cs" />

@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (LockedStream lockedStream = LockedStream.OpenWrite(fileInfo))
             {
                 lockedStreamCopy = lockedStream;
-                Assert.That(Task.Run(() => FileLock.IsLocked(fileInfo)).Result, "The file should be locked now.");
+                Assert.That(Task.Run(() => New<FileLocker>().IsLocked(fileInfo)).Result, "The file should be locked now.");
                 Assert.That(lockedStream.CanRead, "The stream should be readable.");
                 Assert.That(lockedStream.CanSeek, "The stream should be seekable.");
                 Assert.That(lockedStream.CanWrite, "The stream should be writeable.");
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Assert.DoesNotThrow(() => { lockedStream.Flush(); }, "It's hard to test Flush() behavior here, not worth the trouble, but it should not throw!");
             }
-            Assert.That(!Task.Run(() => FileLock.IsLocked(fileInfo)).Result, "The file should be unlocked now.");
+            Assert.That(!Task.Run(() => New<FileLocker>().IsLocked(fileInfo)).Result, "The file should be unlocked now.");
             Assert.Throws<ObjectDisposedException>(() => { lockedStreamCopy.Position = 0; }, "The underlying stream should be disposed.");
         }
     }

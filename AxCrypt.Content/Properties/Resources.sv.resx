@@ -127,9 +127,6 @@
     <value>Kontot måste verifieras av användaren först.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
-    <value>AxCrypt Premium (Tillsvidare)</value>
-  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium Prov</value>
   </data>
@@ -638,6 +635,10 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Skyddade Mappar</value>
   </data>
+  <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>Av</value>
+    <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Visa inte igen.</value>
   </data>
@@ -822,6 +823,14 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
   </data>
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>Visa Hjälp</value>
+  </data>
+  <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>{0} Minuter</value>
+    <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
+  </data>
+  <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>Automatisk Utloggning</value>
+    <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Importera AxCrypt ID med både delnings- och åtkomstnyckel.</value>

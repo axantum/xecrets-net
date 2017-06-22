@@ -205,7 +205,7 @@ namespace Axantum.AxCrypt.Core
             }
             IDataStore sourceFileInfo = New<IDataStore>(sourceFileName);
             IDataStore destinationFileInfo = New<IDataStore>(destinationFileName);
-            using (FileLock destinationFileLock = FileLock.Acquire(destinationFileInfo))
+            using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationFileInfo))
             {
                 EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
             }
@@ -272,7 +272,7 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                using (FileLock sourceFileLock = FileLock.Acquire(sourceStore))
+                using (FileLock sourceFileLock = New<FileLocker>().Acquire(sourceStore))
                 {
                     using (Stream activeFileStream = sourceStore.OpenRead())
                     {
@@ -387,7 +387,7 @@ namespace Axantum.AxCrypt.Core
                         return;
                     }
 
-                    using (FileLock fileLock = FileLock.Acquire(from))
+                    using (FileLock fileLock = New<FileLocker>().Acquire(from))
                     {
                         Task decryption = Task.Run(() =>
                         {
@@ -630,7 +630,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (destinationStore.IsAvailable)
                 {
-                    using (FileLock destinationFileLock = FileLock.Acquire(destinationStore))
+                    using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationStore))
                     {
                         Wipe(destinationFileLock, progress);
                     }
@@ -739,7 +739,7 @@ namespace Axantum.AxCrypt.Core
                         DecryptFile(document, lockedDestination.DataStore.FullName, progress);
                     }
                 }
-                using (FileLock sourceFileLock = FileLock.Acquire(sourceStore))
+                using (FileLock sourceFileLock = New<FileLocker>().Acquire(sourceStore))
                 {
                     Wipe(sourceFileLock, progress);
                 }
