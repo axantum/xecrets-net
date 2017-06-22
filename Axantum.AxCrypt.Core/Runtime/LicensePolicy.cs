@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             LicenseCapability.Premium,
             LicenseCapability.EncryptNewFiles,
             LicenseCapability.EditExistingFiles,
-            LicenseCapability.InactivitySignOut, 
+            LicenseCapability.InactivitySignOut,
         });
 
         public LicensePolicy() : this(true)
@@ -95,10 +95,12 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 case SessionNotificationType.LicensePolicyChange:
                 case SessionNotificationType.LogOn:
+                case SessionNotificationType.KnownKeyChange:
                     await RefreshAsync(notification.Identity);
                     break;
 
                 case SessionNotificationType.SessionStart:
+                case SessionNotificationType.LogOff:
                     await RefreshAsync(LogOnIdentity.Empty);
                     break;
 
