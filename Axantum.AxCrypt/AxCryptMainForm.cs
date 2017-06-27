@@ -304,6 +304,7 @@ namespace Axantum.AxCrypt
             _fifteenMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(15);
             _thirtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(30);
             _sixtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(60);
+            _getPremiumToolStripMenuItem.Text = Texts.GetPremiumToolStripMenuItemText;
         }
 
         private static void SetCulture()
@@ -770,6 +771,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
             _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder.Execute(_mainViewModel.SelectedWatchedFolders.First()); };
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
+            _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
         }
 
         private void ConfigureWatchedFoldersMenus(bool enabled)

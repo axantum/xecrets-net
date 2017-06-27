@@ -2264,6 +2264,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Get Premium.
+        /// </summary>
+        public static string GetPremiumToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("GetPremiumToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Great! You already have an AxCrypt ID account for &apos;{0}&apos;.
         ///
         ///If you for any reason do not know or remember the password, you must perform a password reset..

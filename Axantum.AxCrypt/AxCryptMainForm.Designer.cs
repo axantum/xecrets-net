@@ -134,6 +134,7 @@ namespace Axantum.AxCrypt
             this._notifySignInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._notifyExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._getPremiumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
@@ -894,7 +895,8 @@ namespace Axantum.AxCrypt
             this._helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._helpViewHelpMenuItem,
             this._helpAboutToolStripMenuItem,
-            this._checkForUpdateToolStripMenuItem});
+            this._checkForUpdateToolStripMenuItem,
+            this._getPremiumToolStripMenuItem});
             this._helpToolStripMenuItem.Name = "_helpToolStripMenuItem";
             this._helpToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this._helpToolStripMenuItem.Text = "[&Help]";
@@ -918,6 +920,12 @@ namespace Axantum.AxCrypt
             this._checkForUpdateToolStripMenuItem.Name = "_checkForUpdateToolStripMenuItem";
             this._checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this._checkForUpdateToolStripMenuItem.Text = "[&Check for update]";
+            // 
+            // _getPremiumToolStripMenuItem
+            // 
+            this._getPremiumToolStripMenuItem.Name = "_getPremiumToolStripMenuItem";
+            this._getPremiumToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this._getPremiumToolStripMenuItem.Text = "[&Get Premium]";
             // 
             // tableLayoutPanel3
             // 
@@ -1296,6 +1304,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _dutchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _alwaysOfflineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _checkForUpdateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _getPremiumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _passwordResetToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private System.Windows.Forms.ContextMenuStrip _notifyIconContextMenuStrip;
