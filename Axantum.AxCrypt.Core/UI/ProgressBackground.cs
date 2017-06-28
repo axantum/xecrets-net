@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Common;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,7 +32,8 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the GUI thread.</param>
         public Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Action<FileOperationContext> complete, IProgressContext progress)
         {
-            return New<IUIThread>().SendToAsync(() => BackgroundWorkWithProgressOnUIThreadAsync(name, workFunction, complete, progress));
+            Task task = New<IUIThread>().SendToAsync(() => BackgroundWorkWithProgressOnUIThreadAsync(name, workFunction, complete, progress));
+            return task;
         }
 
         private async Task BackgroundWorkWithProgressOnUIThreadAsync(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete, IProgressContext progress)
@@ -42,12 +44,12 @@ namespace Axantum.AxCrypt.Core.UI
                 Interlocked.Increment(ref _workerCount);
                 OnOperationStarted(e);
 
-                FileOperationContext result = await Task.Run(() => work(progress));
-                complete(result);
+                FileOperationContext result = await Task.Run(() => work(progress)).Free();
+                New<IUIThread>().SendTo(() => complete(result));
             }
             finally
             {
-                OnOperationCompleted(e);
+                New<IUIThread>().SendTo(() => OnOperationCompleted(e));
                 Interlocked.Decrement(ref _workerCount);
             }
         }

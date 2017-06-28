@@ -36,7 +36,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public class SessionNotification
+    public class SessionNotification : IEquatable<SessionNotification>
     {
         public LogOnIdentity Identity { get; private set; }
 
@@ -87,6 +87,49 @@ namespace Axantum.AxCrypt.Core.Session
         public SessionNotification(SessionNotificationType notificationType)
             : this(notificationType, LogOnIdentity.Empty, new string[0], New<LicensePolicy>().Capabilities)
         {
+        }
+
+        public bool Equals(SessionNotification other)
+        {
+            if ((object)other == null)
+            {
+                return false;
+            }
+            return NotificationType == other.NotificationType && Identity == other.Identity && Capabilities == other.Capabilities && FullNames.SequenceEqual(other.FullNames);
+        }
+
+        public override bool Equals(object obj)
+        {
+            SessionNotification other = obj as SessionNotification;
+            if (other == null)
+            {
+                return false;
+            }
+
+            return Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return NotificationType.GetHashCode() ^ Identity.GetHashCode() ^ Capabilities.GetHashCode() ^ FullNames.Aggregate(0, (v, s) => v ^ s.GetHashCode());
+        }
+
+        public static bool operator ==(SessionNotification left, SessionNotification right)
+        {
+            if (Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if ((object)left == null)
+            {
+                return false;
+            }
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(SessionNotification left, SessionNotification right)
+        {
+            return !(left == right);
         }
     }
 }

@@ -379,7 +379,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            if (activeFile.IsModified && New<LicensePolicy>().Capabilities.Has(LicenseCapability.EditExistingFiles))
+            if (activeFile.IsModified && (New<LicensePolicy>().Capabilities.Has(LicenseCapability.EditExistingFiles) || !New<KnownIdentities>().IsLoggedOn))
             {
                 if (Resolve.Log.IsInfoEnabled)
                 {
@@ -387,6 +387,7 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 return activeFile;
             }
+
             try
             {
                 WipeFile(decryptedFileLock, progress);

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
@@ -93,7 +94,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return;
             }
 
-            await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.KnownKeyChange, logOnIdentity));
+            await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.KnownKeyChange, logOnIdentity)).Free();
         }
 
         private void Clear()
@@ -158,8 +159,8 @@ namespace Axantum.AxCrypt.Core.UI
                 Clear();
                 LogOnIdentity oldIdentity = _defaultEncryptionIdentity;
                 _defaultEncryptionIdentity = LogOnIdentity.Empty;
-                await New<LicensePolicy>().RefreshAsync(_defaultEncryptionIdentity);
-                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOff, oldIdentity, oldCapabilities));
+                await New<LicensePolicy>().RefreshAsync(_defaultEncryptionIdentity).Free();
+                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOff, oldIdentity, oldCapabilities)).Free();
             }
 
             if (value == LogOnIdentity.Empty)
@@ -167,9 +168,9 @@ namespace Axantum.AxCrypt.Core.UI
                 return;
             }
             _defaultEncryptionIdentity = value;
-            await Add(_defaultEncryptionIdentity);
-            await New<LicensePolicy>().RefreshAsync(_defaultEncryptionIdentity);
-            await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOn, value));
+            await Add(_defaultEncryptionIdentity).Free();
+            await New<LicensePolicy>().RefreshAsync(_defaultEncryptionIdentity).Free();
+            await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOn, value)).Free();
         }
 
         private List<SymmetricKeyThumbprint> _knownThumbprints;

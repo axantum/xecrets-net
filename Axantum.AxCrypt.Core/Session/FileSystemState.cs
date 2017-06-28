@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -514,7 +515,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 Resolve.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_dataStore));
             }
-            await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange));
+            await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange)).Free();
         }
 
         public void Delete()

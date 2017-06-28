@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
@@ -60,18 +61,69 @@ namespace Axantum.AxCrypt.Core.Session
             _commands.Remove(command);
         }
 
+        private readonly Queue<SessionNotification> _notificationQueue = new Queue<SessionNotification>();
+
         public virtual async Task NotifyAsync(SessionNotification notification)
+        {
+            lock (_notificationQueue)
+            {
+                _notificationQueue.Enqueue(notification);
+                if (_notificationQueue.Count > 1)
+                {
+                    return;
+                }
+            }
+            while (true)
+            {
+                lock (_notificationQueue)
+                {
+                    if (_notificationQueue.Count == 0)
+                    {
+                        return;
+                    }
+                    OptimizeQueue();
+                    notification = _notificationQueue.Peek();
+                }
+                await NotifyInternal(notification);
+                lock (_notificationQueue)
+                {
+                    _notificationQueue.Dequeue();
+                }
+            }
+        }
+
+        private void OptimizeQueue()
+        {
+            if (_notificationQueue.Count == 1)
+            {
+                return;
+            }
+            SessionNotification[] notifications = _notificationQueue.ToArray();
+            _notificationQueue.Clear();
+            SessionNotification lastNotification = null;
+            foreach (SessionNotification notification in notifications)
+            {
+                if (notification == lastNotification)
+                {
+                    continue;
+                }
+                _notificationQueue.Enqueue(notification);
+                lastNotification = notification;
+            }
+        }
+
+        private async Task NotifyInternal(SessionNotification notification)
         {
             try
             {
                 foreach (Func<SessionNotification, Task> priorityCommand in _priorityCommands)
                 {
-                    await priorityCommand(notification);
+                    await priorityCommand(notification).Free();
                 }
 
                 foreach (Func<SessionNotification, Task> command in _commands)
                 {
-                    await command(notification);
+                    await command(notification).Free();
                 }
                 if (notification.NotificationType != SessionNotificationType.SessionChange)
                 {

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -20,12 +17,19 @@ namespace Axantum.AxCrypt.Common
 
         public Task<IDisposable> LockAsync()
         {
-            var wait = _semaphore.WaitAsync();
-            return wait.IsCompleted ?
-                        _releaser :
-                        wait.ContinueWith((_, state) => (IDisposable)state,
-                            _releaser.Result, CancellationToken.None,
-            TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
+            Task wait = _semaphore.WaitAsync();
+            if (wait.IsCompleted)
+            {
+                return _releaser;
+            }
+            return wait.ContinueWith(
+                (task, state) =>
+                {
+                    return (IDisposable)state;
+                },
+                _releaser.Result, CancellationToken.None,
+                TaskContinuationOptions.ExecuteSynchronously,
+                TaskScheduler.Default);
         }
 
         private sealed class Releaser : IDisposable
