@@ -304,7 +304,7 @@ namespace Axantum.AxCrypt
             _fifteenMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(15);
             _thirtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(30);
             _sixtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(60);
-            _getPremiumToolStripMenuItem.Text = Texts.GetPremiumToolStripMenuItemText;
+            _getPremiumToolStripMenuItem.Text = Texts.UpgradePromptText;
         }
 
         private static void SetCulture()

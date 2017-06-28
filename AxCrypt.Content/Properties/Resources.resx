@@ -915,9 +915,6 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>The selected log type is invalid.</value>
   </data>
-  <data name="GetPremiumToolStripMenuItemText" xml:space="preserve">
-    <value>!!Get Premium</value>
-  </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Great! You already have an AxCrypt ID account for '{0}'.
 
