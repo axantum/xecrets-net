@@ -127,9 +127,6 @@
     <value>L'account deve prima essere verificato dall'utente.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
-    <value>AxCrypt Premium (indefinito)</value>
-  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>Prova di AxCrypt Premium</value>
   </data>
@@ -981,6 +978,14 @@ Partita IVA SE 556967618101</value>
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Clicca per selezionare i file protetti di cui vuoi condividere le chiavi con altri.</value>
   </data>
+  <data name="KnownFolderNameMacDocuments" xml:space="preserve">
+    <value>Documenti</value>
+    <comment>The localized name of the "Documents" folder in Mac OS X. This MUST be translated to the official localization used by Apple for the "Documents" folder.</comment>
+  </data>
+  <data name="KnownFolderNameWindowsMyDocuments" xml:space="preserve">
+    <value>Documenti</value>
+    <comment>The translatable name for the Windows "My Documents" folder. This MUST be translated to the name used by Microsoft in a localized version of Windows!</comment>
+  </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt deve essere riavviato per rendere effettivo il cambio di lingua.</value>
   </data>
@@ -1202,7 +1207,7 @@ Questo programma è autorizzato secondo l'accordo.
     <value>Apri Explorer Qui</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>Abbiamo notato che non hai un abbonamento Premium, così abbiamo iniziato un periodo di Prova gratuito di 30 giorni per permetterti di usare le funzionalità Premium fornite da AxCrypt al di fuori dell'app, le quali sono anche richieste per il funzionamento dell'app stessa</value>
+    <value>Abbiamo notato che non hai un abbonamento Premium, così inizieremo una prova gratuita per te!</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
@@ -1487,6 +1492,10 @@ Classifichiamo le password in 4 categorie di sicurezza crescente e non accettiam
   <data name="PremiumNeededForMobileApp" xml:space="preserve">
     <value>Spiacenti, ma non hai un abbonamento Premium. Aggiorna ora il tuo account per utilizzare le funzionalità Premium fornite da AxCrypt al di fuori dell'app, le quali sono anche richieste per il funzionamento dell'app stessa.</value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
+  </data>
+  <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
+    <value>Questa funzionalità richiede un abbonamento a pagamento! Vuoi essere reindirizzato a una pagina dove puoi effettuare l'acquisto?</value>
+    <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Clicca e mantieni premuto per visualizzare di più</value>

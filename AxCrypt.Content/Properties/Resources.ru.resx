@@ -134,9 +134,6 @@
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Free</value>
   </data>
-  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
-    <value>AxCrypt Premium (неограниченный)</value>
-  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium (пробный)</value>
   </data>

@@ -104,9 +104,6 @@
   <data name="About" xml:space="preserve">
     <value>{0} hakkında</value>
   </data>
-  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
-    <value>AxCrypt Premium (belirsiz)</value>
-  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium deneme</value>
   </data>
