@@ -998,7 +998,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changing options may be dangerous. Only do this if you are sure you understand what this option does. Confirm by entering your password..
+        ///   Looks up a localized string similar to Changing options may be dangerous. Only do this if you are sure you understand what this option does..
         /// </summary>
         public static string ChangeOptionGenericWarning {
             get {

@@ -468,7 +468,7 @@ You must complete these steps to complete the process.</value>
     <value>Your notification preferences have been changed.</value>
   </data>
   <data name="ChangeOptionGenericWarning" xml:space="preserve">
-    <value>Changing options may be dangerous. Only do this if you are sure you understand what this option does. Confirm by entering your password.</value>
+    <value>Changing options may be dangerous. Only do this if you are sure you understand what this option does.</value>
   </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Change Password</value>
