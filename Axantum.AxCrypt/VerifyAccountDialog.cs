@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.UI;
+﻿using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
 using System;
@@ -44,7 +45,6 @@ namespace Axantum.AxCrypt
             _resendButton.Text = "&" + Texts.ResendButtonText;
             _resendButtonToolTip.SetToolTip(_resendButton, Texts.ResendButtonToolTip);
             _buttonOk.Enabled = true;
-            _emailGroupBox.Text = Texts.PromptEmailText;
             _activationCodeGroupBox.Text = Texts.PromptActivationCode;
             _checkEmailLabel.Text = Texts.TextCheckEmailAndSpam;
         }
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt
             _showPassphrase.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
 
             _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.ShowPassphrase), (bool show) => { _passphrase.UseSystemPasswordChar = _passphraseVerification.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
-            _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.UserEmail), (string u) => { _email.Text = u; });
+            _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.UserEmail), (string u) => { _promptTextLabel.Text = Texts.MessageSigningUpText.InvariantFormat(u); });
 
             _activationCode.Focus();
             Visible = true;

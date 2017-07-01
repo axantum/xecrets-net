@@ -167,7 +167,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     case AccountStatus.NotFound:
                         await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(UserEmail), CultureInfo.CurrentUICulture);
-                        await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.MessageSigningUpTitle, Texts.MessageSigningUpText.InvariantFormat(UserEmail));
                         await CheckAccountAsync();
                         status = await VerifyAccountOnline();
                         break;
