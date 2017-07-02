@@ -32,12 +32,12 @@ namespace Axantum.AxCrypt
             InitializeStyle(parent);
 
             _viewModel = new CreateNewAccountViewModel(passphrase, email);
-            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; ClearErrorProviders(); };
+            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Password = PassphraseTextBox.Text; ClearErrorProviders(); };
             PassphraseTextBox.TextChanged += async (sender, e) => { await _passwordStrengthMeter.MeterAsync(PassphraseTextBox.Text); };
             VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; ClearErrorProviders(); };
             EmailTextBox.LostFocus += (sender, e) => { _viewModel.UserEmail = EmailTextBox.Text; };
             EmailTextBox.TextChanged += (sender, e) => { ClearErrorProviders(); };
-            ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
+            ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassword = ShowPassphraseCheckBox.Checked; };
         }
 
         protected override void InitializeContentResources()
@@ -66,8 +66,8 @@ namespace Axantum.AxCrypt
                 _toolTip.SetToolTip(PassphraseTextBox, _passwordStrengthMeter.StrengthTip);
             };
 
-            _viewModel.BindPropertyChanged(nameof(CreateNewAccountViewModel.ShowPassphrase), (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !(ShowPassphraseCheckBox.Checked = show); });
-            _viewModel.BindPropertyChanged(nameof(CreateNewAccountViewModel.Passphrase), (string p) => { PassphraseTextBox.Text = p; });
+            _viewModel.BindPropertyChanged(nameof(CreateNewAccountViewModel.ShowPassword), (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !(ShowPassphraseCheckBox.Checked = show); });
+            _viewModel.BindPropertyChanged(nameof(CreateNewAccountViewModel.Password), (string p) => { PassphraseTextBox.Text = p; });
             _viewModel.BindPropertyChanged(nameof(CreateNewAccountViewModel.Verification), (string v) => { VerifyPassphraseTextbox.Text = v; });
             _viewModel.BindPropertyChanged(nameof(CreateNewAccountViewModel.UserEmail), (string u) => { EmailTextBox.Text = u; });
 
@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt
         private bool AdHocValidatePassphrase()
         {
             _errorProvider1.Clear();
-            if (_viewModel[nameof(CreateNewAccountViewModel.Passphrase)].Length > 0)
+            if (_viewModel[nameof(CreateNewAccountViewModel.Password)].Length > 0)
             {
                 _errorProvider1.SetError(PassphraseTextBox, Texts.PasswordPolicyViolation);
                 return false;

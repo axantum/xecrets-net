@@ -66,9 +66,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructorWithoutKnownDefaultIdentity()
         {
-            NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
+            NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
 
-            Assert.That(npvm.Passphrase, Is.EqualTo(""));
+            Assert.That(npvm.Password, Is.EqualTo(""));
         }
 
         [TestCase(CryptoImplementation.Mono)]
@@ -79,27 +79,27 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
             _identities.Add(Passphrase.Empty);
-            NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
+            NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
 
-            Assert.That(npvm.Passphrase, Is.EqualTo(String.Empty));
+            Assert.That(npvm.Password, Is.EqualTo(String.Empty));
         }
 
         [Test]
         public static void TestShowPassphrase()
         {
-            NewPassphraseViewModel npvm = new NewPassphraseViewModel("Identity", String.Empty);
+            NewPasswordViewModel npvm = new NewPasswordViewModel("Identity", String.Empty);
 
-            Assert.That(npvm.ShowPassphrase, Is.False);
+            Assert.That(npvm.ShowPassword, Is.False);
 
-            npvm.ShowPassphrase = true;
+            npvm.ShowPassword = true;
 
-            Assert.That(npvm.ShowPassphrase, Is.True);
+            Assert.That(npvm.ShowPassword, Is.True);
         }
 
         [Test]
         public static void TestValidateIdentity()
         {
-            NewPassphraseViewModel npvm = new NewPassphraseViewModel("Identity", String.Empty);
+            NewPasswordViewModel npvm = new NewPasswordViewModel("Identity", String.Empty);
 
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.None));
         }
@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidatePropertyThatCannotBeValidated()
         {
-            NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
+            NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
             string s = null;
             Assert.Throws<ArgumentException>(() => { s = npvm["ShowPassphrase"]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
@@ -119,9 +119,9 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.Singleton<PasswordStrengthEvaluator>(() => new PasswordStrengthEvaluator(64, 0));
 
-            NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
+            NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
 
-            npvm.Passphrase = "Loadiney4aropRout[";
+            npvm.Password = "Loadiney4aropRout[";
             npvm.Verification = "Loadiney4aropRout[";
 
             Assert.That(npvm["Passphrase"], Is.EqualTo(""));
@@ -132,9 +132,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidatePassphraseNotOk()
         {
-            NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
+            NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
 
-            npvm.Passphrase = "abc1234";
+            npvm.Password = "abc1234";
             npvm.Verification = "abc12345";
 
             Assert.That(npvm["Verification"], Is.Not.EqualTo(""));
@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidateNonExistingPropertyName()
         {
-            NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
+            NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
             string s = null;
             Assert.Throws<ArgumentException>(() => { s = npvm["NonExisting"]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
@@ -158,8 +158,8 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
-            NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, @"C:\My Folder\MyFile-txt.axx");
-            npvm.Passphrase = "b";
+            NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, @"C:\My Folder\MyFile-txt.axx");
+            npvm.Password = "b";
             npvm.Verification = "b";
 
             Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));

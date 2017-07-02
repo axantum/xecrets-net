@@ -43,13 +43,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// Request user name and passphrase, get a public key pair from the server, or generate
     /// locally, and store the result locally.
     /// </summary>
-    public class CreateNewAccountViewModel : ViewModelBase
+    public class CreateNewAccountViewModel : ViewModelBase, INewPassword
     {
-        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
+        public string Password { get { return GetProperty<string>(nameof(Password)); } set { SetProperty(nameof(Password), value); } }
 
         public string Verification { get { return GetProperty<string>(nameof(Verification)); } set { SetProperty(nameof(Verification), value); } }
 
-        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
+        public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
         public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
 
@@ -63,16 +63,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues(string passphrase, EmailAddress email)
         {
-            Passphrase = passphrase ?? String.Empty;
+            Password = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
 
             UserEmail = email.Address;
-            ShowPassphrase = Resolve.UserSettings.DisplayEncryptPassphrase;
+            ShowPassword = Resolve.UserSettings.DisplayEncryptPassphrase;
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
             BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { Resolve.UserSettings.UserEmail = userEmail; } });
         }
 
@@ -93,10 +93,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     {
                         return Task.FromResult(false);
                     }
-                    return Task.FromResult(String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0);
+                    return Task.FromResult(String.Compare(Password, Verification, StringComparison.Ordinal) == 0);
 
-                case nameof(Passphrase):
-                    return Task.FromResult(ValidatePassphrasePolicy(Passphrase));
+                case nameof(Password):
+                    return Task.FromResult(ValidatePassphrasePolicy(Password));
 
                 default:
                     return Task.FromResult(true);
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Password))));
             UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), New<INow>().Utc, New<KeyPairService>().New());
             accountStorage.ImportAsync(userKeys).Wait();
 

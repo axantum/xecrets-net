@@ -27,7 +27,6 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
@@ -41,17 +40,17 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class VerifyAccountViewModel : ViewModelBase
+    public class VerifyAccountViewModel : ViewModelBase, INewPassword
     {
         public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
 
         public string VerificationCode { get { return GetProperty<string>(nameof(VerificationCode)); } set { SetProperty(nameof(VerificationCode), value); } }
 
-        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
+        public string Password { get { return GetProperty<string>(nameof(Password)); } set { SetProperty(nameof(Password), value); } }
 
-        public string VerificationPassphrase { get { return GetProperty<string>(nameof(VerificationPassphrase)); } set { SetProperty(nameof(VerificationPassphrase), value); } }
+        public string Verification { get { return GetProperty<string>(nameof(Verification)); } set { SetProperty(nameof(Verification), value); } }
 
-        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
+        public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
         public bool AlreadyVerified { get { return GetProperty<bool>(nameof(AlreadyVerified)); } set { SetProperty(nameof(AlreadyVerified), value); } }
 
@@ -71,15 +70,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             UserEmail = emailAddress.Address;
             VerificationCode = string.Empty;
-            Passphrase = string.Empty;
-            VerificationPassphrase = string.Empty;
-            ShowPassphrase = Resolve.UserSettings.DisplayEncryptPassphrase;
+            Password = string.Empty;
+            Verification = string.Empty;
+            ShowPassword = Resolve.UserSettings.DisplayEncryptPassphrase;
             ErrorMessage = string.Empty;
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
             BindPropertyChangedInternal(nameof(VerificationCode), (string code) => VerificationCode = code.Replace(" ", String.Empty));
         }
 
@@ -100,11 +99,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     return true;
 
-                case nameof(Passphrase):
-                    return ValidatePassphrasePolicy(Passphrase);
+                case nameof(Password):
+                    return ValidatePassphrasePolicy(Password);
 
-                case nameof(VerificationPassphrase):
-                    return String.Compare(Passphrase, VerificationPassphrase, StringComparison.Ordinal) == 0;
+                case nameof(Verification):
+                    return String.Compare(Password, Verification, StringComparison.Ordinal) == 0;
 
                 case nameof(VerificationCode):
                     return VerificationCode.Length == 6 && VerificationCode.ToCharArray().All(c => Char.IsDigit(c));
@@ -138,7 +137,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task VerifyAccountActionAsync()
         {
-            LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(UserEmail), Crypto.Passphrase.Create(Passphrase));
+            LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(UserEmail), Crypto.Passphrase.Create(Password));
             IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
 
             try

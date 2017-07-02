@@ -61,13 +61,13 @@ namespace Axantum.AxCrypt
                 _toolTip.SetToolTip(_passphrase, _passwordStrengthMeter.StrengthTip);
             };
 
-            _passphrase.TextChanged += (sender, e) => { _viewModel.Passphrase = _passphrase.Text; ClearErrorProviders(); };
+            _passphrase.TextChanged += (sender, e) => { _viewModel.Password = _passphrase.Text; ClearErrorProviders(); };
             _passphrase.TextChanged += async (sender, e) => { await _passwordStrengthMeter.MeterAsync(_passphrase.Text); };
-            _passphraseVerification.TextChanged += (sender, e) => { _viewModel.VerificationPassphrase = _passphraseVerification.Text; ClearErrorProviders(); };
+            _passphraseVerification.TextChanged += (sender, e) => { _viewModel.Verification = _passphraseVerification.Text; ClearErrorProviders(); };
             _activationCode.TextChanged += (sender, e) => { _viewModel.VerificationCode = _activationCode.Text; ClearErrorProviders(); };
-            _showPassphrase.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
+            _showPassphrase.CheckedChanged += (sender, e) => { _viewModel.ShowPassword = _showPassphrase.Checked; };
 
-            _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.ShowPassphrase), (bool show) => { _passphrase.UseSystemPasswordChar = _passphraseVerification.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
+            _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.ShowPassword), (bool show) => { _passphrase.UseSystemPasswordChar = _passphraseVerification.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
             _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.UserEmail), (string u) => { _promptTextLabel.Text = Texts.MessageSigningUpText.InvariantFormat(u); });
 
             _activationCode.Focus();
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt
         private bool AdHocValidatePassphrase()
         {
             _errorProvider1.Clear();
-            if (_viewModel[nameof(VerifyAccountViewModel.Passphrase)].Length > 0)
+            if (_viewModel[nameof(VerifyAccountViewModel.Password)].Length > 0)
             {
                 _errorProvider1.SetError(_passphrase, Texts.PasswordPolicyViolation);
                 return false;
@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt
         private bool AdHocValidatePassphraseVerification()
         {
             _errorProvider2.Clear();
-            if (_viewModel[nameof(VerifyAccountViewModel.VerificationPassphrase)].Length > 0)
+            if (_viewModel[nameof(VerifyAccountViewModel.Verification)].Length > 0)
             {
                 _errorProvider2.SetError(_passphraseVerification, Texts.PassphraseVerificationMismatch);
                 return false;

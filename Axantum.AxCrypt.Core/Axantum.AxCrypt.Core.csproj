@@ -227,6 +227,7 @@
     <Compile Include="UI\ViewModel\IAsyncAction.cs" />
     <Compile Include="UI\ViewModel\ImportPrivateKeysViewModel.cs" />
     <Compile Include="UI\ViewModel\ImportPublicKeysViewModel.cs" />
+    <Compile Include="UI\ViewModel\INewPassword.cs" />
     <Compile Include="UI\ViewModel\LogOnAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\ManageAccountViewModel.cs" />
     <Compile Include="UI\PasswordStrength.cs" />
@@ -373,7 +374,7 @@
     <Compile Include="UI\KnownIdentities.cs" />
     <Compile Include="UI\ProgressContext.cs" />
     <Compile Include="UI\ProgressEventArgs.cs" />
-    <Compile Include="UI\ViewModel\NewPassphraseViewModel.cs" />
+    <Compile Include="UI\ViewModel\NewPasswordViewModel.cs" />
     <Compile Include="UI\ViewModel\ValidationError.cs" />
     <Compile Include="UI\ViewModel\ViewModelBase.cs" />
     <Compile Include="UI\PublicResources.cs" />

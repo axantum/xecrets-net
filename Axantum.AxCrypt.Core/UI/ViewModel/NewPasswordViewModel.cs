@@ -37,11 +37,11 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class NewPassphraseViewModel : ViewModelBase
+    public class NewPasswordViewModel : ViewModelBase, INewPassword
     {
         private string _encryptedFileFullName;
 
-        public NewPassphraseViewModel(string passphrase, string encryptedFileFullName)
+        public NewPasswordViewModel(string passphrase, string encryptedFileFullName)
         {
             _encryptedFileFullName = encryptedFileFullName;
             InitializePropertyValues(passphrase);
@@ -50,20 +50,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues(string passphrase)
         {
-            Passphrase = passphrase ?? String.Empty;
+            Password = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
             FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : New<IDataStore>(_encryptedFileFullName).Name;
-            ShowPassphrase = New<UserSettings>().DisplayEncryptPassphrase;
+            ShowPassword = New<UserSettings>().DisplayEncryptPassphrase;
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<UserSettings>().DisplayEncryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => New<UserSettings>().DisplayEncryptPassphrase = show);
         }
 
-        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
+        public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
-        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
+        public string Password { get { return GetProperty<string>(nameof(Password)); } set { SetProperty(nameof(Password), value); } }
 
         public string Verification { get { return GetProperty<string>(nameof(Verification)); } set { SetProperty(nameof(Verification), value); } }
 
@@ -78,14 +78,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (columnName)
             {
-                case nameof(Passphrase):
-                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
+                case nameof(Password):
+                    if (!IsPassphraseValidForFileIfAny(Password, _encryptedFileFullName))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
                     }
 
-                    if (!IsPassphrasePolicyValid(Passphrase))
+                    if (!IsPassphrasePolicyValid(Password))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool ValidateVerification()
         {
-            return String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0;
+            return String.Compare(Password, Verification, StringComparison.Ordinal) == 0;
         }
 
         private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
