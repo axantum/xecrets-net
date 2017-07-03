@@ -353,15 +353,10 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static async Task<UserPublicKey> GetAsync(this KnownPublicKeys knownPublicKeys, EmailAddress email)
         {
-            UserPublicKey key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
-            if (key != null)
-            {
-                return key;
-            }
-
             if (New<AxCryptOnlineState>().IsOffline)
             {
-                return null;
+                UserPublicKey key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
+                return key;
             }
 
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity));
