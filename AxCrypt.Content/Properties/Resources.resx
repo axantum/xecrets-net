@@ -345,11 +345,19 @@ You have been warned, now enjoy!</value>
   <data name="ButtonDeleteText" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="ButtonDisableText" xml:space="preserve">
+    <value>Disable</value>
+    <comment>A single word text for a button or similar to disable an option or turn something off. The word 'off' is an alternative, also for translation if 'disable' is hard to translate.</comment>
+  </data>
   <data name="ButtonEditText" xml:space="preserve">
     <value>Edit</value>
   </data>
   <data name="ButtonEllipsisText" xml:space="preserve">
     <value>...</value>
+  </data>
+  <data name="ButtonEnableText" xml:space="preserve">
+    <value>Enable</value>
+    <comment>A single word for a button or similar that enables an option. The word 'on' is an alternative if the translation of enable does not make sense.</comment>
   </data>
   <data name="ButtonExitText" xml:space="preserve">
     <value>Exit</value>

@@ -652,6 +652,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable.
+        /// </summary>
+        public static string ButtonDisableText {
+            get {
+                return ResourceManager.GetString("ButtonDisableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string ButtonEditText {
@@ -666,6 +675,15 @@ namespace AxCrypt.Content.Properties {
         public static string ButtonEllipsisText {
             get {
                 return ResourceManager.GetString("ButtonEllipsisText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable.
+        /// </summary>
+        public static string ButtonEnableText {
+            get {
+                return ResourceManager.GetString("ButtonEnableText", resourceCulture);
             }
         }
         
