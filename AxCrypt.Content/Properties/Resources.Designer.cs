@@ -2905,8 +2905,6 @@ namespace AxCrypt.Content.Properties {
         ///
         ///You can open legacy AxCrypt 1.x files but unless they are converted you have to provide the original password even when signed in.
         ///
-        ///Automatic conversion can also be changed in the options menu.
-        ///
         ///Enable automatic conversion of AxCrypt 1.x files (recommended)?.
         /// </summary>
         public static string LegacyOpenMessage {
