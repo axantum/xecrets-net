@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
             string s = null;
-            Assert.Throws<ArgumentException>(() => { s = npvm["ShowPassphrase"]; });
+            Assert.Throws<ArgumentException>(() => { s = npvm[nameof(NewPasswordViewModel.ShowPassword)]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
         }
 
@@ -124,8 +124,8 @@ namespace Axantum.AxCrypt.Core.Test
             npvm.Password = "Loadiney4aropRout[";
             npvm.Verification = "Loadiney4aropRout[";
 
-            Assert.That(npvm["Passphrase"], Is.EqualTo(""));
-            Assert.That(npvm["Verification"], Is.EqualTo(""));
+            Assert.That(npvm[nameof(NewPasswordViewModel.Password)], Is.EqualTo(""));
+            Assert.That(npvm[nameof(NewPasswordViewModel.Verification)], Is.EqualTo(""));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.None));
         }
 
@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core.Test
             npvm.Password = "abc1234";
             npvm.Verification = "abc12345";
 
-            Assert.That(npvm["Verification"], Is.Not.EqualTo(""));
+            Assert.That(npvm[nameof(NewPasswordViewModel.Verification)], Is.Not.EqualTo(""));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.VerificationPassphraseWrong));
         }
 
@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Test
             npvm.Password = "b";
             npvm.Verification = "b";
 
-            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));
+            Assert.That(npvm[nameof(NewPasswordViewModel.Password)], Is.Not.EqualTo(""));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
         }
     }
