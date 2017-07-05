@@ -25,6 +25,8 @@ namespace Axantum.AxCrypt.Core.Session
 
         private List<UserPublicKey> _publicKeys;
 
+        private bool _isRecentlyUpdated;
+
         protected KnownPublicKeys()
         {
             _publicKeys = new List<UserPublicKey>();
@@ -50,6 +52,22 @@ namespace Axantum.AxCrypt.Core.Session
             private set
             {
                 _publicKeys = new List<UserPublicKey>(value);
+            }
+        }
+
+        [JsonProperty("isrecentlyupdated")]
+        public bool IsRecentlyUpdated
+        {
+            get
+            {
+                return _isRecentlyUpdated; 
+                
+            }
+            set
+            {
+                _dirty = true;
+                _isRecentlyUpdated = value; 
+                
             }
         }
 
@@ -126,6 +144,12 @@ namespace Axantum.AxCrypt.Core.Session
             }
             _dirty = true;
             _publicKeys.Add(publicKey);
+        }
+
+        public void ClearRecentlyUpdated()
+        {
+            _publicKeys.Clear();
+            _dirty = true;
         }
 
         public void Dispose()
