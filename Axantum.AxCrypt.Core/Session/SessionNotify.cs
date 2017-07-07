@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -100,16 +101,33 @@ namespace Axantum.AxCrypt.Core.Session
             }
             SessionNotification[] notifications = _notificationQueue.ToArray();
             _notificationQueue.Clear();
-            SessionNotification lastNotification = null;
+            SessionNotification currentNotification = null;
             foreach (SessionNotification notification in notifications)
             {
-                if (notification == lastNotification)
+                if (currentNotification == null)
                 {
+                    currentNotification = notification;
                     continue;
                 }
-                _notificationQueue.Enqueue(notification);
-                lastNotification = notification;
+                if (notification.NotificationType == currentNotification.NotificationType && notification.Capabilities == currentNotification.Capabilities && notification.Identity == currentNotification.Identity)
+                {
+                    currentNotification = MergeNotificationFullNames(currentNotification, notification);
+                    continue;
+                }
+                _notificationQueue.Enqueue(currentNotification);
+                currentNotification = notification;
             }
+            if (currentNotification != null)
+            {
+                _notificationQueue.Enqueue(currentNotification);
+            }
+        }
+
+        private SessionNotification MergeNotificationFullNames(SessionNotification currentNotification, SessionNotification nextNotification)
+        {
+            IEnumerable<string> allFullNames = currentNotification.FullNames.Union(nextNotification.FullNames);
+
+            return new SessionNotification(currentNotification.NotificationType, currentNotification.Identity, allFullNames, currentNotification.Capabilities);
         }
 
         private async Task NotifyInternal(SessionNotification notification)
