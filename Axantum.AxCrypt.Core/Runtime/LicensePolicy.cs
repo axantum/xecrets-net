@@ -29,11 +29,14 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using System;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.Extensions;
+
 using System;
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -50,6 +53,8 @@ namespace Axantum.AxCrypt.Core.Runtime
             LicenseCapability.StandardEncryption,
             LicenseCapability.AccountKeyBackup,
             LicenseCapability.CommunitySupport,
+            LicenseCapability.EncryptNewFiles,
+            LicenseCapability.EditExistingFiles,
         });
 
         protected static readonly HashSet<LicenseCapability> PremiumCapabilitySet = new HashSet<LicenseCapability>(new LicenseCapability[]

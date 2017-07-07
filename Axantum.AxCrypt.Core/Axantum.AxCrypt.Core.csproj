@@ -172,6 +172,7 @@
     <Compile Include="Reader\UnversionedAxCryptReader.cs" />
     <Compile Include="Runtime\UIThreadBase.cs" />
     <Compile Include="Runtime\UserInputException.cs" />
+    <Compile Include="Runtime\ViewerLicensePolicy.cs" />
     <Compile Include="Secrets\EncryptionKey.cs" />
     <Compile Include="Secrets\EncryptionKeyCollection.cs" />
     <Compile Include="Secrets\ISecretsReader.cs" />
