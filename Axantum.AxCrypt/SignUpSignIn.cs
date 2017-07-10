@@ -1,7 +1,9 @@
 ﻿using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms.Style;
+using AxCrypt.Content;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,7 +26,7 @@ namespace Axantum.AxCrypt
 
         public async Task DialogsAsync(Form parent, ISignIn signingInState)
         {
-            SignupSignInViewModel viewModel = new SignupSignInViewModel(signingInState)
+            SignupSignInViewModel viewModel = new SignupSignInViewModel(signingInState, new NameOf(nameof(Texts.WelcomeToAxCrypt)))
             {
                 UserEmail = UserEmail,
                 Version = Version,

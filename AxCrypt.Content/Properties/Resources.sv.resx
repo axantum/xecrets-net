@@ -316,11 +316,19 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   <data name="ButtonDeleteText" xml:space="preserve">
     <value>Radera</value>
   </data>
+  <data name="ButtonDisableText" xml:space="preserve">
+    <value>Av</value>
+    <comment>A single word text for a button or similar to disable an option or turn something off. The word 'off' is an alternative, also for translation if 'disable' is hard to translate.</comment>
+  </data>
   <data name="ButtonEditText" xml:space="preserve">
     <value>Redigera</value>
   </data>
   <data name="ButtonEllipsisText" xml:space="preserve">
     <value>...</value>
+  </data>
+  <data name="ButtonEnableText" xml:space="preserve">
+    <value>På</value>
+    <comment>A single word for a button or similar that enables an option. The word 'on' is an alternative if the translation of enable does not make sense.</comment>
   </data>
   <data name="ButtonExitText" xml:space="preserve">
     <value>Avsluta</value>
@@ -439,7 +447,7 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
     <value>Dina notifieringspreferenser har ändrats.</value>
   </data>
   <data name="ChangeOptionGenericWarning" xml:space="preserve">
-    <value>Att ändra alternativ kan vara riskabelt. Fortsätt bara om du är säker på vad det här alternativet innebär. Bekräfta genom att ange ditt lösenord.</value>
+    <value>Att ändra alternativ kan vara riskabelt. Fortsätt bara om du är säker på vad det här alternativet innebär.</value>
   </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Byt Lösenord</value>
@@ -1016,9 +1024,7 @@ Kom ihåg det här lösenordet!</value>
 
 Du kan öppna äldre AxCrypt 1.x-filer, men om de inte konverteras måste du ange det ursprungliga lösenordet även om du redan loggat in.
 
-Automatisk konvertering kan ställas in via menyerna.
-
-Ska vi aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </value>
+Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </value>
   </data>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Till Startsidan</value>
@@ -1893,9 +1899,6 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
     <value>Vad tycker du?</value>
     <comment>Text of Submit feedback button</comment>
   </data>
-  <data name="SubscriptionsErrorAmount" xml:space="preserve">
-    <value>Internt fel. Beloppet är ogiltigt, ange belop med decimalavgränsare.</value>
-  </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Sparad.</value>
   </data>
@@ -2084,13 +2087,23 @@ Vi på AxCrypt</value>
     <value>Väkommen till AxCrypt!</value>
   </data>
   <data name="WelcomeToAxCrypt" xml:space="preserve">
-    <value>Välkommentill AxCrypt!
+    <value>Välkommen till AxCrypt!
 
 Att använda AxCrypt är enkelt. Börja med huvudfönstret, eller dubbel-klicka och högerklicka i utforskaren.
 
 För att skydda dina första filer, klicka + ikonen i verktygsfältet och välj.
 
 Mer information hittar du genom att klicka OK som öppnar en webbläsare till vår hemsida.</value>
+  </data>
+  <data name="WelcomeToAxCryptForMac" xml:space="preserve">
+    <value>Välkommen till AxCrypt för Mac!
+
+Att använda AxCrypt är enkelt. Börja med huvudfönstret, eller dubbel-klicka i Finder.
+
+För att skydda dina första filer, klicka + ikonen i verktygsfältet och välj.
+
+Mer information hittar du genom att klicka OK som öppnar en webbläsare till vår hemsida.</value>
+    <comment>A longer message for a dialog box the first time a Mac user starts AxCrypt.</comment>
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Kom igång med AxCrypt</value>

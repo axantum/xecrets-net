@@ -1707,7 +1707,7 @@ We classify the password in 4 categories of increasing strength, were we do not 
     <value>[More info about PayPal]</value>
   </data>
   <data name="PolishLanguageSelection" xml:space="preserve">
-    <value>польски (Polish)</value>
+    <value>Polski (Polish)</value>
     <comment>The Polish name for polish in a language selection menu.</comment>
   </data>
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
@@ -2408,6 +2408,16 @@ Using AxCrypt is really easy. Start with the main window, or use double-click an
 To encrypt your first files, click the + icon in the toolbar and select them.
 
 For more information, click OK to open a web browser to our web site.</value>
+  </data>
+  <data name="WelcomeToAxCryptForMac" xml:space="preserve">
+    <value>Welcome to AxCrypt for Mac!
+
+Using AxCrypt is really easy. Start with the main window, or use double-click in Finder.
+
+To encrypt your first files, click the + icon in the toolbar and select them.
+
+For more information, click OK to open a web browser to our web site.</value>
+    <comment>A longer message for a dialog box the first time a Mac user starts AxCrypt.</comment>
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Getting started with AxCrypt</value>

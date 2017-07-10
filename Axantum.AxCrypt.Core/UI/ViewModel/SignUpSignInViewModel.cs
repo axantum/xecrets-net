@@ -41,9 +41,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private ISignIn _signinState;
 
-        public SignupSignInViewModel(ISignIn signIn)
+        private NameOf _welcomeMessage;
+
+        public SignupSignInViewModel(ISignIn signIn, NameOf welcomeMesssage)
         {
             _signinState = signIn;
+            _welcomeMessage = welcomeMesssage;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
@@ -283,7 +286,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.AlreadyVerifiedInfo);
             }
 
-            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.WelcomeToAxCrypt);
+            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.ResourceManager.GetString(_welcomeMessage.Name));
             if (result == PopupButtons.Ok)
             {
                 using (ILauncher launcher = New<ILauncher>())
