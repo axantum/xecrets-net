@@ -4270,7 +4270,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to польски (Polish).
+        ///   Looks up a localized string similar to Polski (Polish).
         /// </summary>
         public static string PolishLanguageSelection {
             get {
@@ -6105,6 +6105,21 @@ namespace AxCrypt.Content.Properties {
         public static string WelcomeToAxCrypt {
             get {
                 return ResourceManager.GetString("WelcomeToAxCrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt for Mac!
+        ///
+        ///Using AxCrypt is really easy. Start with the main window, or use double-click in Finder.
+        ///
+        ///To encrypt your first files, click the + icon in the toolbar and select them.
+        ///
+        ///For more information, click OK to open a web browser to our web site..
+        /// </summary>
+        public static string WelcomeToAxCryptForMac {
+            get {
+                return ResourceManager.GetString("WelcomeToAxCryptForMac", resourceCulture);
             }
         }
         
