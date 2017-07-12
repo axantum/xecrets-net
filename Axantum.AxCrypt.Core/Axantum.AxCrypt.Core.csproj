@@ -197,6 +197,8 @@
     <Compile Include="Service\UserKeyPair.cs" />
     <Compile Include="Session\AccountStorage.cs" />
     <Compile Include="Session\OpenFileProperties.cs" />
+    <Compile Include="Session\UserPublicKeyUpdateStatus.cs" />
+    <Compile Include="Session\UserPublicKeyWithStatus.cs" />
     <Compile Include="UI\DeviceLockedEventArgs.cs" />
     <Compile Include="UI\DeviceLockReason.cs" />
     <Compile Include="UI\IDataItemSelection.cs" />

@@ -343,11 +343,8 @@ namespace Axantum.AxCrypt.Core.Service
 
             return await Task.Run(() =>
             {
-                using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
-                {
-                    UserPublicKey publicKey = knowPublicKeys.PublicKeys.Where(pk => pk.Email == email).FirstOrDefault();
-                    return publicKey;
-                }
+                UserPublicKey publicKey = New<KnownPublicKeys>().PublicKeysWithStatus.Where(pk => pk.PublicKey.Email == email).Select(x => x.PublicKey).FirstOrDefault();
+                return publicKey;
             }).Free();
         }
 

@@ -69,17 +69,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void ImportFilesAction(IEnumerable<string> files)
         {
             List<string> failed = new List<string>();
-            using (KnownPublicKeys knownPublicKeys = _createKnownPublicKeys())
+            //New<KnownPublicKeys>(). = _createKnownPublicKeys(); Not sure how to handle this.
+
+            foreach (string file in files)
             {
-                foreach (string file in files)
+                IDataStore publicKeyData = New<IDataStore>(file);
+                if (!New<KnownPublicKeys>().AddOrReplace(publicKeyData))
                 {
-                    IDataStore publicKeyData = New<IDataStore>(file);
-                    if (!knownPublicKeys.AddOrReplace(publicKeyData))
-                    {
-                        failed.Add(file);
-                    }
+                    failed.Add(file);
                 }
             }
+
             FailedFiles = failed;
         }
     }
