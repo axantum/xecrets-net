@@ -976,6 +976,12 @@ If you for any reason do not know or remember the password, you must perform a p
   <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
     <value>Warning</value>
   </data>
+  <data name="IncludeSubfoldersDescription" xml:space="preserve">
+    <value>When the Include Subfolders option is enabled, watched folders and other operations encrypting and decrypting files with folders will include subfolders and all subfolders below.
+
+This may cause some operations to take very long time. Please be careful not to select a folder with folders below that should not be encrypted.</value>
+    <comment>A short text in a few sentences describing what the Include Subfolders option does.</comment>
+  </data>
   <data name="InconsistentState" xml:space="preserve">
     <value>Inconsistent state with '{0}'.</value>
   </data>

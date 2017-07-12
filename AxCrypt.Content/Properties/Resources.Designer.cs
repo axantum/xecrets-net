@@ -2428,6 +2428,17 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to When the Include Subfolders option is enabled, watched folders and other operations encrypting and decrypting files with folders will include subfolders and all subfolders below.
+        ///
+        ///This may cause some operations to take very long time. Please be careful not to select a folder with folders below that should not be encrypted..
+        /// </summary>
+        public static string IncludeSubfoldersDescription {
+            get {
+                return ResourceManager.GetString("IncludeSubfoldersDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inconsistent state with &apos;{0}&apos;..
         /// </summary>
         public static string InconsistentState {
