@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Api.Model
                 return false;
             }
 
-            return PublicPem == other.PublicPem && PrivateEncryptedPem == other.PrivateEncryptedPem;
+            return PublicPem == other.PublicPem && PrivateEncryptedPem.Length == other.PrivateEncryptedPem.Length;
         }
 
         public override bool Equals(object obj)
