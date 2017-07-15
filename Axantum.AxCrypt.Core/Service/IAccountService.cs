@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// <summary>
         /// Fetches the user user account.
         /// </summary>
-        /// <returns>The complete user account information.</returns>
+        /// <returns>The complete user account information. If none is available, a default empty UserAccount is returned.</returns>
         Task<UserAccount> AccountAsync();
 
         /// <summary>

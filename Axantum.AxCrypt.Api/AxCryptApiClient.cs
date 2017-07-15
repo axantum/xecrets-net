@@ -54,11 +54,11 @@ namespace Axantum.AxCrypt.Api
             RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
             if (restResponse.StatusCode == HttpStatusCode.NotFound)
             {
-                return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.NotFound, Offers.None);
+                return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.NotFound);
             }
             if (restResponse.StatusCode == HttpStatusCode.BadRequest)
             {
-                return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.InvalidName, Offers.None);
+                return new UserAccount(userName, SubscriptionLevel.Unknown, AccountStatus.InvalidName);
             }
             ApiCaller.EnsureStatusOk(restResponse);
 
@@ -265,6 +265,10 @@ namespace Axantum.AxCrypt.Api
 
                 AccountTip tip = Serializer.Deserialize<AccountTip>(response.Content);
                 return tip;
+            }
+            catch (UnauthorizedApiException)
+            {
+                return new AccountTip();
             }
             catch (OfflineApiException oaex)
             {

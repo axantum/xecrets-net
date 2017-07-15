@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Service
                 UserAccount existingUserAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
                 if (existingUserAccount == null)
                 {
-                    existingUserAccount = new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, Offers.None, new AccountKey[0]);
+                    existingUserAccount = new UserAccount(Identity.UserEmail.Address);
                     userAccounts.Accounts.Add(existingUserAccount);
                 }
 
@@ -212,7 +212,7 @@ namespace Axantum.AxCrypt.Core.Service
                 UserAccount existingUserAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
                 if (existingUserAccount == null)
                 {
-                    existingUserAccount = new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, Offers.None, new AccountKey[0]);
+                    existingUserAccount = new UserAccount(Identity.UserEmail.Address);
                     userAccounts.Accounts.Add(existingUserAccount);
                 }
 
@@ -281,7 +281,7 @@ namespace Axantum.AxCrypt.Core.Service
             IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
             if (!users.Any())
             {
-                return new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, Offers.None, new AccountKey[0]);
+                return new UserAccount(Identity.UserEmail.Address);
             }
 
             return users.First();

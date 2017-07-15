@@ -162,10 +162,9 @@ namespace Axantum.AxCrypt.Core.Service
         /// The complete user account information.
         /// </returns>
         /// <exception cref="System.InvalidOperationException">The account service requires a user.</exception>
-        /// <exception cref="PasswordException">Credentials are not valid for server access.</exception>
         public async Task<UserAccount> AccountAsync()
         {
-            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            if (string.IsNullOrEmpty(_apiClient.Identity.User))
             {
                 throw new InvalidOperationException("The account service requires a user.");
             }
@@ -177,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
             catch (UnauthorizedApiException)
             {
-                return new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, DateTime.MinValue, AccountStatus.Unknown, Offers.None, new AccountKey[0]);
+                return new UserAccount(Identity.UserEmail.Address);
             }
         }
 
@@ -190,7 +189,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// <exception cref="PasswordException">Credentials are not valid for server access.</exception>
         public async Task<IList<UserKeyPair>> ListAsync()
         {
-            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            if (string.IsNullOrEmpty(_apiClient.Identity.User))
             {
                 throw new InvalidOperationException("The account service requires a user.");
             }
@@ -208,7 +207,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserKeyPair> CurrentKeyPairAsync()
         {
-            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            if (string.IsNullOrEmpty(_apiClient.Identity.User))
             {
                 throw new InvalidOperationException("The account service requires a user.");
             }
@@ -230,7 +229,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task SaveAsync(UserAccount account)
         {
-            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            if (string.IsNullOrEmpty(_apiClient.Identity.User))
             {
                 throw new InvalidOperationException("The account service requires a user.");
             }
@@ -251,7 +250,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// <param name="keyPairs">The key pairs.</param>
         public async Task SaveAsync(IEnumerable<UserKeyPair> keyPairs)
         {
-            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            if (string.IsNullOrEmpty(_apiClient.Identity.User))
             {
                 throw new InvalidOperationException("The account service requires a user.");
             }
@@ -279,7 +278,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task PasswordResetAsync(string verificationCode)
         {
-            if (String.IsNullOrEmpty(_apiClient.Identity.User))
+            if (string.IsNullOrEmpty(_apiClient.Identity.User))
             {
                 throw new InvalidOperationException("The account service requires a user.");
             }

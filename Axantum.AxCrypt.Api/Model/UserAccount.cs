@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Axantum.AxCrypt.Core.UI;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,12 @@ namespace Axantum.AxCrypt.Api.Model
         }
 
         public UserAccount(string userName, SubscriptionLevel level, AccountStatus status, Offers offers)
-            : this(userName, level, DateTime.MinValue, status, offers, new AccountKey[0])
+            : this(userName, level, DateTime.MinValue, status, offers)
+        {
+        }
+
+        public UserAccount(string userName, SubscriptionLevel level, AccountStatus status)
+            : this(userName, level, DateTime.MinValue, status, Offers.None)
         {
         }
 

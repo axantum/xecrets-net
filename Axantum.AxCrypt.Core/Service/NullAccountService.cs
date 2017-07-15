@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// </returns>
         public Task<UserAccount> AccountAsync()
         {
-            return Task.FromResult(new UserAccount(Identity.UserEmail.Address, SubscriptionLevel.Unknown, AccountStatus.Unknown, Offers.None));
+            return Task.FromResult(new UserAccount(Identity.UserEmail.Address));
         }
 
         public Task<IList<UserKeyPair>> ListAsync()
