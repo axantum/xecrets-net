@@ -1,9 +1,25 @@
-﻿namespace Axantum.AxCrypt.Core.Session
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+
+namespace Axantum.AxCrypt.Core.Session
 {
-    public enum UserPublicKeyUpdateStatus
+    public class UserPublicKeyUpdateStatus
     {
-        None = 0,
-        RecentlyUpdated,
-        NotRecentlyUpdated,
+        private IDictionary<PublicKeyThumbprint, PublicKeyUpdateStatus> _publicKeyUpdateStatus;
+
+        public UserPublicKeyUpdateStatus()
+        {
+            _publicKeyUpdateStatus = new Dictionary<PublicKeyThumbprint, PublicKeyUpdateStatus>();
+        }
+
+        public IDictionary<PublicKeyThumbprint, PublicKeyUpdateStatus> UpdateStatus
+        {
+            get { return _publicKeyUpdateStatus; }
+            set { _publicKeyUpdateStatus = value; }
+        }
     }
 }

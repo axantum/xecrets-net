@@ -76,8 +76,12 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return;
             }
-            IEnumerable<UserPublicKey> keyShares = New<KnownPublicKeys>().PublicKeysWithStatus.Where(pk => shares.Contains(pk.PublicKey.Email)).Select(x => x.PublicKey);
-            Add(keyShares);
+
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                IEnumerable<UserPublicKey> keyShares = knownPublicKeys.PublicKeys.Where(pk => shares.Contains(pk.Email));
+                Add(keyShares);
+            }
         }
 
         public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)

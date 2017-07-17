@@ -83,8 +83,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             EmailAddress userEmail = _logOnIdentity.UserKeys.UserEmail;
             SharedWith = sharedWith.Where(sw => sw.Email != userEmail).OrderBy(e => e.Email.Address).ToList();
-            NotSharedWith = New<KnownPublicKeys>().PublicKeysWithStatus.Where(upk => upk.PublicKey.Email != userEmail && !sharedWith.Any(sw => upk.PublicKey.Email == sw.Email)).OrderBy(e => e.PublicKey.Email.Address).Select(s => s.PublicKey);
 
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                NotSharedWith = knownPublicKeys.PublicKeys.Where(upk => upk.Email != userEmail && !sharedWith.Any(sw => upk.Email == sw.Email)).OrderBy(e => e.Email.Address);
+            }
             NewKeyShare = String.Empty;
             CanAddNewKey = New<AxCryptOnlineState>().IsOnline;
 
@@ -138,12 +141,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task<IEnumerable<UserPublicKey>> TryAddMissingUnsharedPublicKeysFromServerAsync(IEnumerable<EmailAddress> keySharesToAdd, IEnumerable<UserPublicKey> fileShares)
         {
             List<UserPublicKey> publicKeys = new List<UserPublicKey>();
-            foreach (EmailAddress keyShareToAdd in keySharesToAdd)
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
-                UserPublicKey key = await New<KnownPublicKeys>().GetAsync(keyShareToAdd);
-                if (key != null)
+                foreach (EmailAddress keyShareToAdd in keySharesToAdd)
                 {
-                    publicKeys.Add(key);
+                    UserPublicKey key = await knownPublicKeys.GetAsync(keyShareToAdd);
+                    if (key != null)
+                    {
+                        publicKeys.Add(key);
+                    }
                 }
             }
             return publicKeys;

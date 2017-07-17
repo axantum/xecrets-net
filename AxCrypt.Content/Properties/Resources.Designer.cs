@@ -4182,17 +4182,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt uses an advanced dynamic password strength calculator.
-        ///
-        ///White space, and parts that are equal to common passwords are ignored and do not add any strength..
-        /// </summary>
-        public static string PasswordRulesShortInfo {
-            get {
-                return ResourceManager.GetString("PasswordRulesShortInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Weak.
         /// </summary>
         public static string PasswordStrengthBadName {
