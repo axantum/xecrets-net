@@ -60,12 +60,5 @@ namespace Axantum.AxCrypt.Fake
             }
         }
 
-        public DateTime Local
-        {
-            get
-            {
-                return TimeFunction();
-            }
-        }
     }
 }

@@ -43,12 +43,5 @@ namespace Axantum.AxCrypt.Mono
                 return DateTime.UtcNow;
             }
         }
-        public DateTime Local
-        {
-            get
-            {
-                return DateTime.Now;
-            }
-        }
     }
 }

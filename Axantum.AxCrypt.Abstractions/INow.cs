@@ -37,6 +37,5 @@ namespace Axantum.AxCrypt.Abstractions
     {
         DateTime Utc { get; }
 
-        DateTime Local { get; }
     }
 }
