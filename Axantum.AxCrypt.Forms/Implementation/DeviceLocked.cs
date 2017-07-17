@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Desktop;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -17,36 +18,17 @@ namespace Axantum.AxCrypt.Forms.Implementation
     {
         private class BroadcastReceiverForm : Form
         {
+            private WindowsDeviceLocking _deviceLocking;
+
+            public BroadcastReceiverForm(WindowsDeviceLocking deviceLocking)
+            {
+                _deviceLocking = deviceLocking;
+            }
+
             protected override void WndProc(ref Message m)
             {
                 base.WndProc(ref m);
-
-                if (m.Msg != WM_POWERBROADCAST)
-                {
-                    return;
-                }
-                if (m.WParam.ToInt32() != PBT_POWERSETTINGCHANGE)
-                {
-                    return;
-                }
-
-                POWERBROADCAST_SETTING ps = (POWERBROADCAST_SETTING)Marshal.PtrToStructure(m.LParam, typeof(POWERBROADCAST_SETTING));
-                if (ps.PowerSetting != GUID_MONITOR_POWER_ON && ps.PowerSetting != GUID_CONSOLE_DISPLAY_STATE)
-                {
-                    return;
-                }
-
-                if (ps.DataLength != Marshal.SizeOf(typeof(Int32)))
-                {
-                    return;
-                }
-
-                IntPtr pData = IntPtr.Add(m.LParam, Marshal.SizeOf(ps));
-
-                Int32 iData = (Int32)Marshal.PtrToStructure(pData, typeof(Int32));
-                ((DeviceLocked)New<IDeviceLocked>()).Notify(iData == 0);
-
-                return;
+                _deviceLocking.Message(m.Msg, m.WParam, m.LParam);
             }
 
             protected override void OnLoad(EventArgs e)
@@ -56,22 +38,18 @@ namespace Axantum.AxCrypt.Forms.Implementation
             }
         }
 
+        private WindowsDeviceLocking _deviceLocking = new WindowsDeviceLocking();
+
         public event EventHandler<DeviceLockedEventArgs> DeviceWasLocked;
-
-        private IDelayTimer _timer = New<IDelayTimer>();
-
-        private bool? _wasScreenOff;
-
-        private IMessageFilter _messageFilter;
 
         public DeviceLocked()
         {
-            SystemEvents.SessionEnding += SystemEvents_SessionEnding;
-            SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
-            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
+            _deviceLocking.DeviceWasLocked += DeviceLocked_DeviceWasLocked;
+        }
 
-            _timer.SetInterval(TimeSpan.FromSeconds(2));
-            _timer.Elapsed += PollScreenSaverState;
+        private void DeviceLocked_DeviceWasLocked(object sender, DeviceLockedEventArgs e)
+        {
+            DeviceWasLocked?.Invoke(this, e);
         }
 
         private Form _form;
@@ -81,117 +59,8 @@ namespace Axantum.AxCrypt.Forms.Implementation
         /// </summary>
         public void Start(object state)
         {
-            _form = new BroadcastReceiverForm();
-            RegisterForPowerNotifications(_form.Handle);
-            _timer.Start();
-        }
-
-        internal void Notify(bool monitorIsOff)
-        {
-            if (!DidScreenTurnOff(monitorIsOff))
-            {
-                return;
-            }
-
-            OnDeviceWasLocked(new DeviceLockedEventArgs(DeviceLockReason.Temporary));
-        }
-
-        private IntPtr _handleToPowerOnNotificationRegistration;
-
-        private IntPtr _handleToMonitorStateNotificationRegistration;
-
-        private void RegisterForPowerNotifications(IntPtr handle)
-        {
-            _handleToPowerOnNotificationRegistration = NativeMethods.RegisterPowerSettingNotification(handle, ref NativeMethods.GUID_MONITOR_POWER_ON, NativeMethods.DEVICE_NOTIFY_WINDOW_HANDLE);
-            _handleToMonitorStateNotificationRegistration = NativeMethods.RegisterPowerSettingNotification(handle, ref NativeMethods.GUID_CONSOLE_DISPLAY_STATE, NativeMethods.DEVICE_NOTIFY_WINDOW_HANDLE);
-        }
-
-        private void PollScreenSaverState(object sender, EventArgs e)
-        {
-            PollScreenSaverState();
-            _timer.Start();
-        }
-
-        private void PollScreenSaverState()
-        {
-            const int SPI_GETSCREENSAVERRUNNING = 114;
-            bool screenSaverIsRunning = false;
-
-            if (!NativeMethods.SystemParametersInfo(SPI_GETSCREENSAVERRUNNING, 0, ref screenSaverIsRunning, 0))
-            {
-                return;
-            }
-
-            if (!DidScreenTurnOff(screenSaverIsRunning))
-            {
-                return;
-            }
-
-            OnDeviceWasLocked(new DeviceLockedEventArgs(DeviceLockReason.Temporary));
-        }
-
-        private bool DidScreenTurnOff(bool isScreenOff)
-        {
-            if (!_wasScreenOff.HasValue)
-            {
-                _wasScreenOff = isScreenOff;
-            }
-
-            if (isScreenOff == _wasScreenOff)
-            {
-                return isScreenOff;
-            }
-
-            _wasScreenOff = isScreenOff;
-            return isScreenOff;
-        }
-
-        protected virtual void OnDeviceWasLocked(DeviceLockedEventArgs e)
-        {
-            New<IUIThread>().PostTo(() => DeviceWasLocked?.Invoke(this, e));
-        }
-
-        private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
-        {
-            switch (e.Mode)
-            {
-                case PowerModes.Suspend:
-                    OnDeviceWasLocked(new DeviceLockedEventArgs(DeviceLockReason.Temporary));
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        private void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
-        {
-            switch (e.Reason)
-            {
-                case SessionSwitchReason.ConsoleDisconnect:
-                case SessionSwitchReason.RemoteDisconnect:
-                case SessionSwitchReason.SessionLock:
-                    OnDeviceWasLocked(new DeviceLockedEventArgs(DeviceLockReason.Temporary));
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        private void SystemEvents_SessionEnding(object sender, SessionEndingEventArgs e)
-        {
-            switch (e.Reason)
-            {
-                case SessionEndReasons.Logoff:
-                case SessionEndReasons.SystemShutdown:
-                    e.Cancel = true;
-                    OnDeviceWasLocked(new DeviceLockedEventArgs(DeviceLockReason.Permanent));
-                    break;
-
-                default:
-                    break;
-            }
+            _form = new BroadcastReceiverForm(_deviceLocking);
+            _deviceLocking.Start(_form.Handle);
         }
 
         private bool _disposed;
@@ -211,32 +80,11 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 return;
             }
 
-            SystemEvents.SessionEnding -= SystemEvents_SessionEnding;
-            SystemEvents.SessionSwitch -= SystemEvents_SessionSwitch;
-            SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
-
-            if (_timer != null)
+            if (_deviceLocking != null)
             {
-                _timer.Dispose();
-                _timer = null;
-            }
-
-            if (_messageFilter != null)
-            {
-                Application.RemoveMessageFilter(_messageFilter);
-                _messageFilter = null;
-            }
-
-            if (_handleToPowerOnNotificationRegistration != IntPtr.Zero)
-            {
-                UnregisterPowerSettingNotification(_handleToPowerOnNotificationRegistration);
-                _handleToPowerOnNotificationRegistration = IntPtr.Zero;
-            }
-
-            if (_handleToMonitorStateNotificationRegistration != IntPtr.Zero)
-            {
-                UnregisterPowerSettingNotification(_handleToMonitorStateNotificationRegistration);
-                _handleToMonitorStateNotificationRegistration = IntPtr.Zero;
+                _deviceLocking.DeviceWasLocked -= DeviceLocked_DeviceWasLocked;
+                _deviceLocking.Dispose();
+                _deviceLocking = null;
             }
 
             if (_form != null)

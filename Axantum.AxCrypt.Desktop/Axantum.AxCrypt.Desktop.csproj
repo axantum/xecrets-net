@@ -56,8 +56,10 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ItemCache.cs" />
     <Compile Include="KnownFoldersDiscovery.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report.cs" />
+    <Compile Include="WindowsDeviceLocking.cs" />
     <Compile Include="XmlSecretsReaderWriter.cs" />
   </ItemGroup>
   <ItemGroup>

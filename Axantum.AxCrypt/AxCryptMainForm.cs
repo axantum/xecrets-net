@@ -845,11 +845,27 @@ namespace Axantum.AxCrypt
             _recentFilesShowInFolderToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.ShowInFolder.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
         }
 
+        private DeviceLocking _deviceLocking;
+
         private void WireUpEvents()
         {
             Resolve.SessionNotify.AddCommand(async (notification) => await New<SessionNotificationHandler>().HandleNotificationAsync(notification));
-            New<IDeviceLocked>().DeviceWasLocked += DeviceWasLocked;
-            New<IDeviceLocked>().Start(null);
+
+            _deviceLocking = new DeviceLocking(
+                async () =>
+                {
+                    await EncryptPendingFiles();
+
+                    if (await _fileOperationViewModel.IdentityViewModel.LogOff.CanExecuteAsync(null))
+                    {
+                        await _fileOperationViewModel.IdentityViewModel.LogOff.ExecuteAsync(null);
+                    }
+                },
+                async () =>
+                {
+                    await ShutDownAndExit();
+                }
+            );
 
             New<AxCryptOnlineState>().OnlineStateChanged += (sender, e) =>
             {
@@ -869,13 +885,6 @@ namespace Axantum.AxCrypt
 
         private void WireDownEvents()
         {
-            try
-            {
-                New<IDeviceLocked>().DeviceWasLocked -= DeviceWasLocked;
-            }
-            catch
-            {
-            }
         }
 
         private DeviceLockReason _currentLock = DeviceLockReason.None;
@@ -1852,10 +1861,17 @@ namespace Axantum.AxCrypt
 
         private void DisposeInternal()
         {
+            if (_deviceLocking != null)
+            {
+                _deviceLocking.Dispose();
+                _deviceLocking = null;
+            }
+
             if (components != null)
             {
                 components.Dispose();
             }
+
             if (_mainViewModel != null)
             {
                 _mainViewModel.Dispose();

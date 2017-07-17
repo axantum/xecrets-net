@@ -244,7 +244,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return AccountStatus.Unknown;
             }
 
-            status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(UserEmail));
+            status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).Refresh().StatusAsync(EmailAddress.Parse(UserEmail));
             if (status == AccountStatus.Verified)
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.TitleSignInToAxCrypt, Texts.HaveAccountInfo.InvariantFormat(UserEmail));
