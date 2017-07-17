@@ -76,7 +76,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestInitialEmptyState()
         {
-            New<KnownPublicKeys>();
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+            }
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Any(), Is.False, "There are no known public kyes, so none can be unshared either.");
@@ -87,7 +89,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IAsymmetricPublicKey key = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey = new UserPublicKey(EmailAddress.Parse("test@test.com"), key);
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey);
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                knownPublicKeys.AddOrReplace(userPublicKey);
+            }
 
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
@@ -102,9 +107,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey1);
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey2);
-
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                knownPublicKeys.AddOrReplace(userPublicKey1);
+                knownPublicKeys.AddOrReplace(userPublicKey2);
+            }
 
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
@@ -119,9 +126,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
-
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey1);
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey2);
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                knownPublicKeys.AddOrReplace(userPublicKey1);
+                knownPublicKeys.AddOrReplace(userPublicKey2);
+            }
 
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
@@ -140,8 +149,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey1);
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey2);
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                knownPublicKeys.AddOrReplace(userPublicKey1);
+                knownPublicKeys.AddOrReplace(userPublicKey2);
+            }
 
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
@@ -160,8 +172,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey1);
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey2);
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                knownPublicKeys.AddOrReplace(userPublicKey1);
+                knownPublicKeys.AddOrReplace(userPublicKey2);
+            }
 
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             await model.ReadyAsync();
@@ -186,8 +201,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey1);
-            New<KnownPublicKeys>().AddOrReplace(userPublicKey2);
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                knownPublicKeys.AddOrReplace(userPublicKey1);
+                knownPublicKeys.AddOrReplace(userPublicKey2);
+            }
 
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
             await model.ReadyAsync();

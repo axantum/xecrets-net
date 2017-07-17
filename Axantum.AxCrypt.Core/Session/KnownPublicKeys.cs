@@ -15,17 +15,21 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 namespace Axantum.AxCrypt.Core.Session
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class KnownPublicKeys
+    public class KnownPublicKeys : IDisposable
     {
         private IDataStore _store;
 
         private IStringSerializer _serializer;
 
-        private List<UserPublicKeyWithStatus> _publicKeysWithStatus;
+        private bool _dirty;
+
+        private List<UserPublicKey> _publicKeys;
+
+        private bool _isRecentlyUpdated;
 
         protected KnownPublicKeys()
         {
-            _publicKeysWithStatus = new List<UserPublicKeyWithStatus>();
+            _publicKeys = new List<UserPublicKey>();
         }
 
         public void Delete()
@@ -38,16 +42,32 @@ namespace Axantum.AxCrypt.Core.Session
 
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Used by Json.NET serializer.")]
         [JsonProperty("publickeys")]
-        public IEnumerable<UserPublicKeyWithStatus> PublicKeysWithStatus
+        public IEnumerable<UserPublicKey> PublicKeys
         {
             get
             {
-                return _publicKeysWithStatus;
+                return _publicKeys;
             }
 
             private set
             {
-                _publicKeysWithStatus = new List<UserPublicKeyWithStatus>(value);
+                _publicKeys = new List<UserPublicKey>(value);
+            }
+        }
+
+        [JsonProperty("isrecentlyupdated")]
+        public bool IsRecentlyUpdated
+        {
+            get
+            {
+                return _isRecentlyUpdated; 
+                
+            }
+            set
+            {
+                _dirty = true;
+                _isRecentlyUpdated = value; 
+                
             }
         }
 
@@ -109,41 +129,94 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("publicKey");
             }
 
-            for (int i = 0; i < _publicKeysWithStatus.Count; ++i)
+            for (int i = 0; i < _publicKeys.Count; ++i)
             {
-                if (_publicKeysWithStatus[i].PublicKey == publicKey)
+                if (_publicKeys[i] == publicKey)
                 {
                     return;
                 }
-                if (_publicKeysWithStatus[i].PublicKey.Email == publicKey.Email)
+                if (_publicKeys[i].Email == publicKey.Email)
                 {
-                    _publicKeysWithStatus[i].PublicKey = publicKey;
-                    _publicKeysWithStatus[i].UpdateStatus = UserPublicKeyUpdateStatus.RecentlyUpdated;
+                    _dirty = true;
+                    _publicKeys[i] = publicKey;
+                    if (New<UserPublicKeyUpdateStatus>().UpdateStatus.Keys.Contains(publicKey.PublicKey.Thumbprint))
+                    {
+                        New<UserPublicKeyUpdateStatus>().UpdateStatus[publicKey.PublicKey.Thumbprint] = PublicKeyUpdateStatus.RecentlyUpdated;
+                    }
+                    else
+                    {
+                        New<UserPublicKeyUpdateStatus>().UpdateStatus.Add(publicKey.PublicKey.Thumbprint, PublicKeyUpdateStatus.RecentlyUpdated);
+                    }
                     return;
                 }
             }
-            _publicKeysWithStatus.Add(new UserPublicKeyWithStatus() {PublicKey = publicKey,UpdateStatus = UserPublicKeyUpdateStatus.RecentlyUpdated});
+            _dirty = true;
+            _publicKeys.Add(publicKey);
+            if (New<UserPublicKeyUpdateStatus>().UpdateStatus.Keys.Contains(publicKey.PublicKey.Thumbprint))
+            {
+                New<UserPublicKeyUpdateStatus>().UpdateStatus[publicKey.PublicKey.Thumbprint] = PublicKeyUpdateStatus.RecentlyUpdated;
+            }
+            else
+            {
+                New<UserPublicKeyUpdateStatus>().UpdateStatus.Add(publicKey.PublicKey.Thumbprint, PublicKeyUpdateStatus.RecentlyUpdated);
+            }
+
+
+        }
+
+        public void InitializePublicKeyStatus()
+        {
+            for (int i = 0; i < _publicKeys.Count; ++i)
+            {
+                if (New<UserPublicKeyUpdateStatus>().UpdateStatus.Keys.Contains(_publicKeys.ToList()[i].PublicKey.Thumbprint))
+                {
+                    New<UserPublicKeyUpdateStatus>().UpdateStatus[_publicKeys.ToList()[i].PublicKey.Thumbprint] = PublicKeyUpdateStatus.NotRecentlyUpdated;
+                }
+                else
+                {
+                    New<UserPublicKeyUpdateStatus>().UpdateStatus.Add(_publicKeys.ToList()[i].PublicKey.Thumbprint, PublicKeyUpdateStatus.NotRecentlyUpdated);
+                }
+            }
         }
 
         public void ClearRecentlyUpdated()
         {
-            for (int i = 0; i < _publicKeysWithStatus.Count; ++i)
+            foreach (var item in New<UserPublicKeyUpdateStatus>().UpdateStatus)
             {
-                _publicKeysWithStatus[i].UpdateStatus = UserPublicKeyUpdateStatus.NotRecentlyUpdated;
+                New<UserPublicKeyUpdateStatus>().UpdateStatus[item.Key] = PublicKeyUpdateStatus.NotRecentlyUpdated;
             }
-            UpdateDataStore();
         }
 
-        public void UpdateDataStore()
+        public void Dispose()
         {
-            string json = _serializer.Serialize(this);
-            using (FileLock fileLock = New<FileLocker>().Acquire(_store))
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposing)
             {
-                using (StreamWriter writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8))
+                return;
+            }
+
+            if (_store == null)
+            {
+                return;
+            }
+            if (_dirty)
+            {
+                string json = _serializer.Serialize(this);
+                using (FileLock fileLock = New<FileLocker>().Acquire(_store))
                 {
-                    writer.Write(json);
+                    using (StreamWriter writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8))
+                    {
+                        writer.Write(json);
+                    }
                 }
             }
+            _dirty = false;
+            _store = null;
         }
     }
 }

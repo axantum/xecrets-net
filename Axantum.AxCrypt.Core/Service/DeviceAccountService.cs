@@ -262,7 +262,10 @@ namespace Axantum.AxCrypt.Core.Service
             try
             {
                 publicKey = await _remoteService.OtherPublicKeyAsync(email).Free();
-                New<KnownPublicKeys>().AddOrReplace(publicKey);
+                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+                {
+                    knownPublicKeys.AddOrReplace(publicKey);
+                }
                 return publicKey;
             }
             catch (OfflineApiException oaex)
