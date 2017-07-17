@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             LogOnIdentity = LogOnIdentity.Empty;
 
             LogOnAsync = new AsyncDelegateAction<object>(async (o) => { if (!_knownIdentities.IsLoggedOn) { LogOnIdentity = await LogOnActionAsync(); } });
-            LogOff = new AsyncDelegateAction<object>(async (p) => { await LogOffAction(); LogOnIdentity = null; }, (o) => Task.FromResult(_knownIdentities.IsLoggedOn));
+            LogOff = new AsyncDelegateAction<object>(async (p) => { await LogOffAction(); LogOnIdentity = LogOnIdentity.Empty; }, (o) => Task.FromResult(_knownIdentities.IsLoggedOn));
             LogOnLogOff = new AsyncDelegateAction<object>(async (o) => LogOnIdentity = await LogOnLogOffActionAsync());
             AskForDecryptPassphrase = new AsyncDelegateAction<string>(async (name) => LogOnIdentity = await AskForDecryptPassphraseActionAsync(name));
             AskForLogOnPassphrase = new AsyncDelegateAction<LogOnIdentity>(async (id) => LogOnIdentity = await AskForLogOnPassphraseActionAsync(id, String.Empty));
