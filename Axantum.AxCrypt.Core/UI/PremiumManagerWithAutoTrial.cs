@@ -8,6 +8,7 @@ using Axantum.AxCrypt.Core.Runtime;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using AxCrypt.Content;
+using Axantum.AxCrypt.Common;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -20,18 +21,23 @@ namespace Axantum.AxCrypt.Core.UI
                 return PremiumStatus.HasPremium;
             }
 
-            if (premiumInfo.PremiumStatus == PremiumStatus.CanTryPremium)
+            if (premiumInfo.PremiumStatus != PremiumStatus.CanTryPremium)
             {
-                await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial }, Texts.WelcomeMailSubject, Texts.MessageAskAboutStartTrial);
-                if (!await StartTrial(identity))
-                {
-                    return PremiumStatus.CanTryPremium;
-                }
-
-                return PremiumStatus.HasPremium;
+                return premiumInfo.PremiumStatus;
             }
 
-            return premiumInfo.PremiumStatus;
+            string result = await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial, Texts.ButtonCancelText }, Texts.WelcomeMailSubject, Texts.MessageAskAboutStartTrial, DontShowAgain.TryPremium);
+            if (result != Texts.ButtonStartTrial)
+            {
+                return premiumInfo.PremiumStatus;
+            }
+
+            if (!await StartTrial(identity))
+            {
+                return PremiumStatus.CanTryPremium;
+            }
+
+            return PremiumStatus.HasPremium;
         }
     }
 }

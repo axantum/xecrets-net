@@ -1445,7 +1445,9 @@ This program is licensed according to the agreement.
     <value>Open Explorer Here</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>We noticed you don't have a Premium subscription, so we'll start a free Trial for you!</value>
+    <value>We noticed you don't have a Premium subscription, so we'd like to start a free Trial for you!
+
+Without Premium you can only view and permanently decrypt encrypted files.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">

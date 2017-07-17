@@ -3594,7 +3594,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We noticed you don&apos;t have a Premium subscription, so we&apos;ll start a free Trial for you!.
+        ///   Looks up a localized string similar to We noticed you don&apos;t have a Premium subscription, so we&apos;d like to start a free Trial for you!
+        ///
+        ///Without Premium you can only view and permanently decrypt encrypted files..
         /// </summary>
         public static string MessageAskAboutStartTrial {
             get {
