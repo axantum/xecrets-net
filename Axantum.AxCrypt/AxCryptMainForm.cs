@@ -887,61 +887,6 @@ namespace Axantum.AxCrypt
         {
         }
 
-        private DeviceLockReason _currentLock = DeviceLockReason.None;
-
-        private async void DeviceWasLocked(object sender, DeviceLockedEventArgs e)
-        {
-            if (!New<IUIThread>().IsOn)
-            {
-                throw new InternalErrorException("Must be on UI thread to handle device locking events.");
-            }
-
-            switch (e.Reason)
-            {
-                case DeviceLockReason.Permanent:
-                    if (_currentLock != DeviceLockReason.None && _currentLock != DeviceLockReason.Temporary)
-                    {
-                        break;
-                    }
-
-                    _currentLock = DeviceLockReason.Permanent;
-                    try
-                    {
-                        await ShutDownAndExit();
-                    }
-                    finally
-                    {
-                        _currentLock = DeviceLockReason.None;
-                    }
-                    break;
-
-                case DeviceLockReason.Temporary:
-                    if (_currentLock != DeviceLockReason.None)
-                    {
-                        break;
-                    }
-
-                    _currentLock = DeviceLockReason.Temporary;
-                    try
-                    {
-                        await EncryptPendingFiles();
-
-                        if (await _fileOperationViewModel.IdentityViewModel.LogOff.CanExecuteAsync(null))
-                        {
-                            await _fileOperationViewModel.IdentityViewModel.LogOff.ExecuteAsync(null);
-                        }
-                    }
-                    finally
-                    {
-                        _currentLock = DeviceLockReason.None;
-                    }
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
         private void SetSignInSignOutStatus(bool isSignedIn)
         {
             SetWindowTextWithSignInAndPremiumStatus(isSignedIn);
