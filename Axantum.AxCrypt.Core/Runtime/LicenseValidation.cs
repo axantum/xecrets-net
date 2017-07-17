@@ -54,14 +54,10 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 return userAccount.SubscriptionLevel;
             }
-
-            using (KnownPublicKeys knownKeys = New<KnownPublicKeys>())
+            publicKey = (await New<KnownPublicKeys>().GetAsync(EmailAddress.Parse(New<UserSettings>().LicenseAuthorityEmail)))?.PublicKey;
+            if (publicKey != null && new Verifier(publicKey).Verify(Convert.FromBase64String(userAccount.Signature), SignedFields(userAccount)))
             {
-                publicKey = (await knownKeys.GetAsync(EmailAddress.Parse(New<UserSettings>().LicenseAuthorityEmail)))?.PublicKey;
-                if (publicKey != null && new Verifier(publicKey).Verify(Convert.FromBase64String(userAccount.Signature), SignedFields(userAccount)))
-                {
-                    return userAccount.SubscriptionLevel;
-                }
+                return userAccount.SubscriptionLevel;
             }
 
             return SubscriptionLevel.Unknown;

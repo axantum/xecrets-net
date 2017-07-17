@@ -15,19 +15,17 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 namespace Axantum.AxCrypt.Core.Session
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class KnownPublicKeys : IDisposable
+    public class KnownPublicKeys
     {
         private IDataStore _store;
 
         private IStringSerializer _serializer;
 
-        private bool _dirty;
-
-        private List<UserPublicKey> _publicKeys;
+        private List<UserPublicKeyWithStatus> _publicKeysWithStatus;
 
         protected KnownPublicKeys()
         {
-            _publicKeys = new List<UserPublicKey>();
+            _publicKeysWithStatus = new List<UserPublicKeyWithStatus>();
         }
 
         public void Delete()
@@ -40,16 +38,16 @@ namespace Axantum.AxCrypt.Core.Session
 
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Used by Json.NET serializer.")]
         [JsonProperty("publickeys")]
-        public IEnumerable<UserPublicKey> PublicKeys
+        public IEnumerable<UserPublicKeyWithStatus> PublicKeysWithStatus
         {
             get
             {
-                return _publicKeys;
+                return _publicKeysWithStatus;
             }
 
             private set
             {
-                _publicKeys = new List<UserPublicKey>(value);
+                _publicKeysWithStatus = new List<UserPublicKeyWithStatus>(value);
             }
         }
 
@@ -111,53 +109,41 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("publicKey");
             }
 
-            for (int i = 0; i < _publicKeys.Count; ++i)
+            for (int i = 0; i < _publicKeysWithStatus.Count; ++i)
             {
-                if (_publicKeys[i] == publicKey)
+                if (_publicKeysWithStatus[i].PublicKey == publicKey)
                 {
                     return;
                 }
-                if (_publicKeys[i].Email == publicKey.Email)
+                if (_publicKeysWithStatus[i].PublicKey.Email == publicKey.Email)
                 {
-                    _dirty = true;
-                    _publicKeys[i] = publicKey;
+                    _publicKeysWithStatus[i].PublicKey = publicKey;
+                    _publicKeysWithStatus[i].UpdateStatus = UserPublicKeyUpdateStatus.RecentlyUpdated;
                     return;
                 }
             }
-            _dirty = true;
-            _publicKeys.Add(publicKey);
+            _publicKeysWithStatus.Add(new UserPublicKeyWithStatus() {PublicKey = publicKey,UpdateStatus = UserPublicKeyUpdateStatus.RecentlyUpdated});
         }
 
-        public void Dispose()
+        public void ClearRecentlyUpdated()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            for (int i = 0; i < _publicKeysWithStatus.Count; ++i)
+            {
+                _publicKeysWithStatus[i].UpdateStatus = UserPublicKeyUpdateStatus.NotRecentlyUpdated;
+            }
+            UpdateDataStore();
         }
 
-        protected virtual void Dispose(bool disposing)
+        public void UpdateDataStore()
         {
-            if (!disposing)
+            string json = _serializer.Serialize(this);
+            using (FileLock fileLock = New<FileLocker>().Acquire(_store))
             {
-                return;
-            }
-
-            if (_store == null)
-            {
-                return;
-            }
-            if (_dirty)
-            {
-                string json = _serializer.Serialize(this);
-                using (FileLock fileLock = New<FileLocker>().Acquire(_store))
+                using (StreamWriter writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8))
                 {
-                    using (StreamWriter writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8))
-                    {
-                        writer.Write(json);
-                    }
+                    writer.Write(json);
                 }
             }
-            _dirty = false;
-            _store = null;
         }
     }
 }

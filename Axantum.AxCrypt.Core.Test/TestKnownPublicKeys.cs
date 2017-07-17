@@ -80,20 +80,20 @@ namespace Axantum.AxCrypt.Core.Test
 
             IAsymmetricPublicKey key = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey = new UserPublicKey(EmailAddress.Parse("test@test.com"), key);
-            using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(store, Resolve.Serializer))
-            {
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(0), "There should be no entries now.");
+            KnownPublicKeys.Load(store, Resolve.Serializer);
 
-                knownPublicKeys.AddOrReplace(userPublicKey);
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(1), "There should be one entry now.");
-            }
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(0), "There should be no entries now.");
 
-            using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(store, Resolve.Serializer))
-            {
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(1), "There should be one entry now.");
+            New<KnownPublicKeys>().AddOrReplace(userPublicKey);
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(1), "There should be one entry now.");
 
-                Assert.That(knownPublicKeys.PublicKeys.First(), Is.EqualTo(userPublicKey), "The instances should compare equal");
-            }
+
+            KnownPublicKeys.Load(store, Resolve.Serializer);
+
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(1), "There should be one entry now.");
+
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.First(), Is.EqualTo(userPublicKey), "The instances should compare equal");
+
         }
 
         [Test]
@@ -103,35 +103,34 @@ namespace Axantum.AxCrypt.Core.Test
 
             IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test@test.com"), key1);
-            using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(store, Resolve.Serializer))
-            {
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(0), "There should be no entries now.");
+            KnownPublicKeys.Load(store, Resolve.Serializer);
 
-                knownPublicKeys.AddOrReplace(userPublicKey1);
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(1), "There should be one entry now.");
-            }
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(0), "There should be no entries now.");
+
+            New<KnownPublicKeys>().AddOrReplace(userPublicKey1);
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(1), "There should be one entry now.");
+
 
             IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test@test.com"), key2);
 
             Assert.That(userPublicKey1, Is.Not.EqualTo(userPublicKey2), "Checking that the two public keys really are different.");
-            using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(store, Resolve.Serializer))
-            {
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(1), "There should be one entry now.");
+            KnownPublicKeys.Load(store, Resolve.Serializer);
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(1), "There should be one entry now.");
 
-                knownPublicKeys.AddOrReplace(userPublicKey2);
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(1), "There should be one entry now.");
-                Assert.That(knownPublicKeys.PublicKeys.First(), Is.Not.EqualTo(userPublicKey1), "The instances should not compare equal");
-                Assert.That(knownPublicKeys.PublicKeys.First(), Is.EqualTo(userPublicKey2), "The instances should compare equal");
-            }
+            New<KnownPublicKeys>().AddOrReplace(userPublicKey2);
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(1), "There should be one entry now.");
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.First(), Is.Not.EqualTo(userPublicKey1), "The instances should not compare equal");
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.First(), Is.EqualTo(userPublicKey2), "The instances should compare equal");
 
-            using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(store, Resolve.Serializer))
-            {
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(1), "There should be one entry now.");
 
-                Assert.That(knownPublicKeys.PublicKeys.First(), Is.Not.EqualTo(userPublicKey1), "The instances should not compare equal");
-                Assert.That(knownPublicKeys.PublicKeys.First(), Is.EqualTo(userPublicKey2), "The instances should compare equal");
-            }
+            KnownPublicKeys.Load(store, Resolve.Serializer);
+
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(1), "There should be one entry now.");
+
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.First(), Is.Not.EqualTo(userPublicKey1), "The instances should not compare equal");
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.First(), Is.EqualTo(userPublicKey2), "The instances should compare equal");
+
         }
 
         [Test]
@@ -144,27 +143,27 @@ namespace Axantum.AxCrypt.Core.Test
             IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
 
-            using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(storeMock.Object, Resolve.Serializer))
-            {
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(0), "There should be no entries now.");
+            KnownPublicKeys.Load(storeMock.Object, Resolve.Serializer);
 
-                knownPublicKeys.AddOrReplace(userPublicKey1);
-                knownPublicKeys.AddOrReplace(userPublicKey2);
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(2), "There should be two entries now.");
-            }
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(0), "There should be no entries now.");
+
+            New<KnownPublicKeys>().AddOrReplace(userPublicKey1);
+            New<KnownPublicKeys>().AddOrReplace(userPublicKey2);
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(2), "There should be two entries now.");
+
             storeMock.Verify(m => m.OpenWrite(), Times.Once);
 
             Assert.That(userPublicKey1, Is.Not.EqualTo(userPublicKey2), "Checking that the two public keys really are different.");
 
             storeMock.ResetCalls();
-            using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(storeMock.Object, Resolve.Serializer))
-            {
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(2), "There should be two entries now.");
+            KnownPublicKeys.Load(storeMock.Object, Resolve.Serializer);
 
-                knownPublicKeys.AddOrReplace(userPublicKey2);
-                knownPublicKeys.AddOrReplace(userPublicKey1);
-                Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(2), "There should be two entries now.");
-            }
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(2), "There should be two entries now.");
+
+            New<KnownPublicKeys>().AddOrReplace(userPublicKey2);
+            New<KnownPublicKeys>().AddOrReplace(userPublicKey1);
+            Assert.That(New<KnownPublicKeys>().PublicKeysWithStatus.Count(), Is.EqualTo(2), "There should be two entries now.");
+
             storeMock.Verify(m => m.OpenWrite(), Times.Never);
         }
     }

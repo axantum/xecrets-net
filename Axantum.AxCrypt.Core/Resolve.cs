@@ -71,6 +71,8 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.Singleton<CryptoFactory>(() => new CryptoFactory(assemblies));
             TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(assemblies));
 
+            TypeMap.Register.Singleton<KnownPublicKeys>(() => KnownPublicKeys.Load(Resolve.WorkFolder.FileInfo.FileItemInfo("UserPublicKeys.txt"), New<IStringSerializer>()));
+
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
             TypeMap.Register.New<ActiveFileAction>(() => new ActiveFileAction());
@@ -80,7 +82,7 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             TypeMap.Register.New<IterationCalculator>(() => new IterationCalculator());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
-            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(Resolve.WorkFolder.FileInfo.FileItemInfo("UserPublicKeys.txt"), New<IStringSerializer>()));
+            //TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(Resolve.WorkFolder.FileInfo.FileItemInfo("UserPublicKeys.txt"), New<IStringSerializer>()));
         }
 
         public static KnownIdentities KnownIdentities

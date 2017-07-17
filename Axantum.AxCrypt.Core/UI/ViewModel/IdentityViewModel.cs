@@ -119,10 +119,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (UserPublicKey userPublicKey in logOnIdentity.PublicKeys)
             {
-                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-                {
-                    knownPublicKeys.AddOrReplace(userPublicKey);
-                }
+                New<KnownPublicKeys>().AddOrReplace(userPublicKey);
             }
             return logOnIdentity;
         }

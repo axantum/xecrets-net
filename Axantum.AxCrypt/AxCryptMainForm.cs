@@ -1117,6 +1117,8 @@ namespace Axantum.AxCrypt
 
                 e.Passphrase = new Passphrase(viewModel.Passphrase);
                 e.UserEmail = viewModel.UserEmail;
+                //New<KnownPublicKeys>().IsRecentlyUpdated = false;
+
             }
             return;
         }
@@ -1990,10 +1992,8 @@ namespace Axantum.AxCrypt
                 sharedWith = dialog.SharedWith;
             }
 
-            using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
-            {
-                sharedWith = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s.Email == pk.Email)).ToList();
-            }
+            sharedWith = New<KnownPublicKeys>().PublicKeysWithStatus.Where(pk => sharedWith.Any(s => s.Email == pk.PublicKey.Email)).Select(x => x.PublicKey).ToList();
+
             EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             encryptionParameters.Add(sharedWith);
 
@@ -2042,10 +2042,7 @@ namespace Axantum.AxCrypt
             IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
 
             IEnumerable<UserPublicKey> sharedWithPublicKeys;
-            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-            {
-                sharedWithPublicKeys = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
-            }
+            sharedWithPublicKeys = New<KnownPublicKeys>().PublicKeysWithStatus.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.PublicKey.Email)).Select(x => x.PublicKey).ToList();
 
             SharingListViewModel viewModel = new SharingListViewModel(sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
