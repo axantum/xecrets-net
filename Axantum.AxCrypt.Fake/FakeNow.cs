@@ -38,18 +38,18 @@ namespace Axantum.AxCrypt.Fake
     {
         public Func<DateTime> TimeFunction { get; set; }
 
-        public void NowIs(DateTime timeNow)
+        public void NowIs(DateTime utcNow)
         {
-            TimeFunction = () => timeNow;
+            TimeFunction = () => utcNow;
         }
 
         public FakeNow() : this(DateTime.UtcNow)
         {
         }
 
-        public FakeNow(DateTime timeNow)
+        public FakeNow(DateTime utcNow)
         {
-            TimeFunction = () => timeNow;
+            TimeFunction = () => utcNow;
         }
 
         public DateTime Utc
@@ -59,6 +59,5 @@ namespace Axantum.AxCrypt.Fake
                 return TimeFunction();
             }
         }
-
     }
 }
