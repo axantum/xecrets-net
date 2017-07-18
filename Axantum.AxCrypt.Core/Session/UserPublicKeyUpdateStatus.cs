@@ -9,36 +9,32 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class UserPublicKeyUpdateStatus
     {
-        private IDictionary<string, PublicKeyUpdateStatus> _publicKeyUpdateStatus;
+        private IDictionary<PublicKeyThumbprint, PublicKeyUpdateStatus> _publicKeyUpdateStatus;
 
         public UserPublicKeyUpdateStatus()
         {
-            _publicKeyUpdateStatus = new Dictionary<string, PublicKeyUpdateStatus>();
+            _publicKeyUpdateStatus = new Dictionary<PublicKeyThumbprint, PublicKeyUpdateStatus>();
         }
 
         public PublicKeyUpdateStatus this[UserPublicKey index] {
             get
             {
-                if (!_publicKeyUpdateStatus.ContainsKey(index.PublicKey.Thumbprint.ToString()))
+                PublicKeyUpdateStatus value;
+                if (_publicKeyUpdateStatus.TryGetValue(index.PublicKey.Thumbprint, out value))
                 {
-                    return PublicKeyUpdateStatus.None;
+                    return value;
                 }
-                return _publicKeyUpdateStatus[index.PublicKey.Thumbprint.ToString()];
+                return PublicKeyUpdateStatus.NotRecentlyUpdated;    
             }
             set
             {
-                if (!_publicKeyUpdateStatus.ContainsKey(index.PublicKey.Thumbprint.ToString()))
-                {
-                    _publicKeyUpdateStatus.Add(index.PublicKey.Thumbprint.ToString(), value);
-                    return;
-                }
-                _publicKeyUpdateStatus[index.PublicKey.Thumbprint.ToString()] = value;
+                _publicKeyUpdateStatus[index.PublicKey.Thumbprint] = value;
             }
         }
 
         public void Clear()
         {
-            _publicKeyUpdateStatus = _publicKeyUpdateStatus.ToDictionary(p => p.Key, p => PublicKeyUpdateStatus.NotRecentlyUpdated);
+            _publicKeyUpdateStatus.Clear();
         }
     }
 }
