@@ -12,5 +12,6 @@ namespace Axantum.AxCrypt.Common
         None = 0x0,
         FileAssociationBrokenWarning = 0x1,
         LavasoftWebCompanionExistenceWarning = 0x2,
+        TryPremium = 0x4,
     }
 }

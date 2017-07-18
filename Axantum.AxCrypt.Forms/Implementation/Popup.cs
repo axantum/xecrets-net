@@ -83,5 +83,10 @@ namespace Axantum.AxCrypt.Forms.Implementation
         {
             throw new NotImplementedException("Popup doesn't support custom buttons.");
         }
+
+        public Task<string> ShowAsync(string[] buttons, string title, string message, DontShowAgain dontShowAgain)
+        {
+            throw new NotImplementedException("Popup doesn't support custom buttons.");
+        }
     }
 }
