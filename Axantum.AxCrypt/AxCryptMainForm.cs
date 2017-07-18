@@ -1117,6 +1117,10 @@ namespace Axantum.AxCrypt
 
                 e.Passphrase = new Passphrase(viewModel.Passphrase);
                 e.UserEmail = viewModel.UserEmail;
+                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+                {
+                    knownPublicKeys.InitializePublicKeyStatus();
+                }
             }
             return;
         }
@@ -2045,6 +2049,7 @@ namespace Axantum.AxCrypt
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 sharedWithPublicKeys = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
+                knownPublicKeys.PublicKeys.ToList<UserPublicKey>()[0].Email.Address.ToString();
             }
 
             SharingListViewModel viewModel = new SharingListViewModel(sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);

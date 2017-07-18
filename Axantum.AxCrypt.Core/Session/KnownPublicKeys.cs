@@ -25,6 +25,8 @@ namespace Axantum.AxCrypt.Core.Session
 
         private List<UserPublicKey> _publicKeys;
 
+        private bool _isRecentlyUpdated;
+
         protected KnownPublicKeys()
         {
             _publicKeys = new List<UserPublicKey>();
@@ -50,6 +52,22 @@ namespace Axantum.AxCrypt.Core.Session
             private set
             {
                 _publicKeys = new List<UserPublicKey>(value);
+            }
+        }
+
+        [JsonProperty("isrecentlyupdated")]
+        public bool IsRecentlyUpdated
+        {
+            get
+            {
+                return _isRecentlyUpdated; 
+                
+            }
+            set
+            {
+                _dirty = true;
+                _isRecentlyUpdated = value; 
+                
             }
         }
 
@@ -121,11 +139,52 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     _dirty = true;
                     _publicKeys[i] = publicKey;
+                    if (New<UserPublicKeyUpdateStatus>().UpdateStatus.Keys.Contains(publicKey.PublicKey.Thumbprint))
+                    {
+                        New<UserPublicKeyUpdateStatus>().UpdateStatus[publicKey.PublicKey.Thumbprint] = PublicKeyUpdateStatus.RecentlyUpdated;
+                    }
+                    else
+                    {
+                        New<UserPublicKeyUpdateStatus>().UpdateStatus.Add(publicKey.PublicKey.Thumbprint, PublicKeyUpdateStatus.RecentlyUpdated);
+                    }
                     return;
                 }
             }
             _dirty = true;
             _publicKeys.Add(publicKey);
+            if (New<UserPublicKeyUpdateStatus>().UpdateStatus.Keys.Contains(publicKey.PublicKey.Thumbprint))
+            {
+                New<UserPublicKeyUpdateStatus>().UpdateStatus[publicKey.PublicKey.Thumbprint] = PublicKeyUpdateStatus.RecentlyUpdated;
+            }
+            else
+            {
+                New<UserPublicKeyUpdateStatus>().UpdateStatus.Add(publicKey.PublicKey.Thumbprint, PublicKeyUpdateStatus.RecentlyUpdated);
+            }
+
+
+        }
+
+        public void InitializePublicKeyStatus()
+        {
+            for (int i = 0; i < _publicKeys.Count; ++i)
+            {
+                if (New<UserPublicKeyUpdateStatus>().UpdateStatus.Keys.Contains(_publicKeys.ToList()[i].PublicKey.Thumbprint))
+                {
+                    New<UserPublicKeyUpdateStatus>().UpdateStatus[_publicKeys.ToList()[i].PublicKey.Thumbprint] = PublicKeyUpdateStatus.NotRecentlyUpdated;
+                }
+                else
+                {
+                    New<UserPublicKeyUpdateStatus>().UpdateStatus.Add(_publicKeys.ToList()[i].PublicKey.Thumbprint, PublicKeyUpdateStatus.NotRecentlyUpdated);
+                }
+            }
+        }
+
+        public void ClearRecentlyUpdated()
+        {
+            foreach (var item in New<UserPublicKeyUpdateStatus>().UpdateStatus)
+            {
+                New<UserPublicKeyUpdateStatus>().UpdateStatus[item.Key] = PublicKeyUpdateStatus.NotRecentlyUpdated;
+            }
         }
 
         public void Dispose()
