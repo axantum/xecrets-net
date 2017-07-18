@@ -36,5 +36,6 @@ namespace Axantum.AxCrypt.Abstractions
     public interface INow
     {
         DateTime Utc { get; }
+
     }
 }
