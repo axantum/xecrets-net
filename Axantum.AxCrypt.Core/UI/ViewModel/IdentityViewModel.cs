@@ -70,8 +70,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (notification.NotificationType)
             {
-                case SessionNotificationType.LogOn:
-                case SessionNotificationType.LogOff:
+                case SessionNotificationType.SignIn:
+                case SessionNotificationType.SignOut:
                     LogOnAsync.RaiseCanExecuteChanged();
                     LogOff.RaiseCanExecuteChanged();
                     break;

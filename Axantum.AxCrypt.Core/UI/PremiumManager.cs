@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.LicensePolicyChange, identity));
+            await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, identity));
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
 
             return true;

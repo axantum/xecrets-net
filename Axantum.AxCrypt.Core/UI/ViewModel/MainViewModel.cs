@@ -286,8 +286,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     await SetWatchedFoldersAsync();
                     break;
 
-                case SessionNotificationType.LogOn:
-                case SessionNotificationType.LogOff:
+                case SessionNotificationType.SignIn:
+                case SessionNotificationType.SignOut:
                     LoggedOn = Resolve.KnownIdentities.IsLoggedOn;
                     break;
 
@@ -313,7 +313,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     SetRecentFiles();
                     break;
 
-                case SessionNotificationType.LicensePolicyChange:
+                case SessionNotificationType.LicensePolicyChanged:
                     LicenseUpdate.Execute(null);
                     break;
 

@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SubscribeToModelEvents()
         {
-            _sessionNotify.AddCommand(HandleSessionChangedAsync);
+            _sessionNotify.AddCommand(HandleKnownFolderAffectingEventsAsync);
         }
 
         public IAsyncAction UpdateState { get; private set; }
@@ -101,15 +101,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return updatedFolders;
         }
 
-        private async Task HandleSessionChangedAsync(SessionNotification notification)
+        private async Task HandleKnownFolderAffectingEventsAsync(SessionNotification notification)
         {
             switch (notification.NotificationType)
             {
-                case SessionNotificationType.LogOff:
-                    KnownFolders = await UpdateEnabledStateAsync(KnownFolders);
-                    break;
-
-                case SessionNotificationType.LogOn:
+                case SessionNotificationType.LicensePolicyChanged:
                     if (notification.Capabilities.Has(LicenseCapability.SecureFolders))
                     {
                         await EnsureKnownFoldersWatched(KnownFolders);

@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 return false;
             }
-            if (_capabilities != other._capabilities)
+            if (!_capabilities.SetEquals(other._capabilities))
             {
                 return false;
             }

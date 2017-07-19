@@ -57,14 +57,14 @@ namespace Axantum.AxCrypt.Core.Test
             SessionNotify monitor = new SessionNotify();
             monitor.AddCommand((notification) =>
             {
-                if (notification.NotificationType == SessionNotificationType.LogOn)
+                if (notification.NotificationType == SessionNotificationType.SignIn)
                 {
                     ++notificationCount;
                 }
                 return Constant.CompletedTask;
             });
 
-            await monitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOn));
+            await monitor.NotifyAsync(new SessionNotification(SessionNotificationType.SignIn));
             Assert.That(notificationCount, Is.EqualTo(1));
         }
     }

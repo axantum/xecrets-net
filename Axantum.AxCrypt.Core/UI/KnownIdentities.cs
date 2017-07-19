@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core.UI
                 LogOnIdentity oldIdentity = _defaultEncryptionIdentity;
                 _defaultEncryptionIdentity = LogOnIdentity.Empty;
                 await New<LicensePolicy>().RefreshAsync(_defaultEncryptionIdentity).Free();
-                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOff, oldIdentity, oldCapabilities)).Free();
+                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.SignOut, oldIdentity, oldCapabilities)).Free();
             }
 
             if (value == LogOnIdentity.Empty)
@@ -169,8 +169,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             _defaultEncryptionIdentity = value;
             await Add(_defaultEncryptionIdentity).Free();
-            await New<LicensePolicy>().RefreshAsync(_defaultEncryptionIdentity).Free();
-            await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.LogOn, value)).Free();
+            await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.SignIn, value)).Free();
         }
 
         private List<SymmetricKeyThumbprint> _knownThumbprints;

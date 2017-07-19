@@ -99,8 +99,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     SetWatchedFolders();
                     break;
 
-                case SessionNotificationType.LogOn:
-                case SessionNotificationType.LogOff:
+                case SessionNotificationType.SignIn:
+                case SessionNotificationType.SignOut:
                     SetLogOnState(Resolve.KnownIdentities.IsLoggedOn);
                     SetWatchedFolders();
                     break;

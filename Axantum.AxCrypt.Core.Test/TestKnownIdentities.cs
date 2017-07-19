@@ -197,12 +197,12 @@ namespace Axantum.AxCrypt.Core.Test
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, notificationMonitor);
             notificationMonitor.AddCommand((SessionNotification notification) =>
             {
-                if (notification.NotificationType == SessionNotificationType.LogOn)
+                if (notification.NotificationType == SessionNotificationType.SignIn)
                 {
                     Assert.That(knownIdentities.IsLoggedOn, Is.True, "The state of the IsLoggedOn property should be consistent with the event.");
                     ++wasLoggedOnCount;
                 }
-                if (notification.NotificationType == SessionNotificationType.LogOff)
+                if (notification.NotificationType == SessionNotificationType.SignOut)
                 {
                     Assert.That(knownIdentities.IsLoggedOn, Is.False, "The state of the IsLoggedOn property should be consistent with the event.");
                     ++wasLoggedOffCount;

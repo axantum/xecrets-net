@@ -498,8 +498,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (notification.NotificationType)
             {
-                case SessionNotificationType.LogOff:
-                case SessionNotificationType.LogOn:
+                case SessionNotificationType.SignOut:
+                case SessionNotificationType.SignIn:
                 case SessionNotificationType.SessionStart:
                     ((AsyncDelegateAction<string>)OpenFilesFromFolder).RaiseCanExecuteChanged();
                     break;

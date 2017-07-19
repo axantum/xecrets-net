@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
             LogOnIdentity key = new LogOnIdentity("passphrase");
             await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
 
-            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.LogOn, key));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.SignIn, key));
 
             Assert.That(called, Is.True);
             Assert.That(folderCount, Is.EqualTo(1), "There should be one folder passed for encryption as a result of the event.");
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Test
             await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
 
             called = false;
-            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.LogOff, new LogOnIdentity("passphrase")));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.SignOut, new LogOnIdentity("passphrase")));
             Assert.That(called, Is.True, nameof(AxCryptFile.EncryptFoldersUniqueWithBackupAndWipe) + " should be called when a signing out.");
         }
 
@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
 
-            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.LogOff, new LogOnIdentity("passphrase")));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.SignOut, new LogOnIdentity("passphrase")));
 
             Assert.That(called, Is.False);
         }

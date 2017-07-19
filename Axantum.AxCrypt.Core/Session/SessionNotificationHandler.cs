@@ -138,11 +138,11 @@ namespace Axantum.AxCrypt.Core.Session
                     }
                     break;
 
-                case SessionNotificationType.LogOn:
+                case SessionNotificationType.SignIn:
                     EncryptWatchedFoldersIfSupported(notification.Identity, notification.Capabilities, progress);
                     break;
 
-                case SessionNotificationType.LogOff:
+                case SessionNotificationType.SignOut:
                     EncryptWatchedFoldersIfSupported(notification.Identity, notification.Capabilities, progress);
                     New<IInternetState>().Clear();
                     New<ICache>().RemoveItem(CacheKey.RootKey);
@@ -171,7 +171,8 @@ namespace Axantum.AxCrypt.Core.Session
                     await _activeFileAction.CheckActiveFiles(progress);
                     break;
 
-                case SessionNotificationType.LicensePolicyChange:
+                case SessionNotificationType.LicensePolicyChanged:
+                case SessionNotificationType.RefreshLicensePolicy:
                     break;
 
                 default:

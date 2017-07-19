@@ -77,11 +77,6 @@ namespace Axantum.AxCrypt
         protected override async void OnClick(EventArgs e)
         {
             base.OnClick(e);
-            await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
-            if (!Visible)
-            {
-                await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.LicensePolicyChange, New<KnownIdentities>().DefaultEncryptionIdentity));
-            }
             await PremiumWarningClickAsync();
         }
 
@@ -94,15 +89,15 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-
             switch (_status.GetValueOrDefault())
             {
                 case PremiumStatus.CanTryPremium:
                     await accountService.StartPremiumTrialAsync();
                     await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
                     await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
-                    await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.LicensePolicyChange, New<KnownIdentities>().DefaultEncryptionIdentity));
+                    await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
                     break;
 
                 case PremiumStatus.NoPremium:
