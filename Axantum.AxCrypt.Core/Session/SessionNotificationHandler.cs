@@ -146,6 +146,7 @@ namespace Axantum.AxCrypt.Core.Session
                     EncryptWatchedFoldersIfSupported(notification.Identity, notification.Capabilities, progress);
                     New<IInternetState>().Clear();
                     New<ICache>().RemoveItem(CacheKey.RootKey);
+                    New<UserPublicKeyUpdateStatus>().Clear();
                     break;
 
                 case SessionNotificationType.EncryptPendingFiles:

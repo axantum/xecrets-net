@@ -1117,6 +1117,7 @@ namespace Axantum.AxCrypt
 
                 e.Passphrase = new Passphrase(viewModel.Passphrase);
                 e.UserEmail = viewModel.UserEmail;
+                New<UserPublicKeyUpdateStatus>().Clear();
             }
             return;
         }

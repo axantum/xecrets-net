@@ -85,7 +85,8 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public override int GetHashCode()
         {
-            return _thumbprint.GetHashCode();
+            int hashCode = _thumbprint.Aggregate(0, (s, v) => s + v);
+            return hashCode;
         }
 
         public static bool operator ==(PublicKeyThumbprint left, PublicKeyThumbprint right)

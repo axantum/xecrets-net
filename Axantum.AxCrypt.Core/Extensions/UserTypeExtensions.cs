@@ -354,10 +354,11 @@ namespace Axantum.AxCrypt.Core.Extensions
         public static async Task<UserPublicKey> GetAsync(this KnownPublicKeys knownPublicKeys, EmailAddress email)
         {
             UserPublicKey key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
-            if (key != null)
+            if (key != null && New<UserPublicKeyUpdateStatus>()[key] == PublicKeyUpdateStatus.RecentlyUpdated)
             {
-                return key;
+                    return key;
             }
+            
 
             if (New<AxCryptOnlineState>().IsOffline)
             {
@@ -370,6 +371,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             if (userPublicKey != null)
             {
                 knownPublicKeys.AddOrReplace(userPublicKey);
+                New<UserPublicKeyUpdateStatus>()[userPublicKey] = PublicKeyUpdateStatus.RecentlyUpdated;
             }
             return userPublicKey;
         }
