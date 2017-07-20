@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Session
                         {
                             WatchedFolder watchedFolder = _fileSystemState.WatchedFolders.First(wf => wf.Path == fullName);
 
-                            encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, notification.Identity, watchedFolder.KeyShares);
+                            encryptionParameters = await EncryptionParameters.CreateAsync(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, notification.Identity, watchedFolder.KeyShares);
                             IDataContainer container = New<IDataContainer>(watchedFolder.Path);
                             progress.Display = container.Name;
                             IDataContainer[] dc = new IDataContainer[] { container };
@@ -139,11 +139,11 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 case SessionNotificationType.SignIn:
-                    EncryptWatchedFoldersIfSupported(notification.Identity, notification.Capabilities, progress);
+                    await EncryptWatchedFoldersIfSupported(notification.Identity, notification.Capabilities, progress);
                     break;
 
                 case SessionNotificationType.SignOut:
-                    EncryptWatchedFoldersIfSupported(notification.Identity, notification.Capabilities, progress);
+                    await EncryptWatchedFoldersIfSupported(notification.Identity, notification.Capabilities, progress);
                     New<IInternetState>().Clear();
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     New<UserPublicKeyUpdateStatus>().Clear();
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Session
                     await _activeFileAction.PurgeActiveFiles(progress);
                     if (_knownIdentities.DefaultEncryptionIdentity != LogOnIdentity.Empty)
                     {
-                        EncryptWatchedFoldersIfSupported(_knownIdentities.DefaultEncryptionIdentity, notification.Capabilities, progress);
+                        await EncryptWatchedFoldersIfSupported(_knownIdentities.DefaultEncryptionIdentity, notification.Capabilities, progress);
                     }
                     break;
 
@@ -181,7 +181,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private void EncryptWatchedFoldersIfSupported(LogOnIdentity identity, LicenseCapabilities capabilities, IProgressContext progress)
+        private async Task EncryptWatchedFoldersIfSupported(LogOnIdentity identity, LicenseCapabilities capabilities, IProgressContext progress)
         {
             if (!capabilities.Has(LicenseCapability.SecureFolders))
             {
@@ -189,7 +189,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             foreach (WatchedFolder watchedFolder in _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)))
             {
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity, watchedFolder.KeyShares);
+                EncryptionParameters encryptionParameters = await EncryptionParameters.CreateAsync(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity, watchedFolder.KeyShares);
                 IDataContainer folder = New<IDataContainer>(watchedFolder.Path);
                 progress.Display = folder.Name;
                 _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IDataContainer[] { folder }, encryptionParameters, progress);

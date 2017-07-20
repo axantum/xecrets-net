@@ -32,7 +32,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
+using Axantum.AxCrypt.Core.Extensions;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Crypto
@@ -61,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             Passphrase = passphrase;
         }
 
-        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity, IEnumerable<EmailAddress> shares)
+        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)
             : this(cryptoId)
         {
             if (identity == null)
@@ -71,28 +72,41 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             Passphrase = identity.Passphrase;
             Add(identity.PublicKeys);
+        }
+
+        public static async Task<EncryptionParameters> CreateAsync(Guid cryptoId, LogOnIdentity identity, IEnumerable<EmailAddress> shares)
+        {
+            EncryptionParameters _encryptionParameters = new EncryptionParameters(cryptoId, identity);
 
             if (!shares.Any())
             {
-                return;
+                return _encryptionParameters;
             }
 
+            List<UserPublicKey> keyShares = new List<UserPublicKey>();
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
-                IEnumerable<UserPublicKey> keyShares = knownPublicKeys.PublicKeys.Where(pk => shares.Contains(pk.Email));
-                Add(keyShares);
+                foreach (EmailAddress email in shares)
+                {
+                    UserPublicKey key = await knownPublicKeys.GetAsync(email);
+                    if (key != null)
+                    {
+                        keyShares.Add(key);
+                    }
+                }
+                _encryptionParameters.Add(keyShares);
             }
+            return _encryptionParameters;
         }
 
-        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)
-            : this(cryptoId, identity, new EmailAddress[0])
-        {
-        }
+       
 
         public void Add(IEnumerable<UserPublicKey> publicKeys)
         {
             _publicKeys.AddRange(publicKeys.Where(pk => !_publicKeys.Contains(pk)));
         }
+
+        
 
         /// <summary>
         /// An empty set of encryption parameters.
