@@ -39,7 +39,6 @@ using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Mono.Portable;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Algorithm.Implementation;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Abstractions;
