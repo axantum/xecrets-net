@@ -1996,7 +1996,7 @@ namespace Axantum.AxCrypt
                 sharedWith = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s.Email == pk.Email)).ToList();
             }
             EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            encryptionParameters.Add(sharedWith);
+            await encryptionParameters.AddAsync(sharedWith);
 
             await ChangeEncryptionAsync(files.Select(f => f.Item1), encryptionParameters);
         }
@@ -2067,8 +2067,8 @@ namespace Axantum.AxCrypt
                 }
                 IEnumerable<IDataStore> files = folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
 
-                EncryptionParameters encryptionParameters = await EncryptionParameters.CreateAsync(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity, sharedWithPublicKeys.Select(pk => pk.Email));
-
+                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+                await encryptionParameters.AddAsync(sharedWithPublicKeys.Select(pk => pk.Email));
                 await ChangeEncryptionAsync(files.Select(x => x.FullName), encryptionParameters);
             });
         }

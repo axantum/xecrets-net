@@ -71,19 +71,17 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             Passphrase = identity.Passphrase;
-            Add(identity.PublicKeys);
+            _publicKeys.AddRange(identity.PublicKeys);
         }
 
-        public static async Task<EncryptionParameters> CreateAsync(Guid cryptoId, LogOnIdentity identity, IEnumerable<EmailAddress> shares)
+        public async Task<bool> AddAsync(IEnumerable<UserPublicKey> publicKeys)
         {
-            EncryptionParameters _encryptionParameters = new EncryptionParameters(cryptoId, identity);
+            await AddAsync(publicKeys.Select(x => x.Email));
+            return true;
+        }
 
-            if (!shares.Any())
-            {
-                return _encryptionParameters;
-            }
-
-            List<UserPublicKey> keyShares = new List<UserPublicKey>();
+        public async Task<bool> AddAsync(IEnumerable<EmailAddress> shares)
+        {
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 foreach (EmailAddress email in shares)
@@ -91,22 +89,15 @@ namespace Axantum.AxCrypt.Core.Crypto
                     UserPublicKey key = await knownPublicKeys.GetAsync(email);
                     if (key != null)
                     {
-                        keyShares.Add(key);
+                        if (!_publicKeys.Contains(key))
+                        {
+                            _publicKeys.Add(key);
+                        }
                     }
                 }
-                _encryptionParameters.Add(keyShares);
             }
-            return _encryptionParameters;
+            return true;
         }
-
-       
-
-        public void Add(IEnumerable<UserPublicKey> publicKeys)
-        {
-            _publicKeys.AddRange(publicKeys.Where(pk => !_publicKeys.Contains(pk)));
-        }
-
-        
 
         /// <summary>
         /// An empty set of encryption parameters.

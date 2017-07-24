@@ -51,9 +51,9 @@ namespace Axantum.AxCrypt.Core.Test
 
         public Func<ActiveFile, IProgressContext, ActiveFile> CheckActiveFileMock { get; set; }
 
-        public override ActiveFile CheckActiveFile(ActiveFile activeFile, IProgressContext progress)
+        public override Task<ActiveFile> CheckActiveFile(ActiveFile activeFile, IProgressContext progress)
         {
-            return CheckActiveFileMock(activeFile, progress);
+            return Task.FromResult(CheckActiveFileMock(activeFile, progress));
         }
 
         public Func<IProgressContext, Task> CheckActiveFilesMock { get; set; }

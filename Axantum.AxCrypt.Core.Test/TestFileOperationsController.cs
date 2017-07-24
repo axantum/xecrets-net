@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestEncryptFileWhenDestinationExists()
+        public async void TestEncryptFileWhenDestinationExists()
         {
             IDataStore sourceInfo = New<IDataStore>(_davidCopperfieldTxtPath);
             IDataStore expectedDestinationInfo = New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
@@ -212,7 +212,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
 
             EncryptionParameters encryptionParameters = new EncryptionParameters(cryptoId, logOnIdentity.Passphrase);
-            encryptionParameters.Add(logOnIdentity.PublicKeys);
+            await encryptionParameters.AddAsync(logOnIdentity.PublicKeys);
 
             Headers headers = new Headers();
             AxCryptReaderBase reader = headers.CreateReader(new LookAheadStream(destinationInfo.OpenRead()));
