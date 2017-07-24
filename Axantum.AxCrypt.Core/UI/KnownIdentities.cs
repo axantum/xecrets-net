@@ -159,7 +159,6 @@ namespace Axantum.AxCrypt.Core.UI
                 Clear();
                 LogOnIdentity oldIdentity = _defaultEncryptionIdentity;
                 _defaultEncryptionIdentity = LogOnIdentity.Empty;
-                await New<LicensePolicy>().RefreshAsync(_defaultEncryptionIdentity).Free();
                 await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.SignOut, oldIdentity, oldCapabilities)).Free();
             }
 
