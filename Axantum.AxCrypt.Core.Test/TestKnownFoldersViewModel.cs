@@ -107,18 +107,18 @@ namespace Axantum.AxCrypt.Core.Test
 
             vm.KnownFolders = new KnownFolder[] { folder1, folder2 };
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
-            Assert.That(vm.KnownFolders.First().Enabled, Is.False);
-            Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
+            Assert.That(vm.KnownFolders.First().Enabled, Is.False, "We are not signed in so the folder should not be enabled");
+            Assert.That(vm.KnownFolders.Last().Enabled, Is.False, "We are not signed in so the folder should not be enabled");
 
             await knownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("aaa"));
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
-            Assert.That(vm.KnownFolders.First().Enabled, Is.True);
-            Assert.That(vm.KnownFolders.Last().Enabled, Is.True);
+            Assert.That(vm.KnownFolders.First().Enabled, Is.True, "We are signed in so the folder should be enabled");
+            Assert.That(vm.KnownFolders.Last().Enabled, Is.True, "We are signed in so the folder should be enabled");
 
             await knownIdentities.SetDefaultEncryptionIdentity(LogOnIdentity.Empty);
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
-            Assert.That(vm.KnownFolders.First().Enabled, Is.False);
-            Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
+            Assert.That(vm.KnownFolders.First().Enabled, Is.False, "We are no longer signed in so the folder should not be enabled");
+            Assert.That(vm.KnownFolders.Last().Enabled, Is.False, "We are no longer signed in so the folder should not be enabled");
         }
 
         [Test]
