@@ -106,6 +106,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (notification.NotificationType)
             {
                 case SessionNotificationType.LicensePolicyChanged:
+                case SessionNotificationType.KnownKeyChange:
+                case SessionNotificationType.SignOut:
                     if (notification.Capabilities.Has(LicenseCapability.SecureFolders))
                     {
                         await EnsureKnownFoldersWatched(KnownFolders);
