@@ -5682,15 +5682,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text has been successfully posted..
-        /// </summary>
-        public static string TextPosted {
-            get {
-                return ResourceManager.GetString("TextPosted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Critical - Get notified of critical AxCrypt updates.
         /// </summary>
         public static string TextPreferenceCritical {
