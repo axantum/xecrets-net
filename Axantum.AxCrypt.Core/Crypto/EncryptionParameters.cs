@@ -32,7 +32,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
+using Axantum.AxCrypt.Core.Extensions;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Crypto
@@ -61,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             Passphrase = passphrase;
         }
 
-        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity, IEnumerable<EmailAddress> shares)
+        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)
             : this(cryptoId)
         {
             if (identity == null)
@@ -70,28 +71,32 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             Passphrase = identity.Passphrase;
-            Add(identity.PublicKeys);
+            _publicKeys.AddRange(identity.PublicKeys);
+        }
 
-            if (!shares.Any())
-            {
-                return;
-            }
+        public async Task<bool> AddAsync(IEnumerable<UserPublicKey> publicKeys)
+        {
+            await AddAsync(publicKeys.Select(x => x.Email));
+            return true;
+        }
 
+        public async Task<bool> AddAsync(IEnumerable<EmailAddress> shares)
+        {
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
-                IEnumerable<UserPublicKey> keyShares = knownPublicKeys.PublicKeys.Where(pk => shares.Contains(pk.Email));
-                Add(keyShares);
+                foreach (EmailAddress email in shares)
+                {
+                    UserPublicKey key = await knownPublicKeys.GetAsync(email);
+                    if (key != null)
+                    {
+                        if (!_publicKeys.Contains(key))
+                        {
+                            _publicKeys.Add(key);
+                        }
+                    }
+                }
             }
-        }
-
-        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)
-            : this(cryptoId, identity, new EmailAddress[0])
-        {
-        }
-
-        public void Add(IEnumerable<UserPublicKey> publicKeys)
-        {
-            _publicKeys.AddRange(publicKeys.Where(pk => !_publicKeys.Contains(pk)));
+            return true;
         }
 
         /// <summary>

@@ -36,7 +36,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="progress">The progress.</param>
         /// <returns>The possibly updated ActiveFile</returns>
         /// <exception cref="System.ArgumentNullException">activeFile</exception>
-        public static ActiveFile CheckUpdateDecrypted(this ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
+        public static async Task<ActiveFile> CheckUpdateDecrypted(this ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
         {
             if (activeFile == null)
             {
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
-                New<AxCryptFile>().WriteToFileWithBackup(encryptedFileLock, (Stream destination) =>
+                New<AxCryptFile>().WriteToFileWithBackup(encryptedFileLock, async (Stream destination) =>
                 {
                     if (!IsLegacy(activeFile) || shouldConvertLegacy)
                     {
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                     EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
                     EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
-                    parameters.Add(properties.SharedKeyHolders);
+                    await parameters.AddAsync(properties.SharedKeyHolders);
 
                     New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
                 }, progress);
