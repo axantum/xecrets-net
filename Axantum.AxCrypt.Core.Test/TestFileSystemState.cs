@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestForEach()
+        public async Task TestForEach()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -182,21 +182,21 @@ namespace Axantum.AxCrypt.Core.Test
                 state.Add(activeFile);
 
                 Assert.That(state.ActiveFiles.Count(), Is.EqualTo(3), "There should be three.");
-                //int i = 0;
-                //await state.ForEach((ActiveFile activeFileArgument) =>
-                //{
-                //    ++i;
-                //    return activeFileArgument;
-                //});
-                //Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
+                int i = 0;
+                await state.ForEach((ActiveFile activeFileArgument) =>
+                {
+                    ++i;
+                    return Task.FromResult(activeFileArgument);
+                });
+                Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
 
-                //i = 0;
-                //await state.ForEach((ActiveFile activeFileArgument) =>
-                //{
-                //    ++i;
-                //    return new Task<ActiveFile>(activeFileArgument, activeFile.Status | ActiveFileStatus.Error);
-                //});
-                //Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
+                i = 0;
+                await state.ForEach((ActiveFile activeFileArgument) =>
+                {
+                    ++i;
+                    return Task.FromResult(new ActiveFile(activeFileArgument, activeFile.Status | ActiveFileStatus.Error));
+                });
+                Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
             }
         }
 
