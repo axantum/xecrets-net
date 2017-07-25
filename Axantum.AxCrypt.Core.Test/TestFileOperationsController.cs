@@ -211,7 +211,7 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore destinationInfo = New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
 
-            EncryptionParameters encryptionParameters = new EncryptionParameters(cryptoId, logOnIdentity.Passphrase);
+            EncryptionParameters encryptionParameters = new EncryptionParameters(cryptoId, logOnIdentity);
             await encryptionParameters.AddAsync(logOnIdentity.PublicKeys);
 
             Headers headers = new Headers();

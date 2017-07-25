@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 foreach (EmailAddress keyShareToAdd in keySharesToAdd)
                 {
-                    UserPublicKey key = await knownPublicKeys.GetAsync(keyShareToAdd);
+                    UserPublicKey key = await knownPublicKeys.GetAsync(keyShareToAdd, _logOnIdentity);
                     if (key != null)
                     {
                         publicKeys.Add(key);

@@ -43,6 +43,8 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class EncryptionParameters
     {
+        private LogOnIdentity _identity;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EncryptionParameters"/> class.
         /// </summary>
@@ -59,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         public EncryptionParameters(Guid cryptoId, Passphrase passphrase)
             : this(cryptoId)
         {
-            Passphrase = passphrase;
+            _identity = new LogOnIdentity(passphrase);
         }
 
         public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)
@@ -70,8 +72,8 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("identity");
             }
 
-            Passphrase = identity.Passphrase;
-            _publicKeys.AddRange(identity.PublicKeys);
+            _identity = identity;
+            _publicKeys.AddRange(identity.PublicKeys.Where(pk => !_publicKeys.Contains(pk)));
         }
 
         public async Task AddAsync(IEnumerable<UserPublicKey> publicKeys)
@@ -86,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 foreach (EmailAddress email in shares)
                 {
-                    UserPublicKey key = await knownPublicKeys.GetAsync(email);
+                    UserPublicKey key = await knownPublicKeys.GetAsync(email, _identity);
                     if (key != null && !_publicKeys.Contains(key))
                     {
                         _publicKeys.Add(key);
@@ -106,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// The passphrase.
         /// </value>
-        public Passphrase Passphrase { get; set; }
+        public Passphrase Passphrase { get { return _identity.Passphrase; } }
 
         private List<UserPublicKey> _publicKeys;
 
