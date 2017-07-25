@@ -73,13 +73,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             _identity = identity;
-            _publicKeys.AddRange(identity.PublicKeys.Where(pk => !_publicKeys.Contains(pk)));
+            _publicKeys.AddRange(identity.PublicKeys);
         }
 
         public async Task AddAsync(IEnumerable<UserPublicKey> publicKeys)
         {
             await AddAsync(publicKeys.Select(x => x.Email));
-            _publicKeys.AddRange(publicKeys.Where(pk => !_publicKeys.Contains(pk)));
+            ReplaceRange(publicKeys);
         }
 
         public async Task AddAsync(IEnumerable<EmailAddress> shares)
@@ -89,12 +89,31 @@ namespace Axantum.AxCrypt.Core.Crypto
                 foreach (EmailAddress email in shares)
                 {
                     UserPublicKey key = await knownPublicKeys.GetAsync(email, _identity);
-                    if (key != null && !_publicKeys.Contains(key))
+                    if (key == null)
                     {
-                        _publicKeys.Add(key);
+                        continue;
                     }
+                    Replace(key);
                 }
             }
+        }
+
+        private void ReplaceRange(IEnumerable<UserPublicKey> publicKeysToAddOrReplace)
+        {
+            foreach (UserPublicKey userPublicKey in publicKeysToAddOrReplace)
+            {
+                Replace(userPublicKey);
+            }
+        }
+
+        private void Replace(UserPublicKey userPublicKey)
+        {
+            UserPublicKey existingKey = _publicKeys.FirstOrDefault(pk => pk.Email == userPublicKey.Email);
+            if (existingKey != null)
+            {
+                _publicKeys.Remove(existingKey);
+            }
+            _publicKeys.Add(userPublicKey);
         }
 
         /// <summary>

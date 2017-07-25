@@ -356,7 +356,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             UserPublicKey key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
             if (key != null && New<UserPublicKeyUpdateStatus>()[key] == PublicKeyUpdateStatus.RecentlyUpdated)
             {
-                    return key;
+                return key;
             }
 
             if (New<AxCryptOnlineState>().IsOffline)
