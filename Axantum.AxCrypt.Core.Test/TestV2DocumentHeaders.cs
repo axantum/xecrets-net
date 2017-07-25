@@ -39,7 +39,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -228,7 +228,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestAddingSingleV2AsymmetricKeyWrap()
+        public async Task TestAddingSingleV2AsymmetricKeyWrap()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
@@ -258,7 +258,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestAddingMultipleV2AsymmetricKeyWraps()
+        public async Task TestAddingMultipleV2AsymmetricKeyWraps()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("niklas"));
             IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);

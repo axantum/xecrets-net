@@ -39,7 +39,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static async void TestGetOneAsymmetricCryptoFromHeaders(CryptoImplementation cryptoImplementation)
+        public static async Task TestGetOneAsymmetricCryptoFromHeaders(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static async void TestGetTwoAsymmetricCryptosFromHeaders(CryptoImplementation cryptoImplementation)
+        public static async Task TestGetTwoAsymmetricCryptosFromHeaders(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 

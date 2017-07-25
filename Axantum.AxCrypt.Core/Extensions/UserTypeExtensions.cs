@@ -358,8 +358,13 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                     return key;
             }
-            
+
             if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return key;
+            }
+
+            if (!New<KnownIdentities>().IsLoggedOn)
             {
                 return key;
             }

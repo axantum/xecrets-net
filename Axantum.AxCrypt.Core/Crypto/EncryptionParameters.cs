@@ -74,29 +74,25 @@ namespace Axantum.AxCrypt.Core.Crypto
             _publicKeys.AddRange(identity.PublicKeys);
         }
 
-        public async Task<bool> AddAsync(IEnumerable<UserPublicKey> publicKeys)
+        public async Task AddAsync(IEnumerable<UserPublicKey> publicKeys)
         {
             await AddAsync(publicKeys.Select(x => x.Email));
-            return true;
+            _publicKeys.AddRange(publicKeys.Where(pk => !_publicKeys.Contains(pk)));
         }
 
-        public async Task<bool> AddAsync(IEnumerable<EmailAddress> shares)
+        public async Task AddAsync(IEnumerable<EmailAddress> shares)
         {
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 foreach (EmailAddress email in shares)
                 {
                     UserPublicKey key = await knownPublicKeys.GetAsync(email);
-                    if (key != null)
+                    if (key != null && !_publicKeys.Contains(key))
                     {
-                        if (!_publicKeys.Contains(key))
-                        {
-                            _publicKeys.Add(key);
-                        }
+                        _publicKeys.Add(key);
                     }
                 }
             }
-            return true;
         }
 
         /// <summary>
