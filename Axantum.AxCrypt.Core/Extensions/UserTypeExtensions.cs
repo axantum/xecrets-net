@@ -361,7 +361,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             
             if (New<AxCryptOnlineState>().IsOffline)
             {
-                return null;
+                return key;
             }
 
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity));

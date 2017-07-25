@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public async void TestEncryptFileWhenDestinationExists()
+        public async Task TestEncryptFileWhenDestinationExists()
         {
             IDataStore sourceInfo = New<IDataStore>(_davidCopperfieldTxtPath);
             IDataStore expectedDestinationInfo = New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceInfo));

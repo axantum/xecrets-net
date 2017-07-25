@@ -331,16 +331,16 @@ namespace Axantum.AxCrypt.Core.UI
             return false;
         }
 
-        private Task<bool> EncryptFileOperation()
+        private async Task<bool> EncryptFileOperation()
         {
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
-            Task.Run(async () => await encryptionParameters.AddAsync(_eventArgs.SharedPublicKeys));
+            await encryptionParameters.AddAsync(_eventArgs.SharedPublicKeys);
 
             New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
-            return Task.FromResult(true);
+            return true;
         }
 
         private async Task<bool> DecryptFilePreparationAsync(IDataStore fileInfo)
