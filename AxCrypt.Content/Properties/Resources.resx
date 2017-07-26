@@ -1673,6 +1673,12 @@ The evaluation entirely disregards parts of the password that is recognized as b
 We classify the password in 4 categories of increasing strength, were we do not accept any password in the lowest category. The above example is not accepted for that reason.</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
+  <data name="PasswordRulesShortInfo" xml:space="preserve">
+    <value>AxCrypt uses an advanced dynamic password strength calculator.
+
+White space, and parts that are equal to common passwords are ignored and do not add any strength.</value>
+    <comment>A shorter description of how password strength is evaluated.</comment>
+  </data>
   <data name="PasswordStrengthBadName" xml:space="preserve">
     <value>Weak</value>
     <comment>Short displayed name of "Bad" password status</comment>
