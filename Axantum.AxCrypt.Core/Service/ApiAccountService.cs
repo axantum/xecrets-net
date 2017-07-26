@@ -172,6 +172,7 @@ namespace Axantum.AxCrypt.Core.Service
             try
             {
                 UserAccount userAccount = await _apiClient.MyAccountAsync().Free();
+                userAccount.AccountSource = AccountSource.Remote;
                 return userAccount;
             }
             catch (UnauthorizedApiException)

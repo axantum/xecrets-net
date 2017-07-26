@@ -60,6 +60,7 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="GlobalApiClient.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Model\AccountSource.cs" />
     <Compile Include="Model\AccountTip.cs" />
     <Compile Include="Model\ApiVersion.cs" />
     <Compile Include="Model\AxCryptVersion.cs" />

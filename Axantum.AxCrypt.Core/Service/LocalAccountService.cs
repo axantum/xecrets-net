@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Service
                 throw new InvalidOperationException("The account service requires a user.");
             }
             UserAccount userAccount = LoadUserAccount();
-
+            userAccount.AccountSource = AccountSource.Local;
             return Task.FromResult(userAccount);
         }
 

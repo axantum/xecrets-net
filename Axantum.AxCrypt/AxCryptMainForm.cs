@@ -1290,6 +1290,9 @@ namespace Axantum.AxCrypt
             string logonStatus;
             if (isLoggedOn)
             {
+                IAccountService AccountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+                UserAccount userAccount = await AccountService.AccountAsync();
+
                 UserKeyPair userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
                 logonStatus = userKeys != UserKeyPair.Empty ? Texts.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Texts.LoggedOnStatusText;
 
