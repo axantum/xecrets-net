@@ -102,6 +102,7 @@
     <Compile Include="TestAsymmetricUserKeysStore.cs" />
     <Compile Include="TestSharingListViewModel.cs" />
     <Compile Include="TestSignerVerifier.cs" />
+    <Compile Include="TestUserPublicKeyUpdateStatus.cs" />
     <Compile Include="TestV1AesCrypto.cs" />
     <Compile Include="TestSymmetricIV.cs" />
     <Compile Include="TestSymmetricKey.cs" />

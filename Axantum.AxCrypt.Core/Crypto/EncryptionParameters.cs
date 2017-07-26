@@ -32,7 +32,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
+using Axantum.AxCrypt.Core.Extensions;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Crypto
@@ -42,6 +43,8 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class EncryptionParameters
     {
+        private LogOnIdentity _identity;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EncryptionParameters"/> class.
         /// </summary>
@@ -58,10 +61,10 @@ namespace Axantum.AxCrypt.Core.Crypto
         public EncryptionParameters(Guid cryptoId, Passphrase passphrase)
             : this(cryptoId)
         {
-            Passphrase = passphrase;
+            _identity = new LogOnIdentity(passphrase);
         }
 
-        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity, IEnumerable<EmailAddress> shares)
+        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)
             : this(cryptoId)
         {
             if (identity == null)
@@ -69,29 +72,48 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("identity");
             }
 
-            Passphrase = identity.Passphrase;
-            Add(identity.PublicKeys);
+            _identity = identity;
+            _publicKeys.AddRange(identity.PublicKeys);
+        }
 
-            if (!shares.Any())
-            {
-                return;
-            }
+        public async Task AddAsync(IEnumerable<UserPublicKey> publicKeys)
+        {
+            await AddAsync(publicKeys.Select(x => x.Email));
+            ReplaceRange(publicKeys);
+        }
 
+        public async Task AddAsync(IEnumerable<EmailAddress> shares)
+        {
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
-                IEnumerable<UserPublicKey> keyShares = knownPublicKeys.PublicKeys.Where(pk => shares.Contains(pk.Email));
-                Add(keyShares);
+                foreach (EmailAddress email in shares)
+                {
+                    UserPublicKey key = await knownPublicKeys.GetAsync(email, _identity);
+                    if (key == null)
+                    {
+                        continue;
+                    }
+                    Replace(key);
+                }
             }
         }
 
-        public EncryptionParameters(Guid cryptoId, LogOnIdentity identity)
-            : this(cryptoId, identity, new EmailAddress[0])
+        private void ReplaceRange(IEnumerable<UserPublicKey> publicKeysToAddOrReplace)
         {
+            foreach (UserPublicKey userPublicKey in publicKeysToAddOrReplace)
+            {
+                Replace(userPublicKey);
+            }
         }
 
-        public void Add(IEnumerable<UserPublicKey> publicKeys)
+        private void Replace(UserPublicKey userPublicKey)
         {
-            _publicKeys.AddRange(publicKeys.Where(pk => !_publicKeys.Contains(pk)));
+            UserPublicKey existingKey = _publicKeys.FirstOrDefault(pk => pk.Email == userPublicKey.Email);
+            if (existingKey != null)
+            {
+                _publicKeys.Remove(existingKey);
+            }
+            _publicKeys.Add(userPublicKey);
         }
 
         /// <summary>
@@ -105,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// The passphrase.
         /// </value>
-        public Passphrase Passphrase { get; set; }
+        public Passphrase Passphrase { get { return _identity.Passphrase; } }
 
         private List<UserPublicKey> _publicKeys;
 

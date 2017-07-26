@@ -351,25 +351,31 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
         }
 
-        public static async Task<UserPublicKey> GetAsync(this KnownPublicKeys knownPublicKeys, EmailAddress email)
+        public static async Task<UserPublicKey> GetAsync(this KnownPublicKeys knownPublicKeys, EmailAddress email, LogOnIdentity identity)
         {
             UserPublicKey key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
-            if (key != null)
+            if (key != null && New<UserPublicKeyUpdateStatus>()[key] == PublicKeyUpdateStatus.RecentlyUpdated)
             {
                 return key;
             }
 
             if (New<AxCryptOnlineState>().IsOffline)
             {
-                return null;
+                return key;
             }
 
-            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity));
+            if (identity == LogOnIdentity.Empty || identity.UserEmail == EmailAddress.Empty)
+            {
+                return key;
+            }
+
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
             UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
 
             if (userPublicKey != null)
             {
                 knownPublicKeys.AddOrReplace(userPublicKey);
+                New<UserPublicKeyUpdateStatus>()[userPublicKey] = PublicKeyUpdateStatus.RecentlyUpdated;
             }
             return userPublicKey;
         }

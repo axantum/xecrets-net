@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Session
             progress.NotifyLevelStart();
             try
             {
-                await Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
+                await Resolve.FileSystemState.ForEach(async (ActiveFile activeFile) =>
                 {
                     if (activeFile.Status.HasMask(ActiveFileStatus.Exception))
                     {
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         using (FileLock decryptedFileLock = New<FileLocker>().Acquire(activeFile.DecryptedFileInfo))
                         {
-                            activeFile = CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress);
+                            activeFile = await CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress);
                             if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                             {
                                 activeFile = TryDelete(activeFile, encryptedFileLock, decryptedFileLock, progress);
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual async Task ClearExceptionState()
         {
-            await Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
+            await Resolve.FileSystemState.ForEach(async (ActiveFile activeFile) =>
             {
                 if (activeFile.Status.HasFlag(ActiveFileStatus.Exception))
                 {
@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Session
             });
         }
 
-        public virtual ActiveFile CheckActiveFile(ActiveFile activeFile, IProgressContext progress)
+        public virtual async Task<ActiveFile> CheckActiveFile(ActiveFile activeFile, IProgressContext progress)
         {
             if (activeFile == null)
             {
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     using (FileLock encryptedFileLock = New<FileLocker>().Acquire(activeFile.EncryptedFileInfo))
                     {
-                        activeFile = CheckActiveFileActions(activeFile, encryptedFileLock, decryptedFileLock, progress);
+                        activeFile = await CheckActiveFileActions(activeFile, encryptedFileLock, decryptedFileLock, progress);
                         return activeFile;
                     }
                 }
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual async Task<bool> UpdateActiveFileWithKeyIfKeyMatchesThumbprint(LogOnIdentity key)
         {
             bool keyMatch = false;
-            await Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
+            await Resolve.FileSystemState.ForEach(async (ActiveFile activeFile) =>
             {
                 if (activeFile.Identity != LogOnIdentity.Empty)
                 {
@@ -241,12 +241,12 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private static ActiveFile CheckActiveFileActions(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
+        private static async Task<ActiveFile> CheckActiveFileActions(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(activeFile);
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile);
-            activeFile = CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress);
+            activeFile = await CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress);
             activeFile = CheckIfTimeToDelete(activeFile, encryptedFileLock, decryptedFileLock, progress);
             return activeFile;
         }
@@ -326,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
+        private static async Task<ActiveFile> CheckIfTimeToUpdate(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
         {
             if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted) || activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
             {
@@ -337,7 +337,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            return activeFile.CheckUpdateDecrypted(encryptedFileLock, decryptedFileLock, progress);
+            return await activeFile.CheckUpdateDecrypted(encryptedFileLock, decryptedFileLock, progress);
         }
 
         private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)

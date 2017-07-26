@@ -42,7 +42,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -212,11 +212,11 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptWithOneAsymmetricKey()
+        public static async Task TestEncryptWithOneAsymmetricKey()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
+            await encryptionParameters.AddAsync(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
 
@@ -231,11 +231,11 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptWithOneAsymmetricKeyAndWrongPassphraseButCorrectPrivateKey()
+        public static async Task TestEncryptWithOneAsymmetricKeyAndWrongPassphraseButCorrectPrivateKey()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
+            await encryptionParameters.AddAsync(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
 
@@ -251,11 +251,11 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptWithOneAsymmetricKeyAndCorrectPassphraseButWrongPrivateKey()
+        public static async Task TestEncryptWithOneAsymmetricKeyAndCorrectPassphraseButWrongPrivateKey()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("tes1t@test.com"), publicKey1), });
+            await encryptionParameters.AddAsync(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("tes1t@test.com"), publicKey1), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
 
@@ -271,13 +271,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptWithTwoAsymmetricKeysAndOneCorrectPrivateKey()
+        public static async Task TestEncryptWithTwoAsymmetricKeysAndOneCorrectPrivateKey()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), });
+            await encryptionParameters.AddAsync(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), });
             IAsymmetricPublicKey publicKey2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });
+            await encryptionParameters.AddAsync(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });
 
             byte[] plainText = Resolve.RandomGenerator.Generate(25000);
 

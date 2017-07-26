@@ -39,7 +39,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -228,11 +228,11 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestAddingSingleV2AsymmetricKeyWrap()
+        public async Task TestAddingSingleV2AsymmetricKeyWrap()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("allan"));
             IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
+            await encryptionParameters.AddAsync(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
 
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(encryptionParameters, 1000);
             IEnumerable<V2AsymmetricKeyWrapHeaderBlock> wraps = documentHeaders.Headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();
@@ -258,12 +258,12 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestAddingMultipleV2AsymmetricKeyWraps()
+        public async Task TestAddingMultipleV2AsymmetricKeyWraps()
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("niklas"));
             IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             IAsymmetricPublicKey publicKey2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            encryptionParameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });
+            await encryptionParameters.AddAsync(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });
 
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(encryptionParameters, 1000);
             IEnumerable<V2AsymmetricKeyWrapHeaderBlock> wraps = documentHeaders.Headers.HeaderBlocks.OfType<V2AsymmetricKeyWrapHeaderBlock>();

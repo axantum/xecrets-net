@@ -39,7 +39,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static void TestGetOneAsymmetricCryptoFromHeaders(CryptoImplementation cryptoImplementation)
+        public static async Task TestGetOneAsymmetricCryptoFromHeaders(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             EncryptionParameters parameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("secrets"));
             IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
-            parameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
+            await parameters.AddAsync(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test@test.com"), publicKey), });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
             using (V2HmacStream<MemoryStream> hmacStream = V2HmacStream.Create<MemoryStream>(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
             {
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static void TestGetTwoAsymmetricCryptosFromHeaders(CryptoImplementation cryptoImplementation)
+        public static async Task TestGetTwoAsymmetricCryptosFromHeaders(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -156,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptionParameters parameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, new Passphrase("secrets"));
             IAsymmetricPublicKey publicKey1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             IAsymmetricPublicKey publicKey2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
-            parameters.Add(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });
+            await parameters.AddAsync(new UserPublicKey[] { new UserPublicKey(EmailAddress.Parse("test1@test.com"), publicKey1), new UserPublicKey(EmailAddress.Parse("test2@test.com"), publicKey2), });
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(parameters, 10);
             using (V2HmacStream<MemoryStream> stream = V2HmacStream.Create<MemoryStream>(new V2HmacCalculator(new SymmetricKey(new byte[0])), new MemoryStream()))
             {

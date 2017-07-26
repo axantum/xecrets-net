@@ -26,11 +26,13 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Algorithm;
 using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
@@ -38,9 +40,11 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Fake;
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,15 +58,27 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public void SetUp()
         {
+            IDataStore knownPublicKeysStore = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
+
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
+            TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
+            TypeMap.Register.Singleton<KnownPublicKeys>(() => KnownPublicKeys.Load(New<IDataStore>("knownpublickeys.txt"), New<IStringSerializer>()));
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<INow>(() => new FakeNow());
+            TypeMap.Register.Singleton<UserPublicKeyUpdateStatus>(() => new UserPublicKeyUpdateStatus());
+            TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify));
+            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt")));
+            TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(Path.GetPathRoot(Environment.CurrentDirectory) + @"WorkFolder\"));
+            TypeMap.Register.Singleton<SessionNotify>(() => new SessionNotify());
 
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
-            FakeInMemoryDataStoreItem store = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
-            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(store, Resolve.Serializer));
+            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(knownPublicKeysStore, Resolve.Serializer));
             TypeMap.Register.New<ILogging>(() => new Logging());
-            TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
+            TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));
+            TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+            TypeMap.Register.New<string, IDataContainer>((path) => new FakeDataContainer(path));
 
             New<AxCryptOnlineState>().IsOnline = true;
         }
@@ -74,18 +90,20 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestInitialEmptyState()
+        public async Task TestInitialEmptyState()
         {
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
             }
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
+            await model.ReadyAsync();
+
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Any(), Is.False, "There are no known public kyes, so none can be unshared either.");
         }
 
         [Test]
-        public void TestInitialOneKeyState()
+        public async Task TestInitialOneKeyState()
         {
             IAsymmetricPublicKey key = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey = new UserPublicKey(EmailAddress.Parse("test@test.com"), key);
@@ -95,12 +113,14 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
+            await model.ReadyAsync();
+
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(1), "There is one known public key, so this should be available as unshared.");
         }
 
         [Test]
-        public void TestInitialTwoKeyState()
+        public async Task TestInitialTwoKeyState()
         {
             IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
@@ -114,6 +134,8 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
+            await model.ReadyAsync();
+
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
         }
@@ -133,6 +155,8 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
+            await model.ReadyAsync();
+
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
@@ -156,6 +180,8 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             SharingListViewModel model = new SharingListViewModel(new UserPublicKey[0], LogOnIdentity.Empty);
+            await model.ReadyAsync();
+
             Assert.That(model.SharedWith.Any(), Is.False, "There are no known public keys, and none are set as shared.");
             Assert.That(model.NotSharedWith.Count(), Is.EqualTo(2), "There are two known public keys, so they should be available as unshared.");
 
