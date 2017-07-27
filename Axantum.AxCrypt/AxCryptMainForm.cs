@@ -1290,9 +1290,6 @@ namespace Axantum.AxCrypt
             string logonStatus;
             if (isLoggedOn)
             {
-                IAccountService AccountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-                UserAccount userAccount = await AccountService.AccountAsync();
-
                 UserKeyPair userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
                 logonStatus = userKeys != UserKeyPair.Empty ? Texts.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Texts.LoggedOnStatusText;
 
@@ -1314,6 +1311,16 @@ namespace Axantum.AxCrypt
             if (New<AxCryptOnlineState>().IsOffline)
             {
                 text = $"{text} [{Texts.OfflineIndicatorText}]";
+            }
+            else if(isLoggedOn)
+            {
+                IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+                UserAccount userAccount = await accountService.AccountAsync();
+
+                if (userAccount.AccountSource == AccountSource.Local)
+                {
+                    text = $"{text} [{Texts.LocalIndicatorText}]";
+                }
             }
             Text = text;
         }

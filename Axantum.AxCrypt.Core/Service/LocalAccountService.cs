@@ -139,7 +139,6 @@ namespace Axantum.AxCrypt.Core.Service
                 throw new InvalidOperationException("The account service requires a user.");
             }
             UserAccount userAccount = LoadUserAccount();
-            userAccount.AccountSource = AccountSource.Local;
             return Task.FromResult(userAccount);
         }
 
@@ -281,9 +280,11 @@ namespace Axantum.AxCrypt.Core.Service
             IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
             if (!users.Any())
             {
-                return new UserAccount(Identity.UserEmail.Address);
+                UserAccount userAccount = new UserAccount(Identity.UserEmail.Address);
+                userAccount.AccountSource = AccountSource.Local;
+                return userAccount;
             }
-
+            users.First().AccountSource = AccountSource.Local;
             return users.First();
         }
 
