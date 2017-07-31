@@ -51,12 +51,12 @@ namespace Axantum.AxCrypt
             _troubleRememberingPanel.Hide();
             _viewModel.TooManyTries += (s, ea) => { New<IUIThread>().PostTo(() => _troubleRememberingPanel.Show()); };
 
-            _passphrase.LostFocus += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
+            _passphrase.LostFocus += (s, ea) => { _viewModel.PasswordText = _passphrase.Text; };
             _passphrase.TextChanged += (s, ea) => { ClearErrorProviders(); };
-            _passphrase.Validating += (s, ea) => { _viewModel.Passphrase = _passphrase.Text; };
-            _showPassphrase.CheckedChanged += (s, ea) => { _viewModel.ShowPassphrase = _showPassphrase.Checked; };
+            _passphrase.Validating += (s, ea) => { _viewModel.PasswordText = _passphrase.Text; };
+            _showPassphrase.CheckedChanged += (s, ea) => { _viewModel.ShowPassword = _showPassphrase.Checked; };
 
-            _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowPassphrase), (bool show) => { _passphrase.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
+            _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowPassword), (bool show) => { _passphrase.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
             EmailAddress email;
             LogOnIdentity identity = LogOnIdentity.Empty;
             if (EmailAddress.TryParse(_viewModel.UserEmail, out email))
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt
         private bool AdHocValidatePassphrase()
         {
             _errorProvider1.Clear();
-            if (_viewModel[nameof(LogOnAccountViewModel.Passphrase)].Length != 0)
+            if (_viewModel[nameof(LogOnAccountViewModel.PasswordText)].Length != 0)
             {
                 _errorProvider1.SetError(_passphrase, Texts.WrongPassphrase);
                 return false;

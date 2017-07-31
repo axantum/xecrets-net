@@ -71,14 +71,14 @@ namespace Axantum.AxCrypt
 
         private void InitializePropertyValues()
         {
-            _passphraseTextBox.TextChanged += (sender, e) => { ViewModel.PassphraseText = _passphraseTextBox.Text; ClearErrorProviders(); };
+            _passphraseTextBox.TextChanged += (sender, e) => { ViewModel.PasswordText = _passphraseTextBox.Text; ClearErrorProviders(); };
             _keyFileTextBox.TextChanged += (sender, e) => { ViewModel.KeyFileName = _keyFileTextBox.Text; };
-            _showPassphraseCheckBox.CheckedChanged += (sender, e) => { ViewModel.ShowPassphrase = _showPassphraseCheckBox.Checked; };
+            _showPassphraseCheckBox.CheckedChanged += (sender, e) => { ViewModel.ShowPassword = _showPassphraseCheckBox.Checked; };
         }
 
         private void BindPropertyChangedEvents()
         {
-            ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.ShowPassphrase), (bool show) => { _passphraseTextBox.UseSystemPasswordChar = !show; _showPassphraseCheckBox.Checked = show; });
+            ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.ShowPassword), (bool show) => { _passphraseTextBox.UseSystemPasswordChar = !show; _showPassphraseCheckBox.Checked = show; });
             ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.FileName), (string fileName) => { _fileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
             ViewModel.BindPropertyChanged(nameof(FilePasswordViewModel.IsLegacyFile), (bool isLegacy) => { _moreButton.Visible = isLegacy; });
         }
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt
                 return false;
             }
 
-            if (ViewModel[nameof(FilePasswordViewModel.PassphraseText)].Length == 0)
+            if (ViewModel[nameof(FilePasswordViewModel.PasswordText)].Length == 0)
             {
                 return true;
             }

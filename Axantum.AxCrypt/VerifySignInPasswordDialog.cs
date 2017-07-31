@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt
             _passphraseTextBox.Validating += (s, ea) => { _viewModel.Passphrase = _passphraseTextBox.Text; };
             _showPassphraseCheckBox.CheckedChanged += (s, ea) => { _viewModel.ShowPassphrase = _showPassphraseCheckBox.Checked; };
 
-            _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowPassphrase), (bool show) => { _passphraseTextBox.UseSystemPasswordChar = !(_showPassphraseCheckBox.Checked = show); });
+            _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowPassword), (bool show) => { _passphraseTextBox.UseSystemPasswordChar = !(_showPassphraseCheckBox.Checked = show); });
         }
 
         protected override void InitializeContentResources()

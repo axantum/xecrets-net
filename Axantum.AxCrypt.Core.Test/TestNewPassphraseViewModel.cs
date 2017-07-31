@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
 
-            Assert.That(npvm.Password, Is.EqualTo(""));
+            Assert.That(npvm.PasswordText, Is.EqualTo(""));
         }
 
         [TestCase(CryptoImplementation.Mono)]
@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
             _identities.Add(Passphrase.Empty);
             NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
 
-            Assert.That(npvm.Password, Is.EqualTo(String.Empty));
+            Assert.That(npvm.PasswordText, Is.EqualTo(String.Empty));
         }
 
         [Test]
@@ -121,10 +121,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
 
-            npvm.Password = "Loadiney4aropRout[";
+            npvm.PasswordText = "Loadiney4aropRout[";
             npvm.Verification = "Loadiney4aropRout[";
 
-            Assert.That(npvm[nameof(NewPasswordViewModel.Password)], Is.EqualTo(""));
+            Assert.That(npvm[nameof(NewPasswordViewModel.PasswordText)], Is.EqualTo(""));
             Assert.That(npvm[nameof(NewPasswordViewModel.Verification)], Is.EqualTo(""));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.None));
         }
@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, String.Empty);
 
-            npvm.Password = "abc1234";
+            npvm.PasswordText = "abc1234";
             npvm.Verification = "abc12345";
 
             Assert.That(npvm[nameof(NewPasswordViewModel.Verification)], Is.Not.EqualTo(""));
@@ -159,10 +159,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             NewPasswordViewModel npvm = new NewPasswordViewModel(String.Empty, @"C:\My Folder\MyFile-txt.axx");
-            npvm.Password = "b";
+            npvm.PasswordText = "b";
             npvm.Verification = "b";
 
-            Assert.That(npvm[nameof(NewPasswordViewModel.Password)], Is.Not.EqualTo(""));
+            Assert.That(npvm[nameof(NewPasswordViewModel.PasswordText)], Is.Not.EqualTo(""));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
         }
     }

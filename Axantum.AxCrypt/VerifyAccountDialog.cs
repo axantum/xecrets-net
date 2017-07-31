@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt
                 _toolTip.SetToolTip(_passphrase, _passwordStrengthMeter.StrengthTip);
             };
 
-            _passphrase.TextChanged += (sender, e) => { _viewModel.Password = _passphrase.Text; ClearErrorProviders(); };
+            _passphrase.TextChanged += (sender, e) => { _viewModel.PasswordText = _passphrase.Text; ClearErrorProviders(); };
             _passphrase.TextChanged += async (sender, e) => { await _passwordStrengthMeter.MeterAsync(_passphrase.Text); };
             _passphraseVerification.TextChanged += (sender, e) => { _viewModel.Verification = _passphraseVerification.Text; ClearErrorProviders(); };
             _activationCode.TextChanged += (sender, e) => { _viewModel.VerificationCode = _activationCode.Text; ClearErrorProviders(); };
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt
         private bool AdHocValidatePassphrase()
         {
             _errorProvider1.Clear();
-            if (_viewModel[nameof(VerifyAccountViewModel.Password)].Length > 0)
+            if (_viewModel[nameof(VerifyAccountViewModel.PasswordText)].Length > 0)
             {
                 _errorProvider1.SetError(_passphrase, Texts.PasswordPolicyViolation);
                 return false;
