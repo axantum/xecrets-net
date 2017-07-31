@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 return FileInfoTypes.Folder;
             }
-            if (fileInfo.IsEncryptable())
+            if (New<FileFilter>().IsEncryptable(fileInfo))
             {
                 return FileInfoTypes.EncryptableFile;
             }
@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
         public static IEnumerable<IDataStore> ListEncryptable(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
         {
-            return folderPath.ListOfFiles(ignoreFolders,folderOperationMode).Where(fileInfo => fileInfo.IsEncryptable());
+            return folderPath.ListOfFiles(ignoreFolders,folderOperationMode).Where(fileInfo => New<FileFilter>().IsEncryptable(fileInfo));
         }
 
         public static IEnumerable<IDataStore> ListEncrypted(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)

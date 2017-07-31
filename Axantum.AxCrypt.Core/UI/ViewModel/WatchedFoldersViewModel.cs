@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return false;
             }
 
-            if (!fileInfo.IsEncryptable())
+            if (!New<FileFilter>().IsEncryptable(fileInfo))
             {
                 return false;
             }

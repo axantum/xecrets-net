@@ -4,16 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
 
-namespace Axantum.AxCrypt.Core.Extensions
+namespace Axantum.AxCrypt.Core.IO
 {
-    public static class FileFilter
+    public class FileFilter
     {
-        private static readonly List<Regex> pathFilters = new List<Regex>();
+        private readonly List<Regex> pathFilters;
 
-        public static bool IsEncryptable(this IDataItem fileInfo)
+        public FileFilter()
+        {
+            pathFilters = new List<Regex>();
+        }
+
+        public bool IsEncryptable(IDataItem fileInfo)
         {
             if (fileInfo == null)
             {
@@ -30,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return !fileInfo.IsEncrypted();
         }
 
-        public static bool AddUnencryptable(Regex regex)
+        public bool AddUnencryptable(Regex regex)
         {
             if (regex == null)
             {
@@ -40,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return true;
         }
 
-        public static bool AddUnencryptableExtension(string extension)
+        public bool AddUnencryptableExtension(string extension)
         {
             if (extension == null)
             {
@@ -50,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return true;
         }
 
-        public static void Clear()
+        public void Clear()
         {
             pathFilters.Clear();
         }
