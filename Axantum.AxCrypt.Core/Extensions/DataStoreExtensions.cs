@@ -73,24 +73,6 @@ namespace Axantum.AxCrypt.Core.Extensions
             return FileInfoTypes.OtherFile;
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
-        public static bool IsEncryptable(this IDataItem fileInfo)
-        {
-            if (fileInfo == null)
-            {
-                throw new ArgumentNullException("fileInfo");
-            }
-
-            foreach (Regex filter in OS.PathFilters)
-            {
-                if (filter.IsMatch(fileInfo.FullName))
-                {
-                    return false;
-                }
-            }
-            return !fileInfo.IsEncrypted();
-        }
-
         public static bool IsEncrypted(this IDataItem fullName)
         {
             if (fullName == null)

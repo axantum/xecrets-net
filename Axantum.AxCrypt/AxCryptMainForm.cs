@@ -460,14 +460,28 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            OS.PathFilters.Add(new Regex(@"\\\.dropbox$"));
-            OS.PathFilters.Add(new Regex(@"\\desktop\.ini$"));
-            OS.PathFilters.Add(new Regex(@".*\.tmp$"));
+            FileFilter.AddUnencryptable(new Regex(@"\\\.dropbox$"));
+            FileFilter.AddUnencryptable(new Regex(@"\\desktop\.ini$"));
+            FileFilter.AddUnencryptable(new Regex(@".*\.tmp$"));
             AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "SystemRoot");
             AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "windir");
             AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles");
             AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles(x86)");
             AddEnvironmentVariableBasedPathFilter(@"^{0}$", "SystemDrive");
+            FileFilter.AddUnencryptableExtension("cloudf");
+            FileFilter.AddUnencryptableExtension("cloud");
+            FileFilter.AddUnencryptableExtension("lnk");
+            FileFilter.AddUnencryptableExtension("website");
+            FileFilter.AddUnencryptableExtension("url");
+            FileFilter.AddUnencryptableExtension("pif");
+            FileFilter.AddUnencryptableExtension("gsheet");
+            FileFilter.AddUnencryptableExtension("gdoc");
+            FileFilter.AddUnencryptableExtension("gslides");
+            FileFilter.AddUnencryptableExtension("gdraw");
+            FileFilter.AddUnencryptableExtension("gtable");
+            FileFilter.AddUnencryptableExtension("gform");
+
+
         }
 
         private static void AddEnvironmentVariableBasedPathFilter(string formatRegularExpression, string name)
@@ -478,7 +492,7 @@ namespace Axantum.AxCrypt
                 return;
             }
             string escapedPath = folder.FullName.Replace(@"\", @"\\");
-            OS.PathFilters.Add(new Regex(formatRegularExpression.InvariantFormat(escapedPath)));
+            FileFilter.AddUnencryptable(new Regex(formatRegularExpression.InvariantFormat(escapedPath)));
         }
 
         private void IntializeControls()

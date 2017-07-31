@@ -217,13 +217,13 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { folder1Path, };
                 Assert.That(mvm.DroppableAsWatchedFolder, Is.True, "This is a candidate for watched folders.");
 
-                OS.PathFilters.Add(new Regex(@"^C:\{0}Folder1\{0}".InvariantFormat(Path.DirectorySeparatorChar)));
+                FileFilter.AddUnencryptable(new Regex(@"^C:\{0}Folder1\{0}".InvariantFormat(Path.DirectorySeparatorChar)));
                 mvm.DragAndDropFiles = new string[] { folder1Path, };
                 Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that matches a path filter is not a candidate for watched folders.");
 
                 string folder2Path = @"C:\Folder1\FilesFolder2\".NormalizeFilePath();
                 FakeDataStore.AddFolder(folder2Path);
-                OS.PathFilters.Clear();
+                FileFilter.Clear();
 
                 mvm.DragAndDropFiles = new string[] { folder1Path, folder2Path, };
                 Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "Although both folders are ok, only a single folder is a candidate for watched folders.");
