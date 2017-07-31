@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// </summary>
     public class CreateNewAccountViewModel : ViewModelBase, INewPassword
     {
-        public string Password { get { return GetProperty<string>(nameof(Password)); } set { SetProperty(nameof(Password), value); } }
+        public string PasswordText { get { return GetProperty<string>(nameof(PasswordText)); } set { SetProperty(nameof(PasswordText), value); } }
 
         public string Verification { get { return GetProperty<string>(nameof(Verification)); } set { SetProperty(nameof(Verification), value); } }
 
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues(string passphrase, EmailAddress email)
         {
-            Password = passphrase ?? String.Empty;
+            PasswordText = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
 
             UserEmail = email.Address;
@@ -93,10 +93,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     {
                         return Task.FromResult(false);
                     }
-                    return Task.FromResult(String.Compare(Password, Verification, StringComparison.Ordinal) == 0);
+                    return Task.FromResult(String.Compare(PasswordText, Verification, StringComparison.Ordinal) == 0);
 
-                case nameof(Password):
-                    return Task.FromResult(ValidatePassphrasePolicy(Password));
+                case nameof(PasswordText):
+                    return Task.FromResult(ValidatePassphrasePolicy(PasswordText));
 
                 default:
                     return Task.FromResult(true);
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Password))));
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(PasswordText))));
             UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), New<INow>().Utc, New<KeyPairService>().New());
             accountStorage.ImportAsync(userKeys).Wait();
 

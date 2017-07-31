@@ -233,6 +233,7 @@
     <Compile Include="UI\ViewModel\ImportPrivateKeysViewModel.cs" />
     <Compile Include="UI\ViewModel\ImportPublicKeysViewModel.cs" />
     <Compile Include="UI\ViewModel\INewPassword.cs" />
+    <Compile Include="UI\ViewModel\IPasswordEntry.cs" />
     <Compile Include="UI\ViewModel\IPropertyBinder.cs" />
     <Compile Include="UI\ViewModel\LogOnAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\ManageAccountViewModel.cs" />
