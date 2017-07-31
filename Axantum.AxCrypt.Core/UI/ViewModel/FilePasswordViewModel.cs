@@ -84,6 +84,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return Passphrase.Create(PasswordText);
                 }
 
+                IDataStore keyFile = New<IDataStore>(KeyFileName);
+                if (!keyFile.IsAvailable)
+                {
+                    return Passphrase.Empty;
+                }
+
                 byte[] extra;
                 using (Stream stream = New<IDataStore>(KeyFileName).OpenRead())
                 {
@@ -107,26 +113,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     {
                         return true;
                     }
-                    if (!New<IDataStore>(KeyFileName).IsAvailable)
-                    {
-                        ValidationError = (int)ViewModel.ValidationError.KeyFileInaccessible;
-                        return false;
-                    }
-                    try
-                    {
-                        using (Stream stream = New<IDataStore>(KeyFileName).OpenRead())
-                        {
-                        }
-                    }
-                    catch (IOException ioex)
-                    {
-                        New<IReport>().Exception(ioex);
-                        ValidationError = (int)ViewModel.ValidationError.KeyFileInaccessible;
-                        return false;
-                    }
-                    return true;
+                    return ValidateKeyFile();
 
                 case nameof(PasswordText):
+                    if (!string.IsNullOrEmpty(KeyFileName) && !ValidateKeyFile())
+                    {
+                        return false;
+                    }
+
                     if (New<KnownIdentities>().DefaultEncryptionIdentity.Passphrase == Passphrase)
                     {
                         ValidationError = (int)ViewModel.ValidationError.SamePasswordAlreadySignedIn;
@@ -148,6 +142,28 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 default:
                     throw new ArgumentException("Cannot validate property.", columnName);
             }
+        }
+
+        private bool ValidateKeyFile()
+        {
+            if (!New<IDataStore>(KeyFileName).IsAvailable)
+            {
+                ValidationError = (int)ViewModel.ValidationError.KeyFileInaccessible;
+                return false;
+            }
+            try
+            {
+                using (Stream stream = New<IDataStore>(KeyFileName).OpenRead())
+                {
+                }
+            }
+            catch (IOException ioex)
+            {
+                New<IReport>().Exception(ioex);
+                ValidationError = (int)ViewModel.ValidationError.KeyFileInaccessible;
+                return false;
+            }
+            return true;
         }
 
         private static bool IsLegacyFileInternal(string encryptedFileFullName)
