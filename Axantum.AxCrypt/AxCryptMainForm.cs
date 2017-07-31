@@ -468,6 +468,7 @@ namespace Axantum.AxCrypt
             AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles(x86)");
             AddEnvironmentVariableBasedPathFilter(@"^{0}$", "SystemDrive");
             New<FileFilter>().AddUnencryptableExtension("cloudf");
+            New<FileFilter>().AddUnencryptableExtension("cloud");
             New<FileFilter>().AddUnencryptableExtension("lnk");
             New<FileFilter>().AddUnencryptableExtension("website");
             New<FileFilter>().AddUnencryptableExtension("url");

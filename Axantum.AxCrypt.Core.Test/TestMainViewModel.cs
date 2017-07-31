@@ -68,7 +68,6 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
-            TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
         }
 
         [TearDown]

@@ -78,7 +78,6 @@ namespace Axantum.AxCrypt.Core.Test
             mockParallelFile.Setup(x => x.DoFilesAsync<IDataStore>(It.IsAny<IEnumerable<IDataStore>>(), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Func<FileOperationContext, Task>>()))
                 .Callback<IEnumerable<IDataStore>, Func<IDataStore, IProgressContext, Task<FileOperationContext>>, Func<FileOperationContext, Task>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, ErrorStatus.Success)); _allCompleted = true; }).Returns(Task.FromResult<FileOperationContext>(new FileOperationContext(String.Empty, ErrorStatus.Success)));
             TypeMap.Register.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
-            TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
         }
 
         [TearDown]

@@ -93,6 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<InactivititySignOut>(() => new InactivititySignOut(TimeSpan.Zero));
             TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
             TypeMap.Register.Singleton<KnownPublicKeys>(() => KnownPublicKeys.Load(New<IDataStore>("knownpublickeys.txt"), New<IStringSerializer>()));
+            TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());

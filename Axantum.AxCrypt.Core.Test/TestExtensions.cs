@@ -56,7 +56,6 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
         }
 
         [TearDown]
