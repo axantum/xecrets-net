@@ -40,7 +40,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class FilePasswordViewModel : ViewModelBase
+    public class FilePasswordViewModel : ViewModelBase, IPasswordEntry
     {
         private string _encryptedFileFullName;
 
@@ -53,8 +53,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            ShowPassphrase = New<UserSettings>().DisplayDecryptPassphrase;
-            PassphraseText = string.Empty;
+            ShowPassword = New<UserSettings>().DisplayDecryptPassphrase;
+            PasswordText = string.Empty;
             FileName = string.IsNullOrEmpty(_encryptedFileFullName) ? string.Empty : New<IDataStore>(_encryptedFileFullName).Name;
             IsLegacyFile = IsLegacyFileInternal(_encryptedFileFullName);
             KeyFileName = string.Empty;
@@ -62,12 +62,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
         }
 
-        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
+        public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
-        public string PassphraseText { get { return GetProperty<string>(nameof(PassphraseText)); } set { SetProperty(nameof(PassphraseText), value); } }
+        public string PasswordText { get { return GetProperty<string>(nameof(PasswordText)); } set { SetProperty(nameof(PasswordText), value); } }
 
         public string FileName { get { return GetProperty<string>(nameof(FileName)); } set { SetProperty(nameof(FileName), value); } }
 
@@ -81,7 +81,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 if (string.IsNullOrEmpty(KeyFileName))
                 {
-                    return Passphrase.Create(PassphraseText);
+                    return Passphrase.Create(PasswordText);
+                }
+
+                IDataStore keyFile = New<IDataStore>(KeyFileName);
+                if (!keyFile.IsAvailable)
+                {
+                    return Passphrase.Empty;
                 }
 
                 byte[] extra;
@@ -89,7 +95,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     extra = stream.ToArray();
                 }
-                return Passphrase.Create(PassphraseText, extra);
+                return Passphrase.Create(PasswordText, extra);
             }
         }
 
@@ -107,26 +113,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     {
                         return true;
                     }
-                    if (!New<IDataStore>(KeyFileName).IsAvailable)
-                    {
-                        ValidationError = (int)ViewModel.ValidationError.KeyFileInaccessible;
-                        return false;
-                    }
-                    try
-                    {
-                        using (Stream stream = New<IDataStore>(KeyFileName).OpenRead())
-                        {
-                        }
-                    }
-                    catch (IOException ioex)
-                    {
-                        New<IReport>().Exception(ioex);
-                        ValidationError = (int)ViewModel.ValidationError.KeyFileInaccessible;
-                        return false;
-                    }
-                    return true;
+                    return ValidateKeyFile();
 
-                case nameof(PassphraseText):
+                case nameof(PasswordText):
+                    if (!string.IsNullOrEmpty(KeyFileName) && !ValidateKeyFile())
+                    {
+                        return false;
+                    }
+
                     if (New<KnownIdentities>().DefaultEncryptionIdentity.Passphrase == Passphrase)
                     {
                         ValidationError = (int)ViewModel.ValidationError.SamePasswordAlreadySignedIn;
@@ -148,6 +142,28 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 default:
                     throw new ArgumentException("Cannot validate property.", columnName);
             }
+        }
+
+        private bool ValidateKeyFile()
+        {
+            if (!New<IDataStore>(KeyFileName).IsAvailable)
+            {
+                ValidationError = (int)ViewModel.ValidationError.KeyFileInaccessible;
+                return false;
+            }
+            try
+            {
+                using (Stream stream = New<IDataStore>(KeyFileName).OpenRead())
+                {
+                }
+            }
+            catch (IOException ioex)
+            {
+                New<IReport>().Exception(ioex);
+                ValidationError = (int)ViewModel.ValidationError.KeyFileInaccessible;
+                return false;
+            }
+            return true;
         }
 
         private static bool IsLegacyFileInternal(string encryptedFileFullName)

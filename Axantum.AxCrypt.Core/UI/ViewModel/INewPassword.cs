@@ -5,12 +5,8 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public interface INewPassword : IPropertyBinder
+    public interface INewPassword : IPasswordEntry
     {
-        string Password { get; set; }
-
         string Verification { get; set; }
-
-        bool ShowPassword { get; set; }
     }
 }

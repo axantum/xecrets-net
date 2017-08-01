@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// server and synchronize keys. If that fails, a locally accessible key-pair is required.
     /// If no email address is provided, classic mode encryption is attempted, if this is enabled by the current feature policy.
     /// </summary>
-    public class LogOnAccountViewModel : ViewModelBase
+    public class LogOnAccountViewModel : ViewModelBase, IPasswordEntry
     {
         private UserSettings _userSettings;
 
@@ -69,21 +69,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void InitializePropertyValues(string userEmail)
         {
             UserEmail = userEmail;
-            Passphrase = String.Empty;
-            ShowPassphrase = New<UserSettings>().DisplayDecryptPassphrase;
+            PasswordText = String.Empty;
+            ShowPassword = New<UserSettings>().DisplayDecryptPassphrase;
             ShowEmail = true;
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
             BindPropertyChangedInternal(nameof(ShowEmail), (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
             BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; } });
         }
 
-        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
+        public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
-        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
+        public string PasswordText { get { return GetProperty<string>(nameof(PasswordText)); } set { SetProperty(nameof(PasswordText), value); } }
 
         public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
 
@@ -105,10 +105,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     return true;
 
-                case nameof(Passphrase):
+                case nameof(PasswordText):
                     return await ValidatePassphraseAsync();
 
-                case nameof(ShowPassphrase):
+                case nameof(ShowPassword):
                 case nameof(ShowEmail):
                     return true;
 
@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return true;
             }
 
-            if (Passphrase.Length > 0 && await IsValidAccountLogOnAsync())
+            if (PasswordText.Length > 0 && await IsValidAccountLogOnAsync())
             {
                 _nrOfTries = 0;
                 return true;
@@ -162,14 +162,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task<bool> IsValidAccountLogOnAsync()
         {
-            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(Passphrase))));
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(PasswordText))));
 
             return await accountStorage.Refresh().IsIdentityValidAsync();
         }
 
         private bool IsKnownPassphrase()
         {
-            SymmetricKeyThumbprint thumbprint = new Passphrase(Passphrase).Thumbprint;
+            SymmetricKeyThumbprint thumbprint = new Passphrase(PasswordText).Thumbprint;
             Passphrase knownPassphrase = New<FileSystemState>().KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
             if (knownPassphrase != null)
             {

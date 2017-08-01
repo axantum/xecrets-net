@@ -34,9 +34,19 @@ namespace Axantum.AxCrypt.Common
             new TaskRunner(task).Wait();
         }
 
+        public static T WaitFor<T>(Func<Task<T>> task)
+        {
+            return new TaskRunner(task).Wait<T>();
+        }
+
         private void Wait()
         {
             Task.Run(_task).GetAwaiter().GetResult();
+        }
+
+        private T Wait<T>()
+        {
+            return Task.Run((Func<Task<T>>)_task).GetAwaiter().GetResult();
         }
     }
 }

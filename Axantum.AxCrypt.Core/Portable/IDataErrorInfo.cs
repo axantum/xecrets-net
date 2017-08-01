@@ -9,6 +9,8 @@ namespace Axantum.AxCrypt.Core.Portable
 {
     public interface IDataErrorInfo
     {
+        int ValidationError { get; }
+
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Error", Justification = "Standard naming for this pattern.")]
         string Error { get; }
 

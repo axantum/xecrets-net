@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues(string passphrase)
         {
-            Password = passphrase ?? String.Empty;
+            PasswordText = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
             FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : New<IDataStore>(_encryptedFileFullName).Name;
             ShowPassword = New<UserSettings>().DisplayEncryptPassphrase;
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
-        public string Password { get { return GetProperty<string>(nameof(Password)); } set { SetProperty(nameof(Password), value); } }
+        public string PasswordText { get { return GetProperty<string>(nameof(PasswordText)); } set { SetProperty(nameof(PasswordText), value); } }
 
         public string Verification { get { return GetProperty<string>(nameof(Verification)); } set { SetProperty(nameof(Verification), value); } }
 
@@ -78,14 +78,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (columnName)
             {
-                case nameof(Password):
-                    if (!IsPassphraseValidForFileIfAny(Password, _encryptedFileFullName))
+                case nameof(PasswordText):
+                    if (!IsPassphraseValidForFileIfAny(PasswordText, _encryptedFileFullName))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
                     }
 
-                    if (!IsPassphrasePolicyValid(Password))
+                    if (!IsPassphrasePolicyValid(PasswordText))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool ValidateVerification()
         {
-            return String.Compare(Password, Verification, StringComparison.Ordinal) == 0;
+            return String.Compare(PasswordText, Verification, StringComparison.Ordinal) == 0;
         }
 
         private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)

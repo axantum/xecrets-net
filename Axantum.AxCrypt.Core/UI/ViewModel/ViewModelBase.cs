@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
@@ -180,7 +181,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
                 try
                 {
-                    isValid = Task.Run(async () => await ValidateAsync(columnName)).Result;
+                    isValid = TaskRunner.WaitFor(async () => await ValidateAsync(columnName));
                 }
                 catch (AggregateException aex)
                 {

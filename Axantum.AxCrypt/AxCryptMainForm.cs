@@ -1109,13 +1109,13 @@ namespace Axantum.AxCrypt
                     await new ApplicationManager().StopAndExit();
                 }
 
-                if (dialogResult != DialogResult.OK || viewModel.Passphrase.Length == 0)
+                if (dialogResult != DialogResult.OK || viewModel.PasswordText.Length == 0)
                 {
                     e.Cancel = true;
                     return;
                 }
 
-                e.Passphrase = new Passphrase(viewModel.Passphrase);
+                e.Passphrase = new Passphrase(viewModel.PasswordText);
                 e.UserEmail = viewModel.UserEmail;
             }
             return;

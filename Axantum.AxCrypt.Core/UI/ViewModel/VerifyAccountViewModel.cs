@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string VerificationCode { get { return GetProperty<string>(nameof(VerificationCode)); } set { SetProperty(nameof(VerificationCode), value); } }
 
-        public string Password { get { return GetProperty<string>(nameof(Password)); } set { SetProperty(nameof(Password), value); } }
+        public string PasswordText { get { return GetProperty<string>(nameof(PasswordText)); } set { SetProperty(nameof(PasswordText), value); } }
 
         public string Verification { get { return GetProperty<string>(nameof(Verification)); } set { SetProperty(nameof(Verification), value); } }
 
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             UserEmail = emailAddress.Address;
             VerificationCode = string.Empty;
-            Password = string.Empty;
+            PasswordText = string.Empty;
             Verification = string.Empty;
             ShowPassword = Resolve.UserSettings.DisplayEncryptPassphrase;
             ErrorMessage = string.Empty;
@@ -99,11 +99,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     return true;
 
-                case nameof(Password):
-                    return ValidatePassphrasePolicy(Password);
+                case nameof(PasswordText):
+                    return ValidatePassphrasePolicy(PasswordText);
 
                 case nameof(Verification):
-                    return String.Compare(Password, Verification, StringComparison.Ordinal) == 0;
+                    return String.Compare(PasswordText, Verification, StringComparison.Ordinal) == 0;
 
                 case nameof(VerificationCode):
                     return VerificationCode.Length == 6 && VerificationCode.ToCharArray().All(c => Char.IsDigit(c));
@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task VerifyAccountActionAsync()
         {
-            LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(UserEmail), Crypto.Passphrase.Create(Password));
+            LogOnIdentity identity = new LogOnIdentity(EmailAddress.Parse(UserEmail), Crypto.Passphrase.Create(PasswordText));
             IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
 
             try
