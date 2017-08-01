@@ -648,5 +648,16 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(!utcJustMoreThan60daysPast.IsBetween(days30, days60), nameof(utcJustMoreThan60daysPast));
             Assert.That(!utc100DaysPast.IsBetween(days30, days60), nameof(utc100DaysPast));
         }
+        [Test]
+        public static void TestFileFilter()
+        {
+            FakeDataStore.AddFile(@"c:\test.txt", null);
+            IDataStore fileInfo = New<IDataStore>(@"c:\test.txt");
+            Assert.That(New<FileFilter>().IsEncryptable(fileInfo),Is.True);
+
+            New<FileFilter>().AddUnencryptableExtension("txt");
+
+            Assert.That(New<FileFilter>().IsEncryptable(fileInfo), Is.False);
+        }
     }
 }

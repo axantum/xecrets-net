@@ -1334,12 +1334,12 @@ namespace Axantum.AxCrypt
             }
 
             string text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, licenseStatus, logonStatus);
-            text = await AddIndicators(text, userAccount);
+            text = AddIndicators(text, userAccount);
 
             Text = text;
         }
 
-        private async Task<string> AddIndicators(string text, UserAccount userAccount)
+        private static string AddIndicators(string text, UserAccount userAccount)
         {
             if (New<AxCryptOnlineState>().IsOffline)
             {
