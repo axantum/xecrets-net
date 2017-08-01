@@ -489,8 +489,6 @@ namespace Axantum.AxCrypt
             New<FileFilter>().AddUnencryptableExtension("gdraw");
             New<FileFilter>().AddUnencryptableExtension("gtable");
             New<FileFilter>().AddUnencryptableExtension("gform");
-
-
         }
 
         private static void AddEnvironmentVariableBasedPathFilter(string formatRegularExpression, string name)
@@ -1329,8 +1327,6 @@ namespace Axantum.AxCrypt
 
                 accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
                 userAccount = await accountService.AccountAsync();
-
-
             }
             else
             {
@@ -1338,18 +1334,23 @@ namespace Axantum.AxCrypt
             }
 
             string text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, licenseStatus, logonStatus);
+            text = await AddIndicators(text, userAccount);
+
+            Text = text;
+        }
+
+        private async Task<string> AddIndicators(string text, UserAccount userAccount)
+        {
             if (New<AxCryptOnlineState>().IsOffline)
             {
-                text = $"{text} [{Texts.OfflineIndicatorText}]";
+                return $"{text} [{Texts.OfflineIndicatorText}]";
             }
-            else
+
+            if (userAccount?.AccountSource == AccountSource.Local)
             {
-                if (userAccount?.AccountSource == AccountSource.Local)
-                {
-                    text = $"{text} [{Texts.LocalIndicatorText}]";
-                }
+                return $"{text} [{Texts.LocalIndicatorText}]";
             }
-            Text = text;
+            return text;
         }
 
         private async Task SetSoftwareStatus()
