@@ -55,8 +55,6 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblySetup();
 
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(New<IDataStore>(_fileSystemStateFilePath)));
-            FakeInMemoryDataStoreItem store = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
-            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(store, Resolve.Serializer));
         }
 
         [TearDown]

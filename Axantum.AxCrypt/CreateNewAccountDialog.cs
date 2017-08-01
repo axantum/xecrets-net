@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Service;
+﻿using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
@@ -112,7 +113,7 @@ namespace Axantum.AxCrypt
 
             try
             {
-                await Task.Run(() => _viewModel.CreateAccount.Execute(null));
+                TaskRunner.WaitFor(() => _viewModel.CreateAccount.ExecuteAsync(null));
             }
             finally
             {

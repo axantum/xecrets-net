@@ -79,6 +79,7 @@
     <Compile Include="IProgressDialog.cs" />
     <Compile Include="IReport.cs" />
     <Compile Include="IStringSerializer.cs" />
+    <Compile Include="IUIThread.cs" />
     <Compile Include="ProgressDialogClosingToken.cs" />
     <Compile Include="Releaser.cs" />
     <Compile Include="Rest\IRestCaller.cs" />

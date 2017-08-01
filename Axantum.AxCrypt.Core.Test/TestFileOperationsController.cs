@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestSimpleEncryptFile()
+        public async Task TestSimpleEncryptFile()
         {
             FileOperationsController controller = new FileOperationsController();
             string destinationPath = String.Empty;
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
                 destinationPath = e.SaveFileFullName;
             };
 
-            FileOperationContext status = controller.EncryptFile(New<IDataStore>(_davidCopperfieldTxtPath)).Result;
+            FileOperationContext status = await controller.EncryptFile(New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
 
             IDataStore destinationInfo = New<IDataStore>(destinationPath);
@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Test
                     destinationPath = e.SaveFileFullName;
                 };
 
-            FileOperationContext status = controller.EncryptFile(New<IDataStore>(_davidCopperfieldTxtPath)).Result;
+            FileOperationContext status = await controller.EncryptFile(New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
             Assert.That(!queryEncryptionPassphraseWasCalled, "No query of encryption passphrase should be needed since there is a default set.");
 
@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Test
                 cryptoId = e.CryptoId;
             };
 
-            FileOperationContext status = controller.EncryptFile(New<IDataStore>(_davidCopperfieldTxtPath)).Result;
+            FileOperationContext status = await controller.EncryptFile(New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
 
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
@@ -224,7 +224,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestEncryptFileWhenCanceledDuringQuerySaveAs()
+        public async Task TestEncryptFileWhenCanceledDuringQuerySaveAs()
         {
             IDataStore sourceInfo = New<IDataStore>(_davidCopperfieldTxtPath);
             IDataStore expectedDestinationInfo = New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
@@ -238,12 +238,12 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            FileOperationContext status = controller.EncryptFile(New<IDataStore>(_davidCopperfieldTxtPath)).Result;
+            FileOperationContext status = await controller.EncryptFile(New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Canceled), "The status should indicate cancellation.");
         }
 
         [Test]
-        public void TestEncryptFileWhenCanceledDuringQueryPassphrase()
+        public async Task TestEncryptFileWhenCanceledDuringQueryPassphrase()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -251,12 +251,12 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            FileOperationContext status = controller.EncryptFile(New<IDataStore>(_davidCopperfieldTxtPath)).Result;
+            FileOperationContext status = await controller.EncryptFile(New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Canceled), "The status should indicate cancellation.");
         }
 
         [Test]
-        public void TestSimpleDecryptFile()
+        public async Task TestSimpleDecryptFile()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase = (FileOperationEventArgs e) =>
@@ -275,7 +275,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     destinationPath = e.SaveFileFullName;
                 };
-            FileOperationContext status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
@@ -329,7 +329,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestDecryptWithCancelDuringQueryDecryptionPassphrase()
+        public async Task TestDecryptWithCancelDuringQueryDecryptionPassphrase()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase = (FileOperationEventArgs e) =>
@@ -337,13 +337,13 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
                 return Task.FromResult<object>(null);
             };
-            FileOperationContext status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Canceled), "The status should indicate cancellation.");
         }
 
         [Test]
-        public void TestDecryptWithSkipDuringQueryDecryptionPassphrase()
+        public async Task TestDecryptWithSkipDuringQueryDecryptionPassphrase()
         {
             IDataStore expectedDestinationInfo = New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
@@ -358,14 +358,14 @@ namespace Axantum.AxCrypt.Core.Test
             };
             bool saveAs = false;
             controller.QuerySaveFileAs += (sender, e) => saveAs = true;
-            FileOperationContext status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
             Assert.That(saveAs, Is.False, "No Save As should happen, since skip was indicated.");
         }
 
         [Test]
-        public void TestDecryptWithCancelDuringQuerySaveAs()
+        public async Task TestDecryptWithCancelDuringQuerySaveAs()
         {
             IDataStore expectedDestinationInfo = New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
@@ -382,13 +382,13 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     e.Cancel = true;
                 };
-            FileOperationContext status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Canceled), "The status should indicate cancellation.");
         }
 
         [Test]
-        public void TestDecryptWithAlternativeDestinationName()
+        public async Task TestDecryptWithAlternativeDestinationName()
         {
             IDataStore expectedDestinationInfo = New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
@@ -410,7 +410,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 destinationPath = e.SaveFileFullName;
             };
-            FileOperationContext status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
 
@@ -424,7 +424,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestSimpleDecryptAndLaunch()
+        public async Task TestSimpleDecryptAndLaunch()
         {
             FakeLauncher launcher = new FakeLauncher();
             bool called = false;
@@ -436,7 +436,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.LogOnIdentity = new LogOnIdentity("a");
                 return Task.FromResult<object>(null);
             };
-            FileOperationContext status = controller.DecryptAndLaunchAsync(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.DecryptAndLaunchAsync(New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
 
@@ -494,7 +494,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestCanceledDecryptAndLaunch()
+        public async Task TestCanceledDecryptAndLaunch()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase = (FileOperationEventArgs e) =>
@@ -502,7 +502,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
                 return Task.FromResult<object>(null);
             };
-            FileOperationContext status = controller.DecryptAndLaunchAsync(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.DecryptAndLaunchAsync(New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Canceled), "The status should indicate cancellation.");
         }
 
@@ -531,7 +531,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownKeyWasAdded = true;
                 return Constant.CompletedTask;
             });
-            FileOperationContext status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
             Assert.That(!knownKeyWasAdded, "An already known key was used, so the KnownKeyAdded event should not have been raised.");
@@ -548,7 +548,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestDecryptFileWithRepeatedPassphraseQueries()
+        public async Task TestDecryptFileWithRepeatedPassphraseQueries()
         {
             FileOperationsController controller = new FileOperationsController();
             int passphraseTry = 0;
@@ -585,7 +585,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownKeyWasAdded = e.LogOnIdentity.Equals(new LogOnIdentity("a"));
                 return Constant.CompletedTask;
             });
-            FileOperationContext status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
@@ -622,17 +622,17 @@ namespace Axantum.AxCrypt.Core.Test
                 destinationPath = e.SaveFileFullName;
             });
             FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
-            Assert.DoesNotThrow(() => { status = controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)).Result; });
+            Assert.DoesNotThrowAsync(async () => { status = await controller.DecryptFile(New<IDataStore>(_helloWorldAxxPath)); });
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.FileDoesNotExist), "The status should indicate an exception occurred.");
             Assert.That(String.IsNullOrEmpty(destinationPath), "Since an exception occurred, the destination file should not be created.");
         }
 
         [Test]
-        public void TestEncryptFileThatIsAlreadyEncrypted()
+        public async Task TestEncryptFileThatIsAlreadyEncrypted()
         {
             FileOperationsController controller = new FileOperationsController();
-            FileOperationContext status = controller.EncryptFile(New<IDataStore>("test" + OS.Current.AxCryptExtension)).Result;
+            FileOperationContext status = await controller.EncryptFile(New<IDataStore>("test" + OS.Current.AxCryptExtension));
 
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.FileAlreadyEncrypted), "The status should indicate that it was already encrypted.");
         }
@@ -658,7 +658,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestSimpleWipe()
+        public async Task TestSimpleWipe()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
@@ -667,7 +667,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Skip = false;
                 e.ConfirmAll = false;
             };
-            FileOperationContext status = controller.WipeFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.WipeFile(New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The wipe should indicate success.");
 
             IDataStore fileInfo = New<IDataStore>(_helloWorldAxxPath);
@@ -701,14 +701,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestWipeWithCancel()
+        public async Task TestWipeWithCancel()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
                 e.Cancel = true;
             };
-            FileOperationContext status = controller.WipeFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.WipeFile(New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Canceled), "The wipe should indicate cancellation.");
 
             IDataStore fileInfo = New<IDataStore>(_helloWorldAxxPath);
@@ -716,14 +716,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestWipeWithSkip()
+        public async Task TestWipeWithSkip()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
                 e.Skip = true;
             };
-            FileOperationContext status = controller.WipeFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.WipeFile(New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The wipe should indicate success even when skipping.");
 
             IDataStore fileInfo = New<IDataStore>(_helloWorldAxxPath);
@@ -731,7 +731,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestWipeWithConfirmAll()
+        public async Task TestWipeWithConfirmAll()
         {
             ProgressContext progress = new ProgressContext();
             FileOperationsController controller = new FileOperationsController(progress);
@@ -745,13 +745,13 @@ namespace Axantum.AxCrypt.Core.Test
                 e.ConfirmAll = true;
             };
             progress.NotifyLevelStart();
-            FileOperationContext status = controller.WipeFile(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.WipeFile(New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The wipe should indicate success.");
 
             IDataStore fileInfo = New<IDataStore>(_helloWorldAxxPath);
             Assert.That(!fileInfo.IsAvailable, "The file should not exist after wiping.");
 
-            Assert.DoesNotThrow(() => { status = controller.WipeFile(New<IDataStore>(_davidCopperfieldTxtPath)).Result; });
+            Assert.DoesNotThrowAsync(async () => { status = await controller.WipeFile(New<IDataStore>(_davidCopperfieldTxtPath)); });
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The wipe should indicate success.");
             progress.NotifyLevelFinished();
 
@@ -777,7 +777,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return Constant.CompletedTask;
             });
 
-            FileOperationContext status = controller.VerifyEncrypted(New<IDataStore>(_helloWorldAxxPath)).Result;
+            FileOperationContext status = await controller.VerifyEncrypted(New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Canceled));
             Assert.That(knownKeyWasAdded, Is.False);
             Assert.That(passphraseWasQueried, Is.True);
@@ -797,7 +797,7 @@ namespace Axantum.AxCrypt.Core.Test
             await Resolve.KnownIdentities.Add(new LogOnIdentity("b"));
             await Resolve.KnownIdentities.Add(new LogOnIdentity("c"));
 
-            status = controller.VerifyEncrypted(New<IDataStore>(_helloWorldAxxPath)).Result;
+            status = await controller.VerifyEncrypted(New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success));
             Assert.That(knownKeyWasAdded, Is.True, "A known key should have been added.");
         }

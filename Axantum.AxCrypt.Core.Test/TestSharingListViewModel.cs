@@ -58,13 +58,12 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public void SetUp()
         {
-            IDataStore knownPublicKeysStore = new FakeInMemoryDataStoreItem("KnownPublicKeys.txt");
+            IDataStore knownPublicKeysStore = new FakeInMemoryDataStoreItem("knownpublickeys.txt");
 
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
             TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
-            TypeMap.Register.Singleton<KnownPublicKeys>(() => KnownPublicKeys.Load(New<IDataStore>("knownpublickeys.txt"), New<IStringSerializer>()));
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
             TypeMap.Register.Singleton<INow>(() => new FakeNow());
             TypeMap.Register.Singleton<UserPublicKeyUpdateStatus>(() => new UserPublicKeyUpdateStatus());

@@ -106,6 +106,8 @@ namespace Axantum.AxCrypt
             _startMinimized = commandLine.HasCommands;
         }
 
+        private bool _isInitializing = true;
+
         private async void AxCryptMainForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
@@ -122,6 +124,10 @@ namespace Axantum.AxCrypt
                 await new ApplicationManager().ClearAllSettings();
                 MessageBox.Show(ex.Message, "AxCrypt failed to start. All Settings cleared.", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 Application.Exit();
+            }
+            finally
+            {
+                _isInitializing = false;
             }
         }
 
@@ -141,7 +147,7 @@ namespace Axantum.AxCrypt
             }
 
             CheckOfflineModeFirst();
-            GetApiVersion();
+            await GetApiVersionAsync();
             SetThisVersion();
             StartKeyPairService();
             SetupViewModels();
@@ -186,9 +192,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void GetApiVersion()
+        private async Task GetApiVersionAsync()
         {
-            _apiVersion = New<ICache>().GetItemAsync(CacheKey.RootKey.Subkey("WrapMessageDialogsAsync_ApiVersion"), () => New<GlobalApiClient>().ApiVersionAsync()).Result;
+            _apiVersion = await New<ICache>().GetItemAsync(CacheKey.RootKey.Subkey("WrapMessageDialogsAsync_ApiVersion"), () => New<GlobalApiClient>().ApiVersionAsync());
         }
 
         private static void SetThisVersion()
@@ -328,6 +334,10 @@ namespace Axantum.AxCrypt
         private async void AxCryptMainForm_ShownAsync(object sender, EventArgs e)
         {
             New<IRuntimeEnvironment>().FirstInstanceIsReady();
+            while (_isInitializing)
+            {
+                Application.DoEvents();
+            }
 
             if (_startMinimized || _commandLine.IsStartCommand)
             {

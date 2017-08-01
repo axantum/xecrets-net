@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestCheckActiveFilesIsLocked()
+        public async Task TestCheckActiveFilesIsLocked()
         {
             DateTime utcNow = New<INow>().Utc;
             DateTime utcYesterday = utcNow.AddDays(-1);
@@ -121,18 +121,18 @@ namespace Axantum.AxCrypt.Core.Test
             });
             using (FileLock fileLock = New<FileLocker>().Acquire(activeFile.EncryptedFileInfo))
             {
-                Task.Run((Action)(async () =>
+                await Task.Run((Action)(async () =>
                 {
                     await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
-                })).Wait();
+                }));
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the encrypted file is locked.");
             using (FileLock fileLock = New<FileLocker>().Acquire(activeFile.DecryptedFileInfo))
             {
-                Task.Run((Action)(async () =>
+                await Task.Run((Action)(async () =>
                 {
                     await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
-                })).Wait();
+                }));
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the decrypted file is locked.");
         }
@@ -542,7 +542,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestPurgeActiveFilesWhenFileIsLocked()
+        public async Task TestPurgeActiveFilesWhenFileIsLocked()
         {
             DateTime utcNow = New<INow>().Utc;
             FakeDataStore.AddFile(_uncompressedAxxPath, utcNow, utcNow, utcNow, Stream.Null);
@@ -562,7 +562,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (FileLock fileLock = New<FileLocker>().Acquire(decryptedFileInfo))
             {
-                Task.Run(() => New<ActiveFileAction>().PurgeActiveFiles(new ProgressContext())).Wait();
+                await Task.Run(() => New<ActiveFileAction>().PurgeActiveFiles(new ProgressContext()));
             }
 
             Assert.That(changedWasRaised, Is.False, "A changed event should not be raised because the decrypted file is locked.");

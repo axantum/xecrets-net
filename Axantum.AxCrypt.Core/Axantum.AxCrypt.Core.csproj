@@ -377,7 +377,6 @@
     <Compile Include="UI\IProgressBackground.cs" />
     <Compile Include="UI\IProgressContext.cs" />
     <Compile Include="UI\IStatusChecker.cs" />
-    <Compile Include="UI\IUIThread.cs" />
     <Compile Include="UI\KnownIdentities.cs" />
     <Compile Include="UI\ProgressContext.cs" />
     <Compile Include="UI\ProgressEventArgs.cs" />

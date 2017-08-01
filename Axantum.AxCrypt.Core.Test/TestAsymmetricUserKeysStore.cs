@@ -74,36 +74,36 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestSimpleCreateAsymmetricKeysStore()
+        public async Task TestSimpleCreateAsymmetricKeysStore()
         {
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = New<IDataContainer>(@"C:\Temp");
             AccountStorage store = new AccountStorage(new LocalAccountService(new LogOnIdentity(EmailAddress.Parse(@"svante@axantum.com"), new Passphrase("secret")), workFolder));
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
-            store.ImportAsync(userKeyPair).Wait();
-            Assert.That(store.ActiveKeyPairAsync().Result.KeyPair.PrivateKey, Is.Not.Null);
-            Assert.That(store.ActiveKeyPairAsync().Result.KeyPair.PublicKey, Is.Not.Null);
+            await store.ImportAsync(userKeyPair);
+            Assert.That((await store.ActiveKeyPairAsync()).KeyPair.PrivateKey, Is.Not.Null);
+            Assert.That((await store.ActiveKeyPairAsync()).KeyPair.PublicKey, Is.Not.Null);
         }
 
         [Test]
-        public void TestCreateAndLoadAsymmetricKeysStore()
+        public async Task TestCreateAndLoadAsymmetricKeysStore()
         {
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = New<IDataContainer>(@"C:\Temp\");
             AccountStorage store = new AccountStorage(new LocalAccountService(new LogOnIdentity(EmailAddress.Parse(@"svante@axantum.com"), new Passphrase("secret")), workFolder));
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
-            store.ImportAsync(userKeyPair).Wait();
-            Assert.That(store.ActiveKeyPairAsync().Result.KeyPair.PrivateKey, Is.Not.Null);
-            Assert.That(store.ActiveKeyPairAsync().Result.KeyPair.PublicKey, Is.Not.Null);
+            await store.ImportAsync(userKeyPair);
+            Assert.That((await store.ActiveKeyPairAsync()).KeyPair.PrivateKey, Is.Not.Null);
+            Assert.That((await store.ActiveKeyPairAsync()).KeyPair.PublicKey, Is.Not.Null);
 
-            IAsymmetricKeyPair keyPair = store.ActiveKeyPairAsync().Result.KeyPair;
+            IAsymmetricKeyPair keyPair = (await store.ActiveKeyPairAsync()).KeyPair;
 
             store = new AccountStorage(new LocalAccountService(new LogOnIdentity(EmailAddress.Parse(@"svante@axantum.com"), new Passphrase("secret")), workFolder));
 
-            Assert.That(store.ActiveKeyPairAsync().Result.KeyPair.PrivateKey.ToString(), Is.EqualTo(keyPair.PrivateKey.ToString()));
-            Assert.That(store.ActiveKeyPairAsync().Result.KeyPair.PublicKey.ToString(), Is.EqualTo(keyPair.PublicKey.ToString()));
+            Assert.That((await store.ActiveKeyPairAsync()).KeyPair.PrivateKey.ToString(), Is.EqualTo(keyPair.PrivateKey.ToString()));
+            Assert.That((await store.ActiveKeyPairAsync()).KeyPair.PublicKey.ToString(), Is.EqualTo(keyPair.PublicKey.ToString()));
         }
 
         [Test]
@@ -115,14 +115,14 @@ namespace Axantum.AxCrypt.Core.Test
             await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("secret"));
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
-            store.ImportAsync(userKeyPair).Wait();
+            await store.ImportAsync(userKeyPair);
 
             string text = "AxCrypt encryption rules!";
-            byte[] encryptedBytes = store.ActiveKeyPairAsync().Result.KeyPair.PublicKey.Transform(Encoding.UTF8.GetBytes(text));
+            byte[] encryptedBytes = (await store.ActiveKeyPairAsync()).KeyPair.PublicKey.Transform(Encoding.UTF8.GetBytes(text));
 
             store = new AccountStorage(new LocalAccountService(new LogOnIdentity(EmailAddress.Parse(@"svante@axantum.com"), new Passphrase("secret")), workFolder));
 
-            byte[] decryptedBytes = store.ActiveKeyPairAsync().Result.KeyPair.PrivateKey.Transform(encryptedBytes);
+            byte[] decryptedBytes = (await store.ActiveKeyPairAsync()).KeyPair.PrivateKey.Transform(encryptedBytes);
             Assert.That(decryptedBytes != null);
             string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
 

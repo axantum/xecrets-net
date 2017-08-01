@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
@@ -41,6 +42,8 @@ namespace Axantum.AxCrypt.Fake
         {
             _context = new SynchronizationContext();
         }
+
+        public bool Blocked { get; set; }
 
         public bool IsOn { get; set; }
 

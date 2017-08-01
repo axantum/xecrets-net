@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
 
-        public IAction CreateAccount { get { return new DelegateAction<object>((o) => CreateAccountAction()); } }
+        public IAsyncAction CreateAccount { get { return new AsyncDelegateAction<object>((o) => CreateAccountAction()); } }
 
         public CreateNewAccountViewModel(string passphrase, EmailAddress email)
         {
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return New<PasswordStrengthEvaluator>().Evaluate(passphrase).Strength > PasswordStrength.Unacceptable;
         }
 
-        private object CreateAccountAction()
+        private async Task<object> CreateAccountAction()
         {
             if (String.IsNullOrEmpty(UserEmail))
             {
@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(EmailAddress.Parse(UserEmail), new Passphrase(PasswordText))));
             UserKeyPair userKeys = new UserKeyPair(EmailAddress.Parse(UserEmail), New<INow>().Utc, New<KeyPairService>().New());
-            accountStorage.ImportAsync(userKeys).Wait();
+            await accountStorage.ImportAsync(userKeys);
 
             return null;
         }
