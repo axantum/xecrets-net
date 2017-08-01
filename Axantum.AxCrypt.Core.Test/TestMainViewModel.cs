@@ -223,7 +223,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 string folder2Path = @"C:\Folder1\FilesFolder2\".NormalizeFilePath();
                 FakeDataStore.AddFolder(folder2Path);
-                New<FileFilter>().Clear();
+                TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
 
                 mvm.DragAndDropFiles = new string[] { folder1Path, folder2Path, };
                 Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "Although both folders are ok, only a single folder is a candidate for watched folders.");

@@ -1,12 +1,7 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Extensions;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Core.IO
 {
@@ -52,13 +47,8 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new ArgumentNullException(nameof(extension));
             }
-            pathFilters.Add(new Regex(@".*\."+ extension  + "$"));
+            pathFilters.Add(new Regex(@".*\." + extension + "$"));
             return true;
-        }
-
-        public void Clear()
-        {
-            pathFilters.Clear();
         }
     }
 }
