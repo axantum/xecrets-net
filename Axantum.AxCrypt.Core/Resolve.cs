@@ -41,7 +41,7 @@ using System.Diagnostics.CodeAnalysis;
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Implementation;
-
+using Axantum.AxCrypt.Core.IO;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core
@@ -71,7 +71,9 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.Singleton<CryptoFactory>(() => new CryptoFactory(assemblies));
             TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(assemblies));
             TypeMap.Register.Singleton<UserPublicKeyUpdateStatus>(() => new UserPublicKeyUpdateStatus());
-            
+
+            TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
+
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());

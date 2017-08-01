@@ -421,14 +421,14 @@ namespace Axantum.AxCrypt.Core.Test
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable")]
         public static void TestIsEncryptable()
         {
-            OS.PathFilters.Add(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
+            New<FileFilter>().AddUnencryptable(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
 
-            Assert.That(New<IDataStore>(@"C:\Temp\test.txt").IsEncryptable(), Is.True);
-            Assert.That(New<IDataStore>(@"C:\Windows\test.txt").IsEncryptable(), Is.False);
-            Assert.That(New<IDataStore>(@"C:\Temp\test-txt.axx").IsEncryptable(), Is.False);
+            Assert.That(New<FileFilter>().IsEncryptable(New<IDataStore>(@"C:\Temp\test.txt")), Is.True);
+            Assert.That(New<FileFilter>().IsEncryptable(New<IDataStore>(@"C:\Windows\test.txt")), Is.False);
+            Assert.That(New<FileFilter>().IsEncryptable(New<IDataStore>(@"C:\Temp\test-txt.axx")), Is.False);
 
             IDataStore nullFileInfo = null;
-            Assert.Throws<ArgumentNullException>(() => nullFileInfo.IsEncryptable());
+            Assert.Throws<ArgumentNullException>(() => New<FileFilter>().IsEncryptable(nullFileInfo));
         }
 
         [Test]
@@ -480,7 +480,7 @@ namespace Axantum.AxCrypt.Core.Test
             fileInfo = New<IDataStore>(@"c:\not-there.txt");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.NonExisting));
 
-            OS.PathFilters.Add(new Regex(@"^C:\{0}Windows\{0}".InvariantFormat(Path.DirectorySeparatorChar)));
+            New<FileFilter>().AddUnencryptable(new Regex(@"^C:\{0}Windows\{0}".InvariantFormat(Path.DirectorySeparatorChar)));
             FakeDataStore.AddFile(@"C:\Windows\System.drv", null);
             fileInfo = New<IDataStore>(@"C:\Windows\System.drv");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.OtherFile));

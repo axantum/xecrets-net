@@ -1199,6 +1199,9 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   <data name="LinkToSignUpWebPage" xml:space="preserve">
     <value>{0}Home/Register</value>
   </data>
+  <data name="LocalIndicatorText" xml:space="preserve">
+    <value>!!Local</value>
+  </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Signed Out</value>
   </data>

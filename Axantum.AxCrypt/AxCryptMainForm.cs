@@ -459,15 +459,28 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-
-            OS.PathFilters.Add(new Regex(@"\\\.dropbox$"));
-            OS.PathFilters.Add(new Regex(@"\\desktop\.ini$"));
-            OS.PathFilters.Add(new Regex(@".*\.tmp$"));
+            New<FileFilter>().AddUnencryptable(new Regex(@"\\\.dropbox$"));
+            New<FileFilter>().AddUnencryptable(new Regex(@"\\desktop\.ini$"));
+            New<FileFilter>().AddUnencryptable(new Regex(@".*\.tmp$"));
             AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "SystemRoot");
             AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "windir");
             AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles");
             AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles(x86)");
             AddEnvironmentVariableBasedPathFilter(@"^{0}$", "SystemDrive");
+            New<FileFilter>().AddUnencryptableExtension("cloudf");
+            New<FileFilter>().AddUnencryptableExtension("cloud");
+            New<FileFilter>().AddUnencryptableExtension("lnk");
+            New<FileFilter>().AddUnencryptableExtension("website");
+            New<FileFilter>().AddUnencryptableExtension("url");
+            New<FileFilter>().AddUnencryptableExtension("pif");
+            New<FileFilter>().AddUnencryptableExtension("gsheet");
+            New<FileFilter>().AddUnencryptableExtension("gdoc");
+            New<FileFilter>().AddUnencryptableExtension("gslides");
+            New<FileFilter>().AddUnencryptableExtension("gdraw");
+            New<FileFilter>().AddUnencryptableExtension("gtable");
+            New<FileFilter>().AddUnencryptableExtension("gform");
+
+
         }
 
         private static void AddEnvironmentVariableBasedPathFilter(string formatRegularExpression, string name)
@@ -478,7 +491,7 @@ namespace Axantum.AxCrypt
                 return;
             }
             string escapedPath = folder.FullName.Replace(@"\", @"\\");
-            OS.PathFilters.Add(new Regex(formatRegularExpression.InvariantFormat(escapedPath)));
+            New<FileFilter>().AddUnencryptable(new Regex(formatRegularExpression.InvariantFormat(escapedPath)));
         }
 
         private void IntializeControls()
@@ -1311,6 +1324,16 @@ namespace Axantum.AxCrypt
             if (New<AxCryptOnlineState>().IsOffline)
             {
                 text = $"{text} [{Texts.OfflineIndicatorText}]";
+            }
+            else if(isLoggedOn)
+            {
+                IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+                UserAccount userAccount = await accountService.AccountAsync();
+
+                if (userAccount.AccountSource == AccountSource.Local)
+                {
+                    text = $"{text} [{Texts.LocalIndicatorText}]";
+                }
             }
             Text = text;
         }

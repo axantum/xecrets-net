@@ -3006,6 +3006,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Local.
+        /// </summary>
+        public static string LocalIndicatorText {
+            get {
+                return ResourceManager.GetString("LocalIndicatorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Signed Out.
         /// </summary>
         public static string LoggedOffStatusText {
