@@ -23,6 +23,8 @@ namespace Axantum.AxCrypt.Core.Runtime
             Context = SynchronizationContext.Current;
         }
 
+        public bool Blocked { get; set; }
+
         public abstract bool IsOn { get; }
 
         public abstract void Yield();
@@ -31,6 +33,11 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public void SendTo(Action action)
         {
+            if (Blocked)
+            {
+                throw new InvalidOperationException("Can't invoke synchronously on UI thread when it's already blocked.");
+            }
+
             Exception exception = null;
             Context.Send((state) =>
             {
@@ -49,6 +56,11 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public async Task SendToAsync(Func<Task> action)
         {
+            if (Blocked)
+            {
+                throw new InvalidOperationException("Can't invoke synchronously on UI thread when it's already blocked.");
+            }
+
             TaskCompletionSource<Exception> completion = new TaskCompletionSource<Exception>();
             Context.Send(async (state) =>
             {

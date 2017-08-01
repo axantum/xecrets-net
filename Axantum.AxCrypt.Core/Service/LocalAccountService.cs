@@ -153,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Service
             return Task.FromResult(TryLoadUserKeyPairs());
         }
 
-        public Task<UserKeyPair> CurrentKeyPairAsync()
+        public async Task<UserKeyPair> CurrentKeyPairAsync()
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
@@ -166,10 +166,10 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(Identity));
                 keyPair = new UserKeyPair(Identity.UserEmail, New<INow>().Utc, New<KeyPairService>().New());
-                store.ImportAsync(keyPair).Wait();
+                await store.ImportAsync(keyPair);
             }
 
-            return Task.FromResult(keyPair);
+            return keyPair;
         }
 
         public async Task SaveAsync(UserAccount account)

@@ -31,7 +31,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Core.UI
+namespace Axantum.AxCrypt.Abstractions
 {
     /// <summary>
     /// Define operations on the UI thread. Most UI frameworks have a concept of a single UI thread,
@@ -41,6 +41,8 @@ namespace Axantum.AxCrypt.Core.UI
     /// </summary>
     public interface IUIThread
     {
+        bool Blocked { get; set; }
+
         bool IsOn { get; }
 
         void Yield();

@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Common
 {
@@ -19,7 +22,8 @@ namespace Axantum.AxCrypt.Common
         }
 
         /// <summary>
-        /// Waits for a Task-returning function, by running it on a thread pool thread.
+        /// Waits for a Task-returning function, by running it on a thread pool thread. It MUST NOT invoke code on
+        /// the UI-thread.
         /// </summary>
         /// <param name="task">The task.</param>
         /// <remarks>
@@ -31,12 +35,28 @@ namespace Axantum.AxCrypt.Common
         /// </remarks>
         public static void WaitFor(Func<Task> task)
         {
-            new TaskRunner(task).Wait();
+            try
+            {
+                New<IUIThread>().Blocked = true;
+                new TaskRunner(task).Wait();
+            }
+            finally
+            {
+                New<IUIThread>().Blocked = false;
+            }
         }
 
         public static T WaitFor<T>(Func<Task<T>> task)
         {
-            return new TaskRunner(task).Wait<T>();
+            try
+            {
+                New<IUIThread>().Blocked = true;
+                return new TaskRunner(task).Wait<T>();
+            }
+            finally
+            {
+                New<IUIThread>().Blocked = false;
+            }
         }
 
         private void Wait()

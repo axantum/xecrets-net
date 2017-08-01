@@ -60,12 +60,6 @@ namespace Axantum.AxCrypt.Forms
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         public static DialogResult ShowOk(Form parent, string caption, string message)
         {
-            return ShowOkAsync(parent, caption, message).Result;
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public static Task<DialogResult> ShowOkAsync(Form parent, string caption, string message)
-        {
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
                 messageDialog.HideExit();
@@ -73,7 +67,7 @@ namespace Axantum.AxCrypt.Forms
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 
-                return Task.FromResult(messageDialog.ShowDialog(parent));
+                return messageDialog.ShowDialog(parent);
             }
         }
 

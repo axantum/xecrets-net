@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Api.Test
         }
 
         [Test]
-        public void TestSimpleSummary()
+        public async Task TestSimpleSummary()
         {
             RestIdentity identity = new RestIdentity("svante@axcrypt.net", "a");
 
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Api.Test
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
             AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"), TimeSpan.Zero);
-            UserAccount userSummary = client.MyAccountAsync().Result;
+            UserAccount userSummary = await client.MyAccountAsync();
 
             Assert.That(userSummary.UserName, Is.EqualTo(identity.User));
             Assert.That(userSummary.AccountKeys.Count(), Is.EqualTo(1));
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Api.Test
         }
 
         [Test]
-        public void TestAnonymousSummary()
+        public async Task TestAnonymousSummary()
         {
             RestIdentity identity = new RestIdentity();
 
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Api.Test
             TypeMap.Register.New<IRestCaller>(() => mockRestCaller.Object);
 
             AxCryptApiClient client = new AxCryptApiClient(identity, new Uri("http://localhost/api/"), TimeSpan.Zero);
-            UserAccount userSummary = client.GetAllAccountsUserAccountAsync("svante@axcrypt.net").Result;
+            UserAccount userSummary = await client.GetAllAccountsUserAccountAsync("svante@axcrypt.net");
 
             Assert.That(userSummary.UserName, Is.EqualTo(identity.User));
             Assert.That(userSummary.AccountKeys.Count(), Is.EqualTo(1), "There should be an AccountKey here.");

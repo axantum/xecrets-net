@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Runtime;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;

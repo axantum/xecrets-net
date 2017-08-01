@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using static Axantum.AxCrypt.Desktop.NativeMethods;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using System.Runtime.InteropServices;
+using Axantum.AxCrypt.Abstractions;
 
 namespace Axantum.AxCrypt.Desktop
 {
