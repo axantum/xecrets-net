@@ -67,13 +67,10 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.Singleton<CommandHandler>(() => new CommandHandler());
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
-
             TypeMap.Register.Singleton<CryptoFactory>(() => new CryptoFactory(assemblies));
             TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(assemblies));
             TypeMap.Register.Singleton<UserPublicKeyUpdateStatus>(() => new UserPublicKeyUpdateStatus());
-
             TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
-
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());

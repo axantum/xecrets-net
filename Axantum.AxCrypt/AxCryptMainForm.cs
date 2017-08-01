@@ -1307,46 +1307,54 @@ namespace Axantum.AxCrypt
 
         private async void SetWindowTextWithSignInAndPremiumStatus(bool isLoggedOn)
         {
-            string licenseStatus = string.Empty;
-            string logonStatus;
-            IAccountService accountService = null;
-            UserAccount userAccount = null;
+            string licenseStatus = GetLicenseStatus(isLoggedOn);
+            string logonStatus = GetLogonStatus(isLoggedOn);
+
+            string text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, licenseStatus, logonStatus);
+            Text = await AddIndicatorsAsync(isLoggedOn, text);
+        }
+
+        private string GetLicenseStatus(bool isLoggedOn)
+        {
+            if (!isLoggedOn)
+            {
+                return string.Empty;
+            }
+
+            if (_mainViewModel.License.Has(LicenseCapability.Premium))
+            {
+                return Texts.LicensePremiumNameText;
+            }
+
+            return Texts.LicenseFreeNameText;
+        }
+
+        private string GetLogonStatus(bool isLoggedOn)
+        {
             if (isLoggedOn)
             {
                 UserKeyPair userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
-                logonStatus = userKeys != UserKeyPair.Empty ? Texts.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Texts.LoggedOnStatusText;
-
-                if (_mainViewModel.License.Has(LicenseCapability.Premium))
-                {
-                    licenseStatus = Texts.LicensePremiumNameText;
-                }
-                else
-                {
-                    licenseStatus = Texts.LicenseFreeNameText;
-                }
-
-                accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-                userAccount = await accountService.AccountAsync();
+                return userKeys != UserKeyPair.Empty ? Texts.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Texts.LoggedOnStatusText;
             }
-            else
-            {
-                logonStatus = Texts.LoggedOffStatusText;
-            }
-
-            string text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, licenseStatus, logonStatus);
-            text = AddIndicators(text, userAccount);
-
-            Text = text;
+            return Texts.LoggedOffStatusText;
         }
 
-        private static string AddIndicators(string text, UserAccount userAccount)
+        private static async Task<string> AddIndicatorsAsync(bool isLoggedOn, string text)
         {
             if (New<AxCryptOnlineState>().IsOffline)
             {
                 return $"{text} [{Texts.OfflineIndicatorText}]";
             }
 
-            if (userAccount?.AccountSource == AccountSource.Local)
+            if (!isLoggedOn)
+            {
+                return text;
+            }
+
+            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+            UserAccount userAccount = await accountService.AccountAsync();
+
+            if (userAccount.AccountSource == AccountSource.Local)
             {
                 return $"{text} [{Texts.LocalIndicatorText}]";
             }
