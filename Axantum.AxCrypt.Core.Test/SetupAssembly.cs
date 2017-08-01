@@ -63,6 +63,8 @@ namespace Axantum.AxCrypt.Core.Test
     {
         public static void AssemblySetup()
         {
+            IDataStore knownPublicKeysStore = new FakeInMemoryDataStoreItem("knownpublickeys.txt");
+
             TypeMap.Register.Singleton<INow>(() => new FakeNow());
             TypeMap.Register.Singleton<IReport>(() => new FakeReport());
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
@@ -92,7 +94,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<LicensePolicy>(() => new PremiumForcedLicensePolicy());
             TypeMap.Register.Singleton<InactivititySignOut>(() => new InactivititySignOut(TimeSpan.Zero));
             TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
-            TypeMap.Register.Singleton<KnownPublicKeys>(() => KnownPublicKeys.Load(New<IDataStore>("knownpublickeys.txt"), New<IStringSerializer>()));
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
@@ -100,6 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<FileOperation>(() => new FileOperation(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
             TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities, Resolve.ParallelFileOperation, New<IStatusChecker>(), New<IdentityViewModel>()));
+            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(knownPublicKeysStore, New<IStringSerializer>()));
             TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState, Resolve.UserSettings));
             TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));
             TypeMap.Register.New<string, IDataContainer>((path) => new FakeDataContainer(path));
