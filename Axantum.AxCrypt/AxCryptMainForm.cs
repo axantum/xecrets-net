@@ -1309,8 +1309,10 @@ namespace Axantum.AxCrypt
 
         private async void SetWindowTextWithSignInAndPremiumStatus(bool isLoggedOn)
         {
-            string licenseStatus = "";
+            string licenseStatus = string.Empty;
             string logonStatus;
+            IAccountService accountService = null;
+            UserAccount userAccount = null;
             if (isLoggedOn)
             {
                 UserKeyPair userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
@@ -1324,6 +1326,11 @@ namespace Axantum.AxCrypt
                 {
                     licenseStatus = Texts.LicenseFreeNameText;
                 }
+
+                accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+                userAccount = await accountService.AccountAsync();
+
+
             }
             else
             {
@@ -1335,12 +1342,9 @@ namespace Axantum.AxCrypt
             {
                 text = $"{text} [{Texts.OfflineIndicatorText}]";
             }
-            else if(isLoggedOn)
+            else
             {
-                IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-                UserAccount userAccount = await accountService.AccountAsync();
-
-                if (userAccount.AccountSource == AccountSource.Local)
+                if (userAccount?.AccountSource == AccountSource.Local)
                 {
                     text = $"{text} [{Texts.LocalIndicatorText}]";
                 }
