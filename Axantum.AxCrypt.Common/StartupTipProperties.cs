@@ -23,5 +23,11 @@ namespace Axantum.AxCrypt.Common
             ButtonStyle = buttonStyle;
             Url = url;
         }
+
+        public StartupTipProperties(StartupTipLevel level, StartupTipButtonStyle buttonStyle)
+        {
+            Level = level; 
+            ButtonStyle = buttonStyle;
+        }
     }
 }

@@ -2165,6 +2165,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Secure Connection Required</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
+  <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
+    <value>!!The encryption/decryption of the recursive folders are now included in the AxCrypt Premium.</value>
+  </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
     <value>Mobile apps for Android and iOS are now included in AxCrypt Premium. Would you like to know more?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>

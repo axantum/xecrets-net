@@ -5457,7 +5457,19 @@ namespace AxCrypt.Content.Properties {
                 return ResourceManager.GetString("StartupTipTryMobileApp", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The recursive folders can be encrypted/decrypted now included in AxCrypt Premium.
+        /// </summary>
+        public static string StartupTipIncludeSubfoldersFeature
+        {
+            get
+            {
+                return ResourceManager.GetString("StartupTipIncludeSubfoldersFeature", resourceCulture);
+            }
+        }
         
+
         /// <summary>
         ///   Looks up a localized string similar to Click to select files to stop securing..
         /// </summary>
