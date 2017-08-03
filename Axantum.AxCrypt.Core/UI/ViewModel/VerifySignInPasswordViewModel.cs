@@ -13,9 +13,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private readonly LogOnIdentity _identity;
 
-        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
+        public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
-        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
+        public string Password { get { return GetProperty<string>(nameof(Password)); } set { SetProperty(nameof(Password), value); } }
 
         public VerifySignInPasswordViewModel(LogOnIdentity identity)
         {
@@ -27,13 +27,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
         }
 
         private void InitializePropertyValues()
         {
-            Passphrase = String.Empty;
-            ShowPassphrase = New<UserSettings>().DisplayDecryptPassphrase;
+            Password = String.Empty;
+            ShowPassword = New<UserSettings>().DisplayDecryptPassphrase;
         }
 
         protected override Task<bool> ValidateAsync(string columnName)
@@ -45,10 +45,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (columnName)
             {
-                case nameof(Passphrase):
+                case nameof(Password):
                     return ValidatePassphrase();
 
-                case nameof(ShowPassphrase):
+                case nameof(ShowPassword):
                     return true;
 
                 default:
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool ValidatePassphrase()
         {
-            Passphrase passphrase = new Passphrase(Passphrase);
+            Passphrase passphrase = new Passphrase(Password);
             if (passphrase == _identity.Passphrase)
             {
                 return true;

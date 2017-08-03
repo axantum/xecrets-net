@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FilePasswordViewModel lovm = new FilePasswordViewModel(String.Empty);
             string s = null;
-            Assert.Throws<ArgumentException>(() => { s = lovm["ShowPassphrase"]; });
+            Assert.Throws<ArgumentException>(() => { s = lovm[nameof(FilePasswordViewModel.ShowPassword)]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
         }
 
