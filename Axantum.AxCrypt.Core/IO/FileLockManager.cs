@@ -61,9 +61,9 @@ namespace Axantum.AxCrypt.Core.IO
 
         public IDataStore DataStore { get { return New<IDataStore>(_originalLockedFileName); } }
 
-        public Task<FileLock> LockAsync()
+        public Task<FileLock> GetFileLockAsync()
         {
-            Interlocked.Increment(ref _referenceCount);
+            IncrementReferenceCount();
             Task wait = _semaphore.WaitAsync();
             return wait.IsCompleted ?
                         _fileLock :
@@ -72,9 +72,9 @@ namespace Axantum.AxCrypt.Core.IO
             TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
         }
 
-        public FileLock Lock()
+        public FileLock GetFileLock()
         {
-            Interlocked.Increment(ref _referenceCount);
+            IncrementReferenceCount();
             if (!_semaphore.Wait(_timeout))
             {
                 throw new InternalErrorException("Potential deadlock detected.", _originalLockedFileName);
@@ -83,9 +83,19 @@ namespace Axantum.AxCrypt.Core.IO
             return _fileLock.Result;
         }
 
-        public int CurrentCount
+        public int IncrementReferenceCount()
         {
-            get { return _semaphore.CurrentCount; }
+            return Interlocked.Increment(ref _referenceCount);
+        }
+
+        public int DecrementReferenceCount()
+        {
+            return Interlocked.Decrement(ref _referenceCount);
+        }
+
+        public bool IsLocked
+        {
+            get { return _semaphore.CurrentCount == 0; }
         }
 
         public void Release()
@@ -94,9 +104,10 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new InvalidOperationException($"Call to {nameof(Release)}() without holding the lock.");
             }
-            if (Interlocked.Decrement(ref _referenceCount) == 0)
+
+            if (DecrementReferenceCount() == 0)
             {
-                _fileLocker.Release(_originalLockedFileName);
+                _fileLocker.Remove(_originalLockedFileName);
             }
             _semaphore.Release();
         }
