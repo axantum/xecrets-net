@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.IO
         public FileLock Acquire(IDataItem dataItem)
         {
 #if DEBUG
-            return Acquire(dataItem, TimeSpan.FromSeconds(5));
+            return Acquire(dataItem, TimeSpan.FromSeconds(10));
 #else
             return Acquire(dataItem, TimeSpan.FromMilliseconds(-1));
 #endif
