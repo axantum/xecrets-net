@@ -196,7 +196,7 @@ namespace Axantum.AxCrypt.Mono
             set
             {
                 _file.Refresh();
-                _file.CreationTimeUtc = value;
+                _file.CreationTimeUtc = Validate(value);
             }
         }
 
@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt.Mono
             set
             {
                 _file.Refresh();
-                _file.LastAccessTimeUtc = value;
+                _file.LastAccessTimeUtc = Validate(value);
             }
         }
 
@@ -236,8 +236,26 @@ namespace Axantum.AxCrypt.Mono
             set
             {
                 _file.Refresh();
-                _file.LastWriteTimeUtc = value;
+                _file.LastWriteTimeUtc = Validate(value);
             }
+        }
+
+        private static readonly DateTime MIN_FILETIME = new DateTime(1900, 1, 1);
+
+        private static readonly DateTime MAX_FILETIME = new DateTime(2200, 1, 1);
+
+        private static DateTime Validate(DateTime fileTime)
+        {
+            if (fileTime < MIN_FILETIME)
+            {
+                return MIN_FILETIME;
+            }
+            if (fileTime > MAX_FILETIME)
+            {
+                return MAX_FILETIME;
+            }
+            throw new InvalidOperationException("DEBUG exception! Just for testing. Should not be here.");
+            //return fileTime;
         }
 
         /// <summary>
