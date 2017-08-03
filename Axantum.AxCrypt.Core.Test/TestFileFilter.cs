@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -49,8 +50,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FileFilter filter = new FileFilter();
 
-            filter.AddUnencryptable(new Regex(@"\\\.dropbox$"));
-            filter.AddUnencryptable(new Regex(@"\\desktop\.ini$"));
+            string s = $"\\{Path.DirectorySeparatorChar}";
+            filter.AddUnencryptable(new Regex(@"\\\.dropbox$".Replace(@"\\", s)));
+            filter.AddUnencryptable(new Regex(@"\\desktop\.ini$".Replace(@"\\", s)));
             filter.AddUnencryptable(new Regex(@".*\.tmp$"));
 
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"anywhere\.dropbox")), Is.False);
