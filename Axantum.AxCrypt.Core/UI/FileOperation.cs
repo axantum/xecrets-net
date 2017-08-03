@@ -238,7 +238,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private static void DecryptActiveFileDocument(ActiveFile destinationActiveFile, FileLock decryptedLock, IAxCryptDocument document, IProgressContext progress)
         {
-            New<AxCryptFile>().Decrypt(document, decryptedLock.DataStore, AxCryptOptions.SetFileTimes, progress);
+            New<AxCryptFile>().Decrypt(document, decryptedLock, AxCryptOptions.SetFileTimes, progress);
             if (Resolve.Log.IsInfoEnabled)
             {
                 Resolve.Log.LogInfo("File decrypted from '{0}' to '{1}'".InvariantFormat(destinationActiveFile.EncryptedFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName));

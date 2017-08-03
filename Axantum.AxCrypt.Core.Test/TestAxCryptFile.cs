@@ -99,6 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
             Stream nullStream = null;
             string nullString = null;
             Action<Stream> nullStreamAction = null;
+            FileLock nullFileLock = null;
 
             Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(nullFileInfo, destinationFileInfo, new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(sourceFileInfo, nullFileInfo, new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, new Passphrase("axcrypt")), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
@@ -110,9 +111,12 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(sourceFileInfo, new MemoryStream(), nullEncryptionParameters, AxCryptOptions.None, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { new AxCryptFile().Encrypt(sourceFileInfo, new MemoryStream(), EncryptionParameters.Empty, AxCryptOptions.None, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(nullDocument, decryptedFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(document, nullFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, nullProgress); }));
+            using (FileLock fileInfoLock = New<FileLocker>().Acquire(New<IDataStore>(_testTextPath)))
+            {
+                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(nullDocument, fileInfoLock, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
+                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(document, nullFileLock, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
+                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(document, fileInfoLock, AxCryptOptions.SetFileTimes, nullProgress); }));
+            }
 
             Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(nullFileInfo, decryptedFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
             Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, nullFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
@@ -135,7 +139,6 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.MakeAxCryptFileName(nullFileInfo); });
-            FileLock nullFileLock = null;
             Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Wipe(nullFileLock, new ProgressContext()); }));
         }
 
@@ -156,7 +159,10 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(document.LastAccessTimeUtc, Is.EqualTo(FakeDataStore.TestDate2Utc));
                 Assert.That(document.LastWriteTimeUtc, Is.EqualTo(FakeDataStore.TestDate3Utc));
                 IDataStore decryptedFileInfo = New<IDataStore>(Path.Combine(_rootPath, "decrypted test.txt"));
-                New<AxCryptFile>().Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext());
+                using (FileLock decryptFileLock = New<FileLocker>().Acquire(decryptedFileInfo))
+                {
+                    New<AxCryptFile>().Decrypt(document, decryptFileLock, AxCryptOptions.SetFileTimes, new ProgressContext());
+                }
                 using (Stream decryptedStream = decryptedFileInfo.OpenRead())
                 {
                     string decrypted = new StreamReader(decryptedStream, Encoding.UTF8).ReadToEnd();
@@ -226,7 +232,10 @@ namespace Axantum.AxCrypt.Core.Test
 
                 FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
                 environment.CurrentTiming.CurrentTiming = new TimeSpan(0, 0, 0, 0, 100);
-                Assert.Throws<OperationCanceledException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(document, destinationInfo, AxCryptOptions.None, progress); }));
+                using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationInfo))
+                {
+                    Assert.Throws<OperationCanceledException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(document, destinationFileLock, AxCryptOptions.None, progress); }));
+                }
             }
         }
 
@@ -292,7 +301,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 bool isOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, sourceRuntimeFileInfo.OpenRead());
                 Assert.That(isOk, Is.True, "The document should load ok.");
-                New<AxCryptFile>().Decrypt(document, destinationRuntimeFileInfo, AxCryptOptions.None, new ProgressContext());
+                using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationRuntimeFileInfo))
+                {
+                    New<AxCryptFile>().Decrypt(document, destinationFileLock, AxCryptOptions.None, new ProgressContext());
+                }
                 Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(0), "Since the data is not compressed, there should not be a CompressionInfo, but in 1.x there is, with value zero.");
             }
         }
