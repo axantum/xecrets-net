@@ -562,13 +562,19 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            using (IAxCryptDocument document = Document(sourceStore, logOnIdentity, new ProgressContext()))
+            using (FileLock sourceLock = New<FileLocker>().Acquire(sourceStore))
             {
-                if (!document.PassphraseIsValid)
+                using (IAxCryptDocument document = Document(sourceStore, logOnIdentity, new ProgressContext()))
                 {
-                    return false;
+                    if (!document.PassphraseIsValid)
+                    {
+                        return false;
+                    }
+                    using (FileLock destinationLock = New<FileLocker>().Acquire(destinationStore))
+                    {
+                        Decrypt(document, destinationLock, options, progress);
+                    }
                 }
-                Decrypt(document, destinationStore, options, progress);
             }
             return true;
         }
@@ -595,20 +601,21 @@ namespace Axantum.AxCrypt.Core
         /// or
         /// progress
         /// </exception>
-        public void Decrypt(IAxCryptDocument document, IDataStore destinationStore, AxCryptOptions options, IProgressContext progress)
+        public void Decrypt(IAxCryptDocument document, FileLock destinationLock, AxCryptOptions options, IProgressContext progress)
         {
             if (document == null)
             {
-                throw new ArgumentNullException("document");
+                throw new ArgumentNullException(nameof(document));
             }
-            if (destinationStore == null)
+            if (destinationLock == null)
             {
-                throw new ArgumentNullException("destinationStore");
+                throw new ArgumentNullException(nameof(destinationLock));
             }
             if (progress == null)
             {
-                throw new ArgumentNullException("progress");
+                throw new ArgumentNullException(nameof(progress));
             }
+            IDataStore destinationStore = destinationLock.DataStore;
             try
             {
                 if (Resolve.Log.IsInfoEnabled)
@@ -630,10 +637,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (destinationStore.IsAvailable)
                 {
-                    using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationStore))
-                    {
-                        Wipe(destinationFileLock, progress);
-                    }
+                    Wipe(destinationLock, progress);
                 }
                 throw;
             }
@@ -687,8 +691,11 @@ namespace Axantum.AxCrypt.Core
                     return destinationFileName;
                 }
                 destinationFileName = document.FileName;
-                IDataStore destinationFullPath = New<IDataStore>(Resolve.Portable.Path().Combine(destinationContainerName, destinationFileName));
-                Decrypt(document, destinationFullPath, options, progress);
+                IDataStore destinationDataStore = New<IDataStore>(Resolve.Portable.Path().Combine(destinationContainerName, destinationFileName));
+                using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationDataStore))
+                {
+                    Decrypt(document, destinationFileLock, options, progress);
+                }
             }
             return destinationFileName;
         }
@@ -767,7 +774,10 @@ namespace Axantum.AxCrypt.Core
             }
 
             IDataStore decryptedFileInfo = New<IDataStore>(decryptedFileFullName);
-            Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
+            using (FileLock decryptedFileLock = new FileLocker().Acquire(decryptedFileInfo))
+            {
+                Decrypt(document, decryptedFileLock, AxCryptOptions.SetFileTimes, progress);
+            }
         }
 
         public virtual void TryDecryptBrokenFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
