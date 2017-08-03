@@ -254,8 +254,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 return MAX_FILETIME;
             }
-            throw new InvalidOperationException("DEBUG exception! Just for testing. Should not be here.");
-            //return fileTime;
+            return fileTime;
         }
 
         /// <summary>
