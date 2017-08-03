@@ -1947,18 +1947,16 @@ namespace AxCrypt.Content.Properties {
                 return ResourceManager.GetString("ErrorEmailMismatch", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to The {0} field is required.
+        ///   Looks up a localized string similar to &apos;{0}&apos; must be filled in..
         /// </summary>
-        public static string ErrorFieldRequired
-        {
-            get
-            {
+        public static string ErrorFieldRequired {
+            get {
                 return ResourceManager.GetString("ErrorFieldRequired", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The password verification does not match the password..
         /// </summary>
@@ -3017,7 +3015,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Local.
+        ///   Looks up a localized string similar to Local.
         /// </summary>
         public static string LocalIndicatorText {
             get {
@@ -5450,6 +5448,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Did you know? You can enable the &apos;Include Subfolders&apos; option to work with folders in folders. Premium is required for this..
+        /// </summary>
+        public static string StartupTipIncludeSubfoldersFeature {
+            get {
+                return ResourceManager.GetString("StartupTipIncludeSubfoldersFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mobile apps for Android and iOS are now included in AxCrypt Premium. Would you like to know more?.
         /// </summary>
         public static string StartupTipTryMobileApp {
@@ -5457,19 +5464,7 @@ namespace AxCrypt.Content.Properties {
                 return ResourceManager.GetString("StartupTipTryMobileApp", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to The recursive folders can be encrypted/decrypted now included in AxCrypt Premium.
-        /// </summary>
-        public static string StartupTipIncludeSubfoldersFeature
-        {
-            get
-            {
-                return ResourceManager.GetString("StartupTipIncludeSubfoldersFeature", resourceCulture);
-            }
-        }
         
-
         /// <summary>
         ///   Looks up a localized string similar to Click to select files to stop securing..
         /// </summary>

@@ -711,6 +711,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="ErrorEmailMismatch" xml:space="preserve">
     <value>Bekräftelsen stämmer inte med epostadressen</value>
   </data>
+  <data name="ErrorFieldRequired" xml:space="preserve">
+    <value>Du måste fylla i '{0}'.</value>
+  </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>Lösenordsverifieringen matchar inte lösenordet.</value>
   </data>
@@ -869,6 +872,12 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
   </data>
   <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
     <value>Varning</value>
+  </data>
+  <data name="IncludeSubfoldersDescription" xml:space="preserve">
+    <value>När Inkludera Undermappar är på slagen, så ingår alla nivåer av undermappar i skyddade mappar och andra operationer med filer där det finns undermappar .
+
+Vissa funktioner kan då ta väldigt lång tid. Var försiktig med att välja mappar som har undermappar som inte skall skyddas.</value>
+    <comment>A short text in a few sentences describing what the Include Subfolders option does.</comment>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mitt AxCrypt ID</value>
@@ -1029,6 +1038,10 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </valu
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Till Startsidan</value>
     <comment>Menus and similar to link back to main site.</comment>
+  </data>
+  <data name="LocalIndicatorText" xml:space="preserve">
+    <value>Lokalt</value>
+    <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Avloggad</value>
@@ -1219,7 +1232,9 @@ Detta program är licensierat i enlighet med avtalet.
     <value>Öppna Utforskaren Här</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>Det verkar inte som du har Premium, så vi startar en provperiod åt dig!</value>
+    <value>Det verkar inte som du har Premium, så vi startar gärna en provperiod åt dig!
+
+Utan Premium kan du bara visa dokument eller permanent ta bort skyddet.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
@@ -1433,6 +1448,12 @@ Beräkningen bortser helt från delar av lösenordet som känns igenom som någo
 
 Beräkningen klassificerar sedan lösenordet i 4 nivåer, och vi godkänner inte ett lösenord som är i den lägsta kategorin. Ovanstående är ett sådant exempel.</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
+  </data>
+  <data name="PasswordRulesShortInfo" xml:space="preserve">
+    <value>AxCrypt har en avancerad dynamisk beräkning av lösenordsstyrka.
+
+Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån och adderar ingen extra styrka.</value>
+    <comment>A shorter description of how password strength is evaluated.</comment>
   </data>
   <data name="PasswordStrengthBadName" xml:space="preserve">
     <value>Svagt</value>
@@ -1879,6 +1900,9 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="SslRequiredTitle" xml:space="preserve">
     <value>En säker förbindelse krävs.</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
+  </data>
+  <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
+    <value>Visste du? Nu finns dett ett alternativ för att 'Inkludera Undermappar' som du kan slå på för att ta med alla undermappar i en mapp. Kräver Premium.</value>
   </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
     <value>Mobilappar för Android och iOS ingår nu i AxCrypt Premium. Vill du veta mer?</value>
