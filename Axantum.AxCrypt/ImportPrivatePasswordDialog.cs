@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt
             _viewModel = new ImportPrivateKeysViewModel(userSettings, knownIdentities);
 
             _privateKeyFileTextBox.TextChanged += (sender, e) => { _viewModel.PrivateKeyFileName = _privateKeyFileTextBox.Text; ClearErrorProviders(); };
-            _passphraseTextBox.TextChanged += (sender, e) => { _viewModel.Password = _passphraseTextBox.Text; _privateKeyFileTextBox.ScrollToCaret(); ClearErrorProviders(); };
+            _passphraseTextBox.TextChanged += (sender, e) => { _viewModel.PasswordText = _passphraseTextBox.Text; _privateKeyFileTextBox.ScrollToCaret(); ClearErrorProviders(); };
             _showPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassword = _showPassphraseCheckBox.Checked; };
 
             _viewModel.BindPropertyChanged<bool>(nameof(_viewModel.ImportSuccessful), (ok) => { if (!ok) { _errorProvider1.SetError(_browsePrivateKeyFileButton, Texts.FailedPrivateImport); } });
@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt
         {
             bool validated = true;
 
-            if (_viewModel[nameof(ImportPrivateKeysViewModel.Password)].Length > 0)
+            if (_viewModel[nameof(ImportPrivateKeysViewModel.PasswordText)].Length > 0)
             {
                 _errorProvider1.SetError(_passphraseTextBox, Texts.WrongPassphrase);
                 validated = false;

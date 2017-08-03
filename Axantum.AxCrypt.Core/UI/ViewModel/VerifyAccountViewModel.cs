@@ -40,7 +40,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class VerifyAccountViewModel : ViewModelBase, INewPassword
+    public class VerifyAccountViewModel : ViewModelBase, INewPassword, IPasswordEntry
     {
         public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
 

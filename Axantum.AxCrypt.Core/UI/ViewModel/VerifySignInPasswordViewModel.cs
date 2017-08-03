@@ -9,13 +9,13 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class VerifySignInPasswordViewModel : ViewModelBase
+    public class VerifySignInPasswordViewModel : ViewModelBase, IPasswordEntry
     {
         private readonly LogOnIdentity _identity;
 
         public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
-        public string Password { get { return GetProperty<string>(nameof(Password)); } set { SetProperty(nameof(Password), value); } }
+        public string PasswordText { get { return GetProperty<string>(nameof(PasswordText)); } set { SetProperty(nameof(PasswordText), value); } }
 
         public VerifySignInPasswordViewModel(LogOnIdentity identity)
         {
@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            Password = String.Empty;
+            PasswordText = String.Empty;
             ShowPassword = New<UserSettings>().DisplayDecryptPassphrase;
         }
 
@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (columnName)
             {
-                case nameof(Password):
+                case nameof(PasswordText):
                     return ValidatePassphrase();
 
                 case nameof(ShowPassword):
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool ValidatePassphrase()
         {
-            Passphrase passphrase = new Passphrase(Password);
+            Passphrase passphrase = new Passphrase(PasswordText);
             if (passphrase == _identity.Passphrase)
             {
                 return true;
