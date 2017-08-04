@@ -25,12 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,8 +64,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction AsyncAddNewKeyShare { get; private set; }
 
-        private Task _missingKeysLoader;
+        public IAsyncAction ShareKeysAsync { get; private set; }
 
+        private Task _missingKeysLoader;
         public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
@@ -70,6 +74,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _missingKeysLoader = Task.Run(() => TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email), sharedWith));
 
             InitializePropertyValues(sharedWith);
+
+            BindPropertyChangedEvents();
+            SubscribeToModelEvents();
+        }
+
+        public SharingListViewModel(IEnumerable<string> files, LogOnIdentity logOnIdentity)
+        {
+            _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
+
+            _missingKeysLoader = Task.Run(() => TryAddMissingUnsharedPublicKeysFromfileNamesAsync(files));
+
+
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
         }
@@ -94,6 +110,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>(async (upks) => await AddKeySharesActionAsync(upks));
             AsyncRemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>(async (upks) => await RemoveKeySharesActionAsync(upks));
             AsyncAddNewKeyShare = new AsyncDelegateAction<string>(async (email) => await AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
+            ShareKeysAsync = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await ShareKeysFilesActionAsync(files));
         }
 
         private static void BindPropertyChangedEvents()
@@ -130,6 +147,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             NotSharedWith = fromSet.OrderBy(a => a.Email.Address);
             SharedWith = toSet.OrderBy(a => a.Email.Address);
+        }
+
+        private async Task ShareKeysFilesActionAsync(IEnumerable<string> files)
+        {
+            await ReadyAsync();
+
+            using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
+            {
+                SharedWith = New<KnownPublicKeys>().PublicKeys.Where(pk => SharedWith.Any(s => s.Email == pk.Email)).ToList();
+            }
+            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
+            await encryptionParameters.AddAsync(SharedWith);
+
+            await ChangeEncryptionAsync(files, encryptionParameters);
         }
 
         private async Task AddNewKeyShareActionAsync(string email)
@@ -186,5 +217,146 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             return false;
         }
+
+        private async Task<IEnumerable<UserPublicKey>> TryAddMissingUnsharedPublicKeysFromfileNamesAsync(IEnumerable<string> fileNames)
+        {
+            IEnumerable<Tuple<string, EncryptedProperties>> files = await ListValidAsync(fileNames);
+            IEnumerable<UserPublicKey> sharedWith = files.SelectMany(f => f.Item2.SharedKeyHolders).Distinct();
+
+            IEnumerable<UserPublicKey> publicKeys = new List<UserPublicKey>();
+            publicKeys = await TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email), sharedWith);
+
+            InitializePropertyValues(SharedWith);
+
+            return publicKeys;
+        }
+        private async Task<IEnumerable<Tuple<string, EncryptedProperties>>> ListValidAsync(IEnumerable<string> fileNames)
+        {
+            List<Tuple<string, EncryptedProperties>> files = new List<Tuple<string, EncryptedProperties>>();
+            foreach (string file in fileNames)
+            {
+                EncryptedProperties properties = await EncryptedPropertiesAsync(New<IDataStore>(file));
+                if (properties.IsValid)
+                {
+                    files.Add(new Tuple<string, EncryptedProperties>(file, properties));
+                }
+            }
+
+            return files;
+        }
+        private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore)
+        {
+            return await Task.Run(() => EncryptedProperties.Create(dataStore));
+        }
+        private async Task ChangeEncryptionAsync(IEnumerable<string> files, EncryptionParameters encryptionParameters)
+        {
+            await Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), (IDataStore file, IProgressContext progress) =>
+                {
+                    New<AxCryptFile>().ChangeEncryption(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                    return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
+                },
+                async (FileOperationContext foc) =>
+                {
+                    if (foc.ErrorStatus == ErrorStatus.Success)
+                    {
+                        await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
+                    }
+                    CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
+                });
+        }
+        public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext, string message)
+        {
+            switch (status)
+            {
+                case ErrorStatus.Success:
+                    return true;
+
+                case ErrorStatus.UnspecifiedError:
+                    Texts.FileOperationFailed.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+
+                case ErrorStatus.FileAlreadyExists:
+                    Texts.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
+                    break;
+
+                case ErrorStatus.FileDoesNotExist:
+                    Texts.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
+                    break;
+
+                case ErrorStatus.CannotWriteDestination:
+                    Texts.CannotWrite.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
+                    break;
+
+                case ErrorStatus.CannotStartApplication:
+                    Texts.CannotStartApplication.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+
+                case ErrorStatus.InconsistentState:
+                    Texts.InconsistentState.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+
+                case ErrorStatus.InvalidKey:
+                    Texts.InvalidKey.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+
+                case ErrorStatus.Canceled:
+                    break;
+
+                case ErrorStatus.Exception:
+                    string msg = Texts.Exception.InvariantFormat(displayContext);
+                    if (!string.IsNullOrEmpty(message))
+                    {
+                        msg = "{0} [{1}]".InvariantFormat(msg, message);
+                    }
+                    msg.ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+
+                case ErrorStatus.InvalidPath:
+                    Texts.InvalidPath.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+
+                case ErrorStatus.FolderAlreadyWatched:
+                    Texts.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+
+                case ErrorStatus.FileLocked:
+                    Texts.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
+                    break;
+
+                case ErrorStatus.FileWriteProtected:
+                    Texts.FileIsWriteProtectedWarning.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
+                    break;
+
+                case ErrorStatus.WrongFileExtensionError:
+                    Texts.WrongFileExtensionWarning.InvariantFormat(displayContext, OS.Current.AxCryptExtension).ShowWarning(Texts.WarningTitle);
+                    break;
+
+                case ErrorStatus.Unknown:
+                    Texts.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+
+                case ErrorStatus.Working:
+                    Texts.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+
+                case ErrorStatus.Aborted:
+                    Texts.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+
+                case ErrorStatus.FileAlreadyEncrypted:
+                    Texts.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
+                    break;
+
+                case ErrorStatus.MagicGuidMissing:
+                    Texts.MagicGuidMIssingFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
+                    break;
+
+                default:
+                    Texts.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning(Texts.MessageUnexpectedErrorTitle);
+                    break;
+            }
+            return false;
+        }
+
     }
 }
