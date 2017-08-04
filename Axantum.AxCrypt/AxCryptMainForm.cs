@@ -1906,20 +1906,10 @@ namespace Axantum.AxCrypt
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             ManageAccountViewModel viewModel = await ManageAccountViewModel.CreateAsync(accountStorage);
 
-            string passphrase;
-            using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Texts.ChangePassphraseDialogTitle, String.Empty, String.Empty))
+            if (await this.ChangePasswordDialogAsync(viewModel))
             {
-                dialog.ShowPassphraseCheckBox.Checked = Resolve.UserSettings.DisplayEncryptPassphrase;
-                DialogResult dialogResult = dialog.ShowDialog(this);
-                if (dialogResult != DialogResult.OK || dialog.PassphraseTextBox.Text.Length == 0)
-                {
-                    return;
-                }
-                Resolve.UserSettings.DisplayEncryptPassphrase = dialog.ShowPassphraseCheckBox.Checked;
-                passphrase = dialog.PassphraseTextBox.Text;
+                await LogOnOrLogOffAndLogOnAgainAsync();
             }
-            await viewModel.ChangePassphraseAsync.ExecuteAsync(passphrase);
-            await LogOnOrLogOffAndLogOnAgainAsync();
         }
 
         private void ExportMySharingKeyToolStripMenuItem_Click(object sender, EventArgs e)

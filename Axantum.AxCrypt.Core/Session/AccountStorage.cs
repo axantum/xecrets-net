@@ -108,14 +108,14 @@ namespace Axantum.AxCrypt.Core.Session
             return await _service.StatusAsync(email).Free();
         }
 
-        public async virtual Task ChangePassphraseAsync(Passphrase passphrase)
+        public async virtual Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             if (passphrase == null)
             {
                 throw new ArgumentNullException(nameof(passphrase));
             }
 
-            await _service.ChangePassphraseAsync(passphrase).Free();
+            return await _service.ChangePassphraseAsync(passphrase).Free();
         }
 
         public async Task<UserPublicKey> GetOtherUserPublicKeyAsync(EmailAddress email)

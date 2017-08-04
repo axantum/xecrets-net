@@ -10,12 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Forms
 {
     public partial class PasswordStrengthMeter : Control
     {
         private PasswordStrengthMeterViewModel _viewModel = new PasswordStrengthMeterViewModel();
-        Label helpText = new Label();
+        private Label helpText = new Label();
 
         private ToolTip _toolTip = new ToolTip();
 
@@ -40,7 +40,6 @@ namespace Axantum.AxCrypt
             _viewModel.BindPropertyChanged(nameof(PasswordStrengthMeterViewModel.PasswordStrength), (PasswordStrength strength) =>
             {
                 _toolTip.SetToolTip(this, _viewModel.StrengthTip);
-
             });
 
             _viewModel.BindPropertyChanged(nameof(PasswordStrengthMeterViewModel.PasswordCandidate), (string candidate) =>
@@ -65,14 +64,12 @@ namespace Axantum.AxCrypt
                             helpText.Text = Texts.PasswordStrengthStrongName;
                             return;
                     }
-
                 }
                 else
                 {
                     helpText.Text = "";
                 }
             });
-
         }
 
         public event EventHandler MeterChanged;

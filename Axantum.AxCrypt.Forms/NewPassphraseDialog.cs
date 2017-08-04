@@ -34,7 +34,7 @@ using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Texts = AxCrypt.Content.Texts;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Forms
 {
     public partial class NewPassphraseDialog : StyledMessageBase
     {

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.PassphraseTextBox = new System.Windows.Forms.TextBox();
             this._passphraseGroupBox = new System.Windows.Forms.GroupBox();
-            this._passwordStrengthMeter = new Axantum.AxCrypt.PasswordStrengthMeter();
+            this._passwordStrengthMeter = new Axantum.AxCrypt.Forms.PasswordStrengthMeter();
             this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.VerifyPassphraseTextbox = new System.Windows.Forms.TextBox();
             this._verifyPasswordLabel = new System.Windows.Forms.Label();
@@ -226,7 +226,7 @@
         private System.Windows.Forms.ErrorProvider _errorProvider1;
         private System.Windows.Forms.ErrorProvider _errorProvider2;
         private System.Windows.Forms.ErrorProvider _errorProvider3;
-        private PasswordStrengthMeter _passwordStrengthMeter;
+        private Axantum.AxCrypt.Forms.PasswordStrengthMeter _passwordStrengthMeter;
         private System.Windows.Forms.Button _helpButton;
     }
 }

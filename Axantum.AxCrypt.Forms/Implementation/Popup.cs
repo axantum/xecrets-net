@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Common;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -31,11 +32,18 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         private PopupButtons ShowSyncInternal(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag)
         {
+            PopupButtons result = PopupButtons.None;
             if (dontShowAgainFlag != DontShowAgain.None && New<UserSettings>().DontShowAgain.HasFlag(dontShowAgainFlag))
             {
-                return PopupButtons.None;
+                return result;
             }
 
+            New<IUIThread>().SendTo(() => result = ShowSyncInternalAssumingUiThread(buttons, title, message, dontShowAgainFlag));
+            return result;
+        }
+
+        private PopupButtons ShowSyncInternalAssumingUiThread(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag)
+        {
             DialogResult result;
             using (MessageDialog dialog = new MessageDialog(_parent))
             {

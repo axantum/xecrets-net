@@ -78,19 +78,7 @@ namespace Axantum.AxCrypt
 
         private async void _changePassphraseButton_Click(object sender, EventArgs e)
         {
-            string passphrase;
-            using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Texts.ChangePassphraseDialogTitle, String.Empty, String.Empty))
-            {
-                dialog.ShowPassphraseCheckBox.Checked = _userSettings.DisplayEncryptPassphrase;
-                DialogResult dialogResult = dialog.ShowDialog(this);
-                if (dialogResult != DialogResult.OK || dialog.PassphraseTextBox.Text.Length == 0)
-                {
-                    return;
-                }
-                _userSettings.DisplayEncryptPassphrase = dialog.ShowPassphraseCheckBox.Checked;
-                passphrase = dialog.PassphraseTextBox.Text;
-            }
-            await _viewModel.ChangePassphraseAsync.ExecuteAsync(passphrase);
+            await this.ChangePasswordDialogAsync(_viewModel);
         }
 
         private void ManageAccountDialog_Load(object sender, EventArgs e)
