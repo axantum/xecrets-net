@@ -40,6 +40,11 @@ namespace Axantum.AxCrypt.Core.UI
                 return Texts.LicensePremiumNameText;
             }
 
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Viewer))
+            {
+                return Texts.LicenseViewerNameText;
+            }
+
             return Texts.LicenseFreeNameText;
         }
 

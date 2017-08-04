@@ -19,5 +19,6 @@
         EncryptNewFiles,
         EditExistingFiles,
         InactivitySignOut,
+        Viewer,
     }
 }
