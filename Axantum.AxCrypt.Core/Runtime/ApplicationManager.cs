@@ -24,7 +24,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 return true;
             }
 
-            Texts.UserSettingsFormatChangeNeedsReset.ShowWarning(Texts.WarningTitle);
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.UserSettingsFormatChangeNeedsReset);
             await ClearAllSettings();
             await StopAndExit();
             return false;
