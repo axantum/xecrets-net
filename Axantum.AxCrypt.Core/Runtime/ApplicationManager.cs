@@ -19,7 +19,7 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         public async Task<bool> ValidateSettings()
         {
-            if (Resolve.UserSettings.SettingsVersion >= UserSettings.CurrentSettingsVersion)
+            if (Resolve.UserSettings.SettingsVersion >= New<UserSettingsVersion>().Current)
             {
                 return true;
             }
@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             Resolve.FileSystemState.Delete();
             Resolve.WorkFolder.FileInfo.FileItemInfo(LocalAccountService.FileName).Delete();
             New<KnownPublicKeys>().Delete();
-            Resolve.UserSettings.SettingsVersion = UserSettings.CurrentSettingsVersion;
+            Resolve.UserSettings.SettingsVersion = New<UserSettingsVersion>().Current;
         }
 
         public async Task StopAndExit()

@@ -4,35 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Header;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Mono
 {
     public class ProtectedDataImpl : IProtectedData
     {
+        private static byte[] _axCryptGuid = AxCrypt1Guid.GetBytes();
+
+        private DataProtectionScope _scope;
+
+        public ProtectedDataImpl(DataProtectionScope scope)
+        {
+            _scope = scope;
+        }
+
         #region IProtectedData Members
 
         public byte[] Protect(byte[] userData, byte[] optionalEntropy)
         {
-            try
-            {
-                return ProtectedData.Protect(userData, optionalEntropy, System.Security.Cryptography.DataProtectionScope.LocalMachine);
-            }
-            catch (CryptographicException ce)
-            {
-                throw new CryptoException("Could not protect the data", ce);
-            }
+            return ProtectedData.Protect(userData, optionalEntropy, _scope);
         }
 
         public byte[] Unprotect(byte[] encryptedData, byte[] optionalEntropy)
         {
+            if (encryptedData.Locate(_axCryptGuid, 0, _axCryptGuid.Length) == 0)
+            {
+                return null;
+            }
             try
             {
-                return ProtectedData.Unprotect(encryptedData, optionalEntropy, System.Security.Cryptography.DataProtectionScope.LocalMachine);
+                byte[] bytes = ProtectedData.Unprotect(encryptedData, optionalEntropy, _scope);
+                return bytes;
             }
-            catch (CryptographicException ce)
+            catch (CryptographicException cex)
             {
-                throw new CryptoException("Could not unprotect the data", ce);
+                New<IReport>().Exception(cex);
+                return null;
             }
         }
 

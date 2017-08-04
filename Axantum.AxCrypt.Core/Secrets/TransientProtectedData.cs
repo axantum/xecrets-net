@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Secrets
             {
                 return false;
             }
-            return true;
+            return bytes != null;
         }
 
         /// <summary>

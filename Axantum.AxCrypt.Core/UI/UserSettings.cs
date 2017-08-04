@@ -38,7 +38,6 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class UserSettings
     {
-        public static int CurrentSettingsVersion { get { return 10; } }
 #if DEBUG
         private const int ASYMMETRIC_KEY_BITS = 768;
 #else
@@ -62,7 +61,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (_settingsStore[nameof(SettingsVersion)].Length == 0)
             {
-                _settingsStore[nameof(SettingsVersion)] = Convert.ToString(CurrentSettingsVersion, CultureInfo.InvariantCulture);
+                _settingsStore[nameof(SettingsVersion)] = Convert.ToString(New<UserSettingsVersion>().Current, CultureInfo.InvariantCulture);
             }
         }
 
