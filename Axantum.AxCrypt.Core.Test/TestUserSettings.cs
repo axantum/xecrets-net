@@ -47,6 +47,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
             TypeMap.Register.Singleton<ISettingsStore>(() => new SettingsStore(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt")));
+            TypeMap.Register.Singleton<UserSettingsVersion>(() => new UserSettingsVersion());
             TypeMap.Register.Singleton<UserSettings>(() => new UserSettings(New<ISettingsStore>(), New<IterationCalculator>()));
             FakeDataStore.AddFolder(@"C:\Folder\");
         }
