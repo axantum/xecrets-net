@@ -62,8 +62,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public LegacyConversionMode LegacyConversionMode { get { return GetProperty<LegacyConversionMode>(nameof(LegacyConversionMode)); } set { SetProperty(nameof(LegacyConversionMode), value); } }
 
-        public string Title { get { return GetProperty<string>(nameof(Title)); } set { SetProperty(nameof(Title), value); } }
-
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>(nameof(WatchedFolders)); } set { SetProperty(nameof(WatchedFolders), value.ToList()); } }
 
         public IEnumerable<ActiveFile> RecentFiles { get { return GetProperty<IEnumerable<ActiveFile>>(nameof(RecentFiles)); } set { SetProperty(nameof(RecentFiles), value.ToList()); } }
@@ -137,7 +135,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SelectedWatchedFolders = new string[0];
             DebugMode = _userSettings.DebugMode;
             FolderOperationMode = _userSettings.FolderOperationMode;
-            Title = String.Empty;
             DownloadVersion = DownloadVersion.Empty;
             VersionUpdateStatus = DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, _userSettings.LastUpdateCheckUtc);
             License = New<LicensePolicy>().Capabilities;
