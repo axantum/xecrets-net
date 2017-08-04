@@ -214,11 +214,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return New<IDataProtection>().Protect(Encoding.UTF8.GetBytes(Resolve.Portable.Path().GetFileName(DecryptedFileInfo.FullName)));
+                return New<IProtectedData>().Protect(Encoding.UTF8.GetBytes(Resolve.Portable.Path().GetFileName(DecryptedFileInfo.FullName)), null);
             }
             set
             {
-                byte[] bytes = New<IDataProtection>().Unprotect(value);
+                byte[] bytes = New<IProtectedData>().Unprotect(value, null);
                 _decryptedName = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
             }
         }

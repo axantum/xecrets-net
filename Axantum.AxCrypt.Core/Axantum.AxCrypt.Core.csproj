@@ -317,7 +317,6 @@
     <Compile Include="Header\V1UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
     <Compile Include="IO\ProgressStream.cs" />
-    <Compile Include="Runtime\IDataProtection.cs" />
     <Compile Include="Runtime\ILauncher.cs" />
     <Compile Include="Runtime\ILogging.cs" />
     <Compile Include="Runtime\IRuntimeEnvironment.cs" />

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
@@ -34,17 +35,17 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Fake
 {
-    public class FakeDataProtection : IDataProtection
+    public class FakeDataProtection : IProtectedData
     {
         #region IDataProtection Members
 
-        public byte[] Protect(byte[] unprotectedData)
+        public byte[] Protect(byte[] unprotectedData, byte[] optionalEntropy)
         {
             unprotectedData = unprotectedData.Append(new byte[] { 1, 2, 3, 4 });
             return (byte[])unprotectedData.Xor(new byte[unprotectedData.Length].Fill(0xff));
         }
 
-        public byte[] Unprotect(byte[] protectedData)
+        public byte[] Unprotect(byte[] protectedData, byte[] optionalEntropy)
         {
             protectedData = (byte[])protectedData.Clone();
             byte[] unprotected = (byte[])protectedData.Xor(new byte[protectedData.Length].Fill(0xff));

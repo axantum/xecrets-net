@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             if (passphrase == Passphrase.Empty)
             {
-                byte[] encryptedPrivateKeyBytes = New<IDataProtection>().Protect(privateKeyPemBytes);
+                byte[] encryptedPrivateKeyBytes = New<IProtectedData>().Protect(privateKeyPemBytes, null);
                 return Convert.ToBase64String(encryptedPrivateKeyBytes);
             }
 
@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             byte[] privateKeyEncryptedPem = Convert.FromBase64String(privateEncryptedPem);
 
-            byte[] decryptedPrivateKeyBytes = New<IDataProtection>().Unprotect(privateKeyEncryptedPem);
+            byte[] decryptedPrivateKeyBytes = New<IProtectedData>().Unprotect(privateKeyEncryptedPem, null);
             if (decryptedPrivateKeyBytes != null)
             {
                 return Encoding.UTF8.GetString(decryptedPrivateKeyBytes, 0, decryptedPrivateKeyBytes.Length);

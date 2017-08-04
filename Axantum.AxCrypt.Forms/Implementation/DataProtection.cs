@@ -39,18 +39,18 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Forms.Implementation
 {
-    public class DataProtection : IDataProtection
+    public class DataProtection : IProtectedData
     {
         private static byte[] _axCryptGuid = AxCrypt1Guid.GetBytes();
 
         #region IDataProtection Members
 
-        public byte[] Protect(byte[] unprotectedData)
+        public byte[] Protect(byte[] unprotectedData, byte[] optionalEntropy)
         {
-            return ProtectedData.Protect(unprotectedData, null, DataProtectionScope.CurrentUser);
+            return ProtectedData.Protect(unprotectedData, optionalEntropy, DataProtectionScope.CurrentUser);
         }
 
-        public byte[] Unprotect(byte[] protectedData)
+        public byte[] Unprotect(byte[] protectedData, byte[] optionalEntropy)
         {
             if (protectedData.Locate(_axCryptGuid, 0, _axCryptGuid.Length) == 0)
             {
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
             }
             try
             {
-                byte[] bytes = ProtectedData.Unprotect(protectedData, null, DataProtectionScope.CurrentUser);
+                byte[] bytes = ProtectedData.Unprotect(protectedData, optionalEntropy, DataProtectionScope.CurrentUser);
                 return bytes;
             }
             catch (CryptographicException cex)

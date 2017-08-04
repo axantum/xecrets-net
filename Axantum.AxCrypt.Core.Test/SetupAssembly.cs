@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<string, IDataItem>((path) => CreateDataItem(path));
             TypeMap.Register.New<string, IFileWatcher>((path) => new FakeFileWatcher(path));
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
-            TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
+            TypeMap.Register.New<IProtectedData>(() => new FakeDataProtection());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new NullAccountService(identity)));
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
