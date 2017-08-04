@@ -754,10 +754,11 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => await _knownFoldersViewModel.UpdateState.ExecuteAsync(null));
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await ConfigureMenusAccordingToPolicyAsync(license); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await SetWindowTitleTextAsync(_mainViewModel.LoggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicenseCapabilities license) => { _recentFilesListView.UpdateRecentFiles(_mainViewModel.RecentFiles); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { if (loggedOn) New<InactivititySignOut>().RestartInactivitityTimer(); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetSignInSignOutStatus(loggedOn); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await SetSignInSignOutStatusAsync(loggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RandomRenameEnabled), (bool enabled) => { _renameToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), (IEnumerable<ActiveFile> files) => { _recentFilesListView.UpdateRecentFiles(files); });
@@ -898,7 +899,7 @@ namespace Axantum.AxCrypt
                 }
                 New<IUIThread>().PostTo(async () =>
                 {
-                    SetWindowTextWithSignInAndPremiumStatus(_mainViewModel.LoggedOn);
+                    await SetWindowTitleTextAsync(_mainViewModel.LoggedOn);
                     await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                 });
             };
@@ -908,9 +909,9 @@ namespace Axantum.AxCrypt
         {
         }
 
-        private void SetSignInSignOutStatus(bool isSignedIn)
+        private async Task SetSignInSignOutStatusAsync(bool isSignedIn)
         {
-            SetWindowTextWithSignInAndPremiumStatus(isSignedIn);
+            await SetWindowTitleTextAsync(isSignedIn);
 
             bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null;
 
@@ -1305,60 +1306,9 @@ namespace Axantum.AxCrypt
             return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
         }
 
-        private async void SetWindowTextWithSignInAndPremiumStatus(bool isLoggedOn)
+        private async Task SetWindowTitleTextAsync(bool isLoggedOn)
         {
-            string licenseStatus = GetLicenseStatus(isLoggedOn);
-            string logonStatus = GetLogonStatus(isLoggedOn);
-
-            string text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, licenseStatus, logonStatus);
-            Text = await AddIndicatorsAsync(isLoggedOn, text);
-        }
-
-        private string GetLicenseStatus(bool isLoggedOn)
-        {
-            if (!isLoggedOn)
-            {
-                return string.Empty;
-            }
-
-            if (_mainViewModel.License.Has(LicenseCapability.Premium))
-            {
-                return Texts.LicensePremiumNameText;
-            }
-
-            return Texts.LicenseFreeNameText;
-        }
-
-        private string GetLogonStatus(bool isLoggedOn)
-        {
-            if (isLoggedOn)
-            {
-                UserKeyPair userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
-                return userKeys != UserKeyPair.Empty ? Texts.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Texts.LoggedOnStatusText;
-            }
-            return Texts.LoggedOffStatusText;
-        }
-
-        private static async Task<string> AddIndicatorsAsync(bool isLoggedOn, string text)
-        {
-            if (New<AxCryptOnlineState>().IsOffline)
-            {
-                return $"{text} [{Texts.OfflineIndicatorText}]";
-            }
-
-            if (!isLoggedOn)
-            {
-                return text;
-            }
-
-            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-            UserAccount userAccount = await accountService.AccountAsync();
-
-            if (userAccount.AccountSource == AccountSource.Local)
-            {
-                return $"{text} [{Texts.LocalIndicatorText}]";
-            }
-            return text;
+            Text = await new Display().WindowTitleTextAsync(isLoggedOn);
         }
 
         private async Task SetSoftwareStatus()
@@ -1770,7 +1720,7 @@ namespace Axantum.AxCrypt
             }
 
             InitializeContentResources();
-            SetWindowTextWithSignInAndPremiumStatus(_mainViewModel.LoggedOn);
+            await SetWindowTitleTextAsync(_mainViewModel.LoggedOn);
             await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
             await SetSoftwareStatus();
         }

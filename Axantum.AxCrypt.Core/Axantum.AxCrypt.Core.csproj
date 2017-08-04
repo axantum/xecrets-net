@@ -203,6 +203,7 @@
     <Compile Include="Session\UserPublicKeyUpdateStatus.cs" />
     <Compile Include="UI\DeviceLockedEventArgs.cs" />
     <Compile Include="UI\DeviceLockReason.cs" />
+    <Compile Include="UI\Display.cs" />
     <Compile Include="UI\IDataItemSelection.cs" />
     <Compile Include="UI\IDeviceLocked.cs" />
     <Compile Include="UI\IKnownFolderImageProvider.cs" />
