@@ -733,6 +733,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not now.
+        /// </summary>
+        public static string ButtonNotNow {
+            get {
+                return ResourceManager.GetString("ButtonNotNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string ButtonOkText {

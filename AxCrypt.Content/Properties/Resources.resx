@@ -375,6 +375,10 @@ You have been warned, now enjoy!</value>
   <data name="ButtonNoText" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="ButtonNotNow" xml:space="preserve">
+    <value>Not now</value>
+    <comment>The text of a button as the alternative for for example "Try now!" for Premium. It should not have an exclamation point.</comment>
+  </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>OK</value>
   </data>
