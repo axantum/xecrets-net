@@ -33,6 +33,12 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public void SendTo(Action action)
         {
+            if (IsOn)
+            {
+                action();
+                return;
+            }
+
             if (Blocked)
             {
                 throw new InvalidOperationException("Can't invoke synchronously on UI thread when it's already blocked.");
@@ -56,6 +62,12 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public async Task SendToAsync(Func<Task> action)
         {
+            if (IsOn)
+            {
+                await action();
+                return;
+            }
+
             if (Blocked)
             {
                 throw new InvalidOperationException("Can't invoke synchronously on UI thread when it's already blocked.");
