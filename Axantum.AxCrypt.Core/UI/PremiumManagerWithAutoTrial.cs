@@ -26,7 +26,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return premiumInfo.PremiumStatus;
             }
 
-            string result = await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial, Texts.ButtonCancelText }, Texts.WelcomeMailSubject, Texts.MessageAskAboutStartTrial, DontShowAgain.TryPremium);
+            string result = await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial, Texts.ButtonNotNow }, Texts.WelcomeMailSubject, Texts.MessageAskAboutStartTrial, DontShowAgain.TryPremium);
             if (result != Texts.ButtonStartTrial)
             {
                 return premiumInfo.PremiumStatus;
