@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Mono
             get
             {
                 _file.Refresh();
-                return _file.CreationTimeUtc;
+                return FileTimeSafe(() => _file.CreationTimeUtc);
             }
             set
             {
@@ -211,7 +211,7 @@ namespace Axantum.AxCrypt.Mono
             get
             {
                 _file.Refresh();
-                return _file.LastAccessTimeUtc;
+                return FileTimeSafe(() => _file.LastAccessTimeUtc);
             }
             set
             {
@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Mono
             get
             {
                 _file.Refresh();
-                return _file.LastWriteTimeUtc;
+                return FileTimeSafe(() => _file.LastWriteTimeUtc);
             }
             set
             {
@@ -243,6 +243,18 @@ namespace Axantum.AxCrypt.Mono
         private static readonly DateTime MIN_FILETIME = new DateTime(1900, 1, 1);
 
         private static readonly DateTime MAX_FILETIME = new DateTime(2200, 1, 1);
+
+        private static DateTime FileTimeSafe(Func<DateTime> fileTimeFunc)
+        {
+            try
+            {
+                return fileTimeFunc();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return New<INow>().Utc;
+            }
+        }
 
         private static DateTime Validate(DateTime fileTime)
         {
