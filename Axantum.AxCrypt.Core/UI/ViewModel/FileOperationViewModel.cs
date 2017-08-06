@@ -257,7 +257,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
             };
 
-            return operationsController.DecryptFile(file);
+            return operationsController.DecryptFileAsync(file);
         }
 
         private Task<FileOperationContext> WipeFileWorkAsync(IDataStore file, IProgressContext progress)
@@ -289,7 +289,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
             };
 
-            return operationsController.WipeFile(file);
+            return operationsController.WipeFileAsync(file);
         }
 
         private Task<FileOperationContext> UpgradeFilesWorkAsync(IDataStore store, IProgressContext progress)
@@ -396,13 +396,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     _fileSystemState.Add(activeFile);
                 }
             };
-            return controller.EncryptFile(file);
+            return controller.EncryptFileAsync(file);
         }
 
         private Task<FileOperationContext> EncryptFileWorkManyAsync(IDataStore file, IProgressContext progress)
         {
             FileOperationsController controller = EncryptFileWorkController(progress);
-            return controller.EncryptFile(file);
+            return controller.EncryptFileAsync(file);
         }
 
         private Task<FileOperationContext> VerifyAndAddActiveWorkAsync(IDataStore fullName, IProgressContext progress)
@@ -431,7 +431,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
             };
 
-            return operationsController.VerifyEncrypted(fullName);
+            return operationsController.VerifyEncryptedAsync(fullName);
         }
 
         private async Task OpenFilesFromFolderActionAsync(string folder)
@@ -571,7 +571,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
             };
 
-            return operationsController.TryDecryptBrokenFile(file);
+            return operationsController.TryDecryptBrokenFileAsync(file);
         }
     }
 }

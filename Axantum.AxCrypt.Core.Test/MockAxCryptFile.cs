@@ -40,34 +40,34 @@ namespace Axantum.AxCrypt.Core.Test
         public MockAxCryptFile()
         {
             EncryptMock = (sourceFile, destinationFile, passphrase, options, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            EncryptFilesUniqueWithBackupAndWipeMock = (fileInfo, encryptionParameters, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            EncryptFileUniqueWithBackupAndWipeMock = (fileInfo, encryptionParameters, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            DecryptFilesUniqueWithWipeOfOriginalMock = (fileInfo, decryptionKey, statusChecker, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
+            EncryptFilesUniqueWithBackupAndWipeMockAsync = (fileInfo, encryptionParameters, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
+            EncryptFileUniqueWithBackupAndWipeMockAsync = (fileInfo, encryptionParameters, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
+            DecryptFilesUniqueWithWipeOfOriginalMockAsync = (fileInfo, decryptionKey, statusChecker, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
         }
 
         public delegate void Action<T1, T2, T3, T4, T5>(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5);
 
         public Action<IDataStore, IDataStore, LogOnIdentity, AxCryptOptions, IProgressContext> EncryptMock { get; set; }
 
-        public Action<IEnumerable<IDataContainer>, EncryptionParameters, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
+        public Func<IEnumerable<IDataContainer>, EncryptionParameters, IProgressContext, Task> EncryptFilesUniqueWithBackupAndWipeMockAsync { get; set; }
 
-        public override void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public override Task EncryptFoldersUniqueWithBackupAndWipeAsync(IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            EncryptFilesUniqueWithBackupAndWipeMock(folderInfos, encryptionParameters, progress);
+            return EncryptFilesUniqueWithBackupAndWipeMockAsync(folderInfos, encryptionParameters, progress);
         }
 
-        public Action<IDataStore, EncryptionParameters, IProgressContext> EncryptFileUniqueWithBackupAndWipeMock { get; set; }
+        public Func<IDataStore, EncryptionParameters, IProgressContext, Task> EncryptFileUniqueWithBackupAndWipeMockAsync { get; set; }
 
-        public override void EncryptFileUniqueWithBackupAndWipe(IDataStore fileInfo, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public override Task EncryptFileUniqueWithBackupAndWipeAsync(IDataStore fileInfo, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            EncryptFileUniqueWithBackupAndWipeMock(fileInfo, encryptionParameters, progress);
+            return EncryptFileUniqueWithBackupAndWipeMockAsync(fileInfo, encryptionParameters, progress);
         }
 
-        public Action<IDataContainer, LogOnIdentity, IStatusChecker, IProgressContext> DecryptFilesUniqueWithWipeOfOriginalMock { get; set; }
+        public Action<IDataContainer, LogOnIdentity, IStatusChecker, IProgressContext> DecryptFilesUniqueWithWipeOfOriginalMockAsync { get; set; }
 
         public override Task DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(IDataContainer fileInfo, LogOnIdentity decryptionKey, IStatusChecker statusChecker, IProgressContext progress)
         {
-            DecryptFilesUniqueWithWipeOfOriginalMock(fileInfo, decryptionKey, statusChecker, progress);
+            DecryptFilesUniqueWithWipeOfOriginalMockAsync(fileInfo, decryptionKey, statusChecker, progress);
             return Task.FromResult<object>(null);
         }
     }

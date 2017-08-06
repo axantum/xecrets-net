@@ -183,9 +183,9 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public Task<FileOperationContext> EncryptFile(IDataStore fileInfo)
+        public Task<FileOperationContext> EncryptFileAsync(IDataStore fileInfo)
         {
-            return DoFileAsync(fileInfo, EncryptFilePreparation, EncryptFileOperation);
+            return DoFileAsync(fileInfo, EncryptFilePreparationAsync, EncryptFileOperationAsync);
         }
 
         /// <summary>
@@ -193,9 +193,9 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="sourceFile">The full path to an encrypted file.</param>
         /// <returns>The resulting status of the operation.</returns>
-        public Task<FileOperationContext> DecryptFile(IDataStore fileInfo)
+        public Task<FileOperationContext> DecryptFileAsync(IDataStore fileInfo)
         {
-            return DoFileAsync(fileInfo, DecryptFilePreparationAsync, DecryptFileOperation);
+            return DoFileAsync(fileInfo, DecryptFilePreparationAsync, DecryptFileOperationAsync);
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
         public Task<FileOperationContext> DecryptAndLaunchAsync(IDataStore fileInfo)
         {
-            return DoFileAsync(fileInfo, DecryptAndLaunchPreparationAsync, DecryptAndLaunchFileOperation);
+            return DoFileAsync(fileInfo, DecryptAndLaunchPreparationAsync, DecryptAndLaunchFileOperationAsync);
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
         public Task<FileOperationContext> OpenFileLocationAsync(IDataStore fileInfo)
         {
-            return DoFileAsync(fileInfo, OpenFileLocationPreparationAsync, OpenFileLocationOperation);
+            return DoFileAsync(fileInfo, OpenFileLocationPreparationAsync, OpenFileLocationOperationAsync);
         }
 
         /// <summary>
@@ -224,9 +224,9 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileInfo">The full path to an encrypted file.</param>
         /// <returns>The resulting status of the operation.</returns>
-        public Task<FileOperationContext> TryDecryptBrokenFile(IDataStore fileInfo)
+        public Task<FileOperationContext> TryDecryptBrokenFileAsync(IDataStore fileInfo)
         {
-            return DoFileAsync(fileInfo, TryDecryptBrokenFilePreparationAsync, TryDecryptBrokenFileOperation);
+            return DoFileAsync(fileInfo, TryDecryptBrokenFilePreparationAsync, TryDecryptBrokenFileOperationAsync);
         }
 
         /// <summary>
@@ -234,9 +234,9 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileInfo">The file to verify.</param>
         /// <returns>FileOperationStatus.Success if  the file is encrypted with a known key.</returns>
-        public Task<FileOperationContext> VerifyEncrypted(IDataStore fileInfo)
+        public Task<FileOperationContext> VerifyEncryptedAsync(IDataStore fileInfo)
         {
-            return DoFileAsync(fileInfo, DecryptAndLaunchPreparationAsync, GetAxCryptFileNameAsSaveFileName);
+            return DoFileAsync(fileInfo, DecryptAndLaunchPreparationAsync, GetAxCryptFileNameAsSaveFileNameAsync);
         }
 
         /// <summary>
@@ -244,21 +244,21 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileInfo">The full name of the file to wipe</param>
         /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
-        public Task<FileOperationContext> WipeFile(IDataStore fileInfo)
+        public Task<FileOperationContext> WipeFileAsync(IDataStore fileInfo)
         {
-            return DoFileAsync(fileInfo, WipeFilePreparation, WipeFileOperation);
+            return DoFileAsync(fileInfo, WipeFilePreparationAsync, WipeFileOperationAsync);
         }
 
         public Task<FileOperationContext> UpgradeFileAsync(IDataStore store)
         {
-            return DoFileAsync(store, UpgradeFilePreparationAsync, UpgradeFileOperation);
+            return DoFileAsync(store, UpgradeFilePreparationAsync, UpgradeFileOperationAsync);
         }
 
         #endregion Public Methods
 
         #region Private Methods
 
-        private Task<bool> EncryptFilePreparation(IDataStore sourceFileInfo)
+        private Task<bool> EncryptFilePreparationAsync(IDataStore sourceFileInfo)
         {
             _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
 
@@ -331,13 +331,13 @@ namespace Axantum.AxCrypt.Core.UI
             return false;
         }
 
-        private async Task<bool> EncryptFileOperation()
+        private async Task<bool> EncryptFileOperationAsync()
         {
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
             await encryptionParameters.AddAsync(_eventArgs.SharedPublicKeys);
 
-            New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
+            await New<AxCryptFile>().EncryptFileWithBackupAndWipeAsync(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return true;
@@ -345,7 +345,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private async Task<bool> DecryptFilePreparationAsync(IDataStore fileInfo)
         {
-            if (!await CheckDecryptionIdentityAndLocking(fileInfo))
+            if (!await CheckDecryptionIdentityAndLockingAsync(fileInfo))
             {
                 return false;
             }
@@ -366,10 +366,10 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Task<bool> UpgradeFilePreparationAsync(IDataStore store)
         {
-            return CheckDecryptionIdentityAndLocking(store);
+            return CheckDecryptionIdentityAndLockingAsync(store);
         }
 
-        private async Task<bool> CheckDecryptionIdentityAndLocking(IDataStore fileInfo)
+        private async Task<bool> CheckDecryptionIdentityAndLockingAsync(IDataStore fileInfo)
         {
             _eventArgs.OpenFileFullName = fileInfo.FullName;
             if (!fileInfo.IsEncrypted())
@@ -393,7 +393,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private Task<bool> DecryptFileOperation()
+        private Task<bool> DecryptFileOperationAsync()
         {
             _progress.NotifyLevelStart();
             try
@@ -447,7 +447,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private Task<bool> GetAxCryptFileNameAsSaveFileName()
+        private Task<bool> GetAxCryptFileNameAsSaveFileNameAsync()
         {
             if (!_eventArgs.Skip)
             {
@@ -458,13 +458,13 @@ namespace Axantum.AxCrypt.Core.UI
             return Constant.TrueTask;
         }
 
-        private async Task<bool> DecryptAndLaunchFileOperation()
+        private async Task<bool> DecryptAndLaunchFileOperationAsync()
         {
             _eventArgs.Status = await New<FileOperation>().OpenAndLaunchApplication(_eventArgs.LogOnIdentity, _eventArgs.AxCryptFile, _progress);
             return true;
         }
 
-        private Task<bool> WipeFilePreparation(IDataStore fileInfo)
+        private Task<bool> WipeFilePreparationAsync(IDataStore fileInfo)
         {
             using (FileLock fileLock = New<FileLocker>().Acquire(fileInfo))
             {
@@ -494,7 +494,7 @@ namespace Axantum.AxCrypt.Core.UI
             return Task.FromResult(true);
         }
 
-        private Task<bool> WipeFileOperation()
+        private Task<bool> WipeFileOperationAsync()
         {
             if (_eventArgs.Skip)
             {
@@ -519,19 +519,19 @@ namespace Axantum.AxCrypt.Core.UI
             return Constant.TrueTask;
         }
 
-        private Task<bool> UpgradeFileOperation()
+        private async Task<bool> UpgradeFileOperationAsync()
         {
             if (_eventArgs.Skip)
             {
                 _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
-                return Constant.TrueTask;
+                return true;
             }
 
             _progress.NotifyLevelStart();
             try
             {
                 EncryptionParameters encryptionParameters = new EncryptionParameters(New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
-                New<AxCryptFile>().ChangeEncryption(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, encryptionParameters, _progress);
+                await New<AxCryptFile>().ChangeEncryptionAsync(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, encryptionParameters, _progress);
             }
             finally
             {
@@ -539,7 +539,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
-            return Constant.TrueTask;
+            return true;
         }
 
         private async Task<bool> OpenAxCryptDocumentAsync(IDataStore sourceFileInfo, FileOperationEventArgs e)
@@ -680,7 +680,7 @@ namespace Axantum.AxCrypt.Core.UI
             return Constant.TrueTask;
         }
 
-        private Task<bool> OpenFileLocationOperation()
+        private Task<bool> OpenFileLocationOperationAsync()
         {
             _eventArgs.Status = New<FileOperation>().OpenFileLocation(_eventArgs.OpenFileFullName);
 
@@ -689,7 +689,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private async Task<bool> TryDecryptBrokenFilePreparationAsync(IDataStore fileInfo)
         {
-            if (!await CheckDecryptionIdentityAndLocking(fileInfo))
+            if (!await CheckDecryptionIdentityAndLockingAsync(fileInfo))
             {
                 return false;
             }
@@ -708,7 +708,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private Task<bool> TryDecryptBrokenFileOperation()
+        private Task<bool> TryDecryptBrokenFileOperationAsync()
         {
             _progress.NotifyLevelStart();
             try

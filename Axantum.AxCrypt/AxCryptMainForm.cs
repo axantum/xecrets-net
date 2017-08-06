@@ -1988,7 +1988,7 @@ namespace Axantum.AxCrypt
         {
             await Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), (IDataStore file, IProgressContext progress) =>
             {
-                New<AxCryptFile>().ChangeEncryption(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                New<AxCryptFile>().ChangeEncryptionAsync(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
                 return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
             },
             async (FileOperationContext foc) =>
