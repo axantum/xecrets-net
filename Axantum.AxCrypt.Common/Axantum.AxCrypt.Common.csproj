@@ -73,6 +73,7 @@
     <Compile Include="FolderOperationMode.cs" />
     <Compile Include="TaskRunner.cs" />
     <Compile Include="UpdateLevels.cs" />
+    <Compile Include="VersionRange.cs" />
     <Compile Include="VersionUpdateKind.cs" />
     <Compile Include="VersionUpdateStatus.cs" />
   </ItemGroup>
