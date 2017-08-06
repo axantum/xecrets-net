@@ -394,8 +394,7 @@ namespace Axantum.AxCrypt.Core
                         {
                             Decrypt(from, pipeline, identity);
                             pipeline.Complete();
-                        });
-                        await decryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+                        }).ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
                         Task encryption = Task.Run(async () =>
                         {
@@ -410,8 +409,7 @@ namespace Axantum.AxCrypt.Core
                                 return Constant.CompletedTask;
                             }, progress);
                             from.IsWriteProtected = isWriteProteced;
-                        });
-                        await encryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+                        }).ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
                         try
                         {

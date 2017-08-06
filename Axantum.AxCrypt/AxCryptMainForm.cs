@@ -1986,10 +1986,10 @@ namespace Axantum.AxCrypt
 
         private async Task ChangeEncryptionAsync(IEnumerable<string> files, EncryptionParameters encryptionParameters)
         {
-            await Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), (IDataStore file, IProgressContext progress) =>
+            await Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), async (IDataStore file, IProgressContext progress) =>
             {
-                New<AxCryptFile>().ChangeEncryptionAsync(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
-                return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
+                await New<AxCryptFile>().ChangeEncryptionAsync(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                return new FileOperationContext(file.FullName, ErrorStatus.Success);
             },
             async (FileOperationContext foc) =>
             {

@@ -118,11 +118,11 @@ namespace Axantum.AxCrypt.Core.Session
             try
             {
                 progress.AddTotal(Resolve.FileSystemState.ActiveFileCount);
-                await Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
+                await Resolve.FileSystemState.ForEach(async (ActiveFile activeFile) =>
                 {
                     try
                     {
-                        return CheckActiveFile(activeFile, progress);
+                        return await CheckActiveFile(activeFile, progress);
                     }
                     finally
                     {

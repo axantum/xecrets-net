@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Session
                     }
                     return new FileOperationContext(String.Empty, ErrorStatus.Success);
                 },
-                (FileOperationContext status) =>
+                async (FileOperationContext status) =>
                 {
                     if (status.ErrorStatus == ErrorStatus.Success)
                     {

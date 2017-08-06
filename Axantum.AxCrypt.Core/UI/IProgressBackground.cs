@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt.Core.UI
     public interface IProgressBackground
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Action<FileOperationContext> complete, IProgressContext progress);
+        Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunctionAsync, Func<FileOperationContext, Task> completeAsync, IProgressContext progress);
 
         void WaitForIdle();
 

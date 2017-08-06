@@ -70,10 +70,10 @@ namespace Axantum.AxCrypt.Core.UI
         /// Does an operation on a list of files, with parallelism.
         /// </summary>
         /// <param name="files">The files to operation on.</param>
-        /// <param name="work">The work to do for each file.</param>
-        /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
+        /// <param name="workAsync">The work to do for each file.</param>
+        /// <param name="allCompleteAsync">The completion callback after *all* files have been processed.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        private async Task InvokeAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> work, Func<FileOperationContext, Task> allComplete)
+        private async Task InvokeAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> workAsync, Func<FileOperationContext, Task> allCompleteAsync)
         {
             WorkerGroupProgressContext groupProgress = new WorkerGroupProgressContext(new CancelProgressContext(new ProgressContext()), New<ISingleThread>());
             await New<IProgressBackground>().WorkAsync(nameof(DoFilesAsync),
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.UI
                     {
                         try
                         {
-                            result = await work(file, progress);
+                            result = await workAsync(file, progress);
                         }
                         catch (Exception ex) when (ex is OperationCanceledException)
                         {
@@ -116,7 +116,7 @@ namespace Axantum.AxCrypt.Core.UI
                 progress.NotifyLevelFinished();
                 return result;
             },
-            (FileOperationContext status) => allComplete(status),
+            (FileOperationContext status) => allCompleteAsync(status),
             groupProgress).Free();
         }
     }
