@@ -370,6 +370,11 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return key;
             }
 
+            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing))
+            {
+                return key;
+            }
+
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
             UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
 
