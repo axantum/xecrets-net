@@ -1322,6 +1322,14 @@ Utan Premium kan du bara visa dokument eller permanent ta bort skyddet.</value>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Inget uppdateringsbehov.</value>
   </data>
+  <data name="NoPasswordRequiredInformationText" xml:space="preserve">
+    <value>Vi gör det här utan att fråga efter ditt lösenord igen!
+
+Du är inloggad, så vi frågar inte efter lösenordet för att kryptera, dekrypera eller öppna dokument.
+
+Dina dokument är ändå säkert krypterade med ditt lösenord.</value>
+    <comment>An information text, informing the user why there is no prompt for a password when you're signed in.</comment>
+  </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>Ditt Premium-abonnemang har slutat gälla så du har inte den högsta säkerhetsnivån. Skaffa Premium genom att klicka!</value>
   </data>

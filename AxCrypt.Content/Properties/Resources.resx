@@ -1546,6 +1546,14 @@ Without Premium you can only view and permanently decrypt encrypted files.</valu
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>No need to check for updates.</value>
   </data>
+  <data name="NoPasswordRequiredInformationText" xml:space="preserve">
+    <value>We're doing this without asking your for your password again!
+
+You're signed in, so we won't ask for your password to encrypt, decrypt or open documents.
+
+Your documents are still safely encrypted with your password.</value>
+    <comment>An information text, informing the user why there is no prompt for a password when you're signed in.</comment>
+  </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>You do not have a Premium subscription, so you are not using the highest level of security. Click to upgrade!</value>
   </data>

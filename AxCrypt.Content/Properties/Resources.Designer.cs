@@ -3866,6 +3866,19 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We&apos;re doing this without asking your for your password again!
+        ///
+        ///You&apos;re signed in, so we won&apos;t ask for your password to encrypt, decrypt or open documents.
+        ///
+        ///Your documents are still safely encrypted with your password..
+        /// </summary>
+        public static string NoPasswordRequiredInformationText {
+            get {
+                return ResourceManager.GetString("NoPasswordRequiredInformationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You do not have a Premium subscription, so you are not using the highest level of security. Click to upgrade!.
         /// </summary>
         public static string NoPremiumWarning {

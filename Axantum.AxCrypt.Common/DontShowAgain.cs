@@ -13,5 +13,6 @@ namespace Axantum.AxCrypt.Common
         FileAssociationBrokenWarning = 0x1,
         LavasoftWebCompanionExistenceWarning = 0x2,
         TryPremium = 0x4,
+        SignedInSoNoPasswordRequired = 0x8,
     }
 }

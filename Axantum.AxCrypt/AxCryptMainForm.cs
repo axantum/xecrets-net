@@ -1159,7 +1159,8 @@ namespace Axantum.AxCrypt
                     return;
             }
 
-            if (!Resolve.KnownIdentities.IsLoggedOn)
+            bool wasSignedIn = New<KnownIdentities>().IsLoggedOn;
+            if (!wasSignedIn)
             {
                 switch (e.Verb)
                 {
@@ -1197,9 +1198,14 @@ namespace Axantum.AxCrypt
                 }
             }
 
-            if (!Resolve.KnownIdentities.IsLoggedOn)
+            if (!New<KnownIdentities>().IsLoggedOn)
             {
                 return;
+            }
+
+            if (wasSignedIn)
+            {
+                await ShowSignedInInformationAsync(e.Verb);
             }
 
             switch (e.Verb)
@@ -1246,6 +1252,21 @@ namespace Axantum.AxCrypt
                 default:
                     break;
             }
+        }
+
+        private Task ShowSignedInInformationAsync(CommandVerb verb)
+        {
+            switch (verb)
+            {
+                case CommandVerb.Encrypt:
+                case CommandVerb.Decrypt:
+                case CommandVerb.Open:
+                    return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DontShowAgain.SignedInSoNoPasswordRequired);
+
+                default:
+                    break;
+            }
+            return Constant.CompletedTask;
         }
 
         private async Task<DragDropEffects> GetEffectsForMainToolStripAsync(DragEventArgs e)
