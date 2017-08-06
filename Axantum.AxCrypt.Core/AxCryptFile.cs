@@ -942,13 +942,13 @@ namespace Axantum.AxCrypt.Core
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public async Task EncryptToFileWithBackupAsync(FileLock destinationFileLock, Func<Stream, Task> writeFileStreamTo, IProgressContext progress)
+        public async Task EncryptToFileWithBackupAsync(FileLock destinationFileLock, Func<Stream, Task> encryptFileStreamTo, IProgressContext progress)
         {
             if (destinationFileLock == null)
             {
                 throw new ArgumentNullException("destinationFileInfo");
             }
-            if (writeFileStreamTo == null)
+            if (encryptFileStreamTo == null)
             {
                 throw new ArgumentNullException("writeFileStreamTo");
             }
@@ -959,7 +959,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     using (Stream temporaryStream = lockedTemporary.DataStore.OpenWrite())
                     {
-                        await writeFileStreamTo(temporaryStream);
+                        await encryptFileStreamTo(temporaryStream);
                     }
                 }
                 catch (Exception ex)
@@ -970,6 +970,8 @@ namespace Axantum.AxCrypt.Core
                     }
                     HandleException(ex, lockedTemporary.DataStore);
                 }
+
+                EnsureConsistencyOfDestination(lockedTemporary);
 
                 if (!destinationFileLock.DataStore.IsAvailable)
                 {
@@ -984,50 +986,55 @@ namespace Axantum.AxCrypt.Core
                     }
                 }
 
-                using (FileLock lockedBackup = MakeAlternatePath(destinationFileLock.DataStore, ".bak"))
+                MoveTemporaryToDestinationWithBackupAndWipe(lockedTemporary, destinationFileLock, progress);
+            }
+        }
+
+        private void MoveTemporaryToDestinationWithBackupAndWipe(FileLock lockedTemporary, FileLock destinationFileLock, IProgressContext progress)
+        {
+            using (FileLock lockedBackup = MakeAlternatePath(destinationFileLock.DataStore, ".bak"))
+            {
+                IDataStore backupDataStore = New<IDataStore>(destinationFileLock.DataStore.FullName);
+                try
                 {
-                    IDataStore backupDataStore = New<IDataStore>(destinationFileLock.DataStore.FullName);
-                    try
-                    {
-                        backupDataStore.MoveTo(lockedBackup.DataStore.FullName);
-                    }
-                    catch (Exception ex)
-                    {
-                        lockedBackup.DataStore.Delete();
-                        lockedTemporary.DataStore.Delete();
+                    backupDataStore.MoveTo(lockedBackup.DataStore.FullName);
+                }
+                catch (Exception ex)
+                {
+                    lockedBackup.DataStore.Delete();
+                    lockedTemporary.DataStore.Delete();
 
-                        HandleException(ex, destinationFileLock.DataStore);
-                    }
+                    HandleException(ex, destinationFileLock.DataStore);
+                }
 
-                    try
-                    {
-                        lockedTemporary.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
-                    }
-                    catch (Exception ex)
-                    {
-                        lockedTemporary.DataStore.Delete();
-                        lockedBackup.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
+                try
+                {
+                    lockedTemporary.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
+                }
+                catch (Exception ex)
+                {
+                    lockedTemporary.DataStore.Delete();
+                    lockedBackup.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
 
-                        HandleException(ex, destinationFileLock.DataStore);
-                    }
+                    HandleException(ex, destinationFileLock.DataStore);
+                }
 
-                    EnsureConsistencyOfDestinationBeforeWipeOfBackup(destinationFileLock);
+                EnsureConsistencyOfDestination(destinationFileLock);
 
-                    try
-                    {
-                        Wipe(lockedBackup, progress);
-                    }
-                    catch (Exception ex)
-                    {
-                        backupDataStore.Delete();
+                try
+                {
+                    Wipe(lockedBackup, progress);
+                }
+                catch (Exception ex)
+                {
+                    backupDataStore.Delete();
 
-                        HandleException(ex, backupDataStore);
-                    }
+                    HandleException(ex, backupDataStore);
                 }
             }
         }
 
-        private static void EnsureConsistencyOfDestinationBeforeWipeOfBackup(FileLock destinationFileLock)
+        private static void EnsureConsistencyOfDestination(FileLock destinationFileLock)
         {
             try
             {

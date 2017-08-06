@@ -65,6 +65,8 @@ namespace Axantum.AxCrypt.Fake
 
         public static event EventHandler Moving;
 
+        public static event EventHandler Moved;
+
         public static event EventHandler OpeningForRead;
 
         public static event EventHandler OpeningForWrite;
@@ -346,6 +348,7 @@ namespace Axantum.AxCrypt.Fake
             _fakeFileSystem.Add(destinationFileName, _file);
 
             FakeFileWatcher.HandleFileChanged(destinationFileName);
+            Moved?.Invoke(this, new EventArgs());
         }
 
         public void Delete()

@@ -314,16 +314,21 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestEncryptToFileWithBackup()
         {
             string destinationFilePath = _rootPath.PathCombine("Written", "File.txt");
-            using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+            byte[] encryptedData;
+            using (Stream encrypted = New<IDataStore>(_helloWorldAxxPath).OpenRead())
             {
-                using (FileLock destinationFileLock = New<FileLocker>().Acquire(New<IDataStore>(destinationFilePath)))
+                encryptedData = new byte[encrypted.Length];
+                encrypted.Read(encryptedData, 0, encryptedData.Length);
+            }
+
+            using (FileLock destinationFileLock = New<FileLocker>().Acquire(New<IDataStore>(destinationFilePath)))
+            {
+                await New<AxCryptFile>().EncryptToFileWithBackupAsync(destinationFileLock, async (Stream stream) => { await Task.Delay(0); stream.Write(encryptedData, 0, encryptedData.Length); }, new ProgressContext());
+                using (Stream read = destinationFileLock.DataStore.OpenRead())
                 {
-                    await New<AxCryptFile>().EncryptToFileWithBackupAsync(destinationFileLock, async (Stream stream) => { await Task.Delay(0); inputStream.CopyTo(stream, 4096); }, new ProgressContext());
-                    using (TextReader read = new StreamReader(destinationFileLock.DataStore.OpenRead()))
-                    {
-                        string readString = read.ReadToEnd();
-                        Assert.That(readString, Is.EqualTo("A string with some text"), "We're expecting the same string to be read back.");
-                    }
+                    byte[] writtenData = new byte[encryptedData.Length];
+                    read.Read(writtenData, 0, (int)read.Length);
+                    Assert.That(writtenData.IsEquivalentTo(encryptedData), "We're expecting the same data to be read back.");
                 }
             }
         }
@@ -393,7 +398,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public async Task TestEncryptToFileWithBackupWhenDestinationExistsButEncryptionIsBroken()
         {
-            string destinationFilePath = _rootPath.PathCombine("Written", "AnExistingFile.txt");
+            string destinationFilePath = _rootPath.PathCombine("Written", "AnExistingFile.axx");
             IDataStore destinationFileInfo = New<IDataStore>(destinationFilePath);
             IDataStore bakFileInfo = New<IDataStore>(_rootPath.PathCombine("Written", "AnExistingFile.bak"));
             Assert.That(bakFileInfo.IsAvailable, Is.False, "The file should not exist to start with.");
@@ -403,20 +408,32 @@ namespace Axantum.AxCrypt.Core.Test
                 writeStream.Write(bytes, 0, bytes.Length);
             }
 
+            FakeDataStore.Moved += (s, e) =>
+            {
+                IDataStore fromAfterMoveActuallyTo = (IDataStore)s;
+                if (fromAfterMoveActuallyTo.FullName.EndsWith(".axx"))
+                {
+                    using (Stream badStream = destinationFileInfo.OpenWrite())
+                    {
+                        badStream.Write(new byte[0], 0, 0);
+                        badStream.SetLength(0);
+                    }
+                }
+            };
+
             using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationFileInfo))
             {
-                using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+                Assert.ThrowsAsync<FileOperationException>(async () =>
                 {
-                    Assert.ThrowsAsync<FileOperationException>(async () =>
+                    await New<AxCryptFile>().EncryptToFileWithBackupAsync(destinationFileLock, async (Stream stream) =>
                     {
-                        await New<AxCryptFile>().EncryptToFileWithBackupAsync(destinationFileLock, async (Stream stream) =>
+                        await Task.Delay(0);
+                        using (Stream encrypted = New<IDataStore>(_helloWorldAxxPath).OpenRead())
                         {
-                            await Task.Delay(0);
-                            byte[] broken = new byte[0];
-                            stream.Write(broken, 0, 0);
-                        }, new ProgressContext());
-                    });
-                }
+                            encrypted.CopyTo(stream, 4096);
+                        }
+                    }, new ProgressContext());
+                });
             }
             Assert.That(bakFileInfo.IsAvailable, Is.True, "The file should still exist afterwards.");
             await Task.Delay(0);
