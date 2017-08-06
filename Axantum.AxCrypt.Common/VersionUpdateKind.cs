@@ -12,30 +12,74 @@ namespace Axantum.AxCrypt.Common
 
         private Version _newVersion;
 
-        private Version _lastReliabilityUpdate;
+        private List<Tuple<Version, Version>> _unreliableVersions;
 
-        private Version _lastSecurityUpdate;
+        private List<Tuple<Version, Version>> _insecureVersions;
 
         private VersionUpdateKind()
             : this(string.Empty, string.Empty, string.Empty)
         {
         }
 
-        public VersionUpdateKind(string currentVersion, string lastReliabilityUpdate, string lastSecurityUpdate)
+        public VersionUpdateKind(string currentVersion, string unreliableVersions, string insecureVersions)
         {
             if (!Version.TryParse(string.IsNullOrEmpty(currentVersion) ? DownloadVersion.VersionZero.ToString() : currentVersion, out _currentVersion))
             {
                 throw new ArgumentException("Invalid version format", nameof(currentVersion));
             }
             _newVersion = _currentVersion;
-            if (!Version.TryParse(string.IsNullOrEmpty(lastReliabilityUpdate) ? DownloadVersion.VersionZero.ToString() : lastReliabilityUpdate, out _lastReliabilityUpdate))
+            _unreliableVersions = ParseVersionRanges(unreliableVersions);
+            _insecureVersions = ParseVersionRanges(insecureVersions);
+        }
+
+        /// <summary>
+        /// Parses version ranges in the form 1.0.0.0 1.1.0.0 1.2.0.0-1.3.0.0 etc
+        /// </summary>
+        /// <param name="versionRanges">The version ranges.</param>
+        /// <returns></returns>
+        private List<Tuple<Version, Version>> ParseVersionRanges(string versionRanges)
+        {
+            versionRanges = versionRanges.Trim();
+            string[] versions = versionRanges.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+            List<Tuple<Version, Version>> versionRangeList = new List<Tuple<Version, Version>>();
+            foreach (string version in versions)
             {
-                throw new ArgumentException("Invalid version format", nameof(lastReliabilityUpdate));
+                Tuple<Version, Version> aRange = ParseVersionRange(version);
+                versionRangeList.Add(aRange);
             }
-            if (!Version.TryParse(string.IsNullOrEmpty(lastSecurityUpdate) ? DownloadVersion.VersionZero.ToString() : lastSecurityUpdate, out _lastSecurityUpdate))
+
+            return versionRangeList;
+        }
+
+        private Tuple<Version, Version> ParseVersionRange(string version)
+        {
+            string[] fromandto = version.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+            if (fromandto.Length < 1 || fromandto.Length > 2)
             {
-                throw new ArgumentException("Invalid version format", nameof(lastSecurityUpdate));
+                throw new ArgumentException($"Bad format of range or version '{version}'.", nameof(version));
             }
+
+            List<Version> range = new List<Version>();
+            foreach (string fromorto in fromandto)
+            {
+                Version v;
+                if (!Version.TryParse(string.IsNullOrEmpty(fromorto) ? DownloadVersion.VersionZero.ToString() : fromorto, out v))
+                {
+                    throw new ArgumentException($"Invalid version format '{fromorto}'.", nameof(version));
+                }
+                range.Add(v);
+            }
+
+            if (fromandto.Length == 1)
+            {
+                return new Tuple<Version, Version>(range[0], range[0]);
+            }
+            if (range[0] > range[1])
+            {
+                throw new ArgumentException($"Bad range '{version}'.", nameof(version));
+            }
+            return new Tuple<Version, Version>(range[0], range[1]);
         }
 
         public static readonly VersionUpdateKind Empty = new VersionUpdateKind();
@@ -50,8 +94,8 @@ namespace Axantum.AxCrypt.Common
             return new VersionUpdateKind()
             {
                 _currentVersion = _currentVersion,
-                _lastReliabilityUpdate = _lastReliabilityUpdate,
-                _lastSecurityUpdate = _lastSecurityUpdate,
+                _unreliableVersions = _unreliableVersions,
+                _insecureVersions = _insecureVersions,
                 _newVersion = newVersion,
             };
         }
@@ -64,7 +108,7 @@ namespace Axantum.AxCrypt.Common
         {
             get
             {
-                return _lastReliabilityUpdate > DownloadVersion.VersionZero && _currentVersion > DownloadVersion.VersionZero && _currentVersion < _lastReliabilityUpdate;
+                return IsInRange(_currentVersion, _unreliableVersions);
             }
         }
 
@@ -72,8 +116,24 @@ namespace Axantum.AxCrypt.Common
         {
             get
             {
-                return _lastSecurityUpdate > DownloadVersion.VersionZero && _currentVersion > DownloadVersion.VersionZero && _currentVersion < _lastSecurityUpdate;
+                return IsInRange(_currentVersion, _insecureVersions);
             }
+        }
+
+        private bool IsInRange(Version version, List<Tuple<Version, Version>> ranges)
+        {
+            foreach (Tuple<Version, Version> fromto in ranges)
+            {
+                if (version <= DownloadVersion.VersionZero)
+                {
+                    continue;
+                }
+                if (version >= fromto.Item1 && version <= fromto.Item2)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
