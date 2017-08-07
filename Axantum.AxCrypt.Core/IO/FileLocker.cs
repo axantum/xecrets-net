@@ -124,21 +124,34 @@ namespace Axantum.AxCrypt.Core.IO
         {
             lock (_lockedFiles)
             {
-                FileLockManager fileLock;
-                if (!_lockedFiles.TryGetValue(fullName, out fileLock))
+                FileLockManager fileLockManager;
+                if (!_lockedFiles.TryGetValue(fullName, out fileLockManager))
                 {
                     return false;
                 }
 
-                return fileLock.IsLocked;
+                return fileLockManager.IsLocked;
             }
         }
 
-        public void Remove(string fullName)
+        internal bool TryRemove(string fullName)
         {
             lock (_lockedFiles)
             {
-                _lockedFiles.Remove(fullName);
+                FileLockManager fileLockManager;
+                if (!_lockedFiles.TryGetValue(fullName, out fileLockManager))
+                {
+                    return true;
+                }
+
+                if (fileLockManager.DecrementReferenceCount() == 0)
+                {
+                    fileLockManager.Dispose();
+                    _lockedFiles.Remove(fullName);
+                    return true;
+                }
+
+                return false;
             }
         }
     }

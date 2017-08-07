@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.IO
 {
     public sealed class FileLock : IDisposable
     {
-        private readonly FileLockManager _fileLockManager;
+        private FileLockManager _fileLockManager;
 
         internal FileLock(FileLockManager toRelease)
         {
@@ -48,9 +48,16 @@ namespace Axantum.AxCrypt.Core.IO
 
         public IDataStore DataStore { get { return _fileLockManager.DataStore; } }
 
+        private bool disposed = false;
+
         public void Dispose()
         {
+            if (disposed)
+            {
+                return;
+            }
             _fileLockManager.Release();
+            disposed = true;
         }
     }
 }

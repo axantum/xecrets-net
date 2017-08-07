@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Common
 {
-    public sealed class AsyncLock
+    public sealed class AsyncLock : IDisposable
     {
-        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+        private SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
         private readonly Task<IDisposable> _releaser;
 
@@ -30,6 +30,15 @@ namespace Axantum.AxCrypt.Common
                 _releaser.Result, CancellationToken.None,
                 TaskContinuationOptions.ExecuteSynchronously,
                 TaskScheduler.Default);
+        }
+
+        public void Dispose()
+        {
+            if (_semaphore != null)
+            {
+                _semaphore.Dispose();
+            }
+            _semaphore = null;
         }
 
         private sealed class Releaser : IDisposable
