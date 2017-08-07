@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -44,6 +45,9 @@ namespace Axantum.AxCrypt.Core.Runtime
 
             if (Blocked)
             {
+#if DEBUG
+                Debugger.Break();
+#endif
                 throw new InvalidOperationException("Can't invoke synchronously on UI thread when it's already blocked.");
             }
 
@@ -73,6 +77,9 @@ namespace Axantum.AxCrypt.Core.Runtime
 
             if (Blocked)
             {
+#if DEBUG
+                Debugger.Break();
+#endif
                 throw new InvalidOperationException("Can't invoke synchronously on UI thread when it's already blocked.");
             }
 
