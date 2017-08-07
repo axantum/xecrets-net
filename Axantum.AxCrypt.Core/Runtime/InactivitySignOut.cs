@@ -5,11 +5,11 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    public class InactivititySignOut : IDisposable
+    public class InactivitySignOut : IDisposable
     {
         private DelayedAction _signOutDelayedAction;
 
-        public InactivititySignOut(TimeSpan timeOut)
+        public InactivitySignOut(TimeSpan timeOut)
         {
             if (timeOut == TimeSpan.Zero || !New<LicensePolicy>().Capabilities.Has(LicenseCapability.InactivitySignOut))
             {
@@ -21,7 +21,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             _signOutDelayedAction.StartIdleTimer();
         }
 
-        public void RestartInactivitityTimer()
+        public void RestartInactivityTimer()
         {
             _signOutDelayedAction?.StartIdleTimer();
         }

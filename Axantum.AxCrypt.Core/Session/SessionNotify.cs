@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 if (notification.NotificationType != SessionNotificationType.SessionChange)
                 {
-                    New<InactivititySignOut>().RestartInactivitityTimer();
+                    New<InactivitySignOut>().RestartInactivityTimer();
                 }
             }
             catch (Exception ex)

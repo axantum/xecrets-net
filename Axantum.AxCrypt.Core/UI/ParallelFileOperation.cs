@@ -54,6 +54,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="files">The files to operation on.</param>
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public async virtual Task DoFilesAsync<TDataItem>(IEnumerable<TDataItem> files, Func<TDataItem, IProgressContext, Task<FileOperationContext>> work, Func<FileOperationContext, Task> allComplete)
             where TDataItem : IDataItem
         {

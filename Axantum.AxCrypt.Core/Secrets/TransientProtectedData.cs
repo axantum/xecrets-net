@@ -58,20 +58,21 @@ namespace Axantum.AxCrypt.Core.Secrets
 
         private static byte[] _entropy;
 
-        public byte[] Entropy
+        private byte[] Entropy()
         {
-            private get
+            lock (_entropyLock)
             {
-                lock (_entropyLock)
+                if (_entropy == null)
                 {
-                    if (_entropy == null)
-                    {
-                        _entropy = GetRandomBytes(16);
-                    }
+                    _entropy = GetRandomBytes(16);
                 }
-                return _entropy;
             }
-            set
+            return _entropy;
+        }
+
+        public void Entropy(byte[] value)
+        {
+            lock (_entropyLock)
             {
                 if (value != null)
                 {
@@ -91,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Secrets
 
         public byte[] Protect(byte[] bytes)
         {
-            byte[] protectedBytes = New<IProtectedData>().Protect(bytes, Entropy);
+            byte[] protectedBytes = New<IProtectedData>().Protect(bytes, Entropy());
             return protectedBytes;
         }
 

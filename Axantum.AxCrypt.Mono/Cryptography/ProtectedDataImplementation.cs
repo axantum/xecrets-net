@@ -11,13 +11,13 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Mono
 {
-    public class ProtectedDataImpl : IProtectedData
+    public class ProtectedDataImplementation : IProtectedData
     {
         private static byte[] _axCryptGuid = AxCrypt1Guid.GetBytes();
 
         private DataProtectionScope _scope;
 
-        public ProtectedDataImpl(DataProtectionScope scope)
+        public ProtectedDataImplementation(DataProtectionScope scope)
         {
             _scope = scope;
         }

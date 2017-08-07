@@ -111,7 +111,7 @@
     <Compile Include="Portable\ISingleThread.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Runtime\AboutAssembly.cs" />
-    <Compile Include="Runtime\InactivititySignOut.cs" />
+    <Compile Include="Runtime\InactivitySignOut.cs" />
     <Compile Include="Runtime\AsyncCompletionEventArgs.cs" />
     <Compile Include="Runtime\CryptoException.cs" />
     <Compile Include="Runtime\FileOperationException.cs" />

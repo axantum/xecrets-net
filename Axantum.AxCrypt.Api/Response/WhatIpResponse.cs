@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 namespace Axantum.AxCrypt.Api.Response
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class WhatIpResponse : ResponseBase
+    public class WhatIPResponse : ResponseBase
     {
-        public WhatIpResponse()
+        public WhatIPResponse()
             : this(string.Empty)
         {
         }
 
-        public WhatIpResponse(string ipAddress)
+        public WhatIPResponse(string ipAddress)
         {
             Message = "OK";
-            IpAddress = ipAddress;
+            IPAddress = ipAddress;
         }
 
         [JsonProperty("Ip")]
-        public string IpAddress { get; }
+        public string IPAddress { get; }
     }
 }

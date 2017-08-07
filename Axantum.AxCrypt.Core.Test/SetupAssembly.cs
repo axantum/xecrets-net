@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IInternetState>(() => new FakeInternetState());
             TypeMap.Register.Singleton<ICryptoPolicy>(() => New<LicensePolicy>().Capabilities.CryptoPolicy);
             TypeMap.Register.Singleton<LicensePolicy>(() => new PremiumForcedLicensePolicy());
-            TypeMap.Register.Singleton<InactivititySignOut>(() => new InactivititySignOut(TimeSpan.Zero));
+            TypeMap.Register.Singleton<InactivitySignOut>(() => new InactivitySignOut(TimeSpan.Zero));
             TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
             TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
 

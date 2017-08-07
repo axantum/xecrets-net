@@ -14,7 +14,9 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         protected SynchronizationContext Context { get; }
 
-        public UIThreadBase()
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "SyncronizationContext")]
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IUIThread")]
+        protected UIThreadBase()
         {
             if (SynchronizationContext.Current == null)
             {

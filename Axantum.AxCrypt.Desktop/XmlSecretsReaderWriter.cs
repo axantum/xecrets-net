@@ -324,12 +324,13 @@ namespace Axantum.AxCrypt.Desktop
             return new SecretCollection();
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "EncryptedData")]
         private static XmlDocument DecryptEncryptedData(InternalEncryptionKey internalKey, XmlElement sessionElement)
         {
             XmlElement secretsElement = sessionElement.FirstChild as XmlElement;
             if (secretsElement == null || secretsElement.Name != "EncryptedData")
             {
-                throw new FormatException("There must be an element named EncryptedData here.");
+                throw new FormatException($"There must be an element named {nameof(EncryptedData)} here.");
             }
 
             SymmetricAlgorithm masterKey = GetAndDeriveMasterKey(internalKey.DecryptPassphrase(), sessionElement);
@@ -438,7 +439,7 @@ namespace Axantum.AxCrypt.Desktop
             {
                 if (New<ILogging>().IsWarningEnabled)
                 {
-                    New<ILogging>().LogWarning("CreateDocumentFromSecrets No elements in collection");
+                    New<ILogging>().LogWarning($"{nameof(CreateDocumentFromSecrets)} No elements in collection");
                 }
                 return document;
             }
@@ -545,6 +546,7 @@ namespace Axantum.AxCrypt.Desktop
             return secrets;
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "KeyDerviation")]
         private static SymmetricAlgorithm GetAndDeriveMasterKey(string key, XmlElement xecretsSessionElement)
         {
             string keyDerivation = xecretsSessionElement.Attributes["KeyDerivation"].Value;

@@ -31,6 +31,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="workFunction">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the GUI thread.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Func<FileOperationContext, Task> complete, IProgressContext progress)
         {
             Task task = New<IUIThread>().SendToAsync(() => BackgroundWorkWithProgressOnUIThreadAsync(name, workFunction, complete, progress));

@@ -22,18 +22,18 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message)
         {
-            return ShowAsync(buttons, title, message, DontShowAgain.None);
+            return ShowAsync(buttons, title, message, DoNotShowAgainOptions.None);
         }
 
-        public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag)
+        public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag)
         {
             return Task.FromResult(ShowSyncInternal(buttons, title, message, dontShowAgainFlag));
         }
 
-        private PopupButtons ShowSyncInternal(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag)
+        private PopupButtons ShowSyncInternal(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag)
         {
             PopupButtons result = PopupButtons.None;
-            if (dontShowAgainFlag != DontShowAgain.None && New<UserSettings>().DontShowAgain.HasFlag(dontShowAgainFlag))
+            if (dontShowAgainFlag != DoNotShowAgainOptions.None && New<UserSettings>().DontShowAgain.HasFlag(dontShowAgainFlag))
             {
                 return result;
             }
@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
             return result;
         }
 
-        private PopupButtons ShowSyncInternalAssumingUiThread(PopupButtons buttons, string title, string message, DontShowAgain dontShowAgainFlag)
+        private PopupButtons ShowSyncInternalAssumingUiThread(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag)
         {
             DialogResult result;
             using (MessageDialog dialog = new MessageDialog(_parent))
@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 {
                     dialog.HideExit();
                 }
-                if (dontShowAgainFlag == DontShowAgain.None)
+                if (dontShowAgainFlag == DoNotShowAgainOptions.None)
                 {
                     dialog.HideDontShowAgain();
                 }
@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
                 result = dialog.ShowDialog(_parent);
 
-                if (dontShowAgainFlag != DontShowAgain.None && dialog.dontShowThisAgain.Checked)
+                if (dontShowAgainFlag != DoNotShowAgainOptions.None && dialog.dontShowThisAgain.Checked)
                 {
                     New<UserSettings>().DontShowAgain = New<UserSettings>().DontShowAgain | dontShowAgainFlag;
                 }
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
             throw new NotImplementedException("Popup doesn't support custom buttons.");
         }
 
-        public Task<string> ShowAsync(string[] buttons, string title, string message, DontShowAgain dontShowAgain)
+        public Task<string> ShowAsync(string[] buttons, string title, string message, DoNotShowAgainOptions dontShowAgain)
         {
             throw new NotImplementedException("Popup doesn't support custom buttons.");
         }

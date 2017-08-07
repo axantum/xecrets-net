@@ -9,7 +9,7 @@ namespace Axantum.AxCrypt.Common
 {
     public class StartupTipProperties
     {
-        public static readonly StartupTipProperties Empty = new StartupTipProperties(StartupTipLevel.Unkown, StartupTipButtonStyle.Unknown, null);
+        public static readonly StartupTipProperties Empty = new StartupTipProperties(StartupTipLevel.Unknown, StartupTipButtonStyle.Unknown, null);
 
         public StartupTipLevel Level { get; private set; }
 

@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt
             RuntimeEnvironment.RegisterTypeFactories();
             DesktopFactory.RegisterTypeFactories();
 
-            TypeMap.Register.New<IProtectedData>(() => new ProtectedDataImpl(System.Security.Cryptography.DataProtectionScope.CurrentUser));
+            TypeMap.Register.New<IProtectedData>(() => new ProtectedDataImplementation(System.Security.Cryptography.DataProtectionScope.CurrentUser));
             TypeMap.Register.New<ILauncher>(() => new Launcher());
             TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
             TypeMap.Register.New<HMACSHA512>(() => new Mono.Cryptography.HMACSHA512Wrapper(new Axantum.AxCrypt.Desktop.Cryptography.HMACSHA512CryptoServiceProvider()));

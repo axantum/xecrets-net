@@ -540,26 +540,26 @@ namespace Axantum.AxCrypt.Core
         /// Decrypt a source file to a destination file, given a passphrase
         /// </summary>
         /// <param name="sourceStore">The source file</param>
-        /// <param name="destinationStore">The destination file</param>
+        /// <param name="destinationItem">The destination file</param>
         /// <param name="logOnIdentity">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public bool Decrypt(IDataStore sourceStore, IDataStore destinationStore, LogOnIdentity logOnIdentity, AxCryptOptions options, IProgressContext progress)
+        public bool Decrypt(IDataStore sourceStore, IDataItem destinationItem, LogOnIdentity logOnIdentity, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceStore == null)
             {
-                throw new ArgumentNullException("sourceStore");
+                throw new ArgumentNullException(nameof(sourceStore));
             }
-            if (destinationStore == null)
+            if (destinationItem == null)
             {
-                throw new ArgumentNullException("destinationStore");
+                throw new ArgumentNullException(nameof(destinationItem));
             }
             if (logOnIdentity == null)
             {
-                throw new ArgumentNullException("logOnIdentity");
+                throw new ArgumentNullException(nameof(logOnIdentity));
             }
             if (progress == null)
             {
-                throw new ArgumentNullException("progress");
+                throw new ArgumentNullException(nameof(progress));
             }
 
             using (FileLock sourceLock = New<FileLocker>().Acquire(sourceStore))
@@ -570,7 +570,7 @@ namespace Axantum.AxCrypt.Core
                     {
                         return false;
                     }
-                    using (FileLock destinationLock = New<FileLocker>().Acquire(destinationStore))
+                    using (FileLock destinationLock = New<FileLocker>().Acquire(destinationItem))
                     {
                         Decrypt(document, destinationLock, options, progress);
                     }

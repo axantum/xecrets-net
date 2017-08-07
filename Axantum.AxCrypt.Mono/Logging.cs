@@ -123,35 +123,35 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public void LogError(string message)
+        public void LogError(string errorLog)
         {
             if (IsErrorEnabled)
             {
-                Trace.TraceError(message);
+                Trace.TraceError(errorLog);
             }
         }
 
-        public void LogWarning(string message)
+        public void LogWarning(string warningLog)
         {
             if (IsWarningEnabled)
             {
-                Trace.TraceWarning(message);
+                Trace.TraceWarning(warningLog);
             }
         }
 
-        public void LogInfo(string message)
+        public void LogInfo(string infoLog)
         {
             if (IsInfoEnabled)
             {
-                Trace.TraceInformation(message);
+                Trace.TraceInformation(infoLog);
             }
         }
 
-        public void LogDebug(string message)
+        public void LogDebug(string debugLog)
         {
             if (IsDebugEnabled)
             {
-                Trace.WriteLine("{1} Debug: {0}".InvariantFormat(message, AppName));
+                Trace.WriteLine("{1} Debug: {0}".InvariantFormat(debugLog, AppName));
             }
         }
 

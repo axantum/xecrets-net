@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Mono
             }
             catch (ArgumentException ae)
             {
-                throw new FileOperationException("Can't create DataStore.", normalized, ErrorStatus.Exception, ae);
+                throw new FileOperationException($"Can't create {nameof(DataStore)}.", normalized, ErrorStatus.Exception, ae);
             }
         }
 

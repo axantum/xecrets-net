@@ -283,16 +283,16 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(FewFilesThreshold), value); }
         }
 
-        public DontShowAgain DontShowAgain
+        public DoNotShowAgainOptions DontShowAgain
         {
-            get { return (DontShowAgain)Load(nameof(DontShowAgain), (int)DontShowAgain.None); }
+            get { return (DoNotShowAgainOptions)Load(nameof(DontShowAgain), (int)DoNotShowAgainOptions.None); }
             set { Store(nameof(DontShowAgain), (int)value); }
         }
 
-        public TimeSpan InactivititySignOutTime
+        public TimeSpan InactivitySignOutTime
         {
-            get { return Load(nameof(InactivititySignOutTime), TimeSpan.Zero); }
-            set { Store(nameof(InactivititySignOutTime), value); }
+            get { return Load(nameof(InactivitySignOutTime), TimeSpan.Zero); }
+            set { Store(nameof(InactivitySignOutTime), value); }
         }
 
         public T Load<T>(string key)

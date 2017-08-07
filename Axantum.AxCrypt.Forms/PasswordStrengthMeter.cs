@@ -136,6 +136,7 @@ namespace Axantum.AxCrypt.Forms
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "PasswordStrength")]
         private Color Color()
         {
             switch (_viewModel.PasswordStrength)

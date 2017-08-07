@@ -30,11 +30,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction DoAll { get { return new AsyncDelegateAction<object>((o) => DoAllAsync()); } }
 
-        public Func<CancelEventArgs, Task> CreateAccount;
+        public Func<CancelEventArgs, Task> CreateAccount { get; set; }
 
-        public Func<CancelEventArgs, Task> VerifyAccount;
+        public Func<CancelEventArgs, Task> VerifyAccount { get; set; }
 
-        public Func<CancelEventArgs, Task> RequestEmail;
+        public Func<CancelEventArgs, Task> RequestEmail { get; set; }
 
         public Func<Task> SignInCommandAsync { get; set; }
 

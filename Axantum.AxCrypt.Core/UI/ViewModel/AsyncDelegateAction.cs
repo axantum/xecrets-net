@@ -13,6 +13,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private Func<T, Task<bool>> _canExecuteMethodAsync;
 
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public AsyncDelegateAction(Func<T, Task> executeMethodAsync, Func<T, Task<bool>> canExecuteMethodAsync)
         {
             if (executeMethodAsync == null)

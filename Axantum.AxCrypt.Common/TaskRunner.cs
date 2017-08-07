@@ -46,6 +46,7 @@ namespace Axantum.AxCrypt.Common
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public static T WaitFor<T>(Func<Task<T>> task)
         {
             try
