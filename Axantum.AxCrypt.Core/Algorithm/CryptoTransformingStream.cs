@@ -39,7 +39,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Algorithm
 {
-    public class CryptoTransformingStream : CryptoStream
+    public class CryptoTransformingStream : CryptoStreamBase
     {
         private Stream _outStream;
 
@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Algorithm
         {
         }
 
-        public override CryptoStream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
+        public override CryptoStreamBase Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
         {
             if (stream == null)
             {

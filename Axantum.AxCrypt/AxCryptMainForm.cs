@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt
             ExecuteCommandLine();
         }
 
-        private void EnsureFileAssociation()
+        private static void EnsureFileAssociation()
         {
             if (New<InstallationVerifier>().IsApplicationInstalled && !New<InstallationVerifier>().IsFileAssociationOk)
             {
@@ -175,7 +175,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void CheckLavasoftWebCompanionExistence()
+        private static void CheckLavasoftWebCompanionExistence()
         {
             if (New<InstallationVerifier>().IsLavasoftApplicationInstalled)
             {
@@ -905,7 +905,7 @@ namespace Axantum.AxCrypt
             };
         }
 
-        private void WireDownEvents()
+        private static void WireDownEvents()
         {
         }
 
@@ -1261,7 +1261,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private Task ShowSignedInInformationAsync(CommandVerb verb)
+        private static Task ShowSignedInInformationAsync(CommandVerb verb)
         {
             switch (verb)
             {
@@ -1573,13 +1573,13 @@ namespace Axantum.AxCrypt
 
         private async Task ShutDownAndExit()
         {
-            await new ApplicationManager().ShutDownBackgroundSafe();
+            await new ApplicationManager().ShutdownBackgroundSafe();
 
             await EncryptPendingFiles();
 
             await WarnIfAnyDecryptedFiles();
 
-            New<IUIThread>().Exit();
+            New<IUIThread>().ExitApplication();
         }
 
         #region ToolStrip
@@ -1918,9 +1918,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ManageAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void ManageAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ManageAccountDialog dialog = new ManageAccountDialog(this, Resolve.UserSettings))
+            using (ManageAccountDialog dialog = await ManageAccountDialog.CreateAsync(this))
             {
                 dialog.ShowDialog();
             }

@@ -283,10 +283,10 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(FewFilesThreshold), value); }
         }
 
-        public DoNotShowAgainOptions DontShowAgain
+        public DoNotShowAgainOptions DoNotShowAgain
         {
-            get { return (DoNotShowAgainOptions)Load(nameof(DontShowAgain), (int)DoNotShowAgainOptions.None); }
-            set { Store(nameof(DontShowAgain), (int)value); }
+            get { return (DoNotShowAgainOptions)Load(nameof(DoNotShowAgain), (int)DoNotShowAgainOptions.None); }
+            set { Store(nameof(DoNotShowAgain), (int)value); }
         }
 
         public TimeSpan InactivitySignOutTime

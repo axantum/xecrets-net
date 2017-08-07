@@ -11,6 +11,7 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class OpenFileProperties
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public static OpenFileProperties Create(IDataStore dataStore)
         {
             if (dataStore == null)

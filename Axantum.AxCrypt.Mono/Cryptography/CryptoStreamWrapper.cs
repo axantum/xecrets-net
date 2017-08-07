@@ -10,13 +10,13 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    internal class CryptoStreamWrapper : CryptoStream
+    internal class CryptoStreamWrapper : CryptoStreamBase
     {
         private System.Security.Cryptography.CryptoStream _cryptoStream;
 
         private System.Security.Cryptography.ICryptoTransform _cryptoTransform;
 
-        public override CryptoStream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
+        public override CryptoStreamBase Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
         {
             _cryptoTransform = new CryptoTransformUnwrapper(transform);
 

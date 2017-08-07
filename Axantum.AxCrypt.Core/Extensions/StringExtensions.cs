@@ -358,9 +358,9 @@ namespace Axantum.AxCrypt.Core.Extensions
             New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, title, message));
         }
 
-        public static void ShowWarning(this string message, string title, DoNotShowAgainOptions dontShowAgainFlag)
+        public static void ShowWarning(this string message, string title, DoNotShowAgainOptions doNotShowAgainOption)
         {
-            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, title, message, dontShowAgainFlag));
+            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, title, message, doNotShowAgainOption));
         }
     }
 }

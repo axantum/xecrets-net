@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt
             Application.DoEvents();
         }
 
-        public override void Exit()
+        public override void ExitApplication()
         {
             Application.Exit();
         }

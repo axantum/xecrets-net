@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private SessionNotification MergeNotificationFullNames(SessionNotification currentNotification, SessionNotification nextNotification)
+        private static SessionNotification MergeNotificationFullNames(SessionNotification currentNotification, SessionNotification nextNotification)
         {
             IEnumerable<string> allFullNames = currentNotification.FullNames.Union(nextNotification.FullNames);
 

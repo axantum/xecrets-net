@@ -115,11 +115,11 @@ namespace Axantum.AxCrypt.Mono
             get { return _switch != null && _switch.Level >= TraceLevel.Verbose; }
         }
 
-        public virtual void LogFatal(string message)
+        public virtual void LogFatal(string fatalLog)
         {
             if (IsFatalEnabled)
             {
-                Trace.WriteLine("{1} Fatal: {0}".InvariantFormat(message, AppName));
+                Trace.WriteLine("{1} Fatal: {0}".InvariantFormat(fatalLog, AppName));
             }
         }
 

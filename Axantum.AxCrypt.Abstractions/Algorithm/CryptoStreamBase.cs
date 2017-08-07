@@ -33,9 +33,9 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Abstractions.Algorithm
 {
-    public abstract class CryptoStream : Stream
+    public abstract class CryptoStreamBase : Stream
     {
-        public abstract CryptoStream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode);
+        public abstract CryptoStreamBase Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode);
 
         public abstract void FinalFlush();
     }

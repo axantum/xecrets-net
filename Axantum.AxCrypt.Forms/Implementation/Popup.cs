@@ -33,7 +33,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
         private PopupButtons ShowSyncInternal(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag)
         {
             PopupButtons result = PopupButtons.None;
-            if (dontShowAgainFlag != DoNotShowAgainOptions.None && New<UserSettings>().DontShowAgain.HasFlag(dontShowAgainFlag))
+            if (dontShowAgainFlag != DoNotShowAgainOptions.None && New<UserSettings>().DoNotShowAgain.HasFlag(dontShowAgainFlag))
             {
                 return result;
             }
@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
                 if (dontShowAgainFlag != DoNotShowAgainOptions.None && dialog.dontShowThisAgain.Checked)
                 {
-                    New<UserSettings>().DontShowAgain = New<UserSettings>().DontShowAgain | dontShowAgainFlag;
+                    New<UserSettings>().DoNotShowAgain = New<UserSettings>().DoNotShowAgain | dontShowAgainFlag;
                 }
             }
 

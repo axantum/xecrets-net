@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt.Core.UI
             return text;
         }
 
-        private string GetLicenseStatus(bool isLoggedOn)
+        private static string GetLicenseStatus(bool isLoggedOn)
         {
             if (!isLoggedOn)
             {
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.UI
             return Texts.LicenseFreeNameText;
         }
 
-        private string GetLogonStatus(bool isLoggedOn)
+        private static string GetLogonStatus(bool isLoggedOn)
         {
             if (isLoggedOn)
             {

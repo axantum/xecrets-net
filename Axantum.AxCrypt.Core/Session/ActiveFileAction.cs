@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Session
                             activeFile = await CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress);
                             if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                             {
-                                activeFile = TryDelete(activeFile, encryptedFileLock, decryptedFileLock, progress);
+                                activeFile = TryDelete(activeFile, decryptedFileLock, progress);
                             }
                         }
                     }
@@ -247,7 +247,7 @@ namespace Axantum.AxCrypt.Core.Session
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile);
             activeFile = await CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress);
-            activeFile = CheckIfTimeToDelete(activeFile, encryptedFileLock, decryptedFileLock, progress);
+            activeFile = CheckIfTimeToDelete(activeFile, decryptedFileLock, progress);
             return activeFile;
         }
 
@@ -340,10 +340,9 @@ namespace Axantum.AxCrypt.Core.Session
             return await activeFile.CheckUpdateDecrypted(encryptedFileLock, decryptedFileLock, progress);
         }
 
-        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
+        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, FileLock decryptedFileLock, IProgressContext progress)
         {
-            if (OS.Current.Platform != Platform.WindowsDesktop &&
-                OS.Current.Platform != Platform.Linux)
+            if (OS.Current.Platform != Platform.WindowsDesktop && OS.Current.Platform != Platform.Linux)
             {
                 return activeFile;
             }
@@ -364,11 +363,11 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            activeFile = TryDelete(activeFile, encryptedFileLock, decryptedFileLock, progress);
+            activeFile = TryDelete(activeFile, decryptedFileLock, progress);
             return activeFile;
         }
 
-        private static ActiveFile TryDelete(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
+        private static ActiveFile TryDelete(ActiveFile activeFile, FileLock decryptedFileLock, IProgressContext progress)
         {
             if (Resolve.ProcessState.HasActiveProcess(activeFile))
             {

@@ -15,10 +15,10 @@ namespace Axantum.AxCrypt.Api.Response
         {
         }
 
-        public WhatIPResponse(string ipAddress)
+        public WhatIPResponse(string address)
         {
             Message = "OK";
-            IPAddress = ipAddress;
+            IPAddress = address;
         }
 
         [JsonProperty("Ip")]

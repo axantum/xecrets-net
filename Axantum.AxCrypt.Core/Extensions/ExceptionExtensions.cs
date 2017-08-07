@@ -46,6 +46,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static void RethrowFileOperation(this Exception ex, string displayContext)
         {
+            if (ex == null)
+            {
+                throw new ArgumentNullException(nameof(ex));
+            }
+
             AxCryptException aex = ex as AxCryptException;
             if (aex != null)
             {

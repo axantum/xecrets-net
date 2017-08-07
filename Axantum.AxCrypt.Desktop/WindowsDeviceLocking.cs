@@ -13,7 +13,7 @@ using Axantum.AxCrypt.Abstractions;
 
 namespace Axantum.AxCrypt.Desktop
 {
-    public class WindowsDeviceLocking
+    public class WindowsDeviceLocking : IDisposable
     {
         public event EventHandler<DeviceLockedEventArgs> DeviceWasLocked;
 
@@ -40,6 +40,10 @@ namespace Axantum.AxCrypt.Desktop
             _timer.Start();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "msg")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "w")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "l")]
         public void Message(int msg, IntPtr wParam, IntPtr lParam)
         {
             if (msg != WM_POWERBROADCAST)

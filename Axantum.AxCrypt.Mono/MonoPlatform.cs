@@ -36,32 +36,33 @@ namespace Axantum.AxCrypt.Mono
 {
     public class MonoPlatform : IPlatform
     {
-		private Lazy<bool> isMac = new Lazy<bool>(IsMac);
+        private Lazy<bool> isMac = new Lazy<bool>(IsMac);
 
-		private static bool IsMac()
-		{
-			try
-			{
-				using (Process p = Process.Start(
-					new ProcessStartInfo
-					{
-						FileName = "uname",
-						RedirectStandardOutput = true,
-					    UseShellExecute = false,
-					}
-				))
-				{
-					string output = p.StandardOutput.ReadToEnd().Trim();
-					return output == "Darwin";
-				}
-			}
-			catch
-			{
-				return false;
-			}
-		}
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private static bool IsMac()
+        {
+            try
+            {
+                using (Process p = Process.Start(
+                    new ProcessStartInfo
+                    {
+                        FileName = "uname",
+                        RedirectStandardOutput = true,
+                        UseShellExecute = false,
+                    }
+                ))
+                {
+                    string output = p.StandardOutput.ReadToEnd().Trim();
+                    return output == "Darwin";
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
-		public Platform Platform
+        public Platform Platform
         {
             get
             {
@@ -75,10 +76,10 @@ namespace Axantum.AxCrypt.Mono
                         return Platform.WindowsDesktop;
 
                     case PlatformID.MacOSX:
-						return  Platform.MacOsx;
+                        return Platform.MacOsx;
 
                     case PlatformID.Unix:
-						return isMac.Value? Platform.MacOsx : Platform.Linux;
+                        return isMac.Value ? Platform.MacOsx : Platform.Linux;
 
                     case PlatformID.WinCE:
                         return Platform.WindowsMobile;

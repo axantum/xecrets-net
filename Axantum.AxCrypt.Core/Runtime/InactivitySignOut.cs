@@ -9,14 +9,14 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         private DelayedAction _signOutDelayedAction;
 
-        public InactivitySignOut(TimeSpan timeOut)
+        public InactivitySignOut(TimeSpan timeout)
         {
-            if (timeOut == TimeSpan.Zero || !New<LicensePolicy>().Capabilities.Has(LicenseCapability.InactivitySignOut))
+            if (timeout == TimeSpan.Zero || !New<LicensePolicy>().Capabilities.Has(LicenseCapability.InactivitySignOut))
             {
                 return;
             }
 
-            _signOutDelayedAction = new DelayedAction(New<IDelayTimer>(), timeOut);
+            _signOutDelayedAction = new DelayedAction(New<IDelayTimer>(), timeout);
             _signOutDelayedAction.Action += SignOutAction;
             _signOutDelayedAction.StartIdleTimer();
         }

@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             DateTime startTime = New<INow>().Utc;
             WrapIterator wrapIterator = new WrapIterator(cryptoId);
 
-            long iterationsPerSecond = IterationsPerSecond(startTime, cryptoId, wrapIterator.Iterate);
+            long iterationsPerSecond = IterationsPerSecond(startTime, wrapIterator.Iterate);
             long defaultIterations = iterationsPerSecond / 20;
 
             if (defaultIterations < 5000)
@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             return defaultIterations;
         }
 
-        private static long IterationsPerSecond(DateTime startTime, Guid cryptoId, Action<long> iterate)
+        private static long IterationsPerSecond(DateTime startTime, Action<long> iterate)
         {
             long iterationsIncrement = 1000;
             long totalIterations = 0;

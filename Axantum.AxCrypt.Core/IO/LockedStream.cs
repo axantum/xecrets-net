@@ -41,6 +41,11 @@ namespace Axantum.AxCrypt.Core.IO
 
         public static LockedStream OpenWrite(IDataStore dataStore)
         {
+            if (dataStore == null)
+            {
+                throw new ArgumentNullException(nameof(dataStore));
+            }
+
             LockedStream lockedStream = new LockedStream();
             lockedStream._fileLock = New<FileLocker>().Acquire(dataStore);
             lockedStream.WrappedStream = dataStore.OpenWrite();
@@ -50,6 +55,11 @@ namespace Axantum.AxCrypt.Core.IO
 
         public static LockedStream OpenRead(IDataStore dataStore)
         {
+            if (dataStore == null)
+            {
+                throw new ArgumentNullException(nameof(dataStore));
+            }
+
             LockedStream lockedStream = new LockedStream();
             lockedStream._fileLock = New<FileLocker>().Acquire(dataStore);
             lockedStream.WrappedStream = dataStore.OpenRead();

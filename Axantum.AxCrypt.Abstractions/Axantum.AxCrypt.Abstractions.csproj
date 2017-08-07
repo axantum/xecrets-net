@@ -50,7 +50,7 @@
     <Compile Include="Algorithm\Aes.cs" />
     <Compile Include="Algorithm\AxCryptHMACSHA1.cs" />
     <Compile Include="Algorithm\CipherMode.cs" />
-    <Compile Include="Algorithm\CryptoStream.cs" />
+    <Compile Include="Algorithm\CryptoStreamBase.cs" />
     <Compile Include="Algorithm\CryptoStreamMode.cs" />
     <Compile Include="Algorithm\HashAlgorithm.cs" />
     <Compile Include="Algorithm\HMAC.cs" />

@@ -12,6 +12,11 @@ namespace Axantum.AxCrypt.Core.UI
     {
         protected override Task<PremiumStatus> TryPremium(LogOnIdentity identity, PremiumInfo premiumInfo)
         {
+            if (premiumInfo == null)
+            {
+                throw new ArgumentNullException(nameof(premiumInfo));
+            }
+
             return Task.FromResult(premiumInfo.PremiumStatus);
         }
     }

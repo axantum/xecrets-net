@@ -21,25 +21,17 @@ namespace Axantum.AxCrypt
     {
         private ManageAccountViewModel _viewModel;
 
-        private UserSettings _userSettings;
-
         public ManageAccountDialog()
         {
             InitializeComponent();
         }
 
-        public ManageAccountDialog(Form parent, UserSettings userSettings)
-            : this()
-        {
-        }
-
-        public static async Task<ManageAccountDialog> CreateAsync(Form parent, UserSettings userSettings)
+        public static async Task<ManageAccountDialog> CreateAsync(Form parent)
         {
             ManageAccountDialog mad = new ManageAccountDialog();
 
             mad.InitializeStyle(parent);
 
-            mad._userSettings = userSettings;
             AccountStorage userKeyPairs = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             mad._viewModel = await ManageAccountViewModel.CreateAsync(userKeyPairs);
             mad._viewModel.BindPropertyChanged<IEnumerable<AccountProperties>>(nameof(ManageAccountViewModel.AccountProperties), mad.ListAccountEmails);

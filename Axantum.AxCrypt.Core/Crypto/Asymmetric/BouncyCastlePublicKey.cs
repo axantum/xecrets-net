@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             return TransformInternal(buffer, cipher);
         }
 
-        private byte[] TransformInternal(byte[] buffer, IAsymmetricBlockCipher cipher)
+        private static byte[] TransformInternal(byte[] buffer, IAsymmetricBlockCipher cipher)
         {
             byte[] transformed = cipher.ProcessBlock(buffer, 0, buffer.Length);
 

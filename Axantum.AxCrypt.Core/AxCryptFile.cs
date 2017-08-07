@@ -988,6 +988,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private void MoveTemporaryToDestinationWithBackupAndWipe(FileLock lockedTemporary, FileLock destinationFileLock, IProgressContext progress)
         {
             using (FileLock lockedBackup = MakeAlternatePath(destinationFileLock.DataStore, ".bak"))
@@ -1032,6 +1033,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private static void EnsureConsistencyOfDestination(FileLock destinationFileLock)
         {
             try

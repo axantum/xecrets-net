@@ -15,20 +15,20 @@ namespace Axantum.AxCrypt.Core.Runtime
 {
     public class LicenseValidation
     {
-        public async Task<string> SignAsync(UserAccount ua)
+        public async Task<string> SignAsync(UserAccount userAccount)
         {
-            if (ua == null)
+            if (userAccount == null)
             {
-                throw new ArgumentNullException(nameof(ua));
+                throw new ArgumentNullException(nameof(userAccount));
             }
 
-            if (ua.SubscriptionLevel != SubscriptionLevel.Premium)
+            if (userAccount.SubscriptionLevel != SubscriptionLevel.Premium)
             {
                 return string.Empty;
             }
 
             IAsymmetricPrivateKey privateKey = await New<ILicenseAuthority>().PrivateKeyAsync();
-            byte[] signature = new Signer(privateKey).Sign(SignedFields(ua));
+            byte[] signature = new Signer(privateKey).Sign(SignedFields(userAccount));
 
             return Convert.ToBase64String(signature);
         }

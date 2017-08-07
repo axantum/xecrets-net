@@ -16,20 +16,29 @@ namespace Axantum.AxCrypt.Core.Session
             _publicKeyUpdateStatus = new Dictionary<PublicKeyThumbprint, PublicKeyUpdateStatus>();
         }
 
-        public PublicKeyUpdateStatus this[UserPublicKey index] {
-            get
+        public PublicKeyUpdateStatus Status(UserPublicKey userPublicKey)
+        {
+            if (userPublicKey == null)
             {
-                PublicKeyUpdateStatus value;
-                if (_publicKeyUpdateStatus.TryGetValue(index.PublicKey.Thumbprint, out value))
-                {
-                    return value;
-                }
-                return PublicKeyUpdateStatus.NotRecentlyUpdated;    
+                throw new ArgumentNullException(nameof(userPublicKey));
             }
-            set
+
+            PublicKeyUpdateStatus value;
+            if (_publicKeyUpdateStatus.TryGetValue(userPublicKey.PublicKey.Thumbprint, out value))
             {
-                _publicKeyUpdateStatus[index.PublicKey.Thumbprint] = value;
+                return value;
             }
+            return PublicKeyUpdateStatus.NotRecentlyUpdated;
+        }
+
+        public void SetStatus(UserPublicKey userPublicKey, PublicKeyUpdateStatus status)
+        {
+            if (userPublicKey == null)
+            {
+                throw new ArgumentNullException(nameof(userPublicKey));
+            }
+
+            _publicKeyUpdateStatus[userPublicKey.PublicKey.Thumbprint] = status;
         }
 
         public void Clear()

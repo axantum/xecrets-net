@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
             return aes;
         }
 
-        public static CryptoStream CryptoStream()
+        public static CryptoStreamBase CryptoStream()
         {
             return new CryptoTransformingStream();
         }

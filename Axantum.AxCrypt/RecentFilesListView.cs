@@ -105,6 +105,7 @@ namespace Axantum.AxCrypt
             this.WithWaitCursor(() => UpdateRecentFilesUnsynchronized(files), () => _updateRecentFilesInProgress = false);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private void UpdateRecentFilesUnsynchronized(IEnumerable<ActiveFile> files)
         {
             BeginUpdate();
@@ -122,7 +123,8 @@ namespace Axantum.AxCrypt
                 {
                     try
                     {
-                        UpdateOneItem(currentFiles, file, i++);
+                        UpdateOneItem(currentFiles, file);
+                        ++i;
                     }
                     catch (Exception ex)
                     {
@@ -166,7 +168,7 @@ namespace Axantum.AxCrypt
             return false;
         }
 
-        private void UpdateOneItem(Dictionary<string, int> currentFiles, ActiveFile file, int index)
+        private void UpdateOneItem(Dictionary<string, int> currentFiles, ActiveFile file)
         {
             string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
             ListViewItem item = new ListViewItem(text);

@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<Aes>(() => new Axantum.AxCrypt.Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
             TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
             TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
-            TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
+            TypeMap.Register.New<CryptoStreamBase>(() => PortableFactory.CryptoStream());
             TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new CachingAccountService(new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new ApiAccountService(new AxCryptApiClient(identity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout)))));
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));

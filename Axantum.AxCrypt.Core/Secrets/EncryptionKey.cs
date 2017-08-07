@@ -32,6 +32,7 @@
 
 using System;
 using System.Diagnostics;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Secrets
 {
@@ -57,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Secrets
                 throw new ArgumentNullException("passphrase");
             }
 
-            _bytes = TransientProtectedData.Create().Protect(passphrase);
+            _bytes = New<TransientProtectedData>().Protect(passphrase);
         }
 
         public EncryptionKey(EncryptionKey key)
@@ -77,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Secrets
         protected internal string DecryptPassphrase()
         {
             string keyString;
-            if (!TransientProtectedData.Create().TryUnprotect(_bytes, out keyString))
+            if (!New<TransientProtectedData>().TryUnprotect(_bytes, out keyString))
             {
                 return null;
             }

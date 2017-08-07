@@ -31,8 +31,9 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public abstract void Yield();
 
-        public abstract void Exit();
+        public abstract void ExitApplication();
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public void SendTo(Action action)
         {
             if (IsOn)

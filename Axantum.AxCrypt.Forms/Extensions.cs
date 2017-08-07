@@ -26,6 +26,19 @@ namespace Axantum.AxCrypt.Forms
 
         public static void WithWaitCursor(this Control control, Action action, Action final)
         {
+            if (control == null)
+            {
+                throw new ArgumentNullException(nameof(control));
+            }
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
+            if (final == null)
+            {
+                throw new ArgumentNullException(nameof(final));
+            }
+
             try
             {
                 control.UseWaitCursor = true;

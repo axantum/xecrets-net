@@ -285,6 +285,7 @@ namespace Axantum.AxCrypt.Core.UI
             return null;
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public FileOperationContext OpenFileLocation(string fileFullName)
         {
             ILauncher process;

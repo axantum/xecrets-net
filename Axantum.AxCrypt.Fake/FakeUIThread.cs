@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Fake
         {
         }
 
-        public void Exit()
+        public void ExitApplication()
         {
             throw new NotImplementedException();
         }

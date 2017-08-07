@@ -44,10 +44,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private NameOf _welcomeMessage;
 
-        public SignupSignInViewModel(ISignIn signIn, NameOf welcomeMesssage)
+        public SignupSignInViewModel(ISignIn signIn, NameOf welcomeMessage)
         {
             _signinState = signIn;
-            _welcomeMessage = welcomeMesssage;
+            _welcomeMessage = welcomeMessage;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();

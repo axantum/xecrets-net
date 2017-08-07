@@ -20,7 +20,7 @@ namespace Axantum.AxCrypt.Common
         /// </summary>
         /// <param name="versionRanges">The version ranges.</param>
         /// <returns></returns>
-        private List<Tuple<Version, Version>> ParseVersionRanges(string versionRanges)
+        private static List<Tuple<Version, Version>> ParseVersionRanges(string versionRanges)
         {
             versionRanges = versionRanges.Trim();
             string[] versions = versionRanges.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Common
             return versionRangeList;
         }
 
-        private Tuple<Version, Version> ParseVersionRange(string version)
+        private static Tuple<Version, Version> ParseVersionRange(string version)
         {
             string[] fromandto = version.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
             if (fromandto.Length < 1 || fromandto.Length > 2)
