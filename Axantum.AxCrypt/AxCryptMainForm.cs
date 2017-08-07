@@ -2024,26 +2024,15 @@ namespace Axantum.AxCrypt
 
         private async Task ShareKeysAsync(IEnumerable<string> fileNames)
         {
-            IEnumerable<Tuple<string, EncryptedProperties>> files = await ListValidAsync(fileNames);
-            IEnumerable<UserPublicKey> sharedWith = files.SelectMany(f => f.Item2.SharedKeyHolders).Distinct();
-            SharingListViewModel viewModel = new SharingListViewModel(sharedWith, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            SharingListViewModel viewModel = new SharingListViewModel(fileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 }
-                sharedWith = dialog.SharedWith;
             }
-
-            using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
-            {
-                sharedWith = New<KnownPublicKeys>().PublicKeys.Where(pk => sharedWith.Any(s => s.Email == pk.Email)).ToList();
-            }
-            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
-            await encryptionParameters.AddAsync(sharedWith);
-
-            await ChangeEncryptionAsync(files.Select(f => f.Item1), encryptionParameters);
+            await viewModel.ShareKeysAsync.ExecuteAsync(fileNames);
         }
 
         private async Task ChangeEncryptionAsync(IEnumerable<string> files, EncryptionParameters encryptionParameters)

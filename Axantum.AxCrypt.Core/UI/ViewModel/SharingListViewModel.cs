@@ -31,13 +31,11 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -67,6 +65,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction ShareKeysAsync { get; private set; }
 
         private Task _missingKeysLoader;
+
         public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
@@ -84,7 +83,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
 
             _missingKeysLoader = Task.Run(() => TryAddMissingUnsharedPublicKeysFromfileNamesAsync(files));
-
 
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
@@ -230,6 +228,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             return publicKeys;
         }
+
         private async Task<IEnumerable<Tuple<string, EncryptedProperties>>> ListValidAsync(IEnumerable<string> fileNames)
         {
             List<Tuple<string, EncryptedProperties>> files = new List<Tuple<string, EncryptedProperties>>();
@@ -244,10 +243,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             return files;
         }
+
         private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore)
         {
             return await Task.Run(() => EncryptedProperties.Create(dataStore));
         }
+
         private async Task ChangeEncryptionAsync(IEnumerable<string> files, EncryptionParameters encryptionParameters)
         {
             await Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), (IDataStore file, IProgressContext progress) =>
@@ -264,6 +265,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
                 });
         }
+
         public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext, string message)
         {
             switch (status)
@@ -357,6 +359,5 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             return false;
         }
-
     }
 }
