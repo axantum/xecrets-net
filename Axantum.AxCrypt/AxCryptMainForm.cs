@@ -400,7 +400,7 @@ namespace Axantum.AxCrypt
             Task.Run(() =>
             {
                 _commandLine.Execute();
-                ExplorerRefresh.Notify();
+                new ExplorerRefresh().Notify();
             });
         }
 

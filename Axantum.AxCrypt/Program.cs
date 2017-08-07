@@ -39,11 +39,8 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Desktop;
 using Axantum.AxCrypt.Forms;
-using Axantum.AxCrypt.Forms.Implementation;
-using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Mono.Portable;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -128,7 +125,7 @@ namespace Axantum.AxCrypt
                 return;
             }
             commandLine.Execute();
-            ExplorerRefresh.Notify();
+            new ExplorerRefresh().Notify();
         }
 
         private static bool EnsureNetVersionUsingNothingThatCrashesTheProcess()
@@ -172,7 +169,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<ICryptoPolicy>(() => New<LicensePolicy>().Capabilities.CryptoPolicy);
 
             TypeMap.Register.Singleton<LicensePolicy>(() => new LicensePolicy());
-            TypeMap.Register.Singleton<FontLoader>(() => new FontLoader(Resources.ResourceManager));
+            TypeMap.Register.Singleton<FontLoader>(() => new FontLoader());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.Singleton<KeyPairService>(() => new KeyPairService(0, 0, New<UserSettings>().AsymmetricKeyBits));
             TypeMap.Register.Singleton<ICache>(() => new ItemCache());

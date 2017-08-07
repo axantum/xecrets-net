@@ -1,13 +1,11 @@
 ﻿using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Desktop.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
-using System.Resources;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Desktop
@@ -26,16 +24,16 @@ namespace Axantum.AxCrypt.Desktop
             }
         }
 
-        public FontLoader(ResourceManager resourceManager)
+        public FontLoader()
         {
             if (!IsWindowsDesktop)
             {
                 return;
             }
-            AddFontFromResource(_privateFontCollection1, (byte[])resourceManager.GetObject("OpenSans_Light"));
-            AddFontFromResource(_privateFontCollection1, (byte[])resourceManager.GetObject("OpenSans_Regular"));
-            AddFontFromResource(_privateFontCollection1, (byte[])resourceManager.GetObject("OpenSans_Semibold"));
-            AddFontFromResource(_privateFontCollection2, (byte[])resourceManager.GetObject("OpenSans_Bold"));
+            AddFontFromResource(_privateFontCollection1, Resources.OpenSans_Light);
+            AddFontFromResource(_privateFontCollection1, Resources.OpenSans_Regular);
+            AddFontFromResource(_privateFontCollection1, Resources.OpenSans_Semibold);
+            AddFontFromResource(_privateFontCollection2, Resources.OpenSans_Bold);
         }
 
         public Font ContentText

@@ -103,10 +103,6 @@
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
     <None Include="Properties\AssemblyInfo.template" />
-    <None Include="resources\OpenSans-Bold.ttf" />
-    <None Include="resources\OpenSans-Light.ttf" />
-    <None Include="resources\OpenSans-Regular.ttf" />
-    <None Include="resources\OpenSans-Semibold.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
