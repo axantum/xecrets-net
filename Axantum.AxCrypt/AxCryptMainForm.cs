@@ -146,11 +146,11 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            SetupViewModelsAndNotificationsBeforeAnyNotificationsAreSent();
             CheckOfflineModeFirst();
             await GetApiVersionAsync();
             SetThisVersion();
             StartKeyPairService();
-            SetupViewModels();
             AttachLogListener();
             ConfigureUiOptions();
             SetupPathFilters();
@@ -431,11 +431,13 @@ namespace Axantum.AxCrypt
             };
         }
 
-        private void SetupViewModels()
+        private void SetupViewModelsAndNotificationsBeforeAnyNotificationsAreSent()
         {
+            New<LicensePolicy>();
             _mainViewModel = New<MainViewModel>();
             _fileOperationViewModel = New<FileOperationViewModel>();
             _knownFoldersViewModel = New<KnownFoldersViewModel>();
+            New<SessionNotify>().AddCommand(async (notification) => await New<SessionNotificationHandler>().HandleNotificationAsync(notification));
         }
 
         private void RegisterTypeFactories()
@@ -869,8 +871,6 @@ namespace Axantum.AxCrypt
 
         private void WireUpEvents()
         {
-            Resolve.SessionNotify.AddCommand(async (notification) => await New<SessionNotificationHandler>().HandleNotificationAsync(notification));
-
             _deviceLocking = new DeviceLocking(
                 async () =>
                 {
@@ -1016,7 +1016,11 @@ namespace Axantum.AxCrypt
                 }
                 if (_mainViewModel.DroppableAsWatchedFolder)
                 {
-                    ShowWatchedFolders(_mainViewModel.DragAndDropFiles);
+                    await PremiumFeatureActionAsync(LicenseCapability.SecureFolders, async () =>
+                    {
+                        ShowWatchedFoldersTab();
+                        await _mainViewModel.AddWatchedFolders.ExecuteAsync(_mainViewModel.DragAndDropFiles);
+                    });
                 }
             }, () => { });
         }
@@ -1227,7 +1231,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case CommandVerb.RandomRename:
-                    await PremiumFeatureAction(LicenseCapability.RandomRename, () => _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(e.Arguments));
+                    await PremiumFeatureActionAsync(LicenseCapability.RandomRename, () => _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(e.Arguments));
                     break;
 
                 case CommandVerb.Show:
@@ -1684,7 +1688,7 @@ namespace Axantum.AxCrypt
             await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity));
         }
 
-        private async Task PremiumFeatureAction(LicenseCapability requiredCapability, Func<Task> realHandler)
+        private async Task PremiumFeatureActionAsync(LicenseCapability requiredCapability, Func<Task> realHandler)
         {
             if (_mainViewModel.License.Has(requiredCapability))
             {
@@ -1895,15 +1899,12 @@ namespace Axantum.AxCrypt
 
         private void encryptedFoldersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowWatchedFolders(new string[0]);
+            ShowWatchedFoldersTab();
         }
 
-        private void ShowWatchedFolders(IEnumerable<string> additional)
+        private void ShowWatchedFoldersTab()
         {
-            using (WatchedFoldersDialog dialog = new WatchedFoldersDialog(this, additional))
-            {
-                dialog.ShowDialog();
-            }
+            _statusTabControl.SelectedIndex = 1;
         }
 
         private void CreateAccountToolStripMenuItem_Click(object sender, EventArgs e)
