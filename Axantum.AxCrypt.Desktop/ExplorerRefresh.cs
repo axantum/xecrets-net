@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Forms.Style
+namespace Axantum.AxCrypt.Desktop
 {
     public static class ExplorerRefresh
     {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
-namespace Axantum.AxCrypt.Forms.Implementation
+namespace Axantum.AxCrypt.Desktop
 {
     public class InternetState : IInternetState, IDisposable
     {

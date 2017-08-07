@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using static Axantum.AxCrypt.Forms.NativeMethods;
+using static Axantum.AxCrypt.Desktop.NativeMethods;
 
 namespace Axantum.AxCrypt.Forms.Implementation
 {

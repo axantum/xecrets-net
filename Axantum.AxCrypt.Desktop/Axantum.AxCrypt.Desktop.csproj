@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Security" />
     <Reference Include="System.XML" />
@@ -52,8 +53,12 @@
   <ItemGroup>
     <Compile Include="Cryptography\HMACSHA512CryptoServiceProvider.cs" />
     <Compile Include="DesktopFactory.cs" />
+    <Compile Include="ExplorerRefresh.cs" />
     <Compile Include="FileWatcher.cs" />
+    <Compile Include="FontLoader.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="InstallationVerifier.cs" />
+    <Compile Include="InternetState.cs" />
     <Compile Include="ItemCache.cs" />
     <Compile Include="KnownFoldersDiscovery.cs" />
     <Compile Include="NativeMethods.cs" />

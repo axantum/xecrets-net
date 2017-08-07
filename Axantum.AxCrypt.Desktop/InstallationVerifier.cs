@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using Axantum.AxCrypt.Core.Runtime;
 using Microsoft.Win32;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Axantum.AxCrypt.Core.IO;
 using System.IO;
 
-namespace Axantum.AxCrypt.Forms
+namespace Axantum.AxCrypt.Desktop
 {
     public class InstallationVerifier
     {

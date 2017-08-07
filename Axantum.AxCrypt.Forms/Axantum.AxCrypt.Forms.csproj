@@ -65,10 +65,8 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Implementation\DeviceLocked.cs" />
     <Compile Include="Implementation\FileFolderSelection.cs" />
-    <Compile Include="Implementation\InternetState.cs" />
     <Compile Include="Implementation\Popup.cs" />
     <Compile Include="Implementation\FormsTypes.cs" />
-    <Compile Include="InstallationVerifier.cs" />
     <Compile Include="MessageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,7 +74,6 @@
       <DependentUpon>MessageDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="MouseDownFilter.cs" />
-    <Compile Include="NativeMethods.cs" />
     <Compile Include="NewPassphraseDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,8 +97,6 @@
     </Compile>
     <Compile Include="Style\AxCryptProfessionalColorTable.cs" />
     <Compile Include="Style\AxCryptToolStripProfessionalRenderer.cs" />
-    <Compile Include="Style\ExplorerRefresh.cs" />
-    <Compile Include="Style\FontLoader.cs" />
     <Compile Include="Style\Styling.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
