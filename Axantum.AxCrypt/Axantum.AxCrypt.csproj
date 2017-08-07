@@ -87,7 +87,6 @@
     <Compile Include="AxCryptMainForm.Designer.cs">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClassicLicensePolicy.cs" />
     <Compile Include="DesktopVersion.cs" />
     <Compile Include="KnownFolderImageProvider.cs" />
     <Compile Include="PremiumLinkLabel.cs">

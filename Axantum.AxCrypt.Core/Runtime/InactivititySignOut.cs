@@ -41,7 +41,10 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 return;
             }
-            _signOutDelayedAction?.Dispose();
+            if (_signOutDelayedAction != null)
+            {
+                _signOutDelayedAction.Dispose();
+            }
             _signOutDelayedAction = null;
         }
 

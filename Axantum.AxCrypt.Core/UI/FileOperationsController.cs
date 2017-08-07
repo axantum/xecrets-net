@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <summary>
         /// Raised when a new KnowKey is added.
         /// </summary>
-        public AsyncDelegateAction<FileOperationEventArgs> KnownKeyAdded;
+        public AsyncDelegateAction<FileOperationEventArgs> KnownKeyAdded { get; set; }
 
         protected virtual async Task OnKnownKeyAdded(FileOperationEventArgs e)
         {

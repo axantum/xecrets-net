@@ -39,6 +39,7 @@ using static Axantum.AxCrypt.Common.FrameworkTypeExtensions;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "It's actually true, and this should be refactored later.")]
     public class FileOperationViewModel : ViewModelBase
     {
         private FileSystemState _fileSystemState;

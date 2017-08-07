@@ -440,6 +440,8 @@ namespace Axantum.AxCrypt
             New<SessionNotify>().AddCommand(async (notification) => await New<SessionNotificationHandler>().HandleNotificationAsync(notification));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "It's not actually complex since it's just a registry.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "It's not actually complex since it's just a registry.")]
         private void RegisterTypeFactories()
         {
             TypeMap.Register.Singleton<IUIThread>(() => new UIThread(this));
@@ -1055,17 +1057,18 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewLogOnForEncryptedFile(LogOnEventArgs e)
         {
-            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, Texts.NewPassphraseDialogTitle, e.Passphrase.Text, e.EncryptedFileFullName))
+            NewPasswordViewModel viewModel = new NewPasswordViewModel(e.Passphrase.Text, e.EncryptedFileFullName);
+            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, Texts.NewPassphraseDialogTitle, viewModel))
             {
-                passphraseDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
+                viewModel.ShowPassword = e.DisplayPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(this);
-                if (dialogResult != DialogResult.OK || passphraseDialog.PassphraseTextBox.Text.Length == 0)
+                e.DisplayPassphrase = viewModel.ShowPassword;
+                if (dialogResult != DialogResult.OK || viewModel.PasswordText.Length == 0)
                 {
                     e.Cancel = true;
                     return;
                 }
-                e.DisplayPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                e.Passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);
+                e.Passphrase = new Passphrase(viewModel.PasswordText);
                 e.Name = String.Empty;
             }
             return;

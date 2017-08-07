@@ -53,20 +53,17 @@ namespace Axantum.AxCrypt.Forms
 
         public static async Task<bool> ChangePasswordDialogAsync(this Form parent, ManageAccountViewModel viewModel)
         {
-            string passphrase;
-            using (NewPassphraseDialog dialog = new NewPassphraseDialog(parent, Texts.ChangePassphraseDialogTitle, String.Empty, String.Empty))
+            NewPasswordViewModel newPasswordviewModel = new NewPasswordViewModel(String.Empty, String.Empty);
+            using (NewPassphraseDialog dialog = new NewPassphraseDialog(parent, Texts.ChangePassphraseDialogTitle, newPasswordviewModel))
             {
-                dialog.ShowPassphraseCheckBox.Checked = New<UserSettings>().DisplayEncryptPassphrase;
                 DialogResult dialogResult = dialog.ShowDialog(parent);
-                if (dialogResult != DialogResult.OK || dialog.PassphraseTextBox.Text.Length == 0)
+                if (dialogResult != DialogResult.OK || newPasswordviewModel.PasswordText.Length == 0)
                 {
                     return false;
                 }
-                New<UserSettings>().DisplayEncryptPassphrase = dialog.ShowPassphraseCheckBox.Checked;
-                passphrase = dialog.PassphraseTextBox.Text;
             }
             viewModel.ChangePasswordCompleteAsync = async (success) => { if (!success) await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.MessageErrorTitle, Texts.ChangePasswordError); };
-            await viewModel.ChangePassphraseAsync.ExecuteAsync(passphrase);
+            await viewModel.ChangePassphraseAsync.ExecuteAsync(newPasswordviewModel.PasswordText);
             return viewModel.LastChangeStatus;
         }
     }

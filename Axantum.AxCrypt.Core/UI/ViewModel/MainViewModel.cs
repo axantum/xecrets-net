@@ -368,12 +368,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             FilesArePending = openFiles.Count > 0 || filesFiles.SelectMany(file => file).Any();
         }
 
-        private void SetLogOnState(bool isLoggedOn)
-        {
-            LoggedOn = isLoggedOn;
-            EncryptFileEnabled = isLoggedOn || !License.Has(LicenseCapability.EncryptNewFiles);
-        }
-
         private async Task ClearPassphraseMemoryAction()
         {
             IDataStore fileSystemStateInfo = Resolve.FileSystemState.PathInfo;

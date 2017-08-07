@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction ChangePassphraseAsync { get; private set; }
 
-        public Func<bool, Task> ChangePasswordCompleteAsync = (success) => Constant.CompletedTask;
+        public Func<bool, Task> ChangePasswordCompleteAsync { get; set; } = (success) => Constant.CompletedTask;
 
         private AccountStorage _accountStorage;
 
