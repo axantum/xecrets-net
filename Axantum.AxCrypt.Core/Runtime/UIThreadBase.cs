@@ -1,13 +1,13 @@
 ﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Diagnostics;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -48,7 +48,11 @@ namespace Axantum.AxCrypt.Core.Runtime
 #if DEBUG
                 Debugger.Break();
 #endif
-                throw new InvalidOperationException("Can't invoke synchronously on UI thread when it's already blocked.");
+                while (Blocked)
+                {
+                    New<ISleep>().Time(TimeSpan.FromMilliseconds(1));
+                    Yield();
+                }
             }
 
             Exception exception = null;
@@ -80,7 +84,11 @@ namespace Axantum.AxCrypt.Core.Runtime
 #if DEBUG
                 Debugger.Break();
 #endif
-                throw new InvalidOperationException("Can't invoke synchronously on UI thread when it's already blocked.");
+                while (Blocked)
+                {
+                    await Task.Delay(1);
+                    Yield();
+                }
             }
 
             TaskCompletionSource<Exception> completion = new TaskCompletionSource<Exception>();
