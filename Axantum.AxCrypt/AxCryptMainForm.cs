@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Ax")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
-    public partial class AxCryptMainForm : Form, IStatusChecker, ISignIn
+    public partial class AxCryptMainForm : Form, ISignIn
     {
         private MainViewModel _mainViewModel;
 
@@ -442,7 +442,7 @@ namespace Axantum.AxCrypt
         {
             TypeMap.Register.Singleton<IUIThread>(() => new UIThread(this));
             TypeMap.Register.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
-            TypeMap.Register.Singleton<IStatusChecker>(() => this);
+            TypeMap.Register.Singleton<IStatusChecker>(() => new StatusCheck());
             TypeMap.Register.Singleton<IDataItemSelection>(() => new FileFolderSelection(this));
             TypeMap.Register.Singleton<IDeviceLocked>(() => new DeviceLocked());
             TypeMap.Register.Singleton<IInternetState>(() => new InternetState());
@@ -451,7 +451,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<InactivititySignOut>(() => new InactivititySignOut(New<UserSettings>().InactivititySignOutTime));
             TypeMap.Register.Singleton<MouseDownFilter>(() => new MouseDownFilter(this));
 
-            TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), this));
+            TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), New<IStatusChecker>()));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
             TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities, Resolve.ParallelFileOperation, New<IStatusChecker>(), New<IdentityViewModel>()));
             TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState, Resolve.UserSettings));
@@ -1435,11 +1435,6 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore)
-        {
-            return await Task.Run(() => EncryptedProperties.Create(dataStore));
-        }
-
         private void UpdateKnownFolders(IEnumerable<KnownFolder> folders)
         {
             GetKnownFoldersToolItems().Skip(1).ToList().ForEach(f => _mainToolStrip.Items.Remove(f));
@@ -1485,100 +1480,6 @@ namespace Axantum.AxCrypt
                 buttons.Add(_mainToolStrip.Items[i++]);
             }
             return buttons;
-        }
-
-        public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext, string message)
-        {
-            switch (status)
-            {
-                case ErrorStatus.Success:
-                    return true;
-
-                case ErrorStatus.UnspecifiedError:
-                    Texts.FileOperationFailed.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-
-                case ErrorStatus.FileAlreadyExists:
-                    Texts.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
-                    break;
-
-                case ErrorStatus.FileDoesNotExist:
-                    Texts.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
-                    break;
-
-                case ErrorStatus.CannotWriteDestination:
-                    Texts.CannotWrite.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
-                    break;
-
-                case ErrorStatus.CannotStartApplication:
-                    Texts.CannotStartApplication.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-
-                case ErrorStatus.InconsistentState:
-                    Texts.InconsistentState.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-
-                case ErrorStatus.InvalidKey:
-                    Texts.InvalidKey.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-
-                case ErrorStatus.Canceled:
-                    break;
-
-                case ErrorStatus.Exception:
-                    string msg = Texts.Exception.InvariantFormat(displayContext);
-                    if (!string.IsNullOrEmpty(message))
-                    {
-                        msg = "{0} [{1}]".InvariantFormat(msg, message);
-                    }
-                    msg.ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-
-                case ErrorStatus.InvalidPath:
-                    Texts.InvalidPath.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-
-                case ErrorStatus.FolderAlreadyWatched:
-                    Texts.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-
-                case ErrorStatus.FileLocked:
-                    Texts.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
-                    break;
-
-                case ErrorStatus.FileWriteProtected:
-                    Texts.FileIsWriteProtectedWarning.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
-                    break;
-
-                case ErrorStatus.WrongFileExtensionError:
-                    Texts.WrongFileExtensionWarning.InvariantFormat(displayContext, OS.Current.AxCryptExtension).ShowWarning(Texts.WarningTitle);
-                    break;
-
-                case ErrorStatus.Unknown:
-                    Texts.UnknownFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-
-                case ErrorStatus.Working:
-                    Texts.WorkingFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-
-                case ErrorStatus.Aborted:
-                    Texts.AbortedFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-
-                case ErrorStatus.FileAlreadyEncrypted:
-                    Texts.FileAlreadyEncryptedStatus.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
-                    break;
-
-                case ErrorStatus.MagicGuidMissing:
-                    Texts.MagicGuidMIssingFileStatus.InvariantFormat(displayContext).ShowWarning(Texts.WarningTitle);
-                    break;
-
-                default:
-                    Texts.UnrecognizedError.InvariantFormat(displayContext, status).ShowWarning(Texts.MessageUnexpectedErrorTitle);
-                    break;
-            }
-            return false;
         }
 
         private async void _exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2025,6 +1926,7 @@ namespace Axantum.AxCrypt
         private async Task ShareKeysAsync(IEnumerable<string> fileNames)
         {
             SharingListViewModel viewModel = new SharingListViewModel(fileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            await viewModel.ReadyAsync();
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)
@@ -2035,38 +1937,6 @@ namespace Axantum.AxCrypt
             await viewModel.ShareKeysAsync.ExecuteAsync(fileNames);
         }
 
-        private async Task ChangeEncryptionAsync(IEnumerable<string> files, EncryptionParameters encryptionParameters)
-        {
-            await Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), (IDataStore file, IProgressContext progress) =>
-            {
-                New<AxCryptFile>().ChangeEncryption(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
-                return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
-            },
-            async (FileOperationContext foc) =>
-            {
-                if (foc.ErrorStatus == ErrorStatus.Success)
-                {
-                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
-                }
-                CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
-            });
-        }
-
-        private async Task<IEnumerable<Tuple<string, EncryptedProperties>>> ListValidAsync(IEnumerable<string> fileNames)
-        {
-            List<Tuple<string, EncryptedProperties>> files = new List<Tuple<string, EncryptedProperties>>();
-            foreach (string file in fileNames)
-            {
-                EncryptedProperties properties = await EncryptedPropertiesAsync(New<IDataStore>(file));
-                if (properties.IsValid)
-                {
-                    files.Add(new Tuple<string, EncryptedProperties>(file, properties));
-                }
-            }
-
-            return files;
-        }
-
         private async Task WatchedFoldersKeySharingAsync(IEnumerable<string> folderPaths)
         {
             if (!folderPaths.Any())
@@ -2074,37 +1944,37 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
+            //IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
 
-            IEnumerable<UserPublicKey> sharedWithPublicKeys;
-            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-            {
-                sharedWithPublicKeys = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
-            }
+            //IEnumerable<UserPublicKey> sharedWithPublicKeys;
+            //using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            //{
+            //    sharedWithPublicKeys = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
+            //}
 
-            SharingListViewModel viewModel = new SharingListViewModel(sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
-            {
-                if (dialog.ShowDialog(this) != DialogResult.OK)
-                {
-                    return;
-                }
-                sharedWithPublicKeys = dialog.SharedWith;
-            }
+            //SharingListViewModel viewModel = new SharingListViewModel(sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            //using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
+            //{
+            //    if (dialog.ShowDialog(this) != DialogResult.OK)
+            //    {
+            //        return;
+            //    }
+            //    sharedWithPublicKeys = dialog.SharedWith;
+            //}
 
-            await Task.Run(async () =>
-            {
-                foreach (WatchedFolder watchedFolder in folderPaths.ToWatchedFolders())
-                {
-                    WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
-                    await Resolve.FileSystemState.AddWatchedFolderAsync(wf);
-                }
-                IEnumerable<IDataStore> files = folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
+            //await Task.Run(async () =>
+            //{
+            //    foreach (WatchedFolder watchedFolder in folderPaths.ToWatchedFolders())
+            //    {
+            //        WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
+            //        await Resolve.FileSystemState.AddWatchedFolderAsync(wf);
+            //    }
+            //    IEnumerable<IDataStore> files = folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
 
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
-                await encryptionParameters.AddAsync(sharedWithPublicKeys.Select(pk => pk.Email));
-                await ChangeEncryptionAsync(files.Select(x => x.FullName), encryptionParameters);
-            });
+            //    EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
+            //    await encryptionParameters.AddAsync(sharedWithPublicKeys.Select(pk => pk.Email));
+            //    await ChangeEncryptionAsync(files.Select(x => x.FullName), encryptionParameters);
+            //});
         }
 
         private void ExportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)

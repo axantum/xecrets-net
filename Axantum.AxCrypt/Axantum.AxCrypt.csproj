@@ -145,6 +145,7 @@
       <DependentUpon>ManageAccountDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="SignUpSignIn.cs" />
+    <Compile Include="StatusCheck.cs" />
     <Compile Include="VerifyAccountDialog.cs">
       <SubType>Form</SubType>
     </Compile>
