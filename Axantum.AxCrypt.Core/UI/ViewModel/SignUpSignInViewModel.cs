@@ -102,6 +102,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 _signinState.IsSigningIn = false;
             }
 
+            if (!New<KnownIdentities>().IsLoggedOn)
+            {
+                return;
+            }
+
             await New<PremiumManager>().PremiumStatusWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
 
             if (Resolve.UserSettings.IsFirstSignIn)
