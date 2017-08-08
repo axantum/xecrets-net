@@ -35,28 +35,42 @@ namespace Axantum.AxCrypt.Common
         /// </remarks>
         public static void WaitFor(Func<Task> task)
         {
+            bool isOn = New<IUIThread>().IsOn;
             try
             {
-                New<IUIThread>().Blocked = true;
+                if (isOn)
+                {
+                    New<IUIThread>().Blocked = true;
+                }
                 new TaskRunner(task).Wait();
             }
             finally
             {
-                New<IUIThread>().Blocked = false;
+                if (isOn)
+                {
+                    New<IUIThread>().Blocked = false;
+                }
             }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public static T WaitFor<T>(Func<Task<T>> task)
         {
+            bool isOn = New<IUIThread>().IsOn;
             try
             {
-                New<IUIThread>().Blocked = true;
+                if (isOn)
+                {
+                    New<IUIThread>().Blocked = true;
+                }
                 return new TaskRunner(task).Wait<T>();
             }
             finally
             {
-                New<IUIThread>().Blocked = false;
+                if (isOn)
+                {
+                    New<IUIThread>().Blocked = false;
+                }
             }
         }
 
