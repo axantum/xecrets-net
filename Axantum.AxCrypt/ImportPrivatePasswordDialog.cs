@@ -1,10 +1,10 @@
-﻿using Axantum.AxCrypt.Core.UI;
+﻿using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 using Texts = AxCrypt.Content.Texts;
@@ -47,14 +47,14 @@ namespace Axantum.AxCrypt
             _browsePrivateKeyFileButton.Text = Texts.ButtonEllipsisText;
         }
 
-        private async void _buttonOk_Click(object sender, EventArgs e)
+        private void _buttonOk_Click(object sender, EventArgs e)
         {
             if (!AdHocValidationDueToMonoLimitations())
             {
                 DialogResult = DialogResult.None;
                 return;
             }
-            await _viewModel.ImportFile.ExecuteAsync(null);
+            TaskRunner.WaitFor(() => _viewModel.ImportFile.ExecuteAsync(null));
             if (!_viewModel.ImportSuccessful)
             {
                 DialogResult = DialogResult.None;
