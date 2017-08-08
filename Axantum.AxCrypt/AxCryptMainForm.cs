@@ -442,7 +442,7 @@ namespace Axantum.AxCrypt
         {
             TypeMap.Register.Singleton<IUIThread>(() => new UIThread(this));
             TypeMap.Register.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
-            TypeMap.Register.Singleton<IStatusChecker>(() => new StatusCheck());
+            TypeMap.Register.Singleton<IStatusChecker>(() => new StatusChecker());
             TypeMap.Register.Singleton<IDataItemSelection>(() => new FileFolderSelection(this));
             TypeMap.Register.Singleton<IDeviceLocked>(() => new DeviceLocked());
             TypeMap.Register.Singleton<IInternetState>(() => new InternetState());

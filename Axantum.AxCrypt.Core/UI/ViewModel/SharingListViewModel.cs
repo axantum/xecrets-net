@@ -63,13 +63,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction ShareKeysAsync { get; private set; }
 
-        private Task _missingKeysLoader;
+        public event EventHandler<FileSelectionEventArgs> SelectingFiles;
+
+        protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
+        {
+            SelectingFiles?.Invoke(this, e);
+        }
+
+        private Task _asyncInitializer;
 
         public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
 
-            _missingKeysLoader = Task.Run(() => TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email), sharedWith));
+            _asyncInitializer = Task.Run(() => TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email), sharedWith));
 
             InitializePropertyValues(sharedWith);
 
@@ -81,7 +88,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
 
-            _missingKeysLoader = Task.Run(() => TryAddMissingUnsharedPublicKeysFromfileNamesAsync(files));
+            files = files ?? SelectFiles(FileSelectionType.Encrypt);
+            if (!files.Any())
+            {
+                return;
+            }
+
+            _asyncInitializer = Task.Run(() => TryAddMissingUnsharedPublicKeysFromfileNamesAsync(files));
 
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
@@ -89,7 +102,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public async Task ReadyAsync()
         {
-            await _missingKeysLoader;
+            await _asyncInitializer;
         }
 
         private void InitializePropertyValues(IEnumerable<UserPublicKey> sharedWith)
@@ -263,6 +276,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
                 });
+        }
+
+        private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
+        {
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+            {
+                FileSelectionType = fileSelectionType,
+            };
+            OnSelectingFiles(fileSelectionArgs);
+            if (fileSelectionArgs.Cancel)
+            {
+                return new string[0];
+            }
+            return fileSelectionArgs.SelectedFiles;
         }
     }
 }

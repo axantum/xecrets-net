@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.UI;
 using AxCrypt.Content;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Core.UI
 {
-    internal class StatusCheck : IStatusChecker
+    public class StatusChecker : IStatusChecker
     {
         public bool CheckStatusAndShowMessage(ErrorStatus status, string displayContext, string message)
         {
