@@ -1928,7 +1928,7 @@ namespace Axantum.AxCrypt
 
         private async Task ShareKeysAsync(IEnumerable<string> fileNames)
         {
-            fileNames = fileNames ?? SelectFiles(FileSelectionType.Unknown);
+            fileNames = fileNames ?? SelectFiles(FileSelectionType.KeySharing);
             if (!fileNames.Any())
             {
                 return;
@@ -2125,11 +2125,13 @@ namespace Axantum.AxCrypt
             {
                 FileSelectionType = fileSelectionType,
             };
-            OnSelectingFiles(fileSelectionArgs);
+            New<IDataItemSelection>().HandleSelection(fileSelectionArgs);
+            //OnSelectingFiles(fileSelectionArgs);
             if (fileSelectionArgs.Cancel)
             {
                 return new string[0];
             }
+
             return fileSelectionArgs.SelectedFiles;
         }
     }

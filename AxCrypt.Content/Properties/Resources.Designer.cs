@@ -1947,18 +1947,16 @@ namespace AxCrypt.Content.Properties {
                 return ResourceManager.GetString("ErrorEmailMismatch", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to The {0} field is required.
+        ///   Looks up a localized string similar to !!The {0} field is required..
         /// </summary>
-        public static string ErrorFieldRequired
-        {
-            get
-            {
+        public static string ErrorFieldRequired {
+            get {
                 return ResourceManager.GetString("ErrorFieldRequired", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The password verification does not match the password..
         /// </summary>
@@ -5318,6 +5316,15 @@ namespace AxCrypt.Content.Properties {
         public static string SharedWithUnverifiedMessagePattern {
             get {
                 return ResourceManager.GetString("SharedWithUnverifiedMessagePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Select secured file to share.
+        /// </summary>
+        public static string ShareKeysFileOpenDialogTitle {
+            get {
+                return ResourceManager.GetString("ShareKeysFileOpenDialogTitle", resourceCulture);
             }
         }
         

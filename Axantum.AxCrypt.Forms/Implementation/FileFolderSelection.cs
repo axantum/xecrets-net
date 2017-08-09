@@ -156,6 +156,15 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.Filter = Texts.ImportPrivateKeysFileFilter;
                         break;
 
+                    case FileSelectionType.KeySharing:
+                        ofd.Title = Texts.ShareKeysFileOpenDialogTitle;
+                        ofd.Multiselect = false;
+                        ofd.CheckFileExists = true;
+                        ofd.CheckPathExists = true;
+                        ofd.DefaultExt = OS.Current.AxCryptExtension;
+                        ofd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
+                        break;
+
                     default:
                         break;
                 }
