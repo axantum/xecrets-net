@@ -9,13 +9,13 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class VerifySignInPasswordViewModel : ViewModelBase
+    public class VerifySignInPasswordViewModel : ViewModelBase, IPasswordEntry
     {
         private readonly LogOnIdentity _identity;
 
-        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
+        public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
-        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
+        public string PasswordText { get { return GetProperty<string>(nameof(PasswordText)); } set { SetProperty(nameof(PasswordText), value); } }
 
         public VerifySignInPasswordViewModel(LogOnIdentity identity)
         {
@@ -27,13 +27,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
         }
 
         private void InitializePropertyValues()
         {
-            Passphrase = String.Empty;
-            ShowPassphrase = New<UserSettings>().DisplayDecryptPassphrase;
+            PasswordText = String.Empty;
+            ShowPassword = New<UserSettings>().DisplayDecryptPassphrase;
         }
 
         protected override Task<bool> ValidateAsync(string columnName)
@@ -45,10 +45,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (columnName)
             {
-                case nameof(Passphrase):
+                case nameof(PasswordText):
                     return ValidatePassphrase();
 
-                case nameof(ShowPassphrase):
+                case nameof(ShowPassword):
                     return true;
 
                 default:
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool ValidatePassphrase()
         {
-            Passphrase passphrase = new Passphrase(Passphrase);
+            Passphrase passphrase = new Passphrase(PasswordText);
             if (passphrase == _identity.Passphrase)
             {
                 return true;

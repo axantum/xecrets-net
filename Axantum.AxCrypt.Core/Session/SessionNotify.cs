@@ -44,22 +44,34 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void AddPriorityCommand(Func<SessionNotification, Task> priorityCommand)
         {
-            _priorityCommands.Add(priorityCommand);
+            lock (_priorityCommands)
+            {
+                _priorityCommands.Add(priorityCommand);
+            }
         }
 
         public void RemovePriorityCommand(Func<SessionNotification, Task> priorityCommand)
         {
-            _priorityCommands.Remove(priorityCommand);
+            lock (_priorityCommands)
+            {
+                _priorityCommands.Remove(priorityCommand);
+            }
         }
 
         public void AddCommand(Func<SessionNotification, Task> command)
         {
-            _commands.Add(command);
+            lock (_commands)
+            {
+                _commands.Add(command);
+            }
         }
 
         public void RemoveCommand(Func<SessionNotification, Task> command)
         {
-            _commands.Remove(command);
+            lock (_commands)
+            {
+                _commands.Remove(command);
+            }
         }
 
         private readonly Queue<SessionNotification> _notificationQueue = new Queue<SessionNotification>();
@@ -123,7 +135,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private SessionNotification MergeNotificationFullNames(SessionNotification currentNotification, SessionNotification nextNotification)
+        private static SessionNotification MergeNotificationFullNames(SessionNotification currentNotification, SessionNotification nextNotification)
         {
             IEnumerable<string> allFullNames = currentNotification.FullNames.Union(nextNotification.FullNames);
 
@@ -134,24 +146,34 @@ namespace Axantum.AxCrypt.Core.Session
         {
             try
             {
-                foreach (Func<SessionNotification, Task> priorityCommand in _priorityCommands)
+                foreach (Func<SessionNotification, Task> priorityCommand in SafeCopy(_priorityCommands))
                 {
                     await priorityCommand(notification).Free();
                 }
 
-                foreach (Func<SessionNotification, Task> command in _commands)
+                foreach (Func<SessionNotification, Task> command in SafeCopy(_commands))
                 {
                     await command(notification).Free();
                 }
                 if (notification.NotificationType != SessionNotificationType.SessionChange)
                 {
-                    New<InactivititySignOut>().RestartInactivitityTimer();
+                    New<InactivitySignOut>().RestartInactivityTimer();
                 }
             }
             catch (Exception ex)
             {
                 ex.ReportAndDisplay();
             }
+        }
+
+        private static IEnumerable<Func<SessionNotification, Task>> SafeCopy(List<Func<SessionNotification, Task>> notifications)
+        {
+            Func<SessionNotification, Task>[] copy;
+            lock (notifications)
+            {
+                copy = notifications.ToArray();
+            }
+            return copy;
         }
     }
 }

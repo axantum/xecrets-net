@@ -14,7 +14,7 @@ namespace Axantum.AxCrypt.Api.Model
         public AccountTip()
         {
             Message = string.Empty;
-            Level = StartupTipLevel.Unkown;
+            Level = StartupTipLevel.Unknown;
             ButtonStyle = StartupTipButtonStyle.Unknown;
         }
 

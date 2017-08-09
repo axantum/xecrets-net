@@ -40,6 +40,7 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Desktop;
 using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Implementation;
 using Axantum.AxCrypt.Forms.Style;
@@ -146,11 +147,11 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            SetupViewModelsAndNotificationsBeforeAnyNotificationsAreSent();
             CheckOfflineModeFirst();
             await GetApiVersionAsync();
             SetThisVersion();
             StartKeyPairService();
-            SetupViewModels();
             AttachLogListener();
             ConfigureUiOptions();
             SetupPathFilters();
@@ -166,21 +167,21 @@ namespace Axantum.AxCrypt
             ExecuteCommandLine();
         }
 
-        private void EnsureFileAssociation()
+        private static void EnsureFileAssociation()
         {
             if (New<InstallationVerifier>().IsApplicationInstalled && !New<InstallationVerifier>().IsFileAssociationOk)
             {
                 Texts.FileAssociationBrokenWarning.ShowWarning(Texts.WarningTitle,
-                    DontShowAgain.FileAssociationBrokenWarning);
+                    DoNotShowAgainOptions.FileAssociationBrokenWarning);
             }
         }
 
-        private void CheckLavasoftWebCompanionExistence()
+        private static void CheckLavasoftWebCompanionExistence()
         {
             if (New<InstallationVerifier>().IsLavasoftApplicationInstalled)
             {
                 Texts.LavasoftWebCompanionExistenceWarning.ShowWarning(Texts.WarningTitle,
-                    DontShowAgain.LavasoftWebCompanionExistenceWarning);
+                    DoNotShowAgainOptions.LavasoftWebCompanionExistenceWarning);
             }
         }
 
@@ -399,7 +400,7 @@ namespace Axantum.AxCrypt
             Task.Run(() =>
             {
                 _commandLine.Execute();
-                ExplorerRefresh.Notify();
+                new ExplorerRefresh().Notify();
             });
         }
 
@@ -431,13 +432,17 @@ namespace Axantum.AxCrypt
             };
         }
 
-        private void SetupViewModels()
+        private void SetupViewModelsAndNotificationsBeforeAnyNotificationsAreSent()
         {
+            New<LicensePolicy>();
             _mainViewModel = New<MainViewModel>();
             _fileOperationViewModel = New<FileOperationViewModel>();
             _knownFoldersViewModel = New<KnownFoldersViewModel>();
+            New<SessionNotify>().AddCommand(async (notification) => await New<SessionNotificationHandler>().HandleNotificationAsync(notification));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "It's not actually complex since it's just a registry.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "It's not actually complex since it's just a registry.")]
         private void RegisterTypeFactories()
         {
             TypeMap.Register.Singleton<IUIThread>(() => new UIThread(this));
@@ -448,7 +453,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IInternetState>(() => new InternetState());
             TypeMap.Register.Singleton<InstallationVerifier>(() => new InstallationVerifier());
             TypeMap.Register.Singleton<IKnownFolderImageProvider>(() => new KnownFolderImageProvider());
-            TypeMap.Register.Singleton<InactivititySignOut>(() => new InactivititySignOut(New<UserSettings>().InactivititySignOutTime));
+            TypeMap.Register.Singleton<InactivitySignOut>(() => new InactivitySignOut(New<UserSettings>().InactivitySignOutTime));
             TypeMap.Register.Singleton<MouseDownFilter>(() => new MouseDownFilter(this));
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), New<IStatusChecker>()));
@@ -741,8 +746,6 @@ namespace Axantum.AxCrypt
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         private void BindToViewModels()
         {
-            _mainViewModel.Title = Texts.TitleMainWindow.InvariantFormat(New<AboutAssembly>().AssemblyProduct, New<AboutAssembly>().AssemblyVersion, String.IsNullOrEmpty(New<AboutAssembly>().AssemblyDescription) ? string.Empty : " " + New<AboutAssembly>().AssemblyDescription);
-
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DownloadVersion), async (DownloadVersion dv) => { await SetSoftwareStatus(); });
@@ -754,10 +757,11 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => await _knownFoldersViewModel.UpdateState.ExecuteAsync(null));
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await ConfigureMenusAccordingToPolicyAsync(license); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await SetWindowTitleTextAsync(_mainViewModel.LoggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicenseCapabilities license) => { _recentFilesListView.UpdateRecentFiles(_mainViewModel.RecentFiles); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
-            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { if (loggedOn) New<InactivititySignOut>().RestartInactivitityTimer(); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), (bool loggedOn) => { SetSignInSignOutStatus(loggedOn); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { if (loggedOn) New<InactivitySignOut>().RestartInactivityTimer(); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await SetSignInSignOutStatusAsync(loggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RandomRenameEnabled), (bool enabled) => { _renameToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), (IEnumerable<ActiveFile> files) => { _recentFilesListView.UpdateRecentFiles(files); });
@@ -869,8 +873,6 @@ namespace Axantum.AxCrypt
 
         private void WireUpEvents()
         {
-            Resolve.SessionNotify.AddCommand(async (notification) => await New<SessionNotificationHandler>().HandleNotificationAsync(notification));
-
             _deviceLocking = new DeviceLocking(
                 async () =>
                 {
@@ -897,19 +899,19 @@ namespace Axantum.AxCrypt
                 }
                 New<IUIThread>().PostTo(async () =>
                 {
-                    SetWindowTextWithSignInAndPremiumStatus(_mainViewModel.LoggedOn);
+                    await SetWindowTitleTextAsync(_mainViewModel.LoggedOn);
                     await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                 });
             };
         }
 
-        private void WireDownEvents()
+        private static void WireDownEvents()
         {
         }
 
-        private void SetSignInSignOutStatus(bool isSignedIn)
+        private async Task SetSignInSignOutStatusAsync(bool isSignedIn)
         {
-            SetWindowTextWithSignInAndPremiumStatus(isSignedIn);
+            await SetWindowTitleTextAsync(isSignedIn);
 
             bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null;
 
@@ -1016,7 +1018,11 @@ namespace Axantum.AxCrypt
                 }
                 if (_mainViewModel.DroppableAsWatchedFolder)
                 {
-                    ShowWatchedFolders(_mainViewModel.DragAndDropFiles);
+                    await PremiumFeatureActionAsync(LicenseCapability.SecureFolders, async () =>
+                    {
+                        ShowWatchedFoldersTab();
+                        await _mainViewModel.AddWatchedFolders.ExecuteAsync(_mainViewModel.DragAndDropFiles);
+                    });
                 }
             }, () => { });
         }
@@ -1051,17 +1057,18 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewLogOnForEncryptedFile(LogOnEventArgs e)
         {
-            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, Texts.NewPassphraseDialogTitle, e.Passphrase.Text, e.EncryptedFileFullName))
+            NewPasswordViewModel viewModel = new NewPasswordViewModel(e.Passphrase.Text, e.EncryptedFileFullName);
+            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, Texts.NewPassphraseDialogTitle, viewModel))
             {
-                passphraseDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
+                viewModel.ShowPassword = e.DisplayPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(this);
-                if (dialogResult != DialogResult.OK || passphraseDialog.PassphraseTextBox.Text.Length == 0)
+                e.DisplayPassphrase = viewModel.ShowPassword;
+                if (dialogResult != DialogResult.OK || viewModel.PasswordText.Length == 0)
                 {
                     e.Cancel = true;
                     return;
                 }
-                e.DisplayPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                e.Passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);
+                e.Passphrase = new Passphrase(viewModel.PasswordText);
                 e.Name = String.Empty;
             }
             return;
@@ -1159,7 +1166,8 @@ namespace Axantum.AxCrypt
                     return;
             }
 
-            if (!Resolve.KnownIdentities.IsLoggedOn)
+            bool wasSignedIn = New<KnownIdentities>().IsLoggedOn;
+            if (!wasSignedIn)
             {
                 switch (e.Verb)
                 {
@@ -1197,9 +1205,14 @@ namespace Axantum.AxCrypt
                 }
             }
 
-            if (!Resolve.KnownIdentities.IsLoggedOn)
+            if (!New<KnownIdentities>().IsLoggedOn)
             {
                 return;
+            }
+
+            if (wasSignedIn)
+            {
+                await ShowSignedInInformationAsync(e.Verb);
             }
 
             switch (e.Verb)
@@ -1221,7 +1234,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case CommandVerb.RandomRename:
-                    await PremiumFeatureAction(LicenseCapability.RandomRename, () => _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(e.Arguments));
+                    await PremiumFeatureActionAsync(LicenseCapability.RandomRename, () => _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(e.Arguments));
                     break;
 
                 case CommandVerb.Show:
@@ -1246,6 +1259,21 @@ namespace Axantum.AxCrypt
                 default:
                     break;
             }
+        }
+
+        private static Task ShowSignedInInformationAsync(CommandVerb verb)
+        {
+            switch (verb)
+            {
+                case CommandVerb.Encrypt:
+                case CommandVerb.Decrypt:
+                case CommandVerb.Open:
+                    return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
+
+                default:
+                    break;
+            }
+            return Constant.CompletedTask;
         }
 
         private async Task<DragDropEffects> GetEffectsForMainToolStripAsync(DragEventArgs e)
@@ -1304,60 +1332,9 @@ namespace Axantum.AxCrypt
             return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
         }
 
-        private async void SetWindowTextWithSignInAndPremiumStatus(bool isLoggedOn)
+        private async Task SetWindowTitleTextAsync(bool isLoggedOn)
         {
-            string licenseStatus = GetLicenseStatus(isLoggedOn);
-            string logonStatus = GetLogonStatus(isLoggedOn);
-
-            string text = Texts.TitleWindowSignInStatus.InvariantFormat(_mainViewModel.Title, licenseStatus, logonStatus);
-            Text = await AddIndicatorsAsync(isLoggedOn, text);
-        }
-
-        private string GetLicenseStatus(bool isLoggedOn)
-        {
-            if (!isLoggedOn)
-            {
-                return string.Empty;
-            }
-
-            if (_mainViewModel.License.Has(LicenseCapability.Premium))
-            {
-                return Texts.LicensePremiumNameText;
-            }
-
-            return Texts.LicenseFreeNameText;
-        }
-
-        private string GetLogonStatus(bool isLoggedOn)
-        {
-            if (isLoggedOn)
-            {
-                UserKeyPair userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
-                return userKeys != UserKeyPair.Empty ? Texts.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Texts.LoggedOnStatusText;
-            }
-            return Texts.LoggedOffStatusText;
-        }
-
-        private static async Task<string> AddIndicatorsAsync(bool isLoggedOn, string text)
-        {
-            if (New<AxCryptOnlineState>().IsOffline)
-            {
-                return $"{text} [{Texts.OfflineIndicatorText}]";
-            }
-
-            if (!isLoggedOn)
-            {
-                return text;
-            }
-
-            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-            UserAccount userAccount = await accountService.AccountAsync();
-
-            if (userAccount.AccountSource == AccountSource.Local)
-            {
-                return $"{text} [{Texts.LocalIndicatorText}]";
-            }
-            return text;
+            Text = await new Display().WindowTitleTextAsync(isLoggedOn);
         }
 
         private async Task SetSoftwareStatus()
@@ -1497,13 +1474,13 @@ namespace Axantum.AxCrypt
 
         private async Task ShutDownAndExit()
         {
-            await new ApplicationManager().ShutDownBackgroundSafe();
+            await new ApplicationManager().ShutdownBackgroundSafe();
 
             await EncryptPendingFiles();
 
             await WarnIfAnyDecryptedFiles();
 
-            New<IUIThread>().Exit();
+            New<IUIThread>().ExitApplication();
         }
 
         #region ToolStrip
@@ -1615,7 +1592,7 @@ namespace Axantum.AxCrypt
             await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity));
         }
 
-        private async Task PremiumFeatureAction(LicenseCapability requiredCapability, Func<Task> realHandler)
+        private async Task PremiumFeatureActionAsync(LicenseCapability requiredCapability, Func<Task> realHandler)
         {
             if (_mainViewModel.License.Has(requiredCapability))
             {
@@ -1670,7 +1647,7 @@ namespace Axantum.AxCrypt
             }
 
             InitializeContentResources();
-            SetWindowTextWithSignInAndPremiumStatus(_mainViewModel.LoggedOn);
+            await SetWindowTitleTextAsync(_mainViewModel.LoggedOn);
             await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
             await SetSoftwareStatus();
         }
@@ -1826,15 +1803,12 @@ namespace Axantum.AxCrypt
 
         private void encryptedFoldersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowWatchedFolders(new string[0]);
+            ShowWatchedFoldersTab();
         }
 
-        private void ShowWatchedFolders(IEnumerable<string> additional)
+        private void ShowWatchedFoldersTab()
         {
-            using (WatchedFoldersDialog dialog = new WatchedFoldersDialog(this, additional))
-            {
-                dialog.ShowDialog();
-            }
+            _statusTabControl.SelectedIndex = 1;
         }
 
         private void CreateAccountToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1845,9 +1819,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ManageAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void ManageAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ManageAccountDialog dialog = new ManageAccountDialog(this, Resolve.UserSettings))
+            using (ManageAccountDialog dialog = await ManageAccountDialog.CreateAsync(this))
             {
                 dialog.ShowDialog();
             }
@@ -1858,20 +1832,10 @@ namespace Axantum.AxCrypt
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             ManageAccountViewModel viewModel = await ManageAccountViewModel.CreateAsync(accountStorage);
 
-            string passphrase;
-            using (NewPassphraseDialog dialog = new NewPassphraseDialog(this, Texts.ChangePassphraseDialogTitle, String.Empty, String.Empty))
+            if (await this.ChangePasswordDialogAsync(viewModel))
             {
-                dialog.ShowPassphraseCheckBox.Checked = Resolve.UserSettings.DisplayEncryptPassphrase;
-                DialogResult dialogResult = dialog.ShowDialog(this);
-                if (dialogResult != DialogResult.OK || dialog.PassphraseTextBox.Text.Length == 0)
-                {
-                    return;
-                }
-                Resolve.UserSettings.DisplayEncryptPassphrase = dialog.ShowPassphraseCheckBox.Checked;
-                passphrase = dialog.PassphraseTextBox.Text;
+                await LogOnOrLogOffAndLogOnAgainAsync();
             }
-            await viewModel.ChangePassphraseAsync.ExecuteAsync(passphrase);
-            await LogOnOrLogOffAndLogOnAgainAsync();
         }
 
         private void ExportMySharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2081,7 +2045,7 @@ namespace Axantum.AxCrypt
         private void IdleSignOutToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             ToolStripMenuItem timeOutMenu = (ToolStripMenuItem)sender;
-            TimeSpan selectedTimeOutDuration = New<UserSettings>().InactivititySignOutTime;
+            TimeSpan selectedTimeOutDuration = New<UserSettings>().InactivitySignOutTime;
             bool hasFeature = New<LicensePolicy>().Capabilities.Has(LicenseCapability.InactivitySignOut);
             foreach (ToolStripItem item in timeOutMenu.DropDownItems)
             {
@@ -2095,9 +2059,9 @@ namespace Axantum.AxCrypt
         private async void IdleSignOutToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
             ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
-            New<UserSettings>().InactivititySignOutTime = TimeSpan.FromMinutes(int.Parse(menuItem.Tag.ToString()));
-            TypeMap.Register.Singleton<InactivititySignOut>(() => new InactivititySignOut(New<UserSettings>().InactivititySignOutTime));
-            New<InactivititySignOut>().RestartInactivitityTimer();
+            New<UserSettings>().InactivitySignOutTime = TimeSpan.FromMinutes(int.Parse(menuItem.Tag.ToString()));
+            TypeMap.Register.Singleton<InactivitySignOut>(() => new InactivitySignOut(New<UserSettings>().InactivitySignOutTime));
+            New<InactivitySignOut>().RestartInactivityTimer();
         }
 
         private void InitializeMouseDownFilter()
@@ -2107,7 +2071,7 @@ namespace Axantum.AxCrypt
 
         private async void AxCryptMainForm_ClickAsync(object sender, EventArgs e)
         {
-            New<InactivititySignOut>().RestartInactivitityTimer();
+            New<InactivitySignOut>().RestartInactivityTimer();
         }
 
         private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)

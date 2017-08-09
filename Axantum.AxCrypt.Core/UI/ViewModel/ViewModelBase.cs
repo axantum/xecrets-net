@@ -157,14 +157,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             get
             {
                 IEnumerable<string> propertyNames = GetType().GetRuntimeProperties().Select(pi => pi.Name).Where(s => s != "Item" && s != "ValidationError" && s != "Error");
-
-                return
-                    (from name in propertyNames
-                     let error = this[name]
-                     where !String.IsNullOrEmpty(error)
-                     select error)
-                        .Aggregate(new StringBuilder(), (acc, next) => acc.Append(acc.Length > 0 ? " " : String.Empty).Append(next))
-                        .ToString();
+                List<string> errors = new List<string>();
+                foreach (string propertyName in propertyNames)
+                {
+                    string error = this[propertyName];
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        errors.Add(error);
+                    }
+                }
+                return errors.Aggregate(new StringBuilder(), (acc, next) => acc.Append(acc.Length > 0 ? " " : String.Empty).Append(next)).ToString();
             }
         }
 
@@ -181,7 +183,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
                 try
                 {
-                    isValid = TaskRunner.WaitFor(async () => await ValidateAsync(columnName));
+                    isValid = TaskRunner.WaitFor(() => ValidateAsync(columnName));
                 }
                 catch (AggregateException aex)
                 {

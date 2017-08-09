@@ -19,12 +19,12 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         public async Task<bool> ValidateSettings()
         {
-            if (Resolve.UserSettings.SettingsVersion >= UserSettings.CurrentSettingsVersion)
+            if (Resolve.UserSettings.SettingsVersion >= New<UserSettingsVersion>().Current)
             {
                 return true;
             }
 
-            Texts.UserSettingsFormatChangeNeedsReset.ShowWarning(Texts.WarningTitle);
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.UserSettingsFormatChangeNeedsReset);
             await ClearAllSettings();
             await StopAndExit();
             return false;
@@ -32,29 +32,30 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public async Task ClearAllSettings()
         {
-            await ShutDownBackgroundSafe();
+            await ShutdownBackgroundSafe();
 
             Resolve.UserSettings.Clear();
             Resolve.FileSystemState.Delete();
             Resolve.WorkFolder.FileInfo.FileItemInfo(LocalAccountService.FileName).Delete();
             New<KnownPublicKeys>().Delete();
-            Resolve.UserSettings.SettingsVersion = UserSettings.CurrentSettingsVersion;
+            Resolve.UserSettings.SettingsVersion = New<UserSettingsVersion>().Current;
         }
 
         public async Task StopAndExit()
         {
-            await ShutDownBackgroundSafe();
+            await ShutdownBackgroundSafe();
 
-            New<IUIThread>().Exit();
+            New<IUIThread>().ExitApplication();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void WaitForBackgroundToComplete()
         {
             New<IProgressBackground>().WaitForIdle();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public async Task ShutDownBackgroundSafe()
+        public async Task ShutdownBackgroundSafe()
         {
             try
             {

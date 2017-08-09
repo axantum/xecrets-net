@@ -45,33 +45,29 @@ namespace Axantum.AxCrypt.Core.Secrets
     /// </summary>
     public class TransientProtectedData
     {
-        public static TransientProtectedData Create()
-        {
-            return new TransientProtectedData();
-        }
-
         /// <summary>
         /// This is what makes the encryption unique to this instance of the AppDomain.
         /// </summary>
         ///
-        private static readonly object _entropyLock = new object();
+        private readonly object _entropyLock = new object();
 
-        private static byte[] _entropy;
+        private byte[] _entropy;
 
-        public byte[] Entropy
+        private byte[] Entropy()
         {
-            private get
+            lock (_entropyLock)
             {
-                lock (_entropyLock)
+                if (_entropy == null)
                 {
-                    if (_entropy == null)
-                    {
-                        _entropy = GetRandomBytes(16);
-                    }
+                    _entropy = New<IRandomGenerator>().Generate(16);
                 }
-                return _entropy;
             }
-            set
+            return _entropy;
+        }
+
+        public void Entropy(byte[] value)
+        {
+            lock (_entropyLock)
             {
                 if (value != null)
                 {
@@ -81,31 +77,32 @@ namespace Axantum.AxCrypt.Core.Secrets
             }
         }
 
-        public byte[] Protect(string s)
+        public byte[] Protect(string value)
         {
-            byte[] bytes = Encoding.Unicode.GetBytes(s);
+            byte[] bytes = Encoding.Unicode.GetBytes(value);
             byte[] protectedBytes = Protect(bytes);
             Array.Clear(bytes, 0, bytes.Length);
             return protectedBytes;
         }
 
-        public byte[] Protect(byte[] bytes)
+        public byte[] Protect(byte[] value)
         {
-            byte[] protectedBytes = New<IProtectedData>().Protect(bytes, Entropy);
+            byte[] protectedBytes = New<IProtectedData>().Protect(value, Entropy());
             return protectedBytes;
         }
 
-        public bool TryUnprotect(byte[] protectedBytes, out string s)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        public bool TryUnprotect(byte[] protectedValue, out string value)
         {
-            s = null;
+            value = null;
             byte[] bytes;
-            if (!TryUnprotect(protectedBytes, out bytes))
+            if (!TryUnprotect(protectedValue, out bytes))
             {
                 return false;
             }
             try
             {
-                s = Encoding.Unicode.GetString(bytes, 0, bytes.Length);
+                value = Encoding.Unicode.GetString(bytes, 0, bytes.Length);
             }
             catch
             {
@@ -121,12 +118,12 @@ namespace Axantum.AxCrypt.Core.Secrets
             return true;
         }
 
-        public bool TryUnprotect(byte[] protectedBytes, out byte[] bytes)
+        public bool TryUnprotect(byte[] protectedValue, out byte[] bytes)
         {
             bytes = null;
             try
             {
-                bytes = New<IProtectedData>().Unprotect(protectedBytes, _entropy);
+                bytes = New<IProtectedData>().Unprotect(protectedValue, _entropy);
             }
             catch (AxCryptException)
             {
@@ -136,22 +133,7 @@ namespace Axantum.AxCrypt.Core.Secrets
             {
                 return false;
             }
-            return true;
-        }
-
-        /// <summary>
-        /// Gets random bytes.
-        /// </summary>
-        /// <param name="length">The length.</param>
-        /// <returns>The bytes.</returns>
-        public byte[] GetRandomBytes(int length)
-        {
-            if (length < 0)
-            {
-                throw new ArgumentOutOfRangeException("length");
-            }
-            byte[] bytes = New<IRandomGenerator>().Generate(length);
-            return bytes;
+            return bytes != null;
         }
     }
 }

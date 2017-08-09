@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt.Core
             V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey()));
             V2HmacStream<Stream> outputHmacStream = V2HmacStream.Create(hmacCalculator, outputStream);
 
-            CryptoStream encryptingStream = New<CryptoStream>().Initialize(V2AxCryptDataStream.Create(outputHmacStream), DocumentHeaders.DataCrypto().EncryptingTransform(), CryptoStreamMode.Write);
+            CryptoStreamBase encryptingStream = New<CryptoStreamBase>().Initialize(V2AxCryptDataStream.Create(outputHmacStream), DocumentHeaders.DataCrypto().EncryptingTransform(), CryptoStreamMode.Write);
             DocumentHeaders.WriteStartWithHmac(outputHmacStream);
             if (DocumentHeaders.IsCompressed)
             {

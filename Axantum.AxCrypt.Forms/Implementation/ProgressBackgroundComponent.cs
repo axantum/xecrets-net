@@ -95,9 +95,9 @@ namespace Axantum.AxCrypt.Forms.Implementation
             _progressBackground.WaitForIdle();
         }
 
-        public Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Action<FileOperationContext> complete, IProgressContext progress)
+        public Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunctionAsync, Func<FileOperationContext, Task> completeAsync, IProgressContext progress)
         {
-            return _progressBackground.WorkAsync(name, workFunction, complete, progress);
+            return _progressBackground.WorkAsync(name, workFunctionAsync, completeAsync, progress);
         }
 
         protected override void Dispose(bool disposing)

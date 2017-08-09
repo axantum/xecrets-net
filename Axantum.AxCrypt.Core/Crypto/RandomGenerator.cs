@@ -41,6 +41,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public byte[] Generate(int count)
         {
+            if (count < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count));
+            }
+
             byte[] data = new byte[count];
             _rng.GetBytes(data);
             return data;

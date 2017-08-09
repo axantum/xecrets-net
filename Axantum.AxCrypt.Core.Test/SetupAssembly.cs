@@ -72,6 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<ILogging>(() => new FakeLogging());
             TypeMap.Register.Singleton<ISettingsStore>(() => new SettingsStore(null));
+            TypeMap.Register.Singleton<UserSettingsVersion>(() => new UserSettingsVersion());
             TypeMap.Register.Singleton<UserSettings>(() => (new FakeUserSettings(New<IterationCalculator>())).Initialize());
             TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
@@ -92,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IInternetState>(() => new FakeInternetState());
             TypeMap.Register.Singleton<ICryptoPolicy>(() => New<LicensePolicy>().Capabilities.CryptoPolicy);
             TypeMap.Register.Singleton<LicensePolicy>(() => new PremiumForcedLicensePolicy());
-            TypeMap.Register.Singleton<InactivititySignOut>(() => new InactivititySignOut(TimeSpan.Zero));
+            TypeMap.Register.Singleton<InactivitySignOut>(() => new InactivitySignOut(TimeSpan.Zero));
             TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
             TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
 
@@ -109,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<string, IDataItem>((path) => CreateDataItem(path));
             TypeMap.Register.New<string, IFileWatcher>((path) => new FakeFileWatcher(path));
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
-            TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
+            TypeMap.Register.New<IProtectedData>(() => new FakeDataProtection());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new NullAccountService(identity)));
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
@@ -131,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
                     TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
                     TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
                     TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
-                    TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
+                    TypeMap.Register.New<CryptoStreamBase>(() => PortableFactory.CryptoStream());
                     TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
                     TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
                     break;
@@ -140,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
                     TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
                     TypeMap.Register.New<HMACSHA512>(() => new Mono.Cryptography.HMACSHA512Wrapper(new Axantum.AxCrypt.Desktop.Cryptography.HMACSHA512CryptoServiceProvider()));
                     TypeMap.Register.New<Aes>(() => new Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
-                    TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
+                    TypeMap.Register.New<CryptoStreamBase>(() => PortableFactory.CryptoStream());
                     TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
                     TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
                     break;
@@ -149,7 +150,7 @@ namespace Axantum.AxCrypt.Core.Test
                     TypeMap.Register.New<AxCryptHMACSHA1>(() => BouncyCastleCryptoFactory.AxCryptHMACSHA1());
                     TypeMap.Register.New<HMACSHA512>(() => BouncyCastleCryptoFactory.HMACSHA512());
                     TypeMap.Register.New<Aes>(() => BouncyCastleCryptoFactory.Aes());
-                    TypeMap.Register.New<CryptoStream>(() => BouncyCastleCryptoFactory.CryptoStream());
+                    TypeMap.Register.New<CryptoStreamBase>(() => BouncyCastleCryptoFactory.CryptoStream());
                     TypeMap.Register.New<Sha1>(() => BouncyCastleCryptoFactory.Sha1());
                     TypeMap.Register.New<Sha256>(() => BouncyCastleCryptoFactory.Sha256());
                     break;

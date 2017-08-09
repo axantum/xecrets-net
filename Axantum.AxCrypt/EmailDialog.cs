@@ -92,11 +92,6 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void _buttonHelp_Click(object sender, EventArgs e)
-        {
-            LaunchHelpPage();
-        }
-
         private void ClearErrorProviders()
         {
             _errorProvider1.Clear();

@@ -397,6 +397,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// Iterate over all active files in the state.
         /// </summary>
         /// <param name="action">A delegate with an action to take for each active file, returning the same or updated active file as need be.</param>
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public async Task ForEach(Func<ActiveFile, Task<ActiveFile>> action)
         {
             if (action == null)

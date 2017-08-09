@@ -9,7 +9,7 @@ namespace Axantum.AxCrypt.Common
 {
     public class StartupTipProperties
     {
-        public static readonly StartupTipProperties Empty = new StartupTipProperties(StartupTipLevel.Unkown, StartupTipButtonStyle.Unknown, null);
+        public static readonly StartupTipProperties Empty = new StartupTipProperties(StartupTipLevel.Unknown, StartupTipButtonStyle.Unknown, null);
 
         public StartupTipLevel Level { get; private set; }
 
@@ -22,6 +22,12 @@ namespace Axantum.AxCrypt.Common
             Level = level;
             ButtonStyle = buttonStyle;
             Url = url;
+        }
+
+        public StartupTipProperties(StartupTipLevel level, StartupTipButtonStyle buttonStyle)
+        {
+            Level = level; 
+            ButtonStyle = buttonStyle;
         }
     }
 }

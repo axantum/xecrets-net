@@ -39,15 +39,15 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class ImportPrivateKeysViewModel : ViewModelBase
+    public class ImportPrivateKeysViewModel : ViewModelBase, IPasswordEntry
     {
         private UserSettings _userSettings;
 
         private KnownIdentities _knownIdentities;
 
-        public bool ShowPassphrase { get { return GetProperty<bool>(nameof(ShowPassphrase)); } set { SetProperty(nameof(ShowPassphrase), value); } }
+        public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
-        public string Passphrase { get { return GetProperty<string>(nameof(Passphrase)); } set { SetProperty(nameof(Passphrase), value); } }
+        public string PasswordText { get { return GetProperty<string>(nameof(PasswordText)); } set { SetProperty(nameof(PasswordText), value); } }
 
         public string PrivateKeyFileName { get { return GetProperty<string>(nameof(PrivateKeyFileName)); } set { SetProperty(nameof(PrivateKeyFileName), value); } }
 
@@ -69,12 +69,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             ImportFile = new AsyncDelegateAction<object>((o) => ImportFileActionAsync());
             ImportSuccessful = true;
-            ShowPassphrase = _userSettings.DisplayDecryptPassphrase;
+            ShowPassword = _userSettings.DisplayDecryptPassphrase;
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(ShowPassphrase), (bool show) => _userSettings.DisplayDecryptPassphrase = show);
+            BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => _userSettings.DisplayDecryptPassphrase = show);
         }
 
         private static void SubscribeToModelEvents()
@@ -99,18 +99,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     privateKeyDataStore = New<IDataStore>(PrivateKeyFileName);
                     return privateKeyDataStore.IsAvailable;
 
-                case nameof(Passphrase):
+                case nameof(PasswordText):
                     if (!ValidateInternal(nameof(PrivateKeyFileName)))
                     {
                         return false;
                     }
                     privateKeyDataStore = New<IDataStore>(PrivateKeyFileName);
 
-                    if (String.IsNullOrEmpty(Passphrase))
+                    if (String.IsNullOrEmpty(PasswordText))
                     {
                         return false;
                     }
-                    LogOnIdentity identity = new LogOnIdentity(Passphrase);
+                    LogOnIdentity identity = new LogOnIdentity(PasswordText);
 
                     EncryptedProperties properties = EncryptedProperties.Create(privateKeyDataStore, identity);
                     return properties.IsValid;
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task ImportFileActionAsync()
         {
             IDataStore privateKeyData = New<IDataStore>(PrivateKeyFileName);
-            Passphrase passphrase = new Passphrase(Passphrase);
+            Passphrase passphrase = new Passphrase(PasswordText);
             UserKeyPair keyPair;
             if (!UserKeyPair.TryLoad(privateKeyData.ToArray(), passphrase, out keyPair))
             {

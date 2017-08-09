@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public class ProgressBackgroundEventArgs
+    public class ProgressBackgroundEventArgs : EventArgs
     {
         public ProgressBackgroundEventArgs(IProgressContext progressContext)
         {

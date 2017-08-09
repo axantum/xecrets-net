@@ -38,12 +38,12 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _passphraseTextBox.LostFocus += (s, ea) => { _viewModel.Passphrase = _passphraseTextBox.Text; };
+            _passphraseTextBox.LostFocus += (s, ea) => { _viewModel.PasswordText = _passphraseTextBox.Text; };
             _passphraseTextBox.TextChanged += (s, ea) => { ClearErrorProviders(); };
-            _passphraseTextBox.Validating += (s, ea) => { _viewModel.Passphrase = _passphraseTextBox.Text; };
-            _showPassphraseCheckBox.CheckedChanged += (s, ea) => { _viewModel.ShowPassphrase = _showPassphraseCheckBox.Checked; };
+            _passphraseTextBox.Validating += (s, ea) => { _viewModel.PasswordText = _passphraseTextBox.Text; };
+            _showPassphraseCheckBox.CheckedChanged += (s, ea) => { _viewModel.ShowPassword = _showPassphraseCheckBox.Checked; };
 
-            _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowPassword), (bool show) => { _passphraseTextBox.UseSystemPasswordChar = !(_showPassphraseCheckBox.Checked = show); });
+            _viewModel.BindPropertyChanged(nameof(_viewModel.ShowPassword), (bool show) => { _passphraseTextBox.UseSystemPasswordChar = !(_showPassphraseCheckBox.Checked = show); });
         }
 
         protected override void InitializeContentResources()
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt
         private bool AdHocValidatePassphrase()
         {
             _errorProvider1.Clear();
-            if (_viewModel[nameof(VerifySignInPasswordViewModel.Passphrase)].Length != 0)
+            if (_viewModel[nameof(_viewModel.PasswordText)].Length != 0)
             {
                 _errorProvider1.SetError(_passphraseTextBox, Texts.WrongPassphrase);
                 return false;

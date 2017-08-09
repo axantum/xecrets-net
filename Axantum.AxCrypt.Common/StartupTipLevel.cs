@@ -8,7 +8,7 @@ namespace Axantum.AxCrypt.Common
 {
     public enum StartupTipLevel
     {
-        Unkown = 0,
+        Unknown = 0,
         Information,
         Warning,
         Critical,

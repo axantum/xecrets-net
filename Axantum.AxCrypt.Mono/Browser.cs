@@ -8,6 +8,11 @@ namespace Axantum.AxCrypt.Mono
     {
         public void OpenUri(Uri url)
         {
+            if (url == null)
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
+
             Process.Start(url.ToString());
         }
     }

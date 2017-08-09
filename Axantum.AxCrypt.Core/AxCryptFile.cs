@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public void EncryptFileWithBackupAndWipe(string sourceFileName, string destinationFileName, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public async Task EncryptFileWithBackupAndWipeAsync(string sourceFileName, string destinationFileName, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (sourceFileName == null)
             {
@@ -207,11 +207,11 @@ namespace Axantum.AxCrypt.Core
             IDataStore destinationFileInfo = New<IDataStore>(destinationFileName);
             using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationFileInfo))
             {
-                EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
+                await EncryptFileWithBackupAndWipeAsync(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
             }
         }
 
-        public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> containers, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual async Task EncryptFoldersUniqueWithBackupAndWipeAsync(IEnumerable<IDataContainer> containers, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (containers == null)
             {
@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Core
                 progress.AddTotal(files.Count());
                 foreach (IDataStore file in files)
                 {
-                    EncryptFileUniqueWithBackupAndWipe(file, encryptionParameters, progress);
+                    await EncryptFileUniqueWithBackupAndWipeAsync(file, encryptionParameters, progress);
                     progress.AddCount(1);
                 }
             }
@@ -241,16 +241,16 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public virtual void EncryptFileUniqueWithBackupAndWipe(IDataStore sourceStore, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual async Task EncryptFileUniqueWithBackupAndWipeAsync(IDataStore sourceStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             IDataStore destinationFileInfo = sourceStore.CreateEncryptedName();
             using (FileLock lockedDestination = destinationFileInfo.FullName.CreateUniqueFile())
             {
-                EncryptFileWithBackupAndWipe(sourceStore, lockedDestination, encryptionParameters, progress);
+                await EncryptFileWithBackupAndWipeAsync(sourceStore, lockedDestination, encryptionParameters, progress);
             }
         }
 
-        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceStore, FileLock destinationStore, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual async Task EncryptFileWithBackupAndWipeAsync(IDataStore sourceStore, FileLock destinationStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (sourceStore == null)
             {
@@ -276,9 +276,10 @@ namespace Axantum.AxCrypt.Core
                 {
                     using (Stream activeFileStream = sourceStore.OpenRead())
                     {
-                        WriteToFileWithBackup(destinationStore, (Stream destination) =>
+                        await EncryptToFileWithBackupAsync(destinationStore, (Stream destination) =>
                         {
                             Encrypt(sourceStore, destination, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
+                            return Constant.CompletedTask;
                         }, progress);
 
                         if (sourceStore.IsWriteProtected)
@@ -315,7 +316,7 @@ namespace Axantum.AxCrypt.Core
         /// or
         /// progress
         /// </exception>
-        public virtual async Task ChangeEncryption(IEnumerable<IDataContainer> containers, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public virtual async Task ChangeEncryptionAsync(IEnumerable<IDataContainer> containers, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (containers == null)
             {
@@ -330,7 +331,7 @@ namespace Axantum.AxCrypt.Core
             try
             {
                 IEnumerable<IDataStore> files = containers.SelectMany((folder) => folder.ListEncrypted(containers, New<UserSettings>().FolderOperationMode.Policy()));
-                ChangeEncryption(files, identity, encryptionParameters, progress);
+                await ChangeEncryptionAsync(files, identity, encryptionParameters, progress);
             }
             finally
             {
@@ -339,7 +340,7 @@ namespace Axantum.AxCrypt.Core
             await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange));
         }
 
-        public void ChangeEncryption(IEnumerable<IDataStore> files, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public async Task ChangeEncryptionAsync(IEnumerable<IDataStore> files, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             if (progress == null)
             {
@@ -353,7 +354,7 @@ namespace Axantum.AxCrypt.Core
             progress.AddTotal(files.Count());
             foreach (IDataStore file in files)
             {
-                ChangeEncryption(file, identity, encryptionParameters, progress);
+                await ChangeEncryptionAsync(file, identity, encryptionParameters, progress);
                 progress.AddCount(1);
             }
         }
@@ -370,7 +371,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="encryptionParameters">The encryption parameters.</param>
         /// <param name="progress">The progress.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
-        public void ChangeEncryption(IDataStore from, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
+        public async Task ChangeEncryptionAsync(IDataStore from, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             using (CancellationTokenSource tokenSource = new CancellationTokenSource())
             {
@@ -393,23 +394,22 @@ namespace Axantum.AxCrypt.Core
                         {
                             Decrypt(from, pipeline, identity);
                             pipeline.Complete();
-                        });
-                        decryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+                        }).ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
-                        Task encryption = Task.Run(() =>
+                        Task encryption = Task.Run(async () =>
                         {
                             bool isWriteProteced = from.IsWriteProtected;
                             if (isWriteProteced)
                             {
                                 from.IsWriteProtected = false;
                             }
-                            WriteToFileWithBackup(fileLock, (Stream s) =>
+                            await EncryptToFileWithBackupAsync(fileLock, (Stream s) =>
                             {
                                 Encrypt(pipeline, s, encryptedProperties, encryptionParameters, AxCryptOptions.EncryptWithCompression, progress);
+                                return Constant.CompletedTask;
                             }, progress);
                             from.IsWriteProtected = isWriteProteced;
-                        });
-                        encryption.ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+                        }).ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
 
                         try
                         {
@@ -540,35 +540,41 @@ namespace Axantum.AxCrypt.Core
         /// Decrypt a source file to a destination file, given a passphrase
         /// </summary>
         /// <param name="sourceStore">The source file</param>
-        /// <param name="destinationStore">The destination file</param>
+        /// <param name="destinationItem">The destination file</param>
         /// <param name="logOnIdentity">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public bool Decrypt(IDataStore sourceStore, IDataStore destinationStore, LogOnIdentity logOnIdentity, AxCryptOptions options, IProgressContext progress)
+        public bool Decrypt(IDataStore sourceStore, IDataItem destinationItem, LogOnIdentity logOnIdentity, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceStore == null)
             {
-                throw new ArgumentNullException("sourceStore");
+                throw new ArgumentNullException(nameof(sourceStore));
             }
-            if (destinationStore == null)
+            if (destinationItem == null)
             {
-                throw new ArgumentNullException("destinationStore");
+                throw new ArgumentNullException(nameof(destinationItem));
             }
             if (logOnIdentity == null)
             {
-                throw new ArgumentNullException("logOnIdentity");
+                throw new ArgumentNullException(nameof(logOnIdentity));
             }
             if (progress == null)
             {
-                throw new ArgumentNullException("progress");
+                throw new ArgumentNullException(nameof(progress));
             }
 
-            using (IAxCryptDocument document = Document(sourceStore, logOnIdentity, new ProgressContext()))
+            using (FileLock sourceLock = New<FileLocker>().Acquire(sourceStore))
             {
-                if (!document.PassphraseIsValid)
+                using (IAxCryptDocument document = Document(sourceStore, logOnIdentity, new ProgressContext()))
                 {
-                    return false;
+                    if (!document.PassphraseIsValid)
+                    {
+                        return false;
+                    }
+                    using (FileLock destinationLock = New<FileLocker>().Acquire(destinationItem))
+                    {
+                        Decrypt(document, destinationLock, options, progress);
+                    }
                 }
-                Decrypt(document, destinationStore, options, progress);
             }
             return true;
         }
@@ -595,20 +601,21 @@ namespace Axantum.AxCrypt.Core
         /// or
         /// progress
         /// </exception>
-        public void Decrypt(IAxCryptDocument document, IDataStore destinationStore, AxCryptOptions options, IProgressContext progress)
+        public void Decrypt(IAxCryptDocument document, FileLock destinationLock, AxCryptOptions options, IProgressContext progress)
         {
             if (document == null)
             {
-                throw new ArgumentNullException("document");
+                throw new ArgumentNullException(nameof(document));
             }
-            if (destinationStore == null)
+            if (destinationLock == null)
             {
-                throw new ArgumentNullException("destinationStore");
+                throw new ArgumentNullException(nameof(destinationLock));
             }
             if (progress == null)
             {
-                throw new ArgumentNullException("progress");
+                throw new ArgumentNullException(nameof(progress));
             }
+            IDataStore destinationStore = destinationLock.DataStore;
             try
             {
                 if (Resolve.Log.IsInfoEnabled)
@@ -630,10 +637,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (destinationStore.IsAvailable)
                 {
-                    using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationStore))
-                    {
-                        Wipe(destinationFileLock, progress);
-                    }
+                    Wipe(destinationLock, progress);
                 }
                 throw;
             }
@@ -687,8 +691,11 @@ namespace Axantum.AxCrypt.Core
                     return destinationFileName;
                 }
                 destinationFileName = document.FileName;
-                IDataStore destinationFullPath = New<IDataStore>(Resolve.Portable.Path().Combine(destinationContainerName, destinationFileName));
-                Decrypt(document, destinationFullPath, options, progress);
+                IDataStore destinationDataStore = New<IDataStore>(Resolve.Portable.Path().Combine(destinationContainerName, destinationFileName));
+                using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationDataStore))
+                {
+                    Decrypt(document, destinationFileLock, options, progress);
+                }
             }
             return destinationFileName;
         }
@@ -767,7 +774,10 @@ namespace Axantum.AxCrypt.Core
             }
 
             IDataStore decryptedFileInfo = New<IDataStore>(decryptedFileFullName);
-            Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
+            using (FileLock decryptedFileLock = new FileLocker().Acquire(decryptedFileInfo))
+            {
+                Decrypt(document, decryptedFileLock, AxCryptOptions.SetFileTimes, progress);
+            }
         }
 
         public virtual void TryDecryptBrokenFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
@@ -930,13 +940,13 @@ namespace Axantum.AxCrypt.Core
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public void WriteToFileWithBackup(FileLock destinationFileLock, Action<Stream> writeFileStreamTo, IProgressContext progress)
+        public async Task EncryptToFileWithBackupAsync(FileLock destinationFileLock, Func<Stream, Task> encryptFileStreamTo, IProgressContext progress)
         {
             if (destinationFileLock == null)
             {
                 throw new ArgumentNullException("destinationFileInfo");
             }
-            if (writeFileStreamTo == null)
+            if (encryptFileStreamTo == null)
             {
                 throw new ArgumentNullException("writeFileStreamTo");
             }
@@ -947,7 +957,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     using (Stream temporaryStream = lockedTemporary.DataStore.OpenWrite())
                     {
-                        writeFileStreamTo(temporaryStream);
+                        await encryptFileStreamTo(temporaryStream);
                     }
                 }
                 catch (Exception ex)
@@ -959,45 +969,41 @@ namespace Axantum.AxCrypt.Core
                     HandleException(ex, lockedTemporary.DataStore);
                 }
 
-                if (destinationFileLock.DataStore.IsAvailable)
+                EnsureConsistencyOfDestination(lockedTemporary);
+
+                if (!destinationFileLock.DataStore.IsAvailable)
                 {
-                    using (FileLock lockedBackup = MakeAlternatePath(destinationFileLock.DataStore, ".bak"))
+                    try
                     {
-                        IDataStore backupDataStore = New<IDataStore>(destinationFileLock.DataStore.FullName);
-                        try
-                        {
-                            backupDataStore.MoveTo(lockedBackup.DataStore.FullName);
-                        }
-                        catch (Exception ex)
-                        {
-                            lockedBackup.DataStore.Delete();
-                            lockedTemporary.DataStore.Delete();
-
-                            HandleException(ex, destinationFileLock.DataStore);
-                        }
-                        try
-                        {
-                            lockedTemporary.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
-                        }
-                        catch (Exception ex)
-                        {
-                            lockedTemporary.DataStore.Delete();
-                            lockedBackup.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
-
-                            HandleException(ex, destinationFileLock.DataStore);
-                        }
-                        try
-                        {
-                            Wipe(lockedBackup, progress);
-                        }
-                        catch (Exception ex)
-                        {
-                            backupDataStore.Delete();
-
-                            HandleException(ex, backupDataStore);
-                        }
+                        lockedTemporary.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
+                        return;
                     }
-                    return;
+                    catch (Exception ex)
+                    {
+                        HandleException(ex, destinationFileLock.DataStore);
+                    }
+                }
+
+                MoveTemporaryToDestinationWithBackupAndWipe(lockedTemporary, destinationFileLock, progress);
+            }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private void MoveTemporaryToDestinationWithBackupAndWipe(FileLock lockedTemporary, FileLock destinationFileLock, IProgressContext progress)
+        {
+            using (FileLock lockedBackup = MakeAlternatePath(destinationFileLock.DataStore, ".bak"))
+            {
+                IDataStore backupDataStore = New<IDataStore>(destinationFileLock.DataStore.FullName);
+                try
+                {
+                    backupDataStore.MoveTo(lockedBackup.DataStore.FullName);
+                }
+                catch (Exception ex)
+                {
+                    lockedBackup.DataStore.Delete();
+                    lockedTemporary.DataStore.Delete();
+
+                    HandleException(ex, destinationFileLock.DataStore);
                 }
 
                 try
@@ -1006,8 +1012,37 @@ namespace Axantum.AxCrypt.Core
                 }
                 catch (Exception ex)
                 {
+                    lockedTemporary.DataStore.Delete();
+                    lockedBackup.DataStore.MoveTo(destinationFileLock.DataStore.FullName);
+
                     HandleException(ex, destinationFileLock.DataStore);
                 }
+
+                EnsureConsistencyOfDestination(destinationFileLock);
+
+                try
+                {
+                    Wipe(lockedBackup, progress);
+                }
+                catch (Exception ex)
+                {
+                    backupDataStore.Delete();
+
+                    HandleException(ex, backupDataStore);
+                }
+            }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private static void EnsureConsistencyOfDestination(FileLock destinationFileLock)
+        {
+            try
+            {
+                OpenFileProperties.Create(destinationFileLock.DataStore);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex, destinationFileLock.DataStore);
             }
         }
 

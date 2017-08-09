@@ -552,19 +552,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestTitle()
-        {
-            using (MainViewModel mvm = New<MainViewModel>())
-            {
-                Assert.That(mvm.Title.Length, Is.EqualTo(0));
-
-                mvm.Title = "AxCrypt Title";
-
-                Assert.That(mvm.Title, Is.EqualTo("AxCrypt Title"));
-            }
-        }
-
-        [Test]
         public async Task TestNotifyWatchedFolderAdded()
         {
             await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("passphrase"));

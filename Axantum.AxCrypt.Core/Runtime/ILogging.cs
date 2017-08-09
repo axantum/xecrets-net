@@ -46,14 +46,14 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         bool IsDebugEnabled { get; }
 
-        void LogFatal(string message);
+        void LogFatal(string fatalLog);
 
-        void LogError(string message);
+        void LogError(string errorLog);
 
-        void LogWarning(string message);
+        void LogWarning(string warningLog);
 
-        void LogInfo(string message);
+        void LogInfo(string infoLog);
 
-        void LogDebug(string message);
+        void LogDebug(string debugLog);
     }
 }

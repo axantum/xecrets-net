@@ -38,7 +38,6 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class UserSettings
     {
-        public static int CurrentSettingsVersion { get { return 10; } }
 #if DEBUG
         private const int ASYMMETRIC_KEY_BITS = 768;
 #else
@@ -62,7 +61,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (_settingsStore[nameof(SettingsVersion)].Length == 0)
             {
-                _settingsStore[nameof(SettingsVersion)] = Convert.ToString(CurrentSettingsVersion, CultureInfo.InvariantCulture);
+                _settingsStore[nameof(SettingsVersion)] = Convert.ToString(New<UserSettingsVersion>().Current, CultureInfo.InvariantCulture);
             }
         }
 
@@ -284,16 +283,16 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(FewFilesThreshold), value); }
         }
 
-        public DontShowAgain DontShowAgain
+        public DoNotShowAgainOptions DoNotShowAgain
         {
-            get { return (DontShowAgain)Load(nameof(DontShowAgain), (int)DontShowAgain.None); }
-            set { Store(nameof(DontShowAgain), (int)value); }
+            get { return (DoNotShowAgainOptions)Load(nameof(DoNotShowAgain), (int)DoNotShowAgainOptions.None); }
+            set { Store(nameof(DoNotShowAgain), (int)value); }
         }
 
-        public TimeSpan InactivititySignOutTime
+        public TimeSpan InactivitySignOutTime
         {
-            get { return Load(nameof(InactivititySignOutTime), TimeSpan.Zero); }
-            set { Store(nameof(InactivititySignOutTime), value); }
+            get { return Load(nameof(InactivitySignOutTime), TimeSpan.Zero); }
+            set { Store(nameof(InactivitySignOutTime), value); }
         }
 
         public T Load<T>(string key)

@@ -1,12 +1,13 @@
 ﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -14,7 +15,9 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         protected SynchronizationContext Context { get; }
 
-        public UIThreadBase()
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "SyncronizationContext")]
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IUIThread")]
+        protected UIThreadBase()
         {
             if (SynchronizationContext.Current == null)
             {
@@ -29,13 +32,27 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public abstract void Yield();
 
-        public abstract void Exit();
+        public abstract void ExitApplication();
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public void SendTo(Action action)
         {
+            if (IsOn)
+            {
+                action();
+                return;
+            }
+
             if (Blocked)
             {
-                throw new InvalidOperationException("Can't invoke synchronously on UI thread when it's already blocked.");
+#if DEBUG
+                Debugger.Break();
+#endif
+                while (Blocked)
+                {
+                    New<ISleep>().Time(TimeSpan.FromMilliseconds(1));
+                    Yield();
+                }
             }
 
             Exception exception = null;
@@ -56,9 +73,22 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public async Task SendToAsync(Func<Task> action)
         {
+            if (IsOn)
+            {
+                await action();
+                return;
+            }
+
             if (Blocked)
             {
-                throw new InvalidOperationException("Can't invoke synchronously on UI thread when it's already blocked.");
+#if DEBUG
+                Debugger.Break();
+#endif
+                while (Blocked)
+                {
+                    await Task.Delay(1);
+                    Yield();
+                }
             }
 
             TaskCompletionSource<Exception> completion = new TaskCompletionSource<Exception>();

@@ -58,7 +58,7 @@
     <Compile Include="AsyncLock.cs" />
     <Compile Include="AxCryptOnlineState.cs" />
     <Compile Include="CacheKey.cs" />
-    <Compile Include="DontShowAgain.cs" />
+    <Compile Include="DoNotShowAgainOptions.cs" />
     <Compile Include="DownloadVersion.cs" />
     <Compile Include="DummyReferencedType.cs" />
     <Compile Include="FrameworkTypeExtensions.cs" />
@@ -73,6 +73,7 @@
     <Compile Include="FolderOperationMode.cs" />
     <Compile Include="TaskRunner.cs" />
     <Compile Include="UpdateLevels.cs" />
+    <Compile Include="VersionRange.cs" />
     <Compile Include="VersionUpdateKind.cs" />
     <Compile Include="VersionUpdateStatus.cs" />
   </ItemGroup>

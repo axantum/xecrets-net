@@ -31,13 +31,14 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="workFunction">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the GUI thread.</param>
-        public Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Action<FileOperationContext> complete, IProgressContext progress)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
+        public Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workFunction, Func<FileOperationContext, Task> complete, IProgressContext progress)
         {
             Task task = New<IUIThread>().SendToAsync(() => BackgroundWorkWithProgressOnUIThreadAsync(name, workFunction, complete, progress));
             return task;
         }
 
-        private async Task BackgroundWorkWithProgressOnUIThreadAsync(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete, IProgressContext progress)
+        private async Task BackgroundWorkWithProgressOnUIThreadAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workAsync, Func<FileOperationContext, Task> completeAsync, IProgressContext progress)
         {
             ProgressBackgroundEventArgs e = new ProgressBackgroundEventArgs(progress);
             try
@@ -45,12 +46,12 @@ namespace Axantum.AxCrypt.Core.UI
                 Interlocked.Increment(ref _workerCount);
                 OnOperationStarted(e);
 
-                FileOperationContext result = await Task.Run(() => work(progress)).Free();
-                New<IUIThread>().SendTo(() => complete(result));
+                FileOperationContext result = await Task.Run(() => workAsync(progress));
+                await completeAsync(result);
             }
             finally
             {
-                New<IUIThread>().SendTo(() => OnOperationCompleted(e));
+                OnOperationCompleted(e);
                 Interlocked.Decrement(ref _workerCount);
             }
         }

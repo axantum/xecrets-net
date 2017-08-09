@@ -12,30 +12,24 @@ namespace Axantum.AxCrypt.Common
 
         private Version _newVersion;
 
-        private Version _lastReliabilityUpdate;
+        private VersionRange _unreliableVersions;
 
-        private Version _lastSecurityUpdate;
+        private VersionRange _insecureVersions;
 
         private VersionUpdateKind()
             : this(string.Empty, string.Empty, string.Empty)
         {
         }
 
-        public VersionUpdateKind(string currentVersion, string lastReliabilityUpdate, string lastSecurityUpdate)
+        public VersionUpdateKind(string currentVersion, string unreliableVersions, string insecureVersions)
         {
             if (!Version.TryParse(string.IsNullOrEmpty(currentVersion) ? DownloadVersion.VersionZero.ToString() : currentVersion, out _currentVersion))
             {
                 throw new ArgumentException("Invalid version format", nameof(currentVersion));
             }
             _newVersion = _currentVersion;
-            if (!Version.TryParse(string.IsNullOrEmpty(lastReliabilityUpdate) ? DownloadVersion.VersionZero.ToString() : lastReliabilityUpdate, out _lastReliabilityUpdate))
-            {
-                throw new ArgumentException("Invalid version format", nameof(lastReliabilityUpdate));
-            }
-            if (!Version.TryParse(string.IsNullOrEmpty(lastSecurityUpdate) ? DownloadVersion.VersionZero.ToString() : lastSecurityUpdate, out _lastSecurityUpdate))
-            {
-                throw new ArgumentException("Invalid version format", nameof(lastSecurityUpdate));
-            }
+            _unreliableVersions = new VersionRange(unreliableVersions);
+            _insecureVersions = new VersionRange(insecureVersions);
         }
 
         public static readonly VersionUpdateKind Empty = new VersionUpdateKind();
@@ -50,8 +44,8 @@ namespace Axantum.AxCrypt.Common
             return new VersionUpdateKind()
             {
                 _currentVersion = _currentVersion,
-                _lastReliabilityUpdate = _lastReliabilityUpdate,
-                _lastSecurityUpdate = _lastSecurityUpdate,
+                _unreliableVersions = _unreliableVersions,
+                _insecureVersions = _insecureVersions,
                 _newVersion = newVersion,
             };
         }
@@ -64,7 +58,7 @@ namespace Axantum.AxCrypt.Common
         {
             get
             {
-                return _lastReliabilityUpdate > DownloadVersion.VersionZero && _currentVersion > DownloadVersion.VersionZero && _currentVersion < _lastReliabilityUpdate;
+                return _unreliableVersions.IsInRange(_currentVersion);
             }
         }
 
@@ -72,7 +66,7 @@ namespace Axantum.AxCrypt.Common
         {
             get
             {
-                return _lastSecurityUpdate > DownloadVersion.VersionZero && _currentVersion > DownloadVersion.VersionZero && _currentVersion < _lastSecurityUpdate;
+                return _insecureVersions.IsInRange(_currentVersion);
             }
         }
     }

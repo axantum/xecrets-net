@@ -733,6 +733,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not now.
+        /// </summary>
+        public static string ButtonNotNow {
+            get {
+                return ResourceManager.GetString("ButtonNotNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string ButtonOkText {
@@ -1949,7 +1958,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!The {0} field is required..
+        ///   Looks up a localized string similar to &apos;{0}&apos; must be filled in..
         /// </summary>
         public static string ErrorFieldRequired {
             get {
@@ -3015,7 +3024,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Local.
+        ///   Looks up a localized string similar to Local.
         /// </summary>
         public static string LocalIndicatorText {
             get {
@@ -3853,6 +3862,19 @@ namespace AxCrypt.Content.Properties {
         public static string NoNeedToCheckForUpdatesTooltip {
             get {
                 return ResourceManager.GetString("NoNeedToCheckForUpdatesTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We&apos;re doing this without asking your for your password again!
+        ///
+        ///You&apos;re signed in, so we won&apos;t ask for your password to encrypt, decrypt or open documents.
+        ///
+        ///Your documents are still safely encrypted with your password..
+        /// </summary>
+        public static string NoPasswordRequiredInformationText {
+            get {
+                return ResourceManager.GetString("NoPasswordRequiredInformationText", resourceCulture);
             }
         }
         
@@ -5453,6 +5475,15 @@ namespace AxCrypt.Content.Properties {
         public static string SslRequiredTitle {
             get {
                 return ResourceManager.GetString("SslRequiredTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did you know? You can enable the &apos;Include Subfolders&apos; option to work with folders in folders. Premium is required for this..
+        /// </summary>
+        public static string StartupTipIncludeSubfoldersFeature {
+            get {
+                return ResourceManager.GetString("StartupTipIncludeSubfoldersFeature", resourceCulture);
             }
         }
         

@@ -59,6 +59,7 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt")));
             TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
+            TypeMap.Register.Singleton<UserSettingsVersion>(() => new UserSettingsVersion());
             TypeMap.Register.Singleton<UserSettings>(() => new UserSettings(New<ISettingsStore>(), New<IterationCalculator>()));
             TypeMap.Register.Singleton<SessionNotify>(() => new SessionNotify());
             TypeMap.Register.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());

@@ -111,7 +111,7 @@
     <Compile Include="Portable\ISingleThread.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Runtime\AboutAssembly.cs" />
-    <Compile Include="Runtime\InactivititySignOut.cs" />
+    <Compile Include="Runtime\InactivitySignOut.cs" />
     <Compile Include="Runtime\AsyncCompletionEventArgs.cs" />
     <Compile Include="Runtime\CryptoException.cs" />
     <Compile Include="Runtime\FileOperationException.cs" />
@@ -203,6 +203,8 @@
     <Compile Include="Session\UserPublicKeyUpdateStatus.cs" />
     <Compile Include="UI\DeviceLockedEventArgs.cs" />
     <Compile Include="UI\DeviceLockReason.cs" />
+    <Compile Include="UI\Display.cs" />
+    <Compile Include="UI\IFileExplorer.cs" />
     <Compile Include="UI\IDataItemSelection.cs" />
     <Compile Include="UI\IDeviceLocked.cs" />
     <Compile Include="UI\IKnownFolderImageProvider.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="UI\SettingsStore.cs" />
     <Compile Include="UI\PremiumManager.cs" />
     <Compile Include="UI\StatusChecker.cs" />
+    <Compile Include="UI\UserSettingsVersion.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />
     <Compile Include="UI\ViewModel\AccountProperties.cs" />
     <Compile Include="UI\ViewModel\AsyncDelegateAction.cs" />
@@ -317,7 +320,6 @@
     <Compile Include="Header\V1UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
     <Compile Include="IO\ProgressStream.cs" />
-    <Compile Include="Runtime\IDataProtection.cs" />
     <Compile Include="Runtime\ILauncher.cs" />
     <Compile Include="Runtime\ILogging.cs" />
     <Compile Include="Runtime\IRuntimeEnvironment.cs" />

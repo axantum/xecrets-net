@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             if (passphrase == Passphrase.Empty)
             {
-                byte[] encryptedPrivateKeyBytes = New<IDataProtection>().Protect(privateKeyPemBytes);
+                byte[] encryptedPrivateKeyBytes = New<IProtectedData>().Protect(privateKeyPemBytes, null);
                 return Convert.ToBase64String(encryptedPrivateKeyBytes);
             }
 
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             byte[] privateKeyEncryptedPem = Convert.FromBase64String(privateEncryptedPem);
 
-            byte[] decryptedPrivateKeyBytes = New<IDataProtection>().Unprotect(privateKeyEncryptedPem);
+            byte[] decryptedPrivateKeyBytes = New<IProtectedData>().Unprotect(privateKeyEncryptedPem, null);
             if (decryptedPrivateKeyBytes != null)
             {
                 return Encoding.UTF8.GetString(decryptedPrivateKeyBytes, 0, decryptedPrivateKeyBytes.Length);
@@ -356,7 +356,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         public static async Task<UserPublicKey> GetAsync(this KnownPublicKeys knownPublicKeys, EmailAddress email, LogOnIdentity identity)
         {
             UserPublicKey key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
-            if (key != null && New<UserPublicKeyUpdateStatus>()[key] == PublicKeyUpdateStatus.RecentlyUpdated)
+            if (key != null && New<UserPublicKeyUpdateStatus>().Status(key) == PublicKeyUpdateStatus.RecentlyUpdated)
             {
                 return key;
             }
@@ -371,23 +371,28 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return key;
             }
 
+            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing))
+            {
+                return key;
+            }
+
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
             UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
 
             if (userPublicKey != null)
             {
                 knownPublicKeys.AddOrReplace(userPublicKey);
-                New<UserPublicKeyUpdateStatus>()[userPublicKey] = PublicKeyUpdateStatus.RecentlyUpdated;
+                New<UserPublicKeyUpdateStatus>().SetStatus(userPublicKey, PublicKeyUpdateStatus.RecentlyUpdated);
             }
             return userPublicKey;
         }
 
         public static async Task ChangeEncryptionAsync(this IEnumerable<string> files, EncryptionParameters encryptionParameters)
         {
-            await Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), (IDataStore file, IProgressContext progress) =>
+            await Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), async (IDataStore file, IProgressContext progress) =>
                 {
-                    New<AxCryptFile>().ChangeEncryption(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
-                    return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
+                    await New<AxCryptFile>().ChangeEncryptionAsync(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                    return await Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
                 },
                 async (FileOperationContext foc) =>
                 {

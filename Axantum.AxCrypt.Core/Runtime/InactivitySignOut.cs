@@ -5,23 +5,23 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    public class InactivititySignOut : IDisposable
+    public class InactivitySignOut : IDisposable
     {
         private DelayedAction _signOutDelayedAction;
 
-        public InactivititySignOut(TimeSpan timeOut)
+        public InactivitySignOut(TimeSpan timeout)
         {
-            if (timeOut == TimeSpan.Zero || !New<LicensePolicy>().Capabilities.Has(LicenseCapability.InactivitySignOut))
+            if (timeout == TimeSpan.Zero || !New<LicensePolicy>().Capabilities.Has(LicenseCapability.InactivitySignOut))
             {
                 return;
             }
 
-            _signOutDelayedAction = new DelayedAction(New<IDelayTimer>(), timeOut);
+            _signOutDelayedAction = new DelayedAction(New<IDelayTimer>(), timeout);
             _signOutDelayedAction.Action += SignOutAction;
             _signOutDelayedAction.StartIdleTimer();
         }
 
-        public void RestartInactivitityTimer()
+        public void RestartInactivityTimer()
         {
             _signOutDelayedAction?.StartIdleTimer();
         }
@@ -41,7 +41,10 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 return;
             }
-            _signOutDelayedAction?.Dispose();
+            if (_signOutDelayedAction != null)
+            {
+                _signOutDelayedAction.Dispose();
+            }
             _signOutDelayedAction = null;
         }
 

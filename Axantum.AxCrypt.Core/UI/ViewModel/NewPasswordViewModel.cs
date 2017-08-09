@@ -37,7 +37,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class NewPasswordViewModel : ViewModelBase, INewPassword
+    public class NewPasswordViewModel : ViewModelBase, INewPassword, IPasswordEntry
     {
         private string _encryptedFileFullName;
 

@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Mono
             }
             catch (ArgumentException ae)
             {
-                throw new FileOperationException("Can't create DataStore.", normalized, ErrorStatus.Exception, ae);
+                throw new FileOperationException($"Can't create {nameof(DataStore)}.", normalized, ErrorStatus.Exception, ae);
             }
         }
 
@@ -191,12 +191,12 @@ namespace Axantum.AxCrypt.Mono
             get
             {
                 _file.Refresh();
-                return _file.CreationTimeUtc;
+                return FileTimeSafe(() => _file.CreationTimeUtc);
             }
             set
             {
                 _file.Refresh();
-                _file.CreationTimeUtc = value;
+                _file.CreationTimeUtc = Validate(value);
             }
         }
 
@@ -211,12 +211,12 @@ namespace Axantum.AxCrypt.Mono
             get
             {
                 _file.Refresh();
-                return _file.LastAccessTimeUtc;
+                return FileTimeSafe(() => _file.LastAccessTimeUtc);
             }
             set
             {
                 _file.Refresh();
-                _file.LastAccessTimeUtc = value;
+                _file.LastAccessTimeUtc = Validate(value);
             }
         }
 
@@ -231,13 +231,42 @@ namespace Axantum.AxCrypt.Mono
             get
             {
                 _file.Refresh();
-                return _file.LastWriteTimeUtc;
+                return FileTimeSafe(() => _file.LastWriteTimeUtc);
             }
             set
             {
                 _file.Refresh();
-                _file.LastWriteTimeUtc = value;
+                _file.LastWriteTimeUtc = Validate(value);
             }
+        }
+
+        private static readonly DateTime MIN_FILETIME = new DateTime(1900, 1, 1);
+
+        private static readonly DateTime MAX_FILETIME = new DateTime(2200, 1, 1);
+
+        private static DateTime FileTimeSafe(Func<DateTime> fileTimeFunc)
+        {
+            try
+            {
+                return fileTimeFunc();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return New<INow>().Utc;
+            }
+        }
+
+        private static DateTime Validate(DateTime fileTime)
+        {
+            if (fileTime < MIN_FILETIME)
+            {
+                return MIN_FILETIME;
+            }
+            if (fileTime > MAX_FILETIME)
+            {
+                return MAX_FILETIME;
+            }
+            return fileTime;
         }
 
         /// <summary>

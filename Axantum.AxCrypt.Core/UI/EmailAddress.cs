@@ -127,6 +127,24 @@ namespace Axantum.AxCrypt.Core.UI
             return !(left == right);
         }
 
+        public static bool operator <(EmailAddress left, EmailAddress right)
+        {
+            if (left == null || right == null)
+            {
+                return false;
+            }
+            return String.Compare(left.Address, right.Address, StringComparison.OrdinalIgnoreCase) < 0;
+        }
+
+        public static bool operator >(EmailAddress left, EmailAddress right)
+        {
+            if (left == null || right == null)
+            {
+                return false;
+            }
+            return String.Compare(left.Address, right.Address, StringComparison.OrdinalIgnoreCase) > 0;
+        }
+
         public bool Equals(EmailAddress other)
         {
             if (Object.ReferenceEquals(other, null) || GetType() != other.GetType())

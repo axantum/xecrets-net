@@ -129,7 +129,6 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             }
 
             int rsaKeyBitLength = ((RsaKeyParameters)Key).Modulus.BitLength;
-            int rsaKeyByteLength = (rsaKeyBitLength + 7) / 8;
 
             IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(New<IAsymmetricFactory>().CreatePaddingHash(rsaKeyBitLength)));
             cipher.Init(false, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));

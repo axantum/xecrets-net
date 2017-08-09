@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Fake
     {
         private string _name;
 
-        public async Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> work, Action<FileOperationContext> complete, IProgressContext progress)
+        public async Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workAsync, Func<FileOperationContext, Task> completeAsync, IProgressContext progress)
         {
             _name = name;
 
@@ -49,13 +49,13 @@ namespace Axantum.AxCrypt.Fake
             FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
             try
             {
-                status = await Task.Run(async () => await work(progress).Free());
+                status = await Task.Run(async () => await workAsync(progress).Free());
             }
             catch (OperationCanceledException)
             {
                 status = new FileOperationContext(String.Empty, ErrorStatus.Canceled);
             }
-            complete(status);
+            await completeAsync(status);
             Busy = false;
             OnWorkStatusChanged();
         }

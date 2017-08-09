@@ -62,8 +62,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public LegacyConversionMode LegacyConversionMode { get { return GetProperty<LegacyConversionMode>(nameof(LegacyConversionMode)); } set { SetProperty(nameof(LegacyConversionMode), value); } }
 
-        public string Title { get { return GetProperty<string>(nameof(Title)); } set { SetProperty(nameof(Title), value); } }
-
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>(nameof(WatchedFolders)); } set { SetProperty(nameof(WatchedFolders), value.ToList()); } }
 
         public IEnumerable<ActiveFile> RecentFiles { get { return GetProperty<IEnumerable<ActiveFile>>(nameof(RecentFiles)); } set { SetProperty(nameof(RecentFiles), value.ToList()); } }
@@ -137,7 +135,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SelectedWatchedFolders = new string[0];
             DebugMode = _userSettings.DebugMode;
             FolderOperationMode = _userSettings.FolderOperationMode;
-            Title = String.Empty;
             DownloadVersion = DownloadVersion.Empty;
             VersionUpdateStatus = DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, _userSettings.LastUpdateCheckUtc);
             License = New<LicensePolicy>().Capabilities;
@@ -369,12 +366,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             IEnumerable<IEnumerable<IDataStore>> filesFiles = Resolve.KnownIdentities.LoggedOnWatchedFolders.Select(wf => New<IDataContainer>(wf.Path).ListEncryptable(_fileSystemState.WatchedFolders.Select(x => New<IDataContainer>(x.Path)), New<UserSettings>().FolderOperationMode.Policy()));
 
             FilesArePending = openFiles.Count > 0 || filesFiles.SelectMany(file => file).Any();
-        }
-
-        private void SetLogOnState(bool isLoggedOn)
-        {
-            LoggedOn = isLoggedOn;
-            EncryptFileEnabled = isLoggedOn || !License.Has(LicenseCapability.EncryptNewFiles);
         }
 
         private async Task ClearPassphraseMemoryAction()

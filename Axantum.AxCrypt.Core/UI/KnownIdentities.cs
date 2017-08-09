@@ -94,6 +94,10 @@ namespace Axantum.AxCrypt.Core.UI
                 return;
             }
 
+            if (logOnIdentity == DefaultEncryptionIdentity)
+            {
+                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.SignIn, logOnIdentity)).Free();
+            }
             await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.KnownKeyChange, logOnIdentity)).Free();
         }
 
@@ -168,7 +172,6 @@ namespace Axantum.AxCrypt.Core.UI
             }
             _defaultEncryptionIdentity = value;
             await Add(_defaultEncryptionIdentity).Free();
-            await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.SignIn, value)).Free();
         }
 
         private List<SymmetricKeyThumbprint> _knownThumbprints;

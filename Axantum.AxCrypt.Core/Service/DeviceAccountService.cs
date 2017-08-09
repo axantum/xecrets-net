@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
@@ -7,6 +8,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -115,6 +117,11 @@ namespace Axantum.AxCrypt.Core.Service
                 {
                     New<IReport>().Exception(oaex);
                     New<AxCryptOnlineState>().IsOffline = true;
+                }
+                catch (UnauthorizedApiException uaex)
+                {
+                    New<IReport>().Exception(uaex);
+                    return false;
                 }
             }
             return await _localService.ChangePassphraseAsync(passphrase).Free();

@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Extensions;
+﻿using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
@@ -6,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Texts = AxCrypt.Content.Texts;
@@ -74,23 +73,17 @@ namespace Axantum.AxCrypt
             Visible = true;
         }
 
-        private async void _buttonOk_Click(object sender, EventArgs e)
+        private void _buttonOk_Click(object sender, EventArgs e)
         {
-            SetDialogResultNoneToAvoidEarlyExitDuringAsyncOperations();
-            if (await IsAllValidAsync())
+            if (IsAllValid())
             {
                 DialogResult = DialogResult.OK;
             }
         }
 
-        private void SetDialogResultNoneToAvoidEarlyExitDuringAsyncOperations()
+        private bool IsAllValid()
         {
-            DialogResult = DialogResult.None;
-        }
-
-        private async Task<bool> IsAllValidAsync()
-        {
-            await _viewModel.CheckAccountStatus.ExecuteAsync(null);
+            TaskRunner.WaitFor(() => _viewModel.CheckAccountStatus.ExecuteAsync(null));
             if (_viewModel.AlreadyVerified)
             {
                 return true;
@@ -101,7 +94,7 @@ namespace Axantum.AxCrypt
                 return false;
             }
 
-            await _viewModel.VerifyAccount.ExecuteAsync(null);
+            TaskRunner.WaitFor(() => _viewModel.VerifyAccount.ExecuteAsync(null));
             if (!VerifyCode())
             {
                 return false;

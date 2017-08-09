@@ -9,9 +9,10 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         protected static readonly HashSet<LicenseCapability> ViewerCapabilitySet = new HashSet<LicenseCapability>(new LicenseCapability[]
         {
-                    LicenseCapability.StandardEncryption,
-                    LicenseCapability.AccountKeyBackup,
-                    LicenseCapability.CommunitySupport,
+            LicenseCapability.StandardEncryption,
+            LicenseCapability.AccountKeyBackup,
+            LicenseCapability.CommunitySupport,
+            LicenseCapability.Viewer,
         });
 
         protected override LicenseCapabilities FreeCapabilities

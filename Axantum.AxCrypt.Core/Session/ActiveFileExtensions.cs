@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
-                New<AxCryptFile>().WriteToFileWithBackup(encryptedFileLock, async (Stream destination) =>
+                await New<AxCryptFile>().EncryptToFileWithBackupAsync(encryptedFileLock, async (Stream destination) =>
                 {
                     if (!IsLegacy(activeFile) || shouldConvertLegacy)
                     {

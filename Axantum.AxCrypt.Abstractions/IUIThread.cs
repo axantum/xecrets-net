@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Abstractions
 
         void Yield();
 
-        void Exit();
+        void ExitApplication();
 
         void SendTo(Action action);
 

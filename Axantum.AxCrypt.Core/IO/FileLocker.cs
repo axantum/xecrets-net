@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.IO
         public FileLock Acquire(IDataItem dataItem)
         {
 #if DEBUG
-            return Acquire(dataItem, TimeSpan.FromSeconds(5));
+            return Acquire(dataItem, TimeSpan.FromSeconds(10));
 #else
             return Acquire(dataItem, TimeSpan.FromMilliseconds(-1));
 #endif
@@ -54,36 +54,44 @@ namespace Axantum.AxCrypt.Core.IO
                 throw new ArgumentNullException("dataItem");
             }
 
+            FileLockManager fileLockManager;
             lock (_lockedFiles)
             {
-                FileLockManager fileLock = GetOrCreateFileLockUnsafe(dataItem.FullName, timeout);
-                return fileLock.Lock();
+                fileLockManager = GetOrCreateFileLockUnsafe(dataItem.FullName, timeout);
+                fileLockManager.IncrementReferenceCount();
             }
+            FileLock fileLock = fileLockManager.GetFileLock();
+            fileLockManager.DecrementReferenceCount();
+            return fileLock;
         }
 
-        public Task<FileLock> AcquireAsync(IDataItem dataItem, TimeSpan timeout)
+        public async Task<FileLock> AcquireAsync(IDataItem dataItem, TimeSpan timeout)
         {
             if (dataItem == null)
             {
                 throw new ArgumentNullException("dataItem");
             }
 
+            FileLockManager fileLockManager;
             lock (_lockedFiles)
             {
-                FileLockManager fileLockManager = GetOrCreateFileLockUnsafe(dataItem.FullName, timeout);
-                return fileLockManager.LockAsync();
+                fileLockManager = GetOrCreateFileLockUnsafe(dataItem.FullName, timeout);
+                fileLockManager.IncrementReferenceCount();
             }
+            FileLock fileLock = await fileLockManager.GetFileLockAsync();
+            fileLockManager.DecrementReferenceCount();
+            return fileLock;
         }
 
         private FileLockManager GetOrCreateFileLockUnsafe(string fullName, TimeSpan timeout)
         {
-            FileLockManager fileLock = null;
-            if (!_lockedFiles.TryGetValue(fullName, out fileLock))
+            FileLockManager fileLockManager = null;
+            if (!_lockedFiles.TryGetValue(fullName, out fileLockManager))
             {
-                fileLock = new FileLockManager(fullName, timeout, this);
-                _lockedFiles[fullName] = fileLock;
+                fileLockManager = new FileLockManager(fullName, timeout, this);
+                _lockedFiles[fullName] = fileLockManager;
             }
-            return fileLock;
+            return fileLockManager;
         }
 
         public bool IsLocked(params IDataStore[] dataStoreParameters)
@@ -116,21 +124,34 @@ namespace Axantum.AxCrypt.Core.IO
         {
             lock (_lockedFiles)
             {
-                FileLockManager fileLock;
-                if (!_lockedFiles.TryGetValue(fullName, out fileLock))
+                FileLockManager fileLockManager;
+                if (!_lockedFiles.TryGetValue(fullName, out fileLockManager))
                 {
                     return false;
                 }
 
-                return fileLock.CurrentCount == 0;
+                return fileLockManager.IsLocked;
             }
         }
 
-        public void Release(string fullName)
+        internal bool TryRemove(string fullName)
         {
             lock (_lockedFiles)
             {
-                _lockedFiles.Remove(fullName);
+                FileLockManager fileLockManager;
+                if (!_lockedFiles.TryGetValue(fullName, out fileLockManager))
+                {
+                    return true;
+                }
+
+                if (fileLockManager.DecrementReferenceCount() == 0)
+                {
+                    fileLockManager.Dispose();
+                    _lockedFiles.Remove(fullName);
+                    return true;
+                }
+
+                return false;
             }
         }
     }

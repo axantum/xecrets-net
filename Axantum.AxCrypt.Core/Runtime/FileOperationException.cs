@@ -40,34 +40,34 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
         }
 
-        public FileOperationException(string message)
-            : base(message, ErrorStatus.InternalError)
+        public FileOperationException(string description)
+            : base(description, ErrorStatus.InternalError)
         {
         }
 
-        public FileOperationException(string message, ErrorStatus errorStatus)
-            : base(message, errorStatus)
+        public FileOperationException(string description, ErrorStatus errorStatus)
+            : base(description, errorStatus)
         {
         }
 
-        public FileOperationException(string message, string fullName, ErrorStatus errorStatus)
-            : base(message, errorStatus)
+        public FileOperationException(string description, string fullName, ErrorStatus errorStatus)
+            : base(description, errorStatus)
         {
             DisplayContext = fullName;
         }
 
-        public FileOperationException(string message, Exception innerException)
-            : this(message, ErrorStatus.InternalError, innerException)
+        public FileOperationException(string description, Exception innerException)
+            : this(description, ErrorStatus.InternalError, innerException)
         {
         }
 
-        public FileOperationException(string message, ErrorStatus errorStatus, Exception innerException)
-            : base(message, errorStatus, innerException)
+        public FileOperationException(string description, ErrorStatus errorStatus, Exception innerException)
+            : base(description, errorStatus, innerException)
         {
         }
 
-        public FileOperationException(string message, string fullName, ErrorStatus errorStatus, Exception innerException)
-            : base(message, errorStatus, innerException)
+        public FileOperationException(string description, string fullName, ErrorStatus errorStatus, Exception innerException)
+            : base(description, errorStatus, innerException)
         {
             DisplayContext = fullName;
         }

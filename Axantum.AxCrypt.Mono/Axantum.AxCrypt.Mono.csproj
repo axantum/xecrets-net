@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="Browser.cs" />
     <Compile Include="Cryptography\HMACBase.cs" />
-    <Compile Include="Cryptography\ProtectedDataImpl.cs" />
+    <Compile Include="Cryptography\ProtectedDataImplementation.cs" />
     <Compile Include="EmailParser.cs" />
     <Compile Include="Now.cs" />
     <Compile Include="Portable\BlockingBuffer.cs" />

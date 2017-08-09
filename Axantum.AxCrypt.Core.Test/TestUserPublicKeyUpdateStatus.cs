@@ -81,12 +81,12 @@ namespace Axantum.AxCrypt.Core.Test
 
             UserPublicKeyUpdateStatus updateStatus = new UserPublicKeyUpdateStatus();
 
-            Assert.That(updateStatus[userPublicKey], Is.EqualTo(PublicKeyUpdateStatus.NotRecentlyUpdated));
-            updateStatus[userPublicKey] = PublicKeyUpdateStatus.RecentlyUpdated;
-            Assert.That(updateStatus[userPublicKey], Is.EqualTo(PublicKeyUpdateStatus.RecentlyUpdated));
+            Assert.That(updateStatus.Status(userPublicKey), Is.EqualTo(PublicKeyUpdateStatus.NotRecentlyUpdated));
+            updateStatus.SetStatus(userPublicKey, PublicKeyUpdateStatus.RecentlyUpdated);
+            Assert.That(updateStatus.Status(userPublicKey), Is.EqualTo(PublicKeyUpdateStatus.RecentlyUpdated));
 
             updateStatus.Clear();
-            Assert.That(updateStatus[userPublicKey], Is.EqualTo(PublicKeyUpdateStatus.NotRecentlyUpdated));
+            Assert.That(updateStatus.Status(userPublicKey), Is.EqualTo(PublicKeyUpdateStatus.NotRecentlyUpdated));
         }
 
         [Test]
@@ -97,14 +97,14 @@ namespace Axantum.AxCrypt.Core.Test
 
             UserPublicKeyUpdateStatus updateStatus = new UserPublicKeyUpdateStatus();
 
-            Assert.That(updateStatus[userPublicKey1], Is.EqualTo(PublicKeyUpdateStatus.NotRecentlyUpdated));
-            updateStatus[userPublicKey1] = PublicKeyUpdateStatus.RecentlyUpdated;
-            Assert.That(updateStatus[userPublicKey1], Is.EqualTo(PublicKeyUpdateStatus.RecentlyUpdated));
+            Assert.That(updateStatus.Status(userPublicKey1), Is.EqualTo(PublicKeyUpdateStatus.NotRecentlyUpdated));
+            updateStatus.SetStatus(userPublicKey1, PublicKeyUpdateStatus.RecentlyUpdated);
+            Assert.That(updateStatus.Status(userPublicKey1), Is.EqualTo(PublicKeyUpdateStatus.RecentlyUpdated));
 
             IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
             UserPublicKey userPublicKey2 = new UserPublicKey(EmailAddress.Parse("test@test.com"), key2);
 
-            Assert.That(updateStatus[userPublicKey2], Is.EqualTo(PublicKeyUpdateStatus.RecentlyUpdated));
+            Assert.That(updateStatus.Status(userPublicKey2), Is.EqualTo(PublicKeyUpdateStatus.RecentlyUpdated));
         }
     }
 }

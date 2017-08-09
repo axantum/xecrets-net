@@ -15,6 +15,11 @@
       <Word>xam</Word>
       <Word>xamarin</Word>
       <Word>mvc</Word>
+      <Word>encryptable</Word>
+      <Word>impl</Word>
+      <Word>ios</Word>
+      <Word>unencryptable</Word>
+      <Word>xwt</Word>
     </Recognized>
     <Deprecated>
       <Term PreferredAlternate=""></Term>
@@ -31,6 +36,16 @@
   <Acronyms>
     <CasingExceptions>
       <Acronym>Ax</Acronym>
+      <Acronym>ANSIX</Acronym>
+      <Acronym>CBC</Acronym>
+      <Acronym>ECB</Acronym>
+      <Acronym>OFB</Acronym>
+      <Acronym>CFB</Acronym>
+      <Acronym>CTS</Acronym>
+      <Acronym>HMAC</Acronym>
+      <Acronym>HMACSHA</Acronym>
+      <Acronym>ISO</Acronym>
+      <Acronym>PKCS</Acronym>
     </CasingExceptions>
   </Acronyms>
 </Dictionary>

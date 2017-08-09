@@ -75,29 +75,29 @@ namespace Axantum.AxCrypt.Fake
             get { return true; }
         }
 
-        public void LogFatal(string message)
+        public void LogFatal(string fatalLog)
         {
-            OnLogged(message);
+            OnLogged(fatalLog);
         }
 
-        public void LogError(string message)
+        public void LogError(string errorLog)
         {
-            OnLogged(message);
+            OnLogged(errorLog);
         }
 
-        public void LogWarning(string message)
+        public void LogWarning(string warningLog)
         {
-            OnLogged(message);
+            OnLogged(warningLog);
         }
 
-        public void LogInfo(string message)
+        public void LogInfo(string infoLog)
         {
-            OnLogged(message);
+            OnLogged(infoLog);
         }
 
-        public void LogDebug(string message)
+        public void LogDebug(string debugLog)
         {
-            OnLogged(message);
+            OnLogged(debugLog);
         }
 
         #endregion ILogging Members

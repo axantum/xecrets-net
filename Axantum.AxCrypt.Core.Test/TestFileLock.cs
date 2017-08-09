@@ -114,15 +114,16 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(New<FileLocker>().IsLocked(fileInfo), Is.False, "There should be no lock for this file to start with.");
             using (FileLock lock1 = New<FileLocker>().Acquire(fileInfo, TimeSpan.Zero))
             {
-                Assert.That(await Task.Run(() => New<FileLocker>().IsLocked(fileInfo)), Is.True, "There should be a lock for this from a different thread.");
-                Assert.That(New<FileLocker>().IsLocked(fileInfo), Is.True, "There should still be a lock for this from the same thread.");
-                Assert.ThrowsAsync<InternalErrorException>(async () =>
+                Assert.That(await Task.Run(() => New<FileLocker>().IsLocked(fileInfo)), Is.True, "There should be a lock for this from a different thread (1).");
+                Assert.That(New<FileLocker>().IsLocked(fileInfo), Is.True, "There should still be a lock for this from the same thread (1).");
+                Assert.Throws<InternalErrorException>(() =>
                 {
+                    bool wasHere = false;
                     using (FileLock lock2 = New<FileLocker>().Acquire(fileInfo, TimeSpan.Zero))
                     {
-                        Assert.That(await Task.Run(() => New<FileLocker>().IsLocked(fileInfo)), Is.True, "There should be a lock for this from a different thread.");
-                        Assert.That(New<FileLocker>().IsLocked(fileInfo), Is.False, "There should be no lock for this from the same thread.");
+                        wasHere = true;
                     }
+                    Assert.That(wasHere, Is.False, "This point should never be reached! The Acquire() should throw an exception since this is a deadlock situation.");
                 });
             }
             Assert.That(await Task.Run(() => New<FileLocker>().IsLocked(fileInfo)), Is.False, "There should be no lock for this file now.");
@@ -148,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFileLockDoubleDispose()
         {
-            Assert.Throws<InvalidOperationException>(() =>
+            Assert.DoesNotThrow(() =>
             {
                 using (FileLock aLock = New<FileLocker>().Acquire(New<IDataStore>(_fileExtPath)))
                 {

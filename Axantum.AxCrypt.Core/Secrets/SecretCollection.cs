@@ -37,11 +37,21 @@ namespace Axantum.AxCrypt.Core.Secrets
     {
         protected override Guid GetKeyForItem(Secret item)
         {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
             return item.Id;
         }
 
         public void AddRange(IEnumerable<Secret> secrets)
         {
+            if (secrets == null)
+            {
+                throw new ArgumentNullException(nameof(secrets));
+            }
+
             foreach (Secret secret in secrets)
             {
                 Add(secret);

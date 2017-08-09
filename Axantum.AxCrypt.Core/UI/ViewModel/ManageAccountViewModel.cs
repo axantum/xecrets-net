@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
@@ -44,7 +45,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         public IEnumerable<AccountProperties> AccountProperties { get { return GetProperty<IEnumerable<AccountProperties>>(nameof(AccountProperties)); } private set { SetProperty(nameof(AccountProperties), value); } }
 
+        public bool LastChangeStatus { get { return GetProperty<bool>(nameof(LastChangeStatus)); } private set { SetProperty(nameof(LastChangeStatus), value); } }
+
         public IAsyncAction ChangePassphraseAsync { get; private set; }
+
+        public Func<bool, Task> ChangePasswordCompleteAsync { get; set; } = (success) => Constant.CompletedTask;
 
         private AccountStorage _accountStorage;
 
@@ -79,7 +84,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task ChangePassphraseActionAsync(string passphrase)
         {
-            await _accountStorage.ChangePassphraseAsync(new Passphrase(passphrase)).Free();
+            LastChangeStatus = await _accountStorage.ChangePassphraseAsync(new Passphrase(passphrase));
+            await ChangePasswordCompleteAsync(LastChangeStatus);
         }
     }
 }

@@ -31,6 +31,7 @@
 #endregion License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Secrets;
 using System;
@@ -236,7 +237,7 @@ namespace Axantum.AxCrypt.Desktop
         {
             if (keys == null)
             {
-                throw new ArgumentNullException("keyCollection");
+                throw new ArgumentNullException(nameof(keys));
             }
 
             // Get a copy of the collection so we can remove keys as we use them.
@@ -324,12 +325,13 @@ namespace Axantum.AxCrypt.Desktop
             return new SecretCollection();
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "EncryptedData")]
         private static XmlDocument DecryptEncryptedData(InternalEncryptionKey internalKey, XmlElement sessionElement)
         {
             XmlElement secretsElement = sessionElement.FirstChild as XmlElement;
             if (secretsElement == null || secretsElement.Name != "EncryptedData")
             {
-                throw new FormatException("There must be an element named EncryptedData here.");
+                throw new FormatException($"There must be an element named {nameof(EncryptedData)} here.");
             }
 
             SymmetricAlgorithm masterKey = GetAndDeriveMasterKey(internalKey.DecryptPassphrase(), sessionElement);
@@ -438,7 +440,7 @@ namespace Axantum.AxCrypt.Desktop
             {
                 if (New<ILogging>().IsWarningEnabled)
                 {
-                    New<ILogging>().LogWarning("CreateDocumentFromSecrets No elements in collection");
+                    New<ILogging>().LogWarning($"{nameof(CreateDocumentFromSecrets)} No elements in collection");
                 }
                 return document;
             }
@@ -449,7 +451,7 @@ namespace Axantum.AxCrypt.Desktop
             InternalEncryptionKey key = new InternalEncryptionKey(enumerator.Current.EncryptionKey);
 
             // Get some salt for the key-derivation function
-            byte[] salt = TransientProtectedData.Create().GetRandomBytes(16);
+            byte[] salt = New<IRandomGenerator>().Generate(16);
 
             SymmetricAlgorithm masterKey = DeriveMasterKey(key.DecryptPassphrase(), salt, _defaultRfc2898iterations);
 
@@ -545,6 +547,7 @@ namespace Axantum.AxCrypt.Desktop
             return secrets;
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "KeyDerviation")]
         private static SymmetricAlgorithm GetAndDeriveMasterKey(string key, XmlElement xecretsSessionElement)
         {
             string keyDerivation = xecretsSessionElement.Attributes["KeyDerivation"].Value;
@@ -554,17 +557,17 @@ namespace Axantum.AxCrypt.Desktop
             Debug.Assert(string.Compare(keyDerivation, "Rfc2898", StringComparison.InvariantCulture) == 0, "The KeyDerviation attribute must be 'Rfc2898'");
             if (String.Compare(keyDerivation, "Rfc2898", StringComparison.InvariantCulture) != 0)
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, "The KeyDerviation attribute must be 'Rfc2898'", keyDerivation));
+                throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, "The KeyDerviation attribute {0} must be 'Rfc2898'", keyDerivation));
             }
 
             if (iterations < 1000 || iterations > 1000000)
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, "Too small or too large value for key derivation iterations", iterations));
+                throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, "Too small or too large value for key derivation iterations {0}", iterations));
             }
 
             if (salt.Length != 16)
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, "Invalid length for the salt, it must be 16.", salt.Length));
+                throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, "Invalid length {0} for the salt, it must be 16.", salt.Length));
             }
 
             return DeriveMasterKey(key, salt, iterations);

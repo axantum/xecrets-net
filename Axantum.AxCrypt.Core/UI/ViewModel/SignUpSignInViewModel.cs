@@ -30,11 +30,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction DoAll { get { return new AsyncDelegateAction<object>((o) => DoAllAsync()); } }
 
-        public Func<CancelEventArgs, Task> CreateAccount;
+        public Func<CancelEventArgs, Task> CreateAccount { get; set; }
 
-        public Func<CancelEventArgs, Task> VerifyAccount;
+        public Func<CancelEventArgs, Task> VerifyAccount { get; set; }
 
-        public Func<CancelEventArgs, Task> RequestEmail;
+        public Func<CancelEventArgs, Task> RequestEmail { get; set; }
 
         public Func<Task> SignInCommandAsync { get; set; }
 
@@ -44,10 +44,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private NameOf _welcomeMessage;
 
-        public SignupSignInViewModel(ISignIn signIn, NameOf welcomeMesssage)
+        public SignupSignInViewModel(ISignIn signIn, NameOf welcomeMessage)
         {
             _signinState = signIn;
-            _welcomeMessage = welcomeMesssage;
+            _welcomeMessage = welcomeMessage;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
@@ -100,6 +100,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             finally
             {
                 _signinState.IsSigningIn = false;
+            }
+
+            if (!New<KnownIdentities>().IsLoggedOn)
+            {
+                return;
             }
 
             await New<PremiumManager>().PremiumStatusWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity);

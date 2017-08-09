@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -37,11 +38,9 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    internal class FileLockManager
+    internal sealed class FileLockManager : IDisposable
     {
-        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
-
-        private readonly Task<FileLock> _fileLock;
+        private SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
         private readonly TimeSpan _timeout;
 
@@ -54,38 +53,49 @@ namespace Axantum.AxCrypt.Core.IO
         public FileLockManager(string fullName, TimeSpan timeout, FileLocker fileLocker)
         {
             _originalLockedFileName = fullName;
-            _fileLock = Task.FromResult(new FileLock(this));
             _timeout = timeout;
             _fileLocker = fileLocker;
         }
 
         public IDataStore DataStore { get { return New<IDataStore>(_originalLockedFileName); } }
 
-        public Task<FileLock> LockAsync()
+        public Task<FileLock> GetFileLockAsync()
         {
-            Interlocked.Increment(ref _referenceCount);
+            FileLock fileLock = new FileLock(this);
+            IncrementReferenceCount();
             Task wait = _semaphore.WaitAsync();
             return wait.IsCompleted ?
-                        _fileLock :
-                        wait.ContinueWith((_, state) => (FileLock)state,
-                            _fileLock.Result, CancellationToken.None,
-            TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
+                        Task.FromResult(fileLock) :
+                        wait.ContinueWith((_, state) => (FileLock)state, fileLock, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
         }
 
-        public FileLock Lock()
+        public FileLock GetFileLock()
         {
-            Interlocked.Increment(ref _referenceCount);
+            IncrementReferenceCount();
             if (!_semaphore.Wait(_timeout))
             {
+#if DEBUG
+                Debugger.Break();
+#endif
                 throw new InternalErrorException("Potential deadlock detected.", _originalLockedFileName);
             }
 
-            return _fileLock.Result;
+            return new FileLock(this);
         }
 
-        public int CurrentCount
+        public int IncrementReferenceCount()
         {
-            get { return _semaphore.CurrentCount; }
+            return Interlocked.Increment(ref _referenceCount);
+        }
+
+        public int DecrementReferenceCount()
+        {
+            return Interlocked.Decrement(ref _referenceCount);
+        }
+
+        public bool IsLocked
+        {
+            get { return _semaphore.CurrentCount == 0; }
         }
 
         public void Release()
@@ -94,11 +104,22 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new InvalidOperationException($"Call to {nameof(Release)}() without holding the lock.");
             }
-            if (Interlocked.Decrement(ref _referenceCount) == 0)
+
+            if (_fileLocker.TryRemove(_originalLockedFileName))
             {
-                _fileLocker.Release(_originalLockedFileName);
+                return;
             }
+
             _semaphore.Release();
+        }
+
+        public void Dispose()
+        {
+            if (_semaphore != null)
+            {
+                _semaphore.Dispose();
+                _semaphore = null;
+            }
         }
     }
 }

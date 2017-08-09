@@ -49,7 +49,7 @@
             this._errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this._promptTextLabel = new System.Windows.Forms.Label();
-            this._passwordStrengthMeter = new Axantum.AxCrypt.PasswordStrengthMeter();
+            this._passwordStrengthMeter = new Axantum.AxCrypt.Forms.PasswordStrengthMeter();
             this._activationCodeGroupBox.SuspendLayout();
             this.PassphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
@@ -283,7 +283,7 @@
         private System.Windows.Forms.CheckBox _showPassphrase;
         private System.Windows.Forms.TextBox _activationCode;
         private System.Windows.Forms.ToolTip _toolTipActivation;
-        private PasswordStrengthMeter _passwordStrengthMeter;
+        private Axantum.AxCrypt.Forms.PasswordStrengthMeter _passwordStrengthMeter;
         private System.Windows.Forms.Button _resendButton;
         private System.Windows.Forms.ToolTip _resendButtonToolTip;
         private System.Windows.Forms.Button _helpButton;
