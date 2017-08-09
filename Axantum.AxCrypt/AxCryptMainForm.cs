@@ -88,6 +88,8 @@ namespace Axantum.AxCrypt
 
         private bool _startMinimized;
 
+        private event EventHandler<FileSelectionEventArgs> _selectingFiles;
+
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -761,7 +763,6 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RandomRenameEnabled), (bool enabled) => { _renameToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), (IEnumerable<ActiveFile> files) => { _recentFilesListView.UpdateRecentFiles(files); });
-            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.SelectedRecentFiles), async (IEnumerable<string> files) => { _keyShareToolStripButton.Enabled = (files.Count() == 1 && _mainViewModel.LoggedOn) || !_mainViewModel.License.Has(LicenseCapability.KeySharing); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FolderOperationMode), (FolderOperationMode SecureFolderLevel) => { _optionsIncludeSubfoldersToolStripMenuItem.Checked = SecureFolderLevel == FolderOperationMode.IncludeSubfolders ? true : false; });
@@ -850,7 +851,7 @@ namespace Axantum.AxCrypt
             _fileOperationViewModel.IdentityViewModel.LoggingOnAsync = async (e) => await New<IUIThread>().SendToAsync(async () => await HandleLogOn(e));
             _fileOperationViewModel.SelectingFiles += (sender, e) => New<IUIThread>().SendTo(() => New<IDataItemSelection>().HandleSelection(e));
             _fileOperationViewModel.ToggleLegacyConversion += (sender, e) => New<IUIThread>().SendTo(() => ToggleLegacyConversion());
-            _keyShareToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await ShareKeysAsync(_mainViewModel.SelectedRecentFiles); }, sender, e); };
+            _keyShareToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await ShareKeysAsync(null); }, sender, e); };
             _openEncryptedToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
             _openEncryptedToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
             _recentFilesListView.DragDrop += async (sender, e) => { await DropFilesOrFoldersInRecentFilesListViewAsync(); };
@@ -902,6 +903,8 @@ namespace Axantum.AxCrypt
                     await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                 });
             };
+
+            _selectingFiles += (sender, e) => New<IUIThread>().SendTo(() => New<IDataItemSelection>().HandleSelection(e));
         }
 
         private void WireDownEvents()
@@ -1925,6 +1928,11 @@ namespace Axantum.AxCrypt
 
         private async Task ShareKeysAsync(IEnumerable<string> fileNames)
         {
+            fileNames = fileNames ?? SelectFiles(FileSelectionType.Unknown);
+            if (!fileNames.Any())
+            {
+                return;
+            }
             SharingListViewModel viewModel = new SharingListViewModel(fileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             await viewModel.ReadyAsync();
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
@@ -1939,10 +1947,10 @@ namespace Axantum.AxCrypt
 
         private async Task WatchedFoldersKeySharingAsync(IEnumerable<string> folderPaths)
         {
-            if (!folderPaths.Any())
-            {
-                return;
-            }
+            //if (!folderPaths.Any())
+            //{
+            //    return;
+            //}
 
             //IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
 
@@ -2104,6 +2112,25 @@ namespace Axantum.AxCrypt
         private async void AxCryptMainForm_ClickAsync(object sender, EventArgs e)
         {
             New<InactivititySignOut>().RestartInactivitityTimer();
+        }
+
+        protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
+        {
+            _selectingFiles?.Invoke(this, e);
+        }
+
+        private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
+        {
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+            {
+                FileSelectionType = fileSelectionType,
+            };
+            OnSelectingFiles(fileSelectionArgs);
+            if (fileSelectionArgs.Cancel)
+            {
+                return new string[0];
+            }
+            return fileSelectionArgs.SelectedFiles;
         }
     }
 }

@@ -63,13 +63,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction ShareKeysAsync { get; private set; }
 
-        public event EventHandler<FileSelectionEventArgs> SelectingFiles;
-
-        protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
-        {
-            SelectingFiles?.Invoke(this, e);
-        }
-
         private Task _asyncInitializer;
 
         public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
@@ -87,12 +80,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public SharingListViewModel(IEnumerable<string> files, LogOnIdentity logOnIdentity)
         {
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
-
-            files = files ?? SelectFiles(FileSelectionType.Encrypt);
-            if (!files.Any())
-            {
-                return;
-            }
 
             _asyncInitializer = Task.Run(() => TryAddMissingUnsharedPublicKeysFromfileNamesAsync(files));
 
@@ -276,20 +263,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
                 });
-        }
-
-        private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
-        {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
-            {
-                FileSelectionType = fileSelectionType,
-            };
-            OnSelectingFiles(fileSelectionArgs);
-            if (fileSelectionArgs.Cancel)
-            {
-                return new string[0];
-            }
-            return fileSelectionArgs.SelectedFiles;
         }
     }
 }
