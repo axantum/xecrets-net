@@ -88,8 +88,6 @@ namespace Axantum.AxCrypt
 
         private bool _startMinimized;
 
-        private event EventHandler<FileSelectionEventArgs> _selectingFiles;
-
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -903,8 +901,6 @@ namespace Axantum.AxCrypt
                     await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                 });
             };
-
-            _selectingFiles += (sender, e) => New<IUIThread>().SendTo(() => New<IDataItemSelection>().HandleSelection(e));
         }
 
         private void WireDownEvents()
@@ -2114,11 +2110,6 @@ namespace Axantum.AxCrypt
             New<InactivititySignOut>().RestartInactivitityTimer();
         }
 
-        protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
-        {
-            _selectingFiles?.Invoke(this, e);
-        }
-
         private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
         {
             FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
@@ -2126,7 +2117,7 @@ namespace Axantum.AxCrypt
                 FileSelectionType = fileSelectionType,
             };
             New<IDataItemSelection>().HandleSelection(fileSelectionArgs);
-            //OnSelectingFiles(fileSelectionArgs);
+
             if (fileSelectionArgs.Cancel)
             {
                 return new string[0];
