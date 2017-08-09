@@ -169,6 +169,8 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        public Func<Task> SetConvertLegacyOptionCommandAsync { get; set; } = () => Constant.CompletedTask;
+
         #endregion Events
 
         #region Public Methods
@@ -236,7 +238,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <returns>FileOperationStatus.Success if  the file is encrypted with a known key.</returns>
         public Task<FileOperationContext> VerifyEncryptedAsync(IDataStore fileInfo)
         {
-            return DoFileAsync(fileInfo, DecryptAndLaunchPreparationAsync, GetAxCryptFileNameAsSaveFileNameAsync);
+            return DoFileAsync(fileInfo, VerifyCanDecryptPreparationAsync, GetAxCryptFileNameAsSaveFileNameAsync);
         }
 
         /// <summary>
@@ -430,6 +432,22 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         private async Task<bool> DecryptAndLaunchPreparationAsync(IDataStore fileInfo)
+        {
+            if (!await VerifyCanDecryptPreparationAsync(fileInfo))
+            {
+                return false;
+            }
+
+            if (_eventArgs.CryptoId != new V1Aes128CryptoFactory().CryptoId)
+            {
+                return true;
+            }
+
+            await SetConvertLegacyOptionCommandAsync();
+            return true;
+        }
+
+        private async Task<bool> VerifyCanDecryptPreparationAsync(IDataStore fileInfo)
         {
             _eventArgs.OpenFileFullName = fileInfo.FullName;
 

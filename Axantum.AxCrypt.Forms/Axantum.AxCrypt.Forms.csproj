@@ -67,6 +67,7 @@
     <Compile Include="Implementation\FileFolderSelection.cs" />
     <Compile Include="Implementation\Popup.cs" />
     <Compile Include="Implementation\FormsTypes.cs" />
+    <Compile Include="Implementation\VerifySignInPassword.cs" />
     <Compile Include="MessageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +99,12 @@
     <Compile Include="Style\AxCryptProfessionalColorTable.cs" />
     <Compile Include="Style\AxCryptToolStripProfessionalRenderer.cs" />
     <Compile Include="Style\Styling.cs" />
+    <Compile Include="VerifySignInPasswordDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerifySignInPasswordDialog.Designer.cs">
+      <DependentUpon>VerifySignInPasswordDialog.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +148,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerifySignInPasswordDialog.resx">
+      <DependentUpon>VerifySignInPasswordDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

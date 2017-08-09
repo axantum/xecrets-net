@@ -74,6 +74,7 @@
     <Compile Include="FakeLicenseAuthority.cs" />
     <Compile Include="FakeLogging.cs" />
     <Compile Include="FakeNow.cs" />
+    <Compile Include="FakePopup.cs" />
     <Compile Include="FakeProgressBackground.cs" />
     <Compile Include="FakePseudoRandomGenerator.cs" />
     <Compile Include="FakeRandomGenerator.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="FakeTiming.cs" />
     <Compile Include="FakeUIThread.cs" />
     <Compile Include="FakeUserSettings.cs" />
+    <Compile Include="FakeVerifySignInPassword.cs" />
     <Compile Include="FakeVersion.cs" />
     <Compile Include="FakeWebCaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

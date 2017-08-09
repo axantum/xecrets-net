@@ -1,14 +1,11 @@
 ﻿using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Forms;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Forms
 {
     public partial class VerifySignInPasswordDialog : StyledMessageBase
     {

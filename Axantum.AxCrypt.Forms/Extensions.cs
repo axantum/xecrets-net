@@ -79,5 +79,15 @@ namespace Axantum.AxCrypt.Forms
             await viewModel.ChangePassphraseAsync.ExecuteAsync(newPasswordviewModel.PasswordText);
             return viewModel.LastChangeStatus;
         }
+
+        public static bool ShowVerifySignInPasswordDialog(this Form parent, string description)
+        {
+            VerifySignInPasswordViewModel viewModel = new VerifySignInPasswordViewModel(New<KnownIdentities>().DefaultEncryptionIdentity);
+            using (VerifySignInPasswordDialog dialog = new VerifySignInPasswordDialog(parent, viewModel, description))
+            {
+                DialogResult dr = dialog.ShowDialog(parent);
+                return dr == DialogResult.OK;
+            }
+        }
     }
 }

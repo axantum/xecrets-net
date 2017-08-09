@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        public async virtual Task DoFilesAsync<TDataItem>(IEnumerable<TDataItem> files, Func<TDataItem, IProgressContext, Task<FileOperationContext>> work, Func<FileOperationContext, Task> allComplete)
+        public virtual Task DoFilesAsync<TDataItem>(IEnumerable<TDataItem> files, Func<TDataItem, IProgressContext, Task<FileOperationContext>> work, Func<FileOperationContext, Task> allComplete)
             where TDataItem : IDataItem
         {
             Func<TDataItem, IProgressContext, Task<FileOperationContext>> singleFileOperation = (file, progress) =>
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return work((TDataItem)file, progress);
             };
 
-            await InvokeAsync(files, singleFileOperation, allComplete);
+            return InvokeAsync(files, singleFileOperation, allComplete);
         }
 
         /// <summary>
@@ -78,47 +78,47 @@ namespace Axantum.AxCrypt.Core.UI
         {
             WorkerGroupProgressContext groupProgress = new WorkerGroupProgressContext(new CancelProgressContext(new ProgressContext()), New<ISingleThread>());
             await New<IProgressBackground>().WorkAsync(nameof(DoFilesAsync),
-            async (IProgressContext progress) =>
-            {
-                progress.NotifyLevelStart();
-
-                FileOperationContext result = new FileOperationContext(string.Empty, ErrorStatus.Success);
-
-                result = await Task.Run(async () =>
+                async (IProgressContext progress) =>
                 {
-                    foreach (T file in files)
+                    progress.NotifyLevelStart();
+
+                    FileOperationContext result = new FileOperationContext(string.Empty, ErrorStatus.Success);
+
+                    result = await Task.Run(async () =>
                     {
-                        try
+                        foreach (T file in files)
                         {
-                            result = await workAsync(file, progress);
+                            try
+                            {
+                                result = await workAsync(file, progress);
+                            }
+                            catch (Exception ex) when (ex is OperationCanceledException)
+                            {
+                                return new FileOperationContext(file.ToString(), ErrorStatus.Canceled);
+                            }
+                            catch (Exception ex) when (ex is AxCryptException)
+                            {
+                                AxCryptException ace = ex as AxCryptException;
+                                New<IReport>().Exception(ace);
+                                return new FileOperationContext(ace.DisplayContext.Default(file), ace.InnerException?.Message ?? ace.Message, ace.ErrorStatus);
+                            }
+                            catch (Exception ex)
+                            {
+                                New<IReport>().Exception(ex);
+                                return new FileOperationContext(file.ToString(), ex.Message, ErrorStatus.Exception);
+                            }
+                            if (result.ErrorStatus != ErrorStatus.Success)
+                            {
+                                return result;
+                            }
                         }
-                        catch (Exception ex) when (ex is OperationCanceledException)
-                        {
-                            return new FileOperationContext(file.ToString(), ErrorStatus.Canceled);
-                        }
-                        catch (Exception ex) when (ex is AxCryptException)
-                        {
-                            AxCryptException ace = ex as AxCryptException;
-                            New<IReport>().Exception(ace);
-                            return new FileOperationContext(ace.DisplayContext.Default(file), ace.InnerException?.Message ?? ace.Message, ace.ErrorStatus);
-                        }
-                        catch (Exception ex)
-                        {
-                            New<IReport>().Exception(ex);
-                            return new FileOperationContext(file.ToString(), ex.Message, ErrorStatus.Exception);
-                        }
-                        if (result.ErrorStatus != ErrorStatus.Success)
-                        {
-                            return result;
-                        }
-                    }
+                        return result;
+                    });
+                    progress.NotifyLevelFinished();
                     return result;
-                });
-                progress.NotifyLevelFinished();
-                return result;
-            },
-            (FileOperationContext status) => allCompleteAsync(status),
-            groupProgress).Free();
+                },
+                (FileOperationContext status) => allCompleteAsync(status),
+                groupProgress).Free();
         }
     }
 }

@@ -956,26 +956,15 @@ namespace Axantum.AxCrypt
 
         private void ToggleLegacyConversion()
         {
-            if (!Resolve.KnownIdentities.IsLoggedOn)
-            {
-                return;
-            }
-
             if (_mainViewModel.LegacyConversionMode == LegacyConversionMode.AutoConvertLegacyFiles)
             {
                 _mainViewModel.LegacyConversionMode = LegacyConversionMode.RetainLegacyFiles;
                 return;
             }
 
-            VerifySignInPasswordViewModel viewModel = new VerifySignInPasswordViewModel(Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            using (VerifySignInPasswordDialog dialog = new VerifySignInPasswordDialog(this, viewModel, Texts.LegacyConversionVerificationPrompt))
+            if (!New<IVerifySignInPassword>().Verify(Texts.LegacyConversionVerificationPrompt))
             {
-                DialogResult dr = dialog.ShowDialog(this);
-                if (dr != DialogResult.OK)
-                {
-                    _mainViewModel.LegacyConversionMode = LegacyConversionMode.NotDecided;
-                    return;
-                }
+                return;
             }
 
             _mainViewModel.LegacyConversionMode = LegacyConversionMode.AutoConvertLegacyFiles;
@@ -2163,19 +2152,15 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            VerifySignInPasswordViewModel viewModel = new VerifySignInPasswordViewModel(Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            using (VerifySignInPasswordDialog dialog = new VerifySignInPasswordDialog(this, viewModel, Texts.ChangeOptionGenericWarning))
+            if (!New<IVerifySignInPassword>().Verify(Texts.ChangeOptionGenericWarning))
             {
-                DialogResult dr = dialog.ShowDialog(this);
-                if (dr == DialogResult.OK)
-                {
-                    PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.IncludeSubfoldersConfirmationTitle, Texts.IncludeSubfoldersConfirmationBody);
-                    if (result == PopupButtons.Ok)
-                    {
-                        _mainViewModel.FolderOperationMode = FolderOperationMode.IncludeSubfolders;
-                    }
-                    return;
-                }
+                return;
+            }
+
+            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.IncludeSubfoldersConfirmationTitle, Texts.IncludeSubfoldersConfirmationBody);
+            if (result == PopupButtons.Ok)
+            {
+                _mainViewModel.FolderOperationMode = FolderOperationMode.IncludeSubfolders;
             }
         }
 

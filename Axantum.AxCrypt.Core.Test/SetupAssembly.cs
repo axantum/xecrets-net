@@ -96,6 +96,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<InactivitySignOut>(() => new InactivitySignOut(TimeSpan.Zero));
             TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
             TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
+            TypeMap.Register.Singleton<IVerifySignInPassword>(() => new FakeVerifySignInPassword());
+            TypeMap.Register.Singleton<IPopup>(() => new FakePopup());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());

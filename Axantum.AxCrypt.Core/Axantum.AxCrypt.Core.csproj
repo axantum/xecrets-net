@@ -211,6 +211,7 @@
     <Compile Include="UI\IKnownFoldersDiscovery.cs" />
     <Compile Include="UI\IPopup.cs" />
     <Compile Include="UI\ISignInState.cs" />
+    <Compile Include="UI\IVerifySignInPassword.cs" />
     <Compile Include="UI\KnownFolderKind.cs" />
     <Compile Include="UI\LegacyConversionMode.cs" />
     <Compile Include="UI\EmailAddress.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="UI\SettingsStore.cs" />
     <Compile Include="UI\PremiumManager.cs" />
     <Compile Include="UI\UserSettingsVersion.cs" />
+    <Compile Include="UI\VerifySignInPasswordBase.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />
     <Compile Include="UI\ViewModel\AccountProperties.cs" />
     <Compile Include="UI\ViewModel\AsyncDelegateAction.cs" />
