@@ -2164,6 +2164,9 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Follow us on social media</value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
+  <data name="Sort" xml:space="preserve">
+    <value>!!Sort</value>
+  </data>
   <data name="SpanishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Español (Spanish)</value>
     <comment>Do Not Translate</comment>
