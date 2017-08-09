@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
@@ -157,7 +156,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
             await encryptionParameters.AddAsync(SharedWith);
 
-            await ChangeEncryptionAsync(files, encryptionParameters);
+            await files.ChangeEncryptionAsync(encryptionParameters);
         }
 
         private async Task AddNewKeyShareActionAsync(string email)
@@ -246,23 +245,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore)
         {
             return await Task.Run(() => EncryptedProperties.Create(dataStore));
-        }
-
-        private async Task ChangeEncryptionAsync(IEnumerable<string> files, EncryptionParameters encryptionParameters)
-        {
-            await Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), (IDataStore file, IProgressContext progress) =>
-                {
-                    New<AxCryptFile>().ChangeEncryption(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
-                    return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
-                },
-                async (FileOperationContext foc) =>
-                {
-                    if (foc.ErrorStatus == ErrorStatus.Success)
-                    {
-                        await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
-                    }
-                    New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
-                });
         }
     }
 }

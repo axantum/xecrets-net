@@ -1947,42 +1947,42 @@ namespace Axantum.AxCrypt
 
         private async Task WatchedFoldersKeySharingAsync(IEnumerable<string> folderPaths)
         {
-            //if (!folderPaths.Any())
-            //{
-            //    return;
-            //}
+            if (!folderPaths.Any())
+            {
+                return;
+            }
 
-            //IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
+            IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
 
-            //IEnumerable<UserPublicKey> sharedWithPublicKeys;
-            //using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-            //{
-            //    sharedWithPublicKeys = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
-            //}
+            IEnumerable<UserPublicKey> sharedWithPublicKeys;
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                sharedWithPublicKeys = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
+            }
 
-            //SharingListViewModel viewModel = new SharingListViewModel(sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            //using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
-            //{
-            //    if (dialog.ShowDialog(this) != DialogResult.OK)
-            //    {
-            //        return;
-            //    }
-            //    sharedWithPublicKeys = dialog.SharedWith;
-            //}
+            SharingListViewModel viewModel = new SharingListViewModel(sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
+            {
+                if (dialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                sharedWithPublicKeys = dialog.SharedWith;
+            }
 
-            //await Task.Run(async () =>
-            //{
-            //    foreach (WatchedFolder watchedFolder in folderPaths.ToWatchedFolders())
-            //    {
-            //        WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
-            //        await Resolve.FileSystemState.AddWatchedFolderAsync(wf);
-            //    }
-            //    IEnumerable<IDataStore> files = folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
+            await Task.Run(async () =>
+            {
+                foreach (WatchedFolder watchedFolder in folderPaths.ToWatchedFolders())
+                {
+                    WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
+                    await Resolve.FileSystemState.AddWatchedFolderAsync(wf);
+                }
+                IEnumerable<IDataStore> files = folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
 
-            //    EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
-            //    await encryptionParameters.AddAsync(sharedWithPublicKeys.Select(pk => pk.Email));
-            //    await ChangeEncryptionAsync(files.Select(x => x.FullName), encryptionParameters);
-            //});
+                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
+                await encryptionParameters.AddAsync(sharedWithPublicKeys.Select(pk => pk.Email));
+                await files.Select(x => x.FullName).ChangeEncryptionAsync(encryptionParameters);
+            });
         }
 
         private void ExportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)

@@ -4,6 +4,7 @@ using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
@@ -379,6 +380,23 @@ namespace Axantum.AxCrypt.Core.Extensions
                 New<UserPublicKeyUpdateStatus>()[userPublicKey] = PublicKeyUpdateStatus.RecentlyUpdated;
             }
             return userPublicKey;
+        }
+
+        public static async Task ChangeEncryptionAsync(this IEnumerable<string> files, EncryptionParameters encryptionParameters)
+        {
+            await Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), (IDataStore file, IProgressContext progress) =>
+                {
+                    New<AxCryptFile>().ChangeEncryption(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                    return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
+                },
+                async (FileOperationContext foc) =>
+                {
+                    if (foc.ErrorStatus == ErrorStatus.Success)
+                    {
+                        await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
+                    }
+                    New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
+                });
         }
     }
 }
