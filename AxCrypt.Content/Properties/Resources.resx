@@ -2124,6 +2124,9 @@ Choose something difficult to guess, since it will protect passwords in the onli
 
 Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
+  <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
+    <value>!!Select secured file to share</value>
+  </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Share Keys</value>
   </data>

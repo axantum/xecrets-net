@@ -44,5 +44,6 @@ namespace Axantum.AxCrypt.Core.UI
         SaveAsDecrypted,
         ImportPublicKeys,
         ImportPrivateKeys,
+        KeySharing,
     }
 }

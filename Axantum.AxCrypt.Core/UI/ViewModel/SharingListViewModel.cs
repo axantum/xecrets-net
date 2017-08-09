@@ -29,6 +29,8 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Service;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -59,22 +61,35 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction AsyncAddNewKeyShare { get; private set; }
 
-        private Task _missingKeysLoader;
+        public IAsyncAction ShareKeysAsync { get; private set; }
+
+        private Task _asyncInitializer;
 
         public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
         {
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
 
-            _missingKeysLoader = Task.Run(() => TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email), sharedWith));
+            _asyncInitializer = Task.Run(() => TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email), sharedWith));
 
             InitializePropertyValues(sharedWith);
+
+            BindPropertyChangedEvents();
+            SubscribeToModelEvents();
+        }
+
+        public SharingListViewModel(IEnumerable<string> files, LogOnIdentity logOnIdentity)
+        {
+            _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
+
+            _asyncInitializer = Task.Run(() => TryAddMissingUnsharedPublicKeysFromfileNamesAsync(files));
+
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
         }
 
         public async Task ReadyAsync()
         {
-            await _missingKeysLoader;
+            await _asyncInitializer;
         }
 
         private void InitializePropertyValues(IEnumerable<UserPublicKey> sharedWith)
@@ -92,6 +107,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>(async (upks) => await AddKeySharesActionAsync(upks));
             AsyncRemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>(async (upks) => await RemoveKeySharesActionAsync(upks));
             AsyncAddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
+            ShareKeysAsync = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await ShareKeysFilesActionAsync(files));
         }
 
         private static void BindPropertyChangedEvents()
@@ -128,6 +144,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             NotSharedWith = fromSet.OrderBy(a => a.Email.Address);
             SharedWith = toSet.OrderBy(a => a.Email.Address);
+        }
+
+        private async Task ShareKeysFilesActionAsync(IEnumerable<string> files)
+        {
+            await ReadyAsync();
+
+            using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
+            {
+                SharedWith = New<KnownPublicKeys>().PublicKeys.Where(pk => SharedWith.Any(s => s.Email == pk.Email)).ToList();
+            }
+            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
+            await encryptionParameters.AddAsync(SharedWith);
+
+            await files.ChangeEncryptionAsync(encryptionParameters);
         }
 
         private async Task AddNewKeyShareActionAsync(string email)
@@ -183,6 +213,39 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return true;
             }
             return false;
+        }
+
+        private async Task<IEnumerable<UserPublicKey>> TryAddMissingUnsharedPublicKeysFromfileNamesAsync(IEnumerable<string> fileNames)
+        {
+            IEnumerable<Tuple<string, EncryptedProperties>> files = await ListValidAsync(fileNames);
+            IEnumerable<UserPublicKey> sharedWith = files.SelectMany(f => f.Item2.SharedKeyHolders).Distinct();
+
+            IEnumerable<UserPublicKey> publicKeys = new List<UserPublicKey>();
+            publicKeys = await TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email), sharedWith);
+
+            InitializePropertyValues(sharedWith);
+
+            return publicKeys;
+        }
+
+        private async Task<IEnumerable<Tuple<string, EncryptedProperties>>> ListValidAsync(IEnumerable<string> fileNames)
+        {
+            List<Tuple<string, EncryptedProperties>> files = new List<Tuple<string, EncryptedProperties>>();
+            foreach (string file in fileNames)
+            {
+                EncryptedProperties properties = await EncryptedPropertiesAsync(New<IDataStore>(file));
+                if (properties.IsValid)
+                {
+                    files.Add(new Tuple<string, EncryptedProperties>(file, properties));
+                }
+            }
+
+            return files;
+        }
+
+        private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore)
+        {
+            return await Task.Run(() => EncryptedProperties.Create(dataStore));
         }
     }
 }
