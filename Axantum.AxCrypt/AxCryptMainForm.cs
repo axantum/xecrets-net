@@ -853,7 +853,7 @@ namespace Axantum.AxCrypt
             _fileOperationViewModel.IdentityViewModel.LoggingOnAsync = async (e) => await New<IUIThread>().SendToAsync(async () => await HandleLogOn(e));
             _fileOperationViewModel.SelectingFiles += (sender, e) => New<IUIThread>().SendTo(() => New<IDataItemSelection>().HandleSelection(e));
             _fileOperationViewModel.ToggleLegacyConversion += (sender, e) => New<IUIThread>().SendTo(() => ToggleLegacyConversion());
-            _keyShareToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await ShareKeysAsync(null); }, sender, e); };
+            _keyShareToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await ShareKeysWithFileSelectionAsync(); }, sender, e); };
             _openEncryptedToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
             _openEncryptedToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
             _recentFilesListView.DragDrop += async (sender, e) => { await DropFilesOrFoldersInRecentFilesListViewAsync(); };
@@ -1886,13 +1886,24 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async Task ShareKeysAsync(IEnumerable<string> fileNames)
+        private async Task ShareKeysWithFileSelectionAsync()
         {
-            fileNames = fileNames ?? SelectFiles(FileSelectionType.KeySharing);
-            if (!fileNames.Any())
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+            {
+                FileSelectionType = FileSelectionType.KeySharing,
+            };
+            await New<IDataItemSelection>().HandleSelection(fileSelectionArgs);
+
+            if (fileSelectionArgs.Cancel)
             {
                 return;
             }
+
+            await ShareKeysAsync(fileSelectionArgs.SelectedFiles);
+        }
+
+        private async Task ShareKeysAsync(IEnumerable<string> fileNames)
+        {
             SharingListViewModel viewModel = new SharingListViewModel(fileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             await viewModel.ReadyAsync();
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
@@ -2072,22 +2083,6 @@ namespace Axantum.AxCrypt
         private async void AxCryptMainForm_ClickAsync(object sender, EventArgs e)
         {
             New<InactivitySignOut>().RestartInactivityTimer();
-        }
-
-        private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
-        {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
-            {
-                FileSelectionType = fileSelectionType,
-            };
-            New<IDataItemSelection>().HandleSelection(fileSelectionArgs);
-
-            if (fileSelectionArgs.Cancel)
-            {
-                return new string[0];
-            }
-
-            return fileSelectionArgs.SelectedFiles;
         }
     }
 }
