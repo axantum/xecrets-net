@@ -5441,11 +5441,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Sort.
+        ///   Looks up a localized string similar to !!Sort by.
         /// </summary>
-        public static string Sort {
+        public static string SortOptionLabel {
             get {
-                return ResourceManager.GetString("Sort", resourceCulture);
+                return ResourceManager.GetString("SortOptionLabel", resourceCulture);
             }
         }
         
