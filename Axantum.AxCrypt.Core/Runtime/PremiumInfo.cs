@@ -4,7 +4,6 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Threading.Tasks;
 
@@ -12,8 +11,10 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    public class PremiumInfo
+    public class PremiumInfo : IEquatable<PremiumInfo>
     {
+        public static readonly PremiumInfo Empty = new PremiumInfo(PremiumStatus.Unknown, -1);
+
         public PremiumStatus PremiumStatus { get; }
 
         public int DaysLeft { get; }
@@ -26,8 +27,6 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
 
             PremiumInfo pi = await GetPremiumInfo(identity);
-            UserSettings settings = New<UserSettings>();
-
             return pi;
         }
 
@@ -90,6 +89,50 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
 
             return new PremiumInfo(PremiumStatus.NoPremium, 0);
+        }
+
+        public bool Equals(PremiumInfo other)
+        {
+            if ((object)other == null)
+            {
+                return false;
+            }
+
+            return PremiumStatus == other.PremiumStatus && DaysLeft == other.DaysLeft;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || typeof(PremiumInfo) != obj.GetType())
+            {
+                return false;
+            }
+            PremiumInfo other = (PremiumInfo)obj;
+
+            return Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return PremiumStatus.GetHashCode() ^ DaysLeft.GetHashCode();
+        }
+
+        public static bool operator ==(PremiumInfo left, PremiumInfo right)
+        {
+            if (Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if ((object)left == null)
+            {
+                return false;
+            }
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(PremiumInfo left, PremiumInfo right)
+        {
+            return !(left == right);
         }
     }
 }

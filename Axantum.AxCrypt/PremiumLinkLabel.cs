@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Common;
-using Axantum.AxCrypt.Core;
+﻿using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
@@ -12,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,26 +21,32 @@ namespace Axantum.AxCrypt
     public class PremiumLinkLabel : LinkLabel
     {
         private ToolTip _toolTip = new ToolTip();
-        private PremiumStatus? _status;
+
+        private PremiumInfo _premiumInfo = PremiumInfo.Empty;
 
         public async Task ConfigureAsync(LogOnIdentity identity)
         {
-            PremiumInfo pi = await PremiumInfo.CreateAsync(identity);
-            _status = pi.PremiumStatus;
-            switch (pi.PremiumStatus)
+            PremiumInfo premiumInfo = await PremiumInfo.CreateAsync(identity);
+            if (premiumInfo == _premiumInfo)
+            {
+                return;
+            }
+            _premiumInfo = premiumInfo;
+
+            switch (premiumInfo.PremiumStatus)
             {
                 case PremiumStatus.Unknown:
                     Visible = false;
                     break;
 
                 case PremiumStatus.HasPremium:
-                    if (pi.DaysLeft > 15)
+                    if (premiumInfo.DaysLeft > 15)
                     {
                         Visible = false;
                         break;
                     }
 
-                    Text = (pi.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(pi.DaysLeft);
+                    Text = (premiumInfo.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(premiumInfo.DaysLeft);
                     LinkColor = Styling.WarningColor;
                     _toolTip.SetToolTip(this, Texts.DaysLeftWarningToolTip);
                     Visible = true;
@@ -91,7 +95,7 @@ namespace Axantum.AxCrypt
 
             await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-            switch (_status.GetValueOrDefault())
+            switch (_premiumInfo.PremiumStatus)
             {
                 case PremiumStatus.CanTryPremium:
                     await accountService.StartPremiumTrialAsync();
