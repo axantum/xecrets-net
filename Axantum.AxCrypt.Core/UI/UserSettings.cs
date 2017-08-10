@@ -295,6 +295,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(InactivitySignOutTime), value); }
         }
 
+        public SecretsSortOrder SecretsSortOrder
+        {
+            get { return (SecretsSortOrder)Load(nameof(SecretsSortOrder), (int)SecretsSortOrder.None); }
+            set { Store(nameof(SecretsSortOrder), (int)value); }
+        }
+
         public T Load<T>(string key)
         {
             return Load(key, default(T));
