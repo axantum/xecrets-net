@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
 
-            _asyncInitializer = Task.Run(() => TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email)));
+            _asyncInitializer = Task.Run(() => GetAvailablePublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email)));
 
             InitializePropertyValues(sharedWith);
 
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             await ReadyAsync();
 
-            IEnumerable<UserPublicKey> publicKeysToAdd = await TryAddMissingUnsharedPublicKeysFromServerAsync(keySharesToAdd).Free();
+            IEnumerable<UserPublicKey> publicKeysToAdd = await GetAvailablePublicKeysFromServerAsync(keySharesToAdd).Free();
 
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
             HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
@@ -148,21 +148,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await AddKeySharesActionAsync(new EmailAddress[] { EmailAddress.Parse(email), }).Free();
         }
 
-        private async Task<IEnumerable<UserPublicKey>> TryAddMissingUnsharedPublicKeysFromServerAsync(IEnumerable<EmailAddress> keySharesToAdd)
+        private async Task<IEnumerable<UserPublicKey>> GetAvailablePublicKeysFromServerAsync(IEnumerable<EmailAddress> recipients)
         {
-            List<UserPublicKey> publicKeys = new List<UserPublicKey>();
+            List<UserPublicKey> availablePublicKeys = new List<UserPublicKey>();
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
-                foreach (EmailAddress keyShareToAdd in keySharesToAdd)
+                foreach (EmailAddress recipient in recipients)
                 {
-                    UserPublicKey key = await knownPublicKeys.GetAsync(keyShareToAdd, _logOnIdentity);
+                    UserPublicKey key = await knownPublicKeys.GetAsync(recipient, _logOnIdentity);
                     if (key != null)
                     {
-                        publicKeys.Add(key);
+                        availablePublicKeys.Add(key);
                     }
                 }
             }
-            return publicKeys;
+            return availablePublicKeys;
         }
 
         private static void MoveKeyShares(IEnumerable<UserPublicKey> keySharesToMove, HashSet<UserPublicKey> fromSet, HashSet<UserPublicKey> toSet)
@@ -202,7 +202,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             IEnumerable<Tuple<string, EncryptedProperties>> files = await ListValidAsync(fileNames);
             IEnumerable<UserPublicKey> sharedWith = files.SelectMany(f => f.Item2.SharedKeyHolders).Distinct();
 
-            sharedWith = await TryAddMissingUnsharedPublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email));
+            sharedWith = await GetAvailablePublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email));
 
             InitializePropertyValues(sharedWith);
 
