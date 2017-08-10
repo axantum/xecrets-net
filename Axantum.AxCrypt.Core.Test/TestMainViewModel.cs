@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Fake;
@@ -243,17 +244,17 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             ((FakeNow)New<INow>()).TimeFunction = () => new DateTime(2001, 1, 1);
-            FakeDataStore.AddFile(file1, null);
+            FakeDataStore.AddFile(file1, new MemoryStream(Resources.helloworld_key_a_txt));
             activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             ((FakeNow)New<INow>()).TimeFunction = () => new DateTime(2002, 2, 2);
-            FakeDataStore.AddFile(file2, null);
+            FakeDataStore.AddFile(file2, new MemoryStream(Resources.helloworld_key_a_txt));
             activeFile = new ActiveFile(New<IDataStore>(file2), New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
             ((FakeNow)New<INow>()).TimeFunction = () => new DateTime(2003, 3, 3);
-            FakeDataStore.AddFile(file3, null);
+            FakeDataStore.AddFile(file3, new MemoryStream(Resources.helloworld_key_a_txt));
             activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
@@ -297,17 +298,17 @@ namespace Axantum.AxCrypt.Core.Test
             using (MainViewModel mvm = New<MainViewModel>())
             {
                 ((FakeNow)New<INow>()).TimeFunction = () => new DateTime(2001, 1, 1);
-                FakeDataStore.AddFile(file1, null);
+                FakeDataStore.AddFile(file1, new MemoryStream(Resources.helloworld_key_a_txt));
                 activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
 
                 ((FakeNow)New<INow>()).TimeFunction = () => new DateTime(2002, 2, 2);
-                FakeDataStore.AddFile(file2, null);
+                FakeDataStore.AddFile(file2, new MemoryStream(Resources.helloworld_key_a_txt));
                 activeFile = new ActiveFile(New<IDataStore>(file2), New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
 
                 ((FakeNow)New<INow>()).TimeFunction = () => new DateTime(2003, 3, 3);
-                FakeDataStore.AddFile(file3, null);
+                FakeDataStore.AddFile(file3, new MemoryStream(Resources.helloworld_key_a_txt));
                 activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
                 Resolve.FileSystemState.Add(activeFile);
                 await Resolve.FileSystemState.Save();
@@ -339,15 +340,15 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile;
 
-            FakeDataStore.AddFile(file1, null);
+            FakeDataStore.AddFile(file1, new MemoryStream(Resources.helloworld_key_a_txt));
             activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
-            FakeDataStore.AddFile(file2, null);
+            FakeDataStore.AddFile(file2, new MemoryStream(Resources.helloworld_key_a_txt));
             activeFile = new ActiveFile(New<IDataStore>(file2), New<IDataStore>(decrypted2), new LogOnIdentity("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
-            FakeDataStore.AddFile(file3, null);
+            FakeDataStore.AddFile(file3, new MemoryStream(Resources.helloworld_key_a_txt));
             activeFile = new ActiveFile(New<IDataStore>(file3), New<IDataStore>(decrypted3), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
@@ -396,7 +397,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile;
 
-            FakeDataStore.AddFile(file1, null);
+            FakeDataStore.AddFile(file1, new MemoryStream(Resources.helloworld_key_a_txt));
             activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 

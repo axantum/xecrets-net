@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
@@ -140,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
-                FakeDataStore.AddFile(_encryptedAxxPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, Stream.Null);
+                FakeDataStore.AddFile(_encryptedAxxPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, new MemoryStream(Resources.helloworld_key_a_txt));
                 ActiveFile activeFile = new ActiveFile(New<IDataStore>(_encryptedAxxPath), New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().CryptoId);
                 state.Add(activeFile);
                 await state.Save();
@@ -317,7 +318,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Assert.That(state.ActiveFileCount, Is.EqualTo(0));
 
-                FakeDataStore.AddFile(_encryptedAxxPath, null);
+                FakeDataStore.AddFile(_encryptedAxxPath, new MemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(state.ActiveFileCount, Is.EqualTo(0));
 
                 state.Add(new ActiveFile(New<IDataStore>(_encryptedAxxPath), New<IDataStore>(_decryptedTxtPath), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId));
