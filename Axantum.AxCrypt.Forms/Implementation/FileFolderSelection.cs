@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
                     case FileSelectionType.KeySharing:
                         ofd.Title = Texts.ShareKeysFileOpenDialogTitle;
-                        ofd.Multiselect = false;
+                        ofd.Multiselect = true;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.DefaultExt = OS.Current.AxCryptExtension;
