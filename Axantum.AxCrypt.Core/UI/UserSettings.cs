@@ -169,6 +169,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(FolderOperationMode), (int)value); }
         }
 
+        public SecretsSortOrder SortOption
+        {
+            get { return (SecretsSortOrder)Load(nameof(SortOption), (int)SecretsSortOrder.None); }
+            set { Store(nameof(SortOption), (int)value); }
+        }
+
         public bool RestoreFullWindow
         {
             get { return Load(nameof(RestoreFullWindow), false); }
