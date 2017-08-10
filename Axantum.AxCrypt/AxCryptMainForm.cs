@@ -1893,8 +1893,7 @@ namespace Axantum.AxCrypt
 
         private async Task ShareKeysAsync(IEnumerable<string> fileNames)
         {
-            SharingListViewModel viewModel = new SharingListViewModel(fileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            await viewModel.ReadyAsync();
+            SharingListViewModel viewModel = await SharingListViewModel.CreateAsync(fileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)

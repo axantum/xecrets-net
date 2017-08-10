@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     /// </summary>
     public class SharingListViewModel : ViewModelBase
     {
-        private LogOnIdentity _logOnIdentity;
+        private LogOnIdentity _identity;
 
         public IEnumerable<UserPublicKey> SharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(SharedWith)); } private set { SetProperty(nameof(SharedWith), value); } }
 
@@ -60,50 +60,50 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction AsyncAddNewKeyShare { get; private set; }
 
-        private Task _asyncInitializer;
-
-        public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity logOnIdentity)
+        public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity identity)
         {
-            _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
+            if (sharedWith == null)
+            {
+                throw new ArgumentNullException(nameof(sharedWith));
+            }
+            if (identity == null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
 
-            _asyncInitializer = Task.Run(() => GetAvailablePublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email)));
+            _identity = identity;
 
             InitializePropertyValues(sharedWith);
-
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
         }
 
-        public SharingListViewModel(IEnumerable<string> files, LogOnIdentity logOnIdentity)
+        public static async Task<SharingListViewModel> CreateAsync(IEnumerable<string> files, LogOnIdentity identity)
         {
-            _logOnIdentity = logOnIdentity ?? LogOnIdentity.Empty;
-
-            _asyncInitializer = Task.Run(() => TryAddMissingUnsharedPublicKeysFromfileNamesAsync(files));
-
-            BindPropertyChangedEvents();
-            SubscribeToModelEvents();
-        }
-
-        public async Task ReadyAsync()
-        {
-            await _asyncInitializer;
+            IEnumerable<UserPublicKey> sharedWith = await GetAllPublicKeyRecipientsFromEncryptedFiles(files, identity);
+            return new SharingListViewModel(sharedWith, identity);
         }
 
         private void InitializePropertyValues(IEnumerable<UserPublicKey> sharedWith)
         {
-            EmailAddress userEmail = _logOnIdentity.UserKeys.UserEmail;
-            SharedWith = sharedWith.Where(sw => sw.Email != userEmail).OrderBy(e => e.Email.Address).ToList();
-
-            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-            {
-                NotSharedWith = knownPublicKeys.PublicKeys.Where(upk => upk.Email != userEmail && !sharedWith.Any(sw => upk.Email == sw.Email)).OrderBy(e => e.Email.Address);
-            }
+            SetSharedAndNotSharedWith(sharedWith);
             NewKeyShare = String.Empty;
             CanAddNewKey = New<AxCryptOnlineState>().IsOnline;
 
             AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>(async (upks) => await AddKeySharesActionAsync(upks));
             AsyncRemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>(async (upks) => await RemoveKeySharesActionAsync(upks));
             AsyncAddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
+        }
+
+        private void SetSharedAndNotSharedWith(IEnumerable<UserPublicKey> sharedWith)
+        {
+            EmailAddress userEmail = _identity.UserKeys.UserEmail;
+            SharedWith = sharedWith.Where(sw => sw.Email != userEmail).OrderBy(e => e.Email.Address).ToList();
+
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                NotSharedWith = knownPublicKeys.PublicKeys.Where(upk => upk.Email != userEmail && !sharedWith.Any(sw => upk.Email == sw.Email)).OrderBy(e => e.Email.Address);
+            }
         }
 
         private static void BindPropertyChangedEvents()
@@ -116,8 +116,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task RemoveKeySharesActionAsync(IEnumerable<UserPublicKey> keySharesToRemove)
         {
-            await ReadyAsync();
-
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
             HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
 
@@ -129,9 +127,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task AddKeySharesActionAsync(IEnumerable<EmailAddress> keySharesToAdd)
         {
-            await ReadyAsync();
-
-            IEnumerable<UserPublicKey> publicKeysToAdd = await GetAvailablePublicKeysFromServerAsync(keySharesToAdd).Free();
+            IEnumerable<UserPublicKey> publicKeysToAdd = await GetAvailablePublicKeysAsync(keySharesToAdd, _identity).Free();
 
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
             HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
@@ -144,18 +140,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task AddNewKeyShareActionAsync(string email)
         {
-            await ReadyAsync();
             await AddKeySharesActionAsync(new EmailAddress[] { EmailAddress.Parse(email), }).Free();
         }
 
-        private async Task<IEnumerable<UserPublicKey>> GetAvailablePublicKeysFromServerAsync(IEnumerable<EmailAddress> recipients)
+        private static async Task<IEnumerable<UserPublicKey>> GetAvailablePublicKeysAsync(IEnumerable<EmailAddress> recipients, LogOnIdentity identity)
         {
             List<UserPublicKey> availablePublicKeys = new List<UserPublicKey>();
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 foreach (EmailAddress recipient in recipients)
                 {
-                    UserPublicKey key = await knownPublicKeys.GetAsync(recipient, _logOnIdentity);
+                    UserPublicKey key = await knownPublicKeys.GetAsync(recipient, identity);
                     if (key != null)
                     {
                         availablePublicKeys.Add(key);
@@ -197,19 +192,28 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return false;
         }
 
-        private async Task<IEnumerable<UserPublicKey>> TryAddMissingUnsharedPublicKeysFromfileNamesAsync(IEnumerable<string> fileNames)
+        private static async Task<IEnumerable<UserPublicKey>> GetAllPublicKeyRecipientsFromEncryptedFiles(IEnumerable<string> fileNames, LogOnIdentity identity)
         {
             IEnumerable<Tuple<string, EncryptedProperties>> files = await ListValidAsync(fileNames);
             IEnumerable<UserPublicKey> sharedWith = files.SelectMany(f => f.Item2.SharedKeyHolders).Distinct();
-
-            sharedWith = await GetAvailablePublicKeysFromServerAsync(sharedWith.Select(sw => sw.Email));
-
-            InitializePropertyValues(sharedWith);
+            UpdateKnownKeys(sharedWith);
 
             return sharedWith;
         }
 
-        private async Task<IEnumerable<Tuple<string, EncryptedProperties>>> ListValidAsync(IEnumerable<string> fileNames)
+        private static void UpdateKnownKeys(IEnumerable<UserPublicKey> sharedWith)
+        {
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                IEnumerable<UserPublicKey> previouslyUnknown = sharedWith.Where(shared => !knownPublicKeys.PublicKeys.Any(known => known.Email == shared.Email));
+                foreach (UserPublicKey newPublicKey in previouslyUnknown)
+                {
+                    knownPublicKeys.AddOrReplace(newPublicKey);
+                }
+            }
+        }
+
+        private static async Task<IEnumerable<Tuple<string, EncryptedProperties>>> ListValidAsync(IEnumerable<string> fileNames)
         {
             List<Tuple<string, EncryptedProperties>> files = new List<Tuple<string, EncryptedProperties>>();
             foreach (string file in fileNames)
