@@ -169,12 +169,6 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(FolderOperationMode), (int)value); }
         }
 
-        public SecretsSortOrder SortOption
-        {
-            get { return (SecretsSortOrder)Load(nameof(SortOption), (int)SecretsSortOrder.None); }
-            set { Store(nameof(SortOption), (int)value); }
-        }
-
         public bool RestoreFullWindow
         {
             get { return Load(nameof(RestoreFullWindow), false); }
@@ -299,6 +293,12 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get { return Load(nameof(InactivitySignOutTime), TimeSpan.Zero); }
             set { Store(nameof(InactivitySignOutTime), value); }
+        }
+
+        public SecretsSortOrder SecretsSortOrder
+        {
+            get { return (SecretsSortOrder)Load(nameof(SecretsSortOrder), (int)SecretsSortOrder.None); }
+            set { Store(nameof(SecretsSortOrder), (int)value); }
         }
 
         public T Load<T>(string key)
