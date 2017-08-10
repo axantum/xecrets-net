@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -157,6 +156,7 @@ namespace Axantum.AxCrypt.Core.Session
             Thumbprint = thumbprint;
             Status = status;
             Properties = new ActiveFileProperties(New<INow>().Utc, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
+            IsShared = OpenFileProperties.Create(EncryptedFileInfo).IsShared;
         }
 
         public IDataStore DecryptedFileInfo
@@ -242,6 +242,8 @@ namespace Axantum.AxCrypt.Core.Session
 
         [JsonProperty("properties")]
         public ActiveFileProperties Properties { get; private set; }
+
+        public bool IsShared { get; private set; }
 
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]

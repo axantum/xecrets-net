@@ -42,11 +42,7 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         [JsonProperty("cryptoId")]
-        public Guid CryptoId
-        {
-            get;
-            private set;
-        }
+        public Guid CryptoId { get; private set; }
 
         [JsonProperty("lastActivityTimeUtc")]
         public DateTime LastActivityTimeUtc { get; private set; }

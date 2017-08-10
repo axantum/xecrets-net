@@ -400,15 +400,22 @@ namespace Axantum.AxCrypt.Core.Extensions
                 async (IDataStore file, IProgressContext progress) =>
                 {
                     await New<AxCryptFile>().ChangeEncryptionAsync(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
-                    return await Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
+                    return new FileOperationContext(file.FullName, ErrorStatus.Success);
                 },
                 async (FileOperationContext foc) =>
                 {
-                    if (foc.ErrorStatus == ErrorStatus.Success)
+                    if (foc.ErrorStatus != ErrorStatus.Success)
                     {
-                        await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
+                        New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
+                        return;
                     }
-                    New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
+                    ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(foc.FullName);
+                    if (activeFile == null)
+                    {
+                        return;
+                    }
+                    New<FileSystemState>().Add(new ActiveFile(activeFile));
+                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
                 });
         }
 
@@ -451,6 +458,10 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return false;
             }
             if (left.EncryptedFileInfo.FullName != right.EncryptedFileInfo.FullName)
+            {
+                return false;
+            }
+            if (left.IsShared != right.IsShared)
             {
                 return false;
             }

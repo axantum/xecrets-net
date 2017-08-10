@@ -263,7 +263,7 @@ namespace Axantum.AxCrypt
             item.SubItems[nameof(ColumnName.Date)].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems[nameof(ColumnName.Date)].Tag = activeFile.Properties.LastActivityTimeUtc;
 
-            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, openProperties.KeyShareCount);
+            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, openProperties.IsShared);
 
             try
             {
@@ -283,7 +283,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, int keyShareCount)
+        private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, bool isShared)
         {
             switch (activeFile.VisualState & ~(ActiveFileVisualStates.SharedKeys | ActiveFileVisualStates.LowEncryption))
             {
@@ -294,7 +294,7 @@ namespace Axantum.AxCrypt
                     return;
             }
 
-            if (keyShareCount > 1)
+            if (isShared)
             {
                 item.ImageKey = nameof(ImageKey.KeyShared);
                 item.ToolTipText = Texts.KeySharingExistsToolTip;

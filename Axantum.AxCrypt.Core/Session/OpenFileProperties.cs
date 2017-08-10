@@ -11,6 +11,12 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class OpenFileProperties
     {
+        public int KeyShareCount { get; private set; }
+
+        public bool IsLegacyV1 { get; private set; }
+
+        public bool IsShared { get; private set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public static OpenFileProperties Create(IDataStore dataStore)
         {
@@ -50,10 +56,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             KeyShareCount = headers.HeaderBlocks.Count(hb => hb.HeaderBlockType == HeaderBlockType.V2AsymmetricKeyWrap);
             IsLegacyV1 = headers.HeaderBlocks.Any(hb => hb.HeaderBlockType == HeaderBlockType.KeyWrap1);
+            IsShared = KeyShareCount > 1;
         }
-
-        public int KeyShareCount { get; private set; }
-
-        public bool IsLegacyV1 { get; private set; }
     }
 }
