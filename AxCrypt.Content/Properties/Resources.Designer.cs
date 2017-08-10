@@ -5190,6 +5190,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Sort by.
+        /// </summary>
+        public static string SecretsSortOrderLabel {
+            get {
+                return ResourceManager.GetString("SecretsSortOrderLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href=&quot;https://www.axcrypt.net/Download/&quot;&gt;AxCrypt app&lt;/a&gt;..
         /// </summary>
         public static string SecretsWarningIsReadOnly {
@@ -5437,15 +5446,6 @@ namespace AxCrypt.Content.Properties {
         public static string SocialMediaFollowText {
             get {
                 return ResourceManager.GetString("SocialMediaFollowText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to !!Sort by.
-        /// </summary>
-        public static string SortOptionLabel {
-            get {
-                return ResourceManager.GetString("SortOptionLabel", resourceCulture);
             }
         }
         

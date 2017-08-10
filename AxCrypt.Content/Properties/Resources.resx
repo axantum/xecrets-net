@@ -2064,6 +2064,9 @@ Subject: AxCrypt Report Snapshot
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Go to password management.</value>
   </data>
+  <data name="SecretsSortOrderLabel" xml:space="preserve">
+    <value>!!Sort by</value>
+  </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
     <value>You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
   </data>
@@ -2163,9 +2166,6 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   <data name="SocialMediaFollowText" xml:space="preserve">
     <value>Follow us on social media</value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
-  </data>
-  <data name="SortOptionLabel" xml:space="preserve">
-    <value>!!Sort by</value>
   </data>
   <data name="SpanishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Español (Spanish)</value>
