@@ -340,6 +340,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 activeFiles.Sort(RecentFilesComparer);
             }
+            if (activeFiles.IsDisplayEquivalentTo(RecentFiles.ToList()))
+            {
+                return;
+            }
             RecentFiles = activeFiles;
             DecryptedFiles = _fileSystemState.DecryptedActiveFiles;
         }

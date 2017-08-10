@@ -28,12 +28,11 @@
 using Newtonsoft.Json;
 using System;
 using System.Linq;
-using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Session
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class ActiveFileProperties
+    public class ActiveFileProperties : IEquatable<ActiveFileProperties>
     {
         public ActiveFileProperties(DateTime lastActivityTimeUtc, DateTime lastEncryptionWriteTimeUtc, Guid cryptoId)
         {
@@ -58,5 +57,49 @@ namespace Axantum.AxCrypt.Core.Session
 
         [JsonProperty("lastEncryptionWriteTimeUtc")]
         public DateTime LastEncryptionWriteTimeUtc { get; private set; }
+
+        public bool Equals(ActiveFileProperties other)
+        {
+            if ((object)other == null)
+            {
+                return false;
+            }
+
+            return CryptoId == other.CryptoId && LastActivityTimeUtc == other.LastActivityTimeUtc && LastEncryptionWriteTimeUtc == other.LastEncryptionWriteTimeUtc;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || typeof(ActiveFileProperties) != obj.GetType())
+            {
+                return false;
+            }
+            ActiveFileProperties other = (ActiveFileProperties)obj;
+
+            return Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return CryptoId.GetHashCode() ^ LastActivityTimeUtc.GetHashCode() ^ LastEncryptionWriteTimeUtc.GetHashCode();
+        }
+
+        public static bool operator ==(ActiveFileProperties left, ActiveFileProperties right)
+        {
+            if (Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if ((object)left == null)
+            {
+                return false;
+            }
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ActiveFileProperties left, ActiveFileProperties right)
+        {
+            return !(left == right);
+        }
     }
 }

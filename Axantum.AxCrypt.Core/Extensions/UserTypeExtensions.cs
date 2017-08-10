@@ -411,5 +411,51 @@ namespace Axantum.AxCrypt.Core.Extensions
                     New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
                 });
         }
+
+        public static bool IsDisplayEquivalentTo(this IEnumerable<ActiveFile> left, IEnumerable<ActiveFile> right)
+        {
+            if (left.Count() != right.Count())
+            {
+                return false;
+            }
+            IEnumerator<ActiveFile> rightEnumerator = right.GetEnumerator();
+            foreach (ActiveFile leftActiveFile in left)
+            {
+                rightEnumerator.MoveNext();
+                ActiveFile rightActiveFile = rightEnumerator.Current;
+
+                if (!leftActiveFile.IsDisplayEquivalentTo(rightActiveFile))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static bool IsDisplayEquivalentTo(this ActiveFile left, ActiveFile right)
+        {
+            if (object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if (left.Properties != right.Properties)
+            {
+                return false;
+            }
+            if (left.Status != right.Status)
+            {
+                return false;
+            }
+            if (left.DecryptedFileInfo.FullName != right.DecryptedFileInfo.FullName)
+            {
+                return false;
+            }
+            if (left.EncryptedFileInfo.FullName != right.EncryptedFileInfo.FullName)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
