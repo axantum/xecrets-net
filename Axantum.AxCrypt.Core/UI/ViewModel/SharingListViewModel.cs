@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using System;
@@ -60,8 +59,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction AsyncRemoveKeyShares { get; private set; }
 
         public IAsyncAction AsyncAddNewKeyShare { get; private set; }
-
-        public IAsyncAction ShareKeysAsync { get; private set; }
 
         private Task _asyncInitializer;
 
@@ -107,7 +104,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>(async (upks) => await AddKeySharesActionAsync(upks));
             AsyncRemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>(async (upks) => await RemoveKeySharesActionAsync(upks));
             AsyncAddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
-            ShareKeysAsync = new AsyncDelegateAction<IEnumerable<string>>(async (files) => await ShareKeysFilesActionAsync(files));
         }
 
         private static void BindPropertyChangedEvents()
@@ -144,20 +140,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             NotSharedWith = fromSet.OrderBy(a => a.Email.Address);
             SharedWith = toSet.OrderBy(a => a.Email.Address);
-        }
-
-        private async Task ShareKeysFilesActionAsync(IEnumerable<string> files)
-        {
-            await ReadyAsync();
-
-            using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
-            {
-                SharedWith = New<KnownPublicKeys>().PublicKeys.Where(pk => SharedWith.Any(s => s.Email == pk.Email)).ToList();
-            }
-            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
-            await encryptionParameters.AddAsync(SharedWith);
-
-            await files.ChangeEncryptionAsync(encryptionParameters);
         }
 
         private async Task AddNewKeyShareActionAsync(string email)

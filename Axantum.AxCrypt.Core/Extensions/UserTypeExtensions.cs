@@ -387,9 +387,17 @@ namespace Axantum.AxCrypt.Core.Extensions
             return userPublicKey;
         }
 
-        public static Task ChangeEncryptionAsync(this IEnumerable<string> files, EncryptionParameters encryptionParameters)
+        public static async Task ChangeKeySharingAsync(this IEnumerable<string> files, IEnumerable<UserPublicKey> publicKeys)
         {
-            return Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)), async (IDataStore file, IProgressContext progress) =>
+            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
+            await encryptionParameters.AddAsync(publicKeys.Select(pk => pk.Email));
+            await ChangeEncryptionAsync(files, encryptionParameters);
+        }
+
+        private static Task ChangeEncryptionAsync(IEnumerable<string> files, EncryptionParameters encryptionParameters)
+        {
+            return Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)),
+                async (IDataStore file, IProgressContext progress) =>
                 {
                     await New<AxCryptFile>().ChangeEncryptionAsync(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
                     return await Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));

@@ -1902,7 +1902,7 @@ namespace Axantum.AxCrypt
                     return;
                 }
             }
-            await viewModel.ShareKeysAsync.ExecuteAsync(fileNames);
+            await fileNames.ChangeKeySharingAsync(viewModel.SharedWith);
         }
 
         private async Task WatchedFoldersKeySharingAsync(IEnumerable<string> folderPaths)
@@ -1939,9 +1939,7 @@ namespace Axantum.AxCrypt
                 }
                 IEnumerable<IDataStore> files = folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
 
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
-                await encryptionParameters.AddAsync(sharedWithPublicKeys.Select(pk => pk.Email));
-                await files.Select(x => x.FullName).ChangeEncryptionAsync(encryptionParameters);
+                await files.Select(x => x.FullName).ChangeKeySharingAsync(sharedWithPublicKeys);
             });
         }
 
