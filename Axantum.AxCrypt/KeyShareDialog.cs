@@ -12,7 +12,6 @@ using Axantum.AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -53,7 +52,7 @@ namespace Axantum.AxCrypt
             _sharedWith.MouseDoubleClick += async (sender, e) => await Unshare(_sharedWith.IndexFromPoint(e.Location));
             _notSharedWith.MouseDoubleClick += async (sender, e) =>
             {
-                await ShareAsync(_notSharedWith.IndexFromPoint(e.Location));
+                await ShareSelectedIndices(new int[] { _notSharedWith.IndexFromPoint(e.Location) });
                 SetShareButtonState();
             };
 
@@ -62,7 +61,8 @@ namespace Axantum.AxCrypt
 
             _shareButton.Click += async (sender, e) =>
             {
-                await ShareSelectedKnownContactsAsync();
+                await ShareSelectedIndices(_notSharedWith.SelectedIndices.Cast<int>());
+
                 string newContact = _viewModel.NewKeyShare;
                 if (await ShareNewContactAsync())
                 {
@@ -161,15 +161,6 @@ namespace Axantum.AxCrypt
             SetUnshareButtonState();
         }
 
-        private async Task ShareAsync(int index)
-        {
-            if (index == ListBox.NoMatches)
-            {
-                return;
-            }
-            await _viewModel.AsyncAddKeyShares.ExecuteAsync(new EmailAddress[] { EmailAddress.Parse(_notSharedWith.Items[index].ToString()) });
-        }
-
         private async Task<bool> ShareNewContactAsync()
         {
             if (String.IsNullOrEmpty(_viewModel.NewKeyShare))
@@ -201,9 +192,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async Task ShareSelectedKnownContactsAsync()
+        private Task ShareSelectedIndices(IEnumerable<int> indices)
         {
-            await _viewModel.AsyncAddKeyShares.ExecuteAsync(_notSharedWith.SelectedIndices.Cast<int>().Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
+            return _viewModel.AsyncAddKeyShares.ExecuteAsync(indices.Where(i => i != ListBox.NoMatches).Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
         }
 
         private void _okButton_Click(object sender, EventArgs e)
