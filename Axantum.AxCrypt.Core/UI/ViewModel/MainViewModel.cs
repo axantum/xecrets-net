@@ -133,6 +133,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RecentFiles = new ActiveFile[0];
             SelectedRecentFiles = new string[0];
             SelectedWatchedFolders = new string[0];
+            DecryptedFiles = new ActiveFile[0];
             DebugMode = _userSettings.DebugMode;
             FolderOperationMode = _userSettings.FolderOperationMode;
             DownloadVersion = DownloadVersion.Empty;
