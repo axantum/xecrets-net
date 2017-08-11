@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
@@ -28,6 +29,20 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 throw new ArgumentNullException(nameof(e));
             }
 
+            try
+            {
+                New<IMainUI>().Enabled = false;
+                HandleSelectionInternal(e);
+            }
+            finally
+            {
+                New<IMainUI>().Enabled = true;
+            }
+            return Constant.CompletedTask;
+        }
+
+        private void HandleSelectionInternal(FileSelectionEventArgs e)
+        {
             switch (e.FileSelectionType)
             {
                 case FileSelectionType.SaveAsEncrypted:
@@ -47,7 +62,6 @@ namespace Axantum.AxCrypt.Forms.Implementation
                     HandleOpenFileSelection(e);
                     break;
             }
-            return Task.FromResult<object>(null);
         }
 
         private void HandleFolderSelection(FileSelectionEventArgs e)

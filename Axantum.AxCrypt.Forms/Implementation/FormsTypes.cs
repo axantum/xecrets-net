@@ -13,6 +13,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
         {
             TypeMap.Register.Singleton<IPopup>(() => new Popup(parent));
             TypeMap.Register.Singleton<IVerifySignInPassword>(() => new VerifySignInPassword(parent));
+            TypeMap.Register.Singleton<IMainUI>(() => new MainUI(parent));
         }
     }
 }

@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="EmbeddedResourceManager.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Implementation\MainUI.cs" />
     <Compile Include="Implementation\ProgressBackgroundComponent.cs">
       <SubType>Component</SubType>
     </Compile>
