@@ -414,7 +414,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                     {
                         return;
                     }
-                    New<FileSystemState>().Add(new ActiveFile(activeFile));
+                    New<FileSystemState>().Add(new ActiveFile(activeFile, encryptionParameters.CryptoId));
                     await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
                 });
         }
