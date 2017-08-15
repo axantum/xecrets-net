@@ -980,9 +980,6 @@ If you for any reason do not know or remember the password, you must perform a p
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Ask your contact to export and send his/her Public Sharing Key to you and import it here. Then you can share encrypted files.</value>
   </data>
-  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
-    <value>AxCrypt ID Files (*.axx)|*.axx|All Files (*.*)|*.*</value>
-  </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
     <value>Select AxCrypt ID</value>
   </data>

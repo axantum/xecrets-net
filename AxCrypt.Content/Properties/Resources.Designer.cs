@@ -2419,15 +2419,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt ID Files (*.axx)|*.axx|All Files (*.*)|*.*.
-        /// </summary>
-        public static string ImportPrivateKeysFileFilter {
-            get {
-                return ResourceManager.GetString("ImportPrivateKeysFileFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select AxCrypt ID.
         /// </summary>
         public static string ImportPrivateKeysFileSelectionTitle {

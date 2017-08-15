@@ -1,4 +1,6 @@
 ﻿using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
@@ -6,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
@@ -98,7 +100,8 @@ namespace Axantum.AxCrypt
                 ofd.Multiselect = false;
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
-                ofd.Filter = Texts.ImportPrivateKeysFileFilter;
+                ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
+                ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptIdFiles, Texts.FileFilterFileTypeAllFiles);
                 DialogResult result = ofd.ShowDialog();
                 if (result == DialogResult.OK)
                 {

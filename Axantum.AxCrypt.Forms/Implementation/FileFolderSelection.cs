@@ -168,7 +168,8 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.Multiselect = false;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
-                        ofd.Filter = Texts.ImportPrivateKeysFileFilter;
+                        ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptIdFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
                     case FileSelectionType.KeySharing:
