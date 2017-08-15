@@ -1425,11 +1425,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Files (*{0})|*{0}|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to {1}(*{0})|*{0}|{2} (*.*)|*.*.
         /// </summary>
-        public static string DecryptedSaveAsFileDialogFilterPattern {
+        public static string DecryptedSaveAsFileDialogFilterPatternWin {
             get {
-                return ResourceManager.GetString("DecryptedSaveAsFileDialogFilterPattern", resourceCulture);
+                return ResourceManager.GetString("DecryptedSaveAsFileDialogFilterPatternWin", resourceCulture);
             }
         }
         
@@ -2174,6 +2174,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All files.
+        /// </summary>
+        public static string FileFilterFileTypeAllFilesLabel {
+            get {
+                return ResourceManager.GetString("FileFilterFileTypeAllFilesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        public static string FileFilterFileTypeFilesLabel {
+            get {
+                return ResourceManager.GetString("FileFilterFileTypeFilesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; is open in another application. Please close it and try again..
         /// </summary>
         public static string FileIsLockedWarning {
@@ -2224,6 +2242,15 @@ namespace AxCrypt.Content.Properties {
         public static string FolderAlreadyWatched {
             get {
                 return ResourceManager.GetString("FolderAlreadyWatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder.
+        /// </summary>
+        public static string FolderSelectTitle {
+            get {
+                return ResourceManager.GetString("FolderSelectTitle", resourceCulture);
             }
         }
         
@@ -3866,7 +3893,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We&apos;re doing this without asking your for your password again!
+        ///   Looks up a localized string similar to We&apos;re doing this without asking for your password again!
         ///
         ///You&apos;re signed in, so we won&apos;t ask for your password to encrypt, decrypt or open documents.
         ///
@@ -5502,6 +5529,15 @@ namespace AxCrypt.Content.Properties {
         public static string StartupTipTryMobileApp {
             get {
                 return ResourceManager.GetString("StartupTipTryMobileApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step {0} of {1}.
+        /// </summary>
+        public static string StepsWizardLabel {
+            get {
+                return ResourceManager.GetString("StepsWizardLabel", resourceCulture);
             }
         }
         

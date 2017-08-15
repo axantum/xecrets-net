@@ -619,8 +619,9 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Assumed open. Try to Close the application, or use the Clean function to remove it.</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Files (*{0})|*{0}|All files (*.*)|*.*</value>
+  <data name="DecryptedSaveAsFileDialogFilterPatternWin" xml:space="preserve">
+    <value>{1}(*{0})|*{0}|{2} (*.*)|*.*</value>
+    <comment>The pattern used for 'Save As' for decrypted files. {0} is the original file extension with  leading dot, i.e. ".docx". {1} is the text for "Files" ,and {2} is the text for "All Files" pattern.</comment>
   </data>
   <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>File exists, choose a new name to save as</value>
@@ -887,6 +888,14 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>File '{0}' does not exist.</value>
   </data>
+  <data name="FileFilterFileTypeAllFilesLabel" xml:space="preserve">
+    <value>All files</value>
+    <comment>The text "All Files" when used in a file dialog.</comment>
+  </data>
+  <data name="FileFilterFileTypeFilesLabel" xml:space="preserve">
+    <value>Files</value>
+    <comment>A single word or similar expressing "Files" - i.e. any number of any kind of files.</comment>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' is open in another application. Please close it and try again.</value>
   </data>
@@ -904,6 +913,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Folder '{0}' already secured.</value>
+  </data>
+  <data name="FolderSelectTitle" xml:space="preserve">
+    <value>Select a folder</value>
+    <comment>A prompt or title in a folder selection dialog, prompting the user to select a folder.</comment>
   </data>
   <data name="FollowUsTitle" xml:space="preserve">
     <value>Follow us</value>
@@ -1547,7 +1560,7 @@ Without Premium you can only view and permanently decrypt encrypted files.</valu
     <value>No need to check for updates.</value>
   </data>
   <data name="NoPasswordRequiredInformationText" xml:space="preserve">
-    <value>We're doing this without asking your for your password again!
+    <value>We're doing this without asking for your password again!
 
 You're signed in, so we won't ask for your password to encrypt, decrypt or open documents.
 
@@ -2190,6 +2203,10 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
     <value>Mobile apps for Android and iOS are now included in AxCrypt Premium. Would you like to know more?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
+  </data>
+  <data name="StepsWizardLabel" xml:space="preserve">
+    <value>Step {0} of {1}</value>
+    <comment>A pattern for a step wizard, "Step 1 of 3" for example. Note that it's important that {0} and {1} remain exactly like that and that {0} represents the current step, and {1} represents the total number of steps (in case the translation requires then in different order).</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Click to select files to stop securing.</value>
