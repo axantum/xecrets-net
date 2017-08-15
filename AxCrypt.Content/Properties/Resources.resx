@@ -685,9 +685,6 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DialogExportSharingKeyFileName" xml:space="preserve">
     <value>AxCrypt Sharing Key (#{1}) - {0}.txt</value>
   </data>
-  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
-    <value>AxCrypt Public Sharing Key Files (*.txt)|*.txt|All Files (*.*)|*.*</value>
-  </data>
   <data name="DialogExportSharingKeyTitle" xml:space="preserve">
     <value>Export Public Sharing Key</value>
   </data>
@@ -885,7 +882,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>{1}(*{0})|*{0}|{2} (*.*)|*.*</value>
     <comment>The pattern used for file dialogs of a given extension and all files. {0} is the file extension with  leading dot, i.e. ".docx". {1} is the text for "Files" ,and {2} is the text for "All Files" pattern.</comment>
   </data>
-  <data name="FileFilterFileTypeAllFilesLabel" xml:space="preserve">
+  <data name="FileFilterFileTypeAllFiles" xml:space="preserve">
     <value>All files</value>
     <comment>The text "All Files" when used in a file dialog.</comment>
   </data>
@@ -893,9 +890,12 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>AxCrypt ID Files</value>
     <comment>The description for AxCrypt ID files when exporting. Essentially a type of .axx files.</comment>
   </data>
-  <data name="FileFilterFileTypeFilesLabel" xml:space="preserve">
+  <data name="FileFilterFileTypeFiles" xml:space="preserve">
     <value>Files</value>
     <comment>A single word or similar expressing "Files" - i.e. any number of any kind of files.</comment>
+  </data>
+  <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
+    <value>AxCrypt Public Sharing Key Files</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' is open in another application. Please close it and try again.</value>

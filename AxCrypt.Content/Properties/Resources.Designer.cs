@@ -1616,15 +1616,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Public Sharing Key Files (*.txt)|*.txt|All Files (*.*)|*.*.
-        /// </summary>
-        public static string DialogExportSharingKeyFilter {
-            get {
-                return ResourceManager.GetString("DialogExportSharingKeyFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Export Public Sharing Key.
         /// </summary>
         public static string DialogExportSharingKeyTitle {
@@ -2167,9 +2158,9 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to All files.
         /// </summary>
-        public static string FileFilterFileTypeAllFilesLabel {
+        public static string FileFilterFileTypeAllFiles {
             get {
-                return ResourceManager.GetString("FileFilterFileTypeAllFilesLabel", resourceCulture);
+                return ResourceManager.GetString("FileFilterFileTypeAllFiles", resourceCulture);
             }
         }
         
@@ -2185,9 +2176,18 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Files.
         /// </summary>
-        public static string FileFilterFileTypeFilesLabel {
+        public static string FileFilterFileTypeFiles {
             get {
-                return ResourceManager.GetString("FileFilterFileTypeFilesLabel", resourceCulture);
+                return ResourceManager.GetString("FileFilterFileTypeFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Public Sharing Key Files.
+        /// </summary>
+        public static string FileFilterFileTypePublicSharingKeyFiles {
+            get {
+                return ResourceManager.GetString("FileFilterFileTypePublicSharingKeyFiles", resourceCulture);
             }
         }
         

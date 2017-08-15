@@ -210,7 +210,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         sfd.Title = Texts.DecryptedSaveAsFileDialogTitle;
                         sfd.DefaultExt = extension;
                         sfd.AddExtension = !String.IsNullOrEmpty(extension);
-                        sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(extension, Texts.FileFilterFileTypeFilesLabel, Texts.FileFilterFileTypeAllFilesLabel);
+                        sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(sfd.DefaultExt, Texts.FileFilterFileTypeFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
                 }
                 sfd.CheckPathExists = true;
