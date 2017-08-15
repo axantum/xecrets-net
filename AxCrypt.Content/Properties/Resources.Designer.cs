@@ -2138,7 +2138,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1}(*{0})|*{0}|{2} (*.*)|*.*.
+        ///   Looks up a localized string similar to {1} (*{0})|*{0}|{2} (*.*)|*.*.
         /// </summary>
         public static string FileFilterDialogFilterPatternWin {
             get {
@@ -2762,15 +2762,6 @@ namespace AxCrypt.Content.Properties {
         public static string JavaScriptDisabledError {
             get {
                 return ResourceManager.GetString("JavaScriptDisabledError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Key Files (*.txt)|*.txt|All Files (*.*)|*.*.
-        /// </summary>
-        public static string KeyFileBrowseFilter {
-            get {
-                return ResourceManager.GetString("KeyFileBrowseFilter", resourceCulture);
             }
         }
         

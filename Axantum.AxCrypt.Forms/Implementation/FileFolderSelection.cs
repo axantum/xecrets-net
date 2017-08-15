@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
-                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         ofd.Multiselect = true;
                         break;
 
@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
-                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         ofd.Multiselect = true;
                         break;
 
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
-                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
                     case FileSelectionType.Wipe:
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.DefaultExt = ".txt";
-                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypePublicSharingKeyFiles, Texts.FileFilterFileTypeAllFiles);
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + ofd.DefaultExt, Texts.FileFilterFileTypePublicSharingKeyFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
                     case FileSelectionType.ImportPrivateKeys:
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
-                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptIdFiles, Texts.FileFilterFileTypeAllFiles);
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptIdFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
                     case FileSelectionType.KeySharing:
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
-                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
                     default:
@@ -205,7 +205,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         sfd.Title = Texts.EncryptFileSaveAsDialogTitle;
                         sfd.DefaultExt = OS.Current.AxCryptExtension;
                         sfd.AddExtension = true;
-                        sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(sfd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
+                        sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + sfd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
                     case FileSelectionType.SaveAsDecrypted:
@@ -213,7 +213,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         sfd.Title = Texts.DecryptedSaveAsFileDialogTitle;
                         sfd.DefaultExt = extension;
                         sfd.AddExtension = !String.IsNullOrEmpty(extension);
-                        sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(sfd.DefaultExt, Texts.FileFilterFileTypeFiles, Texts.FileFilterFileTypeAllFiles);
+                        sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + sfd.DefaultExt, Texts.FileFilterFileTypeFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
                 }
                 sfd.CheckPathExists = true;

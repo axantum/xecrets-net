@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
                 ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
-                ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptIdFiles, Texts.FileFilterFileTypeAllFiles);
+                ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptIdFiles, Texts.FileFilterFileTypeAllFiles);
                 DialogResult result = ofd.ShowDialog();
                 if (result == DialogResult.OK)
                 {

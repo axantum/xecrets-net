@@ -876,7 +876,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>File '{0}' does not exist.</value>
   </data>
   <data name="FileFilterDialogFilterPatternWin" xml:space="preserve">
-    <value>{1}(*{0})|*{0}|{2} (*.*)|*.*</value>
+    <value>{1} (*{0})|*{0}|{2} (*.*)|*.*</value>
     <comment>The pattern used for file dialogs of a given extension and all files. {0} is the file extension with  leading dot, i.e. ".docx". {1} is the text for "Files" ,and {2} is the text for "All Files" pattern.</comment>
   </data>
   <data name="FileFilterFileTypeAllFiles" xml:space="preserve">
@@ -1111,9 +1111,6 @@ VAT Number SE 556967618101</value>
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript appears to be disabled in your browser. Unless you enable JavaScript you cannot sign in and the site may not perform as expected.</value>
-  </data>
-  <data name="KeyFileBrowseFilter" xml:space="preserve">
-    <value>AxCrypt Key Files (*.txt)|*.txt|All Files (*.*)|*.*</value>
   </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Select a Key File</value>

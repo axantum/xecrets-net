@@ -143,7 +143,8 @@ namespace Axantum.AxCrypt
                 ofd.Multiselect = false;
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
-                ofd.Filter = Texts.KeyFileBrowseFilter;
+                ofd.DefaultExt = ".txt";
+                ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + ofd.DefaultExt, Texts.FileFilterFileTypePublicSharingKeyFiles, Texts.FileFilterFileTypeAllFiles);
                 DialogResult result = ofd.ShowDialog();
                 if (result == DialogResult.OK)
                 {

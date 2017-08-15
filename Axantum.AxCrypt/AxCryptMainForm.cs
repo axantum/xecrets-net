@@ -1838,7 +1838,7 @@ namespace Axantum.AxCrypt
                 sfd.Title = Texts.DialogExportSharingKeyTitle;
                 sfd.DefaultExt = ".txt";
                 sfd.AddExtension = true;
-                sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(sfd.DefaultExt, Texts.FileFilterFileTypePublicSharingKeyFiles, Texts.FileFilterFileTypeAllFiles);
+                sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + sfd.DefaultExt, Texts.FileFilterFileTypePublicSharingKeyFiles, Texts.FileFilterFileTypeAllFiles);
                 sfd.CheckPathExists = true;
                 sfd.FileName = Texts.DialogExportSharingKeyFileName.InvariantFormat(userEmail.Address, publicKey.Tag);
                 sfd.ValidateNames = true;
@@ -1953,7 +1953,7 @@ namespace Axantum.AxCrypt
                 sfd.Title = Texts.DialogExportAxCryptIdTitle;
                 sfd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
                 sfd.AddExtension = true;
-                sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(sfd.DefaultExt, Texts.FileFilterFileTypeAxCryptIdFiles, Texts.FileFilterFileTypeAllFiles);
+                sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + sfd.DefaultExt, Texts.FileFilterFileTypeAxCryptIdFiles, Texts.FileFilterFileTypeAllFiles);
                 sfd.CheckPathExists = true;
                 sfd.FileName = Texts.DialogExportAxCryptIdFileName.InvariantFormat(userKeyPair.UserEmail, publicKey.Tag);
                 sfd.ValidateNames = true;
