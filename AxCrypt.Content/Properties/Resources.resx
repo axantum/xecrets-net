@@ -619,10 +619,6 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Assumed open. Try to Close the application, or use the Clean function to remove it.</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPatternWin" xml:space="preserve">
-    <value>{1}(*{0})|*{0}|{2} (*.*)|*.*</value>
-    <comment>The pattern used for 'Save As' for decrypted files. {0} is the original file extension with  leading dot, i.e. ".docx". {1} is the text for "Files" ,and {2} is the text for "All Files" pattern.</comment>
-  </data>
   <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>File exists, choose a new name to save as</value>
   </data>
@@ -682,9 +678,6 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="DialogExportAxCryptIdFileName" xml:space="preserve">
     <value>AxCrypt ID (#{1}) - {0}.axx</value>
-  </data>
-  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
-    <value>AxCrypt ID Files (*.axx)|*.axx|All Files (*.*)|*.*"</value>
   </data>
   <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
     <value>Export AxCrypt ID</value>
@@ -888,9 +881,17 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>File '{0}' does not exist.</value>
   </data>
+  <data name="FileFilterDialogFilterPatternWin" xml:space="preserve">
+    <value>{1}(*{0})|*{0}|{2} (*.*)|*.*</value>
+    <comment>The pattern used for file dialogs of a given extension and all files. {0} is the file extension with  leading dot, i.e. ".docx". {1} is the text for "Files" ,and {2} is the text for "All Files" pattern.</comment>
+  </data>
   <data name="FileFilterFileTypeAllFilesLabel" xml:space="preserve">
     <value>All files</value>
     <comment>The text "All Files" when used in a file dialog.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptIdFiles" xml:space="preserve">
+    <value>AxCrypt ID Files</value>
+    <comment>The description for AxCrypt ID files when exporting. Essentially a type of .axx files.</comment>
   </data>
   <data name="FileFilterFileTypeFilesLabel" xml:space="preserve">
     <value>Files</value>

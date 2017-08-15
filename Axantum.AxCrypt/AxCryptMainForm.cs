@@ -1951,9 +1951,9 @@ namespace Axantum.AxCrypt
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
                 sfd.Title = Texts.DialogExportAxCryptIdTitle;
-                sfd.DefaultExt = ".axx";
+                sfd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
                 sfd.AddExtension = true;
-                sfd.Filter = Texts.DialogExportAxCryptIdFilter;
+                sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(sfd.DefaultExt, Texts.FileFilterFileTypeAxCryptIdFiles, Texts.FileFilterFileTypeAllFilesLabel);
                 sfd.CheckPathExists = true;
                 sfd.FileName = Texts.DialogExportAxCryptIdFileName.InvariantFormat(userKeyPair.UserEmail, publicKey.Tag);
                 sfd.ValidateNames = true;

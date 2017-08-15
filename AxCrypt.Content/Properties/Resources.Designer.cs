@@ -1425,15 +1425,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1}(*{0})|*{0}|{2} (*.*)|*.*.
-        /// </summary>
-        public static string DecryptedSaveAsFileDialogFilterPatternWin {
-            get {
-                return ResourceManager.GetString("DecryptedSaveAsFileDialogFilterPatternWin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to File exists, choose a new name to save as.
         /// </summary>
         public static string DecryptedSaveAsFileDialogTitle {
@@ -1603,15 +1594,6 @@ namespace AxCrypt.Content.Properties {
         public static string DialogExportAxCryptIdFileName {
             get {
                 return ResourceManager.GetString("DialogExportAxCryptIdFileName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AxCrypt ID Files (*.axx)|*.axx|All Files (*.*)|*.*&quot;.
-        /// </summary>
-        public static string DialogExportAxCryptIdFilter {
-            get {
-                return ResourceManager.GetString("DialogExportAxCryptIdFilter", resourceCulture);
             }
         }
         
@@ -2174,11 +2156,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {1}(*{0})|*{0}|{2} (*.*)|*.*.
+        /// </summary>
+        public static string FileFilterDialogFilterPatternWin {
+            get {
+                return ResourceManager.GetString("FileFilterDialogFilterPatternWin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All files.
         /// </summary>
         public static string FileFilterFileTypeAllFilesLabel {
             get {
                 return ResourceManager.GetString("FileFilterFileTypeAllFilesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ID Files.
+        /// </summary>
+        public static string FileFilterFileTypeAxCryptIdFiles {
+            get {
+                return ResourceManager.GetString("FileFilterFileTypeAxCryptIdFiles", resourceCulture);
             }
         }
         
