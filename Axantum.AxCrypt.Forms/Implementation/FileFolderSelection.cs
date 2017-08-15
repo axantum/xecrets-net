@@ -160,7 +160,8 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.Multiselect = true;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
-                        ofd.Filter = Texts.ImportPublicKeysFileFilter;
+                        ofd.DefaultExt = ".txt";
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypePublicSharingKeyFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
                     case FileSelectionType.ImportPrivateKeys:

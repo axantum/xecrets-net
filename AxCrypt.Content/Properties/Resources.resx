@@ -983,9 +983,6 @@ If you for any reason do not know or remember the password, you must perform a p
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
     <value>Select AxCrypt ID</value>
   </data>
-  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
-    <value>Text Files (*.txt)|*.txt|All Files (*.*)|*.*</value>
-  </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Select Sharing Key Files</value>
   </data>

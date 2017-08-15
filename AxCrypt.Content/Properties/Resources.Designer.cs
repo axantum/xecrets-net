@@ -2428,15 +2428,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text Files (*.txt)|*.txt|All Files (*.*)|*.*.
-        /// </summary>
-        public static string ImportPublicKeysFileFilter {
-            get {
-                return ResourceManager.GetString("ImportPublicKeysFileFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select Sharing Key Files.
         /// </summary>
         public static string ImportPublicKeysFileSelectionTitle {
