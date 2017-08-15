@@ -1129,6 +1129,12 @@ VAT Number SE 556967618101</value>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>Key Management</value>
   </data>
+  <data name="KeyShareDialogHeader" xml:space="preserve">
+    <value>Add recipients to the list of people who you want to share this file with.
+
+A recipient is identified by the AxCrypt ID sign in email, but we do not send the file! Here you add the recipients' key to the file. You still have to share the actual file with the recipient afterwards.</value>
+    <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
+  </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>The file key is shared with other AxCrypt users.</value>
   </data>

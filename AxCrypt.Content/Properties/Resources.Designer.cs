@@ -2811,6 +2811,17 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add recipients to the list of people who you want to share this file with.
+        ///
+        ///A recipient is identified by the AxCrypt ID sign in email, but we do not send the file! Here you add the recipients&apos; key to the file. You still have to share the actual file with the recipient afterwards..
+        /// </summary>
+        public static string KeyShareDialogHeader {
+            get {
+                return ResourceManager.GetString("KeyShareDialogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file key is shared with other AxCrypt users..
         /// </summary>
         public static string KeySharingExistsToolTip {
