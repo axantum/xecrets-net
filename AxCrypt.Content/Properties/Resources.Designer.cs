@@ -1823,15 +1823,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*.
-        /// </summary>
-        public static string EncryptedFileDialogFilterPattern {
-            get {
-                return ResourceManager.GetString("EncryptedFileDialogFilterPattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Secured Folders.
         /// </summary>
         public static string EncryptedFoldersToolStripMenuItemText {
@@ -2161,6 +2152,15 @@ namespace AxCrypt.Content.Properties {
         public static string FileFilterFileTypeAllFiles {
             get {
                 return ResourceManager.GetString("FileFilterFileTypeAllFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Files.
+        /// </summary>
+        public static string FileFilterFileTypeAxCryptFiles {
+            get {
+                return ResourceManager.GetString("FileFilterFileTypeAxCryptFiles", resourceCulture);
             }
         }
         

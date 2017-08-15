@@ -760,9 +760,6 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[No Description]</value>
   </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*</value>
-  </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Secured Folders</value>
   </data>
@@ -885,6 +882,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="FileFilterFileTypeAllFiles" xml:space="preserve">
     <value>All files</value>
     <comment>The text "All Files" when used in a file dialog.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptFiles" xml:space="preserve">
+    <value>AxCrypt Files</value>
+    <comment>The short description for "AxCrypt Files" used in file selection dialogs.</comment>
   </data>
   <data name="FileFilterFileTypeAxCryptIdFiles" xml:space="preserve">
     <value>AxCrypt ID Files</value>

@@ -2,6 +2,7 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using AxCrypt.Content;
 using System;
@@ -116,8 +117,8 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.Multiselect = true;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
-                        ofd.DefaultExt = OS.Current.AxCryptExtension;
-                        ofd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
+                        ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         ofd.Multiselect = true;
                         break;
 
@@ -126,8 +127,8 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.Multiselect = true;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
-                        ofd.DefaultExt = OS.Current.AxCryptExtension;
-                        ofd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
+                        ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         ofd.Multiselect = true;
                         break;
 
@@ -143,8 +144,8 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.Multiselect = false;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
-                        ofd.DefaultExt = OS.Current.AxCryptExtension;
-                        ofd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
+                        ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
                     case FileSelectionType.Wipe:
@@ -175,8 +176,8 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         ofd.Multiselect = true;
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
-                        ofd.DefaultExt = OS.Current.AxCryptExtension;
-                        ofd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
+                        ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
+                        ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
                     default:
@@ -202,7 +203,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         sfd.Title = Texts.EncryptFileSaveAsDialogTitle;
                         sfd.DefaultExt = OS.Current.AxCryptExtension;
                         sfd.AddExtension = true;
-                        sfd.Filter = Texts.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
+                        sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat(sfd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
                     case FileSelectionType.SaveAsDecrypted:
