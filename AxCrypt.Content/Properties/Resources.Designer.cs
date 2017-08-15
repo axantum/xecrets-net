@@ -2183,6 +2183,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Key Files.
+        /// </summary>
+        public static string FileFilterFileTypeKeyFile {
+            get {
+                return ResourceManager.GetString("FileFilterFileTypeKeyFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt Public Sharing Key Files.
         /// </summary>
         public static string FileFilterFileTypePublicSharingKeyFiles {
@@ -2224,6 +2233,15 @@ namespace AxCrypt.Content.Properties {
         public static string FileOperationFailed {
             get {
                 return ResourceManager.GetString("FileOperationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide the original password for this file..
+        /// </summary>
+        public static string FilePasswordDialogHeader {
+            get {
+                return ResourceManager.GetString("FilePasswordDialogHeader", resourceCulture);
             }
         }
         
@@ -5163,7 +5181,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are already signed in with this password! Please provide the original password for this file..
+        ///   Looks up a localized string similar to You are already signed in with this password!.
         /// </summary>
         public static string SameFilePasswordAsSignedInError {
             get {
