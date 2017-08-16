@@ -2196,6 +2196,14 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
     <value>Follow us on social media</value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
+  <data name="SoftwareIsUpToDateLabel" xml:space="preserve">
+    <value>Up to date</value>
+    <comment>Short label stating that the software is up to date.</comment>
+  </data>
+  <data name="SoftwareUpdateNowLabel" xml:space="preserve">
+    <value>Update now!</value>
+    <comment>A short label prompting the user to update AxCrypt now!</comment>
+  </data>
   <data name="SpanishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Español (Spanish)</value>
     <comment>Do Not Translate</comment>

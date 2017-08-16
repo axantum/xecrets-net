@@ -5506,6 +5506,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Up to date.
+        /// </summary>
+        public static string SoftwareIsUpToDateLabel {
+            get {
+                return ResourceManager.GetString("SoftwareIsUpToDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update now!.
+        /// </summary>
+        public static string SoftwareUpdateNowLabel {
+            get {
+                return ResourceManager.GetString("SoftwareUpdateNowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Español (Spanish).
         /// </summary>
         public static string SpanishLanguageToolStripMenuItemText {
