@@ -551,9 +551,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>El archivo probablemente está abierto. Trate de cerrar la aplicación, o utilizar la función de limpieza para eliminarlo.</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Archivos (*{0})|*{0}|Todos los archivos (*.*)|*.*</value>
-  </data>
   <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>El archivo ya existe, por favor elige otro nombre para guardar</value>
   </data>
@@ -595,17 +592,11 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Se requiere contraseña</value>
   </data>
-  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
-    <value>Archivos AxCrypt ID (*.axx)|*.axx|Todos los archivos (*.*)|*.*"</value>
-  </data>
   <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
     <value>Exportar AxCrypt ID</value>
   </data>
   <data name="DialogExportSharingKeyFileName" xml:space="preserve">
     <value>AxCrypt Sharing Key (#{1}) - {0}.txt</value>
-  </data>
-  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
-    <value>AxCrypt claves públicas compartidas (*.txt)|*.txt|Todos los archivos(*.*)|*.*</value>
   </data>
   <data name="DialogExportSharingKeyTitle" xml:space="preserve">
     <value>Exportar Public Sharing Key</value>
@@ -667,9 +658,6 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[No Descripción]</value>
-  </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>Archivos AxCrypt(*{0})|*{0}|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Archivos protegidos</value>
@@ -773,6 +761,29 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>El archivo '{0}' no existe.</value>
   </data>
+  <data name="FileFilterFileTypeAllFiles" xml:space="preserve">
+    <value>Todos los archivos</value>
+    <comment>The text "All Files" when used in a file dialog.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptFiles" xml:space="preserve">
+    <value>Archivos AxCrypt</value>
+    <comment>The short description for "AxCrypt Files" used in file selection dialogs.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptIdFiles" xml:space="preserve">
+    <value>Archivos AxCrypt ID</value>
+    <comment>The description for AxCrypt ID files when exporting. Essentially a type of .axx files.</comment>
+  </data>
+  <data name="FileFilterFileTypeFiles" xml:space="preserve">
+    <value>Archivos</value>
+    <comment>A single word or similar expressing "Files" - i.e. any number of any kind of files.</comment>
+  </data>
+  <data name="FileFilterFileTypeKeyFile" xml:space="preserve">
+    <value>AxCrypt Archivos clave</value>
+    <comment>The short file selection prompt for a legacy style key file.</comment>
+  </data>
+  <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
+    <value>AxCrypt claves públicas compartidas</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' está abierto en otra aplicación. Por favor, cierre y vuelva a intentarlo.</value>
   </data>
@@ -784,6 +795,10 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="FileOperationFailed" xml:space="preserve">
     <value>Error de '{0}'.</value>
+  </data>
+  <data name="FilePasswordDialogHeader" xml:space="preserve">
+    <value>Por favor, introducir la contraseña original para este archivo.</value>
+    <comment>The header text for the file password dialog.</comment>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Archivo</value>
@@ -831,14 +846,8 @@ Si, por alguna razón, no recuerda la contraseña, debe proceder a restaurar la 
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Pedirle a su contacto que exporte y envíe su clave pública compartida para usted e importarlo aquí. Entonces se puede compartir los archivos cifrados.</value>
   </data>
-  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
-    <value>Archivos AxCrypt ID (*.axx)|*.axx|Todos los archivos (*.*)|*.*</value>
-  </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
     <value>Seleccionar AxCrypt ID</value>
-  </data>
-  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
-    <value>Archivos de texto (*.txt)|*.txt|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Seleccione compartir archivos clave</value>
@@ -949,9 +958,6 @@ Inicia sesión en AxCrypt con {2}, introduce el código de verificación de 6 ci
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>Parece que JavaScript está desactivado en su navegador. Si no habilita JavaScript, no podrá iniciar sesión y el sitio puede no funcionar de la forma esperada.</value>
   </data>
-  <data name="KeyFileBrowseFilter" xml:space="preserve">
-    <value>AxCrypt Archivos clave (*.txt)|*.txt|Todos los archivos (*.*)|*.*</value>
-  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Elige un Archivo clave</value>
   </data>
@@ -992,8 +998,6 @@ Inicia sesión en AxCrypt con {2}, introduce el código de verificación de 6 ci
     <value>AxCrypt 2 utiliza un nuevo formato de archivos.
 
 Puede abrir archivos AxCrypt 1.x heredados pero a menos que se convierten usted tiene que proporcionar la contraseña original, incluso cuando iniciado sesión.
-
-La conversión automática también se puede cambiar en el menú de opciones.
 
 ¿Habilitar la conversión automática de los archivos AxCrypt 1.x (recomendado)?</value>
   </data>
@@ -1727,7 +1731,7 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
     <value>Haga clic para reenviar el código de verificación a su correo electrónico.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Ya ha iniciado sesión con esta contraseña! Por favor, introducir la contraseña original para este archivo.</value>
+    <value>Ya ha iniciado sesión con esta contraseña!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">

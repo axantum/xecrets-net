@@ -2085,13 +2085,13 @@ Subject: AxCrypt Report Snapshot
     <value>Go to password management.</value>
   </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
-    <value>!!Sort by</value>
+    <value>Sort By</value>
   </data>
   <data name="SecretsSortOrderOptionByContent" xml:space="preserve">
-    <value>!!ByContent</value>
+    <value>Content</value>
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
-    <value>!!None</value>
+    <value>[None]</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
     <value>You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
@@ -2154,7 +2154,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
 Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
   <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
-    <value>!!Select secured file to share</value>
+    <value>Select secured file to share</value>
   </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Share Keys</value>

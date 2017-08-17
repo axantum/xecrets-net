@@ -128,9 +128,6 @@
 </value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
-    <value>AxCrypt Premium (indefinido)</value>
-  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>Teste de AxCrypt Premium</value>
   </data>
@@ -558,9 +555,6 @@ Se você não aceitar nossa sessão temporária de cookies, você não poderá f
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Arquivo aberto. Tente fechar a aplicação ou use a função Limpar para removê-lo.</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Arquivos (*{0})|*{0}|Todos os arquivos(*.*)|*.*</value>
-  </data>
   <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>Arquivos existem, escolha um novo nome para salvar como</value>
   </data>
@@ -603,17 +597,11 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Senha necessária</value>
   </data>
-  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
-    <value>Arquivos ID AxCrypt (*.axx)|*.axx|Todos os Arquivos(*.*)|*.*"</value>
-  </data>
   <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
     <value>Exportar ID AxCrypt</value>
   </data>
   <data name="DialogExportSharingKeyFileName" xml:space="preserve">
     <value>Chave compartilhada AxCrypt (#{1})-{0}.txt</value>
-  </data>
-  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
-    <value>Compartilhamento público de arquivos-chave AxCrypt (*.txt)|*.txt|Todos os Arquivos(*.*)|*.*</value>
   </data>
   <data name="DialogExportSharingKeyTitle" xml:space="preserve">
     <value>Exportando Chave de Compartilhamento Pública</value>
@@ -675,9 +663,6 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Sem descrição]</value>
-  </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Arquivos (*{0})|*{0}|Todos os arquivos(*.*)|*.*</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Pastas protegidas</value>
@@ -781,6 +766,29 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Arquivo '{0}' não existe.</value>
   </data>
+  <data name="FileFilterFileTypeAllFiles" xml:space="preserve">
+    <value>Todos los arquivos</value>
+    <comment>The text "All Files" when used in a file dialog.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptFiles" xml:space="preserve">
+    <value>AxCrypt Arquivos</value>
+    <comment>The short description for "AxCrypt Files" used in file selection dialogs.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptIdFiles" xml:space="preserve">
+    <value>Arquivos ID AxCrypt</value>
+    <comment>The description for AxCrypt ID files when exporting. Essentially a type of .axx files.</comment>
+  </data>
+  <data name="FileFilterFileTypeFiles" xml:space="preserve">
+    <value>Arquivos</value>
+    <comment>A single word or similar expressing "Files" - i.e. any number of any kind of files.</comment>
+  </data>
+  <data name="FileFilterFileTypeKeyFile" xml:space="preserve">
+    <value>Arquivos-chave AxCrypt</value>
+    <comment>The short file selection prompt for a legacy style key file.</comment>
+  </data>
+  <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
+    <value>Compartilhamento público de arquivos-chave AxCrypt</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' está aberto em outra aplicação. Por favor, feche-o e tente novamente.</value>
   </data>
@@ -792,6 +800,10 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   </data>
   <data name="FileOperationFailed" xml:space="preserve">
     <value>Falhou '{0}'.</value>
+  </data>
+  <data name="FilePasswordDialogHeader" xml:space="preserve">
+    <value>Por favor, forneça a senha original para este arquivo.</value>
+    <comment>The header text for the file password dialog.</comment>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Arquivo</value>
@@ -839,14 +851,8 @@ Se você, por alguma razão não souber ou não lembrar sua senha,  deberá real
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Peça ao seu contato para exportar e enviar seu/sua Chave de Compartilhamento Pública a você e importá-la aqui. Depois, você pode compartilhar arquivos criptografados.</value>
   </data>
-  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
-    <value>Arquivos de ID AxCrypt (*.axx)|*.axx|Todos os Arquivos(*.*)|*.*</value>
-  </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
     <value>Selecionar ID AxCrypt</value>
-  </data>
-  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
-    <value>Arquivos de texto (*.txt)|*.txt|Todos os Arquivos(*.*)|*.*</value>
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Selecionar Arquivos de Chave de Compartilhamento</value>
@@ -957,9 +963,6 @@ Faça login no AxCrypt com {2}, digite o código de verificação de 6 dígitos 
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript parece estar desabilitado no seu navegador. A menos que habilite JavaScript, você não poderá logar e o site poderá não funcionar como desejado.</value>
   </data>
-  <data name="KeyFileBrowseFilter" xml:space="preserve">
-    <value>Arquivos-chave AxCrypt (*.txt)|*.txt|Todos os Arquivos(*.*)|*.*</value>
-  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Selecione um arquivo-chave</value>
   </data>
@@ -1000,8 +1003,6 @@ Não esqueça esta senha!</value>
     <value>AxCrypt 2 usa um novo formato de arquivo.
 
 Você pode abrir o legado de arquivos de AxCrypt 1.x mas, a menos que sejam convertidos, você terá que fornecer a senha original mesmo quando for fazer login.
-
-A conversão automática também pode ser alterada no menu de opções.
 
 Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</value>
   </data>
@@ -1741,7 +1742,7 @@ Verifique seu e-mail &lt;b&gt;{0}&lt;/b&gt; para obter um link de verificação.
     <value>Clique para reenviar o código de verificação para seu email.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Você já se inscreveu com esta senha! Por favor, forneça a senha original para este arquivo.</value>
+    <value>Você já se inscreveu com esta senha!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -1878,9 +1879,6 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Enviar comentários</value>
     <comment>Text of Submit feedback button</comment>
-  </data>
-  <data name="SubscriptionsErrorAmount" xml:space="preserve">
-    <value>Formato inválido para o campo Quantidade. Por favor, use o formato decimal, i.e. 10.50.</value>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>A assinatura foi salva com sucesso.</value>

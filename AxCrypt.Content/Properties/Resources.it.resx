@@ -273,6 +273,14 @@ Per favore connettiti usando la stessa password che avevi già utilizzato.</valu
 
 Incluso il software da http://www.bouncycastle.org/ .</value>
   </data>
+  <data name="AxCryptBetaWarning" xml:space="preserve">
+    <value>Attenzione! Questo è un software beta e non è ancora stato testato. Ciò significa che potrebbero mancare alcune funzionalità e potrebbe essere instabile. Potrebbe mancare del testo e l'interfaccia utente potrebbe essere incompleta.
+
+Utilizzalo con attenzione e assicurati di avere una copia di backup aggiornata di tutti i tuoi dati. Per favore segnala eventuali problemi a https://bitbucket.org/axcryptab/axcrypt-xwt/issues oppure a support@axcrypt.net.
+
+Sei stato avvertito, ora divertiti!</value>
+    <comment>A text that is shown to users starting a beta version of our software.</comment>
+  </data>
   <data name="AxCryptFileEncryption" xml:space="preserve">
     <value>AxCrypt Protezione dei File</value>
   </data>
@@ -316,11 +324,19 @@ Incluso il software da http://www.bouncycastle.org/ .</value>
   <data name="ButtonDeleteText" xml:space="preserve">
     <value>Elimina</value>
   </data>
+  <data name="ButtonDisableText" xml:space="preserve">
+    <value>Disattiva</value>
+    <comment>A single word text for a button or similar to disable an option or turn something off. The word 'off' is an alternative, also for translation if 'disable' is hard to translate.</comment>
+  </data>
   <data name="ButtonEditText" xml:space="preserve">
     <value>Modifica</value>
   </data>
   <data name="ButtonEllipsisText" xml:space="preserve">
     <value>...</value>
+  </data>
+  <data name="ButtonEnableText" xml:space="preserve">
+    <value>Attiva</value>
+    <comment>A single word for a button or similar that enables an option. The word 'on' is an alternative if the translation of enable does not make sense.</comment>
   </data>
   <data name="ButtonExitText" xml:space="preserve">
     <value>Esci</value>
@@ -337,6 +353,10 @@ Incluso il software da http://www.bouncycastle.org/ .</value>
   </data>
   <data name="ButtonNoText" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="ButtonNotNow" xml:space="preserve">
+    <value>Non adesso</value>
+    <comment>The text of a button as the alternative for for example "Try now!" for Premium. It should not have an exclamation point.</comment>
   </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>OK</value>
@@ -551,9 +571,6 @@ Se non accetti i nostri cookie temporanei di sessione, non puoi connetterti e il
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Il file potrebbe essere già aperto. Chiudi le applicazioni o usa la funzione Pulisci per chiuderlo.</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>File (*{0})|*{0}|Tutti i file (*.*)|*.*</value>
-  </data>
   <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>File già esistente, scegli un nuovo nome per salvarlo</value>
   </data>
@@ -596,17 +613,11 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Password Richiesta</value>
   </data>
-  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
-    <value>File AxCrypt ID (*.axx)|*.axx|Tutti i File (*.*)|*.*"</value>
-  </data>
   <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
     <value>Esporta AxCrypt ID</value>
   </data>
   <data name="DialogExportSharingKeyFileName" xml:space="preserve">
     <value>Chiave Pubblica AxCrypt (#{1}) - {0}.txt</value>
-  </data>
-  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
-    <value>File AxCrypt con Chiave Pubblica (*.txt)|*.txt|Tutti i File (*.*)|*.*</value>
   </data>
   <data name="DialogExportSharingKeyTitle" xml:space="preserve">
     <value>Esporta la Chiave Pubblica</value>
@@ -634,6 +645,10 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   </data>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Cartelle Protette</value>
+  </data>
+  <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>Disattiva</value>
+    <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Non mostrare più.</value>
@@ -669,9 +684,6 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Nessuna Descrizione]</value>
   </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt File (*{0})|*{0}|Tutti i file (*.*)|*.*</value>
-  </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Cartelle Protette</value>
   </data>
@@ -698,6 +710,9 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   </data>
   <data name="ErrorEmailMismatch" xml:space="preserve">
     <value>La verifica non corrisponde all'e-mail</value>
+  </data>
+  <data name="ErrorFieldRequired" xml:space="preserve">
+    <value>'{0}' deve essere compilato.</value>
   </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>La verifica della password non corrisponde alla password.</value>
@@ -774,6 +789,29 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Il file '{0}' non esiste.</value>
   </data>
+  <data name="FileFilterFileTypeAllFiles" xml:space="preserve">
+    <value>Tutti i file</value>
+    <comment>The text "All Files" when used in a file dialog.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptFiles" xml:space="preserve">
+    <value>AxCrypt File</value>
+    <comment>The short description for "AxCrypt Files" used in file selection dialogs.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptIdFiles" xml:space="preserve">
+    <value>File AxCrypt ID</value>
+    <comment>The description for AxCrypt ID files when exporting. Essentially a type of .axx files.</comment>
+  </data>
+  <data name="FileFilterFileTypeFiles" xml:space="preserve">
+    <value>File</value>
+    <comment>A single word or similar expressing "Files" - i.e. any number of any kind of files.</comment>
+  </data>
+  <data name="FileFilterFileTypeKeyFile" xml:space="preserve">
+    <value>AxCrypt File Chiave</value>
+    <comment>The short file selection prompt for a legacy style key file.</comment>
+  </data>
+  <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
+    <value>File AxCrypt con Chiave Pubblica</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' è già aperto in un'altra applicazione. Per favore chiudi il file e riprova.</value>
   </data>
@@ -785,6 +823,10 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   </data>
   <data name="FileOperationFailed" xml:space="preserve">
     <value>Errore '{0}'.</value>
+  </data>
+  <data name="FilePasswordDialogHeader" xml:space="preserve">
+    <value>Per favore fornisci la password originale per questo file.</value>
+    <comment>The header text for the file password dialog.</comment>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>File</value>
@@ -820,6 +862,14 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>Visualizza Aiuto</value>
   </data>
+  <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>{0} Minuti</value>
+    <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
+  </data>
+  <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>Disconnessione per Inattività</value>
+    <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Importa AxCrypt ID con la chiave pubblica e quella privata.</value>
   </data>
@@ -832,14 +882,8 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Chiedi al tuo contatto di esportare ed inviarti la sua Chiave Pubblica e importala qui. In seguito, potrai condividere file criptati.</value>
   </data>
-  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
-    <value>Files di AxCrypt ID (*.axx)|*.axx|Tutti i File (*.*)|*.*</value>
-  </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
     <value>Seleziona AxCrypt ID</value>
-  </data>
-  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
-    <value>File di Testo (*.txt)|*.txt|Tutti i File (*.*)|*.*</value>
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Seleziona i File con Chiave Pubblica</value>
@@ -849,6 +893,12 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   </data>
   <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
     <value>Attenzione</value>
+  </data>
+  <data name="IncludeSubfoldersDescription" xml:space="preserve">
+    <value>Quando l'opzione Includi Sottocartelle è attivata, cartelle visualizzate e altre operazioni che criptano o decriptano file con le cartelle includeranno le sottocartelle e tutte le sottocartelle sottostanti.
+
+Questo potrebbe richiedere molto tempo per eseguire alcune operazioni. Per favore, fai attenzione a non selezionare una cartella con delle cartelle sottostanti che non devono essere criptate.</value>
+    <comment>A short text in a few sentences describing what the Include Subfolders option does.</comment>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>il Mio AxCrypt ID</value>
@@ -957,9 +1007,6 @@ Partita IVA SE 556967618101</value>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript sembra essere disattivato nel tuo browser. Se non attivi JavaScript non puoi connetterti e il sito potrebbe non funzionare come previsto.</value>
   </data>
-  <data name="KeyFileBrowseFilter" xml:space="preserve">
-    <value>AxCrypt File Chiave (*.txt)|*.txt|Tutti i File (*.*)|*.*</value>
-  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Seleziona un File Chiave</value>
   </data>
@@ -1009,13 +1056,15 @@ Non dimenticarti questa password!</value>
 
 Puoi aprire i file AxCrypt 1.x esistenti, ma se non sono convertiti devi fornire la password originale anche se sei connesso.
 
-La conversione automatica può essere modificata nel menu delle opzioni.
-
 Abilitare la conversione automatica dei file AxCrypt 1.x (azione raccomandata)?</value>
   </data>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Torna al sito principale</value>
     <comment>Menus and similar to link back to main site.</comment>
+  </data>
+  <data name="LocalIndicatorText" xml:space="preserve">
+    <value>Locale</value>
+    <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Disconnesso</value>
@@ -1207,7 +1256,9 @@ Questo programma è autorizzato secondo l'accordo.
     <value>Apri Explorer Qui</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>Abbiamo notato che non hai un abbonamento Premium, così inizieremo una prova gratuita per te!</value>
+    <value>Abbiamo notato che non hai un abbonamento Premium, così vorremmo iniziare una prova gratuita per te!
+
+Senza Premium puoi solo visualizzare e decriptare in modo permanente i file criptati.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
@@ -1290,6 +1341,14 @@ Questo programma è autorizzato secondo l'accordo.
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Non è necessario un aggiornamento.</value>
+  </data>
+  <data name="NoPasswordRequiredInformationText" xml:space="preserve">
+    <value>Stiamo facendo questo senza chiederti la password di nuovo!
+
+Sei connesso, quindi non ti chiederemo la password per criptare, decriptare o aprire documenti.
+
+I tuoi documenti sono comunque criptati in modo sicuro con la tua password.</value>
+    <comment>An information text, informing the user why there is no prompt for a password when you're signed in.</comment>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>Non hai un abbonamento Premium, quindi non stai usando il massimo livello di protezione. Clicca per aggiornare!</value>
@@ -1421,6 +1480,12 @@ La valutazione trascura completamente le parti della password che sono riconosci
 
 Classifichiamo le password in 4 categorie di sicurezza crescente e non accettiamo alcuna password appartenente alla categoria più bassa. L'esempio di cui sopra non è accettato per questo motivo.</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
+  </data>
+  <data name="PasswordRulesShortInfo" xml:space="preserve">
+    <value>AxCrypt utilizza un calcolatore dinamico avanzato della password.
+
+Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non aggiungono alcuna robustezza.</value>
+    <comment>A shorter description of how password strength is evaluated.</comment>
   </data>
   <data name="PasswordStrengthBadName" xml:space="preserve">
     <value>Debole</value>
@@ -1749,7 +1814,7 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
     <value>Clicca per inviare di nuovo il codice di verifica al tuo indirizzo e-mail.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Sei già connesso con questa password! Per favore fornisci la password originale per questo file.</value>
+    <value>Sei già connesso con questa password!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -1868,6 +1933,9 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
     <value>Connessione Sicura Richiesta</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
+  <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
+    <value>Lo sapevi? Puoi abilitare l'opzione 'Includi Sottocartelle' per lavorare con le cartelle contenute in altre cartelle. Per questa opzione è necessario avere Premium.</value>
+  </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
     <value>Da oggi le app per Android e iOS sono incluse in AxCrypt Premium. Vuoi saperne di più?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
@@ -1886,9 +1954,6 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Invia la tua opinione</value>
     <comment>Text of Submit feedback button</comment>
-  </data>
-  <data name="SubscriptionsErrorAmount" xml:space="preserve">
-    <value>Formato non valido per il campo Quantità. Per favore utilizza il formato decimale, es. 10.50.</value>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>L'abbonamento è stato registrato correttamente.</value>
@@ -2085,6 +2150,16 @@ Usare AxCrypt è facilissimo. Inizia con la finestra principale, oppure usa dopp
 Per criptare i tuoi primi file clicca sull'icona + nella barra degli strumenti e seleziona i file.
 
 Per ulteriori informazioni, clicca OK per aprire il nostro sito web.</value>
+  </data>
+  <data name="WelcomeToAxCryptForMac" xml:space="preserve">
+    <value>Benvenuto in AxCrypt per Mac!
+
+Usare AxCrypt è davvero semplice. Inizia dalla schermata principale o usa un doppio click nella barra di ricerca.
+
+Per criptare i tuoi primi file, clicca l'icona + nella barra degli strumenti e selezionali.
+
+Per ulteriori informazioni, clicca OK per aprire il nostro sito nel browser.</value>
+    <comment>A longer message for a dialog box the first time a Mac user starts AxCrypt.</comment>
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Primi passi con AxCrypt</value>

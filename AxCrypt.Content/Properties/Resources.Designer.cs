@@ -5398,7 +5398,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Select secured file to share.
+        ///   Looks up a localized string similar to Select secured file to share.
         /// </summary>
         public static string ShareKeysFileOpenDialogTitle {
             get {

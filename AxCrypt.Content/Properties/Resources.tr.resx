@@ -509,9 +509,6 @@ Geçici oturum çerezlerimizi kabul etmediğiniz halde oturum açamazsınız ve 
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Açık varsayılır. Uygulamayı kapatmayı veya Temizle fonksiyonuyla kaldırmayı deneyin. </value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Dosyalar (*{0})|*{0}|Tüm dosyalar (*.*)|*.*</value>
-  </data>
   <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>Dosya var, kaydetmek için bir isim seçin</value>
   </data>
@@ -557,17 +554,11 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
   <data name="DialogExportAxCryptIdFileName" xml:space="preserve">
     <value>AxCrypt kimliği (#{1}) - {0}.axx</value>
   </data>
-  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
-    <value>AxCrypt kimliği dosyaları (*.axx)|*.axx| Tüm Dosyalar (*.*)|*.*"</value>
-  </data>
   <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
     <value>AxCrypt kimliğini yolla</value>
   </data>
   <data name="DialogExportSharingKeyFileName" xml:space="preserve">
     <value>AxCrypt Paylaşım Anahtarı (#{1}) - {0}.txt</value>
-  </data>
-  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
-    <value>AxCrypt Ortak Paylaşım Anahtar Dosyaları (*.txt)|*.txt|Tüm Dosyalar (*.*)|*.*</value>
   </data>
   <data name="DialogExportSharingKeyTitle" xml:space="preserve">
     <value>Ortak paylaşım anahtarını paylaş</value>
@@ -626,9 +617,6 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Tanım Yok]</value>
-  </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt dosyaları (*{0})|*{0}|Tüm dosyalar (*.*)|*.*</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Güvenli dosyalar</value>
@@ -731,6 +719,29 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>'{0}' adlı bir dosya yok.</value>
   </data>
+  <data name="FileFilterFileTypeAllFiles" xml:space="preserve">
+    <value>Tüm dosyalar</value>
+    <comment>The text "All Files" when used in a file dialog.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptFiles" xml:space="preserve">
+    <value>AxCrypt dosyaları</value>
+    <comment>The short description for "AxCrypt Files" used in file selection dialogs.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptIdFiles" xml:space="preserve">
+    <value>AxCrypt kimliği dosyaları</value>
+    <comment>The description for AxCrypt ID files when exporting. Essentially a type of .axx files.</comment>
+  </data>
+  <data name="FileFilterFileTypeFiles" xml:space="preserve">
+    <value>Dosyalar</value>
+    <comment>A single word or similar expressing "Files" - i.e. any number of any kind of files.</comment>
+  </data>
+  <data name="FileFilterFileTypeKeyFile" xml:space="preserve">
+    <value>AxCrypt anahtar dosyaları</value>
+    <comment>The short file selection prompt for a legacy style key file.</comment>
+  </data>
+  <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
+    <value>AxCrypt Ortak Paylaşım Anahtar Dosyaları</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' başka bir uygulama açık. Lütfen kapatıp tekrar deneyin.</value>
   </data>
@@ -742,6 +753,10 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
   </data>
   <data name="FileOperationFailed" xml:space="preserve">
     <value>'{0}' başarısız.</value>
+  </data>
+  <data name="FilePasswordDialogHeader" xml:space="preserve">
+    <value>Lütfen bu dosyanın orijinal şifresini verin.</value>
+    <comment>The header text for the file password dialog.</comment>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Dosya</value>
@@ -786,14 +801,8 @@ Herhangi bir nedenden dolayı şifrenizi bilmiyor veya hatırlamıyorsanız, bi 
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>İlgili kişiden size Ortak Paylaşım Anahtarını yollamasını isteyin ve buraya aktarın. Sonra şifreli dosya paylaşımına başlayabilirsiniz. </value>
   </data>
-  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
-    <value>AxCrypt kimliği dosyaları (*.axx)|*.axx| Tüm Dosyalar (*.*)|*.*</value>
-  </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
     <value>AxCrypt kimliği seçin</value>
-  </data>
-  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
-    <value>Metin dosyaları (*.txt)|*.txt|Tüm dosyalar (*.*)|*.*</value>
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Paylaşım anahtarı dosyalarını seçiniz</value>
@@ -841,9 +850,6 @@ Dosyalarınızı korumaya almak için AxCrypt'i buradan {1} indirip kurun.
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>Tarayıcınızda JavaScript bloke edilmiş görünüyor. JavaScript i geçerli kılmazsanız oturum açamazsınız ve site gerektiği gibi çalışmayabilir.</value>
   </data>
-  <data name="KeyFileBrowseFilter" xml:space="preserve">
-    <value>AxCrypt anahtar dosyaları (*.txt)|*.txt| Tüm Dosyalar (*.*)|*.*</value>
-  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Bir anahtar dosya seçin</value>
   </data>
@@ -881,8 +887,6 @@ Bu şifreyi unutmayın!</value>
     <value>AxCrypt 2 yeni bir dosya formatı kullanmaktadır.
 
 Legacy AxCrypt 1.x dosyaları açabilirsiniz fakat dönüştürülmüş olmadığı sürece oturum  açmış olsanız bile orijinal şifreyi girmeniz gerekir.
-
-Seçenekler menüsünde otomatik çeviriyi değiştirebilirsiniz.
 
 AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir) ?</value>
   </data>
@@ -1609,7 +1613,7 @@ Onay bağı için e-posta kutunuzu &lt;b&gt;{0}&lt;/b&gt; kontrol edin.</value>
     <value>Onay kodunu e-posta adresinize tekrar yollamak için tıklayın.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Zaten bu şifreyle bağlısınız! Lütfen bu dosyanın orijinal şifresini verin.</value>
+    <value>Zaten bu şifreyle bağlısınız!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -1735,9 +1739,6 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Düşünceyi bildir</value>
     <comment>Text of Submit feedback button</comment>
-  </data>
-  <data name="SubscriptionsErrorAmount" xml:space="preserve">
-    <value>Alan miktarı için geçersiz format. Lütfen ondalık sistem kullanın, 10.50 vb.</value>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Üyelik başarıyla kaydedilmiştir.</value>

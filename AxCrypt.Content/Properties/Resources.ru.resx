@@ -333,11 +333,19 @@
   <data name="ButtonDeleteText" xml:space="preserve">
     <value>Удалить</value>
   </data>
+  <data name="ButtonDisableText" xml:space="preserve">
+    <value>Отключить</value>
+    <comment>A single word text for a button or similar to disable an option or turn something off. The word 'off' is an alternative, also for translation if 'disable' is hard to translate.</comment>
+  </data>
   <data name="ButtonEditText" xml:space="preserve">
     <value>Редактировать</value>
   </data>
   <data name="ButtonEllipsisText" xml:space="preserve">
     <value>...</value>
+  </data>
+  <data name="ButtonEnableText" xml:space="preserve">
+    <value>Включить</value>
+    <comment>A single word for a button or similar that enables an option. The word 'on' is an alternative if the translation of enable does not make sense.</comment>
   </data>
   <data name="ButtonExitText" xml:space="preserve">
     <value>Выход </value>
@@ -575,9 +583,6 @@
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Файл возможно открыт в приложении. Попробуйте закрыть приложение или использовать функцию Очистить.</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Файлы (*{0})|*{0}|Все файлы (*.*)|*.*</value>
-  </data>
   <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>Файл уже существует, выберите другое имя для сохранения в системе как</value>
   </data>
@@ -620,17 +625,11 @@
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Нужен Пароль</value>
   </data>
-  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
-    <value>Файлы AxCrypt ID (*.axx)|*.axx|Все Файлы (*.*)|*.*"</value>
-  </data>
   <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
     <value>Экспорт AxCrypt ID</value>
   </data>
   <data name="DialogExportSharingKeyFileName" xml:space="preserve">
     <value>Ключ Совместного Использования AxCrypt (#{1}) - {0}.txt</value>
-  </data>
-  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
-    <value>AxCrypt Публичные Файлы с Ключом Совместного Использования (*.txt)|*.txt|Все Файлы (*.*)|*.*</value>
   </data>
   <data name="DialogExportSharingKeyTitle" xml:space="preserve">
     <value>Экспортировать Публичный Ключ Совместного Использования</value>
@@ -659,6 +658,10 @@
   </data>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Защищённые Папки</value>
+  </data>
+  <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>Отключить</value>
+    <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Не показывать это снова. </value>
@@ -693,9 +696,6 @@
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Нет Описания]</value>
-  </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Файлы (*{0})|*{0}|Все Файлы (*.*)|*.*</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Защищённые Файлы</value>
@@ -804,6 +804,29 @@
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Файл '{0}' не существует.</value>
   </data>
+  <data name="FileFilterFileTypeAllFiles" xml:space="preserve">
+    <value>Все файлы</value>
+    <comment>The text "All Files" when used in a file dialog.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptFiles" xml:space="preserve">
+    <value>AxCrypt Файлы</value>
+    <comment>The short description for "AxCrypt Files" used in file selection dialogs.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptIdFiles" xml:space="preserve">
+    <value>Файлы AxCrypt ID</value>
+    <comment>The description for AxCrypt ID files when exporting. Essentially a type of .axx files.</comment>
+  </data>
+  <data name="FileFilterFileTypeFiles" xml:space="preserve">
+    <value>Файлы</value>
+    <comment>A single word or similar expressing "Files" - i.e. any number of any kind of files.</comment>
+  </data>
+  <data name="FileFilterFileTypeKeyFile" xml:space="preserve">
+    <value>Ключевые Файлы AxCrypt</value>
+    <comment>The short file selection prompt for a legacy style key file.</comment>
+  </data>
+  <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
+    <value>AxCrypt Публичные Файлы с Ключом Совместного Использования</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' открыт в другом приложении. Пожалуйста, закройте его и попробуйте ещё раз.</value>
   </data>
@@ -815,6 +838,10 @@
   </data>
   <data name="FileOperationFailed" xml:space="preserve">
     <value>Неудавшаяся попытка '{0}'.</value>
+  </data>
+  <data name="FilePasswordDialogHeader" xml:space="preserve">
+    <value>Пожалуйста, введите первоначальный пароль для данного файла.</value>
+    <comment>The header text for the file password dialog.</comment>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Файл</value>
@@ -853,6 +880,14 @@
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>Просмотр Вспомогательной Справки</value>
   </data>
+  <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>{0} Минут</value>
+    <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
+  </data>
+  <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>Автоматический Выход Из Системы</value>
+    <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Импортировать AxCrypt ID с ключами совместного использования и доступа.</value>
   </data>
@@ -865,14 +900,8 @@
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Запросите Ключ Совместного Доступа у Вашего контакта и импортируйте его сюда. После этого Вы можете делиться закодированными файлами.</value>
   </data>
-  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
-    <value>AxCrypt ID Файлы (*.axx)|*.axx|Все Файлы (*.*)|*.*</value>
-  </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
     <value>Выберите AxCrypt ID</value>
-  </data>
-  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
-    <value>Текстовые Файлы (*.txt)|*.txt|Все Файлы (*.*)|*.*</value>
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Выберите Файлы с Ключом Совместного Использования</value>
@@ -982,9 +1011,6 @@
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>Кажется использование JavaScript на Вашем браузере дезактивировано. Пока Вы не активируете JavaScript, Вы не можете войти в систему, и сайт может не сработать должным образом.</value>
-  </data>
-  <data name="KeyFileBrowseFilter" xml:space="preserve">
-    <value>Ключевые Файлы AxCrypt (*.txt)|*.txt|Все Файлы(*.*)|*.*</value>
   </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Выберите Ключевой Файл</value>
@@ -1773,7 +1799,7 @@
     <value>Нажмите, чтобы ещё раз отправить верификационный код на Вашу электронную почту.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Вы уже выполнили вход в систему с данным паролем! Пожалуйста, введите первоначальный пароль для данного файла.</value>
+    <value>Вы уже выполнили вход в систему с данным паролем!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -1910,9 +1936,6 @@
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Оставить отзыв</value>
     <comment>Text of Submit feedback button</comment>
-  </data>
-  <data name="SubscriptionsErrorAmount" xml:space="preserve">
-    <value>Неправильный формат в строке Сумма. Пожалуйста, используйте десятичный формат, например 10.50.</value>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Регистрация подписки была успешно сохранена.</value>

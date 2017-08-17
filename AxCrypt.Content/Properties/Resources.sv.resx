@@ -563,9 +563,6 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Filen är troligen öppnad i sin applikation. Stäng applikationen eller använda städaknappen.</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Filer (*{0})|*{0}|Alla filer (*.*)|*.*</value>
-  </data>
   <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>Filen finns redan, spara som</value>
   </data>
@@ -608,17 +605,11 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Lösenord Krävs</value>
   </data>
-  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
-    <value>AxCrypt ID Filer (*.axx)|*.axx|Alla Filer (*.*)|*.*"</value>
-  </data>
   <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
     <value>Exportera AxCrypt ID</value>
   </data>
   <data name="DialogExportSharingKeyFileName" xml:space="preserve">
     <value>AxCrypt Delningsnyckel (#{1}) - {0}.txt</value>
-  </data>
-  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
-    <value>AxCrypt Delningsnyckelfiler (*.txt)|*.txt|Alla Filer (*.*)|*.*</value>
   </data>
   <data name="DialogExportSharingKeyTitle" xml:space="preserve">
     <value>Exportera Delningsnyckel</value>
@@ -684,9 +675,6 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Ingen beskrivning]</value>
-  </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt-Filer(*{0})|*{0}|Alla dokument (*.*)|*.*</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Skyddade mappar</value>
@@ -793,6 +781,29 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Filen '{0}' finns inte.</value>
   </data>
+  <data name="FileFilterFileTypeAllFiles" xml:space="preserve">
+    <value>Alla filer</value>
+    <comment>The text "All Files" when used in a file dialog.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptFiles" xml:space="preserve">
+    <value>AxCrypt-Filer</value>
+    <comment>The short description for "AxCrypt Files" used in file selection dialogs.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptIdFiles" xml:space="preserve">
+    <value>AxCrypt ID Filer</value>
+    <comment>The description for AxCrypt ID files when exporting. Essentially a type of .axx files.</comment>
+  </data>
+  <data name="FileFilterFileTypeFiles" xml:space="preserve">
+    <value>Filer</value>
+    <comment>A single word or similar expressing "Files" - i.e. any number of any kind of files.</comment>
+  </data>
+  <data name="FileFilterFileTypeKeyFile" xml:space="preserve">
+    <value>AxCrypt Nyckelfiler</value>
+    <comment>The short file selection prompt for a legacy style key file.</comment>
+  </data>
+  <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
+    <value>AxCrypt Delningsnyckelfiler</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' är redan öppnad. Stäng programmet och försök igen.</value>
   </data>
@@ -805,11 +816,19 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="FileOperationFailed" xml:space="preserve">
     <value>Fel med '{0}'.</value>
   </data>
+  <data name="FilePasswordDialogHeader" xml:space="preserve">
+    <value>Ange det ursprungliga lösenordet för filen.</value>
+    <comment>The header text for the file password dialog.</comment>
+  </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Arkiv</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Mappen '{0}' är redan skyddad.</value>
+  </data>
+  <data name="FolderSelectTitle" xml:space="preserve">
+    <value>Välj mapp</value>
+    <comment>A prompt or title in a folder selection dialog, prompting the user to select a folder.</comment>
   </data>
   <data name="FollowUsTitle" xml:space="preserve">
     <value>Följ oss</value>
@@ -859,14 +878,8 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Be din kontakt att exportera och skicka dig dennes delningsnyckel, och importera den här. Sedan kan ni dela åtkomst till skyddade filer.</value>
   </data>
-  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
-    <value>AxCrypt ID-filer (*.axx)|*.axx|Alla Filer (*.*)|*.*</value>
-  </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
     <value>Välj AxCrypt ID</value>
-  </data>
-  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
-    <value>Text Filer (*.txt)|*.txt|Alla Filer (*.*)|*.*</value>
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Välj Delningsnyckelfil</value>
@@ -985,9 +998,6 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript verkar vara inaktiverat i din webbläsare. Om du inte aktiverar JavaScript kan du inte logga in och sidan kan bete sig på ett oväntat sätt.</value>
   </data>
-  <data name="KeyFileBrowseFilter" xml:space="preserve">
-    <value>AxCrypt Nyckelfiler (*.txt)|*.txt|Alla Filer (*.*)|*.*</value>
-  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Välj Nyckelfil</value>
   </data>
@@ -996,6 +1006,12 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>Nyckelhantering</value>
+  </data>
+  <data name="KeyShareDialogHeader" xml:space="preserve">
+    <value>Lägg till mottagare till listan av personer du vill dela med.
+
+En mottagare identifieras med epostadressen för sitt AxCrypt ID, men vi skickar inte dokumentet. Här lägger du bara in mottagarens nyckel. Du måste fortfarande skicka eller dela själva dokumentet efteråt.</value>
+    <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Filens nyckel är delad med andra AxCrypt-användare.</value>
@@ -1794,7 +1810,7 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
     <value>Klicka för att återsända verifieringskoden till din e-post.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Du är redan inloggad med det lösenordet! Ange det ursprungliga lösenordet för filen.</value>
+    <value>Du är redan inloggad med det lösenordet!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -1802,6 +1818,15 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Gå till lösenordshantering.</value>
+  </data>
+  <data name="SecretsSortOrderLabel" xml:space="preserve">
+    <value>Sorteringsordning</value>
+  </data>
+  <data name="SecretsSortOrderOptionByContent" xml:space="preserve">
+    <value>Innehåll</value>
+  </data>
+  <data name="SecretsSortOrderOptionNone" xml:space="preserve">
+    <value>[Ingen]</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
     <value>Din Premiumprenumeration har slutat gälla och därför kan du bara läsa lösenordsposter, inte uppdatera. Om du inte har använt din 30-dagars gratis provperiod för Premium, kan du starta det från  &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt-applikationen&lt;/a&gt;.</value>
@@ -1863,6 +1888,9 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
 
 Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
+  <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
+    <value>Välj skyddat dokument att dela</value>
+  </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Åtkomstdela</value>
   </data>
@@ -1903,6 +1931,14 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
     <value>Följ oss på sociala media</value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
+  <data name="SoftwareIsUpToDateLabel" xml:space="preserve">
+    <value>Uppdaterad</value>
+    <comment>Short label stating that the software is up to date.</comment>
+  </data>
+  <data name="SoftwareUpdateNowLabel" xml:space="preserve">
+    <value>Uppdatera nu!</value>
+    <comment>A short label prompting the user to update AxCrypt now!</comment>
+  </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>En krypterad SSL-förbindelse krävs. Försök igen med &lt;a href="{2}"&gt;{2}&lt;/a&gt; . 
  
@@ -1919,6 +1955,10 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="StartupTipTryMobileApp" xml:space="preserve">
     <value>Mobilappar för Android och iOS ingår nu i AxCrypt Premium. Vill du veta mer?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
+  </data>
+  <data name="StepsWizardLabel" xml:space="preserve">
+    <value>Steg {0} av {1}</value>
+    <comment>A pattern for a step wizard, "Step 1 of 3" for example. Note that it's important that {0} and {1} remain exactly like that and that {0} represents the current step, and {1} represents the total number of steps (in case the translation requires then in different order).</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Klicka och välj filer att avlägsna skyddet från.</value>

@@ -554,9 +554,6 @@ Si vous n'acceptez pas nos cookies de session temporaires, vous ne pouvez pas vo
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Le fichier est probablement ouvert dans une application. Fermez cette application ou utilisez le bouton Nettoyer.</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Fichiers (*{0})|*{0}|Tous les fichiers (*.*)|*.*</value>
-  </data>
   <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
     <value>Ce fichier existe déjà, veuillez choisir un autre nom pour enregistrer sous</value>
   </data>
@@ -599,17 +596,11 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Mot de passe Requis</value>
   </data>
-  <data name="DialogExportAxCryptIdFilter" xml:space="preserve">
-    <value>Identifiants AxCrypt ID (*.axx)|*.axx|Tous les fichiers (*.*)|*.*"</value>
-  </data>
   <data name="DialogExportAxCryptIdTitle" xml:space="preserve">
     <value>Exporter AxCrypt ID</value>
   </data>
   <data name="DialogExportSharingKeyFileName" xml:space="preserve">
     <value>Clé Partagée AxCrypt (#{1})-{0}.txt</value>
-  </data>
-  <data name="DialogExportSharingKeyFilter" xml:space="preserve">
-    <value>Fichiers AxCrypt Public Sharing Key (*.txt)|*.txt|Tous les Fichiers(*.*)|*.*</value>
   </data>
   <data name="DialogExportSharingKeyTitle" xml:space="preserve">
     <value>Exporter Public Sharing Key</value>
@@ -671,9 +662,6 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Pas de Description]</value>
-  </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>Fichiers AxCrypt (*{0})|*{0}|Tous les fichiers (*.*)|*.*</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Dossiers Protégés</value>
@@ -777,6 +765,29 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="FileDoesNotExist" xml:space="preserve">
     <value>Le fichier '{0}' n'existe pas.</value>
   </data>
+  <data name="FileFilterFileTypeAllFiles" xml:space="preserve">
+    <value>Tous les fichiers</value>
+    <comment>The text "All Files" when used in a file dialog.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptFiles" xml:space="preserve">
+    <value>Fichiers AxCrypt</value>
+    <comment>The short description for "AxCrypt Files" used in file selection dialogs.</comment>
+  </data>
+  <data name="FileFilterFileTypeAxCryptIdFiles" xml:space="preserve">
+    <value>Identifiants AxCrypt ID</value>
+    <comment>The description for AxCrypt ID files when exporting. Essentially a type of .axx files.</comment>
+  </data>
+  <data name="FileFilterFileTypeFiles" xml:space="preserve">
+    <value>Fichiers</value>
+    <comment>A single word or similar expressing "Files" - i.e. any number of any kind of files.</comment>
+  </data>
+  <data name="FileFilterFileTypeKeyFile" xml:space="preserve">
+    <value>Fichiers Clé AxCrypt</value>
+    <comment>The short file selection prompt for a legacy style key file.</comment>
+  </data>
+  <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
+    <value>Fichiers AxCrypt Public Sharing Key</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' est déjà ouvert dans une autre application. Fermez-le, puis essayez à nouveau.</value>
   </data>
@@ -788,6 +799,10 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="FileOperationFailed" xml:space="preserve">
     <value>Erreur avec '{0}'.</value>
+  </data>
+  <data name="FilePasswordDialogHeader" xml:space="preserve">
+    <value>S'il vous plait, donnez le mot de passe d'origine pour ce fichier. </value>
+    <comment>The header text for the file password dialog.</comment>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Fichier</value>
@@ -835,14 +850,8 @@ Si pour une raison quelconque vous ne connaissez pas ou vous ne souvenez pas de 
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Demandez la clef de partage publique de votre interlocuteur et importez-la ici. Vous pourrez ensuite partager des fichiers protégés.</value>
   </data>
-  <data name="ImportPrivateKeysFileFilter" xml:space="preserve">
-    <value>Identifiants AxCrypt ID (*.axx)|*.axx|Tous les fichiers (*.*)|*.*</value>
-  </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
     <value>Choisissez un AxCrypt ID</value>
-  </data>
-  <data name="ImportPublicKeysFileFilter" xml:space="preserve">
-    <value>Fichiers Texte (*.txt)|*.txt|Tous les fichiers (*.*)|*.*</value>
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Choisissez un Fichier de Clef de Partage</value>
@@ -953,9 +962,6 @@ Connectez-vous à AxCrypt avec {2}, entrez le code de vérification à 6 chiffre
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript semble être désactivé dans votre navigateur. Sauf si vous activez JavaScript, vous ne pouvez pas vous connecter et le site peut ne pas fonctionner comme prévu.</value>
   </data>
-  <data name="KeyFileBrowseFilter" xml:space="preserve">
-    <value>Fichiers Clé AxCrypt (*.txt)|*.txt|Tous les Fichiers (*.*)|*.*</value>
-  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Selectionner un Fichier Clé</value>
   </data>
@@ -996,8 +1002,6 @@ Ne pas oublier ce mot de passe!</value>
     <value>AxCrypt 2 utilise un nouveau format de fichier. 
 
 Vous pouvez ouvrir des fichiers AxCrypt 1.x existants mais à moins qu'ils soient convertis vous devez fournir le mot de passe original même lorsque vous vous connectez. 
-
-La conversion automatique peut également être modifiée dans le menu des options.
 
 Activer la conversion automatique des fichiers AxCrypt 1.x (recommandé)?</value>
   </data>
@@ -1193,7 +1197,7 @@ Ce logiciel est livré d'après la licence.
     <value>Ouvrir Explorer Ici </value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>Nous avons remarqué que vous n'aviez pas d'abonnement Premium,  nous avons donc débuté un essai gratuit de 30 jours afin que vous puissiez utiliser les fonctionnalités Premium AxCrypt, requises pour le fonctionnement de l'application.</value>
+    <value>Nous avons remarqué que vous n'aviez pas d'abonnement Premium,  nous avons donc débuté un essai gratuit de 30 jours pour vous!</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
@@ -1361,7 +1365,7 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
     <value>Gérez vos mots de passe dans le cloud&lt;span class="text-cutoff"&gt; avec la Gestion de Mots de Passe AxCrypt. Vos mots de passe, codes, PINs etc sont stockés en ligne de manière sécurisée, accessible par vous et vous seul(e) à tout moment, depuis n'importe où.&lt;a class="hide-link"&gt;[Cacher]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[En savoir plus]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PasswordManagementPageTitle" xml:space="preserve">
-    <value>Gestion du mot de passe</value>
+    <value>Mots de passe</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
@@ -1620,7 +1624,7 @@ Nous classons le mot de passe en 4 catégories de force croissante, où nous n'a
     <value>La période de l'abonnement sélectionnée est invalide. Un abonnement valide doit être d'au moins {0} mois et plus de {1} mois.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Avec la version &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;, vous pouvez utiliser l'ensemble des fonctionnalités d'AxCrypt sur n'importe quel ordinateur ou appareil. </value>
+    <value>Avec la version &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;, vous pouvez utiliser l'ensemble des fonctionnalités d'AxCrypt sur n'importe quel ordinateur ou appareil. Si vous n'êtes pas satisfait, s'il vous plait  &lt;a href="mailto:support@axcrypt.net"&gt;contactez-nous &lt;/a&gt;. Nous allons toujours vous rembourser. </value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Lire plus concernant les paiements]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Vos détails personnels de paiement ne sont jamais envoyés ou enregistrés sur nos serveurs. Nous les envoyons immédiatement depuis vous jusqu'à notre plateforme de paiement partenaire à travers une connexion chiffrée. Nous avons pour partenaires Stripe et PayPal, ces deux derniers réunissent les standards élevés définis par le Conseil des normes de sécurité PCI.&lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
@@ -1731,7 +1735,7 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code de vérification. </val
     <value>Cliquez ici pour envoyer de nouveau votre code de vérification par e-mail. </value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Vous êtes déjà connecté avec ce mot de passe! S'il vous plait, donnez le mot de passe d'origine pour ce fichier. </value>
+    <value>Vous êtes déjà connecté avec ce mot de passe!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -1868,9 +1872,6 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Donner votre avis</value>
     <comment>Text of Submit feedback button</comment>
-  </data>
-  <data name="SubscriptionsErrorAmount" xml:space="preserve">
-    <value>Format non valide pour le champ Montant. S'il vous plaît utiliser le format décimal, par exemple 10.50.</value>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Votre abonnement a été enregistré.</value>
