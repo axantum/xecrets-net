@@ -37,6 +37,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using static Axantum.AxCrypt.Common.FrameworkTypeExtensions;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -338,6 +339,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             operationsController.SetConvertLegacyOptionCommandAsync = async () =>
             {
                 if (Resolve.UserSettings.LegacyConversionMode != LegacyConversionMode.NotDecided)
+                {
+                    return;
+                }
+                if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.EditExistingFiles))
                 {
                     return;
                 }
