@@ -1,21 +1,13 @@
 ﻿using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public class SettingsStore : ISettingsStore
+    public class SettingsStore : StreamSettingsStore
     {
-        private Dictionary<string, string> _settings = new Dictionary<string, string>();
-
         private IDataStore _persistanceFileInfo;
 
         public SettingsStore(IDataStore dataStore)
@@ -27,57 +19,25 @@ namespace Axantum.AxCrypt.Core.UI
                 return;
             }
 
-            using (JsonReader reader = new JsonTextReader(new StreamReader(_persistanceFileInfo.OpenRead())))
+            using (New<FileLocker>().Acquire(_persistanceFileInfo))
             {
-                JsonSerializer serializer = CreateSerializer();
-                _settings = serializer.Deserialize<Dictionary<string, string>>(reader) ?? new Dictionary<string, string>();
+                Initialize(_persistanceFileInfo.OpenRead());
             }
         }
 
-        private static JsonSerializer CreateSerializer()
+        public override void Clear()
         {
-            JsonSerializerSettings serializerSettings = new JsonSerializerSettings()
+            using (New<FileLocker>().Acquire(_persistanceFileInfo))
             {
-                DefaultValueHandling = DefaultValueHandling.Include,
-                Formatting = Formatting.Indented,
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-                NullValueHandling = NullValueHandling.Include,
-            };
-            return JsonSerializer.Create(serializerSettings);
-        }
-
-        public void Clear()
-        {
-            if (_persistanceFileInfo != null)
-            {
-                _persistanceFileInfo.Delete();
-            }
-            _settings = new Dictionary<string, string>();
-        }
-
-        public string this[string key]
-        {
-            get
-            {
-                string value;
-                if (!_settings.TryGetValue(key, out value))
+                if (_persistanceFileInfo != null)
                 {
-                    return String.Empty;
+                    _persistanceFileInfo.Delete();
                 }
-                return value;
             }
-            set
-            {
-                if (this[key] == value)
-                {
-                    return;
-                }
-                _settings[key] = value;
-                Save();
-            }
+            base.Clear();
         }
 
-        protected virtual void Save()
+        protected override void Save()
         {
             if (_persistanceFileInfo == null)
             {
@@ -86,11 +46,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             using (New<FileLocker>().Acquire(_persistanceFileInfo))
             {
-                using (TextWriter writer = new StreamWriter(_persistanceFileInfo.OpenWrite()))
-                {
-                    JsonSerializer serializer = CreateSerializer();
-                    serializer.Serialize(writer, _settings);
-                }
+                Save(_persistanceFileInfo.OpenWrite());
             }
         }
     }

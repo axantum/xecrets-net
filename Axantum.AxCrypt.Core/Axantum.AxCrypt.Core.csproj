@@ -230,6 +230,7 @@
     <Compile Include="UI\SettingsStore.cs" />
     <Compile Include="UI\PremiumManager.cs" />
     <Compile Include="UI\StatusChecker.cs" />
+    <Compile Include="UI\StreamSettingsStore.cs" />
     <Compile Include="UI\UserSettingsVersion.cs" />
     <Compile Include="UI\VerifySignInPasswordBase.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />
