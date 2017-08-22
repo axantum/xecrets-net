@@ -78,14 +78,15 @@ namespace Axantum.AxCrypt
             string[] commandLineArgs = Environment.GetCommandLineArgs();
 
             RegisterTypeFactories(commandLineArgs[0]);
+            New<IRuntimeEnvironment>().AppPath = commandLineArgs[0];
 
             CommandLine commandLine = new CommandLine(commandLineArgs.Skip(1));
 
             bool isFirstInstance = New<IRuntimeEnvironment>().IsFirstInstance;
             if (isFirstInstance && commandLine.HasCommands)
             {
-                OS.Current.IsFirstInstance = isFirstInstance = false;
-                Process.Start(commandLineArgs[0], "--start");
+                New<IRuntimeEnvironment>().IsFirstInstance = isFirstInstance = false;
+                New<IRuntimeEnvironment>().RunApp("--start");
             }
 
             WireupEvents();

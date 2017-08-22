@@ -152,6 +152,11 @@ namespace Axantum.AxCrypt.Fake
             IsDebugModeEnabled = enable;
         }
 
+        public void RunApp(string arguments)
+        {
+            throw new NotImplementedException();
+        }
+
         private class FakeSynchronizationContext : SynchronizationContext
         {
             public override void Post(SendOrPostCallback callback, object state)
@@ -164,5 +169,7 @@ namespace Axantum.AxCrypt.Fake
         {
             get { return new FakeSynchronizationContext(); }
         }
+
+        public string AppPath { get; set; }
     }
 }

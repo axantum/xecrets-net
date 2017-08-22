@@ -39,6 +39,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using System.Diagnostics;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -225,6 +226,13 @@ namespace Axantum.AxCrypt.Mono
             {
                 return SynchronizationContext.Current ?? new SynchronizationContext();
             }
+        }
+
+        public virtual string AppPath { get; set; }
+
+        public virtual void RunApp(string arguments)
+        {
+                Process.Start(AppPath, arguments);
         }
     }
 }

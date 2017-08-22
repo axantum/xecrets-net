@@ -59,5 +59,9 @@ namespace Axantum.AxCrypt.Core.Runtime
         void DebugMode(bool enable);
 
         SynchronizationContext SynchronizationContext { get; }
+
+        string AppPath { get; set; }
+
+        void RunApp(string arguments);
     }
 }
