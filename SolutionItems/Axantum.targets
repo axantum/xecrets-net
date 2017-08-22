@@ -75,6 +75,7 @@
     <_AxIlMergePath Condition=" '$(XAMARIN STUDIO LAUNCHER_LAUNCHER)' != '' "></_AxIlMergePath>
     <_AxIlMergePath Condition=" '$(OS)' == 'Unix' "></_AxIlMergePath>
     <AssemblyOriginatorKeyFile Condition=" '$(OS)' == 'Unix' "></AssemblyOriginatorKeyFile>
+    <CodeAnalysisRuleSet Condition=" '$(OS)' == 'Unix' "></CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <!-- Import the certificate to Computer Account - Personal using MMC certificates snap-in, if required give developer and service users permissions also -->
