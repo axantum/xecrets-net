@@ -477,6 +477,7 @@ namespace Axantum.AxCrypt
             New<FileFilter>().AddUnencryptable(new Regex(@"\\\.dropbox$"));
             New<FileFilter>().AddUnencryptable(new Regex(@"\\desktop\.ini$"));
             New<FileFilter>().AddUnencryptable(new Regex(@".*\.tmp$"));
+            New<FileFilter>().AddUnencryptable(new Regex(@"^.*\\~\$[^\\]*$"));
             AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "SystemRoot");
             AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "windir");
             AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles");
