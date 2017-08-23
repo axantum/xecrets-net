@@ -5219,7 +5219,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Sort by.
+        ///   Looks up a localized string similar to Sort By.
         /// </summary>
         public static string SecretsSortOrderLabel {
             get {
@@ -5228,7 +5228,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!ByContent.
+        ///   Looks up a localized string similar to Content.
         /// </summary>
         public static string SecretsSortOrderOptionByContent {
             get {
@@ -5237,7 +5237,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!None.
+        ///   Looks up a localized string similar to [None].
         /// </summary>
         public static string SecretsSortOrderOptionNone {
             get {
@@ -5774,6 +5774,24 @@ namespace AxCrypt.Content.Properties {
         public static string SyntheticWordsSuccessUpdate {
             get {
                 return ResourceManager.GetString("SyntheticWordsSuccessUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Target account exists!.
+        /// </summary>
+        public static string TargetAccountExists {
+            get {
+                return ResourceManager.GetString("TargetAccountExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!If you are trying to change the email of an account, the target account must not exist! You have to delete the target account first..
+        /// </summary>
+        public static string TargetAccountExistsErrorText {
+            get {
+                return ResourceManager.GetString("TargetAccountExistsErrorText", resourceCulture);
             }
         }
         
