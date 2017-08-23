@@ -69,7 +69,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FileFilter filter = new FileFilter();
 
-            filter.AddUnencryptable(new Regex(@"^.*\\~\$[^\\]*$"));
+			string s = $"\\{Path.DirectorySeparatorChar}";
+			filter.AddUnencryptable(new Regex(@"^.*\\~\$[^\\]*$".Replace(@"\\", s)));
 
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$")), Is.False);
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$\")), Is.True);
