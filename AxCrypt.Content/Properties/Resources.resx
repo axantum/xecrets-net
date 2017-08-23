@@ -2298,6 +2298,12 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SyntheticWordsSuccessUpdate" xml:space="preserve">
     <value>The culture was successfully updated.</value>
   </data>
+  <data name="TargetAccountExists" xml:space="preserve">
+    <value>!!Target account exists!</value>
+  </data>
+  <data name="TargetAccountExistsErrorText" xml:space="preserve">
+    <value>!!If you are trying to change the email of an account, the target account must not exist! You have to delete the target account first.</value>
+  </data>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>Can't open current file</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
