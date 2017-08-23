@@ -4,10 +4,8 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -64,6 +62,21 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"anything.tmp")), Is.False);
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\anywhere\anything.tmp.tmp")), Is.False);
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\anywhere\anything.tmp.tmpx")), Is.True);
+        }
+
+        [Test]
+        public void FileFilterTestOfficeTemporaryFiles()
+        {
+            FileFilter filter = new FileFilter();
+
+            filter.AddUnencryptable(new Regex(@"^.*\\~\$[^\\]*$"));
+
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$")), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$\")), Is.True);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$\~$")), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$Temp")), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$Temp.docx")), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$Temp.docx\The-file.txt")), Is.True);
         }
 
         [Test]
