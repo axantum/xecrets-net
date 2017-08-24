@@ -35,7 +35,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Fake
@@ -429,6 +428,12 @@ namespace Axantum.AxCrypt.Fake
                 return;
             }
             RemoveFileOrFolder(FullName);
+        }
+
+        public long Length()
+        {
+            FakeFileInfo fakeFileInfo = FindFileInfo();
+            return fakeFileInfo.Stream.Length;
         }
 
         public IDataContainer Container

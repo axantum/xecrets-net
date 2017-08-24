@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.IO;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
@@ -43,96 +44,41 @@ namespace Axantum.AxCrypt.Desktop
 
         private string _filePath;
 
+        private IDataStore _logFile;
+
         public Report(string folderPath)
         {
             _now = New<INow>();
             _filePath = Path.Combine(folderPath, "ReportSnapshot.txt");
+            _logFile = New<IDataStore>(_filePath);
         }
-
-        private class Entry
-        {
-            public Exception Exception { get; set; }
-
-            public DateTime DateTime { get; set; }
-        }
-
-        private Queue<Entry> _queue = new Queue<Entry>();
 
         public void Exception(Exception ex)
         {
-            lock (_queue)
+            using (FileLock fileLock = New<FileLocker>().Acquire(_logFile))
             {
-                if (_queue.Count > 10)
+                StringBuilder sb = new StringBuilder();
+                if (!New<IDataStore>(_filePath).IsAvailable)
                 {
-                    _queue.Dequeue();
+                    sb.AppendLine(Texts.ReportSnapshotIntro).AppendLine();
                 }
-                _queue.Enqueue(new Entry() { Exception = ex, DateTime = _now.Utc, });
-            }
-        }
 
-        public string Snapshot
-        {
-            get
-            {
-                return SnapshotInternal();
-            }
-        }
+                AxCryptException ace = ex as AxCryptException;
+                string displayContext = ace?.DisplayContext ?? string.Empty;
+                sb.AppendFormat("----------- Exception at {0} -----------", _now.Utc.ToString("u")).AppendLine();
+                sb.AppendLine(displayContext);
+                sb.AppendLine(ex?.ToString() ?? "(null)");
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public void Save()
-        {
-            try
-            {
-                string snapshot = New<IReport>().Snapshot;
-                if (snapshot.Length > 0)
+                using (StreamWriter writer = new StreamWriter(_logFile.OpenUpdate(), Encoding.UTF8))
                 {
-                    File.WriteAllText(_filePath, snapshot);
+                    writer.Write(sb.ToString());
                 }
-            }
-            catch (Exception)
-            {
             }
         }
 
         public void Open()
         {
             Process.Start(_filePath);
-        }
-
-        private string SnapshotInternal()
-        {
-            Stack<Entry> stack = new Stack<Entry>();
-            lock (_queue)
-            {
-                if (_queue.Count == 0)
-                {
-                    return string.Empty;
-                }
-
-                while (_queue.Count > 0)
-                {
-                    stack.Push(_queue.Dequeue());
-                }
-            }
-
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine(Texts.ReportSnapshotIntro).AppendLine();
-            while (stack.Count > 0)
-            {
-                if (sb.Length > 0)
-                {
-                    sb.AppendLine();
-                }
-
-                Entry entry = stack.Pop();
-                AxCryptException ace = entry.Exception as AxCryptException;
-                string displayContext = ace?.DisplayContext ?? string.Empty;
-                sb.AppendFormat("----------- Exception at {0} -----------", entry.DateTime.ToString("u")).AppendLine();
-                sb.AppendLine(displayContext);
-                sb.AppendLine(entry.Exception?.ToString() ?? "(null)");
-            }
-
-            return sb.ToString();
         }
     }
 }
