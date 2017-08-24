@@ -4,7 +4,6 @@ using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -22,15 +21,20 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message)
         {
-            return ShowAsync(buttons, title, message, DoNotShowAgainOptions.None);
+            return ShowAsync(buttons, title, message, DoNotShowAgainOptions.None, null);
         }
 
         public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag)
         {
-            return Task.FromResult(ShowSyncInternal(buttons, title, message, dontShowAgainFlag));
+            return Task.FromResult(ShowSyncInternal(buttons, title, message, dontShowAgainFlag, null));
         }
 
-        private PopupButtons ShowSyncInternal(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag)
+        public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
+        {
+            return Task.FromResult(ShowSyncInternal(buttons, title, message, dontShowAgainFlag, doNotShowAgainCustomText));
+        }
+
+        private PopupButtons ShowSyncInternal(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
         {
             PopupButtons result = PopupButtons.None;
             if (dontShowAgainFlag != DoNotShowAgainOptions.None && New<UserSettings>().DoNotShowAgain.HasFlag(dontShowAgainFlag))
@@ -38,14 +42,14 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 return result;
             }
 
-            New<IUIThread>().SendTo(() => result = ShowSyncInternalAssumingUiThread(buttons, title, message, dontShowAgainFlag));
+            New<IUIThread>().SendTo(() => result = ShowSyncInternalAssumingUiThread(buttons, title, message, dontShowAgainFlag, doNotShowAgainCustomText));
             return result;
         }
 
-        private PopupButtons ShowSyncInternalAssumingUiThread(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag)
+        private PopupButtons ShowSyncInternalAssumingUiThread(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
         {
             DialogResult result;
-            using (MessageDialog dialog = new MessageDialog(_parent))
+            using (MessageDialog dialog = new MessageDialog(_parent, doNotShowAgainCustomText))
             {
                 if (!buttons.HasFlag(PopupButtons.Cancel))
                 {

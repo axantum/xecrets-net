@@ -28,5 +28,10 @@ namespace Axantum.AxCrypt.Fake
         {
             return Task.FromResult(PopupButtons.Ok);
         }
+
+        public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DoNotShowAgainOptions doNotShowAgainOption, string doNotShowAgainCustomText)
+        {
+            return Task.FromResult(PopupButtons.Ok);
+        }
     }
 }

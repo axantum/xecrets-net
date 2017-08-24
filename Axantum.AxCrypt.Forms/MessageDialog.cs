@@ -1,16 +1,15 @@
-﻿using Axantum.AxCrypt.Forms;
-using AxCrypt.Content;
+﻿using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt.Forms
 {
     internal partial class MessageDialog : StyledMessageBase
     {
+        private string _doNotShowAgainCustomText = string.Empty;
+
         public MessageDialog()
         {
             InitializeComponent();
@@ -22,12 +21,19 @@ namespace Axantum.AxCrypt.Forms
             InitializeStyle(parent);
         }
 
+        public MessageDialog(Form parent, string doNotShowAgainCustomText)
+            : this()
+        {
+            InitializeStyle(parent);
+            _doNotShowAgainCustomText = doNotShowAgainCustomText;
+        }
+
         protected override void InitializeContentResources()
         {
             _buttonOk.Text = "&" + Texts.ButtonOkText;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonExit.Text = "&" + Texts.ButtonExitText;
-            dontShowThisAgain.Text = Texts.DontShowAgainCheckBoxText;
+            dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
         }
 
         public MessageDialog HideExit()

@@ -171,8 +171,7 @@ namespace Axantum.AxCrypt
         {
             if (New<InstallationVerifier>().IsApplicationInstalled && !New<InstallationVerifier>().IsFileAssociationOk)
             {
-                Texts.FileAssociationBrokenWarning.ShowWarning(Texts.WarningTitle,
-                    DoNotShowAgainOptions.FileAssociationBrokenWarning);
+                Texts.FileAssociationBrokenWarning.ShowWarning(Texts.WarningTitle, DoNotShowAgainOptions.FileAssociationBrokenWarning);
             }
         }
 
@@ -180,8 +179,7 @@ namespace Axantum.AxCrypt
         {
             if (New<InstallationVerifier>().IsLavasoftApplicationInstalled)
             {
-                Texts.LavasoftWebCompanionExistenceWarning.ShowWarning(Texts.WarningTitle,
-                    DoNotShowAgainOptions.LavasoftWebCompanionExistenceWarning);
+                Texts.LavasoftWebCompanionExistenceWarning.ShowWarning(Texts.WarningTitle, DoNotShowAgainOptions.LavasoftWebCompanionExistenceWarning);
             }
         }
 
@@ -1116,7 +1114,7 @@ namespace Axantum.AxCrypt
 
         private async Task HandleExistingAccountLogOn(LogOnEventArgs e)
         {
-            Texts.WillNotForgetPasswordWarningText.ShowWarning("Warning!", DoNotShowAgainOptions.WillNotForgetPassword);
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.WillNotForgetPasswordWarningText, DoNotShowAgainOptions.WillNotForgetPassword, Texts.WillNotForgetPasswordCheckBoxText);
 
             LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings);
             using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
