@@ -32,12 +32,12 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
             try
             {
-                New<IMainUI>().Enabled = false;
+                New<IMainUI>().DisableUI();
                 HandleSelectionInternal(e);
             }
             finally
             {
-                New<IMainUI>().Enabled = true;
+                New<IMainUI>().RestoreUI();
             }
             return Constant.CompletedTask;
         }
