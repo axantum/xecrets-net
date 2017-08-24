@@ -12,6 +12,6 @@ namespace Axantum.AxCrypt.Common
         LavasoftWebCompanionExistenceWarning = 0x2,
         TryPremium = 0x4,
         SignedInSoNoPasswordRequired = 0x8,
-        WillNotForgetPassword = 0x16,
+        WillNotForgetPassword = 0x10,
     }
 }

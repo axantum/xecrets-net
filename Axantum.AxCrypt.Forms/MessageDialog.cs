@@ -8,7 +8,7 @@ namespace Axantum.AxCrypt.Forms
 {
     internal partial class MessageDialog : StyledMessageBase
     {
-        private string _doNotShowAgainCustomText = string.Empty;
+        private string _doNotShowAgainCustomText;
 
         public MessageDialog()
         {
@@ -16,9 +16,8 @@ namespace Axantum.AxCrypt.Forms
         }
 
         public MessageDialog(Form parent)
-            : this()
+            : this(parent, null)
         {
-            InitializeStyle(parent);
         }
 
         public MessageDialog(Form parent, string doNotShowAgainCustomText)
