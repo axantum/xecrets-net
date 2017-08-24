@@ -42,23 +42,28 @@ namespace Axantum.AxCrypt.Desktop
     {
         private INow _now;
 
-        private string _filePath;
+        private string _currentFilePath;
+        private string _previousFilePath;
 
-        private IDataStore _logFile;
+        private IDataStore _currentLogFile;
+        private IDataStore _previousLogFile;
 
         public Report(string folderPath)
         {
             _now = New<INow>();
-            _filePath = Path.Combine(folderPath, "ReportSnapshot.txt");
-            _logFile = New<IDataStore>(_filePath);
+            _currentFilePath = Path.Combine(folderPath, "ReportSnapshot.txt");
+            _previousFilePath = Path.Combine(folderPath, "ReportSnapshot.1.txt");
+            _previousLogFile = New<IDataStore>(_previousFilePath);
+            _currentLogFile = New<IDataStore>(_currentFilePath);
         }
 
         public void Exception(Exception ex)
         {
-            using (FileLock fileLock = New<FileLocker>().Acquire(_logFile))
+            MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThan1MB();
+            using (FileLock fileLock = New<FileLocker>().Acquire(_currentLogFile))
             {
                 StringBuilder sb = new StringBuilder();
-                if (!New<IDataStore>(_filePath).IsAvailable)
+                if (!_currentLogFile.IsAvailable)
                 {
                     sb.AppendLine(Texts.ReportSnapshotIntro).AppendLine();
                 }
@@ -69,7 +74,7 @@ namespace Axantum.AxCrypt.Desktop
                 sb.AppendLine(displayContext);
                 sb.AppendLine(ex?.ToString() ?? "(null)");
 
-                using (StreamWriter writer = new StreamWriter(_logFile.OpenUpdate(), Encoding.UTF8))
+                using (StreamWriter writer = new StreamWriter(_currentLogFile.OpenUpdate(), Encoding.UTF8))
                 {
                     writer.Write(sb.ToString());
                 }
@@ -78,7 +83,15 @@ namespace Axantum.AxCrypt.Desktop
 
         public void Open()
         {
-            Process.Start(_filePath);
+            Process.Start(_currentFilePath);
+        }
+
+        private void MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThan1MB()
+        {
+            if (_currentLogFile.Length() > 1000000)
+            {
+                _currentLogFile.MoveTo(_previousFilePath);
+            }
         }
     }
 }
