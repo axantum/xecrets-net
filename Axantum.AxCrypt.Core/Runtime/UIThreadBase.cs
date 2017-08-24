@@ -51,7 +51,6 @@ namespace Axantum.AxCrypt.Core.Runtime
                 while (Blocked)
                 {
                     New<ISleep>().Time(TimeSpan.FromMilliseconds(1));
-                    Yield();
                 }
             }
 
@@ -87,7 +86,6 @@ namespace Axantum.AxCrypt.Core.Runtime
                 while (Blocked)
                 {
                     await Task.Delay(1);
-                    Yield();
                 }
             }
 
