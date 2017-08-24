@@ -2508,6 +2508,12 @@ For more information, click OK to open a web browser to our web site.</value>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Getting started with AxCrypt</value>
   </data>
+  <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
+    <value>!!I will not forget my password!</value>
+  </data>
+  <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
+    <value>!!Your password will be used for securing your files with AxCrypt strong encryption. If you forget this password, you cannot open these files. A password reset will allow to sign in to your account, but not open files secured with this password.</value>
+  </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Select files to securely delete</value>
   </data>

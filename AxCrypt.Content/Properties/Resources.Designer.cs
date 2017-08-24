@@ -6316,6 +6316,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!I will not forget my password!.
+        /// </summary>
+        public static string WillNotForgetPasswordCheckBoxText {
+            get {
+                return ResourceManager.GetString("WillNotForgetPasswordCheckBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Your password will be used for securing your files with AxCrypt strong encryption. If you forget this password, you cannot open these files. A password reset will allow to sign in to your account, but not open files secured with this password..
+        /// </summary>
+        public static string WillNotForgetPasswordWarningText {
+            get {
+                return ResourceManager.GetString("WillNotForgetPasswordWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select files to securely delete.
         /// </summary>
         public static string WipeFileSelectFileDialogTitle {

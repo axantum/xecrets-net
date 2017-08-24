@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Common
 {
@@ -14,5 +12,6 @@ namespace Axantum.AxCrypt.Common
         LavasoftWebCompanionExistenceWarning = 0x2,
         TryPremium = 0x4,
         SignedInSoNoPasswordRequired = 0x8,
+        WillNotForgetPassword = 0x16,
     }
 }

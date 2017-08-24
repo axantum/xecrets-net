@@ -1116,6 +1116,8 @@ namespace Axantum.AxCrypt
 
         private async Task HandleExistingAccountLogOn(LogOnEventArgs e)
         {
+            Texts.WillNotForgetPasswordWarningText.ShowWarning("Warning!", DoNotShowAgainOptions.WillNotForgetPassword);
+
             LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings);
             using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
             {
