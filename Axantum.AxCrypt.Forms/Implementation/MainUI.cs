@@ -9,6 +9,8 @@ namespace Axantum.AxCrypt.Forms.Implementation
 {
     public class MainUI : IMainUI
     {
+        private Stack<bool> _states = new Stack<bool>();
+
         private Form _mainForm;
 
         public MainUI(Form mainForm)
@@ -16,17 +18,15 @@ namespace Axantum.AxCrypt.Forms.Implementation
             _mainForm = mainForm;
         }
 
-        public bool Enabled
+        public void DisableUI()
         {
-            get
-            {
-                return _mainForm.Enabled;
-            }
+            _states.Push(_mainForm.Enabled);
+            _mainForm.Enabled = false;
+        }
 
-            set
-            {
-                _mainForm.Enabled = value;
-            }
+        public void RestoreUI()
+        {
+            _mainForm.Enabled = _states.Pop();
         }
     }
 }

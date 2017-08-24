@@ -7,6 +7,8 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public interface IMainUI
     {
-        bool Enabled { get; set; }
+        void DisableUI();
+
+        void RestoreUI();
     }
 }
