@@ -69,8 +69,8 @@ namespace Axantum.AxCrypt
             _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.ShowPassword), (bool show) => { _passphrase.UseSystemPasswordChar = _passphraseVerification.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
             _viewModel.BindPropertyChanged(nameof(VerifyAccountViewModel.UserEmail), (string u) => { _promptTextLabel.Text = Texts.MessageSigningUpText.InvariantFormat(u); });
 
-            _activationCode.Focus();
             Visible = true;
+            _activationCode.Focus();
         }
 
         private void _buttonOk_Click(object sender, EventArgs e)
