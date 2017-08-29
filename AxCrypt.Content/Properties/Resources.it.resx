@@ -834,6 +834,10 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>La cartella '{0}' è già protetta.</value>
   </data>
+  <data name="FolderSelectTitle" xml:space="preserve">
+    <value>Seleziona una cartella</value>
+    <comment>A prompt or title in a folder selection dialog, prompting the user to select a folder.</comment>
+  </data>
   <data name="FollowUsTitle" xml:space="preserve">
     <value>Seguici</value>
     <comment>Title of panel with social links in mobile application</comment>
@@ -1015,6 +1019,12 @@ Partita IVA SE 556967618101</value>
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>Gestione delle Chiavi</value>
+  </data>
+  <data name="KeyShareDialogHeader" xml:space="preserve">
+    <value>Aggiungi destinatari alla lista di persone con cui vuoi condividere questo file.
+
+Un destinatario è identificato dall'email di registrazione AxCrypt ID, ma non gli invieremo il file! Qui aggiungi la chiave del destinatario per il file. Devi poi in un secondo momento condividere il file stesso con il destinatario.</value>
+    <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>La chiave del file è condivisa con altri utenti AxCrypt.</value>
@@ -1823,6 +1833,15 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Vai alla gestione delle password</value>
   </data>
+  <data name="SecretsSortOrderLabel" xml:space="preserve">
+    <value>Ordina per</value>
+  </data>
+  <data name="SecretsSortOrderOptionByContent" xml:space="preserve">
+    <value>Contenuto</value>
+  </data>
+  <data name="SecretsSortOrderOptionNone" xml:space="preserve">
+    <value>[Nessuno]</value>
+  </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
     <value>Non hai un abbonamento Premium e di conseguenza non puoi più modificare o creare nuove password. Tuttavia, puoi ancora vedere le voci esistenti. Se non hai utilizzato il tuo periodo di prova di 30 giorni di Premium, puoi iniziarlo dall' &lt;a href="https://www.axcrypt.net/Download/"&gt;app di AxCrypt&lt;/a&gt;</value>
   </data>
@@ -1883,6 +1902,9 @@ Scegli qualcosa che sia difficile da indovinare, poiché proteggerà sia le pass
 
 Potrebbe essere necessario informare direttamente '{0}' riguardo la protezione dei file AxCrypt</value>
   </data>
+  <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
+    <value>Seleziona il file protetto da condividere</value>
+  </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Condividi Chiavi</value>
   </data>
@@ -1923,6 +1945,14 @@ Potrebbe essere necessario informare direttamente '{0}' riguardo la protezione d
     <value>Seguici sui social network</value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
+  <data name="SoftwareIsUpToDateLabel" xml:space="preserve">
+    <value>Aggiornato</value>
+    <comment>Short label stating that the software is up to date.</comment>
+  </data>
+  <data name="SoftwareUpdateNowLabel" xml:space="preserve">
+    <value>Aggiorna ora!</value>
+    <comment>A short label prompting the user to update AxCrypt now!</comment>
+  </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>Una connessione SSL sicura è richiesta. Per favore riprova usando &lt;a href="{2}"&gt;{2}&lt;/a&gt; .
 
@@ -1939,6 +1969,10 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   <data name="StartupTipTryMobileApp" xml:space="preserve">
     <value>Da oggi le app per Android e iOS sono incluse in AxCrypt Premium. Vuoi saperne di più?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
+  </data>
+  <data name="StepsWizardLabel" xml:space="preserve">
+    <value>Fase {0} di {1}</value>
+    <comment>A pattern for a step wizard, "Step 1 of 3" for example. Note that it's important that {0} and {1} remain exactly like that and that {0} represents the current step, and {1} represents the total number of steps (in case the translation requires then in different order).</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Clicca per selezionare i file da non proteggere più</value>

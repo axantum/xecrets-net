@@ -363,6 +363,10 @@
   <data name="ButtonNoText" xml:space="preserve">
     <value>Нет</value>
   </data>
+  <data name="ButtonNotNow" xml:space="preserve">
+    <value>Не сейчас</value>
+    <comment>The text of a button as the alternative for for example "Try now!" for Premium. It should not have an exclamation point.</comment>
+  </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>ОК</value>
   </data>
@@ -724,6 +728,9 @@
   <data name="ErrorEmailMismatch" xml:space="preserve">
     <value>Верификация не совпадает с адресом электронной почты</value>
   </data>
+  <data name="ErrorFieldRequired" xml:space="preserve">
+    <value>'{0}' должно быть заполнено.</value>
+  </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>Верификация пароля не совпадает с паролем.</value>
   </data>
@@ -849,6 +856,10 @@
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Папка '{0}' уже защищена.</value>
   </data>
+  <data name="FolderSelectTitle" xml:space="preserve">
+    <value>Выберите папку</value>
+    <comment>A prompt or title in a folder selection dialog, prompting the user to select a folder.</comment>
+  </data>
   <data name="FollowUsTitle" xml:space="preserve">
     <value>Подписывайтесь на нас </value>
     <comment>Title of panel with social links in mobile application</comment>
@@ -911,6 +922,12 @@
   </data>
   <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
     <value>Внимание</value>
+  </data>
+  <data name="IncludeSubfoldersDescription" xml:space="preserve">
+    <value>Когда опция Присоединить Подпапки активирована, просматриваемые папки и другие операции, кодирующие и расшифровывающие файлы с папками, будут присоединять в свой состав все ниже указанные подпапки.
+
+Данное действие может вызвать медленное осуществление некоторых операций. Пожалуйста, будьте внимательны при выборе папки с подпапками, указанными ниже, которые вы не хотите закодировать.  </value>
+    <comment>A short text in a few sentences describing what the Include Subfolders option does.</comment>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Мой AxCrypt ID</value>
@@ -1021,6 +1038,12 @@
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>Менеджмент Ключей</value>
   </data>
+  <data name="KeyShareDialogHeader" xml:space="preserve">
+    <value>Добавить адресатов в список людей, с которыми Вы хотите поделиться совместным пользованием данного файла.
+
+Адресат будет идентифицирован адресом электронной почты своего AxCrypt ID, однако мы не высылаем файла! Здесь Вы добавляете ключ доступа адресата к файлу. После данного действия Вам всё равно необходимо самим поделиться файлом с адресатом.</value>
+    <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
+  </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Ключевой файл разделён с другими AxCrypt пользователями.</value>
   </data>
@@ -1068,6 +1091,10 @@
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Вернуться на главную страницу</value>
     <comment>Menus and similar to link back to main site.</comment>
+  </data>
+  <data name="LocalIndicatorText" xml:space="preserve">
+    <value>Локальный</value>
+    <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Выход из системы выполнен</value>
@@ -1342,6 +1369,14 @@
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Проверка на обновления не требуется.</value>
   </data>
+  <data name="NoPasswordRequiredInformationText" xml:space="preserve">
+    <value>Мы делаем это, не запрашивая заново Вашего пароля!
+
+Вы выполнили вход в систему, поэтому мы не будем запрашивать Вашего пароля для кодирования, расшифровования или открытия документов.
+
+Ваши документы остаются надёжно закодированными с Вашим паролем.</value>
+    <comment>An information text, informing the user why there is no prompt for a password when you're signed in.</comment>
+  </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>Вы не подписаны на Premium, поэтому не имеете доступа к самому высокому уровню защиты. Нажмите для обновления!</value>
   </data>
@@ -1471,6 +1506,12 @@
 
 Мы группируем пароли в 4 категории в соответсвии с возрастанием длины. Мы не допускаем никакие пароли из самой короткой категории. Пример, показанный ранее, не допускается именно по этой причине.</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
+  </data>
+  <data name="PasswordRulesShortInfo" xml:space="preserve">
+    <value>AxCrypt использует усовершенствованный калькулятор пароля динамической прочности.
+
+Пробелы и фрагменты, совпадающие с часто используемыми паролями, игнорируются и не предают никакой прочности защите.</value>
+    <comment>A shorter description of how password strength is evaluated.</comment>
   </data>
   <data name="PasswordStrengthBadName" xml:space="preserve">
     <value>Ненадёжный</value>
@@ -1808,6 +1849,15 @@
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Перейдите в Менеджер Паролей.</value>
   </data>
+  <data name="SecretsSortOrderLabel" xml:space="preserve">
+    <value>Сортировать По</value>
+  </data>
+  <data name="SecretsSortOrderOptionByContent" xml:space="preserve">
+    <value>Контент</value>
+  </data>
+  <data name="SecretsSortOrderOptionNone" xml:space="preserve">
+    <value>[Ничего]</value>
+  </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
     <value>Вы больше не являетесь пользователям Premium, поэтому не имеете более возможности редактировать и создавать новые вводы паролей. Однако Вы до сих пор имеете возможность видеть существующие вводы. Если Вы ещё не воспользовались Вашим 30-дневным пробным периодом Premium, Вы можете его начать на &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;</value>
   </data>
@@ -1868,6 +1918,9 @@
 
 Вам следует проинформировать лично '{0}'  о безопасности файлов в AxCrypt.</value>
   </data>
+  <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
+    <value>Выберите защищённые файлы для совместного пользования </value>
+  </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Поделиться Ключами</value>
   </data>
@@ -1908,6 +1961,14 @@
     <value>Следите за нами в соц.сетях</value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
+  <data name="SoftwareIsUpToDateLabel" xml:space="preserve">
+    <value>Обновлено</value>
+    <comment>Short label stating that the software is up to date.</comment>
+  </data>
+  <data name="SoftwareUpdateNowLabel" xml:space="preserve">
+    <value>Обновить сейчас!</value>
+    <comment>A short label prompting the user to update AxCrypt now!</comment>
+  </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>Необходимо безопасное SSL соединение. Пожалуйста, попробуйте ещё раз, используя &lt;a href="{2}"&gt;{2}&lt;/a&gt;.
 
@@ -1918,9 +1979,16 @@
     <value>Необходимо Безопасное Соединение</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
+  <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
+    <value>Знаете ли Вы, что можете активировать опцию ' Присоединить Подпапки' для работы с папками в папках. Необходим Premium для использования данной функции.</value>
+  </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
     <value>Теперь мобильные приложения для Android и iOS включены в AxCrypt Premium. Хотите узнать больше?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
+  </data>
+  <data name="StepsWizardLabel" xml:space="preserve">
+    <value>Шаг {0} из {1}</value>
+    <comment>A pattern for a step wizard, "Step 1 of 3" for example. Note that it's important that {0} and {1} remain exactly like that and that {0} represents the current step, and {1} represents the total number of steps (in case the translation requires then in different order).</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Выберите нажатием файлы для прекращения их защиты.</value>
@@ -2132,6 +2200,16 @@
 Для кодирования Ваших первых файлов нажмите на символ + на панели инструментов и выберите файлы.
 
 Для получения больше информации нажмите OK, чтобы открыть веб браузер нашего сайта.</value>
+  </data>
+  <data name="WelcomeToAxCryptForMac" xml:space="preserve">
+    <value>Добро пожаловать в AxCrypt для Mac!
+
+Использование AxCrypt чрезвычайно простое. Начните с главного окна или используете Двойное Нажатие мышки в Finder.
+
+Для кодирования Ваших первых файлов нажмите значок + на панели инструментов и выберите их.
+
+Для более подробной информации нажмите OK для открытия веб браузера на нашем веб сайте.</value>
+    <comment>A longer message for a dialog box the first time a Mac user starts AxCrypt.</comment>
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Начать работать с AxCrypt</value>
