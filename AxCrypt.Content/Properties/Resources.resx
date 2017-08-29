@@ -2299,10 +2299,10 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>The culture was successfully updated.</value>
   </data>
   <data name="TargetAccountExists" xml:space="preserve">
-    <value>!!Target account exists!</value>
+    <value>You are trying to change your account to an account that already exists!</value>
   </data>
   <data name="TargetAccountExistsErrorText" xml:space="preserve">
-    <value>!!If you are trying to change the email of an account, the target account must not exist! You have to delete the target account first.</value>
+    <value>When you try to change the email address of an account, the email you change to must not already have an account! You have to delete that account first.</value>
   </data>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>Can't open current file</value>
@@ -2509,10 +2509,10 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>Getting started with AxCrypt</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
-    <value>!!I will not forget my password!</value>
+    <value>I will not forget my password!</value>
   </data>
   <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
-    <value>!!Your password will be used for securing your files with AxCrypt strong encryption. If you forget this password, you cannot open these files. A password reset will allow to sign in to your account, but not open files secured with this password.</value>
+    <value>Your password will be used for securing your files with AxCrypt strong encryption. If you forget this password, you cannot open these files. A password reset will allow to sign in to your account, but not open files secured with the old password.</value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Select files to securely delete</value>

@@ -5778,7 +5778,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Target account exists!.
+        ///   Looks up a localized string similar to You are trying to change your account to an account that already exists!.
         /// </summary>
         public static string TargetAccountExists {
             get {
@@ -5787,7 +5787,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!If you are trying to change the email of an account, the target account must not exist! You have to delete the target account first..
+        ///   Looks up a localized string similar to When you try to change the email address of an account, the email you change to must not already have an account! You have to delete that account first..
         /// </summary>
         public static string TargetAccountExistsErrorText {
             get {
@@ -6316,7 +6316,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!I will not forget my password!.
+        ///   Looks up a localized string similar to I will not forget my password!.
         /// </summary>
         public static string WillNotForgetPasswordCheckBoxText {
             get {
@@ -6325,7 +6325,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Your password will be used for securing your files with AxCrypt strong encryption. If you forget this password, you cannot open these files. A password reset will allow to sign in to your account, but not open files secured with this password..
+        ///   Looks up a localized string similar to Your password will be used for securing your files with AxCrypt strong encryption. If you forget this password, you cannot open these files. A password reset will allow to sign in to your account, but not open files secured with the old password..
         /// </summary>
         public static string WillNotForgetPasswordWarningText {
             get {
