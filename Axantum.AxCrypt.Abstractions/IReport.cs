@@ -28,18 +28,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Abstractions
 {
     public interface IReport
     {
         void Exception(Exception ex);
-
-        string Snapshot { get; }
-
-        void Save();
 
         void Open();
     }

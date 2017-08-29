@@ -101,6 +101,7 @@
     <Compile Include="TestPublicKeyThumbprint.cs" />
     <Compile Include="TestRandomGenerator.cs" />
     <Compile Include="TestAsymmetricUserKeysStore.cs" />
+    <Compile Include="TestReportLogging.cs" />
     <Compile Include="TestSharingListViewModel.cs" />
     <Compile Include="TestSignerVerifier.cs" />
     <Compile Include="TestUserPublicKeyUpdateStatus.cs" />
@@ -233,6 +234,10 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
       <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
       <Name>Axantum.AxCrypt.Mono</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Content\AxCrypt.Content.csproj">
+      <Project>{CB0C5A7A-FBEE-4F02-BDAE-4A7F206C1CD4}</Project>
+      <Name>AxCrypt.Content</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
