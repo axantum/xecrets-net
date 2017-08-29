@@ -158,7 +158,8 @@
     <value>Nach der Aktivierung Ihrer  AxCrypt ID können Sie während einer 30-tägigen Testphase umsonst die AxCrypt Premium Dienste nutzen.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Sie haben sich für eine AxCrypt ID registriert. Um Ihren Account zu verifizieren, geben Sie Ihren Aktivierungscode in der AxCrypt App oder der Webseite ein. </value>
+    <value>Sie haben sich für eine AxCrypt ID registriert. Um den Prozess abzuschliessen müssen Sie Ihre email Adresse verifizieren. Dieser Prozess beweist dass das email Ihn gehört und gibt uns eine Genehmigung Ihn emails to schicken. 
+</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>Für eine manuelle Überprüfung gehen Sie zu &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; und geben Sie &lt;b&gt;{1}&lt;/b&gt; und den Überprüfungscode &lt;b&gt;{2}&lt;/b&gt; ein.</value>
@@ -789,7 +790,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <comment>The text "All Files" when used in a file dialog.</comment>
   </data>
   <data name="FileFilterFileTypeAxCryptFiles" xml:space="preserve">
-    <value/>
+    <value>AxCrypt Dateien</value>
     <comment>The short description for "AxCrypt Files" used in file selection dialogs.</comment>
   </data>
   <data name="FileFilterFileTypeAxCryptIdFiles" xml:space="preserve">
@@ -797,8 +798,12 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <comment>The description for AxCrypt ID files when exporting. Essentially a type of .axx files.</comment>
   </data>
   <data name="FileFilterFileTypeFiles" xml:space="preserve">
-    <value/>
+    <value>Dateien</value>
     <comment>A single word or similar expressing "Files" - i.e. any number of any kind of files.</comment>
+  </data>
+  <data name="FileFilterFileTypeKeyFile" xml:space="preserve">
+    <value>AxCrypt Schlüsseldateien</value>
+    <comment>The short file selection prompt for a legacy style key file.</comment>
   </data>
   <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
     <value>AxCrypt Public Sharing Key Files</value>
@@ -824,6 +829,10 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Ordner '{0}' bereits gesichert. </value>
+  </data>
+  <data name="FolderSelectTitle" xml:space="preserve">
+    <value>Ordner wählen</value>
+    <comment>A prompt or title in a folder selection dialog, prompting the user to select a folder.</comment>
   </data>
   <data name="FollowUsTitle" xml:space="preserve">
     <value>Folgen Sie uns</value>
@@ -857,6 +866,10 @@ Falls Sie aus irgendeinem  Grund Ihr Kennwort nicht wissen oder vergessen haben,
     <value>Minuten</value>
     <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
   </data>
+  <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
+    <value>Inaktivität Abmeldung</value>
+    <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>AxCrypt ID mit Sharing- und Zugangskeys importieren. </value>
   </data>
@@ -880,6 +893,12 @@ Falls Sie aus irgendeinem  Grund Ihr Kennwort nicht wissen oder vergessen haben,
   </data>
   <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
     <value>Warnung</value>
+  </data>
+  <data name="IncludeSubfoldersDescription" xml:space="preserve">
+    <value>Wenn der Unterordner einfügen Option aktiviert ist, Überwachten Ordner und andere Operationen die Datei Verschlüsseln und Endschlüsseln mit Datei werden Unterordner und alle Unterordner unterhalb enthalten.
+
+Das führt dazu dass Operationen lange dauern können. Bitte passen Sie auf keine Datei zu wählen mit den Dateien die unterhalb sind und die nicht Verschlüsselt sein sollen.</value>
+    <comment>A short text in a few sentences describing what the Include Subfolders option does.</comment>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Meine AxCrypt ID</value>
@@ -989,6 +1008,12 @@ Melden Sie sich bei AxCrypt mit {2} an, geben Sie den 6-stelligen Bestätigungsc
   </data>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>Schlüssel Verwaltung </value>
+  </data>
+  <data name="KeyShareDialogHeader" xml:space="preserve">
+    <value>Hinzufügen Sie Empfänger zu der Liste mit den Sie diese Datei teilen möchten.
+
+Ein Empfänger ist von der AxCrypt ID email identifiziert aber wie schicken die Datei nicht. Hier hinzufügen Sie die Schlüssel von den Empfängern zu der Datei. Sie müssen aber trotzdem die Aktuelle Datei mit den Empfängern teilen. </value>
+    <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Der Dateischlüssel wird mit anderen AxCrypt Benutzern geteilt. </value>
@@ -1229,7 +1254,10 @@ Dieses Programm wird entsprechend der Vereinbarung genehmigt.
     <value>Hier Explorer öffnen</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>Wir haben bemerkt dass Sie kein Premium Abonnement haben, wir haben deshalb eine 30-Tage Probe angefangen so dass Sie die Premium Funktionalitäten, angeboten bei AxCrypt, außerhalb der App benutzen können. Dies ist auch notwendig für die Funktionsfähigkeit der App.</value>
+    <value>Wir haben bemerkt dass Sie kein Premium Abonnement haben, wir möchten eine Kostenlose Testversion für Sie Anfangen. 
+
+Ohne Premium können Sie nur sehen und dauerhaft verschlüsselte Datei entschlüsseln. 
+</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
@@ -1312,6 +1340,14 @@ Dieses Programm wird entsprechend der Vereinbarung genehmigt.
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Keine Notwendigkeit nach Updates zu suchen. </value>
+  </data>
+  <data name="NoPasswordRequiredInformationText" xml:space="preserve">
+    <value>Wir machen das ohne nach Ihrem Passwort noch mal zu fragen!
+
+Sind sind eingeloggt, wir werden nicht mehr nach Ihrem Passwort fragen um Dokumente zu verschlüsseln, entschlüsseln und zu öffnen. 
+
+Ihre Dokumente sind noch sicher mit Ihrem Passwort verschlüsselt.</value>
+    <comment>An information text, informing the user why there is no prompt for a password when you're signed in.</comment>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>Sie haben kein Premium Abonnement. Sie nutzen nicht das höchste Sicherheitslevel. Klicken Sie für ein Upgrade! </value>
@@ -1452,6 +1488,12 @@ Wir stufen die Kennwörter in 4 Kategorien nach ansteigenden Stärken ein, in de
 </value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
+  <data name="PasswordRulesShortInfo" xml:space="preserve">
+    <value>AxCrypt benutzt ein fortschrittliches dynamisches starkes Passwort Rechenwerk.
+
+Leerraum und Teile die gleich zu übliche Passwörter sind werden ignoriert und hinzufügen keine Stärke.</value>
+    <comment>A shorter description of how password strength is evaluated.</comment>
+  </data>
   <data name="PasswordStrengthBadName" xml:space="preserve">
     <value>Schwach</value>
     <comment>Short displayed name of "Bad" password status</comment>
@@ -1522,6 +1564,10 @@ Wir stufen die Kennwörter in 4 Kategorien nach ansteigenden Stärken ein, in de
   <data name="PremiumNeededForMobileApp" xml:space="preserve">
     <value>Entschuldigung aber Sie haben kein Premium Abonnement. Verbessen Sie jetzt Ihr Konto um die Premium AxCrypt Funktionalitäten zu benutzen, dies sind notwendig für die Funktionsweise der App.</value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
+  </data>
+  <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
+    <value>Diese Funktion benötigt ein bezahlten Plan. Wollen Sie dass wir eine Website öffnen wo Sie einen Kauf tätigen können?</value>
+    <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Drücken und halten sie um mehr zu sehen</value>
@@ -1789,6 +1835,15 @@ Eine 30-tägige Testphase von AxCrypt Premium ist inklusive und Sie können es j
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Gehe zur Passwortverwaltung. </value>
   </data>
+  <data name="SecretsSortOrderLabel" xml:space="preserve">
+    <value>Sortieren nach</value>
+  </data>
+  <data name="SecretsSortOrderOptionByContent" xml:space="preserve">
+    <value>Inhalt</value>
+  </data>
+  <data name="SecretsSortOrderOptionNone" xml:space="preserve">
+    <value>[Keine]</value>
+  </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
     <value>Ihr Premium Abonnement ist nicht mehr gültig, daher können Sie keine Passworteinträge mehr bearbeiten oder erstellen. Sie können jedoch noch bestehende Einträge sehen. Wenn sie Ihre 30-tätige Testphase noch nicht benutzt haben, können Sie sie auf &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt; beginnen.</value>
   </data>
@@ -1847,6 +1902,9 @@ Wählen Sie ein schwer zu erratendes Passwort, da es sowohl die vom Passwort Man
 
 Bitte ziehen Sie es in Erwägung '{0}' direkt über die AxCrypt Datensicherheit zu informieren.</value>
   </data>
+  <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
+    <value>Wählen Sie gesicherte Datei zu teilen</value>
+  </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Teile Schlüssel</value>
   </data>
@@ -1887,6 +1945,14 @@ Bitte ziehen Sie es in Erwägung '{0}' direkt über die AxCrypt Datensicherheit 
     <value>Folgen Sie uns auf unseren sozialen Medien</value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
+  <data name="SoftwareIsUpToDateLabel" xml:space="preserve">
+    <value>Aktuell</value>
+    <comment>Short label stating that the software is up to date.</comment>
+  </data>
+  <data name="SoftwareUpdateNowLabel" xml:space="preserve">
+    <value>Jetzt aktualisieren!</value>
+    <comment>A short label prompting the user to update AxCrypt now!</comment>
+  </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>Eine sichere SSL Verbindung ist notwendig. Bitte versuchen Sie es erneut mit &lt;a href="{2}"&gt;{2}&lt;/a&gt;. 
 
@@ -1903,6 +1969,10 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="StartupTipTryMobileApp" xml:space="preserve">
     <value>Die Handy Apps für Android und iOS sind jetzt inclusive in AxCrypt Premium. Wollen Sie mehr darüber wissen?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
+  </data>
+  <data name="StepsWizardLabel" xml:space="preserve">
+    <value>Schritt {0} of {1}</value>
+    <comment>A pattern for a step wizard, "Step 1 of 3" for example. Note that it's important that {0} and {1} remain exactly like that and that {0} represents the current step, and {1} represents the total number of steps (in case the translation requires then in different order).</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Klicken Sie um Dateien auszuwählen, deren Sicherung Sie stoppen wollen. </value>
@@ -2111,6 +2181,16 @@ Die Benutzung von AxCrypt ist ganz einfach. Starten Sie mit dem Hauptfenster, od
 Um Ihre ersten Ordner zu verschlüsseln, klicken Sie auf den + Icon in der Toolbar und wählen Sie die gewünschten Ordner aus. 
 
 Für mehr Informationen, klicken Sie OK um einen Webbrowser zu öffnen und zu unserer Seite zu gelangen. </value>
+  </data>
+  <data name="WelcomeToAxCryptForMac" xml:space="preserve">
+    <value>Willkommen zu AxCrypt für Mac!
+
+AxCrypt file zu benutzen ist einfach. Fange Sie mit dem Hauptfenster an, oder benutzen Sie den Doppelklick in Finder.
+
+Um die ersten Datei zu verschlüsseln, klicken Sie die + Ikone in der Symbolleiste und wählen Sie sie aus. 
+
+Für mehr Informationen, OK klicken um ein Webbrowser zu unsere Website zu öffnen. </value>
+    <comment>A longer message for a dialog box the first time a Mac user starts AxCrypt.</comment>
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Erste Schritte mit AxCrypt </value>
