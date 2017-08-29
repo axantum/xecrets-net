@@ -218,6 +218,26 @@ namespace Axantum.AxCrypt.Core.Test.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ReportSnapshot {
+            get {
+                object obj = ResourceManager.GetObject("ReportSnapshot", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ReportSnapshot_1 {
+            get {
+                object obj = ResourceManager.GetObject("ReportSnapshot_1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] tst_0_0b6_key__aaaeoe__medium_html {
             get {
                 object obj = ResourceManager.GetObject("tst_0_0b6_key__aaaeoe__medium_html", resourceCulture);

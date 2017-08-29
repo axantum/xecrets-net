@@ -59,17 +59,17 @@
     <Compile Include="CryptoValidation\TestRsaOeap.cs" />
     <Compile Include="CryptoValidation\TestSha256.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TestFileFilter.cs" />
     <Compile Include="TestIdentityPublicTag.cs" />
     <Compile Include="TestKnownPublicKeys.cs" />
     <Compile Include="TestManageAccountViewModel.cs" />
     <Compile Include="MockAxCryptFile.cs" />
     <Compile Include="MockFileSystemStateActions.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="SetupAssembly.cs" />
     <Compile Include="TestActiveFile.cs" />
     <Compile Include="TestActiveFileCollectionTests.cs" />
@@ -243,8 +243,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +253,8 @@
   <ItemGroup>
     <Content Include="AboutThisAssembly.txt" />
     <Content Include="resources\My Key-File.txt" />
+    <None Include="resources\ReportSnapshot_1.txt" />
+    <None Include="resources\ReportSnapshot.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

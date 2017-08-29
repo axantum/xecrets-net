@@ -287,4 +287,10 @@ yhkO4poTyn0zanedSJdPn/kW96j0u3WCoRo4K+eOB7Pcv/qC82Az+AQbTEqQnRea
   <data name="_2003_05_28_PcWorld_AxCrypt__b____My_Keyfile_pdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\2003-05-28 pcworld axcrypt 'b' + my keyfile-pdf.axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ReportSnapshot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ReportSnapshot.txt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReportSnapshot_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ReportSnapshot_1.txt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

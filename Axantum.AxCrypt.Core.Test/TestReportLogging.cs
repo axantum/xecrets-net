@@ -1,6 +1,7 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Desktop;
 using Axantum.AxCrypt.Fake;
 using Axantum.AxCrypt.Mono.Portable;
@@ -26,6 +27,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
             TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
+            FakeDataStore.AddFile(@"c:\test\ReportSnapshot.txt", new MemoryStream(Resources.ReportSnapshot));
+            FakeDataStore.AddFile(@"c:\test\ReportSnapshot.1.txt", new MemoryStream(Resources.ReportSnapshot_1));
         }
 
         [TearDown]
