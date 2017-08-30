@@ -108,9 +108,6 @@
     <value>Het account moet eerst door de gebruiker bevestigd worden.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
-    <value>AxCrypt Premium (onbepaald)</value>
-  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium Proefversie</value>
   </data>
@@ -339,6 +336,10 @@ U bent gewaarschuwd! Geniet van de beta!
   </data>
   <data name="ButtonNoText" xml:space="preserve">
     <value>Nee</value>
+  </data>
+  <data name="ButtonNotNow" xml:space="preserve">
+    <value>Niet nu</value>
+    <comment>The text of a button as the alternative for for example "Try now!" for Premium. It should not have an exclamation point.</comment>
   </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>OK</value>
@@ -693,6 +694,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="ErrorEmailMismatch" xml:space="preserve">
     <value>De verificatie komt niet overeen met de email</value>
   </data>
+  <data name="ErrorFieldRequired" xml:space="preserve">
+    <value>'{0}' moet ingevuld worden.</value>
+  </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>De wachtwoord verificatie komt niet overeen met het wachtwoord.</value>
   </data>
@@ -813,6 +817,10 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Map '{0}' is al beveiligd</value>
   </data>
+  <data name="FolderSelectTitle" xml:space="preserve">
+    <value>Selecteer een map</value>
+    <comment>A prompt or title in a folder selection dialog, prompting the user to select a folder.</comment>
+  </data>
   <data name="FollowUsTitle" xml:space="preserve">
     <value>Volg ons</value>
     <comment>Title of panel with social links in mobile application</comment>
@@ -872,6 +880,12 @@ Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herin
   </data>
   <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
     <value>Waarschuwing</value>
+  </data>
+  <data name="IncludeSubfoldersDescription" xml:space="preserve">
+    <value>Als de Inclusief Submappen optie is geactiveerd zullen bekeken mappen en andere encryptie en decryptie acties met mappen alle submappen daaronder meenemen.
+
+Dit zorgt er mogelijk voor dat sommige acties lang duren. Zorg er voor dat u geen map selecteert waar mappen in staan die niet geëncrypteerd moeten worden.</value>
+    <comment>A short text in a few sentences describing what the Include Subfolders option does.</comment>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mijn AxCrypt ID</value>
@@ -989,6 +1003,12 @@ BTW Nummer SE 556967618101</value>
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>Sleutel Beheer</value>
   </data>
+  <data name="KeyShareDialogHeader" xml:space="preserve">
+    <value>Voeg ontvangers toe aan de lijst van mensen met wie u dit bestand wilt delen.
+
+Een ontvanger is geïdentificeerd via de AxCrypt ID aanmeld email, maar we versturen het bestand niet! Hier voegt u de ontvangers sleutel aan het bestand toe. U moet hierna nog het bestand zelf met de ontvanger delen.</value>
+    <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
+  </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Het Sleutel Bestand is gedeeld met andere AxCrypt gebruikers.</value>
   </data>
@@ -1034,6 +1054,10 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)? 
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Terug naar de hoofdsite</value>
     <comment>Menus and similar to link back to main site.</comment>
+  </data>
+  <data name="LocalIndicatorText" xml:space="preserve">
+    <value>Lokaal</value>
+    <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Afgemeld</value>
@@ -1224,7 +1248,9 @@ De licentie voor dit programma is conform de overeenkomst.
     <value>Open Verkenner Hier</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>Wij zagen dat u nog geen Premium abonnement had, dus daarom zullen wij voor u een gratis proefversie starten!</value>
+    <value>Wij zagen dat u nog geen Premium abonnement had, dus daarom zouden wij graag voor u een gratis proefversie starten!
+
+Zonder Premium kunt u alleen bestanden bekijken en permanent bestanden decrypteren.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
@@ -1307,6 +1333,14 @@ De licentie voor dit programma is conform de overeenkomst.
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Check voor updates niet nodig.</value>
+  </data>
+  <data name="NoPasswordRequiredInformationText" xml:space="preserve">
+    <value>Wij doen dit zonder nogmaals om uw wachtwoord te vragen!
+
+U bent aangemeld, dus we zullen niet om uw wachtwoord vragen wanneer u encrypteert, decrypteerd of bestanden opent.
+
+Uw bestanden zijn nog steeds veilig geëncrypteerd met uw wachtwoord.</value>
+    <comment>An information text, informing the user why there is no prompt for a password when you're signed in.</comment>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>Uw Premium abonnement is verlopen, dus u gebruikt niet het hoogste beveiligingsniveau. Klik hier om te upgraden.</value>
@@ -1439,6 +1473,12 @@ De evaluatie negeert delen van het wachtwoord die overeenkomen met de 1.000 mees
 
 Wij classificeren het wachtwoord in 4 categorieën van toenemende sterkte, waarbij we wachtwoorden in de laagste categorie niet accepteren. Daarom wordt het bovenstaande voorbeeld niet geaccepteerd.</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
+  </data>
+  <data name="PasswordRulesShortInfo" xml:space="preserve">
+    <value>AxCrypt gebruikt een geavanceerde en dynamische wachtwoord sterkte calculator.
+
+Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden worden genegeerd en maken het wachtwoord niet sterker.</value>
+    <comment>A shorter description of how password strength is evaluated.</comment>
   </data>
   <data name="PasswordStrengthBadName" xml:space="preserve">
     <value>Zwak</value>
@@ -1776,6 +1816,16 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Ga naar wachtwoordbeheer.</value>
   </data>
+  <data name="SecretsSortOrderLabel" xml:space="preserve">
+    <value>Sorteer op
+</value>
+  </data>
+  <data name="SecretsSortOrderOptionByContent" xml:space="preserve">
+    <value>Inhoud</value>
+  </data>
+  <data name="SecretsSortOrderOptionNone" xml:space="preserve">
+    <value>[Geen]</value>
+  </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
     <value>U heeft geen Premium abonnement waardoor u niet langer wachtwoord invoeren kunt maken of deze aanpassen. Echter u kunt bestaande invoeren nog steeds inkijken. Als u uw 30 dagen durende Premium proefperiode nog niet heeft gebruikt kunt u deze vanaf de &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;starten.</value>
   </data>
@@ -1836,6 +1886,9 @@ Kies iets dat moeilijk te raden is, sinds het de wachtwoorden beschermd in de on
 
 Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
   </data>
+  <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
+    <value>Selecteer beveiligd bestand om te delen</value>
+  </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Sleutels Delen</value>
   </data>
@@ -1876,6 +1929,14 @@ Overweeg '{0}' direct te informeren over AxCrypt bestandsbeveiliging. </value>
     <value>Volg ons op social media</value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
+  <data name="SoftwareIsUpToDateLabel" xml:space="preserve">
+    <value>Up to date</value>
+    <comment>Short label stating that the software is up to date.</comment>
+  </data>
+  <data name="SoftwareUpdateNowLabel" xml:space="preserve">
+    <value>Nu updaten!</value>
+    <comment>A short label prompting the user to update AxCrypt now!</comment>
+  </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>Een beveiligde SSL verbinding is verplicht. Probeer het alstublieft nog eens met &lt;a href="{2}"&gt;{2}&lt;/a&gt; .
 
@@ -1886,9 +1947,16 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <value>Beveiligde Verbinding Verplicht</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
+  <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
+    <value>Wist u dat u de 'Inclusief Submappen' optie kan activeren om met mappen in mappen te werken? U heeft Premium nodig voor dit. </value>
+  </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
     <value>Mobiele apps voor Android en iOS zijn nu bij AxCrypt Premium inbegrepen. Wilt u meer weten?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
+  </data>
+  <data name="StepsWizardLabel" xml:space="preserve">
+    <value>Stap {0} van {1}</value>
+    <comment>A pattern for a step wizard, "Step 1 of 3" for example. Note that it's important that {0} and {1} remain exactly like that and that {0} represents the current step, and {1} represents the total number of steps (in case the translation requires then in different order).</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>Klik om bestanden te selecteren die u niet meer wilt beveiligen.</value>

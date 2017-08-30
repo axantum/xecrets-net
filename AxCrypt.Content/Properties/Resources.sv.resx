@@ -1990,6 +1990,12 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Tyvärr så är direkthjälp bara tillgänglig för betalande Premium-användare, använd våra &lt;a href="{0}"&gt;användarforum&lt;/a&gt; istället.</value>
   </data>
+  <data name="TargetAccountExists" xml:space="preserve">
+    <value>Du försöker ändra e-post för ditt konto till en adress som redan finns!</value>
+  </data>
+  <data name="TargetAccountExistsErrorText" xml:space="preserve">
+    <value>När du ändrar e-posten för ett konto, så får det inte redan finnas ett konto med den adressen. Isåfall måste du först ta bort det kontot.</value>
+  </data>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>Kan inte öppna filen</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
@@ -2183,6 +2189,12 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Kom igång med AxCrypt</value>
+  </data>
+  <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
+    <value>Jag glömmer inte mitt lösenord!</value>
+  </data>
+  <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
+    <value>Ditt lösenord används för att skydda dina dokument med stark kryptering med AxCrypt. Om du glömmer det, kommer du inte kunna öppna dem. Du kan återställa ditt lösenord till kontot så att du kan logga in, men dokument skyddade med det gamla lösenordet går inte att öppna.</value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Välj filer för säker radering</value>
