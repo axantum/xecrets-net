@@ -127,9 +127,6 @@
     <value>Le compte doit d'abord être vérifié par l'utilisateur. </value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
-    <value>AxCrypt Premium (indéfini)</value>
-  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>Période d'essai AxCrypt Premium</value>
   </data>
