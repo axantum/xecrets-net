@@ -374,7 +374,24 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <returns></returns>
         public static bool WildcardMatch(this string wildcard, string text)
         {
-            return WildcardMatch(wildcard, text, 0, 0);
+            if (string.IsNullOrEmpty(wildcard))
+            {
+                throw new ArgumentNullException(nameof(wildcard));
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+
+            try
+            {
+                return WildcardMatch(wildcard, text, 0, 0);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidDataException("Invalid data exception caught in WildcardMatch.", ex);
+            }
         }
 
         /// <summary>
