@@ -362,5 +362,80 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, title, message, doNotShowAgainOption));
         }
+
+        /// <summary>
+        /// Tells if the given string matches the given wildcard.
+        /// Two wildcards are allowed: '*' and '?'
+        /// '*' matches 0 or more characters
+        /// '?' matches any character
+        /// </summary>
+        /// <param name="wildcard">The wildcard.</param>
+        /// <param name="text">The s.</param>
+        /// <returns></returns>
+        public static bool WildcardMatch(this string wildcard, string text)
+        {
+            if (string.IsNullOrEmpty(wildcard))
+            {
+                throw new ArgumentNullException(nameof(wildcard));
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+
+            try
+            {
+                return WildcardMatch(wildcard, text, 0, 0);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidDataException("Invalid data exception caught in WildcardMatch.", ex);
+            }
+        }
+
+        /// <summary>
+        /// Internal matching algorithm.
+        /// </summary>
+        /// <param name="wildcard">The wildcard.</param>
+        /// <param name="text">The text.</param>
+        /// <param name="wildcardIndex">Index of the wildcard.</param>
+        /// <param name="textIndex">Index of the text.</param>
+        /// <returns></returns>
+        private static bool WildcardMatch(this string wildcard, string text, int wildcardIndex, int textIndex)
+        {
+            while (true)
+            {
+                bool ignoreCase = true;
+                // in the wildcard end, if we are at tested string end, then strings match
+                if (wildcardIndex == wildcard.Length)
+                    return textIndex == text.Length;
+
+                char c = wildcard[wildcardIndex];
+                switch (c)
+                {
+                    // always a match
+                    case '?':
+                        break;
+
+                    case '*':
+                        // if this is the last wildcard char, then we have a match, whatever the tested string is
+                        if (wildcardIndex == wildcard.Length - 1)
+                            return true;
+                        // test if a match follows
+                        return Enumerable.Range(textIndex, text.Length - 1).Any(i => WildcardMatch(wildcard, text, wildcardIndex + 1, i));
+
+                    default:
+                        char cc = ignoreCase ? char.ToLower(c) : c;
+                        char sc = ignoreCase ? char.ToLower(text[textIndex]) : text[textIndex];
+                        if (cc != sc)
+                            return false;
+                        break;
+                }
+
+                wildcardIndex++;
+                textIndex++;
+            }
+        }
     }
 }
