@@ -5778,6 +5778,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!{0} is a system folder and cannot be secured..
+        /// </summary>
+        public static string SystemFolderForbiddenText {
+            get {
+                return ResourceManager.GetString("SystemFolderForbiddenText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are trying to change your account to an account that already exists!.
         /// </summary>
         public static string TargetAccountExists {

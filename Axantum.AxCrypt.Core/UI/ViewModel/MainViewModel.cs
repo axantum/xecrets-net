@@ -412,9 +412,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string folder in folders)
             {
-                if (!New<FileFilter>().IsForbiddenFolder(folder))
+                if (New<FileFilter>().IsForbiddenFolder(folder))
                 {
-                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, "{0} is a system folder and cannot be secured.".InvariantFormat(folder));
+                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.SystemFolderForbiddenText.InvariantFormat(folder));
                     continue;
                 }
                 await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(folder, Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
