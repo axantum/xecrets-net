@@ -31,6 +31,22 @@ namespace Axantum.AxCrypt.Core.IO
             return !fileInfo.IsEncrypted();
         }
 
+        public bool IsForbiddenFolder(string folder)
+        {
+            if (folder == null)
+            {
+                throw new ArgumentNullException("folder");
+            }
+            foreach (Regex filter in pathFilters)
+            {
+                if (filter.IsMatch(folder))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool AddUnencryptable(Regex regex)
         {
             if (regex == null)

@@ -1,9 +1,13 @@
-﻿using Axantum.AxCrypt.Core.IO;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -69,8 +73,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FileFilter filter = new FileFilter();
 
-			string s = $"\\{Path.DirectorySeparatorChar}";
-			filter.AddUnencryptable(new Regex(@"^.*\\~\$[^\\]*$".Replace(@"\\", s)));
+            string s = $"\\{Path.DirectorySeparatorChar}";
+            filter.AddUnencryptable(new Regex(@"^.*\\~\$[^\\]*$".Replace(@"\\", s)));
 
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$")), Is.False);
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$\")), Is.True);
@@ -93,6 +97,20 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"file.gdoc\file.txt")), Is.True);
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"filegdoc")), Is.True);
             Assert.That(filter.IsEncryptable(new FakeDataStore(@"filegdoc.txt")), Is.True);
+        }
+
+        [Test]
+        public void FileFilterTestForbiddenFolder()
+        {
+            FileFilter filter = new FileFilter();
+
+            Assert.Throws<ArgumentNullException>(() => filter.IsForbiddenFolder(null));
+
+            filter.AddUnencryptable(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
+
+            Assert.That(filter.IsForbiddenFolder(@"C:\Temp\"), Is.False);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Windows\"), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Windows\Temp\"), Is.True);
         }
     }
 }
