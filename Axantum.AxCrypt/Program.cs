@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt
             _workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
 
             TypeMap.Register.Singleton<INow>(() => new Now());
-            TypeMap.Register.Singleton<IReport>(() => new Report(_workFolderPath));
+            TypeMap.Register.Singleton<IReport>(() => new Report(_workFolderPath, 1000000));
 
             EmbeddedResourceManager.Initialize();
 

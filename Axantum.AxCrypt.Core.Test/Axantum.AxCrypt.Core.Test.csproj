@@ -253,8 +253,6 @@
   <ItemGroup>
     <Content Include="AboutThisAssembly.txt" />
     <Content Include="resources\My Key-File.txt" />
-    <None Include="resources\ReportSnapshot_1.txt" />
-    <None Include="resources\ReportSnapshot.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

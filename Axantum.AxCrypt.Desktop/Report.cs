@@ -48,18 +48,21 @@ namespace Axantum.AxCrypt.Desktop
         private IDataStore _currentLogFile;
         private IDataStore _previousLogFile;
 
-        public Report(string folderPath)
+        private long _maxSizeInBytes;
+
+        public Report(string folderPath, long MaxSizeInBytes)
         {
             _now = New<INow>();
             _currentFilePath = Path.Combine(folderPath, "ReportSnapshot.txt");
             _previousFilePath = Path.Combine(folderPath, "ReportSnapshot.1.txt");
             _previousLogFile = New<IDataStore>(_previousFilePath);
             _currentLogFile = New<IDataStore>(_currentFilePath);
+            _maxSizeInBytes = MaxSizeInBytes;
         }
 
         public void Exception(Exception ex)
         {
-            MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThan1MB();
+            MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize();
             using (FileLock fileLock = New<FileLocker>().Acquire(_currentLogFile))
             {
                 StringBuilder sb = new StringBuilder();
@@ -86,11 +89,12 @@ namespace Axantum.AxCrypt.Desktop
             Process.Start(_currentFilePath);
         }
 
-        private void MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThan1MB()
+        private void MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize()
         {
-            if (_currentLogFile.Length() > 1000000)
+            if (_currentLogFile.IsAvailable && _currentLogFile.Length() > _maxSizeInBytes)
             {
                 _currentLogFile.MoveTo(_previousFilePath);
+                _currentLogFile = New<IDataStore>(_currentFilePath);
             }
         }
     }
