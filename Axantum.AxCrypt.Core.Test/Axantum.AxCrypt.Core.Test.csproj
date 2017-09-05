@@ -59,17 +59,17 @@
     <Compile Include="CryptoValidation\TestRsaOeap.cs" />
     <Compile Include="CryptoValidation\TestSha256.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TestFileFilter.cs" />
     <Compile Include="TestIdentityPublicTag.cs" />
     <Compile Include="TestKnownPublicKeys.cs" />
     <Compile Include="TestManageAccountViewModel.cs" />
     <Compile Include="MockAxCryptFile.cs" />
     <Compile Include="MockFileSystemStateActions.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="SetupAssembly.cs" />
     <Compile Include="TestActiveFile.cs" />
     <Compile Include="TestActiveFileCollectionTests.cs" />
@@ -101,6 +101,7 @@
     <Compile Include="TestPublicKeyThumbprint.cs" />
     <Compile Include="TestRandomGenerator.cs" />
     <Compile Include="TestAsymmetricUserKeysStore.cs" />
+    <Compile Include="TestReportLogging.cs" />
     <Compile Include="TestSharingListViewModel.cs" />
     <Compile Include="TestSignerVerifier.cs" />
     <Compile Include="TestUserPublicKeyUpdateStatus.cs" />
@@ -234,12 +235,16 @@
       <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
       <Name>Axantum.AxCrypt.Mono</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Content\AxCrypt.Content.csproj">
+      <Project>{CB0C5A7A-FBEE-4F02-BDAE-4A7F206C1CD4}</Project>
+      <Name>AxCrypt.Content</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
