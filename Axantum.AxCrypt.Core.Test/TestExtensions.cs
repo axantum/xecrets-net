@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Algorithm;
 using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
@@ -648,16 +647,36 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(!utcJustMoreThan60daysPast.IsBetween(days30, days60), nameof(utcJustMoreThan60daysPast));
             Assert.That(!utc100DaysPast.IsBetween(days30, days60), nameof(utc100DaysPast));
         }
+
         [Test]
         public static void TestFileFilter()
         {
             FakeDataStore.AddFile(@"c:\test.txt", null);
             IDataStore fileInfo = New<IDataStore>(@"c:\test.txt");
-            Assert.That(New<FileFilter>().IsEncryptable(fileInfo),Is.True);
+            Assert.That(New<FileFilter>().IsEncryptable(fileInfo), Is.True);
 
             New<FileFilter>().AddUnencryptableExtension("txt");
 
             Assert.That(New<FileFilter>().IsEncryptable(fileInfo), Is.False);
+        }
+
+        [Test]
+        public static void TestWildcardMatch()
+        {
+            Assert.That("*deux*".WildcardMatch("-@-.de"), Is.False, "'*deux*' does not match '-@-.de'");
+            Assert.That("*deux*".WildcardMatch("-@-.deux"), Is.True, "'*deux*' does match '-@-.deux'");
+            Assert.That("*deux*".WildcardMatch("-@-.deuxxxx"), Is.True, "'*deux*' does match '-@-.deuxxxx'");
+            Assert.That("*deux".WildcardMatch("-@-.deux"), Is.True, "'*deux' does match '-@-.deux'");
+            Assert.That("test?".WildcardMatch("testx"), Is.True, "'test?' does match 'testx'");
+            Assert.That("test?".WildcardMatch("test"), Is.False, "'test?' does not match 'test'");
+            Assert.That("*test?".WildcardMatch("something-testx"), Is.True, "'*test?' does match 'something-testx'");
+            Assert.That("*test?".WildcardMatch("something-test"), Is.False, "'*test?' does not match 'something-test'");
+            Assert.That("my*te?t".WildcardMatch("my-something-test"), Is.True, "'my*te?t' does match 'my-something-test'");
+            Assert.That("".WildcardMatch(""), Is.True, "'' does match ''");
+            Assert.That("".WildcardMatch("x"), Is.False, "'' does not match 'x'");
+            Assert.That("x".WildcardMatch(""), Is.False, "'x' does not match ''");
+            Assert.That("*".WildcardMatch(""), Is.True, "'*' does match ''");
+            Assert.That("?".WildcardMatch(""), Is.False, "'?' does not match ''");
         }
     }
 }
