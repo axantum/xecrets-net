@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.IO
             }
             foreach (Regex filter in pathFilters)
             {
-                if (filter.IsMatch(folder))
+                if (filter.IsMatch(folder.NormalizeFolderPath()))
                 {
                     return true;
                 }

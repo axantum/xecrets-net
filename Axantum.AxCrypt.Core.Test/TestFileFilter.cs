@@ -108,9 +108,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             filter.AddUnencryptable(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
 
-            Assert.That(filter.IsForbiddenFolder(@"C:\Temp\"), Is.False);
-            Assert.That(filter.IsForbiddenFolder(@"C:\Windows\"), Is.True);
-            Assert.That(filter.IsForbiddenFolder(@"C:\Windows\Temp\"), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Temp"), Is.False);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Windows"), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Windows\Temp"), Is.True);
         }
     }
 }
