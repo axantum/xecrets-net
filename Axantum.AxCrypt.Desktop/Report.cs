@@ -50,14 +50,14 @@ namespace Axantum.AxCrypt.Desktop
 
         private long _maxSizeInBytes;
 
-        public Report(string folderPath, long MaxSizeInBytes)
+        public Report(string folderPath, long maxSizeInBytes)
         {
             _now = New<INow>();
             _currentFilePath = Path.Combine(folderPath, "ReportSnapshot.txt");
             _previousFilePath = Path.Combine(folderPath, "ReportSnapshot.1.txt");
             _previousLogFile = New<IDataStore>(_previousFilePath);
             _currentLogFile = New<IDataStore>(_currentFilePath);
-            _maxSizeInBytes = MaxSizeInBytes;
+            _maxSizeInBytes = maxSizeInBytes;
         }
 
         public void Exception(Exception ex)
